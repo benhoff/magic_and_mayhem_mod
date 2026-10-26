@@ -658,3 +658,20 @@ int canvas_producers_install(void){
  for(u32 j=0;j<HOOKS;++j){if((j>=53&&j<=56&&!producer_trace_mode)||(j>=57&&!extended_stream()))continue;struct Hook* h=hooks+j;u32 old,unused;if(!VirtualProtect((void*)h->address,h->length,0x40,&old))return 0;u8 patch[10]={0xe9};put(patch+1,(u32)h->entry-h->address-5);for(u32 k=5;k<h->length;++k)patch[k]=0x90;copy((void*)h->address,patch,h->length);FlushInstructionCache(GetCurrentProcess(),(void*)h->address,h->length);VirtualProtect((void*)h->address,h->length,old,&unused);}
  if(!publication_install())return 0;enabled=1;if(glyph)glyph_live_installed();return 1;
 }
+/* Private PE32 hook handoff to the owning native cursor adapter. Only the seven
+ * shared entries are admitted, after validating our installed jump, padding,
+ * complete saved instructions and exact continuation. This is not a wire ABI. */
+__declspec(dllexport) u32 WIN SceneCursorHookV1(u32 address,const u8* expected,u32 length,u32* result){
+ char mode[2];if(!enabled || GetEnvironmentVariableA("MNM_NATIVE_CURSOR_OWNERSHIP",mode,2)!=1 || mode[0]!='2' || !expected || !result)return 0;
+ const u32 indices[7]={0,1,8,32,33,38,39};
+ for(u32 n=0;n<7;++n){u32 i=indices[n];struct Hook* h=hooks+i;if(h->address!=address)continue;
+  u8* entry=(u8*)address,*original=(u8*)producer_trampolines[i];
+  if(!length || length>h->length || !readable(address,h->length) || !readable((u32)original,h->length+5) || entry[0]!=0xe9 || address+5+get(entry+1)!=(u32)h->entry)return 0;
+  for(u32 k=5;k<h->length;++k)if(entry[k]!=0x90)return 0;
+  for(u32 k=0;k<h->length;++k)if(original[k]!=h->bytes[k])return 0;
+  for(u32 k=0;k<length;++k)if(expected[k]!=h->bytes[k])return 0;
+  if(original[h->length]!=0xe9 || (u32)original+h->length+5+get(original+h->length+1)!=address+h->length)return 0;
+  result[0]=(u32)h->entry;result[1]=(u32)original;return 1;
+ }
+ return 0;
+}

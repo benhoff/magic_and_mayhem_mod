@@ -7,6 +7,7 @@
 static struct NsState* ns_store_cached;
 static void ns_store_invalidate(void){__atomic_store_n(&ns_store_cached,0,__ATOMIC_RELEASE);}
 __declspec(dllexport) i32 WIN NativeDrawCpuStoreV1(void* destination,u32 value,u32 width){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  const u32 error=GetLastError();const uintptr_t at=(uintptr_t)destination;
  i32 result=1;
  if(!at || (width!=1 && width!=2 && width!=4) || at>UINTPTR_MAX-width){result=ND_INVALID;goto done;}

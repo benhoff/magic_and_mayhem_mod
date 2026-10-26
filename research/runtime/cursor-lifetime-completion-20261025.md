@@ -3,7 +3,9 @@
 Build-specific findings use NoCD `40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168`.
 Static resource provenance is high confidence within the named instruction
 windows. Native ownership below is an intentional policy with private resources;
-it does not promote the original alias recovery or install a game hook.
+it does not promote the original alias recovery. The subsequent
+[owning native launch adapter](cursor-live-ownership-20261025.md) supplies the
+installed lifetime policy and controlled context recovery.
 
 ## Original resource provenance
 
@@ -144,9 +146,11 @@ uses a private/tmp for Xvfb when the account's shared tmpfs quota prevents lock
 and keyboard-cache creation; it grants no host root privilege.
 
 This change closes the private native painter/queue resource-lifetime contract
-within the tested owner-thread graphics model. Complete indirect source-alias/writer closure,physical GPU/context-loss
-recovery and installed live semantic cursor takeover remain separate outstanding
-work. Existing simple background helpers from screen-services are reused as
+within the tested owner-thread graphics model. That initial milestone has since been extended by the
+[owning native launch adapter](cursor-live-ownership-20261025.md), which retains
+provider aliases/writers, installs the cursor lifetime envelope and adds controlled
+context destruction/recreation. Unknown legacy-driver aliases remain outside
+native admission. Existing simple background helpers from screen-services are reused as
 research context and are not duplicated or replaced by this native policy.
 
 ## Master integration

@@ -13,6 +13,8 @@ for name,key in [('Chaos.exe','staged_sha256'),('MnmMenu.dll','dll_sha256')]:
     if hashlib.sha256((game/name).read_bytes()).hexdigest()!=metadata[key]:raise ValueError(f'{name} hash mismatch')
 events=Path(metadata['events']).resolve()
 if events!=root/'events.bin' or events.exists():raise ValueError('Refusing stale or redirected observation output')
+from terrain_light_session import authorize as authorize_lighting
+authorize_lighting(root,metadata,os.environ)
 from native_audio_launch import authorize as authorize_audio
 authorize_audio(root,metadata,os.environ)
 from native_music_launch import authorize as authorize_music
@@ -53,6 +55,8 @@ if os.environ.get('MNM_MENU_CAMPAIGN_OBSERVE'):
     expected='Z:'+str(campaign).replace('/','\\')
     if not metadata.get('campaign_observe') or os.environ['MNM_MENU_CAMPAIGN_OBSERVE']!=expected or campaign.exists():
         raise ValueError('Refusing unapproved or stale campaign observation output')
+from native_cursor_launch import authorize as authorize_cursor
+authorize_cursor(root,metadata,os.environ)
 os.environ.pop('MNM_NATIVE_DRAW_STATUS',None)
 os.environ.pop('MNM_NATIVE_DRAW_RETIREMENT',None)
 native_draw=metadata.get('native_draw',False)

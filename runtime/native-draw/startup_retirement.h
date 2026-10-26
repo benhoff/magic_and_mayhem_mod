@@ -2,6 +2,7 @@
  * The two guarded original call sites lose their stack-only Surface aliases.
  * Prove that exact temporary graph before releasing any of its references. */
 __declspec(dllexport) u32 WIN NativeDrawReleaseStartupProbeV1(void* pointer){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  const u32 error=GetLastError(),base=(u32)GetModuleHandleA(0);
  struct NdState* device=0;
  for(struct NdState* p=nd_owned;p;p=p->next_owned)if(pointer==&p->first){device=p;break;}
@@ -23,6 +24,7 @@ __declspec(dllexport) u32 WIN NativeDrawReleaseStartupProbeV1(void* pointer){
  const u32 original_result=device->refs[1]-1,before_devices=nd_objects,before_surfaces=nd_surfaces;
  const u32 kinds[3]={1,3,4};
  for(u32 i=0;i<3;++i)if(aliases[i])ns_release(&surface->aliases[kinds[i]]);
+ if(ns_lifetime_mode)ns_lifetime_collect();
  u32 released=nd_release(&device->first);
  if(released || nd_objects+1!=before_devices || nd_surfaces+1!=before_surfaces)ExitProcess(127);
  u32 receipt[16]={0x444d4e4d,0x31425250,1,64,caller,count,

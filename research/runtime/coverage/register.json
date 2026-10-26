@@ -3317,7 +3317,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "N27 adds a separate widget-independent strict companion/name/clip/playback/checkpoint/reload/plan and CPU/GPU consumer. The permissive raw parser, original TAG use, world construction and live acceptance remain separate; parent status is unchanged."
+      ]
     },
     {
       "id": "AS.fp",
@@ -6343,7 +6346,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "N28 adds ten separate owned native frame transformations and exercises existing sprite-session CPU/GPU delivery. Existing widget consumers, original transform/filter semantics and installed/live acceptance remain independent; parent status is unchanged."
+      ]
     },
     {
       "id": "UI.audio",
@@ -147442,11 +147448,12 @@
       "kind": "native_policy",
       "subsystem": "native_rendering",
       "title": "Owned native cursor painter and deferred generation lifetime",
-      "scope": "Private RGB565 native OpenGL atlas/canvas/save-under allocations; clipped keyed foreground/timer publications through metadata-only thread-safe endpoints; generation-bound deferred work, background refresh, cancellation, owner-thread teardown. Explicit native policies for FIFO within priority, bounded refusal and old-generation retention. No borrowed original wrappers admitted.",
+      "scope": "Private RGB565 native OpenGL atlas/canvas/save-under allocations; clipped keyed foreground/timer publications through metadata-only thread-safe endpoints; generation-bound deferred work, background refresh, cancellation, owner-thread teardown. Explicit native policies for FIFO within priority, bounded refusal and old-generation retention. No borrowed original wrappers admitted. Exact owner-thread CPU checkpoints retain all private canvas,atlas and save-under pixels across actual backend/context destruction and recreation; queued metadata and generation identities survive suspension. Stale checkpoints refuse suspension.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/cursor-lifetime-completion-20261025.md"
+        "research/runtime/cursor-lifetime-completion-20261025.md",
+        "research/runtime/cursor-live-ownership-20261025.md"
       ],
       "implementation": [
         "renderer/cursor_compositor.hpp",
@@ -147473,7 +147480,9 @@
         "CUR26.native-attempt07",
         "CUR26.owned-native08",
         "CUR26.owned-native09",
-        "CUR26.owned-native10"
+        "CUR26.owned-native10",
+        "CUR27.recovery01",
+        "CUR27.recovery02"
       ],
       "status": {
         "understanding": "scoped",
@@ -147483,7 +147492,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Native10 reexecutes714 optimized and714 ASan/UBSan assertions with187 complete frames each after master d98befe5 tooling integration;157/216 accepted publications respectively equal drained counts. Legacy source aliases,physical GPU/context-loss recovery and installed live semantic cursor takeover remain unproved. Native08/09 retain their historical exact fingerprints."
+        "Headless native checkpoint/context recreation is validated;unexpected external-driver loss without a checkpoint and borrowed allocations are outside admission. Installed cursor ownership is registered separately."
       ]
     },
     {
@@ -151706,6 +151715,1592 @@
       ],
       "remaining_gaps": [
         "Other classes\u2019 complete construction/enclosing destruction,resource prepare/provider semantics,World entry and transitive services,complete dynamic registration/computed aliases,real heap/fault reachability,asynchronous retirement and installed/live-session acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.cursor-provider-lifetime",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Native provider ownership for cursor aliases and deferred generations",
+      "scope": "Opt-in MnmDraw provider lifetime,independent opaque pins and public COM reference counts,all Surface1/2/3/4 aliases,active Lock/DC writers,serialized provider-before-copy-before-tracker order,stable retired interface headers and bounded virtual address quarantine. Private backing survives last public Release until accepted work and writers finish;no recycled generation or stale alias admission. Original DirectDraw providers and invalid external CPU use after lease return are not admitted.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/cursor-lifetime-completion-20261025.md",
+        "research/runtime/cursor-live-ownership-20261025.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/lifetime_lock.h",
+        "runtime/native-draw/lifetime_dispatch.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/surfaces.h",
+        "runtime/native-draw/cpu_guard.h",
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/startup_retirement.h",
+        "runtime/render/native_lifetime.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/bridge.c",
+        "tools/build-native-draw.py",
+        "runtime/native-draw/cpu_direct_store.h",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "runtime/native-draw/history.h"
+      ],
+      "tests": [
+        "tests/native-cursor-lifetime-probe.c",
+        "tools/test-native-cursor-lifetime.py",
+        "tests/native-copy-lifetime-test.cpp",
+        "tests/copy-timing-test.cpp",
+        "tests/test-native-cursor-journal.py",
+        "tools/test-native-cursor-controls.py",
+        "tools/native_cursor_journal.py",
+        "tools/native_cursor_launch.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "runtime/shadow/win32_min.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h"
+      ],
+      "evidence": [
+        "CUR27.controls01",
+        "CUR27.controls02",
+        "CUR27.provider02",
+        "CUR27.provider03",
+        "CUR27.provider04",
+        "CUR27.provider05",
+        "CUR27.provider06"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Only MnmDraw-owned interfaces and valid writer leases are admitted. Bounded tombstones/address reservations persist until process exit;unknown driver allocations and invalid external CPU use after lease return are outside the contract."
+      ]
+    },
+    {
+      "id": "NP.cursor-live-ownership",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Original cursor clients with owned native copy generations",
+      "scope": "Pinned NoCD native-only lifetime envelopes for foreground,timer,back/front restoration,selection,invalidation,setup/disposal and atlas reload;provider-pinned48-byte wrapper snapshots for synchronous copies and128-slot deferred work. Guarded original constructors/destructors cannot redirect accepted jobs. Duplicate outer-mutex admission precedes provider/copy/tracker gates;busy writers retain queued jobs,cancellation and terminal stop retain in-flight work. Eighteen exact non-relative entry anchors and kernel import guards reject unsupported installation. Original helper/copy bodies remain services;native ownership/scheduling is intentional policy,not recovered DirectDraw lifetime semantics.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/cursor-lifetime-completion-20261025.md",
+        "research/runtime/cursor-live-ownership-20261025.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/cursor_owner.h",
+        "runtime/native-draw/cursor_copy_leases.h",
+        "runtime/native-draw/cursor_pins.h",
+        "runtime/native-draw/lifetime_lock.h",
+        "runtime/native-draw/lifetime_dispatch.h",
+        "runtime/native-draw/factory.c",
+        "runtime/render/bridge.c",
+        "runtime/render/native_lifetime.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/command_application_stop.h",
+        "tools/build-native-draw.py",
+        "tools/native_cursor_launch.py",
+        "tools/run-opengl-game.py",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "tools/render-game-runner.py",
+        "runtime/scene/canvas_producers.c",
+        "tools/build-scene-observer.py"
+      ],
+      "tests": [
+        "tests/native-cursor-owner-probe.c",
+        "tools/test-native-cursor-lifetime.py",
+        "tools/test-native-cursor-live.py",
+        "tools/native_cursor_journal.py"
+      ],
+      "validation_dependencies": [
+        "tests/graphics-lifetime-common.h",
+        "tests/original-pe32-image.h",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "CUR27.live01-campaign",
+        "CUR27.live01",
+        "CUR27.live02-campaign",
+        "CUR27.live02",
+        "CUR27.live03-campaign",
+        "CUR27.live03",
+        "CUR27.live04-campaign",
+        "CUR27.live04",
+        "CUR27.live05-campaign",
+        "CUR27.live05",
+        "CUR27.live06-campaign",
+        "CUR27.live06",
+        "CUR27.live07-campaign",
+        "CUR27.live07",
+        "CUR27.live08-campaign",
+        "CUR27.live08",
+        "CUR27.live09-campaign",
+        "CUR27.live09",
+        "CUR27.live10-campaign",
+        "CUR27.live10",
+        "CUR27.owner01",
+        "CUR27.owner02",
+        "CUR27.owner03",
+        "CUR27.owner04",
+        "CUR27.owner05",
+        "CUR27.owner06",
+        "CUR27.owner07"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped native lifetime/scheduling takeover;original copy/client/setup bodies retained. The installed native campaign selects immediate copies;separate production-installer original-code controls cover deferred generations. Unknown legacy-driver aliases,arbitrary abandoned-owner/SEH flows,full scene parity and hardware-driver loss are outside this policy."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.companion-resource",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native SPR/TAG companion resources",
+      "scope": "Owned native SPR/TAG companion resources. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.exact-name-index",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Exact eight-byte sprite name index",
+      "scope": "Exact eight-byte sprite name index. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.clip-range",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Named sprite occurrence clip ranges",
+      "scope": "Named sprite occurrence clip ranges. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.loop-playback",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Overflow-safe looping sprite playback",
+      "scope": "Overflow-safe looping sprite playback. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.one-shot-playback",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Saturating one-shot sprite playback",
+      "scope": "Saturating one-shot sprite playback. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.checkpoints",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Validated owned sprite playback checkpoints",
+      "scope": "Validated owned sprite playback checkpoints. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.atomic-reload",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic named sprite resource reload",
+      "scope": "Atomic named sprite resource reload. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.draw-plan",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned named sprite draw plans",
+      "scope": "Owned named sprite draw plans. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.cpu-pixels",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic CPU sprite batch pixels",
+      "scope": "Atomic CPU sprite batch pixels. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.gpu-pixels",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Preflighted native GPU sprite batch delivery",
+      "scope": "Preflighted native GPU sprite batch delivery. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.crop",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Source-local frame crop",
+      "scope": "Source-local frame crop for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.trim",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Transparent-border frame trim",
+      "scope": "Transparent-border frame trim for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.mirror-x",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Horizontal frame mirror",
+      "scope": "Horizontal frame mirror for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.mirror-y",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Vertical frame mirror",
+      "scope": "Vertical frame mirror for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.rotate-cw",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Clockwise quarter-turn frame rotation",
+      "scope": "Clockwise quarter-turn frame rotation for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.rotate-half",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Half-turn frame rotation",
+      "scope": "Half-turn frame rotation for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.rotate-ccw",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Counterclockwise quarter-turn frame rotation",
+      "scope": "Counterclockwise quarter-turn frame rotation for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.nearest-resize",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Nearest-neighbor frame resize",
+      "scope": "Nearest-neighbor frame resize for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.silhouette",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Opaque-mask silhouette coloring",
+      "scope": "Opaque-mask silhouette coloring for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.outer-outline",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "One-pixel four-neighbor frame outline",
+      "scope": "One-pixel four-neighbor frame outline for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "TL.normal-session-lighting",
+      "title": "Normal-session terrain lighting",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "scope": "Opt-in normal prepare/menu-game launch with the admitted original process wait, persistent source-bound native lighting worker, original scheduling/clock and source snapshots, fixed channel, recorded actual outputs and original fallback. Supported no-CD build and bounded valid wire inputs; graphics ownership remains independent.",
+      "validation_domain": "Opt-in normal prepare/menu-game launch with the admitted original process wait, persistent source-bound native lighting worker, original scheduling/clock and source snapshots, fixed channel, recorded actual outputs and original fallback. Supported no-CD build and bounded valid wire inputs; graphics ownership remains independent.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5187488,
+          "scope": "Existing original outer lighting updater remains the scheduler callback and fallback endpoint; native replacement is scoped to admitted pointer-free snapshots."
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-light-normal-session.md"
+      ],
+      "implementation": [
+        "runtime/lighting/session.h",
+        "protocols/include/mnm/terrain_light_session_v1.h",
+        "tools/terrain-light-session-server.hpp",
+        "tools/terrain_light_session.py",
+        "runtime/lighting/session_observer.c",
+        "tools/terrain-light-session-worker.cpp"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v13.h",
+        "protocols/include/mnm/menu_v14.h",
+        "protocols/include/mnm/menu_v15.h",
+        "protocols/include/mnm/menu_v16.h",
+        "protocols/include/mnm/menu_v17.h",
+        "protocols/include/mnm/menu_v18.h",
+        "protocols/include/mnm/menu_v19.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v20.h",
+        "protocols/include/mnm/menu_v21.h",
+        "protocols/include/mnm/menu_v22.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/terrain_light_v1.h",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "runtime/lighting/observer.c",
+        "runtime/menu/battle.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_input_admission_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/character.h",
+        "runtime/menu/drawing_action.h",
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/menu/drawing_hud_state.h",
+        "runtime/menu/drawing_region_input.h",
+        "runtime/menu/drawing_region_tracked_actor.h",
+        "runtime/menu/drawing_semantic_state.h",
+        "runtime/menu/grimoire.h",
+        "runtime/menu/grimoire_campaign.h",
+        "runtime/menu/grimoire_observe.h",
+        "runtime/menu/lobby.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/multiplayer.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/realm.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/results.h",
+        "runtime/menu/sessions.h",
+        "runtime/menu/spell_campaign.h",
+        "runtime/menu/spells.h",
+        "runtime/menu/startup_admission.h",
+        "runtime/menu/storage.h",
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-menu-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/build-terrain-light-observer.py",
+        "tools/build-terrain-light-session.py",
+        "tools/capture-fade-writer-game.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/decode-cfg.py",
+        "tools/directplay_dx6_launch.py",
+        "tools/encode-cfg.py",
+        "tools/export-menu-support.py",
+        "tools/fade_live_capture.py",
+        "tools/launch_asset_checks.py",
+        "tools/launch_build_cache.py",
+        "tools/menu-game-runner.py",
+        "tools/menu_save_store.py",
+        "tools/native_cursor_launch.py",
+        "tools/prepare-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/run-menu-observer.py",
+        "tools/run-opengl-game.py",
+        "tools/terrain-light-replay.cpp",
+        "tools/test-live-qt-campaign-quit.py",
+        "tools/test-menu-observer.py"
+      ],
+      "tests": [
+        "tests/test-terrain-light-session.py",
+        "tools/test-terrain-light-normal-session.py"
+      ],
+      "evidence": [
+        "TLSN25.reload-observe",
+        "TLSN25.native-and-fallback",
+        "TLSN25.master-reload-observe",
+        "TLSN25.master-native-and-fallback"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_equivalence",
+        "replacement": "scoped_live"
+      },
+      "remaining_gaps": [
+        "Opt-in regular launcher validated with original graphics on a fresh Celtic Adept campaign and actual same-process named Save/Load. Combined native Qt graphics ownership, arbitrary maps/saves, long-duration use and default rollout remain separate acceptance; original scheduler, loader/serializer and resource lifetimes remain original.",
+        "Worker loss intentionally degrades the selected session and reports a nonzero launcher result after clean original Quit; one unchanged-original/sanitized fallback witness supports recovery, not continued native replacement."
+      ]
+    },
+    {
+      "id": "TL.session-light-policy",
+      "title": "Owned lighting session policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "scope": "Intentional native session policy: fixed-size pointer-free channel, single monotonic request owner, nonce/source identity, complete reply validation, bounded recording independent of processing count, closed-session latch after peer refusal/timeout, source-checked worker startup and reaping with SQLite outcomes. No original allocator/scheduler or default-rollout equivalence claim.",
+      "validation_domain": "Intentional native session policy: fixed-size pointer-free channel, single monotonic request owner, nonce/source identity, complete reply validation, bounded recording independent of processing count, closed-session latch after peer refusal/timeout, source-checked worker startup and reaping with SQLite outcomes. No original allocator/scheduler or default-rollout equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/terrain-light-normal-session.md"
+      ],
+      "implementation": [
+        "runtime/lighting/session.h",
+        "protocols/include/mnm/terrain_light_session_v1.h",
+        "tools/terrain-light-session-server.hpp",
+        "tools/terrain_light_session.py",
+        "runtime/lighting/session_observer.c",
+        "tools/terrain-light-session-worker.cpp"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v13.h",
+        "protocols/include/mnm/menu_v14.h",
+        "protocols/include/mnm/menu_v15.h",
+        "protocols/include/mnm/menu_v16.h",
+        "protocols/include/mnm/menu_v17.h",
+        "protocols/include/mnm/menu_v18.h",
+        "protocols/include/mnm/menu_v19.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v20.h",
+        "protocols/include/mnm/menu_v21.h",
+        "protocols/include/mnm/menu_v22.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/terrain_light_v1.h",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "runtime/lighting/observer.c",
+        "runtime/menu/battle.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_input_admission_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/character.h",
+        "runtime/menu/drawing_action.h",
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/menu/drawing_hud_state.h",
+        "runtime/menu/drawing_region_input.h",
+        "runtime/menu/drawing_region_tracked_actor.h",
+        "runtime/menu/drawing_semantic_state.h",
+        "runtime/menu/grimoire.h",
+        "runtime/menu/grimoire_campaign.h",
+        "runtime/menu/grimoire_observe.h",
+        "runtime/menu/lobby.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/multiplayer.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/realm.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/results.h",
+        "runtime/menu/sessions.h",
+        "runtime/menu/spell_campaign.h",
+        "runtime/menu/spells.h",
+        "runtime/menu/startup_admission.h",
+        "runtime/menu/storage.h",
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-menu-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/build-terrain-light-observer.py",
+        "tools/build-terrain-light-session.py",
+        "tools/capture-fade-writer-game.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/decode-cfg.py",
+        "tools/directplay_dx6_launch.py",
+        "tools/encode-cfg.py",
+        "tools/export-menu-support.py",
+        "tools/fade_live_capture.py",
+        "tools/launch_asset_checks.py",
+        "tools/launch_build_cache.py",
+        "tools/menu-game-runner.py",
+        "tools/menu_save_store.py",
+        "tools/native_cursor_launch.py",
+        "tools/prepare-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/run-menu-observer.py",
+        "tools/run-opengl-game.py",
+        "tools/terrain-light-replay.cpp",
+        "tools/test-live-qt-campaign-quit.py",
+        "tools/test-menu-observer.py"
+      ],
+      "tests": [
+        "tests/test-terrain-light-session.py",
+        "tools/test-terrain-light-normal-session.py"
+      ],
+      "evidence": [
+        "TLSN25.controls",
+        "TLSN25.reload-observe",
+        "TLSN25.native-and-fallback",
+        "TLSN25.master-controls",
+        "TLSN25.master-reload-observe",
+        "TLSN25.master-native-and-fallback"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Opt-in regular launcher validated with original graphics on a fresh Celtic Adept campaign and actual same-process named Save/Load. Combined native Qt graphics ownership, arbitrary maps/saves, long-duration use and default rollout remain separate acceptance; original scheduler, loader/serializer and resource lifetimes remain original.",
+        "Worker loss intentionally degrades the selected session and reports a nonzero launcher result after clean original Quit; one unchanged-original/sanitized fallback witness supports recovery, not continued native replacement."
       ]
     }
   ],
@@ -343159,6 +344754,1232 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CUR27.controls01",
+      "kind": "static",
+      "scope": "Retained exact cursor experiment/provenance result;negative and intermediate results do not promote engine milestones.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/controls01.json",
+      "sha256": "d279dd1fe661aa6418a3bca1aada32301396a0e96101483b7bca5c0454c19513",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.controls02",
+      "kind": "native_integration",
+      "scope": "Retained exact cursor experiment/provenance result;negative and intermediate results do not promote engine milestones.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/controls02.json",
+      "sha256": "0eece2ca2efafad43c30a269686483e03e92beb4e31d71afb5fca593f157a996",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CUR27.live01-campaign",
+      "kind": "static",
+      "scope": "Bounded original-game observation of the opt-in private native output profile.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live01-campaign.json",
+      "sha256": "4627a3ff8eaa993230b3ac618dfef88d18780096e978725c3f582bd2300bf3c3",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live01",
+      "kind": "static",
+      "scope": "Retained exact cursor experiment/provenance result;negative and intermediate results do not promote engine milestones.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live01.json",
+      "sha256": "cc5a2cfc5bed08db2cf13a7e94b846b1cbd58f200e7725ebc6d0a4d4f476c6a0",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live02-campaign",
+      "kind": "static",
+      "scope": "Bounded original-game observation of the opt-in private native output profile.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live02-campaign.json",
+      "sha256": "ff67da2c2dc5b4a09122dcc951656467922ec8cb9bab141135495f4648488118",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live02",
+      "kind": "static",
+      "scope": "Retained exact cursor experiment/provenance result;negative and intermediate results do not promote engine milestones.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live02.json",
+      "sha256": "c5f76f86ba0a58d809a250df165b8981f1461303cf78591535f784f77f940280",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live03-campaign",
+      "kind": "static",
+      "scope": "Bounded original-game observation of the opt-in private native output profile.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live03-campaign.json",
+      "sha256": "f5dd05d7148ad091fb67de28f033e0ad2de5c5cfd10724c7819c227d28dddb30",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live03",
+      "kind": "static",
+      "scope": "Retained exact cursor experiment/provenance result;negative and intermediate results do not promote engine milestones.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live03.json",
+      "sha256": "3fc3c33ccfcb4f7635d5d211dea1819a85a26438c196eafce06102f9a873ebe3",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live04-campaign",
+      "kind": "static",
+      "scope": "Bounded original-game observation of the opt-in private native output profile.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live04-campaign.json",
+      "sha256": "fe878df95f929969cef454367f6ec5f06539b5251a865c474226c0a08e33a373",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live04",
+      "kind": "static",
+      "scope": "Retained exact cursor experiment/provenance result;negative and intermediate results do not promote engine milestones.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live04.json",
+      "sha256": "92ba3407ee80725c0e62f1acf54e0283051f7066764f606c7a9ce4a5f1e41a6f",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live05-campaign",
+      "kind": "static",
+      "scope": "Bounded original-game observation of the opt-in private native output profile.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live05-campaign.json",
+      "sha256": "0c0e6286140c6ca44e00bad02e88229f5433b823d316a3e8e74df9c27dc3c316",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live05",
+      "kind": "static",
+      "scope": "Retained exact cursor experiment/provenance result;negative and intermediate results do not promote engine milestones.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live05.json",
+      "sha256": "ad63f5109fd1b95b4ed9be926f7fe98af0971540e9d9561d47a066a8cde4a0ea",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live06-campaign",
+      "kind": "static",
+      "scope": "Bounded original-game observation of the opt-in private native output profile.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live06-campaign.json",
+      "sha256": "c1bd7cec4010506d0cbdf685c796c47919ae335321aaee18321c05c72a574dd2",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live06",
+      "kind": "static",
+      "scope": "Retained exact cursor experiment/provenance result;negative and intermediate results do not promote engine milestones.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live06.json",
+      "sha256": "1c006538d7f8d20483d11367f0921e11ab61c86e9d68dbe4058856cc662f8a72",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live07-campaign",
+      "kind": "static",
+      "scope": "Bounded original-game observation of the opt-in private native output profile.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live07-campaign.json",
+      "sha256": "7c51d9b7dbf0b9696eb707f6d7f7401380b2c9f1a1e8f87c4b5fa1c34fb36ee8",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live07",
+      "kind": "static",
+      "scope": "Retained exact cursor experiment/provenance result;negative and intermediate results do not promote engine milestones.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live07.json",
+      "sha256": "ce8279594dd831d388ede532acf506c5e6d58196d66a4e92d0ee9195559f872d",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live08-campaign",
+      "kind": "static",
+      "scope": "Bounded original-game observation of the opt-in private native output profile.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live08-campaign.json",
+      "sha256": "a66fdcb78feb5253f8c665d8d5bf4d4b64a7d8b6639c79d98607e74e189a1eb0",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live08",
+      "kind": "static",
+      "scope": "Retained exact cursor experiment/provenance result;negative and intermediate results do not promote engine milestones.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live08.json",
+      "sha256": "5e9916a61b8d767aa3ee414531cd61d05a0c1190914088f5accdfcc14700e8df",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live09-campaign",
+      "kind": "static",
+      "scope": "Bounded original-game observation of the opt-in private native output profile.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live09-campaign.json",
+      "sha256": "c4e5a258979287f4053775d7ffc328fd783568c07189357b8ac9c9e92b4c6a96",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live09",
+      "kind": "live_replacement",
+      "scope": "Fresh installed native cursor lifetime policy and actual normal Quit;native allocation/retirement acceptance only,not whole original driver/scene pixel equivalence.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live09.json",
+      "sha256": "afd07f8b1dedca47bfef5f28bf8f8c040522e827ed0c07f0162a380c3815414e",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_copy_and_client_bodies_retained",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified",
+      "bypass_pointer": "/native_driver_lifetime_replaced"
+    },
+    {
+      "id": "CUR27.live10-campaign",
+      "kind": "static",
+      "scope": "Bounded original-game observation of the opt-in private native output profile.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live10-campaign.json",
+      "sha256": "165080fa0784647a67b2cc0adf3bca8fbe47a2e4968b4328075ca5c0864aadd9",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.live10",
+      "kind": "live_replacement",
+      "scope": "Fresh installed native cursor lifetime policy and actual normal Quit;native allocation/retirement acceptance only,not whole original driver/scene pixel equivalence.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/live10.json",
+      "sha256": "74305d41277ad66336c036753a0deb8f2c9829a4f98589d38a88469580c695c8",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_copy_and_client_bodies_retained",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified",
+      "bypass_pointer": "/native_driver_lifetime_replaced"
+    },
+    {
+      "id": "CUR27.owner01",
+      "kind": "static",
+      "scope": "Pinned NoCD native-only lifetime envelopes for foreground,timer,back/front restoration,selection,invalidation,setup/disposal and atlas reload;provider-pinned48-byte wrapper snapshots for synchronous copies and128-slot deferred work. Guarded original constructors/destructors cannot redirect accepted jobs. Duplicate outer-mutex admission precedes provider/copy/tracker gates;busy writers retain queued jobs,cancellation and terminal stop retain in-flight work. Eighteen exact non-relative entry anchors and kernel import guards reject unsupported installation. Original helper/copy bodies remain services;native ownership/scheduling is intentional policy,not recovered DirectDraw lifetime semantics.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/owner01.json",
+      "sha256": "027e4dbc54a501a68bb473e15c244e9245e82cf7a0d8aae518949b2cb90dfe61",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.owner02",
+      "kind": "static",
+      "scope": "Pinned NoCD native-only lifetime envelopes for foreground,timer,back/front restoration,selection,invalidation,setup/disposal and atlas reload;provider-pinned48-byte wrapper snapshots for synchronous copies and128-slot deferred work. Guarded original constructors/destructors cannot redirect accepted jobs. Duplicate outer-mutex admission precedes provider/copy/tracker gates;busy writers retain queued jobs,cancellation and terminal stop retain in-flight work. Eighteen exact non-relative entry anchors and kernel import guards reject unsupported installation. Original helper/copy bodies remain services;native ownership/scheduling is intentional policy,not recovered DirectDraw lifetime semantics.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/owner02.json",
+      "sha256": "8f17e0d28a97faee6af0832c7cb6c546c1fb0291d36ffa601474ff3a2236026d",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.owner03",
+      "kind": "static",
+      "scope": "Pinned NoCD native-only lifetime envelopes for foreground,timer,back/front restoration,selection,invalidation,setup/disposal and atlas reload;provider-pinned48-byte wrapper snapshots for synchronous copies and128-slot deferred work. Guarded original constructors/destructors cannot redirect accepted jobs. Duplicate outer-mutex admission precedes provider/copy/tracker gates;busy writers retain queued jobs,cancellation and terminal stop retain in-flight work. Eighteen exact non-relative entry anchors and kernel import guards reject unsupported installation. Original helper/copy bodies remain services;native ownership/scheduling is intentional policy,not recovered DirectDraw lifetime semantics.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/owner03.json",
+      "sha256": "186d16b2e72ebe56e68aef66589590f38f1069baac1776b0cf5c611da5bf4805",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.owner04",
+      "kind": "static",
+      "scope": "Pinned NoCD native-only lifetime envelopes for foreground,timer,back/front restoration,selection,invalidation,setup/disposal and atlas reload;provider-pinned48-byte wrapper snapshots for synchronous copies and128-slot deferred work. Guarded original constructors/destructors cannot redirect accepted jobs. Duplicate outer-mutex admission precedes provider/copy/tracker gates;busy writers retain queued jobs,cancellation and terminal stop retain in-flight work. Eighteen exact non-relative entry anchors and kernel import guards reject unsupported installation. Original helper/copy bodies remain services;native ownership/scheduling is intentional policy,not recovered DirectDraw lifetime semantics.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/owner04.json",
+      "sha256": "611900a55b068dd4ce1d7211bd7a39bb6d386c3de48bc43be480993006109bd0",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.owner05",
+      "kind": "static",
+      "scope": "Pinned NoCD native-only lifetime envelopes for foreground,timer,back/front restoration,selection,invalidation,setup/disposal and atlas reload;provider-pinned48-byte wrapper snapshots for synchronous copies and128-slot deferred work. Guarded original constructors/destructors cannot redirect accepted jobs. Duplicate outer-mutex admission precedes provider/copy/tracker gates;busy writers retain queued jobs,cancellation and terminal stop retain in-flight work. Eighteen exact non-relative entry anchors and kernel import guards reject unsupported installation. Original helper/copy bodies remain services;native ownership/scheduling is intentional policy,not recovered DirectDraw lifetime semantics.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/owner05.json",
+      "sha256": "22bccd5ad65cc1611e175424ab790476624580c3bc715b417105dbc12bdc0fee",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.owner06",
+      "kind": "static",
+      "scope": "Pinned NoCD native-only lifetime envelopes for foreground,timer,back/front restoration,selection,invalidation,setup/disposal and atlas reload;provider-pinned48-byte wrapper snapshots for synchronous copies and128-slot deferred work. Guarded original constructors/destructors cannot redirect accepted jobs. Duplicate outer-mutex admission precedes provider/copy/tracker gates;busy writers retain queued jobs,cancellation and terminal stop retain in-flight work. Eighteen exact non-relative entry anchors and kernel import guards reject unsupported installation. Original helper/copy bodies remain services;native ownership/scheduling is intentional policy,not recovered DirectDraw lifetime semantics.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/owner06.json",
+      "sha256": "ecacd756a851477ee7ce96ac467f40b174ec37bfe63fad84987564dc2433c39f",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.owner07",
+      "kind": "native_integration",
+      "scope": "Pinned NoCD native-only lifetime envelopes for foreground,timer,back/front restoration,selection,invalidation,setup/disposal and atlas reload;provider-pinned48-byte wrapper snapshots for synchronous copies and128-slot deferred work. Guarded original constructors/destructors cannot redirect accepted jobs. Duplicate outer-mutex admission precedes provider/copy/tracker gates;busy writers retain queued jobs,cancellation and terminal stop retain in-flight work. Eighteen exact non-relative entry anchors and kernel import guards reject unsupported installation. Original helper/copy bodies remain services;native ownership/scheduling is intentional policy,not recovered DirectDraw lifetime semantics.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/owner07.json",
+      "sha256": "474217abbe4a09ca77194c01bdca9b1b8e27c45b615974e6edb182c013ece76f",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CUR27.provider02",
+      "kind": "static",
+      "scope": "Opt-in MnmDraw provider lifetime,independent opaque pins and public COM reference counts,all Surface1/2/3/4 aliases,active Lock/DC writers,serialized provider-before-copy-before-tracker order,stable retired interface headers and bounded virtual address quarantine. Private backing survives last public Release until accepted work and writers finish;no recycled generation or stale alias admission. Original DirectDraw providers and invalid external CPU use after lease return are not admitted.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/provider02.json",
+      "sha256": "9de5da3c5f4fc17ddfb6f9a10b2195632ab471a5be8155c62d5ffafba4b5418b",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.provider03",
+      "kind": "static",
+      "scope": "Opt-in MnmDraw provider lifetime,independent opaque pins and public COM reference counts,all Surface1/2/3/4 aliases,active Lock/DC writers,serialized provider-before-copy-before-tracker order,stable retired interface headers and bounded virtual address quarantine. Private backing survives last public Release until accepted work and writers finish;no recycled generation or stale alias admission. Original DirectDraw providers and invalid external CPU use after lease return are not admitted.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/provider03.json",
+      "sha256": "84cd727630bd1cba3c619be23c2d08ed66101a982c123d4339dd54364b41f2ee",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.provider04",
+      "kind": "static",
+      "scope": "Opt-in MnmDraw provider lifetime,independent opaque pins and public COM reference counts,all Surface1/2/3/4 aliases,active Lock/DC writers,serialized provider-before-copy-before-tracker order,stable retired interface headers and bounded virtual address quarantine. Private backing survives last public Release until accepted work and writers finish;no recycled generation or stale alias admission. Original DirectDraw providers and invalid external CPU use after lease return are not admitted.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/provider04.json",
+      "sha256": "990ff0060ffde9954193e7e51401f927ce198c5d2f0731f605605e2583e37f01",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.provider05",
+      "kind": "static",
+      "scope": "Opt-in MnmDraw provider lifetime,independent opaque pins and public COM reference counts,all Surface1/2/3/4 aliases,active Lock/DC writers,serialized provider-before-copy-before-tracker order,stable retired interface headers and bounded virtual address quarantine. Private backing survives last public Release until accepted work and writers finish;no recycled generation or stale alias admission. Original DirectDraw providers and invalid external CPU use after lease return are not admitted.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/provider05.json",
+      "sha256": "2100f82af535ee42a3c5c8502c423df3fffe6e1c4607c7921bdaed295bd929ae",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.provider06",
+      "kind": "native_integration",
+      "scope": "Opt-in MnmDraw provider lifetime,independent opaque pins and public COM reference counts,all Surface1/2/3/4 aliases,active Lock/DC writers,serialized provider-before-copy-before-tracker order,stable retired interface headers and bounded virtual address quarantine. Private backing survives last public Release until accepted work and writers finish;no recycled generation or stale alias admission. Original DirectDraw providers and invalid external CPU use after lease return are not admitted.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/provider06.json",
+      "sha256": "c8c9da0069911b0ae4b920afce02accca7d063e6a290b190e8f63c872d8c853c",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CUR27.recovery01",
+      "kind": "static",
+      "scope": "Native private RGB565 OpenGL canvas/atlas/save-under generations; independent whole-frame scalar oracle, metadata-only concurrent producers, cancellation and owner-thread GPU teardown. No original code execution or legacy alias admission.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/recovery01.json",
+      "sha256": "57baef66d0da43d7098807956efd00d04b33d4c4506599252e2ed489dc27786f",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CUR27.recovery02",
+      "kind": "native_integration",
+      "scope": "Native private RGB565 OpenGL canvas/atlas/save-under generations; independent whole-frame scalar oracle, metadata-only concurrent producers, cancellation and owner-thread GPU teardown. No original code execution or legacy alias admission.",
+      "record": "research/runtime/cursor-live-ownership-results-20261025/recovery02.json",
+      "sha256": "c0fa012bb40e5574ccd629c0c75a3f8a71f1470b0a80f48b4613d515c43e75b0",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "N27.sprite-native-20261025",
+      "kind": "native_integration",
+      "scope": "Ten named native sprite companion/resource, selection, playback, checkpoint, reload, plan and CPU/GPU delivery policies. Synthetic files and independent expected pixels; no original lookup/timing, ANI behavior, hardware/performance/full-scene or live claim.",
+      "record": "research/runtime/rendering-twentyseventh-ten-results-20261025/execution-2.json",
+      "sha256": "66df04ff48b26333d011ad3db64d57afdce1fbd29723b114ec270a7c2736bb14",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/tag_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/sprite_regressions_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/cpu_gpu_cases",
+          "equals": 54
+        },
+        {
+          "pointer": "/native/release/timing_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/native/release/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/release/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/tag_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/sprite_regressions_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/cpu_gpu_cases",
+          "equals": 54
+        },
+        {
+          "pointer": "/native/sanitized/timing_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/native/sanitized/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/sanitized/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N28.transforms-native-20261025",
+      "kind": "native_integration",
+      "scope": "Ten owned native crop/trim/mirror/rotation/resize/silhouette/outline policies. Forward-mapped independent geometry and CPU/GPU delivery checks; no original pivot/filter/encoded-outline, widget/world, hardware/performance or live claim.",
+      "record": "research/runtime/rendering-twentyeighth-ten-results-20261025/execution-1.json",
+      "sha256": "0448b856bd311c061231bbce0b1232b7b1f7d6cdd73663f2a9adaa5b44462a9d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/session_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/checks",
+          "equals": 978
+        },
+        {
+          "pointer": "/native/release/refusals",
+          "equals": 58
+        },
+        {
+          "pointer": "/native/release/cpu_gpu_cases",
+          "equals": 150
+        },
+        {
+          "pointer": "/native/release/geometry_cases",
+          "equals": 30
+        },
+        {
+          "pointer": "/native/release/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/release/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/session_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/checks",
+          "equals": 978
+        },
+        {
+          "pointer": "/native/sanitized/refusals",
+          "equals": 58
+        },
+        {
+          "pointer": "/native/sanitized/cpu_gpu_cases",
+          "equals": 150
+        },
+        {
+          "pointer": "/native/sanitized/geometry_cases",
+          "equals": 30
+        },
+        {
+          "pointer": "/native/sanitized/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/sanitized/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N27.master-native-20261025",
+      "kind": "native_integration",
+      "scope": "Fresh source-bound master native regression. Ten named native sprite companion/resource, selection, playback, checkpoint, reload, plan and CPU/GPU delivery policies. Synthetic files and independent expected pixels; no original lookup/timing, ANI behavior, hardware/performance/full-scene or live claim.",
+      "record": "research/runtime/rendering-27-28-master-results-20261025/n27-execution-1.json",
+      "sha256": "08366a76b08c40ee716ff52eacbe8f1b7a19cb737a6a39c1e0739d06f2990e69",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/tag_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/sprite_regressions_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/cpu_gpu_cases",
+          "equals": 54
+        },
+        {
+          "pointer": "/native/release/timing_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/native/release/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/release/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/tag_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/sprite_regressions_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/cpu_gpu_cases",
+          "equals": 54
+        },
+        {
+          "pointer": "/native/sanitized/timing_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/native/sanitized/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/sanitized/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N28.master-native-20261025",
+      "kind": "native_integration",
+      "scope": "Fresh source-bound master native regression. Ten owned native crop/trim/mirror/rotation/resize/silhouette/outline policies. Forward-mapped independent geometry and CPU/GPU delivery checks; no original pivot/filter/encoded-outline, widget/world, hardware/performance or live claim.",
+      "record": "research/runtime/rendering-27-28-master-results-20261025/n28-execution-1.json",
+      "sha256": "5629dec758d0358b7deb89ba314b5dd9bfed4e35ccbc2ea908b83b3e69c5f03e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/session_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/checks",
+          "equals": 978
+        },
+        {
+          "pointer": "/native/release/refusals",
+          "equals": 58
+        },
+        {
+          "pointer": "/native/release/cpu_gpu_cases",
+          "equals": 150
+        },
+        {
+          "pointer": "/native/release/geometry_cases",
+          "equals": 30
+        },
+        {
+          "pointer": "/native/release/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/release/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/session_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/checks",
+          "equals": 978
+        },
+        {
+          "pointer": "/native/sanitized/refusals",
+          "equals": 58
+        },
+        {
+          "pointer": "/native/sanitized/cpu_gpu_cases",
+          "equals": 150
+        },
+        {
+          "pointer": "/native/sanitized/geometry_cases",
+          "equals": 30
+        },
+        {
+          "pointer": "/native/sanitized/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/sanitized/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TLSN25.controls",
+      "kind": "native_integration",
+      "scope": "Actual worker/channel controls using a retained original-active source/result.\n\nThis executes the persistent native worker, not Wine or the original executable.\nOriginal-active installed execution is a separate runner and evidence kind.\n",
+      "record": "research/runtime/terrain-light-session-results-20261025/controls06.json",
+      "sha256": "f6ef631d91970371e84f555a61473aa79d7c3b9f87f11394a13c960d2fe4f189",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 10
+        }
+      ]
+    },
+    {
+      "id": "TLSN25.reload-observe",
+      "kind": "live_equivalence",
+      "scope": "Normal launcher campaign lighting, optional original Save/Load and deliberate peer loss; original graphics and world scheduler retained. Finite source-bound samples; no default rollout or native Qt graphics acceptance.",
+      "record": "research/runtime/terrain-light-session-results-20261025/observe-reload04.json",
+      "sha256": "a62c1873ce576abe292431c06cdfcc5e5004319a9ba6dd0d653fb0d15b58dc11",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_section_bytes_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success"
+    },
+    {
+      "id": "TLSN25.native-and-fallback",
+      "kind": "live_replacement",
+      "scope": "Normal launcher campaign lighting, optional original Save/Load and deliberate peer loss; original graphics and world scheduler retained. Finite source-bound samples; no default rollout or native Qt graphics acceptance.",
+      "record": "research/runtime/terrain-light-session-results-20261025/native04.json",
+      "sha256": "66dd54269afac12e3c915c28d704b9fc67fcff8b7a0b6dbb40ef4b0e27038902",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_section_bytes_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/worker_loss_control/original_fallback_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/worker_outcome/success",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success",
+      "bypass_pointer": "/live_replacement"
+    },
+    {
+      "id": "TLSN25.master-controls",
+      "kind": "native_integration",
+      "scope": "Actual worker/channel controls using a retained original-active source/result.\n\nThis executes the persistent native worker, not Wine or the original executable.\nOriginal-active installed execution is a separate runner and evidence kind.\n",
+      "record": "research/runtime/terrain-light-session-results-20261025/master-controls02.json",
+      "sha256": "8ee85670e84211ff9c09c68a85b7a2aa4c7591486b11bff8b78849c4252e6d2b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 10
+        }
+      ]
+    },
+    {
+      "id": "TLSN25.master-reload-observe",
+      "kind": "live_equivalence",
+      "scope": "Normal launcher campaign lighting, optional original Save/Load and deliberate peer loss; original graphics and world scheduler retained. Finite source-bound samples; no default rollout or native Qt graphics acceptance.",
+      "record": "research/runtime/terrain-light-session-results-20261025/master-observe02.json",
+      "sha256": "c68d1efd865ee371203210bee25a9bab201bb1bf441464cd052192374a8ce273",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_section_bytes_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success"
+    },
+    {
+      "id": "TLSN25.master-native-and-fallback",
+      "kind": "live_replacement",
+      "scope": "Normal launcher campaign lighting, optional original Save/Load and deliberate peer loss; original graphics and world scheduler retained. Finite source-bound samples; no default rollout or native Qt graphics acceptance.",
+      "record": "research/runtime/terrain-light-session-results-20261025/master-native02.json",
+      "sha256": "132bb4dc18abc23e90e311678dfc56dbeddc475199be8225fca54320f5ad3b35",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_section_bytes_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/worker_loss_control/original_fallback_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/worker_outcome/success",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success",
+      "bypass_pointer": "/live_replacement"
     }
   ],
   "classifications": [],
@@ -370710,7 +373531,8 @@
       "evidence": [
         "CUR26.owned-native08",
         "CUR26.owned-native09",
-        "CUR26.owned-native10"
+        "CUR26.owned-native10",
+        "CUR27.recovery02"
       ]
     },
     {
@@ -370891,6 +373713,155 @@
       ],
       "evidence": [
         "TLCL25.master-reload-replace"
+      ]
+    },
+    {
+      "id": "CUR26.provider-alias-writer-lifetime",
+      "scope": "Actual PE32 MnmDraw provider independent pins,all16 surface-interface pairs,forced public alias drains,8 held Lock/DC writers,512pin saturation,1600 concurrent copies,complete independently checked planes and final zero resource counts,in plain and protected backing modes. Native policy;no original driver equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "NP.cursor-provider-lifetime"
+      ],
+      "tests": [
+        "tests/native-cursor-lifetime-probe.c",
+        "tools/test-native-cursor-lifetime.py"
+      ],
+      "evidence": [
+        "CUR27.provider06"
+      ]
+    },
+    {
+      "id": "CUR26.owning-original-client-controls",
+      "scope": "Production18-hook installer in an isolated pinned original image. Original foreground,timer,both background restorers,selection,invalidation and disposal execute with real native surfaces/kernel mutexes;6 complete640x480 plane oracles,old-generation deferred jobs after wrapper reuse,busy writers,128slot saturation,cancel/stop and18changed-anchor refusals. Both startup outer-mutex orders and plain/protected backing. Setup resource services are constructed by the fixture;the complete setup caller comparison remains separate.",
+      "level": "headless",
+      "behaviors": [
+        "NP.cursor-live-ownership"
+      ],
+      "tests": [
+        "tests/native-cursor-owner-probe.c",
+        "tools/test-native-cursor-lifetime.py"
+      ],
+      "evidence": [
+        "CUR27.owner07"
+      ]
+    },
+    {
+      "id": "CUR26.owning-native-campaign",
+      "scope": "Installed native-only Apprentice campaign with actual original cursor setup,foreground,timer,back/front restoration and disposal,public Qt/XTest movement and Mini/No/Yes callbacks,balanced resident World returns,normal Quit and zero native resources. Owning cursor hooks replace cursor lifetime/scheduling only. This native profile selects immediate copies;deferred-generation execution is separately checked in the original-client controls. No complete scene/pixel or legacy-driver lifetime equivalence.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "NP.cursor-live-ownership"
+      ],
+      "tests": [
+        "tools/test-native-cursor-live.py",
+        "tools/test-native-owned-campaign.py",
+        "tools/native_cursor_journal.py"
+      ],
+      "evidence": [
+        "CUR27.live09"
+      ]
+    },
+    {
+      "id": "CUR26.owning-native-restart",
+      "scope": "Installed native-only original World producer failure,terminal cleanup,public Hard restart,fresh original cursor setup and owned native generation,followed by normal original Quit and zero final graphics resources. Separate process restart;no in-place GPU/context loss or full frame equivalence.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "NP.cursor-live-ownership"
+      ],
+      "tests": [
+        "tools/test-native-cursor-live.py",
+        "tools/test-native-owned-campaign.py",
+        "tools/native_cursor_journal.py",
+        "apps/qt-shell/resident_restart_test.cpp"
+      ],
+      "evidence": [
+        "CUR27.live10"
+      ]
+    },
+    {
+      "id": "TLSN25.controls",
+      "title": "Lighting normal session controls",
+      "scope": "Normal session controls within the explicit owned-channel and original world callback domain.",
+      "level": "headless",
+      "behaviors": [
+        "TL.session-light-policy"
+      ],
+      "tests": [
+        "tests/test-terrain-light-session.py"
+      ],
+      "evidence": [
+        "TLSN25.controls",
+        "TLSN25.master-controls"
+      ]
+    },
+    {
+      "id": "TLSN25.observe",
+      "title": "Lighting normal session observe",
+      "scope": "Normal session observe within the explicit owned-channel and original world callback domain.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy"
+      ],
+      "tests": [
+        "tools/test-terrain-light-normal-session.py"
+      ],
+      "evidence": [
+        "TLSN25.reload-observe",
+        "TLSN25.master-reload-observe"
+      ]
+    },
+    {
+      "id": "TLSN25.native",
+      "title": "Lighting normal session native",
+      "scope": "Normal session native within the explicit owned-channel and original world callback domain.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy"
+      ],
+      "tests": [
+        "tools/test-terrain-light-normal-session.py"
+      ],
+      "evidence": [
+        "TLSN25.native-and-fallback",
+        "TLSN25.master-native-and-fallback"
+      ]
+    },
+    {
+      "id": "TLSN25.reload",
+      "title": "Lighting normal session reload",
+      "scope": "Normal session reload within the explicit owned-channel and original world callback domain.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy"
+      ],
+      "tests": [
+        "tools/test-terrain-light-normal-session.py"
+      ],
+      "evidence": [
+        "TLSN25.reload-observe",
+        "TLSN25.native-and-fallback",
+        "TLSN25.master-reload-observe",
+        "TLSN25.master-native-and-fallback"
+      ]
+    },
+    {
+      "id": "TLSN25.worker-loss",
+      "title": "Lighting normal session worker-loss",
+      "scope": "Normal session worker-loss within the explicit owned-channel and original world callback domain.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy"
+      ],
+      "tests": [
+        "tools/test-terrain-light-normal-session.py"
+      ],
+      "evidence": [
+        "TLSN25.native-and-fallback",
+        "TLSN25.master-native-and-fallback"
       ]
     }
   ],
@@ -372619,7 +375590,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-05c5cacca5525dee12d51e041a112d0838d27f69fbc314b43abd93c4feac2019.json",
-    "sha256": "05c5cacca5525dee12d51e041a112d0838d27f69fbc314b43abd93c4feac2019"
+    "path": "research/runtime/coverage/source-index-4ce5b1d14e1799330fac8ee45a7ce1cefdadd321ddb11c3eaf988d8111aea5d8.json",
+    "sha256": "4ce5b1d14e1799330fac8ee45a7ce1cefdadd321ddb11c3eaf988d8111aea5d8"
   }
 }

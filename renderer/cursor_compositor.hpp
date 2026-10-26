@@ -42,6 +42,12 @@ public:
     // Full background refresh preserves the current cursor, saving its new
     // underlay before repaint. This replaces pixels, never a borrowed alias.
     void background(Token,const Image&);
+    // Checkpoint private pixels before a device/context loss. Publication stays
+    // available while graphics are suspended; jobs retain their generation.
+    void checkpointGraphics();
+    void suspendGraphics(); // Physically destroy the backend/context.
+    void recoverGraphics(); // Recreate exclusively from the exact checkpoint.
+    bool graphicsSuspended() const;
     void shutdown(); // Owner thread; cancel queue and retire all resources.
     std::size_t surfaces() const;
 private:
@@ -50,6 +56,8 @@ private:
     std::unique_ptr<SurfaceBackend> backend_;
     std::unordered_map<Token,std::unique_ptr<Generation>> generations_;
     void owner() const;
+    void graphics() const;
+    bool checkpointCurrent_=false;
     Generation& generation(Token);
     void restore(Generation&);
     void paint(Generation&,const Frame&);

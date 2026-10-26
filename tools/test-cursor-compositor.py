@@ -80,7 +80,7 @@ def main():
             run(name+'-configure',['cmake','-S',ROOT/'renderer','-B',build,'-DCMAKE_BUILD_TYPE='+('Debug' if name=='sanitized' else 'RelWithDebInfo'),'-DCMAKE_CXX_FLAGS='+flags])
             run(name+'-build',['cmake','--build',build,'--target','cursor-compositor-test','-j2'])
             report[name]=json.loads(run(name,[build/'cursor-compositor-test']))
-            if not report[name]['success'] or report[name]['complete_pixel_cases']!=187 or report[name]['producer_attempts']!=2400 or report[name]['teardown_races']!=8 or report[name]['accepted']!=report[name]['drained']:
+            if not report[name]['success'] or report[name]['complete_pixel_cases']!=203 or report[name]['producer_attempts']!=2400 or report[name]['teardown_races']!=8 or report[name]['accepted']!=report[name]['drained']:
                 raise ValueError('Incomplete cursor execution denominator: '+str(report[name]))
             # Compile the complete native renderer, and check all repository
             # headers in dependency files against the prospective declaration.
