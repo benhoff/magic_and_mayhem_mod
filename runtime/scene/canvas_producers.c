@@ -210,6 +210,35 @@ static struct Surface* bound(void){u32 p=get((void*)0x658174);for(u32 i=0;i<MAX_
 #include "drawing_storage_transitions.h"
 static void extent(u32* r,struct Surface* s){if(s){r[3]=s->id;r[5]=s->width;r[6]=s->height;r[7]=s->stride;}}
 static void clip(u32* r){r[10]=get((void*)0x6e0008);r[11]=get((void*)0x6cbb6c);r[12]=get((void*)0x6a49b8);r[13]=get((void*)0x656618);}
+/* Bounded refusal-only source metadata. It never clears the failure or reads
+ * destination pixels. Missing/exhausted records grant no admission credit. */
+static int colour_diagnostic_readable(struct Surface* s,u32 p,u32 n){
+ if(!s)return 0;
+ if((unsigned long long)p<(unsigned long long)s->pixels+(unsigned long long)s->stride*s->height*2 &&
+           (unsigned long long)s->pixels<(unsigned long long)p+n)return 0;
+ return readable(p,n);
+}
+static u32 colour_refusal_count;
+static void colour_refuse(const struct Frame* f,u32 reason){
+ if(colour_refusal_count<32){
+  u32 r[48];zero(r,sizeof(r));copy(r,"MNMCRF01",8);r[2]=1;r[3]=192;r[4]=reason;
+  r[5]=sequence;r[6]=failures+1;r[7]=f->caller;r[8]=f->ecx;
+  r[9]=get((void*)0x658174);r[10]=get((void*)0x6e1f88);
+  struct Surface* s=bound();r[11]=s?s->id:0;
+  r[12]=get((void*)0x6e0008);r[13]=get((void*)0x6cbb6c);
+  r[14]=get((void*)0x6a49b8);r[15]=get((void*)0x656618);
+  r[16]=f->args[0];r[17]=f->args[1];r[18]=producer_trace_mode;
+  if(colour_diagnostic_readable(s,f->ecx,22)){
+   r[19]|=1;copy(r+20,(void*)f->ecx,22);u32 plane=get((void*)(f->ecx+18));
+   if(plane&&reason!=9&&colour_diagnostic_readable(s,plane,36)){r[19]|=2;copy(r+26,(void*)plane,36);}
+  }
+  r[35]=queue;r[36]=GetCurrentThreadId();char name[260];
+  path(name,"producer-colour-refusal-",colour_refusal_count++,".bin");
+  HANDLE out=CreateFileA(name,0x40000000,0,0,1,0x80,0);
+  if(out!=(HANDLE)-1){write(out,r,192);CloseHandle(out);}
+ }
+ fail(18,52);
+}
 static void checkpoint(struct Surface* s,u32 reason){
  if(!s||!s->pixels||!s->dirty||s->dirty==s->sampled)return;
  if(!s->width||s->width>2048||!s->height||s->height>2048||s->stride<s->width||s->stride>4096){fail(10,s->id);return;}
@@ -299,16 +328,18 @@ static u8* request(const struct Frame* f){
  }
  else if(tag==52){
   struct Surface* s=bound();u32 shape=f->ecx;
-  if(!s || !readable(shape,22) || get((void*)0x6e1f88)){fail(18,tag);return 0;}
+  if(!s){colour_refuse(f,1);return 0;}
+  if(!readable(shape,22)){colour_refuse(f,2);return 0;}
+  if(get((void*)0x6e1f88)){colour_refuse(f,3);return 0;}
   u32 mode=get((void*)shape);i32 w=(i32)get((void*)(shape+4)),h=(i32)get((void*)(shape+8));
   if(mode>3 || w<=0 || h<=0)return 0;
   u32 plane=get((void*)(shape+18));
-  if(producer_trace_mode){
-   /* Original-active uniform copy leaf. Represent its owned constant/clip
-    * inputs as the existing fill operation, not sampled destination words. */
-   if(mode||plane||w>2048||h>2048){fail(18,tag);return 0;}
+  if(producer_trace_mode && !mode && !plane && (w>64||h>64)){
+   /* Large uniform copy remains a fill. Small owned source planes and blend
+    * modes use the existing bounded colour operation below. */
+   if(w>2048||h>2048){colour_refuse(f,4);return 0;}
    u32 red=get((void*)(shape+12))&0xffff,green=get((void*)(shape+14))&0xffff,blue=get((void*)(shape+16))&0xffff;
-   if(red>31||green>63||blue>31){fail(18,tag);return 0;}
+   if(red>31||green>63||blue>31){colour_refuse(f,5);return 0;}
    r[2]=MNM_PRODUCER_FILL;extent(r,s);clip(r);r[14]=red<<11|green<<5|blue;
    i32 x=(i32)f->args[0],y=(i32)f->args[1];long long right=(long long)x+w,bottom=(long long)y+h;
    if(x>(i32)r[10])r[10]=(u32)x;if(y>(i32)r[11])r[11]=(u32)y;
@@ -316,15 +347,19 @@ static u8* request(const struct Frame* f){
    if((i32)r[10]>=(i32)r[12]||(i32)r[11]>=(i32)r[13])return 0;
    u8* out=HeapAlloc(producer_heap(),0,96);if(!out){fail(7,tag);return 0;}copy(out,r,96);return out;
   }
-  if(w>64 || h>64){fail(18,tag);return 0;}
+  if(w>64 || h>64){colour_refuse(f,6);return 0;}
   u32 pixels=(u32)w*(u32)h;
-  if(plane && !readable(plane,pixels*6)){fail(18,tag);return 0;}
+  if(plane && !readable(plane,pixels*6)){colour_refuse(f,7);return 0;}
+  /* A pre-call source snapshot does not reproduce in-place alias ordering. */
+  if(producer_trace_mode && plane &&
+     (unsigned long long)plane<(unsigned long long)s->pixels+s->stride*s->height*2 &&
+     (unsigned long long)s->pixels<(unsigned long long)plane+pixels*6){colour_refuse(f,9);return 0;}
   r[2]=MNM_PRODUCER_COLOUR_RECT;extent(r,s);clip(r);r[8]=f->args[0];r[9]=f->args[1];
   r[15]=mode;r[19]=w;r[20]=h;r[18]=pixels*2;r[0]=96+r[18];
   u8* out=HeapAlloc(producer_heap(),0,r[0]);if(!out){fail(7,tag);return 0;}copy(out,r,96);
   for(u32 i=0;i<pixels;++i){const u8* rgb=(const u8*)(plane?plane+i*6:shape+12);
    u32 red=rgb[0]|(u32)rgb[1]<<8,green=rgb[2]|(u32)rgb[3]<<8,blue=rgb[4]|(u32)rgb[5]<<8;
-   if(red>31 || green>63 || blue>31){HeapFree(producer_heap(),0,out);fail(18,tag);return 0;}
+   if(red>31 || green>63 || blue>31){HeapFree(producer_heap(),0,out);colour_refuse(f,8);return 0;}
    u32 value=red<<11|green<<5|blue;out[96+i*2]=value;out[97+i*2]=value>>8;
   }return out;
  }

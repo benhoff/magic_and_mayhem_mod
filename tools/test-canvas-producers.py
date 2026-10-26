@@ -20,7 +20,7 @@ def main():
   for name,h in claims['sources'].items():
    if sha(ROOT/name)!=h:raise ValueError('Changed prospective source: '+name)
    sources[name]=h
- paths += ['runtime/scene/vertical_bar_trace.h','reconstruction/rendering/vertical_bar.h','runtime/scene/drawing_source_point.h','protocols/include/mnm/drawing_source_point_v1.h','runtime/scene/producer_trace_guard.h','runtime/scene/drawing_publication.h','runtime/scene/drawing_publication.S','runtime/scene/drawing_physical.h','runtime/scene/glyph_live.c','runtime/scene/glyph_live.h','runtime/scene/glyph_leave.S','runtime/scene/glyph_route.c','reconstruction/rendering/glyph_backend.c','reconstruction/rendering/glyph_backend_state.c','reconstruction/rendering/glyph_backend_x87.S','reconstruction/rendering/glyph_backend.h','reconstruction/rendering/glyph_backend_state.h']
+ paths += ['tools/drawing_colour_refusals.py','runtime/scene/vertical_bar_trace.h','reconstruction/rendering/vertical_bar.h','runtime/scene/drawing_source_point.h','protocols/include/mnm/drawing_source_point_v1.h','runtime/scene/producer_trace_guard.h','runtime/scene/drawing_publication.h','runtime/scene/drawing_publication.S','runtime/scene/drawing_physical.h','runtime/scene/glyph_live.c','runtime/scene/glyph_live.h','runtime/scene/glyph_leave.S','runtime/scene/glyph_route.c','reconstruction/rendering/glyph_backend.c','reconstruction/rendering/glyph_backend_state.c','reconstruction/rendering/glyph_backend_x87.S','reconstruction/rendering/glyph_backend.h','reconstruction/rendering/glyph_backend_state.h']
  sources.update({name:sha(ROOT/name) for name in paths})
  parent=ROOT/'working/tests/canvas-producers';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));capture=out/'capture';capture.mkdir();print(out,flush=True)
  env={**{k:v for k,v in os.environ.items() if not k.startswith('MNM_')},'WINEPREFIX':str(ROOT/'working/tests/scene-selftest-wine'),'WINEDEBUG':'-all','MNM_CANVAS_PRODUCERS':'1','MNM_SCENE_DIR':'Z:'+str(capture).replace('/','\\'),'MNM_SCENE_SAMPLES':'1'}
@@ -37,6 +37,11 @@ def main():
   obj=out/(Path(name).name+'.obj');objects.append(obj);run('compile-'+Path(name).name,['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-I'+str(out),'-c',ROOT/name,'-o',obj])
  run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/base:0x400000','/dynamicbase:no','/safeseh:no','/timestamp:0','/out:'+str(out/'fixture.exe'),*objects,*[build/(name+'.obj') for name in ('drawing_publication.S','glyph_live.c','glyph_leave.S','glyph_route.c','glyph_backend.c','glyph_backend_state.c','glyph_backend_x87.S')],build/'kernel32.lib'])
  run('forwarding',['xvfb-run','-a','wine',out/'fixture.exe'])
+ from drawing_colour_refusals import decode as decode_colour_refusal
+ colour_refusals=[decode_colour_refusal(p.read_bytes()) for p in sorted(capture.glob('producer-colour-refusal-*.bin'))]
+ assert [r['reason_code'] for r in colour_refusals[-11:]]==list(range(1,10))+[3,3],colour_refusals
+ assert all(r['source_admission'] is False for r in colour_refusals)
+ assert colour_refusals[-2]['shape']['plane_prefix_hex'] is None and colour_refusals[-1]['shape'] is None
  marker=(capture/'producer-fixture-pass-0000.bin').read_bytes()
  if len(marker)!=32 or marker[:8]!=b'MNMPFP01' or struct.unpack('<6I',marker[8:])!=(1,61,1,1,1,1):raise ValueError('Fixture completion marker missing or changed')
  _,effect_ops=m.decode((capture/'world-effect-fixture-0000.bin').read_bytes(),complete=False)
@@ -109,6 +114,7 @@ def main():
  assert len(extent_draws)==1 and list(extent_draws[0][5:8])==[640,480,640] and list(extent_draws[0][14:16])==[8,13] and extent_draws[0][21]==0,extent_draws
  report.update(surface_extent640_native_bypassed=True,surface_extent640_pixel_mode_refused=True,surface_extent640_protected_unchanged=True,surface_extent640_invalid_controls=4,surface_extent640_midqueue_identity_controls=5)
 
+ report['colour_refusal_snapshots']=colour_refusals
  report.update(vertical_bar_generation_cache=True,vertical_bar_original_pixels_read=False,vertical_bar_clipped_points=True,vertical_bar_pending_and_changed_storage_refused=True,uniform_colour_source_clipping=True,source_point_atomic_recorder_pair=True,source_point_interface_pairing=True,source_point_unknown_ambiguous_stopped_explicit=True,source_point_pending_depth_identity=True,source_point_bad_outputs_refused=True,source_point_last_error_preserved=True,exact_fixture_completion_marker=True,colour_rect_entry_forwarded=True,actual_producer_hook_sites=53,compatible_entry_sites=61)
  report.update(buffered_journal_byte_equality=True,buffered_journal_capacity=65536,buffered_journal_flush_failure_refused=True)
  report.update(batch_body_skips=13,batch_canvas_writebacks=1,batch_prescribed_ax_cleanup=True,batch_guard_refusals=negative,malformed_batch_reply_refusals=3,batch_original_canvas_unwritten_before_return=True,batch_hud_forwarded_after_return=True)

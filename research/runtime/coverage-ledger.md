@@ -22556,6 +22556,40 @@ extended679-transition history review has no missing exact receipts. Pending
 player-launcher edits are retained separately in verified SQLite/autostash
 preservation and are outside this cursor commit's engine claims.
 
+## Storage source-session closure — 2026-10-25
+
+`SSC25` completes the bounded original storage/rebuild/normal-Quit source milestone
+on owned sources based on568c7304, without changing the web UI. Baseline07 closes
+36030 producer records/16 balanced Worlds and actual original MainQuit/process
+exit0. All218 native GL-source/nominal-destination comparisons agree; first-shrink
+physical ordinal158 retains301992 mismatching pixels. Explicit corrected-upload08
+closes34376 records/15 Worlds and actual exit0; all205 source/default/native/physical
+comparisons pass with zero mismatches (physical RGB tolerance1, alpha excluded).
+Baseline failure and corrected policy acceptance remain separate. Both are software
+OpenGL observed-EGL intervals, not whole-renderer or live-replacement acceptance.
+
+Earlier failed raw streams contain375/251/251 failure18/tag52 colour-rectangle
+recorder refusals, plus partial terminal records. The gate correctly refused those
+streams; their exact rejecting shape subcondition remains unknown and uncorrected.
+No pending-frame deadlock was established. Fresh source closure does not renew or
+accept the earlier failed sources. Three optional-installer, missing-manifest and
+sound-startup failures remain retained, as does attempt06's successful source/Quit
+closure followed by a global accepted-sequence decoder refusal.
+
+Storage cadence now records a separately observed epoch only after an adjacent
+complete zero-valued pacer call followed by accepted sequence1. It preserves
+nesting, counter, queue, QPC and thread checks, breaks continuity across epochs,
+and does not infer Load causality. Strict continuous/source-binding analysis still
+refuses duplicate/reversed sequences. Six C refusal boundaries and20 Python tests
+pass. Private null audio, scoped optional Wineboot installer suppression, complete
+4834-file fixture admission and2927-file original-manifest bookends make the new
+acquisitions reproducible. No gameplay rules changed.
+
+See [scope, exact results and raw retention](storage-session-closure-20261025.md).
+Current `TOOL.storage-session-closure` implementation/live-observation support is
+scoped; original comparison and live replacement stay none. Historical hashes and
+shared-source staleness are preserved. Concurrent main integration/source changes
+remain separate from this owned batch's validation. The normal90GiB guard applies.
 2026-10-25 commit workflow tooling: persistent evidence filtering retains the
 existing cleaner and required Git failures while avoiding Python startup per
 research file. The staged gate bypasses only identity evidence smudge during
@@ -22589,6 +22623,36 @@ exploratory listing is retained through a supported SQLite .bin reference.
 Historical evidence/source hashes are preserved.
 
 
+## Rendering closure integration and small colour-source admission — 2026-10-25
+
+The owned closure integration combines `cb3bfd33` with committed master through
+`233af3b3`. A longer original-active storage workload reproduces failure18/tag52
+at `0x00547d80`, called from `0x0054ab72`: the first32 diagnostic samples show
+2x2 mode0 RGB565 source planes rejected by uniform-only recording. Small
+constants also exposed an unadmitted generic fill inside native World. Both
+now use the existing bounded owned colour operation; native pixel kernels and
+web UI are unchanged. Unsupported formats/extents/channels, unreadable inputs
+and source-plane destination aliases still refuse. Diagnostics omit known
+aliased spans even when an earlier format guard refuses first.
+
+`RCI25.controls` records six closure refusal boundaries,38 Python cases and
+actual PE32 forwarding/ABI/eleven refusal fixtures. `RCI25.baseline-source` and
+`RCI25.corrected-source` close58826/57840 source records,29 balanced Worlds each,
+zero source failures and verified original MainQuit/process exit0. The final
+comparisons match native/original GPU source/default output across216/224
+presentations and1218/1222 owned colour draws. Baseline physical shrink retains
+301992 differing pixels; the separate explicit upload correction has zero
+physical mismatches within RGB tolerance1, alpha excluded. Actual live inputs
+cover1x1 mode0 and2x2 modes0/1. No other modes, hardware scanout, all-writer
+ownership, whole-renderer or live replacement promotion is granted.
+
+The earlier failed journals retain their original identities and unknown
+subconditions. The exploratory16-return-per-phase acquisition still times out
+after Load and is not accepted by the final initial-only extension. Exact
+committed-history review, failed attempts, source variants and raw evidence
+remain separate from current execution proof. Generated reports use SQLite;
+RAM execution remains temporary pending verified durable backup. See
+[the integration evidence and boundaries](rendering-closure-integration-20261025.md).
 ### Screen service recovery — 2026-10-25
 
 `RS.screen-selection-service`, `RS.cursor-selection-service` and
