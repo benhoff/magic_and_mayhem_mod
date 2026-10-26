@@ -20096,7 +20096,11 @@
         "NR.world-shadow.recovery-regressions-20261008",
         "K8OBS.replay-gap-review-20261020",
         "RBI26.busy-original",
-        "RBI26.busy-native"
+        "RBI26.busy-native",
+        "RBI26.latest-busy-original",
+        "RBI26.latest-busy-native",
+        "RBI26.final-busy-original",
+        "RBI26.final-busy-native"
       ],
       "status": {
         "understanding": "partial",
@@ -20114,7 +20118,10 @@
         "reconstruction/rendering/kind8_class.h",
         "protocols/include/mnm/world_raster_batch_v3.h",
         "reconstruction/rendering/kind8_sprite_class.h",
-        "runtime/scene/kind8_sprite_admission.h"
+        "runtime/scene/kind8_sprite_admission.h",
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "tools/evidence_local.py"
       ]
     },
     {
@@ -21304,7 +21311,8 @@
         "TOOL.latest-campaign.staged-lifetime-20261016",
         "COMPLETE.gate-20261020",
         "TOOL.local-first-workflow-20261021",
-        "TOOL.optional-evidence-push-controls-20261022"
+        "TOOL.optional-evidence-push-controls-20261022",
+        "RBI26.reader-workflow-final"
       ],
       "status": {
         "understanding": "scoped",
@@ -139029,7 +139037,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Immutable SQLite evidence archives and exact Git pointer recovery",
-      "scope": "Storage-only content-addressed SQLite report import, every historical artifact blob version, append-only chunk storage, exact original-byte recovery, corruption and missing-object refusal, pinned compressed release download, local clean-filter pointers, fresh-clone stat refresh preserving staged blob identities, old/new graph lookup and push guards against legacy commits/raw artifacts/unpublished objects. Bounded synthetic Git, filesystem, SQLite and download fixtures validate these paths. Upload-only SSH/Actions publication is operational storage, with retained receipts and independently verified remote downloads; fixture claims do not guarantee future service availability. Original engine behavior and live replacement remain excluded. Shared absolute hooks use current gate tooling against the selected worktree and preserve the configured hook owner. Direct verified SQLite reads through invocation-scoped readers and compatible text/byte adapters preserve original payload hashes without whole-tree hydration. Reviewed JSON classification retains editable registers, source locks, schemas, fixtures, UI policy and configuration; generated runtime/format reports compact to references only after exact cold backup verification, restore verification, dual durable receipts and repeated source-identity checks. New census outputs write directly to SQLite. Consumer parser/engine logic is unchanged outside reviewed input adapters; no original-engine revalidation is claimed. Explicit private SSH backup supports consistent verified SQLite snapshots, pinned local archive inclusion, immutable commit-linked SQLite set manifests, checksum verification and owner-only files on the selected private host, interrupted-transfer retry and corruption refusal. Nine synthetic controls execute the actual remote verifier locally and restore payloads, including live-WAL data. Commit hooks never transfer backups. This is separate from public publication and hosted-CI availability; expanded storage validation remains independently pending rather than renewing historical engine or toolkit execution claims.",
+      "scope": "Storage-only content-addressed SQLite report import, every historical artifact blob version, append-only chunk storage, exact original-byte recovery, corruption and missing-object refusal, pinned compressed release download, local clean-filter pointers, fresh-clone stat refresh preserving staged blob identities, old/new graph lookup and push guards against legacy commits/raw artifacts/unpublished objects. Bounded synthetic Git, filesystem, SQLite and download fixtures validate these paths. Upload-only SSH/Actions publication is operational storage, with retained receipts and independently verified remote downloads; fixture claims do not guarantee future service availability. Original engine behavior and live replacement remain excluded. Shared absolute hooks use current gate tooling against the selected worktree and preserve the configured hook owner. Direct verified SQLite reads through invocation-scoped readers and compatible text/byte adapters preserve original payload hashes without whole-tree hydration. Reviewed JSON classification retains editable registers, source locks, schemas, fixtures, UI policy and configuration; generated runtime/format reports compact to references only after exact cold backup verification, restore verification, dual durable receipts and repeated source-identity checks. New census outputs write directly to SQLite. Consumer parser/engine logic is unchanged outside reviewed input adapters; no original-engine revalidation is claimed. Explicit private SSH backup supports consistent verified SQLite snapshots, pinned local archive inclusion, immutable commit-linked SQLite set manifests, checksum verification and owner-only files on the selected private host, interrupted-transfer retry and corruption refusal. Nine synthetic controls execute the actual remote verifier locally and restore payloads, including live-WAL data. Commit hooks never transfer backups. This is separate from public publication and hosted-CI availability; expanded storage validation remains independently pending rather than renewing historical engine or toolkit execution claims. Optional MM_EVIDENCE_EXTRA_DBS supplies up to32 local read-only SQLite sources per invocation; primary/pending precedence, hash checks and source freshness remain unchanged. Missing/invalid databases refuse; this does not publish or copy their payloads. The optional repository-local mm.evidenceExtraDBs Git setting supplies the same JSON list when the environment is unset; local_evidence propagates it to staged readers and restores the prior environment.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -139187,7 +139195,9 @@
         "TOOL.sqlite-evidence-store-complete-v2-20261021",
         "TOOL.sqlite-json-reader-sweep-20261021",
         "TOOL.sqlite-json-reader-sweep-v2-20261021",
-        "TOOL.sqlite-json-reader-sweep-v3-20261021"
+        "TOOL.sqlite-json-reader-sweep-v3-20261021",
+        "RBI26.local-reader-controls",
+        "RBI26.reader-controls-final"
       ],
       "status": {
         "understanding": "scoped",
@@ -154249,6 +154259,219 @@
       },
       "remaining_gaps": [
         "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.windowed-copy-reader-frontier",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Natural windowed copy callers and protected-reader frontier",
+      "scope": "Explicit opt-in original -win launch retaining natural screen/copy dispatch and clipper state. Require normal campaign/Mini/Cancel/Quit, no pixel forwarding, mode3 unknown-reader refusal and independent all-COPY output bound to original-module Blt callers with an attached destination clipper. No forced clipping/dispatch, arbitrary raw-reader coherence, geometric clip reduction, self/keyed-GPU reachability, original driver or full-session equivalence.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "tools/native_windowed_copy.py",
+        "tools/run-menu-observer.py",
+        "tools/test-native-campaign.py",
+        "tools/private_x11_windows.py",
+        "apps/qt-shell/native_capture_request.hpp",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "tools/campaign_camera_dialogue.py"
+      ],
+      "tests": [
+        "tools/test-native-windowed-copy.py",
+        "tests/test-native-windowed-copy.py",
+        "tests/native-image-encoder-test.cpp",
+        "tests/test-camera-dialogue.py"
+      ],
+      "documents": [
+        "research/runtime/native-windowed-copy-readers-20261025.md"
+      ],
+      "evidence": [
+        "WINDOWEDREADERS.controls03-20261025",
+        "WINDOWEDREADERS.game02-20261025",
+        "WINDOWEDREADERS.controls09-20261025",
+        "WINDOWEDREADERS.game09-20261025",
+        "WINDOWEDREADERS.controls10-20261025",
+        "WINDOWEDREADERS.master-controls-20261026",
+        "NATURALCOPY.merged-windowed-controls01-20261026"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current controls10 passes21 Python methods and actual Qt encoder policy;copy-regressions10 passes29 caller/output/GPU methods. Explicit native-only capture labels original_saved=false;legacy dual requests still require both images. Full declared journey remains partial.",
+        "24-bit private desktops stop with an original ERROR;16-bit permits native World progress. The high-colour string/push is static context,not full startup recovery or physical-driver validation.",
+        "game09 exhausts12 Hermes dismissals;its2241-row prefix is unclosed. Quick Battle quick01 independently reaches576 balanced Worlds but cannot complete Qt input/Results before the deadline. Windowed input target/focus/client geometry remains an unconfirmed frontier.",
+        "No natural clipped output,normal-Quit,arbitrary-reader,full ownership or full-renderer stage is promoted. Exact failed acquisitions,source variants and pending validation are retained;historical source fingerprints are unchanged.",
+        "Merged master retains terrain-light supervision before launching original -win. Fresh headless controls and synthetic actual-launcher admission checks do not renew natural callers,windowed input,full copy output or owner retirement."
+      ]
+    },
+    {
+      "id": "NP.windowed-quick-copy-callers",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Natural windowed Quick Battle clipped GPU caller observation",
+      "scope": "Original -win on a private16-bit desktop through the existing Qt Quick Battle/Results/Continue/resumed World/Results/Main/Quit lifecycle. Native resident World, protected CPU backing, no-forward producers, exact original callback order, at least64 balanced Worlds, normal game exit, zero native owners and closed caller-bound all-COPY output. Require actual original-module Blt with an attached clipper and emitted checked GPU output. No campaign Hermes, arbitrary raw-reader/alias closure, actual clip reduction or original-driver/full-session equivalence.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "tools/test-native-windowed-quick.py",
+        "tools/native_windowed_copy.py",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tests/test-native-windowed-copy.py",
+        "apps/qt-shell/live_quick_battle_app_test.cpp"
+      ],
+      "documents": [
+        "research/runtime/native-windowed-copy-readers-20261025.md"
+      ],
+      "evidence": [
+        "WINDOWEDREADERS.quick01-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "quick01 reaches first World but times out at stage6 before Results;no completed Right/Escape sequence,second World or normal Quit. The shell returns signal11 after deadline. Current producer execution-flag bookkeeping correction is syntax-checked only;the executed older source is retained exactly.",
+        "576 resident transactions balance. Strict metadata decoding passes5461 closed rows,including1224 GPU and714 attached-clipper calls,but102 are unprepared and independent all-COPY output remains incomplete. Native teardown retains1device,51surfaces,1clipper and2915552pixel bytes. No output or owner closure.",
+        "Quick01 original_game_executed=false is a premature default after failure;the preserved original states/World transactions and quick-analysis01 record the erratum. No original payload or source hash was rewritten.",
+        "Input-window discovery,focus,client geometry,geometric clipping,arbitrary raw readers,normal-Quit and complete renderer acceptance remain separate pending work. No integration/comparison/replacement promotion."
+      ]
+    },
+    {
+      "id": "NP.natural-gpu-copy-caller-branches",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Natural GPU-source caller branches and actual emitted geometry",
+      "scope": "Diagnostic-only closed version2 application/GPU census and complete individual command intervals from actual original-module callers. Independent native destination checks and retained Python witnesses;rectangle unions separate clipper attachment,bounds reduction and reduction within bounds. Self-copy requires a checked full opaque snapshot;keyed CPU copies do not count as keyed GPU sources. Missing outputs,failed END,normal Quit,owners,arbitrary aliases/readers,other contexts and original-driver equivalence remain separate;no forced calls or clip/key mutation.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "tools/natural_gpu_copy_branches.py",
+        "tools/test-natural-gpu-copy-callers.py",
+        "tools/private_x11_geometry.py",
+        "tools/native_copy_window_exposure.py"
+      ],
+      "tests": [
+        "tests/test-natural-gpu-copy-branches.py",
+        "tests/native-input-target-probe.cpp",
+        "tests/native-copy-window-exposure.c",
+        "tests/test-published-copy-routes.py"
+      ],
+      "validation_dependencies": [
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/native_copy_output.py",
+        "tools/private_x11_windows.py",
+        "tools/native_prefix_template.py",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "apps/qt-shell/live_quick_battle_app_test.cpp",
+        "protocols/include/mnm/native_copy_routes_v2.h",
+        "protocols/include/mnm/native_gpu_copy_census_v1.h",
+        "runtime/render/copy_route_census.h",
+        "runtime/render/gpu_copy_census.h",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "tests/test-native-copy-routes.py",
+        "tools/published_copy_routes.py"
+      ],
+      "documents": [
+        "research/runtime/natural-gpu-copy-callers-20261026.md"
+      ],
+      "evidence": [
+        "NATURALCOPY.controls01-20261026",
+        "NATURALCOPY.controls02-20261026",
+        "NATURALCOPY.controls03-20261026",
+        "NATURALCOPY.controls04-20261026",
+        "NATURALCOPY.controls05-20261026",
+        "NATURALCOPY.retained01-20261026",
+        "NATURALCOPY.retained02-20261026",
+        "NATURALCOPY.retained03-20261026",
+        "NATURALCOPY.quick01-20261026",
+        "NATURALCOPY.quick02-20261026",
+        "NATURALCOPY.quick03-20261026",
+        "NATURALCOPY.quick04-20261026",
+        "NATURALCOPY.quick05-20261026",
+        "NATURALCOPY.quick06-20261026"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current24 controls and strict immutable replay pass. Ordinary windowed810 checked attached-clipper calls do not geometrically reduce output. Declared Win32 desktop exposure confirms negative origin but strict all-application validation rejects active-miss reason2;use the separate positive-call policy for its678 checked reduced calls.",
+        "Natural self-copy and keyed GPU-source positive callers remain unproven. Stage6 Qt input target0,missing complete END/output,normal Quit,surviving device/surfaces/clipper and shell signal11 remain open;no replacement promotion.",
+        "Combined integration preserves master1ffeb53e,verified windowed3544f60a and independent contract/status entries. The18 unrelated pending paths have a verified retained snapshot and pinned stash;master advancement restores their semantic metadata deltas."
+      ]
+    },
+    {
+      "id": "NP.published-gpu-copy-call-proof",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Positive GPU call proof with explicit missed active observations",
+      "scope": "Closed non-exhausted published version2 rows,all row identity/counter checks and an exact complete GPU-census bijection support only actual original-module calls whose entire command intervals have independent destination comparisons. Known active-miss flags remain recorded verbatim; no branch absence,complete-application output,END,normal Quit,ownership or original-driver claim. Desktop exposure is an explicit ordinary Win32 SetWindowPos stimulus,not forced rendering or clip-list edits.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "tools/natural_gpu_copy_branches.py",
+        "tools/test-natural-gpu-copy-callers.py",
+        "tools/private_x11_geometry.py",
+        "tools/native_copy_window_exposure.py",
+        "tools/published_copy_routes.py"
+      ],
+      "tests": [
+        "tests/test-natural-gpu-copy-branches.py",
+        "tests/native-input-target-probe.cpp",
+        "tests/native-copy-window-exposure.c",
+        "tests/test-published-copy-routes.py"
+      ],
+      "validation_dependencies": [
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/native_copy_output.py",
+        "tools/private_x11_windows.py",
+        "tools/native_prefix_template.py",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "apps/qt-shell/live_quick_battle_app_test.cpp",
+        "protocols/include/mnm/native_copy_routes_v2.h",
+        "protocols/include/mnm/native_gpu_copy_census_v1.h",
+        "runtime/render/copy_route_census.h",
+        "runtime/render/gpu_copy_census.h",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "tests/test-native-copy-routes.py"
+      ],
+      "documents": [
+        "research/runtime/natural-gpu-copy-callers-20261026.md"
+      ],
+      "evidence": [
+        "NATURALCOPY.controls05-20261026",
+        "NATURALCOPY.published01-20261026",
+        "NATURALCOPY.published02-20261026"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current24 controls and immutable replay verify783 of784 published GPU calls,including678 geometrically reduced calls and one retained clipped-command pixel witness. Missing output for application call5060 remains explicit.",
+        "Active-miss bit2 leaves unobserved callbacks unknown. No zero-branch absence,complete-application output,END,normal Quit,ownership or original-driver parity claim. Natural self-copy,keyed GPU sources and additional clipper reduction within destination bounds remain unproven."
       ]
     }
   ],
@@ -348027,6 +348250,744 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "WINDOWEDREADERS.controls03-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/native-windowed-copy-results-20261025/controls03.json",
+      "sha256": "69338872e156408ccc6cbe9d51263928b0645b7970947782975764846fdb4304",
+      "scope": "Current bounded caller/identity/output corruption controls; no gameplay or original comparison.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWEDREADERS.game02-20261025",
+      "kind": "live_observation",
+      "record": "research/runtime/native-windowed-copy-results-20261025/game02.json",
+      "sha256": "e9ef72ff0438c3dadff01c4a352fbb632c421697398c44cef558357a7a9f0141",
+      "scope": "Retained failed windowed startup with no first frame or copy rows; no route, reader or acceptance closure.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWEDREADERS.controls09-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/native-windowed-copy-results-20261025/controls09.json",
+      "sha256": "7543a34761e1c2ba79f63741db3cfba50192284c3378da4357c94609d27d0562",
+      "scope": "Current Qt native-only/dual-image policy and21 Python caller/readiness methods. No original pixel comparison.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWEDREADERS.game09-20261025",
+      "kind": "live_observation",
+      "record": "research/runtime/native-windowed-copy-results-20261025/game09.json",
+      "sha256": "5035f6cde22d0cc4e5576bdc31b3666458f9589efaaf1a4554a268a1d6b667a4",
+      "scope": "Failed independent-World windowed journey after the native-only capture fix. Hermes dismissal exhausts its12-click budget; no normal-Quit, closed copy census or complete route credit.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWEDREADERS.controls10-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/native-windowed-copy-results-20261025/controls10.json",
+      "sha256": "6567ca05a5ffe93278dac5668c41b0f6547df7c1eaca704f2ba6543178f5a624",
+      "scope": "Current21 Python and actual Qt encoder/capture-policy controls;no live original comparison or complete journey.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWEDREADERS.quick01-20261025",
+      "kind": "live_observation",
+      "record": "research/runtime/native-windowed-copy-results-20261025/quick01.json",
+      "sha256": "2db54bc4e05b16e8d4aa64a6ba241827ebd5d42b93038da847fae03a1771eeb1",
+      "scope": "Failed original-windowed Quick Battle input/lifecycle;stage6 timeout and shell signal11. Retained original execution witnesses,closed metadata but incomplete all-COPY comparison and surviving owners. No normal-Quit or complete ownership credit;producer bookkeeping changed afterward.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWEDREADERS.master-controls-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/windowed-reader-master-results-20261026/controls01.json",
+      "sha256": "3253f90f8443ca9649e159ad5771f4144787a86eeafb2a68ba5ede79a8ac0787",
+      "scope": "Fresh merged21Python and actual Qt encoder/capture-policy controls. No live windowed input,caller output,normal-Quit or ownership promotion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.controls01-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/controls01.json",
+      "sha256": "cb4efa0b47b7a0d8709c1d54cda55ca4dec93b6da11d8d1298878ce4c31fffdb",
+      "scope": "Bounded synthetic geometry/caller/positive-policy corruption and actual production input-probe/helper builds;no original game execution. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.controls02-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/controls02.json",
+      "sha256": "9fb44d7359a4247566a468b413da88e3ce4be18e738e79cf456f01e9749c7ca7",
+      "scope": "Bounded synthetic geometry/caller/positive-policy corruption and actual production input-probe/helper builds;no original game execution. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.controls03-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/controls03.json",
+      "sha256": "659686fba85cf65a50e4d163a0a78c33d77ca597316ac3c1f9acb54c5e66a75a",
+      "scope": "Bounded synthetic geometry/caller/positive-policy corruption and actual production input-probe/helper builds;no original game execution. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.controls04-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/controls04.json",
+      "sha256": "6212e00149be42df703aa123981bb374d338a4e38b8f769582b1981d38bf85bb",
+      "scope": "Bounded synthetic geometry/caller/positive-policy corruption and actual production input-probe/helper builds;no original game execution. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.controls05-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/controls05.json",
+      "sha256": "de40b3f0c6a681171a6191e632c8b806694c455bc00b29f30352c53751f5afdc",
+      "scope": "Bounded synthetic geometry/caller/positive-policy corruption and actual production input-probe/helper builds;no original game execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.retained01-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/retained01.json",
+      "sha256": "4fc0a830658eaa1ff32780946d4d30a928827bff364307ecfb6ea8aa1782605a",
+      "scope": "Read-only classification of the immutable earlier windowed capture;not fresh game execution,geometric clipping or whole lifecycle. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.retained02-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/retained02.json",
+      "sha256": "c769c06bca698e95024a4e2bc7e335454a55cccd13c9e8c6fa660d4018dc6675",
+      "scope": "Read-only classification of the immutable earlier windowed capture;not fresh game execution,geometric clipping or whole lifecycle. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.retained03-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/retained03.json",
+      "sha256": "a19b6bef88a3d3385339db92d19e9a6680f0111b72cae2d39a703a90befbf34a",
+      "scope": "Read-only classification of the immutable earlier windowed capture;not fresh game execution,geometric clipping or whole lifecycle.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.quick01-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/quick01.json",
+      "sha256": "4f945fed59edeb4dcec4b963df1e14ef8ed26852228231b89cf47b40ad9a6376",
+      "scope": "Preserved failed live acquisition with original manifest bookends,explicit staging/input/desktop/census/lifecycle limitations;no complete branch,Quit or ownership acceptance. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.quick02-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/quick02.json",
+      "sha256": "7abec0c0cb4f7a6b08be024bd9997b2d2893bab5d28ab149bd21e6dd6f4d975e",
+      "scope": "Preserved failed live acquisition with original manifest bookends,explicit staging/input/desktop/census/lifecycle limitations;no complete branch,Quit or ownership acceptance. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.quick03-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/quick03.json",
+      "sha256": "791f4570ddeb6e54d4541c102a13aa7b149dfa5290fe5f4fc1d4382e69fd9f9e",
+      "scope": "Preserved failed live acquisition with original manifest bookends,explicit staging/input/desktop/census/lifecycle limitations;no complete branch,Quit or ownership acceptance. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.quick04-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/quick04.json",
+      "sha256": "49804c74b471498f2af64b9e74a1e6096d17a66cbd1f2ef7877aa0c033375590",
+      "scope": "Preserved failed live acquisition with original manifest bookends,explicit staging/input/desktop/census/lifecycle limitations;no complete branch,Quit or ownership acceptance. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.quick05-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/quick05.json",
+      "sha256": "7e08b34b7422299680dfd4a3befe4c232ae5a2ae3034a9e301818357b5ae189d",
+      "scope": "Preserved failed live acquisition with original manifest bookends,explicit staging/input/desktop/census/lifecycle limitations;no complete branch,Quit or ownership acceptance. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.quick06-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/quick06.json",
+      "sha256": "99cb42a91201de3b6cfe6a2678e18c42c40f7bb40a61caa1ba9611b9c4d8cd2a",
+      "scope": "Preserved failed live acquisition with original manifest bookends,explicit staging/input/desktop/census/lifecycle limitations;no complete branch,Quit or ownership acceptance. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.published01-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/published01.json",
+      "sha256": "41f39bf3010de7861cbd331e8ca266b99cc5dff248bfc0bf3eface29f2ef2a24",
+      "scope": "Positive-only complete individual GPU call classification from immutable desktop-exposure capture;678 geometrically reduced calls,active-miss bit2 retained,no absence or global closure. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.published02-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/published02.json",
+      "sha256": "41f39bf3010de7861cbd331e8ca266b99cc5dff248bfc0bf3eface29f2ef2a24",
+      "scope": "Positive-only complete individual GPU call classification from immutable desktop-exposure capture;678 geometrically reduced calls,active-miss bit2 retained,no absence or global closure.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis/branches/geometric_clipping/calls",
+          "equals": 678
+        },
+        {
+          "pointer": "/analysis/application_observation_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/analysis/active_miss_reason_bits",
+          "equals": 2
+        },
+        {
+          "pointer": "/analysis/all_application_output_closed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.merged-windowed-controls01-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/merged-windowed-controls01.json",
+      "sha256": "8836a2964f7664b5dd5b4c5f9b685c8bc64ca01563413594c255992c15b65cfc",
+      "scope": "Fresh combined master/windowed/natural-caller tree21 Python and actual Qt encoder/capture-policy controls; no live input,Quit,owner or original-driver promotion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RBI26.latest-busy-original",
+      "kind": "isolated_original",
+      "scope": "All16 historical busy World inputs freshly replayed against the pinned unchanged original raster bodies, with complete native zero and separate diagnostic-before closure:19036draws,7680000pixels. No fresh hook, normal Quit or full-session equivalence.",
+      "record": "research/runtime/rendering-busy-integration-results-20261026/comparison-02.json",
+      "sha256": "87d754cc4ddd42ee59b6faee503f3e2cfb84f4d9096df1bd1022dd6760011711",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/samples_compared",
+          "equals": 16
+        },
+        {
+          "pointer": "/draws_compared",
+          "equals": 19036
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 7680000
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_original_live_match",
+          "equals": true
+        },
+        {
+          "pointer": "/live_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/fresh_live_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RBI26.latest-busy-native",
+      "kind": "native_integration",
+      "scope": "Current Mesa/Xvfb native headless ordered replay of16 immutable busy World samples,301encoded frame identities and10pinned SPR assets. All7680000pixels equal isolated original zero and retained live output. No original destination input, hardware, live replacement or whole renderer claim.",
+      "record": "research/runtime/rendering-busy-integration-results-20261026/comparison-02.json",
+      "sha256": "87d754cc4ddd42ee59b6faee503f3e2cfb84f4d9096df1bd1022dd6760011711",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/samples_compared",
+          "equals": 16
+        },
+        {
+          "pointer": "/draws_compared",
+          "equals": 19036
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 7680000
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_original_live_match",
+          "equals": true
+        },
+        {
+          "pointer": "/live_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/fresh_live_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RBI26.local-reader-controls",
+      "kind": "native_integration",
+      "scope": "47 actual SQLite evidence unit tests, including extra read-only stores, corruption rechecks and default write routing; no broad accounting or engine validation claim.",
+      "record": "research/runtime/rendering-busy-integration-results-20261026/reader-controls-03.json",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sha256": "617bdb430216f5b89472f62970a1cee158fae3e6246333b43a80714d3a2137fe"
+    },
+    {
+      "id": "RBI26.final-busy-original",
+      "kind": "isolated_original",
+      "scope": "All16 historical busy World inputs freshly replayed against the pinned unchanged original raster bodies, with complete native zero and separate diagnostic-before closure:19036draws,7680000pixels. No fresh hook, normal Quit or full-session equivalence.",
+      "record": "research/runtime/rendering-busy-integration-results-20261026/comparison-03.json",
+      "sha256": "c26acef6ce028b4e87271ec27c3f848479b2358c287ca4f37529164bd676e443",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/samples_compared",
+          "equals": 16
+        },
+        {
+          "pointer": "/draws_compared",
+          "equals": 19036
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 7680000
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_original_live_match",
+          "equals": true
+        },
+        {
+          "pointer": "/live_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/fresh_live_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RBI26.final-busy-native",
+      "kind": "native_integration",
+      "scope": "Current Mesa/Xvfb native headless ordered replay of16 immutable busy World samples,301encoded frame identities and10pinned SPR assets. All7680000pixels equal isolated original zero and retained live output. No original destination input, hardware, live replacement or whole renderer claim.",
+      "record": "research/runtime/rendering-busy-integration-results-20261026/comparison-03.json",
+      "sha256": "c26acef6ce028b4e87271ec27c3f848479b2358c287ca4f37529164bd676e443",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/samples_compared",
+          "equals": 16
+        },
+        {
+          "pointer": "/draws_compared",
+          "equals": 19036
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 7680000
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_original_live_match",
+          "equals": true
+        },
+        {
+          "pointer": "/live_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/fresh_live_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RBI26.reader-controls-final",
+      "kind": "native_integration",
+      "scope": "49 actual SQLite reader/filter/storage unit cases including configured extra stores and staged-source propagation; no engine comparison or broad accounting credit.",
+      "record": "research/runtime/rendering-busy-integration-results-20261026/reader-controls-04.json",
+      "sha256": "cd38381b2f73af44e07116c634489d8593db6dbcabe7fc6dbdb0b6df2f1c4ff4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RBI26.reader-workflow-final",
+      "kind": "native_integration",
+      "scope": "14 actual isolated local evidence workflow cases including the real staged hook and unpublished SQLite inputs. Synthetic fixture repositories, no engine comparison or original execution.",
+      "record": "research/runtime/rendering-busy-integration-results-20261026/reader-workflow-06.json",
+      "sha256": "838a5b779b09f37a585b3668428b9cc45cf6c9926c4bf5e0eec2bbcac87712ae",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -376002,12 +376963,148 @@
       ],
       "evidence": [
         "RBI26.busy-original",
-        "RBI26.busy-native"
+        "RBI26.busy-native",
+        "RBI26.latest-busy-original",
+        "RBI26.latest-busy-native",
+        "RBI26.final-busy-original",
+        "RBI26.final-busy-native"
       ],
       "tests": [
         "tools/compare-retained-world-frames.py",
         "tools/test-world-frames.py",
         "tests/world-frame-reference.cpp"
+      ]
+    },
+    {
+      "id": "NP.windowed-copy-reader-frontier.controls",
+      "scope": "Independent corruption controls refuse absent natural GPU branches, invalid original module identities and missing caller-bound output. They do not execute original gameplay.",
+      "level": "headless",
+      "behaviors": [
+        "NP.windowed-copy-reader-frontier"
+      ],
+      "tests": [
+        "tools/test-native-windowed-copy.py",
+        "tests/test-native-windowed-copy.py"
+      ],
+      "evidence": [
+        "WINDOWEDREADERS.controls03-20261025",
+        "WINDOWEDREADERS.controls09-20261025",
+        "WINDOWEDREADERS.controls10-20261025",
+        "WINDOWEDREADERS.master-controls-20261026",
+        "NATURALCOPY.merged-windowed-controls01-20261026"
+      ]
+    },
+    {
+      "id": "NP.windowed-copy-reader-frontier.campaign",
+      "scope": "Natural original -win campaign with retained clipper dispatch, native all-copy output comparison, protected-reader refusal, physical input, Mini/Cancel and normal original Quit. Actual geometric clip reduction and global reader/alias closure remain separate.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.windowed-copy-reader-frontier"
+      ],
+      "tests": [
+        "tools/test-native-windowed-copy.py",
+        "tests/test-native-windowed-copy.py"
+      ],
+      "evidence": [
+        "WINDOWEDREADERS.game02-20261025",
+        "WINDOWEDREADERS.game09-20261025"
+      ]
+    },
+    {
+      "id": "NP.windowed-quick-copy-callers.actual",
+      "scope": "Original -win on a private16-bit desktop through the existing Qt Quick Battle/Results/Continue/resumed World/Results/Main/Quit lifecycle. Native resident World, protected CPU backing, no-forward producers, exact original callback order, at least64 balanced Worlds, normal game exit, zero native owners and closed caller-bound all-COPY output. Require actual original-module Blt with an attached clipper and emitted checked GPU output. No campaign Hermes, arbitrary raw-reader/alias closure, actual clip reduction or original-driver/full-session equivalence.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.windowed-quick-copy-callers"
+      ],
+      "tests": [
+        "tests/test-native-windowed-copy.py",
+        "apps/qt-shell/live_quick_battle_app_test.cpp"
+      ],
+      "evidence": [
+        "WINDOWEDREADERS.quick01-20261025"
+      ]
+    },
+    {
+      "id": "NP.natural-gpu-copy-caller-branches.controls",
+      "scope": "Independent lattice geometry,caller/resource/key/snapshot corruption and observed X11 ABI controls;no original game.",
+      "level": "headless",
+      "behaviors": [
+        "NP.natural-gpu-copy-caller-branches"
+      ],
+      "tests": [
+        "tests/test-natural-gpu-copy-branches.py",
+        "tests/native-input-target-probe.cpp"
+      ],
+      "evidence": [
+        "NATURALCOPY.controls05-20261026"
+      ]
+    },
+    {
+      "id": "NP.natural-gpu-copy-caller-branches.retained",
+      "scope": "Read-only classification of immutable prior acquisitions;historical execution is not a fresh game run or whole-session pass.",
+      "level": "headless",
+      "behaviors": [
+        "NP.natural-gpu-copy-caller-branches"
+      ],
+      "tests": [
+        "tests/test-natural-gpu-copy-branches.py",
+        "tests/native-input-target-probe.cpp"
+      ],
+      "evidence": [
+        "NATURALCOPY.retained03-20261026"
+      ]
+    },
+    {
+      "id": "NP.natural-gpu-copy-caller-branches.quick",
+      "scope": "Private original-windowed and fullscreen Quick Battle acquisitions with actual source-bound Qt shell,protected backing,no-forward producers and read-only production input-target observations. Each natural branch requires complete checked emitted geometry;failed lifecycle and missing output remain explicit.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.natural-gpu-copy-caller-branches"
+      ],
+      "tests": [
+        "tests/test-natural-gpu-copy-branches.py",
+        "tests/native-input-target-probe.cpp"
+      ],
+      "evidence": [
+        "NATURALCOPY.quick03-20261026",
+        "NATURALCOPY.quick04-20261026",
+        "NATURALCOPY.quick05-20261026",
+        "NATURALCOPY.quick06-20261026"
+      ]
+    },
+    {
+      "id": "NP.published-gpu-copy-call-proof.controls",
+      "scope": "Known active-miss positive-only admission versus unchanged strict rejection;corrupt identities,counters,tail,closure,reasons,exhaustion refuse.",
+      "level": "headless",
+      "behaviors": [
+        "NP.published-gpu-copy-call-proof"
+      ],
+      "tests": [
+        "tests/test-natural-gpu-copy-branches.py",
+        "tests/native-input-target-probe.cpp",
+        "tests/native-copy-window-exposure.c",
+        "tests/test-published-copy-routes.py"
+      ],
+      "evidence": [
+        "NATURALCOPY.controls05-20261026"
+      ]
+    },
+    {
+      "id": "NP.published-gpu-copy-call-proof.published",
+      "scope": "Current bounded offline analysis of immutable actual desktop-exposure acquisition. Complete individual original GPU call intervals only;missed callbacks,failed global closure,normal Quit and ownership remain explicit.",
+      "level": "headless",
+      "behaviors": [
+        "NP.published-gpu-copy-call-proof"
+      ],
+      "tests": [
+        "tests/test-natural-gpu-copy-branches.py",
+        "tests/native-input-target-probe.cpp",
+        "tests/native-copy-window-exposure.c",
+        "tests/test-published-copy-routes.py"
+      ],
+      "evidence": [
+        "NATURALCOPY.published02-20261026"
       ]
     }
   ],
@@ -377786,7 +378883,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-62bf85847b5ff02e69c996484cac8571d32d47d580d5062815accdf61150ce82.json",
-    "sha256": "62bf85847b5ff02e69c996484cac8571d32d47d580d5062815accdf61150ce82"
+    "path": "research/runtime/coverage/source-index-d417def85ac38b10a4892b6b951b39a8101f465ca16547e4bd37dc90da1c686c.json",
+    "sha256": "d417def85ac38b10a4892b6b951b39a8101f465ca16547e4bd37dc90da1c686c"
   }
 }

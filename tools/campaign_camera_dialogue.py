@@ -2,11 +2,27 @@
 import hashlib
 import json
 import math
+import os
 import re
 import subprocess
 import time
 
 from campaign_render_oracle import oracle
+
+
+def capture_routes(metadata, resident_world):
+    policy = metadata.get('capture_oracle', 'dual-draw')
+    if policy == 'resident-native':
+        if not resident_world or metadata.get('original_saved') is not False:
+            raise ValueError('Native-only capture cannot claim an original image')
+        routes = ('native',)
+    elif policy == 'dual-draw':
+        routes = ('native', 'original')
+    else:
+        raise ValueError('Unknown camera capture oracle')
+    if metadata.get('fallback') is not False or not all(metadata.get(r+'_saved') is True for r in routes):
+        raise ValueError('Missing current native camera dialogue capture')
+    return routes
 
 
 def dialogue_crop(width, height):
@@ -24,6 +40,7 @@ class CameraDialogueGuard:
         self.click, self.record, self.resident_world = click, record, resident_world
         self.checks, self.dismissals, self.overhead_seconds = [], 0, 0.0
         self.intervals = []
+        self.native_only_capture = resident_world and os.environ.get('MNM_ORIGINAL_WINDOWED_DIAGNOSTIC') == '1'
 
     def capture(self):
         from PIL import Image
@@ -33,16 +50,19 @@ class CameraDialogueGuard:
         request = self.root/'capture-request.json'
         if request.exists():raise ValueError('Overlapping camera diagnostic request')
         temporary = request.with_suffix('.tmp')
-        temporary.write_text(json.dumps(dict(name=name)));temporary.replace(request)
+        message = dict(name=name)
+        if self.native_only_capture: message['oracle'] = 'resident-native'
+        temporary.write_text(json.dumps(message));temporary.replace(request)
         metadata = self.root/(name+'.json');deadline = time.monotonic()+10
         while not metadata.exists():
             if time.monotonic()>deadline:raise ValueError('Camera dialogue capture deadline')
             time.sleep(.1)
         meta = json.loads(metadata.read_text())
-        if meta.get('fallback') is not False or not all(meta.get(r+'_saved') is True for r in ('native', 'original')):
-            raise ValueError('Missing current native camera dialogue capture')
+        routes = capture_routes(meta, self.resident_world)
+        if (routes == ('native',)) != self.native_only_capture:
+            raise ValueError('Camera capture reply differs from requested oracle')
         hashes, texts = {}, {}
-        for route in ('native', 'original'):
+        for route in routes:
             path = self.root/(name+'-'+route+'.png')
             hashes[route] = hashlib.sha256(path.read_bytes()).hexdigest()
             crop = self.root/(name+'-'+route+'-dialogue.png')
@@ -98,11 +118,10 @@ def validate_camera_dialogue(inputs, root, resident_world):
         if not re.fullmatch(r'camera-(?:input|mini-input)-\d+-\d{2}', name) or int(name.rsplit('-',1)[1]) != index:
             raise ValueError('Unsafe/reordered camera dialogue capture')
         meta = item['metadata']
-        if meta.get('fallback') is not False or not all(meta.get(r+'_saved') is True for r in ('native','original')):
-            raise ValueError('Camera dialogue capture was not native')
-        if set(item['texts']) != {'native','original'} or item['visible'] != {r:'hermes' in item['texts'][r].lower() for r in ('native','original')}:
+        captured_routes = capture_routes(meta, resident_world)
+        if set(item['texts']) != set(captured_routes) or set(item['image_sha256']) != set(captured_routes) or item['visible'] != {r:'hermes' in item['texts'][r].lower() for r in captured_routes}:
             raise ValueError('Camera Hermes classification differs from retained OCR')
-        for route in ('native','original'):
+        for route in captured_routes:
             if hashlib.sha256((root/(name+'-'+route+'.png')).read_bytes()).hexdigest() != item['image_sha256'][route]:
                 raise ValueError('Camera dialogue image changed after OCR')
         if item['dismissed']:

@@ -272,16 +272,40 @@ def opened_store(path, readonly=False):
         store.close()
 
 
+def extra_databases(root):
+    """Resolve optional local sources; never infer or publish an archive."""
+    value = os.environ.get('MM_EVIDENCE_EXTRA_DBS')
+    if value is None and (Path(root)/'.git').exists():
+        setting = subprocess.run(['git', '-C', str(root), 'config', '--get',
+                                  'mm.evidenceExtraDBs'], capture_output=True, text=True)
+        value = setting.stdout.strip() if setting.returncode == 0 else None
+    extras = json.loads(value if value is not None else '[]')
+    if (not isinstance(extras, list) or len(extras) > 32
+            or any(not isinstance(p, str) or not p.strip() for p in extras)):
+        raise ValueError('MM_EVIDENCE_EXTRA_DBS must be a JSON array of up to 32 local database paths')
+    return extras
+
+
 class Resolver:
     def __init__(self, root):
         self.root, self.stores = Path(root), []
         self.spec = config(root)
+        extras = extra_databases(root)
+        paths = []
         alternate = os.environ.get('MM_EVIDENCE_DB')
         if alternate:
-            self.stores.append(Store(alternate, readonly=True))
+            paths.append(Path(alternate))
         pending = self.root/'working/coverage/evidence-pending.sqlite3'
-        if pending.is_file() and not any(s.path.resolve() == pending.resolve() for s in self.stores):
-            self.stores.append(Store(pending, readonly=True))
+        if pending.is_file():
+            paths.append(pending)
+        paths.extend(Path(p) for p in extras)
+        try:
+            for path in paths:
+                if not any(s.path.resolve() == path.resolve() for s in self.stores):
+                    self.stores.append(Store(path, readonly=True))
+        except Exception:
+            self.close()
+            raise
 
     def close(self):
         for store in self.stores:

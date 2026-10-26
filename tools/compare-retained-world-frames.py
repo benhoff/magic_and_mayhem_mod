@@ -30,7 +30,8 @@ def declaration(world):
     behavior = next(b for b in register['behaviors'] if b['id'] == 'RS.world-frame')
     scenario = next(s for s in register['scenarios'] if s['id'] == SCENARIO)
     builds = {b['id']: b for b in register['builds']}
-    paths = set(world.sources()) | required_sources(behavior) | set(scenario['tests'])
+    paths = (set(world.sources()) | required_sources(behavior) | set(scenario['tests'])
+             | {'tools/coverage_evidence.py', 'tools/coverage_claims.py', 'tools/evidence_local.py'})
     claims = [{'behavior': behavior['id'], 'contract_sha256': behavior_contract(behavior, builds),
                'scenarios': {SCENARIO: scenario_contract(scenario)}}]
     return claims, {p: sha(ROOT/p) for p in sorted(paths)}

@@ -5,7 +5,7 @@ from pathlib import Path
 import sqlite3
 import tempfile
 
-from coverage_evidence import Store, cache_root, config, digest_file
+from coverage_evidence import Store, cache_root, config, digest_file, extra_databases
 
 
 @contextmanager
@@ -22,10 +22,14 @@ def local_evidence(root):
         if not path.is_file() or digest_file(path) != archive['sha256']:
             raise ValueError('Evidence archive unavailable locally; run evidence-store.py fetch --verify: '
                              + archive['sha256'])
-    previous = {key: os.environ.get(key) for key in ('MM_EVIDENCE_DB', 'MM_EVIDENCE_CACHE')}
+    previous = {key: os.environ.get(key) for key in
+                ('MM_EVIDENCE_DB', 'MM_EVIDENCE_CACHE', 'MM_EVIDENCE_EXTRA_DBS')}
     pending = root/'working/coverage/evidence-pending.sqlite3'
     try:
         os.environ['MM_EVIDENCE_CACHE'] = str(cache)
+        if previous['MM_EVIDENCE_EXTRA_DBS'] is None:
+            import json
+            os.environ['MM_EVIDENCE_EXTRA_DBS'] = json.dumps(extra_databases(root))
         if not previous['MM_EVIDENCE_DB'] and pending.is_file():
             os.environ['MM_EVIDENCE_DB'] = str(pending.resolve())
         yield
