@@ -23602,3 +23602,43 @@ renderer acceptance remain pending. Original glyph/worker isolated comparisons
 retain their original fingerprints. No engine status or default is promoted;
 lighting remains original by default. The unrelated pending main-checkout storage
 work stays outside this commit and is preserved during the fast-forward.
+
+
+## Row-copy and brighten outgoing virtual services — 2026-10-26
+
+`RE.pixel-helper-unlock-dispatch` closes the three selected outgoing service
+identities retained by the five-helper computed-call scan. Original successful
+CreateSurface stores Surface1 at wrapper+4, QueryInterface stores Surface2 at+8,
+Lock uses+8 and the three helper-tail calls use+4 slot32 Unlock(base pixels).
+Row-copy unlocks source then destination regardless of the first result; brighten
+unlocks its sole surface. Zero-sized draw controls still retire. Final EAX is
+the last unchecked Unlock HRESULT. Optional early Unlock remains additional.
+
+`PVIRT.scripted-20261026` passes 512 cells per optimized32 and ASan/UBSan32
+variant: 1024 original creations, 768 selected dispatches and4,194,304 guarded
+physical WORD comparisons each. `PVIRT.driver-20261026` passes64 real Wine 11.16
+RGB565/RGB555 system-memory cells,128 created Surface1/2 alias pairs and96 tail
+dispatches plus48 early Unlocks. Selected targets resolve to built-in
+`ddraw.dll+0x29f70` for its retained DLL hash; no fixed cross-launch address is
+assumed. The early-Unlock cohort returns actual DDERR_NOTLOCKED at the later
+tail calls. All 2,927 original inputs verify before/after. Original selected
+instructions remain active and unchanged. See [contract and evidence](pixel-virtual-services-20261026.md).
+
+The central three-site dispatch entry is complete within this admitted receiver
+scope. Discovery inventory boundaries, unresolved global indirect flows, all
+five natural incoming callers,43-route denominator and38-route historical union
+remain. Existing native pixel splices already retain these original tails; no
+production code or implementation/comparison/integration/replacement status is
+promoted. Failed Lock/loss/Restore, asynchronous alias lifetime, arbitrary receiver
+mutation, other drivers and installed/live acceptance remain separate. Earlier
+fixture, quota, display and already-stopped-server failures remain immutable.
+
+### Pixel virtual-service integration into current master — 2026-10-26
+
+Merge af4bc1ae into 8c23937a retains the recovered three Surface1 Unlock sites and both original-execution results. Combined-tree coverage audit and planning/caller controls are retained under [integration results](pixel-virtual-master-results-20261026/audit02.json). The [history review](pixel-virtual-master-results-20261026/history02.json) accounts exact transitions across both committed parent histories, including ancillary artifacts; it asserts no historical gate pass or new engine comparison. Incoming source/test bytes remain exact; master changes and pending contributor edits are preserved separately. No native implementation, integration, replacement or natural incoming caller status is promoted. Unrelated historical evidence staleness remains pending.
+
+Combined-tree limitation: PVIRT.scripted-20261026 and PVIRT.driver-20261026 retain their exact successful source fingerprints. Master has since changed tools/coverage_evidence.py and tools/drawing_fixture_prefix.py, so these comparisons are historical/stale for the combined tree. The recovery fixture, runner and recovered contract bytes remain unchanged; the merge does not assert current-code original comparison. A new comparison, under a new evidence ID, is required before claiming that validation on the combined source set.
+
+The planning regression first failed because the existing master NP.native-only-launch-contract test link to tools/test-terrain-light-qt-session.py was absent from its work-review source fingerprints. Static review adds only that missing test hash and preserves the complete prior work review, all prior hashes and historical validation/acceptance. The failing controls01 report remains immutable; follow-up controls use a new report.
+
+Follow-up controls02 passes37/38 planning tests and all34 caller tests; its remaining assertion omitted three already-landed master alternate-canvas contracts from the explicit unrated expectation. Add exactly NP.alternate-canvas-padded-resident, NP.alternate-canvas-resident-session and RS.campaign-padded-presentation-error to that expectation, leaving weights/statuses unchanged. Controls03 reruns that affected test; other37 planning checks and34 caller checks retain their passing controls02 result. Audit02 precedes this expectation-only test change; final source census and staged coverage gate review the committed tree.

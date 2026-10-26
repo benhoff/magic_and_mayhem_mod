@@ -87,12 +87,14 @@ class ImportanceTest(unittest.TestCase):
         self.assertGreaterEqual(len(result['entries']), 345)
         self.assertEqual(result['unrated'], [
             'NP.alternate-canvas-dispatch-admission', 'NP.alternate-canvas-owned-generation',
+            'NP.alternate-canvas-padded-resident', 'NP.alternate-canvas-resident-session',
             'NP.cursor-live-ownership', 'NP.cursor-owned-compositor', 'NP.cursor-provider-lifetime',
             'NP.graphics-session-provider-retirement',
             'NP.native-player-launch', 'NP.natural-gpu-copy-caller-branches',
             'NP.palette-option-strict-parsing', 'NP.protected-native-store-service', 'NP.published-gpu-copy-call-proof',
             'NP.surface-alias-lease-lifecycle', 'NP.windowed-copy-reader-frontier', 'NP.windowed-quick-copy-callers',
-            'RS.alternate-canvas-dispatch-composition', 'RS.cursor-selection-service',
+            'RS.alternate-canvas-dispatch-composition', 'RS.campaign-padded-presentation-error',
+            'RS.cursor-selection-service',
             'RS.main-screen-acquisition', 'RS.report-screen-acquisition',
             'RS.screen-class-ownership-static', 'RS.screen-class11-lifetime', 'RS.screen-control-dispatch',
             'RS.screen-cursor-background-invalidation',
