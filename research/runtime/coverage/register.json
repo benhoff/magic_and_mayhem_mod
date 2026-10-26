@@ -32530,7 +32530,7 @@
       "subsystem": "native_rendering",
       "kind": "recovered",
       "title": "Guarded native glyph pixels and selected x87 effects through actual RET16 entry",
-      "scope": "Pinned No-CD581ec0 RGB565 bounded indexed RLE native kernel and explicit owned-context route/entry. Cold/initialized coverage, byte tints, bounded geometry with complete horizontal rejection and vertical cropping, empty/padded/transparent/all-installed glyph fixtures. Actual handled RET16 path compares complete canvas/table, volatile/callee GPRs, four rewritten arguments/stack guards, defined flags/DF, selected x87 CW/full status/TOP/tag/occupied values and XMM/MXCSR. Native independent x87 run/channel/truncation helpers replace original glyph arithmetic under24/53/64-bit precision and four rounding controls; original-once fallback for selected two-active-slot diagnostics. No installed live hook, arbitrary FP/unmasked exceptions, pointer/opcode history/empty register contents, process-memory admission/lifetime, GPU glyph takeover, complete text layout/font lifecycle or Win32 ABI claim. Targeted safe original-once refusal branches include absent context, mismatched owned frame, IE-unmasked finite draws and finite warm coverage aboveone. Shared production producer entry is also compared in isolation; process admission stays separately registered.",
+      "scope": "Pinned No-CD581ec0 RGB565 bounded indexed RLE native kernel and explicit owned-context route/entry. Cold/initialized coverage, byte tints, bounded geometry with complete horizontal rejection and vertical cropping, empty/padded/transparent/all-installed glyph fixtures. Actual handled RET16 path compares complete canvas/table, volatile/callee GPRs, four rewritten arguments/stack guards, defined flags/DF, selected x87 CW/full status/TOP/tag/occupied values and XMM/MXCSR. Native independent x87 run/channel/truncation helpers replace original glyph arithmetic under24/53/64-bit precision and four rounding controls; original-once fallback for selected two-active-slot diagnostics. No installed live hook, arbitrary FP/unmasked exceptions, pointer/opcode history/empty register contents, process-memory admission/lifetime, GPU glyph takeover, complete text layout/font lifecycle or Win32 ABI claim. Targeted safe original-once refusal branches include absent context, mismatched owned frame, IE-unmasked finite draws and finite warm coverage aboveone. Shared production producer entry is also compared in isolation; process admission stays separately registered. Layout clip-right may exceed the physical row width; original geometry/caller branches remain intact, while every admitted pixel write rectangle must fit independently supplied native storage.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -32560,7 +32560,8 @@
         "tests/glyph-backend-entry-probe.S",
         "tests/glyph-backend-test.c",
         "tools/test-glyph-backend.py",
-        "tests/glyph-producer-entry.c"
+        "tests/glyph-producer-entry.c",
+        "tools/test-glyph-save-clip.py"
       ],
       "validation_dependencies": [
         "reconstruction/rendering/glyph_backend_state.c",
@@ -32583,7 +32584,8 @@
         "RS.glyph-backend.initial-original-integrated-20261010",
         "RS.glyph-backend.initial-host-integrated-20261010",
         "RS.glyph-backend.original-live-entry-integrated-20261010",
-        "RS.glyph-backend.host-live-entry-integrated-20261010"
+        "RS.glyph-backend.host-live-entry-integrated-20261010",
+        "TLQF26.glyph-original"
       ],
       "status": {
         "understanding": "scoped",
@@ -32609,7 +32611,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Atomic guarded glyph kernel and entry admission",
-      "scope": "Intentional preflight: inherited bounded source/index/geometry/byte tint domain, owned nonaliasing canvas/table/FX buffers, aligned16 FX images, legal canvas stride/clip, masked supported precision/rounding, seven physical push slots empty and remaining canonical finite value, legal MXCSR, warm finite unit coverage. Cold endpoint aboveone is admitted only as recovered generation. Refusal is atomic and actual entry forwards original once. No original malformed equivalence, process-memory hook admission/lifetime or live replacement. Targeted safe original-once refusal branches include absent context, mismatched owned frame, IE-unmasked finite draws and finite warm coverage aboveone. Shared production producer entry is also compared in isolation; process admission stays separately registered.",
+      "scope": "Intentional preflight: inherited bounded source/index/geometry/byte tint domain, owned nonaliasing canvas/table/FX buffers, aligned16 FX images, legal canvas stride/clip, masked supported precision/rounding, seven physical push slots empty and remaining canonical finite value, legal MXCSR, warm finite unit coverage. Cold endpoint aboveone is admitted only as recovered generation. Refusal is atomic and actual entry forwards original once. No original malformed equivalence, process-memory hook admission/lifetime or live replacement. Targeted safe original-once refusal branches include absent context, mismatched owned frame, IE-unmasked finite draws and finite warm coverage aboveone. Shared production producer entry is also compared in isolation; process admission stays separately registered. Layout clip-right may exceed the physical row width; original geometry/caller branches remain intact, while every admitted pixel write rectangle must fit independently supplied native storage.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -32628,7 +32630,8 @@
         "tests/glyph-backend-entry-probe.S",
         "tests/glyph-backend-test.c",
         "tools/test-glyph-backend.py",
-        "tests/glyph-producer-entry.c"
+        "tests/glyph-producer-entry.c",
+        "tools/test-glyph-save-clip.py"
       ],
       "validation_dependencies": [
         "reconstruction/rendering/glyph_backend_state.c",
@@ -32643,7 +32646,8 @@
         "NR.glyph-backend-admission.host-20261010",
         "NR.glyph-backend-admission.host-live-entry-20261010",
         "NR.glyph-backend-admission.host-integrated-20261010",
-        "NR.glyph-backend-admission.host-live-entry-integrated-20261010"
+        "NR.glyph-backend-admission.host-live-entry-integrated-20261010",
+        "TLQF26.glyph-original"
       ],
       "status": {
         "understanding": "scoped",
@@ -33271,7 +33275,7 @@
       "subsystem": "native_rendering",
       "kind": "recovered",
       "title": "Bounded live glyph caller/pixel route",
-      "scope": "Pinned NoCD581ec0 opt-in shadow/takeover through shared producer tag10. Per-call private frame/canvas/table/FX snapshots, original identity preserved, bounded clip/stride RGB565, supported masked x87 domain inherited from glyph kernel. Shadow original completion compares full admitted canvas/coverage and selected caller/FP state; takeover commits rechecked snapshots and returns RET16 without original glyph body. Bounded Quick Battle startup cohort, independent retained original replay, original layout/other draws active. Single observed engine thread with concurrent/nested forwards; no lock against unrelated external writers, no complete game/GPU text ownership/performance claim. Fresh disposable public Qt staging supported; public interactive gameplay validation remains separate. Original frame/canvas/table/argument ranges must be disjoint; private canvas storage is aligned independently of frame byte length.",
+      "scope": "Pinned NoCD581ec0 opt-in shadow/takeover through shared producer tag10. Per-call private frame/canvas/table/FX snapshots, original identity preserved, bounded clip/stride RGB565, supported masked x87 domain inherited from glyph kernel. Shadow original completion compares full admitted canvas/coverage and selected caller/FP state; takeover commits rechecked snapshots and returns RET16 without original glyph body. Bounded Quick Battle startup cohort, independent retained original replay, original layout/other draws active. Single observed engine thread with concurrent/nested forwards; no lock against unrelated external writers, no complete game/GPU text ownership/performance claim. Fresh disposable public Qt staging supported; public interactive gameplay validation remains separate. Original frame/canvas/table/argument ranges must be disjoint; private canvas storage is aligned independently of frame byte length. Layout clip-right may overhang the physical row width; preserve original clipping decisions and admit pixel rows only after validating the complete write rectangle against independently supplied native storage.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -33313,7 +33317,8 @@
         "tests/glyph-live-admission.c",
         "tools/test-glyph-backend.py",
         "tests/glyph-backend-reference.cpp",
-        "tests/glyph-producer-entry.c"
+        "tests/glyph-producer-entry.c",
+        "tools/test-glyph-save-clip.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/canvas_producers_v1.h",
@@ -33492,7 +33497,8 @@
         "protocols/include/mnm/world_effect_raster_v1.h",
         "protocols/include/mnm/world_raster_batch_v3.h",
         "reconstruction/rendering/kind8_sprite_class.h",
-        "runtime/scene/kind8_sprite_admission.h"
+        "runtime/scene/kind8_sprite_admission.h",
+        "runtime/scene/glyph_native_only.h"
       ],
       "evidence": [
         "RS.glyph-live-route.host-20261010",
@@ -33502,7 +33508,13 @@
         "RS.glyph-live-route.host-integrated-20261010",
         "RS.glyph-live-route.original-integrated-20261010",
         "RS.glyph-live-route.live-integrated-20261010",
-        "RS.glyph-live-route.takeover-integrated-20261010"
+        "RS.glyph-live-route.takeover-integrated-20261010",
+        "TLQF26.observe-reload",
+        "TLQF26.native-reload",
+        "TLQF26.glyph-original",
+        "TLQF26.native-stress",
+        "TLQF26.worker-loss",
+        "TLQF26.save-diagnostic"
       ],
       "status": {
         "understanding": "scoped",
@@ -33524,7 +33536,8 @@
         ]
       },
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "TLQF26 closes the observed Save geometry refusal, avoidable per-request worker setup and orphan-worker boundary within the named controls. Historical TLQT26 failures remain immutable. Maximum tested live native stress is two120-second phases/2434updates; host scheduling has no real-time guarantee. Different maps, hour-long sessions, hardware/FPS and default rollout remain pending. SIGKILL can prevent the supervisor outcome row; kernel parent-death termination still stops its worker."
       ]
     },
     {
@@ -33532,11 +33545,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded live glyph process-memory admission and launch policy",
-      "scope": "Pinned NoCD581ec0 opt-in shadow/takeover through shared producer tag10. Per-call private frame/canvas/table/FX snapshots, original identity preserved, bounded clip/stride RGB565, supported masked x87 domain inherited from glyph kernel. Shadow original completion compares full admitted canvas/coverage and selected caller/FP state; takeover commits rechecked snapshots and returns RET16 without original glyph body. Bounded Quick Battle startup cohort, independent retained original replay, original layout/other draws active. Single observed engine thread with concurrent/nested forwards; no lock against unrelated external writers, no complete game/GPU text ownership/performance claim. Fresh disposable public Qt staging supported; public interactive gameplay validation remains separate. Original frame/canvas/table/argument ranges must be disjoint; private canvas storage is aligned independently of frame byte length.",
+      "scope": "Pinned NoCD581ec0 opt-in shadow/takeover through shared producer tag10. Per-call private frame/canvas/table/FX snapshots, original identity preserved, bounded clip/stride RGB565, supported masked x87 domain inherited from glyph kernel. Shadow original completion compares full admitted canvas/coverage and selected caller/FP state; takeover commits rechecked snapshots and returns RET16 without original glyph body. Bounded Quick Battle startup cohort, independent retained original replay, original layout/other draws active. Single observed engine thread with concurrent/nested forwards; no lock against unrelated external writers, no complete game/GPU text ownership/performance claim. Fresh disposable public Qt staging supported; public interactive gameplay validation remains separate. Original frame/canvas/table/argument ranges must be disjoint; private canvas storage is aligned independently of frame byte length. Layout clip-right may overhang the physical row width; preserve original clipping decisions and admit pixel rows only after validating the complete write rectangle against independently supplied native storage.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/glyph-live-backend.md"
+        "research/runtime/glyph-live-backend.md",
+        "research/runtime/terrain-light-normal-session.md"
       ],
       "implementation": [
         "runtime/scene/glyph_live.c",
@@ -33563,7 +33577,8 @@
         "tests/glyph-live-admission.c",
         "tools/test-glyph-backend.py",
         "tests/glyph-backend-reference.cpp",
-        "tests/glyph-producer-entry.c"
+        "tests/glyph-producer-entry.c",
+        "tools/test-glyph-save-clip.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/canvas_producers_v1.h",
@@ -33742,13 +33757,21 @@
         "protocols/include/mnm/world_effect_raster_v1.h",
         "protocols/include/mnm/world_raster_batch_v3.h",
         "reconstruction/rendering/kind8_sprite_class.h",
-        "runtime/scene/kind8_sprite_admission.h"
+        "runtime/scene/kind8_sprite_admission.h",
+        "runtime/scene/glyph_native_only.h"
       ],
       "evidence": [
         "NR.glyph-live-admission.host-20261010",
         "NR.glyph-live-admission.live-20261010",
         "NR.glyph-live-admission.host-integrated-20261010",
-        "NR.glyph-live-admission.live-integrated-20261010"
+        "NR.glyph-live-admission.live-integrated-20261010",
+        "TLQT26.qt-save-refusal",
+        "TLQF26.observe-reload",
+        "TLQF26.native-reload",
+        "TLQF26.glyph-original",
+        "TLQF26.native-stress",
+        "TLQF26.worker-loss",
+        "TLQF26.save-diagnostic"
       ],
       "status": {
         "understanding": "scoped",
@@ -33770,7 +33793,8 @@
         ]
       },
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "TLQF26 closes the observed Save geometry refusal, avoidable per-request worker setup and orphan-worker boundary within the named controls. Historical TLQT26 failures remain immutable. Maximum tested live native stress is two120-second phases/2434updates; host scheduling has no real-time guarantee. Different maps, hour-long sessions, hardware/FPS and default rollout remain pending. SIGKILL can prevent the supervisor outcome row; kernel parent-death termination still stops its worker."
       ]
     },
     {
@@ -76748,7 +76772,7 @@
       "subsystem": "rendering",
       "kind": "recovered",
       "title": "Native RGB565/RGB555 glyph pixels and caller state",
-      "scope": "Selected bounded synthetic RLE glyphs, both RGB565 and RGB555 masks and format-dependent tint division/red shift, twelve masked precision/rounding seeds, zero/one occupied finite x87 value, cold/warm table and original-once refusal for two occupied values or unsupported state. Actual native route/RET16 entry physical pixels/table/GPR/defined flags/DF/selected FX versus pinned original. No integrated resident glyph, arbitrary FP/input, font layout or live replacement claim.",
+      "scope": "Selected bounded synthetic RLE glyphs, both RGB565 and RGB555 masks and format-dependent tint division/red shift, twelve masked precision/rounding seeds, zero/one occupied finite x87 value, cold/warm table and original-once refusal for two occupied values or unsupported state. Actual native route/RET16 entry physical pixels/table/GPR/defined flags/DF/selected FX versus pinned original. No integrated resident glyph, arbitrary FP/input, font layout or live replacement claim. Layout clip-right may exceed the physical row width; original geometry/caller branches remain intact, while every admitted pixel write rectangle must fit independently supplied native storage.",
       "confidence": "provisional",
       "original": [
         {
@@ -76775,7 +76799,8 @@
         "tests/glyph-backend-state-probe.S",
         "tests/glyph-backend-entry-probe.S",
         "tests/glyph-backend-test.c",
-        "tools/test-glyph-formats.py"
+        "tools/test-glyph-formats.py",
+        "tools/test-glyph-save-clip.py"
       ],
       "validation_dependencies": [
         "tests/sprite-binary-reference.cpp",
@@ -76783,7 +76808,8 @@
         "tools/test-font-glyph-raster.py"
       ],
       "evidence": [
-        "RS.glyph-format-pixels.original-20261014"
+        "RS.glyph-format-pixels.original-20261014",
+        "TLQF26.glyph-original"
       ],
       "status": {
         "understanding": "partial",
@@ -124096,7 +124122,8 @@
         "tools/test-rendering-seventeenth-five.py",
         "tools/rendering_seventeenth_controls.py",
         "tests/test-rendering-seventeenth-controls.py",
-        "tests/rendering-seventeenth-five/CMakeLists.txt"
+        "tests/rendering-seventeenth-five/CMakeLists.txt",
+        "tools/test-terrain-light-qt-session.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -124820,7 +124847,17 @@
         "NT17.five-rendering-contracts-20261023",
         "NT17.strict-movement-stress-limit-20261023",
         "P1.required-rendering-dependencies-static-20261024",
-        "RA25.native-only.campaign"
+        "RA25.native-only.campaign",
+        "TLQT26.observation",
+        "TLQT26.native-timeout",
+        "TLQT26.worker-loss",
+        "TLQT26.qt-save-refusal",
+        "TLQT26.abnormal-worker-lifetime",
+        "TLQF26.observe-reload",
+        "TLQF26.native-reload",
+        "TLQF26.native-only-controls",
+        "TLQF26.native-stress",
+        "TLQF26.worker-loss"
       ],
       "status": {
         "understanding": "scoped",
@@ -124837,7 +124874,8 @@
         "NT17 completes this existing bounded implementation. Full original pixels/physical-driver equivalence, unclassified historical instrumented/capture failures, all original writers/aliases, whole-game reachability and60FPS remain independent; no earlier source fingerprint or negative result is rewritten.",
         "NT17 additional10-second strict movement stress fails Mini readiness twice after real World delivery, with no recorded graphics refusal. A short default launch-policy journey passes; the reproduced stress/input-readiness cause remains unclassified and unaccepted. The existing policy excludes ordinary campaign acceptance; public hardware campaign stress is validated separately.",
         "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted.",
-        "RFL20261025 adds a separate functional FPS policy and local callback-after-readiness recheck. Shared helper/harness source changes do not refresh historical benchmark, broader camera-body/original-pixel or launch-policy stage evidence. The new source-bound functional behavior has independent current execution; historical fingerprints remain unchanged."
+        "RFL20261025 adds a separate functional FPS policy and local callback-after-readiness recheck. Shared helper/harness source changes do not refresh historical benchmark, broader camera-body/original-pixel or launch-policy stage evidence. The new source-bound functional behavior has independent current execution; historical fingerprints remain unchanged.",
+        "TLQF26 closes the observed Save geometry refusal, avoidable per-request worker setup and orphan-worker boundary within the named controls. Historical TLQT26 failures remain immutable. Maximum tested live native stress is two120-second phases/2434updates; host scheduling has no real-time guarantee. Different maps, hour-long sessions, hardware/FPS and default rollout remain pending. SIGKILL can prevent the supervisor outcome row; kernel parent-death termination still stops its worker."
       ],
       "implementation_review": {
         "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
@@ -152954,13 +152992,27 @@
       ],
       "tests": [
         "tests/test-terrain-light-session.py",
-        "tools/test-terrain-light-normal-session.py"
+        "tools/test-terrain-light-normal-session.py",
+        "tools/test-terrain-light-qt-session.py",
+        "tools/test-terrain-light-worker-replay.py"
       ],
       "evidence": [
         "TLSN25.reload-observe",
         "TLSN25.native-and-fallback",
         "TLSN25.master-reload-observe",
-        "TLSN25.master-native-and-fallback"
+        "TLSN25.master-native-and-fallback",
+        "TLQT26.observation",
+        "TLQT26.native-timeout",
+        "TLQT26.worker-loss",
+        "TLQT26.qt-save-refusal",
+        "TLQT26.abnormal-worker-lifetime",
+        "TLQF26.observe-reload",
+        "TLQF26.native-reload",
+        "TLQF26.controls",
+        "TLQF26.worker-original",
+        "TLQF26.native-stress",
+        "TLQF26.worker-loss",
+        "TLQM26.controls"
       ],
       "status": {
         "understanding": "scoped",
@@ -152970,8 +153022,10 @@
         "replacement": "scoped_live"
       },
       "remaining_gaps": [
-        "Opt-in regular launcher validated with original graphics on a fresh Celtic Adept campaign and actual same-process named Save/Load. Combined native Qt graphics ownership, arbitrary maps/saves, long-duration use and default rollout remain separate acceptance; original scheduler, loader/serializer and resource lifetimes remain original.",
-        "Worker loss intentionally degrades the selected session and reports a nonzero launcher result after clean original Quit; one unchanged-original/sanitized fallback witness supports recovery, not continued native replacement."
+        "The regular original-graphics launcher and strict native Qt named Save/Load, two resolution changes, Main Load World reconstruction, bounded240-second physical stress and expected worker-loss recovery have separate recorded results. Different campaign maps, arbitrary saves, hour-long use, hardware/FPS acceptance and default rollout remain unaccepted; original scheduler, loader/serializer and resource lifetimes retain their original owners.",
+        "Worker loss intentionally degrades the selected session and reports a nonzero launcher result after clean original Quit; one unchanged-original/sanitized fallback witness supports recovery, not continued native replacement.",
+        "TLQF26 closes the observed Save geometry refusal, avoidable per-request worker setup and orphan-worker boundary within the named controls. Historical TLQT26 failures remain immutable. Maximum tested live native stress is two120-second phases/2434updates; host scheduling has no real-time guarantee. Different maps, hour-long sessions, hardware/FPS and default rollout remain pending. SIGKILL can prevent the supervisor outcome row; kernel parent-death termination still stops its worker.",
+        "Merged master acceptance remains pending: intervening Qt/World and launcher changes stale the TLQF26 installed journey source bindings. TLQM26.controls reruns twelve actual worker/channel controls only; exact incoming lighting/glyph bytes are preserved. Historical live results and source hashes remain unchanged; no default rollout is claimed."
       ]
     },
     {
@@ -153093,7 +153147,9 @@
       ],
       "tests": [
         "tests/test-terrain-light-session.py",
-        "tools/test-terrain-light-normal-session.py"
+        "tools/test-terrain-light-normal-session.py",
+        "tools/test-terrain-light-qt-session.py",
+        "tools/test-terrain-light-worker-replay.py"
       ],
       "evidence": [
         "TLSN25.controls",
@@ -153101,7 +153157,20 @@
         "TLSN25.native-and-fallback",
         "TLSN25.master-controls",
         "TLSN25.master-reload-observe",
-        "TLSN25.master-native-and-fallback"
+        "TLSN25.master-native-and-fallback",
+        "TLQT26.observation",
+        "TLQT26.native-timeout",
+        "TLQT26.worker-loss",
+        "TLQT26.qt-save-refusal",
+        "TLQT26.abnormal-worker-lifetime",
+        "TLQF26.observe-reload",
+        "TLQF26.native-reload",
+        "TLQF26.controls",
+        "TLQF26.worker-original",
+        "TLQF26.native-stress",
+        "TLQF26.worker-loss",
+        "TLQF26.save-diagnostic",
+        "TLQM26.controls"
       ],
       "status": {
         "understanding": "scoped",
@@ -153111,8 +153180,10 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Opt-in regular launcher validated with original graphics on a fresh Celtic Adept campaign and actual same-process named Save/Load. Combined native Qt graphics ownership, arbitrary maps/saves, long-duration use and default rollout remain separate acceptance; original scheduler, loader/serializer and resource lifetimes remain original.",
-        "Worker loss intentionally degrades the selected session and reports a nonzero launcher result after clean original Quit; one unchanged-original/sanitized fallback witness supports recovery, not continued native replacement."
+        "The regular original-graphics launcher and strict native Qt named Save/Load, two resolution changes, Main Load World reconstruction, bounded240-second physical stress and expected worker-loss recovery have separate recorded results. Different campaign maps, arbitrary saves, hour-long use, hardware/FPS acceptance and default rollout remain unaccepted; original scheduler, loader/serializer and resource lifetimes retain their original owners.",
+        "Worker loss intentionally degrades the selected session and reports a nonzero launcher result after clean original Quit; one unchanged-original/sanitized fallback witness supports recovery, not continued native replacement.",
+        "TLQF26 closes the observed Save geometry refusal, avoidable per-request worker setup and orphan-worker boundary within the named controls. Historical TLQT26 failures remain immutable. Maximum tested live native stress is two120-second phases/2434updates; host scheduling has no real-time guarantee. Different maps, hour-long sessions, hardware/FPS and default rollout remain pending. SIGKILL can prevent the supervisor outcome row; kernel parent-death termination still stops its worker.",
+        "Merged master acceptance remains pending: intervening Qt/World and launcher changes stale the TLQF26 installed journey source bindings. TLQM26.controls reruns twelve actual worker/channel controls only; exact incoming lighting/glyph bytes are preserved. Historical live results and source hashes remain unchanged; no default rollout is claimed."
       ]
     },
     {
@@ -350057,6 +350128,575 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_binary_sha256"
+    },
+    {
+      "id": "TLQT26.observation",
+      "kind": "live_equivalence",
+      "scope": "Strict native Qt gameplay with original-active lighting:275updates,32unchanged-PE32/sanitized source comparisons, Mini Cancel and Quit No/resume/Yes, original exit0 and balanced355World/graphics retirement. Two10-second physical phases; no Save/map, hardware/FPS or default acceptance.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/observe-stress01.json",
+      "sha256": "14eea5574b229d579455bffcce6dc2492c241d1f671ca94f543cbc35e69f92f2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/graphics_outcome/forwarded",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success"
+    },
+    {
+      "id": "TLQT26.native-timeout",
+      "kind": "live_observation",
+      "scope": "Actual strict native Qt/native-lighting120-second-per-phase stress attempt failed after1877admitted native updates when request1878exceeded100ms budget. No byte mismatch. Exact32native source/reply/results independently match unchanged PE32 and ASan/UBSan replay. Late reply observed processed1878/applied1877/disabled1: closed latch did not revive native application. Harness deliberately stopped the failed journey; normal Quit and complete two-phase acceptance are not claimed. Worker wall-clock175466us does not identify whether compute or scheduling caused the delay.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/native-timeout-analysis01.json",
+      "sha256": "5b75f0a663c77899d16f2938f46eaa8591e0f28846933ebfa5f1eb715e52421d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/sample_comparison_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/late_statistics/applied",
+          "equals": 1877
+        },
+        {
+          "pointer": "/late_statistics/disabled",
+          "equals": 1
+        },
+        {
+          "pointer": "/late_statistics/max_wait_ms",
+          "equals": 106
+        }
+      ]
+    },
+    {
+      "id": "TLQT26.worker-loss",
+      "kind": "live_replacement",
+      "scope": "Expected-fault strict native Qt journey:128admitted native updates and32unchanged-PE32/sanitized comparisons before PID/start-tick checked worker kill;117original fallback updates, native latch stays closed, original normal exit0, renderer retirement and worker reaping. Selected backend/strict launcher deliberately reports exit1. This validates recovery and the bounded native prefix, not normal native120-second/default rollout.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/worker-loss01.json",
+      "sha256": "5f115ab0dd9d7ea34f91ef0d3b73a7f9600e6d47978433aad4abcb8bbcfbae6e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/shell_exit",
+          "equals": 1
+        },
+        {
+          "pointer": "/original_process/original_exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/lighting_outcome/success",
+          "equals": false
+        },
+        {
+          "pointer": "/final_statistics/applied",
+          "equals": 128
+        },
+        {
+          "pointer": "/final_statistics/fallback",
+          "equals": 117
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success",
+      "bypass_pointer": "/live_replacement"
+    },
+    {
+      "id": "TLQT26.qt-save-refusal",
+      "kind": "live_observation",
+      "scope": "Submitting native Save under strict Qt ownership, with original-active lighting, reaches glyph entry581ec0 admission reason15 and original exit124 after62lighting updates. Global/clip/coverage and frame extents share this reason; exact failing subcondition and causality remain unresolved. No saved-map or reconstruction acceptance.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/qt-save-refusal01.json",
+      "sha256": "349da38d880e309b64da504ff01233e5e5af5136de22d8b3c5f05478c9554899",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/glyph_refusal_reason",
+          "equals": 15
+        },
+        {
+          "pointer": "/original_exit_code",
+          "equals": 124
+        },
+        {
+          "pointer": "/before_save/processed",
+          "equals": 62
+        },
+        {
+          "pointer": "/before_save/disabled",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "TLQT26.abnormal-worker-lifetime",
+      "kind": "live_observation",
+      "scope": "The failed strict Qt Save acquisition exited original124 but left its source-checked persistent lighting worker alive. Lifecycle has started only and no results table; host parent lost before normal Session cleanup. Negative abnormal-launch supervision evidence, independent of normal-Quit and deliberate worker-loss passes.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/orphan-worker01.json",
+      "sha256": "c1cf2725948f22e8b1ea139995bfaa6e16ec0f004e241844eb4e09f888f5c538",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/parent_pid",
+          "equals": 1
+        },
+        {
+          "pointer": "/owned_orphan_removed",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TLQF26.controls",
+      "kind": "native_integration",
+      "scope": "Twelve actual worker/channel controls, including supervisor SIGTERM outcome/reaping and supervisor SIGKILL parent-death protection; retained recorded input only.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/fix-controls02.json",
+      "sha256": "ed27fcf16125f1f3f7d7036e799ac452db20cb30453c2b2121af935a3c81162b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 12
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "TLQF26.glyph-original",
+      "kind": "isolated_original",
+      "scope": "Overhanging layout clips with independently bounded physical writes:1152unchanged-original/native full ABI/pixel/FP completions,768native-body bypasses, two formats,12precision/rounding modes and25sanitized atomic refusals. Isolated contract only.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/fix-glyph-original01.json",
+      "sha256": "4b4df523853f1f8d8aa23a3b7872872681d899ac12b2ae7c65b4bb8390404af1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/complete_original_matches",
+          "equals": 1152
+        },
+        {
+          "pointer": "/native_without_original",
+          "equals": 768
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "TLQF26.worker-original",
+      "kind": "isolated_original",
+      "scope": "Exact historical timeout input,32native samples and3configuration changes match unchanged original and sanitized decoder;4096persistent requests exercise cache reuse/invalidation, max7.64ms round trip. Offline recorded-input control, no live timing claim.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/fix-worker-original01.json",
+      "sha256": "fe601f693cbeb09ad040ba225658f78ae6e3ff03fd91de1ab59f9cb4c285f628",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/requests",
+          "equals": 4096
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "TLQF26.native-only-controls",
+      "kind": "native_integration",
+      "scope": "Strict launcher/Qt/actualPE32 terminal refusal controls, including unsupported glyph exit124; supported application-error controls retain their native results.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/fix-native-only02.json",
+      "sha256": "429936d75f55b934caaa4c388a20034d046e9b23c7e8cd1b697a14d528a556d4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "TLQF26.observe-reload",
+      "kind": "live_equivalence",
+      "scope": "Strict native Qt original-active lighting: same-session Save/Load, two resolution changes, Main Load with World renderer reconstruction and normal Quit;264updates,32unchanged-original/sanitized comparisons, no forwards, worker reaped.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/fix-observe-reload01.json",
+      "sha256": "f07ff997c1be927e02c24c46c3ef9df681efaac122e25e574af58afdf08bed8e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/cleanup_worker/running",
+          "equals": false
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/reloaded_from_main",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/display_rebuilds",
+          "equals": 2
+        },
+        {
+          "pointer": "/graphics_outcome/forwarded",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success"
+    },
+    {
+      "id": "TLQF26.native-reload",
+      "kind": "live_replacement",
+      "scope": "Strict native Qt native lighting through same-session Save/Load, two resolution changes and Main Load World reconstruction:240applied updates, no fallback/refusal/mismatch, max7mswait,32unchanged-original/sanitized comparisons and clean worker/graphics retirement.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/fix-native-reload01.json",
+      "sha256": "0de0d3f500b97ef94bb7ffdfc79350179c8fd89ac5a6ad78109f4644c8b307b2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/cleanup_worker/running",
+          "equals": false
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/reloaded_from_main",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/display_rebuilds",
+          "equals": 2
+        },
+        {
+          "pointer": "/final_statistics/fallback",
+          "equals": 0
+        },
+        {
+          "pointer": "/final_statistics/disabled",
+          "equals": 0
+        },
+        {
+          "pointer": "/graphics_outcome/forwarded",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success",
+      "bypass_pointer": "/live_replacement"
+    },
+    {
+      "id": "TLQF26.native-stress",
+      "kind": "live_replacement",
+      "scope": "Strict native Qt native lighting: both120-second physical stress phases, MiniCancel, QuitNo/resume/Yes and normal original exit0;2434applied updates, no fallback/refusal/mismatch, max17mswait and5252uscompute,32unchanged-original/sanitized comparisons, graphics retirement and worker reaping. Bounded llvmpipe execution, no arbitrary-map/hardware/hour-long/default claim.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/fix-native-stress01.json",
+      "sha256": "23bd6fa4d43a3e6f426cd8800c78bf07b43455f32e195f7d6164d6641354672d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success",
+      "bypass_pointer": "/live_replacement",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/cleanup_worker/running",
+          "equals": false
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/original_process/original_exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/final_statistics/applied",
+          "equals": 2434
+        },
+        {
+          "pointer": "/final_statistics/fallback",
+          "equals": 0
+        },
+        {
+          "pointer": "/final_statistics/disabled",
+          "equals": 0
+        },
+        {
+          "pointer": "/graphics_outcome/forwarded",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "TLQF26.worker-loss",
+      "kind": "live_replacement",
+      "scope": "Expected-fault strict native Qt journey after a native prefix and32unchanged-original/sanitized comparisons: checked PID/start-tick worker kill, permanent original-lighting fallback, normal original Quit and worker reaping. Selected backend reports failure as required; this validates recovery, not continued replacement.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/fix-worker-loss01.json",
+      "sha256": "b8a99a456d40337094d501903538355b266eeb09659dd0e1a2ddaf758817b3b4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success",
+      "bypass_pointer": "/live_replacement",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/cleanup_worker/running",
+          "equals": false
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/original_process/original_exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/lighting_outcome/success",
+          "equals": false
+        },
+        {
+          "pointer": "/final_statistics/disabled",
+          "equals": 1
+        },
+        {
+          "pointer": "/shell_exit",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TLQF26.save-diagnostic",
+      "kind": "live_observation",
+      "scope": "Negative Save acquisition: exact staged glyph compiler/binary identities bind check3and clip801x321. Overall acquisition sources changed; no current-code equivalence claim. Unique staged source bytes are retained, historical source staleness is expected after the fix. New parent-death guard leaves no surviving worker after abrupt Qt/supervisor teardown; absence of its final outcome is not success.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/fix-save-diagnostic-final02.json",
+      "sha256": "439a8f7061a96e461235e5ea9662465d5bad9e895de80e39fe97e6bfef764040",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": false
+        },
+        {
+          "pointer": "/failed_check",
+          "equals": 3
+        },
+        {
+          "pointer": "/clip_right",
+          "equals": 801
+        },
+        {
+          "pointer": "/worker_present",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TLQM26.controls",
+      "kind": "native_integration",
+      "scope": "Twelve actual persistent worker/channel controls on the combined master tree, including SIGTERM cleanup, SIGKILL parent-death protection and worker-loss refusal; retained recorded inputs, no original execution.",
+      "record": "research/runtime/terrain-light-master-results-20261026/controls01.json",
+      "sha256": "5c612cb220c43f51d8a872b8f2bbfbb7980b39d220a185a75a799333ec4356ce",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 12
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -378249,6 +378889,150 @@
         "NPL26.reuse06",
         "NPL26.reuse07"
       ]
+    },
+    {
+      "id": "TLQT26.observe-reload",
+      "title": "Combined strict native Qt lighting observe-reload",
+      "scope": "Pinned No-CD campaign with strict native Qt ownership and persistent lighting; bounded Save/Load and World reconstruction, stress or peer-loss journey as named. No default or arbitrary-map acceptance. Recorded negative acquisition only; intended equivalence/reconstruction acceptance failed.",
+      "level": "live_observation",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy",
+        "NP.native-only-launch-contract"
+      ],
+      "tests": [
+        "tools/test-terrain-light-qt-session.py"
+      ],
+      "evidence": [
+        "TLQT26.qt-save-refusal"
+      ]
+    },
+    {
+      "id": "TLQT26.observe-stress",
+      "title": "Combined strict native Qt lighting observe-stress",
+      "scope": "Pinned No-CD campaign with strict native Qt ownership and persistent lighting; bounded Save/Load and World reconstruction, stress or peer-loss journey as named. No default or arbitrary-map acceptance.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy",
+        "NP.native-only-launch-contract"
+      ],
+      "tests": [
+        "tools/test-terrain-light-qt-session.py"
+      ],
+      "evidence": [
+        "TLQT26.observation"
+      ]
+    },
+    {
+      "id": "TLQT26.native-stress",
+      "title": "Combined strict native Qt lighting native-stress",
+      "scope": "Pinned No-CD campaign with strict native Qt ownership and persistent lighting; bounded Save/Load and World reconstruction, stress or peer-loss journey as named. No default or arbitrary-map acceptance. Recorded negative acquisition only; intended equivalence/reconstruction acceptance failed.",
+      "level": "live_observation",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy",
+        "NP.native-only-launch-contract"
+      ],
+      "tests": [
+        "tools/test-terrain-light-qt-session.py"
+      ],
+      "evidence": [
+        "TLQT26.native-timeout"
+      ]
+    },
+    {
+      "id": "TLQT26.worker-loss",
+      "title": "Combined strict native Qt lighting worker-loss",
+      "scope": "Pinned No-CD campaign with strict native Qt ownership and persistent lighting; bounded Save/Load and World reconstruction, stress or peer-loss journey as named. No default or arbitrary-map acceptance.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy",
+        "NP.native-only-launch-contract"
+      ],
+      "tests": [
+        "tools/test-terrain-light-qt-session.py"
+      ],
+      "evidence": [
+        "TLQT26.worker-loss"
+      ]
+    },
+    {
+      "id": "TLQF26.observe-reload",
+      "title": "Fixed combined Qt lighting observe-reload",
+      "scope": "Current-source bounded strict native Qt campaign: same-session Save/Load and World reconstruction, sustained stress or deliberate peer loss as named. No arbitrary-map, hardware or default-rollout claim.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy",
+        "NP.native-only-launch-contract",
+        "NR.glyph-live-admission",
+        "RS.glyph-live-route"
+      ],
+      "tests": [
+        "tools/test-terrain-light-qt-session.py"
+      ],
+      "evidence": [
+        "TLQF26.observe-reload"
+      ]
+    },
+    {
+      "id": "TLQF26.native-reload",
+      "title": "Fixed combined Qt lighting native-reload",
+      "scope": "Current-source bounded strict native Qt campaign: same-session Save/Load and World reconstruction, sustained stress or deliberate peer loss as named. No arbitrary-map, hardware or default-rollout claim.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy",
+        "NP.native-only-launch-contract",
+        "NR.glyph-live-admission",
+        "RS.glyph-live-route"
+      ],
+      "tests": [
+        "tools/test-terrain-light-qt-session.py"
+      ],
+      "evidence": [
+        "TLQF26.native-reload"
+      ]
+    },
+    {
+      "id": "TLQF26.native-stress",
+      "title": "Fixed combined Qt lighting native-stress",
+      "scope": "Current-source bounded strict native Qt campaign: same-session Save/Load and World reconstruction, sustained stress or deliberate peer loss as named. No arbitrary-map, hardware or default-rollout claim.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy",
+        "NP.native-only-launch-contract",
+        "NR.glyph-live-admission",
+        "RS.glyph-live-route"
+      ],
+      "tests": [
+        "tools/test-terrain-light-qt-session.py"
+      ],
+      "evidence": [
+        "TLQF26.native-stress"
+      ]
+    },
+    {
+      "id": "TLQF26.worker-loss",
+      "title": "Fixed combined Qt lighting worker-loss",
+      "scope": "Current-source bounded strict native Qt campaign: same-session Save/Load and World reconstruction, sustained stress or deliberate peer loss as named. No arbitrary-map, hardware or default-rollout claim.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy",
+        "NP.native-only-launch-contract",
+        "NR.glyph-live-admission",
+        "RS.glyph-live-route"
+      ],
+      "tests": [
+        "tools/test-terrain-light-qt-session.py"
+      ],
+      "evidence": [
+        "TLQF26.worker-loss"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -380026,7 +380810,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-1f15e4358cdd2b8cf50d5c954fd1158d1cc1338843beaa5262ce17061fdbd84e.json",
-    "sha256": "1f15e4358cdd2b8cf50d5c954fd1158d1cc1338843beaa5262ce17061fdbd84e"
+    "path": "research/runtime/coverage/source-index-1e41af123ad25c25102209b40a33c2a4280be897e4b4940a2acf4302700c1d1a.json",
+    "sha256": "1e41af123ad25c25102209b40a33c2a4280be897e4b4940a2acf4302700c1d1a"
   }
 }
