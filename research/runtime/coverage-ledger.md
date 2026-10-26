@@ -1,5 +1,30 @@
 # Engine modernization coverage ledger
 
+## Windowed diagnostics merged with current master — 2026-10-26
+
+The original-windowed launch argument now composes with terrain-light session
+supervision. Current 21 Python/Qt capture controls, 29 copy regressions, five
+synthetic actual-launcher checks and the full Qt build pass. All 6,571 committed
+file transitions are reviewed, including 23 retrospectively accounted capture
+references. Historical failed input, incomplete all-COPY output and surviving
+owners remain open; no engine milestone is promoted. See
+[merge scope and retained limits](windowed-reader-master-integration-20261026.md).
+
+## Windowed copy and raw-reader frontier investigation — 2026-10-25
+
+The opt-in original-windowed diagnostic reaches native World rendering on a
+16-bit private desktop. Explicit resident-native capture now avoids waiting for
+an unavailable original CPU frame, with no original comparison credit. Current
+21 Python/Qt capture controls and 29 copy regression methods pass. The campaign
+still exhausts its 12-click Hermes bound. A separate Quick Battle reaches 576
+balanced resident Worlds but times out before Results/normal Quit. Its 5,461-row
+metadata census closes during teardown; independent all-COPY comparison remains
+incomplete and native owners survive. No engine integration, comparison or
+replacement stage is promoted. Exact failures, unique sources and pinned RAM-run
+inputs are retained in SQLite. Windowed Qt input-target discovery is the next
+bounded frontier; cause attribution and full caller/reader/ownership closure
+remain pending. See [findings and limits](native-windowed-copy-readers-20261025.md).
+
 ## Native alternate canvas owner merged with current rendering — 2026-10-25
 
 Ownership commit47d07b77 is combined with copy/history,cursor provider and
@@ -23241,3 +23266,26 @@ The ten native timeline components are merged with the committed pixel-caller in
 ### Final N29 master reconciliation after concurrent screen recovery (2026-10-26)
 
 The first validated merge bcebc8fc is retained with its passing staged gate and backups. Its promotion refused an independently owned main reservation before changing main. After that operation completed at bdf87f55 and restored its pending work, all18 current pending paths were backed up and main was reserved for this final merge. Both validated branches, all receipts and evidence identities are preserved. All ten timeline contracts and188 declared input fingerprints remain exact; no new engine execution or original/application/live promotion is claimed. The fixed planning-test expectation adds only the five newly committed unrated screen acquisition/retirement contracts, without adding weights or status credit. Final audit, planning controls, source census and exact staged accounting cover the combined tree; normal90/100GiB storage reserves apply. See [the final reconciliation](rendering-n29-master-final-20261026.md).
+
+## 2026-10-26: natural GPU caller clipping
+
+`NP.natural-gpu-copy-caller-branches` adds24 current geometry/caller/positive-only
+controls plus read-only production input-target/ABI and Win32 helper builds.
+Ordinary original-windowed World output has810 checked attached-clipper GPU
+calls with no area reduction. The declared ordinary SetWindowPos desktop stress
+changes client origin80,73to-320,73. Its strict scalar reader refuses active-miss
+reason2;failed global capture and lifecycle remain preserved.
+
+The separate `NP.published-gpu-copy-call-proof` policy validates only complete
+positive call intervals while retaining that miss. Current immutable replay
+checks783/784 published GPU calls;678 actual original whole-copy caller0x58c03d
+requests are reduced from307200to153600destination pixels, with a retained
+independently replayed clipped witness. This confirms destination-bounds clipping,
+not extra within-bounds clipper reduction, original-driver parity, absence or
+complete output. The existing strict global validator remains unchanged.
+
+Natural self-copy and keyed GPU-source callers remain unproven live. The
+windowed Qt input target0,stage6 timeout,shell signal11,missing output/END and
+surviving1device/51surfaces/1clipper/2915552pixel bytes block normal-Quit and
+ownership acceptance. No comparison or live replacement status is promoted.
+See[natural caller evidence](natural-gpu-copy-callers-20261026.md).
