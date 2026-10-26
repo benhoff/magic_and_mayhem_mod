@@ -86,7 +86,13 @@ def staged_tree(root):
         paths.append(name)
     with shared_cache(root), tempfile.TemporaryDirectory(prefix='coverage-git-index-') as temporary:
         target = Path(temporary)
-        subprocess.run(['git', '-C', str(root), 'checkout-index', '--prefix=' + temporary + '/',
+        # The evidence smudge direction is identity. Avoid one filter process
+        # per report (and retain exact staged pointer bytes for this check).
+        subprocess.run(['git', '-C', str(root),
+                        '-c', 'filter.mm-evidence.process=',
+                        '-c', 'filter.mm-evidence.smudge=',
+                        '-c', 'filter.mm-evidence.required=false',
+                        'checkout-index', '--prefix=' + temporary + '/',
                         '-z', '--stdin'], input=b'\0'.join(paths) + b'\0' if paths else b'',
                        check=True, capture_output=True)
         yield target

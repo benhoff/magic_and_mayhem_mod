@@ -64,6 +64,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
 }
 bool LiveMenuSession::start(){
     if(running())return false;
+    storageOpeningGeneration_=0;
     launcherExitCode=-1;
     preferencesStore_.begin(preferencesStorePath,{});
     cpuRead_=0;cpuReadStarted_=cpuReadGrace_=0;
@@ -177,6 +178,7 @@ bool LiveMenuSession::requestMini(quint32 action){
     else if(!bridge_->request(action,state_))refusal="wire readiness or generation changed";
     if(!refusal.isEmpty()){if(miniRequestObserved)miniRequestObserved(action,false,refusal,state_);return false;}
     pending_=true;requestedAt_=clock_.elapsed();action_=action;
+    storageOpeningGeneration_=(action==MNM_MENU_MINI_LOAD||action==MNM_MENU_MINI_SAVE)?state_.generation:0;
     if(miniRequestObserved)miniRequestObserved(action,true,{},state_);
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
@@ -205,7 +207,7 @@ bool LiveMenuSession::finishSpells(const std::array<int,63>& assignments){
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 void LiveMenuSession::fallback(const QString& reason){
-    resultsAction_=0;preferencesToSave_=false;active_=false;bypass_=!nativeOnlyEnabled;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)bridge_->retire();
+    storageOpeningGeneration_=0;resultsAction_=0;preferencesToSave_=false;active_=false;bypass_=!nativeOnlyEnabled;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)bridge_->retire();
     if(failed)failed(reason);
 }
 void LiveMenuSession::saveAcceptedPreferences(){
@@ -226,6 +228,18 @@ void LiveMenuSession::renderingProgress(std::uint64_t ticket){
     }
     bridge_->heartbeat();
 }
+bool LiveMenuSession::restoreMiniStorage(const MenuBridge::State& next){
+    // The ACK may already contain the destination's ready generation. Compare
+    // against the requesting Mini visit, not against that ACK snapshot.
+    if(!storageOpeningGeneration_||!storageMenusEnabled||!next.ready||
+       next.screen!=(action_==MNM_MENU_MINI_LOAD?MNM_MENU_LOAD_SCREEN:MNM_MENU_SAVE_SCREEN)||
+       next.storage.parent!=MNM_MENU_MINI_SCREEN||next.storage.depth!=6||
+       next.thread!=state_.thread||next.ack!=state_.ack||next.status!=MNM_MENU_OK||
+       next.generation==storageOpeningGeneration_)return false;
+    storageOpeningGeneration_=0;inBattle_=false;state_=next;
+    if(stateChanged)stateChanged(next);
+    return true;
+}
 void LiveMenuSession::poll(){
     if(!active_||!bridge_)return;
     if(!mediaActive_&&resultsAction_&&clock_.elapsed()-resultsRequestedAt_>10000){
@@ -243,6 +257,9 @@ void LiveMenuSession::poll(){
             if(((progressedMenusEnabled&&(state_.screen==18||action_==MNM_MENU_DEFEAT_OK||action_==MNM_MENU_SPELL_FINISH||(campaignBookEnabled&&(action_==MNM_MENU_GRIMOIRE_SELECT||action_==MNM_MENU_GRIMOIRE_CLOSE))))||(action_>=MNM_MENU_REALM_ACTIVATE&&action_<=MNM_MENU_REGION_SPELLBOX)||action_==MNM_MENU_CHARACTER_ADJUST||action_==MNM_MENU_CHARACTER_OK||action_==MNM_MENU_CHARACTER_CANCEL)&&
                (next.ack!=bridge_->requestedSequence()||next.thread!=state_.thread)){
                 fallback("Menu acknowledgement identity differs; using original menus.");return;
+            }
+            if(storageOpeningGeneration_&&(next.ack!=bridge_->requestedSequence()||next.thread!=state_.thread)){
+                fallback("Mini storage acknowledgement identity differs; using original controls.");return;
             }
             if(resultsAction_){
                 if(next.ack!=bridge_->requestedSequence()||next.thread!=resultsThread_){
@@ -296,7 +313,10 @@ void LiveMenuSession::poll(){
             if(action_==MNM_MENU_SESSION_JOIN||action_==MNM_MENU_MULTIPLAYER_SUBMIT||action_==MNM_MENU_STORAGE_ACCEPT||action_==MNM_MENU_STORAGE_CANCEL||action_==MNM_MENU_MINI_LOAD||action_==MNM_MENU_MINI_SAVE||action_==MNM_MENU_DEFEAT_OK||action_==MNM_MENU_RESULT_CONTINUE||action_==MNM_MENU_RESULT_QUIT||action_==MNM_MENU_MINI_CANCEL||action_==MNM_MENU_MINI_PREFERENCES||action_==MNM_MENU_MINI_QUIT){
                 // Original viewport owns gameplay, Preferences and Quit confirmation.
                 // Confirmation Yes/No semantics remain entirely in the original game.
-                inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
+                inBattle_=true;transition_=false;state_=next;
+                if(restoreMiniStorage(next))return;
+                if(originalViewportRequested)originalViewportRequested();
+                return;
             }
             if(quitting_){
                 if(next.ack!=bridge_->requestedSequence() || next.thread!=state_.thread){
@@ -319,6 +339,7 @@ void LiveMenuSession::poll(){
             inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
         }
         if(inBattle_){
+            if(restoreMiniStorage(next))return;
             if(progressedMenusEnabled&&next.ready&&(next.screen==18||next.screen==MNM_MENU_GRIMOIRE_SCREEN||(campaignSpellboxEnabled&&next.screen==7))&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
             }
@@ -342,7 +363,7 @@ void LiveMenuSession::poll(){
             if(multiplayerMenusEnabled&&next.ready&&(next.screen==15||next.screen==16)&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
             }
-            if(storageMenusEnabled&&next.ready&&(next.screen==MNM_MENU_LOAD_SCREEN||next.screen==13)&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
+            if(!storageOpeningGeneration_&&storageMenusEnabled&&next.ready&&(next.screen==MNM_MENU_LOAD_SCREEN||next.screen==13)&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
             }
             if(campaignPreferencesEnabled&&next.ready&&next.screen==10&&next.preferences.parentScreen==17&&next.preferences.depth==6&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){

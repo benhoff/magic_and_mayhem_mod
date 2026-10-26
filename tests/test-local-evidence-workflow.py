@@ -187,6 +187,17 @@ class FinishTests(unittest.TestCase):
         self.assertTrue(load_journal(self.root)[0]['reviews'])
         self.assertTrue(list((self.workspace.path.parent/'backups').glob('*.sqlite3')))
 
+    def test_finish_optional_timings_include_backups_and_normal_commit(self):
+        self.fixture.write('assets/model.cpp', 'changed owned source\n')
+        result = finish(self.workspace, 'HEAD', 'Reviewed owned source links.',
+                        'Original comparison remains pending.', 'Finish timed fixture',
+                        'Reviewed census links', timings=True)
+        self.assertEqual(set(result['timings_seconds']), {
+            'evidence_preflight', 'source_index', 'snapshots', 'review_check',
+            'review_export', 'review_backup', 'git_add', 'git_commit_with_hook'})
+        self.assertTrue(all(value >= 0 for value in result['timings_seconds'].values()))
+        self.assertEqual(self.git('rev-parse', 'HEAD'), result['commit'])
+
     def test_missing_promotion_proof_cannot_create_commit(self):
         self.fixture.register['behaviors'][0]['status']['implementation'] = 'scoped'
         self.fixture.sync()

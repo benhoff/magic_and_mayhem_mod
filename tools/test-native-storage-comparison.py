@@ -17,6 +17,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 from campaign_storage import validate_storage_flow
+from resident_capture import records
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGINAL = '40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
@@ -63,6 +64,13 @@ def main():
         capture=Path(game['resident_capture']['path']);pin(capture)
         if inputs[str(capture.resolve())]!=game['resident_capture']['sha256']:raise ValueError('Capture changed after gameplay')
         stage=game['resident_world']['stage_profile']
+        worlds=chunks=0
+        for generation,chunk,source,request in records(capture):
+            if chunk:chunks+=1
+            else:worlds=generation
+        worker=stage['capture']
+        if worlds!=worker['written_worlds'] or chunks!=worker.get('written_source_chunks',0):raise ValueError('Resident capture counters differ from complete archive')
+        report['capture_archive']=dict(worlds=worlds,source_chunks=chunks)
         if not stage['capture']['complete'] or stage['capture_truncated'] or stage['capture']['error']:
             raise ValueError('Incomplete World source capture')
         sources=game['sources'].copy()

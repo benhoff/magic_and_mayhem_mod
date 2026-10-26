@@ -25,7 +25,9 @@ def storage_rows(channel):
     return [raw[160+i*128:288+i*128].split(b'\0',1)[0].decode('cp1252') for i in range(words[6])]
 
 
-def drive(channel,run,capture,process,env,input_binary,wait,send,refresh,state):
+def drive(channel,run,capture,process,env,input_binary,wait,send,refresh,state,initial_worlds=3):
+    if type(initial_worlds) is not int or not 3<=initial_worlds<=16:
+        raise ValueError('Storage dwell requires3..16 observed initial World returns')
     (run/'game/Save').mkdir(exist_ok=True)
     name='draw-storage-'+run.name.removeprefix('run-')
     name_bytes=name.encode('ascii')
@@ -63,18 +65,19 @@ def drive(channel,run,capture,process,env,input_binary,wait,send,refresh,state):
             sequence=ordinal;count+=operation==12;at+=size
         return count
     def dwell(phase):
+        required=initial_worlds if phase=='before-save' else 3
         physical(phase+'-focus',dict(kind='move',x=400,y=300,after_ms=300))
         start=time.monotonic();base=source_worlds();bound=start+30;focus_attempts=0
         while time.monotonic()<bound:
             if process.poll() is not None:raise ValueError('Original exited during World capture')
             refresh();count=source_worlds()
-            if count>=base+3 and time.monotonic()-start>=2:
+            if count>=base+required and time.monotonic()-start>=2:
                 checkpoints.append(dict(phase=phase,world_returns=count,source_base=base))
                 if phase=='before-save':
                     from drawing_process_snapshot import snapshot_processes
                     (run/'process-world.json').write_text(json.dumps(snapshot_processes(run),indent=2)+'\n')
                 return
-            if count<base+3 and time.monotonic()-start>(focus_attempts+1)*3 and focus_attempts<3:
+            if count<base+required and time.monotonic()-start>(focus_attempts+1)*3 and focus_attempts<3:
                 focus_attempts+=1;physical(phase+f'-focus-retry-{focus_attempts}',dict(kind='move',x=400,y=300,after_ms=300))
             time.sleep(.05)
         raise ValueError('No fresh original World sources: '+phase)
@@ -112,5 +115,5 @@ def drive(channel,run,capture,process,env,input_binary,wait,send,refresh,state):
         struct.pack_into('<7I',channel,44756,*values);send(10,19);wait(3);rebuilds.append(resolution)
     send(3,27);load();dwell('after-recreate-load');leave('leave-reloaded')
     (run/'input.json').write_text(json.dumps(dict(schema=1,success=True,actions=actions,original_memory_written=False,semantic_outcomes_assumed=False),indent=2)+'\n')
-    result=dict(schema=1,success=True,saved_name=name,saved_sha256=save_hash,save_bytes=saved.stat().st_size,checkpoints=checkpoints,display_rebuilds=rebuilds,original_callbacks_required=True,native_menu_layout_compared=False,scope='Original-active callback/input storage journey; observer and native comparisons establish their own presentation/source boundaries.')
+    result=dict(schema=1,success=True,initial_worlds=initial_worlds,saved_name=name,saved_sha256=save_hash,save_bytes=saved.stat().st_size,checkpoints=checkpoints,display_rebuilds=rebuilds,original_callbacks_required=True,native_menu_layout_compared=False,scope='Original-active callback/input storage journey; observer and native comparisons establish their own presentation/source boundaries.')
     (run/'storage-flow.json').write_text(json.dumps(result,indent=2)+'\n');return result

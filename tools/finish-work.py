@@ -20,11 +20,12 @@ def main():
     parser.add_argument('--record-current-promotions', action='store_true',
                         help='Record only declared promoted stages with current complete-source execution proof')
     parser.add_argument('--message', required=True)
+    parser.add_argument('--timings', action='store_true', help='Print finish phase durations and return timings_seconds')
     args = parser.parse_args()
     workspace = Workspace(args.root, args.db)
     try:
         result = finish(workspace, args.base, args.reason, args.validation_reason,
-                        args.message, args.index_review_reason, args.record_current_promotions)
+                        args.message, args.index_review_reason, args.record_current_promotions, args.timings)
         print(json.dumps(result, indent=2))
     finally:
         workspace.close()

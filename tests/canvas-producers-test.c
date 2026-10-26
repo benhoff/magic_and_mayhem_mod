@@ -26,6 +26,14 @@ static void oracle_budget_fixture(void){
  oracle_bytes=oracle_byte_limit+1;checkpoint(s,5);if(oracle!=count+2||failures!=errors+3)ExitProcess(122);
  oracle_bytes=saved_bytes+64;oracle_byte_limit=saved_limit;s->dirty=saved_dirty;s->sampled=saved_sampled;
 }
+static void metadata_checkpoint_fixture(void){
+ struct Surface* s=surfaces;struct Surface saved=*s;
+ HANDLE saved_file=file;file=0;u32 saved_session=session_producers,saved_oracle=oracle,saved_bytes=oracle_bytes,saved_failures=failures;
+ s->id=2;s->width=s->height=s->stride=4;s->pixels=1;s->dirty=s->sampled+1;
+ session_producers=1;oracle=9999;oracle_bytes=oracle_byte_limit+1;
+ checkpoint(s,5);if(failures!=saved_failures||oracle!=10000||s->sampled!=s->dirty||oracle_bytes!=oracle_byte_limit+1)ExitProcess(126);
+ *s=saved;file=saved_file;session_producers=saved_session;oracle=saved_oracle;oracle_bytes=saved_bytes;
+}
 static void bypass_fixture(void){
  generic_bypass_fixture=1;
  struct Surface* s=surfaces;s->object=0x700100;s->id=99;s->width=s->height=s->stride=4;s->pixels=0x700000;
@@ -154,7 +162,44 @@ static void uniform_colour_source_fixture(void){
  u8* data=request(&f);if(!data)ExitProcess(137);u32* r=(u32*)data;
  if(r[2]!=MNM_PRODUCER_FILL||r[3]!=99||r[10]!=1||r[11]!=0||r[12]!=5||r[13]!=3||r[14]||r[18])ExitProcess(138);
  HeapFree(producer_heap(),0,data);f.args[0]=6;if(request(&f))ExitProcess(139);
+ for(u32 mode=0;mode<=3;++mode)for(u32 owned=0;owned<2;++owned){
+  u16 triples[12]={31,63,1,2,3,4,5,6,7,8,9,10};
+  put(shape,mode);put(shape+4,2);put(shape+8,2);shape[12]=31;shape[14]=63;shape[16]=1;put(shape+18,owned?(u32)triples:0);f.args[0]=1;
+  data=request(&f);if(!data)ExitProcess(149);r=(u32*)data;
+  if(r[2]!=MNM_PRODUCER_COLOUR_RECT||r[15]!=mode||r[19]!=2||r[20]!=2||r[18]!=8||data[96]!=0xe1||data[97]!=0xff||get(data+92))ExitProcess(151);
+  if(owned&&(data[98]!=0x64||data[99]!=0x10))ExitProcess(152);
+  HeapFree(producer_heap(),0,data);
+ }
  producer_trace_mode=saved_mode;copy(surfaces,&saved_surface,sizeof(saved_surface));put((void*)0x658174,saved_bound);put((void*)0x6e1f88,saved_format);put((void*)0x6e0008,saved_clip[0]);put((void*)0x6cbb6c,saved_clip[1]);put((void*)0x6a49b8,saved_clip[2]);put((void*)0x656618,saved_clip[3]);
+}
+static void colour_refusal_fixture(void){
+ struct Surface saved=surfaces[0];u32 saved_failures=failures,saved_trace=producer_trace_mode;
+ u32 binding=get((void*)0x658174),format=get((void*)0x6e1f88),first=colour_refusal_count;
+ u8 shape[24];u16 plane[18]={0};struct Frame f={0};f.tag=52;f.caller=0x547e00;
+ surfaces[0]=(struct Surface){0x700100,99,0x700000,5,3,5,0,0};
+ for(u32 reason=1;reason<=9;++reason){
+  zero(shape,24);put(shape+4,2);put(shape+8,2);f.ecx=(u32)shape;
+  producer_trace_mode=1;put((void*)0x658174,0x700000);put((void*)0x6e1f88,0);
+  if(reason==1)put((void*)0x658174,1);
+  if(reason==2)f.ecx=1;
+  if(reason==3)put((void*)0x6e1f88,1);
+  if(reason==4)put(shape+4,2049);
+  if(reason==5){put(shape+4,65);shape[12]=32;}
+  if(reason>=6)producer_trace_mode=0;
+  if(reason==6)put(shape+4,65);
+  if(reason==7)put(shape+18,1);
+  if(reason==8){plane[0]=32;put(shape+18,(u32)plane);}
+  if(reason==9){producer_trace_mode=1;put(shape+18,0x700000);}
+  if(request(&f)||failures!=saved_failures+reason||colour_refusal_count!=first+reason)ExitProcess(148);
+ }
+ /* Format refusal precedes normal alias admission. Diagnostic sampling must
+  * still omit a source plane or shape overlapping destination storage. */
+ producer_trace_mode=1;put((void*)0x6e1f88,1);put((void*)0x658174,0x700000);
+ zero(shape,24);put(shape+4,2);put(shape+8,2);put(shape+18,0x700000);f.ecx=(u32)shape;
+ if(request(&f)||colour_refusal_count!=first+10)ExitProcess(153);
+ f.ecx=0x700000;if(request(&f)||colour_refusal_count!=first+11)ExitProcess(154);
+ surfaces[0]=saved;failures=saved_failures;producer_trace_mode=saved_trace;
+ put((void*)0x658174,binding);put((void*)0x6e1f88,format);
 }
 static void vertical_bar_source_fixture(void){
  struct Surface saved_surface=surfaces[0];u32 saved_failures=failures;
@@ -250,9 +295,11 @@ void start(void){
  bypass_fixture();
  raster_fixture();
  oracle_budget_fixture();
+ metadata_checkpoint_fixture();
  batch_fixture();
  journal_fixture();
  uniform_colour_source_fixture();
+ colour_refusal_fixture();
  vertical_bar_source_fixture();
  source_point_fixture();
  effect_hook_fixture();

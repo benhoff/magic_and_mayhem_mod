@@ -3,6 +3,10 @@
 #include <stdexcept>
 #include <utility>
 namespace mnm::reconstruction {
+void TerrainLightingCycle::restore(const std::array<std::vector<std::int8_t>,5>& buffers,TerrainCreatureLightState creatures,TerrainStaticLightState objects){
+ auto candidate=*this;candidate.field_.restoreBuffers(buffers);candidate.creatures_.restore(creatures);candidate.objects_.restore(objects);
+ *this=std::move(candidate);
+}
 void TerrainLightingCycle::step(const TerrainLightingSnapshot& input){
  if(ticks_==std::numeric_limits<unsigned>::max())throw std::overflow_error("Terrain lighting tick counter exhausted");
  auto candidate=*this;

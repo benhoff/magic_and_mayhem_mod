@@ -585,6 +585,10 @@ def install_filter(root, script):
     # Required filters must define the reverse direction too. Git archive and
     # checkout-index keep pointers; explicit hydration supplies verified bytes.
     subprocess.run(['git', '-C', str(root), 'config', 'filter.mm-evidence.smudge', 'cat'], check=True)
+    # Git's process protocol amortizes Python startup over the entire command.
+    # Keep the single-file commands for older Git clients and explicit use.
+    process = 'python3 ' + shlex.quote(str(Path(script).resolve())) + ' filter-process'
+    subprocess.run(['git', '-C', str(root), 'config', 'filter.mm-evidence.process', process], check=True)
     subprocess.run(['git', '-C', str(root), 'config', 'filter.mm-evidence.required', 'true'], check=True)
 
 

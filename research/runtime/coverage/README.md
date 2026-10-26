@@ -43,6 +43,52 @@ links are inverted once while retaining their original order and membership.
 Git exports stream through bounded buffers into the temporary tree; historical
 code is never executed. No persistent cached pass can approve a changed tree.
 
+Git evidence filtering also affects submission time. Install or update the
+repository-local filter after updating this tooling:
+
+```sh
+python3 tools/evidence-store.py install-filter
+```
+
+The persistent Git filter uses one Python process per Git command, rather than
+one per research file. It calls the same cleaner, persists raw evidence before
+returning a pointer, keeps existing pointers unchanged and reports failures to
+Git. Smudge remains an identity operation. The staged gate disables this
+identity evidence filter only for its temporary `checkout-index` command;
+normal staging still requires the cleaner. Source checks, evidence verification,
+exact receipts, backups and the normal commit hook remain required. Git filter
+settings are shared by linked worktrees and name an absolute tool path; install
+from a durable checkout rather than a disposable integration directory.
+
+Reproduce filter timings in an isolated fixture, optionally including a
+read-only comparison of the current Git index:
+
+```sh
+python3 tools/working-retention.py run --reserve-gib 2 -- \
+  python3 tools/benchmark-evidence-filter.py --files 256 --runs 3 \
+  --staged-root "$PWD" --output research/runtime/commit-filter-benchmark-<new-id>.json
+```
+
+The result is a SQLite reference. Both filter modes must stage the same tree;
+the optional index comparison verifies every materialized blob against its Git
+object ID. Use the same temporary storage for comparisons and check capacity:
+available filesystem space does not rule out a per-user tmpfs quota. These
+measurements isolate filtering and materialization; they do not establish
+complete commit or merge latency, or engine validation.
+
+The 2026-10-25 [filter benchmark](../commit-filter-benchmark-20261025.json)
+measured a median 28.183 s versus 0.157 s for renormalizing 256 pointer files
+over three runs, with identical staged trees. The separate
+[full-index comparison](../commit-staged-benchmark-20261025.json) copied and
+verified the same 18,004 blobs on the same storage: configured per-file smudge
+took 93.804 s and the staged gate's identity bypass took 2.633 s. These are
+bounded measurements on this host; normal commits clean only files Git needs
+to refresh. Audit, Git-base review and database backup costs remain separate.
+An [unchanged staged-tree gate](../commit-workflow-observations-20261025.json)
+still measured167.826s for its current snapshot,224.480s for its Git-base
+snapshot,0.500s for merge history and12.069s for review checking. Filtering
+improvements do not remove those costs.
+
 The default command compares against the reviewed `gate-baseline.json` snapshot.
 Once the gate has been committed, use `--base HEAD` for local changes or an
 explicit reviewed commit for a branch comparison. The full CI audit is manually
@@ -670,6 +716,13 @@ For example, start from a clean reviewed commit with
 `git worktree add -b native-next-batch working/worktrees/native-next-batch HEAD`.
 Run the appropriate bounded tests before recording the batch.
 
+For one complete owned batch, prefer `finish-work.py` directly after tests and
+metadata review. Separate `prepare`/`record` calls are useful for inspecting or
+accepting scoped receipts; each captures fresh snapshots. Running that sequence
+and then a separate gate before `finish-work.py` repeats expensive checks that
+finish and its normal staged hook already perform. Keep the required final
+staged hook and all exact source/evidence accounting.
+
 Finish a local batch with concrete review and validation reasons:
 
 ```sh
@@ -677,6 +730,7 @@ python3 tools/finish-work.py \
   --reason 'Reviewed the owned changes and their explicit behavior links' \
   --validation-reason 'Describe executed checks and remaining validation boundaries' \
   --index-review-reason 'Reviewed changed source links and census findings' \
+  --timings \
   --message 'Describe the bounded change'
 ```
 
@@ -687,6 +741,11 @@ It requires all configured archive snapshots locally; `evidence-store.py fetch
 --verify` is a separate explicit setup operation. Local completion never uploads
 or fetches evidence. Its temporary Git trees can resolve the local pending store;
 every resolved payload still undergoes its original hash and size checks.
+With `--timings`, stderr shows evidence preflight, source indexing, snapshots,
+review/export, each database backup, staging and commit-with-hook durations.
+The returned `timings_seconds` keeps the same breakdown. Existing local evidence
+preflights and the hook's independent staged verification remain in place.
+Timings grant no cached approval.
 
 Local Git merges, including integration into local master, use the same local
 evidence and verified-backup requirements. They never require publication or

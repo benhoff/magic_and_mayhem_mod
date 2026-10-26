@@ -171,3 +171,20 @@ with complete independent destination checks and zero surviving owners.
 The rest of F2 remains open:actual virtual targets,screen selection/control/
 special services and full cursor/resource lifetime are not inferred from this
 local proof. No reconstructed helper is installed in the public profile.
+
+## Superseding screen-service and concrete lifetime recovery (2026-10-25)
+
+[Screen selection, cursor selection and control dispatch](screen-services-recovery-20261025.md)
+recover the complete local5571e0,4a39a0 and4a5070 callers and compare them with
+unchanged original execution. The selector's20-entry cursor resource switch is
+resolved. These direct services are no longer unassigned F2 semantics. Their
+external gameplay,OS and virtual callback suppliers retain separate boundaries.
+
+[Concrete screen lifetime recovery](screen-class-lifetime-recovery-20261025.md)
+names132 shared-tick callback targets across22 tables and47 direct table-store
+witnesses. For concrete class11 it additionally recovers storage construction,
+pointer-vector retirement,callback publication,invocation and deletion,and the
+six no-op tick endpoints. The generic virtual frontier remains incomplete:
+other classes' resource/callback semantics,dynamic registration,indirect aliases,
+enclosing retirement and real failure reachability are not closed by these
+local comparisons. Earlier inventory/evidence records keep their original bytes.

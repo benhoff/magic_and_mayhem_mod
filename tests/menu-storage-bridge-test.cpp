@@ -15,6 +15,7 @@ struct LiveMenuSessionTestAccess {
  static MenuBridge& initialize(LiveMenuSession& s,const QString& path){s.bridge_=std::make_unique<MenuBridge>();require(s.bridge_->create(path,false,false,false,false,false,false,false,false,false,false,false,true));s.active_=true;s.clock_.start();return *s.bridge_;}
  static void poll(LiveMenuSession& s){s.poll();}
  static bool original(const LiveMenuSession& s){return s.inBattle_;}
+ static void refusedRestart(LiveMenuSession& s){s.preparing_=true;require(!s.start());s.preparing_=false;}
  static void expire(LiveMenuSession& s){s.lastState_=-MNM_MENU_V1_LEASE_MS-1;}
 };
 static void miniAdmissionChecks(){
@@ -42,8 +43,42 @@ static void miniAdmissionChecks(){
   peer.unmap(bytes);
  }
 }
+static void storageOpeningChecks(){
+ for(const auto action:{MNM_MENU_MINI_LOAD,MNM_MENU_MINI_SAVE})for(int variant=0;variant<7;++variant){
+  QTemporaryDir root;LiveMenuSession session("/unused");const auto path=root.filePath("opening.bin");LiveMenuSessionTestAccess::initialize(session,path);
+  QFile peer(path);require(peer.open(QIODevice::ReadWrite));auto* bytes=peer.map(0,MNM_MENU_V13_SIZE);require(bytes);
+  auto put=[&](int word,quint32 value){qToLittleEndian(value,bytes+word*4);};quint32 sequence=0;
+  const quint32 destination=action==MNM_MENU_MINI_LOAD?MNM_MENU_LOAD_SCREEN:MNM_MENU_SAVE_SCREEN;
+  int native=0,failures=0;
+  session.stateChanged=[&](const auto& state){if(state.ready&&state.screen==destination)++native;};
+  session.failed=[&](const QString&){++failures;};
+  auto state=[&](quint32 generation,quint32 ack,quint32 screen,bool ready,quint32 thread=123){
+   put(32,++sequence);put(33,generation);put(34,screen);put(35,ready);put(36,ack);put(37,MNM_MENU_OK);put(38,thread);
+   const quint32 mini[]={0,0,5,2,31,5,2,0};for(int i=0;i<8;++i)put(MNM_MENU_V4_MINI/4+i,mini[i]);
+   auto* m=bytes+MNM_MENU_V13_STORAGE;std::memset(m,0,MNM_MENU_V13_STORAGE_SIZE);
+   const quint32 storage[]={screen,17,6,5,0,0,0,0};for(int i=0;i<8;++i)put(MNM_MENU_V13_STORAGE/4+i,storage[i]);
+   put(32,++sequence);
+  };
+  state(10,0,17,true);LiveMenuSessionTestAccess::poll(session);require(session.requestMini(action));
+  if(variant==1)LiveMenuSessionTestAccess::refusedRestart(session);
+  state(variant==2?10:11,variant==4?2:1,variant==3?(destination==12?13:12):destination,variant!=1,variant==5?124:123);
+  if(variant==6)session.setMediaActive(true);
+  LiveMenuSessionTestAccess::poll(session);
+  if(variant==4||variant==5){require(failures==1&&native==0);peer.unmap(bytes);continue;}
+  require(!failures&&native==(variant==0?1:0));
+  if(variant==6){session.setMediaActive(false);LiveMenuSessionTestAccess::poll(session);require(native==1);}
+  if(variant>=1&&variant<=3){
+   // Readiness alone may change after ACK; no artificial new generation is needed.
+   state(variant==1?11:12,1,destination,true);LiveMenuSessionTestAccess::poll(session);require(native==1);
+  }
+  require(!LiveMenuSessionTestAccess::original(session));
+  require(session.requestStorage(MNM_MENU_STORAGE_CANCEL)); // Actual native ownership restored.
+  require(!session.requestStorage(MNM_MENU_STORAGE_CANCEL));
+  peer.unmap(bytes);
+ }
+}
 int main(int argc,char** argv){
- QApplication app(argc,argv);miniAdmissionChecks();QTemporaryDir root;LiveMenuSession session("/unused");const auto path=root.filePath("channel.bin");auto& bridge=LiveMenuSessionTestAccess::initialize(session,path);
+ QApplication app(argc,argv);miniAdmissionChecks();storageOpeningChecks();QTemporaryDir root;LiveMenuSession session("/unused");const auto path=root.filePath("channel.bin");auto& bridge=LiveMenuSessionTestAccess::initialize(session,path);
  QFile peer(path);require(peer.open(QIODevice::ReadWrite));auto* bytes=peer.map(0,MNM_MENU_V13_SIZE);require(bytes);
  auto put=[&](int word,quint32 v){qToLittleEndian(v,bytes+4*word);};auto get=[&](int word){return qFromLittleEndian<quint32>(bytes+4*word);};quint32 sequence=0;
  auto state=[&](quint32 generation,quint32 ack,quint32 screen,bool ready,quint32 modal=0){

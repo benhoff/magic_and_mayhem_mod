@@ -19,6 +19,7 @@ public:
  // Validate/advance a candidate copy, so a refused snapshot leaves this cycle
  // intact. The input changed flag is consumed by both subcycles in order.
  void step(const TerrainLightingSnapshot&);
+ void restore(const std::array<std::vector<std::int8_t>,5>&,TerrainCreatureLightState,TerrainStaticLightState);
  const TerrainLightField& field() const{return field_;}
  const TerrainCreatureLightState& creatures() const{return creatures_.state();}
  const TerrainStaticLightState& objects() const{return objects_.state();}

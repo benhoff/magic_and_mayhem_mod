@@ -23,6 +23,10 @@ void validateView(unsigned width,unsigned height,TerrainLightView v){
   throw std::invalid_argument("Static light view outside bounded contract");
 }
 }
+void TerrainStaticLightCycle::restore(TerrainStaticLightState state){
+ if(state.phase>1 || state.cursor>65536)throw std::invalid_argument("Static light cycle snapshot bounds");
+ state_=state;
+}
 bool admitsTerrainStaticLight(unsigned width,unsigned height,TerrainLightView v,unsigned x,unsigned y,unsigned index){
  validateView(width,height,v);
  if(x>=width || y>=height || index>33)throw std::invalid_argument("Static light admission outside bounded contract");

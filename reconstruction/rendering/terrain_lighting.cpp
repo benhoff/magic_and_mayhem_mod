@@ -83,6 +83,10 @@ void TerrainLightField::stampStatic(TerrainLightSource s){
   }
  }
 }
+void TerrainLightField::restoreBuffers(const std::array<std::vector<std::int8_t>,5>& buffers){
+ for(const auto& b:buffers)if(b.size()!=buffers_[0].size())throw std::invalid_argument("Terrain light capture buffer extent");
+ auto candidate=buffers;buffers_.swap(candidate);
+}
 void TerrainLightField::publish(){buffers_[0]=buffers_[3];}
 std::int8_t TerrainLightField::at(unsigned x,unsigned y,unsigned z) const{
  if(x>=width_ || y>=height_ || z>=mapLayers_)throw std::out_of_range("Terrain light cell outside field");

@@ -14,7 +14,7 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
-from coverage_bookkeeping import Workspace, atomic_replace, prepare, record, refresh_index
+from coverage_bookkeeping import Workspace, atomic_replace, capture, prepare, record, refresh_index
 from coverage_gate import BASELINE, REGISTER, check, snapshot
 from coverage_reviews import REVIEWS, load_journal, split_journal
 
@@ -198,6 +198,45 @@ class BookkeepingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'stale'):
             record(self.workspace, second['draft']['id'], 'Reviewed fixture.', 'Pending comparison.')
         self.assertEqual(self.workspace.find(), [])
+
+    def test_pending_merge_inherits_exact_claims_without_skipping_combined_review(self):
+        self.repository()
+        (self.root/'.git/info/exclude').write_text('working/\n')
+        base = self.git('rev-parse', 'HEAD')
+        self.git('checkout', '-qb', 'incoming')
+        self.fixture.write('assets/model.cpp', 'incoming implementation\n')
+        self.fixture.register['behaviors'][0]['status']['implementation'] = 'scoped'
+        self.fixture.sync()
+        imported = self.fixture.receipt()
+        imported['reviews'][0]['validation'].update(status='recorded', evidence=['old-original'])
+        self.fixture.json(REVIEWS, imported)
+        self.git('add', '.')
+        self.git('commit', '-qm', 'Incoming milestone with historical validation')
+        incoming = self.git('rev-parse', 'HEAD')
+        self.git('checkout', '-qb', 'local', base)
+        self.fixture.write('local-note.txt', 'independent local commit\n')
+        self.git('add', '.')
+        self.git('commit', '-qm', 'Local branch')
+        # Merely having an incoming branch never authorizes inheritance.
+        self.assertEqual(capture(self.root, 'HEAD')[4]['parents'], [])
+        self.git('merge', '--no-commit', '--no-ff', 'incoming')
+        prepared = prepare(self.workspace, index_reason='Reviewed pending merge source links.')
+        self.assertTrue(any('Unreviewed source change' in e for e in prepared['gate_errors']))
+        self.assertFalse(any('Status promotion' in e or 'recorded validation needs fresh' in e
+                             for e in prepared['gate_errors']))
+        history = capture(self.root, 'HEAD')[4]
+        self.assertEqual(history['parents'], [incoming])
+        self.assertIn('MV.test', history['statuses'])
+        self.assertIn(imported['reviews'][0]['id'], history['reviews'])
+        result = record(self.workspace, prepared['draft']['id'],
+                        'Reviewed the exact combined source and inherited contract.',
+                        'Imported evidence stays historical; no new execution claim.')
+        self.assertTrue(result['gate_passed'], result)
+        # A changed combined contract loses inheritance and needs fresh proof.
+        self.fixture.register['behaviors'][0]['scope'] += ' Changed merge scope.'
+        self.fixture.sync()
+        changed = prepare(self.workspace)
+        self.assertTrue(any('Status promotion' in e for e in changed['gate_errors']))
 
     def test_invalid_validation_and_missing_reasons_cannot_record(self):
         self.repository()

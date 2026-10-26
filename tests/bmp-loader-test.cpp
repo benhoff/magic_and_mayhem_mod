@@ -34,9 +34,9 @@ int main() try {
         require(image.horizontalPixelsPerMeter==-1 && image.verticalPixelsPerMeter==72);
     }
     auto b=good;b[0]=0;error(b,BmpErrorCode::invalidFormat);
-    for(auto header:{12U,108U,124U,0xffffffffU}) {b=good;put(b,14,header);error(b,BmpErrorCode::unsupportedEncoding);}
+    for(auto header:{64U,108U,124U,0xffffffffU}) {b=good;put(b,14,header);error(b,BmpErrorCode::unsupportedEncoding);}
     for(auto offset:{6,8,26}) {b=good;b[std::size_t(offset)]=2;error(b,BmpErrorCode::malformedData);}
-    for(auto bits:{1,8,16,32}) {b=good;b[28]=static_cast<std::uint8_t>(bits);error(b,BmpErrorCode::unsupportedEncoding);}
+    for(auto bits:{2,12,48}) {b=good;b[28]=static_cast<std::uint8_t>(bits);error(b,BmpErrorCode::unsupportedEncoding);}
     b=good;put(b,30,1);error(b,BmpErrorCode::unsupportedEncoding);
     for(auto width:{0U,0xffffffffU,0x80000000U}) {b=good;put(b,18,width);error(b,BmpErrorCode::malformedData);}
     for(auto height:{0U,0x80000000U}) {b=good;put(b,22,height);error(b,BmpErrorCode::malformedData);}

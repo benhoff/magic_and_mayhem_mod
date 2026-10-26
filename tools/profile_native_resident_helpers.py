@@ -14,6 +14,7 @@ def normalize_capture(source,destination,*,completed_prefix=None):
     count=0;raw_size=8;selected_size=8
     with source.open('rb') as incoming,destination.open('xb') as outgoing:
         magic=incoming.read(8)
+        if magic==b'MNMPROF3':raise ValueError('Source-history capture requires source-aware replay; flat benchmark normalization refuses it')
         if magic not in (b'MNMPROF1',b'MNMPROF2'):raise ValueError('Resident capture magic')
         outgoing.write(b'MNMPROF1')
         while True:

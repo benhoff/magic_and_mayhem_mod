@@ -86,7 +86,8 @@ class ImportanceTest(unittest.TestCase):
         self.assertEqual(register, before)
         self.assertGreaterEqual(len(result['entries']), 345)
         self.assertEqual(result['unrated'], [
-            'NP.alternate-canvas-dispatch-admission', 'NP.graphics-session-provider-retirement',
+            'NP.alternate-canvas-dispatch-admission', 'NP.alternate-canvas-owned-generation',
+            'NP.graphics-session-provider-retirement',
             'NP.palette-option-strict-parsing', 'NP.protected-native-store-service', 'NP.surface-alias-lease-lifecycle',
             'RS.alternate-canvas-dispatch-composition', 'RS.screen-cursor-background-invalidation',
             'RS.screen-cursor-background-restore', 'RS.screen-tick-control-flow',
@@ -521,7 +522,16 @@ class TrancheTest(unittest.TestCase):
             'RS.world-cell-terrain-production',
         })
         self.assertTrue(merged_high.issubset(scoped_high))
-        self.assertEqual(len(scoped_high), 72 + len(completed) + len(recovered_suppliers) + len(merged_high))
+        surface_components = {
+            'RE.surface-wrapper.opaque-guarded', 'RE.surface-wrapper.opaque-recovering',
+            'RE.surface-wrapper.keyed-recovering', 'RE.surface-wrapper.keyed-rectangle',
+            'RE.surface-wrapper.keyed-explicit', 'RE.surface-wrapper.partial-fill',
+            'RE.surface-wrapper.full-fill', 'NP.surface-bitmap.owned-cursor',
+            'NP.surface-bitmap.indexed-recovery',
+        }
+        self.assertTrue(surface_components.issubset(scoped_high))
+        self.assertEqual(len(scoped_high), 72 + len(completed) + len(recovered_suppliers)
+                         + len(merged_high) + len(surface_components))
         for task in tasks:
             execution = task.get('execution_result')
             if execution:
@@ -565,7 +575,12 @@ class TrancheTest(unittest.TestCase):
             self.assertEqual(task['review_state'], expected_state)
             self.assertEqual(task['work_review']['validation_state'], 'recorded')
             if task['behavior'] in selected:
-                self.assertEqual(task['review_state'], 'current')
+                if task['behavior'] in {'RE.terrain_lighting', 'RE.terrain_creature_lighting'}:
+                    self.assertEqual(task['review_state'], 'needs_review')
+                    self.assertIn('research/runtime/terrain-light-suppliers.md',
+                                  task['work_review']['pending_source_review'])
+                else:
+                    self.assertEqual(task['review_state'], 'current')
                 expected = ('N23.terrain-native-20261025' if task['behavior']=='RE.terrain_generated' else 'N23.terrain-original-20261025')
             elif task['behavior'] in {'RE.terrain_region', 'RE.terrain_catalog', 'RE.terrain_selection'}:
                 expected = 'N22.terrain-original-20261025'

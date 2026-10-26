@@ -21,6 +21,17 @@ int main(int argc,char** argv) try {
     normal.finish();normal.finish();const auto complete=normal.report();
     require(complete["complete"].toBool() && complete["written_worlds"].toInt()==4 && complete["queue_bytes"].toInt()==0,"Capture worker retirement");
     QFile file(root+"/expected-v1.bin");require(file.open(QIODevice::WriteOnly|QIODevice::NewOnly) && file.write(expected)==expected.size(),"Expected capture bytes");file.close();
+    ResidentProfileCapture history(root+"/sources.bin",256ull*1024*1024,true);
+    require(history.enqueueSource(1,source)&&history.enqueueSource(1,source)&&history.enqueue(1,source,request),"Source prefixes before first World");
+    require(history.enqueueSource(2,source)&&history.enqueue(2,source,request),"Next source prefix and World");
+    history.finish();require(history.report()["complete"].toBool()&&history.report()["written_worlds"].toInt()==2&&history.report()["written_source_chunks"].toInt()==3,"Prefix capture ownership/counters");
+    require(!history.enqueueSource(3,source),"Retired source capture resumed");
+    ResidentProfileCapture legacySource(root+"/legacy-source.bin");require(!legacySource.enqueueSource(1,source),"Legacy capture silently accepts source-only input");legacySource.finish();require(!legacySource.report()["complete"].toBool(),"Legacy source refusal lost");
+    ResidentProfileCapture sourceOrder(root+"/source-order.bin",256ull*1024*1024,true);require(!sourceOrder.enqueueSource(2,source),"Source skips World generation");sourceOrder.finish();
+    ResidentProfileCapture capped(root+"/source-cap.bin",256ull*1024*1024,true);
+    const std::vector<std::uint8_t> tiny(16,7);
+    for(unsigned i=0;i<8192;++i)require(capped.enqueueSource(1,tiny),"Bounded prefix history prematurely refused");
+    require(!capped.enqueue(1,tiny,request),"World bypassed total source-record cap");capped.finish();require(capped.report()["truncated"].toBool()&&!capped.report()["complete"].toBool(),"Source-record cap not retained");
     ResidentProfileCapture overflow(root+"/overflow.bin",128);require(!overflow.enqueue(1,source,request),"Queue overflow admitted");require(!overflow.enqueue(1,source,request),"Truncated capture resumed");overflow.finish();require(overflow.report()["truncated"].toBool() && !overflow.report()["complete"].toBool(),"Overflow not retained");
     ResidentProfileCapture order(root+"/order.bin");require(!order.enqueue(2,source,request),"Generation gap admitted");order.finish();require(!order.report()["error"].toString().isEmpty(),"Generation error missing");
     ResidentProfileCapture extent(root+"/extent.bin");require(!extent.enqueue(1,source,{1}),"Short request admitted");extent.finish();require(!extent.report()["complete"].toBool(),"Invalid extent completed");
