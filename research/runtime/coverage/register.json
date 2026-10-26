@@ -3294,33 +3294,58 @@
       "subsystem": "assets",
       "kind": "native_policy",
       "title": "Sprite tables",
-      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "provisional",
+      "scope": "Read-only owned TAG sprite tables: preserve all raw 12-byte records and resource-limit failures; strictly validate installed SPR companions and exact eight-byte name/occurrence selection; present native loop/once/ping-pong/reverse playback, pause, seeking and atomic reload in a Qt/OpenGL sprite-table application. Corpus-wide installed-byte agreement and bounded application acceptance; native 100 ms frame cadence. Original TAG/editor consumption, original allocation/file API failures, ANI interpretation, runtime entity/world creation and live replacement remain separate.",
+      "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/formats/tag-native-loading.md",
-        "assets/README.md"
+        "assets/README.md",
+        "research/runtime/tag-parent-end-to-end-20261026.md"
       ],
       "implementation": [
         "assets/tag.cpp",
-        "assets/tag.hpp"
+        "assets/tag.hpp",
+        "apps/sprite-player/sprite_player.hpp",
+        "apps/sprite-player/sprite_player.cpp",
+        "apps/sprite-player/sprite_window.hpp",
+        "apps/sprite-player/sprite_window.cpp",
+        "apps/sprite-player/main.cpp"
       ],
       "tests": [
-        "tests/tag-loader-test.cpp"
+        "tests/tag-loader-test.cpp",
+        "tests/test-tag-loader.py",
+        "tests/sprite-player-test.cpp",
+        "tools/test-tag-parent.py",
+        "tools/run-surface-wrapper-control.py"
       ],
       "evidence": [
-        "REVIEW.AS.tag"
+        "REVIEW.AS.tag",
+        "TAG.parent-preview-20261026",
+        "TAG.parent-installed-window-20261026"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "preview",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "N27 adds a separate widget-independent strict companion/name/clip/playback/checkpoint/reload/plan and CPU/GPU consumer. The permissive raw parser, original TAG use, world construction and live acceptance remain separate; parent status is unchanged.",
-        "N29 adds a separate explicit variable-timed native timeline and owned draw-plan service. Original ANI/TAG usage, installed acceptance and live integration remain outstanding; parent status is unchanged."
+        "Original/editor TAG consumption remains unresolved; the corpus-consistent companion rule and 100 ms playback cadence are explicit native policies, not recovered ANI semantics. No original malformed-input, allocation/OS failure, game-world construction or live bypass claim."
+      ],
+      "validation_dependencies": [
+        "apps/sprite-player/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp",
+        "apps/sprite-timeline/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tests/sprite-timeline-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
       ]
     },
     {
@@ -351479,6 +351504,232 @@
           ]
         }
       ]
+    },
+    {
+      "id": "TAG.parent-preview-20261026",
+      "kind": "native_integration",
+      "scope": "Read-only owned TAG sprite tables: preserve all raw 12-byte records and resource-limit failures; strictly validate installed SPR companions and exact eight-byte name/occurrence selection; present native loop/once/ping-pong/reverse playback, pause, seeking and atomic reload in a Qt/OpenGL sprite-table application. Corpus-wide installed-byte agreement and bounded application acceptance; native 100 ms frame cadence. Original TAG/editor consumption, original allocation/file API failures, ANI interpretation, runtime entity/world creation and live replacement remain separate.",
+      "record": "research/runtime/tag-parent-results-20261026/execution-3.json",
+      "sha256": "9d65e83984d30c8083a217ed225dd000d65ea7f9bc39ac17ecb75b8f9e4b82ca",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/checks",
+          "equals": 131769
+        },
+        {
+          "pointer": "/native/release/refusals",
+          "equals": 80
+        },
+        {
+          "pointer": "/native/release/gpu_pixel_cases",
+          "equals": 260
+        },
+        {
+          "pointer": "/native/release/window_actions",
+          "equals": 9
+        },
+        {
+          "pointer": "/native/release/installed_files",
+          "equals": 85
+        },
+        {
+          "pointer": "/native/release/installed_entries",
+          "equals": 130891
+        },
+        {
+          "pointer": "/native/release/independent_corpus_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/supplier_regressions",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/checks",
+          "equals": 131769
+        },
+        {
+          "pointer": "/native/sanitized/refusals",
+          "equals": 80
+        },
+        {
+          "pointer": "/native/sanitized/gpu_pixel_cases",
+          "equals": 260
+        },
+        {
+          "pointer": "/native/sanitized/window_actions",
+          "equals": 9
+        },
+        {
+          "pointer": "/native/sanitized/installed_files",
+          "equals": 85
+        },
+        {
+          "pointer": "/native/sanitized/installed_entries",
+          "equals": 130891
+        },
+        {
+          "pointer": "/native/sanitized/independent_corpus_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/supplier_regressions",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TAG.parent-attempt-1-20261026",
+      "kind": "static",
+      "scope": "Isolated worktree lacks original artifact payloads; stopped before native execution. No implementation or equivalence credit.",
+      "record": "research/runtime/tag-parent-results-20261026/execution-1.json",
+      "sha256": "c2e5844be329c1085065b701d8756da55d1adc8d7500adab725860285f24e7ee",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TAG.parent-attempt-2-20261026",
+      "kind": "static",
+      "scope": "Release installed/application/regression checks passed but prospective source closure omitted six renderer protocol headers. No final validation credit; retained before corrected source-bound rerun.",
+      "record": "research/runtime/tag-parent-results-20261026/execution-2.json",
+      "sha256": "c200e2182aaede97a8c18e8b0dde3cfde6fc1ef8a09cef31b555d3435feb2263",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TAG.parent-installed-window-20261026",
+      "kind": "native_integration",
+      "scope": "Read-only owned TAG sprite tables: preserve all raw 12-byte records and resource-limit failures; strictly validate installed SPR companions and exact eight-byte name/occurrence selection; present native loop/once/ping-pong/reverse playback, pause, seeking and atomic reload in a Qt/OpenGL sprite-table application. Corpus-wide installed-byte agreement and bounded application acceptance; native 100 ms frame cadence. Original TAG/editor consumption, original allocation/file API failures, ANI interpretation, runtime entity/world creation and live replacement remain separate. Direct same-stem and terrain-fallback installed Qt window journeys compare all presentation pixels and paused reload.",
+      "record": "research/runtime/tag-parent-results-20261026/execution-4.json",
+      "sha256": "0765bbd0162b80f4383370958625602ea05d70d99ed30438e8f055dc77fc27ed",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/checks",
+          "equals": 131792
+        },
+        {
+          "pointer": "/native/release/refusals",
+          "equals": 80
+        },
+        {
+          "pointer": "/native/release/gpu_pixel_cases",
+          "equals": 262
+        },
+        {
+          "pointer": "/native/release/window_actions",
+          "equals": 17
+        },
+        {
+          "pointer": "/native/release/installed_window_journeys",
+          "equals": 2
+        },
+        {
+          "pointer": "/native/release/installed_files",
+          "equals": 85
+        },
+        {
+          "pointer": "/native/release/installed_entries",
+          "equals": 130891
+        },
+        {
+          "pointer": "/native/release/independent_corpus_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/supplier_regressions",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/checks",
+          "equals": 131792
+        },
+        {
+          "pointer": "/native/sanitized/refusals",
+          "equals": 80
+        },
+        {
+          "pointer": "/native/sanitized/gpu_pixel_cases",
+          "equals": 262
+        },
+        {
+          "pointer": "/native/sanitized/window_actions",
+          "equals": 17
+        },
+        {
+          "pointer": "/native/sanitized/installed_window_journeys",
+          "equals": 2
+        },
+        {
+          "pointer": "/native/sanitized/installed_files",
+          "equals": 85
+        },
+        {
+          "pointer": "/native/sanitized/installed_entries",
+          "equals": 130891
+        },
+        {
+          "pointer": "/native/sanitized/independent_corpus_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/supplier_regressions",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -379821,6 +380072,24 @@
       "evidence": [
         "TLQF26.worker-loss"
       ]
+    },
+    {
+      "id": "AS.tag.installed-preview",
+      "title": "Installed sprite-table application workflow",
+      "scope": "Independent all85 installed TAG/SPR ordinal/name/occurrence comparison plus native OpenGL pixels; real Qt widget open, exact-name selection, pause, mode/reverse, seek, reload refusal/recovery and timer completion on controlled serialized fixtures. Original manifest/input identities retained. No original live TAG consumer claim. Two installed-file Qt windows directly cover same-stem and Terrain.spr fallback acquisition through named selection, seek, full presentation pixels and paused reload.",
+      "level": "preview",
+      "behaviors": [
+        "AS.tag"
+      ],
+      "tests": [
+        "tests/sprite-player-test.cpp",
+        "tools/test-tag-parent.py",
+        "tests/test-tag-loader.py"
+      ],
+      "evidence": [
+        "TAG.parent-preview-20261026",
+        "TAG.parent-installed-window-20261026"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -381598,7 +381867,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-dd3e7e5cfedac1156d84c5be4123b3648dc6fb8008a6481f0d69573235d1276d.json",
-    "sha256": "dd3e7e5cfedac1156d84c5be4123b3648dc6fb8008a6481f0d69573235d1276d"
+    "path": "research/runtime/coverage/source-index-d273c002669f31dde5a67dd6b457fda0e326df48726dceef13918028915c3015.json",
+    "sha256": "d273c002669f31dde5a67dd6b457fda0e326df48726dceef13918028915c3015"
   }
 }
