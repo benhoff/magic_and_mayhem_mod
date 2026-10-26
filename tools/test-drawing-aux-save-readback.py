@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Run bounded PE32 auxiliary probe guards with synthetic callbacks, not the game."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import importlib.util
@@ -46,7 +47,7 @@ def main():
                     '/safeseh:no', '/timestamp:0', '/out:' + str(binary), str(run / 'fixture.obj'),
                     str(run / 'kernel32.lib')], check=True)
     prefix = run / 'wineprefix'
-    subprocess.run(['cp', '-a', '--reflink=auto', str(a.prefix_template), str(prefix)], check=True)
+    stage_prefix(ROOT, str(a.prefix_template), str(prefix))
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
     env.update(WINEPREFIX=str(prefix), WINEDEBUG='-all', MNM_DRAW_AUX_SAVE_READBACK='1')
     with (run / 'wineboot.log').open('x') as log:

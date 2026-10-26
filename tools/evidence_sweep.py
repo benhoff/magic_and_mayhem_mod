@@ -16,7 +16,7 @@ import subprocess
 import tempfile
 
 from coverage_evidence import (CONFIG, KEEP, Reader, Store, artifact, digest_file,
-                               config, identity, pointer, safe_path)
+                               config, identity, pointer, safe_path, pending_path)
 
 
 def role(name):
@@ -35,9 +35,12 @@ def role(name):
 
 def json_paths(root):
     root = Path(root)
+    top = subprocess.run(['git', '-C', str(root), 'rev-parse', '--show-toplevel'],
+                         capture_output=True, text=True)
+    own_repository = top.returncode == 0 and Path(top.stdout.strip()).resolve() == root.resolve()
     result = subprocess.run(['git', '-C', str(root), 'ls-files', '-z', '--cached',
-                             '--others', '--exclude-standard'], capture_output=True)
-    if result.returncode == 0:
+                             '--others', '--exclude-standard'], capture_output=True) if own_repository else None
+    if result is not None and result.returncode == 0:
         names = {os.fsdecode(x) for x in result.stdout.split(b'\0') if x}
     else:
         names = set()
@@ -113,8 +116,8 @@ def prepare(root, output, database=None):
         raise ValueError('Plan and cold backup must be outside research/ and original/')
     output.mkdir(parents=True, exist_ok=False)
     report = inventory(root)
-    database = Path(database or root/'working/coverage/evidence-pending.sqlite3').resolve()
-    if not database.is_relative_to(root/'working'):
+    database = Path(database or pending_path(root)).resolve()
+    if not database.is_relative_to(root/'working') and database != pending_path(root).resolve():
         raise ValueError('Mutable evidence database must remain under ignored working/')
     store = Store(database)
     rows, documents = [], []

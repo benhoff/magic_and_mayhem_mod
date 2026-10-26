@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Build/run the real census callbacks in a synthetic PE32 ABI fixture."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import importlib.util
@@ -71,7 +72,7 @@ def main():
     (out / 'export-table.txt').write_text(exports)
     if not re.search(r'^\s*\[\s*\d+\].*\bcensus_leave\s*$', exports, re.M):
         raise ValueError('Fixture named census leave export missing')
-    run('prefix-copy', ['cp', '-a', '--reflink=auto', args.prefix_template.resolve(), out / 'wineprefix'])
+    stage_prefix(ROOT, args.prefix_template.resolve(), out / 'wineprefix', log=Path(out / 'wineprefix').parent / 'prefix-copy.log')
     run('forwarding', ['xvfb-run', '-a', 'wine', out / 'fixture.exe'])
     run('stop-prefix', ['wineserver', '-k'], 10)
     bindings=decode_bindings(out/'core-bindings.bin',binding_manifest)

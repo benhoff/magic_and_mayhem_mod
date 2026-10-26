@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Validate actual PE32 World refusal publication and native Qt recovery."""
+from experiment_environment import stage_prefix
 import hashlib
 import importlib.util
 import json
@@ -59,7 +60,7 @@ def main():
         cases = ET.parse(output/'ctest.xml').findall('.//testcase')
         if len(cases)!=3 or any(c.find('failure') is not None or c.find('skipped') is not None for c in cases):
             raise RuntimeError('Native World refusal regressions failed')
-        run('prefix-copy', ['cp', '-a', '--reflink=auto', ROOT/'working/wineprefix-x86_64', env['WINEPREFIX']])
+        stage_prefix(ROOT, ROOT/'working/wineprefix-x86_64', env['WINEPREFIX'], log=Path(env['WINEPREFIX']).parent / 'prefix-copy.log')
         run('wineboot', ['wineboot', '-u'], env)
         results = []
         for verify in [False, True]:

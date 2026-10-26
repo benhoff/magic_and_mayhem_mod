@@ -77,6 +77,7 @@ private:
     std::shared_ptr<ResidentWorldGpuBackend> gpuBackend_;
     std::unique_ptr<mnm::render::GpuProductionQueue> gpuProduction_;
     mnm::render::RenderStats producerStats_;
+    mnm::legacy::CanvasWorld::AlternateStats producerAlternate_;
     QString producerDriver_;
     std::uint64_t submittedWorlds_=0,producerReadbacks_=0,producerCaptures_=0;
     double productionMs_=0,maxProductionMs_=0;

@@ -10,7 +10,6 @@ import sys
 import tarfile
 import tempfile
 import unittest
-import zlib
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -30,7 +29,7 @@ class EvidenceTests(unittest.TestCase):
         self.store = Store(self.root/'objects.sqlite3')
         self.addCleanup(self.store.close)
         self.environment = patch.dict(os.environ, {'MM_EVIDENCE_DB': str(self.store.path),
-                'MM_EVIDENCE_CACHE': str(self.root/'cache'), 'MM_EVIDENCE_EXTRA_DBS': '[]'})
+                'MM_EVIDENCE_CACHE': str(self.root/'cache')})
         self.environment.start()
         self.addCleanup(self.environment.stop)
         (self.root/CONFIG).write_text(json.dumps({'schema': 1, 'archives': []}))
@@ -48,6 +47,60 @@ class EvidenceTests(unittest.TestCase):
 
     def git(self, *args):
         return subprocess.check_output(['git', '-C', str(self.root), *args], stderr=subprocess.PIPE)
+
+    def test_configured_pending_store_serves_reports_from_multiple_roots(self):
+        self.git("init", "-q")
+        shared=self.root/"shared/working/evidence-pending.sqlite3"
+        self.git("config", "mm.evidencePending", str(shared))
+        path=self.root/"research/runtime/shared.json"
+        body=b'{"unique":"shared immutable payload"}'
+        write_report(self.root,path,body)
+        self.assertTrue(shared.is_file())
+        self.assertFalse((self.root/"working/coverage/evidence-pending.sqlite3").exists())
+        self.assertEqual(read_bytes(path,root=self.root),body)
+        store=Store(shared,readonly=True)
+        try:self.assertEqual(store.db.execute("SELECT count(*) FROM objects").fetchone()[0],1)
+        finally:store.close()
+
+    def test_auxiliary_legacy_store_is_read_without_copying_payload(self):
+        self.git("init","-q")
+        auxiliary=self.root/"working/legacy-evidence.sqlite3"
+        store=Store(auxiliary)
+        data=b'{"retained":"legacy negative evidence"}'
+        try:
+            with store.db:sha=store.put(io.BytesIO(data),len(data))
+        finally:store.close()
+        self.git("config","--add","mm.evidenceExtra",str(auxiliary))
+        path=self.root/"research/runtime/legacy.json"
+        path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(pointer(sha,len(data)))
+        self.assertEqual(read_bytes(path,root=self.root),data)
+        self.assertFalse(self.store.has(sha))
+        self.assertFalse((self.root/"working/coverage/evidence-pending.sqlite3").exists())
+
+    def test_auxiliary_stores_propagate_into_temporary_git_trees(self):
+        from evidence_local import local_evidence
+        self.git("init","-q")
+        auxiliary=self.root/"working/legacy-evidence.sqlite3"
+        store=Store(auxiliary);data=b"retained temporary-tree input"
+        try:
+            with store.db:sha=store.put(io.BytesIO(data),len(data))
+        finally:store.close()
+        self.git("config","--add","mm.evidenceExtra",str(auxiliary))
+        temporary=self.root/"working/staged-tree"
+        temporary.mkdir()
+        (temporary/CONFIG).write_text('{"schema":1,"archives":[]}')
+        path=temporary/"research/runtime/legacy.json"
+        path.parent.mkdir(parents=True);path.write_bytes(pointer(sha,len(data)))
+        with local_evidence(self.root):
+            self.assertEqual(read_bytes(path,root=temporary),data)
+        self.assertFalse(self.store.has(sha))
+
+    def test_shared_pending_path_refuses_original_and_relative_paths(self):
+        from coverage_evidence import pending_path
+        self.git("init","-q")
+        for invalid in ("working/relative.sqlite3",str(self.root/"original/working/data.sqlite3")):
+            self.git("config","mm.evidencePending",invalid)
+            with self.assertRaises(ValueError):pending_path(self.root)
 
     def test_exact_binary_and_empty_multichunk_roundtrip(self):
         for data in (b'', b'\0\xffnegative evidence\n', b'z'*(CHUNK*2+17)):
@@ -140,90 +193,6 @@ class EvidenceTests(unittest.TestCase):
         with patch.dict(os.environ, {'MM_EVIDENCE_DB': ''}):
             self.assertFalse(read_json(path)['success'])
         self.assertIsNotNone(identity(path.read_bytes()))
-
-    def test_extra_local_stores_are_read_only_and_deduplicated(self):
-        extra = self.root/'retained.sqlite3'
-        payload = b'{"retained":true}'
-        store = Store(extra)
-        with store.db:
-            sha = store.put(io.BytesIO(payload), len(payload))
-        store.close()
-        before = digest_file(extra)
-        path = self.root/'research/runtime/retained.json'
-        path.parent.mkdir(parents=True)
-        path.write_bytes(pointer(sha, len(payload)))
-        with patch.dict(os.environ, {'MM_EVIDENCE_EXTRA_DBS': json.dumps([
-                str(extra), str(extra), str(self.store.path)])}):
-            with Reader(self.root) as reader:
-                self.assertEqual(len(reader.resolver.stores), 2)
-                self.assertTrue(reader.json(path)['retained'])
-            new = path.with_name('new.json')
-            write_report(self.root, new, b'{"new":true}')
-            self.assertTrue(read_json(new)['new'])
-        self.assertEqual(digest_file(extra), before)
-        self.assertEqual(path.read_bytes(), pointer(sha, len(payload)))
-
-    def test_extra_local_store_corruption_is_rechecked(self):
-        extra = self.root/'retained.sqlite3'
-        store = Store(extra)
-        self.addCleanup(store.close)
-        payload = b'{"retained":true}'
-        with store.db:
-            sha = store.put(io.BytesIO(payload), len(payload))
-        path = self.root/'research/runtime/retained.json'
-        path.parent.mkdir(parents=True)
-        path.write_bytes(pointer(sha, len(payload)))
-        with patch.dict(os.environ, {'MM_EVIDENCE_EXTRA_DBS': json.dumps([str(extra)])}):
-            self.assertEqual(read_bytes(path), payload)
-            with store.db:
-                store.db.execute('DROP TRIGGER chunks_no_update')
-                store.db.execute('UPDATE chunks SET payload=? WHERE sha256=?', (b'broken', sha))
-            with self.assertRaises((ValueError, zlib.error)):
-                read_bytes(path)
-        store.close()
-
-    def test_extra_local_store_configuration_refuses_invalid_or_missing_inputs(self):
-        for value in ('"not an array"', '[""]', '[3]', json.dumps(['x']*33)):
-            with self.subTest(value=value), patch.dict(os.environ, {'MM_EVIDENCE_EXTRA_DBS': value}):
-                with self.assertRaisesRegex(ValueError, 'JSON array'):
-                    Reader(self.root)
-        missing = self.root/'missing.sqlite3'
-        with patch.dict(os.environ, {'MM_EVIDENCE_EXTRA_DBS': json.dumps([str(missing)])}):
-            with self.assertRaises(sqlite3.OperationalError):
-                Reader(self.root)
-        self.assertFalse(missing.exists())
-
-    def test_extra_local_store_git_setting_and_environment_override(self):
-        from types import SimpleNamespace
-        (self.root/'.git').touch()
-        extra = self.root/'retained.sqlite3'
-        store = Store(extra)
-        payload = b'{"retained":true}'
-        with store.db:
-            sha = store.put(io.BytesIO(payload), len(payload))
-        store.close()
-        path = self.root/'research/runtime/retained.json'
-        path.parent.mkdir(parents=True)
-        path.write_bytes(pointer(sha, len(payload)))
-        setting = SimpleNamespace(returncode=0, stdout=json.dumps([str(extra)]))
-        with patch.dict(os.environ):
-            os.environ.pop('MM_EVIDENCE_EXTRA_DBS')
-            with patch('coverage_evidence.subprocess.run', return_value=setting) as command:
-                self.assertTrue(read_json(path)['retained'])
-                self.assertEqual(command.call_args.args[0][-1], 'mm.evidenceExtraDBs')
-        with patch('coverage_evidence.subprocess.run', side_effect=AssertionError('Environment overrides Git')):
-            with Reader(self.root) as reader:
-                self.assertEqual(len(reader.resolver.stores), 1)
-
-    def test_extra_local_sources_propagate_to_staged_readers_and_restore_environment(self):
-        from evidence_local import local_evidence
-        with patch.dict(os.environ):
-            os.environ.pop('MM_EVIDENCE_EXTRA_DBS')
-            with patch('evidence_local.extra_databases', return_value=['/retained/verified.sqlite3']):
-                with local_evidence(self.root):
-                    self.assertEqual(json.loads(os.environ['MM_EVIDENCE_EXTRA_DBS']),
-                                     ['/retained/verified.sqlite3'])
-            self.assertNotIn('MM_EVIDENCE_EXTRA_DBS', os.environ)
 
     def test_targeted_legacy_export_preserves_other_references(self):
         first = self.report(b'{"first":true}')

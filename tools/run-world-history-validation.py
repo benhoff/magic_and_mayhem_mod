@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Freeze shared sources and run isolated native startup history validation."""
+from experiment_environment import stage
 import argparse
 import hashlib
 import json
@@ -37,7 +38,7 @@ def main():
     work = frozen/'working'
     work.mkdir()
     # Staging uses cp -a: its source must be a directory, never a symlink.
-    subprocess.run(['cp','-a','--reflink=auto',str(ROOT/'working/game-nocd'),str(work/'game-nocd')],check=True)
+    stage(ROOT, Path(str(work/'game-nocd')), Path(str(ROOT/'working/game-nocd')), kind="game")
     for name in ['game-clean','manifests','wineprefix-x86_64']:
         (work/name).symlink_to(ROOT/'working'/name, target_is_directory=True)
     (frozen/'original').symlink_to(ROOT/'original', target_is_directory=True)

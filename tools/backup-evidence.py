@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Explicit private SSH backup of verified SQLite snapshots; never run by a commit hook."""
 import argparse
-from contextlib import closing
+from contextlib import closing, contextmanager, ExitStack
 import json
 import os
 from pathlib import Path, PurePosixPath
@@ -10,6 +10,7 @@ import shlex
 import sqlite3
 import subprocess
 import sys
+import tempfile
 import uuid
 
 from coverage_evidence import cache_root, config, digest_file
@@ -151,6 +152,33 @@ def remote(host, directory, request):
     return json.loads(p.stdout)
 
 
+@contextmanager
+def materialized_snapshot(root, item):
+    """Read a retained exact snapshot without permanently recreating a copy."""
+    path=Path(item["path"])
+    if path.is_file():
+        yield path
+        return
+    from sqlite_snapshot_store import Store as SnapshotStore, Sink
+    catalogs=[]
+    for key in ("mm.snapshotStore","mm.snapshotColdStore"):
+        result=subprocess.run(["git","-C",str(root),"config","--get",key],capture_output=True,text=True)
+        value=result.stdout.strip() if result.returncode==0 else ""
+        if not value:raise ValueError("Retained snapshot missing; configure both exact snapshot stores")
+        catalogs.append(Path(value))
+    stores=[]
+    try:
+        for catalog in catalogs:
+            store=SnapshotStore(catalog,readonly=True);stores.append(store)
+            if store.copy(item["sha256"],Sink())!=item["bytes"]:raise ValueError("Retained snapshot size mismatch")
+        with tempfile.TemporaryDirectory(prefix="mm-private-snapshot-") as directory:
+            restored=Path(directory)/(item["sha256"]+".sqlite3")
+            stores[1].restore(item["sha256"],restored)
+            yield restored
+    finally:
+        for store in stores:store.close()
+
+
 def upload(root, sid):
     with closing(catalog(root)) as db:
         row = db.execute('SELECT manifest,host,directory FROM sets WHERE id=?', (sid,)).fetchone()
@@ -158,10 +186,12 @@ def upload(root, sid):
     manifest, host, directory = row
     if destination(root) != (host, directory):
         raise ValueError('Pending set has a different destination; review before retrying')
+    materialized=ExitStack()
     try:
         with closing(sqlite3.connect(Path(manifest).as_uri()+'?mode=ro', uri=True)) as db:
             files = [dict(sha256=s, bytes=n, path=p) for s,n,p in db.execute('SELECT sha256,bytes,local_path FROM files')]
         for item in files:
+            item['path']=str(materialized.enter_context(materialized_snapshot(root,item)))
             if digest_file(item['path']) != item['sha256']:
                 raise ValueError('Retained snapshot changed: '+item['path'])
         needed = set(remote(host, directory, dict(action='probe', files=files))['missing'])
@@ -182,6 +212,8 @@ def upload(root, sid):
         with closing(catalog(root)) as db, db:
             db.execute("UPDATE sets SET state='pending',error=? WHERE id=?", (str(exc), sid))
         raise
+    finally:
+        materialized.close()
 
 
 def main():

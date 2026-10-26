@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Bounded WineDbg route capture; no on-disk executable patch or gameplay edit."""
 from __future__ import annotations
+from experiment_environment import stage
 
 import argparse
 from datetime import datetime, timezone
@@ -329,7 +330,7 @@ def main() -> int:
     root.mkdir(parents=True, exist_ok=True)
     evidence = Path(tempfile.mkdtemp(prefix="run-", dir=root))
     game = evidence / "game"
-    subprocess.run(["cp", "-a", "--reflink=auto", str(source), str(game)], check=True)
+    stage(REPO, game, source, kind="game", persistent=args.prepare_only)
     if hashlib.sha256((game / "Chaos.exe").read_bytes()).hexdigest() != HASH:
         raise RuntimeError("Disposable game-copy hash mismatch")
     host_arch = platform.machine()

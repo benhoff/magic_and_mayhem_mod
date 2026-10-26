@@ -135,7 +135,8 @@ def main():
     dll=build_adapter('tools/build-render-bridge.py',lambda: load('render_build','tools/build-render-bridge.py').build())
     parent=REPO/'working/experiments/opengl-render';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));game=root/'game'
-    subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
+    from experiment_environment import stage
+    stage(REPO,game,source,kind='game',persistent=args.stage_only)
     if game.is_symlink() or game.resolve()==source:
         raise ValueError('Disposable staging aliases its source')
     for name in ['Chaos.exe','MnmDraw.dll','MnmRender.dll','MnmMenu.dll','MnmScene.dll','MnmWord.dll','MnmAudio.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg']:

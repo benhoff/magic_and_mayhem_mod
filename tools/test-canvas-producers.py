@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Exercise producer entry/return forwarding and strict closed-input refusal."""
+from experiment_environment import stage_prefix
 from coverage_evidence import read_json, evidence_digest, write_report
 import argparse,hashlib,importlib.util,json,os,struct,subprocess,tempfile
 from pathlib import Path
@@ -26,7 +27,7 @@ def main():
  env={**{k:v for k,v in os.environ.items() if not k.startswith('MNM_')},'WINEPREFIX':str(ROOT/'working/tests/scene-selftest-wine'),'WINEDEBUG':'-all','MNM_CANVAS_PRODUCERS':'1','MNM_SCENE_DIR':'Z:'+str(capture).replace('/','\\'),'MNM_SCENE_SAMPLES':'1'}
  env.pop('MNM_CANVAS_STARTUP',None);env.pop('MNM_SCENE_WORLD',None)
  if a.prefix_template:
-  subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),str(out/'wineprefix')],check=True)
+  stage_prefix(ROOT, str(a.prefix_template.resolve()), str(out/'wineprefix'))
   env['WINEPREFIX']=str(out/'wineprefix')
  def run(name,command):
   with (out/(name+'.log')).open('x') as log:subprocess.run([str(x) for x in command],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=180)

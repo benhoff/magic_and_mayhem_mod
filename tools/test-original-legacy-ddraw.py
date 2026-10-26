@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Check supplied DirectX6 native DirectDraw admission without executing an installer or permitting builtin fallback."""
+from experiment_environment import stage_prefix
 from coverage_evidence import read_json, evidence_digest, write_report
 import argparse
 import fcntl
@@ -140,7 +141,7 @@ def main():
             if prefix.exists():
                 if not marker.is_file() or marker.read_text()!=BUILD+'\n':raise ValueError('Unowned experiment prefix')
             else:
-                run('prefix',['cp','-a','--reflink=auto',a.prefix_template.resolve(),prefix]);marker.write_text(BUILD+'\n')
+                stage_prefix(ROOT, a.prefix_template.resolve(), prefix, log=Path(prefix).parent / 'prefix.log');marker.write_text(BUILD+'\n')
         owned_prefix=True;report['session_prefix']=str(prefix)
         report['wine_version']=subprocess.check_output(['wine','--version'],text=True).strip()
         report['installed_abi_sha256']=sha(Path('/usr/include/wine/windows/ddraw.h'))

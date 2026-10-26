@@ -75,7 +75,7 @@ class Workspace:
         try:
             self.db.execute('PRAGMA foreign_keys=ON')
             version = self.db.execute('PRAGMA user_version').fetchone()[0]
-            if version not in (0, 1):
+            if version not in (0, 1, 2):
                 raise ValueError(f'Unsupported bookkeeping database schema: {version}')
             self.db.executescript('''
                 CREATE TABLE IF NOT EXISTS metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
@@ -104,8 +104,15 @@ class Workspace:
                     BEGIN SELECT RAISE(ABORT, 'Receipts are append-only'); END;
                 CREATE TRIGGER IF NOT EXISTS immutable_receipts_delete BEFORE DELETE ON receipts
                     BEGIN SELECT RAISE(ABORT, 'Receipts are append-only'); END;
-                PRAGMA user_version=1;
+                CREATE TABLE IF NOT EXISTS imported_fingerprints (
+                    id TEXT PRIMARY KEY, sha256 TEXT NOT NULL);
+                CREATE TRIGGER IF NOT EXISTS immutable_fingerprints_update BEFORE UPDATE ON imported_fingerprints
+                    BEGIN SELECT RAISE(ABORT, 'Imported fingerprints are append-only'); END;
+                CREATE TRIGGER IF NOT EXISTS immutable_fingerprints_delete BEFORE DELETE ON imported_fingerprints
+                    BEGIN SELECT RAISE(ABORT, 'Imported fingerprints are append-only'); END;
             ''')
+            self.version = version or 2
+            self.db.execute('PRAGMA user_version=' + str(self.version))
             with self.db:
                 owner = self.meta('root')
                 if owner is not None and owner != str(self.root):
@@ -146,6 +153,11 @@ class Workspace:
             if row[0] != value:
                 raise ValueError('Receipt ID reused with different content: ' + review['id'])
             return
+        imported = self.db.execute('SELECT sha256 FROM imported_fingerprints WHERE id=?', (review['id'],)).fetchone()
+        if imported:
+            if imported[0] != hashlib.sha256(value.encode()).hexdigest():
+                raise ValueError('Receipt ID reused with different content: ' + review['id'])
+            return
         v = review['validation']
         self.db.execute('INSERT INTO receipts(id,reason,validation_status,validation_reason,record_json) VALUES (?,?,?,?,?)',
                         (review['id'], review['reason'], v['status'], v['reason'], value))
@@ -175,7 +187,16 @@ class Workspace:
         if [rid for rid in ids if rid in prior] != previous:
             raise ValueError('Imported receipt history removed or reordered; use the correct worktree database')
         for review in journal['reviews']:
-            self.insert(review)
+            if self.version == 1:
+                self.insert(review)
+                continue
+            body = encoded(review)
+            sha = hashlib.sha256(body).hexdigest()
+            imported = self.db.execute('SELECT sha256 FROM imported_fingerprints WHERE id=?', (review['id'],)).fetchone()
+            local = self.db.execute('SELECT record_json FROM receipts WHERE id=?', (review['id'],)).fetchone()
+            if (imported and imported[0] != sha) or (local and local[0].encode() != body):
+                raise ValueError('Receipt ID reused with different content: ' + review['id'])
+            self.db.execute('INSERT OR IGNORE INTO imported_fingerprints VALUES (?,?)', (review['id'], sha))
         self.set_meta('imported_ids', json.dumps(ids))
         return journal
 
@@ -200,6 +221,15 @@ class Workspace:
         return [r['id'] for r in pending]
 
     def find(self, *, path=None, behavior=None, status=None, limit=25):
+        if self.version == 2:
+            journal, _ = load_journal(self.root)
+            reviews = journal['reviews'] + self.pending(journal)
+            def matches(review):
+                return ((not path or any(item['path'] == path for item in review.get('files', [])))
+                        and (not behavior or any(item['id'] == behavior for item in review.get('behaviors', [])))
+                        and (not status or review['validation']['status'] == status))
+            matched = [review for review in reversed(reviews) if matches(review)]
+            return matched[:limit] if limit >= 0 else matched
         where, params = [], []
         if path:
             where.append('EXISTS (SELECT 1 FROM file_changes f WHERE f.receipt=r.id AND f.path=?)')
@@ -254,7 +284,9 @@ def _capture(root, base):
     before, commit = cli.git_snapshot(root, base)
     after, audit_report = snapshot(root)
     journal = load_journal(root)[0]
-    history = inherited_history(root, commit, after, journal)
+    # The working-tree review also needs actual pending merge parents. This
+    # recognizes inherited claims only; the combined source still faces the gate.
+    history = inherited_history(root, commit, after, journal, staged=True)
     return before, after, audit_report, journal, history, commit, head
 
 
@@ -416,7 +448,7 @@ def _finish(workspace, base, reason, validation_reason, message, index_reason=No
     Nothing is published. The normal pre-commit hook rechecks the actual index;
     a failed check/commit leaves source, accepted receipts and backups intact.
     """
-    from evidence_local import backup_sqlite, local_evidence
+    from evidence_local import retained_backup, local_evidence
 
     def measure(name, operation):
         started = time.perf_counter()
@@ -470,10 +502,12 @@ def _finish(workspace, base, reason, validation_reason, message, index_reason=No
     directory = (workspace.path.parent/'backups').resolve()
     if not directory.is_relative_to(workspace.root/'working'):
         raise ValueError('SQLite backups must remain in this worktree working/ directory')
-    backups = [measure('review_backup', lambda: backup_sqlite(workspace.path, directory))]
-    pending = workspace.root/'working/coverage/evidence-pending.sqlite3'
-    if pending.is_file():
-        backups.append(measure('evidence_backup', lambda: backup_sqlite(pending, directory)))
+    backups = [measure('review_backup', lambda: retained_backup(workspace.path, directory, workspace.root))]
+    from coverage_evidence import pending_path
+    for pending in dict.fromkeys((pending_path(workspace.root),
+                                  workspace.root/'working/coverage/evidence-pending.sqlite3')):
+        if pending.is_file():
+            backups.append(measure('evidence_backup', lambda: retained_backup(pending, directory, workspace.root)))
     git = ['git', '-C', str(workspace.root)]
     if subprocess.check_output(git + ['rev-parse', 'HEAD'], text=True).strip() != head:
         raise ValueError('HEAD changed during completion; review the new base')

@@ -842,17 +842,3 @@ restore their pointers. This migration supplies no new original-engine compariso
 or live replacement evidence.
 
 Shared local hooks may use the main checkout's absolute .githooks path. They run current gate tooling with `--root` against the selected worktree; staged content and older branch source stay local. The installer preserves an existing absolute path belonging to this checkout.
-
-For a local integration spanning several retained SQLite stores, set
-`MM_EVIDENCE_EXTRA_DBS` to a JSON array of absolute database paths. Readers open
-these additional stores read-only after the primary and pending stores, deduplicate
-resolved paths and verify each payload on every read. Missing or invalid inputs
-refuse. This environment setting propagates to the normal gate and does not
-publish evidence, hydrate reports or change source/claim freshness checks. Keep
-the referenced stores and verified backups pinned for the integration.
-
-The repository-local Git setting `mm.evidenceExtraDBs` accepts the same JSON
-array when the environment variable is unset. This keeps verified local backup
-locations available to ordinary UI/audit readers. The local evidence context
-propagates those locations to temporary Git trees and restores the prior
-environment afterward. An explicit environment list overrides the Git setting.

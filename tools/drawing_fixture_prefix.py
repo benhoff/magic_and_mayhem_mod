@@ -37,11 +37,12 @@ def borrow(root, shared):
     raise ValueError('Borrowed prefix requires a supervising exclusive lease')
 
 
-def prepare(root,run,template,shared=None):
+def prepare(root,run,template,shared=None,*,private=False):
     if shared is None:
         prefix=run/'wineprefix'
-        subprocess.run(['cp','-a','--reflink=auto',str(template.resolve()),str(prefix)],check=True)
-        return prefix,None
+        from experiment_environment import stage
+        lease=stage(root,prefix,template,persistent=private)
+        return prefix,lease
     prefix=shared.resolve()
     allowed=(root/'working/tests/drawing-fixture-prefix-suite').resolve()
     if prefix.name!='wineprefix' or not prefix.is_relative_to(allowed) or not prefix.is_dir():

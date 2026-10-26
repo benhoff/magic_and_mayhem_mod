@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Run original menu/campaign/Quick Battle journeys; retain every attempt."""
+from experiment_environment import stage_prefix
 from coverage_evidence import read_bytes as evidence_bytes, read_text as evidence_text
 import argparse
 import configparser
@@ -78,7 +79,7 @@ def capture(root, template, journey, claims=None):
                 time.sleep(.1)
             else: raise RuntimeError('No private display')
         env['DISPLAY'] = ':' + number
-        subprocess.run(['cp', '-a', '--reflink=auto', str(template.resolve()), str(prefix)], check=True)
+        stage_prefix(ROOT, str(template.resolve()), str(prefix))
         with (root / 'wineboot.log').open('x') as out:
             subprocess.run(['wineboot', '-u'], env=env, stdout=out, stderr=subprocess.STDOUT, check=True, timeout=90)
         with (root / 'channel.bin').open('r+b') as f: channel = mmap.mmap(f.fileno(), 0)

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Launch opt-in continuous native World shadow presentation beside the original game."""
+from experiment_environment import stage_prefix
 import argparse
 import importlib.util
 import json
@@ -61,7 +62,7 @@ def main():
         env.update(MNM_SCENE_EXPERIMENT=str(root), MNM_SCENE_SKIP=str(args.skip_queues), MNM_SCENE_INTERVAL=str(args.interval),
                    WINEPREFIX=str(root/'wineprefix'), WINEDEBUG='-all')
         env.pop('WAYLAND_DISPLAY', None)
-        subprocess.run(['cp', '-a', '--reflink=auto', str(args.prefix_template.resolve()), env['WINEPREFIX']], check=True)
+        stage_prefix(ROOT, str(args.prefix_template.resolve()), env['WINEPREFIX'])
         with (root/'wineboot.log').open('x') as log:
             subprocess.run(['wineboot', '-u'], env=env, stdout=log, stderr=subprocess.STDOUT, timeout=90, check=True)
         create(root/'world-channel.bin',args.verify,0)

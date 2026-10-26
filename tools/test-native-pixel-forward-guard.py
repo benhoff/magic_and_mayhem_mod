@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Exercise the actual six-family PE32 no-forward callback before a fallback."""
+from experiment_environment import stage_prefix
 from coverage_evidence import read_json, evidence_digest, write_report
 import argparse
 import importlib.util
@@ -45,7 +46,7 @@ def main():
         run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(out/'probe.exe'),out/'probe.obj',out/'kernel32.lib'])
         from drawing_fixture_prefix import borrow
         if args.borrow_fixture_prefix:prefix,_=borrow(ROOT,args.borrow_fixture_prefix);env['WINEPREFIX']=str(prefix)
-        else:run('prefix',['cp','-a','--reflink=auto',args.prefix_template.resolve(),out/'wineprefix'])
+        else:stage_prefix(ROOT, args.prefix_template.resolve(), out/'wineprefix', log=Path(out/'wineprefix').parent / 'prefix.log')
         run('wineboot',['wineboot','-u'])
         result['cases']=[]
         cases=[('partial-default',None,'1','forward',0,None,True),('partial-zero','0','1','forward',0,None,True),

@@ -20,6 +20,56 @@ reports are exemptions from blanket cleanup selection. Registered Git source
 checkouts are preserved; their ignored completed-run output can be reviewed
 separately. Automatic archiving inside experiment launch remains disabled.
 
+## Reusable experiment environments
+
+Temporary test/build/experiment runners now default to `tools/experiment_environment.py` for copied
+Wine prefixes and in-process game/media stages. A template family keeps one
+verified baseline and at most two exclusively locked working trees. Runs receive
+real private directories at their normal paths. On successful return, SQLite
+retains the complete final manifest and compressed changed/new file bytes,
+including settings, saves, ownership, modes, modification times and extended
+attributes. The next loan resets those differences to the
+verified template; unchanged files keep their existing allocation.
+
+The pool is `working/environment-pool/` in the main checkout, shared by linked
+worktrees on that filesystem. Provisioned output-volume aliases and bind mounts use a local pool
+on their own filesystem. Pool baselines and outstanding loans are pinned against
+retention cleanup. Busy clients, new user pins, changed templates, unexpected
+idle-tree changes and interrupted operations retain the tree and refuse reuse.
+There is no extra-copy fallback when both slots are unavailable. Copies onto the main drive
+use its existing free-space guard; a provisioned output filesystem uses the
+caller's capacity guard. Initial pool preparation needs storage headroom.
+
+Each run retains `environment-game.sqlite3`, `environment-wineprefix.sqlite3`,
+or `environment-native-music.sqlite3`. Restore before reading historical staged
+files that have returned to the pool:
+
+```bash
+python3 tools/experiment_environment.py --restore working/tests/<group>/<run>/environment-wineprefix.sqlite3
+```
+
+Restore verifies baseline and delta hashes and refuses an existing destination.
+An interrupted loan whose original tree remains idle can be retained and returned
+with `--recover <receipt>`. Recovery takes the exclusive lock, preserves the
+original receipt and creates a new recovery receipt. Partial moves/resets and
+foreign idle-tree modifications require review; recovery never kills clients.
+
+`MNM_REUSE_ENVIRONMENTS=0` requests the previous full private-copy/fresh-prefix
+workflow. Invalid values fail. Dedicated persistent player prefixes and stable destinations outside
+`working/tests/`, `working/experiments/` and `working/build/` keep full trees.
+Explicit fixture seed producers, user-pinned
+parents, standalone preparation commands and `--stage-only` retain full stages
+for later consumers. These exceptions remain subject to reviewed maintenance.
+Native campaign tests reuse explicitly supplied admitted prefix templates. The
+default fresh-prefix path retains its DirectPlay admission/initialization contract.
+The default user prefix in `run-game.sh` already persists and is unchanged.
+
+This is storage/lifecycle policy. Synthetic filesystem and launcher controls
+validate reset, exclusion, changed-state restoration and interrupted recovery.
+An isolated Wine11.16 registry control also verifies clean reuse and historical
+restoration. Actual-game comparisons after this provisioning change remain pending;
+historical engine evidence keeps its original source hashes.
+
 ## Periodic maintenance
 
 The user authorized periodic reviewed cleanup on 2026-10-20. Check available

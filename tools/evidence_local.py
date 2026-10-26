@@ -1,11 +1,12 @@
 """Local-only evidence access and consistent, verified SQLite backups."""
 from contextlib import closing, contextmanager
 import os
+import json
 from pathlib import Path
 import sqlite3
 import tempfile
 
-from coverage_evidence import Store, cache_root, config, digest_file, extra_databases
+from coverage_evidence import Store, cache_root, config, digest_file, pending_path, extra_pending_paths
 
 
 @contextmanager
@@ -22,14 +23,11 @@ def local_evidence(root):
         if not path.is_file() or digest_file(path) != archive['sha256']:
             raise ValueError('Evidence archive unavailable locally; run evidence-store.py fetch --verify: '
                              + archive['sha256'])
-    previous = {key: os.environ.get(key) for key in
-                ('MM_EVIDENCE_DB', 'MM_EVIDENCE_CACHE', 'MM_EVIDENCE_EXTRA_DBS')}
-    pending = root/'working/coverage/evidence-pending.sqlite3'
+    previous = {key: os.environ.get(key) for key in ('MM_EVIDENCE_DB', 'MM_EVIDENCE_CACHE', 'MM_EVIDENCE_EXTRA_DB')}
+    pending = pending_path(root)
     try:
         os.environ['MM_EVIDENCE_CACHE'] = str(cache)
-        if previous['MM_EVIDENCE_EXTRA_DBS'] is None:
-            import json
-            os.environ['MM_EVIDENCE_EXTRA_DBS'] = json.dumps(extra_databases(root))
+        os.environ['MM_EVIDENCE_EXTRA_DB'] = json.dumps([str(p) for p in extra_pending_paths(root)])
         if not previous['MM_EVIDENCE_DB'] and pending.is_file():
             os.environ['MM_EVIDENCE_DB'] = str(pending.resolve())
         yield
@@ -99,3 +97,44 @@ def backup_sqlite(source, directory):
                 'bytes': destination.stat().st_size, 'objects_verified': objects}
     finally:
         temporary.unlink(missing_ok=True)
+
+
+def retained_backup(source, directory, root):
+    """Use configured dual chunk stores for finish; private transfers stay raw.
+
+    An unconfigured checkout retains the existing materialized backup workflow.
+    A failed compaction preserves that raw verified backup and fails completion.
+    """
+    import shutil
+    import subprocess
+    from sqlite_snapshot_store import archive
+
+    def setting(key):
+        result = subprocess.run(["git", "-C", str(root), "config", "--get", key],
+                                capture_output=True, text=True, check=False)
+        return result.stdout.strip() if result.returncode == 0 else ""
+    local, cold = (setting(key) for key in ("mm.snapshotStore", "mm.snapshotColdStore"))
+    if not local and not cold:
+        return backup_sqlite(source, directory)
+    if not local or not cold:
+        raise ValueError("Configure both snapshot stores before compact completion")
+    local, cold = Path(local), Path(cold)
+    if not local.is_absolute() or not cold.is_absolute() or local.parent.stat().st_dev == cold.parent.stat().st_dev:
+        raise ValueError("Snapshot stores require independent absolute filesystem paths")
+    source, directory = Path(source), Path(directory)
+    directory.mkdir(parents=True, exist_ok=True)
+    if shutil.disk_usage(directory).free - source.stat().st_size * 1.1 < 90 * 1024**3:
+        raise ValueError("Raw snapshot staging would breach the main-drive reserve")
+    item = backup_sqlite(source, directory)
+    scratch = Path(tempfile.mkdtemp(prefix="mm-exact-snapshot-"))
+    try:
+        result = archive(item["path"], local, cold, scratch, 90*1024**3,
+                         100*1024**3, True, item["sha256"])
+        result["objects_verified"] = item["objects_verified"]
+        return result
+    finally:
+        # The source DB and raw backup or dual verified archives remain durable.
+        for path in scratch.iterdir():
+            if path.is_file():
+                path.unlink()
+        scratch.rmdir()

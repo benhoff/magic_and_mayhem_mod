@@ -1,91 +1,89 @@
 # Retained busy World comparison and rendering integration
 
-The combined tree preserves rendering closeout2403c82d, busy comparison afbd2240
-and completed windowed/natural-caller master d5e08213 through a normal Git merge.
-No web UI layout or gameplay balance change is introduced. Main integration is
-separate from the isolated branch's source/evidence validation.
+The combined branch retains rendering closeout `6cc66fc1` and completed main `6cdbbacd`.
+Fresh execution validates the selected colour contracts and retained busy World
+inputs on these combined sources. This is scoped port evidence, not acceptance
+of the whole renderer. This batch adds no web UI layout or gameplay balance change.
+Adoption into main is a separate Git closeout step that must preserve concurrent
+work; an independent staged merge is not permission to discard its state.
 
-## Current finite comparison
+## Current execution evidence
 
-[Comparison03](rendering-busy-integration-results-20261026/comparison-03.json)
-passes all sixteen800x600 World samples:19,036draws and7,680,000RGB565 pixels.
-Every WORD matches in each independent comparison:
+| Contract | Fresh result | Boundary |
+| --- | --- | --- |
+| Original colour rectangle/native CPU splice | 4,352 paired cases plus 384 boundary cases; 90,011,152 physical WORDs and caller state agree | Four modes, RGB565/RGB555, owned synthetic planes |
+| Ordered native World colour fills/blends | 192 fixtures;38,199,120 pixels agree; five refusals; no leaked surfaces | Authored RGB565 producer fixtures |
+| Retained busy World replay | 16 frames; 19,036 draws; 7,680,000 pixels; zero mismatches in all three comparisons | Historical stock-map1/fifteen-item capture, finite headless replay |
+| Local evidence workflow | 48 storage cases and 14 workflow cases pass, including an actual staged hook | Synthetic repositories; no engine credit |
 
-| Comparison | Different pixels |
-| --- | ---: |
-| Native owned-zero replay versus isolated original zero replay | 0 |
-| Native owned-zero replay versus retained live output | 0 |
-| Separate original-before diagnostic versus retained live output | 0 |
+The [fresh colour comparison](rendering-busy-integration-results-20261026/colour-comparison-master-01.json)
+and [CPU result](rendering-busy-integration-results-20261026/colour-comparison-master-01-cpu.json)
+execute the pinned unchanged original `0x547d80` contract and compare native results.
+The original No-CD build is SHA-256 40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168.
+Both original-consuming experiment batches verify the original manifest before
+and after execution. No original file is modified.
 
-There are301encoded frame identities across ten pinned SPR files. The six
-operation counts are copy18,860, half28, quarter-source28, wave64,
-quarter-destination28 and projected-shadow28. No colour rectangle occurs.
-The colour-specific comparator's earlier selection refusal remains retained;
-its eligibility test is unchanged. The new general comparator admits the full
-closed World input domain without requiring that colour-specific fixture.
+The [fresh busy comparison](rendering-busy-integration-results-20261026/comparison-04.json)
+compares native owned-zero output with independent original-zero output and the
+retained live output. A separate original-before diagnostic also matches that
+retained live output. Every RGB565 WORD is compared. Native rendering never reads
+the original destination pixels as input. Capture records, sprite identities and
+file bytes are pinned: 301 encoded frame identities across ten SPR files.
 
-The original capture is stock map1/fifteen items, after120queues at interval4.
-Its exact report, wire inputs, before/after diagnostics and sprite bytes were
-restored from verified raw archives and fixture aliases. Native replay consumes
-only closed owned records, pinned assets and an independently zeroed canvas.
-Captured destination pixels enter only the separate original diagnostic process.
-No original destination pixels seed native rendering.
+The six busy operation counts are copy 18,860, half 28, quarter-source 28, wave 64,
+quarter-destination 28 and projected-shadow 28. There are no colour rectangles in
+this capture; the separate 192 colour fixtures provide that coverage. The
+colour-specific comparator's earlier selection refusal remains historical
+negative evidence; its eligibility rule was not weakened.
 
-This is fresh offline comparison of historical inputs using the pinned unchanged
-No-CD executable40209ca7. The original acquisition's broad tooling fingerprint
-set is historical after reader/test edits; its recorded hashes are unchanged.
-Finite capture does not establish normal Quit, fresh live hook behavior,
-continuous presentation, hardware, all-writer ownership or replacement.
+## What this does and does not establish
 
-## Source and coverage boundaries
+[Current source impact](rendering-busy-integration-results-20261026/latest-source-impact-05.json)
+checks complete declared source fingerprints and behavior/scenario contracts.
+Both fresh comparisons remain exact after the completed pixel-master merge;
+that merge changes no source exercised by these comparisons. Older result hashes
+are preserved. The preceding colour run has five changed source paths and the
+older presentation cohorts have 32–33; their historical results do not validate
+the combined current tree. The new results receive new evidence identities.
 
-[Latest source impact](rendering-busy-integration-results-20261026/latest-source-impact-03.json)
-confirms the busy comparison's sources and contract remain exact after the
-completed master merge. Colour CPU and192World fixture fingerprints also remain
-exact. Older RCL26 presentation cohorts remain historical after seven changed
-capture/reader paths. Their hashes and negative physical controls are unchanged;
-current whole-session equivalence is not claimed. The interim impact02 record's
-incorrect current-result field is preserved and corrected under a new identity.
+Execution uses Xvfb/Mesa software rendering. Busy replay reuses immutable capture
+inputs rather than acquiring a new hook run. This does not establish natural
+mode 2/3 colour reachability, active-World large-fill observation, RGB555 World
+ingestion, normal Quit, continuous presentation, hardware, all-writer ownership
+or live replacement. Newly inherited alternate/rolling ownership and other
+unexercised paths retain their independent parent evidence. No global renderer
+stage or gameplay balance claim is promoted.
 
-The [history review](rendering-busy-integration-results-20261026/history-04.json)
-checks6332 committed file transitions with no unresolved receipts, including two
-verified retrospective helper/archive transitions from the incoming windowed
-history. Retrospective accounting asserts no past gate pass or new engine result.
-Incoming windowed and natural-caller contracts retain their independently scoped
-parent evidence; this busy replay grants them no additional validation.
+## Accounting and reproducibility
 
-The historical [first combined audit](rendering-busy-integration-results-20261026/audit-02.json)
-has no errors. Broad helper fingerprints make other earlier reports historical;
-this is not evidence that their engine output changed. The final normal gate
-checks the actual combined tree, census, evidence links and exact review.
+The current central register links the fresh evidence to RS.world-frame,
+RS.colour-rectangle-pixels, NP.colour-rectangle-admission and NR.world-constant-fill
+within their existing scopes. Understanding, implementation, original comparison,
+headless integration and live replacement remain independent. Unknown binary
+ranges and the inherited classification backlog remain visible.
 
-## Local SQLite readers and controls
+Committed-history review checks exact parent/current file hashes. Eighteen unique
+environment-reuse artifact additions occurred in two incoming commits without
+exact receipts; their stored bytes were verified and retrospective receipts
+appended. One retained negative pixel-closeout log received the same treatment.
+These repairs assert neither a historical gate pass nor new engine execution.
+The earlier incomplete history reports remain retained alongside the final check.
 
-Optional MM_EVIDENCE_EXTRA_DBS supplies up to32 local read-only SQLite sources.
-The optional repository-local mm.evidenceExtraDBs setting supplies the same list
-when the environment is unset. Primary/pending precedence, per-read payload hash
-checks and source/claim freshness remain enforced. The local evidence context
-propagates sources to temporary staged trees and restores the prior environment.
-No persistent main-checkout setting is required by this batch's execution.
+The integrated tree uses main's existing shared pending/read-only auxiliary
+SQLite workflow. The earlier isolated plural-variable prototype and its 49-case
+controls remain in Git/evidence history; current controls are
+[48 storage cases](rendering-busy-integration-results-20261026/reader-controls-master-01.json)
+and [14 workflow cases](rendering-busy-integration-results-20261026/reader-workflow-master-01.json).
+Payload verification remains mandatory. No persistent Git setting was changed
+by this rendering integration.
 
-[49SQLite unit cases](rendering-busy-integration-results-20261026/reader-controls-04.json)
-and [14local-workflow cases](rendering-busy-integration-results-20261026/reader-workflow-06.json)
-pass, including corruption rechecks and the actual staged hook. Earlier failed
-fixture/environment runs remain negative records with their exact source
-variants. Those failures and later synthetic passes grant no engine credit.
-
-## Retention
-
-The first raw capsule passed complete SQLite restoration and member hash/mode
-verification. New executions and helper variants are preserved separately;
-historical inputs remain in their pinned raw/fixture archives. Standard finish
-keeps the normal Git hook enabled and retains verified SQLite review/evidence
-backups. The final pending store is a delta alongside the verified full base and
-incoming source backups; no historical payload hash is refreshed.
-
-[Backup relocation](rendering-busy-integration-results-20261026/backup-relocation-final.json)
-retains exact backup bytes, both location receipts and the original source path
-as an alias. The earlier reserve-postcondition failure remains explicit; other
-writers affect filesystem free-space changes. The already approved88GiB main
-floor applies to this follow-up closeout; the secondary100GiB floor is unchanged.
-No source push or evidence publication is part of this batch.
+The [fresh raw capsule](rendering-busy-integration-results-20261026/raw-catalog-master-01.json)
+round-trips through SQLite and verifies all 1,002 members by hash, size and mode:
+53,848,502 compressed bytes, 280,299,369 member bytes. It retains binaries,
+inputs, outputs, logs and producer helpers. Historical captures/SPR inputs remain
+in their pinned prior capsules. An archive-verifier API failure is retained;
+a separate corrected verifier completed every member check. Rebuildable object
+files outside the test outputs are temporary execution data. Exact source trees,
+review workspaces and verified local SQLite backups preserve reproducibility.
+Normal staged coverage checks and Git hooks remain required. Nothing is pushed,
+published or transferred to a private host by this batch.

@@ -1,3 +1,112 @@
+## Alternate canvas integration with landed master (2026-10-26)
+
+The [final integration](alternate-completion-master-20261026.md) combines
+`32d98913` and native-player master `c8733033`. Fresh native controls pass 54
+frames, 144 prepared replays, 94,112,736 pixel checks and six explicit context
+rebuilds. Fresh padded asynchronous and Save/Load/rebuild journeys complete 282
+and 492 Worlds with normal Quit and private Wine cleanup. Four complete World
+checkpoints match unchanged original raster entries across 1,920,000 words.
+Original low/high failed-copy attribution remains source-current. Original
+alternate allocation/publication and arbitrary physical device reset remain
+open. Earlier execution fingerprints and failed attempts are retained; unrelated
+pending workspace edits receive no validation credit.
+
+## Original campaign copy attribution and native padded World — 2026-10-26
+
+Fresh original call/return observations attribute enabled campaign entry failure
+to4b2e1c/58c03a: full736/896-wide source and destination Blt rectangles overflow
+640/800-wide capture surfaces and return88760096 before World. Both alternate
+slots remain zero; allocator/publication/initial pixels/base-source relation,
+writers and retirement remain unresolved. Original code and rectangles are unchanged.
+
+Intentional native padded backing with visible GPU scratch passes54frames,
+144prepared replays,94,112,736pixel checks and six explicit context rebuilds.
+Async padding4/3 completes303Worlds; padded96/0 Save/Load/rebuild completes737,
+with normal Quit. Four full World checkpoints match unchanged original rasters:
+1,920,000RGB565words,zero mismatches. Independently acquired original sessions,
+physical/in-flight device loss,whole-renderer acceptance and original alternate
+semantics remain separate. Historical hashes,failed attempts and stage limits
+are retained. See [scope and evidence](alternate-completion-20261026.md).
+
+## Alternate observation branch master synchronization — 2026-10-25
+
+Master d77015d4 is combined with a5ae70a7,retaining both parents' scoped evidence,
+unknowns and independent stages. The merged Qt shell builds;16 journey controls
+and429 actual native owned-surface checks pass. Fresh original debug-enabled
+campaign entry still produces the invalid-rectangle modal before World at both
+resolutions,with both alternate slots zero. That original/menu-observer/Wine
+probe does not load the new native surface or source-capture implementations.
+Pending-merge bookkeeping now reads actual Git parents, with synthetic inheritance/refusal and exact combined-source review controls. No original rectangle correction or allocation chain is inferred. Historical
+completed disabled journeys and native resident-owner evidence retain their
+hashes/freshness. See [merge findings and validation](alternate-master-sync-20261025.md).
+
+## Original campaign alternate-pointer observations — 2026-10-25
+
+Two debug-disabled original campaign processes complete Save,Mini Load,three
+Quit/defeat/Main returns,two display rebuilds and Main Loads at both resolutions,
+then normal Quit:2,838 World dispatcher entries,zero slot writes/publications.
+All reported created threads remain watched;the authored main/worker control
+catches all eight transient writes. Enabled640/800 campaign entry instead
+shows the original invalid-rectangle modal before World. Its exact failing
+API/operands and enabled continuation remain pending. The established enabled
+Quick Battle prefix does not cover this branch.
+
+Sixteen navigation/diagnostic controls and15 retained-image title checks pass.
+Owned fixture fixes service the unchanged host lease,recognize Mini without
+waiting on paused World,use child-owned Win32 geometry and exact Hermes title
+selection,and reapply no-CD-music settings before each fresh process.
+Failed/guard-interrupted runs and lost declarations remain separate negatives.
+SQLite source/raw retention and exact coverage reviews preserve historical
+hashes;shared instrumentation changes do not renew old API/pixel evidence.
+
+Original alternate allocation,publication,initial pixels,base/source relation,
+all writers and retirement remain unresolved. RS.alternate-canvas-provenance
+keeps partial/partial/none/none/none stages. The separately validated native
+resident owner remains intentional native policy. See [method,results and
+remaining boundaries](alternate-writer-journeys-20261025.md).
+
+## Official1.100 alternate-owner recovery boundary — 2026-10-25
+
+The supplied official update is reproducibly unpacked by its unchanged x86
+extractor,stopping before program launch. Its original synchronous RTPatch API
+then reconstructs unmodified1.100 in a fresh hash-verified retail copy. All4,834
+baseline files and original manifests pass before/after;the private prefix
+retires. The updated executable is SHA405001ab and retained in SQLite.
+
+All stored sections match NoCD except16bytes at four drive/media branches.
+Complete display-rebuild,initializer,graphics-shutdown,canvas-retirement and
+both copy bodies are byte-identical,as are the five/two pointer-read literals.
+The reviewed NoCD edits did not remove those original ownership-related bodies.
+This is static artifact recovery;no game was launched or native policy promoted.
+Original allocator,publication,initial pixels,base/source relationship,writers
+and retirement ownership remain partial. Unknown computed/bulk/external writers
+prevent a global dormant/unimplemented claim. See [exact findings,refusals and
+reproduction](alternate-original-update-recovery-20261025.md).
+
+## Native resident alternate canvas integration and original CFG search — 2026-10-25
+
+The opt-in native resident World route now owns a separate zero-padding GPU
+canvas under the existing native publication/frame lease. It seeds only native
+history, copies completed World back before UI, preserves prepared/retained
+replay and ordinary output leases across replacement, and retires on the render
+owner. Both640/800 modes,full-plane independent pixels,split checkpoints,invalid
+history and abandoned-frame cleanup pass:18source frames,48replays,29,721,600
+checks and zero remaining surfaces. Final live Apprentice observation passes
+255balanced source/import/return Worlds,556extra replays,811copy-backs,zero
+World/native/RGBA readbacks and normal Quit. `NP.alternate-canvas-resident-session`
+is scoped/live-observation; it does not publish either original pointer slot.
+
+Original recovery reviews542,955byte-checked instructions with direct-CFG
+constant propagation and11unit controls. Only the three established padding/flag
+writes overlap the reviewed globals;no pointer publisher is identified. All
+53,977computed stores,2,945unbounded bulk sites and2,948indirect edges remain
+open;27bounded bulk ranges do not overlap the pointer pair. Original allocator,
+natural publication,clear,base/source relationship,writers and retirement stay
+partial. Padded live semantics,async/device-recovery live runs,complete original
+frames and performance remain pending. Initiate Summon Zombie tutorial attempts
+retain the existing Mini/Hermes refusal;the game/tutorial is unchanged.
+See [integration,final evidence and retained failures](alternate-canvas-live-integration-20261025.md).
+
 # Engine modernization coverage ledger
 
 ## Windowed diagnostics merged with current master — 2026-10-26
@@ -24,6 +133,20 @@ replacement stage is promoted. Exact failures, unique sources and pinned RAM-run
 inputs are retained in SQLite. Windowed Qt input-target discovery is the next
 bounded frontier; cause attribution and full caller/reader/ownership closure
 remain pending. See [findings and limits](native-windowed-copy-readers-20261025.md).
+
+## Reusable experiment environments — 2026-10-26
+
+Host staging now defaults to bounded, exclusively leased Wine-prefix and
+in-process game/media pools, with full final manifests and changed bytes retained
+in SQLite before return/reset. Native campaign reuse applies to admitted prefix
+templates; fresh-prefix admission remains unchanged. Standalone preparation and
+pinned/explicit fixture outputs remain durable.
+86filesystem and launcher controls cover reset, exclusion, restoration
+and interrupted recovery. An isolated Wine11.16 registry reset/restore control
+also passes on a real bind-mounted output group. Persistent player prefixes
+retain their full-tree lifetime. Complete Wine/game integration after this source change
+remains pending; no engine comparison or replacement status is promoted and old
+source hashes remain unchanged. See [scope and limits](environment-reuse-20261026.md).
 
 ## Native alternate canvas owner merged with current rendering — 2026-10-25
 
@@ -14098,7 +14221,7 @@ caller/module identity, branch flags, generations, resource IDs and FIFO ranges;
 incomplete, dropped, overflowed or unclosed evidence refuses validation.
 
 A current NoCD native V3 journey completes Save/Load, both display rebuilds,
-changed-canvas Main Load and original normal Quit. All867admitted GPU-copy calls
+changed-canvas Main Load and original normal Quit. All 867admitted GPU-copy calls
 match native COPY ranges with zero errors/mismatches:443at return PC0x58c05d
 (including4bootstraps),9at0x58c488 and415at0x58c5be. These belong to the already
 registered whole opaque/rectangle wrappers0x58bf40/0x58c360/0x58c4a0. No new
@@ -23269,6 +23392,48 @@ its unmet selection requirement rather than claiming a native match.
 See [scopes, evidence and reproduction](rendering-closeout-20261026.md). Coverage
 stages remain independent; no web UI layout or gameplay balance changes.
 
+## Native renderer player default — 2026-10-25
+
+The [player launcher](../../docs/native-player-launch.md) routes ordinary
+`run-x86.sh` launches through `run-native.sh` into the existing strict native-only
+owner. Original-renderer launch requires `--original-renderer`; the internal
+original backend and configurable Qt diagnostic launcher remain available.
+The wrapper reserves 4 GiB through the existing storage guard, initializes or
+checks a separate persistent owned prefix, leases it against concurrent player
+launches and never kills a busy server for reuse. Initialization delegates
+binary checks/install to the existing supplied DirectPlay helper and verifies
+original manifests before/after. Failed initialization remains inspectable.
+
+`NP.native-player-launch` and `NPL.player-controls-20261025` record 15 passing
+in-memory orchestration/actual Bash-routing controls, with stable source
+fingerprints. Installer, filesystem and owner operations are mocked. The first
+15-control attempt's Bash harness argument error is documented separately; it
+was corrected without executing Wine. The report is an immutable SQLite-backed
+reference. The main-drive preflight refuses at 89.92 GiB free, below the required
+90 GiB reserve, so actual prefix initialization, Qt build and live session
+acceptance remain pending. Native-only selection does not establish full-game
+pixel equivalence, complete original-pixel replacement or hardware performance.
+Original simulation still runs in Wine. Existing evidence is not refreshed.
+
+## Public native player acceptance — 2026-10-26
+
+[The bounded player acceptance](native-player-acceptance-20261026.md) completes
+actual default-prefix initialization and reuse through `run-x86.sh`.
+`NPL26.fresh05`/`NPL26.reuse05` complete458/563 balanced Worlds and3542/4174
+cursor calls,all18 hooks and386 linked compiler inputs,physical stress,Mini/No/Yes
+and original normal Quit,with zero cursor/graphics owners. The prefix marker
+survives reuse unchanged. `NPL26.controls04` supplies15 separate mocked/routing
+controls. Software GL,skip movies and no native music bound this acceptance;
+whole-game pixels,hardware/long-duration/maps/saves/media defaults remain separate.
+
+The harness respects the selected owner prefix and bounds resubmission of an
+unaccepted report click to the identical ready visit. Each accepted final case
+needed one click. Earlier fixture,prefix,compiler-declaration and report-timeout
+failures retain their own immutable records and source versions. Full SQLite
+artifact retention and byte-verified RAM restorations precede namespace teardown.
+The authored player policy receives scoped implementation/live integration;
+original comparison/replacement remain none. Existing screen helpers are reused.
+
 ### Main/World/report acquisition and composed retirement — 2026-10-26
 
 `RS.main-screen-acquisition`, `RS.world-screen-acquisition` and
@@ -23366,3 +23531,232 @@ zero differences across16frames/19,036draws/7,680,000pixels.49SQLite and14local
 workflow cases pass. Earlier presentation fingerprints remain historical after
 seven capture/reader edits; colour CPU/World source fingerprints remain exact.
 No whole-session or replacement promotion is made.
+
+### Public player combined-master verification — 2026-10-26
+
+The player acceptance is combined with committed master1ffeb53e. New immutable
+`NPL26.fresh06`/`NPL26.reuse06` execute the actual public default entrypoint on
+that combined source: 399/465 balanced Worlds, 3426/3541 cursor calls, all 18
+hooks/eight client categories, 386 linked compiler inputs and 2,887 exact source
+bindings per case. Each uses one admitted report click, ends in normal original
+Quit and retires all cursor/graphics owners. The marker survives prefix reuse
+unchanged. The two cases restore 9,593/9,579 regular files from SQLite archives.
+Earlier failed and accepted attempts retain their original bindings and bytes.
+Software GL, movie/music flags, native-policy scope and original comparison/
+replacement boundaries remain unchanged. All 38 combined planning controls pass.
+
+The committed-history review adds exact retrospective accounting for 38
+screen-acquisition log artifacts outside the ordinary suffix census. It does
+not assert that an earlier gate included them. The initial generated summary
+is retained byte-exact under a supported SQLite-backed summary filename; the
+first commit is preserved. A cached retention verifier preserves original gzip
+bytes after comparing complete tar streams and independently restores every
+regular file. Interrupted retention/backup diagnostics and the user-approved
+bounded storage allowance remain separate from engine validation.
+
+### Public player final capture-policy integration — 2026-10-26
+
+Masterd5e08213 and player8d778197 are combined with both parents preserved.
+The single Qt Run-state overlap retains the incoming native capture request
+and existing report-admission/prefix ownership fields. New `NPL26.fresh07`/
+`NPL26.reuse07` complete 384/385 balanced Worlds, 3334/3418 cursor calls, all
+18 hooks/eight client categories, 386 compiler inputs and 2,896 exact source
+bindings per case. Both accept one report Continue, end in normal original
+Quit and retire every cursor/graphics owner. The real default prefix is
+initialized once, then reused with the same marker. Each case restores 9,589
+regular files from SQLite. Earlier accepted and failed executions remain
+immutable historical records, including the1ffeb53e intermediate acceptance.
+
+`NPL26.controls07` passes 15 mocked/routing controls on the final source. All
+38 planning controls pass after explicitly listing four newly landed native
+diagnostic contracts as unrated; no importance or status is assigned. The
+initial missing-expectation failure is retained. Four further committed
+transitions for two windowed-reader raw artifacts receive exact retrospective
+receipts. All 984 new incoming payloads are verified against 13 retained local
+SQLite backups. Native softwareGL/media-flag scope and independent original
+comparison/replacement boundaries remain unchanged. All 18 existing main
+pending paths are retained separately before the owned final reservation.
+
+
+## Host storage consolidation — 2026-10-26
+
+HOST.storage-retention records host storage controls separately from engine
+behavior: exact dual SQLite snapshots, compressed archive history, compact review
+indexes, shared immutable report writers and tested source restoration.
+[Storage evidence](storage-consolidation-20261026.md) retains operation receipts
+and remaining protected/active inputs. No gameplay, recovered-contract,
+comparison or live replacement status is promoted.
+
+## Combined strict native Qt and terrain lighting — 2026-10-26
+
+[Combined acquisition](terrain-light-normal-session.md#combined-strict-native-qt-acquisition--2026-10-26)
+tests the pinned No-CD build with the public Qt campaign actions and strict
+private native-output owner. TLQT26.observation completes275original-active
+lighting updates,32unchanged-PE32/ASan/UBSan comparisons,355balanced Worlds,
+Mini Cancel and Quit No/resume/Yes, original exit0 and graphics/worker retirement.
+The native120-second-per-phase attempt (TLQT26.native-timeout) completes one
+121.827-second physical phase/599actions and1,877native updates without mismatch,
+then request1,878exceeds the100ms budget (106ms observed; late worker wall175466us).
+The closed latch retains original fallback. The harness stops the failed attempt;
+the second phase and normal completion do not pass. All32native captured replies
+still match unchanged original and sanitized replay.
+
+TLQT26.qt-save-refusal separately reaches strict glyph admission reason15 at
+original581ec0 while submitting Save with original-active lighting, after62updates
+without lighting error. Original exit124precedes a nonempty save; Load, the two
+resolution changes and saved-map World reconstruction are not reached. The
+precise global/clip/coverage/frame-span rejection remains unresolved. The existing
+NR.glyph-live-admission entry retains this negative finding without a promotion.
+
+TLQT26.worker-loss passes128native updates,32independent comparisons, checked
+worker termination,117original fallback updates and original exit0/worker reaping;
+the selected backend/strict launcher correctly reports1. The live native Qt binary
+and386compiler dependencies are retained. Execution uses llvmpipe/four Mesa
+threads; hardware/FPS, arbitrary maps/saves and long-duration acceptance remain
+independent. Original manifests verify before/after; new evidence and setup failures
+use SQLite. No implementation/status promotion or default change is made. Resolve
+the Save glyph refusal and spontaneous lighting timeout before default rollout.
+
+TLQT26.abnormal-worker-lifetime additionally records an owned lighting worker
+left alive after the failed strict Save acquisition: original exit124, host parent1,
+started-only lifecycle and no worker outcome. Closeout verified exact PID/start
+ticks/executable and terminated only that orphan. Abrupt Qt/launcher cleanup
+remains unaccepted despite normal-Quit and deliberate worker-loss success.
+
+
+## Strict Qt lighting blocker fixes — 2026-10-26
+
+[Fixed-source acquisition](terrain-light-normal-session.md#fix-batch--2026-10-26)
+separates the observed Save geometry failure, worker processing overhead and
+abnormal worker lifetime from earlier supplier/reconstruction completion.
+Glyph clips now preserve original layout branches while every visible write
+rectangle is checked against independent native storage. The isolated
+RGB565/555original comparison passes1152complete comparisons;768native paths
+bypass the original body, and the sanitized controls refuse overhanging writes
+atomically. Unsupported strict glyphs still terminate with124.
+
+The worker uses direct checked byte decoding and cached derived kernels,
+restoring all request buffers and producer states. The100msdeadline and permanent
+fallback latch remain unchanged. Twelve actual worker controls pass, including
+supervisorSIGTERM cleanup andSIGKILLparent-death protection. A killed supervisor
+can lack its final outcome row; this never implies successful completion.
+
+Current-source strict native Qt original-active observation completes264updates
+through Save/Load, two resolution changes, Main Load World reconstruction and
+normal Quit. Native replacement completes the same journey with240applied
+updates and a7msmaximum wait. The two120-second stress phases complete2434native
+updates with zero fallback/refusal/mismatch,17msmaximum wait and5252usmaximum
+worker compute. Each journey retains32unchanged-original/sanitized comparisons
+and clean graphics/worker retirement. Expected worker loss continues original
+fallback and normal original Quit while correctly reporting selected-backend
+failure. Historical failure evidence and source hashes remain unchanged.
+
+TLQF26evidence closes these observed blockers within the named scenarios. It does
+not establish arbitrary-map/save coverage, hour-long stability, hardware/FPS
+acceptance or default rollout. Original scheduler, loader/serializer and resource
+owners remain original; no gameplay balance or lighting default changed.
+
+
+## Terrain lighting fixes integrated with master — 2026-10-26
+
+The integration combines master `96ae7c2c` with lighting validation/fixes
+`9dacdf34` and `e486a0f9`. All twelve incoming changed production/test files
+retain their exact validated bytes; master's intervening work is preserved.
+`TLQM26.controls` passes twelve actual worker/channel controls on the combined
+tree, including SIGTERM cleanup, SIGKILL parent-death protection and worker loss.
+The glyph admission test passes twenty-five atomic refusals under ASan/UBSan.
+No original executable or new installed journey runs during this integration.
+
+The exact history review covers24commits and8636file transitions, adding2027
+artifact-only retrospective receipts across four commits. These preserve exact
+parent/current hashes without asserting past gate passes or new engine validation.
+See `terrain-light-master-results-20261026/history02.json` and
+`source-preservation01.json`. New generated reports use SQLite references.
+
+The combined-source audit has zero errors and fresh merged worker controls.
+Intervening Qt/World/launcher changes make the older TLQF26 installed journey
+source bindings historical; combined-master live Save/Load, stress and strict
+renderer acceptance remain pending. Original glyph/worker isolated comparisons
+retain their original fingerprints. No engine status or default is promoted;
+lighting remains original by default. The unrelated pending main-checkout storage
+work stays outside this commit and is preserved during the fast-forward.
+
+
+## Row-copy and brighten outgoing virtual services — 2026-10-26
+
+`RE.pixel-helper-unlock-dispatch` closes the three selected outgoing service
+identities retained by the five-helper computed-call scan. Original successful
+CreateSurface stores Surface1 at wrapper+4, QueryInterface stores Surface2 at+8,
+Lock uses+8 and the three helper-tail calls use+4 slot32 Unlock(base pixels).
+Row-copy unlocks source then destination regardless of the first result; brighten
+unlocks its sole surface. Zero-sized draw controls still retire. Final EAX is
+the last unchecked Unlock HRESULT. Optional early Unlock remains additional.
+
+`PVIRT.scripted-20261026` passes 512 cells per optimized32 and ASan/UBSan32
+variant: 1024 original creations, 768 selected dispatches and4,194,304 guarded
+physical WORD comparisons each. `PVIRT.driver-20261026` passes64 real Wine 11.16
+RGB565/RGB555 system-memory cells,128 created Surface1/2 alias pairs and96 tail
+dispatches plus48 early Unlocks. Selected targets resolve to built-in
+`ddraw.dll+0x29f70` for its retained DLL hash; no fixed cross-launch address is
+assumed. The early-Unlock cohort returns actual DDERR_NOTLOCKED at the later
+tail calls. All 2,927 original inputs verify before/after. Original selected
+instructions remain active and unchanged. See [contract and evidence](pixel-virtual-services-20261026.md).
+
+The central three-site dispatch entry is complete within this admitted receiver
+scope. Discovery inventory boundaries, unresolved global indirect flows, all
+five natural incoming callers,43-route denominator and38-route historical union
+remain. Existing native pixel splices already retain these original tails; no
+production code or implementation/comparison/integration/replacement status is
+promoted. Failed Lock/loss/Restore, asynchronous alias lifetime, arbitrary receiver
+mutation, other drivers and installed/live acceptance remain separate. Earlier
+fixture, quota, display and already-stopped-server failures remain immutable.
+
+### Pixel virtual-service integration into current master — 2026-10-26
+
+Merge af4bc1ae into 8c23937a retains the recovered three Surface1 Unlock sites and both original-execution results. Combined-tree coverage audit and planning/caller controls are retained under [integration results](pixel-virtual-master-results-20261026/audit02.json). The [history review](pixel-virtual-master-results-20261026/history02.json) accounts exact transitions across both committed parent histories, including ancillary artifacts; it asserts no historical gate pass or new engine comparison. Incoming source/test bytes remain exact; master changes and pending contributor edits are preserved separately. No native implementation, integration, replacement or natural incoming caller status is promoted. Unrelated historical evidence staleness remains pending.
+
+Combined-tree limitation: PVIRT.scripted-20261026 and PVIRT.driver-20261026 retain their exact successful source fingerprints. Master has since changed tools/coverage_evidence.py and tools/drawing_fixture_prefix.py, so these comparisons are historical/stale for the combined tree. The recovery fixture, runner and recovered contract bytes remain unchanged; the merge does not assert current-code original comparison. A new comparison, under a new evidence ID, is required before claiming that validation on the combined source set.
+
+The planning regression first failed because the existing master NP.native-only-launch-contract test link to tools/test-terrain-light-qt-session.py was absent from its work-review source fingerprints. Static review adds only that missing test hash and preserves the complete prior work review, all prior hashes and historical validation/acceptance. The failing controls01 report remains immutable; follow-up controls use a new report.
+
+Follow-up controls02 passes37/38 planning tests and all34 caller tests; its remaining assertion omitted three already-landed master alternate-canvas contracts from the explicit unrated expectation. Add exactly NP.alternate-canvas-padded-resident, NP.alternate-canvas-resident-session and RS.campaign-padded-presentation-error to that expectation, leaving weights/statuses unchanged. Controls03 reruns that affected test; other37 planning checks and34 caller checks retain their passing controls02 result. Audit02 precedes this expectation-only test change; final source census and staged coverage gate review the committed tree.
+
+### Rendering closeout with retained busy World inputs — 2026-10-26
+
+The rendering branch combines closeout `6cc66fc1` with completed main `6cdbbacd`.
+[Fresh busy replay](rendering-busy-integration-results-20261026/comparison-04.json)
+compares all 16 retained frames: 19,036 draws and 7,680,000 RGB565 pixels. Native
+owned-zero, independent unchanged-original zero and retained live output agree;
+the separate original-before diagnostic also agrees. Original destination pixels
+never seed native rendering. This is finite replay of historical inputs, with
+301 frame identities across ten pinned SPR files, not a new live hook journey.
+
+[Fresh colour execution](rendering-busy-integration-results-20261026/colour-comparison-master-01.json)
+renews the scoped CPU and World comparison on the combined sources: all four
+modes and RGB565/RGB555 CPU planes/caller state, 384 extended boundary cases,
+and 192 authored ordered RGB565 World fixtures covering 38,199,120 pixels.
+Five refusals pass; no surfaces leak. Both original-consuming batches verify
+the immutable-input manifest before and after execution. Existing evidence
+hashes remain unchanged; these executions have new evidence IDs.
+
+The [source check](rendering-busy-integration-results-20261026/latest-source-impact-05.json)
+confirms both fresh reports' complete declared sources and contracts remain
+exact after the completed pixel-master merge. Older presentation cohorts retain
+32–33 changed source paths and receive no current-code acceptance. Software
+headless fixtures do not establish natural colour-mode reachability, RGB555
+World ingestion, active-World large fills, normal Quit, continuous presentation,
+hardware, all-writer ownership or replacement. Inherited alternate/rolling
+contracts keep their independent evidence. No whole-renderer status is promoted.
+
+Main's existing shared pending/read-only auxiliary SQLite policy replaces the
+isolated branch's duplicate prototype. Current controls pass 48 storage and
+14 local-workflow tests; prior 49-case prototype controls remain historical.
+No persistent Git setting, UI layout or gameplay balance change is introduced.
+Retrospective exact receipts cover 18 verified environment artifacts appearing
+in two parent commits and one retained negative pixel-closeout log; this is
+storage accounting, not a claim of historical gate success or engine execution.
+The fresh execution capsule restores all 1,002 members with matching hashes,
+sizes and modes. Its failed initial verifier API call remains recorded alongside
+the corrected full verification. Main adoption remains a separate Git closeout
+step preserving concurrent staged work.
+

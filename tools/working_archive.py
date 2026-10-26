@@ -1,5 +1,6 @@
 """Verified content-addressed cold storage for completed working-run payloads."""
 from contextlib import contextmanager
+from storage_catalog import records as catalog_records, append as append_catalog
 from datetime import datetime, timezone
 import fcntl
 import hashlib
@@ -62,12 +63,7 @@ def safe_source(root, name):
 
 
 def write_record(path, record):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open('a') as out:
-        out.write(json.dumps(record, sort_keys=True) + '\n')
-        out.flush()
-        os.fsync(out.fileno())
-    sync_directory(path.parent)
+    append_catalog(path, record)
 
 
 def verify_object(blob, expected, size):
@@ -248,11 +244,9 @@ class Archive:
 def restore(root, destination, name):
     target = safe_source(root, name)
     row = None
-    with (destination / 'catalog.jsonl').open() as catalog:
-        for line in catalog:
-            item = json.loads(line)
-            if item['path'] == name and item['state'] in ('verified', 'pruned'):
-                row = item
+    for item in catalog_records(destination / 'catalog.jsonl'):
+        if item.get('path') == name and item.get('state') in ('verified', 'pruned'):
+            row = item
     if row is None:
         raise ValueError('Path not present in archive catalog: ' + name)
     expected_blob = 'objects/' + row['sha256'][:2] + '/' + row['sha256'] + '.zst'

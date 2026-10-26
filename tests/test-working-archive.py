@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Verify archive crash boundaries, deduplication, restoration and path guards."""
+from contextlib import closing
+import gzip
+import hashlib
+import sqlite3
 import json
 import os
 from pathlib import Path
@@ -26,6 +30,69 @@ class ColdStorage(unittest.TestCase):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(bytes(range(256)) * 8192)
         return path
+
+
+    def compact_history(self):
+        from storage_catalog import install_index
+        catalog=self.destination/'catalog.jsonl'
+        original=catalog.read_bytes()
+        sha=hashlib.sha256(original).hexdigest()
+        blob=self.destination/('catalog-history-'+sha+'.jsonl.gz')
+        with blob.open('wb') as output:
+            with gzip.GzipFile(filename='',mode='wb',fileobj=output,mtime=0) as encoded:
+                encoded.write(original)
+        install_index(catalog,sha,len(original),blob.name,hashlib.sha256(blob.read_bytes()).hexdigest())
+        catalog.write_bytes(b'')
+        return blob
+
+    def test_history_and_new_append_journal_restore_latest_version(self):
+        path=self.payload()
+        self.archive.store(path,True)
+        self.compact_history()
+        storage.restore(self.root,self.destination,path.relative_to(self.root).as_posix())
+        self.assertEqual(path.read_bytes(),bytes(range(256))*8192)
+        path.write_bytes(b'new retained version')
+        self.archive.store(path,True)
+        storage.restore(self.root,self.destination,path.relative_to(self.root).as_posix())
+        self.assertEqual(path.read_bytes(),b'new retained version')
+
+    def test_corrupt_catalog_history_refuses_before_restore(self):
+        path=self.payload()
+        self.archive.store(path,True)
+        blob=self.compact_history()
+        blob.write_bytes(b'broken history')
+        with self.assertRaises(ValueError):
+            storage.restore(self.root,self.destination,path.relative_to(self.root).as_posix())
+        self.assertFalse(path.exists())
+
+    def test_catalog_history_size_and_path_guards(self):
+        path=self.payload()
+        self.archive.store(path,True)
+        self.compact_history()
+        index=self.destination/'catalog.jsonl.history.sqlite3'
+        with closing(sqlite3.connect(index)) as db, db:
+            db.execute('update histories set size=size-1')
+        with self.assertRaises(ValueError):
+            storage.restore(self.root,self.destination,path.relative_to(self.root).as_posix())
+        with closing(sqlite3.connect(index)) as db, db:
+            db.execute("update histories set blob='../outside.gz'")
+        with self.assertRaises(ValueError):
+            storage.restore(self.root,self.destination,path.relative_to(self.root).as_posix())
+        self.assertFalse(path.exists())
+
+    def test_failed_catalog_readback_keeps_source(self):
+        from storage_catalog import append
+        path=self.payload()
+        # Seed an existing corrupt SHA-addressed record for the next append.
+        catalog=self.destination/"catalog.jsonl"
+        record={"path":"working/example","state":"verified"}
+        append(catalog,record)
+        dbpath=catalog.with_name(catalog.name+".records.sqlite3")
+        with closing(sqlite3.connect(dbpath)) as db,db:
+            db.execute("drop trigger records_no_update")
+            db.execute("update records set payload=x'00'")
+        with self.assertRaises(ValueError):append(catalog,record)
+        self.assertTrue(path.exists())
 
     def test_verified_prune_and_exact_restore(self):
         path = self.payload()
