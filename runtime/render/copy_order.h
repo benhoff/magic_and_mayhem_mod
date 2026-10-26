@@ -1,3 +1,9 @@
+/* Provider ownership precedes bridge copy admission. Every native producer,
+ * reader, binding and shutdown shares this order, including reentrant calls. */
+static u32 (WIN *game_copy_native_begin)(void);
+static void (WIN *game_copy_native_end)(void);
+static void (*game_copy_native_drain)(void);
+static int (WIN *game_copy_native_backing_live)(void*);
 /* Optional native-owned diagnostic getter, resolved once during adapter load. */
 static u32 (WIN *game_copy_native_stage)(void);
 static void (WIN *game_copy_native_defer)(u32);
@@ -14,6 +20,7 @@ static u32 game_copy_owner,game_copy_started,game_copy_site,game_copy_phase;
 static struct GameCopyLease game_copy_enter_policy(void* target,u32 site,u32 original_call){
     u32 error=GetLastError(),thread=GetCurrentThreadId(),start=GetTickCount(),waited=0,pressure_started=start,reader_wait=0;
     struct GameCopyLease lease={0,1,0};
+    if(game_copy_native_begin && game_copy_native_begin())lease.deferred|=2;
     const u32 ordinary_budget=game_resident_world?GAME_COPY_RESIDENT_WAIT_MS:GAME_COPY_WAIT_MS;
     struct CopyWaitTiming timing;copy_wait_begin(&timing,start);
     if(!game_copy_order_enabled)goto done;
@@ -54,7 +61,8 @@ static struct GameCopyLease game_copy_enter_policy(void* target,u32 site,u32 ori
         if(elapsed<budget){waited=1;u32 before=copy_trace_enabled?GetTickCount():0;copy_wait_before(&timing);
             u32 returned=WaitOnAddress(&game_copy_owner,&owner,4,budget-elapsed);copy_wait_after(&timing,before,returned);}
     }
- done:if(lease.held && game_copy_native_defer){game_copy_native_defer(1);lease.deferred=1;}
+ done:if(lease.held && game_copy_native_defer){game_copy_native_defer(1);lease.deferred|=1;}
+    if(lease.held && game_copy_native_drain)game_copy_native_drain();
     SetLastError(error);return lease;
 }
 static struct GameCopyLease game_copy_enter_at(void* target,u32 site){return game_copy_enter_policy(target,site,1);}
@@ -70,15 +78,18 @@ static void game_copy_stage(u32 phase){
 #define game_copy_enter(target) game_copy_enter_at((target),__LINE__)
 #define game_copy_observation_enter(target) game_copy_observation_enter_at((target),__LINE__)
 static void game_copy_leave(struct GameCopyLease* lease){
-    if(lease->held){u32 error=GetLastError(),flush=lease->deferred;
-        copy_trace_owner_close();
-        lease->held=lease->deferred=0;
+    u32 error=GetLastError(),flags=lease->deferred;
+    if(lease->held){
+        copy_trace_owner_close();lease->held=0;
         __atomic_store_n(&game_cpu_transfer_wait,0,__ATOMIC_RELEASE);
         __atomic_store_n(&game_copy_owner,0,__ATOMIC_RELEASE);WakeByAddressAll(&game_copy_owner);
-        if(flush && game_copy_native_defer)game_copy_native_defer(0);
-        SetLastError(error);
+        if((flags&1) && game_copy_native_defer)game_copy_native_defer(0);
     }
+    lease->deferred=0;
+    if((flags&2) && game_copy_native_end)game_copy_native_end();
+    SetLastError(error);
 }
+
 static void game_copy_unobserved(void* target){
     u32 error=GetLastError();__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);
     game_pixel_missed(target);SetLastError(error);
@@ -95,6 +106,7 @@ static void game_lifetime_invalidate(void){
  * Unlike a missed drawing callback, this does not forward an unobserved write. */
 static struct GameCopyLease game_copy_shutdown_enter(void){
     u32 error=GetLastError(),thread=GetCurrentThreadId(),start=GetTickCount(),reader_wait=0;struct GameCopyLease lease={0,1,0};
+    if(game_copy_native_begin && game_copy_native_begin())lease.deferred|=2;
     const u32 ordinary_budget=game_resident_world?GAME_COPY_RESIDENT_WAIT_MS:GAME_COPY_WAIT_MS;
     if(!game_copy_order_enabled)goto done;
     for(;;){
@@ -105,7 +117,7 @@ static struct GameCopyLease game_copy_shutdown_enter(void){
         if(GetTickCount()-start>=budget){lease.observe=0;lock_diagnostic("command_shutdown_admission_timeout",0,0,thread,0,0,0,0);break;}
         Sleep(0);
     }
- done:SetLastError(error);return lease;
+ done:if(lease.held && game_copy_native_drain)game_copy_native_drain();SetLastError(error);return lease;
 }
 
 /* A gate timeout bypasses any callback family, including lifetime/property

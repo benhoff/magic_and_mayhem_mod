@@ -1,3 +1,20 @@
+## Original campaign copy attribution and native padded World — 2026-10-26
+
+Fresh original call/return observations attribute enabled campaign entry failure
+to4b2e1c/58c03a: full736/896-wide source and destination Blt rectangles overflow
+640/800-wide capture surfaces and return88760096 before World. Both alternate
+slots remain zero; allocator/publication/initial pixels/base-source relation,
+writers and retirement remain unresolved. Original code and rectangles are unchanged.
+
+Intentional native padded backing with visible GPU scratch passes54frames,
+144prepared replays,94,112,736pixel checks and six explicit context rebuilds.
+Async padding4/3 completes303Worlds; padded96/0 Save/Load/rebuild completes737,
+with normal Quit. Four full World checkpoints match unchanged original rasters:
+1,920,000RGB565words,zero mismatches. Independently acquired original sessions,
+physical/in-flight device loss,whole-renderer acceptance and original alternate
+semantics remain separate. Historical hashes,failed attempts and stage limits
+are retained. See [scope and evidence](alternate-completion-20261026.md).
+
 ## Alternate observation branch master synchronization — 2026-10-25
 
 Master d77015d4 is combined with a5ae70a7,retaining both parents' scoped evidence,
@@ -22213,7 +22230,7 @@ The [history review](rendering-twentythird-ten-results-20261025/incoming-history
 [coverage audit](rendering-twentythird-ten-results-20261025/coverage-audit-final.json)
 record integration/accounting checks. SQLite reports, exact reviews, source
 variants and verified backups are durable; ignored CMake/compile trees are
-reusable temporary execution output. The normal90GiB guard remains in force.
+reusable temporary execution output. The normal 90 GiB guard remains in force.
 
 
 ## Ten-service rendering master integration — 2026-10-25
@@ -22974,3 +22991,202 @@ combined-tree checks also verify all20 behavior contracts and source closures.
 transition review, and `final-local-evidence01.json` identifies the verified local
 2,647-object SQLite backup. The final normal hook checks the combined staged
 tree; pre-existing master edits are preserved separately at fast-forward time.
+
+## Native cursor ownership and deferred lifetime closure (2026-10-25)
+
+[The owning native adapter](cursor-live-ownership-20261025.md) closes the supported
+native graphics cursor lifetime path. `NP.cursor-provider-lifetime` separates
+private pins from public interface counts and retains active CPU/DC writers;
+`NP.cursor-live-ownership` installs18 guarded client/copy/lifecycle hooks and an
+owning128-slot queue. Native menu/OpenGL launches select this policy. The
+source-cursor gate remains diagnostic;unknown legacy-driver aliases are outside
+native admission. Original foreground/timer/background/setup bodies remain
+services;the existing screen-services helpers were not duplicated.
+
+Fresh `CUR27.provider06` passes197641 assertions and1616 complete planes in each
+plain/protected profile,16 alias pairs,eight writer cases,512pin saturation and
+1600 concurrent copies. `CUR27.owner07` executes the production installer and
+original cursor bodies in four startup/backing profiles:1843262 assertions,six
+complete640x480 planes,131 accepted deferred jobs,three completions,128 terminal
+cancellations,and18 changed-anchor refusals per relevant control. All native
+resources retire. `CUR27.controls02` checks provider-before-copy ownership,
+recursive admission/refusal,strict journal/launcher guards and both PE32 bridge
+builds. These are native/original-machine-code component results,not an original
+DirectDraw-driver alias recovery claim.
+
+`CUR27.live09` runs the combined native-only Apprentice campaign with278 balanced
+Worlds,two physical movement/HUD phases,Mini Cancel,Quit No/resume and Quit Yes/
+report/Main/normal exit. Its18 installed hooks complete3363 cursor client calls,
+including actual setup,foreground,timer,both background restorers and disposal.
+There are no surviving clients or graphics owners. The native campaign selects
+immediate copies;its observed queue denominator is zero. Deferred generations
+are independently executed by `CUR27.owner07`,rather than inferred from that
+zero. `CUR27.live10` injects an original producer failure,retains terminal cleanup,
+uses public Hard restart and completes a fresh original session with normal Quit
+and zero final graphics owners. Scoped live replacement means native lifetime/
+scheduling and provider ownership;full original scene/driver pixel equivalence
+is not asserted.
+
+`CUR27.recovery02` extends the private OpenGL compositor with CPU checkpoints,
+actual backend/context destruction and staged recreation. Both optimized and
+ASan/UBSan pass778 assertions,203 complete independent frames,2400 producer
+attempts and eight actual teardown races. Native generation metadata and queued
+work survive controlled context recreation. Unspecified external-driver loss
+without an admitted checkpoint remains outside this policy.
+
+The reviewed `d306d926..d77015d4` incoming history has2600 exact parent/current
+file-receipt transitions and no missing receipts. Historical evidence hashes
+and all negative/intermediate attempts remain immutable. Changed shared scene/
+provider sources can leave unrelated historical observations stale;they receive
+no current-code promotion from this cursor work. Local SQLite payloads and their
+retained verified backups supply the accounting;no evidence upload is required.
+
+## Named native sprite services, 2026-10-25
+
+The N27 batch adds ten bounded native companion/name/clip/playback/checkpoint/
+reload/plan and CPU/GPU delivery services, documented in
+[the native sprite packet](rendering-twentyseventh-ten-20261025.md).
+TAG parsing and original use remain partial. Synthetic Release and sanitizer
+execution is recorded separately; no original lookup/timing, hardware, whole-scene
+or live replacement status is promoted. No gameplay behavior is changed.
+
+The source-bound result [N27.sprite-native-20261025](rendering-twentyseventh-ten-results-20261025/execution-2.json)
+passes 9,605 checks and 180 expected refusals per Release and ASan/UBSan mode,
+including 54 independent CPU/GPU pixel cases and six playback models. TAG/SPR
+loader and sprite renderer regressions plus the native-session CTest pass in
+both modes. The earlier setup, strict-warning and provenance refusals retain
+their original SQLite records and source variants. Existing evidence hashes and
+parent statuses are preserved. All 16 configured SQLite archive payload sets
+were verified locally without network transfer.
+
+The [refreshed coverage summary](coverage/summary-rendering-twentyseventh-ten-20261025.md)
+records zero audit errors and ten current implementation bindings. The 161-source
+unlinked backlog and historical fingerprints remain explicit. All 38 planning
+controls and 15 static review readers pass after the existing master cursor
+compositor was added to the expected unrated list; its planning status is
+preserved. The first accounting failure, SQLite lock refusal and historical
+summary overwrite refusal remain separate operational records. Storage inventory
+found no eligible cleanup candidates; the normal 90 GiB reserve is unchanged.
+
+## Native sprite transformations, 2026-10-25
+
+N28 adds ten separately scoped owned native frame operations: crop, trim, two
+mirrors, three rotations, nearest resize, silhouette and four-neighbor outline.
+See [the native transformation packet](rendering-twentyeighth-ten-20261025.md).
+Existing raw asset and session/batch services are suppliers. No original filter,
+pivot, encoded/tinted outline, widget/world or live replacement claim is added.
+The menu/assets parent remains partial; original evidence fingerprints are kept.
+
+The prospective [N28.transforms-native-20261025 result](rendering-twentyeighth-ten-results-20261025/execution-1.json)
+passes 978 checks and 58 expected refusals per Release and ASan/UBSan mode, with
+30 forward geometry cases and 150 independently expected CPU/GPU deliveries.
+The existing native sprite-session regression and both CTest entries pass in
+both modes. No original artifacts are read. Required logs/binaries are retained
+under the owned batch output; reports, census and reviews use SQLite. The pinned
+previous evidence pool and its verified backup set are reused as read-only
+baseline inputs, with a separate owned completion pool and new pending records.
+All 16 configured archive payload sets were verified locally. RAM quota refusals
+from the previous batch justify bounded disk builds; the 90 GiB guard is unchanged.
+
+The [refreshed N28 audit summary](coverage/summary-rendering-twentyeighth-ten-20261025.md)
+has zero errors, no source-census drift and ten new current implementation
+bindings; all ten N27 session bindings also remain current. The 161-source
+unlinked backlog and historical fingerprints are unchanged. All 38 planning
+controls and 15 static review readers pass. The previous commit's 27 reviewed
+file transitions have exact receipts. The existing retention inventory found no
+eligible cleanup candidates. The normal storage reserve remains 90 GiB.
+
+The initial owned completion copy on the second drive is retained unchanged as
+a verified full baseline. As main-drive headroom recovered and second-drive
+headroom narrowed, an exact SHA-256-verified copy became the writable main-drive
+completion pool. No payload, pin, source checkout or backup was removed, and
+this storage choice grants no engine validation. New evidence, review records
+and their required backups remain in the owned worktree.
+
+N27/N28 final master integration preserves all twenty native sprite policies
+and independent master terrain, screen, cursor and storage-closure findings.
+Fresh N27.master-native-20261025 and N28.master-native-20261025 bind every final
+source input: Release and ASan/UBSan each pass9605/978 checks respectively,
+with54/150 CPU/GPU cases and zero surface leaks. Prior fingerprints remain
+historical. No original, application-integration or live milestone is promoted.
+All main-checkout edits remain separate. The user approved an89GiB main-drive
+reserve for completion of this local merge; normal repository policy is unchanged.
+Verified evidence and review backups remain pinned and local.
+
+## Terrain lighting through the normal launcher (2026-10-25)
+
+The opt-in normal prepare/run-menu path now owns one persistent native lighting
+worker and a fixed 25,165,952-byte pointer-free channel. Selection is
+`MNM_TERRAIN_LIGHTING=original|observe|native` (default `original`), independent
+of graphics selection. The admitted DirectPlay process-wait profile is required.
+Normal processing has no finite capture limit or per-update disk files/processes;
+optional diagnostics stop recording at32 records/64MiB while processing continues.
+The existing finite observer, V1 decoder and recovered lighting models retain
+their prior bytes and evidence identities. See
+[the session contract](terrain-light-normal-session.md).
+
+`TLSN25.controls` executes ten actual worker/supervisor controls, including96
+consecutive source-bound requests, fixed recording/storage limits, a request with
+recording disabled, stale/truncated channels, wrong sources/binary/mode,
+refusals, deliberate peer death and reaping. These are recorded-input/native
+integration controls, separate from original installed execution.
+
+`TLSN25.reload-observe` and `TLSN25.native-and-fallback` exercise the real public
+prepare/run-menu launcher on a private fresh Celtic Adept campaign, original
+named Save/Load, original Mini/Quit confirmation/report and normal Main Quit.
+The current-source original-active run processes at least129 updates. The
+matching native run applies129 updates, including32 captured post-load outputs;
+all32 match independent unchanged PE32 and ASan/UBSan native replay. The first
+captured reload caller is00472201. The test dismisses both visible restored
+Hermes pages before demanding continued World updates; an original tutorial
+pause is not a lighting failure. Saved bytes remain unchanged by Load.
+
+The worker-loss control kills only the PID/start-tick-identified owned worker.
+The channel closes permanently, native application remains at129, and24 further
+original updates advance the original clock from128 to152. An independently
+replayed fallback input/result agrees with unchanged original code and sanitized
+native replay. The100ms wait budget produces an observed115ms maximum wait
+under Wine scheduling in this fault test. Both games quit normally; the worker
+is reaped. The faulted selected backend intentionally reports a nonzero launcher
+result and a failed session outcome after original Quit, while the recovery test
+passes. This is fallback evidence, not continued native replacement.
+
+Original manifests verify all2927 files before/after every installed attempt.
+RAM-only disposable game/prefix/runtime copies bound disk use; each run retains
+its unique patched executable, bridge/worker binaries, channel/corpus, actual
+save, source/results, menu events, outcomes and logs in SQLite before unmount.
+`retention01.json` retains intermediate source/build failures and final controls;
+`history02.json` reviews7ea9fc19..d77015d4 (two commits,247 exact transitions,
+no missing receipts). Failed harness attempts remain failed. Source11's incorrect
+hash metadata is retained and corrected by the exact source12 snapshot.
+
+This closes bounded opt-in normal-launch lighting integration with original
+graphics. Combined native Qt graphics ownership, arbitrary maps/saves, long
+sessions and default rollout remain pending acceptance. World scheduling,
+serializer/loader and original resource lifetimes retain their existing owners.
+Historical evidence for other behaviors affected by shared launcher sources keeps
+its recorded hashes and status; this batch does not renew those validations.
+
+### Normal lighting integration with cursor ownership master
+
+The integration combines feature e86d0946 with master283d66b6. The cursor
+admission additions in three launcher files were inspected and the explicit
+`tools/native_cursor_launch.py` dependency was registered. Fresh
+`TLSN25.master-controls`, `TLSN25.master-reload-observe` and
+`TLSN25.master-native-and-fallback` bind the combined source. Ten controls pass;
+both normal Save/Load journeys retain32 post-load samples matching unchanged
+PE32 and ASan/UBSan replay, normal original Quit and worker reaping. The native
+run applies129 updates before peer loss, then retains original fallback with an
+independent input/result witness. Final fallback statistics are24 original updates,
+with native application latched at129.
+
+The test now chooses a distinct private save name from its immutable output ID;
+prior successful saves remain in the owned store. The first integration attempt
+correctly refused the old fixture name without overwriting it. Historical
+feature evidence keeps its hashes and scope, while these new records establish
+current combined-source validation. `master-history01.json` reviews six committed
+transitions groups and2414 file transitions since d77015d4, including the feature
+tip; one missing exact intermediate receipt receives retrospective pending
+accounting, without a past gate or new execution claim. Default lighting remains
+original. Combined Qt graphics ownership, arbitrary maps/saves, long sessions and
+rollout remain separate acceptance.

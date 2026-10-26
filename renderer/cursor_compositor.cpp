@@ -24,6 +24,8 @@ struct CursorCompositor::Generation {
     bool drawn=false;
     Rect previous{};
     Frame frame{{},0,0,false};
+    std::uint32_t key=31;
+    Image recoveryCanvas,recoveryAtlas,recoverySaved;
 };
 namespace {
 std::atomic<std::uint64_t> nextCursorToken{1};
@@ -56,14 +58,15 @@ void CursorCompositor::Publisher::stop() const {
 CursorCompositor::CursorCompositor():owner_(std::this_thread::get_id()),shared_(std::make_shared<Shared>()),backend_(std::make_unique<SurfaceBackend>()){}
 CursorCompositor::~CursorCompositor(){if(std::this_thread::get_id()!=owner_)std::terminate();shutdown();}
 void CursorCompositor::owner() const {if(std::this_thread::get_id()!=owner_)throw std::runtime_error("Cursor compositor requires its owner thread");}
+void CursorCompositor::graphics() const {owner();if(!backend_)throw std::runtime_error("Cursor graphics suspended");}
 CursorCompositor::Publisher CursorCompositor::publisher() const {return Publisher(shared_);}
 CursorCompositor::Token CursorCompositor::create(const Image& canvas,const Image& atlas,int cw,int ch,std::uint32_t key){
-    owner();
+    graphics();
     if(cw<1 || ch<1 || cw>4096 || ch>4096 || atlas.width<1 || atlas.height<1 || canvas.width<1 || canvas.height<1 ||
        canvas.width>4096 || canvas.height>4096 || atlas.width>4096 || atlas.height>4096 || key>65535)throw std::invalid_argument("Invalid cursor allocation");
     {std::lock_guard<std::mutex> lock(shared_->mutex);if(shared_->closed)throw std::runtime_error("Cursor compositor closed");}
     if(generations_.size()>=8)throw std::runtime_error("Cursor generation budget exhausted");
-    auto g=std::make_unique<Generation>();g->backend=backend_.get();g->width=canvas.width;g->height=canvas.height;g->cellWidth=cw;g->cellHeight=ch;
+    auto g=std::make_unique<Generation>();g->backend=backend_.get();g->width=canvas.width;g->height=canvas.height;g->cellWidth=cw;g->cellHeight=ch;g->key=key;
     Token token=nextCursorToken.fetch_add(1);
     if(!token || token==std::numeric_limits<Token>::max())std::terminate();
     try {
@@ -82,7 +85,7 @@ CursorCompositor::Token CursorCompositor::create(const Image& canvas,const Image
         if(it!=generations_.end()){release(*it->second);generations_.erase(it);}
         throw;
     }
-    return token;
+    checkpointCurrent_=false;return token;
 }
 void CursorCompositor::release(Generation& g){
     for(auto* id:{&g.saved,&g.atlas,&g.canvas})if(*id){backend_->release(*id);*id=0;}
@@ -92,10 +95,11 @@ CursorCompositor::Generation& CursorCompositor::generation(Token token){
 }
 void CursorCompositor::retire(Token token){owner();std::lock_guard<std::mutex> lock(shared_->mutex);auto it=shared_->generations.find(token);if(it==shared_->generations.end())throw std::invalid_argument("Unknown cursor generation");it->second.accepting=false;}
 std::size_t CursorCompositor::collect(){
-    owner();std::lock_guard<std::mutex> lock(shared_->mutex);std::size_t count=0;
+    graphics();std::lock_guard<std::mutex> lock(shared_->mutex);std::size_t count=0;
     for(auto it=shared_->generations.begin();it!=shared_->generations.end();){
         if(!it->second.accepting && !it->second.pending){auto owned=generations_.find(it->first);release(*owned->second);generations_.erase(owned);it=shared_->generations.erase(it);++count;}else ++it;
     }
+    if(count)checkpointCurrent_=false;
     return count;
 }
 void CursorCompositor::restore(Generation& g){
@@ -118,7 +122,7 @@ void CursorCompositor::paint(Generation& g,const Frame& frame){
     checkedCopy(*backend_,g.atlas,g.canvas,source,destination,true);
 }
 std::size_t CursorCompositor::drain(){
-    owner();std::size_t count=0;std::uint64_t cutoff;
+    graphics();std::size_t count=0;std::uint64_t cutoff;
     {std::lock_guard<std::mutex> lock(shared_->mutex);cutoff=shared_->nextSequence-1;}
     // A bounded snapshot by publication sequence. New publications remain for
     // the next drain; stop can still cancel every job not yet executing.
@@ -128,22 +132,57 @@ std::size_t CursorCompositor::drain(){
             for(auto& queued:shared_->queue)if(queued.token && queued.priority==priority && queued.sequence<=cutoff && (!selected || queued.sequence<selected->sequence))selected=&queued;
             if(!selected)break;
             job=*selected;selected->token=0;}
+        checkpointCurrent_=false;
         try {paint(generation(job.token),job.frame);}catch(...){std::lock_guard<std::mutex> lock(shared_->mutex);--shared_->generations.at(job.token).pending;throw;}
         {std::lock_guard<std::mutex> lock(shared_->mutex);--shared_->generations.at(job.token).pending;}
         ++count;
     }
     return count;
 }
-Image CursorCompositor::snapshot(Token token){owner();return backend_->read(generation(token).canvas);}
+Image CursorCompositor::snapshot(Token token){graphics();return backend_->read(generation(token).canvas);}
 void CursorCompositor::background(Token token,const Image& image){
-    owner();auto& g=generation(token);
+    graphics();auto& g=generation(token);
     if(image.width!=g.width || image.height!=g.height || image.pixels.size()!=std::size_t(g.width)*g.height)throw std::invalid_argument("Cursor background dimensions changed");
-    const auto frame=g.frame;restore(g);backend_->update(g.canvas,0,0,image);paint(g,frame);
+    checkpointCurrent_=false;const auto frame=g.frame;restore(g);backend_->update(g.canvas,0,0,image);paint(g,frame);
 }
+void CursorCompositor::checkpointGraphics(){
+    graphics();checkpointCurrent_=false;
+    // Commit validity only after every read succeeds; a partial checkpoint
+    // never authorizes destroying the live context.
+    for(auto& item:generations_){auto& g=*item.second;
+        g.recoveryCanvas=backend_->read(g.canvas);g.recoveryAtlas=backend_->read(g.atlas);g.recoverySaved=backend_->read(g.saved);
+    }
+    checkpointCurrent_=true;
+}
+void CursorCompositor::suspendGraphics(){
+    graphics();if(!checkpointCurrent_)throw std::runtime_error("Cursor checkpoint absent or stale");
+    // SurfaceBackend owns all current allocations. Zero per-generation handles
+    // before actually destroying it; no later destructor can call the old owner.
+    for(auto& item:generations_){auto& g=*item.second;g.canvas=g.atlas=g.saved=0;g.backend=nullptr;}
+    backend_.reset();
+}
+void CursorCompositor::recoverGraphics(){
+    owner();if(backend_ || !checkpointCurrent_)throw std::runtime_error("Cursor recovery state invalid");
+    auto fresh=std::make_unique<SurfaceBackend>();
+    std::unordered_map<Token,std::unique_ptr<Generation>> staged;
+    // All allocations are staged against a live fresh backend. Failure leaves
+    // both queued metadata and the immutable CPU checkpoint available to retry.
+    for(auto& item:generations_){const auto& old=*item.second;auto g=std::make_unique<Generation>();g->backend=fresh.get();
+        g->canvas=fresh->create(old.recoveryCanvas,cursorFormat);g->atlas=fresh->create(old.recoveryAtlas,cursorFormat);
+        fresh->setSourceKey(g->atlas,old.key);g->saved=fresh->create(old.recoverySaved,cursorFormat);
+        staged.emplace(item.first,std::move(g));
+    }
+    for(auto& item:generations_){auto& g=*item.second;auto& replacement=*staged.at(item.first);
+        g.canvas=replacement.canvas;g.atlas=replacement.atlas;g.saved=replacement.saved;g.backend=fresh.get();
+        replacement.canvas=replacement.atlas=replacement.saved=0;
+    }
+    backend_=std::move(fresh);
+}
+bool CursorCompositor::graphicsSuspended() const {owner();return !backend_;}
 void CursorCompositor::shutdown(){
     owner();Publisher(shared_).stop();
     for(auto& item:generations_)release(*item.second);
-    generations_.clear();std::lock_guard<std::mutex> lock(shared_->mutex);shared_->generations.clear();
+    generations_.clear();checkpointCurrent_=false;std::lock_guard<std::mutex> lock(shared_->mutex);shared_->generations.clear();
 }
-std::size_t CursorCompositor::surfaces() const {owner();return backend_->stats().surfaces;}
+std::size_t CursorCompositor::surfaces() const {owner();return backend_?backend_->stats().surfaces:0;}
 }

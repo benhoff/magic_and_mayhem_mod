@@ -1,6 +1,8 @@
 #include "../compat/legacy/canvas_world.hpp"
 #include "resource-fixtures.hpp"
 #include <QGuiApplication>
+#include <QOpenGLContext>
+#include <QOffscreenSurface>
 #include <iostream>
 using namespace mnm;
 using namespace resource_test;
@@ -11,9 +13,15 @@ std::uint16_t half(std::uint16_t a,std::uint16_t b){return ((a&0xf7de)>>1)+((b&0
 int main(int argc,char** argv)try{
  QGuiApplication app(argc,argv);QTemporaryDir tmp;require(tmp.isValid(),"Fixture root");
  const auto root=std::filesystem::path(tmp.path().toStdString());populate(root);
- render::GlBlitter g;std::uint64_t checks=0,frames=0,repeats=0;
+ QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);
+ QOpenGLContext recovered;recovered.setFormat(format);require(recovered.create(),"Recovery context");
+ QOffscreenSurface recoveryTarget;recoveryTarget.setFormat(recovered.format());recoveryTarget.create();
+ require(recoveryTarget.isValid(),"Recovery target");
+ render::GlBlitter g;std::uint64_t checks=0,frames=0,repeats=0,recoveries=0;
  // Each service is constructed after its explicit native route selection.
- for(unsigned replay=0;replay<3;++replay){
+ for(auto padding:{std::pair{0,0},std::pair{4,3},std::pair{96,0}}) for(unsigned replay=0;replay<3;++replay){
+  qputenv("MNM_NATIVE_ALTERNATE_PADDING_X",QByteArray::number(padding.first));
+  qputenv("MNM_NATIVE_ALTERNATE_PADDING_Y",QByteArray::number(padding.second));
   qputenv("MNM_NATIVE_ALTERNATE_CANVAS","1");
   {
    legacy::CanvasWorld w(g,store(root));if(replay)w.enablePreparedReplay(replay==2);
@@ -56,6 +64,7 @@ int main(int argc,char** argv)try{
   }
   require(g.stats().surfaces==0,"Alternate teardown leaked surfaces");
  }
+ qunsetenv("MNM_NATIVE_ALTERNATE_PADDING_X");qunsetenv("MNM_NATIVE_ALTERNATE_PADDING_Y");
  // Busy, uninitialized/wrong-extent history and unsupported video refuse.
  {
   rejected([&]{render::GpuAlternateCanvas bad(g,736,480);});
@@ -82,6 +91,31 @@ int main(int argc,char** argv)try{
   g.destroy(ordinary);
  }
  require(g.stats().surfaces==0,"Abandoned frame leaked native storage");
+ // Inspect every padding word and recover an active frame with both GPU
+ // planes alive. Recovery checkpoints are explicit diagnostic readbacks.
+ for(bool high:{false,true})for(auto padding:{std::pair{0,0},std::pair{4,3},std::pair{96,0}}){
+  const int width=high?800:640,height=high?600:480;
+  const auto ordinary=g.create({width,height,std::vector<std::uint32_t>(std::size_t(width)*height,31)},rgb);
+  {
+   render::GpuAlternateCanvas owner(g,width,height,padding.first,padding.second);
+   owner.begin(ordinary);g.update(owner.surface(),0,0,{width,height,std::vector<std::uint32_t>(std::size_t(width)*height,0xf800)});
+   g.checkpointRecovery();g.recoverContext(&recovered,&recoveryTarget);++recoveries;
+   owner.copyBack(ordinary);owner.end();
+   const auto visible=g.read(ordinary);require(visible.pixels==std::vector<std::uint32_t>(std::size_t(width)*height,0xf800),"Recovered alternate pixels");checks+=visible.pixels.size();
+   const auto backing=g.read(owner.backingSurface());
+   for(int y=0;y<backing.height;++y)for(int x=0;x<backing.width;++x){
+    const bool inside=x>=padding.first&&x<padding.first+width&&y>=padding.second&&y<padding.second+height;
+    require(backing.pixels[std::size_t(y)*backing.width+x]==(inside?0xf800u:0u),"Padded backing/guard pixels");++checks;
+   }
+  }
+  g.destroy(ordinary);require(g.stats().surfaces==0,"Recovery leaked alternate storage");
+ }
+ rejected([&]{render::GpuAlternateCanvas invalid(g,640,480,UINT32_MAX,0);});
+ for(const char* setting:{"-1","","4x","4294967296"}){
+  qputenv("MNM_NATIVE_ALTERNATE_PADDING_X",setting);
+  rejected([&]{legacy::CanvasWorld invalid(g,store(root));});
+ }
+ qunsetenv("MNM_NATIVE_ALTERNATE_PADDING_X");
  qunsetenv("MNM_NATIVE_ALTERNATE_CANVAS");
- std::cout<<"{\"frames\":"<<frames<<",\"prepared_replays\":"<<repeats<<",\"pixel_checks\":"<<checks<<",\"frame_readbacks\":0,\"remaining_surfaces\":0}\n";return 0;
+ std::cout<<"{\"frames\":"<<frames<<",\"prepared_replays\":"<<repeats<<",\"pixel_checks\":"<<checks<<",\"context_recoveries\":"<<recoveries<<",\"recovery_readbacks\":"<<g.stats().recoveryReadbacks<<",\"frame_readbacks\":0,\"remaining_surfaces\":0}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

@@ -6,6 +6,7 @@ static NsCpuReader ns_cpu_reader;
 /* A pinned bridge registers outside any reader/fault. Never resolve the loader
  * or invoke this service from a vectored exception callback. */
 __declspec(dllexport) i32 WIN NativeDrawCpuReaderV1(NsCpuReader reader){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(!reader || (ns_cpu_reader && ns_cpu_reader!=reader))return ND_INVALID;
  ns_cpu_reader=reader;ns_cpu_reader_available=1;return 0;
 }
@@ -26,6 +27,7 @@ static void ns_cpu_require(struct NsState* s){ns_cpu_require_at(s,0,0,(u32)__bui
 /* Read a current owned CPU result into private bridge storage. No COM Lock,
  * GPU wait or public mapping is introduced while its tracker is held. */
 __declspec(dllexport) i32 WIN NativeDrawCpuSnapshotV1(void* object,u32* layout,u8* out,u32 bytes){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  struct NsState* s=0;
  for(struct NsState* p=ns_owned;p;p=p->next_owned)for(u32 i=0;i<5;++i)if(object==&p->aliases[i])s=p;
  if(!s || !layout)return ND_INVALID;
@@ -44,6 +46,7 @@ __declspec(dllexport) i32 WIN NativeDrawCpuSnapshotV1(void* object,u32* layout,u
  * action1 invalidates an exact owned base with a nonzero generation and nonce.
  * action2 is a nonfatal diagnostic query, never permission to read stale pixels. */
 __declspec(dllexport) i32 WIN NativeDrawCpuHistoryV1(const void* pixels,u32 action,u32 gl,u32 gh,u32 nl,u32 nh){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(action==3 && ns_guard_enabled<2)return 0;
  for(struct NsState* s=ns_owned;s;s=s->next_owned){
   const u32 at=(u32)pixels,base=(u32)s->pixels;
@@ -74,6 +77,7 @@ __declspec(dllexport) i32 WIN NativeDrawCpuHistoryV1(const void* pixels,u32 acti
  * The bridge stages pending bytes, merges the native reply and publishes the
  * resulting complete WORDs before restoring these public pixels. */
 __declspec(dllexport) i32 WIN NativeDrawCpuLeaseTransferV1(void* object,u32* identity,const u16* pixels,u32 bytes){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  struct NsState* s=0;
  for(struct NsState* p=ns_owned;p;p=p->next_owned)for(u32 i=0;i<5;++i)if(object==&p->aliases[i])s=p;
  if(!s || !identity || s->bits!=16 || s->masks[0]!=0xf800 || s->masks[1]!=0x7e0 || s->masks[2]!=31)return ND_INVALID;
@@ -91,6 +95,7 @@ __declspec(dllexport) i32 WIN NativeDrawCpuLeaseTransferV1(void* object,u32* ide
  * Query returns1 for current CPU history,0 for a required native transfer.
  * Restore accepts only the same unborrowed physical history and tight RGB565. */
 __declspec(dllexport) i32 WIN NativeDrawCpuTransferV1(void* object,u32* identity,const u16* pixels,u32 bytes){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  struct NsState* s=0;
  for(struct NsState* p=ns_owned;p;p=p->next_owned)for(u32 i=0;i<5;++i)if(object==&p->aliases[i])s=p;
  if(!s || !identity || s->bits!=16 || s->masks[0]!=0xf800 || s->masks[1]!=0x7e0 || s->masks[2]!=31)return ND_INVALID;
@@ -110,6 +115,7 @@ __declspec(dllexport) i32 WIN NativeDrawCpuTransferV1(void* object,u32* identity
  * establishes CPU authority, seeds a GPU image or admits an application reader.
  * Exact physical layout is checked before temporarily opening protected pages. */
 __declspec(dllexport) i32 WIN NativeDrawCpuLeaseSnapshotV1(void* object,const u32* layout,u16* out,u32 bytes){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  struct NsState* s=0;
  for(struct NsState* p=ns_owned;p;p=p->next_owned)for(u32 i=0;i<5;++i)if(object==&p->aliases[i])s=p;
  if(!s || !layout || !out || s->bits!=16 || s->masks[0]!=0xf800 || s->masks[1]!=0x7e0 || s->masks[2]!=31)return ND_INVALID;
@@ -130,6 +136,7 @@ __declspec(dllexport) i32 WIN NativeDrawCpuLeaseSnapshotV1(void* object,const u3
  * owner must install its guard immediately and restore it before a newer bound
  * history generation returns ownership here. Unlock/Flip cannot escape a loan. */
 __declspec(dllexport) i32 WIN NativeDrawCpuGuardWorldV1(const void* pixels){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(ns_guard_enabled!=2)return 0;
  for(struct NsState* s=ns_owned;s;s=s->next_owned)if(s->pixels==pixels){
   if(s->locked<=0 || s->dc || s->storage_dc || s->cpu_guard_world)return NS_BUSY;
@@ -144,6 +151,7 @@ __declspec(dllexport) i32 WIN NativeDrawCpuGuardWorldV1(const void* pixels){
  * public view. The scene explicitly ends its interval before the private bind.
  * Legacy modes retain their V1 protection ownership protocol. */
 __declspec(dllexport) i32 WIN NativeDrawCpuGuardWorldV2(const void* pixels,u32 begin){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(begin>1)return ND_INVALID;
  if(ns_guard_enabled!=3)return begin?NativeDrawCpuGuardWorldV1(pixels):0;
  for(struct NsState* s=ns_owned;s;s=s->next_owned)if(s->pixels==pixels){
@@ -164,6 +172,7 @@ __declspec(dllexport) i32 WIN NativeDrawCpuGuardWorldV2(const void* pixels,u32 b
  * commit; action2 returns bit0=dirty and bit1=incomplete WORD writes. No public
  * pages are opened. Layout and active owner are checked on every operation. */
 __declspec(dllexport) i32 WIN NativeDrawCpuLeaseMaskV1(void* object,const u32* layout,u8* out,u32 bytes,u32 action){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  struct NsState* s=0;
  for(struct NsState* p=ns_owned;p;p=p->next_owned)for(u32 i=0;i<5;++i)if(object==&p->aliases[i])s=p;
  if(!s || !layout || action>2)return ND_INVALID;

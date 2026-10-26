@@ -2,6 +2,7 @@
 #include "../../protocols/include/mnm/world_frame_v1.h"
 #include "canvas_world.hpp"
 #include <cstdlib>
+#include <charconv>
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
 #include <chrono>
 #include <cstring>
@@ -123,6 +124,16 @@ CanvasWorld::CanvasWorld(render::GlBlitter &renderer,
       bindings_(store_, resources_) {
   const auto alternate=std::getenv("MNM_NATIVE_ALTERNATE_CANVAS");
   alternateStats_.enabled=alternate&&std::strcmp(alternate,"1")==0;
+  if(alternateStats_.enabled){
+    const auto padding=[](const char* name){
+      std::uint32_t value=0;const char* text=std::getenv(name);
+      if(text){const auto end=text+std::strlen(text);const auto result=std::from_chars(text,end,value);
+        if(result.ec!=std::errc{} || result.ptr!=end)throw std::invalid_argument("Native alternate padding setting");}
+      return value;
+    };
+    alternateStats_.xPadding=padding("MNM_NATIVE_ALTERNATE_PADDING_X");
+    alternateStats_.yPadding=padding("MNM_NATIVE_ALTERNATE_PADDING_Y");
+  }
 }
 CanvasWorld::~CanvasWorld(){if(replayBaseline_)renderer_.destroy(replayBaseline_);}
 void CanvasWorld::enablePreparedReplay(bool retainCompletedImage){
@@ -186,7 +197,7 @@ void CanvasWorld::beginResident(const CanvasProducer &c,render::SurfaceId native
     // retiring the old borrowed scene. Global source ordinals stay contiguous.
     std::unique_ptr<render::GpuAlternateCanvas> nextAlternate;
     if(alternateStats_.enabled){
-      nextAlternate=std::make_unique<render::GpuAlternateCanvas>(renderer_,int(r[5]),int(r[6]));
+      nextAlternate=std::make_unique<render::GpuAlternateCanvas>(renderer_,int(r[5]),int(r[6]),alternateStats_.xPadding,alternateStats_.yPadding);
       nextAlternate->begin(native);
     }
     auto next=std::make_unique<render::SceneRenderer>(renderer_,resources_,nextAlternate?nextAlternate->surface():native,

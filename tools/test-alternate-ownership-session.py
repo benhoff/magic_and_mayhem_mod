@@ -19,7 +19,7 @@ import struct
 import subprocess
 import threading
 import time
-from coverage_claims import behavior_contract,required_sources
+from coverage_claims import behavior_contract,required_sources,scenario_contract
 from coverage_evidence import evidence_digest,read_json,write_report
 from drawing_fixture_prefix import prepare
 from original_x86 import PE32
@@ -32,6 +32,24 @@ def load(name,path):
  spec=importlib.util.spec_from_file_location(name,ROOT/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def win(path):return 'Z:'+str(path.resolve()).replace('/','\\')
 def digest(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+def decode_trace(path):
+ raw=path.read_bytes()
+ if len(raw)!=3072:raise ValueError('Error trace extent')
+ words=struct.unpack('<768I',raw)
+ if words[:3]!=(0x45524e4d,2,3072) or words[15]!=1:raise ValueError('Error trace format')
+ return dict(registers=list(words[3:13]),mode=words[13],hresult=words[14],stack=list(words[16:528]),source_wrapper=list(words[528:560]),destination_wrapper=list(words[560:592]),arguments=list(words[592:598]),destination_rectangle=list(words[608:612]),source_rectangle=list(words[612:616]),read_complete=list(words[616:620]),fast_route=words[650],sha256=digest(path))
+def campaign_copy_attribution(trace,high):
+ width,height=(800,600) if high else (640,480);padded=width+96
+ src,dst,args=trace['source_wrapper'],trace['destination_wrapper'],trace['arguments']
+ if (trace['mode']!=3 or trace['hresult']!=0x88760096 or trace['fast_route']!=0 or
+     trace['registers'][1]!=0x58c03a or trace['stack'][22]!=0x4b2e21 or
+     trace['read_complete']!=[1,1,1,1] or src[4:7]!=[padded,height,padded*2] or dst[4:7]!=[width,height,width*2] or
+     args[0]!=dst[2] or args[2]!=src[2] or args[4:]!=[0x1000000,0] or
+     trace['source_rectangle']!=[0,0,padded,height] or trace['destination_rectangle']!=[0,0,padded,height]):
+  raise ValueError('Campaign copy attribution refused: caller,API,geometry or HRESULT mismatch')
+ return dict(validated=True,api='IDirectDrawSurface::Blt',caller_return=0x4b2e21,
+  hresult=0x88760096,source_extent=[padded,height],destination_extent=[width,height],
+  destination_overflow_pixels=96,original_continuation=False)
 def decode(path):
  raw=path.read_bytes();h=struct.unpack('<64I',raw[:256]);version=h[2];tail=256 if version>=2 else 0;rows=list(struct.iter_unpack('<16I',raw[256:len(raw)-tail]));
  if h[:2]!=(0x414d4e4d,0x31305743) or version not in (1,2,3) or h[3]!=256 or len(rows)!=h[16]:raise ValueError('Incomplete debugger record')
@@ -43,8 +61,10 @@ def main():
  p.add_argument('--journey',choices=('battles','campaign-rebuild'),default='battles')
  p.add_argument('--debug-choice',choices=('both','disabled','enabled'),default='both')
  p.add_argument('--initial-video',choices=('both','low','high'),default='both')
- p.add_argument('--windowed',action='store_true',default=True);p.add_argument('--desktop-depth',type=int,choices=(16,24),default=16);p.add_argument('--trace-errors',action='store_true');p.add_argument('--trace-blt',action='store_true');p.add_argument('--enabled-first',action='store_true');p.add_argument('--frames',type=int,default=240,choices=range(40,1001));p.add_argument('--restarts',type=int,default=2,choices=(1,2,3));a=p.parse_args();out=a.output.resolve()
- if a.trace_blt or a.trace_errors:p.error('Ownership sessions retain the shutdown execution watch')
+ p.add_argument('--trace-campaign-copy',action='store_true',help='Observe original campaign caller4b2e21 copy call/return, retaining both pointer watches but replacing shutdown watch');p.add_argument('--windowed',action='store_true',default=True);p.add_argument('--desktop-depth',type=int,choices=(16,24),default=16);p.add_argument('--trace-errors',action='store_true');p.add_argument('--trace-blt',action='store_true');p.add_argument('--enabled-first',action='store_true');p.add_argument('--frames',type=int,default=240,choices=range(40,1001));p.add_argument('--restarts',type=int,default=2,choices=(1,2,3));a=p.parse_args();out=a.output.resolve()
+ if a.trace_campaign_copy:a.trace_blt=True
+ if (a.trace_blt or a.trace_errors) and a.journey!='campaign-rebuild':p.error('Diagnostic trace requires the bounded campaign failure probe; normal ownership sessions retain the shutdown watch')
+ if a.trace_blt and a.trace_errors:p.error('Select one diagnostic execution watch')
  if out.exists() or not out.is_relative_to(ROOT/'working/tests'):p.error('Require new owned output')
  out.mkdir(parents=True);(out/'.retain').write_text('All-thread original alternate pointer and dispatch observations,including negative evidence.\n')
  j=read_json(ROOT/'research/runtime/coverage/register.json',root=ROOT);b=next(b for b in j['behaviors'] if b['id']==ID)
@@ -69,7 +89,13 @@ def main():
   for name,option in [('import','-version'),('tesseract','--version')]:
    path=Path(shutil.which(name));result=subprocess.run([str(path),option],capture_output=True,text=True,check=True,timeout=5)
    report['physical_tools'][name]=dict(path=str(path.resolve()),sha256=digest(path),version=result.stdout.splitlines()[0])
- report['diagnostic_mode']='copy_call_return' if a.trace_blt else 'error_reporter' if a.trace_errors else 'shutdown'
+ report['diagnostic_mode']='campaign_copy_call_return' if a.trace_campaign_copy else 'copy_call_return' if a.trace_blt else 'error_reporter' if a.trace_errors else 'shutdown'
+ if a.trace_campaign_copy:
+  diag=next(x for x in j['behaviors'] if x['id']=='RS.campaign-padded-presentation-error')
+  scenario=next(x for x in j['scenarios'] if x['id']=='ACO7.original-campaign-error')
+  needed=required_sources(diag)|set(scenario['tests'])
+  report['sources'].update({n:evidence_digest(ROOT/n,root=ROOT) for n in needed})
+  report['claims'].append(dict(behavior=diag['id'],contract_sha256=behavior_contract(diag,{v['id']:v for v in j['builds']}),scenarios={scenario['id']:scenario_contract(scenario)}))
  env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINE'))};env.update(WINEDEBUG='-all',LIBGL_ALWAYS_SOFTWARE='1',GALLIUM_DRIVER='llvmpipe',LP_NUM_THREADS='4',__EGL_VENDOR_LIBRARY_FILENAMES='/usr/share/glvnd/egl_vendor.d/50_mesa.json',__GLX_VENDOR_LIBRARY_NAME='mesa')
  env.pop('MESA_LOADER_DRIVER_OVERRIDE',None);env.pop('WAYLAND_DISPLAY',None)
  lock=server=process=xlog=None
@@ -165,7 +191,7 @@ def main():
    channel_path=case/'channel.bin';raw_channel=bytearray(size);raw_channel[:16]=magic+struct.pack('<II',version,size);struct.pack_into('<3I',raw_channel,16,2,1,1);channel_path.write_bytes(raw_channel)
    channel_file=channel_path.open('r+b');channel=mmap.mmap(channel_file.fileno(),0);heartbeat=1;sequence=2;request=0;trace=[]
    child_env=env|dict(MNM_MENU_CHANNEL=win(channel_path),MNM_MENU_OBSERVE=win(case/'menus.bin'),MNM_ALTERNATE_CWD=win(game),WINEDLLOVERRIDES='ddraw=b;dplay,dplayx,dpwsockx=n')
-   if a.trace_errors or a.trace_blt:child_env['MNM_ALTERNATE_ERROR_TRACE']='2' if a.trace_blt else '1'
+   if a.trace_errors or a.trace_blt:child_env['MNM_ALTERNATE_ERROR_TRACE']='3' if a.trace_campaign_copy else '2' if a.trace_blt else '1'
    log=(case/'game.log').open('x');process=subprocess.Popen(['wine','explorer','/desktop=alternate-watch,1024x768',str(out/'debugger.exe'),str(game/'Chaos.exe'),*(['-win'] if a.windowed else [])],cwd=case,env=child_env,stdout=log,stderr=subprocess.STDOUT)
    host_lock=threading.Lock()
    def beat():
@@ -307,7 +333,14 @@ def main():
      (case/'alternate-stop.flag').touch()
      try:process.wait(timeout=10)
      except subprocess.TimeoutExpired:process.terminate();process.wait(timeout=10)
-    if report.get('failed_cohort',{}).get('case')==case.name:report['failed_cohort']['final_proof']=progress()
+    if report.get('failed_cohort',{}).get('case')==case.name:
+     report['failed_cohort']['final_proof']=progress()
+     if a.trace_blt or a.trace_errors:
+      path=case/('alternate-blt.bin' if a.trace_blt else 'alternate-error.bin')
+      if path.exists():
+       report['failed_cohort']['error_trace']=decode_trace(path)
+       if a.trace_campaign_copy:report['failed_cohort']['copy_attribution']=campaign_copy_attribution(report['failed_cohort']['error_trace'],video)
+      report['failed_cohort']['shutdown_watch_replaced']=True
     pulse.close();process=None;log.close();channel.close();channel_file.close()
    if a.trace_blt or a.trace_errors and enabled:
     path=case/('alternate-blt.bin' if a.trace_blt else 'alternate-error.bin');words=struct.unpack('<768I',path.read_bytes())

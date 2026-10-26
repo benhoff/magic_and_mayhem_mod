@@ -76,6 +76,23 @@ int main(int argc,char** argv){QGuiApplication app(argc,argv);try{
         const auto stopped=c.create(background,atlas,5,3);for(unsigned i=0;i<128;++i)p.publish(stopped,original);
         std::thread stopper([p]{p.stop();p.stop();});stopper.join();require(c.drain()==0,"Stop cancels all queued work");require(p.publish(stopped,original)==C::Publication::closed,"Stop refuses publication");c.retire(stopped);require(c.collect()==1&&!c.surfaces(),"Cancelled generation cleanup");refuses([&]{c.create(background,atlas,5,3);});c.shutdown();c.shutdown();
     }
+    // Physically destroy and recreate contexts with a visible clipped cursor,
+    // saved underlay, retired generations and accepted work still outstanding.
+    for(unsigned cycle=0;cycle<4;++cycle){
+        C c;auto p=c.publisher();auto bg=image(13,9,0x2300+cycle),at=image(12,8,0x4300+cycle,true);
+        auto token=c.create(bg,at,5,3);C::Frame visible{{0,0,5,3},-2,2,true},moved{{5,3,10,6},7,7,true},hide{{},0,0,false};
+        refuses([&]{c.suspendGraphics();});p.publish(token,visible);c.drain();c.checkpointGraphics();
+        p.publish(token,moved);c.retire(token);c.suspendGraphics();require(c.graphicsSuspended()&&!c.surfaces(),"Actual graphics context suspended");
+        refuses([&]{c.drain();});refuses([&]{c.snapshot(token);});refuses([&]{c.background(token,bg);});refuses([&]{c.collect();});
+        require(p.publish(token,hide)==C::Publication::retired,"Retirement preserved across context loss");
+        c.recoverGraphics();require(!c.graphicsSuspended()&&c.surfaces()==3,"Graphics recovered with private resources");
+        pixels(c,token,oracle(bg,at,visible));require(c.drain()==1,"Pending work survived context loss");pixels(c,token,oracle(bg,at,moved));
+        // A new background exercises restoration from the recovered save-under.
+        auto fresh=image(13,9,0x6500+cycle);c.background(token,fresh);pixels(c,token,oracle(fresh,at,moved));
+        refuses([&]{c.suspendGraphics();});c.checkpointGraphics();c.suspendGraphics();c.recoverGraphics();pixels(c,token,oracle(fresh,at,moved));
+        require(c.collect()==1&&!c.surfaces(),"Recovered generation releases all allocations");
+        auto next=c.create(bg,at,5,3);c.checkpointGraphics();c.suspendGraphics();p.publish(next,hide);c.shutdown();require(p.publish(next,hide)==C::Publication::closed,"Shutdown while suspended closes publication");
+    }
     // The endpoint survives actual backend/context destruction.
     std::atomic<unsigned> closed{0};std::thread late([survivor,&closed]{survivor.stop();if(survivor.publish(1,{})==C::Publication::closed)++closed;});late.join();require(closed==1,"Endpoint outlives GPU owner");
     // Race publication with actual owner teardown, then exercise the endpoint

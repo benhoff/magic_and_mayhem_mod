@@ -36,7 +36,9 @@ def main():
   paths.update(v.relative_to(ROOT).as_posix() for v in (ROOT/directory).rglob('*') if v.is_file() and (v.suffix in ('.cpp','.hpp','.c','.h','.S','.inc','.py','.json') or v.name=='CMakeLists.txt'))
  sources={n:sha(ROOT/n) for n in sorted(paths)}
  claim=dict(behavior=BID,contract_sha256=behavior_contract(b,{}),scenarios={sid:scenario_contract(s)})
- report=dict(schema=1,success=False,sources=sources,claims=[claim],commands=[],live_game_executed=False,original_ownership_recovered=False,original_pointer_publication=False)
+ padded=next(x for x in j['behaviors'] if x['id']=='NP.alternate-canvas-padded-resident');padded_s=next(x for x in j['scenarios'] if x['id']=='ACO7.padding-controls')
+ padded_claim=dict(behavior=padded['id'],contract_sha256=behavior_contract(padded,{}),scenarios={padded_s['id']:scenario_contract(padded_s)})
+ report=dict(schema=1,success=False,sources=sources,claims=[claim,padded_claim],commands=[],live_game_executed=False,original_ownership_recovered=False,original_pointer_publication=False)
  env=dict(os.environ,TMPDIR=str(out/'tmp'),QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',GALLIUM_DRIVER='llvmpipe',LP_NUM_THREADS='4',__EGL_VENDOR_LIBRARY_FILENAMES='/usr/share/glvnd/egl_vendor.d/50_mesa.json',__GLX_VENDOR_LIBRARY_NAME='mesa');(out/'tmp').mkdir()
  env.pop('MESA_LOADER_DRIVER_OVERRIDE',None)
  def run(name,cmd,timeout=180,allow_failure=False):
@@ -84,7 +86,7 @@ def main():
     text=run(name,[build/'world-rolling'/name]);report['controls'][name]=json.loads(next(line for line in text.splitlines() if line.startswith('{')))
    report['executables']={name:sha(build/'world-rolling'/name) for name in names}
    control=report['controls'][names[0]]
-   if control['frames']!=18 or control['prepared_replays']!=48 or control['remaining_surfaces'] or control['frame_readbacks']:raise RuntimeError('Incomplete alternate lifetime controls')
+   if control['frames']!=54 or control['prepared_replays']!=144 or control['remaining_surfaces'] or control['frame_readbacks']:raise RuntimeError('Incomplete alternate lifetime controls')
   compiled=set()
   for dependency in (ROOT/'working/build/qt-shell').resolve().rglob('*.o.d'):
    for token in shlex.split(dependency.read_text().replace('\\\n',' ')):

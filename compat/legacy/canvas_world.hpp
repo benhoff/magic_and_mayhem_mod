@@ -46,7 +46,7 @@ public:
   std::uint64_t residentContextChanges() const { return residentContextChanges_; }
   const Profile &profile() const { return profile_; }
   render::ColourRectangleCacheStats colourCacheStats() const { return scene_?scene_->colourCacheStats():render::ColourRectangleCacheStats{}; }
-  struct AlternateStats { bool enabled=false; std::uint64_t publications=0,frames=0,copies=0,replays=0; };
+  struct AlternateStats { bool enabled=false; std::uint32_t xPadding=0,yPadding=0; std::uint64_t publications=0,frames=0,copies=0,replays=0; };
   AlternateStats alternateStats() const { return alternateStats_; }
 private:
   render::GlBlitter &renderer_;

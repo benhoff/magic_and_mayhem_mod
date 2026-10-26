@@ -503,7 +503,9 @@ def main():
     parser.add_argument('--hitch-capture',action='store_true',help='Bounded warm active paint-hitch windows with queue/UI/lease state; requires frame trace')
     parser.add_argument('--frame-trace',action='store_true',help='Bounded public worker/source/GUI timeline; owned independent World only')
     parser.add_argument('--reuse-world-image',action='store_true',help='Experimental reuse of completed native GPU World between source updates')
-    parser.add_argument('--alternate-canvas',action='store_true',help='Opt-in native owned zero-padding GPU World target and ordered copy-back')
+    parser.add_argument('--alternate-canvas',action='store_true',help='Opt-in native owned GPU World target and ordered copy-back')
+    parser.add_argument('--alternate-padding-x',type=int,choices=range(0,129),default=0)
+    parser.add_argument('--alternate-padding-y',type=int,choices=range(0,65),default=0)
     parser.add_argument('--async-world',action='store_true',help='Experimental separate native GPU World producer and immutable bounded handoff')
     parser.add_argument('--hardware',action='store_true',help='Use a private no-monitor TITAN/NVIDIA display; refuse software fallback')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
@@ -581,6 +583,7 @@ def main():
         parser.error('--timeout must be between 30 and 600')
     if args.copy_diagnostic_scope!='world' and not args.gpu_copy_diagnostics:parser.error('All-copy scope requires --gpu-copy-diagnostics')
     if args.gpu_copy_diagnostics and not args.resident_world:parser.error('Copy diagnostics require resident World')
+    if (args.alternate_padding_x or args.alternate_padding_y) and not args.alternate_canvas:parser.error('Alternate padding requires --alternate-canvas')
     if args.alternate_canvas and not args.resident_world:parser.error('Alternate canvas requires resident World')
     if args.portrait_stress_seconds and (not args.require_casting_combat or not 10 <= args.portrait_stress_seconds <= 120):parser.error('Portrait stress requires casting/combat and 10..120 seconds')
     if args.stress_seconds and not args.crowded_case and not 10 <= args.stress_seconds <= 120:parser.error('--stress-seconds must be 0 or 10..120')
@@ -749,7 +752,10 @@ def main():
     # Make the comparison independent of an inherited experiment setting.
     env['MNM_WORLD_IMAGE_REUSE']='1' if args.reuse_world_image else '0'
     env['MNM_NATIVE_ALTERNATE_CANVAS']='1' if args.alternate_canvas else '0'
+    env['MNM_NATIVE_ALTERNATE_PADDING_X']=str(args.alternate_padding_x)
+    env['MNM_NATIVE_ALTERNATE_PADDING_Y']=str(args.alternate_padding_y)
     report['alternate_canvas_required']=args.alternate_canvas
+    report['alternate_padding_required']=[args.alternate_padding_x,args.alternate_padding_y]
     env['MNM_ASYNC_WORLD_GPU']='1' if args.async_world else '0'
     if args.worker_status_cadence:env['MNM_WORKER_STATUS_CADENCE']='1'
     if args.worker_status_every_turn:env['MNM_WORKER_STATUS_EVERY_TURN']='1'
@@ -1025,7 +1031,7 @@ def main():
                 resident=json.loads((roots[0]/'resident-world-report.json').read_text())
                 if args.alternate_canvas:
                     alternate=resident.get('native_alternate_canvas',{})
-                    if (alternate.get('enabled') is not True or alternate.get('padding')!=0 or
+                    if (alternate.get('enabled') is not True or alternate.get('padding')!=args.alternate_padding_x or alternate.get('padding_y',0)!=args.alternate_padding_y or
                         int(alternate.get('publications',0))<1 or
                         int(alternate.get('frames',-1))!=int(resident['completed']) or
                         int(alternate.get('copy_backs',0))<int(resident['completed'])):

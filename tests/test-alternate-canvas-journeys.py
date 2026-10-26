@@ -15,6 +15,43 @@ from alternate_canvas_journeys import lane,saved_row,keeping_lease,enter_mini,Le
 
 
 class JourneyWire(unittest.TestCase):
+    def diagnostic_module(self):
+        root=Path(__file__).resolve().parents[1]
+        spec=importlib.util.spec_from_file_location('campaign_diagnostic',root/'tools/test-alternate-ownership-session.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
+
+    def test_campaign_copy_attribution_requires_actual_call_geometry(self):
+        import copy
+        m=self.diagnostic_module()
+        for high in (False,True):
+            width,height=(800,600) if high else (640,480);padded=width+96
+            trace=dict(mode=3,hresult=0x88760096,fast_route=0,registers=[0,0x58c03a]+[0]*8,
+                stack=[0]*22+[0x4b2e21],read_complete=[1]*4,
+                source_wrapper=[0,0,123,0,padded,height,padded*2],
+                destination_wrapper=[0,0,456,0,width,height,width*2],
+                arguments=[456,1,123,2,0x1000000,0],
+                source_rectangle=[0,0,padded,height],destination_rectangle=[0,0,padded,height])
+            self.assertEqual(m.campaign_copy_attribution(trace,high)['destination_overflow_pixels'],96)
+            for field,index,value in [('stack',22,0x5597fd),('read_complete',3,0),
+                                      ('destination_rectangle',2,width),('source_wrapper',6,width*2),
+                                      ('arguments',2,999)]:
+                bad=copy.deepcopy(trace);bad[field][index]=value
+                with self.subTest(field=field),self.assertRaises(ValueError):m.campaign_copy_attribution(bad,high)
+            bad=copy.deepcopy(trace);bad['hresult']=0
+            with self.assertRaises(ValueError):m.campaign_copy_attribution(bad,high)
+
+    def test_trace_format_rejects_truncation_and_unreturned_calls(self):
+        m=self.diagnostic_module()
+        with tempfile.TemporaryDirectory() as temporary:
+            path=Path(temporary)/'trace.bin';words=[0]*768
+            words[:3]=[0x45524e4d,2,3072];words[15]=1
+            path.write_bytes(struct.pack('<768I',*words))
+            self.assertEqual(m.decode_trace(path)['stack'],[0]*512)
+            path.write_bytes(path.read_bytes()[:-4])
+            with self.assertRaises(ValueError):m.decode_trace(path)
+            words[15]=0;path.write_bytes(struct.pack('<768I',*words))
+            with self.assertRaises(ValueError):m.decode_trace(path)
+
     def test_pulse_survives_blocking_host_and_stops_before_unmapping(self):
         beats=[];pulse=LeasePulse(lambda:beats.append(1),interval=.01);pulse.start()
         time.sleep(.09);pulse.close();count=len(beats);time.sleep(.03)

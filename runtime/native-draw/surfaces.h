@@ -19,9 +19,13 @@ struct NsState {
   u32 dest_key_set,dest_key_low,dest_key_high;
   void *dc,*bitmap,*old_bitmap,*dc_bits;struct NcClipper* clipper;
   struct NsState *previous_owned,*next_owned;struct NpPalette* palette;
-  u32 creator;
+  u32 creator,lifetime_pins,lifetime_identity,lifetime_retired;
+  struct NsState* lifetime_next_all;
 };
 static struct NsState* ns_owned;
+static struct NsState* ns_lifetime_dead;
+static struct NsState* ns_lifetime_all;
+static u32 ns_lifetime_reserved_bytes;
 static void* ns_tables[5][45];
 static u32 ns_bytes,ns_creates,ns_locks,ns_copies,ns_flips;
 static u32 ns_lock_serial;
@@ -47,16 +51,31 @@ static i32 WIN ns_query(struct NsObject* o,const u8* iid,void** out){
  *out=&o->state->aliases[kind];if(!o->state->refs[kind]++)++o->state->interfaces;return 0;
 }
 static u32 WIN ns_retain(struct NsObject* o){if(!o->state->refs[o->kind]++)++o->state->interfaces;return o->state->refs[o->kind];}
-static u32 WIN ns_release(struct NsObject* o){
- struct NsState* s=o->state;u32 error=GetLastError(),refs=--s->refs[o->kind];
- if(!refs && !--s->interfaces){ns_store_invalidate();if(s->device->state->primary==s)s->device->state->primary=0;ns_dc_drop(s);if(s->palette)np_release(s->palette);if(s->clipper)nc_release(s->clipper);ns_bytes-=s->pitch*s->height;if(s->back)ns_release(&s->back->aliases[s->device->kind==3?3:1]);
-  if(s->pixels_mapping){UnmapViewOfFile(s->pixels);UnmapViewOfFile(s->pixels_alias);CloseHandle(s->pixels_mapping);}else VirtualFree(s->pixels,0,0x8000);
+static u32 WIN ns_release(struct NsObject*);
+static void ns_destroy(struct NsState* s){
+ if(ns_lifetime_mode)__atomic_store_n(&s->lifetime_retired,1,__ATOMIC_RELEASE);
+ ns_store_invalidate();if(s->device->state->primary==s)s->device->state->primary=0;ns_dc_drop(s);if(s->palette)np_release(s->palette);if(s->clipper)nc_release(s->clipper);ns_bytes-=s->pitch*s->height;if(s->back)ns_release(&s->back->aliases[s->device->kind==3?3:1]);
+  if(ns_lifetime_mode){
+   // Reclaim physical backing while quarantining public virtual addresses.
+   // A stale CPU pointer cannot designate a later native generation.
+   if(s->pixels_mapping){
+    if(!UnmapViewOfFile(s->pixels_alias)||!UnmapViewOfFile(s->pixels)||!CloseHandle(s->pixels_mapping)||
+       VirtualAlloc(s->pixels,ns_guard_bytes(s),0x2000,1)!=s->pixels)ExitProcess(123);
+   }else if(!VirtualFree(s->pixels,0,0x4000))ExitProcess(123);
+  }else if(s->pixels_mapping){UnmapViewOfFile(s->pixels);UnmapViewOfFile(s->pixels_alias);CloseHandle(s->pixels_mapping);}else VirtualFree(s->pixels,0,0x8000);
   if(s->cpu_dirty)HeapFree(GetProcessHeap(),0,s->cpu_dirty);
   if(s->previous_owned)s->previous_owned->next_owned=s->next_owned;else ns_owned=s->next_owned;
   if(s->next_owned)s->next_owned->previous_owned=s->previous_owned;
-  nd_release(s->device);HeapFree(GetProcessHeap(),0,s);--nd_surfaces;}
+  nd_release(s->device);if(ns_lifetime_mode){s->next_owned=ns_lifetime_dead;ns_lifetime_dead=s;}else HeapFree(GetProcessHeap(),0,s);--nd_surfaces;
+}
+static u32 WIN ns_release(struct NsObject* o){
+ struct NsState* s=o->state;u32 error=GetLastError();
+ if(ns_lifetime_mode && !s->refs[o->kind]){SetLastError(error);return 0;}
+ u32 refs=--s->refs[o->kind];
+ if(!refs && !--s->interfaces && !ns_lifetime_mode)ns_destroy(s);
  nd_status();SetLastError(error);return refs;
 }
+
 static void ns_surface_format(struct NsState* s,u32* p){
  ns_zero(p,8);p[0]=32;p[1]=s->bits==8?0x60:0x40;p[3]=s->bits;
  for(u32 i=0;i<3;++i)p[4+i]=s->masks[i];
@@ -213,6 +232,7 @@ static i32 ns_draw(struct NsObject* dst,const i32* dr,struct NsObject* src,const
 /* Process-local service, not a standalone pixel copy. The caller must hold its
  * ordered session admission and commit the matching native COPY before return. */
 __declspec(dllexport) i32 WIN NativeDrawGpuCopyV1(void* dst,const i32* dr,void* src,const i32* sr,u32 flags,u16* baseline,u32 bytes){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  struct NsObject *d=0,*s=0;
  for(struct NsState* state=ns_owned;state;state=state->next_owned)for(u32 i=0;i<5;++i){
   if(dst==&state->aliases[i])d=&state->aliases[i];if(src==&state->aliases[i])s=&state->aliases[i];}
@@ -302,6 +322,8 @@ static i32 WIN ns_status(struct NsObject* o,u32 flags){if(flags!=1 && flags!=2)r
 static i32 WIN ns_page_hint(struct NsObject* o,u32 flags){(void)o;(void)flags;return 0;}
 static struct NsState* ns_allocate(struct NdObject* device,u32 width,u32 height,u32 caps,u32 bits,const u32* masks){
  ns_guard_initialize();
+ if(ns_lifetime_mode && (ns_lifetime_states>=32768 ||
+    ((((width*(bits/8)+7u)&~7u)*height+2u+65535u)&~65535u)>768u*1024u*1024u-ns_lifetime_reserved_bytes))return 0;
  if(!width || !height || width>4096 || height>4096 || nd_surfaces>=512 || ((width*(bits/8)+7)&~7u)*height>256*1024*1024-ns_bytes)return 0;
  struct NsState* s=HeapAlloc(GetProcessHeap(),8,sizeof(*s));if(!s)return 0;
  /* Original distortion 005965f7 reads a DWORD but uses only its low WORD.
@@ -319,6 +341,9 @@ static struct NsState* ns_allocate(struct NdObject* device,u32 width,u32 height,
  for(u32 i=0;i<5;++i)s->aliases[i]=(struct NsObject){ns_tables[i],s,i};
  s->interfaces=1;s->refs[device->kind==3?3:1]=1;s->device=device;nd_retain(device);s->width=width;s->height=height;s->caps=caps;
  ns_store_invalidate();s->next_owned=ns_owned;if(ns_owned)ns_owned->previous_owned=s;ns_owned=s;
+ if(ns_lifetime_mode){s->lifetime_identity=++ns_lifetime_states;ns_lifetime_reserved_bytes+=(ns_guard_bytes(s)+65535u)&~65535u;
+  s->lifetime_next_all=__atomic_load_n(&ns_lifetime_all,__ATOMIC_ACQUIRE);__atomic_store_n(&ns_lifetime_all,s,__ATOMIC_RELEASE);
+ }
  ++nd_surfaces;++ns_creates;ns_bytes+=s->pitch*height;nd_status();return s;
 }
 /* First failed descriptor per owned launch, preserving the HRESULT policy.
@@ -331,6 +356,7 @@ static i32 ns_surface_refusal(struct NdObject* o,const u32* d,u32 reason,void* c
  SetLastError(error);return NS_UNSUPPORTED;
 }
 static i32 WIN nd_surface(struct NdObject* o,const u32* d,void** out,void* outer){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(!out)return ND_INVALID;*out=0;if(outer)return (i32)0x80040110u;
  if(!d || d[0]!=(o->kind==3?124u:108u))return ND_INVALID;
  u32 flags=d[1],caps=d[26],w=d[3],h=d[2],bits=16,masks[3]={0xf800,0x7e0,0x1f};
@@ -358,6 +384,7 @@ static i32 WIN nd_surface(struct NdObject* o,const u32* d,void** out,void* outer
 
 typedef i32 (WIN *NdModeCallback)(u32*,void*);
 static i32 WIN nd_enum_modes(struct NdObject* o,u32 flags,const u32* filter,void* context,NdModeCallback callback){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  (void)o;if(!callback || (flags!=0 && flags!=1) || (filter && ((filter[0]!=108 && filter[0]!=124) || (filter[1]&~0x1006u))))return NS_UNSUPPORTED;
  u32 size=filter?filter[0]:108;
  const u32 depths[4]={16,8,24,32};
@@ -368,20 +395,25 @@ static i32 WIN nd_enum_modes(struct NdObject* o,u32 flags,const u32* filter,void
  return 0;
 }
 static i32 WIN nd_memory(struct NdObject* o,const u32* caps,u32* total,u32* available){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(!caps || (!total && !available) || caps[0]!=0x4000 || (o->kind==3 && (caps[1] || caps[2] || caps[3])))return NS_UNSUPPORTED;
  if(total)*total=256*1024*1024;if(available)*available=256*1024*1024-ns_bytes;return 0;
 }
 static i32 WIN nd_cooperate(struct NdObject* o,void* window,u32 flags){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if((window && !IsWindow(window)) || (!window && flags!=8) || (flags!=8 && flags!=0x11))return ND_INVALID;o->state->window=window;o->state->coop=flags;return 0;
 }
 static i32 WIN nd_mode(struct NdObject* o,u32 w,u32 h,u32 depth,u32 refresh,u32 flags){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(o->state->primary)return NS_BUSY;
  if(o->state->coop!=0x11)return (i32)0x887600e1u;
  if(!w || !h || w>4096 || h>4096 || (depth!=8 && depth!=16 && depth!=24 && depth!=32) || refresh || flags)return NS_UNSUPPORTED;
  o->state->width=w;o->state->height=h;o->state->depth=depth;return 0;
 }
-static i32 WIN nd_mode1(struct NdObject* o,u32 w,u32 h,u32 depth){return nd_mode(o,w,h,depth,0,0);}
-static i32 WIN nd_restore_mode(struct NdObject* o){o->state->width=800;o->state->height=600;o->state->depth=16;return 0;}
+static i32 WIN nd_mode1(struct NdObject* o,u32 w,u32 h,u32 depth){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();return nd_mode(o,w,h,depth,0,0);}
+static i32 WIN nd_restore_mode(struct NdObject* o){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();o->state->width=800;o->state->height=600;o->state->depth=16;return 0;}
 static void nd_init(void){
  nc_init();np_init();
  for(u32 k=0;k<4;++k){

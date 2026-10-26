@@ -76,7 +76,9 @@ static i32 WIN ns_guard_fault(struct NsGuardExceptionPointers* pointers){
   ExitProcess(124);
  }
  if(e->code!=0xc0000005u || e->count<2)return 0;
- for(struct NsState* s=ns_owned;s;s=s->next_owned){
+ for(struct NsState* s=ns_lifetime_mode?__atomic_load_n(&ns_lifetime_all,__ATOMIC_ACQUIRE):ns_owned;
+     s;s=ns_lifetime_mode?s->lifetime_next_all:s->next_owned){
+  if(__atomic_load_n(&s->lifetime_retired,__ATOMIC_ACQUIRE))continue;
   const u32 at=e->information[1],base=(u32)s->pixels;
   if(!s->cpu_guard || at<base || at-base>=ns_guard_bytes(s))continue;
   /* The mandatory World guard owns its interval, including diagnostics. The

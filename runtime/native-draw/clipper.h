@@ -14,15 +14,20 @@ struct NcClipper {void** table;u32 refs;void* window;void* region;void* observed
 static void* nc_table[9];static u32 nc_objects;
 static const u8 nc_id[16]={0x85,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};
 static i32 WIN nc_query(struct NcClipper* c,const u8* iid,void** out){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(!iid || !out)return ND_INVALID;*out=0;
  if(!nd_equal(iid,nd_unknown) && !nd_equal(iid,nc_id))return ND_NOINTERFACE;
  ++c->refs;*out=c;return 0;
 }
-static u32 WIN nc_retain(struct NcClipper* c){return ++c->refs;}
-static u32 WIN nc_release(struct NcClipper* c){u32 error=GetLastError(),refs=--c->refs;
+static u32 WIN nc_retain(struct NcClipper* c){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();return ++c->refs;}
+static u32 WIN nc_release(struct NcClipper* c){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();u32 error=GetLastError(),refs=--c->refs;
  if(!refs){if(c->region)DeleteObject(c->region);if(c->observed)DeleteObject(c->observed);HeapFree(GetProcessHeap(),0,c);--nc_objects;}nd_status();SetLastError(error);return refs;}
-static i32 WIN nc_window(struct NcClipper* c,void** out){if(!out)return ND_INVALID;*out=c->window;return 0;}
+static i32 WIN nc_window(struct NcClipper* c,void** out){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();if(!out)return ND_INVALID;*out=c->window;return 0;}
 static i32 WIN nc_set_window(struct NcClipper* c,u32 flags,void* window){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(flags || (window && !IsWindow(window)))return ND_INVALID;c->window=window;c->changed=1;if(c->observed)DeleteObject(c->observed);c->observed=0;return 0;
 }
 /* Caller frees the immutable RGNDATA snapshot. Null without error denotes an
@@ -49,6 +54,7 @@ static i32 nc_snapshot(struct NcClipper* c,u32** out){
  if(temporary)DeleteObject(temporary);return result;
 }
 static i32 WIN nc_get_list(struct NcClipper* c,const i32* rect,u32* out,u32* size){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(!size)return ND_INVALID;u32* data=0;i32 result=nc_snapshot(c,&data);if(result)return result;
  if(rect){
   void* region=ExtCreateRegion(0,32+16*data[2],data);void* cut=CreateRectRgn(rect[0],rect[1],rect[2],rect[3]);
@@ -64,6 +70,7 @@ static i32 WIN nc_get_list(struct NcClipper* c,const i32* rect,u32* out,u32* siz
  if(data)HeapFree(GetProcessHeap(),0,data);return result;
 }
 static i32 WIN nc_set_list(struct NcClipper* c,const u32* data,u32 flags){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(flags)return ND_INVALID;if(c->window)return (i32)0x88760237u;
  void* region=0;
  if(data){if(data[0]!=32 || data[1]!=1 || data[2]>256 || data[3]!=16*data[2])return (i32)0x8876006eu;
@@ -72,10 +79,12 @@ static i32 WIN nc_set_list(struct NcClipper* c,const u32* data,u32 flags){
  if(c->region)DeleteObject(c->region);c->region=region;c->changed=1;return 0;
 }
 static i32 WIN nc_changed(struct NcClipper* c,i32* out){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(!out)return ND_INVALID;if(c->window){u32* data=0;i32 result=nc_snapshot(c,&data);if(result)return result;HeapFree(GetProcessHeap(),0,data);}
  *out=c->changed!=0;c->changed=0;return 0;
 }
 static i32 WIN nd_clipper(struct NdObject* o,u32 flags,void** out,void* outer){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  (void)o;if(!out)return ND_INVALID;*out=0;if(outer)return (i32)0x80040110u;
  if(flags)return ND_INVALID;if(nc_objects>=64)return (i32)0x8007000eu;
  struct NcClipper* c=HeapAlloc(GetProcessHeap(),8,sizeof(*c));if(!c)return (i32)0x8007000eu;

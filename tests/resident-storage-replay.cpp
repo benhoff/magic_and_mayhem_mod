@@ -27,7 +27,7 @@ int main(int argc,char** argv)try{
  const auto store=std::get<assets::AssetStore>(std::move(opened));QDir out(argv[4]);require(out.mkpath("."),"Output directory");
  QFile input(argv[1]);require(input.open(QIODevice::ReadOnly),"Resident capture input");const auto magic=input.read(8);const bool sources=magic=="MNMPROF3";require(sources||magic=="MNMPROF2","Compressed resident capture");
  quint64 chunks=0,blocks=0;
- render::GlBlitter renderer;quint64 generation=0;QJsonArray checkpoints;
+ render::GlBlitter renderer;quint64 generation=0;QJsonArray checkpoints;legacy::CanvasWorld::AlternateStats alternate;
  {
  render::GpuCanvasMirror mirror(renderer);
  legacy::CanvasProducerReplay producer([store](const auto& name){auto opened=store.open(name);if(auto* e=std::get_if<assets::Error>(&opened))throw std::runtime_error(e->detail);auto f=std::get<std::unique_ptr<assets::AssetFile>>(std::move(opened));auto bytes=assets::readWhole(*f,16*1024*1024);if(auto* e=std::get_if<assets::Error>(&bytes))throw std::runtime_error(e->detail);return std::get<std::vector<std::uint8_t>>(std::move(bytes));},&mirror);
@@ -60,7 +60,8 @@ int main(int argc,char** argv)try{
   require(!world.active(),"Unclosed World");
   if(capture){qToLittleEndian<quint32>(count,draws.data()+16);save(out.filePath(base+"-draws.bin"),draws);checkpoints.append(QJsonObject{{"generation",QString::number(g)},{"draws",int(count)},{"rasters",int(raster)},{"canvas",int(world.canvas())},{"base",base}});}
  }
+ alternate=world.alternateStats();
  }
  require(!renderer.stats().surfaces&&checkpoints.size()==int(selected.size()),"Checkpoint/retirement proof");
- save(out.filePath("replay.json"),QJsonDocument(QJsonObject{{"success",true},{"worlds",QString::number(generation)},{"source_chunks",QString::number(chunks)},{"checkpoints",checkpoints},{"remaining_surfaces",0},{"original_oracles_read",false},{"scope","Source-only resident World replay and diagnostic entry/final canvases; no presented whole-session equivalence"}}).toJson());return 0;
+ save(out.filePath("replay.json"),QJsonDocument(QJsonObject{{"success",true},{"worlds",QString::number(generation)},{"source_chunks",QString::number(chunks)},{"checkpoints",checkpoints},{"native_alternate_canvas",QJsonObject{{"enabled",alternate.enabled},{"frames",QString::number(alternate.frames)},{"copy_backs",QString::number(alternate.copies)},{"padding",int(alternate.xPadding)},{"padding_y",int(alternate.yPadding)}}},{"remaining_surfaces",0},{"original_oracles_read",false},{"scope","Source-only resident World replay and diagnostic entry/final canvases; no presented whole-session equivalence"}}).toJson());return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
