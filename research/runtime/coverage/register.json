@@ -153302,6 +153302,242 @@
         "Opt-in regular launcher validated with original graphics on a fresh Celtic Adept campaign and actual same-process named Save/Load. Combined native Qt graphics ownership, arbitrary maps/saves, long-duration use and default rollout remain separate acceptance; original scheduler, loader/serializer and resource lifetimes remain original.",
         "Worker loss intentionally degrades the selected session and reports a nonzero launcher result after clean original Quit; one unchanged-original/sanitized fallback witness supports recovery, not continued native replacement."
       ]
+    },
+    {
+      "id": "NP.five-pixel-computed-callers",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Five pixel helper computed-address and indirect caller investigation",
+      "scope": "Pinned No-CD discovery-root/direct-edge x86 decoding and bounded straight-line 32-bit constant/address candidate propagation for five unresolved helper ranges. Calls, branches, incoming targets, gaps, memory/partial-register writes and unsupported instructions reset local state. Retain all decoded indirect sites and initial-image memory provenance. Separately verify actual CPU pointer assignments and minimap table targets. Candidate values and discovery roots are not naturally executed callers; no inter-block/interprocedural, runtime memory, dynamic/external flow or whole-program unreachability closure. No route credit, dispatch change or denominator reduction.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5551600,
+          "scope": "Existing helper range; computed-address caller candidates only.",
+          "recovered_range": "pixel-producer-54b5f0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5822320,
+          "scope": "Existing helper range; computed-address caller candidates only.",
+          "recovered_range": "pixel-producer-58d770"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821360,
+          "scope": "Existing helper range; computed-address caller candidates only.",
+          "recovered_range": "pixel-producer-58d3b0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5759408,
+          "scope": "Existing helper range; computed-address caller candidates only.",
+          "recovered_range": "world-copy-reference-entry-57e1b0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5583600,
+          "scope": "Existing helper range; computed-address caller candidates only.",
+          "recovered_range": "minimap-outline-view3-5532f0"
+        }
+      ],
+      "documents": [
+        "research/runtime/five-pixel-computed-callers-20261025.md"
+      ],
+      "implementation": [
+        "tools/pixel_caller_values.py",
+        "tools/inspect-five-pixel-callers.py"
+      ],
+      "tests": [
+        "tests/test-pixel-caller-values.py"
+      ],
+      "validation_dependencies": [
+        "tools/original_x86.py",
+        "tools/inspect-pixel-route-caller-ranges.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "research/original-files.tsv",
+        "research/runtime/coverage/binary-nocd-alternate-canvas-20261020.json"
+      ],
+      "evidence": [
+        "FIVE1.computed-controls-20261025",
+        "FIVE1.computed-image-20261025",
+        "FIVE1.central-controls-20261025",
+        "FIVE1.central-image-20261025",
+        "FIVE1.master-controls-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Natural original-game callers for all five helpers remain unresolved. Preserve provisional unused_candidate classification, existing 43-route denominator and 38-route historical observed union.",
+        "No inter-block/interprocedural values, runtime writer/alias closure, unresolved indirect targets, dynamic or overlapping code, external modules or other builds are closed by this scanner."
+      ]
+    },
+    {
+      "id": "RS.main-screen-acquisition",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Main screen layout and resource acquisition",
+      "scope": "Complete local Main layout allocation4a6f70..4a7024 and prepare4a7110..4a756d:cookie allocation/publication,canvas descriptor and callback ownership,six control publications with sixth retirement,label and vector population,initialized guard. Lower parsers,constructors,assets,CRT and heap are authored endpoints. Normal-return admitted storage only;unused upper byte-parameter bits are not semantic state. No SEH unwinding,heap-fault reachability,transitive provider ownership or installed/live acceptance.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4878608,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-4a7110"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4878192,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-4a6f70"
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_acquisition.hpp"
+      ],
+      "tests": [
+        "tests/screen-acquisition-reference.cpp",
+        "tools/test-screen-acquisition.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/screen_resource_ownership.hpp",
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "reconstruction/rendering/world_screen_retirement.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/screen-acquisition-20261026.md"
+      ],
+      "evidence": [
+        "RSA26.acquisition"
+      ],
+      "remaining_gaps": [
+        "Full real Main/Realm/World/report transition routing,lower provider semantics,exception/fault recovery,asynchronous aliases and installed live-session acceptance remain separate. Report integer strings exceeding the original six-character scratch capacity are outside the admitted baseline."
+      ]
+    },
+    {
+      "id": "RS.world-screen-acquisition",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "World screen entry and provider acquisition",
+      "scope": "Complete local World entry46a460..46a92e:service ordering,owner flags,timing selection,sprite loads and continuing warnings,network roster,optional diagnostics,countdown and initialization/publication. Lower simulation,assets,OS,timer and network providers are authored endpoints;valid nonzero signed timer divisors and admitted strings/storage. No transitive provider reconstruction,World constructor,exceptions or installed/live ownership acceptance.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4629600,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-46a460"
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_acquisition.hpp"
+      ],
+      "tests": [
+        "tests/screen-acquisition-reference.cpp",
+        "tools/test-screen-acquisition.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/screen_resource_ownership.hpp",
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "reconstruction/rendering/world_screen_retirement.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/screen-acquisition-20261026.md"
+      ],
+      "evidence": [
+        "RSA26.acquisition"
+      ],
+      "remaining_gaps": [
+        "Full real Main/Realm/World/report transition routing,lower provider semantics,exception/fault recovery,asynchronous aliases and installed live-session acceptance remain separate. Report integer strings exceeding the original six-character scratch capacity are outside the admitted baseline."
+      ]
+    },
+    {
+      "id": "RS.report-screen-acquisition",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Campaign report resource preparation and ownership",
+      "scope": "Complete local campaign report layout474a50..474b03 and prepare473d70..4745c8:embedded surface,bitmap sprite,text buffers,callback,21 labels and one button,scores and campaign totals. Lower layout/config/label/button/asset/score/CRT/heap providers are authored endpoints. Normal return with admitted writable allocations,bounded strings,at most six decimal characters including sign,and up to four score records. No SEH unwinding,heap-fault reachability,transitive providers or installed/live ownership acceptance.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4668784,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-473d70"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4672080,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-474a50"
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_acquisition.hpp"
+      ],
+      "tests": [
+        "tests/screen-acquisition-reference.cpp",
+        "tools/test-screen-acquisition.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/screen_resource_ownership.hpp",
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "reconstruction/rendering/world_screen_retirement.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/screen-acquisition-20261026.md"
+      ],
+      "evidence": [
+        "RSA26.acquisition"
+      ],
+      "remaining_gaps": [
+        "Full real Main/Realm/World/report transition routing,lower provider semantics,exception/fault recovery,asynchronous aliases and installed live-session acceptance remain separate. Report integer strings exceeding the original six-character scratch capacity are outside the admitted baseline."
+      ]
     }
   ],
   "evidence": [
@@ -345980,6 +346216,220 @@
       "original_hash_pointer": "/original_sha256",
       "equivalence_pointer": "/success",
       "bypass_pointer": "/live_replacement"
+    },
+    {
+      "id": "FIVE1.computed-controls-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/five-pixel-callers-results-20261025/controls04.json",
+      "sha256": "77891ff0fd9eef895a314ac24acd0de24569817cc896798d37339c79d63ff537",
+      "scope": "34 real-decoder synthetic graph/value controls, including positive computed pointers, branch/alias/call barriers and incomplete graph refusal. Scanner implementation only; no original game or pixel comparison.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_unreachable_proved",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "FIVE1.computed-image-20261025",
+      "kind": "static",
+      "record": "research/runtime/five-pixel-callers-results-20261025/image03.json",
+      "sha256": "485fc31c48e494161d499e2b5f42e8f8420ef67e917bbea4b3b4ef6f0bf6b9e6",
+      "scope": "Pinned original byte review:513885 decoded instructions,3719 indirect sites,zero five-helper direct/value candidates;retain3717-site reconciliation and3 additional outgoing virtual calls. Initial-image values are not runtime targets. No original game or global reachability claim.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_unreachable_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FIVE1.central-controls-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/five-pixel-callers-results-20261025/central-controls01.json",
+      "sha256": "50a9fd06292eda189e0b2296f6b0b9d55e6df66d417209acb07e03d73909dc9a",
+      "scope": "Fresh34 real-decoder graph/value controls on the final central-inventory source/contract. No original-game execution or pixel comparison.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_unreachable_proved",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "FIVE1.central-image-20261025",
+      "kind": "static",
+      "record": "research/runtime/five-pixel-callers-results-20261025/central-image01.json",
+      "sha256": "91a2b69f5e0192125430135e5d0288d2d30fc1cd69474ecb826cd6b186e67a59",
+      "scope": "Current central6757-entry census plus retained flow-site/target roots:515966 decoded instructions from45731 seeds,3719 indirect sites,zero five-helper candidate callers. All82 additional central function entries included. Preserve runtime/foreign/inter-block unknowns and three outgoing virtual sites;no game execution or global exclusion.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_unreachable_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FIVE1.master-controls-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/five-callers-master-results-20261026/controls01.json",
+      "sha256": "89e85223ab3a2f58b7377acb1c32771519ea57a235aa4027edc01cd10b1d1316",
+      "scope": "Fresh 34 real-decoder graph/value controls on the combined master merge tree. Investigation sources and contract are unchanged. No original-game execution or pixel comparison.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_unreachable_proved",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RSA26.acquisition",
+      "kind": "isolated_original",
+      "record": "research/runtime/screen-acquisition-results-20261026/acquire07.json",
+      "sha256": "f0e72db6c87a6d73e1c71389ac56da069e2fad101b1b7920c8c654de6582c41f",
+      "scope": "Complete normal-return Main,World and campaign report acquisition callers and layout allocators within their declared admitted domains,plus192 controlled construction/preparation/retirement compositions per build. Authored lower providers,empty World exit simulation fixture,not real Realm routing or installed/live ownership acceptance.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/original/composed_lifecycles",
+          "equals": 192
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 10140469957634073648
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/sanitized/composed_lifecycles",
+          "equals": 192
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 10140469957634073648
+        },
+        {
+          "pointer": "/native64/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native64/cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/native64/composed_lifecycles",
+          "equals": 192
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 10140469957634073648
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -356386,6 +356836,32 @@
           "behaviors": [
             "RS.screen-resource-release-callers"
           ]
+        }
+      ]
+    },
+    {
+      "id": "five-pixel-helper-outgoing-virtual-services",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5822320,
+        "scope": "Existing brighten helper range; static outgoing +80 virtual-site inventory, not a known concrete table.",
+        "recovered_range": "pixel-producer-58d770"
+      },
+      "document": "research/runtime/five-pixel-computed-callers-20261025.md",
+      "complete": false,
+      "scope": "Retain three decoded outgoing receiver-table +80 calls absent from the historical flow census. No runtime table/callee identity or natural incoming caller is recovered.",
+      "entries": [
+        {
+          "value": "site0x58d487 virtual+80 target unknown",
+          "behaviors": []
+        },
+        {
+          "value": "site0x58d494 virtual+80 target unknown",
+          "behaviors": []
+        },
+        {
+          "value": "site0x58d8a8 virtual+80 target unknown",
+          "behaviors": []
         }
       ]
     }
@@ -375218,6 +375694,56 @@
       "evidence": "RSO25.world-original",
       "anchors_pointer": "/original_entry_anchors",
       "scope": "Complete execution-backed local caller outside retained function inventory. External provider/allocator/virtual endpoints remain explicit controlled boundaries;not transitive semantics,whole-session or live ownership acceptance. Historical inventory and unassigned ranges remain unchanged."
+    },
+    {
+      "id": "screen-acquisition-complete-4a7110",
+      "build": "nocd-40209ca7",
+      "start": 4878608,
+      "end": 4879725,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
+    },
+    {
+      "id": "screen-acquisition-complete-4a6f70",
+      "build": "nocd-40209ca7",
+      "start": 4878192,
+      "end": 4878372,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
+    },
+    {
+      "id": "screen-acquisition-complete-46a460",
+      "build": "nocd-40209ca7",
+      "start": 4629600,
+      "end": 4630830,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
+    },
+    {
+      "id": "screen-acquisition-complete-473d70",
+      "build": "nocd-40209ca7",
+      "start": 4668784,
+      "end": 4670920,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
+    },
+    {
+      "id": "screen-acquisition-complete-474a50",
+      "build": "nocd-40209ca7",
+      "start": 4672080,
+      "end": 4672259,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
     }
   ],
   "register_imports": [
@@ -375590,7 +376116,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-4ce5b1d14e1799330fac8ee45a7ce1cefdadd321ddb11c3eaf988d8111aea5d8.json",
-    "sha256": "4ce5b1d14e1799330fac8ee45a7ce1cefdadd321ddb11c3eaf988d8111aea5d8"
+    "path": "research/runtime/coverage/source-index-e04ff04c52e9f74bec539c58b857635240b748938f268dea267339ec4f9ec168.json",
+    "sha256": "e04ff04c52e9f74bec539c58b857635240b748938f268dea267339ec4f9ec168"
   }
 }

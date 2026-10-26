@@ -23136,3 +23136,92 @@ separate work. The committed-history review covers eight commits and 3,846
 file transitions; 380 retained terrain experiment artifacts receive explicit
 retrospective receipts, without claiming a historical gate pass. See
 `screen-ownership-results-20261026/merge-history02.json`.
+
+## Five pixel helper computed caller investigation — 2026-10-25
+
+[Computed-caller review](five-pixel-computed-callers-20261025.md) extends the
+earlier direct-byte searches for PCX WORD,brighten,row-copy,raster15 and camera3.
+FIVE1.computed-image-20261025 decodes513885 instructions from45650 discovery
+seeds and retains3719 indirect transfers. It finds zero incoming decoded direct
+branches or supported local computed-address candidates into the five helpers.
+All remain provisional unused_candidate;the43-route denominator and historical
+38-route observed union remain unchanged. No live game or original pixel
+comparison is performed.
+
+The historical3717computed sites reconcile to3716indirect instructions and one
+retained INT3 classification. Three additional outgoing virtual+80 calls inside
+row-copy/brighten are preserved in an incomplete dispatch entry;their runtime
+targets remain unknown. Existing inventory boundaries and hashes are unchanged.
+Original CPU chooser assignments and camera0/2/0/1 table bytes are checked,not
+generalized into whole-program exclusion. Initial import-name thunks are kept
+separate from loader-installed runtime addresses.
+
+FIVE1.computed-controls-20261025 passes34 actual-decoder graph/value tests.
+Immutable SQLite reports retain the initial failed provenance assertion,its
+source variants and all successful narrower scans. Manifest bookends verify2927
+original inputs. The new scanner implementation has scoped current execution
+support;natural caller recovery,inter-block/interprocedural and dynamic/external
+flows,original equivalence,integration and replacement remain open.
+
+The final central-census extension uses all6757current function entries,including
+82entries absent from the older caller seed census. Fresh
+FIVE1.central-image-20261025 retains515966decoded instructions from45731seeds,
+with the same3719indirect sites and zero candidate callers. Fresh
+FIVE1.central-controls-20261025 passes34controls against the final source and
+contract. Earlier narrower evidence/receipts and the pre-staging Git-lock failure
+remain historical;the final current-code claim uses only the new source bindings.
+
+## Five caller investigation master integration — 2026-10-26
+
+[Integration review](five-callers-master-integration-20261026.md) combines the
+five-helper investigation with current sprite, cursor and terrain master work.
+FIVE1.master-controls-20261026 passes 34 scanner controls; all 38 planning
+controls pass. Exact incoming source bindings remain unchanged, so the retained
+central image scan remains current within its stated static scope. No original
+execution is repeated. All five natural callers, the 43-route denominator,
+historical 38-route union and incomplete outgoing virtual dispatch remain as
+recorded. No original comparison, integration or replacement status is promoted.
+All 3847 committed transitions across 8 intervening/incoming commits
+have exact receipts, including pending retrospective accounting for 380 older
+terrain merge artifacts; this history accounting is separate from current
+merge validation. Pending main-checkout edits are outside this batch.
+
+
+### Main/World/report acquisition and composed retirement — 2026-10-26
+
+`RS.main-screen-acquisition`, `RS.world-screen-acquisition` and
+`RS.report-screen-acquisition` recover the complete normal-return local
+preparation/entry callers and both concrete layout allocation helpers. Main
+publishes its canvas, callbacks, controls and label; World orders its providers,
+loads and flags; the report owns its layouts, sprite, buffers, callback, labels
+and button. See [scope and evidence](screen-acquisition-20261026.md).
+
+`RSA26.acquisition` / `screen-acquisition-results-20261026/acquire07.json` passes
+768 schedules per optimized32, ASan/UBSan32 and ASan/UBSan64 build, including
+192 controlled Main construction → preparation/release → World entry → report
+preparation/full exit → World exit → Main preparation/enclosing destruction
+compositions. Complete owned bytes, endpoint ordering/state, descriptors, strings
+and packets match the pinned unchanged original caller bodies. Fourteen local
+CFG ranges are closed and fingerprinted. Manifests verify all 2,927 immutable
+original files before and after. Existing release models and evidence hashes
+remain unchanged. No installed/live or replacement milestone is promoted.
+
+Attempts 1–5 retain compile/oversized-score failures; attempt6 passes the earlier
+release-only composition on its historical source. The oversized report score
+trace records corruption of a loop-count stack slot by an original decimal
+conversion. The admitted baseline bounds decimal text to six characters plus
+a terminator; naturally reachable score limits and fault recovery remain open.
+
+Both master advances are reconciled: the earlier eight-commit review has
+3,846 exact file transitions including380 retrospective terrain-artifact
+receipts; the subsequent854c8576..c5137b9c incoming history adds two commits
+and71 exact transitions with no missing receipts. Current combined-tree
+accounting is separate from historical receipts. Pending launcher work is
+preserved independently. The approved88GiB storage exception and2GiB durable
+output cap apply only to this local batch; no publication or cleanup is added.
+
+Remaining work is the real Main/Realm/World/report transition routing, World
+construction, lower provider semantics and ownership, exceptional allocations/
+SEH, asynchronous aliases and top-down installed/live ownership acceptance.
+The controlled composition explicitly normalizes service-owned World bitmap
+storage to an empty exit fixture; it does not establish those provider effects.
