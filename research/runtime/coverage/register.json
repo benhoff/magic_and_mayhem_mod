@@ -150099,7 +150099,8 @@
       "confidence": "high_within_scope",
       "documents": [
         "research/runtime/screen-class-lifetime-recovery-20261025.md",
-        "research/runtime/screen-recovery-master-integration-20261025.md"
+        "research/runtime/screen-recovery-master-integration-20261025.md",
+        "research/runtime/screen-resource-ownership-20261025.md"
       ],
       "implementation": [],
       "tests": [
@@ -150117,7 +150118,7 @@
         "SSR2.master-tables-20261025"
       ],
       "remaining_gaps": [
-        "Complete dynamic class registration,constructor/destructor semantics,indirect stores,caller reachability and resource lifetime remain separate."
+        "The21 concrete slot+20 callers now have separate scoped original comparison under RS.screen-resource-release-callers;5c6564 remains an abstract purecall release slot. Complete class construction/enclosing destruction outside Main/Quick/Mini/results,dynamic registration,indirect stores and runtime reachability remain separate."
       ],
       "id": "RS.screen-class-ownership-static",
       "title": "Concrete shared screen vtable and direct owner-store witnesses",
@@ -153210,6 +153211,419 @@
       "remaining_gaps": [
         "Natural original-game callers for all five helpers remain unresolved. Preserve provisional unused_candidate classification, existing 43-route denominator and 38-route historical observed union.",
         "No inter-block/interprocedural values, runtime writer/alias closure, unresolved indirect targets, dynamic or overlapping code, external modules or other builds are closed by this scanner."
+      ]
+    },
+    {
+      "id": "RS.screen-resource-release-callers",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Concrete screen resource release orchestration",
+      "scope": "Complete local slot+20 resource-release callers for all21 concrete shared5595d0 screen tables;5c6564 purecall remains abstract. Owned wire storage,initialized guards,derived cleanup,retained versus freed pointer arrays,cookie/virtual disposal ordering,surface receiver rereads and callback mutations. Resource destructor,CRT array iterator,allocator and bitmap/provider internals are explicit authored endpoints;no transitive provider semantics,whole object construction/World lifetime,asynchronous aliases or installed takeover. Complete normal-return Main3/Quick22/Mini17 constructors and enclosing destructors,with successful authored allocation and unchanged vector initialization/retirement,including two construction/destruction cycles. No original SEH exception unwinding or allocation-fault recovery is claimed. Complete campaign report exit4748a0 and enclosing campaign/Quick-result destructors473b00/474d70,including repeated cleanup,bitmap storage and embedded canvas retirement with named provider boundaries.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4668432,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4673504,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4743776,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4878384,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4881760,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4883680,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4885760,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4890144,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4894320,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4900112,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4911216,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4915296,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4919120,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4923408,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4926176,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4931776,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4944080,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4949808,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4953520,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4961664,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4964800,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024944,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4876896,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4877056,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4880752,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4880912,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4922752,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4922928,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024592,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024624,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4671648,
+          "scope": "Complete local campaign report exit or enclosing result-screen destructor;provider and allocator endpoints remain authored.",
+          "recovered_range": "screen-campaign-report-exit-4748a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4668160,
+          "scope": "Complete local campaign report exit or enclosing result-screen destructor;provider and allocator endpoints remain authored."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4672880,
+          "scope": "Complete local campaign report exit or enclosing result-screen destructor;provider and allocator endpoints remain authored."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_resource_ownership.hpp"
+      ],
+      "tests": [
+        "tests/screen-resource-ownership-reference.cpp",
+        "tools/test-screen-resource-ownership.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/screen-resource-ownership-20261025.md"
+      ],
+      "evidence": [
+        "RSO25.releases-original",
+        "RSO25.releases-retarget-original"
+      ],
+      "remaining_gaps": [
+        "Other classes\u2019 complete construction/enclosing destruction,resource prepare/provider semantics,World entry and transitive services,complete dynamic registration/computed aliases,real heap/fault reachability,asynchronous retirement and installed/live-session acceptance remain separate."
+      ]
+    },
+    {
+      "id": "RS.world-screen-retirement",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Complete World screen exit and local resource retirement",
+      "scope": "Complete unchanged46ab30..46ae8c local World exit orchestration:one-shot shutdown guard,registry/iterator traversal,bitmap retirement,segmented pointer-queue block release,canvas detach,owner reset and conditional tick snapshot. Independent wire-memory model and original-body execution with authored simulation/provider/allocator/OS endpoints and bounded valid owned registry/queue storage. Transitive simulation/asset/allocator/provider semantics,World construction/entry,SEH faults,arbitrary reentrancy,async aliases and live takeover remain separate.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4631344,
+          "scope": "Complete local World exit;external lifecycle/provider calls remain explicit authored endpoints.",
+          "recovered_range": "world-screen-exit-complete-46ab30"
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/world_screen_retirement.hpp"
+      ],
+      "tests": [
+        "tests/world-screen-retirement-reference.cpp",
+        "tools/test-screen-resource-ownership.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/screen-resource-ownership-20261025.md"
+      ],
+      "evidence": [
+        "RSO25.world-original"
+      ],
+      "remaining_gaps": [
+        "Other classes\u2019 complete construction/enclosing destruction,resource prepare/provider semantics,World entry and transitive services,complete dynamic registration/computed aliases,real heap/fault reachability,asynchronous retirement and installed/live-session acceptance remain separate."
+      ]
+    },
+    {
+      "id": "RS.main-screen-acquisition",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Main screen layout and resource acquisition",
+      "scope": "Complete local Main layout allocation4a6f70..4a7024 and prepare4a7110..4a756d:cookie allocation/publication,canvas descriptor and callback ownership,six control publications with sixth retirement,label and vector population,initialized guard. Lower parsers,constructors,assets,CRT and heap are authored endpoints. Normal-return admitted storage only;unused upper byte-parameter bits are not semantic state. No SEH unwinding,heap-fault reachability,transitive provider ownership or installed/live acceptance.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4878608,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-4a7110"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4878192,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-4a6f70"
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_acquisition.hpp"
+      ],
+      "tests": [
+        "tests/screen-acquisition-reference.cpp",
+        "tools/test-screen-acquisition.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/screen_resource_ownership.hpp",
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "reconstruction/rendering/world_screen_retirement.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/screen-acquisition-20261026.md"
+      ],
+      "evidence": [
+        "RSA26.acquisition"
+      ],
+      "remaining_gaps": [
+        "Full real Main/Realm/World/report transition routing,lower provider semantics,exception/fault recovery,asynchronous aliases and installed live-session acceptance remain separate. Report integer strings exceeding the original six-character scratch capacity are outside the admitted baseline."
+      ]
+    },
+    {
+      "id": "RS.world-screen-acquisition",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "World screen entry and provider acquisition",
+      "scope": "Complete local World entry46a460..46a92e:service ordering,owner flags,timing selection,sprite loads and continuing warnings,network roster,optional diagnostics,countdown and initialization/publication. Lower simulation,assets,OS,timer and network providers are authored endpoints;valid nonzero signed timer divisors and admitted strings/storage. No transitive provider reconstruction,World constructor,exceptions or installed/live ownership acceptance.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4629600,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-46a460"
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_acquisition.hpp"
+      ],
+      "tests": [
+        "tests/screen-acquisition-reference.cpp",
+        "tools/test-screen-acquisition.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/screen_resource_ownership.hpp",
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "reconstruction/rendering/world_screen_retirement.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/screen-acquisition-20261026.md"
+      ],
+      "evidence": [
+        "RSA26.acquisition"
+      ],
+      "remaining_gaps": [
+        "Full real Main/Realm/World/report transition routing,lower provider semantics,exception/fault recovery,asynchronous aliases and installed live-session acceptance remain separate. Report integer strings exceeding the original six-character scratch capacity are outside the admitted baseline."
+      ]
+    },
+    {
+      "id": "RS.report-screen-acquisition",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Campaign report resource preparation and ownership",
+      "scope": "Complete local campaign report layout474a50..474b03 and prepare473d70..4745c8:embedded surface,bitmap sprite,text buffers,callback,21 labels and one button,scores and campaign totals. Lower layout/config/label/button/asset/score/CRT/heap providers are authored endpoints. Normal return with admitted writable allocations,bounded strings,at most six decimal characters including sign,and up to four score records. No SEH unwinding,heap-fault reachability,transitive providers or installed/live ownership acceptance.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4668784,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-473d70"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4672080,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-474a50"
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_acquisition.hpp"
+      ],
+      "tests": [
+        "tests/screen-acquisition-reference.cpp",
+        "tools/test-screen-acquisition.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/screen_resource_ownership.hpp",
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "reconstruction/rendering/world_screen_retirement.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/screen-acquisition-20261026.md"
+      ],
+      "evidence": [
+        "RSA26.acquisition"
+      ],
+      "remaining_gaps": [
+        "Full real Main/Realm/World/report transition routing,lower provider semantics,exception/fault recovery,asynchronous aliases and installed live-session acceptance remain separate. Report integer strings exceeding the original six-character scratch capacity are outside the admitted baseline."
       ]
     }
   ],
@@ -346421,6 +346835,346 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "RSO25.releases-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/screen-ownership-results-20261025/release07.json",
+      "sha256": "af8e3493cb2c35ee6dd9d5997b9cc5042f80c6bd59196ca2be6cdc4292cb25eb",
+      "scope": "Complete local slot+20 resource-release callers for all21 concrete shared5595d0 screen tables;5c6564 purecall remains abstract. Owned wire storage,initialized guards,derived cleanup,retained versus freed pointer arrays,cookie/virtual disposal ordering,surface receiver rereads and callback mutations. Resource destructor,CRT array iterator,allocator and bitmap/provider internals are explicit authored endpoints;no transitive provider semantics,whole object construction/World lifetime,asynchronous aliases or installed takeover. Complete normal-return Main3/Quick22/Mini17 constructors and enclosing destructors,with successful authored allocation and unchanged vector initialization/retirement,including two construction/destruction cycles. No original SEH exception unwinding or allocation-fault recovery is claimed. Complete campaign report exit4748a0 and enclosing campaign/Quick-result destructors473b00/474d70,including repeated cleanup,bitmap storage and embedded canvas retirement with named provider boundaries.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/tables",
+          "equals": 21
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 3429
+        },
+        {
+          "pointer": "/original/menu_cases",
+          "equals": 1215
+        },
+        {
+          "pointer": "/original/report_cases",
+          "equals": 405
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 555902308911323265
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/tables",
+          "equals": 21
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 3429
+        },
+        {
+          "pointer": "/sanitized/menu_cases",
+          "equals": 1215
+        },
+        {
+          "pointer": "/sanitized/report_cases",
+          "equals": 405
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 555902308911323265
+        },
+        {
+          "pointer": "/native64/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native64/tables",
+          "equals": 21
+        },
+        {
+          "pointer": "/native64/cases",
+          "equals": 3429
+        },
+        {
+          "pointer": "/native64/menu_cases",
+          "equals": 1215
+        },
+        {
+          "pointer": "/native64/report_cases",
+          "equals": 405
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 555902308911323265
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RSO25.world-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/screen-ownership-results-20261025/world03.json",
+      "sha256": "8cfba86c54519190cca6002f82734bdc2fb61aefc6620874a72af14c248b85c0",
+      "scope": "Complete unchanged46ab30..46ae8c local World exit orchestration:one-shot shutdown guard,registry/iterator traversal,bitmap retirement,segmented pointer-queue block release,canvas detach,owner reset and conditional tick snapshot. Independent wire-memory model and original-body execution with authored simulation/provider/allocator/OS endpoints and bounded valid owned registry/queue storage. Transitive simulation/asset/allocator/provider semantics,World construction/entry,SEH faults,arbitrary reentrancy,async aliases and live takeover remain separate.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 8900491611964046752
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 8900491611964046752
+        },
+        {
+          "pointer": "/native64/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native64/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 8900491611964046752
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RSO25.releases-retarget-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/screen-ownership-results-20261025/release08.json",
+      "sha256": "5208dc6998ef3ce29c1c32bda23536f792eadc1f0afbfd2692f3bd7227fc81d6",
+      "scope": "Complete local slot+20 resource-release callers for all21 concrete shared5595d0 screen tables;5c6564 purecall remains abstract. Owned wire storage,initialized guards,derived cleanup,retained versus freed pointer arrays,cookie/virtual disposal ordering,surface receiver rereads and callback mutations. Resource destructor,CRT array iterator,allocator and bitmap/provider internals are explicit authored endpoints;no transitive provider semantics,whole object construction/World lifetime,asynchronous aliases or installed takeover. Complete normal-return Main3/Quick22/Mini17 constructors and enclosing destructors,with successful authored allocation and unchanged vector initialization/retirement,including two construction/destruction cycles. No original SEH exception unwinding or allocation-fault recovery is claimed. Complete campaign report exit4748a0 and enclosing campaign/Quick-result destructors473b00/474d70,including repeated cleanup,bitmap storage and embedded canvas retirement with named provider boundaries.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/tables",
+          "equals": 21
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 3429
+        },
+        {
+          "pointer": "/original/menu_cases",
+          "equals": 1215
+        },
+        {
+          "pointer": "/original/report_cases",
+          "equals": 405
+        },
+        {
+          "pointer": "/original/retargeted_cases",
+          "equals": 738
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 5965150817701890865
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/tables",
+          "equals": 21
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 3429
+        },
+        {
+          "pointer": "/sanitized/menu_cases",
+          "equals": 1215
+        },
+        {
+          "pointer": "/sanitized/report_cases",
+          "equals": 405
+        },
+        {
+          "pointer": "/sanitized/retargeted_cases",
+          "equals": 738
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 5965150817701890865
+        },
+        {
+          "pointer": "/native64/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native64/tables",
+          "equals": 21
+        },
+        {
+          "pointer": "/native64/cases",
+          "equals": 3429
+        },
+        {
+          "pointer": "/native64/menu_cases",
+          "equals": 1215
+        },
+        {
+          "pointer": "/native64/report_cases",
+          "equals": 405
+        },
+        {
+          "pointer": "/native64/retargeted_cases",
+          "equals": 738
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 5965150817701890865
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RSA26.acquisition",
+      "kind": "isolated_original",
+      "record": "research/runtime/screen-acquisition-results-20261026/acquire07.json",
+      "sha256": "f0e72db6c87a6d73e1c71389ac56da069e2fad101b1b7920c8c654de6582c41f",
+      "scope": "Complete normal-return Main,World and campaign report acquisition callers and layout allocators within their declared admitted domains,plus192 controlled construction/preparation/retirement compositions per build. Authored lower providers,empty World exit simulation fixture,not real Realm routing or installed/live ownership acceptance.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/original/composed_lifecycles",
+          "equals": 192
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 10140469957634073648
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/sanitized/composed_lifecycles",
+          "equals": 192
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 10140469957634073648
+        },
+        {
+          "pointer": "/native64/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native64/cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/native64/composed_lifecycles",
+          "equals": 192
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 10140469957634073648
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -356680,6 +357434,152 @@
           "value": 14,
           "behaviors": [
             "TL.complete-position-events"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "screen-concrete-resource-release-slots",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6053564,
+        "relation": "data",
+        "scope": "Fixed22 shared5595d0 table census,slot+20 resource-release targets."
+      },
+      "document": "research/runtime/screen-resource-ownership-20261025.md",
+      "complete": true,
+      "scope": "Complete fixed22-table release-slot crosswalk:21 concrete local callers compared;one abstract purecall explicitly retained. No complete dynamic class universe or computed-writer claim.",
+      "entries": [
+        {
+          "value": 6053564,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6053620,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6054176,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6054884,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6054940,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6054996,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055052,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055108,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055164,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055220,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055268,
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": 6055324,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055380,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055436,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055492,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055548,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055604,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055660,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055928,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6056092,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6056256,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6056312,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
           ]
         }
       ]
@@ -375575,6 +376475,76 @@
       "evidence": "TLR25.callers-original",
       "anchors_pointer": "/original_entry_anchors",
       "scope": "Pinned position-event code and trailing dispatch data outside Ghidra function bodies. Whole admitted event9/+718=0 and default paths executed with named external services; events5/8/14 and +718 continuation remain unresolved. This range does not classify the whole function as complete. This historical anchor remains narrow; the later complete caller comparison is TLCL25.producers-original / TL.complete-position-events."
+    },
+    {
+      "id": "screen-campaign-report-exit-4748a0",
+      "build": "nocd-40209ca7",
+      "start": 4671648,
+      "end": 4671802,
+      "document": "research/runtime/screen-resource-ownership-20261025.md",
+      "evidence": "RSO25.releases-original",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Complete execution-backed local caller outside retained function inventory. External provider/allocator/virtual endpoints remain explicit controlled boundaries;not transitive semantics,whole-session or live ownership acceptance. Historical inventory and unassigned ranges remain unchanged."
+    },
+    {
+      "id": "world-screen-exit-complete-46ab30",
+      "build": "nocd-40209ca7",
+      "start": 4631344,
+      "end": 4632204,
+      "document": "research/runtime/screen-resource-ownership-20261025.md",
+      "evidence": "RSO25.world-original",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Complete execution-backed local caller outside retained function inventory. External provider/allocator/virtual endpoints remain explicit controlled boundaries;not transitive semantics,whole-session or live ownership acceptance. Historical inventory and unassigned ranges remain unchanged."
+    },
+    {
+      "id": "screen-acquisition-complete-4a7110",
+      "build": "nocd-40209ca7",
+      "start": 4878608,
+      "end": 4879725,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
+    },
+    {
+      "id": "screen-acquisition-complete-4a6f70",
+      "build": "nocd-40209ca7",
+      "start": 4878192,
+      "end": 4878372,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
+    },
+    {
+      "id": "screen-acquisition-complete-46a460",
+      "build": "nocd-40209ca7",
+      "start": 4629600,
+      "end": 4630830,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
+    },
+    {
+      "id": "screen-acquisition-complete-473d70",
+      "build": "nocd-40209ca7",
+      "start": 4668784,
+      "end": 4670920,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
+    },
+    {
+      "id": "screen-acquisition-complete-474a50",
+      "build": "nocd-40209ca7",
+      "start": 4672080,
+      "end": 4672259,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
     }
   ],
   "register_imports": [
@@ -375947,7 +376917,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-b7f07a7662ff66beaa4b03cf6beea625ee3adc1766d54c0505812f7aaba71ee3.json",
-    "sha256": "b7f07a7662ff66beaa4b03cf6beea625ee3adc1766d54c0505812f7aaba71ee3"
+    "path": "research/runtime/coverage/source-index-614fca182be281a0482dd04fb6cd6bc6cff73b7f86420b35262aa0e65872f52f.json",
+    "sha256": "614fca182be281a0482dd04fb6cd6bc6cff73b7f86420b35262aa0e65872f52f"
   }
 }

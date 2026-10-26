@@ -22896,6 +22896,35 @@ transition review, and `final-local-evidence01.json` identifies the verified loc
 2,647-object SQLite backup. The final normal hook checks the combined staged
 tree; pre-existing master edits are preserved separately at fast-forward time.
 
+
+## Concrete screen ownership and World exit — 2026-10-25
+
+RS.screen-resource-release-callers now models all21 concrete slot+20 callers
+in the22-table shared5595d0 census;the abstract5c6564 purecall remains explicit.
+Fresh release08 compares3429 resource-release schedules,1215 complete normal
+Main/Quick/Mini lifetime schedules and405 campaign/Quick-result exit/destructor
+schedules per optimized32,sanitized32 and sanitized64 configuration. Complete
+owned bytes and every provider-entry storage snapshot agree;all compared
+original bodies remain unchanged. Retained arrays versus owned allocations,
+receiver rereads (including738 actual array-retarget schedules),derived cleanup despite a skipped base guard,signed dynamic
+Mini counts,repeated release and repeated enclosing cycles are explicit.
+
+RS.world-screen-retirement separately compares complete46ab30..46ae8c World
+exit in1536 cases per configuration,including registry/iterator traversal,
+bitmap retirement,two-block queue boundary/last-item frees,canvas detachment,
+owner reset and conditional clock capture. Full declared storage and endpoint
+snapshots/checksums agree. Two execution-backed local range exceptions retain
+the historical function inventory and unknown ranges without rewriting them.
+
+[Recovery and remaining boundaries](screen-resource-ownership-20261025.md)
+separate these local callers from authored simulation/asset/allocator/CRT/OS
+provider internals. Original manifests pass before/after each final execution;
+source and behavior claims bind the actual current bytes. Other class
+construction/destruction,World entry,complete computed alias/registration
+closure,real heap/fault paths,asynchronous retirement,installed semantic
+takeover and full presented-session equivalence remain open. No new runtime
+hook,gameplay change,FPS acceptance or live replacement credit is introduced.
+Earlier failed/stale attempts remain immutable in screen-ownership-results-20261025.
 ## Native cursor ownership and deferred lifetime closure (2026-10-25)
 
 [The owning native adapter](cursor-live-ownership-20261025.md) closes the supported
@@ -23127,6 +23156,19 @@ not a count of independent defects. Ten frontier plus sixteen crosswalk guards
 pass. Formal 14-journey/21-operation acceptance remains separate; the shipped
 suite has zero generic presented-session catalogs. The web UI layout and gameplay
 rules are unchanged.
+
+### Screen ownership integration with current master — 2026-10-26
+
+Integrate `40f1a13` with `dfff4634`, retaining the cursor ownership, sprite
+services and opt-in terrain normal-session work. The two scoped screen
+comparisons retain identical model, test, driver and behavior-contract hashes;
+this integration does not rerun or widen the original comparison. Acquisition
+and preparation, transitive providers and full live screen ownership remain
+separate work. The committed-history review covers eight commits and 3,846
+file transitions; 380 retained terrain experiment artifacts receive explicit
+retrospective receipts, without claiming a historical gate pass. See
+`screen-ownership-results-20261026/merge-history02.json`.
+
 ## Five pixel helper computed caller investigation — 2026-10-25
 
 [Computed-caller review](five-pixel-computed-callers-20261025.md) extends the
@@ -23201,3 +23243,47 @@ its unmet selection requirement rather than claiming a native match.
 
 See [scopes, evidence and reproduction](rendering-closeout-20261026.md). Coverage
 stages remain independent; no web UI layout or gameplay balance changes.
+
+### Main/World/report acquisition and composed retirement — 2026-10-26
+
+`RS.main-screen-acquisition`, `RS.world-screen-acquisition` and
+`RS.report-screen-acquisition` recover the complete normal-return local
+preparation/entry callers and both concrete layout allocation helpers. Main
+publishes its canvas, callbacks, controls and label; World orders its providers,
+loads and flags; the report owns its layouts, sprite, buffers, callback, labels
+and button. See [scope and evidence](screen-acquisition-20261026.md).
+
+`RSA26.acquisition` / `screen-acquisition-results-20261026/acquire07.json` passes
+768 schedules per optimized32, ASan/UBSan32 and ASan/UBSan64 build, including
+192 controlled Main construction → preparation/release → World entry → report
+preparation/full exit → World exit → Main preparation/enclosing destruction
+compositions. Complete owned bytes, endpoint ordering/state, descriptors, strings
+and packets match the pinned unchanged original caller bodies. Fourteen local
+CFG ranges are closed and fingerprinted. Manifests verify all 2,927 immutable
+original files before and after. Existing release models and evidence hashes
+remain unchanged. No installed/live or replacement milestone is promoted.
+
+Attempts 1–5 retain compile/oversized-score failures; attempt6 passes the earlier
+release-only composition on its historical source. The oversized report score
+trace records corruption of a loop-count stack slot by an original decimal
+conversion. The admitted baseline bounds decimal text to six characters plus
+a terminator; naturally reachable score limits and fault recovery remain open.
+
+Both master advances are reconciled: the earlier eight-commit review has
+3,846 exact file transitions including380 retrospective terrain-artifact
+receipts; the subsequent854c8576..c5137b9c incoming history adds two commits
+and71 exact transitions with no missing receipts. Current combined-tree
+accounting is separate from historical receipts. Pending launcher work is
+preserved independently. The approved88GiB storage exception and2GiB durable
+output cap apply only to this local batch; no publication or cleanup is added.
+
+Remaining work is the real Main/Realm/World/report transition routing, World
+construction, lower provider semantics and ownership, exceptional allocations/
+SEH, asynchronous aliases and top-down installed/live ownership acceptance.
+The controlled composition explicitly normalizes service-owned World bitmap
+storage to an empty exit fixture; it does not establish those provider effects.
+
+Rendering closeout integration also includes screen-ownership merge `bdf87f55`.
+The four retained comparison source fingerprints remain unchanged; independent
+screen models retain their own evidence and receive no rendering-run credit.
+See the closeout report and exact source-impact/history records.

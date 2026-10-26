@@ -137,3 +137,16 @@ existing reconciliation API: twelve surface categories, nine drawing routes,
 and the fresh RCL26 CPU subset alongside historical CCF25 evidence. The generic
 CLI's prior default definition remains unchanged. Its exact input register and
 helper sources are retained; this static snapshot grants no execution credit.
+
+The later screen-ownership merge `bdf87f55` is included in the final combined
+tree. The [source-impact check](rendering-closeout-results-20261026/screen-merge-source-impact.json)
+verifies that all four retained rendering comparison source fingerprints remain
+exact. Its new resource-ownership models retain their independent evidence;
+these rendering runs grant them no additional validation. The
+[follow-up history review](rendering-closeout-results-20261026/history-screen-04.json)
+checks the additional committed versions before the combined-tree census and gate.
+
+That review covers 5648 committed file versions. Thirty-eight incoming screen
+logs/images required exact retrospective artifact receipts; every payload was
+verified. The initial incomplete result is retained as `history-screen-03.json`;
+the final result has no unresolved receipts. This asserts no past gate pass.
