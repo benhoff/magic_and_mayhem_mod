@@ -43,7 +43,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     const QString samplingClock="unsupported";
 #endif
     const bool noRouteScreenshots=qEnvironmentVariableIntValue("MNM_NO_ROUTE_SCREENSHOTS")==1;
-    struct Run {NativeImageEncoder encoder;QString renderer;std::future<void> captureJob,diagnosticJob;std::future<QJsonObject> routeJob;std::future<QString> requestJob;QString captureName;QString routeName;int routeCycle=0;QElapsedTimer routeWait;int escapeCounter=0;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0,sampleWorlds=0;qint64 sampleHostUs=0;quint64 resumeSourceBase=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;bool reportClickInProgress=false,reportClickAccepted=false,reportClickScheduled=false;int reportClickAttempts=0;quint32 reportGeneration=0,reportThread=0,reportAck=0;QJsonArray steps;};
+    struct Run {NativeImageEncoder encoder;QString renderer;std::future<void> captureJob,diagnosticJob;std::future<QJsonObject> routeJob;std::future<NativeCaptureRequest> requestJob;NativeCaptureRequest capture;QString routeName;int routeCycle=0;QElapsedTimer routeWait;int escapeCounter=0;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0,sampleWorlds=0;qint64 sampleHostUs=0;quint64 resumeSourceBase=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;bool reportClickInProgress=false,reportClickAccepted=false,reportClickScheduled=false;int reportClickAttempts=0;quint32 reportGeneration=0,reportThread=0,reportAck=0;QJsonArray steps;};
     auto run=std::make_shared<Run>();
     auto finish=[run,path,probe,&app,normalQuit,noRouteScreenshots,synchronousRouteCapture](bool success,const QString& reason){
         if(run->done)return;
@@ -234,21 +234,21 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         const auto captureRequest=captureRequestPath;
         const bool captureReady=!run->captureJob.valid()||run->captureJob.wait_for(std::chrono::seconds(0))==std::future_status::ready;
         try{
-            if(run->requestJob.valid()&&run->requestJob.wait_for(std::chrono::seconds(0))==std::future_status::ready)run->captureName=run->requestJob.get();
+            if(run->requestJob.valid()&&run->requestJob.wait_for(std::chrono::seconds(0))==std::future_status::ready)run->capture=run->requestJob.get();
             if(captureReady&&run->captureJob.valid())run->captureJob.get();
         }catch(const std::exception& e){finish(false,QString("Diagnostic request refused: ")+e.what());return;}
-        if(p.active&&captureReady&&run->captureName.isEmpty()&&!run->requestJob.valid())
-            run->requestJob=run->encoder.trySubmit([captureRequest]{return readNativeCaptureRequest(captureRequest);});
-        if(p.active&&captureReady&&!run->captureName.isEmpty()){
-                const auto name=run->captureName;
+        if(p.active&&captureReady&&run->capture.name.isEmpty()&&!run->requestJob.valid())
+            run->requestJob=run->encoder.trySubmit([captureRequest]{return readNativeCaptureRequestPolicy(captureRequest,qEnvironmentVariableIntValue("MNM_ORIGINAL_WINDOWED_DIAGNOSTIC")==1);});
+        if(p.active&&captureReady&&!run->capture.name.isEmpty()){
+                const auto name=run->capture.name;const bool nativeOnly=run->capture.nativeOnly;
                     auto* activityViewport=window.findChild<GlViewport*>("nativeGameViewport");
                     GlViewport::ActivityScope capture(activityViewport,GlViewport::Activity::DiagnosticCapture);
                     QElapsedTimer captureClock;captureClock.start();
                     FrameStream reference;
                     QImage originalImage;
-                    {GlViewport::ActivityScope read(activityViewport,GlViewport::Activity::ReferenceRead);if(reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin")))originalImage=reference.nextFrame();}
+                    {GlViewport::ActivityScope read(activityViewport,GlViewport::Activity::ReferenceRead);if(!nativeOnly&&reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin")))originalImage=reference.nextFrame();}
                     const double originalCopyMs=captureClock.nsecsElapsed()/1000000.0;
-                    if(!originalImage.isNull()){
+                    if(nativeOnly||!originalImage.isNull()){
                     auto* viewport=window.findChild<GlViewport*>("nativeGameViewport");
                     QImage nativeImage;
                     if(viewport&&viewport->isVisible()){
@@ -260,15 +260,13 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
                     // Read back on the GL owner thread, then compress owned
                     // image copies off the event loop. Keep one bounded job.
                     const auto directory=QFileInfo(path).dir();
-                    run->captureJob=run->encoder.submit([nativeImage,originalImage,directory,name,p,originalCopyMs,captureOwnerMs,captureRequest]{
+                    run->captureJob=run->encoder.submit([nativeImage,originalImage,directory,name,p,originalCopyMs,captureOwnerMs,captureRequest,nativeOnly]{
                         if(!QFile::remove(captureRequest))throw std::runtime_error("Diagnostic request cleanup failed");
-                        const bool nativeSaved=saveNativeCaptureImage(directory.filePath(name+"-native.png"),nativeImage);
-                        const bool originalSaved=saveNativeCaptureImage(directory.filePath(name+"-original.png"),originalImage);
-                        if(!saveNativeCaptureMetadata(directory.filePath(name+".json"),QJsonObject{{"native_saved",nativeSaved},{"original_saved",originalSaved},{"native_frames",qint64(p.frames)},{"painted_frames",qint64(p.paints)},{"fallback",p.fallback},{"original_copy_ms",originalCopyMs},{"native_readback_ms",captureOwnerMs-originalCopyMs},{"capture_owner_ms",captureOwnerMs}}))
-                            throw std::runtime_error("Diagnostic capture acknowledgement publication failed");
-                        if(!nativeSaved||!originalSaved)throw std::runtime_error("Diagnostic capture image publication failed");
+                        if(!saveNativeDiagnosticCapture(directory.filePath(name),nativeImage,originalImage,nativeOnly,
+                            QJsonObject{{"native_frames",qint64(p.frames)},{"painted_frames",qint64(p.paints)},{"fallback",p.fallback},{"original_copy_ms",originalCopyMs},{"native_readback_ms",captureOwnerMs-originalCopyMs},{"capture_owner_ms",captureOwnerMs}}))
+                            throw std::runtime_error("Diagnostic capture image/acknowledgement publication failed");
                     });
-                    run->captureName.clear();
+                    run->capture={};
                     }
         }
         }

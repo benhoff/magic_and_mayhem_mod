@@ -3319,7 +3319,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "N27 adds a separate widget-independent strict companion/name/clip/playback/checkpoint/reload/plan and CPU/GPU consumer. The permissive raw parser, original TAG use, world construction and live acceptance remain separate; parent status is unchanged."
+        "N27 adds a separate widget-independent strict companion/name/clip/playback/checkpoint/reload/plan and CPU/GPU consumer. The permissive raw parser, original TAG use, world construction and live acceptance remain separate; parent status is unchanged.",
+        "N29 adds a separate explicit variable-timed native timeline and owned draw-plan service. Original ANI/TAG usage, installed acceptance and live integration remain outstanding; parent status is unchanged."
       ]
     },
     {
@@ -150062,7 +150063,8 @@
       "confidence": "high_within_scope",
       "documents": [
         "research/runtime/screen-class-lifetime-recovery-20261025.md",
-        "research/runtime/screen-recovery-master-integration-20261025.md"
+        "research/runtime/screen-recovery-master-integration-20261025.md",
+        "research/runtime/screen-resource-ownership-20261025.md"
       ],
       "implementation": [],
       "tests": [
@@ -150080,7 +150082,7 @@
         "SSR2.master-tables-20261025"
       ],
       "remaining_gaps": [
-        "Complete dynamic class registration,constructor/destructor semantics,indirect stores,caller reachability and resource lifetime remain separate."
+        "The21 concrete slot+20 callers now have separate scoped original comparison under RS.screen-resource-release-callers;5c6564 remains an abstract purecall release slot. Complete class construction/enclosing destruction outside Main/Quick/Mini/results,dynamic registration,indirect stores and runtime reachability remain separate."
       ],
       "id": "RS.screen-class-ownership-static",
       "title": "Concrete shared screen vtable and direct owner-store witnesses",
@@ -151601,7 +151603,11 @@
         "CUR27.owner06",
         "CUR27.owner07",
         "NPL26.fresh05",
-        "NPL26.reuse05"
+        "NPL26.reuse05",
+        "NPL26.fresh06",
+        "NPL26.reuse06",
+        "NPL26.fresh07",
+        "NPL26.reuse07"
       ],
       "status": {
         "understanding": "scoped",
@@ -153170,7 +153176,12 @@
         "NPL26.fresh04",
         "NPL26.controls04",
         "NPL26.fresh05",
-        "NPL26.reuse05"
+        "NPL26.reuse05",
+        "NPL26.fresh06",
+        "NPL26.reuse06",
+        "NPL26.fresh07",
+        "NPL26.reuse07",
+        "NPL26.controls07"
       ],
       "status": {
         "understanding": "scoped",
@@ -153183,6 +153194,1252 @@
         "Bounded fresh/reuse x86 public-launch acceptance uses Xvfb/software GL with --skip-movies --no-native-music. Music/movie defaults,arbitrary maps/saves,long-duration sessions,hardware cadence and ARM strict ownership retain separate milestones.",
         "Failed early attempts remain immutable. The unaccepted report click is retained without claiming its exact transient cause;the bounded harness resubmits only an unaccepted click on the identical ready generation and stops at admission. Both final cases needed one report click.",
         "Original simulation/preparation/UI bodies remain in Wine. Native-only ownership does not establish full original-driver/pixel equivalence or complete engine replacement."
+      ]
+    },
+    {
+      "id": "RS.screen-resource-release-callers",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Concrete screen resource release orchestration",
+      "scope": "Complete local slot+20 resource-release callers for all21 concrete shared5595d0 screen tables;5c6564 purecall remains abstract. Owned wire storage,initialized guards,derived cleanup,retained versus freed pointer arrays,cookie/virtual disposal ordering,surface receiver rereads and callback mutations. Resource destructor,CRT array iterator,allocator and bitmap/provider internals are explicit authored endpoints;no transitive provider semantics,whole object construction/World lifetime,asynchronous aliases or installed takeover. Complete normal-return Main3/Quick22/Mini17 constructors and enclosing destructors,with successful authored allocation and unchanged vector initialization/retirement,including two construction/destruction cycles. No original SEH exception unwinding or allocation-fault recovery is claimed. Complete campaign report exit4748a0 and enclosing campaign/Quick-result destructors473b00/474d70,including repeated cleanup,bitmap storage and embedded canvas retirement with named provider boundaries.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4668432,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4673504,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4743776,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4878384,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4881760,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4883680,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4885760,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4890144,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4894320,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4900112,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4911216,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4915296,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4919120,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4923408,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4926176,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4931776,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4944080,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4949808,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4953520,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4961664,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4964800,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024944,
+          "scope": "Complete local release caller;external providers remain authored boundaries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4876896,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4877056,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4880752,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4880912,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4922752,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4922928,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024592,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024624,
+          "scope": "Complete normal-return core menu constructor/destructor with authored allocation and downstream release endpoints."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4671648,
+          "scope": "Complete local campaign report exit or enclosing result-screen destructor;provider and allocator endpoints remain authored.",
+          "recovered_range": "screen-campaign-report-exit-4748a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4668160,
+          "scope": "Complete local campaign report exit or enclosing result-screen destructor;provider and allocator endpoints remain authored."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4672880,
+          "scope": "Complete local campaign report exit or enclosing result-screen destructor;provider and allocator endpoints remain authored."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_resource_ownership.hpp"
+      ],
+      "tests": [
+        "tests/screen-resource-ownership-reference.cpp",
+        "tools/test-screen-resource-ownership.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/screen-resource-ownership-20261025.md"
+      ],
+      "evidence": [
+        "RSO25.releases-original",
+        "RSO25.releases-retarget-original"
+      ],
+      "remaining_gaps": [
+        "Other classes\u2019 complete construction/enclosing destruction,resource prepare/provider semantics,World entry and transitive services,complete dynamic registration/computed aliases,real heap/fault reachability,asynchronous retirement and installed/live-session acceptance remain separate."
+      ]
+    },
+    {
+      "id": "RS.world-screen-retirement",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Complete World screen exit and local resource retirement",
+      "scope": "Complete unchanged46ab30..46ae8c local World exit orchestration:one-shot shutdown guard,registry/iterator traversal,bitmap retirement,segmented pointer-queue block release,canvas detach,owner reset and conditional tick snapshot. Independent wire-memory model and original-body execution with authored simulation/provider/allocator/OS endpoints and bounded valid owned registry/queue storage. Transitive simulation/asset/allocator/provider semantics,World construction/entry,SEH faults,arbitrary reentrancy,async aliases and live takeover remain separate.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4631344,
+          "scope": "Complete local World exit;external lifecycle/provider calls remain explicit authored endpoints.",
+          "recovered_range": "world-screen-exit-complete-46ab30"
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/world_screen_retirement.hpp"
+      ],
+      "tests": [
+        "tests/world-screen-retirement-reference.cpp",
+        "tools/test-screen-resource-ownership.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/screen-resource-ownership-20261025.md"
+      ],
+      "evidence": [
+        "RSO25.world-original"
+      ],
+      "remaining_gaps": [
+        "Other classes\u2019 complete construction/enclosing destruction,resource prepare/provider semantics,World entry and transitive services,complete dynamic registration/computed aliases,real heap/fault reachability,asynchronous retirement and installed/live-session acceptance remain separate."
+      ]
+    },
+    {
+      "id": "RS.main-screen-acquisition",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Main screen layout and resource acquisition",
+      "scope": "Complete local Main layout allocation4a6f70..4a7024 and prepare4a7110..4a756d:cookie allocation/publication,canvas descriptor and callback ownership,six control publications with sixth retirement,label and vector population,initialized guard. Lower parsers,constructors,assets,CRT and heap are authored endpoints. Normal-return admitted storage only;unused upper byte-parameter bits are not semantic state. No SEH unwinding,heap-fault reachability,transitive provider ownership or installed/live acceptance.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4878608,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-4a7110"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4878192,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-4a6f70"
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_acquisition.hpp"
+      ],
+      "tests": [
+        "tests/screen-acquisition-reference.cpp",
+        "tools/test-screen-acquisition.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/screen_resource_ownership.hpp",
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "reconstruction/rendering/world_screen_retirement.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/screen-acquisition-20261026.md"
+      ],
+      "evidence": [
+        "RSA26.acquisition"
+      ],
+      "remaining_gaps": [
+        "Full real Main/Realm/World/report transition routing,lower provider semantics,exception/fault recovery,asynchronous aliases and installed live-session acceptance remain separate. Report integer strings exceeding the original six-character scratch capacity are outside the admitted baseline."
+      ]
+    },
+    {
+      "id": "RS.world-screen-acquisition",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "World screen entry and provider acquisition",
+      "scope": "Complete local World entry46a460..46a92e:service ordering,owner flags,timing selection,sprite loads and continuing warnings,network roster,optional diagnostics,countdown and initialization/publication. Lower simulation,assets,OS,timer and network providers are authored endpoints;valid nonzero signed timer divisors and admitted strings/storage. No transitive provider reconstruction,World constructor,exceptions or installed/live ownership acceptance.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4629600,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-46a460"
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_acquisition.hpp"
+      ],
+      "tests": [
+        "tests/screen-acquisition-reference.cpp",
+        "tools/test-screen-acquisition.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/screen_resource_ownership.hpp",
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "reconstruction/rendering/world_screen_retirement.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/screen-acquisition-20261026.md"
+      ],
+      "evidence": [
+        "RSA26.acquisition"
+      ],
+      "remaining_gaps": [
+        "Full real Main/Realm/World/report transition routing,lower provider semantics,exception/fault recovery,asynchronous aliases and installed live-session acceptance remain separate. Report integer strings exceeding the original six-character scratch capacity are outside the admitted baseline."
+      ]
+    },
+    {
+      "id": "RS.report-screen-acquisition",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Campaign report resource preparation and ownership",
+      "scope": "Complete local campaign report layout474a50..474b03 and prepare473d70..4745c8:embedded surface,bitmap sprite,text buffers,callback,21 labels and one button,scores and campaign totals. Lower layout/config/label/button/asset/score/CRT/heap providers are authored endpoints. Normal return with admitted writable allocations,bounded strings,at most six decimal characters including sign,and up to four score records. No SEH unwinding,heap-fault reachability,transitive providers or installed/live ownership acceptance.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4668784,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-473d70"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4672080,
+          "scope": "Complete normal-return local caller;controlled lower endpoints and admitted storage.",
+          "recovered_range": "screen-acquisition-complete-474a50"
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/screen_acquisition.hpp"
+      ],
+      "tests": [
+        "tests/screen-acquisition-reference.cpp",
+        "tools/test-screen-acquisition.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/screen_resource_ownership.hpp",
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "reconstruction/rendering/world_screen_retirement.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original_x86.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/screen-acquisition-20261026.md"
+      ],
+      "evidence": [
+        "RSA26.acquisition"
+      ],
+      "remaining_gaps": [
+        "Full real Main/Realm/World/report transition routing,lower provider semantics,exception/fault recovery,asynchronous aliases and installed live-session acceptance remain separate. Report integer strings exceeding the original six-character scratch capacity are outside the admitted baseline."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.explicit-clip",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Explicit variable-duration sprite clips",
+      "scope": "Explicit variable-duration sprite clips. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.variable-loop",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Variable-duration looping sprite timelines",
+      "scope": "Variable-duration looping sprite timelines. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.variable-once",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Variable-duration one-shot sprite timelines",
+      "scope": "Variable-duration one-shot sprite timelines. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.ping-pong",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Endpoint-bounded ping-pong sprite timelines",
+      "scope": "Endpoint-bounded ping-pong sprite timelines. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.reverse",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Reverse sprite timeline schedules",
+      "scope": "Reverse sprite timeline schedules. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.pause",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Sprite timeline pause and resume",
+      "scope": "Sprite timeline pause and resume. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.seek",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic virtual-time and entry seeking",
+      "scope": "Atomic virtual-time and entry seeking. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.rational-rate",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Overflow-safe rational timeline rates",
+      "scope": "Overflow-safe rational timeline rates. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.bounded-events",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic bounded ordered frame-entry events",
+      "scope": "Atomic bounded ordered frame-entry events. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.checkpoint-reload",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned timeline checkpoints and atomic resource reload",
+      "scope": "Owned timeline checkpoints and atomic resource reload. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.windowed-copy-reader-frontier",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Natural windowed copy callers and protected-reader frontier",
+      "scope": "Explicit opt-in original -win launch retaining natural screen/copy dispatch and clipper state. Require normal campaign/Mini/Cancel/Quit, no pixel forwarding, mode3 unknown-reader refusal and independent all-COPY output bound to original-module Blt callers with an attached destination clipper. No forced clipping/dispatch, arbitrary raw-reader coherence, geometric clip reduction, self/keyed-GPU reachability, original driver or full-session equivalence.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "tools/native_windowed_copy.py",
+        "tools/run-menu-observer.py",
+        "tools/test-native-campaign.py",
+        "tools/private_x11_windows.py",
+        "apps/qt-shell/native_capture_request.hpp",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "tools/campaign_camera_dialogue.py"
+      ],
+      "tests": [
+        "tools/test-native-windowed-copy.py",
+        "tests/test-native-windowed-copy.py",
+        "tests/native-image-encoder-test.cpp",
+        "tests/test-camera-dialogue.py"
+      ],
+      "documents": [
+        "research/runtime/native-windowed-copy-readers-20261025.md"
+      ],
+      "evidence": [
+        "WINDOWEDREADERS.controls03-20261025",
+        "WINDOWEDREADERS.game02-20261025",
+        "WINDOWEDREADERS.controls09-20261025",
+        "WINDOWEDREADERS.game09-20261025",
+        "WINDOWEDREADERS.controls10-20261025",
+        "WINDOWEDREADERS.master-controls-20261026",
+        "NATURALCOPY.merged-windowed-controls01-20261026"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current controls10 passes21 Python methods and actual Qt encoder policy;copy-regressions10 passes29 caller/output/GPU methods. Explicit native-only capture labels original_saved=false;legacy dual requests still require both images. Full declared journey remains partial.",
+        "24-bit private desktops stop with an original ERROR;16-bit permits native World progress. The high-colour string/push is static context,not full startup recovery or physical-driver validation.",
+        "game09 exhausts12 Hermes dismissals;its2241-row prefix is unclosed. Quick Battle quick01 independently reaches576 balanced Worlds but cannot complete Qt input/Results before the deadline. Windowed input target/focus/client geometry remains an unconfirmed frontier.",
+        "No natural clipped output,normal-Quit,arbitrary-reader,full ownership or full-renderer stage is promoted. Exact failed acquisitions,source variants and pending validation are retained;historical source fingerprints are unchanged.",
+        "Merged master retains terrain-light supervision before launching original -win. Fresh headless controls and synthetic actual-launcher admission checks do not renew natural callers,windowed input,full copy output or owner retirement."
+      ]
+    },
+    {
+      "id": "NP.windowed-quick-copy-callers",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Natural windowed Quick Battle clipped GPU caller observation",
+      "scope": "Original -win on a private16-bit desktop through the existing Qt Quick Battle/Results/Continue/resumed World/Results/Main/Quit lifecycle. Native resident World, protected CPU backing, no-forward producers, exact original callback order, at least64 balanced Worlds, normal game exit, zero native owners and closed caller-bound all-COPY output. Require actual original-module Blt with an attached clipper and emitted checked GPU output. No campaign Hermes, arbitrary raw-reader/alias closure, actual clip reduction or original-driver/full-session equivalence.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "tools/test-native-windowed-quick.py",
+        "tools/native_windowed_copy.py",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tests/test-native-windowed-copy.py",
+        "apps/qt-shell/live_quick_battle_app_test.cpp"
+      ],
+      "documents": [
+        "research/runtime/native-windowed-copy-readers-20261025.md"
+      ],
+      "evidence": [
+        "WINDOWEDREADERS.quick01-20261025"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "quick01 reaches first World but times out at stage6 before Results;no completed Right/Escape sequence,second World or normal Quit. The shell returns signal11 after deadline. Current producer execution-flag bookkeeping correction is syntax-checked only;the executed older source is retained exactly.",
+        "576 resident transactions balance. Strict metadata decoding passes5461 closed rows,including1224 GPU and714 attached-clipper calls,but102 are unprepared and independent all-COPY output remains incomplete. Native teardown retains1device,51surfaces,1clipper and2915552pixel bytes. No output or owner closure.",
+        "Quick01 original_game_executed=false is a premature default after failure;the preserved original states/World transactions and quick-analysis01 record the erratum. No original payload or source hash was rewritten.",
+        "Input-window discovery,focus,client geometry,geometric clipping,arbitrary raw readers,normal-Quit and complete renderer acceptance remain separate pending work. No integration/comparison/replacement promotion."
+      ]
+    },
+    {
+      "id": "NP.natural-gpu-copy-caller-branches",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Natural GPU-source caller branches and actual emitted geometry",
+      "scope": "Diagnostic-only closed version2 application/GPU census and complete individual command intervals from actual original-module callers. Independent native destination checks and retained Python witnesses;rectangle unions separate clipper attachment,bounds reduction and reduction within bounds. Self-copy requires a checked full opaque snapshot;keyed CPU copies do not count as keyed GPU sources. Missing outputs,failed END,normal Quit,owners,arbitrary aliases/readers,other contexts and original-driver equivalence remain separate;no forced calls or clip/key mutation.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "tools/natural_gpu_copy_branches.py",
+        "tools/test-natural-gpu-copy-callers.py",
+        "tools/private_x11_geometry.py",
+        "tools/native_copy_window_exposure.py"
+      ],
+      "tests": [
+        "tests/test-natural-gpu-copy-branches.py",
+        "tests/native-input-target-probe.cpp",
+        "tests/native-copy-window-exposure.c",
+        "tests/test-published-copy-routes.py"
+      ],
+      "validation_dependencies": [
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/native_copy_output.py",
+        "tools/private_x11_windows.py",
+        "tools/native_prefix_template.py",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "apps/qt-shell/live_quick_battle_app_test.cpp",
+        "protocols/include/mnm/native_copy_routes_v2.h",
+        "protocols/include/mnm/native_gpu_copy_census_v1.h",
+        "runtime/render/copy_route_census.h",
+        "runtime/render/gpu_copy_census.h",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "tests/test-native-copy-routes.py",
+        "tools/published_copy_routes.py"
+      ],
+      "documents": [
+        "research/runtime/natural-gpu-copy-callers-20261026.md"
+      ],
+      "evidence": [
+        "NATURALCOPY.controls01-20261026",
+        "NATURALCOPY.controls02-20261026",
+        "NATURALCOPY.controls03-20261026",
+        "NATURALCOPY.controls04-20261026",
+        "NATURALCOPY.controls05-20261026",
+        "NATURALCOPY.retained01-20261026",
+        "NATURALCOPY.retained02-20261026",
+        "NATURALCOPY.retained03-20261026",
+        "NATURALCOPY.quick01-20261026",
+        "NATURALCOPY.quick02-20261026",
+        "NATURALCOPY.quick03-20261026",
+        "NATURALCOPY.quick04-20261026",
+        "NATURALCOPY.quick05-20261026",
+        "NATURALCOPY.quick06-20261026"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current24 controls and strict immutable replay pass. Ordinary windowed810 checked attached-clipper calls do not geometrically reduce output. Declared Win32 desktop exposure confirms negative origin but strict all-application validation rejects active-miss reason2;use the separate positive-call policy for its678 checked reduced calls.",
+        "Natural self-copy and keyed GPU-source positive callers remain unproven. Stage6 Qt input target0,missing complete END/output,normal Quit,surviving device/surfaces/clipper and shell signal11 remain open;no replacement promotion.",
+        "Combined integration preserves master1ffeb53e,verified windowed3544f60a and independent contract/status entries. The18 unrelated pending paths have a verified retained snapshot and pinned stash;master advancement restores their semantic metadata deltas."
+      ]
+    },
+    {
+      "id": "NP.published-gpu-copy-call-proof",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Positive GPU call proof with explicit missed active observations",
+      "scope": "Closed non-exhausted published version2 rows,all row identity/counter checks and an exact complete GPU-census bijection support only actual original-module calls whose entire command intervals have independent destination comparisons. Known active-miss flags remain recorded verbatim; no branch absence,complete-application output,END,normal Quit,ownership or original-driver claim. Desktop exposure is an explicit ordinary Win32 SetWindowPos stimulus,not forced rendering or clip-list edits.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "tools/natural_gpu_copy_branches.py",
+        "tools/test-natural-gpu-copy-callers.py",
+        "tools/private_x11_geometry.py",
+        "tools/native_copy_window_exposure.py",
+        "tools/published_copy_routes.py"
+      ],
+      "tests": [
+        "tests/test-natural-gpu-copy-branches.py",
+        "tests/native-input-target-probe.cpp",
+        "tests/native-copy-window-exposure.c",
+        "tests/test-published-copy-routes.py"
+      ],
+      "validation_dependencies": [
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/native_copy_output.py",
+        "tools/private_x11_windows.py",
+        "tools/native_prefix_template.py",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "apps/qt-shell/live_quick_battle_app_test.cpp",
+        "protocols/include/mnm/native_copy_routes_v2.h",
+        "protocols/include/mnm/native_gpu_copy_census_v1.h",
+        "runtime/render/copy_route_census.h",
+        "runtime/render/gpu_copy_census.h",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "tests/test-native-copy-routes.py"
+      ],
+      "documents": [
+        "research/runtime/natural-gpu-copy-callers-20261026.md"
+      ],
+      "evidence": [
+        "NATURALCOPY.controls05-20261026",
+        "NATURALCOPY.published01-20261026",
+        "NATURALCOPY.published02-20261026"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current24 controls and immutable replay verify783 of784 published GPU calls,including678 geometrically reduced calls and one retained clipped-command pixel witness. Missing output for application call5060 remains explicit.",
+        "Active-miss bit2 leaves unobserved callbacks unknown. No zero-branch absence,complete-application output,END,normal Quit,ownership or original-driver parity claim. Natural self-copy,keyed GPU sources and additional clipper reduction within destination bounds remain unproven."
       ]
     }
   ],
@@ -345956,6 +347213,1164 @@
       "original_hash_pointer": "/original_sha256",
       "equivalence_pointer": "/native_lifetime_contract_verified",
       "bypass_pointer": "/native_driver_lifetime_replaced"
+    },
+    {
+      "id": "RSO25.releases-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/screen-ownership-results-20261025/release07.json",
+      "sha256": "af8e3493cb2c35ee6dd9d5997b9cc5042f80c6bd59196ca2be6cdc4292cb25eb",
+      "scope": "Complete local slot+20 resource-release callers for all21 concrete shared5595d0 screen tables;5c6564 purecall remains abstract. Owned wire storage,initialized guards,derived cleanup,retained versus freed pointer arrays,cookie/virtual disposal ordering,surface receiver rereads and callback mutations. Resource destructor,CRT array iterator,allocator and bitmap/provider internals are explicit authored endpoints;no transitive provider semantics,whole object construction/World lifetime,asynchronous aliases or installed takeover. Complete normal-return Main3/Quick22/Mini17 constructors and enclosing destructors,with successful authored allocation and unchanged vector initialization/retirement,including two construction/destruction cycles. No original SEH exception unwinding or allocation-fault recovery is claimed. Complete campaign report exit4748a0 and enclosing campaign/Quick-result destructors473b00/474d70,including repeated cleanup,bitmap storage and embedded canvas retirement with named provider boundaries.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/tables",
+          "equals": 21
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 3429
+        },
+        {
+          "pointer": "/original/menu_cases",
+          "equals": 1215
+        },
+        {
+          "pointer": "/original/report_cases",
+          "equals": 405
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 555902308911323265
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/tables",
+          "equals": 21
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 3429
+        },
+        {
+          "pointer": "/sanitized/menu_cases",
+          "equals": 1215
+        },
+        {
+          "pointer": "/sanitized/report_cases",
+          "equals": 405
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 555902308911323265
+        },
+        {
+          "pointer": "/native64/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native64/tables",
+          "equals": 21
+        },
+        {
+          "pointer": "/native64/cases",
+          "equals": 3429
+        },
+        {
+          "pointer": "/native64/menu_cases",
+          "equals": 1215
+        },
+        {
+          "pointer": "/native64/report_cases",
+          "equals": 405
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 555902308911323265
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RSO25.world-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/screen-ownership-results-20261025/world03.json",
+      "sha256": "8cfba86c54519190cca6002f82734bdc2fb61aefc6620874a72af14c248b85c0",
+      "scope": "Complete unchanged46ab30..46ae8c local World exit orchestration:one-shot shutdown guard,registry/iterator traversal,bitmap retirement,segmented pointer-queue block release,canvas detach,owner reset and conditional tick snapshot. Independent wire-memory model and original-body execution with authored simulation/provider/allocator/OS endpoints and bounded valid owned registry/queue storage. Transitive simulation/asset/allocator/provider semantics,World construction/entry,SEH faults,arbitrary reentrancy,async aliases and live takeover remain separate.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 8900491611964046752
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 8900491611964046752
+        },
+        {
+          "pointer": "/native64/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native64/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 8900491611964046752
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RSO25.releases-retarget-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/screen-ownership-results-20261025/release08.json",
+      "sha256": "5208dc6998ef3ce29c1c32bda23536f792eadc1f0afbfd2692f3bd7227fc81d6",
+      "scope": "Complete local slot+20 resource-release callers for all21 concrete shared5595d0 screen tables;5c6564 purecall remains abstract. Owned wire storage,initialized guards,derived cleanup,retained versus freed pointer arrays,cookie/virtual disposal ordering,surface receiver rereads and callback mutations. Resource destructor,CRT array iterator,allocator and bitmap/provider internals are explicit authored endpoints;no transitive provider semantics,whole object construction/World lifetime,asynchronous aliases or installed takeover. Complete normal-return Main3/Quick22/Mini17 constructors and enclosing destructors,with successful authored allocation and unchanged vector initialization/retirement,including two construction/destruction cycles. No original SEH exception unwinding or allocation-fault recovery is claimed. Complete campaign report exit4748a0 and enclosing campaign/Quick-result destructors473b00/474d70,including repeated cleanup,bitmap storage and embedded canvas retirement with named provider boundaries.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/tables",
+          "equals": 21
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 3429
+        },
+        {
+          "pointer": "/original/menu_cases",
+          "equals": 1215
+        },
+        {
+          "pointer": "/original/report_cases",
+          "equals": 405
+        },
+        {
+          "pointer": "/original/retargeted_cases",
+          "equals": 738
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 5965150817701890865
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/tables",
+          "equals": 21
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 3429
+        },
+        {
+          "pointer": "/sanitized/menu_cases",
+          "equals": 1215
+        },
+        {
+          "pointer": "/sanitized/report_cases",
+          "equals": 405
+        },
+        {
+          "pointer": "/sanitized/retargeted_cases",
+          "equals": 738
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 5965150817701890865
+        },
+        {
+          "pointer": "/native64/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native64/tables",
+          "equals": 21
+        },
+        {
+          "pointer": "/native64/cases",
+          "equals": 3429
+        },
+        {
+          "pointer": "/native64/menu_cases",
+          "equals": 1215
+        },
+        {
+          "pointer": "/native64/report_cases",
+          "equals": 405
+        },
+        {
+          "pointer": "/native64/retargeted_cases",
+          "equals": 738
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 5965150817701890865
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RSA26.acquisition",
+      "kind": "isolated_original",
+      "record": "research/runtime/screen-acquisition-results-20261026/acquire07.json",
+      "sha256": "f0e72db6c87a6d73e1c71389ac56da069e2fad101b1b7920c8c654de6582c41f",
+      "scope": "Complete normal-return Main,World and campaign report acquisition callers and layout allocators within their declared admitted domains,plus192 controlled construction/preparation/retirement compositions per build. Authored lower providers,empty World exit simulation fixture,not real Realm routing or installed/live ownership acceptance.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/original/composed_lifecycles",
+          "equals": 192
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 10140469957634073648
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/sanitized/composed_lifecycles",
+          "equals": 192
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 10140469957634073648
+        },
+        {
+          "pointer": "/native64/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native64/cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/native64/composed_lifecycles",
+          "equals": 192
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 10140469957634073648
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "N29.timeline-native-20261026",
+      "kind": "native_integration",
+      "scope": "Ten owned variable-timed sprite timeline policies. Independent unit-host-tick/rational and binary64 clock oracles; ordered bounded events, atomic state/refusals and owned CPU/GPU deliveries. No original ANI/timing/events, widget/world, hardware/performance or live claim.",
+      "record": "research/runtime/rendering-twentyninth-ten-results-20261026/execution-2.json",
+      "sha256": "a3341bd0be6562ca0fee52501abe77ea66eff902f91649e93f5fce0a0bdba15a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/session_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/checks",
+          "equals": 67243
+        },
+        {
+          "pointer": "/native/release/refusals",
+          "equals": 31
+        },
+        {
+          "pointer": "/native/release/timing_cases",
+          "equals": 72
+        },
+        {
+          "pointer": "/native/release/large_clock_cases",
+          "equals": 18
+        },
+        {
+          "pointer": "/native/release/cpu_gpu_cases",
+          "equals": 360
+        },
+        {
+          "pointer": "/native/release/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/release/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/session_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/checks",
+          "equals": 67243
+        },
+        {
+          "pointer": "/native/sanitized/refusals",
+          "equals": 31
+        },
+        {
+          "pointer": "/native/sanitized/timing_cases",
+          "equals": 72
+        },
+        {
+          "pointer": "/native/sanitized/large_clock_cases",
+          "equals": 18
+        },
+        {
+          "pointer": "/native/sanitized/cpu_gpu_cases",
+          "equals": 360
+        },
+        {
+          "pointer": "/native/sanitized/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/sanitized/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "WINDOWEDREADERS.controls03-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/native-windowed-copy-results-20261025/controls03.json",
+      "sha256": "69338872e156408ccc6cbe9d51263928b0645b7970947782975764846fdb4304",
+      "scope": "Current bounded caller/identity/output corruption controls; no gameplay or original comparison.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWEDREADERS.game02-20261025",
+      "kind": "live_observation",
+      "record": "research/runtime/native-windowed-copy-results-20261025/game02.json",
+      "sha256": "e9ef72ff0438c3dadff01c4a352fbb632c421697398c44cef558357a7a9f0141",
+      "scope": "Retained failed windowed startup with no first frame or copy rows; no route, reader or acceptance closure.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWEDREADERS.controls09-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/native-windowed-copy-results-20261025/controls09.json",
+      "sha256": "7543a34761e1c2ba79f63741db3cfba50192284c3378da4357c94609d27d0562",
+      "scope": "Current Qt native-only/dual-image policy and21 Python caller/readiness methods. No original pixel comparison.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWEDREADERS.game09-20261025",
+      "kind": "live_observation",
+      "record": "research/runtime/native-windowed-copy-results-20261025/game09.json",
+      "sha256": "5035f6cde22d0cc4e5576bdc31b3666458f9589efaaf1a4554a268a1d6b667a4",
+      "scope": "Failed independent-World windowed journey after the native-only capture fix. Hermes dismissal exhausts its12-click budget; no normal-Quit, closed copy census or complete route credit.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWEDREADERS.controls10-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/native-windowed-copy-results-20261025/controls10.json",
+      "sha256": "6567ca05a5ffe93278dac5668c41b0f6547df7c1eaca704f2ba6543178f5a624",
+      "scope": "Current21 Python and actual Qt encoder/capture-policy controls;no live original comparison or complete journey.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWEDREADERS.quick01-20261025",
+      "kind": "live_observation",
+      "record": "research/runtime/native-windowed-copy-results-20261025/quick01.json",
+      "sha256": "2db54bc4e05b16e8d4aa64a6ba241827ebd5d42b93038da847fae03a1771eeb1",
+      "scope": "Failed original-windowed Quick Battle input/lifecycle;stage6 timeout and shell signal11. Retained original execution witnesses,closed metadata but incomplete all-COPY comparison and surviving owners. No normal-Quit or complete ownership credit;producer bookkeeping changed afterward.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWEDREADERS.master-controls-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/windowed-reader-master-results-20261026/controls01.json",
+      "sha256": "3253f90f8443ca9649e159ad5771f4144787a86eeafb2a68ba5ede79a8ac0787",
+      "scope": "Fresh merged21Python and actual Qt encoder/capture-policy controls. No live windowed input,caller output,normal-Quit or ownership promotion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.controls01-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/controls01.json",
+      "sha256": "cb4efa0b47b7a0d8709c1d54cda55ca4dec93b6da11d8d1298878ce4c31fffdb",
+      "scope": "Bounded synthetic geometry/caller/positive-policy corruption and actual production input-probe/helper builds;no original game execution. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.controls02-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/controls02.json",
+      "sha256": "9fb44d7359a4247566a468b413da88e3ce4be18e738e79cf456f01e9749c7ca7",
+      "scope": "Bounded synthetic geometry/caller/positive-policy corruption and actual production input-probe/helper builds;no original game execution. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.controls03-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/controls03.json",
+      "sha256": "659686fba85cf65a50e4d163a0a78c33d77ca597316ac3c1f9acb54c5e66a75a",
+      "scope": "Bounded synthetic geometry/caller/positive-policy corruption and actual production input-probe/helper builds;no original game execution. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.controls04-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/controls04.json",
+      "sha256": "6212e00149be42df703aa123981bb374d338a4e38b8f769582b1981d38bf85bb",
+      "scope": "Bounded synthetic geometry/caller/positive-policy corruption and actual production input-probe/helper builds;no original game execution. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.controls05-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/controls05.json",
+      "sha256": "de40b3f0c6a681171a6191e632c8b806694c455bc00b29f30352c53751f5afdc",
+      "scope": "Bounded synthetic geometry/caller/positive-policy corruption and actual production input-probe/helper builds;no original game execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.retained01-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/retained01.json",
+      "sha256": "4fc0a830658eaa1ff32780946d4d30a928827bff364307ecfb6ea8aa1782605a",
+      "scope": "Read-only classification of the immutable earlier windowed capture;not fresh game execution,geometric clipping or whole lifecycle. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.retained02-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/retained02.json",
+      "sha256": "c769c06bca698e95024a4e2bc7e335454a55cccd13c9e8c6fa660d4018dc6675",
+      "scope": "Read-only classification of the immutable earlier windowed capture;not fresh game execution,geometric clipping or whole lifecycle. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.retained03-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/retained03.json",
+      "sha256": "a19b6bef88a3d3385339db92d19e9a6680f0111b72cae2d39a703a90befbf34a",
+      "scope": "Read-only classification of the immutable earlier windowed capture;not fresh game execution,geometric clipping or whole lifecycle.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.quick01-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/quick01.json",
+      "sha256": "4f945fed59edeb4dcec4b963df1e14ef8ed26852228231b89cf47b40ad9a6376",
+      "scope": "Preserved failed live acquisition with original manifest bookends,explicit staging/input/desktop/census/lifecycle limitations;no complete branch,Quit or ownership acceptance. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.quick02-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/quick02.json",
+      "sha256": "7abec0c0cb4f7a6b08be024bd9997b2d2893bab5d28ab149bd21e6dd6f4d975e",
+      "scope": "Preserved failed live acquisition with original manifest bookends,explicit staging/input/desktop/census/lifecycle limitations;no complete branch,Quit or ownership acceptance. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.quick03-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/quick03.json",
+      "sha256": "791f4570ddeb6e54d4541c102a13aa7b149dfa5290fe5f4fc1d4382e69fd9f9e",
+      "scope": "Preserved failed live acquisition with original manifest bookends,explicit staging/input/desktop/census/lifecycle limitations;no complete branch,Quit or ownership acceptance. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.quick04-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/quick04.json",
+      "sha256": "49804c74b471498f2af64b9e74a1e6096d17a66cbd1f2ef7877aa0c033375590",
+      "scope": "Preserved failed live acquisition with original manifest bookends,explicit staging/input/desktop/census/lifecycle limitations;no complete branch,Quit or ownership acceptance. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.quick05-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/quick05.json",
+      "sha256": "7e08b34b7422299680dfd4a3befe4c232ae5a2ae3034a9e301818357b5ae189d",
+      "scope": "Preserved failed live acquisition with original manifest bookends,explicit staging/input/desktop/census/lifecycle limitations;no complete branch,Quit or ownership acceptance. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.quick06-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/quick06.json",
+      "sha256": "99cb42a91201de3b6cfe6a2678e18c42c40f7bb40a61caa1ba9611b9c4d8cd2a",
+      "scope": "Preserved failed live acquisition with original manifest bookends,explicit staging/input/desktop/census/lifecycle limitations;no complete branch,Quit or ownership acceptance. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.published01-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/published01.json",
+      "sha256": "41f39bf3010de7861cbd331e8ca266b99cc5dff248bfc0bf3eface29f2ef2a24",
+      "scope": "Positive-only complete individual GPU call classification from immutable desktop-exposure capture;678 geometrically reduced calls,active-miss bit2 retained,no absence or global closure. Intermediate source/contract versions remain historical;exact preimages retained.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.published02-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/published02.json",
+      "sha256": "41f39bf3010de7861cbd331e8ca266b99cc5dff248bfc0bf3eface29f2ef2a24",
+      "scope": "Positive-only complete individual GPU call classification from immutable desktop-exposure capture;678 geometrically reduced calls,active-miss bit2 retained,no absence or global closure.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis/branches/geometric_clipping/calls",
+          "equals": 678
+        },
+        {
+          "pointer": "/analysis/application_observation_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/analysis/active_miss_reason_bits",
+          "equals": 2
+        },
+        {
+          "pointer": "/analysis/all_application_output_closed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NATURALCOPY.merged-windowed-controls01-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/natural-gpu-copy-results-20261026/merged-windowed-controls01.json",
+      "sha256": "8836a2964f7664b5dd5b4c5f9b685c8bc64ca01563413594c255992c15b65cfc",
+      "scope": "Fresh combined master/windowed/natural-caller tree21 Python and actual Qt encoder/capture-policy controls; no live input,Quit,owner or original-driver promotion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL26.fresh06",
+      "kind": "live_replacement",
+      "scope": "Actual public run-x86 native-only Apprentice campaign with fresh default prefix,physical stress,Mini/No/Yes,normal original Quit,balanced Worlds,and complete native cursor/provider retirement. Xvfb/software GL,skip movies and no native music. Native ownership acceptance only;no whole driver/scene equivalence.",
+      "record": "research/runtime/native-player-acceptance-results-20261026/fresh06.json",
+      "sha256": "e0fb49599f290078801a0e09332905aca665891fb242c09f5e7bfb7179065b75",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_prefix_initialized",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified",
+      "bypass_pointer": "/native_driver_lifetime_replaced"
+    },
+    {
+      "id": "NPL26.reuse06",
+      "kind": "live_replacement",
+      "scope": "Actual public run-x86 native-only Apprentice campaign with reuse default prefix,physical stress,Mini/No/Yes,normal original Quit,balanced Worlds,and complete native cursor/provider retirement. Xvfb/software GL,skip movies and no native music. Native ownership acceptance only;no whole driver/scene equivalence.",
+      "record": "research/runtime/native-player-acceptance-results-20261026/reuse06.json",
+      "sha256": "08333099a2646cd3cba9c43a619e01e0994bbaa662c861accace92a3e1c55423",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_prefix_initialized",
+          "equals": false
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified",
+      "bypass_pointer": "/native_driver_lifetime_replaced"
+    },
+    {
+      "id": "NPL26.fresh07",
+      "kind": "live_replacement",
+      "scope": "Actual public run-x86 native-only Apprentice campaign with fresh default prefix,physical stress,Mini/No/Yes,normal original Quit,balanced Worlds,and complete native cursor/provider retirement. Xvfb/software GL,skip movies and no native music. Native ownership acceptance only;no whole driver/scene equivalence.",
+      "record": "research/runtime/native-player-acceptance-results-20261026/fresh07.json",
+      "sha256": "49c94aa760bcd4be0365a84a4c4c133fe5e45fc85cae5111f911934d3f451b73",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_prefix_initialized",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified",
+      "bypass_pointer": "/native_driver_lifetime_replaced"
+    },
+    {
+      "id": "NPL26.reuse07",
+      "kind": "live_replacement",
+      "scope": "Actual public run-x86 native-only Apprentice campaign with reuse default prefix,physical stress,Mini/No/Yes,normal original Quit,balanced Worlds,and complete native cursor/provider retirement. Xvfb/software GL,skip movies and no native music. Native ownership acceptance only;no whole driver/scene equivalence.",
+      "record": "research/runtime/native-player-acceptance-results-20261026/reuse07.json",
+      "sha256": "28675ea54aa853b56e063bdc431b80ea0f1a15b534414b76adfc1f77ff0da3a3",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_prefix_initialized",
+          "equals": false
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified",
+      "bypass_pointer": "/native_driver_lifetime_replaced"
+    },
+    {
+      "id": "NPL26.controls07",
+      "kind": "native_integration",
+      "scope": "Fifteen in-memory launch orchestration and actual Bash-routing controls. Filesystem/installer/owner operations are mocked;actual live acceptance is supplied separately.",
+      "record": "research/runtime/native-player-acceptance-results-20261026/controls07.json",
+      "sha256": "0c6952135c2f40efc331f94216a396f07288586ac940dee2d1411905acbdf472",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 15
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -356215,6 +358630,152 @@
           "value": 14,
           "behaviors": [
             "TL.complete-position-events"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "screen-concrete-resource-release-slots",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6053564,
+        "relation": "data",
+        "scope": "Fixed22 shared5595d0 table census,slot+20 resource-release targets."
+      },
+      "document": "research/runtime/screen-resource-ownership-20261025.md",
+      "complete": true,
+      "scope": "Complete fixed22-table release-slot crosswalk:21 concrete local callers compared;one abstract purecall explicitly retained. No complete dynamic class universe or computed-writer claim.",
+      "entries": [
+        {
+          "value": 6053564,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6053620,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6054176,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6054884,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6054940,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6054996,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055052,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055108,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055164,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055220,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055268,
+          "behaviors": [
+            "RS.screen-class-ownership-static"
+          ]
+        },
+        {
+          "value": 6055324,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055380,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055436,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055492,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055548,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055604,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055660,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6055928,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6056092,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6056256,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
+          ]
+        },
+        {
+          "value": 6056312,
+          "behaviors": [
+            "RS.screen-resource-release-callers"
           ]
         }
       ]
@@ -373616,7 +376177,11 @@
       "evidence": [
         "CUR27.live09",
         "NPL26.fresh05",
-        "NPL26.reuse05"
+        "NPL26.reuse05",
+        "NPL26.fresh06",
+        "NPL26.reuse06",
+        "NPL26.fresh07",
+        "NPL26.reuse07"
       ]
     },
     {
@@ -373734,7 +376299,9 @@
         "tools/test-native-owned-campaign.py"
       ],
       "evidence": [
-        "NPL26.fresh05"
+        "NPL26.fresh05",
+        "NPL26.fresh06",
+        "NPL26.fresh07"
       ]
     },
     {
@@ -373749,7 +376316,141 @@
         "tools/test-native-owned-campaign.py"
       ],
       "evidence": [
-        "NPL26.reuse05"
+        "NPL26.reuse05",
+        "NPL26.reuse06",
+        "NPL26.reuse07"
+      ]
+    },
+    {
+      "id": "NP.windowed-copy-reader-frontier.controls",
+      "scope": "Independent corruption controls refuse absent natural GPU branches, invalid original module identities and missing caller-bound output. They do not execute original gameplay.",
+      "level": "headless",
+      "behaviors": [
+        "NP.windowed-copy-reader-frontier"
+      ],
+      "tests": [
+        "tools/test-native-windowed-copy.py",
+        "tests/test-native-windowed-copy.py"
+      ],
+      "evidence": [
+        "WINDOWEDREADERS.controls03-20261025",
+        "WINDOWEDREADERS.controls09-20261025",
+        "WINDOWEDREADERS.controls10-20261025",
+        "WINDOWEDREADERS.master-controls-20261026",
+        "NATURALCOPY.merged-windowed-controls01-20261026"
+      ]
+    },
+    {
+      "id": "NP.windowed-copy-reader-frontier.campaign",
+      "scope": "Natural original -win campaign with retained clipper dispatch, native all-copy output comparison, protected-reader refusal, physical input, Mini/Cancel and normal original Quit. Actual geometric clip reduction and global reader/alias closure remain separate.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.windowed-copy-reader-frontier"
+      ],
+      "tests": [
+        "tools/test-native-windowed-copy.py",
+        "tests/test-native-windowed-copy.py"
+      ],
+      "evidence": [
+        "WINDOWEDREADERS.game02-20261025",
+        "WINDOWEDREADERS.game09-20261025"
+      ]
+    },
+    {
+      "id": "NP.windowed-quick-copy-callers.actual",
+      "scope": "Original -win on a private16-bit desktop through the existing Qt Quick Battle/Results/Continue/resumed World/Results/Main/Quit lifecycle. Native resident World, protected CPU backing, no-forward producers, exact original callback order, at least64 balanced Worlds, normal game exit, zero native owners and closed caller-bound all-COPY output. Require actual original-module Blt with an attached clipper and emitted checked GPU output. No campaign Hermes, arbitrary raw-reader/alias closure, actual clip reduction or original-driver/full-session equivalence.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.windowed-quick-copy-callers"
+      ],
+      "tests": [
+        "tests/test-native-windowed-copy.py",
+        "apps/qt-shell/live_quick_battle_app_test.cpp"
+      ],
+      "evidence": [
+        "WINDOWEDREADERS.quick01-20261025"
+      ]
+    },
+    {
+      "id": "NP.natural-gpu-copy-caller-branches.controls",
+      "scope": "Independent lattice geometry,caller/resource/key/snapshot corruption and observed X11 ABI controls;no original game.",
+      "level": "headless",
+      "behaviors": [
+        "NP.natural-gpu-copy-caller-branches"
+      ],
+      "tests": [
+        "tests/test-natural-gpu-copy-branches.py",
+        "tests/native-input-target-probe.cpp"
+      ],
+      "evidence": [
+        "NATURALCOPY.controls05-20261026"
+      ]
+    },
+    {
+      "id": "NP.natural-gpu-copy-caller-branches.retained",
+      "scope": "Read-only classification of immutable prior acquisitions;historical execution is not a fresh game run or whole-session pass.",
+      "level": "headless",
+      "behaviors": [
+        "NP.natural-gpu-copy-caller-branches"
+      ],
+      "tests": [
+        "tests/test-natural-gpu-copy-branches.py",
+        "tests/native-input-target-probe.cpp"
+      ],
+      "evidence": [
+        "NATURALCOPY.retained03-20261026"
+      ]
+    },
+    {
+      "id": "NP.natural-gpu-copy-caller-branches.quick",
+      "scope": "Private original-windowed and fullscreen Quick Battle acquisitions with actual source-bound Qt shell,protected backing,no-forward producers and read-only production input-target observations. Each natural branch requires complete checked emitted geometry;failed lifecycle and missing output remain explicit.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.natural-gpu-copy-caller-branches"
+      ],
+      "tests": [
+        "tests/test-natural-gpu-copy-branches.py",
+        "tests/native-input-target-probe.cpp"
+      ],
+      "evidence": [
+        "NATURALCOPY.quick03-20261026",
+        "NATURALCOPY.quick04-20261026",
+        "NATURALCOPY.quick05-20261026",
+        "NATURALCOPY.quick06-20261026"
+      ]
+    },
+    {
+      "id": "NP.published-gpu-copy-call-proof.controls",
+      "scope": "Known active-miss positive-only admission versus unchanged strict rejection;corrupt identities,counters,tail,closure,reasons,exhaustion refuse.",
+      "level": "headless",
+      "behaviors": [
+        "NP.published-gpu-copy-call-proof"
+      ],
+      "tests": [
+        "tests/test-natural-gpu-copy-branches.py",
+        "tests/native-input-target-probe.cpp",
+        "tests/native-copy-window-exposure.c",
+        "tests/test-published-copy-routes.py"
+      ],
+      "evidence": [
+        "NATURALCOPY.controls05-20261026"
+      ]
+    },
+    {
+      "id": "NP.published-gpu-copy-call-proof.published",
+      "scope": "Current bounded offline analysis of immutable actual desktop-exposure acquisition. Complete individual original GPU call intervals only;missed callbacks,failed global closure,normal Quit and ownership remain explicit.",
+      "level": "headless",
+      "behaviors": [
+        "NP.published-gpu-copy-call-proof"
+      ],
+      "tests": [
+        "tests/test-natural-gpu-copy-branches.py",
+        "tests/native-input-target-probe.cpp",
+        "tests/native-copy-window-exposure.c",
+        "tests/test-published-copy-routes.py"
+      ],
+      "evidence": [
+        "NATURALCOPY.published02-20261026"
       ]
     }
   ],
@@ -375086,6 +377787,76 @@
       "evidence": "TLR25.callers-original",
       "anchors_pointer": "/original_entry_anchors",
       "scope": "Pinned position-event code and trailing dispatch data outside Ghidra function bodies. Whole admitted event9/+718=0 and default paths executed with named external services; events5/8/14 and +718 continuation remain unresolved. This range does not classify the whole function as complete. This historical anchor remains narrow; the later complete caller comparison is TLCL25.producers-original / TL.complete-position-events."
+    },
+    {
+      "id": "screen-campaign-report-exit-4748a0",
+      "build": "nocd-40209ca7",
+      "start": 4671648,
+      "end": 4671802,
+      "document": "research/runtime/screen-resource-ownership-20261025.md",
+      "evidence": "RSO25.releases-original",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Complete execution-backed local caller outside retained function inventory. External provider/allocator/virtual endpoints remain explicit controlled boundaries;not transitive semantics,whole-session or live ownership acceptance. Historical inventory and unassigned ranges remain unchanged."
+    },
+    {
+      "id": "world-screen-exit-complete-46ab30",
+      "build": "nocd-40209ca7",
+      "start": 4631344,
+      "end": 4632204,
+      "document": "research/runtime/screen-resource-ownership-20261025.md",
+      "evidence": "RSO25.world-original",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Complete execution-backed local caller outside retained function inventory. External provider/allocator/virtual endpoints remain explicit controlled boundaries;not transitive semantics,whole-session or live ownership acceptance. Historical inventory and unassigned ranges remain unchanged."
+    },
+    {
+      "id": "screen-acquisition-complete-4a7110",
+      "build": "nocd-40209ca7",
+      "start": 4878608,
+      "end": 4879725,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
+    },
+    {
+      "id": "screen-acquisition-complete-4a6f70",
+      "build": "nocd-40209ca7",
+      "start": 4878192,
+      "end": 4878372,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
+    },
+    {
+      "id": "screen-acquisition-complete-46a460",
+      "build": "nocd-40209ca7",
+      "start": 4629600,
+      "end": 4630830,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
+    },
+    {
+      "id": "screen-acquisition-complete-473d70",
+      "build": "nocd-40209ca7",
+      "start": 4668784,
+      "end": 4670920,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
+    },
+    {
+      "id": "screen-acquisition-complete-474a50",
+      "build": "nocd-40209ca7",
+      "start": 4672080,
+      "end": 4672259,
+      "document": "research/runtime/screen-acquisition-20261026.md",
+      "evidence": "RSA26.acquisition",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
     }
   ],
   "register_imports": [
@@ -375458,7 +378229,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-4345ec8095a389a9295ecb9a600ba25aec1ef5eb55069a897eed32cd95d394f7.json",
-    "sha256": "4345ec8095a389a9295ecb9a600ba25aec1ef5eb55069a897eed32cd95d394f7"
+    "path": "research/runtime/coverage/source-index-33eed3309565e284af518d9a58c3b9c90ea80e0e45de8e6d761d5e88d1f97953.json",
+    "sha256": "33eed3309565e284af518d9a58c3b9c90ea80e0e45de8e6d761d5e88d1f97953"
   }
 }

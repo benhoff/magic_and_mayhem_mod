@@ -89,14 +89,17 @@ class ImportanceTest(unittest.TestCase):
             'NP.alternate-canvas-dispatch-admission', 'NP.alternate-canvas-owned-generation',
             'NP.cursor-live-ownership', 'NP.cursor-owned-compositor', 'NP.cursor-provider-lifetime',
             'NP.graphics-session-provider-retirement',
-            'NP.native-player-launch',
-            'NP.palette-option-strict-parsing', 'NP.protected-native-store-service', 'NP.surface-alias-lease-lifecycle',
+            'NP.native-player-launch', 'NP.natural-gpu-copy-caller-branches',
+            'NP.palette-option-strict-parsing', 'NP.protected-native-store-service', 'NP.published-gpu-copy-call-proof',
+            'NP.surface-alias-lease-lifecycle', 'NP.windowed-copy-reader-frontier', 'NP.windowed-quick-copy-callers',
             'RS.alternate-canvas-dispatch-composition', 'RS.cursor-selection-service',
+            'RS.main-screen-acquisition', 'RS.report-screen-acquisition',
             'RS.screen-class-ownership-static', 'RS.screen-class11-lifetime', 'RS.screen-control-dispatch',
             'RS.screen-cursor-background-invalidation',
             'RS.screen-cursor-background-restore', 'RS.screen-minimal-transition-callbacks',
-            'RS.screen-selection-service', 'RS.screen-service-tick-transitions', 'RS.screen-tick-control-flow',
-            'RS.windowed-padded-presentation-route'])
+            'RS.screen-resource-release-callers', 'RS.screen-selection-service',
+            'RS.screen-service-tick-transitions', 'RS.screen-tick-control-flow',
+            'RS.windowed-padded-presentation-route', 'RS.world-screen-acquisition', 'RS.world-screen-retirement'])
         behaviors = {b['id']: b for b in register['behaviors']}
         builds = {b['id']: b for b in register['builds']}
         for entry in result['entries']:
