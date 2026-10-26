@@ -23241,3 +23241,33 @@ The ten native timeline components are merged with the committed pixel-caller in
 ### Final N29 master reconciliation after concurrent screen recovery (2026-10-26)
 
 The first validated merge bcebc8fc is retained with its passing staged gate and backups. Its promotion refused an independently owned main reservation before changing main. After that operation completed at bdf87f55 and restored its pending work, all18 current pending paths were backed up and main was reserved for this final merge. Both validated branches, all receipts and evidence identities are preserved. All ten timeline contracts and188 declared input fingerprints remain exact; no new engine execution or original/application/live promotion is claimed. The fixed planning-test expectation adds only the five newly committed unrated screen acquisition/retirement contracts, without adding weights or status credit. Final audit, planning controls, source census and exact staged accounting cover the combined tree; normal90/100GiB storage reserves apply. See [the final reconciliation](rendering-n29-master-final-20261026.md).
+
+
+## Row-copy and brighten outgoing virtual services — 2026-10-26
+
+`RE.pixel-helper-unlock-dispatch` closes the three selected outgoing service
+identities retained by the five-helper computed-call scan. Original successful
+CreateSurface stores Surface1 at wrapper+4, QueryInterface stores Surface2 at+8,
+Lock uses+8 and the three helper-tail calls use+4 slot32 Unlock(base pixels).
+Row-copy unlocks source then destination regardless of the first result; brighten
+unlocks its sole surface. Zero-sized draw controls still retire. Final EAX is
+the last unchecked Unlock HRESULT. Optional early Unlock remains additional.
+
+`PVIRT.scripted-20261026` passes 512 cells per optimized32 and ASan/UBSan32
+variant: 1024 original creations, 768 selected dispatches and4,194,304 guarded
+physical WORD comparisons each. `PVIRT.driver-20261026` passes64 real Wine 11.16
+RGB565/RGB555 system-memory cells,128 created Surface1/2 alias pairs and96 tail
+dispatches plus48 early Unlocks. Selected targets resolve to built-in
+`ddraw.dll+0x29f70` for its retained DLL hash; no fixed cross-launch address is
+assumed. The early-Unlock cohort returns actual DDERR_NOTLOCKED at the later
+tail calls. All 2,927 original inputs verify before/after. Original selected
+instructions remain active and unchanged. See [contract and evidence](pixel-virtual-services-20261026.md).
+
+The central three-site dispatch entry is complete within this admitted receiver
+scope. Discovery inventory boundaries, unresolved global indirect flows, all
+five natural incoming callers,43-route denominator and38-route historical union
+remain. Existing native pixel splices already retain these original tails; no
+production code or implementation/comparison/integration/replacement status is
+promoted. Failed Lock/loss/Restore, asynchronous alias lifetime, arbitrary receiver
+mutation, other drivers and installed/live acceptance remain separate. Earlier
+fixture, quota, display and already-stopped-server failures remain immutable.
