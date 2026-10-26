@@ -22895,3 +22895,33 @@ combined-tree checks also verify all20 behavior contracts and source closures.
 transition review, and `final-local-evidence01.json` identifies the verified local
 2,647-object SQLite backup. The final normal hook checks the combined staged
 tree; pre-existing master edits are preserved separately at fast-forward time.
+
+
+## Concrete screen ownership and World exit — 2026-10-25
+
+RS.screen-resource-release-callers now models all21 concrete slot+20 callers
+in the22-table shared5595d0 census;the abstract5c6564 purecall remains explicit.
+Fresh release08 compares3429 resource-release schedules,1215 complete normal
+Main/Quick/Mini lifetime schedules and405 campaign/Quick-result exit/destructor
+schedules per optimized32,sanitized32 and sanitized64 configuration. Complete
+owned bytes and every provider-entry storage snapshot agree;all compared
+original bodies remain unchanged. Retained arrays versus owned allocations,
+receiver rereads (including738 actual array-retarget schedules),derived cleanup despite a skipped base guard,signed dynamic
+Mini counts,repeated release and repeated enclosing cycles are explicit.
+
+RS.world-screen-retirement separately compares complete46ab30..46ae8c World
+exit in1536 cases per configuration,including registry/iterator traversal,
+bitmap retirement,two-block queue boundary/last-item frees,canvas detachment,
+owner reset and conditional clock capture. Full declared storage and endpoint
+snapshots/checksums agree. Two execution-backed local range exceptions retain
+the historical function inventory and unknown ranges without rewriting them.
+
+[Recovery and remaining boundaries](screen-resource-ownership-20261025.md)
+separate these local callers from authored simulation/asset/allocator/CRT/OS
+provider internals. Original manifests pass before/after each final execution;
+source and behavior claims bind the actual current bytes. Other class
+construction/destruction,World entry,complete computed alias/registration
+closure,real heap/fault paths,asynchronous retirement,installed semantic
+takeover and full presented-session equivalence remain open. No new runtime
+hook,gameplay change,FPS acceptance or live replacement credit is introduced.
+Earlier failed/stale attempts remain immutable in screen-ownership-results-20261025.
