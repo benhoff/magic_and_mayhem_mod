@@ -23241,3 +23241,27 @@ The ten native timeline components are merged with the committed pixel-caller in
 ### Final N29 master reconciliation after concurrent screen recovery (2026-10-26)
 
 The first validated merge bcebc8fc is retained with its passing staged gate and backups. Its promotion refused an independently owned main reservation before changing main. After that operation completed at bdf87f55 and restored its pending work, all18 current pending paths were backed up and main was reserved for this final merge. Both validated branches, all receipts and evidence identities are preserved. All ten timeline contracts and188 declared input fingerprints remain exact; no new engine execution or original/application/live promotion is claimed. The fixed planning-test expectation adds only the five newly committed unrated screen acquisition/retirement contracts, without adding weights or status credit. Final audit, planning controls, source census and exact staged accounting cover the combined tree; normal90/100GiB storage reserves apply. See [the final reconciliation](rendering-n29-master-final-20261026.md).
+
+### Concrete screen providers and exceptional ownership — 2026-10-26
+
+Items 2 and 3 now have explicit local provider and native ownership contracts: `RS.screen-control-resource-providers`, `RS.screen-bitmap-resource-providers`, `RS.screen-provider-failure-paths` and `NP.screen-owned-provider-recovery`. See [scope, recovered quirks and reproduction](screen-providers-and-failures-20261026.md). The earlier acquisition composition's empty-World normalization is superseded for this new fixture by populated owned SPR and palette-chain retirement; historical evidence remains unchanged.
+
+Fresh `SP26.original` and `SP26.native` evidence is recorded in
+[proof11](screen-provider-results-20261026/proof11.json). Each optimized PE32,
+ASan/UBSan PE32 and sanitized native64 configuration passes 2,551 provider
+schedules: 1,174 controls/vector/registry cases, 144 surface cases, 704 palette
+cases, 528 layout cases and one zero-rate World partial-state comparison.
+All configurations match. Native exception tests pass 325 constructor-prefix
+schedules. Sixteen composed Main/World/Report journeys retire their actual
+screen allocations and session resources without pre-clearing World fields.
+The native owner passes concrete SPR/BMP/PCX/JPEG loading, rollback at each
+completed provider prefix, allocation injection, cancellation, stale/foreign
+worker rejection, reentrant replacement and full signed score formatting.
+Existing ResourceManager/preparation regressions and the fresh 768-schedule
+caller regression (`RSA26.provider-regression`) also pass. Immutable input
+manifests verify before and after. No original live replacement is installed.
+
+The earlier original Report score overflow is retained as negative evidence;
+full signed score handling is an explicit native policy. Actual Windows SEH
+delivery, physical drivers/codecs, simulation and score content, real transition
+routing and installed widget/GL acceptance remain outside these results.

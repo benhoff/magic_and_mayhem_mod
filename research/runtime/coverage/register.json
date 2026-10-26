@@ -153430,10 +153430,11 @@
         "research/runtime/screen-acquisition-20261026.md"
       ],
       "evidence": [
-        "RSA26.acquisition"
+        "RSA26.acquisition",
+        "RSA26.provider-regression"
       ],
       "remaining_gaps": [
-        "Full real Main/Realm/World/report transition routing,lower provider semantics,exception/fault recovery,asynchronous aliases and installed live-session acceptance remain separate. Report integer strings exceeding the original six-character scratch capacity are outside the admitted baseline."
+        "Local concrete providers and native recovery are separately accounted by RS.screen-control-resource-providers, RS.screen-bitmap-resource-providers, RS.screen-provider-failure-paths and NP.screen-owned-provider-recovery. Real transition routing, Windows SEH delivery, platform/driver and installed live-session acceptance remain independent; this normal-return caller baseline still admits Report decimal strings no longer than six characters."
       ]
     },
     {
@@ -153479,10 +153480,11 @@
         "research/runtime/screen-acquisition-20261026.md"
       ],
       "evidence": [
-        "RSA26.acquisition"
+        "RSA26.acquisition",
+        "RSA26.provider-regression"
       ],
       "remaining_gaps": [
-        "Full real Main/Realm/World/report transition routing,lower provider semantics,exception/fault recovery,asynchronous aliases and installed live-session acceptance remain separate. Report integer strings exceeding the original six-character scratch capacity are outside the admitted baseline."
+        "Local concrete providers and native recovery are separately accounted by RS.screen-control-resource-providers, RS.screen-bitmap-resource-providers, RS.screen-provider-failure-paths and NP.screen-owned-provider-recovery. Real transition routing, Windows SEH delivery, platform/driver and installed live-session acceptance remain independent; this normal-return caller baseline still admits Report decimal strings no longer than six characters."
       ]
     },
     {
@@ -153534,10 +153536,11 @@
         "research/runtime/screen-acquisition-20261026.md"
       ],
       "evidence": [
-        "RSA26.acquisition"
+        "RSA26.acquisition",
+        "RSA26.provider-regression"
       ],
       "remaining_gaps": [
-        "Full real Main/Realm/World/report transition routing,lower provider semantics,exception/fault recovery,asynchronous aliases and installed live-session acceptance remain separate. Report integer strings exceeding the original six-character scratch capacity are outside the admitted baseline."
+        "Local concrete providers and native recovery are separately accounted by RS.screen-control-resource-providers, RS.screen-bitmap-resource-providers, RS.screen-provider-failure-paths and NP.screen-owned-provider-recovery. Real transition routing, Windows SEH delivery, platform/driver and installed live-session acceptance remain independent; this normal-return caller baseline still admits Report decimal strings no longer than six characters."
       ]
     },
     {
@@ -154158,6 +154161,763 @@
       },
       "remaining_gaps": [
         "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "RS.screen-control-resource-providers",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Concrete screen control and layout resource providers",
+      "scope": "No-CD 40209ca7 owned layout parsing and profile writeback for all eleven type prefixes, layout/control construction and owned text replacement/destruction, widget registry and button callbacks, backing-vector reserve/insertion/selection including value aliases. ASCII bounded profile output and strings, admitted finite rectangles/counts and writable storage. Original CRT token null faults retained; font realization, localization, file/profile API, heap primitives and external widget redraw are named boundaries. No arbitrary malformed buffer/Win32 profile or screen-routing equivalence.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5604736,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5609504,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5609600,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5031712,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5056432,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024016,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4676624,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5056464,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5025856,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5056704,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5025840,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024176,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5056688,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5056864,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5056816,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5056880,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4869664,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5025968,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024112,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded.",
+          "recovered_range": "screen-providers-4ca970"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024128,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded.",
+          "recovered_range": "screen-providers-4ca980"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024144,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024720,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107584,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5025024,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5025536,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4869616,
+          "relation": "code",
+          "scope": "Reused widget base construction and registry removal, including full-capacity failure and index/selection repair."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4870000,
+          "relation": "code",
+          "scope": "Reused widget base construction and registry removal, including full-capacity failure and index/selection repair."
+        }
+      ],
+      "implementation": [
+        "assets/resources/screen_resources.cpp",
+        "assets/resources/screen_resources.hpp",
+        "reconstruction/rendering/screen_acquisition.hpp",
+        "reconstruction/rendering/screen_layout_literals.hpp",
+        "reconstruction/rendering/screen_layout_provider.hpp",
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "reconstruction/rendering/screen_palette_providers.hpp",
+        "reconstruction/rendering/screen_provider_composition.hpp",
+        "reconstruction/rendering/screen_resource_ownership.hpp",
+        "reconstruction/rendering/screen_resource_providers.hpp",
+        "reconstruction/rendering/screen_surface_providers.hpp"
+      ],
+      "tests": [
+        "tests/screen-acquisition-reference.cpp",
+        "tests/screen-composed-resources-test.cpp",
+        "tests/screen-layout-reference.cpp",
+        "tests/screen-palette-reference.cpp",
+        "tests/screen-provider-call.S",
+        "tests/screen-provider-exceptions-test.cpp",
+        "tests/screen-provider-reference.cpp",
+        "tests/screen-resources-test.cpp",
+        "tests/screen-surface-reference.cpp",
+        "tests/screen-world-failure-reference.cpp",
+        "tools/test-screen-providers.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/map.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/persistence.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "reconstruction/rendering/actor_frontier_providers.hpp",
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_profile_palette_providers.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_session.hpp",
+        "reconstruction/rendering/actor_source_services.hpp",
+        "reconstruction/rendering/actor_transition_services.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "reconstruction/rendering/alias_target_services.hpp",
+        "reconstruction/rendering/compact_member_callbacks.hpp",
+        "reconstruction/rendering/member_callbacks.hpp",
+        "reconstruction/rendering/palette_effects.cpp",
+        "reconstruction/rendering/palette_effects.hpp",
+        "reconstruction/rendering/palette_shading.cpp",
+        "reconstruction/rendering/palette_shading.hpp",
+        "reconstruction/rendering/terrain_selection.cpp",
+        "reconstruction/rendering/terrain_selection.hpp",
+        "reconstruction/rendering/world_screen_retirement.hpp",
+        "tests/actor-services-call.S",
+        "tests/original-linux-seh.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "tools/original_x86.py",
+        "tools/test-screen-acquisition.py"
+      ],
+      "documents": [
+        "research/runtime/screen-providers-and-failures-20261026.md"
+      ],
+      "evidence": [
+        "SP26.original",
+        "SP26.native"
+      ],
+      "remaining_gaps": [
+        "Actual Windows SEH dispatch and throwing-destructor delivery are not validated.",
+        "Real driver/codec-DLL behavior, original full screen routing and installed widget/GL/live acceptance remain separate.",
+        "Qt-internal/global noexcept allocation exhaustion is not part of recoverable native allocation policy; score-service content/simulation remain supplied in the composed fixture."
+      ]
+    },
+    {
+      "id": "RS.screen-bitmap-resource-providers",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Concrete screen bitmap and surface ownership providers",
+      "scope": "No-CD 40209ca7 surface creation/publication/retirement, pixel lock/restore/retry quirk, optional seven-symbol JPEG-backend publication, JPG pixel-lock/decode/unlock wrapper, and World in-place word/DWORD palette effects over owned existing nodes. Reuses prior SPR/palette loader providers in owned Main/World/Report/Main composition with populated World resources and explicit persistent-service shutdown. Original surface/codec comparisons supply COM and image-codec endpoints; native CPU policy loads real owned SPR/BMP/PCX/JPEG. Finite bounded lighting/count/coefficient domain. Original indeterminate palette flag bytes are excluded from the RGB comparison. No real-driver, actual codec-DLL, arbitrary callback mutation or installed/live equivalence.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811600,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812848,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813856,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821216,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5757600,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5784624,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5804672,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        }
+      ],
+      "implementation": [
+        "assets/resources/screen_resources.cpp",
+        "assets/resources/screen_resources.hpp",
+        "reconstruction/rendering/screen_acquisition.hpp",
+        "reconstruction/rendering/screen_layout_literals.hpp",
+        "reconstruction/rendering/screen_layout_provider.hpp",
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "reconstruction/rendering/screen_palette_providers.hpp",
+        "reconstruction/rendering/screen_provider_composition.hpp",
+        "reconstruction/rendering/screen_resource_ownership.hpp",
+        "reconstruction/rendering/screen_resource_providers.hpp",
+        "reconstruction/rendering/screen_surface_providers.hpp"
+      ],
+      "tests": [
+        "tests/screen-acquisition-reference.cpp",
+        "tests/screen-composed-resources-test.cpp",
+        "tests/screen-layout-reference.cpp",
+        "tests/screen-palette-reference.cpp",
+        "tests/screen-provider-call.S",
+        "tests/screen-provider-exceptions-test.cpp",
+        "tests/screen-provider-reference.cpp",
+        "tests/screen-resources-test.cpp",
+        "tests/screen-surface-reference.cpp",
+        "tests/screen-world-failure-reference.cpp",
+        "tools/test-screen-providers.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/map.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/persistence.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "reconstruction/rendering/actor_frontier_providers.hpp",
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_profile_palette_providers.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_session.hpp",
+        "reconstruction/rendering/actor_source_services.hpp",
+        "reconstruction/rendering/actor_transition_services.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "reconstruction/rendering/alias_target_services.hpp",
+        "reconstruction/rendering/compact_member_callbacks.hpp",
+        "reconstruction/rendering/member_callbacks.hpp",
+        "reconstruction/rendering/palette_effects.cpp",
+        "reconstruction/rendering/palette_effects.hpp",
+        "reconstruction/rendering/palette_shading.cpp",
+        "reconstruction/rendering/palette_shading.hpp",
+        "reconstruction/rendering/terrain_selection.cpp",
+        "reconstruction/rendering/terrain_selection.hpp",
+        "reconstruction/rendering/world_screen_retirement.hpp",
+        "tests/actor-services-call.S",
+        "tests/original-linux-seh.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "tools/original_x86.py",
+        "tools/test-screen-acquisition.py"
+      ],
+      "documents": [
+        "research/runtime/screen-providers-and-failures-20261026.md"
+      ],
+      "evidence": [
+        "SP26.original",
+        "SP26.native"
+      ],
+      "remaining_gaps": [
+        "Actual Windows SEH dispatch and throwing-destructor delivery are not validated.",
+        "Real driver/codec-DLL behavior, original full screen routing and installed widget/GL/live acceptance remain separate.",
+        "Qt-internal/global noexcept allocation exhaustion is not part of recoverable native allocation policy; score-service content/simulation remain supplied in the composed fixture."
+      ]
+    },
+    {
+      "id": "RS.screen-provider-failure-paths",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Screen resource allocation and exceptional cleanup boundaries",
+      "scope": "No-CD 40209ca7 observed null-allocation control text faults and vector insertion/reserve partial states, including invalid published vector metadata, malformed layout-token faults, zero-rate World divide partial state, normal vector construction/reverse teardown and direct Main/Report/button cleanup funclets with a supplied parent EBP. Native completed-prefix exception unwinding across all constructor allocation positions is a separate execution. Original seven-byte Report scratch overflow remains a confirmed negative boundary; native full signed score formatting is intentional safety policy. Linux direct funclet invocation does not prove Windows SEH dispatch, throwing destructors or catastrophic runtime allocation handling.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4629600,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded.",
+          "recovered_range": "screen-providers-46a460"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5882945,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5881735,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6030608,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6030622,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6026768,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6026782,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6026796,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6026810,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6036304,
+          "relation": "code",
+          "scope": "Local provider/cleanup scope stated by this contract; named external boundaries and Windows SEH delivery excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5107584,
+          "relation": "code",
+          "scope": "Original null-allocation vector failure/partial publication and fault boundary over admitted pre-call storage."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5024720,
+          "relation": "code",
+          "scope": "Original null-allocation vector failure/partial publication and fault boundary over admitted pre-call storage."
+        }
+      ],
+      "implementation": [
+        "assets/resources/screen_resources.cpp",
+        "assets/resources/screen_resources.hpp",
+        "reconstruction/rendering/screen_acquisition.hpp",
+        "reconstruction/rendering/screen_layout_literals.hpp",
+        "reconstruction/rendering/screen_layout_provider.hpp",
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "reconstruction/rendering/screen_palette_providers.hpp",
+        "reconstruction/rendering/screen_provider_composition.hpp",
+        "reconstruction/rendering/screen_resource_ownership.hpp",
+        "reconstruction/rendering/screen_resource_providers.hpp",
+        "reconstruction/rendering/screen_surface_providers.hpp"
+      ],
+      "tests": [
+        "tests/screen-acquisition-reference.cpp",
+        "tests/screen-composed-resources-test.cpp",
+        "tests/screen-layout-reference.cpp",
+        "tests/screen-palette-reference.cpp",
+        "tests/screen-provider-call.S",
+        "tests/screen-provider-exceptions-test.cpp",
+        "tests/screen-provider-reference.cpp",
+        "tests/screen-resources-test.cpp",
+        "tests/screen-surface-reference.cpp",
+        "tests/screen-world-failure-reference.cpp",
+        "tools/test-screen-providers.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/map.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/persistence.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "reconstruction/rendering/actor_frontier_providers.hpp",
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_profile_palette_providers.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_session.hpp",
+        "reconstruction/rendering/actor_source_services.hpp",
+        "reconstruction/rendering/actor_transition_services.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "reconstruction/rendering/alias_target_services.hpp",
+        "reconstruction/rendering/compact_member_callbacks.hpp",
+        "reconstruction/rendering/member_callbacks.hpp",
+        "reconstruction/rendering/palette_effects.cpp",
+        "reconstruction/rendering/palette_effects.hpp",
+        "reconstruction/rendering/palette_shading.cpp",
+        "reconstruction/rendering/palette_shading.hpp",
+        "reconstruction/rendering/terrain_selection.cpp",
+        "reconstruction/rendering/terrain_selection.hpp",
+        "reconstruction/rendering/world_screen_retirement.hpp",
+        "tests/actor-services-call.S",
+        "tests/original-linux-seh.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "tools/original_x86.py",
+        "tools/test-screen-acquisition.py"
+      ],
+      "documents": [
+        "research/runtime/screen-providers-and-failures-20261026.md"
+      ],
+      "evidence": [
+        "SP26.original",
+        "SP26.native"
+      ],
+      "remaining_gaps": [
+        "Actual Windows SEH dispatch and throwing-destructor delivery are not validated.",
+        "Real driver/codec-DLL behavior, original full screen routing and installed widget/GL/live acceptance remain separate.",
+        "Qt-internal/global noexcept allocation exhaustion is not part of recoverable native allocation policy; score-service content/simulation remain supplied in the composed fixture."
+      ]
+    },
+    {
+      "id": "NP.screen-owned-provider-recovery",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Owned screen resources with failure recovery and retained aliases",
+      "scope": "Native owned screen control/image staging using existing AssetStore/ResourceManager SPR/BMP/PCX/JPEG providers, transactional replacement, binding/staging allocation failures and completed decoded-prefix rollback, cancellation and worker-owned preparation, rejection after retirement/replacement and foreign-manager completions, full signed DWORD score formatting. Thread-confined adoption; shared-library Qt noexcept OOM, platform/global catastrophic exhaustion, live Qt widget/GL replacement and installed acceptance are independent boundaries.",
+      "confidence": "high_within_scope",
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "original": [],
+      "implementation": [
+        "assets/resources/screen_resources.cpp",
+        "assets/resources/screen_resources.hpp",
+        "reconstruction/rendering/screen_acquisition.hpp",
+        "reconstruction/rendering/screen_layout_literals.hpp",
+        "reconstruction/rendering/screen_layout_provider.hpp",
+        "reconstruction/rendering/screen_lifetime.hpp",
+        "reconstruction/rendering/screen_palette_providers.hpp",
+        "reconstruction/rendering/screen_provider_composition.hpp",
+        "reconstruction/rendering/screen_resource_ownership.hpp",
+        "reconstruction/rendering/screen_resource_providers.hpp",
+        "reconstruction/rendering/screen_surface_providers.hpp"
+      ],
+      "tests": [
+        "tests/screen-acquisition-reference.cpp",
+        "tests/screen-composed-resources-test.cpp",
+        "tests/screen-layout-reference.cpp",
+        "tests/screen-palette-reference.cpp",
+        "tests/screen-provider-call.S",
+        "tests/screen-provider-exceptions-test.cpp",
+        "tests/screen-provider-reference.cpp",
+        "tests/screen-resources-test.cpp",
+        "tests/screen-surface-reference.cpp",
+        "tests/screen-world-failure-reference.cpp",
+        "tools/test-screen-providers.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/map.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/persistence.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "reconstruction/rendering/actor_frontier_providers.hpp",
+        "reconstruction/rendering/actor_ownership.hpp",
+        "reconstruction/rendering/actor_profile_palette_providers.hpp",
+        "reconstruction/rendering/actor_service_collections.hpp",
+        "reconstruction/rendering/actor_service_composition.hpp",
+        "reconstruction/rendering/actor_service_construction.hpp",
+        "reconstruction/rendering/actor_service_controllers.hpp",
+        "reconstruction/rendering/actor_service_dependencies.hpp",
+        "reconstruction/rendering/actor_service_effects.hpp",
+        "reconstruction/rendering/actor_service_popups.hpp",
+        "reconstruction/rendering/actor_service_providers.hpp",
+        "reconstruction/rendering/actor_service_ui.hpp",
+        "reconstruction/rendering/actor_service_world.hpp",
+        "reconstruction/rendering/actor_services.hpp",
+        "reconstruction/rendering/actor_session.hpp",
+        "reconstruction/rendering/actor_source_services.hpp",
+        "reconstruction/rendering/actor_transition_services.hpp",
+        "reconstruction/rendering/actor_visual_lifecycle.hpp",
+        "reconstruction/rendering/alias_target_services.hpp",
+        "reconstruction/rendering/compact_member_callbacks.hpp",
+        "reconstruction/rendering/member_callbacks.hpp",
+        "reconstruction/rendering/palette_effects.cpp",
+        "reconstruction/rendering/palette_effects.hpp",
+        "reconstruction/rendering/palette_shading.cpp",
+        "reconstruction/rendering/palette_shading.hpp",
+        "reconstruction/rendering/terrain_selection.cpp",
+        "reconstruction/rendering/terrain_selection.hpp",
+        "reconstruction/rendering/world_screen_retirement.hpp",
+        "tests/actor-services-call.S",
+        "tests/original-linux-seh.hpp",
+        "tests/resource-fixtures.hpp",
+        "tests/resource-manager-test.cpp",
+        "tests/resource-preparation-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "tools/original_x86.py",
+        "tools/test-screen-acquisition.py"
+      ],
+      "documents": [
+        "research/runtime/screen-providers-and-failures-20261026.md"
+      ],
+      "evidence": [
+        "SP26.native"
+      ],
+      "remaining_gaps": [
+        "Actual Windows SEH dispatch and throwing-destructor delivery are not validated.",
+        "Real driver/codec-DLL behavior, original full screen routing and installed widget/GL/live acceptance remain separate.",
+        "Qt-internal/global noexcept allocation exhaustion is not part of recoverable native allocation policy; score-service content/simulation remain supplied in the composed fixture."
       ]
     }
   ],
@@ -347166,6 +347926,151 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "RSA26.provider-regression",
+      "kind": "isolated_original",
+      "record": "research/runtime/screen-provider-results-20261026/acquisition-regression01.json",
+      "sha256": "dea24746a8fa01605ebbfac1e48cc6685168330e8e18eadf857a5f2b3fe1c503",
+      "scope": "Fresh unchanged normal-return acquisition caller comparisons on the current World zero-rate guard source; preserve the historical acquisition evidence and separate native provider/failure integration.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/original/composed_lifecycles",
+          "equals": 192
+        },
+        {
+          "pointer": "/original/checksum",
+          "equals": 10140469957634073648
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/sanitized/composed_lifecycles",
+          "equals": 192
+        },
+        {
+          "pointer": "/sanitized/checksum",
+          "equals": 10140469957634073648
+        },
+        {
+          "pointer": "/native64/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native64/cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/native64/composed_lifecycles",
+          "equals": 192
+        },
+        {
+          "pointer": "/native64/checksum",
+          "equals": 10140469957634073648
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "SP26.original",
+      "kind": "isolated_original",
+      "scope": "Independent original/native local screen providers and failures with supplied platform endpoints.",
+      "record": "research/runtime/screen-provider-results-20261026/proof11.json",
+      "sha256": "a9c0cedb2c31db54bf98836a2f8ac2e9e48da925bad7376280498663023f43a0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/contracts_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/windows_seh_dispatch",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "SP26.native",
+      "kind": "native_integration",
+      "scope": "Owned screen resource composition, native loader replacement/rollback, prefix failures and worker lifetime recovery; no widget/GL or installed/live promotion.",
+      "record": "research/runtime/screen-provider-results-20261026/proof11.json",
+      "sha256": "a9c0cedb2c31db54bf98836a2f8ac2e9e48da925bad7376280498663023f43a0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/contracts_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/windows_seh_dispatch",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -347177,6 +348082,62 @@
         "INPUT.camera-minimap-orientation-update"
       ],
       "scope": "Static selected unassigned key-handler trace at46c070 calls MapVirtualKeyA(VK,0) before comma/period request branches. Conversion only; full handler ownership, dispatch equivalence and other keys remain unresolved."
+    },
+    {
+      "build": "nocd-40209ca7",
+      "iat_va": 6049916,
+      "behaviors": [
+        "RS.screen-control-resource-providers"
+      ],
+      "scope": "Selected local screen provider invokes this named platform API. The comparison supplies the endpoint; Windows platform semantics are not inferred."
+    },
+    {
+      "build": "nocd-40209ca7",
+      "iat_va": 6049980,
+      "behaviors": [
+        "RS.screen-control-resource-providers"
+      ],
+      "scope": "Selected local screen provider invokes this named platform API. The comparison supplies the endpoint; Windows platform semantics are not inferred."
+    },
+    {
+      "build": "nocd-40209ca7",
+      "iat_va": 6049968,
+      "behaviors": [
+        "RS.screen-control-resource-providers"
+      ],
+      "scope": "Selected local screen provider invokes this named platform API. The comparison supplies the endpoint; Windows platform semantics are not inferred."
+    },
+    {
+      "build": "nocd-40209ca7",
+      "iat_va": 6050036,
+      "behaviors": [
+        "RS.screen-bitmap-resource-providers"
+      ],
+      "scope": "Selected local screen provider invokes this named platform API. The comparison supplies the endpoint; Windows platform semantics are not inferred."
+    },
+    {
+      "build": "nocd-40209ca7",
+      "iat_va": 6050004,
+      "behaviors": [
+        "RS.screen-bitmap-resource-providers"
+      ],
+      "scope": "Selected local screen provider invokes this named platform API. The comparison supplies the endpoint; Windows platform semantics are not inferred."
+    },
+    {
+      "build": "nocd-40209ca7",
+      "iat_va": 6050312,
+      "behaviors": [
+        "RS.screen-bitmap-resource-providers"
+      ],
+      "scope": "Selected local screen provider invokes this named platform API. The comparison supplies the endpoint; Windows platform semantics are not inferred."
+    },
+    {
+      "build": "nocd-40209ca7",
+      "iat_va": 6050432,
+      "behaviors": [
+        "RS.screen-bitmap-resource-providers"
+      ],
+      "scope": "Selected local screen provider invokes this named platform API. The comparison supplies the endpoint; Windows platform semantics are not inferred."
     }
   ],
   "dispatch_tables": [
@@ -357598,6 +358559,222 @@
         {
           "value": "site0x58d8a8 virtual+80 target unknown",
           "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "screen-provider-dispatch-5591fc",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5607932,
+        "relation": "data",
+        "scope": "Layout type section prefixes; exact decoded slots and original bounds/lookup control are compared."
+      },
+      "document": "research/runtime/screen-providers-and-failures-20261026.md",
+      "complete": true,
+      "scope": "All raw table slots retained with decoded target addresses; no inference of arbitrary runtime virtual targets.",
+      "entries": [
+        {
+          "value": "slot0:0x558650",
+          "behaviors": [
+            "RS.screen-control-resource-providers"
+          ]
+        },
+        {
+          "value": "slot1:0x55865a",
+          "behaviors": [
+            "RS.screen-control-resource-providers"
+          ]
+        },
+        {
+          "value": "slot2:0x55867f",
+          "behaviors": [
+            "RS.screen-control-resource-providers"
+          ]
+        },
+        {
+          "value": "slot3:0x558689",
+          "behaviors": [
+            "RS.screen-control-resource-providers"
+          ]
+        },
+        {
+          "value": "slot4:0x5586ae",
+          "behaviors": [
+            "RS.screen-control-resource-providers"
+          ]
+        },
+        {
+          "value": "slot5:0x5586b5",
+          "behaviors": [
+            "RS.screen-control-resource-providers"
+          ]
+        },
+        {
+          "value": "slot6:0x5586d7",
+          "behaviors": [
+            "RS.screen-control-resource-providers"
+          ]
+        },
+        {
+          "value": "slot7:0x5586de",
+          "behaviors": [
+            "RS.screen-control-resource-providers"
+          ]
+        },
+        {
+          "value": "slot8:0x558700",
+          "behaviors": [
+            "RS.screen-control-resource-providers"
+          ]
+        },
+        {
+          "value": "slot9:0x558707",
+          "behaviors": [
+            "RS.screen-control-resource-providers"
+          ]
+        },
+        {
+          "value": "slot10:0x558729",
+          "behaviors": [
+            "RS.screen-control-resource-providers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "screen-provider-dispatch-584b78",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5786488,
+        "relation": "data",
+        "scope": "World word palette count shifts; exact decoded slots and original bounds/lookup control are compared."
+      },
+      "document": "research/runtime/screen-providers-and-failures-20261026.md",
+      "complete": true,
+      "scope": "All raw table slots retained with decoded target addresses; no inference of arbitrary runtime virtual targets.",
+      "entries": [
+        {
+          "value": "slot0:0x5844ac",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot1:0x5844b3",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot2:0x5844ba",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot3:0x5844c1",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot4:0x5844c8",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot5:0x5844cf",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot6:0x5844d6",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot7:0x5844dd",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot8:0x5844dd",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "screen-provider-dispatch-5897b4",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5806004,
+        "relation": "data",
+        "scope": "World DWORD palette count shifts; exact decoded slots and original bounds/lookup control are compared."
+      },
+      "document": "research/runtime/screen-providers-and-failures-20261026.md",
+      "complete": true,
+      "scope": "All raw table slots retained with decoded target addresses; no inference of arbitrary runtime virtual targets.",
+      "entries": [
+        {
+          "value": "slot0:0x5892f8",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot1:0x5892ff",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot2:0x589306",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot3:0x58930d",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot4:0x589314",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot5:0x58931b",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot6:0x589322",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot7:0x589329",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
+        },
+        {
+          "value": "slot8:0x589329",
+          "behaviors": [
+            "RS.screen-bitmap-resource-providers"
+          ]
         }
       ]
     }
@@ -375075,6 +376252,27 @@
         "TLSN25.native-and-fallback",
         "TLSN25.master-native-and-fallback"
       ]
+    },
+    {
+      "id": "screen-providers-owned-failures-20261026",
+      "title": "Owned screen providers, retirement and failure recovery",
+      "scope": "Owned concrete screen provider composition with populated World SPR/palette buffers and explicit session-service shutdown; native transactional resource loading, completed-prefix unwind, cancellation and retained worker requests. CPU/headless integration only; routing, Windows SEH delivery, real drivers/codecs and widget/GL/live acceptance are separate.",
+      "level": "headless",
+      "behaviors": [
+        "RS.screen-control-resource-providers",
+        "RS.screen-bitmap-resource-providers",
+        "RS.screen-provider-failure-paths",
+        "NP.screen-owned-provider-recovery"
+      ],
+      "tests": [
+        "tools/test-screen-providers.py",
+        "tests/screen-composed-resources-test.cpp",
+        "tests/screen-provider-exceptions-test.cpp",
+        "tests/screen-resources-test.cpp"
+      ],
+      "evidence": [
+        "SP26.native"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -376480,6 +377678,36 @@
       "evidence": "RSA26.acquisition",
       "anchors_pointer": "/original_entry_anchors",
       "scope": "Execution-backed complete normal-return local caller;controlled lower providers and storage,not transitive semantics or live acceptance. Preserve historical unassigned inventory."
+    },
+    {
+      "id": "screen-providers-4ca970",
+      "build": "nocd-40209ca7",
+      "start": 5024112,
+      "end": 5024128,
+      "document": "research/runtime/screen-providers-and-failures-20261026.md",
+      "evidence": "SP26.original",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Pinned local provider/failure caller reachable instructions and explicit external tail endpoints. Original execution within the declared supplied-platform and owned storage domain; preserve the historical function inventory gap."
+    },
+    {
+      "id": "screen-providers-4ca980",
+      "build": "nocd-40209ca7",
+      "start": 5024128,
+      "end": 5024136,
+      "document": "research/runtime/screen-providers-and-failures-20261026.md",
+      "evidence": "SP26.original",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Pinned local provider/failure caller reachable instructions and explicit external tail endpoints. Original execution within the declared supplied-platform and owned storage domain; preserve the historical function inventory gap."
+    },
+    {
+      "id": "screen-providers-46a460",
+      "build": "nocd-40209ca7",
+      "start": 4629600,
+      "end": 4630830,
+      "document": "research/runtime/screen-providers-and-failures-20261026.md",
+      "evidence": "SP26.original",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Pinned local provider/failure caller reachable instructions and explicit external tail endpoints. Original execution within the declared supplied-platform and owned storage domain; preserve the historical function inventory gap."
     }
   ],
   "register_imports": [
@@ -376852,7 +378080,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-c75988b2427338ed4478ec60276ac7fbdb219a74192458bdeea9ea39c93d0299.json",
-    "sha256": "c75988b2427338ed4478ec60276ac7fbdb219a74192458bdeea9ea39c93d0299"
+    "path": "research/runtime/coverage/source-index-e7197f398f7ddf7b8126cc31ab8d6edbcba92b965b36b6eae654be880b45ae1f.json",
+    "sha256": "e7197f398f7ddf7b8126cc31ab8d6edbcba92b965b36b6eae654be880b45ae1f"
   }
 }
