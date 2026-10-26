@@ -23579,3 +23579,68 @@ renderer acceptance remain pending. Original glyph/worker isolated comparisons
 retain their original fingerprints. No engine status or default is promoted;
 lighting remains original by default. The unrelated pending main-checkout storage
 work stays outside this commit and is preserved during the fast-forward.
+
+
+### TAG parent — installed native sprite-table application (2026-10-26)
+
+`AS.tag` now completes its read-only native parent scope, joining the permissive
+owned raw parser to strict installed companion admission, exact raw-name and
+occurrence selection, native playback controls, atomic reload and a real
+Qt/OpenGL window. See [the parent contract](tag-parent-end-to-end-20261026.md).
+This is parent-level implementation and preview integration; the earlier N27
+and N29 components retain their separate historical claims. Original/editor TAG
+use, ANI timing, original allocation/OS failures, game-world construction and
+live replacement remain outside this native policy and unclaimed.
+
+`TAG.parent-installed-window-20261026` binds the complete parent and installed-preview
+scenario to [execution 4](tag-parent-results-20261026/execution-4.json). Fresh
+Release and ASan/UBSan each pass131,792 checks,80 refusals,262 native GPU/direct
+decoded-plane pixel comparisons and17 actual window actions. All85 installed
+TAGs and130,891 entries match independent Python record/SPR-offset/occurrence
+decoding. Selected frames from every table render and reload. Two actual installed-file
+window journeys cover same-stem and terrain-fallback companions, compare every
+displayed pixel and preserve the paused selected image across reload; malformed reload
+retains state and the visible frame, valid reload recovers, and the actual Qt
+timer completes one-shot playback. Raw TAG, independent installed parser,
+sprite-session, sprite-timeline and CTest regressions pass in both modes.
+All274 declared source fingerprints and installed inputs remain stable; original
+manifest checks verify all2,927 files before and after. GPU surface balance is
+asserted; external uninstrumented Qt/driver leak scanning is disabled.
+
+[Attempt1](tag-parent-results-20261026/execution-1.json) stopped because the
+isolated worktree lacked original payloads; manifest verification now targets
+the original-bearing main checkout. [Attempt2](tag-parent-results-20261026/execution-2.json)
+passed Release acceptance but refused an incomplete prospective protocol-header
+closure. Both failures and exact source variants are retained without final
+execution credit. [The committed-history review](tag-parent-results-20261026/history-review-1.json)
+checks17 commits/2,170 exact parent/current file transitions from1ffeb53e through
+d20de6bb with no missing receipts; it does not assert historical gate execution.
+
+The planning controls initially exposed an inherited missing source fingerprint
+for `tools/test-terrain-light-qt-session.py` in the native-only launch planning
+review. Its already-committed source/test link was inspected and added to that
+review, preserving every old source hash, weight and validation/acceptance claim.
+[The failed planning run](tag-parent-results-20261026/planning-controls-1.json)
+remains negative evidence; this metadata repair grants no new launch validation.
+The fixed unrated fixture also now names the three already-committed alternate
+resident/campaign error contracts. They remain unrated; no weights, engine
+statuses or historical execution claims are changed by that expectation update.
+
+Durable outputs are SQLite reports/references, bounded raw logs, retained test
+binaries and normal verified evidence/review database backups. RAM-backed build
+trees are temporary execution output. The normal90GiB main-drive and100GiB
+archive reserves remain unchanged; the session inventory found no eligible
+cleanup candidates and no payload was deleted. No original or installed input
+is modified and no evidence is published.
+
+Final [coverage audit](tag-parent-results-20261026/audit-3.json) has zero errors;
+`AS.tag` implementation and preview claims are current. The corrected
+[planning controls](tag-parent-results-20261026/planning-controls-3.json) pass
+all38 tests. Earlier negative audit/planning reports remain retained.
+
+[Execution3](tag-parent-results-20261026/execution-3.json) retains the earlier
+passing service/corpus and fixture-window result. The first normal closeout was
+[stopped before review export, staging or commit](tag-parent-results-20261026/interrupted-closeout-1.json)
+to add the direct installed-file window journeys. Execution4 declares the revised
+scenario and exact final sources before execution and supplies current parent
+implementation/preview credit; no historical result or source hash is refreshed.

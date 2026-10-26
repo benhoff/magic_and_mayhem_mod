@@ -19227,12 +19227,14 @@
                 "tools/rendering_seventeenth_controls.py": "82a4be5d1c2c9a4f37cf77160baded19b13ca583f5c22090365a8518540821fc",
                 "tools/test-rendering-seventeenth-five.py": "3345542437d7bc51a658f8ea92daf63975a30d0b4526991449242a0a8a760f08",
                 "docs/native-rendering-dependencies.json": "be8ab6c527a8efc06b8d2ede19616f4d0d309354894dff5b4f2e4714f9a46503",
-                "research/runtime/rendering-required-dependencies-20261024.md": "7eecdc4d1761b7a3443efa63e34aa637922b549569cc14f49167402914e7e734"
+                "research/runtime/rendering-required-dependencies-20261024.md": "7eecdc4d1761b7a3443efa63e34aa637922b549569cc14f49167402914e7e734",
+                "tools/test-terrain-light-qt-session.py": "d6ddf12264db5f255f8348b703d6a9734c983f23798df499ef92f7d729df6984"
               },
               "incremental_review": "Campaign runner now monitors all five existing refusal/fault families and explicitly labels optional file tracing. Production engine guards and budgets are unchanged; separate native-only/restart validation is not renewed.",
               "pending_source_review": [],
               "incremental_review_notes": [
-                "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted."
+                "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted.",
+                "20261026 TAG parent closeout: repair the inherited missing source link for tools/test-terrain-light-qt-session.py, already linked by the committed native-only parent. Add its reviewed current fingerprint without refreshing any old fingerprint, implementation/validation/acceptance state or evidence claim. This is planning metadata repair, not a new native-only execution result."
               ],
               "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed.",
               "review_reason": "Append current reviewed test/document links and fresh NT17 evidence; preserve historical source fingerprints and every prior work review."
