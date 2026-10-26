@@ -23094,3 +23094,11 @@ tip; one missing exact intermediate receipt receives retrospective pending
 accounting, without a past gate or new execution claim. Default lighting remains
 original. Combined Qt graphics ownership, arbitrary maps/saves, long sessions and
 rollout remain separate acceptance.
+
+### N29: owned variable-timed sprite timelines (2026-10-26)
+
+Ten bounded native components are implemented for explicit clips, variable loops and one-shots, ping-pong, reverse playback, pause/resume, seeking, rational rates, bounded events, and checkpoints/reload. See [the contract and validation boundaries](rendering-twentyninth-ten-20261026.md). Fresh source-bound Release and ASan/UBSan runs each pass 67,243 checks, 31 refusals, 72 independent timing scenarios, 18 maximal clock cases and 360 CPU/GPU pixel comparisons with zero surface leaks; supplier and CTest regressions pass. The initial run passed Release but refused an omitted supplier-test declaration; execution-1 remains preserved, and corrected execution-2 supplies implementation credit. This service supplies owned plans to existing CPU/GPU drawing; original ANI semantics, widget/world integration, installed acceptance and live replacement remain separate. AS.tag remains partial.
+
+The initial planning-control check observed the temporary pre-validation partial statuses and failed its fixed partial-count expectation; its negative result is retained. A subsequent final-status run was interrupted by the normal90GiB retention guard, also retained without a pass claim. The user approved an89GiB reserve solely for N29 backup/commit completion. Normal policy remains unchanged. Final review/staging use bounded private tmpfs; the normal finisher snapshots and verifies the complete review/evidence databases, then an additional persistence wrapper copies and re-verifies those snapshots and both durable catalogs on the second NVMe before allowing the commit. No evidence publication is attached.
+
+Final planning controls pass all38 tests against the scoped final catalog; the intervening history review matches all622 transitions across four commits. The N29 full audit reports zero errors and all ten implementation bindings current. Existing unrelated historical staleness, unlinked sources and original/live gaps remain explicit.
