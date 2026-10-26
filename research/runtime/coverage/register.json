@@ -154598,7 +154598,8 @@
         "tools/published_copy_routes.py"
       ],
       "documents": [
-        "research/runtime/natural-gpu-copy-callers-20261026.md"
+        "research/runtime/natural-gpu-copy-callers-20261026.md",
+        "research/runtime/windowed-input-gpu-callers-20261026.md"
       ],
       "evidence": [
         "NATURALCOPY.controls01-20261026",
@@ -154614,7 +154615,17 @@
         "NATURALCOPY.quick03-20261026",
         "NATURALCOPY.quick04-20261026",
         "NATURALCOPY.quick05-20261026",
-        "NATURALCOPY.quick06-20261026"
+        "NATURALCOPY.quick06-20261026",
+        "WINDOWINPUT.controls01-20261026",
+        "WINDOWINPUT.controls02-20261026",
+        "WINDOWINPUT.controls03-20261026",
+        "WINDOWINPUT.quick01-20261026",
+        "WINDOWINPUT.quick02-20261026",
+        "WINDOWINPUT.quick03-20261026",
+        "WINDOWINPUT.quick04-20261026",
+        "WINDOWINPUT.quick05-20261026",
+        "WINDOWINPUT.remaining-callers01-20261026",
+        "WINDOWINPUT.remaining-callers02-20261026"
       ],
       "status": {
         "understanding": "partial",
@@ -154626,7 +154637,8 @@
       "remaining_gaps": [
         "Current24 controls and strict immutable replay pass. Ordinary windowed810 checked attached-clipper calls do not geometrically reduce output. Declared Win32 desktop exposure confirms negative origin but strict all-application validation rejects active-miss reason2;use the separate positive-call policy for its678 checked reduced calls.",
         "Natural self-copy and keyed GPU-source positive callers remain unproven. Stage6 Qt input target0,missing complete END/output,normal Quit,surviving device/surfaces/clipper and shell signal11 remain open;no replacement promotion.",
-        "Combined integration preserves master1ffeb53e,verified windowed3544f60a and independent contract/status entries. The18 unrelated pending paths have a verified retained snapshot and pinned stash;master advancement restores their semantic metadata deltas."
+        "Combined integration preserves master1ffeb53e,verified windowed3544f60a and independent contract/status entries. The18 unrelated pending paths have a verified retained snapshot and pinned stash;master advancement restores their semantic metadata deltas.",
+        "Windowed input follow-up quick05 has current source hashes,143 checked original GPU calls,28 geometrically reduced calls,END,normal Quit and zero graphics owners. Natural self/keyed-GPU positives remain absent from this bounded sample;CPU-source clipper/target-rect preparation and unsupported fills still prevent whole-output closure. Prior GAP/deadline failures retained;no status promotion."
       ]
     },
     {
@@ -154667,12 +154679,23 @@
         "tests/test-native-copy-routes.py"
       ],
       "documents": [
-        "research/runtime/natural-gpu-copy-callers-20261026.md"
+        "research/runtime/natural-gpu-copy-callers-20261026.md",
+        "research/runtime/windowed-input-gpu-callers-20261026.md"
       ],
       "evidence": [
         "NATURALCOPY.controls05-20261026",
         "NATURALCOPY.published01-20261026",
-        "NATURALCOPY.published02-20261026"
+        "NATURALCOPY.published02-20261026",
+        "WINDOWINPUT.controls01-20261026",
+        "WINDOWINPUT.controls02-20261026",
+        "WINDOWINPUT.controls03-20261026",
+        "WINDOWINPUT.quick01-20261026",
+        "WINDOWINPUT.quick02-20261026",
+        "WINDOWINPUT.quick03-20261026",
+        "WINDOWINPUT.quick04-20261026",
+        "WINDOWINPUT.quick05-20261026",
+        "WINDOWINPUT.remaining-callers01-20261026",
+        "WINDOWINPUT.remaining-callers02-20261026"
       ],
       "status": {
         "understanding": "partial",
@@ -154683,7 +154706,8 @@
       },
       "remaining_gaps": [
         "Current24 controls and immutable replay verify783 of784 published GPU calls,including678 geometrically reduced calls and one retained clipped-command pixel witness. Missing output for application call5060 remains explicit.",
-        "Active-miss bit2 leaves unobserved callbacks unknown. No zero-branch absence,complete-application output,END,normal Quit,ownership or original-driver parity claim. Natural self-copy,keyed GPU sources and additional clipper reduction within destination bounds remain unproven."
+        "Active-miss bit2 leaves unobserved callbacks unknown. No zero-branch absence,complete-application output,END,normal Quit,ownership or original-driver parity claim. Natural self-copy,keyed GPU sources and additional clipper reduction within destination bounds remain unproven.",
+        "Windowed input follow-up quick05 has current source hashes,143 checked original GPU calls,28 geometrically reduced calls,END,normal Quit and zero graphics owners. Natural self/keyed-GPU positives remain absent from this bounded sample;CPU-source clipper/target-rect preparation and unsupported fills still prevent whole-output closure. Prior GAP/deadline failures retained;no status promotion."
       ]
     },
     {
@@ -155036,6 +155060,139 @@
       "remaining_gaps": [
         "Natural incoming callers for all five pixel helpers remain unresolved; preserve the43-route denominator and38-route historical observed union.",
         "External COM target addresses are driver/build/launch-specific; no fixed original executable function address, complete driver implementation, failed Lock/loss/Restore, asynchronous aliasing or live replacement is claimed."
+      ]
+    },
+    {
+      "id": "HOST.desktop-frame-input",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Desktop-frame input for a windowed original game",
+      "scope": "Intentional native input policy: bind a unique mapped named Magic & Mayhem input window inside a Wine desktop whose size equals the displayed frame; preserve legacy exact-frame fallback and refuse ambiguous,missing,incomplete or incompatible window trees. Translate each targeted X11 event from desktop-frame pixels to current outer-window pixels. Explicit input wire v2 publishes desktop-screen cursor coordinates; the PE32 polling adapter returns these without adding ClientToScreen again. Existing client-relative v1 remains supported. Synthetic input and actual game execution remain separate;no guessed decoration sizes,forced game actions,render branch or retirement claims.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "apps/qt-shell/input_forwarder.cpp",
+        "apps/qt-shell/input_forwarder.hpp",
+        "apps/qt-shell/input_state.cpp",
+        "apps/qt-shell/input_state.hpp",
+        "apps/qt-shell/main.cpp",
+        "runtime/render/input_polling.h",
+        "tools/input_wire.py",
+        "tools/menu-game-runner.py",
+        "tools/run-opengl-game.py",
+        "tools/menu-storage-input.py"
+      ],
+      "tests": [
+        "tests/qt-input-test.cpp",
+        "tests/test-input-wire.py",
+        "tests/native-input-target-probe.cpp",
+        "runtime/render/input_selftest.h",
+        "tools/test-windowed-input.py",
+        "apps/qt-shell/live_quick_battle_app_test.cpp"
+      ],
+      "validation_dependencies": [
+        "runtime/render/bridge.c",
+        "protocols/schemas/input-v1.json",
+        "protocols/schemas/input-v2.json",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/input_v2.h",
+        "protocols/python/mnm_protocols/input_v1.py",
+        "protocols/python/mnm_protocols/input_v2.py",
+        "tools/build-render-bridge.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/native_prefix_template.py",
+        "tools/experiment_environment.py",
+        "tools/test-natural-gpu-copy-callers.py",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "documents": [
+        "research/runtime/windowed-input-gpu-callers-20261026.md",
+        "research/formats/render-input-state.md",
+        "research/runtime/qt-input-forwarding.md"
+      ],
+      "evidence": [
+        "WINDOWINPUT.controls01-20261026",
+        "WINDOWINPUT.controls02-20261026",
+        "WINDOWINPUT.controls03-20261026",
+        "WINDOWINPUT.quick01-20261026",
+        "WINDOWINPUT.quick02-20261026",
+        "WINDOWINPUT.quick03-20261026",
+        "WINDOWINPUT.quick04-20261026",
+        "WINDOWINPUT.quick05-20261026",
+        "WINDOWINPUT.menu-observation03-provenance-20261026",
+        "WINDOWINPUT.remaining-callers01-20261026",
+        "WINDOWINPUT.root-regression-before-provenance-20261026",
+        "WINDOWINPUT.history-failure01-provenance-20261026",
+        "WINDOWINPUT.history-failure02-provenance-20261026",
+        "WINDOWINPUT.history03-provenance-20261026",
+        "WINDOWINPUT.history04-provenance-20261026",
+        "WINDOWINPUT.remaining-callers02-20261026"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current controls03 passes Qt normal/high DPI,wire admission and v1/v2 PE32 polling. Current quick05 completes two windowed World visits,Qt Right/focus release/Escape,normal Quit and zero graphics owners;one bounded live observation,not all-menu or driver equivalence.",
+        "Current ordinary quick04 returns and retires owners but reports native GAP reason2 after an epoch/generation-invalidated whole-copy commit;the failure remains open and unhidden. Natural self/keyed GPU callers and whole-copy output closure are independent."
+      ]
+    },
+    {
+      "id": "HOST.results-ack-ready-root",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Results Quit acknowledgement may already contain the ready root",
+      "scope": "Native host policy for a Results Quit request only: after exact requested ACK,owning thread and successful status checks,an already-ready Main or Quick Battle root with zero handoff restores native menus immediately. Unready roots and other actions retain the existing guarded transition;no invented generation,unverified callback retry or original dispatch change. Synthetic timing cases and actual journey outcomes are separate.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "apps/qt-shell/live_menu_session.cpp"
+      ],
+      "tests": [
+        "tests/menu-result-controller-test.cpp",
+        "apps/qt-shell/live_quick_battle_app_test.cpp",
+        "tools/test-windowed-input.py",
+        "tools/test-natural-gpu-copy-callers.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_result_menu_controller.cpp",
+        "apps/qt-shell/live_result_menu_controller.hpp",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v5.h"
+      ],
+      "documents": [
+        "research/runtime/windowed-input-gpu-callers-20261026.md"
+      ],
+      "evidence": [
+        "WINDOWINPUT.controls03-20261026",
+        "WINDOWINPUT.quick04-20261026",
+        "WINDOWINPUT.quick05-20261026",
+        "WINDOWINPUT.menu-observation03-provenance-20261026",
+        "WINDOWINPUT.remaining-callers01-20261026",
+        "WINDOWINPUT.root-regression-before-provenance-20261026",
+        "WINDOWINPUT.history-failure01-provenance-20261026",
+        "WINDOWINPUT.history-failure02-provenance-20261026",
+        "WINDOWINPUT.history03-provenance-20261026",
+        "WINDOWINPUT.history04-provenance-20261026"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "New direct-ready-root ACK regression failed before the fix. Current controls03 passes17 timing/identity cases,including immediate Main/Quick roots and an unready-root continuation. Current quick05 completes native menu return and Quit.",
+        "Previous current-tree GAP and prior stage8 deadline remain immutable negative observations;no deterministic shutdown,arbitrary menu or driver equivalence claim."
       ]
     }
   ],
@@ -351479,6 +351636,326 @@
           ]
         }
       ]
+    },
+    {
+      "id": "WINDOWINPUT.controls01-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/windowed-input-results-20261026/controls01.json",
+      "sha256": "a0574dddede37dcba0853e524dfb623a263346d93b16a934e38818a1fafa8d43",
+      "scope": "Preserved bounded input/control or actual windowed acquisition;milestones and failures retained independently;overall missing natural self/keyed GPU branches is never relabeled a pass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.controls02-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/windowed-input-results-20261026/controls02.json",
+      "sha256": "358301dab1220ca23f226ce2e97e7cf7ebd4029385f525fa1fa34eae40b83a66",
+      "scope": "Preserved bounded input/control or actual windowed acquisition;milestones and failures retained independently;overall missing natural self/keyed GPU branches is never relabeled a pass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.controls03-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/windowed-input-results-20261026/controls03.json",
+      "sha256": "bcd17e032122703d5c26f557aaba7540699de87898f08515e8b46d3a9a79bf4e",
+      "scope": "Source-bound actual Qt input and17 Results ACK timing controls,both DPI modes,wire admission and client/desktop PE32 polling;no game execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.quick01-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/windowed-input-results-20261026/quick01.json",
+      "sha256": "7cd531fc807683f4bc5ab25f0fe3e921996c739954fe9931f05d381dc46cf941",
+      "scope": "Preserved bounded input/control or actual windowed acquisition;milestones and failures retained independently;overall missing natural self/keyed GPU branches is never relabeled a pass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.quick02-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/windowed-input-results-20261026/quick02.json",
+      "sha256": "9293f78dd1ea94920da81b7fec624cdcceba32769281a2671d33df5c377daa43",
+      "scope": "Preserved bounded input/control or actual windowed acquisition;milestones and failures retained independently;overall missing natural self/keyed GPU branches is never relabeled a pass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.quick03-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/windowed-input-results-20261026/quick03.json",
+      "sha256": "272edcddd134178da0f6a1eb4e5708bf1a26117a2612636e6a9278eba5f11568",
+      "scope": "Preserved bounded input/control or actual windowed acquisition;milestones and failures retained independently;overall missing natural self/keyed GPU branches is never relabeled a pass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.quick04-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/windowed-input-results-20261026/quick04.json",
+      "sha256": "cda03f55f1fd64b3b2bc47b5afe4df6f960d650f7a69342ef48e513b0dc7c3ec",
+      "scope": "Preserved bounded input/control or actual windowed acquisition;milestones and failures retained independently;overall missing natural self/keyed GPU branches is never relabeled a pass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.quick05-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/windowed-input-results-20261026/quick05.json",
+      "sha256": "329bebf4538be38efc029a63b163053f8f3e5906a055f4a10df2e84a91b0b3db",
+      "scope": "Preserved bounded input/control or actual windowed acquisition;milestones and failures retained independently;overall missing natural self/keyed GPU branches is never relabeled a pass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/lifecycle_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/retirement_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis/checked_original_gpu_calls",
+          "equals": 143
+        },
+        {
+          "pointer": "/analysis/branches/geometric_clipping/calls",
+          "equals": 28
+        },
+        {
+          "pointer": "/analysis/all_application_output_closed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.menu-observation03-provenance-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/menu-observation03-provenance.json",
+      "sha256": "b3ab6795172a90b5ee95a4eb362731b1af2ec8f2310c44759e724423f627f7b0",
+      "scope": "Read-only accounting view: verify and reference the immutable original report through the current SQLite evidence reader. Sources fingerprint this read operation and wire definitions only,not historical engine execution. Original results,source hashes and validation boundaries remain unchanged;no new game execution or status promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "WINDOWINPUT.remaining-callers01-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/remaining-callers01.json",
+      "sha256": "8c269eaf9fe990001c70d930bd7868b0752b7afa55b5871e7b35b6dffd01b6a4",
+      "scope": "Bounded immutable caller classification explaining remaining live coverage gaps. Counts refer only to this capture;no all-game absence or whole-output proof.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "WINDOWINPUT.root-regression-before-provenance-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/root-regression-before-provenance.json",
+      "sha256": "d557e5fabe5ea6b63167e254323eaf8712c21db0fca417d1fcaa56d360e1e14f",
+      "scope": "Read-only accounting view: verify and reference the immutable original report through the current SQLite evidence reader. Sources fingerprint this read operation and wire definitions only,not historical engine execution. Original results,source hashes and validation boundaries remain unchanged;no new game execution or status promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "WINDOWINPUT.history-failure01-provenance-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/history-failure01-provenance.json",
+      "sha256": "1314ace094c07fc1859aa06fcee0e1b70c735baa5675b00812d8eeb6c3f5b9bd",
+      "scope": "Read-only accounting view: verify and reference the immutable original report through the current SQLite evidence reader. Sources fingerprint this read operation and wire definitions only,not historical engine execution. Original results,source hashes and validation boundaries remain unchanged;no new game execution or status promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "WINDOWINPUT.history-failure02-provenance-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/history-failure02-provenance.json",
+      "sha256": "f5a44f96479cf80c8a22523e2c0888d7ed37281f464803992ae9b9a4a0e1e901",
+      "scope": "Read-only accounting view: verify and reference the immutable original report through the current SQLite evidence reader. Sources fingerprint this read operation and wire definitions only,not historical engine execution. Original results,source hashes and validation boundaries remain unchanged;no new game execution or status promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "WINDOWINPUT.history03-provenance-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/history03-provenance.json",
+      "sha256": "d4f6c202f81a7c03b48b2e3d7922726e3dac576e6a5909a6f15ed0eb1ff12c3c",
+      "scope": "Read-only accounting view: verify and reference the immutable original report through the current SQLite evidence reader. Sources fingerprint this read operation and wire definitions only,not historical engine execution. Original results,source hashes and validation boundaries remain unchanged;no new game execution or status promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "WINDOWINPUT.history04-provenance-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/history04-provenance.json",
+      "sha256": "bc64c054e82ae3178ce9654d8910bdf8a72382bbb52ea256661f2d57c5d14000",
+      "scope": "Read-only accounting view: verify and reference the immutable original report through the current SQLite evidence reader. Sources fingerprint this read operation and wire definitions only,not historical engine execution. Original results,source hashes and validation boundaries remain unchanged;no new game execution or status promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "WINDOWINPUT.remaining-callers02-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/remaining-callers02.json",
+      "sha256": "382fa8d486c30cfc503dcd59e5bda51a6e4d675bba1cf7f8d3f45052ced4e776",
+      "scope": "Immutable final census classification of actual CPU-keyed source history and unresolved preparation paths;bounded observations only,no all-game absence or whole-output proof.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/application_rows",
+          "equals": 1380
+        },
+        {
+          "pointer": "/keyed_rows",
+          "equals": 678
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -379821,6 +380298,22 @@
       "evidence": [
         "TLQF26.worker-loss"
       ]
+    },
+    {
+      "id": "SCENARIO.windowed-desktop-input-quit",
+      "scope": "Bounded native Qt Quick Battle menus,two windowed World visits,Qt-forwarded keys and focus release,Results/Main Quit and actual graphics retirement. No natural self/keyed-GPU or all-output equivalence claim.",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.desktop-frame-input",
+        "HOST.results-ack-ready-root"
+      ],
+      "tests": [
+        "tools/test-natural-gpu-copy-callers.py",
+        "apps/qt-shell/live_quick_battle_app_test.cpp"
+      ],
+      "evidence": [
+        "WINDOWINPUT.quick05-20261026"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -381598,7 +382091,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-dd3e7e5cfedac1156d84c5be4123b3648dc6fb8008a6481f0d69573235d1276d.json",
-    "sha256": "dd3e7e5cfedac1156d84c5be4123b3648dc6fb8008a6481f0d69573235d1276d"
+    "path": "research/runtime/coverage/source-index-c704d13094a1da0942c74c7bf99b2b0d7d613095af12469b41d0ace55352ff6b.json",
+    "sha256": "c704d13094a1da0942c74c7bf99b2b0d7d613095af12469b41d0ace55352ff6b"
   }
 }

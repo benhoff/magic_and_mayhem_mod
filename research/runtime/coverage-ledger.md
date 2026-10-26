@@ -23642,3 +23642,28 @@ Combined-tree limitation: PVIRT.scripted-20261026 and PVIRT.driver-20261026 reta
 The planning regression first failed because the existing master NP.native-only-launch-contract test link to tools/test-terrain-light-qt-session.py was absent from its work-review source fingerprints. Static review adds only that missing test hash and preserves the complete prior work review, all prior hashes and historical validation/acceptance. The failing controls01 report remains immutable; follow-up controls use a new report.
 
 Follow-up controls02 passes37/38 planning tests and all34 caller tests; its remaining assertion omitted three already-landed master alternate-canvas contracts from the explicit unrated expectation. Add exactly NP.alternate-canvas-padded-resident, NP.alternate-canvas-resident-session and RS.campaign-padded-presentation-error to that expectation, leaving weights/statuses unchanged. Controls03 reruns that affected test; other37 planning checks and34 caller checks retain their passing controls02 result. Audit02 precedes this expectation-only test change; final source census and staged coverage gate review the committed tree.
+
+### Windowed input and natural GPU callers — 2026-10-26 follow-up
+
+- `HOST.desktop-frame-input` adds unique named-window discovery within a matching
+  Wine desktop, current X11 coordinate translation and explicit desktop input
+  wire v2; v1 client coordinates remain supported. Current controls03 passes
+  normal/high-DPI input, wire admission and both synthetic PE32 polling modes.
+- `HOST.results-ack-ready-root` accepts an already-ready Main/Quick root in the
+  guarded successful Results Quit ACK. Its new test fails before the fix and all
+  17 timing/identity cases pass after it; other transitions retain their guards.
+- Current quick05 completes two windowed World visits, Qt Right/focus-release/
+  Escape/resize, native Results/Main Quit and shell exit 0. Strict closed census
+  has 1,380 rows, no active misses, 143 checked original GPU calls and 28 actual
+  bounds-clipped calls. END is recorded and graphics retirement has zero devices,
+  surfaces, DCs, clippers, palettes or pixel bytes; native resident retirement
+  succeeds. This is bounded observation, not whole-engine equivalence.
+- The final ordinary quick04 reaches Quit and zero graphics owners but reports
+  native GAP reason2 after a generation/epoch-invalidated whole-copy commit;
+  prior stage8 timeout and signal11 remain negative evidence. No deterministic
+  teardown or integration/replacement status promotion follows from quick05.
+- Natural self-copy and keyed GPU-source callers remain unproved. All 678 final
+  keyed calls have CPU sources. Whole-output validation still refuses 108
+  CPU-source clipper copies, 20 target-rectangle copies and one unsupported fill;
+  the strict validator is unchanged. See
+  [the findings and exact evidence](windowed-input-gpu-callers-20261026.md).

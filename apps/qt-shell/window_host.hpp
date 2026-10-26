@@ -21,7 +21,9 @@ public:
     bool lowerDesktop(xcb_window_t window) const;
     bool descendantOf(xcb_window_t window,xcb_window_t ancestor) const;
     xcb_window_t inputWindow(xcb_window_t desktop,QSize size) const;
-    bool sendInput(xcb_window_t window,uint8_t type,uint8_t detail,uint16_t state,QPoint position) const;
+    // A desktop-sized native frame may contain a smaller decorated game window.
+    xcb_window_t desktopInputWindow(xcb_window_t desktop,QSize frameSize) const;
+    bool sendInput(xcb_window_t window,uint8_t type,uint8_t detail,uint16_t state,QPoint position,xcb_window_t coordinateWindow=0) const;
 private:
     QString title(xcb_window_t window) const;
     xcb_connection_t* connection_=nullptr;

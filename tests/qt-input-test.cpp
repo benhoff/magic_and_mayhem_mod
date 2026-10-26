@@ -107,6 +107,29 @@ int main(int argc,char** argv){
         xcb_destroy_window(connection,competing);sync();input.setTarget(target);
         xcb_destroy_window(connection,target);sync();key(QEvent::KeyPress);require(!input.target(),"Destroyed target must disable forwarding");
         require(!host.inputWindow(desktop,{800,600}),"Wine desktop must not substitute for game client");
+        // Wine's windowed outer window includes decorations: the displayed
+        // primary frame remains 800x600. Desktop coordinates must be translated
+        // to this outer X11 window, not scaled to its dimensions.
+        const auto decorated=create(desktop,646,512);
+        constexpr char gameTitle[]="Magic & Mayhem";
+        xcb_change_property(connection,XCB_PROP_MODE_REPLACE,decorated,XCB_ATOM_WM_NAME,XCB_ATOM_STRING,8,sizeof(gameTitle)-1,gameTitle);
+        const uint32_t location[]={77,44};xcb_configure_window(connection,decorated,XCB_CONFIG_WINDOW_X|XCB_CONFIG_WINDOW_Y,location);sync();
+        require(host.desktopInputWindow(desktop,{800,600})==decorated,"Decorated original window discovery");
+        require(!host.desktopInputWindow(desktop,{640,480}),"Unknown frame space must refuse");
+        input.setTarget(decorated,desktop);
+        mouse(QEvent::MouseMove,{500,300},Qt::NoButton,{});received=events();
+        require(received.size()==1 && received[0].event_x==323 && received[0].event_y==256,"Desktop to outer-window translation");
+        // A normal move must be observed on the next event, without rebinding.
+        const uint32_t moved[]={uint32_t(-323),44};xcb_configure_window(connection,decorated,XCB_CONFIG_WINDOW_X|XCB_CONFIG_WINDOW_Y,moved);sync();
+        mouse(QEvent::MouseMove,{500,300},Qt::NoButton,{});received=events();
+        require(received.size()==1 && received[0].event_x==723 && received[0].event_y==256,"Moved target translation");
+        const auto duplicate=create(desktop,640,480);xcb_change_property(connection,XCB_PROP_MODE_REPLACE,duplicate,XCB_ATOM_WM_NAME,XCB_ATOM_STRING,8,sizeof(gameTitle)-1,gameTitle);sync();
+        require(!host.desktopInputWindow(desktop,{800,600}),"Ambiguous named game windows must refuse");
+        xcb_destroy_window(connection,duplicate);sync();input.setTarget(0);xcb_destroy_window(connection,decorated);sync();
+        require(!host.desktopInputWindow(desktop,{800,600}),"Desktop cannot replace retired game window");
+        InputState desktopState;const auto desktopPath=stateDirectory.filePath("desktop.bin");require(desktopState.create(desktopPath,true),"Desktop input creation");
+        desktopState.publish(true,{400,300},{800,600});QFile desktopFile(desktopPath);require(desktopFile.open(QIODevice::ReadOnly),"Desktop header open");
+        const auto desktopBytes=desktopFile.readAll();require(desktopBytes.left(8)=="MNMINK02" && qFromLittleEndian<quint32>(desktopBytes.constData()+8)==2 && qFromLittleEndian<quint32>(desktopBytes.constData()+40)==1,"Explicit desktop wire identity");
         viewport.resize(1001,601);const auto rect=viewport.imageRect();
         require(viewport.imagePoint(rect.center(),mapped) && mapped==QPoint(400,300),"Resized/high-DPI center");
         input.setState(nullptr);

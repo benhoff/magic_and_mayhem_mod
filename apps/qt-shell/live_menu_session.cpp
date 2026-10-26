@@ -311,6 +311,14 @@ void LiveMenuSession::poll(){
                 inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
             }
             if(action_==MNM_MENU_SESSION_JOIN||action_==MNM_MENU_MULTIPLAYER_SUBMIT||action_==MNM_MENU_STORAGE_ACCEPT||action_==MNM_MENU_STORAGE_CANCEL||action_==MNM_MENU_MINI_LOAD||action_==MNM_MENU_MINI_SAVE||action_==MNM_MENU_DEFEAT_OK||action_==MNM_MENU_RESULT_CONTINUE||action_==MNM_MENU_RESULT_QUIT||action_==MNM_MENU_MINI_CANCEL||action_==MNM_MENU_MINI_PREFERENCES||action_==MNM_MENU_MINI_QUIT){
+                // Quit can finish the return before its ACK is read. Results
+                // ownership/thread/ACK and OK status were checked above. Do not
+                // require another generation after this already-ready root.
+                if(action_==MNM_MENU_RESULT_QUIT && next.ready && (next.screen==3||next.screen==22) && !next.handoff){
+                    inBattle_=false;transition_=false;state_=next;
+                    if(stateChanged)stateChanged(next);
+                    return;
+                }
                 // Original viewport owns gameplay, Preferences and Quit confirmation.
                 // Confirmation Yes/No semantics remain entirely in the original game.
                 inBattle_=true;transition_=false;state_=next;
