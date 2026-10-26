@@ -1,5 +1,19 @@
 # Engine modernization coverage ledger
 
+## Reusable experiment environments — 2026-10-26
+
+Host staging now defaults to bounded, exclusively leased Wine-prefix and
+in-process game/media pools, with full final manifests and changed bytes retained
+in SQLite before return/reset. Native campaign reuse applies to admitted prefix
+templates; fresh-prefix admission remains unchanged. Standalone preparation and
+pinned/explicit fixture outputs remain durable.
+86filesystem and launcher controls cover reset, exclusion, restoration
+and interrupted recovery. An isolated Wine11.16 registry reset/restore control
+also passes on a real bind-mounted output group. Persistent player prefixes
+retain their full-tree lifetime. Complete Wine/game integration after this source change
+remains pending; no engine comparison or replacement status is promoted and old
+source hashes remain unchanged. See [scope and limits](environment-reuse-20261026.md).
+
 ## Native alternate canvas owner merged with current rendering — 2026-10-25
 
 Ownership commit47d07b77 is combined with copy/history,cursor provider and
@@ -14073,7 +14087,7 @@ caller/module identity, branch flags, generations, resource IDs and FIFO ranges;
 incomplete, dropped, overflowed or unclosed evidence refuses validation.
 
 A current NoCD native V3 journey completes Save/Load, both display rebuilds,
-changed-canvas Main Load and original normal Quit. All867admitted GPU-copy calls
+changed-canvas Main Load and original normal Quit. All 867admitted GPU-copy calls
 match native COPY ranges with zero errors/mismatches:443at return PC0x58c05d
 (including4bootstraps),9at0x58c488 and415at0x58c5be. These belong to the already
 registered whole opaque/rectangle wrappers0x58bf40/0x58c360/0x58c4a0. No new

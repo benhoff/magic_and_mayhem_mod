@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Compare source-only native JPEG cache painting with installed original JPEG.DLL."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import json
@@ -75,7 +76,7 @@ def main():
         run('native-dll', ['python3', ROOT/'tools/build-jpeg-pixels.py'])
         shutil.copyfile(ROOT/'working/build/jpeg-pixels/MnmJpegPixels.dll', game/'MnmJpegPixels.dll')
         if not args.wine_prefix:
-            run('prefix', ['cp', '-a', '--reflink=auto', (ROOT/'working/wineprefix-x86_64').resolve(), out/'wineprefix'])
+            stage_prefix(ROOT, (ROOT/'working/wineprefix-x86_64').resolve(), out/'wineprefix', log=Path(out/'wineprefix').parent / 'prefix.log')
         imports = {'LoadLibraryA': 4, 'GetProcAddress': 8, 'GetEnvironmentVariableA': 12, 'GetFileSize': 8,
                    'CreateFileA': 28, 'CloseHandle': 4, 'CreateFileMappingA': 24, 'MapViewOfFile': 20,
                    'VirtualAlloc': 16, 'VirtualProtect': 16, 'ReadFile': 20, 'WriteFile': 20, 'ExitProcess': 4}

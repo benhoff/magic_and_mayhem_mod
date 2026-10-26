@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Capture real Wine DirectDraw Surface2 clipping/error outputs independently of native code."""
+from experiment_environment import stage_prefix
 import argparse
 import gzip
 import hashlib
@@ -81,7 +82,7 @@ def main():
             subprocess.run(argv,cwd=run,env=env,stdout=log,stderr=log,check=True,timeout=timeout)
     command('original-before',[str(ROOT/'tools/original-manifest.sh'),'verify'],120)
     try:
-        command('prefix',['cp','-a','--reflink=auto',str(args.prefix_template.resolve()),env['WINEPREFIX']])
+        stage_prefix(ROOT, str(args.prefix_template.resolve()), env['WINEPREFIX'], log=Path(env['WINEPREFIX']).parent / 'prefix.log')
         command('wineboot',['wineboot','-u'],120)
         imports={'LoadLibraryA':4,'GetProcAddress':8,'CreateFileA':28,'ReadFile':20,'WriteFile':20,'CloseHandle':4,'ExitProcess':4}
         definition=run/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{s}\n' for n,s in imports.items()))

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Source-stable synthetic Qt/PE32 finite history execution; no original media."""
+from experiment_environment import stage_prefix
 import hashlib
 import importlib.util
 import json
@@ -60,7 +61,7 @@ def main():
         if not cases or any(c.find('failure') is not None or c.find('skipped') is not None for c in cases):
             raise RuntimeError('Native history regressions failed')
         run('producer-build', ['python3', ROOT/'tools/build-scene-observer.py', '--selftest'])
-        run('prefix-copy', ['cp', '-a', '--reflink=auto', ROOT/'working/wineprefix-x86_64', env['WINEPREFIX']])
+        stage_prefix(ROOT, ROOT/'working/wineprefix-x86_64', env['WINEPREFIX'], log=Path(env['WINEPREFIX']).parent / 'prefix-copy.log')
         run('wineboot', ['wineboot', '-u'], env)
         modes = []
         for history, verify, mode in [(False, False, ''), (False, True, '')] + [

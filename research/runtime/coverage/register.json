@@ -153538,6 +153538,165 @@
       "remaining_gaps": [
         "Full real Main/Realm/World/report transition routing,lower provider semantics,exception/fault recovery,asynchronous aliases and installed live-session acceptance remain separate. Report integer strings exceeding the original six-character scratch capacity are outside the admitted baseline."
       ]
+    },
+    {
+      "id": "HOST.experiment-environment-reuse",
+      "subsystem": "application_hosting",
+      "kind": "native_policy",
+      "title": "Bounded private experiment environments with retained state deltas",
+      "scope": "Transient tests/experiments/build destinations only. Host storage policy: clean template reset, exclusive two-slot loans, exact final-state SQLite retention/restore, idle and pin refusal, explicit interrupted-run recovery. Synthetic filesystems and command doubles establish these controls; actual Wine/game behavior, independent CLI staging lifetimes and engine equivalence remain pending. Dedicated persistent player prefixes and other stable working destinations keep their existing full-tree lifetime.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "docs/working-retention.md",
+        "research/runtime/environment-reuse-20261026.md"
+      ],
+      "implementation": [
+        "tools/experiment_environment.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/native_prefix_template.py",
+        "tools/prepare-menu-observer.py",
+        "tools/prepare-scene-observer.py",
+        "tools/native_music_launch.py"
+      ],
+      "tests": [
+        "tests/test-experiment-environment.py",
+        "tests/test-drawing-fixture-prefix.py",
+        "tests/test-native-prefix-template.py",
+        "tools/test-experiment-environment-wine.py"
+      ],
+      "validation_dependencies": [
+        "tests/test-native-music-launch.py",
+        "tests/world-refusal-diagnostics-test.py",
+        "tools/capture-drawing-census-game.py",
+        "tools/capture-drawing-interactive.py",
+        "tools/capture-fade-writer-game.py",
+        "tools/capture-original-surface-fills.py",
+        "tools/capture-original-surface-keyed-overlap.py",
+        "tools/capture-original-surface-keys.py",
+        "tools/capture-original-surface-overlap.py",
+        "tools/capture-scene-game.py",
+        "tools/capture-surface-access.py",
+        "tools/capture-surface-borrowed-draw.py",
+        "tools/capture-surface-dc-palette-identity.py",
+        "tools/capture-surface-dc-palette.py",
+        "tools/capture-surface-dc-reuse.py",
+        "tools/capture-surface-dib-ddraw-rgb.py",
+        "tools/capture-surface-dib-ddraw.py",
+        "tools/capture-surface-dib-gdi.py",
+        "tools/capture-surface-driver-restore.py",
+        "tools/capture-surface-driver.py",
+        "tools/capture-surface-formats.py",
+        "tools/capture-surface-ownership.py",
+        "tools/capture-surface-palette-restore.py",
+        "tools/capture-terrain-light-game.py",
+        "tools/prepare-drawing-census.py",
+        "tools/run-native-world.py",
+        "tools/run-opengl-game.py",
+        "tools/run-world-history-validation.py",
+        "tools/test-alternate-canvas-live.py",
+        "tools/test-alternate-ownership-session.py",
+        "tools/test-canvas-producers.py",
+        "tools/test-canvas-startup.py",
+        "tools/test-canvas-writer-admission.py",
+        "tools/test-drawing-actor-latch-region.py",
+        "tools/test-drawing-actor-latches.py",
+        "tools/test-drawing-api-census-abi.py",
+        "tools/test-drawing-api-session.py",
+        "tools/test-drawing-aux-save-readback.py",
+        "tools/test-drawing-backing-providers.py",
+        "tools/test-drawing-census-abi.py",
+        "tools/test-drawing-copy-order.py",
+        "tools/test-drawing-cursor-gate-forward.py",
+        "tools/test-drawing-cursor-kernel-adapter.py",
+        "tools/test-drawing-cursor-mutex-observer.py",
+        "tools/test-drawing-cursor-source-gate-module.py",
+        "tools/test-drawing-cursor-source-gate.py",
+        "tools/test-drawing-direct-backing.py",
+        "tools/test-drawing-hud-state.py",
+        "tools/test-drawing-input-point.py",
+        "tools/test-drawing-primitive-lifetimes.py",
+        "tools/test-drawing-producer-trace.py",
+        "tools/test-drawing-producer-update.py",
+        "tools/test-drawing-region-input.py",
+        "tools/test-drawing-sample-admission.py",
+        "tools/test-drawing-semantic-state.py",
+        "tools/test-drawing-source-byte-recorder.py",
+        "tools/test-drawing-source-cursor-gate.py",
+        "tools/test-drawing-source-gate-protected.py",
+        "tools/test-drawing-source-gate-session.py",
+        "tools/test-drawing-source-lease-recorder.py",
+        "tools/test-drawing-source-worker-lease.py",
+        "tools/test-drawing-wine-blit-packet.py",
+        "tools/test-drawing-wine-blit-worker.py",
+        "tools/test-drawing-wine-buffer.py",
+        "tools/test-drawing-wine-client-memory.py",
+        "tools/test-drawing-wine-lifetime.py",
+        "tools/test-drawing-wine-map-storage-point.py",
+        "tools/test-drawing-wine-resource-copy.py",
+        "tools/test-drawing-wine-resource-map.py",
+        "tools/test-drawing-wine-retained-map-source.py",
+        "tools/test-drawing-wine-submission.py",
+        "tools/test-drawing-wine-texture-entry.py",
+        "tools/test-drawing-wine-worker-context.py",
+        "tools/test-drawing-worker-producer-points.py",
+        "tools/test-glyph-live.py",
+        "tools/test-jpeg-pixels.py",
+        "tools/test-live-render-game.py",
+        "tools/test-live-render-recovery.py",
+        "tools/test-live-render-routes.py",
+        "tools/test-native-cursor-lifetime.py",
+        "tools/test-native-dc-copy.py",
+        "tools/test-native-dib-pixels.py",
+        "tools/test-native-draw-aliases.py",
+        "tools/test-native-draw-factory.py",
+        "tools/test-native-draw-pages.py",
+        "tools/test-native-draw-services.py",
+        "tools/test-native-draw-surfaces.py",
+        "tools/test-native-enabled-movies.py",
+        "tools/test-native-opengl-launch.py",
+        "tools/test-native-pixel-forward-guard.py",
+        "tools/test-native-resource-state.py",
+        "tools/test-native-startup-sequence.py",
+        "tools/test-original-canvas-alias.py",
+        "tools/test-original-canvas-backing.py",
+        "tools/test-original-canvas-driver.py",
+        "tools/test-original-canvas-retained.py",
+        "tools/test-original-kind8-construction.py",
+        "tools/test-original-kind8-owned.py",
+        "tools/test-original-legacy-ddraw.py",
+        "tools/test-original-particle-pool.py",
+        "tools/test-screen-presentation-live.py",
+        "tools/test-world-live-history.py",
+        "tools/test-world-shadow-refusals.py",
+        "tools/trace-route-experiment.py"
+      ],
+      "evidence": [
+        "EENV26.controls",
+        "EENV26.wine",
+        "EENV26.controls-metadata",
+        "EENV26.wine-metadata",
+        "EENV26.controls-current",
+        "EENV26.wine-current",
+        "EENV26.controls-portable",
+        "EENV26.wine-portable",
+        "EENV26.controls-persistent",
+        "EENV26.wine-persistent",
+        "EENV26.controls-final",
+        "EENV26.wine-final"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual Wine/game comparisons and save/load integration remain pending after provisioning changes. Default fresh native campaign prefixes remain private because their DirectPlay admission contract requires an absent prefix before initialization.",
+        "Standalone preparers and explicit completed fixture seeds retain full trees; they still require reviewed maintenance.",
+        "Held partial moves/resets and changed baseline identities require review; no destructive recovery or unbounded extra-copy fallback."
+      ]
     }
   ],
   "evidence": [
@@ -346430,6 +346589,334 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "EENV26.controls",
+      "kind": "native_integration",
+      "record": "research/runtime/environment-reuse-results-20261026/controls01.json",
+      "sha256": "72db997dda11102b599c15285f87b154e24cc18c79573c3f693f8c66c6364013",
+      "scope": "83 filesystem and launcher regression methods plus syntax compilation of the declared changed Python tools. Native policy controls only; no game execution or engine equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "EENV26.wine",
+      "kind": "native_integration",
+      "record": "research/runtime/environment-reuse-results-20261026/wine01.json",
+      "sha256": "979756340a8170179f317d722781961b07fb42ff21f0fc0d14204c4ff8179117",
+      "scope": "Owned Wine11.16 registry mutation, clean second loan with retained file inode, and exact prior-state restoration in a private user/mount namespace. Source template unchanged; original game and supplied game artifacts are not executed.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/reused_inode",
+          "equals": true
+        },
+        {
+          "pointer": "/second_registry_clean",
+          "equals": true
+        },
+        {
+          "pointer": "/restored_registry_value",
+          "equals": true
+        },
+        {
+          "pointer": "/source_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "EENV26.controls-metadata",
+      "kind": "native_integration",
+      "record": "research/runtime/environment-reuse-results-20261026/controls02.json",
+      "sha256": "cf0f49fba6885a52c42592efa720033a930a91b245e577dc1d267b78daedfd01",
+      "scope": "84 current-source filesystem and launcher regression methods, including root metadata and Wine DOS extended-attribute reset/restore. Compile114declared Python sources. No original game execution or full engine acceptance.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "EENV26.wine-metadata",
+      "kind": "native_integration",
+      "record": "research/runtime/environment-reuse-results-20261026/wine02.json",
+      "sha256": "faa1afe484e59c0a8678cf003addf1b371b32f5e13bd6a7202301daffc562ac1",
+      "scope": "Current-source Wine11.16 registry isolation, retained static file inode, template metadata preservation and historical registry restoration under a private user/mount namespace. Complete game/DirectPlay, save/load and host desktop acceptance remain pending.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/reused_inode",
+          "equals": true
+        },
+        {
+          "pointer": "/second_registry_clean",
+          "equals": true
+        },
+        {
+          "pointer": "/restored_registry_value",
+          "equals": true
+        },
+        {
+          "pointer": "/source_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "EENV26.controls-current",
+      "kind": "native_integration",
+      "record": "research/runtime/environment-reuse-results-20261026/controls03.json",
+      "sha256": "6f1846c1bd713156f770084ad4986e8da3788aea53762239e509c2c58bdc061c",
+      "scope": "84 current-source filesystem and launcher controls with DOS attributes, root metadata and correct main-drive-versus-RAM guard routing;114declared Python sources compile. No engine equivalence or game execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "EENV26.wine-current",
+      "kind": "native_integration",
+      "record": "research/runtime/environment-reuse-results-20261026/wine03.json",
+      "sha256": "623d2ee1d389d1d296ec4b09cf63c8cfab60d95ba439033ac57c5a63175879f2",
+      "scope": "Current Wine11.16 prefix reuse, registry isolation and exact historical registry restoration with the final filesystem guard routing. Unchanged baseline bytes are deduplicated against the verified Wine02 bundle. Private user/mount namespace; complete game/DirectPlay/save-load/desktop acceptance remains pending.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/reused_inode",
+          "equals": true
+        },
+        {
+          "pointer": "/second_registry_clean",
+          "equals": true
+        },
+        {
+          "pointer": "/restored_registry_value",
+          "equals": true
+        },
+        {
+          "pointer": "/source_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "EENV26.controls-portable",
+      "kind": "native_integration",
+      "record": "research/runtime/environment-reuse-results-20261026/controls04.json",
+      "sha256": "1ac44dbf0c3a49b12e432a4dd62f2a6b5328dde0c1e74e95798bb692c9d134b5",
+      "scope": "84 current-source filesystem/launcher regressions and114Python syntax checks; portable filesystem routing, transient pools and persistent player-prefix lifetime. No original game execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "EENV26.wine-portable",
+      "kind": "native_integration",
+      "record": "research/runtime/environment-reuse-results-20261026/wine04.json",
+      "sha256": "697c260de56ba66d1793de92d0f142d6165ec3da451088e38d75c240b2dae350",
+      "scope": "Wine11.16 private-prefix registry reset, retained static-file inode and exact prior registry restoration. baseline bytes share the verified Wine02 bundle. Complete game/DirectPlay/save-load/desktop acceptance remains pending.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/reused_inode",
+          "equals": true
+        },
+        {
+          "pointer": "/second_registry_clean",
+          "equals": true
+        },
+        {
+          "pointer": "/restored_registry_value",
+          "equals": true
+        },
+        {
+          "pointer": "/source_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "EENV26.controls-persistent",
+      "kind": "native_integration",
+      "record": "research/runtime/environment-reuse-results-20261026/controls05.json",
+      "sha256": "beb2a9c66cf1de551fd5b2d86aa0f66ba205857c3bf46b8d7606e25b472f7a69",
+      "scope": "85 current-source filesystem/launcher regressions and114Python syntax checks; portable filesystem routing, transient pools and persistent player-prefix lifetime. No original game execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "EENV26.wine-persistent",
+      "kind": "native_integration",
+      "record": "research/runtime/environment-reuse-results-20261026/wine05.json",
+      "sha256": "fefe92dfd6d2e218c1d4654b4c7e490c9f062c7bb03b356d951477ff2c197760",
+      "scope": "Wine11.16 private-prefix registry reset, retained static-file inode and exact prior registry restoration. baseline bytes share the verified Wine02 bundle. Complete game/DirectPlay/save-load/desktop acceptance remains pending.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/reused_inode",
+          "equals": true
+        },
+        {
+          "pointer": "/second_registry_clean",
+          "equals": true
+        },
+        {
+          "pointer": "/restored_registry_value",
+          "equals": true
+        },
+        {
+          "pointer": "/source_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "EENV26.controls-final",
+      "kind": "native_integration",
+      "record": "research/runtime/environment-reuse-results-20261026/controls06.json",
+      "sha256": "d36b84125c8e86341d016f5ea6e229dd3c1e00febbc345710c2bd7229f6bf38e",
+      "scope": "86 current-source filesystem/launcher regressions and114Python syntax checks; portable filesystem routing, transient pools and persistent player-prefix lifetime. No original game execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "EENV26.wine-final",
+      "kind": "native_integration",
+      "record": "research/runtime/environment-reuse-results-20261026/wine06.json",
+      "sha256": "94fc599e512a957c4be060f7e01d6d1ed2087a2ee6c1213a8eec17379301b9db",
+      "scope": "Wine11.16 private-prefix registry reset, retained static-file inode and exact prior registry restoration. Real same-device bind-mounted output; baseline bytes share the verified Wine02 bundle. Complete game/DirectPlay/save-load/desktop acceptance remains pending.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/reused_inode",
+          "equals": true
+        },
+        {
+          "pointer": "/second_registry_clean",
+          "equals": true
+        },
+        {
+          "pointer": "/restored_registry_value",
+          "equals": true
+        },
+        {
+          "pointer": "/source_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/bind_output",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -376116,7 +376603,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-e04ff04c52e9f74bec539c58b857635240b748938f268dea267339ec4f9ec168.json",
-    "sha256": "e04ff04c52e9f74bec539c58b857635240b748938f268dea267339ec4f9ec168"
+    "path": "research/runtime/coverage/source-index-7b7a50c90b4c60d6d1871e81249990cd0b6263124f1d6d4c9a2ebdb188296356.json",
+    "sha256": "7b7a50c90b4c60d6d1871e81249990cd0b6263124f1d6d4c9a2ebdb188296356"
   }
 }

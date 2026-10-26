@@ -17,7 +17,7 @@ REPO=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def module(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
-def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False,resident_world=False,native_voices=False,source_game=None,native_media=False,native_music=False,music_assets=None,skip_movies=False,grimoire_observe=False,original_gameplay=False):
+def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False,resident_world=False,native_voices=False,source_game=None,native_media=False,native_music=False,music_assets=None,skip_movies=False,grimoire_observe=False,original_gameplay=False,persistent=False):
     from rts_controls_launch import enabled_from_environment as rts_enabled,stage as stage_rts
     rts_controls=rts_enabled(os.environ)
     if rts_controls and original_gameplay:
@@ -64,7 +64,8 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     # Metadata and child runners share canonical file identities even when an
     # explicitly provisioned working output parent is a volume alias.
     root=logical_root.resolve();game=root/'game'
-    subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
+    from experiment_environment import stage
+    stage(REPO,game,source,kind='game',persistent=persistent)
     if game.is_symlink() or game.resolve()==source:
         raise ValueError('Disposable staging aliases its source')
     for name in ['Chaos.exe','MnmRender.dll','MnmMenu.dll','MnmScene.dll','MnmWord.dll','MnmAudio.dll','MnmDraw.dll','MnmPanelWriters.dll','MnmPixelWriters.dll','MnmJpegPixels.dll','MnmMinimapWriters.dll','MnmColourRect.dll','MnmRasterWriters.dll','MnmDcCopy.dll','MnmEngineCadence.dll','MnmSceneProduction.dll','MnmApiCensus.dll','MnmLight.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg']:
@@ -194,7 +195,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         from native_music_launch import stage as stage_music
         music_source=(music_assets or REPO/'working/assets/native-cd-audio-20261012').resolve()
         if not music_source.is_relative_to(REPO/'working'):raise ValueError('Prepared music source must be under working/')
-        metadata.update(stage_music(root,music_source))
+        metadata.update(stage_music(root,music_source,persistent=persistent))
     from directplay_dx6_launch import stage as stage_directplay
     metadata['directplay_dx6']=stage_directplay(root)
     from menu_save_store import stage as stage_saves
@@ -227,6 +228,6 @@ if __name__=='__main__':
     args=parser.parse_args()
     if args.experimental_mini and not args.actions:parser.error("--experimental-mini requires --actions")
     if os.environ.get('MNM_VERIFY_ORIGINALS','1')!='0':subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
-    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw,args.resident_world,args.native_voices,args.source_game,args.native_media,args.native_music,args.music_assets,args.skip_movies,grimoire_observe=args.grimoire_observe,original_gameplay=args.original_gameplay)}',flush=True)
+    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw,args.resident_world,args.native_voices,args.source_game,args.native_media,args.native_music,args.music_assets,args.skip_movies,grimoire_observe=args.grimoire_observe,original_gameplay=args.original_gameplay,persistent=True)}',flush=True)
     finally:
         if os.environ.get('MNM_VERIFY_ORIGINALS','1')!='0':subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Exercise actual PE32 startup hooks and strict diagnostic decoding on fixtures."""
+from experiment_environment import stage_prefix
 from coverage_evidence import read_json, evidence_digest, write_report
 import argparse
 import hashlib
@@ -52,7 +53,7 @@ def main():
         if not args.wine_prefix.is_dir():raise ValueError('Fixture prefix missing')
         env['WINEPREFIX']=str(args.wine_prefix.resolve())
     else:
-        subprocess.run(['cp','-a','--reflink=auto',str(ROOT/'working/tests/scene-selftest-wine'),env['WINEPREFIX']],check=True)
+        stage_prefix(ROOT, str(ROOT/'working/tests/scene-selftest-wine'), env['WINEPREFIX'])
     with (output/'execution.log').open('x') as log:
         subprocess.run(['wine',str(binary)],cwd=output,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=60,check=True)
     decoder=load('canvas_decode','tools/inspect-canvas-startup.py')

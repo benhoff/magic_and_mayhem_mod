@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Observe unchanged original canvas wrappers with actual Wine loss/Restore outcomes."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import json
@@ -50,7 +51,7 @@ def main():
     try:
         run('original-before',[ROOT/'tools/original-manifest.sh','verify']);before=True
         if sha(a.executable)!=BUILD:raise ValueError('Unsupported original input')
-        run('prefix',['cp','-a','--reflink=auto',a.prefix_template.resolve(),out/'wineprefix'])
+        stage_prefix(ROOT, a.prefix_template.resolve(), out/'wineprefix', log=Path(out/'wineprefix').parent / 'prefix.log')
         imports={'GetEnvironmentVariableA':12,'CreateFileA':28,'GetFileSize':8,
                  'ReadFile':20,'CloseHandle':4,'GetProcessHeap':0,'HeapAlloc':12,
                  'HeapFree':12,'VirtualAlloc':16,'WriteFile':20,'ExitProcess':4}
