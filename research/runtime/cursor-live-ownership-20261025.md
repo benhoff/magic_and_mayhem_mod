@@ -124,3 +124,11 @@ The behavior register keeps original comparison and original semantic replacemen
 at `none` for this authored native policy. The owning adapter is active in native
 launches and has scoped live integration evidence;those fields do not assert
 equivalence to unknown legacy-driver alias semantics.
+
+The final integration preserves cursor commit `400b8734` and independent sprite
+master `f966d6a2`. All six cursor executions retain identical recorded source,
+scope and scenario bindings. The history review checks3928 exact transitions
+across12 commits;explicit retrospective receipts cover the nine cursor diagnostic
+artifacts outside the ordinary source census without asserting past gate coverage.
+The planning check recognizes both new policies as unrated;no importance or
+engine validation milestone is promoted by this integration.

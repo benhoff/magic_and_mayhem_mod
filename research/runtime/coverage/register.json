@@ -3317,7 +3317,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "N27 adds a separate widget-independent strict companion/name/clip/playback/checkpoint/reload/plan and CPU/GPU consumer. The permissive raw parser, original TAG use, world construction and live acceptance remain separate; parent status is unchanged."
+      ]
     },
     {
       "id": "AS.fp",
@@ -6343,7 +6346,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "N28 adds ten separate owned native frame transformations and exercises existing sprite-session CPU/GPU delivery. Existing widget consumers, original transform/filter semantics and installed/live acceptance remain independent; parent status is unchanged."
+      ]
     },
     {
       "id": "UI.audio",
@@ -151604,6 +151610,1156 @@
       },
       "remaining_gaps": [
         "Scoped native lifetime/scheduling takeover;original copy/client/setup bodies retained. The installed native campaign selects immediate copies;separate production-installer original-code controls cover deferred generations. Unknown legacy-driver aliases,arbitrary abandoned-owner/SEH flows,full scene parity and hardware-driver loss are outside this policy."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.companion-resource",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned native SPR/TAG companion resources",
+      "scope": "Owned native SPR/TAG companion resources. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.exact-name-index",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Exact eight-byte sprite name index",
+      "scope": "Exact eight-byte sprite name index. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.clip-range",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Named sprite occurrence clip ranges",
+      "scope": "Named sprite occurrence clip ranges. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.loop-playback",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Overflow-safe looping sprite playback",
+      "scope": "Overflow-safe looping sprite playback. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.one-shot-playback",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Saturating one-shot sprite playback",
+      "scope": "Saturating one-shot sprite playback. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.checkpoints",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Validated owned sprite playback checkpoints",
+      "scope": "Validated owned sprite playback checkpoints. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.atomic-reload",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic named sprite resource reload",
+      "scope": "Atomic named sprite resource reload. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.draw-plan",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned named sprite draw plans",
+      "scope": "Owned named sprite draw plans. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.cpu-pixels",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic CPU sprite batch pixels",
+      "scope": "Atomic CPU sprite batch pixels. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-session.gpu-pixels",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Preflighted native GPU sprite batch delivery",
+      "scope": "Preflighted native GPU sprite batch delivery. Within the documented named native sprite resource/playback/batch domains. Existing raw asset decoders and masked sprite renderer are reused suppliers. No original TAG lookup/ANI timing, world/hardware/performance/full-scene or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyseventh-ten-20261025.md"
+      ],
+      "implementation": [
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-session-test.cpp",
+        "tools/test-rendering-twentyseventh-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt"
+      ],
+      "evidence": [
+        "N27.sprite-native-20261025",
+        "N27.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native synthetic resource/session and CPU/GPU delivery policy only. Original lookup, timing, errors, ABI, installed acceptance and live integration remain separate; the TAG parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.crop",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Source-local frame crop",
+      "scope": "Source-local frame crop for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.trim",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Transparent-border frame trim",
+      "scope": "Transparent-border frame trim for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.mirror-x",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Horizontal frame mirror",
+      "scope": "Horizontal frame mirror for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.mirror-y",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Vertical frame mirror",
+      "scope": "Vertical frame mirror for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.rotate-cw",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Clockwise quarter-turn frame rotation",
+      "scope": "Clockwise quarter-turn frame rotation for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.rotate-half",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Half-turn frame rotation",
+      "scope": "Half-turn frame rotation for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.rotate-ccw",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Counterclockwise quarter-turn frame rotation",
+      "scope": "Counterclockwise quarter-turn frame rotation for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.nearest-resize",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Nearest-neighbor frame resize",
+      "scope": "Nearest-neighbor frame resize for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.silhouette",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Opaque-mask silhouette coloring",
+      "scope": "Opaque-mask silhouette coloring for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-transform.outer-outline",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "One-pixel four-neighbor frame outline",
+      "scope": "One-pixel four-neighbor frame outline for one owned native RGB565 output frame, within documented extent, pixel, mask and signed-origin domains. Existing pixel preparer and session/batch delivery are suppliers. No original pivot/filter/encoded-outline, widget, world, hardware, performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyeighth-ten-20261025.md"
+      ],
+      "implementation": [
+        "renderer/sprite-transforms/sprite_transforms.hpp",
+        "renderer/sprite-transforms/sprite_transforms.cpp"
+      ],
+      "tests": [
+        "tests/sprite-transform-test.cpp",
+        "tools/test-rendering-twentyeighth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "renderer/sprite-transforms/CMakeLists.txt",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "N28.transforms-native-20261025",
+        "N28.master-native-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
       ]
     }
   ],
@@ -343372,6 +344528,418 @@
       ],
       "sources_pointer": "/sources",
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "N27.sprite-native-20261025",
+      "kind": "native_integration",
+      "scope": "Ten named native sprite companion/resource, selection, playback, checkpoint, reload, plan and CPU/GPU delivery policies. Synthetic files and independent expected pixels; no original lookup/timing, ANI behavior, hardware/performance/full-scene or live claim.",
+      "record": "research/runtime/rendering-twentyseventh-ten-results-20261025/execution-2.json",
+      "sha256": "66df04ff48b26333d011ad3db64d57afdce1fbd29723b114ec270a7c2736bb14",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/tag_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/sprite_regressions_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/cpu_gpu_cases",
+          "equals": 54
+        },
+        {
+          "pointer": "/native/release/timing_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/native/release/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/release/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/tag_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/sprite_regressions_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/cpu_gpu_cases",
+          "equals": 54
+        },
+        {
+          "pointer": "/native/sanitized/timing_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/native/sanitized/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/sanitized/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N28.transforms-native-20261025",
+      "kind": "native_integration",
+      "scope": "Ten owned native crop/trim/mirror/rotation/resize/silhouette/outline policies. Forward-mapped independent geometry and CPU/GPU delivery checks; no original pivot/filter/encoded-outline, widget/world, hardware/performance or live claim.",
+      "record": "research/runtime/rendering-twentyeighth-ten-results-20261025/execution-1.json",
+      "sha256": "0448b856bd311c061231bbce0b1232b7b1f7d6cdd73663f2a9adaa5b44462a9d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/session_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/checks",
+          "equals": 978
+        },
+        {
+          "pointer": "/native/release/refusals",
+          "equals": 58
+        },
+        {
+          "pointer": "/native/release/cpu_gpu_cases",
+          "equals": 150
+        },
+        {
+          "pointer": "/native/release/geometry_cases",
+          "equals": 30
+        },
+        {
+          "pointer": "/native/release/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/release/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/session_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/checks",
+          "equals": 978
+        },
+        {
+          "pointer": "/native/sanitized/refusals",
+          "equals": 58
+        },
+        {
+          "pointer": "/native/sanitized/cpu_gpu_cases",
+          "equals": 150
+        },
+        {
+          "pointer": "/native/sanitized/geometry_cases",
+          "equals": 30
+        },
+        {
+          "pointer": "/native/sanitized/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/sanitized/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N27.master-native-20261025",
+      "kind": "native_integration",
+      "scope": "Fresh source-bound master native regression. Ten named native sprite companion/resource, selection, playback, checkpoint, reload, plan and CPU/GPU delivery policies. Synthetic files and independent expected pixels; no original lookup/timing, ANI behavior, hardware/performance/full-scene or live claim.",
+      "record": "research/runtime/rendering-27-28-master-results-20261025/n27-execution-1.json",
+      "sha256": "08366a76b08c40ee716ff52eacbe8f1b7a19cb737a6a39c1e0739d06f2990e69",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/tag_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/sprite_regressions_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/cpu_gpu_cases",
+          "equals": 54
+        },
+        {
+          "pointer": "/native/release/timing_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/native/release/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/release/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/tag_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/sprite_regressions_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/cpu_gpu_cases",
+          "equals": 54
+        },
+        {
+          "pointer": "/native/sanitized/timing_cases",
+          "equals": 6
+        },
+        {
+          "pointer": "/native/sanitized/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/sanitized/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "N28.master-native-20261025",
+      "kind": "native_integration",
+      "scope": "Fresh source-bound master native regression. Ten owned native crop/trim/mirror/rotation/resize/silhouette/outline policies. Forward-mapped independent geometry and CPU/GPU delivery checks; no original pivot/filter/encoded-outline, widget/world, hardware/performance or live claim.",
+      "record": "research/runtime/rendering-27-28-master-results-20261025/n28-execution-1.json",
+      "sha256": "5629dec758d0358b7deb89ba314b5dd9bfed4e35ccbc2ea908b83b3e69c5f03e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/session_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/checks",
+          "equals": 978
+        },
+        {
+          "pointer": "/native/release/refusals",
+          "equals": 58
+        },
+        {
+          "pointer": "/native/release/cpu_gpu_cases",
+          "equals": 150
+        },
+        {
+          "pointer": "/native/release/geometry_cases",
+          "equals": 30
+        },
+        {
+          "pointer": "/native/release/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/release/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/session_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/checks",
+          "equals": 978
+        },
+        {
+          "pointer": "/native/sanitized/refusals",
+          "equals": 58
+        },
+        {
+          "pointer": "/native/sanitized/cpu_gpu_cases",
+          "equals": 150
+        },
+        {
+          "pointer": "/native/sanitized/geometry_cases",
+          "equals": 30
+        },
+        {
+          "pointer": "/native/sanitized/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/sanitized/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -372730,7 +374298,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-89384536cc8365673f08134f8bef9091959452f96fff7819c8224a63a16fd7f3.json",
-    "sha256": "89384536cc8365673f08134f8bef9091959452f96fff7819c8224a63a16fd7f3"
+    "path": "research/runtime/coverage/source-index-f8d5ed5e99b0978f8cd9ee58c5231a955ab6f97e6bd0172d32cd517b2786cf85.json",
+    "sha256": "f8d5ed5e99b0978f8cd9ee58c5231a955ab6f97e6bd0172d32cd517b2786cf85"
   }
 }
