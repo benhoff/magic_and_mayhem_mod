@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Observe original alternate publication across repeated battles, Quit and restart."""
+from experiment_environment import stage
 import argparse
 import ctypes as C
 import ctypes.util
@@ -156,7 +157,7 @@ def main():
   # Installation supplies assets only. Always stage the hash-pinned immutable
   # executable,even if this working installation has an earlier adapter.
   report['installation_executable']=dict(sha256=installation_executable,used_as_executable_input=False)
-  run('installation-copy',['cp','-a','--reflink=auto',source,game])
+  stage(ROOT, Path(game), Path(source), kind="game")
   for name in ['Chaos.exe','MnmMenu.dll','Save','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg','CFG/chaos.cfg','CFG/Encrypted/chaos.cfg']:
    if not (game/name).resolve().is_relative_to(game.resolve()):raise ValueError('Escaping staged write target '+name)
   if a.journey=='campaign-rebuild':(game/'Save').mkdir(exist_ok=True)

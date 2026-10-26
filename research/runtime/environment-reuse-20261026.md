@@ -63,3 +63,9 @@ The committed main range since the task base is reviewed separately in
 [the hash-bound history report](environment-reuse-results-20261026/main-history01.json);
 its watched transitions all match exact receipts. This does not assert a past gate
 pass or account the main checkout's still-uncommitted merge.
+
+The storage integration now combines the alternate-ownership launcher's pooled
+game staging with the newer Save-directory cleanup. The fresh controls08 report
+binds this composed source; controls07 remains historical for the earlier merge
+that retained Save cleanup but omitted the reuse call. This correction does not
+claim new Wine/game execution or engine validation.

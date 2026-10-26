@@ -154894,7 +154894,8 @@
         "EENV26.wine-persistent",
         "EENV26.controls-final",
         "EENV26.wine-final",
-        "EENV26.controls-merged"
+        "EENV26.controls-merged",
+        "EENV26.controls-merged-save-reset"
       ],
       "status": {
         "understanding": "partial",
@@ -351294,6 +351295,25 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "EENV26.controls-merged-save-reset",
+      "kind": "native_integration",
+      "record": "research/runtime/environment-reuse-results-20261026/controls08.json",
+      "sha256": "9e94cad9c3de4a0c97310d0b35bdbb359f010811494351728fa6a08879377d70",
+      "scope": "Merged current-master callers and bounded experiment environment reuse: filesystem/launcher regressions and Python syntax only. Original Wine registry result is retained historically; no new Wine/game execution, engine equivalence or complete integration claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -381407,7 +381427,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-575dba5468b72a9d55c9953d1c3e96e1213be4b34f4150369e028593b01e375a.json",
-    "sha256": "575dba5468b72a9d55c9953d1c3e96e1213be4b34f4150369e028593b01e375a"
+    "path": "research/runtime/coverage/source-index-be3d391a53751621d9a61f082d59a234b3cc5aedf5ad762e4f867799c71c9de4.json",
+    "sha256": "be3d391a53751621d9a61f082d59a234b3cc5aedf5ad762e4f867799c71c9de4"
   }
 }
