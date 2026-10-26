@@ -89,6 +89,7 @@ class ImportanceTest(unittest.TestCase):
             'NP.alternate-canvas-dispatch-admission', 'NP.alternate-canvas-owned-generation',
             'NP.cursor-live-ownership', 'NP.cursor-owned-compositor', 'NP.cursor-provider-lifetime',
             'NP.graphics-session-provider-retirement',
+            'NP.native-player-launch',
             'NP.palette-option-strict-parsing', 'NP.protected-native-store-service', 'NP.surface-alias-lease-lifecycle',
             'RS.alternate-canvas-dispatch-composition', 'RS.cursor-selection-service',
             'RS.screen-class-ownership-static', 'RS.screen-class11-lifetime', 'RS.screen-control-dispatch',

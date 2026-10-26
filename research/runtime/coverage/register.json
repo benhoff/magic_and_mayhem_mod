@@ -151599,7 +151599,9 @@
         "CUR27.owner04",
         "CUR27.owner05",
         "CUR27.owner06",
-        "CUR27.owner07"
+        "CUR27.owner07",
+        "NPL26.fresh05",
+        "NPL26.reuse05"
       ],
       "status": {
         "understanding": "scoped",
@@ -153123,6 +153125,64 @@
       "remaining_gaps": [
         "Natural original-game callers for all five helpers remain unresolved. Preserve provisional unused_candidate classification, existing 43-route denominator and 38-route historical observed union.",
         "No inter-block/interprocedural values, runtime writer/alias closure, unresolved indirect targets, dynamic or overlapping code, external modules or other builds are closed by this scanner."
+      ]
+    },
+    {
+      "id": "NP.native-player-launch",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Player entrypoint defaults to strict native rendering with a reusable owned prefix",
+      "scope": "Intentional native player-launch policy:run-x86 defaults to the storage-guarded strict native owner with no original presentation fallback;the default persistent Wine prefix is initialized by the hash-pinned DirectPlay installer or checked and reused under an exclusive player lease and stopped-server check. Bounded fresh/reuse public-launch acceptance includes actual Qt build,original Apprentice simulation,physical input,Mini/No/Yes,balanced Worlds,cursor ownership and normal resource retirement. Original simulation remains in Wine;whole-game driver/pixel equivalence,arbitrary hardware and all-map/long-duration acceptance remain separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/native-player-launch.md",
+        "README.md"
+      ],
+      "implementation": [
+        "run-native.sh",
+        "run-x86.sh",
+        "tools/run-native-game.py"
+      ],
+      "tests": [
+        "tests/test-native-player-launcher.py",
+        "tools/test-native-cursor-live.py",
+        "tools/test-native-owned-campaign.py"
+      ],
+      "validation_dependencies": [
+        "tools/native_only_contract.py",
+        "tools/run-native-owned.py",
+        "tools/directplay_dx6_launch.py",
+        "tools/native_prefix_template.py",
+        "tools/working-retention.py",
+        "tools/run-qt-shell.sh",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp"
+      ],
+      "evidence": [
+        "NPL.player-controls-20261025",
+        "NPL26.fresh01-failure",
+        "NPL26.fresh02",
+        "NPL26.fresh03",
+        "NPL26.fresh04",
+        "NPL26.controls04",
+        "NPL26.fresh05",
+        "NPL26.reuse05"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Bounded fresh/reuse x86 public-launch acceptance uses Xvfb/software GL with --skip-movies --no-native-music. Music/movie defaults,arbitrary maps/saves,long-duration sessions,hardware cadence and ARM strict ownership retain separate milestones.",
+        "Failed early attempts remain immutable. The unaccepted report click is retained without claiming its exact transient cause;the bounded harness resubmits only an unaccepted click on the identical ready generation and stops at admission. Both final cases needed one report click.",
+        "Original simulation/preparation/UI bodies remain in Wine. Native-only ownership does not establish full original-driver/pixel equivalence or complete engine replacement."
       ]
     }
   ],
@@ -345676,6 +345736,226 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "NPL.player-controls-20261025",
+      "kind": "native_integration",
+      "scope": "In-memory launch orchestration and actual Bash entrypoint routing. Filesystem initialization, Wine and native-owner execution are mocked. No original artifacts, actual prefix installation, live-game validation or replacement claim.",
+      "record": "research/runtime/native-player-launch-controls-20261025.json",
+      "sha256": "6c6e9623c0e719048bc471b0a31af6702ff708c59cea278444a68186a464528e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 15
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/actual_prefix_initialized",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NPL26.fresh01-failure",
+      "kind": "static",
+      "scope": "Retained failed acceptance and exact negative diagnostics. Static provenance only;no successful campaign,current implementation or original-equivalence milestone is inferred.",
+      "record": "research/runtime/native-player-acceptance-results-20261026/fresh01-failure.json",
+      "sha256": "6a554a9af020e3b292781348f40fede7891409699c10a2d19c1a45c009bfb98f",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NPL26.fresh02",
+      "kind": "static",
+      "scope": "Retained failed acceptance and exact negative diagnostics. Static provenance only;no successful campaign,current implementation or original-equivalence milestone is inferred.",
+      "record": "research/runtime/native-player-acceptance-results-20261026/fresh02.json",
+      "sha256": "d75f4d1fad1236e788a2a1152a27192d086d19b03b71a9d1d0dedb4b85f84d23",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NPL26.fresh03",
+      "kind": "static",
+      "scope": "Retained failed acceptance and exact negative diagnostics. Static provenance only;no successful campaign,current implementation or original-equivalence milestone is inferred.",
+      "record": "research/runtime/native-player-acceptance-results-20261026/fresh03.json",
+      "sha256": "782de335dd573405ea3df79e1e2646e404cda2b9ce30ba2a9c6be0a8a00aad5d",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NPL26.fresh04",
+      "kind": "static",
+      "scope": "Retained failed acceptance and exact negative diagnostics. Static provenance only;no successful campaign,current implementation or original-equivalence milestone is inferred.",
+      "record": "research/runtime/native-player-acceptance-results-20261026/fresh04.json",
+      "sha256": "73c70655f108508e5fc2ff8bfefb602e7820b4da76b18897b041cdc1cbc426b1",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NPL26.controls04",
+      "kind": "native_integration",
+      "scope": "Fifteen in-memory launch orchestration and actual Bash-routing controls. Filesystem/installer/owner operations are mocked;actual live acceptance is supplied separately.",
+      "record": "research/runtime/native-player-acceptance-results-20261026/controls04.json",
+      "sha256": "f702e44f000eecbc4710aed75d5b878215ed7bf84962c222533caf22f2273a7e",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 15
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NPL26.fresh05",
+      "kind": "live_replacement",
+      "scope": "Actual public run-x86 native-only Apprentice campaign with fresh default prefix,physical stress,Mini/No/Yes,normal original Quit,balanced Worlds,and complete native cursor/provider retirement. Xvfb/software GL,skip movies and no native music. Native ownership acceptance only;no whole driver/scene equivalence.",
+      "record": "research/runtime/native-player-acceptance-results-20261026/fresh05.json",
+      "sha256": "1df702e58129df9eb4518e8d5a7b18702b147a501fe65ebc041b83433242deb8",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_prefix_initialized",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified",
+      "bypass_pointer": "/native_driver_lifetime_replaced"
+    },
+    {
+      "id": "NPL26.reuse05",
+      "kind": "live_replacement",
+      "scope": "Actual public run-x86 native-only Apprentice campaign with reuse default prefix,physical stress,Mini/No/Yes,normal original Quit,balanced Worlds,and complete native cursor/provider retirement. Xvfb/software GL,skip movies and no native music. Native ownership acceptance only;no whole driver/scene equivalence.",
+      "record": "research/runtime/native-player-acceptance-results-20261026/reuse05.json",
+      "sha256": "047fcfbc68e6b9a4ae79bd1ad229a52e244f91b75da60fac503fbe0ef82b7770",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_prefix_initialized",
+          "equals": false
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified",
+      "bypass_pointer": "/native_driver_lifetime_replaced"
     }
   ],
   "classifications": [],
@@ -373334,7 +373614,9 @@
         "tools/native_cursor_journal.py"
       ],
       "evidence": [
-        "CUR27.live09"
+        "CUR27.live09",
+        "NPL26.fresh05",
+        "NPL26.reuse05"
       ]
     },
     {
@@ -373438,6 +373720,36 @@
       "evidence": [
         "TLSN25.native-and-fallback",
         "TLSN25.master-native-and-fallback"
+      ]
+    },
+    {
+      "id": "NPL26.player-fresh",
+      "scope": "Actual default run-x86 entrypoint with fresh persistent player prefix,hash-pinned DirectPlay/native-only admission,physical campaign stress,Mini/No/Yes and normal World/resource retirement. No whole-scene equivalence or performance acceptance.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "NP.native-player-launch"
+      ],
+      "tests": [
+        "tools/test-native-cursor-live.py",
+        "tools/test-native-owned-campaign.py"
+      ],
+      "evidence": [
+        "NPL26.fresh05"
+      ]
+    },
+    {
+      "id": "NPL26.player-reuse",
+      "scope": "Actual default run-x86 entrypoint with reuse persistent player prefix,hash-pinned DirectPlay/native-only admission,physical campaign stress,Mini/No/Yes and normal World/resource retirement. No whole-scene equivalence or performance acceptance.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "NP.native-player-launch"
+      ],
+      "tests": [
+        "tools/test-native-cursor-live.py",
+        "tools/test-native-owned-campaign.py"
+      ],
+      "evidence": [
+        "NPL26.reuse05"
       ]
     }
   ],
@@ -375146,7 +375458,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-dda77a382124fd411c78f4fe79dac0dead47378de0e8633afbf522af1ab07b09.json",
-    "sha256": "dda77a382124fd411c78f4fe79dac0dead47378de0e8633afbf522af1ab07b09"
+    "path": "research/runtime/coverage/source-index-4345ec8095a389a9295ecb9a600ba25aec1ef5eb55069a897eed32cd95d394f7.json",
+    "sha256": "4345ec8095a389a9295ecb9a600ba25aec1ef5eb55069a897eed32cd95d394f7"
   }
 }

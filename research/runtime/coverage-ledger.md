@@ -23143,3 +23143,45 @@ All 3847 committed transitions across 8 intervening/incoming commits
 have exact receipts, including pending retrospective accounting for 380 older
 terrain merge artifacts; this history accounting is separate from current
 merge validation. Pending main-checkout edits are outside this batch.
+
+## Native renderer player default — 2026-10-25
+
+The [player launcher](../../docs/native-player-launch.md) routes ordinary
+`run-x86.sh` launches through `run-native.sh` into the existing strict native-only
+owner. Original-renderer launch requires `--original-renderer`; the internal
+original backend and configurable Qt diagnostic launcher remain available.
+The wrapper reserves 4 GiB through the existing storage guard, initializes or
+checks a separate persistent owned prefix, leases it against concurrent player
+launches and never kills a busy server for reuse. Initialization delegates
+binary checks/install to the existing supplied DirectPlay helper and verifies
+original manifests before/after. Failed initialization remains inspectable.
+
+`NP.native-player-launch` and `NPL.player-controls-20261025` record 15 passing
+in-memory orchestration/actual Bash-routing controls, with stable source
+fingerprints. Installer, filesystem and owner operations are mocked. The first
+15-control attempt's Bash harness argument error is documented separately; it
+was corrected without executing Wine. The report is an immutable SQLite-backed
+reference. The main-drive preflight refuses at 89.92 GiB free, below the required
+90 GiB reserve, so actual prefix initialization, Qt build and live session
+acceptance remain pending. Native-only selection does not establish full-game
+pixel equivalence, complete original-pixel replacement or hardware performance.
+Original simulation still runs in Wine. Existing evidence is not refreshed.
+
+## Public native player acceptance — 2026-10-26
+
+[The bounded player acceptance](native-player-acceptance-20261026.md) completes
+actual default-prefix initialization and reuse through `run-x86.sh`.
+`NPL26.fresh05`/`NPL26.reuse05` complete458/563 balanced Worlds and3542/4174
+cursor calls,all18 hooks and386 linked compiler inputs,physical stress,Mini/No/Yes
+and original normal Quit,with zero cursor/graphics owners. The prefix marker
+survives reuse unchanged. `NPL26.controls04` supplies15 separate mocked/routing
+controls. Software GL,skip movies and no native music bound this acceptance;
+whole-game pixels,hardware/long-duration/maps/saves/media defaults remain separate.
+
+The harness respects the selected owner prefix and bounds resubmission of an
+unaccepted report click to the identical ready visit. Each accepted final case
+needed one click. Earlier fixture,prefix,compiler-declaration and report-timeout
+failures retain their own immutable records and source versions. Full SQLite
+artifact retention and byte-verified RAM restorations precede namespace teardown.
+The authored player policy receives scoped implementation/live integration;
+original comparison/replacement remain none. Existing screen helpers are reused.

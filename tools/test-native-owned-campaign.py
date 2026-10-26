@@ -21,7 +21,8 @@ def main():
     parser.add_argument('--functional-lifecycle',action='store_true',help='Require both stress phases, original Mini/No/Yes callbacks,64balanced Worlds and complete resource retirement; FPS is diagnostic')
     parser.add_argument('--native-only',action='store_true',help='Exercise the strict native-only startup/failure/outcome contract')
     parser.add_argument('--restart',action='store_true',help='Inject a live producer failure, use public Hard restart, then quit a fresh generation')
-    parser.add_argument('--prefix-template',type=Path,required=True)
+    parser.add_argument('--prefix-template',type=Path)
+    parser.add_argument('--player-entrypoint',choices=['fresh','reuse'],help='Exercise run-x86.sh with the real default persistent player prefix')
     parser.add_argument('--source-game',type=Path,required=True)
     parser.add_argument('--stress-seconds',type=int,choices=[0,*range(10,121)],default=0)
     parser.add_argument('--qt-build-type',choices=['Release','RelWithDebInfo'],default='RelWithDebInfo',help='Explicit native shell configuration retained in the run record')
@@ -30,6 +31,9 @@ def main():
     parser.add_argument('--claims',type=Path,required=True)
     parser.add_argument('--report',type=Path,required=True)
     args=parser.parse_args()
+    if args.player_entrypoint:
+        if not args.native_only or args.restart or args.prefix_template:parser.error('Player entrypoint requires native-only without a template or injected restart')
+    elif args.prefix_template is None:parser.error('Require a prefix template for the isolated owner entrypoint')
     if args.restart and (not args.native_only or args.stress_seconds):parser.error('Restart requires native-only and a separate stress run')
     if args.functional_lifecycle:
         from campaign_functional_acceptance import load_policy
@@ -55,7 +59,16 @@ def main():
         MNM_MENU_GAME_SOURCE=str(args.source_game.resolve()),MNM_QT_BUILD_TYPE=args.qt_build_type)
     if args.restart:
         env.pop('MNM_CAMPAIGN_SMOKE_TEST');env['MNM_RESIDENT_RESTART_TEST']='1'
-    server=child=None;verified=False
+    server=child=None;verified=False;owner=root/'owner'
+    expected_prefix=root/'wineprefix'
+    previous_owners=set(parent.glob('run-*'))
+    if args.player_entrypoint:
+        env['TMPDIR']=os.environ.get('TMPDIR',str(root))
+        owner=None;expected_prefix=ROOT/'working/native-player/wineprefix'
+        if expected_prefix.exists() != (args.player_entrypoint=='reuse'):parser.error('Player prefix state differs from the requested fresh/reuse control')
+        report['player_entrypoint']=args.player_entrypoint
+        report['player_prefix']=str(expected_prefix)
+        report['player_marker_before']=hashlib.sha256((expected_prefix/'.mnm-directplay-dx6.json').read_bytes()).hexdigest() if expected_prefix.exists() else None
     try:
         with (root/'original-before.log').open('x') as out:
             subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],stdout=out,stderr=subprocess.STDOUT,check=True)
@@ -63,17 +76,25 @@ def main():
         spec=importlib.util.spec_from_file_location('owned_launcher',ROOT/'tools/run-native-owned.py');launcher=importlib.util.module_from_spec(spec);spec.loader.exec_module(launcher)
         host=root/'host';host.mkdir();server,receipt,_=launcher.start_display(host,allow_glx=True)
         env.update(DISPLAY=receipt['display'],XAUTHORITY=receipt['authority'])
-        report['prefix_template']=clone(args.prefix_template,root/'wineprefix',env)
-        command=[str(ROOT/'tools/run-native-owned.py'),'--prefix',str(root/'wineprefix'),'--output',str(root/'owner'),*(['--native-only'] if args.native_only else []),'--',
+        if args.player_entrypoint:
+            command=[str(ROOT/'run-x86.sh'),'--']
+        else:
+            report['prefix_template']=clone(args.prefix_template,expected_prefix,env)
+            command=[str(ROOT/'tools/run-native-owned.py'),'--prefix',str(expected_prefix),'--output',str(owner),*(['--native-only'] if args.native_only else []),'--']
+        command += [
                  '--skip-movies',*(['--no-native-music'] if args.no_native_music else []),
                  '--live-menu-test',str(root/'flow.json')]
         campaign_spec=importlib.util.spec_from_file_location('owned_campaign_contract',ROOT/'tools/test-native-campaign.py')
         campaign=importlib.util.module_from_spec(campaign_spec);campaign_spec.loader.exec_module(campaign)
         with (root/'shell.log').open('x') as out:
             child=subprocess.Popen(command,cwd=ROOT,env=env,stdout=out,stderr=subprocess.STDOUT,start_new_session=True)
-            deadline=time.monotonic()+(600 if args.restart else 300)
+            deadline=time.monotonic()+(600 if args.restart or args.player_entrypoint else 300)
             while time.monotonic()<deadline:
-                journals=sorted((root/'owner/sessions').glob('*.json'),key=lambda p:p.stat().st_mtime_ns)
+                if args.player_entrypoint and owner is None:
+                    created=set(parent.glob('run-*'))-previous_owners
+                    if len(created)>1:raise RuntimeError('Ambiguous new player owner directories')
+                    if created:owner=created.pop();report['player_owner']=str(owner.relative_to(ROOT))
+                journals=sorted((owner/'sessions').glob('*.json'),key=lambda p:p.stat().st_mtime_ns) if owner is not None else []
                 sessions=[json.loads(p.read_text()) for p in journals]
                 if len(sessions)>(2 if args.restart else 1):raise RuntimeError('Ambiguous private ownership session')
                 if sessions:
@@ -109,9 +130,10 @@ def main():
             raise RuntimeError(flow.get('error') or 'Native ownership flow did not complete')
         from native_pixel_counters import read_counters
         from pixel_route_requirements import validate_routes
-        admitted=[json.loads(p.read_text()) for p in (root/'owner/sessions').glob('*.json')]
+        if owner is None:raise RuntimeError('Player did not create an owned session')
+        admitted=[json.loads(p.read_text()) for p in (owner/'sessions').glob('*.json')]
         if len(admitted)!=(2 if args.restart else 1):raise RuntimeError('Actual game ownership admission is missing or ambiguous')
-        if any(a['prefix']!=str(root/'wineprefix') for a in admitted):raise RuntimeError('Ownership prefix differs from the declared run')
+        if any(a['prefix']!=str(expected_prefix) for a in admitted):raise RuntimeError('Ownership prefix differs from the declared run')
         if args.restart:
             final=[a for a in admitted if json.loads((Path(a['session'])/'native-only-session.json').read_text())['state']=='completed']
             if len(final)!=1:raise RuntimeError('Restart did not leave one completed final generation')
@@ -137,10 +159,16 @@ def main():
         report['graphics_retirement']=require_retired(session/'native-draw-retirement.bin')
         report['graphics_retirement']['startup_probe']=read_startup_retirement(session/'game/native-draw-startup-retirement.bin')
         if args.native_only:
-            owner_result=json.loads((root/'owner/launch-result.json').read_text())
+            owner_result=json.loads((owner/'launch-result.json').read_text())
             if owner_result.get('success') is not True or not owner_result.get('native_only_sessions'):
                 raise RuntimeError('Native-only launch did not accept its session outcomes')
             report['native_only_outcomes']=owner_result['native_only_sessions']
+        if args.player_entrypoint:
+            marker=expected_prefix/'.mnm-directplay-dx6.json'
+            report['player_marker_after']=hashlib.sha256(marker.read_bytes()).hexdigest()
+            if args.player_entrypoint=='reuse' and report['player_marker_after']!=report['player_marker_before']:raise RuntimeError('Reused prefix ownership changed')
+            report['actual_prefix_initialized']=args.player_entrypoint=='fresh'
+            report['actual_player_entrypoint']=True
         if args.functional_lifecycle:
             campaign.validate_flow(flow,cycles=1,stress_seconds=args.stress_seconds,min_fps=None,normal_quit=True)
             from campaign_camera_dialogue import validate_camera_mini
