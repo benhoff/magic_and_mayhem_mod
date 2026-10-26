@@ -24,7 +24,8 @@ def clone(template,target,environment):
     before={name:sha(template/name) for name in ('.mnm-directplay-dx6.json','system.reg','user.reg')}
     # This wait never kills a template user's server. Active prefixes refuse.
     subprocess.run(['wineserver','-w'],env=dict(environment,WINEPREFIX=str(template)),check=True,timeout=5)
-    subprocess.run(['cp','-a','--reflink=auto',str(template),str(target)],check=True,timeout=120)
+    from experiment_environment import stage_prefix
+    stage_prefix(ROOT,template,target)
     check_prefix(target)
     copied=target/'.mnm-directplay-dx6.json'
     if copied.is_symlink() or sha(copied)!=before['.mnm-directplay-dx6.json']:

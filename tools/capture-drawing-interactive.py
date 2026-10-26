@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Acquire a bounded original-active interactive Quick Battle API reference."""
+from experiment_environment import stage_prefix
 from coverage_evidence import write_report
 import argparse,importlib.util,json,mmap,os,shutil,signal,struct,subprocess,tempfile,time
 from pathlib import Path
@@ -239,7 +240,7 @@ def main():
         bootstrap_env['WINEDLLOVERRIDES']=(env.get('WINEDLLOVERRIDES','')+';mscoree,mshtml=').lstrip(';')
         manifest['prefix_bootstrap_policy']={'optional_managed_html_installers_disabled':True,'game_environment_changed':False}
         with (run/'manifest.json').open('x') as out:json.dump(manifest,out,indent=2);out.write('\n')
-        if not a.owned_prefix:subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),env['WINEPREFIX']],check=True)
+        if not a.owned_prefix:stage_prefix(ROOT, str(a.prefix_template.resolve()), env['WINEPREFIX'])
         with (run/'wineboot.log').open('x') as log:subprocess.run(['wineboot','-u'],env=bootstrap_env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=90)
         # wineboot can return while configuration children still own the server.
         # Admit the original only after this private prefix is fully stopped.

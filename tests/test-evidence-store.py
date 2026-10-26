@@ -48,6 +48,60 @@ class EvidenceTests(unittest.TestCase):
     def git(self, *args):
         return subprocess.check_output(['git', '-C', str(self.root), *args], stderr=subprocess.PIPE)
 
+    def test_configured_pending_store_serves_reports_from_multiple_roots(self):
+        self.git("init", "-q")
+        shared=self.root/"shared/working/evidence-pending.sqlite3"
+        self.git("config", "mm.evidencePending", str(shared))
+        path=self.root/"research/runtime/shared.json"
+        body=b'{"unique":"shared immutable payload"}'
+        write_report(self.root,path,body)
+        self.assertTrue(shared.is_file())
+        self.assertFalse((self.root/"working/coverage/evidence-pending.sqlite3").exists())
+        self.assertEqual(read_bytes(path,root=self.root),body)
+        store=Store(shared,readonly=True)
+        try:self.assertEqual(store.db.execute("SELECT count(*) FROM objects").fetchone()[0],1)
+        finally:store.close()
+
+    def test_auxiliary_legacy_store_is_read_without_copying_payload(self):
+        self.git("init","-q")
+        auxiliary=self.root/"working/legacy-evidence.sqlite3"
+        store=Store(auxiliary)
+        data=b'{"retained":"legacy negative evidence"}'
+        try:
+            with store.db:sha=store.put(io.BytesIO(data),len(data))
+        finally:store.close()
+        self.git("config","--add","mm.evidenceExtra",str(auxiliary))
+        path=self.root/"research/runtime/legacy.json"
+        path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(pointer(sha,len(data)))
+        self.assertEqual(read_bytes(path,root=self.root),data)
+        self.assertFalse(self.store.has(sha))
+        self.assertFalse((self.root/"working/coverage/evidence-pending.sqlite3").exists())
+
+    def test_auxiliary_stores_propagate_into_temporary_git_trees(self):
+        from evidence_local import local_evidence
+        self.git("init","-q")
+        auxiliary=self.root/"working/legacy-evidence.sqlite3"
+        store=Store(auxiliary);data=b"retained temporary-tree input"
+        try:
+            with store.db:sha=store.put(io.BytesIO(data),len(data))
+        finally:store.close()
+        self.git("config","--add","mm.evidenceExtra",str(auxiliary))
+        temporary=self.root/"working/staged-tree"
+        temporary.mkdir()
+        (temporary/CONFIG).write_text('{"schema":1,"archives":[]}')
+        path=temporary/"research/runtime/legacy.json"
+        path.parent.mkdir(parents=True);path.write_bytes(pointer(sha,len(data)))
+        with local_evidence(self.root):
+            self.assertEqual(read_bytes(path,root=temporary),data)
+        self.assertFalse(self.store.has(sha))
+
+    def test_shared_pending_path_refuses_original_and_relative_paths(self):
+        from coverage_evidence import pending_path
+        self.git("init","-q")
+        for invalid in ("working/relative.sqlite3",str(self.root/"original/working/data.sqlite3")):
+            self.git("config","mm.evidencePending",invalid)
+            with self.assertRaises(ValueError):pending_path(self.root)
+
     def test_exact_binary_and_empty_multichunk_roundtrip(self):
         for data in (b'', b'\0\xffnegative evidence\n', b'z'*(CHUNK*2+17)):
             sha = self.put(data)

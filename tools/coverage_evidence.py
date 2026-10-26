@@ -272,16 +272,60 @@ def opened_store(path, readonly=False):
         store.close()
 
 
+def pending_path(root):
+    """Use one explicitly configured ignored store across new worktrees."""
+    root = Path(root).resolve()
+    value = None
+    if (root/".git").exists():
+        result = subprocess.run(["git", "-C", str(root), "config", "--get", "mm.evidencePending"],
+                                capture_output=True, text=True, check=False)
+        if result.returncode == 0:
+            value = result.stdout.strip()
+    if value:
+        target = Path(value)
+        if not target.is_absolute() or "working" not in target.parts or any(
+                part in ("original", ".git", "..") for part in target.parts):
+            raise ValueError("Shared pending evidence must be an absolute ignored working path")
+        if "working" not in target.resolve().parts or any(
+                part in ("original", ".git") for part in target.resolve().parts):
+            raise ValueError("Shared pending evidence resolves outside ignored working storage")
+        return target
+    return root/"working/coverage/evidence-pending.sqlite3"
+
+
+def extra_pending_paths(root):
+    """Read-only legacy stores; never import their contents just to inspect Git."""
+    value = os.environ.get("MM_EVIDENCE_EXTRA_DB", "[]")
+    paths = json.loads(value)
+    if not isinstance(paths, list) or any(not isinstance(p, str) for p in paths):
+        raise ValueError("MM_EVIDENCE_EXTRA_DB must be a JSON array of absolute SQLite paths")
+    root = Path(root)
+    if (root/".git").exists():
+        result = subprocess.run(["git", "-C", str(root), "config", "--get-all", "mm.evidenceExtra"],
+                                capture_output=True, text=True, check=False)
+        if result.returncode == 0:
+            paths += result.stdout.splitlines()
+    answer = []
+    for name in paths:
+        path = Path(name)
+        if not path.is_absolute() or "original" in path.resolve().parts or ".git" in path.resolve().parts:
+            raise ValueError("Unsafe auxiliary evidence store")
+        if path not in answer:
+            answer.append(path)
+    return answer
+
+
 class Resolver:
     def __init__(self, root):
         self.root, self.stores = Path(root), []
         self.spec = config(root)
+        self.extra_pending = extra_pending_paths(root)
         alternate = os.environ.get('MM_EVIDENCE_DB')
         if alternate:
             self.stores.append(Store(alternate, readonly=True))
-        pending = self.root/'working/coverage/evidence-pending.sqlite3'
-        if pending.is_file() and not any(s.path.resolve() == pending.resolve() for s in self.stores):
-            self.stores.append(Store(pending, readonly=True))
+        for pending in (self.root/'working/coverage/evidence-pending.sqlite3', pending_path(self.root)):
+            if pending.is_file() and not any(s.path.resolve() == pending.resolve() for s in self.stores):
+                self.stores.append(Store(pending, readonly=True))
 
     def close(self):
         for store in self.stores:
@@ -291,6 +335,17 @@ class Resolver:
         for store in self.stores:
             if store.has(sha, size):
                 return store
+        for path in self.extra_pending:
+            if not path.is_file():
+                raise ValueError('Configured auxiliary evidence unavailable: ' + str(path))
+            info = path.stat()
+            existing = next((s for s in self.stores
+                             if (s.path.stat().st_dev, s.path.stat().st_ino) == (info.st_dev, info.st_ino)), None)
+            if existing is None:
+                existing = Store(path, readonly=True)
+                self.stores.append(existing)
+            if existing.has(sha, size):
+                return existing
         for archive in (self.spec or {}).get('archives', []):
             expected = cache_root(self.root)/(archive['sha256'] + '.sqlite3')
             if any(s.path == expected for s in self.stores):
@@ -459,7 +514,7 @@ def write_report(root, path, data):
                and artifact(target.resolve().relative_to(root).as_posix()))
     if managed:
         safe_path(root, target.resolve().relative_to(root).as_posix())
-        with opened_store(root/'working/coverage/evidence-pending.sqlite3') as store:
+        with opened_store(pending_path(root)) as store:
             with store.db:
                 sha = store.put(io.BytesIO(data), len(data))
         atomic_replace(target, pointer(sha, len(data)), None)
@@ -660,7 +715,7 @@ def clean(root, path, stream, out):
                 out.write(indexed.stdout)
                 return
             data.seek(0)
-        store_path = Path(root)/'working/coverage/evidence-pending.sqlite3'
+        store_path = pending_path(root)
         with opened_store(store_path) as store, store.db:
             sha = store.put(data, size)
         out.write(pointer(sha, size))

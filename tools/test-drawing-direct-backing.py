@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Execute direct provider leases with actual PE32 mapping and observer hooks."""
+from experiment_environment import stage_prefix
 import argparse,hashlib,importlib.util,json,os,subprocess
 from pathlib import Path
 from coverage_claims import behavior_contract,required_sources
@@ -22,7 +23,7 @@ def main():
   return r
  env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};prefix=out/'wineprefix';env.update(WINEPREFIX=str(prefix),WINEDEBUG='-all')
  try:
-  run('copy-prefix',['cp','-a','--reflink=auto',a.prefix_template.resolve(),prefix])
+  stage_prefix(ROOT, a.prefix_template.resolve(), prefix, log=Path(prefix).parent / 'copy-prefix.log')
   spec=importlib.util.spec_from_file_location('backing_build',ROOT/'tools/build-drawing-session.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);dll=m.build(True)
   flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-Wno-unused-function']
   run('compile',flags+['-c',ROOT/'tests/drawing-direct-backing-test.c','-o',out/'fixture.obj']);binary=out/'fixture.exe'

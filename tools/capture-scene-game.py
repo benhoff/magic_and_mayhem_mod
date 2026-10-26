@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Observe an original single-player battle queue under isolated Xvfb/Wine."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import importlib.util
@@ -263,7 +264,7 @@ def main():
             prefix_receipt=clone(args.prefix_template,root/'wineprefix',env)
             (root/'prefix-template.json').write_text(json.dumps(prefix_receipt,indent=2)+'\n')
         else:
-            subprocess.run(['cp','-a','--reflink=auto',str(args.prefix_template.resolve()),env['WINEPREFIX']],check=True)
+            stage_prefix(ROOT, str(args.prefix_template.resolve()), env['WINEPREFIX'])
             with (root/'wineboot.log').open('x') as log:
                 subprocess.run(['wineboot','-u'],env=env,stdout=log,stderr=subprocess.STDOUT,timeout=90,check=True)
             with (root/'wineboot-idle.log').open('x') as log:

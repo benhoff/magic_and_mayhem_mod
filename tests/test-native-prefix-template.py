@@ -11,7 +11,7 @@ import native_prefix_template as tool
 
 class Prefix(unittest.TestCase):
     def fixture(self,root):
-        source=root/'template';source.mkdir();target=root/'working/test/wineprefix';target.parent.mkdir(parents=True)
+        source=root/'template';source.mkdir();target=root/'working/tests/native-prefix/wineprefix';target.parent.mkdir(parents=True)
         (source/'.mnm-directplay-dx6.json').write_text(json.dumps(tool.prefix_identity(source)))
         (source/'system.reg').write_bytes(b'owned system');(source/'user.reg').write_bytes(b'owned user')
         return source,target
@@ -28,6 +28,9 @@ class Prefix(unittest.TestCase):
             self.assertEqual({p.name:p.read_bytes() for p in source.iterdir()},before)
             self.assertEqual(json.loads((target/'.mnm-directplay-dx6.json').read_text()),tool.prefix_identity(target))
             self.assertEqual((target/'system.reg').read_bytes(),before['system.reg'])
+            import experiment_environment
+            with patch.object(experiment_environment,'_idle'):
+                experiment_environment.release(target)
 
     def test_foreign_wrong_or_redirected_owner_and_existing_target_refuse_before_launch(self):
         for kind in ('missing','wrong','redirected','target','outside'):

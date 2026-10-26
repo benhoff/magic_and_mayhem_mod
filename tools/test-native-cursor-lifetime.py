@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Execute actual PE32 provider pins, alias drains and writer/concurrency controls."""
+from experiment_environment import stage_prefix
 import argparse,hashlib,importlib.util,json,os,secrets,socket,struct,subprocess,sys,time
 from pathlib import Path
 from coverage_evidence import write_report
@@ -16,7 +17,7 @@ def execute(out,template,ram,owner=False,original_root=None):
     else:raise ValueError('No private display')
     fields=(fields[0],str(number).encode(),fields[2],fields[3])
     authority.write_bytes(struct.pack('>H',65535)+b''.join(struct.pack('>H',len(v))+v for v in fields));authority.chmod(0o600)
-    prefix=ram/'wineprefix';subprocess.run(['cp','-a','--reflink=auto',template,prefix],check=True)
+    prefix=ram/'wineprefix';stage_prefix(ROOT, template, prefix)
     env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINE'))}
     env.update(DISPLAY='127.0.0.1:'+str(number),XAUTHORITY=str(authority),WINEPREFIX=str(prefix),WINEDEBUG='-all',WINEDLLOVERRIDES='ddraw=;winemenubuilder.exe=d',MNM_NATIVE_CURSOR_OWNERSHIP='1',LIBGL_ALWAYS_SOFTWARE='1',TMPDIR='/tmp')
     if owner:env.update(MNM_NATIVE_CURSOR_OWNERSHIP='2',MNM_FACTORY_NATIVE='1',MNM_ORIGINAL_IMAGE='Z:'+str(original_root/'original/Arcane_Nocd/Chaos.exe').replace('/','\\'))

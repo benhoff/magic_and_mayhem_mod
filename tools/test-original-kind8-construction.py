@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Compare six known original kind8 constructors and nondeleting lifetimes."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import json
@@ -62,7 +63,7 @@ def main():
                     anchors[hex(va)]=raw[offset+delta:offset+delta+16].hex();break
         if len(anchors)!=6:raise ValueError('Missing constructor entry bytes')
         report['original_entry_anchors']=anchors
-        run('prefix',['cp','-a','--reflink=auto',a.prefix_template.resolve(),out/'wineprefix'])
+        stage_prefix(ROOT, a.prefix_template.resolve(), out/'wineprefix', log=Path(out/'wineprefix').parent / 'prefix.log')
         imports={'GetEnvironmentVariableA':12,'CreateFileA':28,'GetFileSize':8,
                  'ReadFile':20,'CloseHandle':4,'GetProcessHeap':0,'HeapAlloc':12,
                  'HeapFree':12,'VirtualAlloc':16,'WriteFile':20,'ExitProcess':4}

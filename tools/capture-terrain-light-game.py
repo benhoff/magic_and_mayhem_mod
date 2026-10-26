@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Bounded original-active lighting comparison, then explicitly gated replacement."""
+from experiment_environment import stage
+from experiment_environment import stage_prefix
 import argparse,ctypes as c,fcntl,hashlib,importlib.util,json,mmap,os,signal,struct,subprocess,time,shlex
 from pathlib import Path
 from coverage_evidence import write_report,read_json
@@ -49,7 +51,7 @@ def main():
   head=struct.unpack_from('<I',raw,60)[0];table=head+24+struct.unpack_from('<H',raw,head+20)[0]
   for i in range(struct.unpack_from('<H',raw,head+6)[0]):
    size,offset=struct.unpack_from('<II',raw,table+i*40+16);assert raw[offset:offset+size]==staged[offset:offset+size]
-  run('copy-game',['cp','-a','--reflink=auto',main_root/'working/game-clean',out/'game'])
+  stage(ROOT, Path(out/'game'), Path(main_root/'working/game-clean'), kind="game")
   (out/'game/Chaos.exe').write_bytes(staged)
   report['staged_preferences']=module('light_preferences','tools/capture-fade-writer-game.py').stage_preferences(out/'game')
   if a.journey=='campaign-reload':
@@ -69,7 +71,7 @@ def main():
     data=(prefix/name).read_bytes();record='research/runtime/terrain-light-closure-results-20261025/'+out.name+'-prefix-'+name+'.bin';report['prefix_registry_before'][name]=dict(record=record,sha256=write_report(ROOT,record,data))
   else:
    template=main_root/'working/wineprefix-x86_64';run('template-stopped',['wineserver','-w'],timeout=5,environment={**env,'WINEPREFIX':str(template)})
-   run('clone-prefix',['cp','-a','--reflink=auto',template,out/'wineprefix'])
+   stage_prefix(ROOT, template, out/'wineprefix', log=Path(out/'wineprefix').parent / 'clone-prefix.log')
    run('wineboot',['wineboot','-u'],timeout=120);run('wineboot-idle',['wineserver','-w'],timeout=120)
   models=[ROOT/'reconstruction/rendering'/n for n in ['terrain_lighting.cpp','terrain_creature_lighting.cpp','terrain_static_lighting.cpp','terrain_lighting_cycle.cpp']]
   binary=out/'terrain-light-replay';run('native-build',['g++','-std=c++17','-O2',ROOT/'tools/terrain-light-replay.cpp',*models,'-o',binary])

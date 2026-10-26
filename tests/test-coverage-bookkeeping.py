@@ -74,7 +74,34 @@ class BookkeepingTests(unittest.TestCase):
         self.assertEqual(before, {p: (self.root/p).read_bytes() for p in paths})
         imported = list(reversed(self.workspace.find(limit=10)))
         self.assertEqual(imported, journal['reviews'])
+        self.assertEqual(self.workspace.find(limit=-1), list(reversed(journal['reviews'])))
         self.assertEqual(self.workspace.db.execute('PRAGMA integrity_check').fetchone()[0], 'ok')
+
+    def test_new_workspace_fingerprints_history_without_copying_bodies(self):
+        reviews = [self.receipt("historical-" + str(i)) for i in range(10)]
+        self.fixture.json(REVIEWS, {"schema": 1, "reviews": reviews})
+        self.sync()
+        self.assertEqual(self.workspace.db.execute("PRAGMA user_version").fetchone()[0], 2)
+        self.assertEqual(self.workspace.db.execute("SELECT count(*) FROM receipts").fetchone()[0], 0)
+        self.assertEqual(self.workspace.db.execute("SELECT count(*) FROM imported_fingerprints").fetchone()[0], 10)
+        self.assertEqual(self.workspace.db.execute("SELECT count(*) FROM pending_gaps").fetchone()[0], 0)
+        with self.workspace.locked():
+            self.workspace.insert(self.receipt("new-local"))
+        self.assertEqual(len(self.workspace.pending(load_journal(self.root)[0])), 1)
+        self.export()
+        self.assertEqual(self.workspace.db.execute("SELECT count(*) FROM receipts").fetchone()[0], 1)
+
+    def test_legacy_workspace_remains_readable_without_silent_migration(self):
+        self.workspace.close()
+        with sqlite3.connect(self.workspace.path) as db:
+            db.execute("PRAGMA user_version=1")
+        self.workspace = Workspace(self.root)
+        self.addCleanup(self.workspace.close)
+        self.fixture.json(REVIEWS, {"schema": 1, "reviews": [self.receipt()]})
+        self.sync()
+        self.assertEqual(self.workspace.version, 1)
+        self.assertEqual(self.workspace.db.execute("SELECT count(*) FROM receipts").fetchone()[0], 1)
+        self.assertEqual(self.workspace.find(), [self.receipt()])
 
     def test_export_merges_external_appends_and_preserves_archive_bytes(self):
         old = [self.receipt('old-' + str(i)) for i in range(4)]
@@ -148,6 +175,52 @@ class BookkeepingTests(unittest.TestCase):
             changed = self.receipt()
             changed['reason'] = 'Different'
             self.workspace.insert(changed)
+
+    def test_cache_compaction_preserves_pending_receipts_and_draft_bytes(self):
+        from review_cache_storage import compact
+        self.workspace.version = 1
+        self.workspace.db.execute("PRAGMA user_version=1")
+        self.fixture.json(REVIEWS, {"schema": 1, "reviews": [self.receipt("historical")]})
+        with self.workspace.locked():
+            self.workspace.sync()
+            self.workspace.insert(self.receipt("pending-local"))
+            self.workspace.db.execute("INSERT INTO drafts VALUES (?,?)", ("draft", "unique draft bytes"))
+            self.workspace.db.execute("CREATE TABLE evidence_store_objects (sha256 TEXT PRIMARY KEY, raw_bytes INTEGER, codec TEXT)")
+            self.workspace.db.execute("INSERT INTO evidence_store_objects VALUES ('preserved',123,'zlib')")
+            self.workspace.db.execute("CREATE TRIGGER immutable_extension BEFORE UPDATE ON evidence_store_objects BEGIN SELECT RAISE(ABORT,'Immutable extension'); END")
+        self.workspace.close()
+        result = compact(self.root, self.root/"local.sqlite3", self.root/"cold.sqlite3",
+                         self.root/"scratch", 0, 0)
+        self.assertTrue(result["exact_restore_verified"])
+        self.workspace = Workspace(self.root)
+        self.addCleanup(self.workspace.close)
+        self.assertEqual(self.workspace.version, 2)
+        self.assertEqual(self.workspace.pending(load_journal(self.root)[0]), [self.receipt("pending-local")])
+        self.assertEqual(self.workspace.db.execute("SELECT context_json FROM drafts").fetchone()[0], "unique draft bytes")
+        self.assertEqual(self.workspace.db.execute("SELECT count(*) FROM receipts").fetchone()[0], 1)
+        self.assertEqual(self.workspace.db.execute("SELECT * FROM evidence_store_objects").fetchone(), ("preserved",123,"zlib"))
+        with self.assertRaises(sqlite3.IntegrityError), self.workspace.db:
+            self.workspace.db.execute("UPDATE evidence_store_objects SET raw_bytes=0")
+
+    def test_cache_compaction_refuses_changed_history_and_unknown_tables(self):
+        from review_cache_storage import compact
+        self.workspace.version = 1
+        self.workspace.db.execute("PRAGMA user_version=1")
+        self.fixture.json(REVIEWS, {"schema": 1, "reviews": [self.receipt("historical")]})
+        self.sync()
+        changed = self.receipt("historical")
+        changed["reason"] = "rewritten"
+        self.fixture.json(REVIEWS, {"schema": 1, "reviews": [changed]})
+        self.workspace.close()
+        original = self.workspace.path.read_bytes()
+        with self.assertRaisesRegex(ValueError, "differs"):
+            compact(self.root, self.root/"local.sqlite3", self.root/"cold.sqlite3", self.root/"scratch", 0, 0)
+        self.assertEqual(self.workspace.path.read_bytes(), original)
+        self.fixture.json(REVIEWS, {"schema": 1, "reviews": [self.receipt("historical")]})
+        with sqlite3.connect(self.workspace.path) as db:
+            db.execute("CREATE TABLE unique_extension (value TEXT)")
+        with self.assertRaisesRegex(ValueError, "Unknown cache tables"):
+            compact(self.root, self.root/"local.sqlite3", self.root/"cold.sqlite3", self.root/"scratch", 0, 0)
 
     def test_atomic_replace_refuses_changed_target_and_symlink(self):
         target = self.root/'research/output.json'

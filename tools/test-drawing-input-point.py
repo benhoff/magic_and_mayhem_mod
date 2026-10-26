@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Cross-DLL PE32 original cursor forwarding and read-only point query fixture."""
+from experiment_environment import stage_prefix
 import argparse
 import importlib.util
 import json
@@ -29,7 +30,7 @@ def main():
     flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror']
     subprocess.run(flags+['-c',str(ROOT/'tests/drawing-input-point-test.c'),'-o',str(run/'fixture.obj')],check=True)
     binary=run/'fixture.exe';subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(binary),str(run/'fixture.obj'),str(dll.parent/'drawing.lib'),str(dll.parent/'kernel32.lib')],check=True)
-    subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),str(run/'wineprefix')],check=True)
+    stage_prefix(ROOT, str(a.prefix_template.resolve()), str(run/'wineprefix'))
     point_file=run/'points.bin';env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
     env.update(WINEPREFIX=str(run/'wineprefix'),WINEDEBUG='-all',MNM_DRAW_SESSION_MODE='inputs',MNM_DRAW_INPUT_POINT='1',MNM_DRAW_SESSION_DIRECTORY='Z:'+str(capture).replace('/','\\'),MNM_DRAW_POINT_FIXTURE_FILE='Z:'+str(point_file).replace('/','\\'))
     try:
