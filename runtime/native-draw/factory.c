@@ -5,6 +5,7 @@
 #include "../../reconstruction/rendering/pixel_kernel.h"
 #define ND_INVALID ((i32)0x80070057u)
 #define ND_NOINTERFACE ((i32)0x80004002u)
+#include "lifetime_lock.h"
 struct NdState;
 struct NsState;
 struct NdObject {void** table;struct NdState* state;u32 kind;};
@@ -21,6 +22,7 @@ static const u8 nd_draw2[16]={0xe0,0xf3,0xa6,0xb3,0x43,0x2b,0xcf,0x11,0xa2,0xde,
 static const u8 nd_draw4[16]={0x9a,0x50,0x59,0x9c,0xbd,0x39,0xd1,0x11,0x8c,0x4a,0,0xc0,0x4f,0xd9,0x30,0xc5};
 static int nd_equal(const u8* a,const u8* b) {for(u32 i=0;i<16;++i)if(a[i]!=b[i])return 0;return 1;}
 static i32 WIN nd_query(struct NdObject* self,const u8* iid,void** out) {
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
   if(!iid || !out)return ND_INVALID;
   *out=0;
   if(nd_equal(iid,nd_unknown))*out=&self->state->unknown;
@@ -32,10 +34,12 @@ static i32 WIN nd_query(struct NdObject* self,const u8* iid,void** out) {
   if(!self->state->refs[selected->kind]++)++self->state->interfaces;return 0;
 }
 static u32 WIN nd_retain(struct NdObject* self) {
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
   if(!self->state->refs[self->kind]++)++self->state->interfaces;
   return self->state->refs[self->kind];
 }
 static u32 WIN nd_release(struct NdObject* self) {
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
   u32 error=GetLastError(),refs=--self->state->refs[self->kind];
   if(!refs && !--self->state->interfaces){struct NdState* s=self->state;
    if(s->previous_owned)s->previous_owned->next_owned=s->next_owned;else nd_owned=s->next_owned;
@@ -53,6 +57,8 @@ static u32 WIN nd_release(struct NdObject* self) {
 #include "producer_status.h"
 #include "retirement.h"
 #include "startup_retirement.h"
+#include "lifetime_dispatch.h"
+#include "cursor_owner.h"
 static i32 nd_create(void* guid,void** out,void* outer,u32 caller) {
   u32 error=GetLastError();
   if(!out)return ND_INVALID;
@@ -69,7 +75,8 @@ static i32 nd_create(void* guid,void** out,void* outer,u32 caller) {
   ++nd_objects;++nd_creates;*out=&s->first;nd_status();SetLastError(error);return 0;
 }
 __declspec(dllexport) i32 WIN NativeDrawCreate(void* guid,void** out,void* outer) {
- u32 error=GetLastError();ns_guard_initialize();ns_image_copy_install();++nd_attempts;i32 result=nd_create(guid,out,outer,(u32)__builtin_return_address(0));nd_last_create=(u32)result;nd_status();SetLastError(error);return result;
+ struct NsLifeGuard life __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
+ u32 error=GetLastError();nd_cursor_install();ns_guard_initialize();ns_image_copy_install();++nd_attempts;i32 result=nd_create(guid,out,outer,(u32)__builtin_return_address(0));nd_last_create=(u32)result;nd_status();SetLastError(error);return result;
 }
 typedef i32 (WIN *NdEnumCallback)(void*,const char*,const char*,void*);
 __declspec(dllexport) i32 WIN NativeDrawEnumerateA(NdEnumCallback callback,void* context) {
@@ -82,6 +89,7 @@ __declspec(dllexport) u32 WIN NativeDrawDCs(void) {return ns_dcs;}
  * surface or survive ReleaseDC. INT_MIN means refusal before any mutation. */
 __declspec(dllexport) i32 WIN NativeDrawDibWordsV1(void* dc,i32 x,i32 y,i32 w,i32 h,
  i32 sx,i32 sy,i32 sw,i32 sh,const u8* bits,const u8* info,u32 usage,u32 rop) {
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  struct NsState* s=ns_dc_owner(dc);
  if(!s || s->bits!=16 || !info || !bits || w<1 || w>2048 || h<1 || h>2048 || sx || sy || sw!=w || sh!=h || rop!=0xcc0020)return (i32)0x80000000u;
  /* Producer adapter proves these source spans readable before this call. */
@@ -95,6 +103,7 @@ __declspec(dllexport) i32 WIN NativeDrawDibWordsV1(void* dc,i32 x,i32 y,i32 w,i3
 /* SRCCOPY between current owned top-down RGB565 DC leases. Negative source
  * extents, custom transforms/clip/ROP and unknown handles refuse atomically. */
 __declspec(dllexport) i32 WIN NativeDrawBitBltV1(void* dc,i32 x,i32 y,i32 w,i32 h,void* source,i32 sx,i32 sy,u32 rop){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  const u32 error=GetLastError();i32 result=(i32)0x80000000u;
  struct NsState *d=ns_dc_owner(dc),*s=ns_dc_owner(source);
  if(!d||!s||d->bits!=16||s->bits!=16||d->masks[0]!=s->masks[0]||w<0||w>2048||h<0||h>2048||rop!=0xcc0020||!ns_dc_plain(dc)||!ns_dc_plain(source))goto done;
@@ -116,6 +125,7 @@ __declspec(dllexport) u32 WIN NativeDrawSurfaces(void) {return nd_surfaces;}
 /* Process-local synchronous storage lookup. No pointer survives this call's
  * owner-thread operation; retired surfaces and active DC leases refuse. */
 __declspec(dllexport) i32 WIN NativeDrawPlaneV1(const void* pixels,u32* fields,u32 bytes){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(!pixels || !fields || bytes!=24)return ND_INVALID;
  for(struct NsState* s=ns_owned;s;s=s->next_owned)if(s->pixels==pixels){
   if(s->dc || s->storage_dc)return NS_BUSY;if(s->bits!=16)return NS_UNSUPPORTED;
@@ -129,4 +139,4 @@ __declspec(dllexport) u32 WIN NativeDrawStatusStage(void) {return __atomic_load_
 __declspec(dllexport) void WIN NativeDrawStatusDeferV1(u32 begin) {nd_status_defer(begin);}
 __declspec(dllexport) u32 WIN NativeDrawObjects(void) {return nd_objects;}
 __declspec(dllexport) u32 WIN NativeDrawPalettes(void) {return np_objects;}
-i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;if(reason==1){nd_init();nd_status_start();np_status_start();}else if(reason==0){nd_retirement_report(reserved!=0);ns_guard_finish();np_status_finish();nd_status_finish();}return 1;}
+i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;if(reason==1){ns_lifetime_initialize();nd_init();ns_lifetime_install();nd_status_start();np_status_start();}else if(reason==0){nd_cursor_detach();nd_retirement_report(reserved!=0);ns_guard_finish();np_status_finish();nd_status_finish();}return 1;}

@@ -22556,6 +22556,40 @@ extended679-transition history review has no missing exact receipts. Pending
 player-launcher edits are retained separately in verified SQLite/autostash
 preservation and are outside this cursor commit's engine claims.
 
+## Storage source-session closure — 2026-10-25
+
+`SSC25` completes the bounded original storage/rebuild/normal-Quit source milestone
+on owned sources based on568c7304, without changing the web UI. Baseline07 closes
+36030 producer records/16 balanced Worlds and actual original MainQuit/process
+exit0. All218 native GL-source/nominal-destination comparisons agree; first-shrink
+physical ordinal158 retains301992 mismatching pixels. Explicit corrected-upload08
+closes34376 records/15 Worlds and actual exit0; all205 source/default/native/physical
+comparisons pass with zero mismatches (physical RGB tolerance1, alpha excluded).
+Baseline failure and corrected policy acceptance remain separate. Both are software
+OpenGL observed-EGL intervals, not whole-renderer or live-replacement acceptance.
+
+Earlier failed raw streams contain375/251/251 failure18/tag52 colour-rectangle
+recorder refusals, plus partial terminal records. The gate correctly refused those
+streams; their exact rejecting shape subcondition remains unknown and uncorrected.
+No pending-frame deadlock was established. Fresh source closure does not renew or
+accept the earlier failed sources. Three optional-installer, missing-manifest and
+sound-startup failures remain retained, as does attempt06's successful source/Quit
+closure followed by a global accepted-sequence decoder refusal.
+
+Storage cadence now records a separately observed epoch only after an adjacent
+complete zero-valued pacer call followed by accepted sequence1. It preserves
+nesting, counter, queue, QPC and thread checks, breaks continuity across epochs,
+and does not infer Load causality. Strict continuous/source-binding analysis still
+refuses duplicate/reversed sequences. Six C refusal boundaries and20 Python tests
+pass. Private null audio, scoped optional Wineboot installer suppression, complete
+4834-file fixture admission and2927-file original-manifest bookends make the new
+acquisitions reproducible. No gameplay rules changed.
+
+See [scope, exact results and raw retention](storage-session-closure-20261025.md).
+Current `TOOL.storage-session-closure` implementation/live-observation support is
+scoped; original comparison and live replacement stay none. Historical hashes and
+shared-source staleness are preserved. Concurrent main integration/source changes
+remain separate from this owned batch's validation. The normal90GiB guard applies.
 2026-10-25 commit workflow tooling: persistent evidence filtering retains the
 existing cleaner and required Git failures while avoiding Python startup per
 research file. The staged gate bypasses only identity evidence smudge during
@@ -22587,3 +22621,326 @@ closure,physical device/context loss and installed live cursor takeover remain
 open;the native private-owner headless scope is complete. The byte-identical
 exploratory listing is retained through a supported SQLite .bin reference.
 Historical evidence/source hashes are preserved.
+
+
+## Rendering closure integration and small colour-source admission — 2026-10-25
+
+The owned closure integration combines `cb3bfd33` with committed master through
+`233af3b3`. A longer original-active storage workload reproduces failure18/tag52
+at `0x00547d80`, called from `0x0054ab72`: the first32 diagnostic samples show
+2x2 mode0 RGB565 source planes rejected by uniform-only recording. Small
+constants also exposed an unadmitted generic fill inside native World. Both
+now use the existing bounded owned colour operation; native pixel kernels and
+web UI are unchanged. Unsupported formats/extents/channels, unreadable inputs
+and source-plane destination aliases still refuse. Diagnostics omit known
+aliased spans even when an earlier format guard refuses first.
+
+`RCI25.controls` records six closure refusal boundaries,38 Python cases and
+actual PE32 forwarding/ABI/eleven refusal fixtures. `RCI25.baseline-source` and
+`RCI25.corrected-source` close58826/57840 source records,29 balanced Worlds each,
+zero source failures and verified original MainQuit/process exit0. The final
+comparisons match native/original GPU source/default output across216/224
+presentations and1218/1222 owned colour draws. Baseline physical shrink retains
+301992 differing pixels; the separate explicit upload correction has zero
+physical mismatches within RGB tolerance1, alpha excluded. Actual live inputs
+cover1x1 mode0 and2x2 modes0/1. No other modes, hardware scanout, all-writer
+ownership, whole-renderer or live replacement promotion is granted.
+
+The earlier failed journals retain their original identities and unknown
+subconditions. The exploratory16-return-per-phase acquisition still times out
+after Load and is not accepted by the final initial-only extension. Exact
+committed-history review, failed attempts, source variants and raw evidence
+remain separate from current execution proof. Generated reports use SQLite;
+RAM execution remains temporary pending verified durable backup. See
+[the integration evidence and boundaries](rendering-closure-integration-20261025.md).
+### Screen service recovery — 2026-10-25
+
+`RS.screen-selection-service`, `RS.cursor-selection-service` and
+`RS.screen-control-dispatch` separate the three direct services formerly authored
+by the shared-tick fixture. Complete local bodies at5571e0..557368,
+4a39a0..4a3c17 and4a5070..4a5842 are modeled independently, with actual cursor
+resource/mutex semantics and control ring/capture/World orchestration. Stack
+search exhaustion returns at index zero; the control capture latch persists for
+one invocation across button-release events. `RS.screen-service-tick-transitions`
+composes inactive shared-tick transitions with original selection/invalidation.
+`RS.screen-minimal-transition-callbacks` supplies exact selected real callback
+bytes and state effects for candidate table5c6564.
+
+Original platform imports, control callbacks and World unit/selection helpers
+remain controlled boundaries. The selected minimal screen callbacks contain no
+allocation or retirement, but their owning constructors/destructors, actual
+dynamic class identity, other screen classes, arbitrary callback mutation and
+whole-session lifetime are still unverified. No gameplay balance, application
+integration or live replacement is promoted. See
+[screen service recovery](screen-services-recovery-20261025.md). Historical
+shared-tick evidence remains unchanged and keeps its authored-service scope.
+
+## Original screen services and concrete class lifetime — 2026-10-25
+
+The recovery from local4eca3eb7 is adopted onto master5ea14a4a in an owned
+worktree,preserving its exact original findings,receipts and all failed attempts.
+Fresh SSR1.current-master compares complete5571e0 selection,4a39a0 cursor
+selection and4a5070 input dispatch:192/9984/18432 cases plus110 shared-tick
+transition schedules agree in optimized32,sanitized32 and sanitized64 builds.
+These direct callers are recovered local services;their external gameplay/OS
+and dynamic class providers remain separate.
+
+RS.screen-class-ownership-static names22 concrete shared-tick tables,47 direct
+vtable-store witnesses and132 transition/draw/final target slots.
+RS.screen-class11-lifetime recovers unchanged construction,vector retirement,
+callback publication/invocation/deletion and six no-op tick callbacks. All4608
+cases agree in the three configurations,including allocation failure,disposal
+flag bits,repeated lifecycle calls and callback mutations. Callback deletion
+resets its table and frees on the low flag bit;the surface alias remains untouched by this
+caller. The constructor's missing initial inventory byte has an explicit
+execution-backed range exception;historical inventory bytes are preserved.
+
+See [concrete lifetime recovery](screen-class-lifetime-recovery-20261025.md).
+No installed native takeover or full-session/physical allocator claim is added.
+Other concrete class resource orchestration,dynamic registration,indirect aliases,
+real failure reachability and asynchronous retirement remain recovery work.
+
+The final [audit](screen-services-results-20261025/audit-current03.json) and
+[ordinary dashboard reader](screen-services-results-20261025/ui-current01.json)
+pass with1,421 behaviors and no census drift. All six touched implemented
+contracts have current original-comparison support;static table recovery has
+no implementation/comparison promotion. The [focused summary](coverage/summary-screen-original-recovery-final-20261025.md)
+retains unrelated historical staleness and incomplete dispatch frontiers.
+
+## Original screen recovery: combined master integration — 2026-10-25
+
+Recovery b6a69d45 is combined with completed master integration d306d926,
+including cursor evidence storage and commit-tooling improvements. Historical
+evidence and exact receipts are preserved by stable ID. Fresh SSR1.master
+compares192 selection,9984 cursor,18432 control and110 tick-transition cases;
+SSR2.master compares4608 class11 lifetime cases,each in optimized32,sanitized32
+and sanitized64 configurations with identical checksums and verified original
+manifests. The22-table47-store132-target census remains static.
+
+The [integration review](screen-recovery-master-integration-20261025.md) retains
+actual source bindings and committed-history review. No broad screen ownership,
+real failure/heap,indirect alias,full-session or installed takeover claim is added.
+Pending main-checkout launcher work is preserved separately.
+
+
+## Terrain light refresh callers and scheduler gates — 2026-10-25
+
+[Caller recovery](terrain-refresh-callers.md) establishes three separate bounded
+contracts: `TL.refresh-creation-caller`, `TL.refresh-position-caller`, and
+`TL.refresh-scheduler-gates`. Whole creation `0048f690` executes for a valid
+linked-creature source; whole position handler `0051e890` executes for event9
+with `+718=0` and defaults. Collision, owner, allocation, coordinate, placement
+and lifecycle endpoints are explicit recorders. The scheduler comparison
+executes only `0046b836..0046b91a` inside `0046afc0`, with checked exits outside
+that range; it does not claim the entire world loop.
+
+[Fresh SQLite execution](terrain-refresh-callers-results-20261025/execution02.json)
+compares original32, native64 and ASan/UBSan:384 creation cases,640 position
+cases,1152 scheduler cases and384 scene ticks/checkpoints. All7897216 output
+bytes match, including ordered service calls, five guarded buffers and eleven
+cycle/publication state values per scene tick. Both original manifest bookends
+pass. Executable bodies stay RX and their pinned original bytes are verified.
+Exact common output streams are [retained in SQLite](terrain-refresh-callers-results-20261025/retained-artifacts01.json).
+
+Skipped dispatch retains refresh requests. Admitted `004f27a0` runs creature
+then static consumers before clearing the shared flag. Headless authored scenes
+combine real request callers with unmodified original initialization, kernel,
+updater and stamp bodies; native scenes use `TerrainLightingCycle`. This grants
+only the registered headless scenario, without installed input or live claims.
+
+[Static discovery](terrain-refresh-callers-results-20261025/discovery02.json)
+and an explicit recovered-range exception preserve the event handler missing
+from the Ghidra function census. Its event dispatch stays incomplete:events5/8/14,
+`+718` continuation and external service internals remain open. Other creation
+modes, full map/load caller chains (including the other updater site004721fc),
+earlier/later world-loop gates, clock ownership, indirect writes, heap failures,
+installed source production and live replacement also remain separate.
+
+The first successful narrower matrix and its exact source version are retained;
+execution02 additionally tests default-event lower/upper/unsigned boundaries.
+The [committed-history review](terrain-refresh-callers-results-20261025/committed-history01.json)
+checks39 exact transitions in the preceding supplier integration against their
+receipts with no gaps. It remains distinct from this batch's source review and
+execution claims. Historical evidence and source hashes are unchanged.
+
+The [coverage audit](terrain-refresh-callers-results-20261025/audit01.json) has
+zero errors. All three new comparisons are current; the declared scheduler
+headless scenario is current independently. The
+[coverage summary](coverage/summary-terrain-refresh-callers-20261025.md) retains
+unrelated historical staleness and unresolved discovery ranges.
+
+## Terrain/light supplier closure and bounded live replacement — 2026-10-25
+
+The supplier contracts now include the remaining creation modes, position
+events5/8/9/14/defaults and the +718 command continuation. The successful reload
+continuation at004721f0..00472218 sets parent+100b0 and calls lighting even when
+the regular scheduler enable flag is zero. The
+[current producer comparison](terrain-light-closure-results-20261025/producers02.json)
+matches672 creation cases,2688 position cases,1152 local scheduler cases,
+64 reload continuations and384 composed scene ticks across original32,
+native64 and ASan/UBSan:28603200 identical bytes. Service bodies remain
+explicit independently owned endpoints.
+
+The [whole map loader](terrain-light-closure-results-20261025/loader05.json)
+matches512 cases, including250 successes and262 failures, existing linked-list
+retirement, read/codec failures, serialized size mismatch and each of the six
+cell/light allocation failures. Serialized light data goes into base+7dc.
+Successful loading alone requests refresh before kernel rebuilding and extent
+publication. The separate
+[initializer failure comparison](terrain-light-closure-results-20261025/allocation04.json)
+matches18 isolated child fault/partial-state cases. It recovered and corrected
+the original fill/copy order:base,work,target,prior,published.
+
+The [whole script caller](terrain-light-closure-results-20261025/script05.json)
+matches2048 original/native/sanitized cases and98893960 bytes. It includes owner
+changes, relation18 disable/enable, share20, ordered cleanup and conditional
+creature/character reveal. Character admission uses the selected character
+owner's directed relation row toward the current player. A sharing action with
+an absent partner reaches uninitialized original owner locals; retained negative
+diagnostics document that fault. Native execution refuses that malformed pair
+before mutation. See [contract and evidence boundary](terrain-light-script-relations.md).
+
+[Owned-resource tests](terrain-light-closure-results-20261025/lifetime01.json)
+exercise213 allocation failures across construction, restore and step,27 invalid
+restores and successful round trips in native and ASan/UBSan builds, with zero
+outstanding allocation delta. This strong exception guarantee is intentional
+native policy, separate from the observed original fault behavior. Existing
+[supplier](terrain-light-closure-results-20261025/suppliers-regression01.json)
+and [refresh](terrain-light-closure-results-20261025/refresh-regression01.json)
+regressions also pass against current source. A post-write SQLite read lock in
+the refresh wrapper was separately retained and its exact persisted successful
+execution report was subsequently hash-verified; it did not require repeating
+the completed engine experiment.
+
+The installed bridge copies actual relation tables,125 creature-capacity slots,
+2000 static-object slots, scan counts, view/configuration, five buffers and all
+eleven cycle/publication state words into a versioned pointer-free wire record.
+The [original-active run](terrain-light-closure-results-20261025/observe11.json)
+passes32 real world updates at caller0046b8fc. Live original output,
+independent unchanged PE32 replay, native64 replay and ASan/UBSan replay all
+agree. The source-matched
+[replacement run](terrain-light-closure-results-20261025/replace03.json)
+bypasses all32 admitted original updates, with every applied result also equal
+to independent original replay. Both runs refuse36 malformed wire inputs and
+retain a continuing battle-scene image after capture.
+
+Replacement remains opt-in and bounded to this recorded Quick Battle domain.
+The original whole-world orchestrator still owns scheduling and the clock;
+its earlier/later UI, persistence and simulation services are not claimed as a
+standalone native world-loop reconstruction. Arbitrary maps/saves, long-duration
+play and default rollout remain separate milestones. This closes the supplied
+relation/resource/refresh contracts and their bounded installed lighting path;
+it does not complete engine modernization or the outstanding gameplay features.
+Failed display, startup, ABI, malformed-action and timeout attempts, exact prior
+source versions and raw outputs remain retained. Historical evidence hashes and
+unrelated subsystem statuses are preserved.
+
+The [final audit](terrain-light-closure-results-20261025/audit03.json) has zero
+errors and no census drift. All declared new implementation/comparison stages,
+both live scenarios and bounded replacement have current complete-source
+support. The [reviewed summary](coverage/summary-terrain-light-closure-final-20261025.md)
+retains unrelated historical staleness. Exact comparison streams and negative
+diagnostics are [retained in SQLite](terrain-light-closure-results-20261025/retained-artifacts01.json);
+[source preservation](terrain-light-closure-results-20261025/source-retention-audit01.json)
+checks1286 recorded source references with zero unresolved versions.
+
+
+## Terrain/light supplier master integration and installed reload (2026-10-25)
+
+The supplier recovery and bounded live lighting replacement are complete within
+registered input domains. Directed owner relation18 and shared sight20 production,
+all creation owner modes, position events and continuation, refresh callers,
+map-load buffer ownership and initializer fault behavior have original32/native64
+and sanitized comparisons. The combined-master reruns are producers03, loader06,
+allocation05, script06, supplier/refresh regressions02 and owned lifetime02 under
+`terrain-light-closure-results-20261025/`; earlier results and hashes are retained.
+
+Installed Adept campaign Save/Load now has a separate `TL.live-reload` contract.
+The original game writes a retained named save, loads that exact row, returns
+through the checked unchanged loader and reaches the first lighting update at
+`00472201`. Both final reload-observe04 and reload-replace02 compare all 32
+updates with independent unchanged PE32, native64 and ASan/UBSan replay;
+replacement accepts all 32 replies. Both loader witnesses show 76,800 light bytes,
+refresh requested, and all five buffer addresses reused. Address equality does
+not establish resource identity: isolated cleanup/allocation evidence establishes
+ownership order. The original loader and serializer remain active.
+
+Final Quick Battle observe12/replace04 likewise match all 32 updates, with all
+32 replacement replies accepted. All four journeys reject 36 malformed wire
+inputs and retain a continuing scene. A completed-input sequence marker closes
+partial file publication; terminal records require their complete length. Fresh
+source-bound evidence IDs are added without changing historical fingerprints.
+Failed save attempts, superseded successful runs, exact earlier sources and logs
+remain in SQLite and retained raw runs. `master-source-retention03.json` records
+source preservation; `master-history01.json` reviews committed transitions
+separately from this integration and grants no historical gate/execution claim.
+
+Whole-world scheduling, original stream/codec/allocator internals, arbitrary
+maps/saves, long-duration play and default rollout remain separate milestones.
+This closes the terrain/light supplier workstream within its bounded contracts;
+it does not replace the original world loop or renderer or change gameplay.
+
+The expanded source-retention check corrects an older bookkeeping limitation:
+two textual source variants from failed script01/02 attempts are absent from the
+retained snapshots. Their original hashes, failures, binaries and raw outputs
+remain pinned. All successful execution sources are available. This limitation
+is explicit on `TL.script-relation-production`; no failed attempt supports a
+current validation promotion.
+
+The final integration is based on master233af3b3 and incoming1bd4c65c. Its source
+impact report confirms that newer cursor-listing and screen-recovery commits
+change none of the eleven final execution reports' fingerprinted inputs. Exact
+combined-tree checks also verify all20 behavior contracts and source closures.
+`final-master-history01.json` retains the additional committed parent/current
+transition review, and `final-local-evidence01.json` identifies the verified local
+2,647-object SQLite backup. The final normal hook checks the combined staged
+tree; pre-existing master edits are preserved separately at fast-forward time.
+
+## Native cursor ownership and deferred lifetime closure (2026-10-25)
+
+[The owning native adapter](cursor-live-ownership-20261025.md) closes the supported
+native graphics cursor lifetime path. `NP.cursor-provider-lifetime` separates
+private pins from public interface counts and retains active CPU/DC writers;
+`NP.cursor-live-ownership` installs18 guarded client/copy/lifecycle hooks and an
+owning128-slot queue. Native menu/OpenGL launches select this policy. The
+source-cursor gate remains diagnostic;unknown legacy-driver aliases are outside
+native admission. Original foreground/timer/background/setup bodies remain
+services;the existing screen-services helpers were not duplicated.
+
+Fresh `CUR27.provider06` passes197641 assertions and1616 complete planes in each
+plain/protected profile,16 alias pairs,eight writer cases,512pin saturation and
+1600 concurrent copies. `CUR27.owner07` executes the production installer and
+original cursor bodies in four startup/backing profiles:1843262 assertions,six
+complete640x480 planes,131 accepted deferred jobs,three completions,128 terminal
+cancellations,and18 changed-anchor refusals per relevant control. All native
+resources retire. `CUR27.controls02` checks provider-before-copy ownership,
+recursive admission/refusal,strict journal/launcher guards and both PE32 bridge
+builds. These are native/original-machine-code component results,not an original
+DirectDraw-driver alias recovery claim.
+
+`CUR27.live09` runs the combined native-only Apprentice campaign with278 balanced
+Worlds,two physical movement/HUD phases,Mini Cancel,Quit No/resume and Quit Yes/
+report/Main/normal exit. Its18 installed hooks complete3363 cursor client calls,
+including actual setup,foreground,timer,both background restorers and disposal.
+There are no surviving clients or graphics owners. The native campaign selects
+immediate copies;its observed queue denominator is zero. Deferred generations
+are independently executed by `CUR27.owner07`,rather than inferred from that
+zero. `CUR27.live10` injects an original producer failure,retains terminal cleanup,
+uses public Hard restart and completes a fresh original session with normal Quit
+and zero final graphics owners. Scoped live replacement means native lifetime/
+scheduling and provider ownership;full original scene/driver pixel equivalence
+is not asserted.
+
+`CUR27.recovery02` extends the private OpenGL compositor with CPU checkpoints,
+actual backend/context destruction and staged recreation. Both optimized and
+ASan/UBSan pass778 assertions,203 complete independent frames,2400 producer
+attempts and eight actual teardown races. Native generation metadata and queued
+work survive controlled context recreation. Unspecified external-driver loss
+without an admitted checkpoint remains outside this policy.
+
+The reviewed `d306d926..d77015d4` incoming history has2600 exact parent/current
+file-receipt transitions and no missing receipts. Historical evidence hashes
+and all negative/intermediate attempts remain immutable. Changed shared scene/
+provider sources can leave unrelated historical observations stale;they receive
+no current-code promotion from this cursor work. Local SQLite payloads and their
+retained verified backups supply the accounting;no evidence upload is required.

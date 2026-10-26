@@ -12,6 +12,8 @@ FLAGS = ['clang', '--target=i686-pc-windows-msvc', '-O2', '-ffreestanding',
 IMPORTS = {
     'kernel32': {'GetModuleHandleA': 4, 'GetEnvironmentVariableA': 12, 'GetProcessHeap': 0, 'HeapAlloc': 12, 'HeapFree': 12,
                  'GetLastError': 0, 'SetLastError': 4, 'ExitProcess': 4,
+                 'GetProcAddress':8,'GetCurrentProcess':0,'DuplicateHandle':28,'WaitForSingleObject':8,'ReleaseMutex':4,
+                 'InitializeCriticalSection':4,'EnterCriticalSection':4,'LeaveCriticalSection':4,
                  'FlushInstructionCache': 12, 'VirtualAlloc': 16, 'VirtualFree': 12, 'VirtualProtect': 16, 'VirtualQuery': 12,
                  'AddVectoredExceptionHandler': 8, 'RemoveVectoredExceptionHandler': 4, 'GetCurrentThreadId': 0, 'CreateFileA': 28,
                  'WriteFile': 20, 'CloseHandle': 4, 'CreateFileMappingA': 24,
@@ -52,7 +54,7 @@ def build(output, declared=None):
     if declared is not None and closure-set(declared):
         raise ValueError('Undeclared native DLL compiler/builder inputs: '+repr(sorted(closure-set(declared))))
     dll = output/'MnmDraw.dll'
-    exports = {'NativeDrawCreate': ('NativeDrawCreate', 12),
+    exports = {'NativeDrawCursorStopV1':('NativeDrawCursorStopV1',0),'NativeDrawCursorStatusV1':('NativeDrawCursorStatusV1',8),'NativeDrawGuardBeginV1':('NativeDrawGuardBeginV1',0),'NativeDrawGuardEndV1':('NativeDrawGuardEndV1',0),'NativeDrawPinV1':('NativeDrawPinV1',8),'NativeDrawUnpinV1':('NativeDrawUnpinV1',4),'NativeDrawBackingLiveV1':('NativeDrawBackingLiveV1',4),'NativeDrawRetirementsV1':('NativeDrawRetirementsV1',8),'NativeDrawCreate': ('NativeDrawCreate', 12),
                'NativeDrawReleaseStartupProbeV1': ('NativeDrawReleaseStartupProbeV1', 4),
                'DirectDrawCreate': ('NativeDrawCreate', 12),
                'NativeDrawEnumerateA': ('NativeDrawEnumerateA', 8),

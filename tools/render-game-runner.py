@@ -16,6 +16,8 @@ if type(native_draw) is not bool:raise ValueError('Invalid native graphics polic
 if native_draw:binaries.append(('MnmDraw.dll','native_draw_sha256'))
 for name,key in binaries:
     if hashlib.sha256((game/name).read_bytes()).hexdigest()!=metadata[key]:raise ValueError(f'{name} hash mismatch')
+from native_cursor_launch import authorize as authorize_cursor
+authorize_cursor(root,metadata,os.environ)
 os.environ.pop('MNM_NATIVE_DRAW_STATUS',None)
 os.environ.pop('MNM_NATIVE_DRAW_RETIREMENT',None)
 if native_draw:

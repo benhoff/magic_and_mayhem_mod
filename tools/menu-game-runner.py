@@ -53,6 +53,8 @@ if os.environ.get('MNM_MENU_CAMPAIGN_OBSERVE'):
     expected='Z:'+str(campaign).replace('/','\\')
     if not metadata.get('campaign_observe') or os.environ['MNM_MENU_CAMPAIGN_OBSERVE']!=expected or campaign.exists():
         raise ValueError('Refusing unapproved or stale campaign observation output')
+from native_cursor_launch import authorize as authorize_cursor
+authorize_cursor(root,metadata,os.environ)
 os.environ.pop('MNM_NATIVE_DRAW_STATUS',None)
 os.environ.pop('MNM_NATIVE_DRAW_RETIREMENT',None)
 native_draw=metadata.get('native_draw',False)

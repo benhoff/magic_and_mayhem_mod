@@ -73,6 +73,7 @@ static void game_copy_leave(struct GameCopyLease*);
 static void lock_diagnostic_worker_start(void);
 #include "command_scheduler.h"
 #include "copy_order.h"
+#include "native_lifetime.h"
 #include "cpu_reader.h"
 #include "lock_diagnostic_worker.h"
 static int command_control_start(void);
@@ -113,8 +114,9 @@ static u32 WIN surface_release(void* object){
     if(!copy_lease.observe){game_lifetime_invalidate();u32 forwarded=((ReleaseObject)lookup(object)->original[2])(object);game_lifetime_invalidate();game_copy_unobserved(object);return forwarded;}
     u32 entry=GetLastError();int token=history_enter();struct HistorySurface* h=token?history_surface_resolve(object):0;
     struct Table* t=lookup(object);SetLastError(entry);u32 remaining=((ReleaseObject)t->original[2])(object),error=GetLastError();
-    if(!remaining)game_lock_retire(object);
-    if(token)history_release(h,remaining);history_leave(token);SetLastError(error);return remaining;
+    u32 backing_live=!remaining && game_copy_native_backing_live && game_copy_native_backing_live(object)==1;
+    if(!remaining && !backing_live)game_lock_retire(object);
+    if(token)history_release(h,backing_live?1:remaining);history_leave(token);SetLastError(error);return remaining;
 }
 static i32 WIN create_surface(void* object,void* desc,void** result,void* outer){
     COMMAND_CALLBACK(((CreateSurface)lookup(object)->original[6])(object,desc,result,outer));
@@ -714,6 +716,13 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     if(!pin || !pin(5,(const char*)&RenderAnchor,&pinned)){stream[MNM_FRAME_V1_STATUS_OFFSET/4]=MNM_FRAME_V1_STATUS_HOOK_FAILED;return 1;}
     void* native_draw=GetModuleHandleA("MnmDraw.dll");
     if(native_draw){
+        game_native_cursor_stop=(u32(WIN*)(void))GetProcAddress(native_draw,"NativeDrawCursorStopV1");
+        game_copy_native_begin=(u32 (WIN *)(void))GetProcAddress(native_draw,"NativeDrawGuardBeginV1");
+        game_copy_native_end=(void (WIN *)(void))GetProcAddress(native_draw,"NativeDrawGuardEndV1");
+        game_copy_native_backing_live=(i32 (WIN *)(void*))GetProcAddress(native_draw,"NativeDrawBackingLiveV1");
+        game_native_retirements=(u32 (WIN *)(void**,u32))GetProcAddress(native_draw,"NativeDrawRetirementsV1");
+        if(game_copy_native_begin && game_copy_native_end && game_copy_native_backing_live && game_native_retirements)game_copy_native_drain=game_native_lifetime_drain;
+        else if(game_copy_native_begin || game_copy_native_end || game_copy_native_backing_live || game_native_retirements)ExitProcess(123);
         game_copy_native_stage=(u32 (WIN *)(void))GetProcAddress(native_draw,"NativeDrawStatusStage");
         game_copy_native_defer=(void (WIN *)(u32))GetProcAddress(native_draw,"NativeDrawStatusDeferV1");
         game_cpu_history=(i32 (WIN *)(const void*,u32,u32,u32,u32,u32))GetProcAddress(native_draw,"NativeDrawCpuHistoryV1");

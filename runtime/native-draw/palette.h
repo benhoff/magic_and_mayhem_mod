@@ -4,28 +4,36 @@ struct NpPalette {void** table;u32 refs,flags;u32 entries[256];u32 count;};
 static void* np_table[7];static u32 np_objects;
 static const u8 np_id[16]={0x84,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};
 static i32 WIN np_query(struct NpPalette* p,const u8* iid,void** out){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(!iid || !out)return ND_INVALID;*out=0;
  if(!nd_equal(iid,nd_unknown) && !nd_equal(iid,np_id))return ND_NOINTERFACE;
  ++p->refs;*out=p;return 0;
 }
-static u32 WIN np_retain(struct NpPalette* p){return ++p->refs;}
-static u32 WIN np_release(struct NpPalette* p){u32 refs=--p->refs;if(!refs){HeapFree(GetProcessHeap(),0,p);--np_objects;}return refs;}
-static i32 WIN np_caps(struct NpPalette* p,u32* out){if(!out)return ND_INVALID;*out=p->flags;return 0;}
+static u32 WIN np_retain(struct NpPalette* p){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();return ++p->refs;}
+static u32 WIN np_release(struct NpPalette* p){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();u32 refs=--p->refs;if(!refs){HeapFree(GetProcessHeap(),0,p);--np_objects;}return refs;}
+static i32 WIN np_caps(struct NpPalette* p,u32* out){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();if(!out)return ND_INVALID;*out=p->flags;return 0;}
 static i32 WIN np_get(struct NpPalette* p,u32 flags,u32 first,u32 count,u32* out){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(flags || !out || first>=p->count || count>p->count-first)return ND_INVALID;
  if(p->flags&2){u8* bytes=(u8*)out;for(u32 i=0;i<count;++i)bytes[i]=(u8)p->entries[first+i];}
  else for(u32 i=0;i<count;++i)out[i]=p->entries[first+i];return 0;
 }
 static i32 WIN np_set(struct NpPalette* p,u32 flags,u32 first,u32 count,const u32* in){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(flags || !in || first>=p->count || count>p->count-first)return ND_INVALID;
  for(u32 i=0;i<count;++i){u32 at=first+i;
   if(p->count==256 && !(p->flags&0x40) && (at==0 || at==255))continue;
   p->entries[at]=p->flags&2?((const u8*)in)[i]:in[i];}return 0;
 }
 static i32 WIN np_initialize(struct NpPalette* p,void* draw,u32 flags,const u32* entries){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  (void)p;(void)draw;(void)flags;(void)entries;return (i32)0x88760005u;
 }
 static i32 WIN nd_palette(struct NdObject* o,u32 flags,const u32* entries,void** out,void* outer){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  (void)o;if(!out)return ND_INVALID;*out=0;if(outer)return (i32)0x80040110u;
  u32 size=flags&0x305u,count=size==4?256:size==1?16:size==0x100?2:size==0x200?4:0;
  if(!count || !entries || (flags&~0x3ffu) || ((flags&0x40) && count!=256))return (i32)0x80004001u;

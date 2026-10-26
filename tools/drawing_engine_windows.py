@@ -5,21 +5,35 @@ from drawing_observed_inputs import regular_bytes
 from drawing_api_session import sha
 
 
-def analyze(path):
-    raw=regular_bytes(path,64+262144*96)
+def _analyze(raw, *, session=False):
     frequency,rows=decode_bytes(raw);stack=[];windows=[];current=None;queue_ordinal=0
+    epoch=1;restarts=[];pacer=None
     for r in rows:
         event=r[1]
         if event in (1,5,6,7):stack.append(r)
         elif event in (11,15,16,17):
             before=stack.pop() if stack else None
             if before is None or before[1]!=event-10 or event!=11 and before[13]!=r[13]:raise ValueError('Update trace unpaired original call')
+            if event==11:pacer=(before,r)
         if event==2:
             if stack:raise ValueError('Accepted update inside selected call')
             if current:
-                if not 0<(r[6]-current['sequence'])&0xffffffff<2**31:raise ValueError('Accepted update sequence duplicate/reversal')
+                if not 0<(r[6]-current['sequence'])&0xffffffff<2**31:
+                    # Storage can recreate the original counter. Admit only an
+                    # explicitly observed zero-valued complete pacer call,
+                    # immediately followed by accepted sequence1. This records
+                    # a new epoch, never a continuous/global update identity.
+                    if not (session and pacer and r[6]==1 and
+                            pacer[0][6]==pacer[1][6]==0 and
+                            pacer[1][0]+1==r[0] and pacer[1][5]==r[5]):
+                        raise ValueError('Accepted update sequence duplicate/reversal')
+                    epoch+=1
+                    restarts.append(dict(epoch=epoch,record=r[0],previous_sequence=current['sequence'],
+                                         sequence=r[6],pacer_entry=pacer[0][0],pacer_return=pacer[1][0],
+                                         original_load_causality_verified=False))
                 windows.append(current)
             current=dict(sequence=r[6],counter_before=r[5],mode=r[10],begin_record=r[0],qpc=r[3]|r[4]<<32,thread=r[2],events=Counter(),ticks=[],queues=[])
+            if session:current['epoch']=epoch
         if event==8:queue_ordinal+=1
         if current:
             current['events'][EVENTS[event]]+=1
@@ -33,9 +47,24 @@ def analyze(path):
         w['advancing']=len(w['ticks'])==1 and (w['ticks'][0]-w['counter_before'])&0xffffffff==1
         if len(w['ticks'])>1 or len(w['ticks'])==1 and (w['ticks'][0]-w['counter_before'])&0xffffffff!=1:raise ValueError('Update world counter inconsistent')
         if any(q['counter']!=(w['ticks'][0] if w['ticks'] else w['counter_before']) for q in w['queues']):raise ValueError('Queue counter not in observed update')
-        contiguous=previous is not None and previous['advancing'] and (w['sequence']-previous['sequence'])&0xffffffff==1 and w['counter_before']==previous['ticks'][0]
+        contiguous=previous is not None and previous.get('epoch')==w.get('epoch') and previous['advancing'] and (w['sequence']-previous['sequence'])&0xffffffff==1 and w['counter_before']==previous['ticks'][0]
         run=run+1 if w['advancing'] and contiguous else 1 if w['advancing'] else 0;longest=max(longest,run);previous=w
         w['events']=dict(w['events'])
     complete_queue_records={q['record'] for w in windows for q in w['queues']}
     excluded_queue_records=[r[0] for r in rows if r[1]==8 and r[0] not in complete_queue_records]
-    return dict(schema=1,success=True,journal_sha256=sha(raw),frequency=frequency,owner_thread=rows[0][2],windows=windows,complete_update_windows=len(windows),advancing_update_windows=sum(w['advancing'] for w in windows),non_advancing_update_windows=sum(not w['advancing'] for w in windows),longest_contiguous_advancing_run=longest,excluded_final_update=True,excluded_final_sequence=current['sequence'] if current else None,queue_records_outside_complete_windows=excluded_queue_records,producer_update_identity_bound=False,all_presentations_in_update_interval_retained=False,complete_presented_journey=False)
+    result=dict(schema=1,success=True,journal_sha256=sha(raw),frequency=frequency,owner_thread=rows[0][2],windows=windows,complete_update_windows=len(windows),advancing_update_windows=sum(w['advancing'] for w in windows),non_advancing_update_windows=sum(not w['advancing'] for w in windows),longest_contiguous_advancing_run=longest,excluded_final_update=True,excluded_final_sequence=current['sequence'] if current else None,queue_records_outside_complete_windows=excluded_queue_records,producer_update_identity_bound=False,all_presentations_in_update_interval_retained=False,complete_presented_journey=False)
+    if session:result.update(boundary='observed_storage_cadence_epochs',epochs=epoch,sequence_restarts=restarts,global_sequence_identity=False,excluded_final_epoch=epoch)
+    return result
+
+
+def analyze(path):
+    return _analyze(regular_bytes(path,64+262144*96))
+
+
+def analyze_session(path):
+    """Separate epochs only for the observed zero-pacer/sequence1 restart.
+
+    Callers must not expose this as continuous or globally keyed update proof.
+    No callback/Load causality is inferred from a sequence restart.
+    """
+    return _analyze(regular_bytes(path,64+262144*96),session=True)

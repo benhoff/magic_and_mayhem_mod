@@ -1,3 +1,4 @@
+static u32 (WIN *game_native_cursor_stop)(void);
 /* Terminal application ownership, separate from recoverable session shutdown. */
 static u32 command_application_busy,command_application_complete,command_application_finished;
 static int command_application_finish(u32 milliseconds){
@@ -37,6 +38,9 @@ __declspec(dllexport) u32 WIN RenderStop(u32 milliseconds){
     __atomic_store_n(&command_control_stop,1,__ATOMIC_RELEASE);
     if(!__sync_bool_compare_and_swap(&command_application_busy,0,1)){SetLastError(error);return 0;}
     int complete=0;
+    // Terminal application intent is already published. Quiesce native cursor
+    // producers before taking lifecycle/tracker gates or emitting final END.
+    if(game_native_cursor_stop && !game_native_cursor_stop())goto done;
     /* Never hold lifecycle/tracker/gate while joining the administrative worker:
      * it may be finishing a recovery or its own terminal publication cleanup. */
     if(command_control_worker){

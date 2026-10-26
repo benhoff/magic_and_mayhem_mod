@@ -1,5 +1,8 @@
 #include "../../protocols/include/mnm/drawing_cursor_gate_v1.h"
-/* Added diagnostic synchronization only. No recovered/source-alias claim. */
+/* Added diagnostic synchronization only. No recovered/source-alias claim.
+ * Supported native launches use native-draw/cursor_owner.h and independent
+ * provider backing pins; this diagnostic never admits borrowed driver aliases.
+ * See research/runtime/cursor-live-ownership-20261025.md. */
 static u32 drawing_cursor_gate_enabled,drawing_cursor_gate_records;
 static HANDLE drawing_cursor_gate_file;
 typedef u32(WIN* DrawingCursorGateBegin)(u32,void*,u32);

@@ -177,6 +177,8 @@ def main():
     metadata={'cd_music_disabled':True,'cd_music_preference_edits':cd_edits,'capture_locks':args.capture_locks,'no_readback':args.no_readback or args.capture_locks,'failure_log':str(root/'surface-failures.log'),'skip_movies':args.skip_movies,'movie_preference_edits':movie_edits,'origin':'directdraw_opengl_presentation','source_sha256':stage.HASH,'stream':str(stream),
               'staged_sha256':hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest(),'capture_history':args.capture_history,'graphics_environment':{key:os.environ.get(key,'') for key in ('LIBGL_ALWAYS_SOFTWARE','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','WINE_D3D_CONFIG')},'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest()}
     metadata.update(native_draw=native_draw,native_render=bool(command_path),native_draw_sha256=hashlib.sha256(draw_dll.read_bytes()).hexdigest() if draw_dll else None,native_draw_status=str(root/'native-draw-status.bin') if native_draw else None,native_draw_startup_retirement=native_draw)
+    from native_cursor_launch import stage as stage_cursor
+    metadata.update(stage_cursor(root,native_draw))
     metadata['full_asset_verification']=full_asset_verification()
     if native_draw:metadata['origin']='native_graphics_opengl_presentation'
     if native_draw and metadata['full_asset_verification']:

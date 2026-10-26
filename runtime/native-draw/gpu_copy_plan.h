@@ -20,6 +20,7 @@ static void ns_gpu_plan(struct MnmGpuCopyPlan* p,const struct NsState* d,const s
 /* The ordered bridge must commit this exact plan before returning to callers.
  * No CPU image bytes are copied, read, updated or declared current here. */
 __declspec(dllexport) i32 WIN NativeDrawGpuCopyPlanV1(void* dst,const i32* dr,void* src,const i32* sr,u32 flags,struct MnmGpuCopyPlan* out,u32 bytes){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  struct NsState *d=0,*s=0;
  for(struct NsState* state=ns_owned;state;state=state->next_owned)for(u32 i=0;i<5;++i){
   if(dst==&state->aliases[i])d=state;if(src==&state->aliases[i])s=state;}

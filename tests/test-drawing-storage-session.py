@@ -5,7 +5,7 @@ import sys
 import unittest
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'tools'))
 from drawing_action_session import frame_epoch,action_epochs,worker_handoff
-from drawing_storage_capture import storage_rows,channel_bytes
+from drawing_storage_capture import storage_rows,channel_bytes,drive
 
 
 def frame(before,after,ordinal=1,entry=8):
@@ -63,6 +63,9 @@ class Cases(unittest.TestCase):
         import re
         spec=(ROOT/'protocols/include/mnm/menu_v22.h').read_text();size=int(re.search(r'#define MNM_MENU_V22_SIZE (\d+)',spec)[1]);raw=channel_bytes()
         self.assertEqual(len(raw),size);self.assertEqual(raw[:8],b'MNMMCM22');self.assertEqual(struct.unpack_from('<5I',raw,8),(22,size,2,1,1));self.assertEqual(struct.unpack_from('<8I',raw,128),(0,)*8)
+    def test_invalid_dwell_refuses_before_any_inputs(self):
+        for count in (0,2,17,True,3.0):
+            with self.assertRaises(ValueError):drive(*([None]*10),initial_worlds=count)
     def test_storage_rows_use_exact_count(self):
         raw=bytearray(196608);struct.pack_into('<8I',raw,110592,12,17,1,0,0,0,2,2);raw[110752:110756]=b'one\0';raw[110880:110884]=b'two\0';self.assertEqual(storage_rows(raw),['one','two'])
     def test_invalid_storage_count_or_screen_refuses(self):
