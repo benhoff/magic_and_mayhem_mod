@@ -33527,7 +33527,8 @@
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/glyph-live-backend.md"
+        "research/runtime/glyph-live-backend.md",
+        "research/runtime/terrain-light-normal-session.md"
       ],
       "implementation": [
         "runtime/scene/glyph_live.c",
@@ -33739,7 +33740,8 @@
         "NR.glyph-live-admission.host-20261010",
         "NR.glyph-live-admission.live-20261010",
         "NR.glyph-live-admission.host-integrated-20261010",
-        "NR.glyph-live-admission.live-integrated-20261010"
+        "NR.glyph-live-admission.live-integrated-20261010",
+        "TLQT26.qt-save-refusal"
       ],
       "status": {
         "understanding": "scoped",
@@ -33761,7 +33763,8 @@
         ]
       },
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "TLQT26.qt-save-refusal: strict native Qt Save submission produces reason15 at original glyph entry581ec0, original exit124, before a nonempty save. The shared global/clip/coverage/frame extent rejection subcondition is unresolved; current recording is negative acquisition evidence and does not promote glyph equivalence or native storage support."
       ]
     },
     {
@@ -124081,7 +124084,8 @@
         "tools/test-rendering-seventeenth-five.py",
         "tools/rendering_seventeenth_controls.py",
         "tests/test-rendering-seventeenth-controls.py",
-        "tests/rendering-seventeenth-five/CMakeLists.txt"
+        "tests/rendering-seventeenth-five/CMakeLists.txt",
+        "tools/test-terrain-light-qt-session.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -124805,7 +124809,12 @@
         "NT17.five-rendering-contracts-20261023",
         "NT17.strict-movement-stress-limit-20261023",
         "P1.required-rendering-dependencies-static-20261024",
-        "RA25.native-only.campaign"
+        "RA25.native-only.campaign",
+        "TLQT26.observation",
+        "TLQT26.native-timeout",
+        "TLQT26.worker-loss",
+        "TLQT26.qt-save-refusal",
+        "TLQT26.abnormal-worker-lifetime"
       ],
       "status": {
         "understanding": "scoped",
@@ -124822,7 +124831,9 @@
         "NT17 completes this existing bounded implementation. Full original pixels/physical-driver equivalence, unclassified historical instrumented/capture failures, all original writers/aliases, whole-game reachability and60FPS remain independent; no earlier source fingerprint or negative result is rewritten.",
         "NT17 additional10-second strict movement stress fails Mini readiness twice after real World delivery, with no recorded graphics refusal. A short default launch-policy journey passes; the reproduced stress/input-readiness cause remains unclassified and unaccepted. The existing policy excludes ordinary campaign acceptance; public hardware campaign stress is validated separately.",
         "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted.",
-        "RFL20261025 adds a separate functional FPS policy and local callback-after-readiness recheck. Shared helper/harness source changes do not refresh historical benchmark, broader camera-body/original-pixel or launch-policy stage evidence. The new source-bound functional behavior has independent current execution; historical fingerprints remain unchanged."
+        "RFL20261025 adds a separate functional FPS policy and local callback-after-readiness recheck. Shared helper/harness source changes do not refresh historical benchmark, broader camera-body/original-pixel or launch-policy stage evidence. The new source-bound functional behavior has independent current execution; historical fingerprints remain unchanged.",
+        "TLQT26 combined strict native Qt acceptance remains incomplete: original-active campaign275updates/32independent comparisons passes; native stress applies1877updates then request1878exceeds100ms budget (106ms observed,175466us late worker wall time), latching original fallback. Native Save submission independently reaches glyph admission reason15/exit124 with original-active lighting. Save/Load, renderer reconstruction, different maps, longer native-only sessions, hardware/FPS and default rollout remain pending. Expected worker-loss control validates128native plus117fallback updates and normal original exit0, with selected backend exit1.",
+        "TLQT26.abnormal-worker-lifetime: failed strict Qt Save left the checked lighting worker adopted by PID1, with only lifecycle.started and no result row. Exact PID/start-tick/cmdline was verified and the owned orphan terminated during closeout. Normal Quit/worker-loss success does not establish abrupt Qt/supervisor failure cleanup; recover that boundary before default rollout."
       ],
       "implementation_review": {
         "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
@@ -152887,13 +152898,19 @@
       ],
       "tests": [
         "tests/test-terrain-light-session.py",
-        "tools/test-terrain-light-normal-session.py"
+        "tools/test-terrain-light-normal-session.py",
+        "tools/test-terrain-light-qt-session.py"
       ],
       "evidence": [
         "TLSN25.reload-observe",
         "TLSN25.native-and-fallback",
         "TLSN25.master-reload-observe",
-        "TLSN25.master-native-and-fallback"
+        "TLSN25.master-native-and-fallback",
+        "TLQT26.observation",
+        "TLQT26.native-timeout",
+        "TLQT26.worker-loss",
+        "TLQT26.qt-save-refusal",
+        "TLQT26.abnormal-worker-lifetime"
       ],
       "status": {
         "understanding": "scoped",
@@ -152904,7 +152921,9 @@
       },
       "remaining_gaps": [
         "Opt-in regular launcher validated with original graphics on a fresh Celtic Adept campaign and actual same-process named Save/Load. Combined native Qt graphics ownership, arbitrary maps/saves, long-duration use and default rollout remain separate acceptance; original scheduler, loader/serializer and resource lifetimes remain original.",
-        "Worker loss intentionally degrades the selected session and reports a nonzero launcher result after clean original Quit; one unchanged-original/sanitized fallback witness supports recovery, not continued native replacement."
+        "Worker loss intentionally degrades the selected session and reports a nonzero launcher result after clean original Quit; one unchanged-original/sanitized fallback witness supports recovery, not continued native replacement.",
+        "TLQT26 combined strict native Qt acceptance remains incomplete: original-active campaign275updates/32independent comparisons passes; native stress applies1877updates then request1878exceeds100ms budget (106ms observed,175466us late worker wall time), latching original fallback. Native Save submission independently reaches glyph admission reason15/exit124 with original-active lighting. Save/Load, renderer reconstruction, different maps, longer native-only sessions, hardware/FPS and default rollout remain pending. Expected worker-loss control validates128native plus117fallback updates and normal original exit0, with selected backend exit1.",
+        "TLQT26.abnormal-worker-lifetime: failed strict Qt Save left the checked lighting worker adopted by PID1, with only lifecycle.started and no result row. Exact PID/start-tick/cmdline was verified and the owned orphan terminated during closeout. Normal Quit/worker-loss success does not establish abrupt Qt/supervisor failure cleanup; recover that boundary before default rollout."
       ]
     },
     {
@@ -153026,7 +153045,8 @@
       ],
       "tests": [
         "tests/test-terrain-light-session.py",
-        "tools/test-terrain-light-normal-session.py"
+        "tools/test-terrain-light-normal-session.py",
+        "tools/test-terrain-light-qt-session.py"
       ],
       "evidence": [
         "TLSN25.controls",
@@ -153034,7 +153054,12 @@
         "TLSN25.native-and-fallback",
         "TLSN25.master-controls",
         "TLSN25.master-reload-observe",
-        "TLSN25.master-native-and-fallback"
+        "TLSN25.master-native-and-fallback",
+        "TLQT26.observation",
+        "TLQT26.native-timeout",
+        "TLQT26.worker-loss",
+        "TLQT26.qt-save-refusal",
+        "TLQT26.abnormal-worker-lifetime"
       ],
       "status": {
         "understanding": "scoped",
@@ -153045,7 +153070,9 @@
       },
       "remaining_gaps": [
         "Opt-in regular launcher validated with original graphics on a fresh Celtic Adept campaign and actual same-process named Save/Load. Combined native Qt graphics ownership, arbitrary maps/saves, long-duration use and default rollout remain separate acceptance; original scheduler, loader/serializer and resource lifetimes remain original.",
-        "Worker loss intentionally degrades the selected session and reports a nonzero launcher result after clean original Quit; one unchanged-original/sanitized fallback witness supports recovery, not continued native replacement."
+        "Worker loss intentionally degrades the selected session and reports a nonzero launcher result after clean original Quit; one unchanged-original/sanitized fallback witness supports recovery, not continued native replacement.",
+        "TLQT26 combined strict native Qt acceptance remains incomplete: original-active campaign275updates/32independent comparisons passes; native stress applies1877updates then request1878exceeds100ms budget (106ms observed,175466us late worker wall time), latching original fallback. Native Save submission independently reaches glyph admission reason15/exit124 with original-active lighting. Save/Load, renderer reconstruction, different maps, longer native-only sessions, hardware/FPS and default rollout remain pending. Expected worker-loss control validates128native plus117fallback updates and normal original exit0, with selected backend exit1.",
+        "TLQT26.abnormal-worker-lifetime: failed strict Qt Save left the checked lighting worker adopted by PID1, with only lifecycle.started and no result row. Exact PID/start-tick/cmdline was verified and the owned orphan terminated during closeout. Normal Quit/worker-loss success does not establish abrupt Qt/supervisor failure cleanup; recover that boundary before default rollout."
       ]
     }
   ],
@@ -345458,6 +345485,201 @@
       "original_hash_pointer": "/original_sha256",
       "equivalence_pointer": "/success",
       "bypass_pointer": "/live_replacement"
+    },
+    {
+      "id": "TLQT26.observation",
+      "kind": "live_equivalence",
+      "scope": "Strict native Qt gameplay with original-active lighting:275updates,32unchanged-PE32/sanitized source comparisons, Mini Cancel and Quit No/resume/Yes, original exit0 and balanced355World/graphics retirement. Two10-second physical phases; no Save/map, hardware/FPS or default acceptance.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/observe-stress01.json",
+      "sha256": "14eea5574b229d579455bffcce6dc2492c241d1f671ca94f543cbc35e69f92f2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/graphics_outcome/forwarded",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success"
+    },
+    {
+      "id": "TLQT26.native-timeout",
+      "kind": "live_observation",
+      "scope": "Actual strict native Qt/native-lighting120-second-per-phase stress attempt failed after1877admitted native updates when request1878exceeded100ms budget. No byte mismatch. Exact32native source/reply/results independently match unchanged PE32 and ASan/UBSan replay. Late reply observed processed1878/applied1877/disabled1: closed latch did not revive native application. Harness deliberately stopped the failed journey; normal Quit and complete two-phase acceptance are not claimed. Worker wall-clock175466us does not identify whether compute or scheduling caused the delay.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/native-timeout-analysis01.json",
+      "sha256": "5b75f0a663c77899d16f2938f46eaa8591e0f28846933ebfa5f1eb715e52421d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/sample_comparison_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/late_statistics/applied",
+          "equals": 1877
+        },
+        {
+          "pointer": "/late_statistics/disabled",
+          "equals": 1
+        },
+        {
+          "pointer": "/late_statistics/max_wait_ms",
+          "equals": 106
+        }
+      ]
+    },
+    {
+      "id": "TLQT26.worker-loss",
+      "kind": "live_replacement",
+      "scope": "Expected-fault strict native Qt journey:128admitted native updates and32unchanged-PE32/sanitized comparisons before PID/start-tick checked worker kill;117original fallback updates, native latch stays closed, original normal exit0, renderer retirement and worker reaping. Selected backend/strict launcher deliberately reports exit1. This validates recovery and the bounded native prefix, not normal native120-second/default rollout.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/worker-loss01.json",
+      "sha256": "5f115ab0dd9d7ea34f91ef0d3b73a7f9600e6d47978433aad4abcb8bbcfbae6e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/shell_exit",
+          "equals": 1
+        },
+        {
+          "pointer": "/original_process/original_exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/lighting_outcome/success",
+          "equals": false
+        },
+        {
+          "pointer": "/final_statistics/applied",
+          "equals": 128
+        },
+        {
+          "pointer": "/final_statistics/fallback",
+          "equals": 117
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success",
+      "bypass_pointer": "/live_replacement"
+    },
+    {
+      "id": "TLQT26.qt-save-refusal",
+      "kind": "live_observation",
+      "scope": "Submitting native Save under strict Qt ownership, with original-active lighting, reaches glyph entry581ec0 admission reason15 and original exit124 after62lighting updates. Global/clip/coverage and frame extents share this reason; exact failing subcondition and causality remain unresolved. No saved-map or reconstruction acceptance.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/qt-save-refusal01.json",
+      "sha256": "349da38d880e309b64da504ff01233e5e5af5136de22d8b3c5f05478c9554899",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/glyph_refusal_reason",
+          "equals": 15
+        },
+        {
+          "pointer": "/original_exit_code",
+          "equals": 124
+        },
+        {
+          "pointer": "/before_save/processed",
+          "equals": 62
+        },
+        {
+          "pointer": "/before_save/disabled",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "TLQT26.abnormal-worker-lifetime",
+      "kind": "live_observation",
+      "scope": "The failed strict Qt Save acquisition exited original124 but left its source-checked persistent lighting worker alive. Lifecycle has started only and no results table; host parent lost before normal Session cleanup. Negative abnormal-launch supervision evidence, independent of normal-Quit and deliberate worker-loss passes.",
+      "record": "research/runtime/terrain-light-qt-results-20261026/orphan-worker01.json",
+      "sha256": "c1cf2725948f22e8b1ea139995bfaa6e16ec0f004e241844eb4e09f888f5c538",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/parent_pid",
+          "equals": 1
+        },
+        {
+          "pointer": "/owned_orphan_removed",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -373195,6 +373417,74 @@
         "TLSN25.native-and-fallback",
         "TLSN25.master-native-and-fallback"
       ]
+    },
+    {
+      "id": "TLQT26.observe-reload",
+      "title": "Combined strict native Qt lighting observe-reload",
+      "scope": "Pinned No-CD campaign with strict native Qt ownership and persistent lighting; bounded Save/Load and World reconstruction, stress or peer-loss journey as named. No default or arbitrary-map acceptance. Recorded negative acquisition only; intended equivalence/reconstruction acceptance failed.",
+      "level": "live_observation",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy",
+        "NP.native-only-launch-contract"
+      ],
+      "tests": [
+        "tools/test-terrain-light-qt-session.py"
+      ],
+      "evidence": [
+        "TLQT26.qt-save-refusal"
+      ]
+    },
+    {
+      "id": "TLQT26.observe-stress",
+      "title": "Combined strict native Qt lighting observe-stress",
+      "scope": "Pinned No-CD campaign with strict native Qt ownership and persistent lighting; bounded Save/Load and World reconstruction, stress or peer-loss journey as named. No default or arbitrary-map acceptance.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy",
+        "NP.native-only-launch-contract"
+      ],
+      "tests": [
+        "tools/test-terrain-light-qt-session.py"
+      ],
+      "evidence": [
+        "TLQT26.observation"
+      ]
+    },
+    {
+      "id": "TLQT26.native-stress",
+      "title": "Combined strict native Qt lighting native-stress",
+      "scope": "Pinned No-CD campaign with strict native Qt ownership and persistent lighting; bounded Save/Load and World reconstruction, stress or peer-loss journey as named. No default or arbitrary-map acceptance. Recorded negative acquisition only; intended equivalence/reconstruction acceptance failed.",
+      "level": "live_observation",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy",
+        "NP.native-only-launch-contract"
+      ],
+      "tests": [
+        "tools/test-terrain-light-qt-session.py"
+      ],
+      "evidence": [
+        "TLQT26.native-timeout"
+      ]
+    },
+    {
+      "id": "TLQT26.worker-loss",
+      "title": "Combined strict native Qt lighting worker-loss",
+      "scope": "Pinned No-CD campaign with strict native Qt ownership and persistent lighting; bounded Save/Load and World reconstruction, stress or peer-loss journey as named. No default or arbitrary-map acceptance.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy",
+        "NP.native-only-launch-contract"
+      ],
+      "tests": [
+        "tools/test-terrain-light-qt-session.py"
+      ],
+      "evidence": [
+        "TLQT26.worker-loss"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -374902,7 +375192,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-ff1c9819b19dd3222191bfbc83362c2ec52e2f8ca1ad26a7e771955d84376014.json",
-    "sha256": "ff1c9819b19dd3222191bfbc83362c2ec52e2f8ca1ad26a7e771955d84376014"
+    "path": "research/runtime/coverage/source-index-2e3ee6a5242ef93bc3daa37f6ac65e222197294ec6b8d919a8be642b4fba3cfd.json",
+    "sha256": "2e3ee6a5242ef93bc3daa37f6ac65e222197294ec6b8d919a8be642b4fba3cfd"
   }
 }

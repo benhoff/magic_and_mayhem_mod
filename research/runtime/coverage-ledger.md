@@ -23094,3 +23094,40 @@ tip; one missing exact intermediate receipt receives retrospective pending
 accounting, without a past gate or new execution claim. Default lighting remains
 original. Combined Qt graphics ownership, arbitrary maps/saves, long sessions and
 rollout remain separate acceptance.
+
+
+## Combined strict native Qt and terrain lighting — 2026-10-26
+
+[Combined acquisition](terrain-light-normal-session.md#combined-strict-native-qt-acquisition--2026-10-26)
+tests the pinned No-CD build with the public Qt campaign actions and strict
+private native-output owner. TLQT26.observation completes275original-active
+lighting updates,32unchanged-PE32/ASan/UBSan comparisons,355balanced Worlds,
+Mini Cancel and Quit No/resume/Yes, original exit0 and graphics/worker retirement.
+The native120-second-per-phase attempt (TLQT26.native-timeout) completes one
+121.827-second physical phase/599actions and1,877native updates without mismatch,
+then request1,878exceeds the100ms budget (106ms observed; late worker wall175466us).
+The closed latch retains original fallback. The harness stops the failed attempt;
+the second phase and normal completion do not pass. All32native captured replies
+still match unchanged original and sanitized replay.
+
+TLQT26.qt-save-refusal separately reaches strict glyph admission reason15 at
+original581ec0 while submitting Save with original-active lighting, after62updates
+without lighting error. Original exit124precedes a nonempty save; Load, the two
+resolution changes and saved-map World reconstruction are not reached. The
+precise global/clip/coverage/frame-span rejection remains unresolved. The existing
+NR.glyph-live-admission entry retains this negative finding without a promotion.
+
+TLQT26.worker-loss passes128native updates,32independent comparisons, checked
+worker termination,117original fallback updates and original exit0/worker reaping;
+the selected backend/strict launcher correctly reports1. The live native Qt binary
+and386compiler dependencies are retained. Execution uses llvmpipe/four Mesa
+threads; hardware/FPS, arbitrary maps/saves and long-duration acceptance remain
+independent. Original manifests verify before/after; new evidence and setup failures
+use SQLite. No implementation/status promotion or default change is made. Resolve
+the Save glyph refusal and spontaneous lighting timeout before default rollout.
+
+TLQT26.abnormal-worker-lifetime additionally records an owned lighting worker
+left alive after the failed strict Save acquisition: original exit124, host parent1,
+started-only lifecycle and no worker outcome. Closeout verified exact PID/start
+ticks/executable and terminated only that orphan. Abrupt Qt/launcher cleanup
+remains unaccepted despite normal-Quit and deliberate worker-loss success.
