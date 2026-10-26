@@ -19233,7 +19233,9 @@
               "incremental_review": "Campaign runner now monitors all five existing refusal/fault families and explicitly labels optional file tracing. Production engine guards and budgets are unchanged; separate native-only/restart validation is not renewed.",
               "pending_source_review": [],
               "incremental_review_notes": [
-                "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted."
+                "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted.",
+                "20261026 pixel-service merge: reconcile the existing master-added terrain Qt campaign test link. This runner records the native-only outcome after bounded reload/stress/worker-loss paths, retains original replay and source provenance, and requires normal lifecycle retirement. Added only this missing reviewed test source fingerprint; prior hashes, code assessment, execution validation and acceptance remain unchanged. No runner execution is asserted by this static review.",
+                "20261026 TAG parent closeout: repair the inherited missing source link for tools/test-terrain-light-qt-session.py, already linked by the committed native-only parent. Add its reviewed current fingerprint without refreshing any old fingerprint, implementation/validation/acceptance state or evidence claim. This is planning metadata repair, not a new native-only execution result."
               ],
               "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed.",
               "review_reason": "Append current reviewed test/document links and fresh NT17 evidence; preserve historical source fingerprints and every prior work review."
@@ -19500,6 +19502,82 @@
                   "tests/test-rendering-seventeenth-controls.py": "0e603ccc797bb9b25b06441cb324720d51f3f2d9fb3faf77fc309ce4ea8f15a6",
                   "tools/rendering_seventeenth_controls.py": "82a4be5d1c2c9a4f37cf77160baded19b13ca583f5c22090365a8518540821fc",
                   "tools/test-rendering-seventeenth-five.py": "3345542437d7bc51a658f8ea92daf63975a30d0b4526991449242a0a8a760f08"
+                },
+                "incremental_review": "Campaign runner now monitors all five existing refusal/fault families and explicitly labels optional file tracing. Production engine guards and budgets are unchanged; separate native-only/restart validation is not renewed.",
+                "pending_source_review": [],
+                "incremental_review_notes": [
+                  "20261019 DirectDraw retirement: reviewed only the new session-local diagnostic paths, guarded startup alias cleanup, page hints, strict receipt checks and related research. Current focused native/Python controls pass. Earlier World/render/live evidence retains exact historical hashes; no renewed unrelated engine validation is granted."
+                ],
+                "critical_top20_additive_review": "Added this new review document and, for read-only continuity, complementary checkpoint test links. Prior source fingerprints and historical acceptance remain unchanged; no broad status or old execution hash is refreshed.",
+                "review_reason": "Append current reviewed test/document links and fresh NT17 evidence; preserve historical source fingerprints and every prior work review."
+              },
+              {
+                "implementation": "implemented_within_scope",
+                "current_state": "Unified launch/staging admission, ten source/binary receipts, protected backing, six no-forward families, native/disabled movies, sticky terminal outcomes and normal shutdown admission are implemented. complete_replacement=false is intentional. NT17 supplies current bounded implementation evidence; ordinary public19FPS performance remains independently pending when the raw harness fails.",
+                "implementation_gaps": [],
+                "validation_state": "historical",
+                "validation_summary": "Historical actual PE32, Qt and Python admission controls and bounded native-only campaigns exist. Combined-source movie/storage/restart journey validation remains pending. 83 Python controls plus13 combat-input regressions,20 asserted native controls,4096 verification and4096 normal returns/paints; original 19.90295FPS,Qt 19.90693FPS,warm median42.0ms/p9548ms/max69ms,cold247.225ms,RSS growth0bytes; ordinary public19FPS acceptance=False at 17.253776873910518FPS; peer-death/fresh recovery and actual owned/strict/restart/public journeys retain their separate observations.",
+                "acceptance": "pending",
+                "acceptance_summary": "Pending combined-source supported-journey acceptance; complete renderer replacement and all-game parity remain excluded.",
+                "evidence": [
+                  "NATIVE.native-only-launch.commit-controls-20261018",
+                  "NATIVE.native-only-launch.final-campaign-20261018",
+                  "NT17.five-rendering-contracts-20261023"
+                ],
+                "failure_evidence": [],
+                "next_steps": [
+                  {
+                    "kind": "validation",
+                    "action": "Run current startup conflict, missing/stale receipt, terminal capability, sticky error and normal-shutdown controls."
+                  },
+                  {
+                    "kind": "validation",
+                    "action": "After the upstream pilot gate is repaired, bind launch, native/disabled media, storage/display transition and normal Quit outcomes to the same declared source snapshot."
+                  }
+                ],
+                "code_witnesses": [
+                  {
+                    "path": "tools/native_only_contract.py",
+                    "line": 84,
+                    "text": "def admit(root, repository, metadata, environment):"
+                  },
+                  {
+                    "path": "apps/qt-shell/native_only_session.hpp",
+                    "line": 29,
+                    "text": "    bool finish(bool normalQuit,int launcherExit,bool rendererFinished,bool fallback){"
+                  }
+                ],
+                "source_sha256": {
+                  "apps/qt-shell/live_menu_session.cpp": "016a83f99f769fdae2db7e1a5b2a2dba179eeb2ff3eb9a5ec7feb16418f78a00",
+                  "apps/qt-shell/live_menu_session.hpp": "108ef6d8e42edeb0608bb3562f0c06618b5dfbbf8933cd8b8c8e710ef8f04fea",
+                  "apps/qt-shell/main.cpp": "9a21444c2a9936a857ae0563a83cd1f64a6ee81d0032602489166cb4d4491b08",
+                  "apps/qt-shell/native_only_session.hpp": "d71adef2d78ef8d082e119476a29a9eea7aa8aba5e5a66ee10c834c99d4a20a7",
+                  "research/runtime/native-only-commit-controls-20261018.json": "b2c3ddf3eae0cdb9af0051997357c9066bf7620e3d602611e748437bbd1f79af",
+                  "research/runtime/native-only-launch-final-campaign-20261018.json": "f9b8b05ce07c008d1df73231763c7ba311d0fad6e357ee870ed75bc454791080",
+                  "research/runtime/native-only-launch.md": "cbeddf3a867b85e752aef2be22a98ec1a97279a390ea80b69483fed5634cf03b",
+                  "runtime/native-draw/cpu_guard.h": "04114b8ebc10ce481310ddcb68a63402188b6ab7fab8daf94638ae1c341015fc",
+                  "runtime/native-draw/native_only.h": "0d9ac77684823dc29a6aade82d4e264f045b466a71a6324e4cec6d0a7b8a71f8",
+                  "runtime/native-draw/surfaces.h": "f2087f3730912f1d9fe2504300b0905868be4cdfbb59e5d31482cd5695abed64",
+                  "runtime/scene/glyph_live.c": "787dde08768df8e77b246ebacdc0c96d33c286042d467875fef29763cc2031b0",
+                  "runtime/scene/glyph_native_only.h": "682f376c6c91a98878c817158edcfff557bd597373faed598a09900d8c4783ab",
+                  "tests/native-only-facade-probe.c": "aea783b7f3a1f753ff7094a3ce99be6bb5f9cf20ed69b6cfc69ba5155d04fb3a",
+                  "tests/native-only-session-test.cpp": "0ced3120a78553ebbbc7a1882c735226a474b3a338f1c86dcd242a43b04b8038",
+                  "tests/test-native-only-contract.py": "a302f512c77e007ec3bebca7b3fe249ab8ca31c9f130fce4f3f6d281c91762b5",
+                  "tools/native_only_contract.py": "8d398d26685b9a09a4292cdb29ce71db6127e827e5e9d83ecac43a0ac82c0cb2",
+                  "tools/owned-menu-game-runner.py": "087ef421179447a2d03271022c74faee8ffc9852ce03b800f2f822471fff7d25",
+                  "tools/prepare-menu-observer.py": "dad11ce8c37ec8d25d9b488bdf210693a323fd94372360e351dd7358f805dc7c",
+                  "tools/run-native-owned.py": "a253290a8db44367a4d36e683693262c17a53bec596e539ff6caff97847948ff",
+                  "tools/test-native-only.py": "57bd56cc9eb704f0b429a9ec8e5265ab31cbd0e1cf9c4035a95110f4869528e2",
+                  "tools/test-native-owned-campaign.py": "ec90621fdf53d77dc5ad1e43ddf155023e4ae0a56c10dd5e6f70198e481527da",
+                  "research/runtime/directdraw-retirement-20261019.md": "362e2a87b5ffcb1ef1b1a512b56f1e8ea4a9cee1689df6600fd3d8fe87abfe21",
+                  "research/runtime/critical-top20-rendering-fixes-20261019.md": "60ef155ba320506a3222683c66b29179a33802162aeac8a4dba39925e11cf27e",
+                  "research/runtime/rendering-seventeenth-five-20261023.md": "38c4b886acc80857594755c12b03772c103a1f82baafb53b6a7107141f65b4e2",
+                  "tests/rendering-seventeenth-five/CMakeLists.txt": "b834065525f85a5ac28716b21a15b06163ab0abedaf4af3812c441d83a7e371c",
+                  "tests/test-rendering-seventeenth-controls.py": "0e603ccc797bb9b25b06441cb324720d51f3f2d9fb3faf77fc309ce4ea8f15a6",
+                  "tools/rendering_seventeenth_controls.py": "82a4be5d1c2c9a4f37cf77160baded19b13ca583f5c22090365a8518540821fc",
+                  "tools/test-rendering-seventeenth-five.py": "3345542437d7bc51a658f8ea92daf63975a30d0b4526991449242a0a8a760f08",
+                  "docs/native-rendering-dependencies.json": "be8ab6c527a8efc06b8d2ede19616f4d0d309354894dff5b4f2e4714f9a46503",
+                  "research/runtime/rendering-required-dependencies-20261024.md": "7eecdc4d1761b7a3443efa63e34aa637922b549569cc14f49167402914e7e734"
                 },
                 "incremental_review": "Campaign runner now monitors all five existing refusal/fault families and explicitly labels optional file tracing. Production engine guards and budgets are unchanged; separate native-only/restart validation is not renewed.",
                 "pending_source_review": [],

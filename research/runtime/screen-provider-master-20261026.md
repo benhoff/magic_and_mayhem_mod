@@ -45,3 +45,5 @@ routine raw logs and binary/archive attachments outside the receipt gate and
 three historical raw attachments unavailable through that resolver. Its failed
 result is preserved; the focused review does not claim complete repository-wide
 payload availability or a historical gate pass.
+
+Final reconciliation retains validated candidate `75f441d2` and its normal staged pass/verified full shared-store backup. Independently committed master advances were reconciled after their reservations ended. The new reservation preserves all eight pending paths with verified SQLite snapshots and a pinned stash. All three fresh screen proof source/contract bindings remain exact across that reconciliation. The final merge reuses that execution without asserting new original or live work. A verified read-only RAM cache supplies existing metadata; an invocation-local writer synchronizes every new payload into the single persistent shared store before staging and receives ordinary verified backups through the configured dual snapshot stores.

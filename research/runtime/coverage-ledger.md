@@ -23643,3 +23643,123 @@ Real screen construction/routing, Windows SEH/driver/codec and installed/live
 acceptance remain separate. No replacement milestone or remote publication is
 added. Master promotion preserves independently owned pending edits and requires
 the normal staged accounting gate and verified local backups.
+
+
+## Row-copy and brighten outgoing virtual services — 2026-10-26
+
+`RE.pixel-helper-unlock-dispatch` closes the three selected outgoing service
+identities retained by the five-helper computed-call scan. Original successful
+CreateSurface stores Surface1 at wrapper+4, QueryInterface stores Surface2 at+8,
+Lock uses+8 and the three helper-tail calls use+4 slot32 Unlock(base pixels).
+Row-copy unlocks source then destination regardless of the first result; brighten
+unlocks its sole surface. Zero-sized draw controls still retire. Final EAX is
+the last unchecked Unlock HRESULT. Optional early Unlock remains additional.
+
+`PVIRT.scripted-20261026` passes 512 cells per optimized32 and ASan/UBSan32
+variant: 1024 original creations, 768 selected dispatches and4,194,304 guarded
+physical WORD comparisons each. `PVIRT.driver-20261026` passes64 real Wine 11.16
+RGB565/RGB555 system-memory cells,128 created Surface1/2 alias pairs and96 tail
+dispatches plus48 early Unlocks. Selected targets resolve to built-in
+`ddraw.dll+0x29f70` for its retained DLL hash; no fixed cross-launch address is
+assumed. The early-Unlock cohort returns actual DDERR_NOTLOCKED at the later
+tail calls. All 2,927 original inputs verify before/after. Original selected
+instructions remain active and unchanged. See [contract and evidence](pixel-virtual-services-20261026.md).
+
+The central three-site dispatch entry is complete within this admitted receiver
+scope. Discovery inventory boundaries, unresolved global indirect flows, all
+five natural incoming callers,43-route denominator and38-route historical union
+remain. Existing native pixel splices already retain these original tails; no
+production code or implementation/comparison/integration/replacement status is
+promoted. Failed Lock/loss/Restore, asynchronous alias lifetime, arbitrary receiver
+mutation, other drivers and installed/live acceptance remain separate. Earlier
+fixture, quota, display and already-stopped-server failures remain immutable.
+
+### Pixel virtual-service integration into current master — 2026-10-26
+
+Merge af4bc1ae into 8c23937a retains the recovered three Surface1 Unlock sites and both original-execution results. Combined-tree coverage audit and planning/caller controls are retained under [integration results](pixel-virtual-master-results-20261026/audit02.json). The [history review](pixel-virtual-master-results-20261026/history02.json) accounts exact transitions across both committed parent histories, including ancillary artifacts; it asserts no historical gate pass or new engine comparison. Incoming source/test bytes remain exact; master changes and pending contributor edits are preserved separately. No native implementation, integration, replacement or natural incoming caller status is promoted. Unrelated historical evidence staleness remains pending.
+
+Combined-tree limitation: PVIRT.scripted-20261026 and PVIRT.driver-20261026 retain their exact successful source fingerprints. Master has since changed tools/coverage_evidence.py and tools/drawing_fixture_prefix.py, so these comparisons are historical/stale for the combined tree. The recovery fixture, runner and recovered contract bytes remain unchanged; the merge does not assert current-code original comparison. A new comparison, under a new evidence ID, is required before claiming that validation on the combined source set.
+
+The planning regression first failed because the existing master NP.native-only-launch-contract test link to tools/test-terrain-light-qt-session.py was absent from its work-review source fingerprints. Static review adds only that missing test hash and preserves the complete prior work review, all prior hashes and historical validation/acceptance. The failing controls01 report remains immutable; follow-up controls use a new report.
+
+Follow-up controls02 passes37/38 planning tests and all34 caller tests; its remaining assertion omitted three already-landed master alternate-canvas contracts from the explicit unrated expectation. Add exactly NP.alternate-canvas-padded-resident, NP.alternate-canvas-resident-session and RS.campaign-padded-presentation-error to that expectation, leaving weights/statuses unchanged. Controls03 reruns that affected test; other37 planning checks and34 caller checks retain their passing controls02 result. Audit02 precedes this expectation-only test change; final source census and staged coverage gate review the committed tree.
+
+
+### TAG parent — installed native sprite-table application (2026-10-26)
+
+`AS.tag` now completes its read-only native parent scope, joining the permissive
+owned raw parser to strict installed companion admission, exact raw-name and
+occurrence selection, native playback controls, atomic reload and a real
+Qt/OpenGL window. See [the parent contract](tag-parent-end-to-end-20261026.md).
+This is parent-level implementation and preview integration; the earlier N27
+and N29 components retain their separate historical claims. Original/editor TAG
+use, ANI timing, original allocation/OS failures, game-world construction and
+live replacement remain outside this native policy and unclaimed.
+
+`TAG.parent-installed-window-20261026` binds the complete parent and installed-preview
+scenario to [execution 4](tag-parent-results-20261026/execution-4.json). Fresh
+Release and ASan/UBSan each pass131,792 checks,80 refusals,262 native GPU/direct
+decoded-plane pixel comparisons and17 actual window actions. All85 installed
+TAGs and130,891 entries match independent Python record/SPR-offset/occurrence
+decoding. Selected frames from every table render and reload. Two actual installed-file
+window journeys cover same-stem and terrain-fallback companions, compare every
+displayed pixel and preserve the paused selected image across reload; malformed reload
+retains state and the visible frame, valid reload recovers, and the actual Qt
+timer completes one-shot playback. Raw TAG, independent installed parser,
+sprite-session, sprite-timeline and CTest regressions pass in both modes.
+All274 declared source fingerprints and installed inputs remain stable; original
+manifest checks verify all2,927 files before and after. GPU surface balance is
+asserted; external uninstrumented Qt/driver leak scanning is disabled.
+
+[Attempt1](tag-parent-results-20261026/execution-1.json) stopped because the
+isolated worktree lacked original payloads; manifest verification now targets
+the original-bearing main checkout. [Attempt2](tag-parent-results-20261026/execution-2.json)
+passed Release acceptance but refused an incomplete prospective protocol-header
+closure. Both failures and exact source variants are retained without final
+execution credit. [The committed-history review](tag-parent-results-20261026/history-review-1.json)
+checks17 commits/2,170 exact parent/current file transitions from1ffeb53e through
+d20de6bb with no missing receipts; it does not assert historical gate execution.
+
+The planning controls initially exposed an inherited missing source fingerprint
+for `tools/test-terrain-light-qt-session.py` in the native-only launch planning
+review. Its already-committed source/test link was inspected and added to that
+review, preserving every old source hash, weight and validation/acceptance claim.
+[The failed planning run](tag-parent-results-20261026/planning-controls-1.json)
+remains negative evidence; this metadata repair grants no new launch validation.
+The fixed unrated fixture also now names the three already-committed alternate
+resident/campaign error contracts. They remain unrated; no weights, engine
+statuses or historical execution claims are changed by that expectation update.
+
+Durable outputs are SQLite reports/references, bounded raw logs, retained test
+binaries and normal verified evidence/review database backups. RAM-backed build
+trees are temporary execution output. The normal90GiB main-drive and100GiB
+archive reserves remain unchanged; the session inventory found no eligible
+cleanup candidates and no payload was deleted. No original or installed input
+is modified and no evidence is published.
+
+Final [coverage audit](tag-parent-results-20261026/audit-3.json) has zero errors;
+`AS.tag` implementation and preview claims are current. The corrected
+[planning controls](tag-parent-results-20261026/planning-controls-3.json) pass
+all38 tests. Earlier negative audit/planning reports remain retained.
+
+[Execution3](tag-parent-results-20261026/execution-3.json) retains the earlier
+passing service/corpus and fixture-window result. The first normal closeout was
+[stopped before review export, staging or commit](tag-parent-results-20261026/interrupted-closeout-1.json)
+to add the direct installed-file window journeys. Execution4 declares the revised
+scenario and exact final sources before execution and supplies current parent
+implementation/preview credit; no historical result or source hash is refreshed.
+
+
+### TAG preview merge and parent-task boundary (2026-10-26)
+
+[The TAG preview merge](tag-parent-master-20261026.md) retains the native scoped
+implementation and preview milestone fromfd3bae4f. The broader parent task is
+still partial: original-game TAG behavior, world integration and live replacement
+remain unfinished. Master6cdbbacd changes only the evidence helper among274 previously pinned
+sources; application/parser/renderer/test sources are unchanged. Prior native execution retains its exact historical
+hashes; current-code implementation/preview validation is pending. This merge
+grants no fresh engine execution or original-game equivalence. Eight existing
+pending paths are backed up and pinned for exact restoration after the verified
+merge; another agent's preceding merge was left intact.
+
+The screen-provider integration retains first validated candidate `75f441d2`; final local promotion reconciles subsequent committed master integrations under a verified pending-work reservation. All fresh SP26/RSA26 source/contract bindings remain exact; incoming native preview and original/live boundaries retain their independent status. Normal staged checks and verified retained backups apply to the actual final merge; no publication is added.

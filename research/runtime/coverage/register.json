@@ -3294,33 +3294,58 @@
       "subsystem": "assets",
       "kind": "native_policy",
       "title": "Sprite tables",
-      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "provisional",
+      "scope": "Read-only owned TAG sprite tables: preserve all raw 12-byte records and resource-limit failures; strictly validate installed SPR companions and exact eight-byte name/occurrence selection; present native loop/once/ping-pong/reverse playback, pause, seeking and atomic reload in a Qt/OpenGL sprite-table application. Corpus-wide installed-byte agreement and bounded application acceptance; native 100 ms frame cadence. Original TAG/editor consumption, original allocation/file API failures, ANI interpretation, runtime entity/world creation and live replacement remain separate.",
+      "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/formats/tag-native-loading.md",
-        "assets/README.md"
+        "assets/README.md",
+        "research/runtime/tag-parent-end-to-end-20261026.md"
       ],
       "implementation": [
         "assets/tag.cpp",
-        "assets/tag.hpp"
+        "assets/tag.hpp",
+        "apps/sprite-player/sprite_player.hpp",
+        "apps/sprite-player/sprite_player.cpp",
+        "apps/sprite-player/sprite_window.hpp",
+        "apps/sprite-player/sprite_window.cpp",
+        "apps/sprite-player/main.cpp"
       ],
       "tests": [
-        "tests/tag-loader-test.cpp"
+        "tests/tag-loader-test.cpp",
+        "tests/test-tag-loader.py",
+        "tests/sprite-player-test.cpp",
+        "tools/test-tag-parent.py",
+        "tools/run-surface-wrapper-control.py"
       ],
       "evidence": [
-        "REVIEW.AS.tag"
+        "REVIEW.AS.tag",
+        "TAG.parent-preview-20261026",
+        "TAG.parent-installed-window-20261026"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "preview",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "N27 adds a separate widget-independent strict companion/name/clip/playback/checkpoint/reload/plan and CPU/GPU consumer. The permissive raw parser, original TAG use, world construction and live acceptance remain separate; parent status is unchanged.",
-        "N29 adds a separate explicit variable-timed native timeline and owned draw-plan service. Original ANI/TAG usage, installed acceptance and live integration remain outstanding; parent status is unchanged."
+        "Original/editor TAG consumption remains unresolved; the corpus-consistent companion rule and 100 ms playback cadence are explicit native policies, not recovered ANI semantics. No original malformed-input, allocation/OS failure, game-world construction or live bypass claim."
+      ],
+      "validation_dependencies": [
+        "apps/sprite-player/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp",
+        "apps/sprite-timeline/CMakeLists.txt",
+        "tests/sprite-session-test.cpp",
+        "tests/sprite-timeline-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
       ]
     },
     {
@@ -155741,6 +155766,71 @@
         "Actual Windows SEH dispatch and throwing-destructor delivery are not validated.",
         "Real driver/codec-DLL behavior, original full screen routing and installed widget/GL/live acceptance remain separate.",
         "Qt-internal/global noexcept allocation exhaustion is not part of recoverable native allocation policy; score-service content/simulation remain supplied in the composed fixture."
+      ]
+    },
+    {
+      "id": "RE.pixel-helper-unlock-dispatch",
+      "kind": "recovered",
+      "subsystem": "rendering",
+      "title": "Row-copy and brighten Surface1 Unlock dispatch",
+      "scope": "Pinned No-CD three outgoing calls: wrapper+4 holds the CreateSurface Surface1 interface, wrapper+8 the queried Surface2 alias used by Lock; slot+0x80 is Surface1 Unlock(base pixels), stdcall HRESULT. Row-copy unlocks source then destination even after source failure; brighten unlocks its sole surface; zero dimensions do not skip retirement. Optional early Unlock inside58b660 remains additional. Includes original successful factory/QI provenance and unchanged full helper execution with scripted endpoint results. Real Wine RGB555/565 system-memory alias/target and HRESULT observations are environment-scoped. Natural incoming callers, arbitrary receiver mutation, missing/failed Lock pointers, real loss/Restore, other drivers and live replacement remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821360,
+          "recovered_range": "pixel-producer-58d3b0",
+          "scope": "Three-argument row-copy wrapper; source/destination Unlock callsites58d487 and58d494."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5822320,
+          "recovered_range": "pixel-producer-58d770",
+          "scope": "Brighten wrapper; Unlock callsite58d8a8."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811600,
+          "scope": "Successful CreateSurface into+4 and QueryInterface Surface2 IID into+8."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813856,
+          "scope": "Successful Surface2 Lock and optional early Surface1 Unlock; no new recovery/failure claim."
+        }
+      ],
+      "documents": [
+        "research/runtime/pixel-virtual-services-20261026.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/pixel-virtual-services-reference.cpp",
+        "tests/pixel-virtual-services-driver.c",
+        "tools/test-pixel-virtual-services.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "runtime/shadow/win32_min.h",
+        "tools/original_x86.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "research/original-files.tsv",
+        "tools/drawing_fixture_prefix.py"
+      ],
+      "evidence": [
+        "PVIRT.scripted-20261026",
+        "PVIRT.driver-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Natural incoming callers for all five pixel helpers remain unresolved; preserve the43-route denominator and38-route historical observed union.",
+        "External COM target addresses are driver/build/launch-specific; no fixed original executable function address, complete driver implementation, failed Lock/loss/Restore, asynchronous aliasing or live replacement is claimed."
       ]
     }
   ],
@@ -352374,6 +352464,332 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "PVIRT.scripted-20261026",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "512 unchanged original successful-factory/Lock/helper cells per optimized32 and ASan/UBSan32 build; exact Surface1 versus Surface2 receiver identities, base pointers, three tail caller PCs, source-before-destination order, chosen Unlock failures, zero-size draw controls, optional early Unlock, final EAX and complete guarded pixels. External COM endpoints are scripted; no native implementation/equivalence or live caller claim.",
+      "record": "research/runtime/pixel-virtual-services-results-20261026/scripted04.json",
+      "sha256": "bd490ddc20dd068c2147d85f4b905d8b00ce82d0f1fb59c6fdd0548acb70308f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_instruction_bytes_patched",
+          "equals": false
+        },
+        {
+          "pointer": "/native_renderer_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/variants/optimized/cases",
+          "equals": 512
+        },
+        {
+          "pointer": "/variants/sanitized/cases",
+          "equals": 512
+        }
+      ]
+    },
+    {
+      "id": "PVIRT.driver-20261026",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "64 unchanged original factory/Lock/helper cells on real Wine11.16 built-in DirectDraw RGB565/RGB555 system-memory aliases;128 Surface1/2 pairs,96 selected tail calls,48 early Unlocks, ddraw module/RVA identity and actual HRESULTs,5184 readable logical WORD observations within32768 fixed packet slots. Row-copy uses one row; flat brighten admission uses measured pitch. No full padding/physical-frame, foreign driver, native equivalence or natural incoming caller claim.",
+      "record": "research/runtime/pixel-virtual-services-results-20261026/driver06.json",
+      "sha256": "608283213cfbe5a052556f75c4776b6fa8511596b3f5014468d621559f77bae6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_instruction_bytes_patched",
+          "equals": false
+        },
+        {
+          "pointer": "/native_renderer_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/driver/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/driver/target_rvas",
+          "equals": [
+            171888
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TAG.parent-preview-20261026",
+      "kind": "native_integration",
+      "scope": "Read-only owned TAG sprite tables: preserve all raw 12-byte records and resource-limit failures; strictly validate installed SPR companions and exact eight-byte name/occurrence selection; present native loop/once/ping-pong/reverse playback, pause, seeking and atomic reload in a Qt/OpenGL sprite-table application. Corpus-wide installed-byte agreement and bounded application acceptance; native 100 ms frame cadence. Original TAG/editor consumption, original allocation/file API failures, ANI interpretation, runtime entity/world creation and live replacement remain separate.",
+      "record": "research/runtime/tag-parent-results-20261026/execution-3.json",
+      "sha256": "9d65e83984d30c8083a217ed225dd000d65ea7f9bc39ac17ecb75b8f9e4b82ca",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/checks",
+          "equals": 131769
+        },
+        {
+          "pointer": "/native/release/refusals",
+          "equals": 80
+        },
+        {
+          "pointer": "/native/release/gpu_pixel_cases",
+          "equals": 260
+        },
+        {
+          "pointer": "/native/release/window_actions",
+          "equals": 9
+        },
+        {
+          "pointer": "/native/release/installed_files",
+          "equals": 85
+        },
+        {
+          "pointer": "/native/release/installed_entries",
+          "equals": 130891
+        },
+        {
+          "pointer": "/native/release/independent_corpus_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/supplier_regressions",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/checks",
+          "equals": 131769
+        },
+        {
+          "pointer": "/native/sanitized/refusals",
+          "equals": 80
+        },
+        {
+          "pointer": "/native/sanitized/gpu_pixel_cases",
+          "equals": 260
+        },
+        {
+          "pointer": "/native/sanitized/window_actions",
+          "equals": 9
+        },
+        {
+          "pointer": "/native/sanitized/installed_files",
+          "equals": 85
+        },
+        {
+          "pointer": "/native/sanitized/installed_entries",
+          "equals": 130891
+        },
+        {
+          "pointer": "/native/sanitized/independent_corpus_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/supplier_regressions",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TAG.parent-attempt-1-20261026",
+      "kind": "static",
+      "scope": "Isolated worktree lacks original artifact payloads; stopped before native execution. No implementation or equivalence credit.",
+      "record": "research/runtime/tag-parent-results-20261026/execution-1.json",
+      "sha256": "c2e5844be329c1085065b701d8756da55d1adc8d7500adab725860285f24e7ee",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TAG.parent-attempt-2-20261026",
+      "kind": "static",
+      "scope": "Release installed/application/regression checks passed but prospective source closure omitted six renderer protocol headers. No final validation credit; retained before corrected source-bound rerun.",
+      "record": "research/runtime/tag-parent-results-20261026/execution-2.json",
+      "sha256": "c200e2182aaede97a8c18e8b0dde3cfde6fc1ef8a09cef31b555d3435feb2263",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TAG.parent-installed-window-20261026",
+      "kind": "native_integration",
+      "scope": "Read-only owned TAG sprite tables: preserve all raw 12-byte records and resource-limit failures; strictly validate installed SPR companions and exact eight-byte name/occurrence selection; present native loop/once/ping-pong/reverse playback, pause, seeking and atomic reload in a Qt/OpenGL sprite-table application. Corpus-wide installed-byte agreement and bounded application acceptance; native 100 ms frame cadence. Original TAG/editor consumption, original allocation/file API failures, ANI interpretation, runtime entity/world creation and live replacement remain separate. Direct same-stem and terrain-fallback installed Qt window journeys compare all presentation pixels and paused reload.",
+      "record": "research/runtime/tag-parent-results-20261026/execution-4.json",
+      "sha256": "0765bbd0162b80f4383370958625602ea05d70d99ed30438e8f055dc77fc27ed",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/checks",
+          "equals": 131792
+        },
+        {
+          "pointer": "/native/release/refusals",
+          "equals": 80
+        },
+        {
+          "pointer": "/native/release/gpu_pixel_cases",
+          "equals": 262
+        },
+        {
+          "pointer": "/native/release/window_actions",
+          "equals": 17
+        },
+        {
+          "pointer": "/native/release/installed_window_journeys",
+          "equals": 2
+        },
+        {
+          "pointer": "/native/release/installed_files",
+          "equals": 85
+        },
+        {
+          "pointer": "/native/release/installed_entries",
+          "equals": 130891
+        },
+        {
+          "pointer": "/native/release/independent_corpus_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/supplier_regressions",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/checks",
+          "equals": 131792
+        },
+        {
+          "pointer": "/native/sanitized/refusals",
+          "equals": 80
+        },
+        {
+          "pointer": "/native/sanitized/gpu_pixel_cases",
+          "equals": 262
+        },
+        {
+          "pointer": "/native/sanitized/window_actions",
+          "equals": 17
+        },
+        {
+          "pointer": "/native/sanitized/installed_window_journeys",
+          "equals": 2
+        },
+        {
+          "pointer": "/native/sanitized/installed_files",
+          "equals": 85
+        },
+        {
+          "pointer": "/native/sanitized/installed_entries",
+          "equals": 130891
+        },
+        {
+          "pointer": "/native/sanitized/independent_corpus_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/supplier_regressions",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -362844,24 +363260,30 @@
       "original": {
         "build": "nocd-40209ca7",
         "address": 5822320,
-        "scope": "Existing brighten helper range; static outgoing +80 virtual-site inventory, not a known concrete table.",
+        "scope": "Brighten helper anchor for three selected row-copy/brighten Surface1 Unlock sites; external COM target, not a fixed Chaos.exe table.",
         "recovered_range": "pixel-producer-58d770"
       },
-      "document": "research/runtime/five-pixel-computed-callers-20261025.md",
-      "complete": false,
-      "scope": "Retain three decoded outgoing receiver-table +80 calls absent from the historical flow census. No runtime table/callee identity or natural incoming caller is recovered.",
+      "document": "research/runtime/pixel-virtual-services-20261026.md",
+      "complete": true,
+      "scope": "Closed for the three selected normal wrapper-origin outgoing sites: Surface1 interface at wrapper+4, vtable slot32/+0x80 Unlock(base Lock pointer). Source-before-destination order, unchecked HRESULTs and optional additional early Unlock are executed with unchanged original factory/Lock/helper code and scoped real Wine aliases. Complete service identity within this scope, not natural incoming callers, arbitrary receiver mutation or fixed cross-driver callee addresses.",
       "entries": [
         {
-          "value": "site0x58d487 virtual+80 target unknown",
-          "behaviors": []
+          "value": "site0x58d487 Surface1::Unlock(base_pixels) via wrapper+4 slot32; source first",
+          "behaviors": [
+            "RE.pixel-helper-unlock-dispatch"
+          ]
         },
         {
-          "value": "site0x58d494 virtual+80 target unknown",
-          "behaviors": []
+          "value": "site0x58d494 Surface1::Unlock(base_pixels) via wrapper+4 slot32; destination second regardless of source HRESULT",
+          "behaviors": [
+            "RE.pixel-helper-unlock-dispatch"
+          ]
         },
         {
-          "value": "site0x58d8a8 virtual+80 target unknown",
-          "behaviors": []
+          "value": "site0x58d8a8 Surface1::Unlock(base_pixels) via wrapper+4 slot32; single brighten surface",
+          "behaviors": [
+            "RE.pixel-helper-unlock-dispatch"
+          ]
         }
       ]
     },
@@ -381004,6 +381426,24 @@
         "SP26.native",
         "SP26.master-native-20261026"
       ]
+    },
+    {
+      "id": "AS.tag.installed-preview",
+      "title": "Installed sprite-table application workflow",
+      "scope": "Independent all85 installed TAG/SPR ordinal/name/occurrence comparison plus native OpenGL pixels; real Qt widget open, exact-name selection, pause, mode/reverse, seek, reload refusal/recovery and timer completion on controlled serialized fixtures. Original manifest/input identities retained. No original live TAG consumer claim. Two installed-file Qt windows directly cover same-stem and Terrain.spr fallback acquisition through named selection, seek, full presentation pixels and paused reload.",
+      "level": "preview",
+      "behaviors": [
+        "AS.tag"
+      ],
+      "tests": [
+        "tests/sprite-player-test.cpp",
+        "tools/test-tag-parent.py",
+        "tests/test-tag-loader.py"
+      ],
+      "evidence": [
+        "TAG.parent-preview-20261026",
+        "TAG.parent-installed-window-20261026"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -382811,7 +383251,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-1652c014567a6b6f98f19aa570dd31f3a25a40e7bc733f9e6c1e778ec19d2564.json",
-    "sha256": "1652c014567a6b6f98f19aa570dd31f3a25a40e7bc733f9e6c1e778ec19d2564"
+    "path": "research/runtime/coverage/source-index-35a0c88ea44bb83beb3aaf29e2d8aef919d1c699cffaf60be86e21755d4694af.json",
+    "sha256": "35a0c88ea44bb83beb3aaf29e2d8aef919d1c699cffaf60be86e21755d4694af"
   }
 }
