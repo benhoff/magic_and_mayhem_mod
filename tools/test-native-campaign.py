@@ -41,7 +41,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py', 'tools/campaign_input_admission.py', 'tools/campaign_input_observation.py', 'runtime/menu/campaign_input_admission_observe.h', 'tools/campaign_render_oracle.py', 'tools/pixel_route_requirements.py', 'tools/campaign_pixel_routes.py']
 SOURCES += ['tools/campaign_storage.py', 'tools/menu-storage-input.py', 'tools/menu_save_store.py', 'apps/qt-shell/campaign_storage_test.cpp', 'tools/campaign_crowded.py', 'tests/campaign-crowded-test.py','runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 SOURCES += ['tools/directplay_dx6_launch.py','tools/native_prefix_template.py','tools/native_render_driver.py']
-SOURCES += ['renderer/isolated_dispatch.inc']
+SOURCES += ['renderer/isolated_dispatch.inc', 'tools/native_windowed_copy.py']
 SOURCES += ['tools/campaign_camera_dialogue.py', 'tools/campaign-camera-menu-input.py', 'tools/campaign_cadence.py']
 
 
@@ -458,6 +458,7 @@ def main():
     parser.add_argument('--save-load',action='store_true',help='Native campaign Save/resume/Load/resume/normal Quit with fresh World checkpoints')
     parser.add_argument('--recreate-world',action='store_true',help='After Save/Load, leave the map, apply original 640/800 display rebuilds, then Main Load the saved map into a new owned canvas')
     parser.add_argument('--normal-quit',action='store_true',help='Require native Mini Quit No/Yes, native report/Main and original normal process exit')
+    parser.add_argument('--original-windowed',action='store_true',help='Diagnostic original -win route with native clipper/copy output and protected CPU-reader checks')
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
     parser.add_argument('--command-wire-version',type=int,choices=(2,3),default=3,help='Diagnostic matched transport control; continuous public default is V3')
@@ -579,6 +580,10 @@ def main():
     if not 30 <= args.timeout <= 600:
         parser.error('--timeout must be between 30 and 600')
     if args.copy_diagnostic_scope!='world' and not args.gpu_copy_diagnostics:parser.error('All-copy scope requires --gpu-copy-diagnostics')
+    if args.original_windowed and not (args.resident_world and args.gpu_copy_diagnostics and args.copy_diagnostic_scope=='all' and args.normal_quit and args.no_pixel_forwarding and args.other_pixel_producers):
+        parser.error('Original windowed diagnostic requires resident World, all-copy diagnostics, no-forward producers and normal Quit')
+    if args.original_windowed and (args.hardware or args.display):
+        parser.error('Original windowed diagnostic requires its private 16-bit desktop')
     if args.gpu_copy_diagnostics and not args.resident_world:parser.error('Copy diagnostics require resident World')
     if args.portrait_stress_seconds and (not args.require_casting_combat or not 10 <= args.portrait_stress_seconds <= 120):parser.error('Portrait stress requires casting/combat and 10..120 seconds')
     if args.stress_seconds and not args.crowded_case and not 10 <= args.stress_seconds <= 120:parser.error('--stress-seconds must be 0 or 10..120')
@@ -593,6 +598,7 @@ def main():
     print('Campaign test evidence: ' + str(out), flush=True)
     report = {'schema': 1, 'success': False, 'status': 'running', 'stage': 'build',
               'command_wire_version':args.command_wire_version,
+              'original_windowed_requested':args.original_windowed,
               'gpu_copy_diagnostics_required':args.gpu_copy_diagnostics,'copy_diagnostic_scope':args.copy_diagnostic_scope,
               'intro_completion_required':args.require_intro_completion,
               'required_mode': ['native-menus', 'native-command-presentation'],
@@ -703,6 +709,9 @@ def main():
                     report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
         report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
+    if args.original_windowed:
+        env['MNM_ORIGINAL_WINDOWED_DIAGNOSTIC']='1'
+        report['sources']['tools/native_windowed_copy.py']=sha(ROOT/'tools/native_windowed_copy.py')
     env['MNM_CAMPAIGN_BUTTON_HOLD_MS']=str(args.button_hold_ms)
     if args.observe_input_admission:env['MNM_CAMPAIGN_INPUT_ADMISSION']='1'
     if args.require_casting_combat:env['MNM_CAMPAIGN_HOVER_READINESS']='1'
@@ -830,9 +839,12 @@ def main():
             elif args.display:
                 env['DISPLAY'] = args.display
             else:
+                from native_windowed_copy import screen_spec
+                screen = screen_spec(args.original_windowed)
+                report['private_desktop_screen'] = screen
                 with (out / 'display').open('w+') as display, (out / 'xvfb.log').open('w') as log:
                     server = subprocess.Popen(['Xvfb', '-displayfd', str(display.fileno()), '-screen', '0',
-                                               '1280x1024x24', '-nolisten', 'tcp'], pass_fds=(display.fileno(),),
+                                               screen, '-nolisten', 'tcp'], pass_fds=(display.fileno(),),
                                               stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
                     deadline = time.monotonic() + 10
                     while time.monotonic() < deadline:
