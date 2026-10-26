@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <initializer_list>
 #include <string>
+#include <stdexcept>
 
 namespace mnm::reconstruction {
 // No-CD 40209ca7, normal-return local callers. Lower constructors, parsers,
@@ -141,6 +142,7 @@ void enterOriginalWorldScreen(Memory &m, Services &p, std::uint32_t owner) {
     } else {
         const auto divisor = static_cast<std::int32_t>(m.get(0x6de6fd));
         m.set(0x6dbe99, U(divisor));
+        if(!divisor)throw std::domain_error("Original World entry zero-rate divide fault");
         m.set(0x6dbe95, U(1000 / divisor));
     }
     timer();

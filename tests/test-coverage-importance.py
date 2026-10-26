@@ -49,7 +49,9 @@ class ImportanceTest(unittest.TestCase):
 
     def test_new_contracts_stay_unrated(self):
         self.tracks[0]['behaviors'].append('new-contract')
-        self.assertEqual(importance_view(self.catalog, self.register, self.tracks)['unrated'], ['new-contract'])
+        self.assertEqual(importance_view(self.catalog, self.register, self.tracks)['unrated'], [
+            'new-contract',
+        ])
 
     def test_weights_require_in_range_integer_and_reviewed_reason(self):
         for value in [0, 6, True, '5', 4.5]:
@@ -86,22 +88,45 @@ class ImportanceTest(unittest.TestCase):
         self.assertEqual(register, before)
         self.assertGreaterEqual(len(result['entries']), 345)
         self.assertEqual(result['unrated'], [
-            'NP.alternate-canvas-dispatch-admission', 'NP.alternate-canvas-owned-generation',
-            'NP.alternate-canvas-padded-resident', 'NP.alternate-canvas-resident-session',
-            'NP.cursor-live-ownership', 'NP.cursor-owned-compositor', 'NP.cursor-provider-lifetime',
+            'NP.alternate-canvas-dispatch-admission',
+            'NP.alternate-canvas-owned-generation',
+            'NP.alternate-canvas-padded-resident',
+            'NP.alternate-canvas-resident-session',
+            'NP.cursor-live-ownership',
+            'NP.cursor-owned-compositor',
+            'NP.cursor-provider-lifetime',
             'NP.graphics-session-provider-retirement',
-            'NP.native-player-launch', 'NP.natural-gpu-copy-caller-branches',
-            'NP.palette-option-strict-parsing', 'NP.protected-native-store-service', 'NP.published-gpu-copy-call-proof',
-            'NP.surface-alias-lease-lifecycle', 'NP.windowed-copy-reader-frontier', 'NP.windowed-quick-copy-callers',
-            'RS.alternate-canvas-dispatch-composition', 'RS.campaign-padded-presentation-error',
+            'NP.native-player-launch',
+            'NP.natural-gpu-copy-caller-branches',
+            'NP.palette-option-strict-parsing',
+            'NP.protected-native-store-service',
+            'NP.published-gpu-copy-call-proof',
+            'NP.screen-owned-provider-recovery',
+            'NP.surface-alias-lease-lifecycle',
+            'NP.windowed-copy-reader-frontier',
+            'NP.windowed-quick-copy-callers',
+            'RS.alternate-canvas-dispatch-composition',
+            'RS.campaign-padded-presentation-error',
             'RS.cursor-selection-service',
-            'RS.main-screen-acquisition', 'RS.report-screen-acquisition',
-            'RS.screen-class-ownership-static', 'RS.screen-class11-lifetime', 'RS.screen-control-dispatch',
+            'RS.main-screen-acquisition',
+            'RS.report-screen-acquisition',
+            'RS.screen-bitmap-resource-providers',
+            'RS.screen-class-ownership-static',
+            'RS.screen-class11-lifetime',
+            'RS.screen-control-dispatch',
+            'RS.screen-control-resource-providers',
             'RS.screen-cursor-background-invalidation',
-            'RS.screen-cursor-background-restore', 'RS.screen-minimal-transition-callbacks',
-            'RS.screen-resource-release-callers', 'RS.screen-selection-service',
-            'RS.screen-service-tick-transitions', 'RS.screen-tick-control-flow',
-            'RS.windowed-padded-presentation-route', 'RS.world-screen-acquisition', 'RS.world-screen-retirement'])
+            'RS.screen-cursor-background-restore',
+            'RS.screen-minimal-transition-callbacks',
+            'RS.screen-provider-failure-paths',
+            'RS.screen-resource-release-callers',
+            'RS.screen-selection-service',
+            'RS.screen-service-tick-transitions',
+            'RS.screen-tick-control-flow',
+            'RS.windowed-padded-presentation-route',
+            'RS.world-screen-acquisition',
+            'RS.world-screen-retirement',
+        ])
         behaviors = {b['id']: b for b in register['behaviors']}
         builds = {b['id']: b for b in register['builds']}
         for entry in result['entries']:

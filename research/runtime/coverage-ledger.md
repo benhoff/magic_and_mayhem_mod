@@ -23681,6 +23681,47 @@ retain their original fingerprints. No engine status or default is promoted;
 lighting remains original by default. The unrelated pending main-checkout storage
 work stays outside this commit and is preserved during the fast-forward.
 
+### Concrete screen providers and exceptional ownership — 2026-10-26
+
+Items 2 and 3 now have explicit local provider and native ownership contracts: `RS.screen-control-resource-providers`, `RS.screen-bitmap-resource-providers`, `RS.screen-provider-failure-paths` and `NP.screen-owned-provider-recovery`. See [scope, recovered quirks and reproduction](screen-providers-and-failures-20261026.md). The earlier acquisition composition's empty-World normalization is superseded for this new fixture by populated owned SPR and palette-chain retirement; historical evidence remains unchanged.
+
+Fresh `SP26.original` and `SP26.native` evidence is recorded in
+[proof11](screen-provider-results-20261026/proof11.json). Each optimized PE32,
+ASan/UBSan PE32 and sanitized native64 configuration passes 2,551 provider
+schedules: 1,174 controls/vector/registry cases, 144 surface cases, 704 palette
+cases, 528 layout cases and one zero-rate World partial-state comparison.
+All configurations match. Native exception tests pass 325 constructor-prefix
+schedules. Sixteen composed Main/World/Report journeys retire their actual
+screen allocations and session resources without pre-clearing World fields.
+The native owner passes concrete SPR/BMP/PCX/JPEG loading, rollback at each
+completed provider prefix, allocation injection, cancellation, stale/foreign
+worker rejection, reentrant replacement and full signed score formatting.
+Existing ResourceManager/preparation regressions and the fresh 768-schedule
+caller regression (`RSA26.provider-regression`) also pass. Immutable input
+manifests verify before and after. No original live replacement is installed.
+
+The earlier original Report score overflow is retained as negative evidence;
+full signed score handling is an explicit native policy. Actual Windows SEH
+delivery, physical drivers/codecs, simulation and score content, real transition
+routing and installed widget/GL acceptance remain outside these results.
+
+### Screen provider master integration — 2026-10-26
+
+Concrete provider recovery `4061ce9a` is reconciled with the current master
+sources. Since the shared evidence helper changed, fresh
+`SP26.master-original-20261026`, `SP26.master-native-20261026` and
+`RSA26.master-regression-20261026` execution replaces no historical fingerprints:
+all old results remain retained. The full provider/caller matrices, populated
+resource composition and native owner regressions pass. All seven touched screen
+implementation bindings are current; the combined audit has zero errors.
+The static planning-review source list now includes the already declared Qt
+lighting runner, and the expected unrated list preserves the provider/alternate
+contracts without assigning weights. See [integration and remaining scope](screen-provider-master-20261026.md).
+Real screen construction/routing, Windows SEH/driver/codec and installed/live
+acceptance remain separate. No replacement milestone or remote publication is
+added. Master promotion preserves independently owned pending edits and requires
+the normal staged accounting gate and verified local backups.
+
 
 ## Row-copy and brighten outgoing virtual services — 2026-10-26
 
@@ -23760,3 +23801,113 @@ sizes and modes. Its failed initial verifier API call remains recorded alongside
 the corrected full verification. Main adoption remains a separate Git closeout
 step preserving concurrent staged work.
 
+
+
+### TAG parent — installed native sprite-table application (2026-10-26)
+
+`AS.tag` now completes its read-only native parent scope, joining the permissive
+owned raw parser to strict installed companion admission, exact raw-name and
+occurrence selection, native playback controls, atomic reload and a real
+Qt/OpenGL window. See [the parent contract](tag-parent-end-to-end-20261026.md).
+This is parent-level implementation and preview integration; the earlier N27
+and N29 components retain their separate historical claims. Original/editor TAG
+use, ANI timing, original allocation/OS failures, game-world construction and
+live replacement remain outside this native policy and unclaimed.
+
+`TAG.parent-installed-window-20261026` binds the complete parent and installed-preview
+scenario to [execution 4](tag-parent-results-20261026/execution-4.json). Fresh
+Release and ASan/UBSan each pass131,792 checks,80 refusals,262 native GPU/direct
+decoded-plane pixel comparisons and17 actual window actions. All85 installed
+TAGs and130,891 entries match independent Python record/SPR-offset/occurrence
+decoding. Selected frames from every table render and reload. Two actual installed-file
+window journeys cover same-stem and terrain-fallback companions, compare every
+displayed pixel and preserve the paused selected image across reload; malformed reload
+retains state and the visible frame, valid reload recovers, and the actual Qt
+timer completes one-shot playback. Raw TAG, independent installed parser,
+sprite-session, sprite-timeline and CTest regressions pass in both modes.
+All274 declared source fingerprints and installed inputs remain stable; original
+manifest checks verify all2,927 files before and after. GPU surface balance is
+asserted; external uninstrumented Qt/driver leak scanning is disabled.
+
+[Attempt1](tag-parent-results-20261026/execution-1.json) stopped because the
+isolated worktree lacked original payloads; manifest verification now targets
+the original-bearing main checkout. [Attempt2](tag-parent-results-20261026/execution-2.json)
+passed Release acceptance but refused an incomplete prospective protocol-header
+closure. Both failures and exact source variants are retained without final
+execution credit. [The committed-history review](tag-parent-results-20261026/history-review-1.json)
+checks17 commits/2,170 exact parent/current file transitions from1ffeb53e through
+d20de6bb with no missing receipts; it does not assert historical gate execution.
+
+The planning controls initially exposed an inherited missing source fingerprint
+for `tools/test-terrain-light-qt-session.py` in the native-only launch planning
+review. Its already-committed source/test link was inspected and added to that
+review, preserving every old source hash, weight and validation/acceptance claim.
+[The failed planning run](tag-parent-results-20261026/planning-controls-1.json)
+remains negative evidence; this metadata repair grants no new launch validation.
+The fixed unrated fixture also now names the three already-committed alternate
+resident/campaign error contracts. They remain unrated; no weights, engine
+statuses or historical execution claims are changed by that expectation update.
+
+Durable outputs are SQLite reports/references, bounded raw logs, retained test
+binaries and normal verified evidence/review database backups. RAM-backed build
+trees are temporary execution output. The normal90GiB main-drive and100GiB
+archive reserves remain unchanged; the session inventory found no eligible
+cleanup candidates and no payload was deleted. No original or installed input
+is modified and no evidence is published.
+
+Final [coverage audit](tag-parent-results-20261026/audit-3.json) has zero errors;
+`AS.tag` implementation and preview claims are current. The corrected
+[planning controls](tag-parent-results-20261026/planning-controls-3.json) pass
+all38 tests. Earlier negative audit/planning reports remain retained.
+
+[Execution3](tag-parent-results-20261026/execution-3.json) retains the earlier
+passing service/corpus and fixture-window result. The first normal closeout was
+[stopped before review export, staging or commit](tag-parent-results-20261026/interrupted-closeout-1.json)
+to add the direct installed-file window journeys. Execution4 declares the revised
+scenario and exact final sources before execution and supplies current parent
+implementation/preview credit; no historical result or source hash is refreshed.
+
+
+### TAG preview merge and parent-task boundary (2026-10-26)
+
+[The TAG preview merge](tag-parent-master-20261026.md) retains the native scoped
+implementation and preview milestone fromfd3bae4f. The broader parent task is
+still partial: original-game TAG behavior, world integration and live replacement
+remain unfinished. Master6cdbbacd changes only the evidence helper among274 previously pinned
+sources; application/parser/renderer/test sources are unchanged. Prior native execution retains its exact historical
+hashes; current-code implementation/preview validation is pending. This merge
+grants no fresh engine execution or original-game equivalence. Eight existing
+pending paths are backed up and pinned for exact restoration after the verified
+merge; another agent's preceding merge was left intact.
+
+The screen-provider integration retains first validated candidate `75f441d2`; final local promotion reconciles subsequent committed master integrations under a verified pending-work reservation. All fresh SP26/RSA26 source/contract bindings remain exact; incoming native preview and original/live boundaries retain their independent status. Normal staged checks and verified retained backups apply to the actual final merge; no publication is added.
+
+### Rendering adoption after completed screen-provider integration — 2026-10-26
+
+The candidate joins validated rendering `adbf8029` with completed main `aeb1c04d`.
+New asset/CMake dependencies require new execution identities rather than a hash
+refresh. [Busy replay05](rendering-busy-integration-results-20261026/comparison-05.json)
+again matches all 16 frames, 19,036 draws and 7,680,000 pixels in the three
+independent comparisons. [Colour repeat02](rendering-busy-integration-results-20261026/colour-comparison-master-02.json)
+again passes all CPU modes/formats and boundary/caller-state checks, and all
+192 RGB565 World fixtures covering 38,199,120 pixels. Original manifests pass
+before and after both batches. The unchanged 48 storage/14 workflow controls
+retain exact source hashes. No unrelated provider path receives validation
+credit from these selected World/colour fixtures.
+
+[Output diagnostics](rendering-busy-integration-results-20261026/busy-output-diagnostics-01.json)
+confirm 16 distinct nonblack images: each has at least 451,546 nonblack pixels and
+2,290 distinct RGB565 words. This rules out empty-output agreement without
+claiming exhaustive per-mode visible effects. The new source/contract check
+and combined audit are retained separately; older cohorts keep their historical
+hashes and independent limitations. Hardware, natural mode reachability,
+continuous presentation, all-writer closure and replacement remain pending.
+
+The incoming-history check accounts 15,238 committed file transitions. Its
+642 missing ancillary-log transitions reduce to 361 exact file additions and
+60 distinct payloads (88,311 bytes); all bytes were verified and retrospective
+receipts appended. This is storage provenance, not renewed engine execution or
+a historical gate assertion. The new capsule restores all 1,015 members with
+matching hashes, sizes and modes. Adoption uses normal Git operations and keeps
+the separate `AS.tag` working edits and untracked inputs; current rendering
+source/contract fingerprints must remain exact after their restoration.
