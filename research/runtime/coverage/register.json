@@ -3319,7 +3319,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "N27 adds a separate widget-independent strict companion/name/clip/playback/checkpoint/reload/plan and CPU/GPU consumer. The permissive raw parser, original TAG use, world construction and live acceptance remain separate; parent status is unchanged."
+        "N27 adds a separate widget-independent strict companion/name/clip/playback/checkpoint/reload/plan and CPU/GPU consumer. The permissive raw parser, original TAG use, world construction and live acceptance remain separate; parent status is unchanged.",
+        "N29 adds a separate explicit variable-timed native timeline and owned draw-plan service. Original ANI/TAG usage, installed acceptance and live integration remain outstanding; parent status is unchanged."
       ]
     },
     {
@@ -153123,6 +153124,626 @@
       "remaining_gaps": [
         "Natural original-game callers for all five helpers remain unresolved. Preserve provisional unused_candidate classification, existing 43-route denominator and 38-route historical observed union.",
         "No inter-block/interprocedural values, runtime writer/alias closure, unresolved indirect targets, dynamic or overlapping code, external modules or other builds are closed by this scanner."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.explicit-clip",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Explicit variable-duration sprite clips",
+      "scope": "Explicit variable-duration sprite clips. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.variable-loop",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Variable-duration looping sprite timelines",
+      "scope": "Variable-duration looping sprite timelines. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.variable-once",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Variable-duration one-shot sprite timelines",
+      "scope": "Variable-duration one-shot sprite timelines. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.ping-pong",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Endpoint-bounded ping-pong sprite timelines",
+      "scope": "Endpoint-bounded ping-pong sprite timelines. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.reverse",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Reverse sprite timeline schedules",
+      "scope": "Reverse sprite timeline schedules. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.pause",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Sprite timeline pause and resume",
+      "scope": "Sprite timeline pause and resume. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.seek",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic virtual-time and entry seeking",
+      "scope": "Atomic virtual-time and entry seeking. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.rational-rate",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Overflow-safe rational timeline rates",
+      "scope": "Overflow-safe rational timeline rates. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.bounded-events",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic bounded ordered frame-entry events",
+      "scope": "Atomic bounded ordered frame-entry events. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
+      ]
+    },
+    {
+      "id": "NP.sprite-timeline.checkpoint-reload",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned timeline checkpoints and atomic resource reload",
+      "scope": "Owned timeline checkpoints and atomic resource reload. Within the documented owned variable-duration native timeline domain. Existing strict sprite resources and masked CPU/GPU drawing are reused suppliers. No recovered original ANI/timing/events, widget/world, hardware/performance or live equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-twentyninth-ten-20261026.md"
+      ],
+      "implementation": [
+        "apps/sprite-timeline/sprite_timeline.hpp",
+        "apps/sprite-timeline/sprite_timeline.cpp"
+      ],
+      "tests": [
+        "tests/sprite-timeline-test.cpp",
+        "tools/test-rendering-twentyninth-ten.py",
+        "tools/run-surface-wrapper-control.py"
+      ],
+      "validation_dependencies": [
+        "apps/sprite-timeline/CMakeLists.txt",
+        "apps/sprite-session/sprite_session.hpp",
+        "apps/sprite-session/sprite_session.cpp",
+        "renderer/sprites/sprite_batch.hpp",
+        "renderer/sprites/sprite_batch.cpp",
+        "apps/sprite-session/CMakeLists.txt",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "tests/tag-loader-test.cpp",
+        "tests/sprite-loader-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tests/sprite-render-test.cpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/CMakeLists.txt",
+        "assets/CMakeLists.txt",
+        "tests/sprite-session-test.cpp"
+      ],
+      "evidence": [
+        "N29.timeline-native-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic native timeline and owned draw-plan policy only. Original ANI timing, event semantics, installed acceptance, world/widget integration and live replacement remain separate; AS.tag stays partial."
       ]
     }
   ],
@@ -345676,6 +346297,121 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "N29.timeline-native-20261026",
+      "kind": "native_integration",
+      "scope": "Ten owned variable-timed sprite timeline policies. Independent unit-host-tick/rational and binary64 clock oracles; ordered bounded events, atomic state/refusals and owned CPU/GPU deliveries. No original ANI/timing/events, widget/world, hardware/performance or live claim.",
+      "record": "research/runtime/rendering-twentyninth-ten-results-20261026/execution-2.json",
+      "sha256": "a3341bd0be6562ca0fee52501abe77ea66eff902f91649e93f5fce0a0bdba15a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/session_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/release/checks",
+          "equals": 67243
+        },
+        {
+          "pointer": "/native/release/refusals",
+          "equals": 31
+        },
+        {
+          "pointer": "/native/release/timing_cases",
+          "equals": 72
+        },
+        {
+          "pointer": "/native/release/large_clock_cases",
+          "equals": 18
+        },
+        {
+          "pointer": "/native/release/cpu_gpu_cases",
+          "equals": 360
+        },
+        {
+          "pointer": "/native/release/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/release/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/session_regression_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/ctest_wiring_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sanitized/checks",
+          "equals": 67243
+        },
+        {
+          "pointer": "/native/sanitized/refusals",
+          "equals": 31
+        },
+        {
+          "pointer": "/native/sanitized/timing_cases",
+          "equals": 72
+        },
+        {
+          "pointer": "/native/sanitized/large_clock_cases",
+          "equals": 18
+        },
+        {
+          "pointer": "/native/sanitized/cpu_gpu_cases",
+          "equals": 360
+        },
+        {
+          "pointer": "/native/sanitized/scopes",
+          "equals": 10
+        },
+        {
+          "pointer": "/native/sanitized/surface_leaks",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -375146,7 +375882,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-dda77a382124fd411c78f4fe79dac0dead47378de0e8633afbf522af1ab07b09.json",
-    "sha256": "dda77a382124fd411c78f4fe79dac0dead47378de0e8633afbf522af1ab07b09"
+    "path": "research/runtime/coverage/source-index-0cfa963224256b2041c76560b84d78212bf0beb8d007e4753533beb3080f1349.json",
+    "sha256": "0cfa963224256b2041c76560b84d78212bf0beb8d007e4753533beb3080f1349"
   }
 }
