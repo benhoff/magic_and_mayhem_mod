@@ -30057,7 +30057,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Reviewed rendering API and producer support report",
-      "scope": "Read-only reconciliation of all required surface matrix categories and inventoried drawing families with explicitly reviewed scoped code, original-executable versus standalone-driver subset comparisons, bounded World entry counts and actual bypass proof. Source/scope/scenario-bound current validation is suppressed on audit errors. Categories overlap and partial support never becomes full-category completion, effort or overall replacement. Synthetic reporter guard tests validate accounting semantics only; engine equivalence, adequacy of discovery/mappings and new live execution are outside scope.",
+      "scope": "Read-only reconciliation of all required surface matrix categories and inventoried drawing families with explicitly reviewed scoped code, original-executable versus standalone-driver subset comparisons, bounded World entry counts and actual bypass proof. Source/scope/scenario-bound current validation is suppressed on audit errors. Categories overlap and partial support never becomes full-category completion, effort or overall replacement. Synthetic reporter guard tests validate accounting semantics only; engine equivalence, adequacy of discovery/mappings and new live execution are outside scope. The frontier lists original address scopes, current behavior/scenario proof and explicit branch gaps; one current scenario cannot close another, and branch completeness remains unmeasured. Formal14-journey/21-operation acceptance is retained as a static inventory, separate from any new execution.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -30068,21 +30068,28 @@
         "docs/live-drawing-replacement.md",
         "research/runtime/rendering-required-dependencies-20261024.md",
         "docs/native-rendering-dependencies.json",
-        "research/runtime/rendering-assurance-20261025.md"
+        "research/runtime/rendering-assurance-20261025.md",
+        "research/runtime/rendering-coverage-scope-colour-20261025.json",
+        "research/runtime/colour-coverage-frontier-20261025.md"
       ],
       "implementation": [
         "tools/rendering_coverage.py",
         "tools/report-rendering-coverage.py",
-        "tools/reconcile-rendering-dependencies.py"
+        "tools/reconcile-rendering-dependencies.py",
+        "tools/rendering_frontier.py",
+        "tools/audit-rendering-frontier.py"
       ],
       "tests": [
-        "tests/test-rendering-coverage.py"
+        "tests/test-rendering-coverage.py",
+        "tests/test-rendering-frontier.py"
       ],
       "validation_dependencies": [
         "research/runtime/native-surface-operation-matrix.json",
         "research/runtime/rendering-coverage-scope-assurance-20261025.json",
         "tools/coverage_audit.py",
-        "tools/coverage_claims.py"
+        "tools/coverage_claims.py",
+        "tools/drawing_journeys.py",
+        "research/runtime/rendering-coverage-scope-colour-20261025.json"
       ],
       "evidence": [
         "TOOL.rendering-coverage.guards-20261010",
@@ -30091,7 +30098,11 @@
         "TOOL.rendering-coverage.clipping-guards-20261010",
         "TOOL.rendering-coverage.clipping-final-guards-20261010",
         "TOOL.rendering-coverage.glyph-live-guards-20261010",
-        "P1.required-rendering-dependencies-static-20261024"
+        "P1.required-rendering-dependencies-static-20261024",
+        "CCF25.frontier-controls",
+        "CCF25.frontier-controls-final",
+        "CCF25.frontier-controls-reviewed",
+        "CCF25.frontier-reviewed"
       ],
       "status": {
         "understanding": "scoped",
@@ -35022,7 +35033,8 @@
       "original": [],
       "documents": [
         "research/runtime/draw03-native-journeys.md",
-        "research/formats/drawing-scene-corpus.md"
+        "research/formats/drawing-scene-corpus.md",
+        "research/runtime/colour-coverage-frontier-20261025.md"
       ],
       "implementation": [
         "compat/legacy/drawing_scene.hpp",
@@ -35180,7 +35192,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "CCF25 adds bounded ordered RGB565 constant fill tiling to recorded active-World replay. Fresh isolated original/GPU fixtures validate that increment. Older complete recorded storage/presentation comparisons retain their hashes and require new current-source replay before renewal; live transports and full journey acceptance remain separate."
+      ]
     },
     {
       "id": "NR.drawing-raster-results",
@@ -77489,7 +77504,7 @@
         {
           "build": "nocd-40209ca7",
           "address": 5537152,
-          "scope": "Selected bounded RGB565 channel rectangle cases only, not entire raster or RGB555."
+          "scope": "Retained original rectangle preparation/footer for bounded canonical RGB565/RGB555 constant or triple-WORD sources and modes0..3; not whole-wrapper, arbitrary alias, driver or live replacement coverage."
         }
       ],
       "documents": [
@@ -77509,7 +77524,8 @@
       "tests": [
         "tests/colour-rect-splice-reference.cpp",
         "tools/test-colour-rect-splice.py",
-        "tools/diagnose-colour-rect-live.py"
+        "tools/diagnose-colour-rect-live.py",
+        "tests/colour-rect-boundaries.hpp"
       ],
       "validation_dependencies": [
         "reconstruction/rendering/pixel_kernel.c",
@@ -77532,7 +77548,8 @@
         "RS.pixel-route-targets.reviewed-static-20261015",
         "RS.optional-pixel-routes.matrix-20261017",
         "RS.optional-pixel-routes.matrix-final-20261017",
-        "RS.optional-pixel-routes.matrix-empty-fix-20261017"
+        "RS.optional-pixel-routes.matrix-empty-fix-20261017",
+        "CCF25.cpu-original"
       ],
       "status": {
         "understanding": "partial",
@@ -77543,7 +77560,8 @@
       },
       "remaining_gaps": [
         "SSC25 retained storage baseline03/corrected04/plain02 journals have375/251/251 recorder failure18/tag52 observations at this wrapper. Multiple source-admission guards share that code; the exact rejected subcondition remains unknown. No branch/equivalence or historical source-session acceptance is renewed. Fresh shorter source sessions close separately. See storage-session-closure-20261025.md.",
-        "RCI25 longer original-active reproduction identifies2x2 mode0 source planes refused by the trace recorder uniform policy, plus small constants encoded as unadmitted generic World fills. Recorder routing now uses the existing bounded owned colour operation. Historical failure-only records cannot be retroactively assigned this subreason; original comparisons and unobserved colour modes remain separately scoped. See rendering-closure-integration-20261025.md."
+        "RCI25 longer original-active reproduction identifies2x2 mode0 source planes refused by the trace recorder uniform policy, plus small constants encoded as unadmitted generic World fills. Recorder routing now uses the existing bounded owned colour operation. Historical failure-only records cannot be retroactively assigned this subreason; original comparisons and unobserved colour modes remain separately scoped. See rendering-closure-integration-20261025.md.",
+        "CCF25 renews isolated CPU original comparison across all four modes, RGB565/RGB555, constants/planes, clipping and geometry through2048x2048. Separate authored World fixtures validate ordered large RGB565 fills and modes0..3. Natural live mode reachability, RGB555 World ingestion, hardware presentation and full renderer parity remain unaccepted."
       ]
     },
     {
@@ -77568,7 +77586,8 @@
         "tests/colour-rect-splice-reference.cpp",
         "tools/test-colour-rect-splice.py",
         "tools/diagnose-colour-rect-live.py",
-        "tools/test-rendering-third-ten.py"
+        "tools/test-rendering-third-ten.py",
+        "tests/colour-rect-boundaries.hpp"
       ],
       "validation_dependencies": [
         "reconstruction/rendering/pixel_kernel.c",
@@ -77591,7 +77610,8 @@
         "NP.native-completion.colour-rect-20261015",
         "NT3.ten-native-admission-lifetimes-20261021",
         "NT3.final-ten-native-admission-lifetimes-20261021",
-        "COMMIT20261021.third-ten.native_integration"
+        "COMMIT20261021.third-ten.native_integration",
+        "CCF25.cpu-original"
       ],
       "status": {
         "understanding": "partial",
@@ -149722,7 +149742,8 @@
       "documents": [
         "research/runtime/storage-session-closure-20261025.md",
         "research/formats/producer-colour-refusals-v1.md",
-        "research/runtime/rendering-closure-integration-20261025.md"
+        "research/runtime/rendering-closure-integration-20261025.md",
+        "research/runtime/colour-coverage-frontier-20261025.md"
       ],
       "implementation": [
         "runtime/scene/drawing_session_producers.h",
@@ -149780,7 +149801,7 @@
         "Storage cadence epochs identify observed zero-pacer/sequence1 restarts only; Load causality and global sequence/source/presentation identity remain unverified. Strict continuous-update consumers retain duplicate/reversal refusal.",
         "Original/native comparisons cover observed software-EGL storage intervals and the actual recorded colour modes/geometries. Synthetic request controls cover additional bounded modes; unobserved original input branches, hardware scanout, all-writer ownership, complete renderer/gameplay equivalence and live replacement remain unaccepted.",
         "The exploratory16-World-returns-per-phase acquisition timed out after Load. Its failures and raw evidence remain unaccepted. The final initial16-return/ordinary-three-return later phases exercise the recovered colour branch; they do not fix or validate every longer-duration session.",
-        "Final RCI25 comparisons observe1x1 mode0 and2x2 modes0/1. Modes2/3 and other geometries have request/isolated controls, not fresh original live comparison here. Large uniform fills inside active World, arbitrary planes/extents and RGB555 recorder integration remain unaccepted."
+        "Final RCI25 comparisons observe1x1 mode0 and2x2 modes0/1. Modes2/3 and other geometries have request/isolated controls, not fresh original live comparison here. CCF25 separately validates bounded constant fills in recorded DrawingScene World replay. Natural large-fill/live transport reachability, arbitrary planes/extents and RGB555 recorder integration remain unaccepted."
       ]
     },
     {
@@ -152607,6 +152628,53 @@
       },
       "remaining_gaps": [
         "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
+      ]
+    },
+    {
+      "id": "NR.world-constant-fill",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Ordered constant fills in recorded native World replay",
+      "scope": "Owned RGB565 fill operation5 on the active recorded World canvas. Intersect the fill rectangle with canvas bounds and tile the constant through existing copy-mode colour primitives up to64x64. Preserve order around destination-dependent colour draws; enforce12320 expanded pending draws, source geometry/canvas identity and payload/value validity. No new original writer ownership, RGB555 World support, live queue reachability, physical presentation, performance or whole-renderer acceptance.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/colour-coverage-frontier-20261025.md"
+      ],
+      "implementation": [
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/drawing_scene.cpp"
+      ],
+      "tests": [
+        "tests/colour-world-coverage.cpp",
+        "tests/colour-world-reference.cpp",
+        "tools/test-colour-coverage.py"
+      ],
+      "validation_dependencies": [
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/drawing_scene.hpp",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/drawing-scene/CMakeLists.txt",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "tests/sprite-binary-reference.cpp",
+        "tests/resource-fixtures.hpp",
+        "protocols/include/mnm/canvas_producers_v3.h"
+      ],
+      "evidence": [
+        "CCF25.world-original",
+        "CCF25.world-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Isolated ordered original-rectangle comparisons do not establish natural live World reachability, physical presentation, sustained performance or all-writer exclusion. RGB555 remains outside the recorded World format."
       ]
     }
   ],
@@ -344205,6 +344273,246 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CCF25.cpu-original",
+      "kind": "isolated_original",
+      "scope": "Fresh bounded original colour execution and native comparison. CPU fixture checks complete physical allocations/caller state in RGB565/RGB555; ordered World fixtures compare full RGB565 GPU output with original547d80 calls. Isolated fixtures, not an original game journey, hardware presentation or live replacement.",
+      "record": "research/runtime/colour-coverage-results-20261025/comparison-04-cpu.json",
+      "sha256": "a273b77f6b91932d13c54d8c670c2d53188062bef1dea6572713b0c05a6487a3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/caller_state_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/boundaries/cases",
+          "equals": 384
+        },
+        {
+          "pointer": "/comparison/boundaries/native",
+          "equals": 384
+        },
+        {
+          "pointer": "/comparison/boundaries/caller_state_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CCF25.world-original",
+      "kind": "isolated_original",
+      "scope": "Fresh bounded original colour execution and native comparison. CPU fixture checks complete physical allocations/caller state in RGB565/RGB555; ordered World fixtures compare full RGB565 GPU output with original547d80 calls. Isolated fixtures, not an original game journey, hardware presentation or live replacement.",
+      "record": "research/runtime/colour-coverage-results-20261025/comparison-04.json",
+      "sha256": "f81eae265a9f00e873844779f24d133bece1da5b23c18cfe6d6047313162da0c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_game_journey",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/native_controls/cases",
+          "equals": 192
+        },
+        {
+          "pointer": "/native_controls/refusals",
+          "equals": 5
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CCF25.world-native",
+      "kind": "native_integration",
+      "scope": "Fresh bounded original colour execution and native comparison. CPU fixture checks complete physical allocations/caller state in RGB565/RGB555; ordered World fixtures compare full RGB565 GPU output with original547d80 calls. Isolated fixtures, not an original game journey, hardware presentation or live replacement.",
+      "record": "research/runtime/colour-coverage-results-20261025/comparison-04.json",
+      "sha256": "f81eae265a9f00e873844779f24d133bece1da5b23c18cfe6d6047313162da0c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/native_controls/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/hardware_presentation",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/full_renderer_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CCF25.frontier-controls",
+      "kind": "native_integration",
+      "scope": "Eight synthetic frontier guards and sixteen rendering crosswalk guards. Accounting semantics only; no engine, original, journey or replacement credit.",
+      "record": "research/runtime/colour-coverage-results-20261025/frontier-controls.json",
+      "sha256": "ff965b58f4af4809c660fc988823ed842ca880be587cd627e4c56fcbe6cf4f62",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/0/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/tests/1/returncode",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CCF25.frontier-controls-final",
+      "kind": "native_integration",
+      "scope": "Nine synthetic frontier guards and sixteen rendering crosswalk guards. Shared-scenario proof cannot close another behavior or behavior outside the audit. Accounting semantics only; no engine, original, journey or replacement credit.",
+      "record": "research/runtime/colour-coverage-results-20261025/frontier-controls-final.json",
+      "sha256": "239d82d75a5f775fc0e2473457e2aee2bbbade10031b46b9c159b9d1ef2619be",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/0/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/tests/1/returncode",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CCF25.frontier-controls-reviewed",
+      "kind": "native_integration",
+      "scope": "Ten frontier guards and sixteen crosswalk guards: preserve independent stages, per-behavior/scenario source proof, shared-scenario limits, audit-error suppression and neutral handling of static-only implementation claims. No engine or journey credit.",
+      "record": "research/runtime/colour-coverage-results-20261025/frontier-controls-reviewed.json",
+      "sha256": "13828b49be8512cd5c7aa895bb117f8de3dfe67f444e7b77e1a6203beba9fa30",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/0/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/tests/1/returncode",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CCF25.frontier-reviewed",
+      "kind": "static",
+      "scope": "Point-in-time source/behavior/scenario rendering frontier after fresh colour proof registration. Original links and independent statuses retained; no engine execution, whole-branch completeness or whole-renderer percentage inferred.",
+      "record": "research/runtime/colour-coverage-results-20261025/frontier-reviewed.json",
+      "sha256": "9f551d2df69c9cbec19132f02301aac64ede6f216b554373e29b4ab3002bf43c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/audit_valid",
+          "equals": true
+        },
+        {
+          "pointer": "/overall_completion_percent",
+          "equals": null
+        },
+        {
+          "pointer": "/counts/registered_behaviors",
+          "equals": 785
+        },
+        {
+          "pointer": "/counts/registered_scenarios",
+          "equals": 664
+        },
+        {
+          "pointer": "/journey_requirements/execution_performed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -371792,6 +372100,23 @@
       "evidence": [
         "TLCL25.master-reload-replace"
       ]
+    },
+    {
+      "id": "NR.world-constant-fill.original-order",
+      "level": "headless",
+      "scope": "Owned producer fixtures for large/clipped constant fills interleaved with small RGB565 colour modes0..3. Independent unchanged original547d80 execution supplies complete expected planes; native input contains only owned source requests. Negative admission/budget and native cleanup are independent controls. No actual game journey or hardware presentation.",
+      "behaviors": [
+        "NR.world-constant-fill"
+      ],
+      "tests": [
+        "tests/colour-world-coverage.cpp",
+        "tests/colour-world-reference.cpp",
+        "tools/test-colour-coverage.py"
+      ],
+      "evidence": [
+        "CCF25.world-original",
+        "CCF25.world-native"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -373499,7 +373824,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-60b975c4796a04b971513d7afb66d6dcd3a44b88227ed2eb7d6ce198b40dadeb.json",
-    "sha256": "60b975c4796a04b971513d7afb66d6dcd3a44b88227ed2eb7d6ce198b40dadeb"
+    "path": "research/runtime/coverage/source-index-ad39303f94da68545bba82145d8078f7c8e00953612b9c986ddf8de01cf36387.json",
+    "sha256": "ad39303f94da68545bba82145d8078f7c8e00953612b9c986ddf8de01cf36387"
   }
 }

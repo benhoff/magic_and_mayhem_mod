@@ -19,7 +19,7 @@ std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
            r[2]<1||r[2]>MNM_PRODUCER_COLOUR_RECT||r[23]||
            c.bytes().size()>128u*1024u*1024u-96||r[0]!=96+c.bytes().size()||r[18]!=c.bytes().size())
             throw std::invalid_argument("Drawing scene source sequence or record is invalid");
-        const bool worldPrimitive=r[3]==world_->canvas()&&(r[2]==MNM_PRODUCER_RASTER||r[2]==MNM_PRODUCER_RGB_ADD||r[2]==MNM_PRODUCER_COLOUR_RECT);
+        const bool worldPrimitive=r[3]==world_->canvas()&&(r[2]==MNM_PRODUCER_RASTER||r[2]==MNM_PRODUCER_RGB_ADD||r[2]==MNM_PRODUCER_COLOUR_RECT||r[2]==MNM_PRODUCER_FILL);
         const bool independentCopy=r[2]==MNM_PRODUCER_COPY&&
             r[3]!=world_->canvas()&&r[4]!=world_->canvas();
         if(world_->active()&&!independentCopy&&!worldPrimitive&&r[2]!=MNM_PRODUCER_CLIP&&

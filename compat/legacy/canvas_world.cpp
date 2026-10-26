@@ -218,10 +218,29 @@ void CanvasWorld::beginFrame(const CanvasProducer &c,
 }
 void CanvasWorld::append(const CanvasProducer &c) {
   if (!active_ || c.fields[3] != canvas_ || c.fields[5] != pending_.width ||
-      c.fields[6] != pending_.height || queueDraws_ >= 12320 ||
+      c.fields[6] != pending_.height || queueDraws_ >= 12320 || pending_.draws.size() >= 12320 ||
       totalDraws_ == std::numeric_limits<std::uint64_t>::max())
     throw std::invalid_argument(
         "World producer changed destination or exceeded queue budget");
+  if(c.fields[2]==MNM_PRODUCER_FILL){
+    const auto& r=c.fields;
+    const int left=signedWord(r[10]),top=signedWord(r[11]),right=signedWord(r[12]),bottom=signedWord(r[13]);
+    if(!c.bytes().empty()||r[14]>65535||right<left||bottom<top)
+      throw std::invalid_argument("Invalid constant World fill");
+    const int x0=std::max(0,left),y0=std::max(0,top),x1=std::min(int(pending_.width),right),y1=std::min(int(pending_.height),bottom);
+    const auto tiles=x0<x1&&y0<y1?std::size_t((x1-x0+63)/64)*((y1-y0+63)/64):0;
+    if(tiles>12320-pending_.draws.size())throw std::invalid_argument("World fill exceeds expanded draw budget");
+    // A fill owns its constant, without a source plane or destination snapshot.
+    // Tile only the clipped visible area through the existing colour primitive.
+    // Order is preserved alongside neighbouring destination-dependent draws.
+    for(int y=y0;y<y1;y+=64)for(int x=x0;x<x1;x+=64){
+      const int w=std::min(64,x1-x),h=std::min(64,y1-y);
+      WorldDraw tile;tile.backend=12;tile.x=x;tile.y=y;tile.clip={x0,y0,x1,y1};
+      tile.colourRectangle=render::ColourRectangle{{w,h,std::vector<std::uint32_t>(std::size_t(w)*h,r[14])}};
+      pending_.draws.push_back(std::move(tile));
+    }
+    ++queueDraws_;++totalDraws_;checked_=false;profile_.visibleDraws+=unsigned(tiles);return;
+  }
   auto draw = producerWorldDraw(c);
   ++queueDraws_;
   ++totalDraws_;
