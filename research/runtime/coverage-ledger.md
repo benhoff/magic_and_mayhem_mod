@@ -22895,3 +22895,37 @@ combined-tree checks also verify all20 behavior contracts and source closures.
 transition review, and `final-local-evidence01.json` identifies the verified local
 2,647-object SQLite backup. The final normal hook checks the combined staged
 tree; pre-existing master edits are preserved separately at fast-forward time.
+
+## Five pixel helper computed caller investigation — 2026-10-25
+
+[Computed-caller review](five-pixel-computed-callers-20261025.md) extends the
+earlier direct-byte searches for PCX WORD,brighten,row-copy,raster15 and camera3.
+FIVE1.computed-image-20261025 decodes513885 instructions from45650 discovery
+seeds and retains3719 indirect transfers. It finds zero incoming decoded direct
+branches or supported local computed-address candidates into the five helpers.
+All remain provisional unused_candidate;the43-route denominator and historical
+38-route observed union remain unchanged. No live game or original pixel
+comparison is performed.
+
+The historical3717computed sites reconcile to3716indirect instructions and one
+retained INT3 classification. Three additional outgoing virtual+80 calls inside
+row-copy/brighten are preserved in an incomplete dispatch entry;their runtime
+targets remain unknown. Existing inventory boundaries and hashes are unchanged.
+Original CPU chooser assignments and camera0/2/0/1 table bytes are checked,not
+generalized into whole-program exclusion. Initial import-name thunks are kept
+separate from loader-installed runtime addresses.
+
+FIVE1.computed-controls-20261025 passes34 actual-decoder graph/value tests.
+Immutable SQLite reports retain the initial failed provenance assertion,its
+source variants and all successful narrower scans. Manifest bookends verify2927
+original inputs. The new scanner implementation has scoped current execution
+support;natural caller recovery,inter-block/interprocedural and dynamic/external
+flows,original equivalence,integration and replacement remain open.
+
+The final central-census extension uses all6757current function entries,including
+82entries absent from the older caller seed census. Fresh
+FIVE1.central-image-20261025 retains515966decoded instructions from45731seeds,
+with the same3719indirect sites and zero candidate callers. Fresh
+FIVE1.central-controls-20261025 passes34controls against the final source and
+contract. Earlier narrower evidence/receipts and the pre-staging Git-lock failure
+remain historical;the final current-code claim uses only the new source bindings.

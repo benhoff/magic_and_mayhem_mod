@@ -151452,6 +151452,82 @@
         "tools/prepare-shadow-experiment.py",
         "tools/run-private-terrain-display.py"
       ]
+    },
+    {
+      "id": "NP.five-pixel-computed-callers",
+      "kind": "native_policy",
+      "subsystem": "rendering",
+      "title": "Five pixel helper computed-address and indirect caller investigation",
+      "scope": "Pinned No-CD discovery-root/direct-edge x86 decoding and bounded straight-line 32-bit constant/address candidate propagation for five unresolved helper ranges. Calls, branches, incoming targets, gaps, memory/partial-register writes and unsupported instructions reset local state. Retain all decoded indirect sites and initial-image memory provenance. Separately verify actual CPU pointer assignments and minimap table targets. Candidate values and discovery roots are not naturally executed callers; no inter-block/interprocedural, runtime memory, dynamic/external flow or whole-program unreachability closure. No route credit, dispatch change or denominator reduction.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5551600,
+          "scope": "Existing helper range; computed-address caller candidates only.",
+          "recovered_range": "pixel-producer-54b5f0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5822320,
+          "scope": "Existing helper range; computed-address caller candidates only.",
+          "recovered_range": "pixel-producer-58d770"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821360,
+          "scope": "Existing helper range; computed-address caller candidates only.",
+          "recovered_range": "pixel-producer-58d3b0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5759408,
+          "scope": "Existing helper range; computed-address caller candidates only.",
+          "recovered_range": "world-copy-reference-entry-57e1b0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5583600,
+          "scope": "Existing helper range; computed-address caller candidates only.",
+          "recovered_range": "minimap-outline-view3-5532f0"
+        }
+      ],
+      "documents": [
+        "research/runtime/five-pixel-computed-callers-20261025.md"
+      ],
+      "implementation": [
+        "tools/pixel_caller_values.py",
+        "tools/inspect-five-pixel-callers.py"
+      ],
+      "tests": [
+        "tests/test-pixel-caller-values.py"
+      ],
+      "validation_dependencies": [
+        "tools/original_x86.py",
+        "tools/inspect-pixel-route-caller-ranges.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "research/original-files.tsv",
+        "research/runtime/coverage/binary-nocd-alternate-canvas-20261020.json"
+      ],
+      "evidence": [
+        "FIVE1.computed-controls-20261025",
+        "FIVE1.computed-image-20261025",
+        "FIVE1.central-controls-20261025",
+        "FIVE1.central-image-20261025"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Natural original-game callers for all five helpers remain unresolved. Preserve provisional unused_candidate classification, existing 43-route denominator and 38-route historical observed union.",
+        "No inter-block/interprocedural values, runtime writer/alias closure, unresolved indirect targets, dynamic or overlapping code, external modules or other builds are closed by this scanner."
+      ]
     }
   ],
   "evidence": [
@@ -342637,6 +342713,120 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "FIVE1.computed-controls-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/five-pixel-callers-results-20261025/controls04.json",
+      "sha256": "77891ff0fd9eef895a314ac24acd0de24569817cc896798d37339c79d63ff537",
+      "scope": "34 real-decoder synthetic graph/value controls, including positive computed pointers, branch/alias/call barriers and incomplete graph refusal. Scanner implementation only; no original game or pixel comparison.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_unreachable_proved",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "FIVE1.computed-image-20261025",
+      "kind": "static",
+      "record": "research/runtime/five-pixel-callers-results-20261025/image03.json",
+      "sha256": "485fc31c48e494161d499e2b5f42e8f8420ef67e917bbea4b3b4ef6f0bf6b9e6",
+      "scope": "Pinned original byte review:513885 decoded instructions,3719 indirect sites,zero five-helper direct/value candidates;retain3717-site reconciliation and3 additional outgoing virtual calls. Initial-image values are not runtime targets. No original game or global reachability claim.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_unreachable_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FIVE1.central-controls-20261025",
+      "kind": "native_integration",
+      "record": "research/runtime/five-pixel-callers-results-20261025/central-controls01.json",
+      "sha256": "50a9fd06292eda189e0b2296f6b0b9d55e6df66d417209acb07e03d73909dc9a",
+      "scope": "Fresh34 real-decoder graph/value controls on the final central-inventory source/contract. No original-game execution or pixel comparison.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_unreachable_proved",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "FIVE1.central-image-20261025",
+      "kind": "static",
+      "record": "research/runtime/five-pixel-callers-results-20261025/central-image01.json",
+      "sha256": "91a2b69f5e0192125430135e5d0288d2d30fc1cd69474ecb826cd6b186e67a59",
+      "scope": "Current central6757-entry census plus retained flow-site/target roots:515966 decoded instructions from45731 seeds,3719 indirect sites,zero five-helper candidate callers. All82 additional central function entries included. Preserve runtime/foreign/inter-block unknowns and three outgoing virtual sites;no game execution or global exclusion.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_unreachable_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -352897,6 +353087,32 @@
           "behaviors": [
             "TL.complete-position-events"
           ]
+        }
+      ]
+    },
+    {
+      "id": "five-pixel-helper-outgoing-virtual-services",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5822320,
+        "scope": "Existing brighten helper range; static outgoing +80 virtual-site inventory, not a known concrete table.",
+        "recovered_range": "pixel-producer-58d770"
+      },
+      "document": "research/runtime/five-pixel-computed-callers-20261025.md",
+      "complete": false,
+      "scope": "Retain three decoded outgoing receiver-table +80 calls absent from the historical flow census. No runtime table/callee identity or natural incoming caller is recovered.",
+      "entries": [
+        {
+          "value": "site0x58d487 virtual+80 target unknown",
+          "behaviors": []
+        },
+        {
+          "value": "site0x58d494 virtual+80 target unknown",
+          "behaviors": []
+        },
+        {
+          "value": "site0x58d8a8 virtual+80 target unknown",
+          "behaviors": []
         }
       ]
     }
@@ -371931,7 +372147,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-b34e12e2811a365fd76d653ec36ec30daec1b5b302d382f8a3edca766ac15e1b.json",
-    "sha256": "b34e12e2811a365fd76d653ec36ec30daec1b5b302d382f8a3edca766ac15e1b"
+    "path": "research/runtime/coverage/source-index-fb2c9eb031db826cbf223799b7576a1250f75e07ebca3485075783c2626dd42e.json",
+    "sha256": "fb2c9eb031db826cbf223799b7576a1250f75e07ebca3485075783c2626dd42e"
   }
 }
