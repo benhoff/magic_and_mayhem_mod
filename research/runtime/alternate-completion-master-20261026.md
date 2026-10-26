@@ -1,29 +1,32 @@
 # Alternate canvas: current-master integration
 
-This batch joins recovery `5757e548` with landed master `d5e08213`. Execution
-was acquired prospectively by composing the committed `1ffeb53e` and `3544f60a`
-source changes onto the recovery. Every declared source and behavior claim in
-the six final reports matches the resulting `5757e548`/`d5e08213` tree.
-The separate native-player merge in the shared checkout is outside this frozen
-source validation. Its pending index and source edits are not changed here.
+The final integration combines validated recovery/integration `32d98913` with
+landed native-player master `c8733033`. Both live journeys and headless controls
+were rerun against that combined source tree, including the changed campaign
+smoke implementation. The four-checkpoint original raster comparison was also
+rerun using the final captured native Save/Load journey. The earlier
+`5757e548`/`d5e08213` results remain historical execution records with their
+original fingerprints. Unrelated pending source edits in the shared checkout
+are preserved separately and receive no validation credit from this batch.
 
 ## Fresh bounded execution
 
-[Headless controls](alternate-completion-results-20261026/native-controls04.json)
+[Headless controls](alternate-completion-results-20261026/native-controls05.json)
 pass both video modes and padding 0/0, 4/3 and 96/0: 54 frames, 144 prepared
 replays, 94,112,736 pixel checks, all backing guard words, six explicit context
 checkpoint/rebuilds and zero remaining surfaces. Ordinary frame readbacks remain
 zero; recovery checkpoints use explicit diagnostic readbacks.
 
-The [asynchronous journey](alternate-completion-results-20261026/native-async07.json)
-completes 302 Worlds and copy-backs with padding 4/3. The
-[Save/Load/rebuild journey](alternate-completion-results-20261026/native-storage07.json)
-completes 515 Worlds and copy-backs with padding 96/0 and two publications.
+The [asynchronous journey](alternate-completion-results-20261026/native-async08.json)
+completes 282 Worlds and copy-backs with padding 4/3. The
+[Save/Load/rebuild journey](alternate-completion-results-20261026/native-storage08.json)
+completes 492 Worlds and copy-backs with padding 96/0 and two publications.
 Both verify normal Quit, unchanged source declarations and private Wine cleanup.
-These fresh results supplement the retained 303/737-World recovery-batch runs;
+These fresh results supplement the retained 303/737-World recovery-batch and
+302/515-World intermediate integration runs;
 old records and fingerprints remain unchanged.
 
-[Original raster comparison](alternate-completion-results-20261026/original-comparison04.json)
+[Original raster comparison](alternate-completion-results-20261026/original-comparison05.json)
 checks four complete World checkpoints: 1,920,000 RGB565 words and zero
 mismatches. Unchanged original raster entries consume diagnostic native entry
 histories. Two authored baseline histories remain separate controls. This is
@@ -63,12 +66,14 @@ No failed attempt receives successful journey or equivalence credit.
 An uncommitted N29-only merge passed its scoped audit, then was superseded by
 the direct merge with landed master. Its exact review cache, journal exports,
 source census and audit remain retained; no past commit or gate pass is asserted.
-Historical file transitions receive exact receipts separately from fresh engine
-execution. New evidence IDs preserve each earlier result and source fingerprint;
+[Final history accounting](alternate-completion-results-20261026/master-history08.json)
+reviews 24 commits and 8,632 immutable file transitions. Exact retrospective
+artifact receipts assert provenance separately from fresh engine execution. New evidence IDs preserve each earlier result and source fingerprint;
 no new comparison or replacement milestone is promoted for the native owner.
 
-[Raw integration retention](alternate-completion-results-20261026/retention02.json)
-verifies every member of the 1,380-file archive through SQLite. Unchanged game
+[Raw final integration retention](alternate-completion-results-20261026/retention03.json)
+verifies every member of the final execution archive through SQLite. The earlier
+1,380-file integration archive remains separately retained. Unchanged game
 and prefix installation copies remain reproducible inputs. The first batch's
 already-backed temporary archive is relocated byte-for-byte into RAM while its
 original path and both durable SQLite payload copies remain available. Required

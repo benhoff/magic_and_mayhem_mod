@@ -1,14 +1,15 @@
 ## Alternate canvas integration with landed master (2026-10-26)
 
-The [current integration](alternate-completion-master-20261026.md) combines
-`5757e548` and `d5e08213`. Fresh native controls pass 54 frames, 144 prepared
-replays, 94,112,736 pixel checks and six explicit context rebuilds. Fresh padded
-asynchronous and Save/Load/rebuild journeys complete 302 and 515 Worlds with
-normal Quit. Four complete World checkpoints match unchanged original raster
-entries across 1,920,000 words. Original low/high failed-copy attribution remains
-source-current. Original alternate allocation/publication and arbitrary physical
-device reset remain open; the separate pending native-player merge is outside
-this frozen validation. Prior positive/negative evidence and hashes are retained.
+The [final integration](alternate-completion-master-20261026.md) combines
+`32d98913` and native-player master `c8733033`. Fresh native controls pass 54
+frames, 144 prepared replays, 94,112,736 pixel checks and six explicit context
+rebuilds. Fresh padded asynchronous and Save/Load/rebuild journeys complete 282
+and 492 Worlds with normal Quit and private Wine cleanup. Four complete World
+checkpoints match unchanged original raster entries across 1,920,000 words.
+Original low/high failed-copy attribution remains source-current. Original
+alternate allocation/publication and arbitrary physical device reset remain
+open. Earlier execution fingerprints and failed attempts are retained; unrelated
+pending workspace edits receive no validation credit.
 
 ## Original campaign copy attribution and native padded World — 2026-10-26
 
@@ -23319,6 +23320,47 @@ have exact receipts, including pending retrospective accounting for 380 older
 terrain merge artifacts; this history accounting is separate from current
 merge validation. Pending main-checkout edits are outside this batch.
 
+## Native renderer player default — 2026-10-25
+
+The [player launcher](../../docs/native-player-launch.md) routes ordinary
+`run-x86.sh` launches through `run-native.sh` into the existing strict native-only
+owner. Original-renderer launch requires `--original-renderer`; the internal
+original backend and configurable Qt diagnostic launcher remain available.
+The wrapper reserves 4 GiB through the existing storage guard, initializes or
+checks a separate persistent owned prefix, leases it against concurrent player
+launches and never kills a busy server for reuse. Initialization delegates
+binary checks/install to the existing supplied DirectPlay helper and verifies
+original manifests before/after. Failed initialization remains inspectable.
+
+`NP.native-player-launch` and `NPL.player-controls-20261025` record 15 passing
+in-memory orchestration/actual Bash-routing controls, with stable source
+fingerprints. Installer, filesystem and owner operations are mocked. The first
+15-control attempt's Bash harness argument error is documented separately; it
+was corrected without executing Wine. The report is an immutable SQLite-backed
+reference. The main-drive preflight refuses at 89.92 GiB free, below the required
+90 GiB reserve, so actual prefix initialization, Qt build and live session
+acceptance remain pending. Native-only selection does not establish full-game
+pixel equivalence, complete original-pixel replacement or hardware performance.
+Original simulation still runs in Wine. Existing evidence is not refreshed.
+
+## Public native player acceptance — 2026-10-26
+
+[The bounded player acceptance](native-player-acceptance-20261026.md) completes
+actual default-prefix initialization and reuse through `run-x86.sh`.
+`NPL26.fresh05`/`NPL26.reuse05` complete458/563 balanced Worlds and3542/4174
+cursor calls,all18 hooks and386 linked compiler inputs,physical stress,Mini/No/Yes
+and original normal Quit,with zero cursor/graphics owners. The prefix marker
+survives reuse unchanged. `NPL26.controls04` supplies15 separate mocked/routing
+controls. Software GL,skip movies and no native music bound this acceptance;
+whole-game pixels,hardware/long-duration/maps/saves/media defaults remain separate.
+
+The harness respects the selected owner prefix and bounds resubmission of an
+unaccepted report click to the identical ready visit. Each accepted final case
+needed one click. Earlier fixture,prefix,compiler-declaration and report-timeout
+failures retain their own immutable records and source versions. Full SQLite
+artifact retention and byte-verified RAM restorations precede namespace teardown.
+The authored player policy receives scoped implementation/live integration;
+original comparison/replacement remain none. Existing screen helpers are reused.
 
 ### Main/World/report acquisition and composed retirement — 2026-10-26
 
@@ -23397,3 +23439,48 @@ windowed Qt input target0,stage6 timeout,shell signal11,missing output/END and
 surviving1device/51surfaces/1clipper/2915552pixel bytes block normal-Quit and
 ownership acceptance. No comparison or live replacement status is promoted.
 See[natural caller evidence](natural-gpu-copy-callers-20261026.md).
+
+### Public player combined-master verification — 2026-10-26
+
+The player acceptance is combined with committed master1ffeb53e. New immutable
+`NPL26.fresh06`/`NPL26.reuse06` execute the actual public default entrypoint on
+that combined source: 399/465 balanced Worlds, 3426/3541 cursor calls, all 18
+hooks/eight client categories, 386 linked compiler inputs and 2,887 exact source
+bindings per case. Each uses one admitted report click, ends in normal original
+Quit and retires all cursor/graphics owners. The marker survives prefix reuse
+unchanged. The two cases restore 9,593/9,579 regular files from SQLite archives.
+Earlier failed and accepted attempts retain their original bindings and bytes.
+Software GL, movie/music flags, native-policy scope and original comparison/
+replacement boundaries remain unchanged. All 38 combined planning controls pass.
+
+The committed-history review adds exact retrospective accounting for 38
+screen-acquisition log artifacts outside the ordinary suffix census. It does
+not assert that an earlier gate included them. The initial generated summary
+is retained byte-exact under a supported SQLite-backed summary filename; the
+first commit is preserved. A cached retention verifier preserves original gzip
+bytes after comparing complete tar streams and independently restores every
+regular file. Interrupted retention/backup diagnostics and the user-approved
+bounded storage allowance remain separate from engine validation.
+
+### Public player final capture-policy integration — 2026-10-26
+
+Masterd5e08213 and player8d778197 are combined with both parents preserved.
+The single Qt Run-state overlap retains the incoming native capture request
+and existing report-admission/prefix ownership fields. New `NPL26.fresh07`/
+`NPL26.reuse07` complete 384/385 balanced Worlds, 3334/3418 cursor calls, all
+18 hooks/eight client categories, 386 compiler inputs and 2,896 exact source
+bindings per case. Both accept one report Continue, end in normal original
+Quit and retire every cursor/graphics owner. The real default prefix is
+initialized once, then reused with the same marker. Each case restores 9,589
+regular files from SQLite. Earlier accepted and failed executions remain
+immutable historical records, including the1ffeb53e intermediate acceptance.
+
+`NPL26.controls07` passes 15 mocked/routing controls on the final source. All
+38 planning controls pass after explicitly listing four newly landed native
+diagnostic contracts as unrated; no importance or status is assigned. The
+initial missing-expectation failure is retained. Four further committed
+transitions for two windowed-reader raw artifacts receive exact retrospective
+receipts. All 984 new incoming payloads are verified against 13 retained local
+SQLite backups. Native softwareGL/media-flag scope and independent original
+comparison/replacement boundaries remain unchanged. All 18 existing main
+pending paths are retained separately before the owned final reservation.

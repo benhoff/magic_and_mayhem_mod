@@ -17,6 +17,7 @@ and mana economy enhancements remain longer-term gameplay objectives.
 | --- | --- |
 | Understand responsibilities and dependencies | [Project architecture](docs/architecture.md) |
 | Contribute code or research | [Contributor rules](AGENTS.md) and [coverage accounting workflow](research/runtime/coverage/README.md) |
+| Play with our native renderer | `./run-x86.sh` or `./run-native.sh`; see [native player launch](docs/native-player-launch.md) |
 | Launch the prepared original game | `./tools/run-game.sh`; see its `--help` for launch, check, and smoke modes |
 | Use the native Qt host | [Qt shell guide](apps/qt-shell/README.md), starting with `./tools/run-qt-shell.sh` |
 | Explore progress and remaining work | [Coverage atlas](apps/coverage-ui/README.md), launched with `python3 tools/serve-coverage-ui.py` |
@@ -25,8 +26,10 @@ and mana economy enhancements remain longer-term gameplay objectives.
 
 For an unprepared checkout, inspect `./tools/prepare-working.sh --help` and follow
 the storage rules below before creating an installation. The root
-`run-x86.sh` and `run-asahi.sh` scripts provide host-specific launch/setup entry
-points; their `--help` describes requirements and options.
+`run-x86.sh` now defaults to strict native graphics, with a dedicated persistent
+Wine prefix for the original simulation. Use `./run-x86.sh --original-renderer`
+for the original renderer. `run-asahi.sh` retains its host-specific setup/launch
+workflow. Their `--help` describes requirements and options.
 
 ## Directory map
 

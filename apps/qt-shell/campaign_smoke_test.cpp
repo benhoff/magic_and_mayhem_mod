@@ -43,7 +43,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     const QString samplingClock="unsupported";
 #endif
     const bool noRouteScreenshots=qEnvironmentVariableIntValue("MNM_NO_ROUTE_SCREENSHOTS")==1;
-    struct Run {NativeImageEncoder encoder;QString renderer;std::future<void> captureJob,diagnosticJob;std::future<QJsonObject> routeJob;std::future<NativeCaptureRequest> requestJob;NativeCaptureRequest capture;QString routeName;int routeCycle=0;QElapsedTimer routeWait;int escapeCounter=0;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0,sampleWorlds=0;qint64 sampleHostUs=0;quint64 resumeSourceBase=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
+    struct Run {NativeImageEncoder encoder;QString renderer;std::future<void> captureJob,diagnosticJob;std::future<QJsonObject> routeJob;std::future<NativeCaptureRequest> requestJob;NativeCaptureRequest capture;QString routeName;int routeCycle=0;QElapsedTimer routeWait;int escapeCounter=0;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0,sampleWorlds=0;qint64 sampleHostUs=0;quint64 resumeSourceBase=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;bool reportClickInProgress=false,reportClickAccepted=false,reportClickScheduled=false;int reportClickAttempts=0;quint32 reportGeneration=0,reportThread=0,reportAck=0;QJsonArray steps;};
     auto run=std::make_shared<Run>();
     auto finish=[run,path,probe,&app,normalQuit,noRouteScreenshots,synchronousRouteCapture](bool success,const QString& reason){
         if(run->done)return;
@@ -51,7 +51,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         QSaveFile file(path);
         const QJsonObject result{{"route_capture_policy",noRouteScreenshots?"omitted":synchronousRouteCapture?"synchronous":"bounded-background-encoding"},{"route_screenshots",!noRouteScreenshots},{"success",success},{"normal_quit",normalQuit&&success&&run->stage==11},{"error",reason},{"steps",run->steps},
             {"native_command_frames",qint64(p.frames)},{"native_painted_frames",qint64(p.paints)},{"native_presentation_pixels",qint64(p.presentationPixels)},{"native_recoveries",int(p.recoveries)},{"native_error",p.error},{"renderer",p.renderer.isEmpty()?run->renderer:p.renderer},{"gameplay_rates",run->rates},{"native_command_fallback",p.fallback},
-            {"movement_verified",false},{"original_drawing_retained",qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")!="1"},{"original_ui_drawing_retained",true},{"original_simulation_retained",true},{"resident_world_requested",qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")=="1"},
+            {"report_click_attempts",run->reportClickAttempts},{"report_click_accepted",run->reportClickAccepted},{"report_generation",int(run->reportGeneration)},{"report_thread",int(run->reportThread)},{"movement_verified",false},{"original_drawing_retained",qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")!="1"},{"original_ui_drawing_retained",true},{"original_simulation_retained",true},{"resident_world_requested",qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")=="1"},
             {"scope","Native Qt New Game/Enter, native command presentation, Escape/Mini/Cancel and resumed presentation; no movement, pixel equivalence or complete drawing replacement claim"}};
         const bool saved=file.open(QIODevice::WriteOnly)&&file.write(QJsonDocument(result).toJson())>0&&file.commit();
         std::fprintf(stderr,"Campaign smoke %s: %s\n",success&&saved?"complete":"failed",qPrintable(reason));
@@ -106,10 +106,13 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         run->routeName=name;run->routeCycle=run->cycle;run->routeWait.start();
         run->routeJob=run->encoder.submit(std::move(encode));return false;
     };
-    auto click=[&window,finish](const QString& name){
+    auto click=[&window,finish,run](const QString& name){
         auto* button=window.findChild<QAbstractButton*>(name);
         if(!button||!button->isVisible()||!button->isEnabled()){finish(false,"Public control unavailable: "+name);return;}
+        const bool report=name=="battleResultContinue";
+        if(report){run->reportClickInProgress=true;++run->reportClickAttempts;}
         button->click();
+        if(report){run->reportClickInProgress=false;run->reportClickScheduled=false;}
     };
     auto sendEscape=[run,&window,&session,path,finish,stressSeconds]{
         window.activateWindow();window.raise();
@@ -137,6 +140,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     auto state=session.stateChanged;
     session.stateChanged=[run,state,finish,snapshot,click,probe,difficulty,normalQuit,&window](const MenuBridge::State& s){
         if(state)state(s);
+        if(run->reportClickInProgress&&s.screen==MNM_MENU_DEFEAT_SCREEN&&!s.ready)run->reportClickAccepted=true;
         if(run->done||!s.ready)return;
         if(run->thread&&run->thread!=s.thread){finish(false,"Menu engine thread changed");return;}
         run->thread=s.thread;
@@ -151,11 +155,18 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         if(normalQuit&&run->stage==7&&s.screen==17&&s.ack==quint32(2+run->cycle+(difficulty?1:0)+run->quitPass)){
             run->stage=8;run->frameBase=probe().frames;step="campaign-quit-menu";action="miniMenuButton4";
         }else if(normalQuit&&run->stage==9&&run->quitPass==1&&s.screen==MNM_MENU_DEFEAT_SCREEN){
-            run->stage=10;step="campaign-defeat";action="battleResultContinue";
+            run->stage=10;run->reportGeneration=s.generation;run->reportThread=s.thread;run->reportAck=s.ack;step="campaign-defeat";action="battleResultContinue";
+        }else if(normalQuit&&run->stage==10&&s.screen==MNM_MENU_DEFEAT_SCREEN&&!run->reportClickAccepted&&!run->reportClickScheduled&&!run->reportClickInProgress){
+            // A public click can lose admission to a concurrent wire publish.
+            // Retry only an unaccepted click on the identical ready visit.
+            if(s.generation!=run->reportGeneration||s.thread!=run->reportThread||s.ack!=run->reportAck){finish(false,"Report ownership changed before click admission");return;}
+            if(run->reportClickAttempts>=4){finish(false,"Report public click repeatedly refused admission");return;}
+            action="battleResultContinue";
         }else if(normalQuit&&run->stage==10&&s.screen==3){
             run->stage=11;step="quit-main";action="mainMenuAction4";
         }
         if(action.isEmpty())return;
+        if(action=="battleResultContinue")run->reportClickScheduled=true;
         const auto advance=[snapshot,click,step,action,run,&window](auto self)->void {
             if(run->done)return;
             if(!step.isEmpty()&&!snapshot(step)){QTimer::singleShot(10,&window,[self]{self(self);});return;}
@@ -319,7 +330,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         sendEscape();
     });poll->start();
     auto finished=session.finished;session.finished=[finished,finish,run,normalQuit]{if(finished)finished();finish(normalQuit&&run->stage==11,normalQuit&&run->stage==11?QString():QString("Game exited before campaign smoke completed"));};
-    session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");
+    if(session.winePrefix.isEmpty())session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");
     session.preferencesStorePath=QFileInfo(path).dir().filePath("config/engine-preferences.json");
     const int timeoutMs=qEnvironmentVariableIntValue("MNM_CAMPAIGN_TIMEOUT_MS");
     QTimer::singleShot(timeoutMs>0?timeoutMs:300000,&window,[finish]{finish(false,"Campaign flow exceeded configured deadline");});
