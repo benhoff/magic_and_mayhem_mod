@@ -46,3 +46,10 @@ The merged summary uses the managed `coverage/summary-*.md` path and SQLite
 writer. New generated merge reports are SQLite references. Large source-run
 archives remain pinned in the original native-reader worktree and its verified
 SQLite backup; the merge pool retains required text and bounded fixtures.
+
+The concurrent master advanced to bdf87f55 during promotion. A second owned
+merge preserves its screen resource/acquisition contracts, exact journal entries
+and ledger additions. History03 records38 omitted log transitions in that commit;
+history04 records the append-only retrospective receipt after SHA verification.
+No acquisition, ownership, windowed lifecycle or engine replacement status is
+promoted by this integration. Existing current input dependencies remain intact.
