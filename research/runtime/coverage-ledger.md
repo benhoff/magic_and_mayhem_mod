@@ -1,3 +1,15 @@
+## Alternate canvas integration with landed master (2026-10-26)
+
+The [current integration](alternate-completion-master-20261026.md) combines
+`5757e548` and `d5e08213`. Fresh native controls pass 54 frames, 144 prepared
+replays, 94,112,736 pixel checks and six explicit context rebuilds. Fresh padded
+asynchronous and Save/Load/rebuild journeys complete 302 and 515 Worlds with
+normal Quit. Four complete World checkpoints match unchanged original raster
+entries across 1,920,000 words. Original low/high failed-copy attribution remains
+source-current. Original alternate allocation/publication and arbitrary physical
+device reset remain open; the separate pending native-player merge is outside
+this frozen validation. Prior positive/negative evidence and hashes are retained.
+
 ## Original campaign copy attribution and native padded World — 2026-10-26
 
 Fresh original call/return observations attribute enabled campaign entry failure
@@ -95,6 +107,31 @@ retain the existing Mini/Hermes refusal;the game/tutorial is unchanged.
 See [integration,final evidence and retained failures](alternate-canvas-live-integration-20261025.md).
 
 # Engine modernization coverage ledger
+
+## Windowed diagnostics merged with current master — 2026-10-26
+
+The original-windowed launch argument now composes with terrain-light session
+supervision. Current 21 Python/Qt capture controls, 29 copy regressions, five
+synthetic actual-launcher checks and the full Qt build pass. All 6,571 committed
+file transitions are reviewed, including 23 retrospectively accounted capture
+references. Historical failed input, incomplete all-COPY output and surviving
+owners remain open; no engine milestone is promoted. See
+[merge scope and retained limits](windowed-reader-master-integration-20261026.md).
+
+## Windowed copy and raw-reader frontier investigation — 2026-10-25
+
+The opt-in original-windowed diagnostic reaches native World rendering on a
+16-bit private desktop. Explicit resident-native capture now avoids waiting for
+an unavailable original CPU frame, with no original comparison credit. Current
+21 Python/Qt capture controls and 29 copy regression methods pass. The campaign
+still exhausts its 12-click Hermes bound. A separate Quick Battle reaches 576
+balanced resident Worlds but times out before Results/normal Quit. Its 5,461-row
+metadata census closes during teardown; independent all-COPY comparison remains
+incomplete and native owners survive. No engine integration, comparison or
+replacement stage is promoted. Exact failures, unique sources and pinned RAM-run
+inputs are retained in SQLite. Windowed Qt input-target discovery is the next
+bounded frontier; cause attribution and full caller/reader/ownership closure
+remain pending. See [findings and limits](native-windowed-copy-readers-20261025.md).
 
 ## Native alternate canvas owner merged with current rendering — 2026-10-25
 
@@ -22992,6 +23029,35 @@ transition review, and `final-local-evidence01.json` identifies the verified loc
 2,647-object SQLite backup. The final normal hook checks the combined staged
 tree; pre-existing master edits are preserved separately at fast-forward time.
 
+
+## Concrete screen ownership and World exit — 2026-10-25
+
+RS.screen-resource-release-callers now models all21 concrete slot+20 callers
+in the22-table shared5595d0 census;the abstract5c6564 purecall remains explicit.
+Fresh release08 compares3429 resource-release schedules,1215 complete normal
+Main/Quick/Mini lifetime schedules and405 campaign/Quick-result exit/destructor
+schedules per optimized32,sanitized32 and sanitized64 configuration. Complete
+owned bytes and every provider-entry storage snapshot agree;all compared
+original bodies remain unchanged. Retained arrays versus owned allocations,
+receiver rereads (including738 actual array-retarget schedules),derived cleanup despite a skipped base guard,signed dynamic
+Mini counts,repeated release and repeated enclosing cycles are explicit.
+
+RS.world-screen-retirement separately compares complete46ab30..46ae8c World
+exit in1536 cases per configuration,including registry/iterator traversal,
+bitmap retirement,two-block queue boundary/last-item frees,canvas detachment,
+owner reset and conditional clock capture. Full declared storage and endpoint
+snapshots/checksums agree. Two execution-backed local range exceptions retain
+the historical function inventory and unknown ranges without rewriting them.
+
+[Recovery and remaining boundaries](screen-resource-ownership-20261025.md)
+separate these local callers from authored simulation/asset/allocator/CRT/OS
+provider internals. Original manifests pass before/after each final execution;
+source and behavior claims bind the actual current bytes. Other class
+construction/destruction,World entry,complete computed alias/registration
+closure,real heap/fault paths,asynchronous retirement,installed semantic
+takeover and full presented-session equivalence remain open. No new runtime
+hook,gameplay change,FPS acceptance or live replacement credit is introduced.
+Earlier failed/stale attempts remain immutable in screen-ownership-results-20261025.
 ## Native cursor ownership and deferred lifetime closure (2026-10-25)
 
 [The owning native adapter](cursor-live-ownership-20261025.md) closes the supported
@@ -23190,3 +23256,144 @@ tip; one missing exact intermediate receipt receives retrospective pending
 accounting, without a past gate or new execution claim. Default lighting remains
 original. Combined Qt graphics ownership, arbitrary maps/saves, long sessions and
 rollout remain separate acceptance.
+
+
+### Screen ownership integration with current master — 2026-10-26
+
+Integrate `40f1a13` with `dfff4634`, retaining the cursor ownership, sprite
+services and opt-in terrain normal-session work. The two scoped screen
+comparisons retain identical model, test, driver and behavior-contract hashes;
+this integration does not rerun or widen the original comparison. Acquisition
+and preparation, transitive providers and full live screen ownership remain
+separate work. The committed-history review covers eight commits and 3,846
+file transitions; 380 retained terrain experiment artifacts receive explicit
+retrospective receipts, without claiming a historical gate pass. See
+`screen-ownership-results-20261026/merge-history02.json`.
+
+## Five pixel helper computed caller investigation — 2026-10-25
+
+[Computed-caller review](five-pixel-computed-callers-20261025.md) extends the
+earlier direct-byte searches for PCX WORD,brighten,row-copy,raster15 and camera3.
+FIVE1.computed-image-20261025 decodes513885 instructions from45650 discovery
+seeds and retains3719 indirect transfers. It finds zero incoming decoded direct
+branches or supported local computed-address candidates into the five helpers.
+All remain provisional unused_candidate;the43-route denominator and historical
+38-route observed union remain unchanged. No live game or original pixel
+comparison is performed.
+
+The historical3717computed sites reconcile to3716indirect instructions and one
+retained INT3 classification. Three additional outgoing virtual+80 calls inside
+row-copy/brighten are preserved in an incomplete dispatch entry;their runtime
+targets remain unknown. Existing inventory boundaries and hashes are unchanged.
+Original CPU chooser assignments and camera0/2/0/1 table bytes are checked,not
+generalized into whole-program exclusion. Initial import-name thunks are kept
+separate from loader-installed runtime addresses.
+
+FIVE1.computed-controls-20261025 passes34 actual-decoder graph/value tests.
+Immutable SQLite reports retain the initial failed provenance assertion,its
+source variants and all successful narrower scans. Manifest bookends verify2927
+original inputs. The new scanner implementation has scoped current execution
+support;natural caller recovery,inter-block/interprocedural and dynamic/external
+flows,original equivalence,integration and replacement remain open.
+
+The final central-census extension uses all6757current function entries,including
+82entries absent from the older caller seed census. Fresh
+FIVE1.central-image-20261025 retains515966decoded instructions from45731seeds,
+with the same3719indirect sites and zero candidate callers. Fresh
+FIVE1.central-controls-20261025 passes34controls against the final source and
+contract. Earlier narrower evidence/receipts and the pre-staging Git-lock failure
+remain historical;the final current-code claim uses only the new source bindings.
+
+## Five caller investigation master integration — 2026-10-26
+
+[Integration review](five-callers-master-integration-20261026.md) combines the
+five-helper investigation with current sprite, cursor and terrain master work.
+FIVE1.master-controls-20261026 passes 34 scanner controls; all 38 planning
+controls pass. Exact incoming source bindings remain unchanged, so the retained
+central image scan remains current within its stated static scope. No original
+execution is repeated. All five natural callers, the 43-route denominator,
+historical 38-route union and incomplete outgoing virtual dispatch remain as
+recorded. No original comparison, integration or replacement status is promoted.
+All 3847 committed transitions across 8 intervening/incoming commits
+have exact receipts, including pending retrospective accounting for 380 older
+terrain merge artifacts; this history accounting is separate from current
+merge validation. Pending main-checkout edits are outside this batch.
+
+
+### Main/World/report acquisition and composed retirement — 2026-10-26
+
+`RS.main-screen-acquisition`, `RS.world-screen-acquisition` and
+`RS.report-screen-acquisition` recover the complete normal-return local
+preparation/entry callers and both concrete layout allocation helpers. Main
+publishes its canvas, callbacks, controls and label; World orders its providers,
+loads and flags; the report owns its layouts, sprite, buffers, callback, labels
+and button. See [scope and evidence](screen-acquisition-20261026.md).
+
+`RSA26.acquisition` / `screen-acquisition-results-20261026/acquire07.json` passes
+768 schedules per optimized32, ASan/UBSan32 and ASan/UBSan64 build, including
+192 controlled Main construction → preparation/release → World entry → report
+preparation/full exit → World exit → Main preparation/enclosing destruction
+compositions. Complete owned bytes, endpoint ordering/state, descriptors, strings
+and packets match the pinned unchanged original caller bodies. Fourteen local
+CFG ranges are closed and fingerprinted. Manifests verify all 2,927 immutable
+original files before and after. Existing release models and evidence hashes
+remain unchanged. No installed/live or replacement milestone is promoted.
+
+Attempts 1–5 retain compile/oversized-score failures; attempt6 passes the earlier
+release-only composition on its historical source. The oversized report score
+trace records corruption of a loop-count stack slot by an original decimal
+conversion. The admitted baseline bounds decimal text to six characters plus
+a terminator; naturally reachable score limits and fault recovery remain open.
+
+Both master advances are reconciled: the earlier eight-commit review has
+3,846 exact file transitions including380 retrospective terrain-artifact
+receipts; the subsequent854c8576..c5137b9c incoming history adds two commits
+and71 exact transitions with no missing receipts. Current combined-tree
+accounting is separate from historical receipts. Pending launcher work is
+preserved independently. The approved88GiB storage exception and2GiB durable
+output cap apply only to this local batch; no publication or cleanup is added.
+
+Remaining work is the real Main/Realm/World/report transition routing, World
+construction, lower provider semantics and ownership, exceptional allocations/
+SEH, asynchronous aliases and top-down installed/live ownership acceptance.
+The controlled composition explicitly normalizes service-owned World bitmap
+storage to an empty exit fixture; it does not establish those provider effects.
+
+### N29: owned variable-timed sprite timelines (2026-10-26)
+
+Ten bounded native components are implemented for explicit clips, variable loops and one-shots, ping-pong, reverse playback, pause/resume, seeking, rational rates, bounded events, and checkpoints/reload. See [the contract and validation boundaries](rendering-twentyninth-ten-20261026.md). Fresh source-bound Release and ASan/UBSan runs each pass 67,243 checks, 31 refusals, 72 independent timing scenarios, 18 maximal clock cases and 360 CPU/GPU pixel comparisons with zero surface leaks; supplier and CTest regressions pass. The initial run passed Release but refused an omitted supplier-test declaration; execution-1 remains preserved, and corrected execution-2 supplies implementation credit. This service supplies owned plans to existing CPU/GPU drawing; original ANI semantics, widget/world integration, installed acceptance and live replacement remain separate. AS.tag remains partial.
+
+The initial planning-control check observed the temporary pre-validation partial statuses and failed its fixed partial-count expectation; its negative result is retained. A subsequent final-status run was interrupted by the normal90GiB retention guard, also retained without a pass claim. The user approved an89GiB reserve solely for N29 backup/commit completion. Normal policy remains unchanged. Final review/staging use bounded private tmpfs; the normal finisher snapshots and verifies the complete review/evidence databases, then an additional persistence wrapper copies and re-verifies those snapshots and both durable catalogs on the second NVMe before allowing the commit. No evidence publication is attached.
+
+Final planning controls pass all38 tests against the scoped final catalog; the intervening history review matches all622 transitions across four commits. The N29 full audit reports zero errors and all ten implementation bindings current. Existing unrelated historical staleness, unlinked sources and original/live gaps remain explicit.
+
+### N29 local master integration (2026-10-26)
+
+The ten native timeline components are merged with the committed pixel-caller investigation on master. Structured reconciliation preserves both sets of behavior/evidence entries, all exact review receipts and both ledger additions. Every N29 contract and declared execution source fingerprint remains byte-exact, so existing prospective Release and ASan/UBSan proof remains current; no engine execution or original/live milestone is added. The normal90GiB main-drive reserve applies to this merge. Local SQLite reports and verified backups are retained without remote publication. Pre-existing main-checkout edits are preserved separately at promotion. See [the integration review](rendering-n29-master-20261026.md).
+
+### Final N29 master reconciliation after concurrent screen recovery (2026-10-26)
+
+The first validated merge bcebc8fc is retained with its passing staged gate and backups. Its promotion refused an independently owned main reservation before changing main. After that operation completed at bdf87f55 and restored its pending work, all18 current pending paths were backed up and main was reserved for this final merge. Both validated branches, all receipts and evidence identities are preserved. All ten timeline contracts and188 declared input fingerprints remain exact; no new engine execution or original/application/live promotion is claimed. The fixed planning-test expectation adds only the five newly committed unrated screen acquisition/retirement contracts, without adding weights or status credit. Final audit, planning controls, source census and exact staged accounting cover the combined tree; normal90/100GiB storage reserves apply. See [the final reconciliation](rendering-n29-master-final-20261026.md).
+
+## 2026-10-26: natural GPU caller clipping
+
+`NP.natural-gpu-copy-caller-branches` adds24 current geometry/caller/positive-only
+controls plus read-only production input-target/ABI and Win32 helper builds.
+Ordinary original-windowed World output has810 checked attached-clipper GPU
+calls with no area reduction. The declared ordinary SetWindowPos desktop stress
+changes client origin80,73to-320,73. Its strict scalar reader refuses active-miss
+reason2;failed global capture and lifecycle remain preserved.
+
+The separate `NP.published-gpu-copy-call-proof` policy validates only complete
+positive call intervals while retaining that miss. Current immutable replay
+checks783/784 published GPU calls;678 actual original whole-copy caller0x58c03d
+requests are reduced from307200to153600destination pixels, with a retained
+independently replayed clipped witness. This confirms destination-bounds clipping,
+not extra within-bounds clipper reduction, original-driver parity, absence or
+complete output. The existing strict global validator remains unchanged.
+
+Natural self-copy and keyed GPU-source callers remain unproven live. The
+windowed Qt input target0,stage6 timeout,shell signal11,missing output/END and
+surviving1device/51surfaces/1clipper/2915552pixel bytes block normal-Quit and
+ownership acceptance. No comparison or live replacement status is promoted.
+See[natural caller evidence](natural-gpu-copy-callers-20261026.md).
