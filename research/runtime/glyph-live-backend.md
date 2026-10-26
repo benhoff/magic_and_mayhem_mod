@@ -145,3 +145,32 @@ when off. `NR.glyph-default-launch` records headless integration only. The
 explicit-off helper change makes the older source closures stale; earlier
 pixel/ABI evidence remains historical until rerun. No interactive Qt gameplay
 or performance validation follows from these launch checks.
+
+## Save progress clip and physical storage — 2026-10-26
+
+The strict Qt Save diagnostic reaches global-geometry admission check3 with
+clip-right801 and clip-bottom321. The old resolver conflated clip-right with
+physical row width and refused before calling the native kernel. The repaired
+resolver supplies the stride as physical width and preserves the original clip
+for branch/caller-state calculation. The backend validates the complete visible
+write rectangle against physical width and height before coverage, FP or pixel
+mutation. An overhanging clip does not authorize an overhanging write.
+
+`tools/test-glyph-save-clip.py` compares clip-right9/stride8 and
+clip-right801/stride800 with unchanged581ec0 in RGB565 and RGB555, twelve
+precision/rounding combinations, zero/one incoming finite x87 value, cold/warm
+coverage and four edge placements. All1,152 full completion comparisons pass;
+768 admitted routes execute without the original body. The sanitized admission
+control includes an overhanging write and verifies atomic refusal. This is an
+isolated contract comparison; combined Save/Load acceptance is recorded under
+normal-session lighting.
+
+The existing live sample header's width now denotes physical row width;
+clip-right remains independently encoded in word14. Historical samples where
+physical width was conservatively bounded by clip-right remain valid. The32-byte
+strict refusal record retains its existing magic/version/reason/thread fields;
+words6/7 identify the admission check and operand, with zero after global/frame
+admission. Checks1..7 cover global extents, format, geometry, sentinel, canvas
+extent, frame header extent and complete frame extent respectively. Geometry
+packs clip-right/clip-bottom in the low/high16bits. These diagnostics do not
+permit original glyph forwarding.

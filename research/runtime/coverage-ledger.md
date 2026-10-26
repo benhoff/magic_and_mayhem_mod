@@ -23508,3 +23508,97 @@ indexes, shared immutable report writers and tested source restoration.
 [Storage evidence](storage-consolidation-20261026.md) retains operation receipts
 and remaining protected/active inputs. No gameplay, recovered-contract,
 comparison or live replacement status is promoted.
+
+## Combined strict native Qt and terrain lighting — 2026-10-26
+
+[Combined acquisition](terrain-light-normal-session.md#combined-strict-native-qt-acquisition--2026-10-26)
+tests the pinned No-CD build with the public Qt campaign actions and strict
+private native-output owner. TLQT26.observation completes275original-active
+lighting updates,32unchanged-PE32/ASan/UBSan comparisons,355balanced Worlds,
+Mini Cancel and Quit No/resume/Yes, original exit0 and graphics/worker retirement.
+The native120-second-per-phase attempt (TLQT26.native-timeout) completes one
+121.827-second physical phase/599actions and1,877native updates without mismatch,
+then request1,878exceeds the100ms budget (106ms observed; late worker wall175466us).
+The closed latch retains original fallback. The harness stops the failed attempt;
+the second phase and normal completion do not pass. All32native captured replies
+still match unchanged original and sanitized replay.
+
+TLQT26.qt-save-refusal separately reaches strict glyph admission reason15 at
+original581ec0 while submitting Save with original-active lighting, after62updates
+without lighting error. Original exit124precedes a nonempty save; Load, the two
+resolution changes and saved-map World reconstruction are not reached. The
+precise global/clip/coverage/frame-span rejection remains unresolved. The existing
+NR.glyph-live-admission entry retains this negative finding without a promotion.
+
+TLQT26.worker-loss passes128native updates,32independent comparisons, checked
+worker termination,117original fallback updates and original exit0/worker reaping;
+the selected backend/strict launcher correctly reports1. The live native Qt binary
+and386compiler dependencies are retained. Execution uses llvmpipe/four Mesa
+threads; hardware/FPS, arbitrary maps/saves and long-duration acceptance remain
+independent. Original manifests verify before/after; new evidence and setup failures
+use SQLite. No implementation/status promotion or default change is made. Resolve
+the Save glyph refusal and spontaneous lighting timeout before default rollout.
+
+TLQT26.abnormal-worker-lifetime additionally records an owned lighting worker
+left alive after the failed strict Save acquisition: original exit124, host parent1,
+started-only lifecycle and no worker outcome. Closeout verified exact PID/start
+ticks/executable and terminated only that orphan. Abrupt Qt/launcher cleanup
+remains unaccepted despite normal-Quit and deliberate worker-loss success.
+
+
+## Strict Qt lighting blocker fixes — 2026-10-26
+
+[Fixed-source acquisition](terrain-light-normal-session.md#fix-batch--2026-10-26)
+separates the observed Save geometry failure, worker processing overhead and
+abnormal worker lifetime from earlier supplier/reconstruction completion.
+Glyph clips now preserve original layout branches while every visible write
+rectangle is checked against independent native storage. The isolated
+RGB565/555original comparison passes1152complete comparisons;768native paths
+bypass the original body, and the sanitized controls refuse overhanging writes
+atomically. Unsupported strict glyphs still terminate with124.
+
+The worker uses direct checked byte decoding and cached derived kernels,
+restoring all request buffers and producer states. The100msdeadline and permanent
+fallback latch remain unchanged. Twelve actual worker controls pass, including
+supervisorSIGTERM cleanup andSIGKILLparent-death protection. A killed supervisor
+can lack its final outcome row; this never implies successful completion.
+
+Current-source strict native Qt original-active observation completes264updates
+through Save/Load, two resolution changes, Main Load World reconstruction and
+normal Quit. Native replacement completes the same journey with240applied
+updates and a7msmaximum wait. The two120-second stress phases complete2434native
+updates with zero fallback/refusal/mismatch,17msmaximum wait and5252usmaximum
+worker compute. Each journey retains32unchanged-original/sanitized comparisons
+and clean graphics/worker retirement. Expected worker loss continues original
+fallback and normal original Quit while correctly reporting selected-backend
+failure. Historical failure evidence and source hashes remain unchanged.
+
+TLQF26evidence closes these observed blockers within the named scenarios. It does
+not establish arbitrary-map/save coverage, hour-long stability, hardware/FPS
+acceptance or default rollout. Original scheduler, loader/serializer and resource
+owners remain original; no gameplay balance or lighting default changed.
+
+
+## Terrain lighting fixes integrated with master — 2026-10-26
+
+The integration combines master `96ae7c2c` with lighting validation/fixes
+`9dacdf34` and `e486a0f9`. All twelve incoming changed production/test files
+retain their exact validated bytes; master's intervening work is preserved.
+`TLQM26.controls` passes twelve actual worker/channel controls on the combined
+tree, including SIGTERM cleanup, SIGKILL parent-death protection and worker loss.
+The glyph admission test passes twenty-five atomic refusals under ASan/UBSan.
+No original executable or new installed journey runs during this integration.
+
+The exact history review covers24commits and8636file transitions, adding2027
+artifact-only retrospective receipts across four commits. These preserve exact
+parent/current hashes without asserting past gate passes or new engine validation.
+See `terrain-light-master-results-20261026/history02.json` and
+`source-preservation01.json`. New generated reports use SQLite references.
+
+The combined-source audit has zero errors and fresh merged worker controls.
+Intervening Qt/World/launcher changes make the older TLQF26 installed journey
+source bindings historical; combined-master live Save/Load, stress and strict
+renderer acceptance remain pending. Original glyph/worker isolated comparisons
+retain their original fingerprints. No engine status or default is promoted;
+lighting remains original by default. The unrelated pending main-checkout storage
+work stays outside this commit and is preserved during the fast-forward.

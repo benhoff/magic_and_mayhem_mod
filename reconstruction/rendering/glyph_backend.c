@@ -16,8 +16,18 @@ int mnm_glyph_backend(MnmGlyphBackend *b){
        ((uintptr_t)b->incoming_fx&15)||((uintptr_t)b->outgoing_fx&15)||
        !b->width||!b->height||b->width>2048||b->height>2048||
        b->stride<b->width||b->stride>2048||
-       b->state.right>(int32_t)b->width||b->state.bottom>(int32_t)b->height||
+       b->state.bottom>(int32_t)b->height||
        mnm_glyph_backend_state_format(&b->state,&result,b->format))return 1;
+    /* Original clips are layout bounds and may overhang the row allocation
+     * (Save progress uses right801 with stride800). Preserve those branch
+     * decisions, then validate the complete write rectangle independently. */
+    if(result.branch==MNM_GLYPH_ROWS){
+        int64_t x=(int64_t)b->state.x-(int32_t)word(b->state.frame+12);
+        int64_t y=(int64_t)b->state.y-(int32_t)word(b->state.frame+16);
+        if(y<b->state.top)y=b->state.top;
+        if(x<0||x+word(b->state.frame+4)>b->width||y<0||
+           y+result.visible_rows>b->height)return 1;
+    }
     const uint8_t *fx=b->incoming_fx;
     uint32_t cw=half(fx),status=half(fx+2),top=(status>>11)&7;
     if((cw&63)!=63||((cw>>8)&3)==1||((cw>>10)&3)!=b->state.rounding||
