@@ -230,23 +230,24 @@
       "id": "TL.special-size-one",
       "subsystem": "terrain_lighting",
       "kind": "recovered",
-      "title": "Special size-one light kernel remains open",
-      "scope": "Original index-one metadata points into kernel pointer storage; special construction/stamp behavior and live uses excluded from size-2..17 reconstruction",
+      "title": "Size-one lighting installed-state provenance remains open",
+      "scope": "Unresolved installed origin/lifetime of the inherited signed byte at map+6380 and natural live use of light index one. Pointer/extent construction, explicit inherited-byte maximum/additive stamps and bounded authored capture/update composition are tracked separately by RE.terrain-single-cell-light and RE.terrain-single-cell-captured-cycle. Do not infer original heap contents from the intentional native zero default.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5183632,
-          "scope": "Original index-one metadata points into kernel pointer storage; special construction/stamp behavior and live uses excluded from size-2..17 reconstruction"
+          "scope": "Inherited-byte kernel/stamp consumer anchor only; this does not identify the installed allocation/writer chain or a natural live index-one caller."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5184608,
-          "scope": "Original index-one metadata points into kernel pointer storage; special construction/stamp behavior and live uses excluded from size-2..17 reconstruction"
+          "scope": "Inherited-byte kernel/stamp consumer anchor only; this does not identify the installed allocation/writer chain or a natural live index-one caller."
         }
       ],
       "documents": [
-        "research/runtime/terrain-static-lighting.md"
+        "research/runtime/terrain-static-lighting.md",
+        "research/runtime/terrain-single-cell-lighting-20261026.md"
       ],
       "implementation": [],
       "tests": [],
@@ -257,7 +258,11 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "Original map allocation/construction/writer provenance for byte+6380 and naturally executed index-one source use remain unresolved. Existing bounded component implementations are not missing.",
+        "The native owned zero default is policy. Explicit signed-byte inputs preserve observed or authored values; a deterministic original heap default is not established."
+      ]
     },
     {
       "id": "TL.static-owned-bounds",

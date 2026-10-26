@@ -90,6 +90,7 @@ class ImportanceTest(unittest.TestCase):
             'NP.cursor-live-ownership', 'NP.cursor-owned-compositor', 'NP.cursor-provider-lifetime',
             'NP.graphics-session-provider-retirement',
             'NP.palette-option-strict-parsing', 'NP.protected-native-store-service', 'NP.surface-alias-lease-lifecycle',
+            'RE.terrain-single-cell-captured-cycle',
             'RS.alternate-canvas-dispatch-composition', 'RS.cursor-selection-service',
             'RS.screen-class-ownership-static', 'RS.screen-class11-lifetime', 'RS.screen-control-dispatch',
             'RS.screen-cursor-background-invalidation',

@@ -1335,23 +1335,24 @@
       "id": "TL.special-size-one",
       "subsystem": "terrain_lighting",
       "kind": "recovered",
-      "title": "Special size-one light kernel remains open",
-      "scope": "Original index-one metadata points into kernel pointer storage; special construction/stamp behavior and live uses excluded from size-2..17 reconstruction",
+      "title": "Size-one lighting installed-state provenance remains open",
+      "scope": "Unresolved installed origin/lifetime of the inherited signed byte at map+6380 and natural live use of light index one. Pointer/extent construction, explicit inherited-byte maximum/additive stamps and bounded authored capture/update composition are tracked separately by RE.terrain-single-cell-light and RE.terrain-single-cell-captured-cycle. Do not infer original heap contents from the intentional native zero default.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5183632,
-          "scope": "Original index-one metadata points into kernel pointer storage; special construction/stamp behavior and live uses excluded from size-2..17 reconstruction"
+          "scope": "Inherited-byte kernel/stamp consumer anchor only; this does not identify the installed allocation/writer chain or a natural live index-one caller."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5184608,
-          "scope": "Original index-one metadata points into kernel pointer storage; special construction/stamp behavior and live uses excluded from size-2..17 reconstruction"
+          "scope": "Inherited-byte kernel/stamp consumer anchor only; this does not identify the installed allocation/writer chain or a natural live index-one caller."
         }
       ],
       "documents": [
-        "research/runtime/terrain-static-lighting.md"
+        "research/runtime/terrain-static-lighting.md",
+        "research/runtime/terrain-single-cell-lighting-20261026.md"
       ],
       "implementation": [],
       "tests": [],
@@ -1362,7 +1363,11 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "Original map allocation/construction/writer provenance for byte+6380 and naturally executed index-one source use remain unresolved. Existing bounded component implementations are not missing.",
+        "The native owned zero default is policy. Explicit signed-byte inputs preserve observed or authored values; a deterministic original heap default is not established."
+      ]
     },
     {
       "id": "TL.static-owned-bounds",
@@ -135075,10 +135080,12 @@
         "tests/terrain-static-lighting-reference.cpp"
       ],
       "documents": [
-        "research/runtime/remaining-rendering-implementations-20261020.md"
+        "research/runtime/remaining-rendering-implementations-20261020.md",
+        "research/runtime/terrain-single-cell-lighting-20261026.md"
       ],
       "evidence": [
-        "LIGHT.boundaries-original-20261020"
+        "LIGHT.boundaries-original-20261020",
+        "SIZE1.original-20261026"
       ],
       "status": {
         "understanding": "scoped",
@@ -153124,6 +153131,136 @@
         "Natural original-game callers for all five helpers remain unresolved. Preserve provisional unused_candidate classification, existing 43-route denominator and 38-route historical observed union.",
         "No inter-block/interprocedural values, runtime writer/alias closure, unresolved indirect targets, dynamic or overlapping code, external modules or other builds are closed by this scanner."
       ]
+    },
+    {
+      "id": "RE.terrain-single-cell-captured-cycle",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Captured size-one static light selection and two-phase publication",
+      "scope": "All 256 explicit inherited signed kernel bytes through the unchanged original initializer, actual production capture serializer, V1 native decoder and whole original outer/static update comparison on authored owned fields and effect tables. Four paired dimension/configuration cases include 1x1, thin and ordinary maps with ambient/ramp (-127,-127),(-50,7),(0,-16),(127,127); repeated initialization, duplicate/disabled/zero-light records, admission versus position, changed flags, disabled refresh, zero scans and two-phase publication are bounded fixtures. Capture HeapAlloc/VirtualQuery are authored synchronous endpoints. No installed heap-byte provenance, natural live size-one caller, arbitrary memory, file APIs, driver, whole scene or live replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5164496,
+          "scope": "Initializer inheritance and index-one metadata on preallocated owned five buffers."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5183632,
+          "scope": "Unchanged kernel builder preserves the explicit inherited byte."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4837216,
+          "scope": "Unchanged effect-type table lookup selecting index one or zero from authored table."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5240576,
+          "scope": "Unchanged static source admission through the outer update."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5184608,
+          "scope": "Unchanged index-one saturated additive stamp through the static updater."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5188304,
+          "scope": "Whole static two-phase update on the declared authored records and states."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5187488,
+          "scope": "Whole outer update with ordinary viewer and disabled creature refresh; final changed clear."
+        }
+      ],
+      "implementation": [
+        "runtime/lighting/observer.c",
+        "tools/terrain-light-replay.cpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp"
+      ],
+      "tests": [
+        "tests/terrain-single-cell-capture.c",
+        "tests/terrain-single-cell-capture-reference.cpp",
+        "tests/terrain-single-cell-wire-replay.cpp",
+        "tools/test-terrain-single-cell-lighting.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "protocols/include/mnm/terrain_light_v1.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "research/original-files.tsv"
+      ],
+      "documents": [
+        "research/runtime/terrain-single-cell-lighting-20261026.md"
+      ],
+      "evidence": [
+        "SIZE1.original-20261026"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Installed map/heap construction and writer provenance for the inherited byte and natural live size-one callers remain unresolved.",
+        "Authored capture allocation/readability endpoints and owned field/effect tables do not establish Windows API/allocator behavior,whole scene or live integration/replacement."
+      ],
+      "validation_domain": {
+        "inherited_signed_byte": [
+          -128,
+          127
+        ],
+        "paired_dimensions_and_ambient_ramp": [
+          [
+            1,
+            1,
+            1,
+            -127,
+            -127
+          ],
+          [
+            2,
+            3,
+            4,
+            -50,
+            7
+          ],
+          [
+            17,
+            19,
+            5,
+            0,
+            -16
+          ],
+          [
+            19,
+            17,
+            6,
+            127,
+            127
+          ]
+        ],
+        "ticks_per_case": 8,
+        "primitive_ambient_ramp": [
+          -50,
+          7
+        ]
+      }
     }
   ],
   "evidence": [
@@ -345676,6 +345813,63 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "SIZE1.original-20261026",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/size-one-lighting-results-20261026/compare04.json",
+      "sha256": "96cd8b224d03bea42e511bbacba6e30c47914aec80941f1ddc55c39ff7d733d9",
+      "original_hash_pointer": "/original_sha256",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh current-source original size-one metadata/inheritance,1536 maximum/additive stamps and8192 production-captured/static-cycle requests. All256 inherited bytes;four paired dimension/configuration cases;optimized32/64 andASan/UBSan32/64 native comparisons,complete replies andsix noncanonical-byte refusals. Authored fields/tables/API endpoints;no installed heap provenance,natural live caller or replacement.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_input_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/results/kernel/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/results/wire/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/results/capture/stats/requests",
+          "equals": 8192
+        },
+        {
+          "pointer": "/results/capture/stats/paired_configurations",
+          "equals": 4
+        },
+        {
+          "pointer": "/installed_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/installed_heap_provenance_recovered",
+          "equals": false
+        },
+        {
+          "pointer": "/natural_size_one_caller_observed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -375146,7 +375340,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-dda77a382124fd411c78f4fe79dac0dead47378de0e8633afbf522af1ab07b09.json",
-    "sha256": "dda77a382124fd411c78f4fe79dac0dead47378de0e8633afbf522af1ab07b09"
+    "path": "research/runtime/coverage/source-index-8b76032c98239617d7e7986a3d4fa65a4890a31e41022463bbf64c508a0d52d8.json",
+    "sha256": "8b76032c98239617d7e7986a3d4fa65a4890a31e41022463bbf64c508a0d52d8"
   }
 }

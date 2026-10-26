@@ -23143,3 +23143,25 @@ All 3847 committed transitions across 8 intervening/incoming commits
 have exact receipts, including pending retrospective accounting for 380 older
 terrain merge artifacts; this history accounting is separate from current
 merge validation. Pending main-checkout edits are outside this batch.
+
+## Size-one lighting capture/update comparison — 2026-10-26
+
+[Size-one recovery](terrain-single-cell-lighting-20261026.md) reconciles the older
+TL.special-size-one open entry with the already implemented
+RE.terrain-single-cell-light component. Its inherited signed byte, pointer/extent
+metadata and maximum/additive stamps receive fresh SIZE1.original-20261026
+comparison:256 bytes,1536 stamps,original PE32 and optimized/sanitized32/64 builds.
+The new RE.terrain-single-cell-captured-cycle compares8192 actual production
+capture requests and complete native replies against the unchanged original
+outer/static updater across four paired dimensions/configurations,including1x1.
+All20,633,600 reply bytes agree per native variant;six noncanonical signed-byte
+values are refused. Both manifests verify2927 originals.
+
+Native implementation and wire bytes are unchanged. Native zero-default storage
+remains intentional policy. Installed map/heap writer provenance and natural
+live index-one callers remain unresolved;integration/replacement stay none.
+Central and both historical focused gap rows now state that boundary without
+promoting their old statuses. Initial compiler failures,narrower success and
+exact source variants remain immutable SQLite evidence. The new contract remains
+unrated in rendering planning. History since the preceding master review covers
+71 exact transitions across two commits without missing receipts.
