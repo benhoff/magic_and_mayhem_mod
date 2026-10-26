@@ -1,5 +1,20 @@
 # Engine modernization coverage ledger
 
+## Windowed copy and raw-reader frontier investigation — 2026-10-25
+
+The opt-in original-windowed diagnostic reaches native World rendering on a
+16-bit private desktop. Explicit resident-native capture now avoids waiting for
+an unavailable original CPU frame, with no original comparison credit. Current
+21 Python/Qt capture controls and 29 copy regression methods pass. The campaign
+still exhausts its 12-click Hermes bound. A separate Quick Battle reaches 576
+balanced resident Worlds but times out before Results/normal Quit. Its 5,461-row
+metadata census closes during teardown; independent all-COPY comparison remains
+incomplete and native owners survive. No engine integration, comparison or
+replacement stage is promoted. Exact failures, unique sources and pinned RAM-run
+inputs are retained in SQLite. Windowed Qt input-target discovery is the next
+bounded frontier; cause attribution and full caller/reader/ownership closure
+remain pending. See [findings and limits](native-windowed-copy-readers-20261025.md).
+
 ## Native alternate canvas owner merged with current rendering — 2026-10-25
 
 Ownership commit47d07b77 is combined with copy/history,cursor provider and

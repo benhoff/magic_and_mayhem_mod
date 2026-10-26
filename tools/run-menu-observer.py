@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+from native_windowed_copy import launch_arguments
 REPO=Path(__file__).resolve().parents[1]
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
@@ -53,6 +54,7 @@ def main():
                  '--prefix',str(args.prefix.resolve()),'--runner',str(REPO/'tools'/runner)]
         if metadata.get('source_game') and Path(metadata['source_game']).resolve()!=(REPO/'working/game-nocd').resolve():command+=['--source-game',metadata['source_game']]
         if args.seconds:command+=['--seconds',str(args.seconds)]
+        command+=launch_arguments(env)
         result=subprocess.run(command,env=env)
         if metadata.get('directplay_dx6') is not None:
             from directplay_dx6_launch import check as check_directplay,check_prefix
