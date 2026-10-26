@@ -152761,6 +152761,292 @@
       "remaining_gaps": [
         "Native preparation and isolated delivery only. Original transforms/tinted effects, platform errors and application/world/live integration remain separate; the menu/assets parent stays partial."
       ]
+    },
+    {
+      "id": "TL.normal-session-lighting",
+      "title": "Normal-session terrain lighting",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "scope": "Opt-in normal prepare/menu-game launch with the admitted original process wait, persistent source-bound native lighting worker, original scheduling/clock and source snapshots, fixed channel, recorded actual outputs and original fallback. Supported no-CD build and bounded valid wire inputs; graphics ownership remains independent.",
+      "validation_domain": "Opt-in normal prepare/menu-game launch with the admitted original process wait, persistent source-bound native lighting worker, original scheduling/clock and source snapshots, fixed channel, recorded actual outputs and original fallback. Supported no-CD build and bounded valid wire inputs; graphics ownership remains independent.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5187488,
+          "scope": "Existing original outer lighting updater remains the scheduler callback and fallback endpoint; native replacement is scoped to admitted pointer-free snapshots."
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-light-normal-session.md"
+      ],
+      "implementation": [
+        "runtime/lighting/session.h",
+        "protocols/include/mnm/terrain_light_session_v1.h",
+        "tools/terrain-light-session-server.hpp",
+        "tools/terrain_light_session.py",
+        "runtime/lighting/session_observer.c",
+        "tools/terrain-light-session-worker.cpp"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v13.h",
+        "protocols/include/mnm/menu_v14.h",
+        "protocols/include/mnm/menu_v15.h",
+        "protocols/include/mnm/menu_v16.h",
+        "protocols/include/mnm/menu_v17.h",
+        "protocols/include/mnm/menu_v18.h",
+        "protocols/include/mnm/menu_v19.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v20.h",
+        "protocols/include/mnm/menu_v21.h",
+        "protocols/include/mnm/menu_v22.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/terrain_light_v1.h",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "runtime/lighting/observer.c",
+        "runtime/menu/battle.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_input_admission_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/character.h",
+        "runtime/menu/drawing_action.h",
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/menu/drawing_hud_state.h",
+        "runtime/menu/drawing_region_input.h",
+        "runtime/menu/drawing_region_tracked_actor.h",
+        "runtime/menu/drawing_semantic_state.h",
+        "runtime/menu/grimoire.h",
+        "runtime/menu/grimoire_campaign.h",
+        "runtime/menu/grimoire_observe.h",
+        "runtime/menu/lobby.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/multiplayer.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/realm.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/results.h",
+        "runtime/menu/sessions.h",
+        "runtime/menu/spell_campaign.h",
+        "runtime/menu/spells.h",
+        "runtime/menu/startup_admission.h",
+        "runtime/menu/storage.h",
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-menu-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/build-terrain-light-observer.py",
+        "tools/build-terrain-light-session.py",
+        "tools/capture-fade-writer-game.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/decode-cfg.py",
+        "tools/directplay_dx6_launch.py",
+        "tools/encode-cfg.py",
+        "tools/export-menu-support.py",
+        "tools/fade_live_capture.py",
+        "tools/launch_asset_checks.py",
+        "tools/launch_build_cache.py",
+        "tools/menu-game-runner.py",
+        "tools/menu_save_store.py",
+        "tools/native_cursor_launch.py",
+        "tools/prepare-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/run-menu-observer.py",
+        "tools/run-opengl-game.py",
+        "tools/terrain-light-replay.cpp",
+        "tools/test-live-qt-campaign-quit.py",
+        "tools/test-menu-observer.py"
+      ],
+      "tests": [
+        "tests/test-terrain-light-session.py",
+        "tools/test-terrain-light-normal-session.py"
+      ],
+      "evidence": [
+        "TLSN25.reload-observe",
+        "TLSN25.native-and-fallback",
+        "TLSN25.master-reload-observe",
+        "TLSN25.master-native-and-fallback"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_equivalence",
+        "replacement": "scoped_live"
+      },
+      "remaining_gaps": [
+        "Opt-in regular launcher validated with original graphics on a fresh Celtic Adept campaign and actual same-process named Save/Load. Combined native Qt graphics ownership, arbitrary maps/saves, long-duration use and default rollout remain separate acceptance; original scheduler, loader/serializer and resource lifetimes remain original.",
+        "Worker loss intentionally degrades the selected session and reports a nonzero launcher result after clean original Quit; one unchanged-original/sanitized fallback witness supports recovery, not continued native replacement."
+      ]
+    },
+    {
+      "id": "TL.session-light-policy",
+      "title": "Owned lighting session policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "scope": "Intentional native session policy: fixed-size pointer-free channel, single monotonic request owner, nonce/source identity, complete reply validation, bounded recording independent of processing count, closed-session latch after peer refusal/timeout, source-checked worker startup and reaping with SQLite outcomes. No original allocator/scheduler or default-rollout equivalence claim.",
+      "validation_domain": "Intentional native session policy: fixed-size pointer-free channel, single monotonic request owner, nonce/source identity, complete reply validation, bounded recording independent of processing count, closed-session latch after peer refusal/timeout, source-checked worker startup and reaping with SQLite outcomes. No original allocator/scheduler or default-rollout equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/terrain-light-normal-session.md"
+      ],
+      "implementation": [
+        "runtime/lighting/session.h",
+        "protocols/include/mnm/terrain_light_session_v1.h",
+        "tools/terrain-light-session-server.hpp",
+        "tools/terrain_light_session.py",
+        "runtime/lighting/session_observer.c",
+        "tools/terrain-light-session-worker.cpp"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v13.h",
+        "protocols/include/mnm/menu_v14.h",
+        "protocols/include/mnm/menu_v15.h",
+        "protocols/include/mnm/menu_v16.h",
+        "protocols/include/mnm/menu_v17.h",
+        "protocols/include/mnm/menu_v18.h",
+        "protocols/include/mnm/menu_v19.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v20.h",
+        "protocols/include/mnm/menu_v21.h",
+        "protocols/include/mnm/menu_v22.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/terrain_light_v1.h",
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "runtime/lighting/observer.c",
+        "runtime/menu/battle.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_input_admission_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/character.h",
+        "runtime/menu/drawing_action.h",
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/menu/drawing_hud_state.h",
+        "runtime/menu/drawing_region_input.h",
+        "runtime/menu/drawing_region_tracked_actor.h",
+        "runtime/menu/drawing_semantic_state.h",
+        "runtime/menu/grimoire.h",
+        "runtime/menu/grimoire_campaign.h",
+        "runtime/menu/grimoire_observe.h",
+        "runtime/menu/lobby.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/multiplayer.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/realm.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/results.h",
+        "runtime/menu/sessions.h",
+        "runtime/menu/spell_campaign.h",
+        "runtime/menu/spells.h",
+        "runtime/menu/startup_admission.h",
+        "runtime/menu/storage.h",
+        "runtime/shadow/win32_min.h",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-menu-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/build-terrain-light-observer.py",
+        "tools/build-terrain-light-session.py",
+        "tools/capture-fade-writer-game.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/decode-cfg.py",
+        "tools/directplay_dx6_launch.py",
+        "tools/encode-cfg.py",
+        "tools/export-menu-support.py",
+        "tools/fade_live_capture.py",
+        "tools/launch_asset_checks.py",
+        "tools/launch_build_cache.py",
+        "tools/menu-game-runner.py",
+        "tools/menu_save_store.py",
+        "tools/native_cursor_launch.py",
+        "tools/prepare-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/run-menu-observer.py",
+        "tools/run-opengl-game.py",
+        "tools/terrain-light-replay.cpp",
+        "tools/test-live-qt-campaign-quit.py",
+        "tools/test-menu-observer.py"
+      ],
+      "tests": [
+        "tests/test-terrain-light-session.py",
+        "tools/test-terrain-light-normal-session.py"
+      ],
+      "evidence": [
+        "TLSN25.controls",
+        "TLSN25.reload-observe",
+        "TLSN25.native-and-fallback",
+        "TLSN25.master-controls",
+        "TLSN25.master-reload-observe",
+        "TLSN25.master-native-and-fallback"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Opt-in regular launcher validated with original graphics on a fresh Celtic Adept campaign and actual same-process named Save/Load. Combined native Qt graphics ownership, arbitrary maps/saves, long-duration use and default rollout remain separate acceptance; original scheduler, loader/serializer and resource lifetimes remain original.",
+        "Worker loss intentionally degrades the selected session and reports a nonzero launcher result after clean original Quit; one unchanged-original/sanitized fallback witness supports recovery, not continued native replacement."
+      ]
     }
   ],
   "evidence": [
@@ -344940,6 +345226,238 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "TLSN25.controls",
+      "kind": "native_integration",
+      "scope": "Actual worker/channel controls using a retained original-active source/result.\n\nThis executes the persistent native worker, not Wine or the original executable.\nOriginal-active installed execution is a separate runner and evidence kind.\n",
+      "record": "research/runtime/terrain-light-session-results-20261025/controls06.json",
+      "sha256": "f6ef631d91970371e84f555a61473aa79d7c3b9f87f11394a13c960d2fe4f189",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 10
+        }
+      ]
+    },
+    {
+      "id": "TLSN25.reload-observe",
+      "kind": "live_equivalence",
+      "scope": "Normal launcher campaign lighting, optional original Save/Load and deliberate peer loss; original graphics and world scheduler retained. Finite source-bound samples; no default rollout or native Qt graphics acceptance.",
+      "record": "research/runtime/terrain-light-session-results-20261025/observe-reload04.json",
+      "sha256": "a62c1873ce576abe292431c06cdfcc5e5004319a9ba6dd0d653fb0d15b58dc11",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_section_bytes_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success"
+    },
+    {
+      "id": "TLSN25.native-and-fallback",
+      "kind": "live_replacement",
+      "scope": "Normal launcher campaign lighting, optional original Save/Load and deliberate peer loss; original graphics and world scheduler retained. Finite source-bound samples; no default rollout or native Qt graphics acceptance.",
+      "record": "research/runtime/terrain-light-session-results-20261025/native04.json",
+      "sha256": "66dd54269afac12e3c915c28d704b9fc67fcff8b7a0b6dbb40ef4b0e27038902",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_section_bytes_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/worker_loss_control/original_fallback_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/worker_outcome/success",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success",
+      "bypass_pointer": "/live_replacement"
+    },
+    {
+      "id": "TLSN25.master-controls",
+      "kind": "native_integration",
+      "scope": "Actual worker/channel controls using a retained original-active source/result.\n\nThis executes the persistent native worker, not Wine or the original executable.\nOriginal-active installed execution is a separate runner and evidence kind.\n",
+      "record": "research/runtime/terrain-light-session-results-20261025/master-controls02.json",
+      "sha256": "8ee85670e84211ff9c09c68a85b7a2aa4c7591486b11bff8b78849c4252e6d2b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 10
+        }
+      ]
+    },
+    {
+      "id": "TLSN25.master-reload-observe",
+      "kind": "live_equivalence",
+      "scope": "Normal launcher campaign lighting, optional original Save/Load and deliberate peer loss; original graphics and world scheduler retained. Finite source-bound samples; no default rollout or native Qt graphics acceptance.",
+      "record": "research/runtime/terrain-light-session-results-20261025/master-observe02.json",
+      "sha256": "c68d1efd865ee371203210bee25a9bab201bb1bf441464cd052192374a8ce273",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_section_bytes_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success"
+    },
+    {
+      "id": "TLSN25.master-native-and-fallback",
+      "kind": "live_replacement",
+      "scope": "Normal launcher campaign lighting, optional original Save/Load and deliberate peer loss; original graphics and world scheduler retained. Finite source-bound samples; no default rollout or native Qt graphics acceptance.",
+      "record": "research/runtime/terrain-light-session-results-20261025/master-native02.json",
+      "sha256": "132bb4dc18abc23e90e311678dfc56dbeddc475199be8225fca54320f5ad3b35",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/worker_reaped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_section_bytes_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_matches",
+          "equals": 32
+        },
+        {
+          "pointer": "/worker_loss_control/original_fallback_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/worker_outcome/success",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/success",
+      "bypass_pointer": "/live_replacement"
     }
   ],
   "classifications": [],
@@ -372591,6 +373109,92 @@
       "evidence": [
         "CUR27.live10"
       ]
+    },
+    {
+      "id": "TLSN25.controls",
+      "title": "Lighting normal session controls",
+      "scope": "Normal session controls within the explicit owned-channel and original world callback domain.",
+      "level": "headless",
+      "behaviors": [
+        "TL.session-light-policy"
+      ],
+      "tests": [
+        "tests/test-terrain-light-session.py"
+      ],
+      "evidence": [
+        "TLSN25.controls",
+        "TLSN25.master-controls"
+      ]
+    },
+    {
+      "id": "TLSN25.observe",
+      "title": "Lighting normal session observe",
+      "scope": "Normal session observe within the explicit owned-channel and original world callback domain.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy"
+      ],
+      "tests": [
+        "tools/test-terrain-light-normal-session.py"
+      ],
+      "evidence": [
+        "TLSN25.reload-observe",
+        "TLSN25.master-reload-observe"
+      ]
+    },
+    {
+      "id": "TLSN25.native",
+      "title": "Lighting normal session native",
+      "scope": "Normal session native within the explicit owned-channel and original world callback domain.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy"
+      ],
+      "tests": [
+        "tools/test-terrain-light-normal-session.py"
+      ],
+      "evidence": [
+        "TLSN25.native-and-fallback",
+        "TLSN25.master-native-and-fallback"
+      ]
+    },
+    {
+      "id": "TLSN25.reload",
+      "title": "Lighting normal session reload",
+      "scope": "Normal session reload within the explicit owned-channel and original world callback domain.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy"
+      ],
+      "tests": [
+        "tools/test-terrain-light-normal-session.py"
+      ],
+      "evidence": [
+        "TLSN25.reload-observe",
+        "TLSN25.native-and-fallback",
+        "TLSN25.master-reload-observe",
+        "TLSN25.master-native-and-fallback"
+      ]
+    },
+    {
+      "id": "TLSN25.worker-loss",
+      "title": "Lighting normal session worker-loss",
+      "scope": "Normal session worker-loss within the explicit owned-channel and original world callback domain.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "TL.normal-session-lighting",
+        "TL.session-light-policy"
+      ],
+      "tests": [
+        "tools/test-terrain-light-normal-session.py"
+      ],
+      "evidence": [
+        "TLSN25.native-and-fallback",
+        "TLSN25.master-native-and-fallback"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -374298,7 +374902,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-f8d5ed5e99b0978f8cd9ee58c5231a955ab6f97e6bd0172d32cd517b2786cf85.json",
-    "sha256": "f8d5ed5e99b0978f8cd9ee58c5231a955ab6f97e6bd0172d32cd517b2786cf85"
+    "path": "research/runtime/coverage/source-index-ff1c9819b19dd3222191bfbc83362c2ec52e2f8ca1ad26a7e771955d84376014.json",
+    "sha256": "ff1c9819b19dd3222191bfbc83362c2ec52e2f8ca1ad26a7e771955d84376014"
   }
 }

@@ -23016,3 +23016,81 @@ historical. No original, application-integration or live milestone is promoted.
 All main-checkout edits remain separate. The user approved an89GiB main-drive
 reserve for completion of this local merge; normal repository policy is unchanged.
 Verified evidence and review backups remain pinned and local.
+
+## Terrain lighting through the normal launcher (2026-10-25)
+
+The opt-in normal prepare/run-menu path now owns one persistent native lighting
+worker and a fixed 25,165,952-byte pointer-free channel. Selection is
+`MNM_TERRAIN_LIGHTING=original|observe|native` (default `original`), independent
+of graphics selection. The admitted DirectPlay process-wait profile is required.
+Normal processing has no finite capture limit or per-update disk files/processes;
+optional diagnostics stop recording at32 records/64MiB while processing continues.
+The existing finite observer, V1 decoder and recovered lighting models retain
+their prior bytes and evidence identities. See
+[the session contract](terrain-light-normal-session.md).
+
+`TLSN25.controls` executes ten actual worker/supervisor controls, including96
+consecutive source-bound requests, fixed recording/storage limits, a request with
+recording disabled, stale/truncated channels, wrong sources/binary/mode,
+refusals, deliberate peer death and reaping. These are recorded-input/native
+integration controls, separate from original installed execution.
+
+`TLSN25.reload-observe` and `TLSN25.native-and-fallback` exercise the real public
+prepare/run-menu launcher on a private fresh Celtic Adept campaign, original
+named Save/Load, original Mini/Quit confirmation/report and normal Main Quit.
+The current-source original-active run processes at least129 updates. The
+matching native run applies129 updates, including32 captured post-load outputs;
+all32 match independent unchanged PE32 and ASan/UBSan native replay. The first
+captured reload caller is00472201. The test dismisses both visible restored
+Hermes pages before demanding continued World updates; an original tutorial
+pause is not a lighting failure. Saved bytes remain unchanged by Load.
+
+The worker-loss control kills only the PID/start-tick-identified owned worker.
+The channel closes permanently, native application remains at129, and24 further
+original updates advance the original clock from128 to152. An independently
+replayed fallback input/result agrees with unchanged original code and sanitized
+native replay. The100ms wait budget produces an observed115ms maximum wait
+under Wine scheduling in this fault test. Both games quit normally; the worker
+is reaped. The faulted selected backend intentionally reports a nonzero launcher
+result and a failed session outcome after original Quit, while the recovery test
+passes. This is fallback evidence, not continued native replacement.
+
+Original manifests verify all2927 files before/after every installed attempt.
+RAM-only disposable game/prefix/runtime copies bound disk use; each run retains
+its unique patched executable, bridge/worker binaries, channel/corpus, actual
+save, source/results, menu events, outcomes and logs in SQLite before unmount.
+`retention01.json` retains intermediate source/build failures and final controls;
+`history02.json` reviews7ea9fc19..d77015d4 (two commits,247 exact transitions,
+no missing receipts). Failed harness attempts remain failed. Source11's incorrect
+hash metadata is retained and corrected by the exact source12 snapshot.
+
+This closes bounded opt-in normal-launch lighting integration with original
+graphics. Combined native Qt graphics ownership, arbitrary maps/saves, long
+sessions and default rollout remain pending acceptance. World scheduling,
+serializer/loader and original resource lifetimes retain their existing owners.
+Historical evidence for other behaviors affected by shared launcher sources keeps
+its recorded hashes and status; this batch does not renew those validations.
+
+### Normal lighting integration with cursor ownership master
+
+The integration combines feature e86d0946 with master283d66b6. The cursor
+admission additions in three launcher files were inspected and the explicit
+`tools/native_cursor_launch.py` dependency was registered. Fresh
+`TLSN25.master-controls`, `TLSN25.master-reload-observe` and
+`TLSN25.master-native-and-fallback` bind the combined source. Ten controls pass;
+both normal Save/Load journeys retain32 post-load samples matching unchanged
+PE32 and ASan/UBSan replay, normal original Quit and worker reaping. The native
+run applies129 updates before peer loss, then retains original fallback with an
+independent input/result witness. Final fallback statistics are24 original updates,
+with native application latched at129.
+
+The test now chooses a distinct private save name from its immutable output ID;
+prior successful saves remain in the owned store. The first integration attempt
+correctly refused the old fixture name without overwriting it. Historical
+feature evidence keeps its hashes and scope, while these new records establish
+current combined-source validation. `master-history01.json` reviews six committed
+transitions groups and2414 file transitions since d77015d4, including the feature
+tip; one missing exact intermediate receipt receives retrospective pending
+accounting, without a past gate or new execution claim. Default lighting remains
+original. Combined Qt graphics ownership, arbitrary maps/saves, long sessions and
+rollout remain separate acceptance.

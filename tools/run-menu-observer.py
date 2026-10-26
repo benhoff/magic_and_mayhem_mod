@@ -53,7 +53,9 @@ def main():
                  '--prefix',str(args.prefix.resolve()),'--runner',str(REPO/'tools'/runner)]
         if metadata.get('source_game') and Path(metadata['source_game']).resolve()!=(REPO/'working/game-nocd').resolve():command+=['--source-game',metadata['source_game']]
         if args.seconds:command+=['--seconds',str(args.seconds)]
-        result=subprocess.run(command,env=env)
+        from terrain_light_session import supervise as lighting_session
+        with lighting_session(root,metadata,env):
+            result=subprocess.run(command,env=env)
         if metadata.get('directplay_dx6') is not None:
             from directplay_dx6_launch import check as check_directplay,check_prefix
             check_directplay(root,metadata['directplay_dx6'])

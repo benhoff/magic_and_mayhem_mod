@@ -67,7 +67,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
     if game.is_symlink() or game.resolve()==source:
         raise ValueError('Disposable staging aliases its source')
-    for name in ['Chaos.exe','MnmRender.dll','MnmMenu.dll','MnmScene.dll','MnmWord.dll','MnmAudio.dll','MnmDraw.dll','MnmPanelWriters.dll','MnmPixelWriters.dll','MnmJpegPixels.dll','MnmMinimapWriters.dll','MnmColourRect.dll','MnmRasterWriters.dll','MnmDcCopy.dll','MnmEngineCadence.dll','MnmSceneProduction.dll','MnmApiCensus.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg']:
+    for name in ['Chaos.exe','MnmRender.dll','MnmMenu.dll','MnmScene.dll','MnmWord.dll','MnmAudio.dll','MnmDraw.dll','MnmPanelWriters.dll','MnmPixelWriters.dll','MnmJpegPixels.dll','MnmMinimapWriters.dll','MnmColourRect.dll','MnmRasterWriters.dll','MnmDcCopy.dll','MnmEngineCadence.dll','MnmSceneProduction.dll','MnmApiCensus.dll','MnmLight.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg']:
         if not (game/name).resolve().is_relative_to(game.resolve()):
             raise ValueError('Disposable write target escapes game copy: '+name)
     if hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest()!=HASH:raise ValueError('Copy hash mismatch')
@@ -141,6 +141,8 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         patched=module('census_import_stage','tools/prepare-shadow-experiment.py').add_import(patched,'MnmApiCensus.dll','ApiCensusAnchor',b'.mnapi')
         shutil.copy2(census_dll,game/census_dll.name);shutil.copy2(census_dll.parent/'manifest.json',root/'api-census-build.json')
         census_metadata=dict(wine_import_census=True,wine_import_census_file=str(root/'wine-import-census.bin'),wine_import_census_dll_sha256=hashlib.sha256(census_dll.read_bytes()).hexdigest())
+    from terrain_light_session import stage as stage_lighting
+    patched,lighting_metadata=stage_lighting(root,data,patched,os.environ)
     patched,rts_metadata=stage_rts(root,data,patched,rts_controls,os.environ.get('MNM_RTS_CONTROLS_CONFIG',REPO/'patches/rts-controls.json'))
     (game/'Chaos.exe').write_bytes(patched);shutil.copy2(dll,game/dll.name)
     preferences=module('menu_preferences','tools/run-opengl-game.py')
@@ -179,6 +181,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     metadata.update(minimap_metadata)
     metadata.update(borrowed_metadata)
     metadata.update(rts_metadata)
+    metadata.update(lighting_metadata)
     metadata.update(native_voices=native_voices,native_initial_silence=native_voices,native_audio_profiles=native_voices,native_audio_file_sizes=native_voices,audio_dll_sha256=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None,
                     native_wave_loading=native_voices,
                     native_audio_factory=native_voices,
