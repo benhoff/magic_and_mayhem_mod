@@ -30,6 +30,8 @@ def main():
     p.add_argument('--isolation-record',type=Path,required=True)
     p.add_argument('--session-close-diagnostics',action='store_true')
     p.add_argument('--storage-initial-worlds',type=int,choices=range(3,17),default=3)
+    p.add_argument('--storage-phase-worlds',type=int,choices=range(3,17),default=3)
+    p.add_argument('--storage-dwell-timeout',type=int,choices=range(30,181),default=30)
     a=p.parse_args()
     a.report=a.report.absolute()
     out=a.output.absolute()
@@ -84,7 +86,7 @@ def main():
             '--producer-samples','32','--physical-oracle-mib','1024','--physical-transient-mib','512',
             '--x11-delivery-library',library,'--claims',a.claims.resolve(),'--report',child,
             *['--'+flag for flag in FLAGS]]
-        command+=['--storage-initial-worlds',str(a.storage_initial_worlds)]
+        command+=['--storage-initial-worlds',str(a.storage_initial_worlds),'--storage-phase-worlds',str(a.storage_phase_worlds),'--storage-dwell-timeout',str(a.storage_dwell_timeout)]
         if a.session_close_diagnostics:command.append('--session-close-diagnostics')
         if a.profile=='corrected':command.append('--egl-correct-stale-upload')
         result['original_capture_invoked']=True

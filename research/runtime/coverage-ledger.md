@@ -23095,6 +23095,38 @@ accounting, without a past gate or new execution claim. Default lighting remains
 original. Combined Qt graphics ownership, arbitrary maps/saves, long sessions and
 rollout remain separate acceptance.
 
+## Colour operation comparisons and rendering frontier — 2026-10-25
+
+[CCF25 report](colour-coverage-frontier-20261025.md) extends original 547d80 CPU
+comparison across all modes, RGB565/RGB555, constants/planes, clipping and sizes
+through 2048×2048. The 4352 existing paired calls include 3054 native admissions and
+1298 forwarded/hidden controls; 384 additional cases all admit natively, 304 drawing
+and 80 empty-clipped. Physical words, sources and full recorded caller state match.
+The fixture now handles the existing optional CPU-store lookup for its unprotected
+CPU-ready plane; original/production arithmetic is unchanged.
+
+Recorded DrawingScene now accepts bounded active-World RGB565 fills. CanvasWorld
+clips and tiles constants through existing 64×64 colour copies in original order,
+with 12320 expanded pending draws retained. 192 authored original/native World cases
+match 38,199,120 pixels, including all four blend modes around large fills; five
+negative admission/budget controls and ordinary scene/session regressions pass.
+`CCF25.cpu-original`, `CCF25.world-original` and `CCF25.world-native` retain distinct
+original comparison and native-policy integration roles. This is isolated
+comparison, not natural live reachability, RGB555 World support, hardware
+presentation, performance or replacement acceptance. Earlier RCI25 full storage
+comparisons remain historical after this native-source change.
+
+The [reviewed frontier](colour-coverage-results-20261025/frontier-reviewed.json)
+checks 785 registered rendering contracts and 664 scenarios, retaining 38 unresolved
+dispatch tables. Per-scenario proof cannot close another behavior or a behavior
+outside this audit. Implementation/comparison/integration/replacement remain
+independent; no whole-engine percentage is computed. The fifteen absent
+implementation claims include static discoveries/planning and require scope
+review before becoming implementation tasks. Pending shared-source freshness is
+not a count of independent defects. Ten frontier plus sixteen crosswalk guards
+pass. Formal 14-journey/21-operation acceptance remains separate; the shipped
+suite has zero generic presented-session catalogs. The web UI layout and gameplay
+rules are unchanged.
 ## Five pixel helper computed caller investigation — 2026-10-25
 
 [Computed-caller review](five-pixel-computed-callers-20261025.md) extends the
@@ -23143,3 +23175,29 @@ All 3847 committed transitions across 8 intervening/incoming commits
 have exact receipts, including pending retrospective accounting for 380 older
 terrain merge artifacts; this history accounting is separate from current
 merge validation. Pending main-checkout edits are outside this batch.
+
+## Rendering integration and extended storage closeout (2026-10-26)
+
+RCL26 combines CCF25 with current cursor/terrain work and the subsequent caller
+investigation. Fresh original/native colour CPU boundaries (384 added cases,
+90,011,152 physical WORDs across both matrices) and 192 ordered World fixtures
+pass on the combined source. Historical fingerprints are unchanged.
+
+Both original-active storage profiles now complete sixteen actual World returns
+in each of four phases under an explicit120-second capture deadline, source
+closure and independent original MainQuit/exit. After-Load waits exceed the old
+30-second bound. All533 native/source/default presentations match; baseline126
+physical pixels remain an explained shrink negative control, while the explicit
+corrected262-frame cohort matches physical output. A fresh replay of the completed
+stock Quick Battle matches333 further presentations. Its interrupted earlier
+native attempt remains unaccepted.
+
+Natural campaign colour calls remain modes0/1 (5204 operations); the two other
+stock profiles observe none. Modes2/3, active-World large fills, RGB555 World,
+hardware/all-writer/full-renderer/live replacement remain separate. The static
+input index grants no native implementation credit. Sixteen finite busy World
+samples retain original-only coverage; the kind8-specific comparator refuses
+its unmet selection requirement rather than claiming a native match.
+
+See [scopes, evidence and reproduction](rendering-closeout-20261026.md). Coverage
+stages remain independent; no web UI layout or gameplay balance changes.

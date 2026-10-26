@@ -25,9 +25,28 @@ def storage_rows(channel):
     return [raw[160+i*128:288+i*128].split(b'\0',1)[0].decode('cp1252') for i in range(words[6])]
 
 
-def drive(channel,run,capture,process,env,input_binary,wait,send,refresh,state,initial_worlds=3):
+def wait_for_worlds(required,timeout,process,refresh,source_worlds,refocus):
+    """Observe actual committed returns; a larger deadline never supplies records."""
+    if type(required) is not int or not 3<=required<=16 or type(timeout) is not int or not 30<=timeout<=180:
+        raise ValueError('Storage dwell requires3..16 returns and30..180 seconds')
+    start=time.monotonic();base=source_worlds();count=base;focus_attempts=0
+    while time.monotonic()-start<timeout:
+        if process.poll() is not None:raise ValueError('Original exited during World capture')
+        refresh();count=source_worlds();elapsed=time.monotonic()-start
+        if count<base:raise ValueError('Original World source prefix regressed')
+        if count>=base+required and elapsed>=2:
+            return dict(world_returns=count,source_base=base,required_worlds=required,elapsed_seconds=elapsed,timeout_seconds=timeout)
+        if count<base+required and elapsed>(focus_attempts+1)*3 and focus_attempts<3:
+            focus_attempts+=1;refocus(focus_attempts)
+        time.sleep(.05)
+    raise ValueError(f'No fresh original World sources: observed {count-base}/{required} within {timeout}s')
+
+
+def drive(channel,run,capture,process,env,input_binary,wait,send,refresh,state,initial_worlds=3,phase_worlds=3,dwell_timeout=30):
     if type(initial_worlds) is not int or not 3<=initial_worlds<=16:
         raise ValueError('Storage dwell requires3..16 observed initial World returns')
+    if type(phase_worlds) is not int or not 3<=phase_worlds<=16 or type(dwell_timeout) is not int or not 30<=dwell_timeout<=180:
+        raise ValueError('Storage dwell requires3..16 returns and30..180 seconds')
     (run/'game/Save').mkdir(exist_ok=True)
     name='draw-storage-'+run.name.removeprefix('run-')
     name_bytes=name.encode('ascii')
@@ -65,22 +84,19 @@ def drive(channel,run,capture,process,env,input_binary,wait,send,refresh,state,i
             sequence=ordinal;count+=operation==12;at+=size
         return count
     def dwell(phase):
-        required=initial_worlds if phase=='before-save' else 3
+        required=initial_worlds if phase=='before-save' else phase_worlds
         physical(phase+'-focus',dict(kind='move',x=400,y=300,after_ms=300))
-        start=time.monotonic();base=source_worlds();bound=start+30;focus_attempts=0
-        while time.monotonic()<bound:
-            if process.poll() is not None:raise ValueError('Original exited during World capture')
-            refresh();count=source_worlds()
-            if count>=base+required and time.monotonic()-start>=2:
-                checkpoints.append(dict(phase=phase,world_returns=count,source_base=base))
-                if phase=='before-save':
-                    from drawing_process_snapshot import snapshot_processes
-                    (run/'process-world.json').write_text(json.dumps(snapshot_processes(run),indent=2)+'\n')
-                return
-            if count<base+required and time.monotonic()-start>(focus_attempts+1)*3 and focus_attempts<3:
-                focus_attempts+=1;physical(phase+f'-focus-retry-{focus_attempts}',dict(kind='move',x=400,y=300,after_ms=300))
-            time.sleep(.05)
-        raise ValueError('No fresh original World sources: '+phase)
+        def refocus(attempt):physical(phase+f'-focus-retry-{attempt}',dict(kind='move',x=400,y=300,after_ms=300))
+        try:
+            checkpoint=wait_for_worlds(required,dwell_timeout,process,refresh,source_worlds,refocus)
+        except ValueError as error:
+            diagnostic=dict(schema=1,success=False,phase=phase,required_worlds=required,timeout_seconds=dwell_timeout,error=str(error),completed_checkpoints=checkpoints)
+            (run/'storage-dwell-failure.json').write_text(json.dumps(diagnostic,indent=2)+'\n')
+            raise ValueError(str(error)+': '+phase) from error
+        checkpoints.append(dict(phase=phase,**checkpoint))
+        if phase=='before-save':
+            from drawing_process_snapshot import snapshot_processes
+            (run/'process-world.json').write_text(json.dumps(snapshot_processes(run),indent=2)+'\n')
     def mini(label):
         for attempt in range(6):
             physical(label+f'-{attempt}',dict(kind='tap',key='Escape',after_ms=350))
@@ -115,5 +131,5 @@ def drive(channel,run,capture,process,env,input_binary,wait,send,refresh,state,i
         struct.pack_into('<7I',channel,44756,*values);send(10,19);wait(3);rebuilds.append(resolution)
     send(3,27);load();dwell('after-recreate-load');leave('leave-reloaded')
     (run/'input.json').write_text(json.dumps(dict(schema=1,success=True,actions=actions,original_memory_written=False,semantic_outcomes_assumed=False),indent=2)+'\n')
-    result=dict(schema=1,success=True,initial_worlds=initial_worlds,saved_name=name,saved_sha256=save_hash,save_bytes=saved.stat().st_size,checkpoints=checkpoints,display_rebuilds=rebuilds,original_callbacks_required=True,native_menu_layout_compared=False,scope='Original-active callback/input storage journey; observer and native comparisons establish their own presentation/source boundaries.')
+    result=dict(schema=1,success=True,initial_worlds=initial_worlds,phase_worlds=phase_worlds,dwell_timeout_seconds=dwell_timeout,saved_name=name,saved_sha256=save_hash,save_bytes=saved.stat().st_size,checkpoints=checkpoints,display_rebuilds=rebuilds,original_callbacks_required=True,native_menu_layout_compared=False,scope='Original-active callback/input storage journey; observer and native comparisons establish their own presentation/source boundaries.')
     (run/'storage-flow.json').write_text(json.dumps(result,indent=2)+'\n');return result

@@ -66,6 +66,37 @@ class Cases(unittest.TestCase):
     def test_invalid_dwell_refuses_before_any_inputs(self):
         for count in (0,2,17,True,3.0):
             with self.assertRaises(ValueError):drive(*([None]*10),initial_worlds=count)
+    def test_long_deadline_observes_delayed_real_returns(self):
+        from drawing_storage_capture import wait_for_worlds
+        from unittest.mock import patch,Mock
+        for timeout,accepted in ((30,False),(120,True)):
+            now=[0.0];focus=[];process=Mock();process.poll.return_value=None
+            def pause(seconds):now[0]+=seconds
+            def count():return 9+(16 if now[0]>=45 else 0)
+            with patch('drawing_storage_capture.time.monotonic',side_effect=lambda:now[0]),patch('drawing_storage_capture.time.sleep',side_effect=pause):
+                if accepted:
+                    result=wait_for_worlds(16,timeout,process,lambda:None,count,focus.append)
+                    self.assertEqual((result['source_base'],result['world_returns'],result['required_worlds']),(9,25,16));self.assertGreaterEqual(result['elapsed_seconds'],45)
+                else:
+                    with self.assertRaisesRegex(ValueError,'observed 0/16'):wait_for_worlds(16,timeout,process,lambda:None,count,focus.append)
+            self.assertEqual(focus,[1,2,3])
+    def test_long_deadline_cannot_admit_missing_returns(self):
+        from drawing_storage_capture import wait_for_worlds
+        from unittest.mock import patch,Mock
+        now=[0.0];process=Mock();process.poll.return_value=None
+        def pause(seconds):now[0]+=seconds
+        with patch('drawing_storage_capture.time.monotonic',side_effect=lambda:now[0]),patch('drawing_storage_capture.time.sleep',side_effect=pause):
+            with self.assertRaisesRegex(ValueError,'observed 0/16'):wait_for_worlds(16,120,process,lambda:None,lambda:7,lambda _:None)
+    def test_dwell_refuses_process_death_and_counter_regression(self):
+        from drawing_storage_capture import wait_for_worlds
+        from unittest.mock import Mock
+        process=Mock();process.poll.return_value=0
+        with self.assertRaisesRegex(ValueError,'exited'):wait_for_worlds(3,120,process,lambda:None,lambda:10,lambda _:None)
+        process.poll.return_value=None;counts=iter((10,9))
+        with self.assertRaisesRegex(ValueError,'regressed'):wait_for_worlds(3,120,process,lambda:None,lambda:next(counts),lambda _:None)
+    def test_invalid_phase_dwell_refuses_before_inputs(self):
+        for options in ({'phase_worlds':True},{'phase_worlds':17},{'dwell_timeout':29},{'dwell_timeout':181}):
+            with self.assertRaises(ValueError):drive(*([None]*10),**options)
     def test_storage_rows_use_exact_count(self):
         raw=bytearray(196608);struct.pack_into('<8I',raw,110592,12,17,1,0,0,0,2,2);raw[110752:110756]=b'one\0';raw[110880:110884]=b'two\0';self.assertEqual(storage_rows(raw),['one','two'])
     def test_invalid_storage_count_or_screen_refuses(self):
