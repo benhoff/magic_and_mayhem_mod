@@ -59,10 +59,10 @@ def main():
                   original_sha256=light.HASH, live_replacement=args.mode == 'native',
                   native_graphics=True, default_changed=False, results=[])
     reg = json.loads((ROOT / 'research/runtime/coverage/register.json').read_text())
-    ids = ['TL.normal-session-lighting', 'TL.session-light-policy', 'NP.native-only-launch-contract']
+    ids = ['TL.normal-session-lighting', 'TL.session-light-policy', 'NP.native-only-launch-contract', 'NR.glyph-live-admission', 'RS.glyph-live-route']
     behaviors = [b for b in reg['behaviors'] if b['id'] in ids]
     builds = {b['id']: b for b in reg['builds']}
-    scenario_id = 'TLQT26.' + ('worker-loss' if args.worker_loss else args.mode + '-' + args.journey)
+    scenario_id = 'TLQF26.' + ('worker-loss' if args.worker_loss else args.mode + '-' + args.journey)
     scenarios = [s for s in reg['scenarios'] if s['id'] == scenario_id]
     paths = set().union(*(required_sources(b) for b in behaviors))
     paths.add('tools/test-terrain-light-qt-session.py')
@@ -250,8 +250,25 @@ def main():
                 path = prefix / name
                 if path.is_file(): retain('prefix-' + name + '.bin', path.read_bytes())
         if session:
+            lifecycle = session / 'terrain-light-session/outcome.sqlite3'
+            if lifecycle.exists():
+                with sqlite3.connect(lifecycle) as db:
+                    identity = db.execute("SELECT pid,start_ticks FROM lifecycle WHERE phase='started'").fetchone()
+                if identity:
+                    pid, ticks = identity
+                    def same_worker_alive():
+                        try:
+                            fields = Path('/proc', str(pid), 'stat').read_text().rsplit(') ', 1)[1].split()
+                            return int(fields[19]) == ticks and fields[0] != 'Z'
+                        except FileNotFoundError:
+                            return False
+                    end = time.monotonic() + 5
+                    while same_worker_alive() and time.monotonic() < end: time.sleep(.02)
+                    report['cleanup_worker'] = dict(pid=pid, start_ticks=ticks, running=same_worker_alive())
+                    if report['cleanup_worker']['running']:
+                        report.update(success=False, cleanup_error='Owned lighting worker survived launcher cleanup')
             report['retained_session'] = {}
-            for path in ['terrain-light-session/channel.bin', 'terrain-light-session/corpus.bin', 'terrain-light-session/outcome.sqlite3', 'terrain-light-session/worker.log', 'lighting-build/manifest.json', 'lighting-build/mnm-terrain-light-session', 'game/MnmLight.dll', 'game/Chaos.exe', 'events.bin', 'native-output-admission.json', 'native-only-session.json', 'original-process-result.json', 'resident-world-report.json', 'manifest.json', 'native-draw-retirement.bin']:
+            for path in ['terrain-light-session/channel.bin', 'terrain-light-session/corpus.bin', 'terrain-light-session/outcome.sqlite3', 'terrain-light-session/worker.log', 'lighting-build/manifest.json', 'lighting-build/mnm-terrain-light-session', 'game/MnmLight.dll', 'game/MnmScene.dll', 'game/native-glyph-forward-refusal.bin', 'game/Chaos.exe', 'events.bin', 'native-output-admission.json', 'native-only-session.json', 'original-process-result.json', 'resident-world-report.json', 'manifest.json', 'native-draw-retirement.bin']:
                 if (session / path).is_file(): report['retained_session'][path] = retain(path.replace('/', '-') + '.bin', (session / path).read_bytes())
             for path in (session / 'game/Save').glob('lighting-qt-' + out.name + '*'):
                 if path.is_file(): retain('save-' + path.name + '.bin', path.read_bytes())

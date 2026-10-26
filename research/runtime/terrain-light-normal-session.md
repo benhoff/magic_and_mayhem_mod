@@ -100,15 +100,60 @@ the isolated fixture after the shared working installation failed source-hash
 admission. Installation manifest/prefix and private tmpfs/XKB setup failures are
 preserved separately. No engine behavior or lighting default was changed.
 
-Default rollout remains blocked on the strict Save glyph refusal and the
-spontaneous lighting deadline overrun. Resolve and rerun those cases before
-claiming Save/Load, World reconstruction or sustained combined native acceptance.
-The exact glyph admission subcondition and the deadline overrun's cause remain
-unknown; increasing the timeout or permitting original glyph fallback was not
-tested as a fix.
+At this historical checkpoint, rollout was blocked on the strict Save glyph
+refusal and spontaneous lighting deadline overrun. Their fixed-code acquisition
+and remaining acceptance boundaries are recorded in the fix batch below. The
+old timing fields do not establish the sole cause of the deadline overrun.
 
 TLQT26.abnormal-worker-lifetime additionally records an owned lighting worker
 left alive after the failed strict Save acquisition: original exit124, host parent1,
 started-only lifecycle and no worker outcome. Closeout verified exact PID/start
 ticks/executable and terminated only that orphan. Abrupt Qt/launcher cleanup
 remains unaccepted despite normal-Quit and deliberate worker-loss success.
+
+## Fix batch — 2026-10-26
+
+The persistent worker now calls the one-shot replay's checked byte decoder
+directly. The two reusable memfds and per-update file streams are removed.
+A single derived-kernel cache is keyed by width, height, layers, ambient, ramp
+and inherited single-cell value. A key change replaces the cached model. Every
+request still restores all five mutable buffers and both cycle states before
+stepping; no original process pointers or mutable producer state are cached.
+The100ms guest deadline, sequence/nonce/checksum checks and permanent CLOSED
+fallback latch are unchanged. Eliminating repeated kernel construction reduces
+worker cost; historical timing alone cannot separate computation from host
+scheduling and does not prove that this was the sole cause of the old overrun.
+
+The supervisor installs scoped SIGTERM/SIGINT handlers so cancellation unwinds
+through stop/reap and SQLite outcome recording. Cleanup ignores repeat signals
+until it has reaped the child and restores prior handlers afterward. The native
+worker additionally sets Linux PR_SET_PDEATHSIG(SIGKILL) and checks its expected
+parent immediately afterward, covering both parent death before setup and
+SIGKILL after setup. Abrupt supervisor SIGKILL can prevent its final SQLite
+outcome; absence of that row is not a successful session. The worker cannot
+survive that parent. Both cancellation paths have actual-process regression
+controls, including adoption/reaping by a controlled subreaper.
+
+
+The repaired combined acquisition passes original-active Save/Load264updates and
+native Save/Load240updates. Both include two original resolution changes, Main
+Load with a new World renderer, normal original exit0, strict native-only
+outcomes,32unchanged-original/sanitized lighting comparisons and worker reaping.
+The sustained native run completes both120-second physical phases, MiniCancel
+and QuitNo/resume/Yes:2,434applied updates, zero fallback/refusal/mismatch,
+max17mswait and5252usworker compute. The expected worker-loss run applies
+128native updates, then continues
+190original fallback updates with the latch
+closed and normal original exit0; the selected backend correctly reports1.
+All32retained native-prefix comparisons pass. The running Qt ELF and387compiler
+sources are retained and checked against the successful observation.
+
+Twelve actual worker controls include supervisorSIGTERM cleanup with a failed
+SQLite outcome and supervisorSIGKILL with kernel worker termination/reaping.
+The reproduced pre-fix Save failure also leaves no surviving worker under the
+new parent-death guard. Its killed supervisor has no final outcome; that negative
+acquisition remains a failure. Strict unsupported-glyph exit124controls still
+pass. All new raw evidence, failures and reports use SQLite. These results close
+the three observed blockers within their bounded controls; different maps,
+arbitrary saves, hour-long execution, hardware/FPS and default rollout remain
+separate acceptance. The normal lighting default remains original.

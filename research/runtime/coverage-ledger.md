@@ -23131,3 +23131,36 @@ left alive after the failed strict Save acquisition: original exit124, host pare
 started-only lifecycle and no worker outcome. Closeout verified exact PID/start
 ticks/executable and terminated only that orphan. Abrupt Qt/launcher cleanup
 remains unaccepted despite normal-Quit and deliberate worker-loss success.
+
+
+## Strict Qt lighting blocker fixes — 2026-10-26
+
+[Fixed-source acquisition](terrain-light-normal-session.md#fix-batch--2026-10-26)
+separates the observed Save geometry failure, worker processing overhead and
+abnormal worker lifetime from earlier supplier/reconstruction completion.
+Glyph clips now preserve original layout branches while every visible write
+rectangle is checked against independent native storage. The isolated
+RGB565/555original comparison passes1152complete comparisons;768native paths
+bypass the original body, and the sanitized controls refuse overhanging writes
+atomically. Unsupported strict glyphs still terminate with124.
+
+The worker uses direct checked byte decoding and cached derived kernels,
+restoring all request buffers and producer states. The100msdeadline and permanent
+fallback latch remain unchanged. Twelve actual worker controls pass, including
+supervisorSIGTERM cleanup andSIGKILLparent-death protection. A killed supervisor
+can lack its final outcome row; this never implies successful completion.
+
+Current-source strict native Qt original-active observation completes264updates
+through Save/Load, two resolution changes, Main Load World reconstruction and
+normal Quit. Native replacement completes the same journey with240applied
+updates and a7msmaximum wait. The two120-second stress phases complete2434native
+updates with zero fallback/refusal/mismatch,17msmaximum wait and5252usmaximum
+worker compute. Each journey retains32unchanged-original/sanitized comparisons
+and clean graphics/worker retirement. Expected worker loss continues original
+fallback and normal original Quit while correctly reporting selected-backend
+failure. Historical failure evidence and source hashes remain unchanged.
+
+TLQF26evidence closes these observed blockers within the named scenarios. It does
+not establish arbitrary-map/save coverage, hour-long stability, hardware/FPS
+acceptance or default rollout. Original scheduler, loader/serializer and resource
+owners remain original; no gameplay balance or lighting default changed.
