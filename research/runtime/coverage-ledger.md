@@ -23667,3 +23667,27 @@ Follow-up controls02 passes37/38 planning tests and all34 caller tests; its rema
   CPU-source clipper copies, 20 target-rectangle copies and one unsupported fill;
   the strict validator is unchanged. See
   [the findings and exact evidence](windowed-input-gpu-callers-20261026.md).
+
+
+### CPU copy clipping and history continuity — 2026-10-26
+
+`NP.native-cpu-copy-plan` adds read-only native CPU clip preparation, ordered piece
+propagation and current destination materialization specifically for clipped CPU
+transforms. Current15CPU/23GPU controls and48Python output/routing/geometry refusal
+controls pass. The bounded current Quick Battle/Results/Quit observation prepares
+all1370calls, including124clippedCPU copies and one clippedfill, and independently
+checks all1345COPYoutputs.141GPU-source calls include88actual geometric reductions
+under ordinary Win32 exposure. END/normalQuit/zero graphics owners and no GAP or
+commit refusal pass. The earlier eager-materialization zero-GPU regression and
+setup/source-stability failures are retained separately. See
+[cpu-copy-clipping-20261026.md](cpu-copy-clipping-20261026.md) and SQLite-backed
+`cpu-copy-results-20261026/` results. Natural self/keyed GPU-source callers remain
+unobserved;fill UPDATE output,other contexts,arbitrary readers,original-driver
+parity and universal intermittent reliability remain separate. No milestone is
+promoted;historical evidence hashes remain intact.
+
+Final reader-only follow-up keeps emptyCPUintervals fail-closed and counts one
+multi-piece keyed application call once. Fresh48Python controls and immutable
+replay02 pass all1345COPYbindings. Only two Python diagnostic/control files changed
+after the native engine/live execution;exact preimages and unchanged engine hashes
+are retained in current-validation02. This is not another original launch.

@@ -254,6 +254,7 @@ static i32 WIN blt(void* object,void* dest,void* source,void* rect,u32 flags,voi
     if(!copy_lease.observe){game_copy_routes_missed(2);i32 result=((Blt)lookup(object)->original[5])(object,dest,source,rect,flags,effects);game_copy_unobserved(object);return result;}
     u32 error=GetLastError(),caller=(u32)__builtin_return_address(0);
     struct Table* t=lookup(object);
+    game_prepare_cpu_blit_target(object,source);
     int token=history_enter();struct DrawCapture* c=begin_draw(object,dest,source,rect,flags,effects,1,0,0,caller);
     if(token && !c)history_gap(6);
     struct GameBlit propagated;game_blit_before(object,dest,source,rect,flags,effects,0,0,0,&propagated);propagated.caller=caller;
@@ -729,6 +730,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
         game_native_gpu_plan=(i32 (WIN *)(void*,const i32*,void*,const i32*,u32,struct MnmGpuCopyPlan*,u32))GetProcAddress(native_draw,"NativeDrawGpuCopyPlanV1");
         game_native_gpu_copy=(i32 (WIN *)(void*,const i32*,void*,const i32*,u32,u16*,u32))GetProcAddress(native_draw,"NativeDrawGpuCopyV1");
         game_native_cpu_transfer=(i32 (WIN *)(void*,u32*,const u16*,u32))GetProcAddress(native_draw,"NativeDrawCpuTransferV1");
+        game_native_cpu_plan=(i32 (WIN *)(void*,const i32*,void*,const i32*,u32,struct MnmGpuCopyPlan*,u32))GetProcAddress(native_draw,"NativeDrawCpuCopyPlanV1");
         game_native_cpu_snapshot=(i32 (WIN *)(void*,u32*,u8*,u32))GetProcAddress(native_draw,"NativeDrawCpuSnapshotV1");
         game_native_cpu_lease_snapshot=(i32 (WIN *)(void*,const u32*,u16*,u32))GetProcAddress(native_draw,"NativeDrawCpuLeaseSnapshotV1");
         game_native_cpu_lease_transfer=(i32 (WIN *)(void*,u32*,const u16*,u32))GetProcAddress(native_draw,"NativeDrawCpuLeaseTransferV1");
