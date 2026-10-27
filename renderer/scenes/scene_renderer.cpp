@@ -11,14 +11,15 @@ SceneRenderer::SceneRenderer(GlBlitter& renderer,assets::ResourceManager& resour
     :renderer_(renderer),resources_(resources),cache_(renderer,resources,limits.cache),limits_(limits),
      viewport_{0,0,background.width,background.height},thread_(std::this_thread::get_id()){
     if(!limits.draws || limits.draws>65536)throw std::invalid_argument("Scene draw budget must be 1..65536");
-    background_=renderer_.create(background,spriteFormat);
-    try{canvas_=renderer_.create(background,spriteFormat);}catch(...){renderer_.destroy(background_);throw;}
+    const auto format=limits_.colourRgb555?PixelFormat{16,{0x7c00,0x3e0,0x1f}}:spriteFormat;
+    background_=renderer_.create(background,format);
+    try{canvas_=renderer_.create(background,format);}catch(...){renderer_.destroy(background_);throw;}
 }
 SceneRenderer::SceneRenderer(GlBlitter& renderer,assets::ResourceManager& resources,
                              SurfaceId canvas,int width,int height,SceneLimits limits)
     :renderer_(renderer),resources_(resources),cache_(renderer,resources,limits.cache),limits_(limits),
      canvas_(canvas),ownsCanvas_(false),viewport_{0,0,width,height},thread_(std::this_thread::get_id()){
-    if(!limits.draws||limits.draws>65536||width<1||height<1||width>2048||height>2048)
+    if(limits.colourRgb555||!limits.draws||limits.draws>65536||width<1||height<1||width>2048||height>2048)
         throw std::invalid_argument("Borrowed scene limits");
     const auto frame=renderer_.presentGpu(canvas);
     if(frame.size()!=QSize(width,height))throw std::invalid_argument("Borrowed scene canvas extent");
@@ -34,7 +35,7 @@ void SceneRenderer::drawColourRectangle(const Image& image,Rect rect,int x,int y
     auto found=std::find_if(colourTiles_.begin(),colourTiles_.end(),[&](const auto& t){return t.image.width==image.width&&t.image.height==image.height&&t.image.pixels==image.pixels;});
     if(found==colourTiles_.end()){
         if(!colourAtlas_){
-            auto atlas=renderer_.allocate(512,512,spriteFormat);
+            auto atlas=renderer_.allocate(512,512,limits_.colourRgb555?PixelFormat{16,{0x7c00,0x3e0,0x1f}}:spriteFormat);
             try{colourMask_=renderer_.create({512,512,std::vector<std::uint32_t>(512*512,1)},{8,{}});}
             catch(...){renderer_.destroy(atlas);throw;}
             colourAtlas_=atlas;
@@ -61,6 +62,8 @@ void SceneRenderer::checkThread() const{
 }
 void SceneRenderer::validate(const SceneDraw& draw){
     if(!draw.visible)return;
+    if(limits_.colourRgb555&&!draw.colourRectangle)
+        throw std::invalid_argument("RGB555 scene admits only owned colour rectangles");
     if(draw.rowEffect&&(draw.additive||draw.colourRectangle||!draw.clip||draw.composite.mode!=CompositeMode::copy||draw.wholeOpaqueRunClipping))
         throw std::invalid_argument("Row effect requires a clipped sprite and a plain composite");
     if(draw.colourRectangle){
@@ -68,6 +71,8 @@ void SceneRenderer::validate(const SceneDraw& draw){
         if(draw.additive||draw.colours||!draw.clip||p.width<1||p.height<1||p.width>64||p.height>64||p.pixels.size()!=std::size_t(p.width)*p.height||std::any_of(p.pixels.begin(),p.pixels.end(),[](auto v){return v>65535;})||
             (draw.composite.mode!=CompositeMode::copy&&draw.composite.mode!=CompositeMode::half&&draw.composite.mode!=CompositeMode::quarterSource&&draw.composite.mode!=CompositeMode::quarterDestination))throw std::invalid_argument("Invalid colour rectangle");
         if(draw.viewport){const auto c=*draw.viewport;if(c.left<0||c.top<0||c.right<=c.left||c.bottom<=c.top||c.right>viewport_.right||c.bottom>viewport_.bottom)throw std::invalid_argument("Colour clip outside canvas");}
+        if(limits_.colourRgb555&&std::any_of(p.pixels.begin(),p.pixels.end(),[](auto v){return v>0x7fff;}))
+            throw std::invalid_argument("RGB555 colour source has noncanonical high bit");
         return;
     }
     if(draw.additive){
