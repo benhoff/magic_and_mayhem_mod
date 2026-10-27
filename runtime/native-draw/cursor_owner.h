@@ -140,7 +140,7 @@ static u32 nd_cursor_run(u32 slot,u32 argument){
  struct NdCursorFx entry,exit;nd_cursor_save(&entry);u32 generation=0;HANDLE outer=nd_cursor_outer(&generation);
  u32 acquired=0,wait=0;
  if(outer){
-  u32 nested=ns_lifetime_mode && ns_lifetime_owner==GetCurrentThreadId() && ns_lifetime_depth;
+  u32 nested=ns_lifetime_mode && __atomic_load_n(&ns_lifetime_owner,__ATOMIC_ACQUIRE)==GetCurrentThreadId() && ns_lifetime_depth;
   wait=WaitForSingleObject(outer,nested?0:(slot<=1?5000:10));
   if(wait==0 || wait==0x80)acquired=1;
   if(wait){if(acquired&&!ReleaseMutex(outer))nd_cursor_fail(__LINE__,0);nd_cursor_original_close(outer);nd_cursor_restore(&entry);return 0;}

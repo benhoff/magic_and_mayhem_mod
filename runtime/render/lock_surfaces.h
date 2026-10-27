@@ -6,6 +6,13 @@ struct GameSurface {void* object;u32 epoch,metadata_epoch,generation,generation_
 static struct GameSurface game_surfaces[GAME_SURFACE_COUNT];
 static u32 game_surface_bytes,game_surface_generation,game_blit_count,game_blit_bytes;
 #define GAME_SURFACE_LIMIT (64u*1024u*1024u)
+static u8* game_buffer_allocate_extra(u32 flags,u32 bytes,u32 extra){
+ u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
+ if(game_surface_bytes>GAME_SURFACE_LIMIT || reserved>GAME_SURFACE_LIMIT-game_surface_bytes)return 0;
+ u32 available=GAME_SURFACE_LIMIT-game_surface_bytes-reserved;if(extra>available)return 0;
+ return capture_storage_allocate(flags,bytes,available-extra);
+}
+static u8* game_buffer_allocate(u32 flags,u32 bytes){return game_buffer_allocate_extra(flags,bytes,0);}
 /* Publish owned pixels only. The guard/sequence protocol is shared with the
  * legacy producer; readers never consume a partially written RGBA frame. */
 static int game_surface_publish(struct GameSurface*);
@@ -34,7 +41,7 @@ static void game_surface_drop_at(struct GameSurface* s,u32 site){
         game_lock_epoch,game_metadata_epoch,s->pixels.data!=0,s->pixels.width,s->pixels.height,s->pixels.bits,s->pixels.length,
         s->layout_known,s->primary,s->generation_origin,s->generation_caller,s->generation_owner};
         copy_trace_record(COPY_TRACE_DROP,command_channel_session,values);}
-    if(s->pixels.data){game_surface_bytes-=s->pixels.length;free_snapshot(&s->pixels);}
+    if(s->pixels.data){game_surface_bytes-=s->pixels.length;game_snapshot_free(&s->pixels);}
     s->dc=0;s->dc_bitmap=0;s->dc_owner=0;s->dc_generation=0;s->generation=++game_surface_generation;s->generation_origin=1;
 }
 #define game_surface_drop(s) game_surface_drop_at((s),copy_trace_enabled?game_tracker_site(__FILE__,__LINE__):0)
@@ -199,21 +206,21 @@ static void game_surface_store(void* object,struct Snapshot* pixels,u32 primary,
     s->back_count_known=(descriptor[1]&0x20)!=0;s->back_count=s->back_count_known?descriptor[5]:0;
     s->generation_origin=7;s->primary=primary;s->layout_known=1;copy(&s->pixels,pixels,sizeof(*pixels));pixels->data=0;game_surface_bytes+=s->pixels.length;
 }
-struct GameBlit {struct Snapshot src,dst;void *source,*target;u32 source_generation,target_generation,epoch,caller,fields[10],valid,bootstrap,fill,fill_value,direct,gpu;u32 routes[44];};
+struct GameBlit {struct Snapshot src,dst;void *source,*target;u32 source_generation,target_generation,epoch,caller,fields[10],valid,bootstrap,fill,fill_value,direct,gpu,src_borrowed,dst_borrowed;u32 routes[44];};
 #include "copy_route_census.h"
 static void game_blit_free(struct GameBlit* p){
-    if(p->src.data)__atomic_sub_fetch(&lock_capture_reserved,p->src.length,__ATOMIC_RELAXED);
-    if(p->dst.data)__atomic_sub_fetch(&lock_capture_reserved,p->dst.length,__ATOMIC_RELAXED);
-    free_snapshot(&p->src);free_snapshot(&p->dst);
+    if(p->src_borrowed){p->src.data=0;p->src_borrowed=0;}
+    if(p->dst_borrowed){p->dst.data=0;p->dst_borrowed=0;}
+    game_reserved_snapshot_free(&p->src);game_reserved_snapshot_free(&p->dst);
 }
 static int game_surface_clone(struct Snapshot* to,const struct Snapshot* from){
     if(from->length>GAME_SURFACE_LIMIT-game_surface_bytes-__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED))return 0;
-    copy(to,from,sizeof(*from));to->data=HeapAlloc(GetProcessHeap(),0,from->length);if(!to->data)return 0;
+    copy(to,from,sizeof(*from));to->data=game_buffer_allocate(0,from->length);if(!to->data)return 0;
     __atomic_add_fetch(&lock_capture_reserved,from->length,__ATOMIC_RELAXED);copy(to->data,from->data,from->length);return 1;
 }
 static int game_surface_blank(struct Snapshot* to,const struct Snapshot* shape){
     if(shape->length>GAME_SURFACE_LIMIT-game_surface_bytes-__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED))return 0;
-    copy(to,shape,sizeof(*shape));to->data=HeapAlloc(GetProcessHeap(),8,shape->length);if(!to->data)return 0;
+    copy(to,shape,sizeof(*shape));to->data=game_buffer_allocate(8,shape->length);if(!to->data)return 0;
     __atomic_add_fetch(&lock_capture_reserved,to->length,__ATOMIC_RELAXED);return 1;
 }
 static int game_blit_live_only(u32 source_bytes,u32 target_bytes,u32 bits){
@@ -235,11 +242,6 @@ static const char* game_fill_before(struct GameSurface* dst,void* destination,vo
         p->bootstrap=1;
     }
     p->direct=game_blit_live_only(b->length,b->length,b->bits);p->fill_value=value;
-    if(!p->direct){
-        if(!game_surface_blank(&p->src,b) || !(p->bootstrap?game_surface_blank(&p->dst,b):game_surface_clone(&p->dst,b))){game_blit_free(p);return "fill_memory";}
-        u32 bytes=b->bits/8;
-        for(u32 at=0;at<p->src.length;at+=bytes)for(u32 j=0;j<bytes;++j)p->src.data[at+j]=(u8)(value>>(8*j));
-    }
     p->fields[0]=1;p->fields[1]=2;p->fields[2]=(u32)dr.left;p->fields[3]=(u32)dr.top;
     p->fields[4]=(u32)dr.right;p->fields[5]=(u32)dr.bottom;p->fields[6]=(u32)dr.left;p->fields[7]=(u32)dr.top;
     p->target_generation=dst->generation;p->epoch=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED);p->valid=1;p->fill=1;
@@ -280,7 +282,6 @@ static void game_blit_before(void* target,void* destination,void* source,void* r
     }
     p->gpu=src->gpu_history;
     p->direct=game_blit_live_only(a->length,b->length,a->bits);
-    if(!p->gpu && !p->direct && (!game_surface_clone(&p->src,a) || !(p->bootstrap?game_surface_blank(&p->dst,b):game_surface_clone(&p->dst,b)))){reason="blit_memory";game_blit_free(p);goto done;}
     p->fields[0]=1;p->fields[1]=2;p->fields[2]=(u32)sr.left;p->fields[3]=(u32)sr.top;
     p->fields[4]=(u32)sr.right;p->fields[5]=(u32)sr.bottom;
     p->fields[6]=(u32)dr.left;p->fields[7]=(u32)dr.top;p->fields[8]=keyed;p->fields[9]=keyed?src->key:0;
@@ -350,6 +351,24 @@ static void game_blit_after(struct GameBlit* p,i32 result){
         lock_diagnostic("blit_recording_limit",p->target,0,(u32)p->source,0,result,0,0);
         lock_diagnostic("blit_live_in_place",p->target,0,(u32)p->source,0,result,0,0);goto done;
     }
+    /* The original call never owns GameSurface checkpoint storage. Only after
+     * the epoch/generation checks succeed may this callback borrow its source.
+     * Keep the tracker guard through command serialization and release the
+     * borrow before leaving it: queued commands copy bytes, not this pointer.
+     * Before records own their serialized bytes before the destination changes.
+     * A distinct initialized destination can therefore retain its allocation;
+     * self-copy and bootstrap still require independent destination storage.
+     * Failed or reentrant calls allocate no speculative snapshots. */
+    if(p->fill){
+        if(!game_surface_blank(&p->src,&dst->pixels))goto memory;
+        u32 bytes=p->src.bits/8;
+        for(u32 at=0;at<p->src.length;at+=bytes)for(u32 j=0;j<bytes;++j)p->src.data[at+j]=(u8)(p->fill_value>>(8*j));
+    }else{
+        copy(&p->src,&src->pixels,sizeof(p->src));p->src_borrowed=1;
+    }
+    if(!p->bootstrap && src!=dst){
+        copy(&p->dst,&dst->pixels,sizeof(p->dst));p->dst_borrowed=1;
+    }else if(!(p->bootstrap?game_surface_blank(&p->dst,&dst->pixels):game_surface_clone(&p->dst,&dst->pixels)))goto memory;
     u32 record_bytes=p->src.length+p->dst.length*2+(p->src.bits==8?1280:256);
     int record=game_session_archive && game_blit_count<16 && record_bytes<=GAME_SURFACE_LIMIT-game_blit_bytes;
     char path[544];copy(path,lock_capture_path,lock_capture_path_length);char* tail=path+lock_capture_path_length;
@@ -367,10 +386,20 @@ static void game_blit_after(struct GameBlit* p,i32 result){
     if(file!=(HANDLE)-1)CloseHandle(file);
     if(record)game_blit_bytes+=record_bytes;
     for(u32 i=0;i<32;++i)if(game_alias_same(p->target,game_locks[i].object))game_lock_clear(game_locks+i);
-    game_surface_drop_at(dst,0);dst->generation_origin=8;dst->generation_caller=p->caller;dst->generation_owner=GetCurrentThreadId();copy(&dst->pixels,&p->dst,sizeof(p->dst));p->dst.data=0;game_surface_bytes+=dst->pixels.length;
-    __atomic_sub_fetch(&lock_capture_reserved,dst->pixels.length,__ATOMIC_RELAXED);
+    /* Preserve the allocation/count when the guarded destination was reused.
+     * drop_at still advances generation and clears the old DC metadata. */
+    u32 reused=p->dst_borrowed;if(reused)dst->pixels.data=0;
+    game_surface_drop_at(dst,0);dst->generation_origin=8;dst->generation_caller=p->caller;dst->generation_owner=GetCurrentThreadId();copy(&dst->pixels,&p->dst,sizeof(p->dst));p->dst.data=0;p->dst_borrowed=0;
+    if(!reused){game_surface_bytes+=dst->pixels.length;__atomic_sub_fetch(&lock_capture_reserved,dst->pixels.length,__ATOMIC_RELAXED);}
     if(p->bootstrap)lock_diagnostic("blit_initialized",p->target,0,(u32)p->source,0,result,0,0);
     if(dst->primary)lock_diagnostic(game_surface_publish_region(dst,p->fields[6],p->fields[7],p->fields[4]-p->fields[2],p->fields[5]-p->fields[3],p->target_generation)?"blit_presented":"blit_presentation_skipped",p->target,0,(u32)p->source,0,result,0,0);
     lock_diagnostic(!record?"blit_recording_limit":!palette_ready?"blit_palette_unobserved":ok?"blit_propagated":"blit_file_failed",p->target,0,(u32)p->source,0,result,0,0);
+    goto done;
+ memory:
+    /* Release the temporary source before a native checkpoint can replace any
+     * storage. The original result is preserved; observation fails closed. */
+    game_blit_free(p);
+    if(!game_native_blit_checkpoint(p->target,p->caller))game_surface_invalidate_locked(p->target);
+    lock_diagnostic("blit_memory",p->target,0,(u32)p->source,0,result,0,0);
  done:game_blit_free(p);game_tracker_release();
 }

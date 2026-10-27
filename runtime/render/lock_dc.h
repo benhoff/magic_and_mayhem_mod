@@ -46,7 +46,7 @@ static void game_dc_before(void* object,void* dc,struct GameDC* pending){
      * Do not infer orientation from GetObject or read bmBits directly. */
     if(pending->pixels.data){
         if(GetBitmapBits(bitmap,(i32)pending->pixels.length,pending->pixels.data)!=(i32)pending->pixels.length){
-            __atomic_sub_fetch(&lock_capture_reserved,pending->pixels.length,__ATOMIC_RELAXED);free_snapshot(&pending->pixels);
+            game_reserved_snapshot_free(&pending->pixels);
             lock_diagnostic("dc_read_failed",object,0,(u32)dc,0,0,0,0);
         }else lock_diagnostic("dc_copied",object,0,(u32)dc,0,0,0,0);
     }
@@ -68,5 +68,5 @@ static void game_dc_after(struct GameDC* pending,void* dc,i32 result){
         }else game_surface_invalidate_locked(pending->target);
     }
     game_tracker_release();
- free:if(pending->pixels.data)__atomic_sub_fetch(&lock_capture_reserved,pending->pixels.length,__ATOMIC_RELAXED);free_snapshot(&pending->pixels);
+ free:game_reserved_snapshot_free(&pending->pixels);
 }

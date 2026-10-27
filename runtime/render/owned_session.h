@@ -172,7 +172,7 @@ static void game_native_primary_initial(struct GameSurface* surface,const u32* d
         shape.length=shape.width*shape.height*(shape.bits/8);struct Snapshot initial;
         if(!game_surface_blank(&initial,&shape))return;
         if(game_native_cpu_snapshot(surface->object,identity,initial.data,initial.length)){
-            __atomic_sub_fetch(&lock_capture_reserved,initial.length,__ATOMIC_RELAXED);free_snapshot(&initial);return;
+            __atomic_sub_fetch(&lock_capture_reserved,initial.length,__ATOMIC_RELAXED);game_snapshot_free(&initial);return;
         }
         copy(&surface->pixels,&initial,sizeof(initial));game_surface_bytes+=initial.length;
         __atomic_sub_fetch(&lock_capture_reserved,initial.length,__ATOMIC_RELAXED);
@@ -234,7 +234,7 @@ __declspec(dllexport) int WIN RenderResidentWorldV1(u32 pixels,u32 width,u32 hei
     if(!lock->base.data){
         u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
         if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved)goto done;
-        lock->base.data=HeapAlloc(GetProcessHeap(),0,length);if(!lock->base.data)goto done;
+        lock->base.data=game_buffer_allocate(0,length);if(!lock->base.data)goto done;
         lock->base.length=length;__atomic_add_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);
     }
     if(lock->base.length!=length)goto done;
@@ -398,7 +398,7 @@ static struct SessionSurface* game_gpu_scratch(const struct Snapshot* shape){
     s->bits=shape->bits;s->r=shape->r;s->g=shape->g;s->b=shape->b;session_pixels+=count;
     u32 fields[7]={s->id,s->width,s->height,s->bits,s->r,s->g,s->b};
     const int ok=session_record(1,fields,28,blank.data,blank.length);
-    __atomic_sub_fetch(&lock_capture_reserved,blank.length,__ATOMIC_RELAXED);free_snapshot(&blank);
+    __atomic_sub_fetch(&lock_capture_reserved,blank.length,__ATOMIC_RELAXED);game_snapshot_free(&blank);
     return ok?s:0;
 }
 #include "gpu_copy_census.h"
@@ -567,7 +567,7 @@ static int game_native_blit_checkpoint(void* object,u32 caller){
  if(shape.width!=layout[1] || shape.height!=layout[2] || shape.bits!=layout[4] ||
     shape.r!=layout[5] || shape.g!=layout[6] || shape.b!=layout[7] || !game_surface_blank(&result,&shape))return 0;
  if(game_native_cpu_snapshot(object,layout,result.data,result.length)){
-  __atomic_sub_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);free_snapshot(&result);return 0;
+  __atomic_sub_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);game_snapshot_free(&result);return 0;
  }
  game_surface_drop_at(dst,0);copy(&dst->pixels,&result,sizeof(result));
  game_surface_bytes+=result.length;__atomic_sub_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);
@@ -596,13 +596,13 @@ static int session_unlock_region(struct SessionSurface* s,const struct Snapshot*
         if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes ||
            after->length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved ||
            length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved-after->length){game_session_gap(2);return 0;}
-        packed=HeapAlloc(GetProcessHeap(),0,length);if(!packed){game_session_gap(4);return 0;}
+        packed=game_buffer_allocate_extra(0,length,after->length);if(!packed){game_session_gap(4);return 0;}
         __atomic_add_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);
         for(u32 y=0;y<fields[4];++y)copy(packed+y*bytes,pixels+y*stride,bytes);
         pixels=packed;
     }
     int ok=session_record(2,fields,20,pixels,length);
-    if(packed){HeapFree(GetProcessHeap(),0,packed);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);}
+    if(packed){capture_storage_release(packed,length);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);}
     return ok;
 }
 
@@ -619,7 +619,7 @@ static int session_resident_unlock(struct SessionSurface* surface,const struct S
             u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
             if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || after->length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved ||
                length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved-after->length){game_session_gap(2);return 0;}
-            u8* packed=HeapAlloc(GetProcessHeap(),0,length);if(!packed){game_session_gap(4);return 0;}
+            u8* packed=game_buffer_allocate_extra(0,length,after->length);if(!packed){game_session_gap(4);return 0;}
             __atomic_add_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);
             u32 fields[5]={surface->id,regions[i][0],regions[i][1]+row,width,rows};
             game_copy_stage(42);
@@ -627,7 +627,7 @@ static int session_resident_unlock(struct SessionSurface* surface,const struct S
                 copy(packed+p*2,after->data+at*2,2);packed[pixels*2+p]=!same(before->data+at*2,after->data+at*2,2) || (dirty && (dirty[at*2] || dirty[at*2+1]));}
             game_copy_stage(43);
             int ok=session_record(MNM_RENDER_STREAM_V4_OPERATION_MASKED_UPDATE,fields,20,packed,length);
-            HeapFree(GetProcessHeap(),0,packed);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);if(!ok)return 0;
+            capture_storage_release(packed,length);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);if(!ok)return 0;
         }
     }
     return 1;
@@ -640,12 +640,12 @@ static i32 game_cpu_lease_dirty(const struct GameLock* lock,u8* out,u32 action){
  if(!game_native_cpu_lease_mask)return 0;u32 layout[4];game_cpu_lease_layout(lock,layout);
  return game_native_cpu_lease_mask(lock->object,layout,out,out?layout[1]*layout[2]*2:0,action);
 }
-static u8* game_cpu_lease_mask(const struct GameLock* lock,u32 bytes){
+static u8* game_cpu_lease_mask(const struct GameLock* lock,u32 bytes,u32 extra){
  i32 flags=game_cpu_lease_dirty(lock,0,2);if(flags<0)game_cpu_read_refuse(16,lock->object,(u32)flags);
  if(!flags)return 0;
  u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
- if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || bytes>GAME_SURFACE_LIMIT-game_surface_bytes-reserved)game_cpu_read_refuse(17,lock->object,bytes);
- u8* mask=HeapAlloc(GetProcessHeap(),0,bytes);if(!mask)game_cpu_read_refuse(18,lock->object,bytes);
+ if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || extra>GAME_SURFACE_LIMIT-game_surface_bytes-reserved || bytes>GAME_SURFACE_LIMIT-game_surface_bytes-reserved-extra)game_cpu_read_refuse(17,lock->object,bytes);
+ u8* mask=game_buffer_allocate_extra(0,bytes,extra);if(!mask)game_cpu_read_refuse(18,lock->object,bytes);
  __atomic_add_fetch(&lock_capture_reserved,bytes,__ATOMIC_RELAXED);
  if(game_cpu_lease_dirty(lock,mask,0)!=1)game_cpu_read_refuse(19,lock->object,0);return mask;
 }
@@ -662,9 +662,9 @@ static void game_session_unlock(struct GameLock* lock,const struct Snapshot* aft
     }
     s=session_surface(lock->object,lock->rectangle?&lock->base:after,0);if(!s)return;
     if(lock->resident || lock->gpu_history){
-        u8* mask=game_cpu_lease_mask(lock,after->length);
+        u8* mask=game_cpu_lease_mask(lock,after->length,after->length);
         int ok=existing && session_resident_unlock(s,&lock->base,after,mask);
-        if(mask){HeapFree(GetProcessHeap(),0,mask);__atomic_sub_fetch(&lock_capture_reserved,after->length,__ATOMIC_RELAXED);}
+        if(mask){capture_storage_release(mask,after->length);__atomic_sub_fetch(&lock_capture_reserved,after->length,__ATOMIC_RELAXED);}
         if(!ok)return;
         if(game_cpu_lease_dirty(lock,0,1)<0)game_cpu_read_refuse(20,lock->object,0);
         goto present;

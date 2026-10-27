@@ -111,6 +111,7 @@ static void command_recovery_checkpoints(int preserve){
         else game_palettes[i].session=0;
     }
     }else for(u32 i=0;i<32;++i)game_palettes[i].session=0;
+    capture_storage_clear(0);
     game_presented_object=0;game_presented_generation=game_presented_frame=0;
     zero(session_surfaces,sizeof(session_surfaces));zero(session_palettes,sizeof(session_palettes));session_last_palette_id=0;
     session_started=session_epoch=session_sequence=session_bytes=session_operations=session_presented=session_pixels=0;
