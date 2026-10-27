@@ -24361,3 +24361,54 @@ The nine linked behaviors retain those executions as historical, with explicit
 pending combined-source session re-execution. Numerical palette modes/chains
 and providers retain unchanged declared inputs; fresh RGB555 reports remain
 exact. See the [parent source-impact record](rendering-remaining-results-20261026/merge-parent-source-impact-20261027-01.json).
+
+## Native player open-item repairs (2026-10-27)
+
+The owned follow-up reproduces a current-master active-session destructor
+use-after-free with ASan/UBSan and a full Qt-shell SIGSEGV under a supplied
+staging deadline. Process/session destruction now disconnects callbacks before
+member teardown and reaps the owned launcher group. Historical signal-11 logs
+without stacks remain independently unattributed. The forwarder constrains its
+last point after a frame-size shrink; supplied Qt resize, normal/high-DPI and
+restart controls retain their separate scopes. Refused Fast-copy diagnostics
+now preserve destination arguments before source/target rejection; five actual
+PE32 facade controls return NS_RECT with every source/target WORD unchanged and
+no native COPY interval. Refused rows are not silently admitted by whole-output
+validation. See [findings and remaining boundaries](player-open-items-20261027.md).
+Natural self-copy/keyed-GPU callers still require positive actual-game evidence.
+
+The fresh public storage01 journey now passes 473 balanced Worlds,all 18 cursor
+hooks/all 8 client categories,normal Quit and zero owners. Independent output
+closes 4,474 active calls/4,400 COPY destinations,with 0 failed/unprepared calls,
+984 GPU and 2,457 CPU-keyed calls. Natural self/keyed-GPU counts remain 0.
+The full-shell supplied deadline also reproduces the old SIGSEGV in
+InputState::publish through late Shell::finished delivery; the repaired shell
+exits 1 without a signal under the same fixture. These current bounded results
+do not retroactively identify the old unstacked crash or Storage05 causes.
+Exact execution-source overlays and a verified 6,910-file raw restore are
+retained through SQLite; the new archive is 23.1 MB rather than another full
+source/prefix snapshot.
+
+
+### Player open-item current-master integration (2026-10-27)
+
+Repair6695 integrates onto master1efa in a separate batch. Fresh prospectively
+bound `PLAYERMERGE27.controls02` closes the three new headless integration
+scenarios. `PLAYERMERGE27.storage01` repeats the actual public Save/Load, two
+display rebuilds and recreated World: 447 balanced Worlds, normal Quit,
+zero cursor/graphics owners and 4188 independently matched successful emitted
+COPY destinations. Two refused invalid cursor requests prevent whole-COPY
+closure; storage01-refusals.json retains their exact new argument geometry. Raw evidence is actually restored and verified.
+Natural self-copy/keyed GPU-source reachability remains unobserved; historical
+crash/refusal causes are not retroactively asserted. Source policy and gameplay
+balance remain unchanged. See [scoped findings](player-open-items-20261027.md).
+
+
+### Player repairs final master handoff (2026-10-27)
+
+Later committed palette/RGB555 work is preserved. `PLAYERHANDOFF27.controls01`
+provides fresh combined-source Qt/ASan/PE32 headless controls for the three new
+repair contracts. The earlier public-player lifetime result remains at its exact
+source phase; no new combined-game or whole-COPY closure is asserted. Natural
+self/keyed GPU-source reachability and two invalid cursor requests remain explicit.
+See [scoped findings and source phases](player-open-items-20261027.md).
