@@ -21117,6 +21117,24 @@ performance remain separate. Previous results and failed setup attempts retain
 exact historical hashes; unrelated current-source drift receives no new credit.
 
 
+## Actor installed-world dependency cases (2026-10-26)
+
+The [dependency review](actor-installed-dependencies-20261026.md) identifies nine
+required parent cases: World clock/allocation, World-produced source/task
+ownership, installed profiles/ANI, font/palette/surface publication, transition
+handler adapters, reentrant retirement, scenario/spell/subtypes, particle
+production cadence and audio timing. All15 transition-selected handlers have
+scoped component implementation leads; calling them through the actor session's
+shared raw store remains pending. Broad historical missing-provider descriptions
+must not be read as an absence of those implementations.
+
+The verified SQLite static inventory retains112 historical endpoint
+specifications and36 distinct indirect sites from the275-route family frontier.
+Fixture tokens, component leads and absent implementation links are explicit.
+Four accounting guards pass; this is no new original comparison or installed
+acceptance. The Critical parent remains partial with all nine cases pending;
+historical engine hashes/statuses, live replacement and balance are unchanged.
+
 ## Actor downstream service inventory and body comparisons (2026-10-21)
 
 The72direct service/helper entries now resolve to71PE32 value-address models and
