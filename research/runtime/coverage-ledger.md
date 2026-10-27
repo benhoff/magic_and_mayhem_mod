@@ -24235,3 +24235,39 @@ See [integration scope and retained attempts](camera-master-integration-20261027
 Committed-history review and retrospective payload accounting remain separate
 from fresh scene validation. Original whole-session comparison, hardware and live
 replacement retain their independent pending boundaries.
+
+## Palette effect aggregate completion — 2026-10-26
+
+[Palette closure](palette-effect-closure-20261026.md) reconciles the ten completed
+numerical modes, owned chains and raw ownership/profile providers with fresh
+actual-Wine profile inputs and independent native resource/software-GL output.
+Six installed/default/empty/quoted/nonnumeric/truncation cohorts pass360 unchanged
+original builder calls and1,253,376 packed words. Release and ASan/UBSan delivery
+passes1,080 frames/276,480 independent pixels,151 declared compiler inputs per
+build,zero native surfaces and independently retired private Wine ownership.
+Fresh numerical and chain matrices compare63,416,320 and5,263,360 WORDs;
+the1,280-case provider matrix compares1,346,349,916 bytes per variant,including
+allocation failure,partial retention and explicit zero-allocation teardown.
+Both original manifests pass. Failed recipe/dependency/retirement attempts and
+the reserve-stopped sanitizer build remain immutable negative evidence.
+
+RE.palette-effect-builders is implemented within scope,with recorded original
+comparison and headless integration. Original exceptional/unsafe platform and
+Windows SEH domains retain partial understanding;physical hardware,whole-game
+acceptance and live replacement receive no promotion. Complete native odd-count
+storage and atomic append failure remain intentional policies,distinct from
+original corruption/partial retention. No gameplay or production rendering
+algorithm changes are introduced. UI accounting retains its weight and removes
+this completed aggregate from unplanned High implementation work.
+
+
+## Palette aggregate integrated with master — 2026-10-27
+
+Completed palette implementation/comparison/headless acceptance is merged with
+current master while preserving both parents, historical evidence and unrelated
+pending contributor edits. All 151 actual compiler inputs per platform build
+and wider prospective declarations have explicit source-impact review; changed
+inputs retain historical evidence and pending combined-source re-execution.
+Combined planning controls and coverage audit pass. No new engine, exceptional
+Windows, physical-driver or whole-game/live milestone is claimed.
+See [integration review](palette-master-merge-20261027.md).

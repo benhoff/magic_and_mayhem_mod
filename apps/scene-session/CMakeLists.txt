@@ -104,4 +104,8 @@ if(BUILD_TESTING)
         MNM_PROFILE_EGL_VENDOR=Mesa LIBGL_ALWAYS_SOFTWARE=1 QT_FORCE_STDERR_LOGGING=1
         $<TARGET_FILE:scene-palette-test>)
     set_tests_properties(native-scene-palette-effects PROPERTIES TIMEOUT 60)
+    add_executable(palette-platform-scene ../../tests/palette-platform-scene.cpp)
+    target_link_libraries(palette-platform-scene PRIVATE mnm-scene-palette Qt6::Gui)
+    target_compile_options(palette-platform-scene PRIVATE -Wall -Wextra -Werror -pedantic)
+    add_dependencies(palette-platform-scene mnm_scene_palette_headless)
 endif()

@@ -134912,60 +134912,118 @@
       "id": "RE.palette-effect-builders",
       "kind": "recovered",
       "subsystem": "rendering_reconstruction",
-      "scope": "Aggregate original palette modes0..9: arithmetic, count admission, owned effect-chain selection and raw allocation/profile/cache/append control now have linked bounded components. Wider original unsafe allocation/failure, installed scene/platform ownership and live acceptance remain separate; this umbrella remains partial.",
-      "confidence": "provisional",
+      "scope": "Original palette modes0..9 and per-palette chains: complete numerical tables, shift/neutral/header/source mutations, profile-derived inputs, owned storage and append/ordinal delivery. Linked raw providers cover safe original allocation/profile/cache/append ordering, injected allocation failure, partial-chain retention and teardown. Native tables retain complete odd-count output safely, append failures are atomic and finite profile bounds are explicit policies. Actual Wine profile file/default/truncation returns feed unchanged original builders and independent owned RGB565 resource/software-GL delivery on installed-derived palettes. Original unsafe allocation, exceptional/nonfinite CRT and Windows SEH/platform behavior outside the admitted domain, physical driver and whole-game/live acceptance remain separate boundaries.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
-          "address": 5756560,
-          "scope": "Discovery anchor only; exact recovered branch scope and execution evidence will be recorded incrementally."
+          "address": 5776448,
+          "scope": "Original mode0 builder; numerical branches and admitted configuration are under implementation/comparison."
         },
         {
           "build": "nocd-40209ca7",
-          "address": 5776448,
-          "scope": "Discovery anchor only; exact recovered branch scope and execution evidence will be recorded incrementally."
+          "address": 5778048,
+          "scope": "Original mode1 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5780272,
+          "scope": "Original mode2 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5782448,
+          "scope": "Original mode3 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5793376,
+          "scope": "Original mode4 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5796048,
+          "scope": "Original mode5 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5791104,
+          "scope": "Original mode6 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5799536,
+          "scope": "Original mode7 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5801776,
+          "scope": "Original mode8 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5802992,
+          "scope": "Original mode9 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5756560,
+          "scope": "Per-palette root/tail append loop, mode dispatch and unknown/empty no-op."
         }
       ],
       "implementation": [
-        "reconstruction/rendering/palette_shading.cpp",
-        "reconstruction/rendering/palette_shading.hpp",
-        "reconstruction/rendering/palette_effects.cpp",
-        "reconstruction/rendering/palette_effects.hpp",
-        "reconstruction/rendering/palette_effect_chain.cpp",
-        "reconstruction/rendering/palette_effect_chain.hpp",
         "apps/scene-session/palette_binding.cpp",
         "apps/scene-session/palette_binding.hpp",
         "apps/scene-session/palette_profile.cpp",
-        "reconstruction/rendering/actor_profile_palette_providers.hpp"
+        "reconstruction/rendering/actor_profile_palette_providers.hpp",
+        "reconstruction/rendering/palette_effect_chain.cpp",
+        "reconstruction/rendering/palette_effect_chain.hpp",
+        "reconstruction/rendering/palette_effects.cpp",
+        "reconstruction/rendering/palette_effects.hpp",
+        "reconstruction/rendering/palette_shading.cpp",
+        "reconstruction/rendering/palette_shading.hpp"
       ],
       "tests": [
-        "tests/palette-shading-test.cpp",
-        "tests/rendering-boundary-reference.cpp",
-        "tools/test-rendering-boundaries.py",
         "tests/actor-profile-palette-reference.cpp",
         "tests/actor-profile-palette-seeds.inc",
-        "tools/test-actor-profile-palette.py"
+        "tests/palette-effect-chain-reference.cpp",
+        "tests/palette-effect-chain-test.cpp",
+        "tests/palette-effects-reference.cpp",
+        "tests/palette-platform-reference.cpp",
+        "tests/palette-platform-scene.cpp",
+        "tests/palette-profile-platform.c",
+        "tests/palette-shading-test.cpp",
+        "tests/rendering-boundary-reference.cpp",
+        "tools/test-actor-profile-palette.py",
+        "tools/test-palette-effect-chain.py",
+        "tools/test-palette-effect-closure.py",
+        "tools/test-palette-effects.py",
+        "tools/test-rendering-boundaries.py"
       ],
       "documents": [
         "research/runtime/remaining-rendering-implementations-20261020.md",
-        "research/runtime/actor-profile-palette-providers-20261022.md"
+        "research/runtime/actor-profile-palette-providers-20261022.md",
+        "research/runtime/palette-effect-closure-20261026.md"
       ],
       "evidence": [
         "REMAIN.boundaries-original-20261020",
-        "REMAIN.boundaries-anchors-20261020"
+        "REMAIN.boundaries-anchors-20261020",
+        "PALETTE.closure-original-20261026",
+        "PALETTE.closure-native-20261026"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
-        "integration": "none",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Numerical and raw owned allocation/header/cache/profile/append paths have scoped component comparisons. Original unsafe odd-count allocation, arbitrary malformed/nonfinite profile inputs, actual Windows profile/file/heap service and installed full-scene/hardware/live acceptance remain independent. Execution credit is assigned to exact component scopes; the aggregate retains partial status."
+        "All ten native numerical builders, owned chains, profile/resource delivery and admitted raw ownership mechanisms are implemented. Current isolated comparisons, real Wine profile-return cohorts and headless release/ASan/UBSan pixel delivery close the stated native palette scope. Original odd-count underallocation is deliberately replaced by complete owned storage; native append failure is atomic while original partial retention has its own compared behavior. Arbitrary malformed/nonfinite CRT and Windows SEH/exceptional platform services, physical driver/hardware and whole-game/live replacement are not established by this result."
       ],
       "validation_dependencies": [
-        "tests/sprite-binary-reference.cpp"
+        "tests/sprite-binary-reference.cpp",
+        "apps/scene-session/CMakeLists.txt"
       ],
       "title": "Palette effect builders and owned chains"
     },
@@ -135565,7 +135623,10 @@
       ],
       "evidence": [
         "PALETTE.modes-original-20261020",
-        "PP1.palette-math.isolated_original-20261022"
+        "PP1.palette-math.isolated_original-20261022",
+        "PALETTE.closure-original-20261026",
+        "PALETTE.closure-native-20261026",
+        "PALETTE.modes-current-20261026"
       ],
       "status": {
         "understanding": "scoped",
@@ -135621,7 +135682,10 @@
       ],
       "evidence": [
         "PALETTE.chains-original-20261020",
-        "PALETTE.chains-capacity-original-20261020"
+        "PALETTE.chains-capacity-original-20261020",
+        "PALETTE.closure-original-20261026",
+        "PALETTE.closure-native-20261026",
+        "PALETTE.chains-current-20261026"
       ],
       "status": {
         "understanding": "scoped",
@@ -135673,7 +135737,8 @@
       ],
       "evidence": [
         "PALETTE.scene-native-20261020",
-        "PALETTE.scene-capacity-native-20261020"
+        "PALETTE.scene-capacity-native-20261020",
+        "PALETTE.closure-native-20261026"
       ],
       "status": {
         "understanding": "scoped",
@@ -142086,7 +142151,9 @@
         "PP1.incoming-history.static-20261022",
         "PP1.decompilation.static-20261022",
         "PP1.inspection-report.static-20261022",
-        "PP1.incoming-history-third.static-20261022"
+        "PP1.incoming-history-third.static-20261022",
+        "PALETTE.providers-current-original-20261026",
+        "PALETTE.providers-current-native-20261026"
       ],
       "status": {
         "understanding": "scoped",
@@ -142253,7 +142320,9 @@
         "PP1.incoming-history.static-20261022",
         "PP1.decompilation.static-20261022",
         "PP1.inspection-report.static-20261022",
-        "PP1.incoming-history-third.static-20261022"
+        "PP1.incoming-history-third.static-20261022",
+        "PALETTE.providers-current-original-20261026",
+        "PALETTE.providers-current-native-20261026"
       ],
       "status": {
         "understanding": "scoped",
@@ -359703,6 +359772,168 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "PALETTE.closure-original-20261026",
+      "kind": "isolated_original",
+      "scope": "All ten builders and sequential source mutations, RGB565/RGB555 tables, real profile file/default/truncation paths and owned RGB565 resource/GL delivery on installed-derived palettes. Controlled original allocator failures retain their separate provider matrix. No Windows SEH injection, physical driver/hardware, original unsafe allocation emulation or whole-game/live replacement claim.",
+      "record": "research/runtime/palette-effect-closure-results-20261026/platform06.json",
+      "sha256": "739cd5c7a37ba89942a20718ddb07390bf0e70e50bd61cefd9429d090cea7cdc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "PALETTE.closure-native-20261026",
+      "kind": "native_integration",
+      "scope": "All ten builders and sequential source mutations, RGB565/RGB555 tables, real profile file/default/truncation paths and owned RGB565 resource/GL delivery on installed-derived palettes. Controlled original allocator failures retain their separate provider matrix. No Windows SEH injection, physical driver/hardware, original unsafe allocation emulation or whole-game/live replacement claim.",
+      "record": "research/runtime/palette-effect-closure-results-20261026/platform06.json",
+      "sha256": "739cd5c7a37ba89942a20718ddb07390bf0e70e50bd61cefd9429d090cea7cdc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "PALETTE.modes-current-20261026",
+      "kind": "isolated_original",
+      "scope": "Owned arithmetic for the ten original palette builders on admitted counts2..256, including power-only modes1..7/9, normal and blue-tint DWORD-entry modes8/9, explicit finite lighting/effect profile values and mode5 source-palette contrast mutation. Native tables retain full produced storage safely. Profile file production, chain dispatch/selection and scene binding are separate suppliers.",
+      "record": "research/runtime/palette-effect-closure-results-20261026/modes01.json",
+      "sha256": "9c49cb6f01fec4792f7eec66bbffdefdc090b4eb920fba6c83f1106b61e87822",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_and_sanitized_units_passed",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "PALETTE.chains-current-20261026",
+      "kind": "isolated_original",
+      "scope": "Owned per-palette append order corresponding to whole 0057d690 for0..4 RGB palettes and mode0..9, unknown-mode/empty-palette no-op and original mode5 RGB propagation. Ordinal/shade selection uses owned table values. Bounded allocation failures are atomic native policy, separate from original partial-append failure behavior.",
+      "record": "research/runtime/palette-effect-closure-results-20261026/chains01.json",
+      "sha256": "285f1045ca028dd1c0a14b700f1be45469015bad0d9b7fd6f40c5a0b9cf0f0a8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_and_sanitized_units_passed",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "PALETTE.providers-current-original-20261026",
+      "kind": "isolated_original",
+      "scope": "Raw PE32 walk/fly program validation and four-facing group agreement with exact diagnostic notifications, plus profile movement base/acceleration scalars and five-category maximum control. Owned bounded ANI programs and profile storage; borrowed diagnostic/scalar outputs use value addresses. Lower formatted-message, dialog and CRT math/parsing remain explicit boundaries. Real owner/planner cadence, arbitrary malformed/unbounded programs, divide faults, SEH/throwing cleanup and live replacement excluded.",
+      "record": "research/runtime/actor-profile-palette-results-20261022/palette-closure-provider01.json",
+      "sha256": "b19be3a3831b78d08459ec2b1cd29475db8a2d2fc4bff9fb64ccfce21914065e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1280
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "PALETTE.providers-current-native-20261026",
+      "kind": "native_integration",
+      "scope": "Raw PE32 walk/fly program validation and four-facing group agreement with exact diagnostic notifications, plus profile movement base/acceleration scalars and five-category maximum control. Owned bounded ANI programs and profile storage; borrowed diagnostic/scalar outputs use value addresses. Lower formatted-message, dialog and CRT math/parsing remain explicit boundaries. Real owner/planner cadence, arbitrary malformed/unbounded programs, divide faults, SEH/throwing cleanup and live replacement excluded.",
+      "record": "research/runtime/actor-profile-palette-results-20261022/palette-closure-provider01.json",
+      "sha256": "b19be3a3831b78d08459ec2b1cd29475db8a2d2fc4bff9fb64ccfce21914065e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1280
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -386850,7 +387081,9 @@
         "tools/test-actor-profile-palette.py"
       ],
       "evidence": [
-        "PP1.providers.headless-20261022"
+        "PP1.providers.headless-20261022",
+        "PALETTE.providers-current-original-20261026",
+        "PALETTE.providers-current-native-20261026"
       ]
     },
     {
@@ -388702,6 +388935,27 @@
         "CAMERA-MASTER.native-20261027",
         "CAMERA-MASTER.sanitized-20261027"
       ]
+    },
+    {
+      "id": "PALETTE.platform-delivery-20261026",
+      "scope": "Real Wine profile current-directory, file/default/empty/quoted/truncation returns; unchanged original modes0..9 on three installed-derived palettes, complete RGB555/RGB565 table/source comparison and owned RGB565 scene resource/software-GL pixels, failure rollback and retirement. Original service transcripts are replayed; this is not direct Win98/SEH, physical hardware or installed live-game equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "RE.palette-effect-builders",
+        "RE.palette-effect-modes",
+        "RE.palette-effect-chains",
+        "NR.scene-palette-effects"
+      ],
+      "tests": [
+        "tests/palette-profile-platform.c",
+        "tests/palette-platform-reference.cpp",
+        "tests/palette-platform-scene.cpp",
+        "tools/test-palette-effect-closure.py"
+      ],
+      "evidence": [
+        "PALETTE.closure-original-20261026",
+        "PALETTE.closure-native-20261026"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -390509,7 +390763,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-786fa738e1898b5d539c410c8513b9df6e4dbfc6a87a7ad7f593abf04070df52.json",
-    "sha256": "786fa738e1898b5d539c410c8513b9df6e4dbfc6a87a7ad7f593abf04070df52"
+    "path": "research/runtime/coverage/source-index-c125a3a6f3f98623cee98f4e6409b29b8ef0990f022f7cb949871020af80c285.json",
+    "sha256": "c125a3a6f3f98623cee98f4e6409b29b8ef0990f022f7cb949871020af80c285"
   }
 }
