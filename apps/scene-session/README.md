@@ -72,3 +72,20 @@ Wrap storage-producing runs with the repository retention guard. Installed runs
 verify the original manifest before and after consumption. These native tests do
 not establish original whole-scene equivalence, physical NVIDIA acceptance or
 live replacement.
+
+Camera turns may be queued with `queueCameraTurn`. A successful `render` completes
+that plan once: clockwise wins over a simultaneous counterclockwise request,
+which remains queued for the next completed plan. Use `recompose` to prepare the
+resulting camera image. Replaying a frozen plan consumes no additional request.
+`cameraLifecycle` and `minimap` expose the accepted redraw/refresh state. Direct
+`setCamera` invalidates previously prepared plans. Rejected submissions preserve
+pending camera work. Special catalog resources are acquired before view refresh
+and the selected receiver resource supplies actual drawing and revision pins.
+
+The next admitted source tick supplies the current spectator camera; frozen
+camera redraws retain the recovered light publication schedule. Generation and
+relation changes request an owned light recount. See
+[frame integration](../../research/runtime/scene-camera-frame-integration-20261026.md).
+The native test producer accepts `--report research/runtime/<new-id>.json` to
+write a durable SQLite reference directly, retaining bounded build/log output
+under its explicitly selected working directory.

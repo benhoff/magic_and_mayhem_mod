@@ -135021,7 +135021,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Clamping, movement/follow, bounded initialization/viewport admission/removal, view rotation, queued dispatch and actual owned creature/effect/minimap consumer application are implemented by linked components. Production map/session resource acquisition and frame-queue orchestration remain to supply; installed complete-frame/hardware/live acceptance is independent. Parent milestones remain historical rather than inheriting component execution."
+        "Camera algorithms and owned consumers exist. NR.scene-frame-camera connects native SceneSession resource acquisition, retained entity views and once-per-completed-frame queued dispatch. Its execution is independent of original complete-frame, physical GPU and live acceptance; original producer population outside the declared native source format remains pending."
       ],
       "validation_dependencies": [
         "tests/sprite-binary-reference.cpp",
@@ -135061,7 +135061,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Linked section selection/copy, direct/slow frame writers and original tick/terminal behavior now have explicit component implementations; owned map references/controllers and actual regional repair have independent native integration. Production full-scene orchestration remains separate implementation work. Authored/random placement gameplay policies and unknown constructor fields are not inferred from rendering ownership; original whole-world/full-game/live equivalence remains independent."
+        "Linked section transforms/writers/lifecycles and owned map/navigation consumers exist. Native SceneSession camera-linked entity generations and resource lifetimes are tracked separately by NR.scene-frame-camera; original section/entity constructor population, authored/random placement gameplay policies and original whole-world/full-game/live equivalence remain independent."
       ],
       "title": "Entity section rotation and map initialization"
     },
@@ -135115,7 +135115,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Spectator and inherited single-cell branches are supplied by RE.terrain-spectator-camera-light and RE.terrain-single-cell-light. Installed entity/static-type input production remains to implement; full scene/driver/live acceptance is independent validation."
+        "Spectator/single-cell algorithms and owned entity/type light producers exist. Native SceneSession current-camera/source-clock delivery and generation/relation recount are tracked by NR.scene-frame-camera. Original installed producer provenance outside the declared native source format, complete-session comparison, physical GPU and live replacement remain independent."
       ],
       "title": "Spectator and installed-source lighting"
     },
@@ -135141,13 +135141,19 @@
       ],
       "documents": [
         "research/runtime/remaining-rendering-implementations-20261020.md",
-        "apps/scene-session/README.md"
+        "apps/scene-session/README.md",
+        "research/runtime/camera-master-integration-20261027.md"
       ],
       "evidence": [
         "SCENE.production-native-20261020",
         "SCENE.production-sanitized-20261020",
         "NATIVE-MERGE.scene-native-20261020",
-        "NATIVE-MERGE.scene-sanitized-20261020"
+        "NATIVE-MERGE.scene-sanitized-20261020",
+        "CAMERA.scene-frame-native-20261026",
+        "CAMERA.scene-frame-sanitized-20261026",
+        "CAMERA.scene-frame-installed-20261026",
+        "CAMERA-MASTER.native-20261027",
+        "CAMERA-MASTER.sanitized-20261027"
       ],
       "status": {
         "understanding": "scoped",
@@ -135946,14 +135952,20 @@
         "tests/resource-fixtures.hpp"
       ],
       "documents": [
-        "research/runtime/remaining-rendering-implementations-20261020.md"
+        "research/runtime/remaining-rendering-implementations-20261020.md",
+        "research/runtime/camera-master-integration-20261027.md"
       ],
       "evidence": [
         "CAMERA.animation-views-native-20261020",
         "SCENE.production-native-20261020",
         "SCENE.production-sanitized-20261020",
         "NATIVE-MERGE.scene-native-20261020",
-        "NATIVE-MERGE.scene-sanitized-20261020"
+        "NATIVE-MERGE.scene-sanitized-20261020",
+        "CAMERA.scene-frame-native-20261026",
+        "CAMERA.scene-frame-sanitized-20261026",
+        "CAMERA.scene-frame-installed-20261026",
+        "CAMERA-MASTER.native-20261027",
+        "CAMERA-MASTER.sanitized-20261027"
       ],
       "status": {
         "understanding": "scoped",
@@ -136146,7 +136158,8 @@
         "assets/terrain_catalog.hpp"
       ],
       "documents": [
-        "research/runtime/remaining-rendering-implementations-20261020.md"
+        "research/runtime/remaining-rendering-implementations-20261020.md",
+        "research/runtime/camera-master-integration-20261027.md"
       ],
       "evidence": [
         "ENTITY.lighting-native-20261020",
@@ -136154,7 +136167,12 @@
         "SCENE.production-native-20261020",
         "SCENE.production-sanitized-20261020",
         "NATIVE-MERGE.scene-native-20261020",
-        "NATIVE-MERGE.scene-sanitized-20261020"
+        "NATIVE-MERGE.scene-sanitized-20261020",
+        "CAMERA.scene-frame-native-20261026",
+        "CAMERA.scene-frame-sanitized-20261026",
+        "CAMERA.scene-frame-installed-20261026",
+        "CAMERA-MASTER.native-20261027",
+        "CAMERA-MASTER.sanitized-20261027"
       ],
       "status": {
         "understanding": "scoped",
@@ -136432,13 +136450,19 @@
       ],
       "documents": [
         "research/runtime/remaining-rendering-implementations-20261020.md",
-        "apps/scene-session/README.md"
+        "apps/scene-session/README.md",
+        "research/runtime/camera-master-integration-20261027.md"
       ],
       "evidence": [
         "SCENE.production-native-20261020",
         "SCENE.production-sanitized-20261020",
         "NATIVE-MERGE.scene-native-20261020",
-        "NATIVE-MERGE.scene-sanitized-20261020"
+        "NATIVE-MERGE.scene-sanitized-20261020",
+        "CAMERA.scene-frame-native-20261026",
+        "CAMERA.scene-frame-sanitized-20261026",
+        "CAMERA.scene-frame-installed-20261026",
+        "CAMERA-MASTER.native-20261027",
+        "CAMERA-MASTER.sanitized-20261027"
       ],
       "status": {
         "understanding": "scoped",
@@ -139830,7 +139854,8 @@
         "research/runtime/actor-installed-dependency-results-20261027/cases-merged01.json",
         "research/runtime/actor-installed-dependency-results-20261027/merge-history02.json",
         "research/runtime/actor-installed-dependency-results-20261027/history-initial-reviewed01.json",
-        "research/runtime/actor-installed-dependency-results-20261027/history-refresh-reviewed01.json"
+        "research/runtime/actor-installed-dependency-results-20261027/history-refresh-reviewed01.json",
+        "research/runtime/actor-installed-dependency-results-20261027/camera-history-reviewed01.json"
       ],
       "implementation": [
         "reconstruction/rendering/actor_services.hpp",
@@ -139929,7 +139954,8 @@
         "AD1.installed-dependencies.static-20261026",
         "AD2.merged-dependencies.static-20261027",
         "AD3.initial-history.static-20261027",
-        "AD3.refresh-history.static-20261027"
+        "AD3.refresh-history.static-20261027",
+        "AD4.camera-history.static-20261027"
       ],
       "status": {
         "understanding": "partial",
@@ -157166,6 +157192,65 @@
       },
       "remaining_gaps": [
         "Original null/replaced interfaces, reload callbacks changing keys/mode/pointers, real driver loss/pixels, original window/GetHWnd failure outputs, arbitrary reentrancy and live replacement."
+      ]
+    },
+    {
+      "id": "NR.scene-frame-camera",
+      "title": "Scene camera frame scheduling and generation-bound rotation",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Native SceneSession acquires resident special ANI catalogs, retains accepted generation-bound creature/effect view and minimap state, delivers actual rebound resources in frame plans, and completes queued clockwise-first turns once per successful rendered plan. Failed submissions retain requests; frozen recomposition never supplies a simulation, animation or lighting tick. Admitted source ticks supply the current spectator camera and generation/relation changes force owned light recounts. No original-session, physical GPU or live replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "apps/scene-session/session.hpp",
+        "apps/scene-session/session.cpp",
+        "apps/scene-session/entity_lighting.hpp",
+        "apps/scene-session/entity_lighting.cpp"
+      ],
+      "tests": [
+        "tests/scene-session-test.cpp",
+        "tests/scene-entity-lighting-test.cpp",
+        "tests/scene-camera-binding-test.cpp",
+        "tools/test-native-scene-session.py"
+      ],
+      "documents": [
+        "research/runtime/scene-camera-frame-integration-20261026.md",
+        "apps/scene-session/README.md",
+        "research/runtime/camera-master-integration-20261027.md"
+      ],
+      "validation_dependencies": [
+        "apps/scene-session/CMakeLists.txt",
+        "apps/scene-session/source_snapshot.hpp",
+        "apps/scene-session/camera_binding.hpp",
+        "apps/scene-session/camera_binding.cpp",
+        "apps/scene-session/animation_binding.hpp",
+        "apps/scene-session/animation_binding.cpp",
+        "apps/scene-session/resource_manifest.hpp",
+        "reconstruction/rendering/camera_lifecycle.hpp",
+        "reconstruction/rendering/camera_lifecycle.cpp",
+        "reconstruction/rendering/view_refresh.hpp",
+        "reconstruction/rendering/view_refresh.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "tests/resource-fixtures.hpp"
+      ],
+      "evidence": [
+        "CAMERA.scene-frame-native-20261026",
+        "CAMERA.scene-frame-sanitized-20261026",
+        "CAMERA.scene-frame-installed-20261026",
+        "CAMERA-MASTER.native-20261027",
+        "CAMERA-MASTER.sanitized-20261027"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current native64 and Clang ASan/UBSan scene integration passes: World source health/cell delivery, bounded owned layers/catalogs, generation-safe linked rotations, once-per-successful-plan scheduling and spectator source-clock delivery, plus eight exact CPU/software OpenGL image comparisons. Original complete-session comparison, physical GPU acceptance and live replacement remain separate; unclassified original entity/type/link metadata still requires identified producers. Spectator field publication retains the recovered source-cycle latency; redraws do not force publication."
       ]
     }
   ],
@@ -359271,6 +359356,377 @@
       ]
     },
     {
+      "id": "CAMERA.scene-frame-native-20261026",
+      "kind": "native_integration",
+      "scope": "Current native64 synthetic scene integration: queued frame completion/priority/idempotence, bound catalog resources, linked effect generations, live native World source health/cells, spectator source clocks, eight exact software OpenGL/CPU image comparisons. No installed full-session, hardware or original/live equivalence claim.",
+      "record": "research/runtime/scene-camera-frame-native03-20261026.json",
+      "sha256": "8dcf8c8476643c9a57f754cb9ee12c0cc51b4ea5a1e7956d3c91f9e5b1b1f143",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/gpu_frames",
+          "equals": 8
+        },
+        {
+          "pointer": "/results/scene-session-test/queued_frame_priority_and_idempotence",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/linked_generation_retirement",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/actual_catalog_resource_delivery",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/current_world_producer_delivery",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/spectator_live_camera_source_clock",
+          "equals": true
+        },
+        {
+          "pointer": "/results/save-world-loader-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-source-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-animation-binding-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-entity-lighting-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-camera-binding-test/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CAMERA.scene-frame-sanitized-20261026",
+      "kind": "native_integration",
+      "scope": "Current Clang ASan/UBSan synthetic scene integration: queued frame completion/priority/idempotence, bound catalog resources, linked effect generations, live native World source health/cells, spectator source clocks, eight exact software OpenGL/CPU image comparisons. No installed full-session, hardware or original/live equivalence claim.",
+      "record": "research/runtime/scene-camera-frame-sanitized03-20261026.json",
+      "sha256": "f7946d9fbf5aed67e61734b6e7763dea795d3a1938d3c3161fd31ce45f60ebf5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/gpu_frames",
+          "equals": 8
+        },
+        {
+          "pointer": "/results/scene-session-test/queued_frame_priority_and_idempotence",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/linked_generation_retirement",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/actual_catalog_resource_delivery",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/current_world_producer_delivery",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/spectator_live_camera_source_clock",
+          "equals": true
+        },
+        {
+          "pointer": "/results/save-world-loader-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-source-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-animation-binding-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-entity-lighting-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-camera-binding-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CAMERA.scene-frame-installed-20261026",
+      "kind": "native_integration",
+      "scope": "Final native64 scene matrix plus read-only installed Forest40x40x19 MAP/MPS/ANI/TTD/config acquisition, 77 retained placements, 766 draws, executable/checkpoint image agreement and original manifest/input-hash bookends. Camera/linked/spectator branch cases remain controlled native sources; no original whole-session, physical GPU or live replacement claim.",
+      "record": "research/runtime/scene-camera-frame-installed-20261026.json",
+      "sha256": "85c06b3071baf810c1192fe3445c25858e6b329fa80f2241f49ae197b6568a05",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/gpu_frames",
+          "equals": 8
+        },
+        {
+          "pointer": "/results/scene-session-test/queued_frame_priority_and_idempotence",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/linked_generation_retirement",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/actual_catalog_resource_delivery",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/current_world_producer_delivery",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/spectator_live_camera_source_clock",
+          "equals": true
+        },
+        {
+          "pointer": "/results/save-world-loader-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-source-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-animation-binding-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-entity-lighting-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-camera-binding-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_bookends",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/installed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/executable/success",
+          "equals": true
+        },
+        {
+          "pointer": "/installed/draws",
+          "equals": 766
+        },
+        {
+          "pointer": "/installed/placements_retained",
+          "equals": 77
+        }
+      ]
+    },
+    {
+      "id": "CAMERA-MASTER.native-20261027",
+      "kind": "native_integration",
+      "scope": "Fresh combined-master execution after camera integration. Final native64 scene matrix plus read-only installed Forest40x40x19 MAP/MPS/ANI/TTD/config acquisition, 77 retained placements, 766 draws, executable/checkpoint image agreement and original manifest/input-hash bookends. Camera/linked/spectator branch cases remain controlled native sources; no original whole-session, physical GPU or live replacement claim.",
+      "record": "research/runtime/camera-master-native-20261027.json",
+      "sha256": "47b8c96a7f75898f7d3d85e0429712e6d68c3ed4e5324c054f36f96d6458ed84",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/gpu_frames",
+          "equals": 8
+        },
+        {
+          "pointer": "/results/scene-session-test/queued_frame_priority_and_idempotence",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/linked_generation_retirement",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/actual_catalog_resource_delivery",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/current_world_producer_delivery",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/spectator_live_camera_source_clock",
+          "equals": true
+        },
+        {
+          "pointer": "/results/save-world-loader-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-source-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-animation-binding-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-entity-lighting-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-camera-binding-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_bookends",
+          "equals": true
+        },
+        {
+          "pointer": "/installed_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/installed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/executable/success",
+          "equals": true
+        },
+        {
+          "pointer": "/installed/draws",
+          "equals": 766
+        },
+        {
+          "pointer": "/installed/placements_retained",
+          "equals": 77
+        }
+      ]
+    },
+    {
+      "id": "CAMERA-MASTER.sanitized-20261027",
+      "kind": "native_integration",
+      "scope": "Fresh combined-master execution after camera integration. Current Clang ASan/UBSan synthetic scene integration: queued frame completion/priority/idempotence, bound catalog resources, linked effect generations, live native World source health/cells, spectator source clocks, eight exact software OpenGL/CPU image comparisons. No installed full-session, hardware or original/live equivalence claim.",
+      "record": "research/runtime/camera-master-sanitized-20261027.json",
+      "sha256": "2b04b366fd2c0cf916ea80ad228253913213c0995161e46c044a8e29c60b7d5b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/gpu_frames",
+          "equals": 8
+        },
+        {
+          "pointer": "/results/scene-session-test/queued_frame_priority_and_idempotence",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/linked_generation_retirement",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/actual_catalog_resource_delivery",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/current_world_producer_delivery",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-session-test/spectator_live_camera_source_clock",
+          "equals": true
+        },
+        {
+          "pointer": "/results/save-world-loader-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-source-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-animation-binding-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-entity-lighting-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/scene-camera-binding-test/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized",
+          "equals": true
+        }
+      ]
+    },
+    {
       "id": "AD1.installed-dependencies.static-20261026",
       "kind": "static",
       "scope": "Nine pending installed-world composition cases;15 transition callbacks with scoped implementation leads,112 historical endpoint specifications and36 deduplicated historical indirect sites. Static accounting only; no execution/status promotion.",
@@ -359334,6 +359790,24 @@
       "scope": "Additional master range0357068d..432d8b36:2commits/1270transitions and13retrospective pairs in2pending receipts; no engine status promotion.",
       "record": "research/runtime/actor-installed-dependency-results-20261027/history-refresh-reviewed01.json",
       "sha256": "cea3e653a5365e59fbc197de1efdbb372a01a21bf9cc3b9f326793ec0480c3c0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/unresolved_receipt_gaps",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "AD4.camera-history.static-20261027",
+      "kind": "static",
+      "scope": "Retrospective432d8b36..1efa145c camera-master range:2commits/1297transitions and14exact retrospective pairs in2pending receipts. Preserve actual parent camera evidence; no fresh execution or actor status credit.",
+      "record": "research/runtime/actor-installed-dependency-results-20261027/camera-history-reviewed01.json",
+      "sha256": "57b09c374957671cf134e382d0ac87ff0c65bfc1b127cb7734be3be26f67c95d",
       "sources_pointer": "/sources",
       "assertions": [
         {
@@ -385851,7 +386325,9 @@
         "tools/test-scene-animation-binding.py"
       ],
       "evidence": [
-        "CAMERA.animation-views-native-20261020"
+        "CAMERA.animation-views-native-20261020",
+        "CAMERA-MASTER.native-20261027",
+        "CAMERA-MASTER.sanitized-20261027"
       ]
     },
     {
@@ -385900,7 +386376,9 @@
       ],
       "evidence": [
         "ENTITY.lighting-native-20261020",
-        "ENTITY.lighting-native-sanitized-20261020"
+        "ENTITY.lighting-native-sanitized-20261020",
+        "CAMERA-MASTER.native-20261027",
+        "CAMERA-MASTER.sanitized-20261027"
       ]
     },
     {
@@ -385936,7 +386414,12 @@
         "SCENE.production-native-20261020",
         "SCENE.production-sanitized-20261020",
         "NATIVE-MERGE.scene-native-20261020",
-        "NATIVE-MERGE.scene-sanitized-20261020"
+        "NATIVE-MERGE.scene-sanitized-20261020",
+        "CAMERA.scene-frame-native-20261026",
+        "CAMERA.scene-frame-sanitized-20261026",
+        "CAMERA.scene-frame-installed-20261026",
+        "CAMERA-MASTER.native-20261027",
+        "CAMERA-MASTER.sanitized-20261027"
       ]
     },
     {
@@ -385956,7 +386439,12 @@
         "SCENE.production-native-20261020",
         "SCENE.production-sanitized-20261020",
         "NATIVE-MERGE.scene-native-20261020",
-        "NATIVE-MERGE.scene-sanitized-20261020"
+        "NATIVE-MERGE.scene-sanitized-20261020",
+        "CAMERA.scene-frame-native-20261026",
+        "CAMERA.scene-frame-sanitized-20261026",
+        "CAMERA.scene-frame-installed-20261026",
+        "CAMERA-MASTER.native-20261027",
+        "CAMERA-MASTER.sanitized-20261027"
       ]
     },
     {
@@ -385976,7 +386464,12 @@
         "SCENE.production-native-20261020",
         "SCENE.production-sanitized-20261020",
         "NATIVE-MERGE.scene-native-20261020",
-        "NATIVE-MERGE.scene-sanitized-20261020"
+        "NATIVE-MERGE.scene-sanitized-20261020",
+        "CAMERA.scene-frame-native-20261026",
+        "CAMERA.scene-frame-sanitized-20261026",
+        "CAMERA.scene-frame-installed-20261026",
+        "CAMERA-MASTER.native-20261027",
+        "CAMERA-MASTER.sanitized-20261027"
       ]
     },
     {
@@ -385997,7 +386490,12 @@
         "SCENE.production-native-20261020",
         "SCENE.production-sanitized-20261020",
         "NATIVE-MERGE.scene-native-20261020",
-        "NATIVE-MERGE.scene-sanitized-20261020"
+        "NATIVE-MERGE.scene-sanitized-20261020",
+        "CAMERA.scene-frame-native-20261026",
+        "CAMERA.scene-frame-sanitized-20261026",
+        "CAMERA.scene-frame-installed-20261026",
+        "CAMERA-MASTER.native-20261027",
+        "CAMERA-MASTER.sanitized-20261027"
       ]
     },
     {
@@ -388299,6 +388797,27 @@
       "evidence": [
         "NCSR26.native-copy-recovery.scenario"
       ]
+    },
+    {
+      "id": "SCENE.production-scene-frame-camera-20261026",
+      "level": "headless",
+      "scope": "Native source-fed camera turn priority and once-per-successful-plan completion, actual special ANI resource delivery, linked-effect generation retirement and failed-submission preservation, spectator anchors on the admitted source tick, and identical-projection CPU/software OpenGL pixels.",
+      "behaviors": [
+        "NR.scene-frame-camera"
+      ],
+      "tests": [
+        "tests/scene-session-test.cpp",
+        "tests/scene-entity-lighting-test.cpp",
+        "tests/scene-camera-binding-test.cpp",
+        "tools/test-native-scene-session.py"
+      ],
+      "evidence": [
+        "CAMERA.scene-frame-native-20261026",
+        "CAMERA.scene-frame-sanitized-20261026",
+        "CAMERA.scene-frame-installed-20261026",
+        "CAMERA-MASTER.native-20261027",
+        "CAMERA-MASTER.sanitized-20261027"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -390106,7 +390625,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-020a9c4457d6bda8caf18994dccfc5258542a12fa8174418a18580460fc3675f.json",
-    "sha256": "020a9c4457d6bda8caf18994dccfc5258542a12fa8174418a18580460fc3675f"
+    "path": "research/runtime/coverage/source-index-6d8031aa6fac611d63a5ac8d78536eec7c64ff53fca9f8d316333d528f38144d.json",
+    "sha256": "6d8031aa6fac611d63a5ac8d78536eec7c64ff53fca9f8d316333d528f38144d"
   }
 }

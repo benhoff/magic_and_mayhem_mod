@@ -33,6 +33,7 @@ class EntityLighting {
   std::map<std::uint32_t, Admission> admission_;
   reconstruction::TerrainLightingCycle cycle_;
   reconstruction::TerrainLightingSnapshot last_;
+  std::vector<std::uint32_t> generations_;
   unsigned width_, height_, layers_;
   void step(const game::State &,
             const std::vector<std::pair<game::Handle, std::uint32_t>> &,
