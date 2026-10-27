@@ -154865,7 +154865,8 @@
         "tools/coverage_evidence.py",
         "apps/qt-shell/campaign_smoke_test.cpp",
         "apps/qt-shell/live_menu_session.cpp",
-        "apps/qt-shell/live_menu_session.hpp"
+        "apps/qt-shell/live_menu_session.hpp",
+        "tools/terrain_light_session.py"
       ],
       "evidence": [
         "NPL.player-controls-20261025",
@@ -154880,7 +154881,8 @@
         "NPL26.reuse06",
         "NPL26.fresh07",
         "NPL26.reuse07",
-        "NPL26.controls07"
+        "NPL26.controls07",
+        "TLDF26.player-controls"
       ],
       "status": {
         "understanding": "scoped",
@@ -154892,7 +154894,8 @@
       "remaining_gaps": [
         "Bounded fresh/reuse x86 public-launch acceptance uses Xvfb/software GL with --skip-movies --no-native-music. Music/movie defaults,arbitrary maps/saves,long-duration sessions,hardware cadence and ARM strict ownership retain separate milestones.",
         "Failed early attempts remain immutable. The unaccepted report click is retained without claiming its exact transient cause;the bounded harness resubmits only an unaccepted click on the identical ready generation and stops at admission. Both final cases needed one report click.",
-        "Original simulation/preparation/UI bodies remain in Wine. Native-only ownership does not establish full original-driver/pixel equivalence or complete engine replacement."
+        "Original simulation/preparation/UI bodies remain in Wine. Native-only ownership does not establish full original-driver/pixel equivalence or complete engine replacement.",
+        "Public player launches now default to native terrain lighting under TL.player-lighting-default. Fresh launcher controls validate default/override admission; historical installed player runs retain original source bindings. Combined-master lighting journeys and long-duration/hardware acceptance remain pending."
       ]
     },
     {
@@ -155946,6 +155949,43 @@
         "Actual Windows SEH dispatch and throwing-destructor delivery are not validated.",
         "Real driver/codec-DLL behavior, original full screen routing and installed widget/GL/live acceptance remain separate.",
         "Qt-internal/global noexcept allocation exhaustion is not part of recoverable native allocation policy; score-service content/simulation remain supplied in the composed fixture."
+      ]
+    },
+    {
+      "id": "TL.player-lighting-default",
+      "title": "Player launch defaults to native terrain lighting with explicit overrides",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "scope": "Intentional player launch policy: run-native/run-x86 supply native terrain lighting when the environment omits its mode, keep capture disabled by default, validate mode/capture before prefix preparation, and propagate explicit original/observe/native modes to preparation and the owned runner without mutating the parent environment. Original override bypasses lighting staging and worker startup. Shared diagnostic selection, the existing 100ms deadline, permanent original fallback and nonzero failure reporting remain unchanged. This policy does not establish installed-game equivalence or broad rollout acceptance.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/native-player-launch.md",
+        "research/runtime/terrain-light-normal-session.md"
+      ],
+      "implementation": [
+        "tools/run-native-game.py"
+      ],
+      "tests": [
+        "tests/test-native-player-launcher.py"
+      ],
+      "validation_dependencies": [
+        "tools/native_only_contract.py",
+        "tools/terrain_light_session.py"
+      ],
+      "evidence": [
+        "TLDF26.player-controls"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current validation is limited to in-memory launch orchestration, actual Bash routing and original-mode staging/startup bypass. No new installed original/native session, map/save journey, hour-long stability or target-GPU performance is claimed.",
+        "A refused or stopped worker retains the existing original fallback latch and records a failed selected session; the launcher continues to report a nonzero exit after game completion."
       ]
     }
   ],
@@ -354459,6 +354499,29 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "TLDF26.player-controls",
+      "kind": "native_integration",
+      "scope": "Eighteen current-source mocked player controls plus actual Bash routing and original-lighting worker bypass; covers native default, explicit native/observe/original propagation and refusal before prefix work. No installed-game execution.",
+      "record": "research/runtime/terrain-light-default-results-20261026/controls02.json",
+      "sha256": "2c3e1374c79ef1e72efbd7b77faa758ed277544d8ca4a7341348039519a1017c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 18
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -383196,6 +383259,20 @@
         "TAG.parent-preview-20261026",
         "TAG.parent-installed-window-20261026"
       ]
+    },
+    {
+      "id": "TL.player-lighting-default-controls",
+      "scope": "Public player default selection, explicit mode propagation, invalid lighting admission before prefix work, original-mode worker bypass and Bash routing; owned Wine/prefix operations mocked.",
+      "level": "headless",
+      "behaviors": [
+        "TL.player-lighting-default"
+      ],
+      "tests": [
+        "tests/test-native-player-launcher.py"
+      ],
+      "evidence": [
+        "TLDF26.player-controls"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -385003,7 +385080,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-7e8ca2ca3c8d28503c6900aa3f6fcc12017910b6819cb32da0e02de29bfbd593.json",
-    "sha256": "7e8ca2ca3c8d28503c6900aa3f6fcc12017910b6819cb32da0e02de29bfbd593"
+    "path": "research/runtime/coverage/source-index-617e5136588e048a524f2330f2123f025f77da1ee6a58c2835f4c37975890b71.json",
+    "sha256": "617e5136588e048a524f2330f2123f025f77da1ee6a58c2835f4c37975890b71"
   }
 }

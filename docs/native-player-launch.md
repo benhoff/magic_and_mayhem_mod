@@ -15,6 +15,23 @@ Wine still runs the original No-CD executable for simulation and preparation.
 This selection does not establish full-game pixel equivalence or complete native
 engine replacement. Unsupported rendering terminates the session.
 
+Terrain lighting uses the persistent native worker by default, with capture
+disabled. The existing 100 ms timeout and reply checks retain original lighting
+as a fallback for the rest of a failed session. A worker failure is recorded and
+the launcher reports a nonzero exit after gameplay ends, even when fallback lets
+the game continue. To select original lighting explicitly:
+
+```sh
+MNM_TERRAIN_LIGHTING=original ./run-native.sh
+```
+
+`MNM_TERRAIN_LIGHTING=observe` selects original-active lighting observation.
+The player validates lighting options before preparing a prefix. This default
+is a launch policy; combined-master live journeys, hour-long stability and
+hardware performance retain their separate acceptance boundaries.
+The default and override policy passes 18 launcher controls; Wine, prefix
+initialization and owner execution are mocked in those controls.
+
 The first launch initializes a dedicated prefix at
 `working/native-player/wineprefix`, using the existing hash-checked supplied
 DirectPlay installer. Later launches reuse it. Another launch using the same

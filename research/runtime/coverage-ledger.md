@@ -23911,3 +23911,27 @@ a historical gate assertion. The new capsule restores all 1,015 members with
 matching hashes, sizes and modes. Adoption uses normal Git operations and keeps
 the separate `AS.tag` working edits and untracked inputs; current rendering
 source/contract fingerprints must remain exact after their restoration.
+
+
+## Native terrain lighting selected by default in the player — 2026-10-26
+
+The authorized player policy defaults `run-native.sh`/`run-x86.sh` to native
+terrain lighting with no capture. Explicit original/observe/native values are
+validated before prefix work and passed to preparation and the owned runner.
+`MNM_TERRAIN_LIGHTING=original` bypasses lighting staging and worker startup.
+Shared diagnostics retain their explicit/original selection. Existing worker
+timeout, original fallback, retirement and failure-exit semantics are unchanged.
+
+`TL.player-lighting-default` and `TLDF26.player-controls` separate this intentional
+policy from recovered baseline behavior. Eighteen current-source controls pass;
+Bash routing and original-mode bypass execute, while prefix/Wine/owner operations
+are mocked. The first control report predates the final help/scenario-binding
+source changes and remains historical. No original artifacts are consumed.
+Combined-master live journeys, long-duration/maps/saves and hardware/FPS
+acceptance remain pending. Original behavior/evidence hashes are preserved.
+
+The committed-history review from `d20de6bb` through `8c0c4ea4` covers18commits
+and7878first-parent file transitions. All7860non-journal transitions have exact
+receipts; eighteen journal transitions preserve flattened append-only history.
+No missing receipt or historical gate claim is introduced. The combined audit
+reports zero errors and fresh `TLDF26.player-controls` source bindings.

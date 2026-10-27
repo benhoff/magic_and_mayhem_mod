@@ -13,6 +13,7 @@ import tempfile
 from directplay_dx6_launch import admit_prefix, check_prefix, install_prefix, prefix_identity, stage
 from native_only_contract import configure
 from native_prefix_template import clone
+from terrain_light_session import selection as lighting_selection
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -64,6 +65,7 @@ def prepare_prefix(root, prefix, template, environment):
 def main(argv=None, root=ROOT):
     parser = argparse.ArgumentParser(description=__doc__, epilog=(
         'Graphics use our native renderer without original presentation fallback. '
+        'Native terrain lighting is the default; set MNM_TERRAIN_LIGHTING=original to override. '
         'Wine still runs the original simulation. Full-game rendering equivalence remains pending. '
         'Use ./run-x86.sh --original-renderer for the original game renderer.'))
     parser.add_argument('--prefix', type=Path, default=Path('working/native-player/wineprefix'),
@@ -76,6 +78,8 @@ def main(argv=None, root=ROOT):
     extra = args.arguments[1:] if args.arguments[:1] == ['--'] else args.arguments
     try:
         environment = configure(os.environ, extra)
+        environment.setdefault('MNM_TERRAIN_LIGHTING', 'native')
+        lighting, _ = lighting_selection(environment)
         if environment.get('MNM_MENU_DIRECTPLAY_DX6', '1') != '1':
             raise ValueError('Native player launch requires MNM_MENU_DIRECTPLAY_DX6=1')
         environment['MNM_MENU_DIRECTPLAY_DX6'] = '1'
@@ -115,6 +119,7 @@ def main(argv=None, root=ROOT):
                 else:
                     os.environ['MNM_MENU_DIRECTPLAY_DX6'] = previous
             print('Native renderer required; original renderer fallback disabled.\n'
+                  'Terrain lighting: ' + lighting + '.\n'
                   'Wine runs the original simulation. Prefix: ' + str(prefix), flush=True)
             return subprocess.run([sys.executable, '-B', str(root / 'tools/run-native-owned.py'),
                                    '--native-only', '--prefix', str(prefix), '--', *extra],
