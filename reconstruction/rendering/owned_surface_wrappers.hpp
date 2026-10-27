@@ -17,6 +17,25 @@ OwnedSurfaceCopyResult copyOwnedSurfaceWrapper(
     std::optional<render::SurfaceId> source, std::optional<render::SurfaceId> destination,
     SurfaceRectangle32 sourceRect, std::int32_t x, std::int32_t y,
     SurfaceRectangle32& destinationRect, SurfaceWindowContext);
+struct OwnedCopyRecovery {
+    OwnedSurfaceRetryAdapter::Callbacks bindings;
+    SurfaceReloadRoute sourceRoute=SurfaceReloadRoute::None;
+    SurfaceReloadRoute destinationRoute=SurfaceReloadRoute::None;
+    bool keyEnabled=false;
+    std::uint16_t sourceKey=0, destinationKey=0;
+};
+struct OwnedSurfaceCopyRecoveryResult {
+    bool called=false;
+    SurfaceRetryResult retry;
+};
+// Only opaqueRecovering/keyedRecovering have a recovered retry contract here.
+// Geometry/window context and handles are supplied snapshots for this call.
+// Reload/report exceptions propagate; unknown pixels never imply a reload.
+OwnedSurfaceCopyRecoveryResult recoverOwnedSurfaceCopy(
+    render::SurfaceBackend&, SurfaceCopyWrapper,
+    std::optional<render::SurfaceId> source, std::optional<render::SurfaceId> destination,
+    SurfaceRectangle32 sourceRect, std::int32_t x, std::int32_t y,
+    SurfaceWindowContext, OwnedCopyRecovery recovery={}, unsigned budget=16);
 struct OwnedFillRecovery {
     OwnedSurfaceRetryAdapter::Callbacks bindings;
     SurfaceReloadRoute route=SurfaceReloadRoute::None;

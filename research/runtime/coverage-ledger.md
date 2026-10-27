@@ -1,3 +1,15 @@
+## Surface recovery integration candidate with current master — 2026-10-26
+
+The master integration retains the original copy retry context and native owned
+copy recovery contracts from `26dadcdf`. All 108 source fingerprints across the
+two accepted recovery comparisons remain exact in the combined tree. The 18,432
+original-context comparisons and native64/32/sanitizer results, plus 64 native
+recovery combinations and 4,480 scheduler traces, remain inherited parent
+milestones. This merge performs source/accounting checks, not new engine runs.
+Physical lost-draw, callback ownership and live replacement gaps remain open.
+See [exact source impact](native-surface-recovery-merge-results-20261026/source-impact01.json)
+and [committed-history review](native-surface-recovery-merge-results-20261026/history02.json).
+
 ## Original alternate allocation repair — 2026-10-26
 
 An opt-in original-process owner now allocates guarded CPU backing, publishes its
@@ -9,6 +21,39 @@ WORD checks before UI overlays. The campaign paths include Save/Load and two
 display rebuilds per process. No oracle pixels feed rendering. This is an authored
 repair; the historical original publisher remains unknown. Earlier failures and
 source fingerprints are retained separately. See [repair and limits](original-alternate-allocation-repair-20261026.md).
+
+## Original surface copy retry context — 2026-10-26
+
+Fresh unchanged No-CD opaque/keyed copy wrappers confirm cached initial destination
+extent/window translation, per-attempt Blt/BltFast and WAIT globals, and a reread
+source RECT. Mode switches do not repeat translation. All 18,432 original argument
+and ordered endpoint traces match independent32/64-bit native and ASan/UBSan
+models, including overflow geometry and Restore/key failures. Confidence is high
+within scripted fault/context inputs; no real driver pixels or live replacement.
+
+`RE.surface-copy.retry-context` records this narrow original comparison. The
+compile-extension and fixture stack-alignment failures remain retained with their
+source variants and debugger trace. Null/replaced interfaces, resource callback
+ownership, original window-provider failure outputs and physical lost-draw/live
+composition remain pending. See [findings and bounded reproduction](original-surface-copy-retry-context-20261026.md).
+
+## Native surface copy recovery composition — 2026-10-26
+
+`recoverOwnedSurfaceCopy` connects native opaque/keyed copy geometry to the
+recovered Restore/key/reload/retry scheduler with explicit handle/window snapshots.
+Release and ASan/UBSan each pass 64 loss/API/WAIT/window combinations and 854
+checks, including busy-budget, unknown-content, reload-failure and wrong-mode
+controls. Fresh unchanged original scripted-fault execution matches all 4,480
+scheduler traces; 1,536 budget stops preserve original event prefixes. Immutable
+original manifests verify before and after execution. The initial incomplete
+compiler-provenance attempt remains failed evidence.
+
+`NP.surface-copy.owned-recovery` is a scoped headless native policy. Physical
+original lost-draw composition, dynamic original window/interface mutation,
+resource acquisition/reentrant lifetimes and live replacement remain pending.
+Shared-source historical surface evidence retains its original hashes and is not
+renewed by these controls. See [contract and reproduction](native-surface-copy-recovery-20261026.md)
+and [SQLite execution](native-surface-copy-recovery-results-20261026/execution03.json).
 
 ## Alternate canvas integration with landed master (2026-10-26)
 
