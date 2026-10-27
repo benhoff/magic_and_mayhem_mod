@@ -27,7 +27,7 @@ static int command_application_finish(u32 milliseconds){
     for(u32 i=0;i<32;++i)game_lock_clear(game_locks+i);
     for(u32 i=0;i<GAME_SURFACE_COUNT;++i){game_surface_drop(game_surfaces+i);zero(game_surfaces+i,sizeof(game_surfaces[i]));}
     zero(game_palettes,sizeof(game_palettes));zero(game_aliases,sizeof(game_aliases));session_archive_close();
-    history_finish();
+    history_finish();capture_storage_clear(1);
     command_application_complete=complete;command_application_finished=1;game_tracker_release();
     lock_diagnostic("command_application_stopped",0,0,complete,game_surface_bytes,lock_capture_reserved,0,0);
     SetLastError(error);return complete;

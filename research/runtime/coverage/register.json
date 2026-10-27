@@ -6709,7 +6709,9 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/render-drawing-inventory.md"
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-adapter-cost-20261026.md",
+        "research/runtime/native-adapter-master-20261027.md"
       ],
       "implementation": [
         "runtime/render/bridge.c",
@@ -6770,7 +6772,11 @@
         "tools/test-render-recovery.py"
       ],
       "evidence": [
-        "REVIEW.RT.render"
+        "REVIEW.RT.render",
+        "ADAPTER26.storage",
+        "ADAPTER26.copy",
+        "ADAPTER26.performance",
+        "ADAPTER27.master-identity"
       ],
       "status": {
         "understanding": "partial",
@@ -6781,6 +6787,9 @@
       },
       "validation_dependencies": [
         "protocols/include/mnm/world_raster_batch_v3.h"
+      ],
+      "remaining_gaps": [
+        "20261026 adapter-cost batch: bounded allocator/cache/lifetime/copy controls and strict mixed-context diagnostic runs are recorded separately. All-current application integration, trace-disabled sustained timing, original-driver whole-session pixel equivalence and complete replacement remain pending; historical validation fingerprints and independent stage statuses are preserved."
       ]
     },
     {
@@ -15956,7 +15965,9 @@
         "research/runtime/opengl-dc-flip-order.md",
         "research/runtime/opengl-palette-property-order.md",
         "research/runtime/opengl-lifetime-order.md",
-        "research/runtime/opengl-metadata-order.md"
+        "research/runtime/opengl-metadata-order.md",
+        "research/runtime/native-adapter-cost-20261026.md",
+        "research/runtime/native-adapter-master-20261027.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -15965,7 +15976,11 @@
         "runtime/render/lock_palette.h",
         "runtime/render/lock_flip.h",
         "runtime/render/lock_dc.h",
-        "runtime/render/dirty_region.h"
+        "runtime/render/dirty_region.h",
+        "runtime/render/snapshot_storage.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/cpu_reader.h"
       ],
       "tests": [
         "runtime/render/mutation_selftest.h",
@@ -15974,7 +15989,11 @@
         "tests/live-render-channel-test.cpp",
         "tools/test-render-dirty-region.py",
         "tests/render-dirty-region-test.c",
-        "tools/test-render-working-set.py"
+        "tools/test-render-working-set.py",
+        "tests/render-snapshot-storage-test.c",
+        "tools/test-render-snapshot-storage.py",
+        "tools/test-render-lock-blits.py",
+        "tools/test-render-session-fills.py"
       ],
       "evidence": [
         "NR.continuous-mutations.synthetic",
@@ -15994,7 +16013,12 @@
         "NR.dc-flip-order.native-isolated-current-20261006",
         "NR.palette-property-order.native-20261006",
         "NR.lifetime-order.native-20261006",
-        "NR.metadata-order.native-20261006"
+        "NR.metadata-order.native-20261006",
+        "ADAPTER26.dirty",
+        "ADAPTER26.storage",
+        "ADAPTER26.copy",
+        "ADAPTER26.performance",
+        "ADAPTER27.master-identity"
       ],
       "status": {
         "understanding": "scoped",
@@ -16007,7 +16031,8 @@
         "protocols/include/mnm/world_raster_batch_v3.h"
       ],
       "remaining_gaps": [
-        "NT17 bounded16-byte unchanged-block skip pending fresh mask/unaligned/ASan controls. Every storage byte and pending mask bit must retain its existing publication meaning; no broader stage is promoted."
+        "NT17 bounded16-byte unchanged-block skip pending fresh mask/unaligned/ASan controls. Every storage byte and pending mask bit must retain its existing publication meaning; no broader stage is promoted.",
+        "20261026 adapter-cost batch: bounded allocator/cache/lifetime/copy controls and strict mixed-context diagnostic runs are recorded separately. All-current application integration, trace-disabled sustained timing, original-driver whole-session pixel equivalence and complete replacement remain pending; historical validation fingerprints and independent stage statuses are preserved."
       ]
     },
     {
@@ -18786,7 +18811,9 @@
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-sustained-publication.md"
+        "research/runtime/opengl-sustained-publication.md",
+        "research/runtime/native-adapter-cost-20261026.md",
+        "research/runtime/native-adapter-master-20261027.md"
       ],
       "implementation": [
         "apps/qt-shell/live_command_renderer.cpp",
@@ -18819,7 +18846,11 @@
         "NR.continuous-update-partition.game-20261006",
         "HOST.native-command-responsiveness.synthetic-20261007",
         "NR.native-command-profile.live-20261007",
-        "NT17.native-copy-delta-controls-20261023"
+        "NT17.native-copy-delta-controls-20261023",
+        "ADAPTER26.dirty",
+        "ADAPTER26.copy",
+        "ADAPTER26.performance",
+        "ADAPTER27.master-identity"
       ],
       "status": {
         "understanding": "scoped",
@@ -18832,7 +18863,8 @@
         "protocols/include/mnm/world_raster_batch_v3.h"
       ],
       "remaining_gaps": [
-        "Fresh NT17 exact sampling, protected byte/mask bookkeeping, PE32 copy, masked-delta and software/NVIDIA dense-upload controls cover only the changed native algorithms. Existing broader understanding, original-driver comparison, integration and replacement dimensions remain independent."
+        "Fresh NT17 exact sampling, protected byte/mask bookkeeping, PE32 copy, masked-delta and software/NVIDIA dense-upload controls cover only the changed native algorithms. Existing broader understanding, original-driver comparison, integration and replacement dimensions remain independent.",
+        "20261026 adapter-cost batch: bounded allocator/cache/lifetime/copy controls and strict mixed-context diagnostic runs are recorded separately. All-current application integration, trace-disabled sustained timing, original-driver whole-session pixel equivalence and complete replacement remain pending; historical validation fingerprints and independent stage statuses are preserved."
       ]
     },
     {
@@ -78144,7 +78176,9 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/native-render-completion.md"
+        "research/runtime/native-render-completion.md",
+        "research/runtime/native-adapter-cost-20261026.md",
+        "research/runtime/native-adapter-master-20261027.md"
       ],
       "implementation": [
         "runtime/native-draw/history.h",
@@ -78159,16 +78193,22 @@
         "runtime/canvas-writers/raster_bridge.c",
         "runtime/render/lock_surfaces.h",
         "runtime/render/lock_lifecycle.h",
-        "runtime/render/lock_flip.h"
+        "runtime/render/lock_flip.h",
+        "runtime/native-draw/history_lookup.h"
       ],
       "tests": [
         "tests/native-history-probe.c",
         "tools/test-native-completion.py",
-        "tests/native-gpu-copy-probe.c"
+        "tests/native-gpu-copy-probe.c",
+        "tests/native-history-lookup-test.c",
+        "tools/test-native-history-lookup.py"
       ],
       "evidence": [
         "NP.native-render-completion.controls-20261015",
-        "NP.native-history-readers.controls-20261015"
+        "NP.native-history-readers.controls-20261015",
+        "ADAPTER26.history",
+        "ADAPTER26.performance",
+        "ADAPTER27.master-identity"
       ],
       "status": {
         "understanding": "partial",
@@ -78194,6 +78234,9 @@
         "tools/capture-original-surface-keys.py",
         "tools/original-manifest.sh",
         "protocols/include/mnm/world_raster_batch_v3.h"
+      ],
+      "remaining_gaps": [
+        "20261026 adapter-cost batch: bounded allocator/cache/lifetime/copy controls and strict mixed-context diagnostic runs are recorded separately. All-current application integration, trace-disabled sustained timing, original-driver whole-session pixel equivalence and complete replacement remain pending; historical validation fingerprints and independent stage statuses are preserved."
       ]
     },
     {
@@ -86974,7 +87017,8 @@
         "research/runtime/native-gpu-copy-plan.md",
         "research/formats/native-gpu-copy-plan-v1.md",
         "research/runtime/rendering-next-ten-closeouts-20261020.md",
-        "research/runtime/cpu-copy-clipping-20261026.md"
+        "research/runtime/cpu-copy-clipping-20261026.md",
+        "research/runtime/native-adapter-master-20261027.md"
       ],
       "implementation": [
         "runtime/native-draw/gpu_copy_plan.h",
@@ -87169,7 +87213,8 @@
         "CPUCLIP.current-validation01-20261026",
         "CPUCLIP.replay02-20261026",
         "CPUCLIP.validator-controls03-20261026",
-        "CPUCLIP.current-validation02-20261026"
+        "CPUCLIP.current-validation02-20261026",
+        "ADAPTER27.gpu-controls"
       ],
       "status": {
         "understanding": "scoped",
@@ -126628,7 +126673,7 @@
       "kind": "native_policy",
       "subsystem": "rendering",
       "title": "Native checked image-row copy body",
-      "scope": "No-CD40209ca7 twenty-byte533aec..533aff body is checked before an eight-byte jump redirects to the native forward DWORD/residual-byte copy. Current owned operands precede execution; DWORD-granularity overlap, caller registers and defined flags are preserved. No original row-body instructions execute; outer clipping/preparation are separately replaced under NP.native-clipped-image-copy; this record covers only the row ABI. Invalid prefix/span/direction refuses.",
+      "scope": "No-CD40209ca7 twenty-byte533aec..533aff body is checked before an eight-byte jump redirects to the native forward DWORD/residual-byte copy. Current owned source bytes precede execution; an active protected mode3 owner-Lock destination uses the existing value-only store service, keeps public pages inaccessible and retains stale CPU authority plus exact pending-byte masks. Same-owned source overlap and unsupported destination leases retain explicit history restoration; DWORD-granularity overlap, caller registers and defined flags are preserved. No original row-body instructions execute; outer clipping/preparation are separately replaced under NP.native-clipped-image-copy; this record covers only the row ABI. Invalid prefix/span/direction refuses.",
       "confidence": "provisional",
       "original": [
         {
@@ -126641,7 +126686,9 @@
         "research/runtime/native-render-functional-closure.md",
         "research/runtime/rendering-high-validation-ownership-20261020.md",
         "research/runtime/third20-implementation-progress-20261020.md",
-        "research/runtime/coverage/native-implementation-completion-20261020.json"
+        "research/runtime/coverage/native-implementation-completion-20261020.json",
+        "research/runtime/native-adapter-cost-20261026.md",
+        "research/runtime/native-adapter-master-20261027.md"
       ],
       "implementation": [
         "runtime/native-draw/factory.c",
@@ -126650,12 +126697,14 @@
         "runtime/native-draw/cpu_guard.h",
         "tools/build-native-draw.py",
         "runtime/native-draw/cpu_copy_boundary.h",
-        "runtime/native-draw/ownership_admission.h"
+        "runtime/native-draw/ownership_admission.h",
+        "runtime/native-draw/cpu_direct_store.h"
       ],
       "tests": [
         "tests/native-owned-backing-probe.c",
         "tools/test-native-functional-closure.py",
-        "tools/test-third20-native.py"
+        "tools/test-third20-native.py",
+        "tools/test-native-extended-draw.py"
       ],
       "evidence": [
         "NATIVE.native-functional-closure.controls-20261018",
@@ -126674,7 +126723,10 @@
         "T20.native-controls-20261020",
         "HIGH04.staged-source-support-review-20261020",
         "COMPLETE.native-20261020",
-        "OWNERSHIP.native-20261020"
+        "OWNERSHIP.native-20261020",
+        "ADAPTER26.image",
+        "ADAPTER26.performance",
+        "ADAPTER27.master-identity"
       ],
       "status": {
         "understanding": "scoped",
@@ -126686,7 +126738,9 @@
       "remaining_gaps": [
         "Headless current implementation controls pass. Broader original-game/driver equivalence, all-game caller coverage and complete replacement remain separate; bounded stress/restart acquisition is in progress.",
         "Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md.",
-        "Retained functional-closure runs are historical after subsequent shared renderer changes. Current-code acceptance and source-bound status promotion remain pending; implementation sources and old report hashes are preserved."
+        "Retained functional-closure runs are historical after subsequent shared renderer changes. Current-code acceptance and source-bound status promotion remain pending; implementation sources and old report hashes are preserved.",
+        "20261026 adapter-cost work: write-only destination admission is an intentional native policy extension. Fresh bounded source-read/overlap/dirty-mask controls and strict diagnostic live latency runs are recorded; broader all-caller and original-driver validation remains pending; historical source hashes and independent stage statuses remain unchanged.",
+        "20261026 adapter-cost batch: bounded allocator/cache/lifetime/copy controls and strict mixed-context diagnostic runs are recorded separately. All-current application integration, trace-disabled sustained timing, original-driver whole-session pixel equivalence and complete replacement remain pending; historical validation fingerprints and independent stage statuses are preserved."
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -128964,7 +129018,7 @@
       "kind": "native_policy",
       "subsystem": "rendering",
       "title": "Whole native clipped image-copy entry",
-      "scope": "Pinned No-CD40209ca7 whole533a00..533b1a entry checked before native thiscall replacement. Native clipping/preparation and row stepping preserve observed non-WORD initial-stride quirk and forward DWORD/residual overlap. Existing typed CPU history precedes each owned row. Supplied finite format/x/y/clip comparison executes original283-byte body separately; no original routine instructions execute through replaced entry. Other methods/caller orchestration and unbounded arithmetic are excluded.",
+      "scope": "Pinned No-CD40209ca7 whole533a00..533b1a entry checked before native thiscall replacement. Native clipping/preparation and row stepping preserve observed non-WORD initial-stride quirk and forward DWORD/residual overlap. Existing typed CPU source history precedes each owned row. Protected mode3 owner-Lock destination writes use the existing value-only store service without requesting unrelated current destination bytes; same-owned overlap and other destinations retain the established restoration path. Supplied finite format/x/y/clip comparison executes original283-byte body separately; no original routine instructions execute through replaced entry. Other methods/caller orchestration and unbounded arithmetic are excluded.",
       "confidence": "provisional",
       "original": [
         {
@@ -128974,7 +129028,9 @@
         }
       ],
       "documents": [
-        "research/runtime/native-render-implementation-closure.md"
+        "research/runtime/native-render-implementation-closure.md",
+        "research/runtime/native-adapter-cost-20261026.md",
+        "research/runtime/native-adapter-master-20261027.md"
       ],
       "implementation": [
         "runtime/native-draw/cpu_copy_boundary.h",
@@ -128989,7 +129045,10 @@
         "NATIVE.native-extended-draw-20261018",
         "NATIVE.native-extended-draw.final-20261018",
         "NATIVE.native-clipped-image.smoke-20261018",
-        "NATIVE.native-extended-draw.commit-20261018"
+        "NATIVE.native-extended-draw.commit-20261018",
+        "ADAPTER26.image",
+        "ADAPTER26.performance",
+        "ADAPTER27.master-identity"
       ],
       "status": {
         "understanding": "scoped",
@@ -128999,7 +129058,9 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Current source-bound isolated controls pass. Live application use of the new extensions/recovery, original driver equivalence and hardware fault/performance acceptance remain separate."
+        "Current source-bound isolated controls pass. Live application use of the new extensions/recovery, original driver equivalence and hardware fault/performance acceptance remain separate.",
+        "20261026 adapter-cost work: write-only destination admission is an intentional native policy extension. Fresh bounded source-read/overlap/dirty-mask controls and strict diagnostic live latency runs are recorded; broader all-caller and original-driver validation remains pending; historical source hashes and independent stage statuses remain unchanged.",
+        "20261026 adapter-cost batch: bounded allocator/cache/lifetime/copy controls and strict mixed-context diagnostic runs are recorded separately. All-current application integration, trace-disabled sustained timing, original-driver whole-session pixel equivalence and complete replacement remain pending; historical validation fingerprints and independent stage statuses are preserved."
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -143642,7 +143703,9 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/native-cpu-value-store-20261023.md"
+        "research/runtime/native-cpu-value-store-20261023.md",
+        "research/runtime/native-adapter-cost-20261026.md",
+        "research/runtime/native-adapter-master-20261027.md"
       ],
       "implementation": [
         "runtime/native-draw/cpu_direct_store.h",
@@ -143670,7 +143733,10 @@
         "tests/native-dirty-byte-test.c"
       ],
       "evidence": [
-        "NT17.checked-native-store-service-20261023"
+        "NT17.checked-native-store-service-20261023",
+        "ADAPTER26.history",
+        "ADAPTER26.image",
+        "ADAPTER27.master-identity"
       ],
       "status": {
         "understanding": "scoped",
@@ -143680,7 +143746,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh native and PE32 controls plus the actual native writer journey validate this bounded value-only store contract. Original driver/frame equivalence, unsupported readers, allocation-address reuse beyond current active ownership and arbitrary concurrent lifecycle mutation remain separate."
+        "Fresh native and PE32 controls plus the actual native writer journey validate this bounded value-only store contract. Original driver/frame equivalence, unsupported readers, allocation-address reuse beyond current active ownership and arbitrary concurrent lifecycle mutation remain separate.",
+        "20261026 adapter-cost batch: bounded allocator/cache/lifetime/copy controls and strict mixed-context diagnostic runs are recorded separately. All-current application integration, trace-disabled sustained timing, original-driver whole-session pixel equivalence and complete replacement remain pending; historical validation fingerprints and independent stage statuses are preserved."
       ]
     },
     {
@@ -151782,7 +151849,9 @@
       "original": [],
       "documents": [
         "research/runtime/cursor-lifetime-completion-20261025.md",
-        "research/runtime/cursor-live-ownership-20261025.md"
+        "research/runtime/cursor-live-ownership-20261025.md",
+        "research/runtime/native-adapter-cost-20261026.md",
+        "research/runtime/native-adapter-master-20261027.md"
       ],
       "implementation": [
         "runtime/native-draw/lifetime_lock.h",
@@ -151825,7 +151894,10 @@
         "CUR27.provider03",
         "CUR27.provider04",
         "CUR27.provider05",
-        "CUR27.provider06"
+        "CUR27.provider06",
+        "ADAPTER26.provider",
+        "ADAPTER26.performance",
+        "ADAPTER27.master-identity"
       ],
       "status": {
         "understanding": "scoped",
@@ -151835,7 +151907,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Only MnmDraw-owned interfaces and valid writer leases are admitted. Bounded tombstones/address reservations persist until process exit;unknown driver allocations and invalid external CPU use after lease return are outside the contract."
+        "Only MnmDraw-owned interfaces and valid writer leases are admitted. Bounded tombstones/address reservations persist until process exit;unknown driver allocations and invalid external CPU use after lease return are outside the contract.",
+        "20261026 adapter-cost batch: bounded allocator/cache/lifetime/copy controls and strict mixed-context diagnostic runs are recorded separately. All-current application integration, trace-disabled sustained timing, original-driver whole-session pixel equivalence and complete replacement remain pending; historical validation fingerprints and independent stage statuses are preserved."
       ]
     },
     {
@@ -155089,7 +155162,8 @@
         "README.md",
         "research/runtime/native-player-expanded-20261026.md",
         "research/formats/native-player-failure-diagnostics.md",
-        "research/runtime/native-player-master-acceptance-20261027.md"
+        "research/runtime/native-player-master-acceptance-20261027.md",
+        "research/runtime/native-adapter-master-20261027.md"
       ],
       "implementation": [
         "run-native.sh",
@@ -155194,7 +155268,8 @@
         "NPL27.unit-controls02",
         "NPL27.launcher-controls05",
         "NPL27.storage05-copy-refusals01",
-        "NPL27.hardware03"
+        "NPL27.hardware03",
+        "ADAPTER27.launcher-controls"
       ],
       "status": {
         "understanding": "scoped",
@@ -156672,7 +156747,8 @@
       "documents": [
         "research/runtime/cpu-copy-clipping-20261026.md",
         "research/runtime/cpu-copy-master-integration-20261026.md",
-        "research/runtime/native-player-expanded-20261026.md"
+        "research/runtime/native-player-expanded-20261026.md",
+        "research/runtime/native-adapter-master-20261027.md"
       ],
       "evidence": [
         "CPUCLIP.cpu-controls01-20261026",
@@ -156709,7 +156785,9 @@
         "NPL27.windowed-live01",
         "NPL27.windowed-live02",
         "NPL27.planning-controls05",
-        "NPL27.storage05-copy-refusals01"
+        "NPL27.storage05-copy-refusals01",
+        "ADAPTER27.cpu-controls",
+        "ADAPTER27.prefix-failure"
       ],
       "status": {
         "understanding": "partial",
@@ -156892,7 +156970,8 @@
       "original": [],
       "documents": [
         "docs/native-player-launch.md",
-        "research/runtime/terrain-light-normal-session.md"
+        "research/runtime/terrain-light-normal-session.md",
+        "research/runtime/native-adapter-master-20261027.md"
       ],
       "implementation": [
         "tools/run-native-game.py"
@@ -156906,7 +156985,8 @@
       ],
       "evidence": [
         "TLDF26.player-controls",
-        "TLDF26.master-controls"
+        "TLDF26.master-controls",
+        "ADAPTER27.launcher-controls"
       ],
       "status": {
         "understanding": "scoped",
@@ -358901,6 +358981,227 @@
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256",
       "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "ADAPTER26.dirty",
+      "kind": "native_integration",
+      "scope": "6000 exact old/new dirty partitions, native and sanitizer controls and bounded cost comparison. No original-driver equivalence.",
+      "record": "research/runtime/native-adapter-cost-results-20261026/dirty-controls01.json",
+      "sha256": "1eb0041472de458ba6c1f9f40b60a2a692d199935a03b9efda23ae87236333d5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ADAPTER26.storage",
+      "kind": "native_integration",
+      "scope": "Bounded exact-size private storage reuse, budget, concurrent return and stop controls, native and ASan/UBSan. No original-driver equivalence.",
+      "record": "research/runtime/native-adapter-cost-results-20261026/storage-controls03.json",
+      "sha256": "7c4f52467b145af7654c8f08112a11d1b377fab52396ce68614a1525051db59e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ADAPTER26.history",
+      "kind": "native_integration",
+      "scope": "Native and sanitizer namespace/direct-store tests, actual PE32 authority/retirement/Flip and reader refusal controls. No all-caller equivalence.",
+      "record": "research/runtime/native-adapter-cost-results-20261026/history-controls04.json",
+      "sha256": "dcad4f415e6086ca16f6cb19b3ac4ed17649eb8c1a1e329ea0cef0e674301d52",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ADAPTER26.provider",
+      "kind": "native_integration",
+      "scope": "Actual PE32 32-case plain/protected lifetime, concurrency, recursive FP/SIMD/LastError controls. No whole-game equivalence.",
+      "record": "research/runtime/native-adapter-cost-results-20261026/provider-controls03.json",
+      "sha256": "60f0f3d358e41cd01a1c1b7eb0c0ba28473e04b953635bc31b86f397be57c091",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "ADAPTER26.image",
+      "kind": "native_integration",
+      "scope": "Actual PE32 protected destination write, source restore, same-allocation DWORD overlap, span/prefix refusal and528 original clipped-copy comparisons. No whole-game equivalence.",
+      "record": "research/runtime/native-adapter-cost-results-20261026/image-controls03.json",
+      "sha256": "ba49032a92637e68cda232acce40ad5bd74ae2a244cb4234640f7c88f8e43f75",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ADAPTER26.copy",
+      "kind": "native_integration",
+      "scope": "Current actual PE32 copy/fill/continuous/Unlock fixtures with independent complete CPU/OpenGL output comparisons. Bounds, original result, generation/reentry, budget and retirement controls remain checked. No original-driver or whole-game equivalence.",
+      "record": "research/runtime/native-adapter-cost-results-20261026/copy-controls06.json",
+      "sha256": "fb0841c4a0ea121cbefd15c885107e6415e8112a103b844c3c883a2d8f537143",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ADAPTER26.performance",
+      "kind": "live_observation",
+      "scope": "Bounded sequential tracing-enabled diagnostic observations, retained prior Qt/orchestration context and original No-CD engine. Current production render/provider closure checked separately. Same source images do not establish whole-game pixel/driver equivalence. No sustained, all-current-application or input-to-photon acceptance. Phase09+ differs from earlier workloads.",
+      "record": "research/runtime/native-adapter-cost-results-20261026/performance01.json",
+      "sha256": "2a4778d50947ec2ac80aa334b884a06895c63c612161ec64ddd8cd76c85be382",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/runs/adapter-candidate11/current_production_sources_match",
+          "equals": true
+        },
+        {
+          "pointer": "/runs/adapter-candidate12/current_production_sources_match",
+          "equals": true
+        },
+        {
+          "pointer": "/all_stages_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement_acceptance",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "ADAPTER27.master-identity",
+      "kind": "static",
+      "scope": "Current-master integration of clipped CPU copy preparation and adapter allocation/borrow optimizations. Preserve both parent records and explicitly identify changed production inputs. Historical20FPS timing does not validate this changed combined runtime.",
+      "record": "research/runtime/native-adapter-master-results-20261027/merge-resolution01.json",
+      "sha256": "351ae99fb60a84a7414b415a9fea7a8478a2c7ec46f067fbc8c7d00705414387",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ADAPTER27.cpu-controls",
+      "kind": "native_integration",
+      "scope": "CPU clipping/fill preparation and command replay; supplied inputs, no original EXE or live replacement.",
+      "record": "research/runtime/native-adapter-master-results-20261027/cpu-controls02.json",
+      "sha256": "2a218d1dc5d21f091899e0e30a5d6de18e50003663133d1640649f02bddc2ece",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "ADAPTER27.gpu-controls",
+      "kind": "native_integration",
+      "scope": "Owned facade/production bridge clipping and immutable GPU alias-copy controls.; supplied inputs, no original EXE or live replacement.",
+      "record": "research/runtime/native-adapter-master-results-20261027/gpu-controls02.json",
+      "sha256": "f07ca8f3dcae9949c58173ba809ac699ddd4c31a37485f129d7eb23f71660307",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "ADAPTER27.launcher-controls",
+      "kind": "native_integration",
+      "scope": "In-memory launch orchestration and actual Bash entrypoint routing. Filesystem initialization, Wine and native-owner execution are mocked.",
+      "record": "research/runtime/native-adapter-master-results-20261027/launcher-controls02.json",
+      "sha256": "efd24f5b67facdd2bb4cbb5f2d30b7af1e1a72c9cac6a3a893353fadf1eabea3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "ADAPTER27.prefix-failure",
+      "kind": "static",
+      "scope": "CPU clipping/fill preparation and command replay; supplied inputs, no original EXE or live replacement.",
+      "record": "research/runtime/native-adapter-master-results-20261027/cpu-controls01.json",
+      "sha256": "45b30e79f9f9994dc7c10aef4c55f34b96dad785162b68e313e7f2ad93fa995b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -386964,7 +387265,8 @@
         "tools/test-native-cursor-lifetime.py"
       ],
       "evidence": [
-        "CUR27.provider06"
+        "CUR27.provider06",
+        "ADAPTER26.provider"
       ]
     },
     {
@@ -387713,7 +388015,8 @@
       ],
       "evidence": [
         "TLDF26.player-controls",
-        "TLDF26.master-controls"
+        "TLDF26.master-controls",
+        "ADAPTER27.launcher-controls"
       ]
     },
     {
@@ -389645,7 +389948,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-12c54d2d646a335937408e20ed54a1adef506ed63c0f1eee248aeb3f07f34864.json",
-    "sha256": "12c54d2d646a335937408e20ed54a1adef506ed63c0f1eee248aeb3f07f34864"
+    "path": "research/runtime/coverage/source-index-f5a1e7f71d0885b886461b109d3ce07067bc2131ae5589db9a92e9aa1dbe124e.json",
+    "sha256": "f5a1e7f71d0885b886461b109d3ce07067bc2131ae5589db9a92e9aa1dbe124e"
   }
 }

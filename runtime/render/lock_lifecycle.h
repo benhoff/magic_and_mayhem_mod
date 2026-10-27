@@ -4,6 +4,19 @@ static struct GameLock game_locks[32];
 static volatile i32 game_locks_busy;
 static u32 game_locks_owner,game_tracker_wait_ms=8,game_tracker_wait_count;
 static u32 game_lock_epoch,game_metadata_epoch,game_lock_generation,lock_capture_count,lock_capture_bytes,lock_capture_reserved;
+/* Publish idle ownership before releasing active accounting. A contended
+ * callback may return storage while another tracker owner allocates. Readers
+ * may conservatively see both counts, but never miss the retained allocation. */
+static void game_reserved_snapshot_free(struct Snapshot* s){
+ if(!s->data)return;
+ u32 bytes=s->length;game_snapshot_free(s);
+ __atomic_sub_fetch(&lock_capture_reserved,bytes,__ATOMIC_RELAXED);
+}
+static void game_reserved_buffer_free(u8* data,u32 bytes){
+ if(!data)return;
+ capture_storage_release(data,bytes);
+ __atomic_sub_fetch(&lock_capture_reserved,bytes,__ATOMIC_RELAXED);
+}
 /* A missed pixel operation writes only its target. Queue opaque identity tokens
  * for the next guarded entry; never inspect or dereference them without the guard.
  * Overflow retains the conservative whole-pixel-epoch fallback. */
@@ -25,8 +38,7 @@ static void game_metadata_invalidate_at(const char* file,u32 line){
 #define game_metadata_invalidate() game_metadata_invalidate_at(__FILE__,__LINE__)
 /* Detached partial bases are counted as pending storage and never published. */
 static void game_lock_clear(struct GameLock* slot){
-    if(slot->base.data)__atomic_sub_fetch(&lock_capture_reserved,slot->base.length,__ATOMIC_RELAXED);
-    free_snapshot(&slot->base);zero(slot,sizeof(*slot));
+    game_reserved_snapshot_free(&slot->base);zero(slot,sizeof(*slot));
 }
 static u32 game_copy_order_enabled,game_resident_world,game_prepared_world;
 static u32 game_session_enabled,game_session_presentations,game_session_continuous,game_session_archive,game_session_palette_resources;
@@ -54,7 +66,7 @@ static void init_lock_lifecycle(void){
     if(game_session_continuous)game_session_enabled=1;
     game_resident_world=game_session_continuous && GetEnvironmentVariableA("MNM_PUBLIC_RESIDENT_WORLD",session,8)==1 && session[0]=='1';
     game_prepared_world=game_resident_world && GetEnvironmentVariableA("MNM_WORLD_SNAPSHOT",session,8)==1 && session[0]=='1';
-    command_gate_enabled=game_session_continuous;
+    command_gate_enabled=game_session_continuous;capture_storage_enabled=game_session_continuous;
     game_copy_order_enabled=game_session_continuous && GetEnvironmentVariableA("MNM_RENDER_ORDERED_COPIES",session,8)==1 && session[0]=='1';
     char resources[8];game_session_palette_resources=game_session_continuous &&
         GetEnvironmentVariableA("MNM_RENDER_PALETTE_RESOURCES",resources,sizeof(resources))==1 && resources[0]=='1';
@@ -198,7 +210,7 @@ static void game_lock_observed(void* object,struct Table* table,void* rect,const
         }
     }
     if(slot && !slot->active)game_session_invalidate(object);
-    if(base.data)__atomic_sub_fetch(&lock_capture_reserved,base.length,__ATOMIC_RELAXED);free_snapshot(&base);
+    game_reserved_snapshot_free(&base);
     lock_diagnostic(reason,object,table->kind,(u32)rect,flags,result,0,diagnostic_desc);
     game_tracker_release();
 }
@@ -231,7 +243,7 @@ static void game_unlock_before(void* object,u32 unlock_kind,void* argument,struc
            (!private_snapshot && !readable((void*)(pitch<0?at-offset:at),offset+row_stride))){reason="unlock_memory";break;}
         u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
         if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || stride*height>GAME_SURFACE_LIMIT-game_surface_bytes-reserved){reason="unlock_limit";break;}
-        struct Snapshot* s=&pending->pixels;s->data=HeapAlloc(GetProcessHeap(),0,stride*height);if(!s->data){reason="unlock_allocation";break;}
+        struct Snapshot* s=&pending->pixels;s->data=game_buffer_allocate(0,stride*height);if(!s->data){reason="unlock_allocation";break;}
         __atomic_add_fetch(&lock_capture_reserved,stride*height,__ATOMIC_RELAXED);
         s->width=width;s->height=height;s->bits=bits;s->flags=d[19];s->r=d[22];s->g=d[23];s->b=d[24];s->length=stride*height;
         if(private_snapshot){
@@ -266,7 +278,7 @@ static void game_unlock_after(struct GameUnlock* pending,i32 result){
         }
         game_tracker_release();return;
     }
-    if(!game_tracker_acquire()){game_pixel_missed(pending->target);if(pending->pixels.data)__atomic_sub_fetch(&lock_capture_reserved,pending->pixels.length,__ATOMIC_RELAXED);free_snapshot(&pending->pixels);return;}
+    if(!game_tracker_acquire()){game_pixel_missed(pending->target);game_reserved_snapshot_free(&pending->pixels);return;}
     game_surface_sync();
     struct GameLock* slot=0;
     for(u32 i=0;i<32;++i)if(game_locks[i].object==pending->object && game_locks[i].generation==pending->generation && game_locks[i].epoch==__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED)){slot=game_locks+i;break;}
@@ -309,5 +321,5 @@ static void game_unlock_after(struct GameUnlock* pending,i32 result){
     }
     if(slot && result>=0){if(!s->data && !pending->pixels.width)game_session_invalidate(pending->object);game_lock_clear(slot);}
     game_copy_stage(33);
-    free_snapshot(s);game_tracker_release();
+    game_snapshot_free(s);game_tracker_release();
 }

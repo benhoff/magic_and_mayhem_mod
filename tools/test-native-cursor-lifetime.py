@@ -82,7 +82,7 @@ def main():
             dll=m.build(out/'provider-build',sources)
         import shutil
         shutil.copyfile(dll,out/'MnmDraw.dll')
-        imports={'LoadLibraryA':4,'GetProcAddress':8,'GetModuleHandleA':4,'ExitProcess':4,'CreateFileA':28,'WriteFile':20,'CloseHandle':4,'CreateThread':24,'CreateEventA':16,'SetEvent':4,'WaitForSingleObject':8,'GetCurrentThreadId':0,'GetProcessHeap':0,'HeapAlloc':12,'HeapFree':12,'VirtualAlloc':16,'VirtualProtect':16,'VirtualQuery':12,'ReadFile':20,'GetFileSize':8,'GetEnvironmentVariableA':12}
+        imports={'LoadLibraryA':4,'GetProcAddress':8,'GetModuleHandleA':4,'ExitProcess':4,'CreateFileA':28,'WriteFile':20,'CloseHandle':4,'CreateThread':24,'CreateEventA':16,'SetEvent':4,'WaitForSingleObject':8,'GetCurrentThreadId':0,'GetProcessHeap':0,'HeapAlloc':12,'HeapFree':12,'VirtualAlloc':16,'VirtualProtect':16,'VirtualQuery':12,'ReadFile':20,'GetFileSize':8,'GetEnvironmentVariableA':12,'QueryPerformanceCounter':4,'QueryPerformanceFrequency':4,'GetLastError':0,'SetLastError':4}
         d=out/'kernel32.def';d.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{v}\n' for n,v in imports.items()))
         run('imports',['llvm-dlltool','-m','i386','--kill-at','-d',d,'-l',out/'kernel32.lib'])
         d=out/'gdi32.def';d.write_text('LIBRARY GDI32.dll\nEXPORTS\nSetPixel@16\n');run('gdi-imports',['llvm-dlltool','-m','i386','--kill-at','-d',d,'-l',out/'gdi32.lib'])
@@ -108,8 +108,14 @@ def main():
                 report['profiles'][name]=dict(success=True,assertions=values[1],complete_planes=values[2],installed_hooks=18,queue_accepted=state[12],queue_completed=state[13],queue_cancelled=state[14],queue_full=state[15],busy_retained=state[17],late_clients_refused=state[19],final_status=list(state),journal_rows=len(rows),journal_sha256=sha(out/name/'owner-journal.bin'),remaining_surfaces=0,remaining_devices=0,remaining_dcs=0)
             else:
                 values=struct.unpack('<8I',(out/name/'provider-lifetime.bin').read_bytes())
-                if values[0]!=1 or values[1]<190000 or values[2:]!=(1616,26,1600,16,8,512):raise ValueError('Incomplete execution denominator: '+str(values))
+                if values[0]!=1 or values[1]<190000 or values[2:]!=(1616,32,1600,16,8,512):raise ValueError('Incomplete execution denominator: '+str(values))
                 report['profiles'][name]=dict(success=True,assertions=values[1],complete_planes=values[2],cases=values[3],concurrent_copies=values[4],alias_pairs=values[5],writer_cases=values[6],pin_capacity=values[7],remaining_surfaces=0,remaining_devices=0,remaining_dcs=0)
+                timing=struct.unpack('<26I',(out/name/'provider-scan-cost.bin').read_bytes())
+                if timing[:4]!=(1,20000,64,512):raise ValueError('Incomplete scan benchmark')
+                frequency=timing[4]+(timing[5]<<32)
+                if not frequency:raise ValueError('Zero performance counter frequency')
+                report['profiles'][name]['getter_cost_us']={str(count):[(timing[6+size*10+i*2]+(timing[7+size*10+i*2]<<32))*1e6/frequency/20000 for i in range(5)] for size,count in enumerate((64,512))}
+                report['profiles'][name]['added_retirement_cases']=dict(nested_guard=2,attached_recursive_or_moved_writer=3)
         if a.owner_probe:report.update(changed_byte_anchor_refusals=18,original_functions_executed=True,production_installer_executed=True)
         report['success']=True
     except (ValueError,OSError,subprocess.SubprocessError) as exc:report['error']=str(exc)

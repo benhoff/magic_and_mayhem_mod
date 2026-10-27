@@ -1,11 +1,12 @@
 /* PE32-local value-only write service. Private alias pointers never escape.
  * Return0 handled,1 retain ordinary CPU storage, or an explicit refusal. */
 #include <stdint.h>
+#include "history_lookup.h"
 /* Only the namespace lookup is cached. Allocation publication, final release
  * and physical Flip invalidate before mutation. All admission stays per call;
  * lifecycle mutation remains serialized by the caller's existing lease. */
 static struct NsState* ns_store_cached;
-static void ns_store_invalidate(void){__atomic_store_n(&ns_store_cached,0,__ATOMIC_RELEASE);}
+static void ns_store_invalidate(void){ns_history_lookup_clear();__atomic_store_n(&ns_store_cached,0,__ATOMIC_RELEASE);}
 __declspec(dllexport) i32 WIN NativeDrawCpuStoreV1(void* destination,u32 value,u32 width){
  struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  const u32 error=GetLastError();const uintptr_t at=(uintptr_t)destination;

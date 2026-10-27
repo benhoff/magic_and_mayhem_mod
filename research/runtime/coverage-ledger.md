@@ -1,3 +1,16 @@
+## Native adapter latency integration (2026-10-27)
+
+[Integration review](native-adapter-master-20261027.md) combines adapter58132cda
+with master0357068d while retaining prepared clipped copy/fill plans and guarded
+snapshot borrows. Fresh merged PE32/native controls pass15 CPU and
+23 GPU cases; launcher controls pass18 mocked cases.
+Eight production inputs differ from the parent timing closure. Its19.90/19.92FPS
+results remain historical bounded observations; current combined application
+performance and original-driver comparison remain pending. Independent stages
+are unchanged. Incoming history has12 reviewed commits and
+2856 transitions with no unresolved exact receipts or missing
+payloads, including separate retrospective raw-evidence retention accounting.
+
 ## Original alternate allocation repair — 2026-10-26
 
 An opt-in original-process owner now allocates guarded CPU backing, publishes its
@@ -9,6 +22,24 @@ WORD checks before UI overlays. The campaign paths include Save/Load and two
 display rebuilds per process. No oracle pixels feed rendering. This is an authored
 repair; the historical original publisher remains unknown. Earlier failures and
 source fingerprints are retained separately. See [repair and limits](original-alternate-allocation-repair-20261026.md).
+## Native adapter latency and protected image-copy destinations (2026-10-26)
+
+[Adapter cost investigation](native-adapter-cost-20261026.md) removes repeated
+lifetime scans, guarded checkpoint clones, dirty-interior scans and private
+buffer allocation churn. The checked No-CD image-copy row at0x533aec now admits
+eligible write-only protected destinations through value-only stores while
+retaining source-history restoration, exact dirty masks and forward DWORD
+alias semantics. Bounded controls pass; historical status dimensions remain
+unchanged. Strict original-engine/native-only candidate11 reaches19.90 fresh
+World updates/s (50.26ms), with resumed quiet19.98 and stress19.91FPS.
+Confirmation candidate12 reaches19.92FPS overall,20.00 quiet and19.92 stress
+after resume, over1,833Worlds. Command-channel full-surface CPU transfers
+fall802→31/35; these are distinct from
+zero World producer readbacks. Retained prior Qt diagnostic context, shared-host
+and tracing effects, bounded trace retention, trace-disabled sustained timing,
+all-current application integration and original-driver whole-game equivalence
+remain separate. Failed/reverted attempts and exact source fingerprints remain
+in SQLite. This work does not promote complete engine replacement.
 
 ## Alternate canvas integration with landed master (2026-10-26)
 

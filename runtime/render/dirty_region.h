@@ -15,22 +15,35 @@ static int command_dirty_pixel(const unsigned char* a,const unsigned char* b,con
  for(unsigned i=0;i<bytes;++i)if(a[i]!=b[i]||(mask&&mask[i]))return 1;
  return 0;
 }
-/* A nonclean block is visited once, then each of its complete pixels. This
- * avoids a sliding16-byte rescan for every pixel in dense updates. */
+/* An envelope needs only the first and last dirty pixel of each row.
+ * Skip clean storage blocks at both edges; never rescan the dirty interior.
+ * A nonzero pending-byte mask remains dirty even when values compare equal.
+ * All loads stay within this row's requested half-open pixel interval. */
 static int command_dirty_scan(const unsigned char* before,const unsigned char* after,unsigned stride,unsigned bytes,
  const unsigned char* mask,unsigned x0,unsigned y0,unsigned x1,unsigned y1,unsigned region[4]){
  unsigned left=x1,top=y1,right=0,bottom=0,block=bytes==1?16:bytes==2?8:bytes==4?4:0;
- for(unsigned y=y0;y<y1;++y)for(unsigned x=x0;x<x1;){
-  unsigned at=y*stride+x*bytes,step=block&&block<=x1-x?block:1;
-  if(block&&step==block&&command_clean16(before+at,after+at,mask?mask+at:0)){x+=step;continue;}
-  unsigned end=x+step;
-  for(;x<end;++x){at=y*stride+x*bytes;
-   if(!command_dirty_pixel(before+at,after+at,mask?mask+at:0,bytes))continue;
-   if(x<left)left=x;
-   if(y<top)top=y;
-   if(x+1>right)right=x+1;
-   if(y+1>bottom)bottom=y+1;
+ for(unsigned y=y0;y<y1;++y){
+  unsigned first=x0,last=x1;
+  while(first<last){
+   unsigned at=y*stride+first*bytes;
+   if(block && block<=last-first && command_clean16(before+at,after+at,mask?mask+at:0)){first+=block;continue;}
+   if(command_dirty_pixel(before+at,after+at,mask?mask+at:0,bytes))break;
+   ++first;
   }
+  if(first==last)continue;
+  while(last>first+1){
+   if(block && block<=last-first-1){
+    unsigned at=y*stride+(last-block)*bytes;
+    if(command_clean16(before+at,after+at,mask?mask+at:0)){last-=block;continue;}
+   }
+   unsigned at=y*stride+(last-1)*bytes;
+   if(command_dirty_pixel(before+at,after+at,mask?mask+at:0,bytes))break;
+   --last;
+  }
+  if(first<left)left=first;
+  if(y<top)top=y;
+  if(last>right)right=last;
+  bottom=y+1;
  }
  if(!right)return 0;
  region[0]=left;region[1]=top;region[2]=right;region[3]=bottom;return 1;
