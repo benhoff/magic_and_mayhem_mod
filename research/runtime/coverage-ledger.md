@@ -24271,3 +24271,93 @@ inputs retain historical evidence and pending combined-source re-execution.
 Combined planning controls and coverage audit pass. No new engine, exceptional
 Windows, physical-driver or whole-game/live milestone is claimed.
 See [integration review](palette-master-merge-20261027.md).
+
+
+## Natural late colour modes, RGB555 offline World and NVIDIA fixtures (2026-10-26)
+
+[The remaining rendering batch](rendering-remaining-20261026.md) observes719mode2,
+1183mode3 and104mode1 original colour draws in eight late stockmap1/item15
+World samples after600queue calls. All2006shapes are2x2. The larger explicit
+180second finite observation budget obtains actual samples; shorter/setup
+failures remain retained. Static selected constructor/update stores are recorded
+separately from actual reachability and whole object lifetime/provider recovery.
+The inherited120/four-call observation scenario is not credited for this new
+profile; its counts are static classification, not native CPU splice execution.
+
+The prospective new headless scenario compares14852draws/3840000pixels: native
+and independent original both starting at owned zero agree exactly. Independent
+original-before replay matches captured live output, while native-zero/live
+differs at exactly one pixel per frame,(548,433). Original-only per-record
+observation identifies a terrain clear followed by backend9 wave propagation
+at that pixel in the first frame; earlier source history/writer remains unknown.
+This preserves the negative native/live boundary and grants no live equivalence.
+The retained sixteen busy samples freshly pass19036draws/7680000pixels in all
+three comparisons on current changed shader/decoder code.
+
+`NR.world-rgb555-colour-input` admits explicit offline format1 colour-only
+World requests and `.555` export; default/live/producer consumers retainRGB565.
+Native scene/cache storage selectsRGB555 directly and integer blend mask0x3def;
+RGB565 retains0x7bef. Each software/NVIDIA run compares128authored cases across
+both formats and cached/uncached paths,31587776pixel WORDs,640refusals and9024
+cache hits. Default-format, unsupported primitive/high-bit, previous-frame
+preservation, public preview and zero leaked-surface controls pass. Sprites,
+effects and liveformat1 ingestion remain outside scope.
+
+Fresh4352CPU colour pairs plus384boundary fixtures compare90011152physical
+WORDs/caller state across four modes/both formats. The separate192ordered
+RGB565 World fill/blend fixtures compare38199120pixels and five refusals on
+verified NVIDIA TITAN RTX EGL; no software fallback, window/scanout or FPS
+claim. Ten existing shared shader/scene/cache/effect/surface regressions pass.
+Large fills during active gameplay remain unobserved; authored large-fill
+arithmetic/order, natural invocation and full native history are separate.
+Original manifests bracket original-consuming runs. Exact SQLite evidence,
+failed attempts, incremental sources and verified backups precede RAM closeout.
+No web UI layout, gameplay balance or whole-renderer/replacement claim changes.
+
+
+### Rendering integration with current master — 2026-10-27
+
+Combine rendering `cb24376e` with current master `432d8b36`. Rendering code
+has no overlapping implementation edits; merge the coverage register, receipt
+journal and ledger without changing historical evidence hashes. Fresh
+`RRG27.merge-rgb555-*` controls recompile the merged code and compare 128
+colour-only RGB555/RGB565 World fixtures against unchanged original `547d80`:
+31,587,776 pixel comparisons per software/NVIDIA backend, 640 refusals each,
+cache controls, public offline preview and no leaked surfaces. Original manifests
+pass before and after both runs. Raw inputs, outputs, binaries and logs survive
+a complete SQLite round trip.
+
+Intervening surface-wrapper and capture-producer edits change provenance in the
+six older RRG26 comparison reports. Retain them as historical; the fresh colour
+policy runs do not renew the complete CPU/large-fill or natural/busy capture
+claims. The archived one-pixel native/live history difference, natural large-fill
+reachability, live RGB555, RGB555 sprites/effects, physical presentation and live
+replacement remain open. `merge-source-contract-check-20261027-01.json` and
+`merge-audit-20261027-03.json` record the combined-tree boundaries. The first
+two audits retain archival-provenance schema errors as negative evidence. Final
+catalog03 records actual producer fingerprints copied from the fresh execution
+declarations; storage evidence grants no additional engine milestone.
+
+Use pinned, hash-verified materialized local SQLite backups for this closeout.
+The cold archive remains below its unchanged100GiB reserve; this merge makes no
+cold write or publication and removes no evidence. Preserve all unrelated main
+edits through the exact owned reservation/restoration transaction.
+
+
+## RGB555 rendering final master integration — 2026-10-27
+
+The reviewed rendering batch is integrated after concurrent camera/palette
+master changes with both parents' records and exact historical receipts retained.
+All 18 rendering source/test/producer files and both fresh RGB555 comparison
+fingerprints remain exact. Existing CPU/fill/capture historical limits and live,
+physical presentation and replacement gaps remain open. Combined planning,
+census and normal staged checks cover integration; no broader engine milestone
+is promoted. See [rendering closeout](rendering-remaining-20261026.md).
+
+
+Final RGB555 integration source-impact review also identifies three changed
+renderer compiler inputs in inherited camera and whole-session palette runs.
+The nine linked behaviors retain those executions as historical, with explicit
+pending combined-source session re-execution. Numerical palette modes/chains
+and providers retain unchanged declared inputs; fresh RGB555 reports remain
+exact. See the [parent source-impact record](rendering-remaining-results-20261026/merge-parent-source-impact-20261027-01.json).

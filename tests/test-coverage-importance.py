@@ -111,6 +111,7 @@ class ImportanceTest(unittest.TestCase):
             'NP.world-black-caller-continuations',
             'NR.scene-frame-camera',
             'NR.world-constant-fill',
+            'NR.world-rgb555-colour-input',
             'RE.terrain-single-cell-captured-cycle',
             'RE.terrain-single-cell-global-storage',
             'RS.alternate-canvas-dispatch-composition',

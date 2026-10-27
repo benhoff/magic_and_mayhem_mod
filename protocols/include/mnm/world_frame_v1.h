@@ -21,6 +21,9 @@
 /* Tagged extension: backend11, no frame/index, five DWORD geometry/channels. */
 #define MNM_WORLD_ADDITIVE_RECT 6u
 #define MNM_WORLD_COLOUR_RECT 7u
+/* Header word at byte72 is the original packed format (0 RGB565,1 RGB555).
+ * Default/live readers still require0. Explicit offline colour-only admission
+ * may accept1 with operation7 exclusively and canonical fifteen-bit sources. */
 /* Tagged extension: backend13, indexed frame and selected RGB565 palette.
  * Older v1 decoders reject this tag rather than treating it as copy. */
 #define MNM_WORLD_ADDITIVE_SPRITE 8u
