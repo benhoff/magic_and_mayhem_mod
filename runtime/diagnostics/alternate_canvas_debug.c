@@ -42,7 +42,7 @@ static void write_trace(void){
 
 static struct {u32 id;HANDLE handle;} threads[256];
 static u32 header[64]={0x414d4e4d,0x31305743,3,256},rows[256][16],row_count;
-static u32 last_values[5],have_values;
+static u32 last_values[5],have_values,repair_watch;
 static char error_text[256];
 /* V3 header39..50: owned HWND,client x/y/width/height,samples,outer RECT,
  * foreground HWND and its owning PID.
@@ -67,7 +67,7 @@ static void emit(u32 event,u32 tid,CONTEXT* c,u32 hit){
  observe_client();
  u32 values[5];read_child(0x6e1f68,values,20);
  u32 changed=!have_values;for(u32 i=0;i<5;++i)changed|=values[i]!=last_values[i];
- if(event==3&&!changed&&header[12]>8&&!values[0]&&!values[1])return;
+ if(event==3&&!changed&&header[12]>8&&(repair_watch||(!values[0]&&!values[1])))return;
  if(row_count==256)fail(93);u32* r=rows[row_count++];r[0]=row_count;r[1]=event;r[2]=tid;r[3]=c?c->Eip:0;r[4]=hit;
  for(u32 i=0;i<5;++i){r[5+i]=values[i];last_values[i]=values[i];}have_values=1;
  if(c){r[10]=c->Esp;r[11]=c->Ecx;r[12]=c->Edx;r[13]=c->Eax;}
@@ -103,6 +103,7 @@ static void check_code(void){u8 bytes[sizeof(alternate_canvas_pinned)];read_chil
   read_child(0x58c05a,observed,16);for(u32 i=0;i<16;++i)if(observed[i]!=alternate_fast_pinned[i])fail(99);++header[17];}
 }
 void mainCRTStartup(void){
+ char owned[2];repair_watch=GetEnvironmentVariableA("MNM_ALTERNATE_REPAIR_WATCH",owned,2)==1&&owned[0]=='1';header[51]=repair_watch;
  char trace[2];if(GetEnvironmentVariableA("MNM_ALTERNATE_ERROR_TRACE",trace,2)==1){if(trace[0]<'1'||trace[0]>'3')ExitProcess(108);trace_errors=trace[0]-'0';}
  output=CreateFileA("alternate-watch.bin",GENERIC_WRITE,FILE_SHARE_READ,0,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,0);if(output==INVALID_HANDLE_VALUE)ExitProcess(80);save();
  char* command=GetCommandLineA();if(*command=='"'){++command;while(*command&&*command!='"')++command;if(*command)++command;}else while(*command&&*command!=' '&&*command!='\t')++command;

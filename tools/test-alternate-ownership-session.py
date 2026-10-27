@@ -59,16 +59,18 @@ def main():
  resource.setrlimit(resource.RLIMIT_CORE,(0,0));p=argparse.ArgumentParser(description=__doc__)
  p.add_argument('--output',type=Path,required=True);p.add_argument('--report',required=True);p.add_argument('--source-game',type=Path,required=True)
  p.add_argument('--prefix-owner-root',type=Path,required=True);p.add_argument('--wine-prefix',type=Path,required=True)
+ p.add_argument('--allocation-repair',action='store_true',help='Install the authored guarded alternate owner; not original ownership recovery')
  p.add_argument('--journey',choices=('battles','campaign-rebuild'),default='battles')
  p.add_argument('--debug-choice',choices=('both','disabled','enabled'),default='both')
  p.add_argument('--initial-video',choices=('both','low','high'),default='both')
  p.add_argument('--trace-campaign-copy',action='store_true',help='Observe original campaign caller4b2e21 copy call/return, retaining both pointer watches but replacing shutdown watch');p.add_argument('--windowed',action='store_true',default=True);p.add_argument('--desktop-depth',type=int,choices=(16,24),default=16);p.add_argument('--trace-errors',action='store_true');p.add_argument('--trace-blt',action='store_true');p.add_argument('--enabled-first',action='store_true');p.add_argument('--frames',type=int,default=240,choices=range(40,1001));p.add_argument('--restarts',type=int,default=2,choices=(1,2,3));a=p.parse_args();out=a.output.resolve()
+ if a.allocation_repair and (a.debug_choice!='enabled' or a.trace_campaign_copy or a.trace_errors or a.trace_blt):p.error('Repair validation requires enabled setting and normal shutdown watches')
  if a.trace_campaign_copy:a.trace_blt=True
  if (a.trace_blt or a.trace_errors) and a.journey!='campaign-rebuild':p.error('Diagnostic trace requires the bounded campaign failure probe; normal ownership sessions retain the shutdown watch')
  if a.trace_blt and a.trace_errors:p.error('Select one diagnostic execution watch')
  if out.exists() or not out.is_relative_to(ROOT/'working/tests'):p.error('Require new owned output')
  out.mkdir(parents=True);(out/'.retain').write_text('All-thread original alternate pointer and dispatch observations,including negative evidence.\n')
- j=read_json(ROOT/'research/runtime/coverage/register.json',root=ROOT);b=next(b for b in j['behaviors'] if b['id']==ID)
+ j=read_json(ROOT/'research/runtime/coverage/register.json',root=ROOT);behavior_id='NP.original-alternate-allocation-repair' if a.allocation_repair else ID;b=next(b for b in j['behaviors'] if b['id']==behavior_id)
  paths=required_sources(b)|{'tools/test-alternate-ownership-session.py'};todo=list(paths)
  while todo:
   name=todo.pop();path=ROOT/name
@@ -79,7 +81,7 @@ def main():
     key=child.relative_to(ROOT).as_posix()
     if key not in paths:paths.add(key);todo.append(key)
  sources={n:evidence_digest(ROOT/n,root=ROOT) for n in sorted(paths)}
- report=dict(schema=1,success=False,sources=sources,claims=[dict(behavior=ID,contract_sha256=behavior_contract(b,{v['id']:v for v in j['builds']}))],original_sha256=BUILD,commands=[],cohorts=[],live_replacement=False,all_writers_recovered=False,original_allocation_recovered=False,
+ report=dict(schema=1,success=False,sources=sources,claims=[dict(behavior=behavior_id,contract_sha256=behavior_contract(b,{v['id']:v for v in j['builds']}))],original_sha256=BUILD,commands=[],cohorts=[],live_replacement=False,all_writers_recovered=False,original_allocation_recovered=False,
   scope='Repeated original windowed Quick Battles, Escape/results Continue, results Quit/return, Main Quit and fresh-process restart. Read-only hardware watchpoints on both alternate pointer slots and original dispatch plus the selected shutdown/error-reporter/copy call-return diagnostic for every created process thread; authored positive control and natural original Quick Battle sessions across video/configuration choices. Menu navigation is an explicit adapter; Escape uses physical input on the private X display. Cleanup termination is a failed journey, not normal Quit or universal reachability evidence.')
  report['windowed_argument']=a.windowed;report['desktop_depth']=a.desktop_depth
  report['journey']=a.journey
@@ -91,6 +93,10 @@ def main():
    path=Path(shutil.which(name));result=subprocess.run([str(path),option],capture_output=True,text=True,check=True,timeout=5)
    report['physical_tools'][name]=dict(path=str(path.resolve()),sha256=digest(path),version=result.stdout.splitlines()[0])
  report['diagnostic_mode']='campaign_copy_call_return' if a.trace_campaign_copy else 'copy_call_return' if a.trace_blt else 'error_reporter' if a.trace_errors else 'shutdown'
+ if a.allocation_repair:
+  scenario=next(x for x in j['scenarios'] if x['id']==('OA1.campaign' if a.journey=='campaign-rebuild' else 'OA1.battles'))
+  report['claims'][0]['scenarios']={scenario['id']:scenario_contract(scenario)}
+  report.update(compatibility_owner_installed=True,scope='Authored original alternate allocation repair across the selected original journeys. Guarded CPU generation and nominal DirectDraw offscreen extent; original dispatcher/World/copy execute. Publications are authored by the repair, not recovered natural original publications.')
  if a.trace_campaign_copy:
   diag=next(x for x in j['behaviors'] if x['id']=='RS.campaign-padded-presentation-error')
   scenario=next(x for x in j['scenarios'] if x['id']=='ACO7.original-campaign-error')
@@ -158,11 +164,15 @@ def main():
   # executable,even if this working installation has an earlier adapter.
   report['installation_executable']=dict(sha256=installation_executable,used_as_executable_input=False)
   stage(ROOT, Path(game), Path(source), kind="game")
-  for name in ['Chaos.exe','MnmMenu.dll','Save','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg','CFG/chaos.cfg','CFG/Encrypted/chaos.cfg']:
+  for name in ['Chaos.exe','MnmMenu.dll','MnmAlt.dll','Save','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg','CFG/chaos.cfg','CFG/Encrypted/chaos.cfg']:
    if not (game/name).resolve().is_relative_to(game.resolve()):raise ValueError('Escaping staged write target '+name)
   if a.journey=='campaign-rebuild':(game/'Save').mkdir(exist_ok=True)
   shutil.copyfile(menu,game/'MnmMenu.dll')
   patch=load('alternate_import','tools/prepare-shadow-experiment.py').add_import;staged=patch(raw,'MnmMenu.dll','MenuAnchor',b'.altmenu')
+  if a.allocation_repair:
+   owner=load('allocation_repair_builder','tools/build-original-alternate-owner.py').build(out/'allocation-owner-build')
+   staged=load('allocation_repair_stage','tools/stage-original-alternate-owner.py').stage_bytes(staged,allow_existing_imports=True)
+   shutil.copyfile(owner,game/'MnmAlt.dll');report['allocation_owner_dll_sha256']=digest(owner)
   for section in image.sections:
    at=section['offset'];size=section['stored']
    if staged[at:at+size]!=raw[at:at+size]:raise ValueError('Original section changed')
@@ -192,6 +202,7 @@ def main():
    channel_path=case/'channel.bin';raw_channel=bytearray(size);raw_channel[:16]=magic+struct.pack('<II',version,size);struct.pack_into('<3I',raw_channel,16,2,1,1);channel_path.write_bytes(raw_channel)
    channel_file=channel_path.open('r+b');channel=mmap.mmap(channel_file.fileno(),0);heartbeat=1;sequence=2;request=0;trace=[]
    child_env=env|dict(MNM_MENU_CHANNEL=win(channel_path),MNM_MENU_OBSERVE=win(case/'menus.bin'),MNM_ALTERNATE_CWD=win(game),WINEDLLOVERRIDES='ddraw=b;dplay,dplayx,dpwsockx=n')
+   if a.allocation_repair:child_env.update(MNM_ORIGINAL_ALTERNATE_OWNER='1',MNM_ALTERNATE_REPAIR_WATCH='1',MNM_ORIGINAL_ALTERNATE_LOG=win(case/'alternate-owner.bin'))
    if a.trace_errors or a.trace_blt:child_env['MNM_ALTERNATE_ERROR_TRACE']='3' if a.trace_campaign_copy else '2' if a.trace_blt else '1'
    log=(case/'game.log').open('x');process=subprocess.Popen(['wine','explorer','/desktop=alternate-watch,1024x768',str(out/'debugger.exe'),str(game/'Chaos.exe'),*(['-win'] if a.windowed else [])],cwd=case,env=child_env,stdout=log,stderr=subprocess.STDOUT)
    host_lock=threading.Lock()
@@ -321,7 +332,11 @@ def main():
     if not proof['complete'] or proof['bounded_termination'] or proof['child_exit'] or not proof['shutdown_calls'] or proof['dispatch_calls']<(5 if journey else 2)*a.frames or proof['image_base']!=0x400000:raise ValueError('Incomplete normal original session')
     dispatch=[r for r in proof['rows'] if r[1]==3]
     if not dispatch or any(bool(r[9])!=enabled for r in dispatch) or bool(proof['observed_video'])!=video:raise ValueError('Original video/DEBUG choices were not observed')
-    report['cohorts'].append(dict(video=video,use_malloced_backbuffer=enabled,restart=restart,configuration=cfg,menu_actions=trace,battles=battles,campaign=journey,proof=proof,outcome='normal_quit',normal_exit=True))
+    owner_proof=None
+    if a.allocation_repair:
+     from original_alternate_owner import decode as decode_owner,accept as accept_owner
+     owner_proof=accept_owner(decode_owner(case/'alternate-owner.bin'),live=True)
+    report['cohorts'].append(dict(allocation_owner=owner_proof,video=video,use_malloced_backbuffer=enabled,restart=restart,configuration=cfg,menu_actions=trace,battles=battles,campaign=journey,proof=proof,outcome='normal_quit',normal_exit=True))
    except (OriginalConfigurationRefused,OSError,ValueError,subprocess.SubprocessError,AssertionError) as failure:
     report['failed_cohort']=dict(case=case.name,video=video,use_malloced_backbuffer=enabled,menu_actions=trace,error=str(failure),proof=progress())
     if a.journey=='campaign-rebuild':
@@ -336,6 +351,9 @@ def main():
      except subprocess.TimeoutExpired:process.terminate();process.wait(timeout=10)
     if report.get('failed_cohort',{}).get('case')==case.name:
      report['failed_cohort']['final_proof']=progress()
+     if a.allocation_repair and (case/'alternate-owner.bin').exists():
+      from original_alternate_owner import decode as decode_owner
+      report['failed_cohort']['allocation_owner']=decode_owner(case/'alternate-owner.bin')
      if a.trace_blt or a.trace_errors:
       path=case/('alternate-blt.bin' if a.trace_blt else 'alternate-error.bin')
       if path.exists():
@@ -366,7 +384,8 @@ def main():
   if any(digest(source/path)!=v['sha256'] for path,v in report['source_installation_inputs'].items()):raise ValueError('Source installation input changed')
   if any(digest(Path('/usr/lib/wine/i386-windows')/name)!=h for name,h in provider.items()):raise ValueError('Provider changed')
   if any(digest(Path(v['path']))!=v['sha256'] for v in report.get('physical_tools',{}).values()):raise ValueError('Private physical-input tool changed')
-  report.update(normal_quit_sessions=len(report['cohorts']),observed_enabled_world=any(c['use_malloced_backbuffer'] and c['outcome']=='normal_quit' for c in report['cohorts']),error_attribution_validated=bool(a.trace_blt or a.trace_errors) and all(c.get('error_trace',{}).get('validated',False) for c in report['cohorts'] if a.trace_blt or c['use_malloced_backbuffer']),success=True,original_game_executed=True,observed_pointer_writes=any(c['proof']['write_events'] for c in report['cohorts']),observed_natural_publications=any(r[1]==2 and (r[5] or r[6]) for c in report['cohorts'] for r in c['proof']['rows']),observed_alternate_dispatch=any(r[5]!=0 for c in report['cohorts'] for r in c['proof']['rows'] if r[1]==3))
+  report['observed_repair_publications']=a.allocation_repair and any(c.get('allocation_owner',{}).get('publications',0) for c in report['cohorts'])
+  report.update(normal_quit_sessions=len(report['cohorts']),observed_enabled_world=any(c['use_malloced_backbuffer'] and c['outcome']=='normal_quit' for c in report['cohorts']),error_attribution_validated=bool(a.trace_blt or a.trace_errors) and all(c.get('error_trace',{}).get('validated',False) for c in report['cohorts'] if a.trace_blt or c['use_malloced_backbuffer']),success=True,original_game_executed=True,observed_pointer_writes=any(c['proof']['write_events'] for c in report['cohorts']),observed_natural_publications=not a.allocation_repair and any(r[1]==2 and (r[5] or r[6]) for c in report['cohorts'] for r in c['proof']['rows']),observed_alternate_dispatch=any(r[5]!=0 for c in report['cohorts'] for r in c['proof']['rows'] if r[1]==3))
  except (OSError,ValueError,subprocess.SubprocessError,AssertionError) as error:report['error']=str(error)
  finally:
   if process is not None and process.poll() is None:process.terminate();process.wait(timeout=10)

@@ -25,7 +25,7 @@ def decode(path):
             raise ValueError('Copy routes row identity')
         if version==2:
             first,last,source,target=r[40:44]
-            if bool(first)!=bool(last) or first>last or (first and (not source or not target)) or (r[15] not in (1,2) and any(r[40:44])) or (r[15]==1 and first!=last):
+            if bool(first)!=bool(last) or first>last or (first and (not source or not target)) or (r[15] not in (1,2) and any(r[40:44])) or (r[15]==1 and first!=last and (r[11] or not r[23])):
                 raise ValueError('Copy routes emitted command binding')
         state = r[10]
         if not state & 2 or not state & 16 or (r[5] and not state & 1):

@@ -21,7 +21,7 @@ struct LiveMenuSessionTestAccess {
 };
 static void timingChecks(){
     QTemporaryDir root;require(root.isValid());
-    for(unsigned variant=0;variant<14;++variant){
+    for(unsigned variant=0;variant<17;++variant){
         LiveMenuSession session("/unused");QuickBattleResultWidget widget;LiveResultMenuController controller(session,widget);
         const auto path=root.filePath(QString("results-%1.bin").arg(variant));LiveMenuSessionTestAccess::initialize(session,path);
         QFile peer(path);require(peer.open(QIODevice::ReadWrite));auto* bytes=peer.map(0,MNM_MENU_V5_SIZE);require(bytes);
@@ -64,7 +64,18 @@ static void timingChecks(){
         if(variant==9){LiveMenuSessionTestAccess::expire(session);LiveMenuSessionTestAccess::poll(session);require(failures==1&&!handoffs&&get(7)==1);peer.unmap(bytes);continue;}
         if(variant==10){state(4,1,1,MNM_MENU_RETIRED);LiveMenuSessionTestAccess::poll(session);require(failures==1&&!handoffs&&get(7)==1);peer.unmap(bytes);continue;}
         if(variant==11){state(4,1,0,MNM_MENU_STALE,123,26,1,1);LiveMenuSessionTestAccess::poll(session);require(failures==1&&!handoffs&&get(7)==1);peer.unmap(bytes);continue;}
-        const auto request=get(7);state(6,request,0);LiveMenuSessionTestAccess::poll(session);require(!failures&&handoffs==1);
+        const auto request=get(7);
+        if(variant>=14){
+            // The original callback may finish the entire return before the
+            // host observes its ACK. That ready root is already fresh proof;
+            // there need not be another generation change afterwards.
+            const auto root=variant==15?3u:22u;
+            state(6,request,variant==16?0:1,MNM_MENU_OK,123,root);LiveMenuSessionTestAccess::poll(session);
+            if(variant==16){require(handoffs==1&&!enabled);state(7,request,1,MNM_MENU_OK,123,root);LiveMenuSessionTestAccess::poll(session);}
+            require(!failures&&enabled&&handoffs==(variant==16?1u:0u));
+            peer.unmap(bytes);continue;
+        }
+        state(6,request,0);LiveMenuSessionTestAccess::poll(session);require(!failures&&handoffs==1);
         for(int i=0;i<4;++i){state(7+i,request,0);LiveMenuSessionTestAccess::poll(session);require(!session.requestResults(MNM_MENU_RESULT_QUIT));require(handoffs==1&&get(7)==request);}
         peer.unmap(bytes);
     }
@@ -83,5 +94,5 @@ int main(int argc,char** argv){
     require(widget.findChild<QLabel*>("quickResultText7")->isHidden()&&widget.findChild<QPushButton*>("quickResultAction1")->hasFocus()&&!quit->isEnabled());
     state.results.context=2;QString error;require(!controller.present(state,&error)&&!error.isEmpty());
     timingChecks();
-    std::puts("Results controller checks passed: 14 timing/identity cases");
+    std::puts("Results controller checks passed: 17 timing/identity cases");
 }

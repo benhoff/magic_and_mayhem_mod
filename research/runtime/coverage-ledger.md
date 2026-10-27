@@ -1,3 +1,15 @@
+## Original alternate allocation repair — 2026-10-26
+
+An opt-in original-process owner now allocates guarded CPU backing, publishes its
+centered copy source before its rendering base, and retires it before original
+rebuild/shutdown. Its nominal DirectDraw destination avoids the debug-padded
+capture overflow. Nine controls and four normal original processes pass both
+resolutions: 715 World copies, 8 balanced generations and 15744000 source/destination
+WORD checks before UI overlays. The campaign paths include Save/Load and two
+display rebuilds per process. No oracle pixels feed rendering. This is an authored
+repair; the historical original publisher remains unknown. Earlier failures and
+source fingerprints are retained separately. See [repair and limits](original-alternate-allocation-repair-20261026.md).
+
 ## Alternate canvas integration with landed master (2026-10-26)
 
 The [final integration](alternate-completion-master-20261026.md) combines
@@ -23943,3 +23955,64 @@ RE.terrain-single-cell-global-storage identifies installed map006c5490 byte+6380
 TL.special-size-one now retains whole-program aliases/writers, other source-producing paths, other builds and natural index-one reachability beyond these admitted inputs. New storage understanding is scoped; implementation/comparison/integration/replacement remain none. Existing captured-cycle milestones remain independent, with fresh current-source proof. The history review accounts42 commits and18838 transitions since c5137b9c across both parents:18796 exact receipts,42 journal/marker exclusions,no missing transitions. This is provenance accounting, not a retrospective gate-pass claim. The planning fixture acknowledges the new storage contract and the pre-existing unrated NR.world-constant-fill without changing weights.
 
 The first combined audit retained four input-classification errors: two prior cohort JSON reports were listed as binary inputs. Their hashes remain audited source provenance; only the65 actual binary packets/config inputs are declared recorded inputs. No historical report is rewritten. Configuration lineage confirms different packed seeds decode to identical clean/NoCD effects text and the exact267 original-probe fields. Both legacy focused TL.special-size-one rows receive the current gap text/document links while retaining their prior evidence and statuses.
+
+### Windowed input and natural GPU callers — 2026-10-26 follow-up
+
+- `HOST.desktop-frame-input` adds unique named-window discovery within a matching
+  Wine desktop, current X11 coordinate translation and explicit desktop input
+  wire v2; v1 client coordinates remain supported. Current controls03 passes
+  normal/high-DPI input, wire admission and both synthetic PE32 polling modes.
+- `HOST.results-ack-ready-root` accepts an already-ready Main/Quick root in the
+  guarded successful Results Quit ACK. Its new test fails before the fix and all
+  17 timing/identity cases pass after it; other transitions retain their guards.
+- Current quick05 completes two windowed World visits, Qt Right/focus-release/
+  Escape/resize, native Results/Main Quit and shell exit 0. Strict closed census
+  has 1,380 rows, no active misses, 143 checked original GPU calls and 28 actual
+  bounds-clipped calls. END is recorded and graphics retirement has zero devices,
+  surfaces, DCs, clippers, palettes or pixel bytes; native resident retirement
+  succeeds. This is bounded observation, not whole-engine equivalence.
+- The final ordinary quick04 reaches Quit and zero graphics owners but reports
+  native GAP reason2 after a generation/epoch-invalidated whole-copy commit;
+  prior stage8 timeout and signal11 remain negative evidence. No deterministic
+  teardown or integration/replacement status promotion follows from quick05.
+- Natural self-copy and keyed GPU-source callers remain unproved. All 678 final
+  keyed calls have CPU sources. Whole-output validation still refuses 108
+  CPU-source clipper copies, 20 target-rectangle copies and one unsupported fill;
+  the strict validator is unchanged. See
+  [the findings and exact evidence](windowed-input-gpu-callers-20261026.md).
+
+
+### CPU copy clipping and history continuity — 2026-10-26
+
+`NP.native-cpu-copy-plan` adds read-only native CPU clip preparation, ordered piece
+propagation and current destination materialization specifically for clipped CPU
+transforms. Current15CPU/23GPU controls and48Python output/routing/geometry refusal
+controls pass. The bounded current Quick Battle/Results/Quit observation prepares
+all1370calls, including124clippedCPU copies and one clippedfill, and independently
+checks all1345COPYoutputs.141GPU-source calls include88actual geometric reductions
+under ordinary Win32 exposure. END/normalQuit/zero graphics owners and no GAP or
+commit refusal pass. The earlier eager-materialization zero-GPU regression and
+setup/source-stability failures are retained separately. See
+[cpu-copy-clipping-20261026.md](cpu-copy-clipping-20261026.md) and SQLite-backed
+`cpu-copy-results-20261026/` results. Natural self/keyed GPU-source callers remain
+unobserved;fill UPDATE output,other contexts,arbitrary readers,original-driver
+parity and universal intermittent reliability remain separate. No milestone is
+promoted;historical evidence hashes remain intact.
+
+Final reader-only follow-up keeps emptyCPUintervals fail-closed and counts one
+multi-piece keyed application call once. Fresh48Python controls and immutable
+replay02 pass all1345COPYbindings. Only two Python diagnostic/control files changed
+after the native engine/live execution;exact preimages and unchanged engine hashes
+are retained in current-validation02. This is not another original launch.
+
+### CPU copy and windowed-input fixes integrated with master — 2026-10-26
+
+The bounded merge of `7752b171` (including `9e79af2b`) with `8c0c4ea4`
+retains both coverage histories and refreshes the combined source census. The
+[merge review](cpu-copy-master-integration-20261026.md) separates fresh merged
+controls/builds from historical GPU/native and original-game executions. The
+exact history audit covers5,160 file transitions;19 verified raw-artifact
+additions receive retrospective receipts, with no historical gate assertion.
+Natural self/keyed GPU callers, additional clip-region reduction, empty CPU-plan
+proof, fill UPDATE output and broader reader/driver/reliability coverage remain
+pending; no engine milestone is promoted.

@@ -114,8 +114,48 @@ xcb_window_t WindowHost::inputWindow(xcb_window_t desktop,QSize size) const{
     }
     return candidate;
 }
-bool WindowHost::sendInput(xcb_window_t window,uint8_t type,uint8_t detail,uint16_t state,QPoint position) const{
+xcb_window_t WindowHost::desktopInputWindow(xcb_window_t desktop,QSize frameSize) const{
+    if(!available() || !desktop || frameSize.isEmpty() || frameSize.width()>2048 || frameSize.height()>2048)return 0;
+    auto* geometry=xcb_get_geometry_reply(connection_,xcb_get_geometry(connection_,desktop),nullptr);
+    const bool matches=geometry && QSize(geometry->width,geometry->height)==frameSize;
+    std::free(geometry);if(!matches)return 0;
+    // Bind only a unique named original game window, never an arbitrary smaller
+    // input subscriber (IME, dialog or Wine desktop). Preserve the existing
+    // exact-frame selector for clients without this build's game title.
+    QVector<xcb_window_t> pending{desktop};xcb_window_t candidate=0;int visited=0;
+    for(int depth=0;depth<8 && !pending.isEmpty();++depth){
+        QVector<xcb_window_t> next;
+        for(auto window:pending){
+            if(++visited>4096)return 0;
+            if(depth>0 && title(window)==QStringLiteral("Magic & Mayhem")){
+                auto* a=xcb_get_window_attributes_reply(connection_,xcb_get_window_attributes(connection_,window),nullptr);
+                auto* g=xcb_get_geometry_reply(connection_,xcb_get_geometry(connection_,window),nullptr);
+                auto* p=xcb_translate_coordinates_reply(connection_,xcb_translate_coordinates(connection_,window,desktop,0,0),nullptr);
+                constexpr uint32_t mask=XCB_EVENT_MASK_KEY_PRESS|XCB_EVENT_MASK_KEY_RELEASE|XCB_EVENT_MASK_BUTTON_PRESS|XCB_EVENT_MASK_BUTTON_RELEASE|XCB_EVENT_MASK_POINTER_MOTION;
+                const bool valid=a && g && p && a->map_state==XCB_MAP_STATE_VIEWABLE && a->_class==XCB_WINDOW_CLASS_INPUT_OUTPUT &&
+                    (a->all_event_masks&mask)==mask && g->width>0 && g->height>0 && g->width<=2048 && g->height<=2048 &&
+                    p->dst_x<frameSize.width() && p->dst_y<frameSize.height() && p->dst_x+g->width>0 && p->dst_y+g->height>0;
+                std::free(a);std::free(g);std::free(p);
+                if(valid){if(candidate)return 0;candidate=window;}
+            }
+            auto* tree=xcb_query_tree_reply(connection_,xcb_query_tree(connection_,window),nullptr);
+            if(!tree)return 0;
+            const auto* children=xcb_query_tree_children(tree);
+            for(int i=0;i<xcb_query_tree_children_length(tree);++i)next.append(children[i]);
+            std::free(tree);
+        }
+        pending=next;
+    }
+    if(!pending.isEmpty())return 0;
+    return candidate?candidate:inputWindow(desktop,frameSize);
+}
+bool WindowHost::sendInput(xcb_window_t window,uint8_t type,uint8_t detail,uint16_t state,QPoint position,xcb_window_t coordinateWindow) const{
     if(!available() || !window)return false;
+    if(coordinateWindow){
+        auto* translated=xcb_translate_coordinates_reply(connection_,xcb_translate_coordinates(connection_,coordinateWindow,window,position.x(),position.y()),nullptr);
+        if(!translated)return false;
+        position={translated->dst_x,translated->dst_y};std::free(translated);
+    }
     auto* coordinates=xcb_translate_coordinates_reply(connection_,xcb_translate_coordinates(connection_,window,root_,position.x(),position.y()),nullptr);
     if(!coordinates)return false;
     // Key, button and motion events have the same wire layout.

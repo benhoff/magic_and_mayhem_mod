@@ -29,12 +29,31 @@ class CallerOutput(unittest.TestCase):
     def write(self):
         b=self.base
         self.path.write_bytes(struct.pack('<32I',*self.header)+b''.join(struct.pack('<44I',*r) for r in self.rows)+bytes((65536-len(self.rows))*176))
-        (b.output/'copies.jsonl').write_text(json.dumps(b.record)+'\n'+json.dumps(self.cpu)+'\n');b.write_report()
+        (b.output/'copies.jsonl').write_text(json.dumps(b.record)+'\n'+json.dumps(self.cpu)+'\n'+''.join(json.dumps(r)+'\n' for r in getattr(self,'extra',[])));b.write_report()
 
     def validate(self):return output.validate(self.base.experiment,self.base.output)
 
     def test_actual_cpu_keyed_and_gpu_bind_full_destinations(self):
         r=self.validate();self.assertEqual((r['cpu_keyed_calls'],r['gpu_copy_calls'],r['caller_bound_commands']),(1,1,2));self.assertEqual(r['post_retirement_calls_excluded'],2)
+
+    def test_clipped_cpu_interval_keeps_all_piece_bindings(self):
+        row=self.rows[1];row[11]=0;row[12]=0x8000;row[10]|=32;row[23]=1;self.header[18]=1;row[41]=9
+        self.extra=[copy.deepcopy(self.cpu)];self.extra[0]['sequence']=9
+        self.base.report.update(copies_seen=3,copies_checked=3,diagnostic_native_readbacks=9,diagnostic_readback_bytes=432,pixels_compared=36,retained_pixel_cases=3)
+        self.write();r=self.validate();self.assertEqual(r['caller_bound_commands'],3);self.assertEqual(r['cpu_keyed_calls'],1)
+        self.extra[0]['words'][6]+=1;self.write()
+        with self.assertRaises(ValueError):self.validate()
+
+    def test_clipped_cpu_piece_cannot_escape_original_arguments(self):
+        row=self.rows[1];row[11]=0;row[12]=0x8000;row[10]|=32;row[23]=1;self.header[18]=1
+        self.write();self.assertEqual(self.validate()['cpu_copy_calls'],1)
+        row[26]=2;row[30]=3;self.write()
+        with self.assertRaisesRegex(ValueError,'CPU caller'):self.validate()
+
+    def test_clipped_cpu_empty_interval_cannot_hide_missing_output(self):
+        row=self.rows[1];row[11]=0;row[12]=0x8000;row[10]|=32;row[23]=1;self.header[18]=1;row[40:44]=[0,0,0,0]
+        self.write()
+        with self.assertRaisesRegex(ValueError,'CPU copy lacks'):self.validate()
 
     def test_legacy_or_world_only_cannot_claim_all_output(self):
         for selection in ('world-ancestry','',None):

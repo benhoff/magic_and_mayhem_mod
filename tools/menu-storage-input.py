@@ -83,7 +83,8 @@ def main():
             deadline=time.monotonic()+3
             while True:
                 data=a.input_channel.read_bytes()
-                if len(data)==1088 and data[:8]==b'MNMINK01' and struct.unpack_from('<I',data,20)[0]==1:break
+                from input_wire import valid_header as valid_input_header
+                if valid_input_header(data,len(data)) and struct.unpack_from('<I',data,20)[0]==1:break
                 if time.monotonic()>deadline:raise RuntimeError('Native input channel is inactive before storage input')
                 time.sleep(.05)
         action=observe('before') if (a.initiate_tutorial or a.dismiss_dialogue) and a.mode=='mini' else None
