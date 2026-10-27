@@ -76,9 +76,15 @@ def main():
     parser.add_argument('--live-frames',type=int,choices=range(1,257),default=24)
     parser.add_argument('--skip-queues',type=int,default=None,help='Wait this many queue calls before the first sample (World default: 120)')
     parser.add_argument('--interval',type=int,default=1,help='Queue calls between samples')
+    parser.add_argument('--capture-seconds',type=int,choices=range(60,181),default=None,
+                        help='Explicit60..180second budget for finite original-active World observation; existing defaults remain unchanged')
     parser.add_argument('--minimap-owned',action='store_true',help='Observe owned four-view minimap inputs in producer journal V2; original drawing stays active')
     parser.add_argument('--minimap-input-fixture',type=Path,help='Private-Xvfb XTest schedule executable; owned minimap only, 250ms pacing between first16 World calls')
     args=parser.parse_args()
+    if args.capture_seconds is not None and (not args.world_frames or args.world_live or args.canvas_producers or
+            args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix or
+            args.world_raster_batch or args.continuous_queues is not None or args.native_draw):
+        parser.error('--capture-seconds requires finite original-active World observation without replacement')
     if args.world_colour_word is not None and (not args.world_frames or args.world_live or args.canvas_producers or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix):parser.error('Colour checkpoints require finite original-active World capture')
 
     if args.canvas_driver_observe and (not args.canvas_startup or args.native_draw or args.native_creature_drawing or args.native_actor_lifecycle or
@@ -329,7 +335,8 @@ def main():
                     input_fixture=subprocess.Popen([str(args.minimap_input_fixture.resolve()),str(root/'capture'),str(root/'minimap-input.json')],env={**os.environ,'QT_QPA_PLATFORM':'xcb'},stdout=(root/'minimap-input.log').open('x'),stderr=subprocess.STDOUT)
                 send(14,7,rules=rules)
                 if args.magic_items:send(7,12,slots=wait(7)[2])
-            started_live=time.monotonic();deadline=started_live+(3600 if full_rasters else 300 if args.world_producer_handoff else 60)
+            started_live=time.monotonic();capture_budget=args.capture_seconds if args.capture_seconds is not None else (3600 if full_rasters else 300 if args.world_producer_handoff else 60)
+            deadline=started_live+capture_budget
             while time.monotonic()<deadline:
                 if physical_peer and physical_peer.poll() is not None:raise RuntimeError('Original physical peer failed; inspect '+str(root/'physical-report.json'))
                 if args.continuous_queues is not None:
@@ -437,6 +444,7 @@ def main():
             report['glyph_backend']=inspect(root/'glyph-backend',args.glyph_backend)
         if claims:report['claims']=claims['claims']
         report['window_screenshot_requested']=not args.skip_window_screenshot
+        report['capture_budget_seconds']=capture_budget
         if args.canvas_producers:report['producer_oracle_mib']=args.producer_oracle_mib
         report['startup_replay']=args.startup_replay
         if args.startup_queues:

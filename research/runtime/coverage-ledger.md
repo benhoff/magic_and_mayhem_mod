@@ -23911,3 +23911,45 @@ a historical gate assertion. The new capsule restores all 1,015 members with
 matching hashes, sizes and modes. Adoption uses normal Git operations and keeps
 the separate `AS.tag` working edits and untracked inputs; current rendering
 source/contract fingerprints must remain exact after their restoration.
+
+
+## Natural late colour modes, RGB555 offline World and NVIDIA fixtures (2026-10-26)
+
+[The remaining rendering batch](rendering-remaining-20261026.md) observes719mode2,
+1183mode3 and104mode1 original colour draws in eight late stockmap1/item15
+World samples after600queue calls. All2006shapes are2x2. The larger explicit
+180second finite observation budget obtains actual samples; shorter/setup
+failures remain retained. Static selected constructor/update stores are recorded
+separately from actual reachability and whole object lifetime/provider recovery.
+The inherited120/four-call observation scenario is not credited for this new
+profile; its counts are static classification, not native CPU splice execution.
+
+The prospective new headless scenario compares14852draws/3840000pixels: native
+and independent original both starting at owned zero agree exactly. Independent
+original-before replay matches captured live output, while native-zero/live
+differs at exactly one pixel per frame,(548,433). Original-only per-record
+observation identifies a terrain clear followed by backend9 wave propagation
+at that pixel in the first frame; earlier source history/writer remains unknown.
+This preserves the negative native/live boundary and grants no live equivalence.
+The retained sixteen busy samples freshly pass19036draws/7680000pixels in all
+three comparisons on current changed shader/decoder code.
+
+`NR.world-rgb555-colour-input` admits explicit offline format1 colour-only
+World requests and `.555` export; default/live/producer consumers retainRGB565.
+Native scene/cache storage selectsRGB555 directly and integer blend mask0x3def;
+RGB565 retains0x7bef. Each software/NVIDIA run compares128authored cases across
+both formats and cached/uncached paths,31587776pixel WORDs,640refusals and9024
+cache hits. Default-format, unsupported primitive/high-bit, previous-frame
+preservation, public preview and zero leaked-surface controls pass. Sprites,
+effects and liveformat1 ingestion remain outside scope.
+
+Fresh4352CPU colour pairs plus384boundary fixtures compare90011152physical
+WORDs/caller state across four modes/both formats. The separate192ordered
+RGB565 World fill/blend fixtures compare38199120pixels and five refusals on
+verified NVIDIA TITAN RTX EGL; no software fallback, window/scanout or FPS
+claim. Ten existing shared shader/scene/cache/effect/surface regressions pass.
+Large fills during active gameplay remain unobserved; authored large-fill
+arithmetic/order, natural invocation and full native history are separate.
+Original manifests bracket original-consuming runs. Exact SQLite evidence,
+failed attempts, incremental sources and verified backups precede RAM closeout.
+No web UI layout, gameplay balance or whole-renderer/replacement claim changes.
