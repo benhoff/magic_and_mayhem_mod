@@ -46,8 +46,38 @@ class PlayerLaunch(unittest.TestCase):
             self.assertEqual(environment['MNM_NATIVE_PIXEL_NO_FORWARD'], '1')
             self.assertEqual(environment['MNM_PUBLIC_RESIDENT_WORLD'], '1')
             self.assertEqual(environment['MNM_MENU_DIRECTPLAY_DX6'], '1')
+            self.assertEqual(environment['MNM_TERRAIN_LIGHTING'], 'native')
+            self.assertEqual(player.lighting_selection(environment), ('native', 'none'))
+            self.assertEqual(prepare.call_args.args[-1]['MNM_TERRAIN_LIGHTING'], 'native')
+            self.assertNotIn('MNM_TERRAIN_LIGHTING', os.environ)
             prepare.assert_called_once()
             self.assertEqual(run.call_count, 1)  # No wineserver wait before fresh initialization.
+
+    def test_explicit_lighting_modes_reach_preparation_and_owner(self):
+        for mode in ('original', 'observe', 'native'):
+            with self.subTest(mode=mode), self.launch(environment={'MNM_TERRAIN_LIGHTING': mode}) as (prepare, _, run):
+                self.assertEqual(player.main([]), 0)
+                self.assertEqual(prepare.call_args.args[-1]['MNM_TERRAIN_LIGHTING'], mode)
+                self.assertEqual(run.call_args.kwargs['env']['MNM_TERRAIN_LIGHTING'], mode)
+
+    def test_invalid_lighting_policy_refuses_before_prefix_preparation(self):
+        for environment in ({'MNM_TERRAIN_LIGHTING': ''},
+                            {'MNM_TERRAIN_LIGHTING': 'auto'},
+                            {'MNM_TERRAIN_LIGHT_CAPTURE': 'everything'},
+                            {'MNM_TERRAIN_LIGHTING': 'original', 'MNM_TERRAIN_LIGHT_CAPTURE': 'first32'}):
+            with self.subTest(environment=environment), self.launch(environment=environment) as (prepare, _, run):
+                self.assertEqual(player.main([]), 1)
+                prepare.assert_not_called()
+                run.assert_not_called()
+
+    def test_original_lighting_override_bypasses_worker_staging_and_startup(self):
+        from terrain_light_session import Session, stage
+        root = ROOT / 'working/lighting-override-control'
+        environment = {'MNM_TERRAIN_LIGHTING': 'original'}
+        self.assertEqual(stage(root, b'no original artifact', b'unchanged', environment),
+                         (b'unchanged', {}))
+        with Session(root, {}, environment) as session:
+            self.assertIsNone(session.child)
 
     def test_existing_prefix_waits_without_killing_and_reuses(self):
         with self.launch(existing=True) as (prepare, _, run):
@@ -166,18 +196,22 @@ original_prepare = player.prepare_prefix
 def run_report(path):
     import hashlib
     import json
-    from coverage_claims import behavior_contract, required_sources
+    from coverage_claims import behavior_contract, required_sources, scenario_contract
     from coverage_evidence import write_report
     register = json.loads((ROOT / 'research/runtime/coverage/register.json').read_text())
-    behavior = next(b for b in register['behaviors'] if b['id'] == 'NP.native-player-launch')
+    behaviors = [b for b in register['behaviors'] if b['id'] in
+                 ('NP.native-player-launch', 'TL.player-lighting-default')]
     builds = {b['id']: b for b in register['builds']}
-    paths = required_sources(behavior)
+    paths = set().union(*(required_sources(b) for b in behaviors))
     sources = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in sorted(paths)}
-    claim = {'behavior': behavior['id'], 'contract_sha256': behavior_contract(behavior, builds)}
+    claims = [{'behavior': b['id'], 'contract_sha256': behavior_contract(b, builds)} for b in behaviors]
+    scenario = next(s for s in register['scenarios'] if s['id'] == 'TL.player-lighting-default-controls')
+    next(c for c in claims if c['behavior'] == 'TL.player-lighting-default')['scenarios'] = {
+        scenario['id']: scenario_contract(scenario)}
     result = unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(PlayerLaunch))
     stable = all(hashlib.sha256((ROOT / p).read_bytes()).hexdigest() == sha for p, sha in sources.items())
     report = dict(schema=1, success=result.wasSuccessful() and stable, sources_stable=stable,
-                  sources=sources, claims=[claim], tests=result.testsRun,
+                  sources=sources, claims=claims, tests=result.testsRun,
                   failures=[text for _, text in result.failures], errors=[text for _, text in result.errors],
                   scope='In-memory launch orchestration and actual Bash entrypoint routing. Filesystem initialization, Wine and native-owner execution are mocked.',
                   original_game_executed=False, original_artifacts_consumed=False,

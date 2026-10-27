@@ -1,12 +1,14 @@
 # Normal-session terrain lighting
 
-The existing finite file-capture experiment is independent of this opt-in
+The existing finite file-capture experiment is independent of this
 normal launch path. `MNM_TERRAIN_LIGHTING=observe` or `native` adds a checked
 lighting DLL and one persistent native worker to the normal menu preparation
-and game runner. The default remains `original`. The original world scheduler,
+and game runner. The normal player entry points now select `native` when no
+lighting mode is supplied; `MNM_TERRAIN_LIGHTING=original` opts out. Shared
+diagnostic preparation retains its `original` default. The original world scheduler,
 clock, loader and renderer keep their existing owners. Native graphics selection
-and lighting selection are separate. This milestone does not enable default
-lighting rollout or establish long-duration/arbitrary-map acceptance.
+and lighting selection are separate. Default selection is intentional launch
+policy and does not establish long-duration/arbitrary-map acceptance.
 
 The fixed little-endian `MNMLS001` file has a128-byte header and three8MiB lanes
 for source, reply and optional observed result. There are no shared pointers or
@@ -157,3 +159,21 @@ pass. All new raw evidence, failures and reports use SQLite. These results close
 the three observed blockers within their bounded controls; different maps,
 arbitrary saves, hour-long execution, hardware/FPS and default rollout remain
 separate acceptance. The normal lighting default remains original.
+
+
+## Player default policy — 2026-10-26
+
+The public player launchers now select native lighting when no mode is supplied.
+Explicit original/observe/native modes retain precedence, and capture remains
+none unless requested. Lighting options are validated before prefix preparation
+and reach both preparation and the owned runner. Shared diagnostic preparation
+still defaults to original. The 100 ms deadline, original fallback latch and
+nonzero selected-session failure reporting remain unchanged.
+
+`TL.player-lighting-default` records this intentional launch policy separately
+from recovered lighting behavior. `TLDF26.player-controls` passes eighteen
+current-source launcher controls, including actual Bash routing and original
+worker bypass, with Wine/prefix/owner operations mocked. No new live-game
+acceptance or engine status promotion follows from changing the default.
+Combined-master map/save journeys, hour-long stability and hardware performance
+remain pending; earlier execution evidence keeps its original hashes.
