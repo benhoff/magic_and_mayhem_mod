@@ -23911,3 +23911,27 @@ a historical gate assertion. The new capsule restores all 1,015 members with
 matching hashes, sizes and modes. Adoption uses normal Git operations and keeps
 the separate `AS.tag` working edits and untracked inputs; current rendering
 source/contract fingerprints must remain exact after their restoration.
+
+## Palette effect aggregate completion — 2026-10-26
+
+[Palette closure](palette-effect-closure-20261026.md) reconciles the ten completed
+numerical modes, owned chains and raw ownership/profile providers with fresh
+actual-Wine profile inputs and independent native resource/software-GL output.
+Six installed/default/empty/quoted/nonnumeric/truncation cohorts pass360 unchanged
+original builder calls and1,253,376 packed words. Release and ASan/UBSan delivery
+passes1,080 frames/276,480 independent pixels,151 declared compiler inputs per
+build,zero native surfaces and independently retired private Wine ownership.
+Fresh numerical and chain matrices compare63,416,320 and5,263,360 WORDs;
+the1,280-case provider matrix compares1,346,349,916 bytes per variant,including
+allocation failure,partial retention and explicit zero-allocation teardown.
+Both original manifests pass. Failed recipe/dependency/retirement attempts and
+the reserve-stopped sanitizer build remain immutable negative evidence.
+
+RE.palette-effect-builders is implemented within scope,with recorded original
+comparison and headless integration. Original exceptional/unsafe platform and
+Windows SEH domains retain partial understanding;physical hardware,whole-game
+acceptance and live replacement receive no promotion. Complete native odd-count
+storage and atomic append failure remain intentional policies,distinct from
+original corruption/partial retention. No gameplay or production rendering
+algorithm changes are introduced. UI accounting retains its weight and removes
+this completed aggregate from unplanned High implementation work.
