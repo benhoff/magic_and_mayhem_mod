@@ -1,13 +1,19 @@
 #include "input_state.hpp"
+#include "../../protocols/include/mnm/input_v2.h"
 #include <QtEndian>
 #include <cstring>
 InputState::~InputState(){clear();publish(false,{},{});if(mapping_)file_.unmap(mapping_);}
-bool InputState::create(const QString& path){
+bool InputState::create(const QString& path,bool desktopCoordinates){
     if(file_.isOpen())return false;
     file_.setFileName(path);
     if(!file_.open(QIODevice::ReadWrite|QIODevice::NewOnly) || !file_.resize(Size))return false;
     QByteArray bytes(Size,0);std::memcpy(bytes.data(),MNM_INPUT_V1_MAGIC,MNM_INPUT_V1_MAGIC_SIZE);
     qToLittleEndian<quint32>(MNM_INPUT_V1_VERSION,bytes.data()+MNM_INPUT_V1_VERSION_OFFSET);qToLittleEndian<quint32>(MNM_INPUT_V1_DECLARED_SIZE,bytes.data()+MNM_INPUT_V1_DECLARED_SIZE_OFFSET);
+    if(desktopCoordinates){
+        std::memcpy(bytes.data(),MNM_INPUT_V2_MAGIC,MNM_INPUT_V2_MAGIC_SIZE);
+        qToLittleEndian<quint32>(MNM_INPUT_V2_VERSION,bytes.data()+MNM_INPUT_V2_VERSION_OFFSET);
+        qToLittleEndian<quint32>(MNM_INPUT_V2_COORDINATE_SPACE_DESKTOP,bytes.data()+MNM_INPUT_V2_COORDINATE_SPACE_OFFSET);
+    }
     if(file_.write(bytes)!=Size || !file_.flush())return false;
     mapping_=file_.map(0,Size);return mapping_;
 }

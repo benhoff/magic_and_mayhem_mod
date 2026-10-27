@@ -12,7 +12,7 @@ class InputForwarder final:public QObject {
 public:
     InputForwarder(GlViewport& viewport,WindowHost& host);
     ~InputForwarder() override;
-    void setTarget(xcb_window_t target);
+    void setTarget(xcb_window_t target,xcb_window_t coordinateWindow=0);
     xcb_window_t target() const{return target_;}
     bool suspended() const{return suspended_;}
     void release();
@@ -25,7 +25,7 @@ private:
     bool send(uint8_t type,uint8_t detail,uint16_t state);
     uint16_t state(Qt::KeyboardModifiers modifiers) const;
     void modifiers(Qt::KeyboardModifiers modifiers,int key=0);
-    GlViewport& viewport_;WindowHost& host_;xcb_window_t target_=0;
+    GlViewport& viewport_;WindowHost& host_;xcb_window_t target_=0,coordinateWindow_=0;
     QSet<uint8_t> keys_,buttons_;QPoint position_;int wheel_=0;
     bool suspended_=false;QHash<uint8_t,unsigned> virtualKeys_;InputState* state_=nullptr;
 };

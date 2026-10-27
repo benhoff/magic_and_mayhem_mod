@@ -23985,3 +23985,70 @@ core lighting session/worker/protocol files match `e486a0f9` byte-for-byte.
 See `terrain-light-default-results-20261026/master-history02.json` and
 `master-core-identities01.json`; source identity does not renew installed/live
 acceptance.
+
+### Windowed input and natural GPU callers — 2026-10-26 follow-up
+
+- `HOST.desktop-frame-input` adds unique named-window discovery within a matching
+  Wine desktop, current X11 coordinate translation and explicit desktop input
+  wire v2; v1 client coordinates remain supported. Current controls03 passes
+  normal/high-DPI input, wire admission and both synthetic PE32 polling modes.
+- `HOST.results-ack-ready-root` accepts an already-ready Main/Quick root in the
+  guarded successful Results Quit ACK. Its new test fails before the fix and all
+  17 timing/identity cases pass after it; other transitions retain their guards.
+- Current quick05 completes two windowed World visits, Qt Right/focus-release/
+  Escape/resize, native Results/Main Quit and shell exit 0. Strict closed census
+  has 1,380 rows, no active misses, 143 checked original GPU calls and 28 actual
+  bounds-clipped calls. END is recorded and graphics retirement has zero devices,
+  surfaces, DCs, clippers, palettes or pixel bytes; native resident retirement
+  succeeds. This is bounded observation, not whole-engine equivalence.
+- The final ordinary quick04 reaches Quit and zero graphics owners but reports
+  native GAP reason2 after a generation/epoch-invalidated whole-copy commit;
+  prior stage8 timeout and signal11 remain negative evidence. No deterministic
+  teardown or integration/replacement status promotion follows from quick05.
+- Natural self-copy and keyed GPU-source callers remain unproved. All 678 final
+  keyed calls have CPU sources. Whole-output validation still refuses 108
+  CPU-source clipper copies, 20 target-rectangle copies and one unsupported fill;
+  the strict validator is unchanged. See
+  [the findings and exact evidence](windowed-input-gpu-callers-20261026.md).
+
+
+### CPU copy clipping and history continuity — 2026-10-26
+
+`NP.native-cpu-copy-plan` adds read-only native CPU clip preparation, ordered piece
+propagation and current destination materialization specifically for clipped CPU
+transforms. Current15CPU/23GPU controls and48Python output/routing/geometry refusal
+controls pass. The bounded current Quick Battle/Results/Quit observation prepares
+all1370calls, including124clippedCPU copies and one clippedfill, and independently
+checks all1345COPYoutputs.141GPU-source calls include88actual geometric reductions
+under ordinary Win32 exposure. END/normalQuit/zero graphics owners and no GAP or
+commit refusal pass. The earlier eager-materialization zero-GPU regression and
+setup/source-stability failures are retained separately. See
+[cpu-copy-clipping-20261026.md](cpu-copy-clipping-20261026.md) and SQLite-backed
+`cpu-copy-results-20261026/` results. Natural self/keyed GPU-source callers remain
+unobserved;fill UPDATE output,other contexts,arbitrary readers,original-driver
+parity and universal intermittent reliability remain separate. No milestone is
+promoted;historical evidence hashes remain intact.
+
+Final reader-only follow-up keeps emptyCPUintervals fail-closed and counts one
+multi-piece keyed application call once. Fresh48Python controls and immutable
+replay02 pass all1345COPYbindings. Only two Python diagnostic/control files changed
+after the native engine/live execution;exact preimages and unchanged engine hashes
+are retained in current-validation02. This is not another original launch.
+
+### CPU copy and windowed-input fixes integrated with master — 2026-10-26
+
+The bounded merge of `7752b171` (including `9e79af2b`) with `8c0c4ea4`
+retains both coverage histories and refreshes the combined source census. The
+[merge review](cpu-copy-master-integration-20261026.md) separates fresh merged
+controls/builds from historical GPU/native and original-game executions. The
+exact history audit covers5,160 file transitions;19 verified raw-artifact
+additions receive retrospective receipts, with no historical gate assertion.
+Natural self/keyed GPU callers, additional clip-region reduction, empty CPU-plan
+proof, fill UPDATE output and broader reader/driver/reliability coverage remain
+pending; no engine milestone is promoted.
+
+Final rendering handoff retains completed master8a6fcd1a and rendering e308b2f7.
+All1,511 newer committed transitions have exact receipts; current control sources
+and HOST claim scopes have zero drift. This adds no new game/driver execution or
+engine milestone. Existing WIP is retained separately under a pinned exact Git
+snapshot and verified local SQLite handoff records.

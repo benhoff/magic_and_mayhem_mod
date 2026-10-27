@@ -33,7 +33,7 @@ void installQuickBattleAppTest(QApplication& app,QMainWindow& window,LiveMenuSes
     auto input=[e,&session](const char* phase){
         QFile file(QDir(session.evidenceDirectory()).filePath("render-input.bin"));
         if(!file.open(QIODevice::ReadOnly))return false;
-        const auto data=file.readAll();if(data.size()!=1088||data.left(8)!="MNMINK01")return false;
+        const auto data=file.readAll();if(data.size()!=1088||data.left(8)!="MNMINK02")return false;
         auto word=[&](int index){return qFromLittleEndian<quint32>(data.constData()+index*4);};
         if(word(4)&1)return false;
         const bool right=word(16+39)&0x80000000u;

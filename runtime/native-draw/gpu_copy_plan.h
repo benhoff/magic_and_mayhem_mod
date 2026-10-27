@@ -42,3 +42,27 @@ __declspec(dllexport) i32 WIN NativeDrawGpuCopyPlanV1(void* dst,const i32* dr,vo
  if(out->count){d->history_stale=1;for(u32 i=0;i<2;++i){d->history_generation[i]=s->history_generation[i];d->history_nonce[i]=s->history_nonce[i];}++ns_copies;}
  done:ns_guard_refresh(d);if(clips)HeapFree(GetProcessHeap(),0,clips);return result;
 }
+
+/* Read-only CPU geometry snapshot. The bridge holds provider/copy admission
+ * through the original call; no history authority is changed by preparation. */
+__declspec(dllexport) i32 WIN NativeDrawCpuCopyPlanV1(void* dst,const i32* dr,void* src,const i32* sr,u32 flags,struct MnmGpuCopyPlan* out,u32 bytes){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
+ struct NsState *d=0,*s=0;
+ for(struct NsState* state=ns_owned;state;state=state->next_owned)for(u32 i=0;i<5;++i){
+  if(dst==&state->aliases[i])d=state;if(src==&state->aliases[i])s=state;}
+ const u32 fill=(flags&0x400)!=0;
+ if(!d || (!fill && !s) || (fill && src) || !dr || !sr || !out || bytes!=sizeof(*out))return ND_INVALID;
+ if(flags&~(0x8000u|0x400u) || (fill && (flags&0x8000)))return NS_UNSUPPORTED;
+ if(ns_borrowed(d) || (s && ns_borrowed(s)))return NS_BUSY;
+ if(d->history_stale || (s && s->history_stale))return NS_BUSY;
+ if(s && (s->bits!=d->bits || s->masks[0]!=d->masks[0] || s->masks[1]!=d->masks[1] || s->masks[2]!=d->masks[2]))return NS_UNSUPPORTED;
+ if((flags&0x8000) && (!s->key_set || s->key_low!=s->key_high))return NS_UNSUPPORTED;
+ long long w=(long long)dr[2]-dr[0],h=(long long)dr[3]-dr[1];
+ if(w<=0 || h<=0 || (!fill && ((long long)sr[2]-sr[0]!=w || (long long)sr[3]-sr[1]!=h)))return NS_RECT;
+ i32 rd[4],rs[4];for(u32 i=0;i<4;++i){rd[i]=dr[i];rs[i]=fill?dr[i]:sr[i];}
+ if(!d->clipper && (!ns_rectangle(d,rd,rd) || (!fill && !ns_rectangle(s,rs,rs))))return NS_RECT;
+ u32* clips=0;i32 result=d->clipper?nc_snapshot(d->clipper,&clips):0;if(result)return result;
+ ns_gpu_plan(out,d,s?s:d,rd,rs,clips,(flags&0x8000)!=0);
+ if(fill)out->self=0;
+ if(clips)HeapFree(GetProcessHeap(),0,clips);return 0;
+}

@@ -1,10 +1,12 @@
 #include "../../protocols/include/mnm/input_v1.h"
+#include "../../protocols/include/mnm/input_v2.h"
 /* Optional Qt-owned client coordinates and Windows virtual-key polling state. */
 API void* WIN GetProcAddress(void*,const char*);
 typedef short (WIN *InputKey)(i32);
 typedef i32 (WIN *InputCursor)(i32*);
 typedef i32 (WIN *InputClient)(void*,i32*);
 static u32* input_words;static void* input_window;
+static int input_desktop_coordinates;
 static InputKey input_original_async,input_original_key;
 static InputCursor input_original_cursor;static InputClient input_client;
 static u32 input_pressed[MNM_INPUT_V1_KEY_COUNT],input_sequence,input_seen;
@@ -38,7 +40,7 @@ static short WIN input_key(i32 code){
 }
 static i32 WIN input_cursor(i32* output){
     u32 error=GetLastError(),value;i32 point[2];
-    if(!input_window || !readable(output,8) || !input_snapshot(-1,&value,point) || !input_client(input_window,point)){
+    if(!input_window || !readable(output,8) || !input_snapshot(-1,&value,point) || (!input_desktop_coordinates && !input_client(input_window,point))){
         SetLastError(error);return input_original_cursor(output);
     }
     copy(output,point,8);SetLastError(error);return 1;
@@ -49,7 +51,12 @@ static void input_init(void){
     if(GetFileSize(file,0)!=MNM_INPUT_V1_SIZE){CloseHandle(file);return;}
     HANDLE mapping=CreateFileMappingA(file,0,4,0,MNM_INPUT_V1_SIZE,0);CloseHandle(file);if(!mapping)return;
     u32* words=MapViewOfFile(mapping,2,0,0,MNM_INPUT_V1_SIZE);CloseHandle(mapping);
-    if(!words || !same(words,MNM_INPUT_V1_MAGIC,MNM_INPUT_V1_MAGIC_SIZE) || words[MNM_INPUT_V1_VERSION_OFFSET/4]!=MNM_INPUT_V1_VERSION || words[MNM_INPUT_V1_DECLARED_SIZE_OFFSET/4]!=MNM_INPUT_V1_SIZE)return;
+    if(!words || words[MNM_INPUT_V1_DECLARED_SIZE_OFFSET/4]!=MNM_INPUT_V1_SIZE)return;
+    int legacy=same(words,MNM_INPUT_V1_MAGIC,8) && words[MNM_INPUT_V1_VERSION_OFFSET/4]==MNM_INPUT_V1_VERSION;
+    int desktop=same(words,MNM_INPUT_V2_MAGIC,8) && words[MNM_INPUT_V2_VERSION_OFFSET/4]==MNM_INPUT_V2_VERSION && words[MNM_INPUT_V2_COORDINATE_SPACE_OFFSET/4]==MNM_INPUT_V2_COORDINATE_SPACE_DESKTOP;
+    if(!legacy && !desktop)return;
+    if(desktop)for(u32 i=MNM_INPUT_V2_RESERVED_OFFSET/4;i<MNM_INPUT_V2_HEADER_SIZE/4;++i)if(words[i])return;
+    input_desktop_coordinates=desktop;
     input_words=words;
 }
 static int input_patch(void** iat){

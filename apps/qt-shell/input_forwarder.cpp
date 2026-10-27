@@ -28,7 +28,7 @@ unsigned virtualKey(const QKeyEvent& key){
 }
 InputForwarder::InputForwarder(GlViewport& viewport,WindowHost& host):QObject(&viewport),viewport_(viewport),host_(host){viewport.installEventFilter(this);}
 InputForwarder::~InputForwarder(){release();viewport_.removeEventFilter(this);}
-void InputForwarder::setTarget(xcb_window_t target){if(target==target_)return;release();target_=target;}
+void InputForwarder::setTarget(xcb_window_t target,xcb_window_t coordinateWindow){if(target==target_ && coordinateWindow==coordinateWindow_)return;release();target_=target;coordinateWindow_=coordinateWindow;}
 uint16_t InputForwarder::state(Qt::KeyboardModifiers modifiers) const{
     uint16_t result=0;
     if(modifiers & Qt::ShiftModifier)result|=XCB_MOD_MASK_SHIFT;
@@ -46,7 +46,7 @@ void InputForwarder::modifiers(Qt::KeyboardModifiers modifiers,int key){
         state_->key(vk,virtualKeys_.values().contains(vk) || (key!=qtKeys[i] && bool(modifiers&flags[i])));}
 }
 bool InputForwarder::send(uint8_t type,uint8_t detail,uint16_t mask){
-    if(host_.sendInput(target_,type,detail,mask,position_))return true;
+    if(host_.sendInput(target_,type,detail,mask,position_,coordinateWindow_))return true;
     keys_.clear();buttons_.clear();virtualKeys_.clear();wheel_=0;target_=0;
     if(state_)state_->clear();
     return false;

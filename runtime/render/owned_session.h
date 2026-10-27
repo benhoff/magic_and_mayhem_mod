@@ -539,6 +539,14 @@ static void game_materialize_reader(void* object,u32 kind){
     game_cpu_read_completed(kind);
     game_tracker_release();SetLastError(error);
 }
+/* A clipped CPU transform needs a current destination before preserving holes.
+ * Materialize outside the tracker, before taking the operation's generations. */
+static void game_prepare_cpu_blit_target(void* target,void* source){
+ if(!game_native_cpu_plan || !game_resident_world || !game_surface_pixels_enter(target))return;
+ struct GameSurface* d=game_surface_find(target,0);struct GameSurface* a=source?game_surface_find(source,0):0;
+ u32 needed=d && d->gpu_history && d->clip && (!source || (a && !a->gpu_history));
+ game_tracker_release();if(needed)game_materialize_reader(target,3);
+}
 static void game_materialize_dc(void* object){game_materialize_reader(object,0);}
 static void game_session_dc_checkpoint(struct GameSurface* surface){
     if(!game_session_enabled || (session_started && !session_active))return;
@@ -708,6 +716,21 @@ static void game_session_blit_begin(struct GameBlit* p){
 }
 static void game_session_blit_end(struct GameBlit* p,u32 primary){
     if(!session_active)return;
+    if(p->plan){
+        struct SessionSurface* b=session_find(p->target);
+        struct SessionSurface* a=p->fill?0:session_find(p->source);
+        if(!b || (!p->fill && !a)){game_session_gap(4);return;}
+        for(u32 i=0;i<p->plan->count;++i){const struct MnmGpuCopyPiece* r=p->plan->pieces+i;
+            if(p->fill){u32 f[5]={b->id,r->dx,r->dy,r->width,r->height};
+                if(!session_record(2,f,20,p->src.data,r->width*r->height*(p->dst.bits/8)))return;
+            }else{u32 f[10]={a->id,b->id,r->sx,r->sy,r->sx+r->width,r->sy+r->height,r->dx,r->dy,p->fields[8],p->fields[9]};
+                if(!session_record(3,f,40,0,0))return;
+                if(game_copy_routes_v2){if(!p->routes[40])p->routes[40]=session_sequence;p->routes[41]=session_sequence;p->routes[42]=a->id;p->routes[43]=b->id;}
+            }
+        }
+        if(!session_check(b,&p->dst) || (primary && !session_present(b)))return;
+        session_done();return;
+    }
     if(p->fill){
         struct SessionSurface* b=session_find(p->target);if(!b){game_session_gap(4);return;}
         u32 width=p->fields[4]-p->fields[2],height=p->fields[5]-p->fields[3];
