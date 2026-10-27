@@ -92,6 +92,7 @@ void EntityLighting::step(
   input.creatures.resize(world.slots.size());
   input.objects.resize(world.slots.size());
   input.creatureScan = input.objectScan = unsigned(world.slots.size());
+  std::vector<std::uint32_t> generations(world.slots.size());
   std::set<std::uint32_t> keep;
   for (std::size_t i = 0; i < world.slots.size(); ++i) {
     const auto &slot = world.slots[i];
@@ -99,6 +100,7 @@ void EntityLighting::step(
       continue;
     if (!slot.generation)
       throw std::invalid_argument("Zero entity light generation");
+    generations[i] = slot.generation;
     const auto &entity = *slot.entity;
     // Logical cells are authoritative for terrain illumination. Fine motion is
     // a display interpolation, not another terrain-cell/light clock.
@@ -158,7 +160,11 @@ void EntityLighting::step(
   // position.
   bool changed = input.creatures.size() != last_.creatures.size() ||
                  input.objects.size() != last_.objects.size() ||
-                 input.player != last_.player;
+                 input.player != last_.player || generations != generations_ ||
+                 input.relations.first != last_.relations.first ||
+                 input.relations.second != last_.relations.second ||
+                 input.creaturesEnabled != last_.creaturesEnabled ||
+                 input.objectsEnabled != last_.objectsEnabled;
   for (std::size_t i = 0; !changed && i < input.creatures.size(); ++i) {
     const auto &a = input.creatures[i];
     const auto &b = last_.creatures[i];
@@ -186,5 +192,6 @@ void EntityLighting::step(
   cycle_ = std::move(candidate);
   admission_ = std::move(admissions);
   last_ = std::move(input);
+  generations_ = std::move(generations);
 }
 } // namespace mnm::scene

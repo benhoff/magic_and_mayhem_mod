@@ -48,7 +48,13 @@ class SceneSession {
     std::map<AnimationReceiverId, std::uint32_t> visualTicks;
     std::unique_ptr<EntityLighting> lighting;
     std::uint64_t epoch = 0, revision = 0, serial = 0;
+    reconstruction::TerrainCameraLifecycle camera;
+    SceneMinimapView minimap;
+    std::vector<SceneCreatureView> creatures;
+    std::vector<SceneEffectView> effects;
+    std::uint64_t completedSerial = 0;
     unsigned appliedView = 0;
+    bool refreshViews = false;
     std::uint32_t tick = 0;
     explicit State(std::uint32_t capacity) : lights(capacity) {}
     State(const State &);
@@ -83,8 +89,15 @@ public:
   SceneFramePlan prepare(SceneSourceSnapshot, SceneFrameOptions = {});
   SceneFramePlan recompose();
   void setCamera(reconstruction::TerrainCamera);
+  // Requests are consumed after a successful render, once per frame plan.
+  // Simultaneous requests retain the recovered clockwise-first priority.
+  void queueCameraTurn(reconstruction::CameraTurn);
+  const reconstruction::TerrainCameraLifecycle &cameraLifecycle() const {
+    return state_.camera;
+  }
+  const SceneMinimapView &minimap() const { return state_.minimap; }
   const reconstruction::TerrainCamera &camera() const {
-    return manifest_.camera;
+    return state_.camera.camera;
   }
   const EntityMap &map() const { return *map_; }
   const EntityLighting &lighting() const { return *state_.lighting; }
