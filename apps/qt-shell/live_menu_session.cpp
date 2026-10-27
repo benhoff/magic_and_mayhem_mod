@@ -62,6 +62,12 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
     });
     timer_.setInterval(50);connect(&timer_,&QTimer::timeout,this,[this]{poll();});
 }
+LiveMenuSession::~LiveMenuSession(){
+    // Stop delivery before bridge_, state_ and timer_ are torn down. The
+    // process owner reaps its children without publishing normal completion.
+    timer_.stop();timer_.disconnect(this);process_.disconnect(this);
+    if(bridge_)bridge_->retire();
+}
 bool LiveMenuSession::start(){
     if(running())return false;
     storageOpeningGeneration_=0;

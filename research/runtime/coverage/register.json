@@ -87173,7 +87173,8 @@
         "CPUCLIP.current-validation01-20261026",
         "CPUCLIP.replay02-20261026",
         "CPUCLIP.validator-controls03-20261026",
-        "CPUCLIP.current-validation02-20261026"
+        "CPUCLIP.current-validation02-20261026",
+        "PLAYEROPEN27.gpu-plan04"
       ],
       "status": {
         "understanding": "scoped",
@@ -147305,7 +147306,8 @@
         "CPUFIXMERGE.controls01-20261026",
         "CPUFIXMERGE.controls02-20261026",
         "CPUFIXMERGE.controls03-20261026",
-        "CPUFIXMERGE.current-master-sources01-20261026"
+        "CPUFIXMERGE.current-master-sources01-20261026",
+        "PLAYEROPEN27.storage01"
       ],
       "status": {
         "understanding": "scoped",
@@ -151959,7 +151961,8 @@
         "NPL27.extended04",
         "NPL27.extended05",
         "NPL27.hardware02",
-        "NPL27.hardware03"
+        "NPL27.hardware03",
+        "PLAYEROPEN27.storage01"
       ],
       "status": {
         "understanding": "scoped",
@@ -154790,7 +154793,8 @@
         "CPUFIXMERGE.current-master-sources01-20261026",
         "NPL27.windowed-live01",
         "NPL27.windowed-live02",
-        "NPL27.storage05-copy-refusals01"
+        "NPL27.storage05-copy-refusals01",
+        "PLAYEROPEN27.storage01"
       ],
       "status": {
         "understanding": "partial",
@@ -154808,7 +154812,8 @@
         "Final review corrects CPU-keyed call counting for a multi-piece clipped call:count distinct application rows,not commands.47currentPython controls and unchanged immutable1370-call/1345COPY replay pass. Native engine/test sources match the live run exactly;historical broad source hashes retain the two changed Python fingerprints. No new engine launch or integration promotion is inferred.",
         "Final48Python controls/replay02 pass. Empty CPU command intervals remain refused by whole-output closure because CPU rows lack an independent expected-piece count;empty clipping is only supplied rendering-control proof. Current live sample has zero such intervals and retains full COPY closure. Native compiled code is unchanged;two Python diagnostic files have separate fresh controls/replay and exact preserved preimages.",
         "Merged with master8c0c4ea4: fresh combined Python/Qt controls and current builds are separate from prior GPU/native and original-game executions. Parent execution fingerprints remain immutable; new live combined-tree observation and original-driver comparison remain pending. See research/runtime/cpu-copy-master-integration-20261026.md.",
-        "Current master8a6fcd1a lighting/default history is preserved in final integration. Controls01-04 have zero complete declared-source/claim drift on this combined tree; this read-only continuity is not a new execution. All natural-branch, driver and broader ownership limitations remain separate."
+        "Current master8a6fcd1a lighting/default history is preserved in final integration. Controls01-04 have zero complete declared-source/claim drift on this combined tree; this read-only continuity is not a new execution. All natural-branch, driver and broader ownership limitations remain separate.",
+        "Fresh PLAYEROPEN27.storage01 closes4474active calls/4400COPY outputs with984GPU and2457CPU-keyed calls,normal Quit andzero owners. Natural self/keyed-GPU counts remain0; no all-game absence or supplied-control substitution."
       ]
     },
     {
@@ -155202,7 +155207,8 @@
         "NPL27.unit-controls02",
         "NPL27.launcher-controls05",
         "NPL27.storage05-copy-refusals01",
-        "NPL27.hardware03"
+        "NPL27.hardware03",
+        "PLAYEROPEN27.storage01"
       ],
       "status": {
         "understanding": "scoped",
@@ -157146,6 +157152,138 @@
       },
       "remaining_gaps": [
         "Original null/replaced interfaces, reload callbacks changing keys/mode/pointers, real driver loss/pixels, original window/GetHWnd failure outputs, arbitrary reentrancy and live replacement."
+      ]
+    },
+    {
+      "id": "NP.menu-session-destruction",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Callback-free destruction of active native launcher sessions",
+      "scope": "Destroying a native Qt menu session or launcher first disconnects process/timer delivery, retires its bridge and reaps its owned launcher process group. Destruction of an in-flight hard stop never invokes its completion callback. This is terminal object destruction, not normal Quit, asynchronous prefix shutdown, recovered engine semantics or attribution of a historical crash.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "apps/qt-shell/game_process.hpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp"
+      ],
+      "tests": [
+        "tests/menu-session-destruction-test.cpp",
+        "tests/game-hard-restart-test.cpp",
+        "tests/qt-exit-during-staging.cpp",
+        "tools/test-player-open-item-controls.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/engine_preferences_store.cpp",
+        "apps/qt-shell/engine_preferences_store.hpp",
+        "apps/qt-shell/game_restart_action.hpp",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "documents": [
+        "research/runtime/player-open-items-20261027.md"
+      ],
+      "evidence": [
+        "PLAYEROPEN27.controls03"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "A deterministic current-master ASan/UBSan failure proves MenuBridge use-after-free during QProcess base destruction. The historical signal-11 run has no retained stack and remains independently unattributed.",
+        "No claim that object destruction completes the normal-Quit/prefix-shutdown or graphics retirement protocol."
+      ]
+    },
+    {
+      "id": "NP.input-frame-resize-cursor",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Current-frame cursor coordinates across native display rebuilding",
+      "scope": "Constrain the last Qt frame-relative cursor position to the current nonempty frame before publishing heartbeats, inactive release state or targeted events. Resolution growth preserves the constrained point. Both client and explicitly selected desktop frame coordinates retain their existing mode. No host-wide mouse warp, recovered game cursor clamp or historical-storage failure attribution.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "apps/qt-shell/input_forwarder.cpp",
+        "apps/qt-shell/input_forwarder.hpp"
+      ],
+      "tests": [
+        "tests/qt-input-test.cpp",
+        "tools/test-player-open-item-controls.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/input_state.cpp",
+        "apps/qt-shell/input_state.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "runtime/render/input_polling.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/input_v2.h",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "documents": [
+        "research/runtime/player-open-items-20261027.md"
+      ],
+      "evidence": [
+        "PLAYEROPEN27.controls03"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "A retained old run did not preserve all rejected destination coordinates; this repair must not retroactively assert its cause.",
+        "Live display-rebuild/copy closure remains a separate source-bound execution result."
+      ]
+    },
+    {
+      "id": "NP.copy-refusal-argument-geometry",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Complete diagnostic rectangles for refused native Fast copies",
+      "scope": "Capture readable source and target argument rectangles before either geometry refusal, including raw Fast x/y and derived extent words with defined PE32 unsigned arithmetic. Existing source-first refusal priority and original admission/result checks remain. Supplied native facade controls require NS_RECT with unchanged full source/target pixels and no COPY interval; no original-driver comparison or blanket whole-output acceptance.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/copy_fast_rectangle.h"
+      ],
+      "tests": [
+        "tests/native-copy-refusal-probe.c",
+        "tools/test-player-open-item-controls.py"
+      ],
+      "validation_dependencies": [
+        "tests/native-gpu-copy-plan-probe.c",
+        "runtime/render/copy_route_census.h",
+        "runtime/native-draw/surfaces.h",
+        "protocols/include/mnm/native_copy_routes_v1.h",
+        "protocols/include/mnm/native_copy_routes_v2.h"
+      ],
+      "documents": [
+        "research/runtime/player-open-items-20261027.md"
+      ],
+      "evidence": [
+        "PLAYEROPEN27.controls03"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Historical Storage05 target coordinates are not reconstructed from defaults. A fresh record is required to diagnose any recurrence.",
+        "Invalid-rectangle failure rows remain excluded from positive natural-branch and whole-application output claims."
       ]
     }
   ],
@@ -359249,6 +359387,110 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "PLAYEROPEN27.controls03",
+      "kind": "native_integration",
+      "scope": "Current source-bound actual Qt resize/DPI, four process/session destructor fixtures, ASan/UBSan, full-shell deadline without SIGSEGV, existing hard-restart and five actual PE32 invalid-copy geometry/no-write controls. No original game, driver comparison or natural branch credit.",
+      "record": "research/runtime/player-open-items-results-20261027/controls03.json",
+      "sha256": "a49b1cc891f2ea511b666dfc2ea6b00be3606055e99d8ef8b6c92157c6c38257",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_source_target_words_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/zero_native_facade_owners",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "PLAYEROPEN27.storage01",
+      "kind": "live_equivalence",
+      "scope": "Read-only verified join of the fresh actual public native Save/Load/display-rebuild/recreate acceptance, cursor retirement and independent whole-COPY closure. The historical two refusal causes are not retroactively attributed; no natural self/keyed GPU-positive or original-driver pixel claim.",
+      "record": "research/runtime/player-open-items-results-20261027/storage01-acceptance.json",
+      "sha256": "4888dff3183d6e0146c26660dc1538e35bc02a782596c77d39ad3aa5bbeabdd7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/copy_output/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/failed_copy_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/unprepared_copy_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "PLAYEROPEN27.gpu-plan04",
+      "kind": "native_integration",
+      "scope": "Current supplied actual PE32 production facade/bridge and independent native GL replay:23GPU clipping/key/self/alias/empty/partial-error cases, command guards, legacy baseline/restore and two renderer compatibility controls. No actual original caller or natural-game branch credit.",
+      "record": "research/runtime/player-open-items-results-20261027/gpu-plan04.json",
+      "sha256": "b7ee13b1f49a70e2e0fc8832acdf994e1d36b8cf244e178df10481373f616184",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -388203,6 +388445,53 @@
       "evidence": [
         "NCSR26.native-copy-recovery.scenario"
       ]
+    },
+    {
+      "id": "PLAYEROPEN27.destruction-controls",
+      "level": "headless",
+      "scope": "Supplied active staging/launcher/process-tree/in-flight-stop destruction and current Qt normal restart; independent ASan/UBSan and full-shell deadline. No normal-Quit or historical-stack attribution.",
+      "behaviors": [
+        "NP.menu-session-destruction"
+      ],
+      "tests": [
+        "tests/menu-session-destruction-test.cpp",
+        "tests/qt-exit-during-staging.cpp",
+        "tests/game-hard-restart-test.cpp",
+        "tools/test-player-open-item-controls.py"
+      ],
+      "evidence": [
+        "PLAYEROPEN27.controls03"
+      ]
+    },
+    {
+      "id": "PLAYEROPEN27.input-resize",
+      "level": "headless",
+      "scope": "Supplied 800-to640 frame shrink without mouse movement, next targeted key, inactive release and growth, both DPI scales and prior client/desktop input admission.",
+      "behaviors": [
+        "NP.input-frame-resize-cursor"
+      ],
+      "tests": [
+        "tests/qt-input-test.cpp",
+        "tools/test-player-open-item-controls.py"
+      ],
+      "evidence": [
+        "PLAYEROPEN27.controls03"
+      ]
+    },
+    {
+      "id": "PLAYEROPEN27.copy-refusals",
+      "level": "headless",
+      "scope": "Supplied real PE32 owned-facade/bridge invalid Fast rectangles and full source/target WORD preservation; zero COPY intervals and zero final native facade owners.",
+      "behaviors": [
+        "NP.copy-refusal-argument-geometry"
+      ],
+      "tests": [
+        "tests/native-copy-refusal-probe.c",
+        "tools/test-player-open-item-controls.py"
+      ],
+      "evidence": [
+        "PLAYEROPEN27.controls03"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -390010,7 +390299,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-f3ffbb882b56e4fdf15095bed16218ed4878c08f9b59e68efaaecc1dca3168f9.json",
-    "sha256": "f3ffbb882b56e4fdf15095bed16218ed4878c08f9b59e68efaaecc1dca3168f9"
+    "path": "research/runtime/coverage/source-index-88b848d51af6ec9216795586a03f3e4961c7260f1e000d159e65140d15aa8c16.json",
+    "sha256": "88b848d51af6ec9216795586a03f3e4961c7260f1e000d159e65140d15aa8c16"
   }
 }

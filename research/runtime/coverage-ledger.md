@@ -24185,3 +24185,30 @@ compiler inputs. All2967declared source files remain stable. Earlier six-profile
 acceptance retains exact historical phases; no old hash, full-driver comparison
 or deferred-generation game-path claim is refreshed. See
 [combined-source acceptance](native-player-master-acceptance-20261027.md).
+
+## Native player open-item repairs (2026-10-27)
+
+The owned follow-up reproduces a current-master active-session destructor
+use-after-free with ASan/UBSan and a full Qt-shell SIGSEGV under a supplied
+staging deadline. Process/session destruction now disconnects callbacks before
+member teardown and reaps the owned launcher group. Historical signal-11 logs
+without stacks remain independently unattributed. The forwarder constrains its
+last point after a frame-size shrink; supplied Qt resize, normal/high-DPI and
+restart controls retain their separate scopes. Refused Fast-copy diagnostics
+now preserve destination arguments before source/target rejection; five actual
+PE32 facade controls return NS_RECT with every source/target WORD unchanged and
+no native COPY interval. Refused rows are not silently admitted by whole-output
+validation. See [findings and remaining boundaries](player-open-items-20261027.md).
+Natural self-copy/keyed-GPU callers still require positive actual-game evidence.
+
+The fresh public storage01 journey now passes 473 balanced Worlds,all 18 cursor
+hooks/all 8 client categories,normal Quit and zero owners. Independent output
+closes 4,474 active calls/4,400 COPY destinations,with 0 failed/unprepared calls,
+984 GPU and 2,457 CPU-keyed calls. Natural self/keyed-GPU counts remain 0.
+The full-shell supplied deadline also reproduces the old SIGSEGV in
+InputState::publish through late Shell::finished delivery; the repaired shell
+exits 1 without a signal under the same fixture. These current bounded results
+do not retroactively identify the old unstacked crash or Storage05 causes.
+Exact execution-source overlays and a verified 6,910-file raw restore are
+retained through SQLite; the new archive is 23.1 MB rather than another full
+source/prefix snapshot.

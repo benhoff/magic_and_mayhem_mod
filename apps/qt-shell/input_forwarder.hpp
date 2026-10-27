@@ -23,6 +23,7 @@ protected:
     bool eventFilter(QObject* object,QEvent* event) override;
 private:
     bool send(uint8_t type,uint8_t detail,uint16_t state);
+    void constrainPosition();
     uint16_t state(Qt::KeyboardModifiers modifiers) const;
     void modifiers(Qt::KeyboardModifiers modifiers,int key=0);
     GlViewport& viewport_;WindowHost& host_;xcb_window_t target_=0,coordinateWindow_=0;
