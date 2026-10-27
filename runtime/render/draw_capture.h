@@ -8,6 +8,7 @@ typedef i32 (WIN *GetKey)(void*,u32,u32*);
 typedef u32 (WIN *ReleaseObject)(void*);
 struct Rect {i32 left,top,right,bottom;};
 struct Snapshot {u32 width,height,bits,flags,r,g,b,length;u8* data;u8 palette[1024];};
+#include "snapshot_storage.h"
 struct DrawCapture {u32 header[32];struct Snapshot src,before,after;};
 static char draw_path[512];
 static HANDLE draw_events;

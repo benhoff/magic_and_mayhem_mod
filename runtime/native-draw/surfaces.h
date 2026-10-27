@@ -32,6 +32,12 @@ static u32 ns_lock_serial;
 static void ns_dc_drop(struct NsState*);
 static void ns_cpu_require(struct NsState*);
 static int ns_borrowed(const struct NsState* s){return s->locked || s->dc || s->storage_dc;}
+/* Called under the provider gate after removing a public/pin/writer credit,
+ * including physical writer leases moved by Flip. Collection remains at the
+ * outermost exit, in the original list order, after all nested work finishes. */
+static void ns_lifetime_changed(const struct NsState* s){
+ if(ns_lifetime_mode && !s->interfaces && !s->lifetime_pins && !ns_borrowed(s))ns_lifetime_pending=1;
+}
 #include "cpu_guard.h"
 #include "cpu_direct_store.h"
 #include "native_only.h"
@@ -72,7 +78,7 @@ static u32 WIN ns_release(struct NsObject* o){
  struct NsState* s=o->state;u32 error=GetLastError();
  if(ns_lifetime_mode && !s->refs[o->kind]){SetLastError(error);return 0;}
  u32 refs=--s->refs[o->kind];
- if(!refs && !--s->interfaces && !ns_lifetime_mode)ns_destroy(s);
+ if(!refs && !--s->interfaces){if(ns_lifetime_mode)ns_lifetime_changed(s);else ns_destroy(s);}
  nd_status();SetLastError(error);return refs;
 }
 
@@ -124,7 +130,7 @@ static i32 WIN ns_unlock(struct NsObject* o,void* argument){
  if(s->cpu_guard_world)ns_cpu_require(s);
  /* Surface4 accepts a rectangle, older interfaces accept the returned pointer. */
  if(o->kind!=3 && argument && argument!=s->lock_pointer)return ND_INVALID;
- if(s->locked<0)ExitProcess(125);--s->locked;s->lock_pointer=0;s->lock_owner=s->lock_full=0;ns_guard_refresh(s);return 0;
+ if(s->locked<0)ExitProcess(125);--s->locked;s->lock_pointer=0;s->lock_owner=s->lock_full=0;ns_guard_refresh(s);ns_lifetime_changed(s);return 0;
 }
 static i32 WIN ns_key(struct NsObject* o,u32 flags,const u32* key){
  if((flags&~1u)!=8 && (flags&~1u)!=2)return NS_UNSUPPORTED;
@@ -290,6 +296,7 @@ static i32 WIN ns_flip(struct NsObject* o,struct NsObject* target,u32 flags){
  u32 stale=front->history_stale;front->history_stale=back->history_stale;back->history_stale=stale;
  for(u32 i=0;i<2;++i){u32 v=front->history_generation[i];front->history_generation[i]=back->history_generation[i];back->history_generation[i]=v;
   v=front->history_nonce[i];front->history_nonce[i]=back->history_nonce[i];back->history_nonce[i]=v;}
+ ns_lifetime_changed(front);ns_lifetime_changed(back);
  ++ns_flips;if(!(ns_flips&255))nd_status();return front->locked || front->storage_dc?NS_BUSY:0;
 }
 static i32 WIN ns_get_clipper(struct NsObject* o,void** out){

@@ -4,7 +4,9 @@ API i32 WIN FlushInstructionCache(HANDLE,const void*,u32);
 #include "image_copy_original.h"
 static u32 ns_image_copy_installed;
 __attribute__((used,noinline)) static void ns_image_copy_prepare(u32* r){
+ struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  u32 error=GetLastError(),source=r[7],destination=r[5],bytes=r[2];
+ struct NsState* target=0;
  if((r[8]&0x400) || bytes>16u*1024u*1024u || source>0xffffffffu-bytes || destination>0xffffffffu-bytes)ExitProcess(124);
  if(bytes)for(struct NsState* s=ns_owned;s;s=s->next_owned){
   u32 base=(u32)s->pixels,extent=s->pitch*s->height;
@@ -15,11 +17,26 @@ __attribute__((used,noinline)) static void ns_image_copy_prepare(u32* r){
   if(!touches_source && !touches_destination)continue;
   if((touches_source && (bytes>extent || source<base || source-base>extent-bytes)) ||
      (touches_destination && (bytes>extent || destination<base || destination-base>extent-bytes)))ExitProcess(124);
-  ns_cpu_require_at(s,0,0,0x533aec);
+  /* Only the source is read. A protected destination may accept value-only
+   * stores without materializing the unrelated rest of its GPU history. */
+  if(touches_source)ns_cpu_require_at(s,0,0,0x533aec);
+  if(touches_destination){if(target && target!=s)ExitProcess(124);target=s;}
  }
- /* Preserve the original forward DWORD granularity for overlapping operands. */
- for(u32 i=0;i<(bytes&~3u);i+=4)*(u32*)(destination+i)=*(const u32*)(source+i);
- for(u32 i=bytes&~3u;i<bytes;++i)*(u8*)(destination+i)=*(const u8*)(source+i);
+ const u32 private_write=target && target->history_stale && ns_guard_enabled==3 &&
+  target->pixels_alias && target->cpu_dirty && target->cpu_guard && target->locked>0 &&
+  target->lock_owner==GetCurrentThreadId() && !target->dc && !target->storage_dc && !target->cpu_guard_world;
+ if(target && !private_write)ns_cpu_require_at(target,0,0,0x533aec);
+ /* Preserve forward DWORD/residual order, including overlap. A source in this
+  * same owned allocation required current history above and takes the ordinary
+  * path. Every private store keeps its exact dirty bytes and stale authority. */
+ for(u32 i=0;i<(bytes&~3u);i+=4){u32 value=*(const u32*)(source+i);
+  if(private_write){if(NativeDrawCpuStoreV1((void*)(destination+i),value,4))ExitProcess(124);}
+  else *(u32*)(destination+i)=value;
+ }
+ for(u32 i=bytes&~3u;i<bytes;++i){u32 value=*(const u8*)(source+i);
+  if(private_write){if(NativeDrawCpuStoreV1((void*)(destination+i),value,1))ExitProcess(124);}
+  else *(u8*)(destination+i)=(u8)value;
+ }
  r[7]=source+r[4];r[1]=source+bytes;r[0]=destination+bytes;r[6]=0;
  const u32 residual=bytes&3u;
  r[8]=(r[8]&~0x8c5u)|(residual==0?0x40u:0u)|((residual==0 || residual==3)?4u:0u);

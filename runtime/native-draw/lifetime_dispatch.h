@@ -19,6 +19,9 @@ static void ns_lifetime_collect(void){
   if(ns_lifetime_retired_count>=32768)ExitProcess(123);
   ns_lifetime_retired[ns_lifetime_retired_count++]=&victim->aliases[1];ns_destroy(victim);
  }
+ /* Destruction can release an attached back surface or a moved DC lease.
+  * The full loop above drains those recursively-created candidates too. */
+ ns_lifetime_pending=0;
 }
 __declspec(dllexport) i32 WIN NativeDrawPinV1(void* object,u32* identity){
  struct NsLifeGuard guard __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
@@ -33,7 +36,7 @@ __declspec(dllexport) i32 WIN NativeDrawPinV1(void* object,u32* identity){
 __declspec(dllexport) i32 WIN NativeDrawUnpinV1(u32 identity){
  struct NsLifeGuard guard __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(!ns_lifetime_mode || !identity)return ND_INVALID;
- for(u32 i=0;i<512;++i)if(ns_lifetime_pins[i].identity==identity){--ns_lifetime_pins[i].state->lifetime_pins;ns_lifetime_pins[i]=(struct NsLifetimePin){0,0};return 0;}
+ for(u32 i=0;i<512;++i)if(ns_lifetime_pins[i].identity==identity){struct NsState* s=ns_lifetime_pins[i].state;--s->lifetime_pins;ns_lifetime_pins[i]=(struct NsLifetimePin){0,0};ns_lifetime_changed(s);return 0;}
  return ND_INVALID;
 }
 __declspec(dllexport) i32 WIN NativeDrawBackingLiveV1(void* object){

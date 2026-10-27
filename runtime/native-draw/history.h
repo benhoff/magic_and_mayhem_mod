@@ -48,9 +48,9 @@ __declspec(dllexport) i32 WIN NativeDrawCpuSnapshotV1(void* object,u32* layout,u
 __declspec(dllexport) i32 WIN NativeDrawCpuHistoryV1(const void* pixels,u32 action,u32 gl,u32 gh,u32 nl,u32 nh){
  struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(action==3 && ns_guard_enabled<2)return 0;
- for(struct NsState* s=ns_owned;s;s=s->next_owned){
+ struct NsState* s=ns_history_find(pixels,ns_lifetime_mode!=0);
+ if(s){
   const u32 at=(u32)pixels,base=(u32)s->pixels;
-  if(at<base || at-base>=s->pitch*s->height)continue;
   if(action==0){ns_cpu_require_at(s,gl,gh,nl);return 0;}
   if(action==2)return s->history_stale?NS_BUSY:0;
   /* Census metadata only: mapped extent under a protected active Lock.
