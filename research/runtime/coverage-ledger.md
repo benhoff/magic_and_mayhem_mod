@@ -1,3 +1,36 @@
+## Original surface copy retry context — 2026-10-26
+
+Fresh unchanged No-CD opaque/keyed copy wrappers confirm cached initial destination
+extent/window translation, per-attempt Blt/BltFast and WAIT globals, and a reread
+source RECT. Mode switches do not repeat translation. All 18,432 original argument
+and ordered endpoint traces match independent32/64-bit native and ASan/UBSan
+models, including overflow geometry and Restore/key failures. Confidence is high
+within scripted fault/context inputs; no real driver pixels or live replacement.
+
+`RE.surface-copy.retry-context` records this narrow original comparison. The
+compile-extension and fixture stack-alignment failures remain retained with their
+source variants and debugger trace. Null/replaced interfaces, resource callback
+ownership, original window-provider failure outputs and physical lost-draw/live
+composition remain pending. See [findings and bounded reproduction](original-surface-copy-retry-context-20261026.md).
+
+## Native surface copy recovery composition — 2026-10-26
+
+`recoverOwnedSurfaceCopy` connects native opaque/keyed copy geometry to the
+recovered Restore/key/reload/retry scheduler with explicit handle/window snapshots.
+Release and ASan/UBSan each pass 64 loss/API/WAIT/window combinations and 854
+checks, including busy-budget, unknown-content, reload-failure and wrong-mode
+controls. Fresh unchanged original scripted-fault execution matches all 4,480
+scheduler traces; 1,536 budget stops preserve original event prefixes. Immutable
+original manifests verify before and after execution. The initial incomplete
+compiler-provenance attempt remains failed evidence.
+
+`NP.surface-copy.owned-recovery` is a scoped headless native policy. Physical
+original lost-draw composition, dynamic original window/interface mutation,
+resource acquisition/reentrant lifetimes and live replacement remain pending.
+Shared-source historical surface evidence retains its original hashes and is not
+renewed by these controls. See [contract and reproduction](native-surface-copy-recovery-20261026.md)
+and [SQLite execution](native-surface-copy-recovery-results-20261026/execution03.json).
+
 ## Alternate canvas integration with landed master (2026-10-26)
 
 The [final integration](alternate-completion-master-20261026.md) combines
