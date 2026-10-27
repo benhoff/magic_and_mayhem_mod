@@ -89,7 +89,11 @@ Light indices **2..33** select extent `index/2 + 1`, giving two adjacent indices
 per kernel extent **2..17**. The index controls admission-square width separately
 from stamp extent, so paired indices share stamp bytes but need not share
 admission. Index **0** means no light. Index **1** selects the special size-one
-entry; its metadata/kernel-storage overlap remains outside this reconstruction.
+entry. Its inherited byte and stamp semantics were recovered later by
+`RE.terrain-single-cell-light`; the current
+[size-one capture/update comparison](terrain-single-cell-lighting-20261026.md)
+tracks its composed validation. Original installed heap provenance and natural
+live index-one callers remain separate.
 Higher indices are refused by the owned API.
 
 ## Two-phase cycle
@@ -131,14 +135,14 @@ batched additive publication; it does not establish weighted interpolation.
 ## Boundaries and next step
 
 Owned admission accepts in-bounds centers, extents no greater than the smaller
-map dimension, light indices 2..33 plus zero, valid stamp layers, and capacities
+map dimension, light indices 0..33 (including the later recovered index-one component), valid stamp layers, and capacities
 up to 65,536. Scan count cannot exceed owned capacity: the original recount
 walks the count without a capacity guard, though visitation does check capacity.
 The native model validates active light records before mutating state/field.
 These rejection rules are deliberate native bounds, separate from original
 behavior on malformed pointers, unsupported indices or coordinates.
 
-Original initialization, allocation failures/reloads, special index one,
+In the original report, initialization and allocation failures/reloads,
 installed static-type light-table construction, production of the two object
 coordinate pairs and region center/extent, spectator/sentinel creature paths,
 and other smoothing or weighted-interpolation functions remain unvalidated.
@@ -148,3 +152,10 @@ Next is an owned composition interface and controlled object-fixture input to
 produce per-cell lit terrain frames through the existing Qt/OpenGL renderer.
 That can validate combined source updates and scene presentation offline before
 recovering installed object/table production or introducing live observation.
+
+The size-one entry above and owned admission bounds were reconciled on
+2026-10-26. The original 128-fixture report and its fingerprints remain historical;
+its static updater record generation excluded index-one objects. The new
+size-one comparison supplies separate explicit inherited-byte cycle fixtures.
+
+The [global storage follow-up](terrain-single-cell-storage-20261026.md) identifies the reserved byte's zero-filled PE storage and selected writer boundaries, and verifies that the pinned installed89-entry FX table contains no diameter one. Current source capture/decoder comparisons and the retained original-observation packets have independent evidence; broader writer/caller reachability remains open.

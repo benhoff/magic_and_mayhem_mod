@@ -230,23 +230,25 @@
       "id": "TL.special-size-one",
       "subsystem": "terrain_lighting",
       "kind": "recovered",
-      "title": "Special size-one light kernel remains open",
-      "scope": "Original index-one metadata points into kernel pointer storage; special construction/stamp behavior and live uses excluded from size-2..17 reconstruction",
+      "title": "Single-cell installed global origin recovered; broader writers and natural source routes remain open",
+      "scope": "Global map byte+6380 has a pinned PE zero-fill origin and is not written by the watched original init/kernel/allocated-clear paths. The89-entry installed FX table has no diameter one;64 retained original-observation frames contain zero in the byte and no index-one static record. Whole-program aliases/writers, other source-producing routes and natural index-one reachability beyond these admitted inputs remain unresolved.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5183632,
-          "scope": "Original index-one metadata points into kernel pointer storage; special construction/stamp behavior and live uses excluded from size-2..17 reconstruction"
+          "scope": "Partial aggregate: global PE storage origin and selected writer boundaries are recovered separately; whole-program writers, other source paths and broader natural index-one reachability remain open."
         },
         {
           "build": "nocd-40209ca7",
           "address": 5184608,
-          "scope": "Original index-one metadata points into kernel pointer storage; special construction/stamp behavior and live uses excluded from size-2..17 reconstruction"
+          "scope": "Partial aggregate: global PE storage origin and selected writer boundaries are recovered separately; whole-program writers, other source paths and broader natural index-one reachability remain open."
         }
       ],
       "documents": [
-        "research/runtime/terrain-static-lighting.md"
+        "research/runtime/terrain-static-lighting.md",
+        "research/runtime/terrain-single-cell-lighting-20261026.md",
+        "research/runtime/terrain-single-cell-storage-20261026.md"
       ],
       "implementation": [],
       "tests": [],
@@ -257,7 +259,11 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "Whole-program writer/alias exclusion and other original builds remain unproved.",
+        "No natural index-one source is observed; the installed FX table and two retained cohorts do not select one. Scripts, custom inputs and other source routes remain separate."
+      ]
     },
     {
       "id": "TL.static-owned-bounds",

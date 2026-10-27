@@ -23911,3 +23911,35 @@ a historical gate assertion. The new capsule restores all 1,015 members with
 matching hashes, sizes and modes. Adoption uses normal Git operations and keeps
 the separate `AS.tag` working edits and untracked inputs; current rendering
 source/contract fingerprints must remain exact after their restoration.
+
+## Size-one lighting capture/update comparison — 2026-10-26
+
+[Size-one recovery](terrain-single-cell-lighting-20261026.md) reconciles the older
+TL.special-size-one open entry with the already implemented
+RE.terrain-single-cell-light component. Its inherited signed byte, pointer/extent
+metadata and maximum/additive stamps receive fresh SIZE1.original-20261026
+comparison:256 bytes,1536 stamps,original PE32 and optimized/sanitized32/64 builds.
+The new RE.terrain-single-cell-captured-cycle compares8192 actual production
+capture requests and complete native replies against the unchanged original
+outer/static updater across four paired dimensions/configurations,including1x1.
+All20,633,600 reply bytes agree per native variant;six noncanonical signed-byte
+values are refused. Both manifests verify2927 originals.
+
+Native implementation and wire bytes are unchanged. Native zero-default storage
+remains intentional policy. Installed map/heap writer provenance and natural
+live index-one callers remain unresolved;integration/replacement stay none.
+Central and both historical focused gap rows now state that boundary without
+promoting their old statuses. Initial compiler failures,narrower success and
+exact source variants remain immutable SQLite evidence. The new contract remains
+unrated in rendering planning. History since the preceding master review covers
+71 exact transitions across two commits without missing receipts.
+
+### Size-one validation integration and global storage provenance — 2026-10-26
+
+Merge bc25fe8c with 8c0c4ea4 and retain all historical comparisons. Fresh S1P.captured-cycle-20261026 compares1536 original/native primitive stamps and8192 production-capture/native decoder requests across four paired configurations; optimized32/64 and ASan/UBSan32/64 agree on20633600 reply bytes each and refuse six noncanonical values. No native production code changes.
+
+RE.terrain-single-cell-global-storage identifies installed map006c5490 byte+6380 (006cb810) in PE .data zero-fill storage. S1P.storage-original-20261026 runs257 probes per optimized32/UBSan32 variant, including untouched loader zero and all256 supplied bytes. Each observes514 positive byte/overlapping same-value stores and zero selected-path writes across514 initializations,257 direct rebuilds and514 allocated clears with2570 supplied delete calls. The original89-entry FX loader/selector consumes pinned installed fields: nonzero diameters4/6/10/10/5/4, no one. Authored FXA_0=1 controls remain separate.64 retained successful original-observation inputs show byte zero; stress records include active indices0 and6. This is new analysis of historical observations, not a new live game. See [scope and exact evidence](terrain-single-cell-storage-20261026.md).
+
+TL.special-size-one now retains whole-program aliases/writers, other source-producing paths, other builds and natural index-one reachability beyond these admitted inputs. New storage understanding is scoped; implementation/comparison/integration/replacement remain none. Existing captured-cycle milestones remain independent, with fresh current-source proof. The history review accounts42 commits and18838 transitions since c5137b9c across both parents:18796 exact receipts,42 journal/marker exclusions,no missing transitions. This is provenance accounting, not a retrospective gate-pass claim. The planning fixture acknowledges the new storage contract and the pre-existing unrated NR.world-constant-fill without changing weights.
+
+The first combined audit retained four input-classification errors: two prior cohort JSON reports were listed as binary inputs. Their hashes remain audited source provenance; only the65 actual binary packets/config inputs are declared recorded inputs. No historical report is rewritten. Configuration lineage confirms different packed seeds decode to identical clean/NoCD effects text and the exact267 original-probe fields. Both legacy focused TL.special-size-one rows receive the current gap text/document links while retaining their prior evidence and statuses.
