@@ -9,6 +9,7 @@ import resource
 import shlex
 import subprocess
 from coverage_claims import behavior_contract, required_sources, scenario_contract
+from coverage_evidence import write_report
 ROOT = Path(__file__).resolve().parents[1]
 
 def sha(path):
@@ -19,6 +20,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--build-root', type=Path)
+    parser.add_argument('--report', type=Path, help='Durable SQLite-backed report destination')
     parser.add_argument('--reuse-build', action='store_true')
     parser.add_argument('--sources-only', action='store_true')
     parser.add_argument('--sanitized', action='store_true')
@@ -68,7 +70,7 @@ def main(argv=None):
                               '-DBUILD_TESTING=ON', *flags])
         targets = ['save-world-loader-test', 'scene-source-test', 'scene-animation-binding-test', 'scene-entity-lighting-test']
         if not args.sources_only:
-            targets += ['scene-session-test', 'native-scene-session']
+            targets += ['scene-session-test', 'scene-camera-binding-test', 'native-scene-session']
             if args.installed_root:
                 targets += ['scene-installed-test']
             run('generate-platform-moc', ['cmake', '--build', build, '--target', 'mnm_scene_palette_headless_autogen'])
@@ -98,12 +100,13 @@ def main(argv=None):
         register = json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
         ids = ['NR.scene-native-sources', 'NR.scene-animation-views', 'NR.scene-entity-lighting']
         if not args.sources_only:
-            ids.append('NR.runtime-scene-composition')
+            ids.extend(['NR.runtime-scene-composition', 'NR.scene-frame-camera'])
         builds = {b['id']: b for b in register['builds']}
         claims = []
         for identity in ids:
             behavior = next(b for b in register['behaviors'] if b['id'] == identity)
-            scenario = next(s for s in register['scenarios'] if s['id'] == 'SCENE.production-'+identity.split('.')[-1]+'-20261020')
+            date = '20261026' if identity == 'NR.scene-frame-camera' else '20261020'
+            scenario = next(s for s in register['scenarios'] if s['id'] == 'SCENE.production-'+identity.split('.')[-1]+'-'+date)
             paths.update(required_sources(behavior))
             claims.append(dict(behavior=identity, contract_sha256=behavior_contract(behavior, builds),
                                scenarios={scenario['id']: scenario_contract(scenario)}))
@@ -166,7 +169,7 @@ def main(argv=None):
                 report.update(success=False, original_manifest_bookends=False, manifest_error=str(error))
         report['sources_stable'] = bool(sources) and all(sha(ROOT/p) == h for p, h in sources.items())
         report['success'] &= report['sources_stable']
-        (out/'report.json').write_text(json.dumps(report, indent=2)+'\n')
+        write_report(ROOT, args.report or out/'report.json', (json.dumps(report, indent=2)+'\n').encode())
         print(json.dumps(dict(success=report['success'], results=report.get('results'),
                               installed=report.get('installed'), sources=len(sources), error=report.get('error'))))
     return 0 if report['success'] else 1

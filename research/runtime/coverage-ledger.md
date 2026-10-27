@@ -23911,3 +23911,39 @@ a historical gate assertion. The new capsule restores all 1,015 members with
 matching hashes, sizes and modes. Adoption uses normal Git operations and keeps
 the separate `AS.tag` working edits and untracked inputs; current rendering
 source/contract fingerprints must remain exact after their restoration.
+
+### Native SceneSession camera, entity rotation and spectator inputs — 2026-10-26
+
+`NR.scene-frame-camera` connects the existing recovered camera/view consumers and
+owned lighting producers to accepted native source data and frame scheduling.
+The session retains generation-bound creature/effect view caches and minimap
+invalidation, acquires special catalogs before refresh, and draws/pins the actual
+receiver resource after rebinding. Camera-required layers must be owned source
+layers; duplicate generations of a live family/slot are refused. Retirement and
+new epochs clear pending camera work and old receivers. Direct camera changes
+invalidate earlier projection plans.
+
+Queued turns complete once after a successful rendered plan, with recovered
+clockwise priority and counterclockwise deferral. Failed consumer/submission
+checks preserve requests; repeated frozen-plan delivery cannot consume another
+turn or redraw decrement. Ordinary frames avoid copying animation/controller
+pools. Frozen recomposition supplies no animation, simulation or lighting tick.
+Current source ticks supply current spectator anchors and native health/cells;
+generation, relation and enable-control changes request owned light recounts.
+Recovered light publication latency remains explicit.
+
+`CAMERA.scene-frame-native-20261026` and
+`CAMERA.scene-frame-sanitized-20261026` pass the final native64/Clang ASan/UBSan
+matrix, including actual World source delivery, special catalog drawing, linked
+retirement/refusals, scheduling and eight exact CPU/software-OpenGL image
+comparisons. Results, intermediate failures/source-drift refusals and the
+489-edge committed-history review (`adbf8029..8c0c4ea4`, zero missing receipts)
+are retained through SQLite. Earlier fingerprints remain unchanged. Original
+complete-session/producer provenance, physical GPU acceptance and live replacement
+are independent; original parent milestones are not promoted by native component
+execution. See [integration details](scene-camera-frame-integration-20261026.md).
+
+`CAMERA.scene-frame-installed-20261026` additionally loads installed Forest
+40x40x19 with 77 MPS placements and 766 draws; native checkpoint/application image
+agreement and immutable original/installed-input bookends pass. Camera branch
+controls remain native synthetic sources; this adds no original/live milestone.

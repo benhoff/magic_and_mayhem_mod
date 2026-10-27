@@ -101,6 +101,19 @@ int main() try {
   controls.readmit = {e};
   refused([&] { lights.step(world.state(), health, controls); });
   controls.readmit.clear();
+  // Slot reuse can preserve every projected light field. The generation is
+  // still a new producer and must trigger an immediate recount.
+  world.release(c);
+  const auto newCreature = world.spawn(creature);
+  check(newCreature.slot == c.slot && newCreature.generation != c.generation);
+  health.fighters[0].actor = newCreature;
+  lights.step(world.state(), health, controls);
+  check(lights.snapshot().changed == 1);
+  lights.step(world.state(), health, controls);
+  check(lights.snapshot().changed == 0);
+  controls.relations.first[0][1] = 1;
+  lights.step(world.state(), health, controls);
+  check(lights.snapshot().changed == 1);
   controls.player = -1;
   controls.camera.column = -1;
   controls.camera.row = -2;
