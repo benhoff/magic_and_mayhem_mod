@@ -26,7 +26,8 @@ MNM_TERRAIN_LIGHTING=original ./run-native.sh
 ```
 
 `MNM_TERRAIN_LIGHTING=observe` selects original-active lighting observation.
-The player validates lighting options before preparing a prefix. This default
+The player validates the lighting mode and capture selection before preparing a
+prefix. This default
 is a launch policy; combined-master live journeys, hour-long stability and
 hardware performance retain their separate acceptance boundaries.
 The default and override policy passes 18 launcher controls; Wine, prefix
