@@ -36734,8 +36734,21 @@
                 "tools/test-canvas-producers.py": "417adb9b1dc1cba65a0a4f4f7284b956af94eb6d1aefda2fcb43c00e6bf34cab",
                 "tools/test-minimap-live.py": "00ac5728ae3ed5b18a569619021c84d06271c95c92f160961345f7e35edf8d23",
                 "tools/test-native-canvas-producers.py": "82da48aeb56b7da935b6682b6f10d3722a3222c26268385496fc7bded496e9c0",
-                "tools/test-rendering-low20.py": "a1523fcdc95d8452713dbc1b1d36e1278fec278900781974452542a52134f050"
-              }
+                "tools/test-rendering-low20.py": "a1523fcdc95d8452713dbc1b1d36e1278fec278900781974452542a52134f050",
+                "research/formats/native-player-failure-diagnostics.md": "dedce393e3d6917185e36079a5d8c903b0953016d22a4c4a03a8cad122092aa5",
+                "research/runtime/native-player-expanded-20261026.md": "c06aab371ad48798c634211db8811373931c37bc4b591c87f3c12fa65c5f8f7e",
+                "tests/minimap-marker-row-test.c": "13ef38c395e12e0825580a5bd1feafb1a902c2890fe684be3fa869d072e04e55",
+                "tests/minimap-row-readset-original.cpp": "4a0c99d6400a8813fa414aaabaa513e6e29f28f2b90e8eddecf3003ab3a4ca43",
+                "tools/test-minimap-row-readset.py": "bb27243eae39ed738d948165ddbbfc4f0dff3a0ff07830b06c8dceb35525ebcb"
+              },
+              "pending_source_review": [
+                "research/formats/native-player-failure-diagnostics.md",
+                "research/runtime/native-player-expanded-20261026.md",
+                "tests/minimap-marker-row-test.c",
+                "tests/minimap-row-readset-original.cpp",
+                "tools/test-minimap-row-readset.py"
+              ],
+              "source_review_note": "Expanded-player/minimap read-set follow-up adds these source links. Existing fingerprints, historical validation and acceptance states are retained. New links are explicitly pending review; no freshness or stage promotion follows."
             },
             "execution_result": {
               "outcome": "PASS",

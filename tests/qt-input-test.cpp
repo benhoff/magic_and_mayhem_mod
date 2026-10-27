@@ -51,6 +51,7 @@ int main(int argc,char** argv){
         GlViewport viewport;viewport.resize(1000,600);QImage frame(800,600,QImage::Format_RGBA8888);frame.fill(Qt::black);viewport.setFrame(frame);
         QTemporaryDir stateDirectory;InputState state;const auto statePath=stateDirectory.filePath("input.bin");
         require(state.create(statePath),"Input state creation");
+        require(!state.desktopCoordinates(),"Ordinary client input must retain client-relative coordinates");
         InputForwarder input(viewport,host);input.setTarget(target);input.setState(&state);
         auto stateKey=[&](unsigned key){QFile file(statePath);require(file.open(QIODevice::ReadOnly),"Read input state");file.seek(64+key*4);const auto bytes=file.read(4);return qFromLittleEndian<quint32>(bytes.constData());};
         QPoint mapped;require(viewport.imagePoint({100,0},mapped) && mapped==QPoint(0,0),"Top-left mapping");
@@ -127,7 +128,12 @@ int main(int argc,char** argv){
         require(!host.desktopInputWindow(desktop,{800,600}),"Ambiguous named game windows must refuse");
         xcb_destroy_window(connection,duplicate);sync();input.setTarget(0);xcb_destroy_window(connection,decorated);sync();
         require(!host.desktopInputWindow(desktop,{800,600}),"Desktop cannot replace retired game window");
+        const auto smallerClient=create(desktop,640,480);sync();
+        require(host.inputWindow(desktop,{640,480})==smallerClient,"Ordinary 640 client in 800 desktop must bind by client extent");
+        require(!host.desktopInputWindow(desktop,{640,480}),"Client frame must not be misclassified as desktop coordinates");
+        xcb_destroy_window(connection,smallerClient);sync();
         InputState desktopState;const auto desktopPath=stateDirectory.filePath("desktop.bin");require(desktopState.create(desktopPath,true),"Desktop input creation");
+        require(desktopState.desktopCoordinates(),"Explicit desktop wire must retain its selector coordinate mode");
         desktopState.publish(true,{400,300},{800,600});QFile desktopFile(desktopPath);require(desktopFile.open(QIODevice::ReadOnly),"Desktop header open");
         const auto desktopBytes=desktopFile.readAll();require(desktopBytes.left(8)=="MNMINK02" && qFromLittleEndian<quint32>(desktopBytes.constData()+8)==2 && qFromLittleEndian<quint32>(desktopBytes.constData()+40)==1,"Explicit desktop wire identity");
         viewport.resize(1001,601);const auto rect=viewport.imageRect();

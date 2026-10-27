@@ -107,6 +107,7 @@ class ImportanceTest(unittest.TestCase):
             'NP.surface-alias-lease-lifecycle',
             'NP.windowed-copy-reader-frontier',
             'NP.windowed-quick-copy-callers',
+            'NP.world-black-caller-continuations',
             'NR.world-constant-fill',
             'RE.terrain-single-cell-captured-cycle',
             'RE.terrain-single-cell-global-storage',

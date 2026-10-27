@@ -2,6 +2,8 @@
 #include "gl_viewport.hpp"
 #include <QOpenGLContext>
 #include <QSaveFile>
+#include <QFileInfo>
+#include <QDir>
 #include <QJsonDocument>
 #include <QTimer>
 #include <algorithm>
@@ -153,6 +155,13 @@ void NativeRenderWorker::run(){
         QJsonObject report;{std::lock_guard<std::mutex> lock(mutex_);report=published_.report;report["frame_trace"]=frameTrace_.report();}
         QSaveFile file(reportPath_);const auto bytes=QJsonDocument(report).toJson();
         if(!file.open(QIODevice::WriteOnly)||file.write(bytes)!=bytes.size()||!file.commit())throw std::runtime_error("Render owner report publication");
+        // The resident session's teardown report has a narrower schema. Keep
+        // terminal worker timing separately so that its later save cannot
+        // erase the first failure and the completed render-turn diagnostics.
+        if(!report.value("error").toString().isEmpty()){
+            QSaveFile terminal(QFileInfo(reportPath_).dir().filePath("resident-world-terminal.json"));
+            if(!terminal.open(QIODevice::WriteOnly)||terminal.write(bytes)!=bytes.size()||!terminal.commit())throw std::runtime_error("Terminal render owner report publication");
+        }
     };
     try{
         for(;;){

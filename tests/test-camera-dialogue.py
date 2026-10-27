@@ -21,10 +21,10 @@ def item(native, original):
 
 class CameraCrop(unittest.TestCase):
     def test_crop_retains_heading_at_both_admitted_extents(self):
-        self.assertEqual(dialogue_crop(800,600),(225,90,600,270))
-        self.assertEqual(dialogue_crop(640,480),(180,72,480,216))
+        self.assertEqual(dialogue_crop(800,600),(225,80,600,270))
+        self.assertEqual(dialogue_crop(640,480),(180,64,480,216))
         # The observed640heading begins above row90and needs its complete H.
-        self.assertLess(dialogue_crop(640,480)[1],86)
+        self.assertLessEqual(dialogue_crop(640,480)[1],70)
 
     def test_other_extents_refuse_before_quiet_classification(self):
         for size in [(640,600),(800,480),(641,480),(0,0),(1280,960)]:

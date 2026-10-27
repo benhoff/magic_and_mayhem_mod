@@ -39,14 +39,28 @@ def main():
    call=at(va-5,5)
    if call[0]!=0xe8 or va+struct.unpack('<i',call[1:])[0]!=targets[tag]:raise ValueError('Effect direct call binding changed')
    callers.setdefault(va,set()).add(tag)
+  # The two black sentinel branches use AX-only normalization before the
+  # existing clipped fallback. Keep these checked direct bindings even when a
+  # bounded stream has not sampled the corresponding queue node.
+  black_returns={0x500439:12,0x50045c:17,0x5004d4:12,0x5004f7:17}
+  for va,tag in black_returns.items():
+   call=at(va-5,5);target=0x595677 if tag==12 else 0x57de00
+   if call[0]!=0xe8 or va+struct.unpack('<i',call[1:])[0]!=target:raise ValueError('Black/fallback direct call changed')
+   if tag==12:
+    code=at(va,20)
+    if code[:16]!=bytes.fromhex('83c40c664866f7d81bc0406685c00f84') or va+20+struct.unpack('<i',code[16:])[0]!=0x500848:raise ValueError('Black AX normalization changed')
+   else:
+    code=at(va,8)
+    if code[:4]!=bytes.fromhex('83c414e9') or va+8+struct.unpack('<i',code[4:])[0]!=0x500848:raise ValueError('Clipped AX store continuation changed')
+   callers.setdefault(va,set()).add(tag)
   rows=[];header=['/* Pinned World continuations and the checked inherited kind8 extension. */','static const struct RasterCaller {u32 address;unsigned long long tags;u8 bytes[10];} raster_callers[]={']
   for va,ts in sorted(callers.items()):
    # These ranges were reviewed through the AX stores/masks and queue loop.
    if not (0x5002a0<=va<0x501150 or 0x57e8e0<=va<0x57eb00 or va in (0x54ab16,0x54aab2,0x54657c,0x54ab72)):raise ValueError('Caller outside reviewed World/wrapper range')
    sig=at(va,10);mask=sum(1<<t for t in ts);header.append(' {0x%x,0x%xull,{%s}},'%(va,mask,','.join(hex(x) for x in sig)))
    asm=subprocess.check_output(['objdump','-d','-Mintel','--start-address='+hex(va),'--stop-address='+hex(min(va+80,0x501150 if va<0x501150 else va+80)),str(exe)],text=True)
-   origin='checked_inherited_wrapper' if va==0x54aab2 else 'checked_effect_return' if va in effects else 'observed_stream'
-   scope='Checked direct effect call and AX-only continuation; this static extension is not natural reachability.' if va in effects else 'Pinned54aaa0 RET8 continuation to virtual caller; this static extension alone is not a natural-live witness.' if va==0x54aab2 else 'Observed return path consumes low16 AX only; callee-saved registers preserved, volatile registers/flags overwritten before subsequent use on reviewed path.'
+   origin='checked_inherited_wrapper' if va==0x54aab2 else 'checked_effect_return' if va in effects else 'checked_black_return' if va in black_returns else 'observed_stream'
+   scope='Pinned direct black/fallback call and AX-only normalization/store; natural reachability remains separately recorded.' if va in black_returns else 'Checked direct effect call and AX-only continuation; this static extension is not natural reachability.' if va in effects else 'Pinned54aaa0 RET8 continuation to virtual caller; this static extension alone is not a natural-live witness.' if va==0x54aab2 else 'Observed return path consumes low16 AX only; callee-saved registers preserved, volatile registers/flags overwritten before subsequent use on reviewed path.'
    rows.append({'address':hex(va),'tags':sorted(ts),'return_signature':sig.hex(),'disassembly':asm,'origin':origin,'scope':scope})
   header+=['};', '''/* Bytes are an explicitly readable ten-byte continuation. */
 static inline int mnm_world_raster_caller(u32 caller,u32 tag,const u8* bytes){

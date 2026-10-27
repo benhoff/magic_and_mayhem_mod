@@ -91,13 +91,20 @@ Select the original renderer explicitly for compatibility/diagnostics:
 entry point. Asahi setup/launch is unchanged; strict live native ownership on
 ARM is not established by this launcher.
 
-Validation includes 15 launcher/routing controls and two actual public native-only
-campaigns: fresh default-prefix initialization and a second launch reusing that
-prefix. The bounded x86 checks use Xvfb/software GL, skip movies and disable native
-music. Both finish original Quit with balanced Worlds and zero cursor/graphics
-owners; all 386 actual linked compiler inputs are checked. This does not establish
-all-map, long-duration, hardware, movie/music-default or original-pixel acceptance.
-See [the execution and retention record](../research/runtime/native-player-acceptance-20261026.md).
+Validation includes 18 launcher controls and actual fresh/reused public-player
+journeys. Expanded x86 checks cover both naturally completed intros, native
+music/voice retirement, Save/Load and 640/800 display rebuilding, two offered
+Quick Battle maps, six two-minute physical-input phases with five Mini returns,
+and a separate NVIDIA run. Each accepted journey finishes original normal Quit
+with balanced Worlds and zero cursor/graphics owners. The expanded runs check
+391 repository inputs from the actual linked Qt compiler closure.
+
+These are bounded, source-specific runs. Earlier source phases, failed attempts
+and transport refusals remain recorded; the old crash cause, natural self-copy
+and keyed GPU-source branches, arbitrary maps/saves/duration, original-driver
+pixels and ARM ownership remain unproved. See
+[initial acceptance](../research/runtime/native-player-acceptance-20261026.md) and
+[expanded acceptance and remaining boundaries](../research/runtime/native-player-expanded-20261026.md).
 
 The first 15-control attempt had one Bash test-harness failure: sourcing a script
 without arguments inherited the harness's script-path argument. The harness now

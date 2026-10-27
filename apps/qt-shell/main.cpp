@@ -418,7 +418,8 @@ private:
             if(!stream_->create(path)){statusBar()->showMessage(stream_->error());return false;}
             inputState_=std::make_unique<InputState>();
 
-            if(!inputState_->create(inputPath,true)){statusBar()->showMessage("Cannot create game input channel.");return false;}
+            const bool desktopCoordinates=qEnvironmentVariable("MNM_ORIGINAL_WINDOWED_DIAGNOSTIC")=="1";
+            if(!inputState_->create(inputPath,desktopCoordinates)){statusBar()->showMessage("Cannot create game input channel.");return false;}
             input_->setState(inputState_.get());inputTimer_.start();
             arguments={"--stream",path,"--input",inputPath};elapsed_.restart();
             if(nativeCommands_){
@@ -583,8 +584,9 @@ private:
         const auto candidates=host_.desktops(excluded_);
         if(opengl_ && !nativeFallback_){
             xcb_window_t target=0;
-            if(candidates.size()==1){host_.lowerDesktop(candidates.front());if(!gl_->frameSize().isEmpty())target=host_.desktopInputWindow(candidates.front(),gl_->frameSize());}
-            input_->setTarget(target,target?candidates.front():0);return;
+            const bool desktopCoordinates=inputState_&&inputState_->desktopCoordinates();
+            if(candidates.size()==1){host_.lowerDesktop(candidates.front());if(!gl_->frameSize().isEmpty())target=desktopCoordinates?host_.desktopInputWindow(candidates.front(),gl_->frameSize()):host_.inputWindow(candidates.front(),gl_->frameSize());}
+            input_->setTarget(target,desktopCoordinates&&target?candidates.front():0);return;
         }
         if(candidates.size()==1 && attach(candidates.front()))return;
         if(candidates.size()>1){poll_.stop();retry_->setEnabled(true);statusBar()->showMessage("Multiple new game desktops found. Close extra desktops, then click Attach game.");return;}

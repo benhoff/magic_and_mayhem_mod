@@ -266,6 +266,11 @@ static u8* map_points(const struct Frame* f){
  else{u32 begin=get((void*)(p+0x614d)),end=get((void*)(p+0x6151));if(end<begin||(end-begin)%12||(end-begin)/12>1024||(!readable(begin,end-begin)&&begin!=end))okay=0;else for(u32 n=begin;n<end;n+=12){i32 rawx=(i32)get((void*)n),rawy=(i32)get((void*)(n+4));u32 z=get((void*)(n+8));if(rawy<0||rawy>=128||z/2>=32){okay=0;break;}u32 state=get((void*)0x6c5c5c)+get((void*)(0x6cb942+(u32)rawy*4))+get((void*)(0x6cb8c2+(z/2)*4))+(u32)rawx;if(!readable(state,1)){okay=0;break;}if((i32)(signed char)*(u8*)state==(i32)get((void*)0x5e18f0)&&get((void*)0x5e1404))continue;i32 u=wrap(rawx+(i32)(w/2)-cx,w),v=wrap(rawy+(i32)(h/2)-cy,h),x=ox+u-v,y=oy+(u+v)/2;const i32 dx[13]={-1,0,1,2,-2,-2,0,2,2,-2,-1,0,1},dy[13]={-2,-2,-2,-1,-1,0,0,0,1,1,2,2,2};for(u32 k=0;k<13;++k)okay&=point(out,&count,dst,x+dx[k],y+dy[k],0xfc00);}}
  if(!okay){HeapFree(producer_heap(),0,out);fail(34,tag);return 0;}r[14]=count;r[18]=count*12;r[0]=96+r[18];return out;
 }
+#include "minimap_row_diagnostic.h"
+#include "minimap_marker_row.h"
+static int minimap_read_marker_row(void* context,unsigned address,unsigned* value){
+ (void)context;if(!readable(address,4))return 0;*value=get((void*)address);return 1;
+}
 static u8* owned_map_overlay(const struct Frame* f){
  u32 p=f->ecx,tag=f->tag;if(!readable(p,0x620b)){fail(32,tag);return 0;}
  struct Surface* dst=map_destination(p);u32 w=get((void*)0x6c5494),h=get((void*)0x6c5498);
@@ -283,8 +288,9 @@ static u8* owned_map_overlay(const struct Frame* f){
   if(!meta[11]||!hidden){i32 u=wrap((i32)x+(i32)(w/2)-(i32)meta[3],w),v=wrap((i32)y+(i32)(h/2)-(i32)meta[4],h),old=u;
    if(meta[9]==1){u=v;v=(i32)meta[5]-old;}else if(meta[9]==2){u=(i32)meta[5]-u;v=(i32)meta[6]-v;}else if(meta[9]==3){u=(i32)meta[6]-v;v=old;}
    i32 row=(u+v)/2;u32 rows=get((void*)(p+0xf3));
-   for(i32 d=-2;d<=2;++d){long long entry=(long long)rows+((long long)row+d)*4,expected=(long long)dst->pixels+((long long)(i32)meta[8]*dst->stride+(i32)meta[7]+((long long)row+d)*dst->stride)*2;
-    if(entry<=0||entry>0xffffffffll||expected<0||expected>0xffffffffll||!readable((u32)entry,4)||get((void*)(u32)entry)!=(u32)expected){HeapFree(producer_heap(),0,out);fail(36,tag);return 0;}
+   long long entry,expected;
+   if(!mnm_minimap_marker_row(rows,row,dst->pixels,dst->stride,get((void*)(p+0xeb)),(i32)meta[7],(i32)meta[8],minimap_read_marker_row,0,&entry,&expected)){
+    minimap_row_refusal(f,dst,meta,i,row,0,entry,expected);HeapFree(producer_heap(),0,out);fail(36,tag);return 0;
    }
   }
   put(out+244+i*12,x);put(out+248+i*12,y);put(out+252+i*12,hidden);}

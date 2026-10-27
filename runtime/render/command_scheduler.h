@@ -27,6 +27,10 @@ static u32 WIN command_worker_run(void* unused){
             command_pressure_logged=1;
             lock_diagnostic(__atomic_load_n(&command_queue_timed_out,__ATOMIC_ACQUIRE)?"command_queue_stalled":"command_queue_refused",0,0,failure,
                 __atomic_load_n(&command_queue_peak,__ATOMIC_RELAXED),0,__atomic_load_n(&command_queue_full,__ATOMIC_RELAXED),0);
+            if(__atomic_load_n(&command_queue_timed_out,__ATOMIC_ACQUIRE)){u32 values[19]={0};
+                for(u32 i=0;i<8;++i)values[i]=command_queue_deadline[i];
+                values[8]=command_queue_rechecked_progress;values[9]=command_queue_rechecked_idle;
+                lock_diagnostic_values("command_watchdog_state",values);}
             if(failure==MNM_RENDER_COMMANDS_V2_REASON_OVERFLOW){u32 values[19]={0};
                 for(u32 i=0;i<6;++i)values[i]=command_queue_overflow[i];
                 lock_diagnostic_values("command_queue_overflow",values);}
@@ -139,7 +143,7 @@ static int command_scheduler_shutdown_locked(u32 milliseconds){
        (!mnm_ring_identity(command_channel,command_ring.session) || mnm_ring_load(command_channel+8) ||
         mnm_ring_load(command_channel+5)!=command_ring.published || mnm_ring_load(command_channel+9)!=command_ring.published))command_shutdown_complete=0;
     {u32 values[19]={command_pressure_waits,command_pressure_resumes,command_pressure_max_ms,
-        COMMAND_PRESSURE_HIGH,COMMAND_PRESSURE_LOW,command_queue_peak,command_queue_failure,command_shutdown_complete};
+        COMMAND_PRESSURE_HIGH,COMMAND_PRESSURE_LOW,command_queue_peak,command_queue_failure,command_shutdown_complete,command_queue_rechecked_progress,command_queue_rechecked_idle};
      lock_diagnostic_values("command_pressure_summary",values);}
     if(command_shutdown_complete && !game_cpu_read_counts_flush())command_shutdown_complete=0;
     command_channel_close();return command_shutdown_complete;

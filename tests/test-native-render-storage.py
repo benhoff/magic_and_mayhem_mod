@@ -204,6 +204,19 @@ class StorageTests(unittest.TestCase):
             flow,_,_=self.fixture(Path(d),recreate=True)
             self.assertEqual(len(m.validate_storage(Path(d),flow)['checkpoints']),4)
 
+    def test_rebuild_follows_admitted_low_mode_and_restores_it(self):
+        with tempfile.TemporaryDirectory() as d:
+            flow,rows,write=self.fixture(Path(d),recreate=True)
+            flow['initial_resolution']=1
+            for row,dimensions in zip([r for r in rows if r[1]==7],[(800,600),(640,480)]):row[9:11]=dimensions
+            write()
+            self.assertTrue(m.validate_storage(Path(d),flow)['verified'])
+            flow['initial_resolution']=0
+            with self.assertRaises(ValueError):m.validate_storage(Path(d),flow)
+            for invalid in [True,-1,2,'1']:
+                flow['initial_resolution']=invalid
+                with self.assertRaises(ValueError):m.validate_storage(Path(d),flow)
+
     def test_recreated_flow_cannot_reuse_old_checkpoint(self):
         with tempfile.TemporaryDirectory() as d:
             flow,_,_=self.fixture(Path(d),recreate=True)

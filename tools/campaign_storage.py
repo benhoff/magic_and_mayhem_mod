@@ -179,7 +179,11 @@ def validate_storage(experiment, flow, difficulty=1, input_directory=None):
     if flow.get('recreate_world'):
         expected=expected[:-1]+[(3,3),(10,0),(3,3),(10,0),(3,1),(12,0),(17,3),(6,21),(3,4)]
         display=[r for r in rows if r[1] in (6,7,8)]
-        if [r[1] for r in display]!=[6,7,8]*2 or [(r[9],r[10]) for r in display if r[1]==7]!=[(640,480),(800,600)]:
+        # Historical fixtures start High; new journeys record the admitted mode.
+        initial=flow.get('initial_resolution',0)
+        if type(initial) is not int or initial not in (0,1):raise ValueError('Invalid initial display mode')
+        dimensions=[(640,480),(800,600)] if initial==0 else [(800,600),(640,480)]
+        if [r[1] for r in display]!=[6,7,8]*2 or [(r[9],r[10]) for r in display if r[1]==7]!=dimensions:
             raise ValueError('Original display rebuild dimensions were not observed')
     if actions != expected or len({r[2] for r in rows if r[1] in (3, 12, 20)}) != 1:
         raise ValueError('Unexpected original Save/Load callback/thread trace: ' + repr(actions))

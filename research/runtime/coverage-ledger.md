@@ -24096,3 +24096,47 @@ All1,511 newer committed transitions have exact receipts; current control source
 and HOST claim scopes have zero drift. This adds no new game/driver execution or
 engine milestone. Existing WIP is retained separately under a pinned exact Git
 snapshot and verified local SQLite handoff records.
+
+### Expanded public player and input-mode acceptance — 2026-10-26
+
+The owned follow-up integrates the existing windowed input/Results work without
+duplicating its helpers or the active CPU clipping investigation. Broader
+public-launch attempts identify and preserve two additional failures: the
+640x480 Hermes heading was clipped by its OCR crop, and ordinary client-relative
+frames were incorrectly selected as desktop frames. Current controls04 passes
+both Qt DPI modes, Results timing/identity, wire v1/v2 admission and actual PE32
+polling on the corrected mode selection. The retained-image OCR regression
+passes without fuzzy text recognition. Default-media failures remain negative
+evidence; the later public media, extended, save/recreate, offered-map and
+hardware profiles require separate source-bound executions. No engine status
+is promoted by these controls or their storage retention. See the
+[scope and remaining boundaries](native-player-expanded-20261026.md).
+
+### Expanded player closeout — 2026-10-27
+
+Six bounded public-player profiles pass original normal Quit, all18cursor hooks,
+balanced Worlds and zero cursor/graphics owners: both offered Celtic Forest
+One/Three map rows, enabled intros/music/voices, Save/Load/display recreation,
+NVIDIA hardware and six120-second physical phases with five Mini returns. The
+source phases remain separate; final large-map/long runs follow the four exact
+black/fallback caller additions. Isolated393216AX continuation cases and all47
+production callers/54pairs pass;24original minimap cases independently disprove
+the former five-row read-set assumption. Watchdog controls prove and repair a
+stale-ACK false-expiry schedule without retroactively attributing live stalls.
+Current windowed input/Results controls and the bounded normal-Quit/whole-COPY
+closure pass, while natural self/keyed GPU branches remain unobserved. Historical
+source hashes, failed acquisitions, unreproduced crash causes and broader driver/
+alias/duration boundaries remain explicit. See
+[expanded player acceptance](native-player-expanded-20261026.md) and the
+SQLite-backed `native-player-expanded-results-20261026/closeout-matrix01.json`.
+
+### Fresh combined-source player lifetime — 2026-10-27
+
+Hardware03 refreshes the actual public launch/native lifetime scenario on the
+combined current-master source: NVIDIA, native-lighting default, physical input,
+Mini/No/Yes, balanced World returns, original normal Quit, all18hooks/all8cursor
+client categories, zero clients/jobs/graphics owners and391checked repository Qt
+compiler inputs. All2967declared source files remain stable. Earlier six-profile
+acceptance retains exact historical phases; no old hash, full-driver comparison
+or deferred-generation game-path claim is refreshed. See
+[combined-source acceptance](native-player-master-acceptance-20261027.md).

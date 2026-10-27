@@ -15,7 +15,7 @@ bool InputState::create(const QString& path,bool desktopCoordinates){
         qToLittleEndian<quint32>(MNM_INPUT_V2_COORDINATE_SPACE_DESKTOP,bytes.data()+MNM_INPUT_V2_COORDINATE_SPACE_OFFSET);
     }
     if(file_.write(bytes)!=Size || !file_.flush())return false;
-    mapping_=file_.map(0,Size);return mapping_;
+    mapping_=file_.map(0,Size);desktopCoordinates_=desktopCoordinates;return mapping_;
 }
 void InputState::key(unsigned code,bool down){
     if(code>=keys_.size())return;

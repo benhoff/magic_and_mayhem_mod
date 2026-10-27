@@ -32,7 +32,7 @@ def main():
         report['commands'].append(dict(command=[str(x) for x in args],exit_code=t.returncode,log=name+'.log'))
         if t.returncode:raise ValueError(name+' failed')
     try:
-        run(['cmake','-S',ROOT/'apps/qt-shell','-B',build,'-DCMAKE_BUILD_TYPE=Release'],'configure')
+        run(['cmake','-S',ROOT/'apps/qt-shell','-B',build,'-DCMAKE_BUILD_TYPE=Release','-DBUILD_TESTING=ON'],'configure')
         run(['cmake','--build',build,'--target','mnm-qt-shell','qt-input-test','menu-result-controller-test','--parallel','2'],'shell-build',1200)
         report['binary_sha256']=hashlib.sha256((build/'mnm-qt-shell').read_bytes()).hexdigest()
         run(['ctest','--test-dir',build,'--output-on-failure','-R','^qt-shell-input|^qt-menu-result-controller$'],'qt-controls',90)

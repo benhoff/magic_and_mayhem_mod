@@ -29,7 +29,9 @@ def dialogue_crop(width, height):
     """Retain the reviewed heading crop at both admitted native World sizes."""
     if (width, height) not in ((640, 480), (800, 600)):
         raise ValueError('Unsupported camera dialogue canvas extent')
-    return (225*width//800, 90*height//600, 600*width//800, 270*height//600)
+    # The retained 640x480 heading starts at y=70. Starting at y=72
+    # clips the H and changes the OCR result to "Flermes".
+    return (225*width//800, 80*height//600, 600*width//800, 270*height//600)
 
 
 class CameraDialogueGuard:

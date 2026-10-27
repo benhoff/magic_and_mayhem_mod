@@ -16019,7 +16019,8 @@
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-command-backpressure.md"
+        "research/runtime/opengl-command-backpressure.md",
+        "research/formats/native-player-failure-diagnostics.md"
       ],
       "implementation": [
         "runtime/render/command_queue.h",
@@ -16034,14 +16035,20 @@
         "tools/test-render-backpressure.py",
         "tools/test-render-command-queue.py",
         "tools/test-render-command-idle.py",
-        "tools/test-render-continuous-producer.py"
+        "tools/test-render-continuous-producer.py",
+        "tools/test-command-watchdog.py",
+        "tests/render-command-pressure-test.c"
       ],
       "evidence": [
         "NR.command-backpressure.queue",
         "NR.command-backpressure.pe32",
         "NR.command-backpressure.idle",
         "NR.command-backpressure.gpu",
-        "NR.command-backpressure.worker-isolation-regression-20261011"
+        "NR.command-backpressure.worker-isolation-regression-20261011",
+        "NPL27.watchdog-baseline01",
+        "NPL27.watchdog-controls01",
+        "NPL27.watchdog-controls04",
+        "NPL27.watchdog-pe32-controls01"
       ],
       "status": {
         "understanding": "scoped",
@@ -16049,7 +16056,10 @@
         "comparison": "none",
         "integration": "preview",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "Expanded public-player Quick202 and Extended03 retain command_queue_stalled INTERRUPTED failures. An isolated old-code schedule proves stale ACK observation can falsely expire the deadline. Fresh deadline revalidation is tested independently; those live failures are not retroactively attributed or promoted, and real OS scheduling remains outside the bounded policy."
+      ]
     },
     {
       "id": "NR.command-orchestration",
@@ -24332,7 +24342,8 @@
         "replacement": "scoped_live"
       },
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "Expanded Quick206 records an unsupported original black continuation5004d4/tag12 before its first completed World. Four exact direct black/fallback continuations are added under NP.world-black-caller-continuations with independent AX/cleanup/signature controls. Earlier World evidence retains its fingerprints; arbitrary caller coverage and universal session reliability remain pending."
       ]
     },
     {
@@ -25355,7 +25366,8 @@
       "confidence": "high_within_scope",
       "documents": [
         "research/runtime/native-minimap-overlays.md",
-        "research/runtime/public-resident-minimap-overlays-current-20261011.json"
+        "research/runtime/public-resident-minimap-overlays-current-20261011.json",
+        "research/runtime/native-player-expanded-20261026.md"
       ],
       "implementation": [
         "renderer/minimap/overlays.cpp",
@@ -25365,18 +25377,24 @@
         "tests/minimap-overlays-native.cpp",
         "tests/minimap-overlays-original.cpp",
         "tests/minimap-overlays-fixture.hpp",
-        "tools/test-minimap-overlays.py"
+        "tools/test-minimap-overlays.py",
+        "tools/test-minimap-row-readset.py",
+        "tests/minimap-row-readset-original.cpp",
+        "tests/minimap-marker-row-test.c"
       ],
       "validation_dependencies": [
         "renderer/minimap/minimap.hpp",
         "renderer/minimap/overlays/CMakeLists.txt",
         "tests/sprite-binary-reference.cpp",
-        "tools/original-manifest.sh"
+        "tools/original-manifest.sh",
+        "runtime/scene/minimap_marker_row.h"
       ],
       "evidence": [
         "RS.minimap-creature-markers.comparison-20261009",
         "RS.minimap-creature-markers.comparison-range-20261009",
-        "RS.minimap-creature-markers.candidate-refresh-original-20261011"
+        "RS.minimap-creature-markers.candidate-refresh-original-20261011",
+        "NPL27.minimap-readset03",
+        "NPL27.minimap-readset04"
       ],
       "status": {
         "understanding": "scoped",
@@ -25395,6 +25413,9 @@
           "address": 5584976,
           "scope": "Selected No-CD553850 visible13word creature markers and refreshed object grid fields. In-grid source cells, closed source-derived hidden decisions, fog gating and four-view projection using owned independent rotation extents/origins; RGB565fc00/RGB5557e00. Empty/all-hidden lists also return required dimension refresh to a future adapter. Positive owned word rows replace original row-pointer table; native list/bounds refusals are safety policy. Simulation visibility/table lifetime, arbitrary row-pointer aliases, caller ABI/machine state, live integration and bypass remain pending."
         }
+      ],
+      "remaining_gaps": [
+        "The marker routine reads only the center row-table entry, then uses object stride for surrounding stores; a 24-case isolated original guard-page comparison covers four orientations, two formats and center rows 0/1/16. Live reason36/detail48 from extended01 was not reproduced by extended02 and its exact refused row remains unknown; the former five-row assumption is independently disproven. Unknown row aliases and arbitrary visibility lifetimes remain excluded."
       ]
     },
     {
@@ -26324,7 +26345,9 @@
       "documents": [
         "research/runtime/native-minimap-live.md",
         "research/formats/canvas-producers-v2.md",
-        "research/runtime/rendering-low20-20261020.md"
+        "research/runtime/rendering-low20-20261020.md",
+        "research/runtime/native-player-expanded-20261026.md",
+        "research/formats/native-player-failure-diagnostics.md"
       ],
       "implementation": [
         "runtime/scene/canvas_producers.c",
@@ -26340,7 +26363,10 @@
         "tools/test-native-canvas-producers.py",
         "tools/test-minimap-live.py",
         "tools/test-rendering-low20.py",
-        "tests/rendering-low20/CMakeLists.txt"
+        "tests/rendering-low20/CMakeLists.txt",
+        "tools/test-minimap-row-readset.py",
+        "tests/minimap-row-readset-original.cpp",
+        "tests/minimap-marker-row-test.c"
       ],
       "validation_dependencies": [
         "apps/qt-shell/window_host.cpp",
@@ -26517,14 +26543,22 @@
         "runtime/scene/kind8_sprite_admission.h",
         "tests/kind8-sprite-hook-fixture.h",
         "tests/kind8-sprite-primary-call.S",
-        "tools/kind8_sprite_fixture.py"
+        "tools/kind8_sprite_fixture.py",
+        "runtime/scene/minimap_row_diagnostic.h",
+        "runtime/scene/minimap_marker_row.h",
+        "tests/minimap-marker-row-test.c",
+        "tests/minimap-row-readset-original.cpp",
+        "tools/test-minimap-row-readset.py"
       ],
       "validation_domain": "Bounded first16 original-active World startup prefix with all available producer checkpoints; four-view/two-format synthetic owned adapter and malformed wire/result/selected-entry refusals, V1/V2 budget separation and distinct stored-orientation/outline-entry fixtures. Only actually observed camera/rotation/fog/flash changes count as live validation; source generation and replacement excluded.",
       "evidence": [
         "NR.minimap-owned-observation.startup-20261009",
         "NR.minimap-owned-observation.motion-20261009",
         "LOW20.component-controls-20261020",
-        "LOW20.minimap-motion-live-20261020"
+        "LOW20.minimap-motion-live-20261020",
+        "NPL27.minimap-readset03",
+        "NPL27.minimap-readset04",
+        "NPL27.planning-controls02"
       ],
       "status": {
         "understanding": "scoped",
@@ -26534,7 +26568,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion."
+        "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
+        "The marker routine reads only the center row-table entry, then uses object stride for surrounding stores; a 24-case isolated original guard-page comparison covers four orientations, two formats and center rows 0/1/16. Live reason36/detail48 from extended01 was not reproduced by extended02 and its exact refused row remains unknown; the former five-row assumption is independently disproven. Unknown row aliases and arbitrary visibility lifetimes remain excluded."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-5-20261020",
@@ -42416,7 +42451,8 @@
         "NT17 forced legacy-audio public campaign completes casting/combat/movement/normal Quit but fails the unchanged19FPS portrait gate near14FPS. Preserve its negative and original fingerprints independently of any production-default native-audio success; no legacy-profile guarantee or causal audio explanation follows.",
         "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted.",
         "RFL20261025 adds a separate functional FPS policy and local callback-after-readiness recheck. Shared helper/harness source changes do not refresh historical benchmark, broader camera-body/original-pixel or launch-policy stage evidence. The new source-bound functional behavior has independent current execution; historical fingerprints remain unchanged.",
-        "The opt-in all-copy observer and versioned application COPY bindings change shared diagnostic/harness sources. Historical hashes and milestones remain unchanged; current-source validation stays pending outside the separately declared CPU/GPU copy-output policy scope."
+        "The opt-in all-copy observer and versioned application COPY bindings change shared diagnostic/harness sources. Historical hashes and milestones remain unchanged; current-source validation stays pending outside the separately declared CPU/GPU copy-output policy scope.",
+        "Expanded Quick206 records an unsupported original black continuation5004d4/tag12 before its first completed World. Four exact direct black/fallback continuations are added under NP.world-black-caller-continuations with independent AX/cleanup/signature controls. Earlier World evidence retains its fingerprints; arbitrary caller coverage and universal session reliability remain pending."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
@@ -49300,7 +49336,8 @@
       "tests": [
         "tests/test-native-audio-policy.py",
         "tests/test-native-music-launch.py",
-        "tools/test-native-campaign.py"
+        "tools/test-native-campaign.py",
+        "tests/test-native-player-media.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -50056,7 +50093,8 @@
         "reconstruction/rendering/kind8_class.h",
         "protocols/include/mnm/world_effect_raster_v1.h",
         "reconstruction/rendering/kind8_sprite_class.h",
-        "runtime/scene/kind8_sprite_admission.h"
+        "runtime/scene/kind8_sprite_admission.h",
+        "tools/native_media_acceptance.py"
       ],
       "evidence": [
         "HOST.native-audio-defaults.public-pass-20261012",
@@ -51368,7 +51406,8 @@
       ],
       "tests": [
         "runtime/render/media_selftest.h",
-        "tools/test-native-media.py"
+        "tools/test-native-media.py",
+        "tests/test-native-player-media.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -51382,7 +51421,8 @@
         "runtime/render/bridge.c",
         "tools/build-render-bridge.py",
         "tools/run-menu-observer.py",
-        "protocols/include/mnm/world_raster_batch_v3.h"
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "tools/native_media_acceptance.py"
       ],
       "evidence": [
         "HOST.native-media-startup-probe.synthetic-20261012",
@@ -51534,7 +51574,8 @@
       ],
       "tests": [
         "tests/native-playback-recovery-test.cpp",
-        "tools/test-native-playback-recovery.py"
+        "tools/test-native-playback-recovery.py",
+        "tests/test-native-player-media.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -51545,7 +51586,8 @@
         "tools/campaign_input_admission.py",
         "tools/campaign_input_observation.py",
         "runtime/menu/campaign_input_admission_observe.h",
-        "tools/campaign_gameplay.py"
+        "tools/campaign_gameplay.py",
+        "tools/native_media_acceptance.py"
       ],
       "evidence": [
         "HOST.native-media-output-recovery.synthetic-20261012",
@@ -94151,11 +94193,13 @@
       "tests": [
         "tests/test-camera-dialogue.py",
         "tests/test-pixel-route-requirements.py",
-        "tests/test-native-campaign.py"
+        "tests/test-native-campaign.py",
+        "tools/test-native-player-ocr.py"
       ],
       "evidence": [
         "CAMERARESUME.actual-20261017",
-        "CAMPAIGNCADENCE.actual-20261017"
+        "CAMPAIGNCADENCE.actual-20261017",
+        "NPL27.ocr01"
       ],
       "status": {
         "understanding": "partial",
@@ -94182,13 +94226,16 @@
       },
       "remaining_gaps": [
         "Historical5FPS software failures are retained; current-source matched GUI diagnostic off/on and dedicated-worker acceptance are separate fresh results when recorded. Multiple introductory Hermes interruptions can exhaust the unchanged8turn budget, as retained by the cadence investigation. Unknown dialogues, hardware performance, original pixels and complete session remain outside this contract.",
-        "RFL20261025 adds a separate functional FPS policy and local callback-after-readiness recheck. Shared helper/harness source changes do not refresh historical benchmark, broader camera-body/original-pixel or launch-policy stage evidence. The new source-bound functional behavior has independent current execution; historical fingerprints remain unchanged."
+        "RFL20261025 adds a separate functional FPS policy and local callback-after-readiness recheck. Shared helper/harness source changes do not refresh historical benchmark, broader camera-body/original-pixel or launch-policy stage evidence. The new source-bound functional behavior has independent current execution; historical fingerprints remain unchanged.",
+        "Expanded player acceptance retains a new 640x480 image where a crop beginning at y72 clips H and yields Flermes. The current y64 crop passes retained-image OCR; new installed/live source-bound player evidence remains separate from the historical crop result."
       ],
       "validation_dependencies": [
         "tools/campaign_input_admission.py",
         "tools/campaign_input_observation.py",
         "runtime/menu/campaign_input_admission_observe.h",
-        "tools/campaign_gameplay.py"
+        "tools/campaign_gameplay.py",
+        "tools/campaign_camera_dialogue.py",
+        "tools/campaign_storage.py"
       ]
     },
     {
@@ -134149,7 +134196,8 @@
       ],
       "tests": [
         "tools/test-camera-dialogue-extents.py",
-        "tests/test-camera-dialogue.py"
+        "tests/test-camera-dialogue.py",
+        "tools/test-native-player-ocr.py"
       ],
       "validation_dependencies": [
         "tools/campaign_render_oracle.py",
@@ -134164,11 +134212,14 @@
         "research/runtime/fixtures/camera-hermes-crop-20261020/camera-mini-input-0-03-original.png",
         "research/runtime/fixtures/camera-hermes-crop-20261020/mini-input-0.json",
         "research/runtime/fixtures/camera-hermes-crop-20261020/provenance.json",
-        "research/runtime/fixtures/camera-hermes-crop-20261020/report.json"
+        "research/runtime/fixtures/camera-hermes-crop-20261020/report.json",
+        "tools/campaign_camera_dialogue.py",
+        "tools/campaign_storage.py"
       ],
       "evidence": [
         "CAMCROP.native-20261020",
-        "CAMCROP.campaign-negative-20261020"
+        "CAMCROP.campaign-negative-20261020",
+        "NPL27.ocr01"
       ],
       "status": {
         "understanding": "scoped",
@@ -134180,7 +134231,10 @@
       "implementation_review": {
         "review": "CAMCROP.source-review-20261020",
         "entry": "NP.camera-hermes-crop-extents"
-      }
+      },
+      "remaining_gaps": [
+        "Expanded player acceptance retains a new 640x480 image where a crop beginning at y72 clips H and yields Flermes. The current y64 crop passes retained-image OCR; new installed/live source-bound player evidence remains separate from the historical crop result."
+      ]
     },
     {
       "id": "RS.alternate-canvas-initializer",
@@ -147258,8 +147312,8 @@
       },
       "remaining_gaps": [
         "All-copy proof is bounded by8192commands/32GiB diagnostic readbacks. The long all-copy Save/Load attempt exhausted32GiB and its producer later cancelled at Save; it supplies no completed storage or all-session proof. The separate diagnostics-disabled storage journey completes568balanced Worlds,two display rebuilds,Main Load/resume and normalQuit. No universal storage reliability or attribution of the failed attempt follows.",
-        "Historical2026-10-25 sample: Actual ordinary clipped,self and keyed-GPU-source calls remain zero;23 owned GPU-plan cases validate those implemented policies without natural reachability or original-driver equivalence. Five optional helpers have no confirmed natural callers; arbitrary raw readers,full-session pixels,physical driver parity and complete replacement remain open. CPU/GPU expectation is independent native-policy proof,not an original comparison.",
         "COPYMASTER integration combines the actual source parents with newer terrain/facing/initializer inputs in the broad execution provenance. Historical current-source results retain their original fingerprints; combined-tree live validation remains pending until an explicitly declared new execution. Source integration and Python controls supply no additional original-driver or full-session proof.",
+        "Historical2026-10-25 sample: Actual ordinary clipped,self and keyed-GPU-source calls remain zero;23 owned GPU-plan cases validate those implemented policies without natural reachability or original-driver equivalence. Five optional helpers have no confirmed natural callers; arbitrary raw readers,full-session pixels,physical driver parity and complete replacement remain open. CPU/GPU expectation is independent native-policy proof,not an original comparison.",
         "CPUCLIP quick02 closes the bounded all-COPY proof:1370 prepared calls,124 clippedCPU calls,one clippedfill,1345checkedCOPYcommands,141GPU calls and88 geometric reductions,END/normalQuit/zeroowners/noGAP. Natural GPU self/key positives remain absent,not proved unreachable. Fills,retired tails,arbitrary readers,other contexts,full-session/original-driver equivalence and universal intermittent reliability remain separate;historical source evidence is preserved and no milestone is promoted.",
         "Final review corrects CPU-keyed call counting for a multi-piece clipped call:count distinct application rows,not commands.47currentPython controls and unchanged immutable1370-call/1345COPY replay pass. Native engine/test sources match the live run exactly;historical broad source hashes retain the two changed Python fingerprints. No new engine launch or integration promotion is inferred.",
         "Final48Python controls/replay02 pass. Empty CPU command intervals remain refused by whole-output closure because CPU rows lack an independent expected-piece count;empty clipping is only supplied rendering-control proof. Current live sample has zero such intervals and retains full COPY closure. Native compiled code is unchanged;two Python diagnostic files have separate fresh controls/replay and exact preserved preimages.",
@@ -151794,7 +151848,9 @@
       "original": [],
       "documents": [
         "research/runtime/cursor-lifetime-completion-20261025.md",
-        "research/runtime/cursor-live-ownership-20261025.md"
+        "research/runtime/cursor-live-ownership-20261025.md",
+        "research/runtime/native-player-expanded-20261026.md",
+        "research/runtime/native-player-master-acceptance-20261027.md"
       ],
       "implementation": [
         "runtime/native-draw/cursor_owner.h",
@@ -151861,7 +151917,41 @@
         "NPL26.fresh06",
         "NPL26.reuse06",
         "NPL26.fresh07",
-        "NPL26.reuse07"
+        "NPL26.reuse07",
+        "NPL27.default-media01",
+        "NPL27.default-media02",
+        "NPL27.default-media03",
+        "NPL27.default-media04",
+        "NPL27.default-media05",
+        "NPL27.default-media06",
+        "NPL27.default-media07",
+        "NPL27.quick-map-001",
+        "NPL27.quick-map-002",
+        "NPL27.quick-map-003",
+        "NPL27.quick-map-004",
+        "NPL27.quick-map-201",
+        "NPL27.storage01",
+        "NPL27.storage02",
+        "NPL27.extended01",
+        "NPL27.extended02",
+        "NPL27.hardware01",
+        "NPL27.storage03",
+        "NPL27.quick-map-202",
+        "NPL27.quick-map-203",
+        "NPL27.quick-map-204",
+        "NPL27.quick-map-205",
+        "NPL27.storage04",
+        "NPL27.extended03",
+        "NPL27.storage03-retirement",
+        "NPL27.default-media08",
+        "NPL27.quick-map-005",
+        "NPL27.quick-map-206",
+        "NPL27.quick-map-207",
+        "NPL27.storage05",
+        "NPL27.extended04",
+        "NPL27.extended05",
+        "NPL27.hardware02",
+        "NPL27.hardware03"
       ],
       "status": {
         "understanding": "scoped",
@@ -154581,10 +154671,13 @@
         "apps/qt-shell/live_quick_battle_app_test.cpp"
       ],
       "documents": [
-        "research/runtime/native-windowed-copy-readers-20261025.md"
+        "research/runtime/native-windowed-copy-readers-20261025.md",
+        "research/runtime/native-player-expanded-20261026.md"
       ],
       "evidence": [
-        "WINDOWEDREADERS.quick01-20261025"
+        "WINDOWEDREADERS.quick01-20261025",
+        "NPL27.windowed-live01",
+        "NPL27.windowed-live02"
       ],
       "status": {
         "understanding": "partial",
@@ -154641,7 +154734,8 @@
         "research/runtime/natural-gpu-copy-callers-20261026.md",
         "research/runtime/windowed-input-gpu-callers-20261026.md",
         "research/runtime/cpu-copy-clipping-20261026.md",
-        "research/runtime/cpu-copy-master-integration-20261026.md"
+        "research/runtime/cpu-copy-master-integration-20261026.md",
+        "research/runtime/native-player-expanded-20261026.md"
       ],
       "evidence": [
         "NATURALCOPY.controls01-20261026",
@@ -154685,7 +154779,10 @@
         "CPUFIXMERGE.controls01-20261026",
         "CPUFIXMERGE.controls02-20261026",
         "CPUFIXMERGE.controls03-20261026",
-        "CPUFIXMERGE.current-master-sources01-20261026"
+        "CPUFIXMERGE.current-master-sources01-20261026",
+        "NPL27.windowed-live01",
+        "NPL27.windowed-live02",
+        "NPL27.storage05-copy-refusals01"
       ],
       "status": {
         "understanding": "partial",
@@ -154989,7 +155086,10 @@
       "original": [],
       "documents": [
         "docs/native-player-launch.md",
-        "README.md"
+        "README.md",
+        "research/runtime/native-player-expanded-20261026.md",
+        "research/formats/native-player-failure-diagnostics.md",
+        "research/runtime/native-player-master-acceptance-20261027.md"
       ],
       "implementation": [
         "run-native.sh",
@@ -154999,7 +155099,9 @@
       "tests": [
         "tests/test-native-player-launcher.py",
         "tools/test-native-cursor-live.py",
-        "tools/test-native-owned-campaign.py"
+        "tools/test-native-owned-campaign.py",
+        "tests/test-native-player-media.py",
+        "tools/test-native-player-ocr.py"
       ],
       "validation_dependencies": [
         "tools/native_only_contract.py",
@@ -155013,7 +155115,29 @@
         "apps/qt-shell/campaign_smoke_test.cpp",
         "apps/qt-shell/live_menu_session.cpp",
         "apps/qt-shell/live_menu_session.hpp",
-        "tools/terrain_light_session.py"
+        "tools/terrain_light_session.py",
+        "tools/native_media_acceptance.py",
+        "tools/native_audio_launch.py",
+        "tools/native_music_launch.py",
+        "tools/campaign_storage.py",
+        "tools/native_render_driver.py",
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "protocols/python/mnm_protocols/media_v1.py",
+        "tools/native_player_quick_acceptance.py",
+        "apps/qt-shell/live_quick_battle_app_test.cpp",
+        "tools/test-menu-observer.py",
+        "tools/campaign_camera_dialogue.py",
+        "runtime/scene/minimap_row_diagnostic.h",
+        "runtime/scene/minimap_marker_row.h",
+        "tests/minimap-marker-row-test.c",
+        "tests/minimap-row-readset-original.cpp",
+        "tools/test-minimap-row-readset.py",
+        "tests/test-native-render-storage.py",
+        "tests/menu-storage-bridge-test.cpp",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_scheduler.h",
+        "apps/qt-shell/native_render_worker.cpp",
+        "tools/test-command-watchdog.py"
       ],
       "evidence": [
         "NPL.player-controls-20261025",
@@ -155030,7 +155154,47 @@
         "NPL26.reuse07",
         "NPL26.controls07",
         "TLDF26.player-controls",
-        "TLDF26.master-controls"
+        "TLDF26.master-controls",
+        "NPL27.default-media01",
+        "NPL27.default-media02",
+        "NPL27.default-media03",
+        "NPL27.default-media04",
+        "NPL27.default-media05",
+        "NPL27.default-media06",
+        "NPL27.default-media07",
+        "NPL27.quick-map-001",
+        "NPL27.quick-map-002",
+        "NPL27.quick-map-003",
+        "NPL27.quick-map-004",
+        "NPL27.quick-map-201",
+        "NPL27.storage01",
+        "NPL27.storage02",
+        "NPL27.extended01",
+        "NPL27.extended02",
+        "NPL27.hardware01",
+        "NPL27.storage03",
+        "NPL27.quick-map-202",
+        "NPL27.quick-map-203",
+        "NPL27.quick-map-204",
+        "NPL27.quick-map-205",
+        "NPL27.storage04",
+        "NPL27.extended03",
+        "NPL27.unit-controls01",
+        "NPL27.storage-controls01",
+        "NPL27.default-media08",
+        "NPL27.quick-map-005",
+        "NPL27.quick-map-206",
+        "NPL27.quick-map-207",
+        "NPL27.storage05",
+        "NPL27.extended04",
+        "NPL27.extended05",
+        "NPL27.hardware02",
+        "NPL27.launcher-controls03",
+        "NPL27.launcher-controls04",
+        "NPL27.unit-controls02",
+        "NPL27.launcher-controls05",
+        "NPL27.storage05-copy-refusals01",
+        "NPL27.hardware03"
       ],
       "status": {
         "understanding": "scoped",
@@ -155040,10 +155204,10 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Bounded fresh/reuse x86 public-launch acceptance uses Xvfb/software GL with --skip-movies --no-native-music. Music/movie defaults,arbitrary maps/saves,long-duration sessions,hardware cadence and ARM strict ownership retain separate milestones.",
         "Failed early attempts remain immutable. The unaccepted report click is retained without claiming its exact transient cause;the bounded harness resubmits only an unaccepted click on the identical ready generation and stops at admission. Both final cases needed one report click.",
         "Original simulation/preparation/UI bodies remain in Wine. Native-only ownership does not establish full original-driver/pixel equivalence or complete engine replacement.",
-        "Public player launches now default to native terrain lighting under TL.player-lighting-default. Fresh launcher controls validate default/override admission; historical installed player runs retain original source bindings. Combined-master lighting journeys and long-duration/hardware acceptance remain pending."
+        "Source-specific expanded x86 public-launch profiles cover natural intros/music/voices, two offered map rows, a new save and display rebuilds, twelve-minute physical stress and a separate NVIDIA lifecycle run. Arbitrary maps/saves/duration, hardware cadence, original-driver pixels and ARM strict ownership retain separate milestones. Earlier source phases and failed attempts remain historical.",
+        "Public launches default to native terrain lighting under TL.player-lighting-default. Bounded media, map, storage, NVIDIA and longer player journeys are recorded with exact source phases; these do not grant original lighting equivalence, hour-long stability, all-hardware performance or universal intermittent reliability."
       ]
     },
     {
@@ -156350,7 +156514,8 @@
         "research/runtime/windowed-input-gpu-callers-20261026.md",
         "research/formats/render-input-state.md",
         "research/runtime/qt-input-forwarding.md",
-        "research/runtime/cpu-copy-master-integration-20261026.md"
+        "research/runtime/cpu-copy-master-integration-20261026.md",
+        "research/runtime/native-player-expanded-20261026.md"
       ],
       "evidence": [
         "WINDOWINPUT.controls01-20261026",
@@ -156375,7 +156540,17 @@
         "CPUFIXMERGE.controls02-20261026",
         "CPUFIXMERGE.controls03-20261026",
         "CPUFIXMERGE.controls04-20261026",
-        "CPUFIXMERGE.current-master-sources01-20261026"
+        "CPUFIXMERGE.current-master-sources01-20261026",
+        "NPL27.windowed-controls01",
+        "NPL27.windowed-controls02",
+        "NPL27.windowed-controls03",
+        "NPL27.windowed-controls04",
+        "NPL27.windowed-controls05",
+        "NPL27.windowed-controls06",
+        "NPL27.windowed-controls07",
+        "NPL27.windowed-live01",
+        "NPL27.windowed-live02",
+        "NPL27.windowed-controls08"
       ],
       "status": {
         "understanding": "partial",
@@ -156419,7 +156594,8 @@
       ],
       "documents": [
         "research/runtime/windowed-input-gpu-callers-20261026.md",
-        "research/runtime/cpu-copy-master-integration-20261026.md"
+        "research/runtime/cpu-copy-master-integration-20261026.md",
+        "research/runtime/native-player-expanded-20261026.md"
       ],
       "evidence": [
         "WINDOWINPUT.controls03-20261026",
@@ -156438,7 +156614,17 @@
         "CPUFIXMERGE.controls02-20261026",
         "CPUFIXMERGE.controls03-20261026",
         "CPUFIXMERGE.controls04-20261026",
-        "CPUFIXMERGE.current-master-sources01-20261026"
+        "CPUFIXMERGE.current-master-sources01-20261026",
+        "NPL27.windowed-controls01",
+        "NPL27.windowed-controls02",
+        "NPL27.windowed-controls03",
+        "NPL27.windowed-controls04",
+        "NPL27.windowed-controls05",
+        "NPL27.windowed-controls06",
+        "NPL27.windowed-controls07",
+        "NPL27.windowed-live01",
+        "NPL27.windowed-live02",
+        "NPL27.windowed-controls08"
       ],
       "status": {
         "understanding": "partial",
@@ -156485,7 +156671,8 @@
       ],
       "documents": [
         "research/runtime/cpu-copy-clipping-20261026.md",
-        "research/runtime/cpu-copy-master-integration-20261026.md"
+        "research/runtime/cpu-copy-master-integration-20261026.md",
+        "research/runtime/native-player-expanded-20261026.md"
       ],
       "evidence": [
         "CPUCLIP.cpu-controls01-20261026",
@@ -156513,7 +156700,16 @@
         "CPUFIXMERGE.controls01-20261026",
         "CPUFIXMERGE.controls02-20261026",
         "CPUFIXMERGE.controls03-20261026",
-        "CPUFIXMERGE.current-master-sources01-20261026"
+        "CPUFIXMERGE.current-master-sources01-20261026",
+        "NPL27.planning-controls01",
+        "NPL27.unit-controls01",
+        "NPL27.planning-controls03",
+        "NPL27.planning-controls04",
+        "NPL27.unit-controls02",
+        "NPL27.windowed-live01",
+        "NPL27.windowed-live02",
+        "NPL27.planning-controls05",
+        "NPL27.storage05-copy-refusals01"
       ],
       "status": {
         "understanding": "partial",
@@ -156722,6 +156918,71 @@
       "remaining_gaps": [
         "Current validation is limited to in-memory launch orchestration, actual Bash routing and original-mode staging/startup bypass. No new installed original/native session, map/save journey, hour-long stability or target-GPU performance is claimed.",
         "A refused or stopped worker retains the existing original fallback latch and records a failed selected session; the launcher continues to report a nonzero exit after game completion."
+      ]
+    },
+    {
+      "id": "NP.world-black-caller-continuations",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Pinned black raster AX continuations",
+      "scope": "Exact native World caller admission for direct black595677 continuations500439/5004d4 (tag12) and paired clipped57de00 continuations50045c/5004f7 (tag17). Exact ten-byte signatures, direct call targets and AX-only normalization/store paths are pinned; unknown PCs/tags/changed bytes and surrounding owner/readability guards remain refused. Execute unchanged20-byte black normalization fragments with private stop tails over all65536 AX values and three high-EAX patterns per site; prove cdecl12 cleanup and fallback iff AX1. Only5004d4 was naturally observed in Quick206, which remains a failed acquisition. No new raster pixels, fallback-body execution, full volatile-register/flags equivalence, arbitrary callers, source aliases or complete World acceptance claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Selected direct call/AX continuations within World queue traversal; no whole-function recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5854839,
+          "scope": "Existing black raster target only; no new pixel comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5758464,
+          "scope": "Existing clipped fallback direct call binding only."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-player-expanded-20261026.md",
+        "research/runtime/native-world-raster-queue.md"
+      ],
+      "implementation": [
+        "runtime/scene/world_raster_callers.h",
+        "tools/inspect-world-raster-callers.py"
+      ],
+      "tests": [
+        "tests/world-black-continuation-original.cpp",
+        "tests/world-raster-callers-test.cpp",
+        "tools/test-world-raster-callers.py",
+        "tools/test-world-black-callers.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/kind8_sprite_admission.h",
+        "tests/kind8-sprite-admission-test.cpp",
+        "tools/test-kind8-sprite-admission.py",
+        "tools/build-scene-observer.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "NPL27.black-callers01",
+        "NPL27.planning-controls04",
+        "NPL27.planning-controls05"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Natural reachability of500439 and both paired fallback sites remains unproved. Quick206 fails before its first completed World and grants no lifecycle/retirement acceptance."
       ]
     }
   ],
@@ -356972,6 +357233,1674 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NPL27.default-media01",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Private X server failed initialization. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/default-media01.json",
+      "sha256": "eeca61f15149a6223321d2843a320a165d722372341474cdd4fe4ed3238d52cb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.default-media02",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Owned shell exited before writing the journey result. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/default-media02.json",
+      "sha256": "cedd620381b01aff6692e0c1ab772a1074f4547db46b95fb5f78e15331a86aee",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.default-media03",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Native menu fallback: Menu staging failed; see the launch log.. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/default-media03.json",
+      "sha256": "3d03380cae56b017e8f6c30d632751c252339c9e9c268ad4515135c97e3e5d9f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.default-media04",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Escape input failed: Traceback (most recent call last):\n  File \"/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/native-player-expanded-20261026/tools/campaign-camera-menu-input.py\", line 95, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/native-player-expanded-20261026/tools/campaign-camera-menu-input.py\", line 83, in main\n    witness=open_mini(guard.ensure_ready,escape,lambda:new_mini(events,before),record)\n  File \"/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/native-player-expanded-20261026/tools/campaign-camera-menu-input.py\", line 43, in open_mini\n    if not dismissed:raise ValueError('No original Mini callback and no recognized blocking Hermes')\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: No original Mini callback and no recognized blocking Hermes\n. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/default-media04.json",
+      "sha256": "9b63adfec9966393049bef49d1461671a6d685d4afb500979eb6a9e3b4582973",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.default-media05",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Escape input failed: Traceback (most recent call last):\n  File \"/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/native-player-expanded-20261026/tools/campaign-camera-menu-input.py\", line 95, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/native-player-expanded-20261026/tools/campaign-camera-menu-input.py\", line 83, in main\n    witness=open_mini(guard.ensure_ready,escape,lambda:new_mini(events,before),record)\n  File \"/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/native-player-expanded-20261026/tools/campaign-camera-menu-input.py\", line 27, in open_mini\n    ready()\n    ~~~~~^^\n  File \"/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/native-player-expanded-20261026/tools/campaign_camera_dialogue.py\", line 92, in ensure_ready\n    if self.dismissals >= 12:raise ValueError('Camera Hermes dismissal budget exhausted')\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Camera Hermes dismissal budget exhausted\n. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/default-media05.json",
+      "sha256": "a52588f4b3db9d7aa5ab1244ad32b41a3d933435f1a5ac266bdb8d4d5359716a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.default-media06",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: [Errno 2] No such file or directory: '/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/native-player-expanded-20261026/working/experiments/menu-observer/run-iwsjwj1w/native-audio.bin'. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/default-media06.json",
+      "sha256": "d79bb5f24d3b401d36e20611fc89f043a844c4a78e56cef9c2dd82059eed9278",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.default-media07",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player default-media journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/default-media07.json",
+      "sha256": "bd6db508323344bd2dc9221b39505a0e9eebb5ef4eba0f1babc6b2913a2536a3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "NPL27.quick-map-001",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Native ownership flow failed. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/quick-map-001.json",
+      "sha256": "a2473cdd38039ea6c10b6c3d5f98e29f381cc9332801ab24379c9e0da9fc2110",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.quick-map-002",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Missing real setup/disposal/foreground/background/timer executions. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/quick-map-002.json",
+      "sha256": "95d5341c89d94f6987d56308c83f042cdc5624e90be090fdcc530cc9113e31d1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.quick-map-003",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player quick-map-0 journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/quick-map-003.json",
+      "sha256": "9bf8fbba3a7de241f8c9dc078221328b7108ab3f2216f69040ea6eefa68fbd5c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "NPL27.quick-map-004",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player quick-map-0 journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/quick-map-004.json",
+      "sha256": "4b49cce690bc9d2ac47d98e61f75ed5fef414cf9a5b4c0793406ef5e1f4f307d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "NPL27.quick-map-201",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Native ownership flow failed. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/quick-map-201.json",
+      "sha256": "8e36d47a95df662332a2234f7a6c593aa3e11e9c17880308925f8165c417a54c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NPL27.storage01",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Original display modes unavailable or unexpected resolution. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/storage01.json",
+      "sha256": "e297add59bc882c5c21da95231f5c0960ad85b2b273e4e4b5e91357df59abbe3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.storage02",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Campaign Save/Load deadline expired. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/storage02.json",
+      "sha256": "edea35dd978a48fd82fbc367b2b0767e3e199f7fd5e087605c0134aa5d5117dd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.extended01",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Native rendering fell back to the original window. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/extended01.json",
+      "sha256": "12394fe8df3a69ffa16f02f3d193946577905bb1e51cb4fd29eb9c680dcbbd3a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.extended02",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Campaign flow exceeded configured deadline. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/extended02.json",
+      "sha256": "2f02983195c5a190601539d0022451ed05fff50a52c4ed9be307aac236758938",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.hardware01",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player hardware journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/hardware01.json",
+      "sha256": "81bb0e2d03a0ba50f1b83029f2c20bee3361e7100bcc1604526a50321f2af876",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "NPL27.windowed-controls01",
+      "kind": "static",
+      "scope": "Source-bound Qt/X11 input, Results ACK timing and PE32 v1/client plus v2/desktop polling controls; no original game. Retained rejected build/display attempt; no acceptance.",
+      "record": "research/runtime/native-player-expanded-results-20261026/windowed-controls01.json",
+      "sha256": "11f642125ae4bb6d48c92b167795df9a03968765ccf510adbf0213b06eb97c98",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.windowed-controls02",
+      "kind": "static",
+      "scope": "Source-bound Qt/X11 input, Results ACK timing and PE32 v1/client plus v2/desktop polling controls; no original game. Retained rejected build/display attempt; no acceptance.",
+      "record": "research/runtime/native-player-expanded-results-20261026/windowed-controls02.json",
+      "sha256": "c999be18b7a910898f440ac4fbc1e8b2a102f21bedfdbb71364b4fa41fcd453f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.windowed-controls03",
+      "kind": "native_integration",
+      "scope": "Source-bound Qt/X11 input, Results ACK timing and PE32 v1/client plus v2/desktop polling controls; no original game. Successful bounded controls.",
+      "record": "research/runtime/native-player-expanded-results-20261026/windowed-controls03.json",
+      "sha256": "ea7ca00bdcfce689e6c1fbd3044c667ea49210b7fcaf67aecc0a81139ad12885",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NPL27.windowed-controls04",
+      "kind": "native_integration",
+      "scope": "Source-bound Qt/X11 input, Results ACK timing and PE32 v1/client plus v2/desktop polling controls; no original game. Successful bounded controls.",
+      "record": "research/runtime/native-player-expanded-results-20261026/windowed-controls04.json",
+      "sha256": "03c8b43c4efa666acd20ae7611685776a8486c77b680cf857d4e08a85745b8d1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NPL27.windowed-controls05",
+      "kind": "native_integration",
+      "scope": "Source-bound Qt/X11 input, Results ACK timing and PE32 v1/client plus v2/desktop polling controls; no original game. Successful bounded controls.",
+      "record": "research/runtime/native-player-expanded-results-20261026/windowed-controls05.json",
+      "sha256": "634b30a35e7bf1b4406d179302b5001a4214cab2649b34f3698c707fb5e61cef",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NPL27.windowed-controls06",
+      "kind": "native_integration",
+      "scope": "Source-bound Qt/X11 input, Results ACK timing and PE32 v1/client plus v2/desktop polling controls; no original game. Successful bounded controls.",
+      "record": "research/runtime/native-player-expanded-results-20261026/windowed-controls06.json",
+      "sha256": "39da201474a85878e5f54d73bcac13077c777408b54a50fc5da5df79d5cf5299",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NPL27.planning-controls01",
+      "kind": "static",
+      "scope": "Bounded tooling regression result; no new original-game execution or engine milestone promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/planning-controls01.json",
+      "sha256": "dd38a2638cee973515a2837d98d03cab6a9d8e4dd52a15ec305a8e7af7da49f0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.ocr01",
+      "kind": "static",
+      "scope": "Bounded tooling regression result; no new original-game execution or engine milestone promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/ocr01.json",
+      "sha256": "15b1e17d7b4e6ebffdbde90c18df6a25d7d4f94bf99c0db15f5981aa91994536",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.minimap-readset03",
+      "kind": "static",
+      "scope": "Retained successful 24-case original read-set experiment with an unsupported prospective scenario level; no current execution-binding or milestone credit. The corrected standalone original-comparison declaration is a separate result.",
+      "record": "research/runtime/native-player-expanded-results-20261026/minimap-readset03.json",
+      "sha256": "fac4b85957002ecae9a12854356148e22e3aed172516f4c8894d6e13f410cea5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_contract_sanitizers_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/cases",
+          "equals": 24
+        }
+      ]
+    },
+    {
+      "id": "NPL27.storage03",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Unexpected isolated save name. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/storage03.json",
+      "sha256": "da48876016d3fd996e6549697629e8bae62fbf3704408272706e098d6de5fe74",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.quick-map-202",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Quick Battle app deadline exceeded. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/quick-map-202.json",
+      "sha256": "9932ef168345fbabfa65de68e236b319a0a7eb94db8566025c555271644f9fb5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.quick-map-203",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player quick-map-2 journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/quick-map-203.json",
+      "sha256": "7bf31e82841611cf8e72c42a54d86a74e94126281a8a037915d8350f3ce2c828",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "NPL27.quick-map-204",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player quick-map-2 journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/quick-map-204.json",
+      "sha256": "8b351d7b7a8bc6b7a4ab120128198e02773ac18c67a7d32b662807048603e348",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "NPL27.quick-map-205",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player quick-map-2 journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/quick-map-205.json",
+      "sha256": "27fcc2a3e89392264037e60e695888bbc6b089fa8a9ab5de7543a991df5e69b3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "NPL27.storage04",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player storage journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/storage04.json",
+      "sha256": "636f1187eef2582503f34ac92da5c9d206a222cbac4e7cb553db48674953a4c9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "NPL27.extended03",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Native rendering fell back to the original window. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/extended03.json",
+      "sha256": "d981d8b5dcd04849286b37d842cd8c4d1f4a5a833ad99817ed7e88371745cc70",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.minimap-readset04",
+      "kind": "isolated_original",
+      "scope": "Twenty-four isolated pinned PE32 creature-marker row-table comparisons: four views/two formats and center rows0/1/16, inaccessible preceding entries and poisoned following entries. Whole destination equals canonical table; sanitized native center-only admission/refusal tests. No live visibility generation, arbitrary aliases or full minimap integration claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/minimap-readset04.json",
+      "sha256": "a58d98b6b1fc78323bdbeefc59a6b1fdc93aface6b45b2089154bab91354300e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_contract_sanitizers_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/cases",
+          "equals": 24
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NPL27.watchdog-baseline01",
+      "kind": "static",
+      "scope": "Retained unsuccessful watchdog control. Baseline demonstrates old stale-ACK false expiry; controls01 retains a pre-existing duplicate WakeByAddressAll/unused-fixture-variable compile refusal. No acceptance or milestone promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/watchdog-baseline01.json",
+      "sha256": "47835bcf1f6441cce8dca8186219066824df9d01e61bba3126e56bd0971edccf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NPL27.watchdog-controls01",
+      "kind": "static",
+      "scope": "Retained unsuccessful watchdog control. Baseline demonstrates old stale-ACK false expiry; controls01 retains a pre-existing duplicate WakeByAddressAll/unused-fixture-variable compile refusal. No acceptance or milestone promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/watchdog-controls01.json",
+      "sha256": "829fbdcfbe25a6d56fe48c56c30838e718f5ed83bd192c4fe22eb0a0fc3dcebf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NPL27.watchdog-controls04",
+      "kind": "native_integration",
+      "scope": "Current native/sanitized deterministic queue/admission controls or supplementary actual PE32 pause/progress/idle/stall/cancellation/invalid-ACK/overflow controls. Five-second policy unchanged; no original game or OS scheduling guarantee.",
+      "record": "research/runtime/native-player-expanded-results-20261026/watchdog-controls04.json",
+      "sha256": "870f749502495e8bcc8ddb8013274316a5b99ac239a736f229aa402144e484b8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NPL27.watchdog-pe32-controls01",
+      "kind": "native_integration",
+      "scope": "Current native/sanitized deterministic queue/admission controls or supplementary actual PE32 pause/progress/idle/stall/cancellation/invalid-ACK/overflow controls. Five-second policy unchanged; no original game or OS scheduling guarantee.",
+      "record": "research/runtime/native-player-expanded-results-20261026/watchdog-pe32-controls01.json",
+      "sha256": "7d8885bc98360460cc531250495114fc1af731b75d25cf2ffe1d4dbfe7d89331",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NPL27.unit-controls01",
+      "kind": "static",
+      "scope": "Bounded retained tooling/journal analysis; no new original execution claim or engine-stage promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/unit-controls01.json",
+      "sha256": "e6ba38015f957e389cdce36447fab3b2f968a9d8a617babf6a26d1530e1ad022",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.storage-controls01",
+      "kind": "static",
+      "scope": "Bounded retained tooling/journal analysis; no new original execution claim or engine-stage promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/storage-controls01.json",
+      "sha256": "c8ff0cd389df355032ab1d70405517a87482d612dde56cb3b1e7fded7a117bf9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.storage03-retirement",
+      "kind": "static",
+      "scope": "Bounded retained tooling/journal analysis; no new original execution claim or engine-stage promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/storage03-retirement.json",
+      "sha256": "3682fb1c97073fa25cc6f14ad4149d63199f7cf83e00bb7ee22e2426a589f2a3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.default-media08",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player default-media journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/default-media08.json",
+      "sha256": "38b142b641b853c3639da42d8b53327c72f42fbb1b69c117932fbfc8110c59bb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "NPL27.quick-map-005",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player quick-map-0 journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/quick-map-005.json",
+      "sha256": "ad65d0c3d4eb508c343dfab135cf482ed4e30668ea8af22ff0c0518c12c6eca1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "NPL27.quick-map-206",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Native campaign failed: Resident World producer cancelled. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/quick-map-206.json",
+      "sha256": "01d44fa1744f43cb4c6a68ebb42bbd88047f9536762118a8dd8eba1294d90813",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.quick-map-207",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player quick-map-2 journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/quick-map-207.json",
+      "sha256": "05900755629dd2bbc753c17263ca62ed0b8ae9f0815624734fd98544b027c023",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "NPL27.storage05",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player storage journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/storage05.json",
+      "sha256": "2eade44ad0a1f1bf3f2846312903ab79011ed0cb0fab8294b3ad629f142be7e0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "NPL27.extended04",
+      "kind": "static",
+      "scope": "Retained unsuccessful expanded-player acquisition: Missing declared original cursor clients: [5]. Original report and exact historical source fingerprints are unchanged; no acceptance, absence, equivalence or retirement credit follows from this failure.",
+      "record": "research/runtime/native-player-expanded-results-20261026/extended04.json",
+      "sha256": "c3ea93f207af49a0d2b7a802ef9aa9ddc0602db5f11e056930db7a5f64e073e1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.extended05",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player extended journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/extended05.json",
+      "sha256": "e93402a59eaafcf2e1f683ea6a9ca3f6cbbea74f2a546659429f8f17e9bc5da6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "NPL27.hardware02",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player hardware journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/hardware02.json",
+      "sha256": "49b6ab3f93ed7618926c97609765773890b50090f89cc08fd8cbb903052d75d9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
+    },
+    {
+      "id": "NPL27.windowed-controls07",
+      "kind": "native_integration",
+      "scope": "Source-bound Qt/X11 input, Results ACK timing and PE32 v1/client plus v2/desktop polling controls; no original game. Successful bounded controls.",
+      "record": "research/runtime/native-player-expanded-results-20261026/windowed-controls07.json",
+      "sha256": "f1e46410d14952b9569fad2b2b8a11d736dc38284461fe93d8bdb4b0905a4b0e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NPL27.planning-controls03",
+      "kind": "static",
+      "scope": "Bounded tooling regression result; no new original-game execution or engine milestone promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/planning-controls03.json",
+      "sha256": "e91c8a213beed6ce5c7101bfa1c8f2844ef8dfe04540624ef51d4225b27c2ccf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.launcher-controls03",
+      "kind": "static",
+      "scope": "Bounded tooling regression result; no new original-game execution or engine milestone promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/launcher-controls03.json",
+      "sha256": "12fff0881a63de842fbb6323250e7225a3a199960dc5a8a6002b3f231328e967",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.planning-controls02",
+      "kind": "static",
+      "scope": "Retained planning regression failure: new minimap source links were absent from its historical work-review fingerprint map. No acceptance or stage promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/planning-controls02.json",
+      "sha256": "46c23f8fc17909029441922ed1801af10a75be962a350b8c51995a8e734d3d84",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NPL27.black-callers01",
+      "kind": "isolated_original",
+      "scope": "Execute unchanged pinned20-byte black AX normalization fragments at500439/5004d4 in393216 cases; private stop tails exclude fallback/raster bodies. All47production callers/54pairs and both production/regenerated sprite owner/guard-page refusal controls pass; generator retains four exact direct black/fallback continuations. No new raster pixels or natural-live acceptance.",
+      "record": "research/runtime/native-player-expanded-results-20261026/black-callers01.json",
+      "sha256": "9f52f30a3cc32e2b0a4680c60bcf75f8e3887dc8006f230e647903d1cff630f7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_fragments/cases",
+          "equals": 393216
+        },
+        {
+          "pointer": "/caller_controls/callers",
+          "equals": 47
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NPL27.launcher-controls04",
+      "kind": "static",
+      "scope": "Current tooling controls with retained input preimages; no new original execution or engine-stage promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/launcher-controls04.json",
+      "sha256": "59a70a8003b5405066218698adaca7e1afe5179a4680d3c74643be45c93b1ea0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.planning-controls04",
+      "kind": "static",
+      "scope": "Current tooling controls with retained input preimages; no new original execution or engine-stage promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/planning-controls04.json",
+      "sha256": "bd2b46c8bfba5a1ed4dee88ce13613bb1e4b987b0c57abcd9fe55a844392c466",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.unit-controls02",
+      "kind": "static",
+      "scope": "Current tooling controls with retained input preimages; no new original execution or engine-stage promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/unit-controls02.json",
+      "sha256": "9420ebd02df68fcf63d510dbd20add1143851a83b494cb8a76fb30e9df0d232e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.windowed-live01",
+      "kind": "live_observation",
+      "scope": "Bounded original-windowed input and Results journey with ordinary Win32 exposure, normal shell exit, complete independent COPY-output closure and zero graphics owners. Overall all-branch request remains false: natural self-copy and keyed GPU-source callers are unobserved. This scoped observation gives neither positive execution nor all-game absence credit for those branches.",
+      "record": "research/runtime/native-player-expanded-results-20261026/windowed-live01.json",
+      "sha256": "139fe60c1b0b378cb187f2ab1495ae914e0192aa1adac5a289d51697b1c8aa87",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/lifecycle_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/observation_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/retirement_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis/all_application_output_closed",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NPL27.windowed-live02",
+      "kind": "live_observation",
+      "scope": "Bounded original-windowed input and Results journey with ordinary Win32 exposure, normal shell exit, complete independent COPY-output closure and zero graphics owners. Overall all-branch request remains false: natural self-copy and keyed GPU-source callers are unobserved. This scoped observation gives neither positive execution nor all-game absence credit for those branches.",
+      "record": "research/runtime/native-player-expanded-results-20261026/windowed-live02.json",
+      "sha256": "189234783697172110599fd3e380ebff1ea90fcf0fa357bb255c83d57e9c494d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/lifecycle_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/observation_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/retirement_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis/all_application_output_closed",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NPL27.windowed-controls08",
+      "kind": "native_integration",
+      "scope": "Source-bound Qt/X11 input, Results ACK timing and PE32 v1/client plus v2/desktop polling controls; no original game. Successful bounded controls.",
+      "record": "research/runtime/native-player-expanded-results-20261026/windowed-controls08.json",
+      "sha256": "8223c388148d599f164476e7408b385712412422c724c9597b96f07a471b16e6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NPL27.launcher-controls05",
+      "kind": "static",
+      "scope": "Current combined-master tooling regression controls with exact input preimages; no original execution or new engine-stage promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/launcher-controls05.json",
+      "sha256": "c08a7797d73b1063f110ffdaf9c521336c723fb9f8d53f904f5b5b4c67aea633",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.planning-controls05",
+      "kind": "static",
+      "scope": "Current combined-master tooling regression controls with exact input preimages; no original execution or new engine-stage promotion.",
+      "record": "research/runtime/native-player-expanded-results-20261026/planning-controls05.json",
+      "sha256": "90445a70484935357b36ea2e861744a834de94abb4104cb1e694ab475aa81881",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NPL27.storage05-copy-refusals01",
+      "kind": "static",
+      "scope": "Read-only classification of two actual native NS_RECT calls; lifetime passes independently while all-COPY closure remains false. No original-driver parity or branch absence claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/storage05-copy-refusals01.json",
+      "sha256": "6bb931423dfdda8265e8d83733774931c16bdc06290eba9b574abb44e383e2e0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/all_application_output_closed",
+          "equals": false
+        },
+        {
+          "pointer": "/absence_claimed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NPL27.hardware03",
+      "kind": "live_equivalence",
+      "scope": "Actual bounded public native-player hardware journey. Eighteen cursor hooks, declared original clients, normal Quit, balanced World imports/returns and zero cursor/graphics owners; exact compiler closure checked. No arbitrary map/save/duration, original-driver pixels, legacy aliases or deferred-path game execution claim.",
+      "record": "research/runtime/native-player-expanded-results-20261026/hardware03.json",
+      "sha256": "8630c4ac37fe608d5d326c56a3cd202ef51aa18d26032825a53124204974e7fd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/installed_hooks",
+          "equals": 18
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified"
     }
   ],
   "classifications": [],
@@ -385786,6 +387715,129 @@
         "TLDF26.player-controls",
         "TLDF26.master-controls"
       ]
+    },
+    {
+      "id": "NPL27.default-media",
+      "scope": "Actual public player default media: both enabled intros naturally complete with decoded/presented video and consumed audio; native CD activity and voice retirement required, initial no-device output only with explicit silence admission. Normal original Quit and zero graphics/cursor owners remain required. No audible-speaker or original decoder equivalence claim.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "NP.native-player-launch",
+        "NP.cursor-live-ownership"
+      ],
+      "tests": [
+        "tools/test-native-cursor-live.py",
+        "tools/test-native-owned-campaign.py"
+      ],
+      "evidence": [
+        "NPL27.default-media07",
+        "NPL27.default-media08"
+      ]
+    },
+    {
+      "id": "NPL27.extended",
+      "scope": "Actual public player with five Mini Cancel returns and six 120-second physical gameplay phases, independent original callback order, balanced World/cursor/graphics retirement and normal Quit. FPS diagnostic; bounded twelve-minute stress is not arbitrary-duration acceptance.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "NP.native-player-launch",
+        "NP.cursor-live-ownership"
+      ],
+      "tests": [
+        "tools/test-native-cursor-live.py",
+        "tools/test-native-owned-campaign.py"
+      ],
+      "evidence": [
+        "NPL27.extended05"
+      ]
+    },
+    {
+      "id": "NPL27.storage",
+      "scope": "Actual public player Save/resume/Load/resume, leave map, original 640/800 display rebuilds, Main Load into new World, normal Quit and independent save/checkpoint/cursor/graphics validation. One new save; arbitrary historic saves and other maps remain separate. Requires real setup/disposal, back restoration, foreground and timer clients; front restoration may be unexecuted in this journey and receives no per-client execution credit. All eighteen hooks, balanced jobs and zero active clients remain required.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "NP.native-player-launch",
+        "NP.cursor-live-ownership"
+      ],
+      "tests": [
+        "tools/test-native-cursor-live.py",
+        "tools/test-native-owned-campaign.py"
+      ],
+      "evidence": [
+        "NPL27.storage04",
+        "NPL27.storage05"
+      ]
+    },
+    {
+      "id": "NPL27.hardware",
+      "scope": "Actual public player native-only lifetime with private NVIDIA display, verified accelerated renderer and no software fallback; physical input, original normal Quit, cursor and graphics retirement required. No fixed cadence or all-hardware equivalence claim.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "NP.native-player-launch",
+        "NP.cursor-live-ownership"
+      ],
+      "tests": [
+        "tools/test-native-cursor-live.py",
+        "tools/test-native-owned-campaign.py"
+      ],
+      "evidence": [
+        "NPL27.hardware01",
+        "NPL27.hardware02",
+        "NPL27.hardware03"
+      ]
+    },
+    {
+      "id": "NPL27.quick-map-0",
+      "scope": "Actual public native player selects offered Quick Battle list row 0, retains its offered map ID/name, completes two World visits with public Qt input, Results/Continue/Results/Quit, original callback sequence and zero cursor/graphics owners. No branch absence, full copy-output, arbitrary-map or original-driver equivalence claim. Requires real setup/disposal, back restoration, foreground and timer clients; front restoration may be unexecuted in this journey and receives no per-client execution credit. All eighteen hooks, balanced jobs and zero active clients remain required.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "NP.native-player-launch",
+        "NP.cursor-live-ownership"
+      ],
+      "tests": [
+        "tools/test-native-cursor-live.py",
+        "tools/test-native-owned-campaign.py"
+      ],
+      "evidence": [
+        "NPL27.quick-map-003",
+        "NPL27.quick-map-004",
+        "NPL27.quick-map-005"
+      ]
+    },
+    {
+      "id": "NPL27.quick-map-2",
+      "scope": "Actual public native player selects offered Quick Battle list row 2, retains its offered map ID/name, completes two World visits with public Qt input, Results/Continue/Results/Quit, original callback sequence and zero cursor/graphics owners. No branch absence, full copy-output, arbitrary-map or original-driver equivalence claim. Requires real setup/disposal, back restoration, foreground and timer clients; front restoration may be unexecuted in this journey and receives no per-client execution credit. All eighteen hooks, balanced jobs and zero active clients remain required.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "NP.native-player-launch",
+        "NP.cursor-live-ownership"
+      ],
+      "tests": [
+        "tools/test-native-cursor-live.py",
+        "tools/test-native-owned-campaign.py"
+      ],
+      "evidence": [
+        "NPL27.quick-map-203",
+        "NPL27.quick-map-204",
+        "NPL27.quick-map-205",
+        "NPL27.quick-map-207"
+      ]
+    },
+    {
+      "id": "NPL27.command-watchdog",
+      "scope": "Actual production C queue with deterministic late peer progress/catch-up between validation and timeout clock. Partial progress, idle disarm, cancellation, invalid ACK/identity, V3 cursor rollover, unsent private bytes and genuine no-progress refusal; native and address/undefined-sanitized controls. No original-game or real-time scheduling guarantee.",
+      "level": "headless",
+      "behaviors": [
+        "NR.command-backpressure"
+      ],
+      "tests": [
+        "tools/test-command-watchdog.py",
+        "tests/render-command-queue-test.c",
+        "tests/render-command-writer-test.c",
+        "tests/render-command-pressure-test.c"
+      ],
+      "evidence": [
+        "NPL27.watchdog-controls04",
+        "NPL27.watchdog-pe32-controls01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -387593,7 +389645,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-9e7fad95a57ca739bcf60ef40e90ba5ec5d1a42bfb4d720e7dd40b1efdc44ea5.json",
-    "sha256": "9e7fad95a57ca739bcf60ef40e90ba5ec5d1a42bfb4d720e7dd40b1efdc44ea5"
+    "path": "research/runtime/coverage/source-index-12c54d2d646a335937408e20ed54a1adef506ed63c0f1eee248aeb3f07f34864.json",
+    "sha256": "12c54d2d646a335937408e20ed54a1adef506ed63c0f1eee248aeb3f07f34864"
   }
 }

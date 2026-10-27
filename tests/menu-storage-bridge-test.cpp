@@ -88,7 +88,13 @@ int main(int argc,char** argv){
  };
  LoadGameWidget load;SaveGameWidget save;LiveStorageMenuController controller(session,load,save);int native=0,viewport=0;
  session.stateChanged=[&](const auto& s){require(controller.present(s));if(s.ready)++native;};session.originalViewportRequested=[&]{++viewport;};
+ int admitted=0,refused=0;
+ session.requestObserved=[&](quint32 action,bool accepted,const QString& reason,const MenuBridge::State& observed){
+  require(action==MNM_MENU_OPEN_LOAD&&observed.screen==3);
+  if(accepted){require(reason.isEmpty());++admitted;}else{require(!reason.isEmpty());++refused;}
+ };
  state(1,0,3,true);LiveMenuSessionTestAccess::poll(session);require(session.request(MNM_MENU_OPEN_LOAD));require(!session.request(MNM_MENU_OPEN_LOAD));
+ require(admitted==1&&refused==1);session.requestObserved={};
  state(2,1,MNM_MENU_LOAD_SCREEN,true);MenuBridge::State probe;require(bridge.read(probe));require(probe.storage.selected==2&&probe.storage.names.size()==2);LiveMenuSessionTestAccess::poll(session);require(load.selectedSaveId()=="2");
  load.findChild<QPushButton*>("loadGameLoad")->click();require(get(8)==MNM_MENU_STORAGE_ACCEPT&&get(10)==2);
  state(3,2,MNM_MENU_LOAD_SCREEN,false);LiveMenuSessionTestAccess::poll(session);require(viewport==1&&LiveMenuSessionTestAccess::original(session));require(!session.requestStorage(MNM_MENU_STORAGE_ACCEPT,1));

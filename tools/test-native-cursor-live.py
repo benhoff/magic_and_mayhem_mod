@@ -25,11 +25,14 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--prefix-template',type=Path)
     p.add_argument('--player-entrypoint',choices=['fresh','reuse'])
+    p.add_argument('--acceptance-profile',choices=['default-media','extended','storage','hardware','quick-map-0','quick-map-2'],help='Additional public-player acceptance; requires a real player entrypoint')
     p.add_argument('--source-game',type=Path,required=True)
     p.add_argument('--report',required=True)
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--restart',action='store_true')
+    p.add_argument('--exception-trace',action='store_true',help='Retain diagnostic Wine exception tracing without performance acceptance')
     a=p.parse_args();out=a.output.resolve()
+    if a.acceptance_profile and not a.player_entrypoint:p.error('Expanded acceptance requires the actual public player entrypoint')
     if a.player_entrypoint:
         if a.restart or a.prefix_template:p.error('Player acceptance uses real fresh/reused default prefix without a template or injected restart')
     elif a.prefix_template is None:p.error('Require an owned prefix template')
@@ -50,23 +53,36 @@ def main():
     for directory in ('runtime','protocols','tools'):
         paths.update(f.relative_to(ROOT).as_posix() for f in (ROOT/directory).rglob('*') if f.is_file() and f.suffix in ('.c','.cpp','.h','.hpp','.py','.sh','.S','.json'))
     sources={n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in sorted(paths)}
-    declaration=dict(sources=sources,claims=[dict(behavior=x['id'],contract_sha256=behavior_contract(x,{v['id']:v for v in reg['builds']}),scenarios={s['id']:scenario_contract(s) for s in reg['scenarios'] if x['id'] in s['behaviors'] and s['level']=='live_equivalence' and (s['id']=='CUR26.owning-native-restart')==a.restart and (not s['id'].startswith('NPL26.') or s['id']=='NPL26.player-'+str(a.player_entrypoint))}) for x in behaviors])
+    def selected_scenario(s):
+        if a.acceptance_profile:return s['id']=='NPL27.'+a.acceptance_profile
+        return (s['id']=='CUR26.owning-native-restart')==a.restart and not s['id'].startswith('NPL27.') and (not s['id'].startswith('NPL26.') or s['id']=='NPL26.player-'+str(a.player_entrypoint))
+    declaration=dict(sources=sources,claims=[dict(behavior=x['id'],contract_sha256=behavior_contract(x,{v['id']:v for v in reg['builds']}),scenarios={s['id']:scenario_contract(s) for s in reg['scenarios'] if x['id'] in s['behaviors'] and s['level']=='live_equivalence' and selected_scenario(s)}) for x in behaviors])
     # Physical JSON is bounded producer input, consumed immediately below.
     claims=out/'claims.json';claims.write_text(json.dumps(declaration)+'\n')
     nested=a.report.removesuffix('.json')+'-campaign.json'
-    report=dict(schema=1,success=False,**declaration,original_game_executed=False,live_replacement=False)
+    report=dict(schema=1,success=False,**declaration,original_game_executed=False,live_replacement=False,acceptance_profile=a.acceptance_profile)
     try:
-        command=[sys.executable,ROOT/'tools/test-native-owned-campaign.py','--native-only','--no-native-music','--qt-build-type','Release','--source-game',a.source_game,'--claims',claims,'--report',ROOT/nested]
+        command=[sys.executable,ROOT/'tools/test-native-owned-campaign.py','--native-only','--qt-build-type','Release','--source-game',a.source_game,'--claims',claims,'--report',ROOT/nested]
+        command += ['--default-media','--allow-initial-silence'] if a.acceptance_profile=='default-media' else ['--no-native-music']
         command += ['--player-entrypoint',a.player_entrypoint] if a.player_entrypoint else ['--prefix-template',a.prefix_template]
-        command += ['--restart'] if a.restart else ['--functional-lifecycle','--stress-seconds','10']
-        with (out/'campaign.log').open('xb') as log: result=subprocess.run(list(map(str,command)),cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,timeout=680)
+        if a.acceptance_profile=='extended':command += ['--menu-cycles','5','--stress-seconds','120']
+        elif a.acceptance_profile=='storage':command += ['--recreate-world','--copy-census']
+        elif a.acceptance_profile and a.acceptance_profile.startswith('quick-map-'):command += ['--quick-map-row',a.acceptance_profile.rsplit('-',1)[1],'--copy-census']
+        else:command += ['--restart'] if a.restart else ['--functional-lifecycle','--stress-seconds','10']
+        if a.acceptance_profile=='hardware':command += ['--hardware']
+        if a.exception_trace:command += ['--exception-trace']
+        with (out/'campaign.log').open('xb') as log: result=subprocess.run(list(map(str,command)),cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,timeout=1500 if a.acceptance_profile=='extended' else 900)
         report.update(command=list(map(str,command)),campaign_exit=result.returncode,campaign_report=nested)
         campaign=read_json(ROOT/nested);report['campaign_success']=campaign.get('success',False)
         report['campaign_error']=campaign.get('error')
         if result.returncode or not campaign.get('success'):raise ValueError('Native campaign failed: '+str(campaign.get('error')))
         session=ROOT/campaign['session'];report['session']=campaign['session']
         cursor=module('cursor_journal','tools/native_cursor_journal.py').decode((session/'native-cursor-lifetime.bin').read_bytes())
-        if not {0,1,4,5,6,7}<=set(cursor['completed_clients']):raise ValueError('Missing real setup/disposal/foreground/background/timer executions')
+        required_clients={0,1,4,5,6,7}
+        if a.acceptance_profile in ('storage','extended') or (a.acceptance_profile and a.acceptance_profile.startswith('quick-map-')):required_clients={0,1,4,6,7}
+        report['required_cursor_clients']=sorted(required_clients)
+        report['observed_cursor_clients']=cursor['completed_clients']
+        if not required_clients<=set(cursor['completed_clients']):raise ValueError('Missing declared original cursor clients: '+str(sorted(required_clients-set(cursor['completed_clients']))))
         if cursor['queue_accepted']!=cursor['queue_completed']+cursor['queue_cancelled']:raise ValueError('Incomplete real deferred-copy retirement')
         report.update(original_sha256=hashlib.sha256((a.source_game/'Chaos.exe').read_bytes()).hexdigest(),
                       native_lifetime_contract_verified=cursor['active_clients']==0 and cursor['pending_jobs']==0 and campaign['graphics_retirement']['resources_released'],

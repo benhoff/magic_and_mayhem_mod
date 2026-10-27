@@ -42,6 +42,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
 SOURCES += ['tools/campaign_storage.py', 'tools/menu-storage-input.py', 'tools/menu_save_store.py', 'apps/qt-shell/campaign_storage_test.cpp', 'tools/campaign_crowded.py', 'tests/campaign-crowded-test.py','runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 SOURCES += ['tools/directplay_dx6_launch.py','tools/native_prefix_template.py','tools/native_render_driver.py']
 SOURCES += ['renderer/isolated_dispatch.inc', 'tools/native_windowed_copy.py']
+SOURCES += ['tools/native_media_acceptance.py']
 SOURCES += ['tools/campaign_camera_dialogue.py', 'tools/campaign-camera-menu-input.py', 'tools/campaign_cadence.py']
 
 
@@ -1088,29 +1089,9 @@ def main():
                     if report['sources'].get(name)!=digest or sha(ROOT/name)!=digest:raise ValueError('Undeclared or changed native audio compiler source: '+name)
                 report['native_audio_compiled_sources']=audio_build['compiled_sources']
             if args.native_media:
-                media=json.loads((roots[0]/'native-media-report.json').read_text())
-                availability=[entry for entry in media if entry.get('operation')==4]
-                if not availability or any(entry.get('status')!=3 or entry.get('native_pipeline_available') is not True for entry in availability):
-                    raise ValueError('Native startup media availability acknowledgement missing')
-                policy=json.loads((roots[0]/'native-audio-launch-policy.json').read_text())
-                if policy.get('native_media_startup_probe') is not True or (args.native_factory and policy.get('wine_directsound_disabled') is not True):
-                    raise ValueError('Native media startup/module policy was not confirmed')
-                report['native_audio_launch_policy']=policy
-                movies=[entry for entry in media if entry.get('operation')==1]
-                if not movies or any(entry.get('status') not in (3,4) or not entry.get('accepted') or entry.get('error') or
-                                     entry.get('video_frames',0)<1 or entry.get('audio_frames',0)<1 or
-                                     entry.get('audible_output_requested') is not True or
-                                     (entry.get('audio_device_available') is not True and not (args.initial_silent_start and entry.get('initial_silent_output') is True)) for entry in movies):
-                    raise ValueError('Native movie decoding/output/completion history missing or failed')
-                if any(entry.get('status') in (5,6) for entry in media):raise ValueError('Native media rejected or failed a submitted request')
-                report['native_media']=media
-                if args.require_intro_completion:
-                    intros=[row for row in media if row.get('operation')==1 and Path(row.get('asset','')).name.lower() in ('intro0.avi','intro1.avi')]
-                    if {Path(row['asset']).name.lower() for row in intros}!={'intro0.avi','intro1.avi'} or any(row.get('status')!=3 or not row.get('accepted') or min(row.get('video_frames',0),row.get('presented_video_frames',0))<=0 for row in intros):
-                        raise ValueError('Enabled intros did not naturally complete decoded and presented video')
-                    with (roots[0]/'native-media.bin').open('rb') as wire:media_header=wire.read(64)
-                    if len(media_header)!=64 or struct.unpack_from('<I',media_header,48)[0]:raise ValueError('Media producer cancelled after a host/acceptance/playback timeout')
-                    report['intro_completion']={'verified':True,'movies':[{k:row[k] for k in ('request','status','video_frames','presented_video_frames','asset')} for row in intros],'producer_cancelled_request':0,'scope':'Natural completion of both encoded intro clips; no original decoder pixel equivalence claim'}
+                from native_media_acceptance import validate_media
+                report.update(validate_media(roots[0], native_factory=args.native_factory,
+                    allow_initial_silence=args.initial_silent_start, require_intro_completion=args.require_intro_completion))
             if args.native_music:
                 from native_music_launch import validate_activity as validate_music,catalog_inputs
                 report['native_music']=validate_music(json.loads((roots[0]/'native-music-report.json').read_text()),allow_initial_silence=args.initial_silent_start)

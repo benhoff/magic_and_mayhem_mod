@@ -10,9 +10,10 @@ public:
     static constexpr int Size=MNM_INPUT_V1_SIZE;
     ~InputState();
     bool create(const QString& path,bool desktopCoordinates=false);
+    bool desktopCoordinates() const{return desktopCoordinates_;}
     void publish(bool active,QPoint position,QSize size);
     void key(unsigned code,bool down);
     void clear();
 private:
-    QFile file_;uchar* mapping_=nullptr;std::array<quint32,MNM_INPUT_V1_KEY_COUNT> keys_{};
+    QFile file_;uchar* mapping_=nullptr;bool desktopCoordinates_=false;std::array<quint32,MNM_INPUT_V1_KEY_COUNT> keys_{};
 };

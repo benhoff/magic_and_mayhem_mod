@@ -107,7 +107,10 @@ void LiveMenuSession::forceStop(std::function<void(bool,const QString&)> complet
         });
 }
 bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<int,17>* rules){
-    if(mediaActive_||!active_||inBattle_||pending_||transition_||resultsAction_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->request(action,state_,argument,rules))return false;
+    auto observe=[&](bool accepted,const QString& reason){if(requestObserved)requestObserved(action,accepted,reason,state_);return accepted;};
+    if(mediaActive_||!active_||inBattle_||pending_||transition_||resultsAction_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)
+        return observe(false,QString("Session unavailable: media=%1 active=%2 battle=%3 pending=%4 transition=%5 results=%6").arg(mediaActive_).arg(active_).arg(inBattle_).arg(pending_).arg(transition_).arg(resultsAction_));
+    if(!bridge_->request(action,state_,argument,rules))return observe(false,"Current wire ownership or request admission changed");
     quitting_=action==MNM_MENU_QUIT;pending_=true;requestedAt_=clock_.elapsed();action_=action;
     switch(action){
     case MNM_MENU_REALM_ACTIVATE:target_=(state_.realm.rows[int(argument)-1].owned?4:18);break;
@@ -128,6 +131,7 @@ bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<i
     case MNM_MENU_SETUP_MAP:target_=25;break;
     default:target_=3;break;
     }
+    observe(true,{});
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 bool LiveMenuSession::requestPreferences(quint32 action,const std::array<int,7>& values,quint32 slider){

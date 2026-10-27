@@ -68,6 +68,7 @@ public:
     std::function<void(const MenuBridge::State&)> stateChanged;
     // Bounded test/diagnostic witness; an accepted intent is not an engine ACK.
     std::function<void(quint32,bool,const QString&,const MenuBridge::State&)> miniRequestObserved;
+    std::function<void(quint32,bool,const QString&,const MenuBridge::State&)> requestObserved;
     std::function<void(const QString&)> output;
     std::function<void(const QString&)> failed;
     std::function<void()> finished;

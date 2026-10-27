@@ -34,12 +34,16 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
  const int requestedTimeout=qEnvironmentVariableIntValue("MNM_CAMPAIGN_TIMEOUT_MS");
  const int deadlineMs=requestedTimeout>=25000&&requestedTimeout<=595000?requestedTimeout:240000+loadingDwell*1000;
  const int miniCaptureDelay=qBound(0,qEnvironmentVariableIntValue("MNM_CAMPAIGN_MINI_CAPTURE_DELAY_MS"),1000);
- struct Run {int stage=0,attempts=0,input=0,rebuilds=0;quint32 journalBase=0;bool helper=false,failed=false,reloaded=false;quint32 thread=0;quint64 frames=0,source=0,inputSource=0;QString name,hash,error,renderer;QJsonArray states,checkpoints,renderers;QElapsedTimer dwell,loadingDwell;int loadingDwellMs=0;};auto r=std::make_shared<Run>();r->name=qEnvironmentVariable("MNM_CAMPAIGN_STORAGE_NAME","native-menu-live");r->dwell.start();
- auto write=[r,path,probe,resident,recreateWorld,loadingDwell,deadlineMs](bool success){const auto p=probe();if(!p.renderer.isEmpty()&&p.renderer!=r->renderer){r->renderer=p.renderer;r->renderers.append(p.renderer);}QFile f(path);return f.open(QIODevice::WriteOnly)&&f.write(QJsonDocument(QJsonObject{{"success",success},{"deadline_ms",deadlineMs},{"stage",r->stage},{"error",r->error},{"states",r->states},{"checkpoints",r->checkpoints},{"saved_sha256",r->hash},{"saved_name",r->name},{"save_load",true},{"recreate_world",recreateWorld},{"loading_menu_seconds",loadingDwell},{"loading_menu_elapsed_ms",r->loadingDwellMs},{"display_rebuilds",r->rebuilds},{"reloaded_from_main",r->reloaded},{"normal_quit",success&&r->stage==12},{"steps",QJsonArray{}},{"native_command_frames",qint64(p.frames)},{"native_painted_frames",qint64(p.paints)},{"native_command_fallback",p.fallback},{"native_recoveries",int(p.recoveries)},{"native_error",p.error},{"renderer",r->renderer},{"renderer_observations",r->renderers},{"resident_world_requested",resident},{"scope","Native campaign Save/Load, fresh post-action World sources and normal Quit; independent restored World raster comparison is a separate recorded check"}}).toJson())>0&&f.flush();};
+ struct Run {int stage=0,attempts=0,input=0,rebuilds=0,initialResolution=-1;quint32 journalBase=0;bool helper=false,failed=false,reloaded=false;quint32 thread=0;quint64 frames=0,source=0,inputSource=0;QString name,hash,error,renderer;QJsonArray states,checkpoints,renderers;QElapsedTimer dwell,loadingDwell;int loadingDwellMs=0;};auto r=std::make_shared<Run>();r->name=qEnvironmentVariable("MNM_CAMPAIGN_STORAGE_NAME","native-menu-live");r->dwell.start();
+ auto write=[r,path,probe,resident,recreateWorld,loadingDwell,deadlineMs](bool success){const auto p=probe();if(!p.renderer.isEmpty()&&p.renderer!=r->renderer){r->renderer=p.renderer;r->renderers.append(p.renderer);}QFile f(path);return f.open(QIODevice::WriteOnly)&&f.write(QJsonDocument(QJsonObject{{"success",success},{"deadline_ms",deadlineMs},{"stage",r->stage},{"error",r->error},{"states",r->states},{"checkpoints",r->checkpoints},{"saved_sha256",r->hash},{"saved_name",r->name},{"save_load",true},{"recreate_world",recreateWorld},{"loading_menu_seconds",loadingDwell},{"loading_menu_elapsed_ms",r->loadingDwellMs},{"display_rebuilds",r->rebuilds},{"initial_resolution",r->initialResolution},{"reloaded_from_main",r->reloaded},{"normal_quit",success&&r->stage==12},{"steps",QJsonArray{}},{"native_command_frames",qint64(p.frames)},{"native_painted_frames",qint64(p.paints)},{"native_command_fallback",p.fallback},{"native_recoveries",int(p.recoveries)},{"native_error",p.error},{"renderer",r->renderer},{"renderer_observations",r->renderers},{"resident_world_requested",resident},{"scope","Native campaign Save/Load, fresh post-action World sources and normal Quit; independent restored World raster comparison is a separate recorded check"}}).toJson())>0&&f.flush();};
  auto fail=[r,write,&app](const QString& why){if(r->failed)return;r->failed=true;r->error=why;std::fprintf(stderr,"Campaign storage failed: %s\n",qPrintable(why));write(false);app.exit(1);};
  session.miniRequestObserved=[r,fail](quint32 action,bool accepted,const QString& why,const MenuBridge::State& s){
   r->states.append(QJsonObject{{"event","mini-request"},{"time_ms",QDateTime::currentMSecsSinceEpoch()},{"action",int(action)},{"accepted",accepted},{"reason",why},{"screen",int(s.screen)},{"generation",int(s.generation)},{"ack",int(s.ack)},{"stage",r->stage}});
   if(!accepted)fail("Native Mini action rejected: "+why);
+ };
+ session.requestObserved=[r,fail](quint32 action,bool accepted,const QString& why,const MenuBridge::State& s){
+  r->states.append(QJsonObject{{"event","menu-request"},{"action",int(action)},{"accepted",accepted},{"reason",why},{"screen",int(s.screen)},{"generation",int(s.generation)},{"ack",int(s.ack)},{"stage",r->stage}});
+  if(!accepted)fail("Public menu request refused: "+why);
  };
  auto click=[&window,fail](const QString& name){auto* b=window.findChild<QAbstractButton*>(name);if(!b||!b->isVisible()||!b->isEnabled()){fail("Native control unavailable: "+name);return;}b->click();};
  auto input=[r,fail,probe,resident,difficulty,&session,&window,path](const QString& mode){
@@ -72,9 +76,12 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
   else if(r->stage==10&&s.screen==6){r->stage=11;action="battleResultContinue";}
   else if(r->stage==11&&s.screen==3){r->stage=recreateWorld&&!r->reloaded?14:12;action=r->stage==14?"mainMenuAction3":"mainMenuAction4";}
   else if((r->stage==14||r->stage==16)&&s.screen==10){
-   const int expected=r->stage==14?0:1;
-   if(s.preferences.values[2]!=expected||(s.preferences.available&3)!=3){fail("Original display modes unavailable or unexpected resolution");return;}
-   auto* radio=window.findChild<QRadioButton*>(QString("preferencesRadio%1").arg(2-expected));
+   const int current=s.preferences.values[2];
+   if(current<0||current>1||(s.preferences.available&3)!=3){fail("Original display modes unavailable or unexpected resolution");return;}
+   if(r->stage==14)r->initialResolution=current;
+   else if(current!=1-r->initialResolution){fail("Original display rebuild did not acknowledge the selected resolution");return;}
+   const int target=r->stage==14?1-r->initialResolution:r->initialResolution;
+   auto* radio=window.findChild<QRadioButton*>(QString("preferencesRadio%1").arg(1+target));
    if(!radio||!radio->isEnabled()){fail("Resolution control unavailable");return;}radio->click();++r->rebuilds;++r->stage;action="preferencesOk";
   }
   else if(r->stage==15&&s.screen==3){r->stage=16;action="mainMenuAction3";}
@@ -112,5 +119,6 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
   if((r->stage==3||r->stage==6||r->stage==9)&&presenting&&(!resident||p.sourceGeneration>r->inputSource)&&r->dwell.elapsed()>=6000){if(++r->attempts>(difficulty==0&&r->stage==3?24:8)){fail("Original Mini ingress timed out");return;}if(r->attempts==1)r->checkpoints.append(QJsonObject{{"phase",r->stage==3?"before-save":r->stage==6?"after-save":r->reloaded?"after-recreate-load":"after-load"},{"frames",qint64(p.frames)},{"source_generation",QString::number(p.sourceGeneration)},{"source_base",QString::number(r->source)},{"frame_base",qint64(r->frames)},{"native_active",p.active},{"renderer",p.renderer},{"fallback",p.fallback},{"error",p.error}});input("mini");}
  });timer->start();
  auto finished=session.finished;session.finished=[r,finished,write,&app]{if(finished)finished();const bool success=!r->failed&&r->stage==12&&!r->hash.isEmpty();app.exit(success&&write(success)?0:1);};
- session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");session.smokeSeconds=0;QTimer::singleShot(deadlineMs,&window,[fail]{fail("Campaign Save/Load deadline expired");});QTimer::singleShot(0,&window,[click]{click("launchGame");});
+ if(session.winePrefix.isEmpty())session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");
+ session.smokeSeconds=0;QTimer::singleShot(deadlineMs,&window,[fail]{fail("Campaign Save/Load deadline expired");});QTimer::singleShot(0,&window,[click]{click("launchGame");});
 }

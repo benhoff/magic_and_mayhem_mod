@@ -11,8 +11,8 @@ using u32=std::uint32_t;using u8=unsigned char;
 #include "../runtime/scene/world_raster_callers.h"
 #endif
 #ifndef MNM_EXPECT_CALLERS
-#define MNM_EXPECT_CALLERS 43
-#define MNM_EXPECT_PAIRS 50
+#define MNM_EXPECT_CALLERS 47
+#define MNM_EXPECT_PAIRS 54
 #endif
 namespace {
 struct Span{u32 start,bytes;};std::vector<Span> spans;u32 imageBytes;

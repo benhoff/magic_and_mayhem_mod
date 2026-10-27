@@ -38,7 +38,7 @@ def main():
         run('generator',['python3',ROOT/'tools/inspect-world-raster-callers.py','--stream',out/'empty.bin','--header',out/'generated.h','--report',out/'generated.json'])
         guard=[]
         for mode in ['production','generated']:
-            extra=['-DMNM_SPRITE_CALLER_HEADER="generated.h"','-DMNM_EXPECT_CALLERS=12','-DMNM_EXPECT_PAIRS=12'] if mode=='generated' else []
+            extra=['-DMNM_SPRITE_CALLER_HEADER="generated.h"','-DMNM_EXPECT_CALLERS=16','-DMNM_EXPECT_PAIRS=16'] if mode=='generated' else []
             run(mode+'-guard-build',['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-fno-pie','-no-pie','-I'+str(out),*extra,ROOT/'tests/kind8-sprite-admission-test.cpp','-o',out/(mode+'-guard')]);run(mode+'-guard',[out/(mode+'-guard'),exe]);g=json.loads((out/(mode+'-guard.stdout')).read_text());guard.append(g)
             if not g['success'] or g['context_pairs']!=10 or g['protected_short_spans']!=628 or not g['legacy_sprite_transport_refused']:raise ValueError('Incomplete guard proof')
         for mode in ['native','original']:
