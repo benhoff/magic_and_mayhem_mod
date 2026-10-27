@@ -9,7 +9,7 @@ class InputState {
 public:
     static constexpr int Size=MNM_INPUT_V1_SIZE;
     ~InputState();
-    bool create(const QString& path);
+    bool create(const QString& path,bool desktopCoordinates=false);
     void publish(bool active,QPoint position,QSize size);
     void key(unsigned code,bool down);
     void clear();

@@ -86922,7 +86922,8 @@
       "documents": [
         "research/runtime/native-gpu-copy-plan.md",
         "research/formats/native-gpu-copy-plan-v1.md",
-        "research/runtime/rendering-next-ten-closeouts-20261020.md"
+        "research/runtime/rendering-next-ten-closeouts-20261020.md",
+        "research/runtime/cpu-copy-clipping-20261026.md"
       ],
       "implementation": [
         "runtime/native-draw/gpu_copy_plan.h",
@@ -87105,7 +87106,19 @@
         "MEDIUM05.gpu-copy-plan-20261020",
         "NXT1.ten-native-boundaries-20261020",
         "NXT7.ten-final-native-boundaries-20261020",
-        "COMMIT20261021.second-ten.native_integration"
+        "COMMIT20261021.second-ten.native_integration",
+        "CPUCLIP.cpu-controls04-20261026",
+        "CPUCLIP.gpu-controls02-20261026",
+        "CPUCLIP.validator-controls01-20261026",
+        "CPUCLIP.quick02-20261026",
+        "CPUCLIP.live-classification01-20261026",
+        "CPUCLIP.attempts01-20261026",
+        "CPUCLIP.replay01-20261026",
+        "CPUCLIP.validator-controls02-20261026",
+        "CPUCLIP.current-validation01-20261026",
+        "CPUCLIP.replay02-20261026",
+        "CPUCLIP.validator-controls03-20261026",
+        "CPUCLIP.current-validation02-20261026"
       ],
       "status": {
         "understanding": "scoped",
@@ -87116,7 +87129,10 @@
       },
       "remaining_gaps": [
         "All23current facade/bridge/GPU cases,27prepublication refusals and7emission failures pass, including256pieces and257record frozen aliases. Live clipped/self/keyed GPU-source callers remain unobserved; arbitrary raw CPU readers, stretch/range keys, hardware/context-loss and complete replacement remain excluded. Scratch capacity stays a terminal admission limit.",
-        "The opt-in all-copy observer and versioned application COPY bindings change shared diagnostic/harness sources. Historical hashes and milestones remain unchanged; current-source validation stays pending outside the separately declared CPU/GPU copy-output policy scope."
+        "The opt-in all-copy observer and versioned application COPY bindings change shared diagnostic/harness sources. Historical hashes and milestones remain unchanged; current-source validation stays pending outside the separately declared CPU/GPU copy-output policy scope.",
+        "CPUCLIP quick02 closes the bounded all-COPY proof:1370 prepared calls,124 clippedCPU calls,one clippedfill,1345checkedCOPYcommands,141GPU calls and88 geometric reductions,END/normalQuit/zeroowners/noGAP. Natural GPU self/key positives remain absent,not proved unreachable. Fills,retired tails,arbitrary readers,other contexts,full-session/original-driver equivalence and universal intermittent reliability remain separate;historical source evidence is preserved and no milestone is promoted.",
+        "Final review corrects CPU-keyed call counting for a multi-piece clipped call:count distinct application rows,not commands.47currentPython controls and unchanged immutable1370-call/1345COPY replay pass. Native engine/test sources match the live run exactly;historical broad source hashes retain the two changed Python fingerprints. No new engine launch or integration promotion is inferred.",
+        "Final48Python controls/replay02 pass. Empty CPU command intervals remain refused by whole-output closure because CPU rows lack an independent expected-piece count;empty clipping is only supplied rendering-control proof. Current live sample has zero such intervals and retains full COPY closure. Native compiled code is unchanged;two Python diagnostic files have separate fresh controls/replay and exact preserved preimages."
       ],
       "implementation_review": {
         "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
@@ -88308,7 +88324,8 @@
       ],
       "documents": [
         "research/runtime/native-copy-route-reachability.md",
-        "research/formats/native-copy-routes-v1.md"
+        "research/formats/native-copy-routes-v1.md",
+        "research/runtime/cpu-copy-clipping-20261026.md"
       ],
       "validation_dependencies": [
         "apps/qt-shell/audio_cli.cpp",
@@ -88789,7 +88806,19 @@
         "COPYROUTES.campaign-20261017",
         "COPYROUTES.provenance-20261017",
         "CAMERARESUME.actual-20261017",
-        "CAMPAIGNCADENCE.actual-20261017"
+        "CAMPAIGNCADENCE.actual-20261017",
+        "CPUCLIP.cpu-controls04-20261026",
+        "CPUCLIP.gpu-controls02-20261026",
+        "CPUCLIP.validator-controls01-20261026",
+        "CPUCLIP.quick02-20261026",
+        "CPUCLIP.live-classification01-20261026",
+        "CPUCLIP.attempts01-20261026",
+        "CPUCLIP.replay01-20261026",
+        "CPUCLIP.validator-controls02-20261026",
+        "CPUCLIP.current-validation01-20261026",
+        "CPUCLIP.replay02-20261026",
+        "CPUCLIP.validator-controls03-20261026",
+        "CPUCLIP.current-validation02-20261026"
       ],
       "status": {
         "understanding": "scoped",
@@ -88800,7 +88829,10 @@
       },
       "remaining_gaps": [
         "Current active camera/HUD/Mini/Quit interval records4075calls and1828keyed calls, allCPU-backed. Clipped/self and keyed GPU-source branches remain unexercised live, not proved dead. Seven post-RenderStop calls are counted exclusions with unknown branch metadata. All-game/indirect/windowed reachability, original/CPU-keyed pixels, full-session presentation, driver intent, failure/restart, hardware and performance acceptance remain separate. The earlier30second resumed camera assertion failure is now reproduced as a Hermes-modal harness readiness race; fresh bounded30second functional camera/copy assertions pass on both owners. Current-source matched cadence follow-up passes the unchanged software5FPS floor with diagnostic encoding/hash work reduced after complete comparison. Historical floor failures remain; original pixels, sustained hardware and complete session remain separate.",
-        "The opt-in all-copy observer and versioned application COPY bindings change shared diagnostic/harness sources. Historical hashes and milestones remain unchanged; current-source validation stays pending outside the separately declared CPU/GPU copy-output policy scope."
+        "The opt-in all-copy observer and versioned application COPY bindings change shared diagnostic/harness sources. Historical hashes and milestones remain unchanged; current-source validation stays pending outside the separately declared CPU/GPU copy-output policy scope.",
+        "CPUCLIP quick02 closes the bounded all-COPY proof:1370 prepared calls,124 clippedCPU calls,one clippedfill,1345checkedCOPYcommands,141GPU calls and88 geometric reductions,END/normalQuit/zeroowners/noGAP. Natural GPU self/key positives remain absent,not proved unreachable. Fills,retired tails,arbitrary readers,other contexts,full-session/original-driver equivalence and universal intermittent reliability remain separate;historical source evidence is preserved and no milestone is promoted.",
+        "Final review corrects CPU-keyed call counting for a multi-piece clipped call:count distinct application rows,not commands.47currentPython controls and unchanged immutable1370-call/1345COPY replay pass. Native engine/test sources match the live run exactly;historical broad source hashes retain the two changed Python fingerprints. No new engine launch or integration promotion is inferred.",
+        "Final48Python controls/replay02 pass. Empty CPU command intervals remain refused by whole-output closure because CPU rows lack an independent expected-piece count;empty clipping is only supplied rendering-control proof. Current live sample has zero such intervals and retains full COPY closure. Native compiled code is unchanged;two Python diagnostic files have separate fresh controls/replay and exact preserved preimages."
       ]
     },
     {
@@ -147146,7 +147178,9 @@
       "original": [],
       "documents": [
         "research/runtime/native-copy-output-closure-20261025.md",
-        "research/formats/native-copy-routes-v2.md"
+        "research/formats/native-copy-routes-v2.md",
+        "research/runtime/cpu-copy-clipping-20261026.md",
+        "research/runtime/cpu-copy-master-integration-20261026.md"
       ],
       "implementation": [
         "renderer/command_copy_diagnostics.cpp",
@@ -147181,7 +147215,24 @@
         "COPYOUTPUT.gpu-plan04-20261025",
         "COPYOUTPUT.live-copy02-20261025",
         "COPYOUTPUT.attempt-catalog-20261025",
-        "CSR1.copy-live01-20261025"
+        "CSR1.copy-live01-20261025",
+        "CPUCLIP.cpu-controls04-20261026",
+        "CPUCLIP.gpu-controls02-20261026",
+        "CPUCLIP.validator-controls01-20261026",
+        "CPUCLIP.quick02-20261026",
+        "CPUCLIP.live-classification01-20261026",
+        "CPUCLIP.attempts01-20261026",
+        "CPUCLIP.replay01-20261026",
+        "CPUCLIP.validator-controls02-20261026",
+        "CPUCLIP.current-validation01-20261026",
+        "CPUCLIP.replay02-20261026",
+        "CPUCLIP.validator-controls03-20261026",
+        "CPUCLIP.current-validation02-20261026",
+        "CPUFIXMERGE.history01-20261026",
+        "CPUFIXMERGE.history02-20261026",
+        "CPUFIXMERGE.controls01-20261026",
+        "CPUFIXMERGE.controls02-20261026",
+        "CPUFIXMERGE.controls03-20261026"
       ],
       "status": {
         "understanding": "scoped",
@@ -147192,8 +147243,12 @@
       },
       "remaining_gaps": [
         "All-copy proof is bounded by8192commands/32GiB diagnostic readbacks. The long all-copy Save/Load attempt exhausted32GiB and its producer later cancelled at Save; it supplies no completed storage or all-session proof. The separate diagnostics-disabled storage journey completes568balanced Worlds,two display rebuilds,Main Load/resume and normalQuit. No universal storage reliability or attribution of the failed attempt follows.",
-        "Actual ordinary clipped,self and keyed-GPU-source calls remain zero;23 owned GPU-plan cases validate those implemented policies without natural reachability or original-driver equivalence. Five optional helpers have no confirmed natural callers; arbitrary raw readers,full-session pixels,physical driver parity and complete replacement remain open. CPU/GPU expectation is independent native-policy proof,not an original comparison.",
-        "COPYMASTER integration combines the actual source parents with newer terrain/facing/initializer inputs in the broad execution provenance. Historical current-source results retain their original fingerprints; combined-tree live validation remains pending until an explicitly declared new execution. Source integration and Python controls supply no additional original-driver or full-session proof."
+        "Historical2026-10-25 sample: Actual ordinary clipped,self and keyed-GPU-source calls remain zero;23 owned GPU-plan cases validate those implemented policies without natural reachability or original-driver equivalence. Five optional helpers have no confirmed natural callers; arbitrary raw readers,full-session pixels,physical driver parity and complete replacement remain open. CPU/GPU expectation is independent native-policy proof,not an original comparison.",
+        "COPYMASTER integration combines the actual source parents with newer terrain/facing/initializer inputs in the broad execution provenance. Historical current-source results retain their original fingerprints; combined-tree live validation remains pending until an explicitly declared new execution. Source integration and Python controls supply no additional original-driver or full-session proof.",
+        "CPUCLIP quick02 closes the bounded all-COPY proof:1370 prepared calls,124 clippedCPU calls,one clippedfill,1345checkedCOPYcommands,141GPU calls and88 geometric reductions,END/normalQuit/zeroowners/noGAP. Natural GPU self/key positives remain absent,not proved unreachable. Fills,retired tails,arbitrary readers,other contexts,full-session/original-driver equivalence and universal intermittent reliability remain separate;historical source evidence is preserved and no milestone is promoted.",
+        "Final review corrects CPU-keyed call counting for a multi-piece clipped call:count distinct application rows,not commands.47currentPython controls and unchanged immutable1370-call/1345COPY replay pass. Native engine/test sources match the live run exactly;historical broad source hashes retain the two changed Python fingerprints. No new engine launch or integration promotion is inferred.",
+        "Final48Python controls/replay02 pass. Empty CPU command intervals remain refused by whole-output closure because CPU rows lack an independent expected-piece count;empty clipping is only supplied rendering-control proof. Current live sample has zero such intervals and retains full COPY closure. Native compiled code is unchanged;two Python diagnostic files have separate fresh controls/replay and exact preserved preimages.",
+        "Merged with master8c0c4ea4: fresh combined Python/Qt controls and current builds are separate from prior GPU/native and original-game executions. Parent execution fingerprints remain immutable; new live combined-tree observation and original-driver comparison remain pending. See research/runtime/cpu-copy-master-integration-20261026.md."
       ]
     },
     {
@@ -154567,7 +154622,10 @@
         "tools/published_copy_routes.py"
       ],
       "documents": [
-        "research/runtime/natural-gpu-copy-callers-20261026.md"
+        "research/runtime/natural-gpu-copy-callers-20261026.md",
+        "research/runtime/windowed-input-gpu-callers-20261026.md",
+        "research/runtime/cpu-copy-clipping-20261026.md",
+        "research/runtime/cpu-copy-master-integration-20261026.md"
       ],
       "evidence": [
         "NATURALCOPY.controls01-20261026",
@@ -154583,7 +154641,34 @@
         "NATURALCOPY.quick03-20261026",
         "NATURALCOPY.quick04-20261026",
         "NATURALCOPY.quick05-20261026",
-        "NATURALCOPY.quick06-20261026"
+        "NATURALCOPY.quick06-20261026",
+        "WINDOWINPUT.controls01-20261026",
+        "WINDOWINPUT.controls02-20261026",
+        "WINDOWINPUT.controls03-20261026",
+        "WINDOWINPUT.quick01-20261026",
+        "WINDOWINPUT.quick02-20261026",
+        "WINDOWINPUT.quick03-20261026",
+        "WINDOWINPUT.quick04-20261026",
+        "WINDOWINPUT.quick05-20261026",
+        "WINDOWINPUT.remaining-callers01-20261026",
+        "WINDOWINPUT.remaining-callers02-20261026",
+        "CPUCLIP.cpu-controls04-20261026",
+        "CPUCLIP.gpu-controls02-20261026",
+        "CPUCLIP.validator-controls01-20261026",
+        "CPUCLIP.quick02-20261026",
+        "CPUCLIP.live-classification01-20261026",
+        "CPUCLIP.attempts01-20261026",
+        "CPUCLIP.replay01-20261026",
+        "CPUCLIP.validator-controls02-20261026",
+        "CPUCLIP.current-validation01-20261026",
+        "CPUCLIP.replay02-20261026",
+        "CPUCLIP.validator-controls03-20261026",
+        "CPUCLIP.current-validation02-20261026",
+        "CPUFIXMERGE.history01-20261026",
+        "CPUFIXMERGE.history02-20261026",
+        "CPUFIXMERGE.controls01-20261026",
+        "CPUFIXMERGE.controls02-20261026",
+        "CPUFIXMERGE.controls03-20261026"
       ],
       "status": {
         "understanding": "partial",
@@ -154595,7 +154680,12 @@
       "remaining_gaps": [
         "Current24 controls and strict immutable replay pass. Ordinary windowed810 checked attached-clipper calls do not geometrically reduce output. Declared Win32 desktop exposure confirms negative origin but strict all-application validation rejects active-miss reason2;use the separate positive-call policy for its678 checked reduced calls.",
         "Natural self-copy and keyed GPU-source positive callers remain unproven. Stage6 Qt input target0,missing complete END/output,normal Quit,surviving device/surfaces/clipper and shell signal11 remain open;no replacement promotion.",
-        "Combined integration preserves master1ffeb53e,verified windowed3544f60a and independent contract/status entries. The18 unrelated pending paths have a verified retained snapshot and pinned stash;master advancement restores their semantic metadata deltas."
+        "Combined integration preserves master1ffeb53e,verified windowed3544f60a and independent contract/status entries. The18 unrelated pending paths have a verified retained snapshot and pinned stash;master advancement restores their semantic metadata deltas.",
+        "Windowed input follow-up quick05 has current source hashes,143 checked original GPU calls,28 geometrically reduced calls,END,normal Quit and zero graphics owners. Natural self/keyed-GPU positives remain absent from this bounded sample;CPU-source clipper/target-rect preparation and unsupported fills still prevent whole-output closure. Prior GAP/deadline failures retained;no status promotion.",
+        "CPUCLIP quick02 closes the bounded all-COPY proof:1370 prepared calls,124 clippedCPU calls,one clippedfill,1345checkedCOPYcommands,141GPU calls and88 geometric reductions,END/normalQuit/zeroowners/noGAP. Natural GPU self/key positives remain absent,not proved unreachable. Fills,retired tails,arbitrary readers,other contexts,full-session/original-driver equivalence and universal intermittent reliability remain separate;historical source evidence is preserved and no milestone is promoted.",
+        "Final review corrects CPU-keyed call counting for a multi-piece clipped call:count distinct application rows,not commands.47currentPython controls and unchanged immutable1370-call/1345COPY replay pass. Native engine/test sources match the live run exactly;historical broad source hashes retain the two changed Python fingerprints. No new engine launch or integration promotion is inferred.",
+        "Final48Python controls/replay02 pass. Empty CPU command intervals remain refused by whole-output closure because CPU rows lack an independent expected-piece count;empty clipping is only supplied rendering-control proof. Current live sample has zero such intervals and retains full COPY closure. Native compiled code is unchanged;two Python diagnostic files have separate fresh controls/replay and exact preserved preimages.",
+        "Merged with master8c0c4ea4: fresh combined Python/Qt controls and current builds are separate from prior GPU/native and original-game executions. Parent execution fingerprints remain immutable; new live combined-tree observation and original-driver comparison remain pending. See research/runtime/cpu-copy-master-integration-20261026.md."
       ]
     },
     {
@@ -154636,12 +154726,42 @@
         "tests/test-native-copy-routes.py"
       ],
       "documents": [
-        "research/runtime/natural-gpu-copy-callers-20261026.md"
+        "research/runtime/natural-gpu-copy-callers-20261026.md",
+        "research/runtime/windowed-input-gpu-callers-20261026.md",
+        "research/runtime/cpu-copy-clipping-20261026.md",
+        "research/runtime/cpu-copy-master-integration-20261026.md"
       ],
       "evidence": [
         "NATURALCOPY.controls05-20261026",
         "NATURALCOPY.published01-20261026",
-        "NATURALCOPY.published02-20261026"
+        "NATURALCOPY.published02-20261026",
+        "WINDOWINPUT.controls01-20261026",
+        "WINDOWINPUT.controls02-20261026",
+        "WINDOWINPUT.controls03-20261026",
+        "WINDOWINPUT.quick01-20261026",
+        "WINDOWINPUT.quick02-20261026",
+        "WINDOWINPUT.quick03-20261026",
+        "WINDOWINPUT.quick04-20261026",
+        "WINDOWINPUT.quick05-20261026",
+        "WINDOWINPUT.remaining-callers01-20261026",
+        "WINDOWINPUT.remaining-callers02-20261026",
+        "CPUCLIP.cpu-controls04-20261026",
+        "CPUCLIP.gpu-controls02-20261026",
+        "CPUCLIP.validator-controls01-20261026",
+        "CPUCLIP.quick02-20261026",
+        "CPUCLIP.live-classification01-20261026",
+        "CPUCLIP.attempts01-20261026",
+        "CPUCLIP.replay01-20261026",
+        "CPUCLIP.validator-controls02-20261026",
+        "CPUCLIP.current-validation01-20261026",
+        "CPUCLIP.replay02-20261026",
+        "CPUCLIP.validator-controls03-20261026",
+        "CPUCLIP.current-validation02-20261026",
+        "CPUFIXMERGE.history01-20261026",
+        "CPUFIXMERGE.history02-20261026",
+        "CPUFIXMERGE.controls01-20261026",
+        "CPUFIXMERGE.controls02-20261026",
+        "CPUFIXMERGE.controls03-20261026"
       ],
       "status": {
         "understanding": "partial",
@@ -154652,7 +154772,12 @@
       },
       "remaining_gaps": [
         "Current24 controls and immutable replay verify783 of784 published GPU calls,including678 geometrically reduced calls and one retained clipped-command pixel witness. Missing output for application call5060 remains explicit.",
-        "Active-miss bit2 leaves unobserved callbacks unknown. No zero-branch absence,complete-application output,END,normal Quit,ownership or original-driver parity claim. Natural self-copy,keyed GPU sources and additional clipper reduction within destination bounds remain unproven."
+        "Active-miss bit2 leaves unobserved callbacks unknown. No zero-branch absence,complete-application output,END,normal Quit,ownership or original-driver parity claim. Natural self-copy,keyed GPU sources and additional clipper reduction within destination bounds remain unproven.",
+        "Windowed input follow-up quick05 has current source hashes,143 checked original GPU calls,28 geometrically reduced calls,END,normal Quit and zero graphics owners. Natural self/keyed-GPU positives remain absent from this bounded sample;CPU-source clipper/target-rect preparation and unsupported fills still prevent whole-output closure. Prior GAP/deadline failures retained;no status promotion.",
+        "CPUCLIP quick02 closes the bounded all-COPY proof:1370 prepared calls,124 clippedCPU calls,one clippedfill,1345checkedCOPYcommands,141GPU calls and88 geometric reductions,END/normalQuit/zeroowners/noGAP. Natural GPU self/key positives remain absent,not proved unreachable. Fills,retired tails,arbitrary readers,other contexts,full-session/original-driver equivalence and universal intermittent reliability remain separate;historical source evidence is preserved and no milestone is promoted.",
+        "Final review corrects CPU-keyed call counting for a multi-piece clipped call:count distinct application rows,not commands.47currentPython controls and unchanged immutable1370-call/1345COPY replay pass. Native engine/test sources match the live run exactly;historical broad source hashes retain the two changed Python fingerprints. No new engine launch or integration promotion is inferred.",
+        "Final48Python controls/replay02 pass. Empty CPU command intervals remain refused by whole-output closure because CPU rows lack an independent expected-piece count;empty clipping is only supplied rendering-control proof. Current live sample has zero such intervals and retains full COPY closure. Native compiled code is unchanged;two Python diagnostic files have separate fresh controls/replay and exact preserved preimages.",
+        "Merged with master8c0c4ea4: fresh combined Python/Qt controls and current builds are separate from prior GPU/native and original-game executions. Parent execution fingerprints remain immutable; new live combined-tree observation and original-driver comparison remain pending. See research/runtime/cpu-copy-master-integration-20261026.md."
       ]
     },
     {
@@ -155946,6 +156071,230 @@
         "Actual Windows SEH dispatch and throwing-destructor delivery are not validated.",
         "Real driver/codec-DLL behavior, original full screen routing and installed widget/GL/live acceptance remain separate.",
         "Qt-internal/global noexcept allocation exhaustion is not part of recoverable native allocation policy; score-service content/simulation remain supplied in the composed fixture."
+      ]
+    },
+    {
+      "id": "HOST.desktop-frame-input",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Desktop-frame input for a windowed original game",
+      "scope": "Intentional native input policy: bind a unique mapped named Magic & Mayhem input window inside a Wine desktop whose size equals the displayed frame; preserve legacy exact-frame fallback and refuse ambiguous,missing,incomplete or incompatible window trees. Translate each targeted X11 event from desktop-frame pixels to current outer-window pixels. Explicit input wire v2 publishes desktop-screen cursor coordinates; the PE32 polling adapter returns these without adding ClientToScreen again. Existing client-relative v1 remains supported. Synthetic input and actual game execution remain separate;no guessed decoration sizes,forced game actions,render branch or retirement claims.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "apps/qt-shell/input_forwarder.cpp",
+        "apps/qt-shell/input_forwarder.hpp",
+        "apps/qt-shell/input_state.cpp",
+        "apps/qt-shell/input_state.hpp",
+        "apps/qt-shell/main.cpp",
+        "runtime/render/input_polling.h",
+        "tools/input_wire.py",
+        "tools/menu-game-runner.py",
+        "tools/run-opengl-game.py",
+        "tools/menu-storage-input.py"
+      ],
+      "tests": [
+        "tests/qt-input-test.cpp",
+        "tests/test-input-wire.py",
+        "tests/native-input-target-probe.cpp",
+        "runtime/render/input_selftest.h",
+        "tools/test-windowed-input.py",
+        "apps/qt-shell/live_quick_battle_app_test.cpp"
+      ],
+      "validation_dependencies": [
+        "runtime/render/bridge.c",
+        "protocols/schemas/input-v1.json",
+        "protocols/schemas/input-v2.json",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/input_v2.h",
+        "protocols/python/mnm_protocols/input_v1.py",
+        "protocols/python/mnm_protocols/input_v2.py",
+        "tools/build-render-bridge.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/native_prefix_template.py",
+        "tools/experiment_environment.py",
+        "tools/test-natural-gpu-copy-callers.py",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "documents": [
+        "research/runtime/windowed-input-gpu-callers-20261026.md",
+        "research/formats/render-input-state.md",
+        "research/runtime/qt-input-forwarding.md",
+        "research/runtime/cpu-copy-master-integration-20261026.md"
+      ],
+      "evidence": [
+        "WINDOWINPUT.controls01-20261026",
+        "WINDOWINPUT.controls02-20261026",
+        "WINDOWINPUT.controls03-20261026",
+        "WINDOWINPUT.quick01-20261026",
+        "WINDOWINPUT.quick02-20261026",
+        "WINDOWINPUT.quick03-20261026",
+        "WINDOWINPUT.quick04-20261026",
+        "WINDOWINPUT.quick05-20261026",
+        "WINDOWINPUT.menu-observation03-provenance-20261026",
+        "WINDOWINPUT.remaining-callers01-20261026",
+        "WINDOWINPUT.root-regression-before-provenance-20261026",
+        "WINDOWINPUT.history-failure01-provenance-20261026",
+        "WINDOWINPUT.history-failure02-provenance-20261026",
+        "WINDOWINPUT.history03-provenance-20261026",
+        "WINDOWINPUT.history04-provenance-20261026",
+        "WINDOWINPUT.remaining-callers02-20261026",
+        "CPUFIXMERGE.history01-20261026",
+        "CPUFIXMERGE.history02-20261026",
+        "CPUFIXMERGE.controls01-20261026",
+        "CPUFIXMERGE.controls02-20261026",
+        "CPUFIXMERGE.controls03-20261026",
+        "CPUFIXMERGE.controls04-20261026"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current controls03 passes Qt normal/high DPI,wire admission and v1/v2 PE32 polling. Current quick05 completes two windowed World visits,Qt Right/focus release/Escape,normal Quit and zero graphics owners;one bounded live observation,not all-menu or driver equivalence.",
+        "Current ordinary quick04 returns and retires owners but reports native GAP reason2 after an epoch/generation-invalidated whole-copy commit;the failure remains open and unhidden. Natural self/keyed GPU callers and whole-copy output closure are independent.",
+        "Merged with master8c0c4ea4: fresh combined Python/Qt controls and current builds are separate from prior GPU/native and original-game executions. Parent execution fingerprints remain immutable; new live combined-tree observation and original-driver comparison remain pending. See research/runtime/cpu-copy-master-integration-20261026.md."
+      ]
+    },
+    {
+      "id": "HOST.results-ack-ready-root",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Results Quit acknowledgement may already contain the ready root",
+      "scope": "Native host policy for a Results Quit request only: after exact requested ACK,owning thread and successful status checks,an already-ready Main or Quick Battle root with zero handoff restores native menus immediately. Unready roots and other actions retain the existing guarded transition;no invented generation,unverified callback retry or original dispatch change. Synthetic timing cases and actual journey outcomes are separate.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "apps/qt-shell/live_menu_session.cpp"
+      ],
+      "tests": [
+        "tests/menu-result-controller-test.cpp",
+        "apps/qt-shell/live_quick_battle_app_test.cpp",
+        "tools/test-windowed-input.py",
+        "tools/test-natural-gpu-copy-callers.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_result_menu_controller.cpp",
+        "apps/qt-shell/live_result_menu_controller.hpp",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v5.h"
+      ],
+      "documents": [
+        "research/runtime/windowed-input-gpu-callers-20261026.md",
+        "research/runtime/cpu-copy-master-integration-20261026.md"
+      ],
+      "evidence": [
+        "WINDOWINPUT.controls03-20261026",
+        "WINDOWINPUT.quick04-20261026",
+        "WINDOWINPUT.quick05-20261026",
+        "WINDOWINPUT.menu-observation03-provenance-20261026",
+        "WINDOWINPUT.remaining-callers01-20261026",
+        "WINDOWINPUT.root-regression-before-provenance-20261026",
+        "WINDOWINPUT.history-failure01-provenance-20261026",
+        "WINDOWINPUT.history-failure02-provenance-20261026",
+        "WINDOWINPUT.history03-provenance-20261026",
+        "WINDOWINPUT.history04-provenance-20261026",
+        "CPUFIXMERGE.history01-20261026",
+        "CPUFIXMERGE.history02-20261026",
+        "CPUFIXMERGE.controls01-20261026",
+        "CPUFIXMERGE.controls02-20261026",
+        "CPUFIXMERGE.controls03-20261026",
+        "CPUFIXMERGE.controls04-20261026"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "New direct-ready-root ACK regression failed before the fix. Current controls03 passes17 timing/identity cases,including immediate Main/Quick roots and an unready-root continuation. Current quick05 completes native menu return and Quit.",
+        "Previous current-tree GAP and prior stage8 deadline remain immutable negative observations;no deterministic shutdown,arbitrary menu or driver equivalence claim.",
+        "Merged with master8c0c4ea4: fresh combined Python/Qt controls and current builds are separate from prior GPU/native and original-game executions. Parent execution fingerprints remain immutable; new live combined-tree observation and original-driver comparison remain pending. See research/runtime/cpu-copy-master-integration-20261026.md."
+      ]
+    },
+    {
+      "id": "NP.native-cpu-copy-plan",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Caller-bound clipped CPU copies and fills",
+      "scope": "Native facade read-only clip geometry preparation under provider/copy admission, current destination materialization before CPU transforms, ordered CPU piece propagation and exact caller command intervals. Supplied controls and bounded live observation are separate from original-driver equivalence and natural GPU self/key reachability.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "runtime/native-draw/gpu_copy_plan.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/bridge.c",
+        "tools/build-native-draw.py",
+        "tools/native_copy_output.py"
+      ],
+      "tests": [
+        "tests/native-cpu-copy-plan-probe.c",
+        "tests/test-native-copy-output.py",
+        "tools/test-native-gpu-copy-plan.py"
+      ],
+      "validation_dependencies": [
+        "tests/native-gpu-copy-plan-probe.c",
+        "tools/test-windowed-input.py",
+        "tools/test-natural-gpu-copy-callers.py",
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "protocols/include/mnm/native_gpu_copy_plan_v1.h"
+      ],
+      "documents": [
+        "research/runtime/cpu-copy-clipping-20261026.md",
+        "research/runtime/cpu-copy-master-integration-20261026.md"
+      ],
+      "evidence": [
+        "CPUCLIP.cpu-controls01-20261026",
+        "CPUCLIP.cpu-controls02-20261026",
+        "CPUCLIP.input-controls01-20261026",
+        "CPUCLIP.cpu-controls03-20261026",
+        "CPUCLIP.gpu-controls01-20261026",
+        "CPUCLIP.input-controls02-20261026",
+        "CPUCLIP.quick01-20261026",
+        "CPUCLIP.cpu-controls04-20261026",
+        "CPUCLIP.gpu-controls02-20261026",
+        "CPUCLIP.input-controls03-20261026",
+        "CPUCLIP.validator-controls01-20261026",
+        "CPUCLIP.quick02-20261026",
+        "CPUCLIP.live-classification01-20261026",
+        "CPUCLIP.attempts01-20261026",
+        "CPUCLIP.replay01-20261026",
+        "CPUCLIP.validator-controls02-20261026",
+        "CPUCLIP.current-validation01-20261026",
+        "CPUCLIP.replay02-20261026",
+        "CPUCLIP.validator-controls03-20261026",
+        "CPUCLIP.current-validation02-20261026",
+        "CPUFIXMERGE.history01-20261026",
+        "CPUFIXMERGE.history02-20261026",
+        "CPUFIXMERGE.controls01-20261026",
+        "CPUFIXMERGE.controls02-20261026",
+        "CPUFIXMERGE.controls03-20261026"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current15CPU/23GPU controls and bounded live1370-call run pass.124CPU clipped calls and one clipped fill are prepared;1345COPYoutputs checked,88GPU geometrically reduced calls,END/normalQuit/zeroowners and no GAP/refusal. Fills are UPDATE inputs derived from arguments and receive noCOPYoutput credit. Natural self/keyed GPU callers remain unobserved;all-game/raw-reader/original-driver/hardware/complete replacement remain separate.",
+        "Earlier setup/source-stability failures and the eager-materialization regression are retained;one current live sample does not prove universal absence of intermittent history failures.",
+        "Final review corrects CPU-keyed call counting for a multi-piece clipped call:count distinct application rows,not commands.47currentPython controls and unchanged immutable1370-call/1345COPY replay pass. Native engine/test sources match the live run exactly;historical broad source hashes retain the two changed Python fingerprints. No new engine launch or integration promotion is inferred.",
+        "Final48Python controls/replay02 pass. Empty CPU command intervals remain refused by whole-output closure because CPU rows lack an independent expected-piece count;empty clipping is only supplied rendering-control proof. Current live sample has zero such intervals and retains full COPY closure. Native compiled code is unchanged;two Python diagnostic files have separate fresh controls/replay and exact preserved preimages.",
+        "Merged with master8c0c4ea4: fresh combined Python/Qt controls and current builds are separate from prior GPU/native and original-game executions. Parent execution fingerprints remain immutable; new live combined-tree observation and original-driver comparison remain pending. See research/runtime/cpu-copy-master-integration-20261026.md."
       ]
     }
   ],
@@ -354459,6 +354808,792 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "WINDOWINPUT.controls01-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/windowed-input-results-20261026/controls01.json",
+      "sha256": "a0574dddede37dcba0853e524dfb623a263346d93b16a934e38818a1fafa8d43",
+      "scope": "Preserved bounded input/control or actual windowed acquisition;milestones and failures retained independently;overall missing natural self/keyed GPU branches is never relabeled a pass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.controls02-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/windowed-input-results-20261026/controls02.json",
+      "sha256": "358301dab1220ca23f226ce2e97e7cf7ebd4029385f525fa1fa34eae40b83a66",
+      "scope": "Preserved bounded input/control or actual windowed acquisition;milestones and failures retained independently;overall missing natural self/keyed GPU branches is never relabeled a pass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.controls03-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/windowed-input-results-20261026/controls03.json",
+      "sha256": "bcd17e032122703d5c26f557aaba7540699de87898f08515e8b46d3a9a79bf4e",
+      "scope": "Source-bound actual Qt input and17 Results ACK timing controls,both DPI modes,wire admission and client/desktop PE32 polling;no game execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.quick01-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/windowed-input-results-20261026/quick01.json",
+      "sha256": "7cd531fc807683f4bc5ab25f0fe3e921996c739954fe9931f05d381dc46cf941",
+      "scope": "Preserved bounded input/control or actual windowed acquisition;milestones and failures retained independently;overall missing natural self/keyed GPU branches is never relabeled a pass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.quick02-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/windowed-input-results-20261026/quick02.json",
+      "sha256": "9293f78dd1ea94920da81b7fec624cdcceba32769281a2671d33df5c377daa43",
+      "scope": "Preserved bounded input/control or actual windowed acquisition;milestones and failures retained independently;overall missing natural self/keyed GPU branches is never relabeled a pass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.quick03-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/windowed-input-results-20261026/quick03.json",
+      "sha256": "272edcddd134178da0f6a1eb4e5708bf1a26117a2612636e6a9278eba5f11568",
+      "scope": "Preserved bounded input/control or actual windowed acquisition;milestones and failures retained independently;overall missing natural self/keyed GPU branches is never relabeled a pass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.quick04-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/windowed-input-results-20261026/quick04.json",
+      "sha256": "cda03f55f1fd64b3b2bc47b5afe4df6f960d650f7a69342ef48e513b0dc7c3ec",
+      "scope": "Preserved bounded input/control or actual windowed acquisition;milestones and failures retained independently;overall missing natural self/keyed GPU branches is never relabeled a pass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.quick05-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/windowed-input-results-20261026/quick05.json",
+      "sha256": "329bebf4538be38efc029a63b163053f8f3e5906a055f4a10df2e84a91b0b3db",
+      "scope": "Preserved bounded input/control or actual windowed acquisition;milestones and failures retained independently;overall missing natural self/keyed GPU branches is never relabeled a pass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/lifecycle_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/retirement_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis/checked_original_gpu_calls",
+          "equals": 143
+        },
+        {
+          "pointer": "/analysis/branches/geometric_clipping/calls",
+          "equals": 28
+        },
+        {
+          "pointer": "/analysis/all_application_output_closed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "WINDOWINPUT.menu-observation03-provenance-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/menu-observation03-provenance.json",
+      "sha256": "b3ab6795172a90b5ee95a4eb362731b1af2ec8f2310c44759e724423f627f7b0",
+      "scope": "Read-only accounting view: verify and reference the immutable original report through the current SQLite evidence reader. Sources fingerprint this read operation and wire definitions only,not historical engine execution. Original results,source hashes and validation boundaries remain unchanged;no new game execution or status promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "WINDOWINPUT.remaining-callers01-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/remaining-callers01.json",
+      "sha256": "8c269eaf9fe990001c70d930bd7868b0752b7afa55b5871e7b35b6dffd01b6a4",
+      "scope": "Bounded immutable caller classification explaining remaining live coverage gaps. Counts refer only to this capture;no all-game absence or whole-output proof.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "WINDOWINPUT.root-regression-before-provenance-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/root-regression-before-provenance.json",
+      "sha256": "d557e5fabe5ea6b63167e254323eaf8712c21db0fca417d1fcaa56d360e1e14f",
+      "scope": "Read-only accounting view: verify and reference the immutable original report through the current SQLite evidence reader. Sources fingerprint this read operation and wire definitions only,not historical engine execution. Original results,source hashes and validation boundaries remain unchanged;no new game execution or status promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "WINDOWINPUT.history-failure01-provenance-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/history-failure01-provenance.json",
+      "sha256": "1314ace094c07fc1859aa06fcee0e1b70c735baa5675b00812d8eeb6c3f5b9bd",
+      "scope": "Read-only accounting view: verify and reference the immutable original report through the current SQLite evidence reader. Sources fingerprint this read operation and wire definitions only,not historical engine execution. Original results,source hashes and validation boundaries remain unchanged;no new game execution or status promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "WINDOWINPUT.history-failure02-provenance-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/history-failure02-provenance.json",
+      "sha256": "f5a44f96479cf80c8a22523e2c0888d7ed37281f464803992ae9b9a4a0e1e901",
+      "scope": "Read-only accounting view: verify and reference the immutable original report through the current SQLite evidence reader. Sources fingerprint this read operation and wire definitions only,not historical engine execution. Original results,source hashes and validation boundaries remain unchanged;no new game execution or status promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "WINDOWINPUT.history03-provenance-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/history03-provenance.json",
+      "sha256": "d4f6c202f81a7c03b48b2e3d7922726e3dac576e6a5909a6f15ed0eb1ff12c3c",
+      "scope": "Read-only accounting view: verify and reference the immutable original report through the current SQLite evidence reader. Sources fingerprint this read operation and wire definitions only,not historical engine execution. Original results,source hashes and validation boundaries remain unchanged;no new game execution or status promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "WINDOWINPUT.history04-provenance-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/history04-provenance.json",
+      "sha256": "bc64c054e82ae3178ce9654d8910bdf8a72382bbb52ea256661f2d57c5d14000",
+      "scope": "Read-only accounting view: verify and reference the immutable original report through the current SQLite evidence reader. Sources fingerprint this read operation and wire definitions only,not historical engine execution. Original results,source hashes and validation boundaries remain unchanged;no new game execution or status promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "WINDOWINPUT.remaining-callers02-20261026",
+      "kind": "static",
+      "record": "research/runtime/windowed-input-results-20261026/remaining-callers02.json",
+      "sha256": "382fa8d486c30cfc503dcd59e5bda51a6e4d675bba1cf7f8d3f45052ced4e776",
+      "scope": "Immutable final census classification of actual CPU-keyed source history and unresolved preparation paths;bounded observations only,no all-game absence or whole-output proof.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/application_rows",
+          "equals": 1380
+        },
+        {
+          "pointer": "/keyed_rows",
+          "equals": 678
+        }
+      ]
+    },
+    {
+      "id": "CPUCLIP.cpu-controls01-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-results-20261026/cpu-controls01.json",
+      "sha256": "30800de340568c02cb5cbd93c7198082741c3845a9ec02460a1cb6c9a862e90d",
+      "scope": "CPU clipping/fill preparation and command replay; supplied inputs, no original EXE or live replacement.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CPUCLIP.cpu-controls02-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-results-20261026/cpu-controls02.json",
+      "sha256": "40edf07f255811aa6c67405230b3ef7e80110b49d72016ab5f84a79f4c062a3c",
+      "scope": "CPU clipping/fill preparation and command replay; supplied inputs, no original EXE or live replacement.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CPUCLIP.input-controls01-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-results-20261026/input-controls01.json",
+      "sha256": "5ba33aee83551d2ab5175b36615e6b4f8659c8cbf467713d532f61e92d67e09e",
+      "scope": "Source-bound shell build and Qt/X11 to PE32 input controls; no original game.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CPUCLIP.cpu-controls03-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-results-20261026/cpu-controls03.json",
+      "sha256": "dfd109a8572b8960653fde1c279e168c299eec2099b73140c149c052c7153dfc",
+      "scope": "CPU clipping/fill preparation and command replay; supplied inputs, no original EXE or live replacement.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CPUCLIP.gpu-controls01-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-results-20261026/gpu-controls01.json",
+      "sha256": "19b4af909914d426443f118c615712947c791e7adf3430e4667d8ac23dc3f369",
+      "scope": "Owned facade/production bridge clipping and immutable GPU alias-copy controls.; supplied inputs, no original EXE or live replacement.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CPUCLIP.input-controls02-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-results-20261026/input-controls02.json",
+      "sha256": "580eda7b62a01a627efbb0ce5455744732384c379dc9032fe9a28e5daec5239d",
+      "scope": "Source-bound shell build and Qt/X11 to PE32 input controls; no original game.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CPUCLIP.quick01-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-results-20261026/quick01.json",
+      "sha256": "b61430e7ab222f6635f9df414b51bcb987ad4c460b00b3b9c125b27c4acad0ef",
+      "scope": "Bounded natural GPU-copy caller controls, retained analysis and private acquisition.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CPUCLIP.cpu-controls04-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/cpu-copy-results-20261026/cpu-controls04.json",
+      "sha256": "be24bf221025862100bcd8c10e98bdcebfde45dddfb5e5aac1c3fd00b29f1712",
+      "scope": "CPU clipping/fill preparation and command replay; supplied inputs, no original EXE or live replacement.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CPUCLIP.gpu-controls02-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/cpu-copy-results-20261026/gpu-controls02.json",
+      "sha256": "3747e72e295963e64769c44435b2508a96bb648f7807840d0b4fd8895daa7a1e",
+      "scope": "Owned facade/production bridge clipping and immutable GPU alias-copy controls.; supplied inputs, no original EXE or live replacement.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CPUCLIP.input-controls03-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/cpu-copy-results-20261026/input-controls03.json",
+      "sha256": "030e6e173dee39620aa55130b9550a02adf32228fcbc5d290ab08176bc01bd13",
+      "scope": "Source-bound shell build and Qt/X11 to PE32 input controls; no original game.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CPUCLIP.validator-controls01-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/cpu-copy-results-20261026/validator-controls01.json",
+      "sha256": "c656cf6e361aebc6a834b30dd96dccbb790b8c3f61b48bb43286defd83588028",
+      "scope": "Current copy-output/routing/caller diagnostics refusal controls; no original game execution.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CPUCLIP.quick02-20261026",
+      "kind": "live_observation",
+      "record": "research/runtime/cpu-copy-results-20261026/quick02.json",
+      "sha256": "cd1bd2071af73a499348bd7c4068fad10a1e7ccc8d71d93858e5ba43e98456ff",
+      "scope": "Current bounded original caller observation:all1370calls prepared,1345COPYdestinations independently checked,88GPU calls geometrically clipped,normal Quit and zero owners;natural self/keyed GPU positives absent,overall all-branch success false.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/lifecycle_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/retirement_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis/all_application_output_closed",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CPUCLIP.live-classification01-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-results-20261026/live-classification01.json",
+      "sha256": "4be6785c5440d33ee166808bbe6b1df945d1a41c761638d373a155bc84556606",
+      "scope": "Read-only final census/lifecycle classification; bounded actual live call evidence remains in quick02, no all-game branch absence or original-driver comparison.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CPUCLIP.attempts01-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-results-20261026/attempts01.json",
+      "sha256": "0a0446a51162f9fbbb2299db030f8c46ff8c20b4dc391d4e64b4df248895bcc2",
+      "scope": "Immutable result catalog; failures and superseded attempts retained, no new engine execution or validation.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CPUCLIP.replay01-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/cpu-copy-results-20261026/replay01.json",
+      "sha256": "7135038c1db3bebaeeb9c3d5d908e83bd908ab90f4172f486220e97f69c3ed3e",
+      "scope": "Current offline replay of immutable quick02 census and independently checked native outputs;complete bounded COPY binding passes,not a new original launch or natural self/key positive.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis/all_application_output_closed",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CPUCLIP.validator-controls02-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/cpu-copy-results-20261026/validator-controls02.json",
+      "sha256": "a9b1d97e23762dcec99576656060aef606044f8fa1861d42ccc57bbb2c217574",
+      "scope": "Current copy-output/routing/caller diagnostics refusal controls including one keyed application call emitting multiple CPU pieces; no new game execution.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CPUCLIP.current-validation01-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-results-20261026/current-validation01.json",
+      "sha256": "a951d8259f87a67a8f4d86018fbd197470a7157e051b7580b1805758fd47455d",
+      "scope": "Exact engine-source continuity and current offline validation view. No new original game execution or refreshed historical fingerprints. Only two Python metadata counter/control files changed after live/PE32 tests;current replay independently checks the immutable live outputs.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CPUCLIP.replay02-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/cpu-copy-results-20261026/replay02.json",
+      "sha256": "31d447f9ab8eca1a6ede6a94a558b3371e6d0be09bfc5d1140adb38450d40d65",
+      "scope": "Current immutable1370-call/1345COPYreplay passes complete caller binding,including fail-closed emptyCPUinterval policy. No new original launch or natural self/key positive.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis/all_application_output_closed",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CPUCLIP.validator-controls03-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/cpu-copy-results-20261026/validator-controls03.json",
+      "sha256": "a068097f0d79f231429d8071ffc395091dba041ce1f65435015dd6c5747d29fa",
+      "scope": "Current48copy-output/routing/caller diagnostic controls including keyed call versus piece counting and fail-closed empty CPU intervals;no new game execution.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CPUCLIP.current-validation02-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-results-20261026/current-validation02.json",
+      "sha256": "7ce31bf4d84ce53e9816e8a5f7768dcb5f7568c675b6bd68aa05711e943f3ff2",
+      "scope": "Exact unchanged native engine sources with current48Python controls and immutable live-output replay. Historical broad fingerprints stay unchanged;no new original launch or natural self/key positive.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CPUFIXMERGE.history01-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-master-results-20261026/history01-provenance.json",
+      "sha256": "88d5de28088db83fc73c07da6ac83b543c4e4927add4a2181c08bef85f99364a",
+      "scope": "Read-only verified provenance of the immutable exact-history report, including its original success/failure. Fingerprints describe the current evidence reader, not historical engine execution or gate passes.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPUFIXMERGE.history02-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-master-results-20261026/history02-provenance.json",
+      "sha256": "3e1670f40f976bdd33f15e3bd71c9f61931fc16f448873c25f32e06c959613d0",
+      "scope": "Read-only verified provenance of the immutable exact-history report, including its original success/failure. Fingerprints describe the current evidence reader, not historical engine execution or gate passes.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPUFIXMERGE.controls01-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-master-results-20261026/controls01.json",
+      "sha256": "bf1828e7a8cfaa17548dfc62147c5fafb39b4c1c414c292595d545fb248e96a7",
+      "scope": "Fresh combined-master Python routing/refusal and Qt input/Results controls plus current Release shell/bridge/facade builds. No fresh original game or original-driver comparison; unchanged parent live evidence remains historical.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPUFIXMERGE.controls02-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-master-results-20261026/controls02.json",
+      "sha256": "aa54d484238c50beaea660d686e07259b855c0f66e042de882b62fa1e21d29a3",
+      "scope": "Current combined-tree Qt normal/high-DPI input retry after shared /tmp EDQUOT, existing successful17-case Results and Python controls retained in controls01. Current facade/bridge builds; no new original game or GPU-plan execution.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPUFIXMERGE.controls03-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-master-results-20261026/controls03.json",
+      "sha256": "50e526f587d9a83c89ac991a6b21ab91c55ce846fac6591988bfd02da91dd6d5",
+      "scope": "Current combined-tree normal-DPI input retry in private network/mount namespaces; high-DPI passed controls02 and17-case Results/Python controls passed controls01. Current facade/bridge builds; no new original game or GPU-plan execution.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPUFIXMERGE.controls04-20261026",
+      "kind": "native_integration",
+      "record": "research/runtime/cpu-copy-master-results-20261026/controls04.json",
+      "sha256": "3a384a1cedcbddf28907938a5630505f5072fb68979b3d5e28d7fe909bf2439d",
+      "scope": "Composed exact-source execution results: five Python suites,17 Results timing/identity cases and current Release shell in controls01; high-DPI Qt input passed controls02; normal-DPI Qt input and PE32 facade/bridge builds passed controls03. Initial Xvfb startup failures are preserved. No new original game, GPU plan comparison, driver equivalence or replacement.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CPUFIXMERGE.closeout-failure01-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-master-results-20261026/closeout-failure01.json",
+      "sha256": "b2e25ce1ea36c528996ba708945e7b76e23026e38a31476017856694c340b2d9",
+      "scope": "Preserved infrastructure failures before any integration commit. No engine regression, successful gate, altered historical hash or hook bypass is asserted.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CPUFIXMERGE.reader-snapshot01-20261026",
+      "kind": "static",
+      "record": "research/runtime/cpu-copy-master-results-20261026/reader-snapshot01.json",
+      "sha256": "a19f9019904b567ef08c834f92a1ae943a92f01232f1da07d0ceecda0184740d",
+      "scope": "Consistent private RAM-backed SQLite read-only view for unchanged merge checks after shared-reader lock failure. Original payload identities are independently verified on every evidence read. No engine execution, gate bypass or publication.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -383196,6 +384331,22 @@
         "TAG.parent-preview-20261026",
         "TAG.parent-installed-window-20261026"
       ]
+    },
+    {
+      "id": "SCENARIO.windowed-desktop-input-quit",
+      "scope": "Bounded native Qt Quick Battle menus,two windowed World visits,Qt-forwarded keys and focus release,Results/Main Quit and actual graphics retirement. No natural self/keyed-GPU or all-output equivalence claim.",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.desktop-frame-input",
+        "HOST.results-ack-ready-root"
+      ],
+      "tests": [
+        "tools/test-natural-gpu-copy-callers.py",
+        "apps/qt-shell/live_quick_battle_app_test.cpp"
+      ],
+      "evidence": [
+        "WINDOWINPUT.quick05-20261026"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -385003,7 +386154,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-7e8ca2ca3c8d28503c6900aa3f6fcc12017910b6819cb32da0e02de29bfbd593.json",
-    "sha256": "7e8ca2ca3c8d28503c6900aa3f6fcc12017910b6819cb32da0e02de29bfbd593"
+    "path": "research/runtime/coverage/source-index-7bb08d454ae20e57688d5a53cf5b656211b17578cbe6f6cc938710208deb094e.json",
+    "sha256": "7bb08d454ae20e57688d5a53cf5b656211b17578cbe6f6cc938710208deb094e"
   }
 }

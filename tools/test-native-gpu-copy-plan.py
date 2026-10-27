@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Owned facade/production bridge clipping and immutable GPU alias-copy controls."""
+import io,tarfile
+from coverage_evidence import write_report
 import argparse,fcntl,hashlib,importlib.util,json,os,shutil,struct,subprocess,sys,tempfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -31,8 +33,17 @@ def cases():
  add('self-clip-256',[0,0,512,1],[0,0,512,1],self=1,clip=4,width=512,height=1)
  return rows
 
+def cpu_cases():
+ rows=[r for r in cases() if not r['words'][3] and not r['words'][6]]
+ for r in rows:r['words'][7]=0
+ for clip in (1,2,3,4):
+  width,height=(512,1) if clip==4 else (13,9)
+  rows.append(dict(name='fill-clip-'+str(clip),words=[len(rows)+1,width,height,0,clip,0,0,1,0,0,width,height,0,0,width,height]))
+ rows.append(dict(name='keyed-clip',words=[len(rows)+1,13,9,0,2,1,0,0,0,0,13,9,0,0,13,9]))
+ return rows
+
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--claims',type=Path,required=True);p.add_argument('--report',type=Path,required=True);p.add_argument('--output-parent',type=Path,required=True);p.add_argument('--wine-prefix',type=Path,required=True);p.add_argument('--renderer',type=Path,required=True);p.add_argument('--headless',action='store_true');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--claims',type=Path,required=True);p.add_argument('--report',type=Path,required=True);p.add_argument('--output-parent',type=Path,required=True);p.add_argument('--wine-prefix',type=Path,required=True);p.add_argument('--renderer',type=Path,required=True);p.add_argument('--headless',action='store_true');p.add_argument('--cpu',action='store_true');a=p.parse_args()
  if a.report.exists():p.error('Refusing historical result overwrite')
  if a.headless:
   return subprocess.call(['xvfb-run','-a','-s','-screen 0 1280x1024x24',sys.executable,'-B',__file__,*[x for x in sys.argv[1:] if x!='--headless']])
@@ -41,7 +52,7 @@ def main():
  if not parent.is_relative_to(ROOT/'working') or not prefix.is_relative_to(ROOT/'working'):raise ValueError('Use owned working paths')
  parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));(run/'.retain').write_text(__doc__+'\n')
  env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINEPREFIX','WINEDLLOVERRIDES','WINEARCH'))};env.update(XDG_CACHE_HOME=str(run/'cache'),MESA_SHADER_CACHE_DIR=str(run/'shader-cache'),WINEPREFIX=str(prefix.resolve()),WINEARCH='win64',WINEDEBUG='-all',WINEDLLOVERRIDES='ddraw=',QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',GALLIUM_DRIVER='llvmpipe',LP_NUM_THREADS='4',QT_SCALE_FACTOR='1')
- report=dict(schema=1,success=False,claims=claims['claims'],sources=sources,experiment=str(run.relative_to(ROOT)),scope=__doc__+'; supplied inputs, no original EXE or live replacement.',cases=[],original_pixels_used_as_native_inputs=False,live_replacement=False)
+ report=dict(schema=1,success=False,claims=claims['claims'],sources=sources,experiment=str(run.relative_to(ROOT)),scope=('CPU clipping/fill preparation and command replay' if a.cpu else __doc__)+'; supplied inputs, no original EXE or live replacement.',cases=[],original_pixels_used_as_native_inputs=False,live_replacement=False)
  def execute(label,command,cwd=ROOT,expected=0):
   with (run/(label+'.log')).open('xb') as out:r=subprocess.run([str(x) for x in command],cwd=cwd,env=env,stdout=out,stderr=subprocess.STDOUT,timeout=240)
   if r.returncode!=expected:raise ValueError(label+': exit '+str(r.returncode)+', inspect '+str(run/(label+'.log')))
@@ -64,7 +75,7 @@ def main():
   # Compile exactly the production bridge translation unit inside the fixture.
   # Production/fixture export tables differ; all production function bodies match.
   bridge=load('build-render-bridge');execute('bridge-build',[sys.executable,ROOT/'tools/build-render-bridge.py','--selftest'])
-  obj=run/'probe.obj';dep=run/'probe.d';execute('probe-compile',[*builder.FLAGS,'-MD','-MF',dep,'-c',ROOT/'tests/native-gpu-copy-plan-probe.c','-o',obj])
+  obj=run/'probe.obj';dep=run/'probe.d';execute('probe-compile',[*builder.FLAGS,'-MD','-MF',dep,'-c',ROOT/('tests/native-cpu-copy-plan-probe.c' if a.cpu else 'tests/native-gpu-copy-plan-probe.c'),'-o',obj])
   closure=set()
   for token in dep.read_text().replace('\\\n',' ').split():
    path=Path(token).resolve()
@@ -80,13 +91,13 @@ def main():
   execute('legacy-link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(run/'legacy.exe'),legacy_obj,build/'kernel32.lib',build/'gdi32.lib',run/'load.lib',*extra])
   legacy=run/'legacy';legacy.mkdir();shutil.copyfile(dll,legacy/'MnmDraw.dll');execute('legacy',['wine',run/'legacy.exe'],legacy);report['legacy_gpu_copy']=dict(success=True,legacy_self_refusal=True,private_baseline_and_cpu_restore=True)
   renderer_hash=sha(a.renderer)
-  for case in cases():
+  for case in (cpu_cases() if a.cpu else cases()):
    name=case['name'];out=run/name;out.mkdir();shutil.copyfile(dll,out/'MnmDraw.dll');(out/'input.bin').write_bytes(struct.pack('<16I',*[x&0xffffffff for x in case['words']]))
    execute(name,['wine',exe],out)
    raw=(out/'output.bin').read_bytes();h=struct.unpack_from('<12I',raw);count=case['words'][1]*case['words'][2]
    if len(raw)!=48+6192+count*2 or h[:5]!=(0x50435047,1,*case['words'][:3]):raise ValueError(name+': output identity/extent')
    plan=struct.unpack_from('<12I',raw,48)
-   if plan[:3]!=(1,6192,h[6]) or plan[3]!=h[5] or plan[4:8]!=(case['words'][1],case['words'][2],case['words'][1],case['words'][2]) or plan[8:10]!=(int(bool(case['words'][3])),case['words'][5]):raise ValueError(name+': plan metadata')
+   if plan[:3]!=(1,6192,h[6]) or (h[6] and (plan[3]!=h[5] or plan[4:8]!=(case['words'][1],case['words'][2],case['words'][1],case['words'][2]))) or (not a.cpu and plan[8:10]!=(int(bool(case['words'][3])),case['words'][5])):raise ValueError(name+': plan metadata')
    if 'late-source-failure' in name and (h[5]!=0x88760096 or h[6]!=1):raise ValueError(name+': missing partial-failure branch')
    if name.endswith('256') and h[6]!=256:raise ValueError(name+': incomplete capacity case')
    if 'empty' in name and h[6]!=0:raise ValueError(name+': missing empty clip case')
@@ -94,8 +105,8 @@ def main():
    native=(out/'native.bin').read_bytes();expected=raw[48+6192:]
    if native!=expected:raise ValueError(name+': GPU pixels differ from independent CPU facade policy')
    gpu=json.loads((run/(name+'-gpu.log')).read_text().splitlines()[-1])
-   if not gpu['rendered'] or gpu['surface_stats']['surfaces']!=0 or gpu['checks'] or gpu['color_checks'] or gpu['surface_copies']:raise ValueError(name+': native cleanup')
-   report['cases'].append(dict(name=name,success=True,pixels=count,result=h[5],pieces=h[6],checks=h[7],commands=h[8],stale_cpu=bool(h[9]),source_frozen=bool(plan[8] and plan[2]),gpu_sha256=sha(out/'native.bin'),command_sha256=sha(stream),cpu_storage_untouched=True,final_native_surfaces=0))
+   if not gpu['rendered'] or gpu['surface_stats']['surfaces']!=0 or (not a.cpu and (gpu['checks'] or gpu['color_checks'] or gpu['surface_copies'])):raise ValueError(name+': native cleanup')
+   report['cases'].append(dict(name=name,success=True,pixels=count,result=h[5],pieces=h[6],checks=h[7],commands=h[8],stale_cpu=bool(h[9]),source_frozen=bool(plan[8] and plan[2]),gpu_sha256=sha(out/'native.bin'),command_sha256=sha(stream),cpu_storage_untouched=not a.cpu,final_native_surfaces=0))
   report['compatibility']={}
   for name in ['render-command-consumer-test','render-resident-world-test']:
    binary=a.renderer.parent/name;execute(name,[binary]);report['compatibility'][name]=dict(success=True,sha256=sha(binary))
@@ -111,6 +122,9 @@ def main():
   execute('original-after',[ROOT/'tools/original-manifest.sh','verify']);report['original_manifest_verified_before_after']=verified_before
   report['sources_stable']=all(sha(ROOT/n)==h for n,h in sources.items());report['success']=report['success'] and report['sources_stable']
   a.report.parent.mkdir(parents=True,exist_ok=True)
-  with a.report.open('x') as out:json.dump(report,out,indent=2);out.write('\n')
+  raw=io.BytesIO()
+  with tarfile.open(fileobj=raw,mode='w:gz') as archive:archive.add(run,arcname='controls')
+  raw_path=a.report.with_name(a.report.stem+'-raw.tar.gz');write_report(ROOT,raw_path,raw.getvalue());report['raw_record']=str(raw_path)
+  write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode())
  print(json.dumps({k:report[k] for k in ['success','experiment','sources_stable']}));return int(not report['success'])
 if __name__=='__main__':raise SystemExit(main())
