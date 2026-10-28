@@ -56,11 +56,20 @@ int main(int argc,char** argv){
         auto stateKey=[&](unsigned key){QFile file(statePath);require(file.open(QIODevice::ReadOnly),"Read input state");file.seek(64+key*4);const auto bytes=file.read(4);return qFromLittleEndian<quint32>(bytes.constData());};
         QPoint mapped;require(viewport.imagePoint({100,0},mapped) && mapped==QPoint(0,0),"Top-left mapping");
         require(viewport.imagePoint({899,599},mapped) && mapped==QPoint(799,599),"Bottom-right mapping");
+        auto cursorState=[&]{QFile file(statePath);require(file.open(QIODevice::ReadOnly),"Read cursor state");const auto bytes=file.readAll();return QPoint(int(qFromLittleEndian<quint32>(bytes.constData()+24)),int(qFromLittleEndian<quint32>(bytes.constData()+28)));};
         require(!viewport.imagePoint({99,300},mapped) && !viewport.imagePoint({900,300},mapped),"Letterbox rejection");
         auto mouse=[&](QEvent::Type type,QPointF point,Qt::MouseButton button,Qt::MouseButtons buttons,Qt::KeyboardModifiers modifiers=Qt::NoModifier){
             QMouseEvent event(type,point,point,button,buttons,modifiers);QApplication::sendEvent(&viewport,&event);
         };
         auto key=[&](QEvent::Type type,bool repeat=false){QKeyEvent event(type,Qt::Key_A,Qt::ShiftModifier,38,0x61,0,"A",repeat);QApplication::sendEvent(&viewport,&event);};
+        mouse(QEvent::MouseMove,{899,599},Qt::NoButton,{});events();
+        require(cursorState()==QPoint(799,599),"Original high-resolution cursor");
+        QImage smallFrame(640,480,QImage::Format_RGBA8888);smallFrame.fill(Qt::black);viewport.setFrame(smallFrame);input.heartbeat();
+        require(cursorState()==QPoint(639,479),"Heartbeat constrains stale cursor after resolution shrink without a mouse event");
+        for(auto type:{QEvent::KeyPress,QEvent::KeyRelease}){QKeyEvent event(type,Qt::Key_Right,Qt::NoModifier,114,0,0);QApplication::sendEvent(&viewport,&event);}auto resizedEvents=events();
+        require(resizedEvents.size()==2&&resizedEvents[0].event_x==639&&resizedEvents[0].event_y==479,"First key after resolution shrink uses current coordinates");
+        input.release();require(cursorState()==QPoint(639,479),"Inactive release keeps current cursor extent");
+        viewport.setFrame(frame);input.heartbeat();require(cursorState()==QPoint(639,479),"Growing frame preserves the last constrained position");
         mouse(QEvent::MouseButtonPress,{50,300},Qt::LeftButton,Qt::LeftButton);require(events().empty(),"Bar click was forwarded");
         mouse(QEvent::MouseMove,{500,300},Qt::NoButton,{});
         auto received=events();require(received.size()==1 && received[0].event==target && received[0].event_x==400 && received[0].event_y==300,"Mouse center forwarding");

@@ -1,3 +1,12 @@
+## Native adapter merge with completed master work (2026-10-27)
+
+[Integration evidence](native-adapter-master-20261027.md) combines adapter fixes
+with master dd7d5c16 (palette, RGB555/color and player lifetime repairs).
+Fresh controls05 passes 15 CPU, 23 GPU and 18 mocked launcher cases, with exact
+complete sources and behavior contracts. Prior evidence hashes remain retained;
+current gameplay FPS, whole-driver equivalence and live replacement remain
+pending. No independent status promotion.
+
 ## Final native-adapter/current-master integration (2026-10-27)
 
 [Integration review](native-adapter-master-20261027.md) combines the adapter fixes
@@ -24274,3 +24283,180 @@ See [integration scope and retained attempts](camera-master-integration-20261027
 Committed-history review and retrospective payload accounting remain separate
 from fresh scene validation. Original whole-session comparison, hardware and live
 replacement retain their independent pending boundaries.
+
+## Palette effect aggregate completion — 2026-10-26
+
+[Palette closure](palette-effect-closure-20261026.md) reconciles the ten completed
+numerical modes, owned chains and raw ownership/profile providers with fresh
+actual-Wine profile inputs and independent native resource/software-GL output.
+Six installed/default/empty/quoted/nonnumeric/truncation cohorts pass360 unchanged
+original builder calls and1,253,376 packed words. Release and ASan/UBSan delivery
+passes1,080 frames/276,480 independent pixels,151 declared compiler inputs per
+build,zero native surfaces and independently retired private Wine ownership.
+Fresh numerical and chain matrices compare63,416,320 and5,263,360 WORDs;
+the1,280-case provider matrix compares1,346,349,916 bytes per variant,including
+allocation failure,partial retention and explicit zero-allocation teardown.
+Both original manifests pass. Failed recipe/dependency/retirement attempts and
+the reserve-stopped sanitizer build remain immutable negative evidence.
+
+RE.palette-effect-builders is implemented within scope,with recorded original
+comparison and headless integration. Original exceptional/unsafe platform and
+Windows SEH domains retain partial understanding;physical hardware,whole-game
+acceptance and live replacement receive no promotion. Complete native odd-count
+storage and atomic append failure remain intentional policies,distinct from
+original corruption/partial retention. No gameplay or production rendering
+algorithm changes are introduced. UI accounting retains its weight and removes
+this completed aggregate from unplanned High implementation work.
+
+
+## Palette aggregate integrated with master — 2026-10-27
+
+Completed palette implementation/comparison/headless acceptance is merged with
+current master while preserving both parents, historical evidence and unrelated
+pending contributor edits. All 151 actual compiler inputs per platform build
+and wider prospective declarations have explicit source-impact review; changed
+inputs retain historical evidence and pending combined-source re-execution.
+Combined planning controls and coverage audit pass. No new engine, exceptional
+Windows, physical-driver or whole-game/live milestone is claimed.
+See [integration review](palette-master-merge-20261027.md).
+
+
+## Natural late colour modes, RGB555 offline World and NVIDIA fixtures (2026-10-26)
+
+[The remaining rendering batch](rendering-remaining-20261026.md) observes719mode2,
+1183mode3 and104mode1 original colour draws in eight late stockmap1/item15
+World samples after600queue calls. All2006shapes are2x2. The larger explicit
+180second finite observation budget obtains actual samples; shorter/setup
+failures remain retained. Static selected constructor/update stores are recorded
+separately from actual reachability and whole object lifetime/provider recovery.
+The inherited120/four-call observation scenario is not credited for this new
+profile; its counts are static classification, not native CPU splice execution.
+
+The prospective new headless scenario compares14852draws/3840000pixels: native
+and independent original both starting at owned zero agree exactly. Independent
+original-before replay matches captured live output, while native-zero/live
+differs at exactly one pixel per frame,(548,433). Original-only per-record
+observation identifies a terrain clear followed by backend9 wave propagation
+at that pixel in the first frame; earlier source history/writer remains unknown.
+This preserves the negative native/live boundary and grants no live equivalence.
+The retained sixteen busy samples freshly pass19036draws/7680000pixels in all
+three comparisons on current changed shader/decoder code.
+
+`NR.world-rgb555-colour-input` admits explicit offline format1 colour-only
+World requests and `.555` export; default/live/producer consumers retainRGB565.
+Native scene/cache storage selectsRGB555 directly and integer blend mask0x3def;
+RGB565 retains0x7bef. Each software/NVIDIA run compares128authored cases across
+both formats and cached/uncached paths,31587776pixel WORDs,640refusals and9024
+cache hits. Default-format, unsupported primitive/high-bit, previous-frame
+preservation, public preview and zero leaked-surface controls pass. Sprites,
+effects and liveformat1 ingestion remain outside scope.
+
+Fresh4352CPU colour pairs plus384boundary fixtures compare90011152physical
+WORDs/caller state across four modes/both formats. The separate192ordered
+RGB565 World fill/blend fixtures compare38199120pixels and five refusals on
+verified NVIDIA TITAN RTX EGL; no software fallback, window/scanout or FPS
+claim. Ten existing shared shader/scene/cache/effect/surface regressions pass.
+Large fills during active gameplay remain unobserved; authored large-fill
+arithmetic/order, natural invocation and full native history are separate.
+Original manifests bracket original-consuming runs. Exact SQLite evidence,
+failed attempts, incremental sources and verified backups precede RAM closeout.
+No web UI layout, gameplay balance or whole-renderer/replacement claim changes.
+
+
+### Rendering integration with current master — 2026-10-27
+
+Combine rendering `cb24376e` with current master `432d8b36`. Rendering code
+has no overlapping implementation edits; merge the coverage register, receipt
+journal and ledger without changing historical evidence hashes. Fresh
+`RRG27.merge-rgb555-*` controls recompile the merged code and compare 128
+colour-only RGB555/RGB565 World fixtures against unchanged original `547d80`:
+31,587,776 pixel comparisons per software/NVIDIA backend, 640 refusals each,
+cache controls, public offline preview and no leaked surfaces. Original manifests
+pass before and after both runs. Raw inputs, outputs, binaries and logs survive
+a complete SQLite round trip.
+
+Intervening surface-wrapper and capture-producer edits change provenance in the
+six older RRG26 comparison reports. Retain them as historical; the fresh colour
+policy runs do not renew the complete CPU/large-fill or natural/busy capture
+claims. The archived one-pixel native/live history difference, natural large-fill
+reachability, live RGB555, RGB555 sprites/effects, physical presentation and live
+replacement remain open. `merge-source-contract-check-20261027-01.json` and
+`merge-audit-20261027-03.json` record the combined-tree boundaries. The first
+two audits retain archival-provenance schema errors as negative evidence. Final
+catalog03 records actual producer fingerprints copied from the fresh execution
+declarations; storage evidence grants no additional engine milestone.
+
+Use pinned, hash-verified materialized local SQLite backups for this closeout.
+The cold archive remains below its unchanged100GiB reserve; this merge makes no
+cold write or publication and removes no evidence. Preserve all unrelated main
+edits through the exact owned reservation/restoration transaction.
+
+
+## RGB555 rendering final master integration — 2026-10-27
+
+The reviewed rendering batch is integrated after concurrent camera/palette
+master changes with both parents' records and exact historical receipts retained.
+All 18 rendering source/test/producer files and both fresh RGB555 comparison
+fingerprints remain exact. Existing CPU/fill/capture historical limits and live,
+physical presentation and replacement gaps remain open. Combined planning,
+census and normal staged checks cover integration; no broader engine milestone
+is promoted. See [rendering closeout](rendering-remaining-20261026.md).
+
+
+Final RGB555 integration source-impact review also identifies three changed
+renderer compiler inputs in inherited camera and whole-session palette runs.
+The nine linked behaviors retain those executions as historical, with explicit
+pending combined-source session re-execution. Numerical palette modes/chains
+and providers retain unchanged declared inputs; fresh RGB555 reports remain
+exact. See the [parent source-impact record](rendering-remaining-results-20261026/merge-parent-source-impact-20261027-01.json).
+
+## Native player open-item repairs (2026-10-27)
+
+The owned follow-up reproduces a current-master active-session destructor
+use-after-free with ASan/UBSan and a full Qt-shell SIGSEGV under a supplied
+staging deadline. Process/session destruction now disconnects callbacks before
+member teardown and reaps the owned launcher group. Historical signal-11 logs
+without stacks remain independently unattributed. The forwarder constrains its
+last point after a frame-size shrink; supplied Qt resize, normal/high-DPI and
+restart controls retain their separate scopes. Refused Fast-copy diagnostics
+now preserve destination arguments before source/target rejection; five actual
+PE32 facade controls return NS_RECT with every source/target WORD unchanged and
+no native COPY interval. Refused rows are not silently admitted by whole-output
+validation. See [findings and remaining boundaries](player-open-items-20261027.md).
+Natural self-copy/keyed-GPU callers still require positive actual-game evidence.
+
+The fresh public storage01 journey now passes 473 balanced Worlds,all 18 cursor
+hooks/all 8 client categories,normal Quit and zero owners. Independent output
+closes 4,474 active calls/4,400 COPY destinations,with 0 failed/unprepared calls,
+984 GPU and 2,457 CPU-keyed calls. Natural self/keyed-GPU counts remain 0.
+The full-shell supplied deadline also reproduces the old SIGSEGV in
+InputState::publish through late Shell::finished delivery; the repaired shell
+exits 1 without a signal under the same fixture. These current bounded results
+do not retroactively identify the old unstacked crash or Storage05 causes.
+Exact execution-source overlays and a verified 6,910-file raw restore are
+retained through SQLite; the new archive is 23.1 MB rather than another full
+source/prefix snapshot.
+
+
+### Player open-item current-master integration (2026-10-27)
+
+Repair6695 integrates onto master1efa in a separate batch. Fresh prospectively
+bound `PLAYERMERGE27.controls02` closes the three new headless integration
+scenarios. `PLAYERMERGE27.storage01` repeats the actual public Save/Load, two
+display rebuilds and recreated World: 447 balanced Worlds, normal Quit,
+zero cursor/graphics owners and 4188 independently matched successful emitted
+COPY destinations. Two refused invalid cursor requests prevent whole-COPY
+closure; storage01-refusals.json retains their exact new argument geometry. Raw evidence is actually restored and verified.
+Natural self-copy/keyed GPU-source reachability remains unobserved; historical
+crash/refusal causes are not retroactively asserted. Source policy and gameplay
+balance remain unchanged. See [scoped findings](player-open-items-20261027.md).
+
+
+### Player repairs final master handoff (2026-10-27)
+
+Later committed palette/RGB555 work is preserved. `PLAYERHANDOFF27.controls01`
+provides fresh combined-source Qt/ASan/PE32 headless controls for the three new
+repair contracts. The earlier public-player lifetime result remains at its exact
+source phase; no new combined-game or whole-COPY closure is asserted. Natural
+self/keyed GPU-source reachability and two invalid cursor requests remain explicit.
+See [scoped findings and source phases](player-open-items-20261027.md).

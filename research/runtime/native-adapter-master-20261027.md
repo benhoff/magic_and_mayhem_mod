@@ -94,3 +94,36 @@ classification; no original payload is unavailable. Any raw artifact identities
 outside the ordinary source gate receive a separate historical storage receipt.
 Initial unresolved results are retained, and this accounting asserts neither an
 additional past gate pass nor new engine execution.
+
+## Synchronization with completed palette, color and player merges
+
+This owned integration combines checked adapter candidate 0d69724ecf381409922bfcae39f8cb024ab428b1 with
+master dd7d5c161362cdc25d2f80472b250622f702470b. The source merge preserves the protected checkpoint borrows,
+bounded reusable storage and copy preparation plans while adding master's
+Fast-copy diagnostic geometry. Palette effects, RGB555 rendering and player
+lifetime fixes remain included. Authored coverage records retain both parents.
+
+Fresh controls05 passes all 15 CPU, 23 GPU and 18 mocked launcher checks. All
+4152 complete control input fingerprints and claimed behavior
+contracts match this combined tree. Controls04 remains historical. The incoming
+history review covers 11 commits and 2555 exact file transitions,
+with no unavailable payloads or unresolved accounting entries after separate
+raw-artifact receipts. This retrospective accounting asserts no earlier gate pass.
+
+Git's prepared verification transaction holds master stable during this work.
+Existing unstaged and untracked main-checkout work is preserved separately
+before the fast-forward. Verified local SQLite backups remain required; the
+two older initial backups are retained in both existing SQLite snapshot stores
+with an actual exact restore before removing their redundant materializations.
+The task-only 87 GiB floor and 0.1 GiB additional retained-output budget apply;
+ordinary policy remains unchanged.
+
+Historical approximately 19.9 FPS observations do not measure latency of this
+combined application. Current gameplay timing, whole-driver pixel equivalence
+and live replacement remain pending; no independent behavior status is promoted.
+
+The normal finish gate rejected an uncommitted history receipt that repeated paths
+across several commits. The exact rejected receipt, failure and append-only
+workspace are retained in SQLite. The active export uses separate exact receipts
+per commit, preserving every committed receipt; latest-history03 rechecks this
+corrected accounting. The earlier history report remains historical.

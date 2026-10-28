@@ -6777,7 +6777,8 @@
         "ADAPTER26.copy",
         "ADAPTER26.performance",
         "ADAPTER27.master-identity",
-        "ADAPTER27.final-master-identity"
+        "ADAPTER27.final-master-identity",
+        "ADAPTER27.latest-master-identity"
       ],
       "status": {
         "understanding": "partial",
@@ -16020,7 +16021,8 @@
         "ADAPTER26.copy",
         "ADAPTER26.performance",
         "ADAPTER27.master-identity",
-        "ADAPTER27.final-master-identity"
+        "ADAPTER27.final-master-identity",
+        "ADAPTER27.latest-master-identity"
       ],
       "status": {
         "understanding": "scoped",
@@ -18853,7 +18855,8 @@
         "ADAPTER26.copy",
         "ADAPTER26.performance",
         "ADAPTER27.master-identity",
-        "ADAPTER27.final-master-identity"
+        "ADAPTER27.final-master-identity",
+        "ADAPTER27.latest-master-identity"
       ],
       "status": {
         "understanding": "scoped",
@@ -20124,7 +20127,8 @@
         "research/runtime/native-world-live-background-gap.md",
         "research/runtime/native-world-canvas-history.md",
         "research/runtime/coverage/committed-history-world-refusal-20261008.json",
-        "research/runtime/rendering-busy-integration-20261026.md"
+        "research/runtime/rendering-busy-integration-20261026.md",
+        "research/runtime/rendering-remaining-20261026.md"
       ],
       "implementation": [
         "runtime/scene/world_trace.c",
@@ -20191,7 +20195,15 @@
         "RBI26.master-busy-original",
         "RBI26.master-busy-native",
         "RBI26.integrated-busy-original",
-        "RBI26.integrated-busy-native"
+        "RBI26.integrated-busy-native",
+        "RRG26.natural-original",
+        "RRG26.natural-native",
+        "RRG26.busy-original",
+        "RRG26.busy-native",
+        "RRG26.natural-history-gap",
+        "RRG26.failed-natural-asset-view",
+        "RRG26.raw-retention",
+        "RRG26.source-variants"
       ],
       "status": {
         "understanding": "partial",
@@ -20213,6 +20225,10 @@
         "tools/coverage_evidence.py",
         "tools/coverage_claims.py",
         "tools/evidence_local.py"
+      ],
+      "remaining_gaps": [
+        "RRG26 late natural modes1/2/3 are observed and complete same-base original/native replay passes. Native-zero/live differs at exactly one pixel per eight samples due prior-history propagation; full earlier owned producer history remains pending. No normal Quit, physical or replacement acceptance.",
+        "The RRG26 retained natural/busy comparison reports are historical after later canvas_producers.c/world_raster_callers.h changes. This merge does not rerun those captures or World replays; preserve the archived one-pixel native/live history discrepancy and independent parent evidence."
       ]
     },
     {
@@ -77685,7 +77701,8 @@
         "research/runtime/storage-session-closure-20261025.md",
         "research/runtime/rendering-closure-integration-20261025.md",
         "research/formats/producer-colour-refusals-v1.md",
-        "research/runtime/rendering-closeout-20261026.md"
+        "research/runtime/rendering-closeout-20261026.md",
+        "research/runtime/rendering-remaining-20261026.md"
       ],
       "implementation": [
         "reconstruction/rendering/colour_rect.c",
@@ -77725,7 +77742,10 @@
         "RCL26.cpu-original",
         "RCL26.natural-input-index",
         "RBI26.master-colour-cpu-original",
-        "RBI26.integrated-colour-cpu-original"
+        "RBI26.integrated-colour-cpu-original",
+        "RRG26.cpu-original",
+        "RRG26.natural-modes",
+        "RRG26.failed-late-short"
       ],
       "status": {
         "understanding": "partial",
@@ -77738,7 +77758,9 @@
         "SSC25 retained storage baseline03/corrected04/plain02 journals have375/251/251 recorder failure18/tag52 observations at this wrapper. Multiple source-admission guards share that code; the exact rejected subcondition remains unknown. No branch/equivalence or historical source-session acceptance is renewed. Fresh shorter source sessions close separately. See storage-session-closure-20261025.md.",
         "RCI25 longer original-active reproduction identifies2x2 mode0 source planes refused by the trace recorder uniform policy, plus small constants encoded as unadmitted generic World fills. Recorder routing now uses the existing bounded owned colour operation. Historical failure-only records cannot be retroactively assigned this subreason; original comparisons and unobserved colour modes remain separately scoped. See rendering-closure-integration-20261025.md.",
         "CCF25 renews isolated CPU original comparison across all four modes, RGB565/RGB555, constants/planes, clipping and geometry through2048x2048. Separate authored World fixtures validate ordered large RGB565 fills and modes0..3. Natural live mode reachability, RGB555 World ingestion, hardware presentation and full renderer parity remain unaccepted.",
-        "RCL26 current combined-tree CPU/World fixtures repeat the bounded all-mode comparison. Fresh campaigns observe5204 colour operations in modes0/1 only. Stock map2/three-item and sixteen later map1/fifteen-item World samples observe no colour calls. Natural modes2/3 and active-World large uniform fills remain unobserved; RGB555 World ingestion, hardware and full renderer acceptance remain separate. The static natural-input index grants no native implementation or integration credit."
+        "RCL26 current combined-tree CPU/World fixtures repeat the bounded all-mode comparison. Fresh campaigns observe5204 colour operations in modes0/1 only. Stock map2/three-item and sixteen later map1/fifteen-item World samples observe no colour calls. Natural modes2/3 and active-World large uniform fills remain unobserved; RGB555 World ingestion, hardware and full renderer acceptance remain separate. The static natural-input index grants no native implementation or integration credit.",
+        "RRG26 naturally observes719mode2/1183mode3/104mode1 calls in eight late original-active World samples. Native GPU same-base comparison passes independently; the production CPU splice is not activated by this observation. Active-World generic large fills and actual RGB555 game production remain unobserved.",
+        "The older RRG26 CPU and large-fill comparison reports retain historical results after main changed their recorded surface-wrapper provenance. This merge reruns the separate offline RGB555 colour policy, not those complete CPU/large-fill suites."
       ]
     },
     {
@@ -77791,7 +77813,8 @@
         "CCF25.cpu-original",
         "RCL26.cpu-original",
         "RBI26.master-colour-cpu-original",
-        "RBI26.integrated-colour-cpu-original"
+        "RBI26.integrated-colour-cpu-original",
+        "RRG26.cpu-original"
       ],
       "status": {
         "understanding": "partial",
@@ -77801,7 +77824,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "The registered bounded native implementation is complete and re-executed against408 stable source/build inputs on2026-10-21. Broader original/driver/game-session equivalence, unadmitted domains, integration and live replacement retain the separate boundaries stated in scope and existing stage values. Historical evidence and static reviews remain unchanged; only the final NT3 result supplies current implementation proof for this execution."
+        "The registered bounded native implementation is complete and re-executed against408 stable source/build inputs on2026-10-21. Broader original/driver/game-session equivalence, unadmitted domains, integration and live replacement retain the separate boundaries stated in scope and existing stage values. Historical evidence and static reviews remain unchanged; only the final NT3 result supplies current implementation proof for this execution.",
+        "The older RRG26 CPU and large-fill comparison reports retain historical results after main changed their recorded surface-wrapper provenance. This merge reruns the separate offline RGB555 colour policy, not those complete CPU/large-fill suites."
       ]
     },
     {
@@ -78216,7 +78240,8 @@
         "ADAPTER26.history",
         "ADAPTER26.performance",
         "ADAPTER27.master-identity",
-        "ADAPTER27.final-master-identity"
+        "ADAPTER27.final-master-identity",
+        "ADAPTER27.latest-master-identity"
       ],
       "status": {
         "understanding": "partial",
@@ -87224,7 +87249,10 @@
         "CPUCLIP.current-validation02-20261026",
         "ADAPTER27.gpu-controls",
         "ADAPTER27.final-master-identity",
-        "ADAPTER27.gpu-final-controls"
+        "ADAPTER27.gpu-final-controls",
+        "PLAYEROPEN27.gpu-plan04",
+        "ADAPTER27.latest-master-identity",
+        "ADAPTER27.gpu-latest-controls"
       ],
       "status": {
         "understanding": "scoped",
@@ -126737,7 +126765,8 @@
         "ADAPTER26.image",
         "ADAPTER26.performance",
         "ADAPTER27.master-identity",
-        "ADAPTER27.final-master-identity"
+        "ADAPTER27.final-master-identity",
+        "ADAPTER27.latest-master-identity"
       ],
       "status": {
         "understanding": "scoped",
@@ -129060,7 +129089,8 @@
         "ADAPTER26.image",
         "ADAPTER26.performance",
         "ADAPTER27.master-identity",
-        "ADAPTER27.final-master-identity"
+        "ADAPTER27.final-master-identity",
+        "ADAPTER27.latest-master-identity"
       ],
       "status": {
         "understanding": "scoped",
@@ -134981,60 +135011,119 @@
       "id": "RE.palette-effect-builders",
       "kind": "recovered",
       "subsystem": "rendering_reconstruction",
-      "scope": "Aggregate original palette modes0..9: arithmetic, count admission, owned effect-chain selection and raw allocation/profile/cache/append control now have linked bounded components. Wider original unsafe allocation/failure, installed scene/platform ownership and live acceptance remain separate; this umbrella remains partial.",
-      "confidence": "provisional",
+      "scope": "Original palette modes0..9 and per-palette chains: complete numerical tables, shift/neutral/header/source mutations, profile-derived inputs, owned storage and append/ordinal delivery. Linked raw providers cover safe original allocation/profile/cache/append ordering, injected allocation failure, partial-chain retention and teardown. Native tables retain complete odd-count output safely, append failures are atomic and finite profile bounds are explicit policies. Actual Wine profile file/default/truncation returns feed unchanged original builders and independent owned RGB565 resource/software-GL delivery on installed-derived palettes. Original unsafe allocation, exceptional/nonfinite CRT and Windows SEH/platform behavior outside the admitted domain, physical driver and whole-game/live acceptance remain separate boundaries.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
-          "address": 5756560,
-          "scope": "Discovery anchor only; exact recovered branch scope and execution evidence will be recorded incrementally."
+          "address": 5776448,
+          "scope": "Original mode0 builder; numerical branches and admitted configuration are under implementation/comparison."
         },
         {
           "build": "nocd-40209ca7",
-          "address": 5776448,
-          "scope": "Discovery anchor only; exact recovered branch scope and execution evidence will be recorded incrementally."
+          "address": 5778048,
+          "scope": "Original mode1 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5780272,
+          "scope": "Original mode2 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5782448,
+          "scope": "Original mode3 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5793376,
+          "scope": "Original mode4 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5796048,
+          "scope": "Original mode5 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5791104,
+          "scope": "Original mode6 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5799536,
+          "scope": "Original mode7 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5801776,
+          "scope": "Original mode8 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5802992,
+          "scope": "Original mode9 builder; numerical branches and admitted configuration are under implementation/comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5756560,
+          "scope": "Per-palette root/tail append loop, mode dispatch and unknown/empty no-op."
         }
       ],
       "implementation": [
-        "reconstruction/rendering/palette_shading.cpp",
-        "reconstruction/rendering/palette_shading.hpp",
-        "reconstruction/rendering/palette_effects.cpp",
-        "reconstruction/rendering/palette_effects.hpp",
-        "reconstruction/rendering/palette_effect_chain.cpp",
-        "reconstruction/rendering/palette_effect_chain.hpp",
         "apps/scene-session/palette_binding.cpp",
         "apps/scene-session/palette_binding.hpp",
         "apps/scene-session/palette_profile.cpp",
-        "reconstruction/rendering/actor_profile_palette_providers.hpp"
+        "reconstruction/rendering/actor_profile_palette_providers.hpp",
+        "reconstruction/rendering/palette_effect_chain.cpp",
+        "reconstruction/rendering/palette_effect_chain.hpp",
+        "reconstruction/rendering/palette_effects.cpp",
+        "reconstruction/rendering/palette_effects.hpp",
+        "reconstruction/rendering/palette_shading.cpp",
+        "reconstruction/rendering/palette_shading.hpp"
       ],
       "tests": [
-        "tests/palette-shading-test.cpp",
-        "tests/rendering-boundary-reference.cpp",
-        "tools/test-rendering-boundaries.py",
         "tests/actor-profile-palette-reference.cpp",
         "tests/actor-profile-palette-seeds.inc",
-        "tools/test-actor-profile-palette.py"
+        "tests/palette-effect-chain-reference.cpp",
+        "tests/palette-effect-chain-test.cpp",
+        "tests/palette-effects-reference.cpp",
+        "tests/palette-platform-reference.cpp",
+        "tests/palette-platform-scene.cpp",
+        "tests/palette-profile-platform.c",
+        "tests/palette-shading-test.cpp",
+        "tests/rendering-boundary-reference.cpp",
+        "tools/test-actor-profile-palette.py",
+        "tools/test-palette-effect-chain.py",
+        "tools/test-palette-effect-closure.py",
+        "tools/test-palette-effects.py",
+        "tools/test-rendering-boundaries.py"
       ],
       "documents": [
         "research/runtime/remaining-rendering-implementations-20261020.md",
-        "research/runtime/actor-profile-palette-providers-20261022.md"
+        "research/runtime/actor-profile-palette-providers-20261022.md",
+        "research/runtime/palette-effect-closure-20261026.md"
       ],
       "evidence": [
         "REMAIN.boundaries-original-20261020",
-        "REMAIN.boundaries-anchors-20261020"
+        "REMAIN.boundaries-anchors-20261020",
+        "PALETTE.closure-original-20261026",
+        "PALETTE.closure-native-20261026"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
-        "integration": "none",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Numerical and raw owned allocation/header/cache/profile/append paths have scoped component comparisons. Original unsafe odd-count allocation, arbitrary malformed/nonfinite profile inputs, actual Windows profile/file/heap service and installed full-scene/hardware/live acceptance remain independent. Execution credit is assigned to exact component scopes; the aggregate retains partial status."
+        "All ten native numerical builders, owned chains, profile/resource delivery and admitted raw ownership mechanisms are implemented. Current isolated comparisons, real Wine profile-return cohorts and headless release/ASan/UBSan pixel delivery close the stated native palette scope. Original odd-count underallocation is deliberately replaced by complete owned storage; native append failure is atomic while original partial retention has its own compared behavior. Arbitrary malformed/nonfinite CRT and Windows SEH/exceptional platform services, physical driver/hardware and whole-game/live replacement are not established by this result.",
+        "2026-10-27 final RGB555 merge: renderer/blit.cpp and renderer/scenes/scene_renderer.cpp/.hpp differ from inherited camera and whole-session palette executions. Those records retain historical hashes; combined-source camera/palette session re-execution is pending. Unchanged numerical mode, chain and provider leaf controls retain their own scope. See rendering-remaining-results-20261026/merge-parent-source-impact-20261027-01.json; source-impact accounting grants no execution, original comparison, physical presentation or replacement credit."
       ],
       "validation_dependencies": [
-        "tests/sprite-binary-reference.cpp"
+        "tests/sprite-binary-reference.cpp",
+        "apps/scene-session/CMakeLists.txt"
       ],
       "title": "Palette effect builders and owned chains"
     },
@@ -135232,7 +135321,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Declared owned native source/session consumer implemented and executed with fresh native64 and Clang ASan/UBSan evidence. Original full-scene equivalence, physical GPU acceptance and live replacement remain separate. Native source formats that omit branch-specific camera/link/special/secondary/object-generation fields require identified typed metadata producers; absence refuses instead of guessing. Historical shared-source comparison fingerprints are retained."
+        "Declared owned native source/session consumer implemented and executed with fresh native64 and Clang ASan/UBSan evidence. Original full-scene equivalence, physical GPU acceptance and live replacement remain separate. Native source formats that omit branch-specific camera/link/special/secondary/object-generation fields require identified typed metadata producers; absence refuses instead of guessing. Historical shared-source comparison fingerprints are retained.",
+        "2026-10-27 final RGB555 merge: renderer/blit.cpp and renderer/scenes/scene_renderer.cpp/.hpp differ from inherited camera and whole-session palette executions. Those records retain historical hashes; combined-source camera/palette session re-execution is pending. Unchanged numerical mode, chain and provider leaf controls retain their own scope. See rendering-remaining-results-20261026/merge-parent-source-impact-20261027-01.json; source-impact accounting grants no execution, original comparison, physical presentation or replacement credit."
       ],
       "title": "Runtime scene composition",
       "validation_dependencies": [
@@ -135634,7 +135724,10 @@
       ],
       "evidence": [
         "PALETTE.modes-original-20261020",
-        "PP1.palette-math.isolated_original-20261022"
+        "PP1.palette-math.isolated_original-20261022",
+        "PALETTE.closure-original-20261026",
+        "PALETTE.closure-native-20261026",
+        "PALETTE.modes-current-20261026"
       ],
       "status": {
         "understanding": "scoped",
@@ -135644,7 +135737,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "All ten bounded builders are implemented and compared, including RGB555/565, original count quirks and metal source mutation. Finite scalar safety bounds and safe full storage are explicit native policies. Original Windows profile service, original unsafe memory behavior, arbitrary malformed inputs and full scene/hardware/live acceptance are not established by this component comparison."
+        "All ten bounded builders are implemented and compared, including RGB555/565, original count quirks and metal source mutation. Finite scalar safety bounds and safe full storage are explicit native policies. Original Windows profile service, original unsafe memory behavior, arbitrary malformed inputs and full scene/hardware/live acceptance are not established by this component comparison.",
+        "2026-10-27 final RGB555 merge: renderer/blit.cpp and renderer/scenes/scene_renderer.cpp/.hpp differ from inherited camera and whole-session palette executions. Those records retain historical hashes; combined-source camera/palette session re-execution is pending. Unchanged numerical mode, chain and provider leaf controls retain their own scope. See rendering-remaining-results-20261026/merge-parent-source-impact-20261027-01.json; source-impact accounting grants no execution, original comparison, physical presentation or replacement credit."
       ]
     },
     {
@@ -135690,7 +135784,10 @@
       ],
       "evidence": [
         "PALETTE.chains-original-20261020",
-        "PALETTE.chains-capacity-original-20261020"
+        "PALETTE.chains-capacity-original-20261020",
+        "PALETTE.closure-original-20261026",
+        "PALETTE.closure-native-20261026",
+        "PALETTE.chains-current-20261026"
       ],
       "status": {
         "understanding": "scoped",
@@ -135701,7 +135798,8 @@
       },
       "remaining_gaps": [
         "Successful original appends, unknown/empty no-ops and post-metal source propagation are compared. Atomic native budget/allocation failure is intentional policy, not reproduction of original partially appended allocation failures. Full original failure injection, installed scene and hardware/live acceptance remain separate.",
-        "2026-10-22 shared palette luminance addition-order correction: prior source fingerprints remain historical. Fresh palette arithmetic and raw-provider comparisons do not assert current chain/scene/terrain integration; rerun their respective execution scenarios before current integration/equivalence credit."
+        "2026-10-22 shared palette luminance addition-order correction: prior source fingerprints remain historical. Fresh palette arithmetic and raw-provider comparisons do not assert current chain/scene/terrain integration; rerun their respective execution scenarios before current integration/equivalence credit.",
+        "2026-10-27 final RGB555 merge: renderer/blit.cpp and renderer/scenes/scene_renderer.cpp/.hpp differ from inherited camera and whole-session palette executions. Those records retain historical hashes; combined-source camera/palette session re-execution is pending. Unchanged numerical mode, chain and provider leaf controls retain their own scope. See rendering-remaining-results-20261026/merge-parent-source-impact-20261027-01.json; source-impact accounting grants no execution, original comparison, physical presentation or replacement credit."
       ]
     },
     {
@@ -135742,7 +135840,8 @@
       ],
       "evidence": [
         "PALETTE.scene-native-20261020",
-        "PALETTE.scene-capacity-native-20261020"
+        "PALETTE.scene-capacity-native-20261020",
+        "PALETTE.closure-native-20261026"
       ],
       "status": {
         "understanding": "scoped",
@@ -135753,7 +135852,8 @@
       },
       "remaining_gaps": [
         "Owned profile production, current revision/frame binding, independent resources, budget failure atomicity and retirement run through Mesa headless OpenGL. Real installed scene population, physical GPU acceptance and full-game/live replacement remain separate validation/integration work.",
-        "2026-10-22 shared palette luminance addition-order correction: prior source fingerprints remain historical. Fresh palette arithmetic and raw-provider comparisons do not assert current chain/scene/terrain integration; rerun their respective execution scenarios before current integration/equivalence credit."
+        "2026-10-22 shared palette luminance addition-order correction: prior source fingerprints remain historical. Fresh palette arithmetic and raw-provider comparisons do not assert current chain/scene/terrain integration; rerun their respective execution scenarios before current integration/equivalence credit.",
+        "2026-10-27 final RGB555 merge: renderer/blit.cpp and renderer/scenes/scene_renderer.cpp/.hpp differ from inherited camera and whole-session palette executions. Those records retain historical hashes; combined-source camera/palette session re-execution is pending. Unchanged numerical mode, chain and provider leaf controls retain their own scope. See rendering-remaining-results-20261026/merge-parent-source-impact-20261027-01.json; source-impact accounting grants no execution, original comparison, physical presentation or replacement credit."
       ]
     },
     {
@@ -136044,7 +136144,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Declared owned native source/session consumer implemented and executed with fresh native64 and Clang ASan/UBSan evidence. Original full-scene equivalence, physical GPU acceptance and live replacement remain separate. Native source formats that omit branch-specific camera/link/special/secondary/object-generation fields require identified typed metadata producers; absence refuses instead of guessing. Historical shared-source comparison fingerprints are retained."
+        "Declared owned native source/session consumer implemented and executed with fresh native64 and Clang ASan/UBSan evidence. Original full-scene equivalence, physical GPU acceptance and live replacement remain separate. Native source formats that omit branch-specific camera/link/special/secondary/object-generation fields require identified typed metadata producers; absence refuses instead of guessing. Historical shared-source comparison fingerprints are retained.",
+        "2026-10-27 final RGB555 merge: renderer/blit.cpp and renderer/scenes/scene_renderer.cpp/.hpp differ from inherited camera and whole-session palette executions. Those records retain historical hashes; combined-source camera/palette session re-execution is pending. Unchanged numerical mode, chain and provider leaf controls retain their own scope. See rendering-remaining-results-20261026/merge-parent-source-impact-20261027-01.json; source-impact accounting grants no execution, original comparison, physical presentation or replacement credit."
       ]
     },
     {
@@ -136251,7 +136352,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Declared owned native source/session consumer implemented and executed with fresh native64 and Clang ASan/UBSan evidence. Original full-scene equivalence, physical GPU acceptance and live replacement remain separate. Native source formats that omit branch-specific camera/link/special/secondary/object-generation fields require identified typed metadata producers; absence refuses instead of guessing. Historical shared-source comparison fingerprints are retained."
+        "Declared owned native source/session consumer implemented and executed with fresh native64 and Clang ASan/UBSan evidence. Original full-scene equivalence, physical GPU acceptance and live replacement remain separate. Native source formats that omit branch-specific camera/link/special/secondary/object-generation fields require identified typed metadata producers; absence refuses instead of guessing. Historical shared-source comparison fingerprints are retained.",
+        "2026-10-27 final RGB555 merge: renderer/blit.cpp and renderer/scenes/scene_renderer.cpp/.hpp differ from inherited camera and whole-session palette executions. Those records retain historical hashes; combined-source camera/palette session re-execution is pending. Unchanged numerical mode, chain and provider leaf controls retain their own scope. See rendering-remaining-results-20261026/merge-parent-source-impact-20261027-01.json; source-impact accounting grants no execution, original comparison, physical presentation or replacement credit."
       ]
     },
     {
@@ -136541,7 +136643,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Declared owned native source/session consumer implemented and executed with fresh native64 and Clang ASan/UBSan evidence. Original full-scene equivalence, physical GPU acceptance and live replacement remain separate. Native source formats that omit branch-specific camera/link/special/secondary/object-generation fields require identified typed metadata producers; absence refuses instead of guessing. Historical shared-source comparison fingerprints are retained."
+        "Declared owned native source/session consumer implemented and executed with fresh native64 and Clang ASan/UBSan evidence. Original full-scene equivalence, physical GPU acceptance and live replacement remain separate. Native source formats that omit branch-specific camera/link/special/secondary/object-generation fields require identified typed metadata producers; absence refuses instead of guessing. Historical shared-source comparison fingerprints are retained.",
+        "2026-10-27 final RGB555 merge: renderer/blit.cpp and renderer/scenes/scene_renderer.cpp/.hpp differ from inherited camera and whole-session palette executions. Those records retain historical hashes; combined-source camera/palette session re-execution is pending. Unchanged numerical mode, chain and provider leaf controls retain their own scope. See rendering-remaining-results-20261026/merge-parent-source-impact-20261027-01.json; source-impact accounting grants no execution, original comparison, physical presentation or replacement credit."
       ],
       "title": "Owned simulation-to-scene source adapters",
       "validation_dependencies": [
@@ -142155,7 +142258,9 @@
         "PP1.incoming-history.static-20261022",
         "PP1.decompilation.static-20261022",
         "PP1.inspection-report.static-20261022",
-        "PP1.incoming-history-third.static-20261022"
+        "PP1.incoming-history-third.static-20261022",
+        "PALETTE.providers-current-original-20261026",
+        "PALETTE.providers-current-native-20261026"
       ],
       "status": {
         "understanding": "scoped",
@@ -142322,7 +142427,9 @@
         "PP1.incoming-history.static-20261022",
         "PP1.decompilation.static-20261022",
         "PP1.inspection-report.static-20261022",
-        "PP1.incoming-history-third.static-20261022"
+        "PP1.incoming-history-third.static-20261022",
+        "PALETTE.providers-current-original-20261026",
+        "PALETTE.providers-current-native-20261026"
       ],
       "status": {
         "understanding": "scoped",
@@ -143773,7 +143880,8 @@
         "ADAPTER26.history",
         "ADAPTER26.image",
         "ADAPTER27.master-identity",
-        "ADAPTER27.final-master-identity"
+        "ADAPTER27.final-master-identity",
+        "ADAPTER27.latest-master-identity"
       ],
       "status": {
         "understanding": "scoped",
@@ -147405,7 +147513,8 @@
         "CPUFIXMERGE.controls01-20261026",
         "CPUFIXMERGE.controls02-20261026",
         "CPUFIXMERGE.controls03-20261026",
-        "CPUFIXMERGE.current-master-sources01-20261026"
+        "CPUFIXMERGE.current-master-sources01-20261026",
+        "PLAYEROPEN27.storage01"
       ],
       "status": {
         "understanding": "scoped",
@@ -147422,7 +147531,8 @@
         "Final review corrects CPU-keyed call counting for a multi-piece clipped call:count distinct application rows,not commands.47currentPython controls and unchanged immutable1370-call/1345COPY replay pass. Native engine/test sources match the live run exactly;historical broad source hashes retain the two changed Python fingerprints. No new engine launch or integration promotion is inferred.",
         "Final48Python controls/replay02 pass. Empty CPU command intervals remain refused by whole-output closure because CPU rows lack an independent expected-piece count;empty clipping is only supplied rendering-control proof. Current live sample has zero such intervals and retains full COPY closure. Native compiled code is unchanged;two Python diagnostic files have separate fresh controls/replay and exact preserved preimages.",
         "Merged with master8c0c4ea4: fresh combined Python/Qt controls and current builds are separate from prior GPU/native and original-game executions. Parent execution fingerprints remain immutable; new live combined-tree observation and original-driver comparison remain pending. See research/runtime/cpu-copy-master-integration-20261026.md.",
-        "Current master8a6fcd1a lighting/default history is preserved in final integration. Controls01-04 have zero complete declared-source/claim drift on this combined tree; this read-only continuity is not a new execution. All natural-branch, driver and broader ownership limitations remain separate."
+        "Current master8a6fcd1a lighting/default history is preserved in final integration. Controls01-04 have zero complete declared-source/claim drift on this combined tree; this read-only continuity is not a new execution. All natural-branch, driver and broader ownership limitations remain separate.",
+        "PLAYERMERGE27 storage01 retains two NS_RECT cursor requests at (640,512)-(680,552) against 640x480 surfaces. All 4188 emitted COPY outputs match, but strict whole-application closure remains false. No prior positive evidence is refreshed and no geometric admission is relaxed."
       ]
     },
     {
@@ -151939,7 +152049,8 @@
         "ADAPTER26.provider",
         "ADAPTER26.performance",
         "ADAPTER27.master-identity",
-        "ADAPTER27.final-master-identity"
+        "ADAPTER27.final-master-identity",
+        "ADAPTER27.latest-master-identity"
       ],
       "status": {
         "understanding": "scoped",
@@ -152066,7 +152177,9 @@
         "NPL27.extended04",
         "NPL27.extended05",
         "NPL27.hardware02",
-        "NPL27.hardware03"
+        "NPL27.hardware03",
+        "PLAYEROPEN27.storage01",
+        "PLAYERMERGE27.storage01"
       ],
       "status": {
         "understanding": "scoped",
@@ -152076,7 +152189,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Scoped native lifetime/scheduling takeover;original copy/client/setup bodies retained. The installed native campaign selects immediate copies;separate production-installer original-code controls cover deferred generations. Unknown legacy-driver aliases,arbitrary abandoned-owner/SEH flows,full scene parity and hardware-driver loss are outside this policy."
+        "Scoped native lifetime/scheduling takeover;original copy/client/setup bodies retained. The installed native campaign selects immediate copies;separate production-installer original-code controls cover deferred generations. Unknown legacy-driver aliases,arbitrary abandoned-owner/SEH flows,full scene parity and hardware-driver loss are outside this policy.",
+        "PLAYERMERGE27 public lifetime journey is retained at its exact source phase before the later palette/RGB555 integrations. Final supplied controls are freshly repeated, but there is no new actual-game lifetime claim on the later combined source."
       ]
     },
     {
@@ -153558,7 +153672,8 @@
       "original": [],
       "documents": [
         "research/runtime/colour-coverage-frontier-20261025.md",
-        "research/runtime/rendering-closeout-20261026.md"
+        "research/runtime/rendering-closeout-20261026.md",
+        "research/runtime/rendering-remaining-20261026.md"
       ],
       "implementation": [
         "compat/legacy/canvas_world.cpp",
@@ -153589,7 +153704,9 @@
         "RBI26.master-colour-world-original",
         "RBI26.master-colour-world-native",
         "RBI26.integrated-colour-world-original",
-        "RBI26.integrated-colour-world-native"
+        "RBI26.integrated-colour-world-native",
+        "RRG26.colour-hardware-original",
+        "RRG26.colour-hardware-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -153599,7 +153716,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Isolated ordered original-rectangle comparisons do not establish natural live World reachability, physical presentation, sustained performance or all-writer exclusion. RGB555 remains outside the recorded World format."
+        "Isolated ordered original-rectangle comparisons do not establish natural live World reachability, physical presentation, sustained performance or all-writer exclusion. RGB555 remains outside the recorded World format.",
+        "The older RRG26 CPU and large-fill comparison reports retain historical results after main changed their recorded surface-wrapper provenance. This merge reruns the separate offline RGB555 colour policy, not those complete CPU/large-fill suites."
       ]
     },
     {
@@ -154897,7 +155015,8 @@
         "CPUFIXMERGE.current-master-sources01-20261026",
         "NPL27.windowed-live01",
         "NPL27.windowed-live02",
-        "NPL27.storage05-copy-refusals01"
+        "NPL27.storage05-copy-refusals01",
+        "PLAYEROPEN27.storage01"
       ],
       "status": {
         "understanding": "partial",
@@ -154915,7 +155034,8 @@
         "Final review corrects CPU-keyed call counting for a multi-piece clipped call:count distinct application rows,not commands.47currentPython controls and unchanged immutable1370-call/1345COPY replay pass. Native engine/test sources match the live run exactly;historical broad source hashes retain the two changed Python fingerprints. No new engine launch or integration promotion is inferred.",
         "Final48Python controls/replay02 pass. Empty CPU command intervals remain refused by whole-output closure because CPU rows lack an independent expected-piece count;empty clipping is only supplied rendering-control proof. Current live sample has zero such intervals and retains full COPY closure. Native compiled code is unchanged;two Python diagnostic files have separate fresh controls/replay and exact preserved preimages.",
         "Merged with master8c0c4ea4: fresh combined Python/Qt controls and current builds are separate from prior GPU/native and original-game executions. Parent execution fingerprints remain immutable; new live combined-tree observation and original-driver comparison remain pending. See research/runtime/cpu-copy-master-integration-20261026.md.",
-        "Current master8a6fcd1a lighting/default history is preserved in final integration. Controls01-04 have zero complete declared-source/claim drift on this combined tree; this read-only continuity is not a new execution. All natural-branch, driver and broader ownership limitations remain separate."
+        "Current master8a6fcd1a lighting/default history is preserved in final integration. Controls01-04 have zero complete declared-source/claim drift on this combined tree; this read-only continuity is not a new execution. All natural-branch, driver and broader ownership limitations remain separate.",
+        "Fresh PLAYEROPEN27.storage01 closes4474active calls/4400COPY outputs with984GPU and2457CPU-keyed calls,normal Quit andzero owners. Natural self/keyed-GPU counts remain0; no all-game absence or supplied-control substitution."
       ]
     },
     {
@@ -155312,7 +155432,10 @@
         "NPL27.storage05-copy-refusals01",
         "NPL27.hardware03",
         "ADAPTER27.launcher-controls",
-        "ADAPTER27.launcher-final-controls"
+        "ADAPTER27.launcher-final-controls",
+        "PLAYEROPEN27.storage01",
+        "PLAYERMERGE27.storage01",
+        "ADAPTER27.launcher-latest-controls"
       ],
       "status": {
         "understanding": "scoped",
@@ -155325,7 +155448,8 @@
         "Failed early attempts remain immutable. The unaccepted report click is retained without claiming its exact transient cause;the bounded harness resubmits only an unaccepted click on the identical ready generation and stops at admission. Both final cases needed one report click.",
         "Original simulation/preparation/UI bodies remain in Wine. Native-only ownership does not establish full original-driver/pixel equivalence or complete engine replacement.",
         "Source-specific expanded x86 public-launch profiles cover natural intros/music/voices, two offered map rows, a new save and display rebuilds, twelve-minute physical stress and a separate NVIDIA lifecycle run. Arbitrary maps/saves/duration, hardware cadence, original-driver pixels and ARM strict ownership retain separate milestones. Earlier source phases and failed attempts remain historical.",
-        "Public launches default to native terrain lighting under TL.player-lighting-default. Bounded media, map, storage, NVIDIA and longer player journeys are recorded with exact source phases; these do not grant original lighting equivalence, hour-long stability, all-hardware performance or universal intermittent reliability."
+        "Public launches default to native terrain lighting under TL.player-lighting-default. Bounded media, map, storage, NVIDIA and longer player journeys are recorded with exact source phases; these do not grant original lighting equivalence, hour-long stability, all-hardware performance or universal intermittent reliability.",
+        "PLAYERMERGE27 public lifetime journey is retained at its exact source phase before the later palette/RGB555 integrations. Final supplied controls are freshly repeated, but there is no new actual-game lifetime claim on the later combined source."
       ]
     },
     {
@@ -156832,7 +156956,9 @@
         "ADAPTER27.cpu-controls",
         "ADAPTER27.prefix-failure",
         "ADAPTER27.final-master-identity",
-        "ADAPTER27.cpu-final-controls"
+        "ADAPTER27.cpu-final-controls",
+        "ADAPTER27.latest-master-identity",
+        "ADAPTER27.cpu-latest-controls"
       ],
       "status": {
         "understanding": "partial",
@@ -157032,7 +157158,8 @@
         "TLDF26.player-controls",
         "TLDF26.master-controls",
         "ADAPTER27.launcher-controls",
-        "ADAPTER27.launcher-final-controls"
+        "ADAPTER27.launcher-final-controls",
+        "ADAPTER27.launcher-latest-controls"
       ],
       "status": {
         "understanding": "scoped",
@@ -157322,7 +157449,255 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Current native64 and Clang ASan/UBSan scene integration passes: World source health/cell delivery, bounded owned layers/catalogs, generation-safe linked rotations, once-per-successful-plan scheduling and spectator source-clock delivery, plus eight exact CPU/software OpenGL image comparisons. Original complete-session comparison, physical GPU acceptance and live replacement remain separate; unclassified original entity/type/link metadata still requires identified producers. Spectator field publication retains the recovered source-cycle latency; redraws do not force publication."
+        "Current native64 and Clang ASan/UBSan scene integration passes: World source health/cell delivery, bounded owned layers/catalogs, generation-safe linked rotations, once-per-successful-plan scheduling and spectator source-clock delivery, plus eight exact CPU/software OpenGL image comparisons. Original complete-session comparison, physical GPU acceptance and live replacement remain separate; unclassified original entity/type/link metadata still requires identified producers. Spectator field publication retains the recovered source-cycle latency; redraws do not force publication.",
+        "2026-10-27 final RGB555 merge: renderer/blit.cpp and renderer/scenes/scene_renderer.cpp/.hpp differ from inherited camera and whole-session palette executions. Those records retain historical hashes; combined-source camera/palette session re-execution is pending. Unchanged numerical mode, chain and provider leaf controls retain their own scope. See rendering-remaining-results-20261026/merge-parent-source-impact-20261027-01.json; source-impact accounting grants no execution, original comparison, physical presentation or replacement credit."
+      ]
+    },
+    {
+      "id": "NR.world-rgb555-colour-input",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Explicit RGB555 colour-only closed World input",
+      "scope": "Opt-in offline closed World format1 RGB555 colour rectangle input, owned packed destination and exact mode0..3 integer composition. Existing default consumers remain RGB565-only. Colour-only admission, canonical RGB555 sources, clipped order, bounded cache and full output words are independent of natural game reachability, sprite/effect formats, live transport, hardware presentation and replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-remaining-20261026.md",
+        "research/formats/world-frame-v1.md"
+      ],
+      "implementation": [
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_frame_main.cpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/blit.cpp"
+      ],
+      "tests": [
+        "tests/world-colour-555-test.cpp",
+        "tests/world-colour-555-reference.cpp",
+        "tools/test-world-colour-555.py"
+      ],
+      "evidence": [
+        "RRG26.rgb555-software-original",
+        "RRG26.rgb555-software-native",
+        "RRG26.rgb555-hardware-original",
+        "RRG26.rgb555-hardware-native",
+        "RRG26.failed-rgb555-configure",
+        "RRG26.failed-rgb555-reference-build",
+        "RRG26.raw-retention",
+        "RRG26.source-variants",
+        "RRG27.merge-rgb555-software-original",
+        "RRG27.merge-rgb555-software-native",
+        "RRG27.merge-rgb555-hardware-original",
+        "RRG27.merge-rgb555-hardware-native",
+        "RRG27.merge-rgb555-raw"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Validated only for explicitly admitted offline colour-only RGB555 World inputs. Natural RGB555 game production, sprites/effects, live transport, physical presentation, whole renderer and replacement remain unproven."
+      ]
+    },
+    {
+      "id": "RS.colour-mode-selection",
+      "kind": "recovered",
+      "subsystem": "rendering",
+      "title": "Selected colour-object mode initialization and update selection",
+      "scope": "Static No-CD shape initializer547950 and selected548560/548650 constructors initialize shape mode2. Selected548860 update branch writes object+1c using min(3,4-signed_div((remaining<<2),global5e1428)) at5489f0..548a0d after its original gates. Wrapper54ab60 calls547d80 without changing the shape mode. This is selected branch recovery only; natural game drawing reachability, the whole update, provider values and object lifetime remain unproved.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5536080,
+          "scope": "Selected initializer mode2 store at547972; no allocation/lifetime reconstruction.",
+          "recovered_range": "colour-mode-initializer-547950"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5539408,
+          "scope": "Selected constructor mode2 shape writes and vtable5c74b0 publication."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5539936,
+          "scope": "Selected gated mode-write branch5489f0..548a0d, not the complete update or its external providers."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5548896,
+          "scope": "Selected wrapper passes shape+1c to original colour draw; no mode mutation in this wrapper."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-remaining-20261026.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/inspect-colour-mode-callers.py",
+        "tools/test-colour-mode-initializer.py",
+        "tests/colour-mode-initializer-reference.cpp"
+      ],
+      "evidence": [
+        "RRG26.natural-modes",
+        "RRG26.mode-selection-static",
+        "RRG26.failed-static-setup",
+        "RRG26.raw-retention",
+        "RRG26.source-variants",
+        "RRG26.initializer-original"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Static instructions do not prove natural modes2/3 reach drawing in the sampled game profiles. Signed overflow/division exceptional domains and whole update/providers remain outside this selected formula observation."
+      ]
+    },
+    {
+      "id": "NP.menu-session-destruction",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Callback-free destruction of active native launcher sessions",
+      "scope": "Destroying a native Qt menu session or launcher first disconnects process/timer delivery, retires its bridge and reaps its owned launcher process group. Destruction of an in-flight hard stop never invokes its completion callback. This is terminal object destruction, not normal Quit, asynchronous prefix shutdown, recovered engine semantics or attribution of a historical crash.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "apps/qt-shell/game_process.hpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp"
+      ],
+      "tests": [
+        "tests/menu-session-destruction-test.cpp",
+        "tests/game-hard-restart-test.cpp",
+        "tests/qt-exit-during-staging.cpp",
+        "tools/test-player-open-item-controls.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/engine_preferences_store.cpp",
+        "apps/qt-shell/engine_preferences_store.hpp",
+        "apps/qt-shell/game_restart_action.hpp",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "documents": [
+        "research/runtime/player-open-items-20261027.md"
+      ],
+      "evidence": [
+        "PLAYEROPEN27.controls03",
+        "PLAYERMERGE27.controls02",
+        "PLAYERHANDOFF27.controls01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "A deterministic current-master ASan/UBSan failure proves MenuBridge use-after-free during QProcess base destruction. The historical signal-11 run has no retained stack and remains independently unattributed.",
+        "No claim that object destruction completes the normal-Quit/prefix-shutdown or graphics retirement protocol."
+      ]
+    },
+    {
+      "id": "NP.input-frame-resize-cursor",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Current-frame cursor coordinates across native display rebuilding",
+      "scope": "Constrain the last Qt frame-relative cursor position to the current nonempty frame before publishing heartbeats, inactive release state or targeted events. Resolution growth preserves the constrained point. Both client and explicitly selected desktop frame coordinates retain their existing mode. No host-wide mouse warp, recovered game cursor clamp or historical-storage failure attribution.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "apps/qt-shell/input_forwarder.cpp",
+        "apps/qt-shell/input_forwarder.hpp"
+      ],
+      "tests": [
+        "tests/qt-input-test.cpp",
+        "tools/test-player-open-item-controls.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/input_state.cpp",
+        "apps/qt-shell/input_state.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "runtime/render/input_polling.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/input_v2.h",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "documents": [
+        "research/runtime/player-open-items-20261027.md"
+      ],
+      "evidence": [
+        "PLAYEROPEN27.controls03",
+        "PLAYERMERGE27.controls02",
+        "PLAYERHANDOFF27.controls01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "A retained old run did not preserve all rejected destination coordinates; this repair must not retroactively assert its cause.",
+        "Live display-rebuild/copy closure remains a separate source-bound execution result."
+      ]
+    },
+    {
+      "id": "NP.copy-refusal-argument-geometry",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Complete diagnostic rectangles for refused native Fast copies",
+      "scope": "Capture readable source and target argument rectangles before either geometry refusal, including raw Fast x/y and derived extent words with defined PE32 unsigned arithmetic. Existing source-first refusal priority and original admission/result checks remain. Supplied native facade controls require NS_RECT with unchanged full source/target pixels and no COPY interval; no original-driver comparison or blanket whole-output acceptance.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/copy_fast_rectangle.h"
+      ],
+      "tests": [
+        "tests/native-copy-refusal-probe.c",
+        "tools/test-player-open-item-controls.py"
+      ],
+      "validation_dependencies": [
+        "tests/native-gpu-copy-plan-probe.c",
+        "runtime/render/copy_route_census.h",
+        "runtime/native-draw/surfaces.h",
+        "protocols/include/mnm/native_copy_routes_v1.h",
+        "protocols/include/mnm/native_copy_routes_v2.h"
+      ],
+      "documents": [
+        "research/runtime/player-open-items-20261027.md"
+      ],
+      "evidence": [
+        "PLAYEROPEN27.controls03",
+        "PLAYERMERGE27.controls02",
+        "PLAYERHANDOFF27.controls01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Historical Storage05 target coordinates are not reconstructed from defaults. A fresh record is required to diagnose any recurrence.",
+        "Invalid-rectangle failure rows remain excluded from positive natural-branch and whole-application output claims."
       ]
     }
   ],
@@ -360089,6 +360464,1238 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "PALETTE.closure-original-20261026",
+      "kind": "isolated_original",
+      "scope": "All ten builders and sequential source mutations, RGB565/RGB555 tables, real profile file/default/truncation paths and owned RGB565 resource/GL delivery on installed-derived palettes. Controlled original allocator failures retain their separate provider matrix. No Windows SEH injection, physical driver/hardware, original unsafe allocation emulation or whole-game/live replacement claim.",
+      "record": "research/runtime/palette-effect-closure-results-20261026/platform06.json",
+      "sha256": "739cd5c7a37ba89942a20718ddb07390bf0e70e50bd61cefd9429d090cea7cdc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "PALETTE.closure-native-20261026",
+      "kind": "native_integration",
+      "scope": "All ten builders and sequential source mutations, RGB565/RGB555 tables, real profile file/default/truncation paths and owned RGB565 resource/GL delivery on installed-derived palettes. Controlled original allocator failures retain their separate provider matrix. No Windows SEH injection, physical driver/hardware, original unsafe allocation emulation or whole-game/live replacement claim.",
+      "record": "research/runtime/palette-effect-closure-results-20261026/platform06.json",
+      "sha256": "739cd5c7a37ba89942a20718ddb07390bf0e70e50bd61cefd9429d090cea7cdc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "PALETTE.modes-current-20261026",
+      "kind": "isolated_original",
+      "scope": "Owned arithmetic for the ten original palette builders on admitted counts2..256, including power-only modes1..7/9, normal and blue-tint DWORD-entry modes8/9, explicit finite lighting/effect profile values and mode5 source-palette contrast mutation. Native tables retain full produced storage safely. Profile file production, chain dispatch/selection and scene binding are separate suppliers.",
+      "record": "research/runtime/palette-effect-closure-results-20261026/modes01.json",
+      "sha256": "9c49cb6f01fec4792f7eec66bbffdefdc090b4eb920fba6c83f1106b61e87822",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_and_sanitized_units_passed",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "PALETTE.chains-current-20261026",
+      "kind": "isolated_original",
+      "scope": "Owned per-palette append order corresponding to whole 0057d690 for0..4 RGB palettes and mode0..9, unknown-mode/empty-palette no-op and original mode5 RGB propagation. Ordinal/shade selection uses owned table values. Bounded allocation failures are atomic native policy, separate from original partial-append failure behavior.",
+      "record": "research/runtime/palette-effect-closure-results-20261026/chains01.json",
+      "sha256": "285f1045ca028dd1c0a14b700f1be45469015bad0d9b7fd6f40c5a0b9cf0f0a8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_and_sanitized_units_passed",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "PALETTE.providers-current-original-20261026",
+      "kind": "isolated_original",
+      "scope": "Raw PE32 walk/fly program validation and four-facing group agreement with exact diagnostic notifications, plus profile movement base/acceleration scalars and five-category maximum control. Owned bounded ANI programs and profile storage; borrowed diagnostic/scalar outputs use value addresses. Lower formatted-message, dialog and CRT math/parsing remain explicit boundaries. Real owner/planner cadence, arbitrary malformed/unbounded programs, divide faults, SEH/throwing cleanup and live replacement excluded.",
+      "record": "research/runtime/actor-profile-palette-results-20261022/palette-closure-provider01.json",
+      "sha256": "b19be3a3831b78d08459ec2b1cd29475db8a2d2fc4bff9fb64ccfce21914065e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1280
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "PALETTE.providers-current-native-20261026",
+      "kind": "native_integration",
+      "scope": "Raw PE32 walk/fly program validation and four-facing group agreement with exact diagnostic notifications, plus profile movement base/acceleration scalars and five-category maximum control. Owned bounded ANI programs and profile storage; borrowed diagnostic/scalar outputs use value addresses. Lower formatted-message, dialog and CRT math/parsing remain explicit boundaries. Real owner/planner cadence, arbitrary malformed/unbounded programs, divide faults, SEH/throwing cleanup and live replacement excluded.",
+      "record": "research/runtime/actor-profile-palette-results-20261022/palette-closure-provider01.json",
+      "sha256": "b19be3a3831b78d08459ec2b1cd29475db8a2d2fc4bff9fb64ccfce21914065e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1280
+        }
+      ]
+    },
+    {
+      "id": "RRG26.rgb555-software-original",
+      "kind": "isolated_original",
+      "scope": "128 authored RGB555/RGB565 closed colour-only World fixtures; complete cached/uncached planes31587776pixels,640refusals,owned high-bit borders and explicit public555preview. software context; no live format1, sprite/effect, physical presentation or replacement.",
+      "record": "research/runtime/rendering-remaining-results-20261026/rgb555-software-03.json",
+      "sha256": "607bae7b189ee5cf0dcb720f5ef8692e7f31d087b647cc3da1a8a487e9becf8f",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/native_controls/remaining_surfaces",
+          "equals": 0
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RRG26.rgb555-software-native",
+      "kind": "native_integration",
+      "scope": "128 authored RGB555/RGB565 closed colour-only World fixtures; complete cached/uncached planes31587776pixels,640refusals,owned high-bit borders and explicit public555preview. software context; no live format1, sprite/effect, physical presentation or replacement.",
+      "record": "research/runtime/rendering-remaining-results-20261026/rgb555-software-03.json",
+      "sha256": "607bae7b189ee5cf0dcb720f5ef8692e7f31d087b647cc3da1a8a487e9becf8f",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/native_controls/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_integration",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RRG26.rgb555-hardware-original",
+      "kind": "isolated_original",
+      "scope": "128 authored RGB555/RGB565 closed colour-only World fixtures; complete cached/uncached planes31587776pixels,640refusals,owned high-bit borders and explicit public555preview. hardware context; no live format1, sprite/effect, physical presentation or replacement.",
+      "record": "research/runtime/rendering-remaining-results-20261026/rgb555-hardware-01.json",
+      "sha256": "ad3e80e3ee43325a82497be707198a1658de2177f83618a802583a4246b90f03",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/native_controls/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/hardware_context/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_context/software_fallback",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RRG26.rgb555-hardware-native",
+      "kind": "native_integration",
+      "scope": "128 authored RGB555/RGB565 closed colour-only World fixtures; complete cached/uncached planes31587776pixels,640refusals,owned high-bit borders and explicit public555preview. hardware context; no live format1, sprite/effect, physical presentation or replacement.",
+      "record": "research/runtime/rendering-remaining-results-20261026/rgb555-hardware-01.json",
+      "sha256": "ad3e80e3ee43325a82497be707198a1658de2177f83618a802583a4246b90f03",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/native_controls/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/hardware_context/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_context/software_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/native_integration",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RRG26.cpu-original",
+      "kind": "isolated_original",
+      "scope": "Fresh4352CPU pairs plus384boundary fixtures across both packed formats/four modes;90011152physical WORDs and caller state. Original preparation/footer retained; no game/native splice integration.",
+      "record": "research/runtime/rendering-remaining-results-20261026/colour-hardware-02-cpu.json",
+      "sha256": "0c2e657ca478e7b687a39ab39d721fcca134e3dc10125a1b6d6080d8fc244c59",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/boundaries/caller_state_equal",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RRG26.colour-hardware-original",
+      "kind": "isolated_original",
+      "scope": "192 authored ordered RGB565 World fills/blends,38199120complete pixels and five refusals; NVIDIA TITAN RTX EGL context verified without fallback. Original547d80 reference; no natural fill reachability, window/scanout, FPS or replacement.",
+      "record": "research/runtime/rendering-remaining-results-20261026/colour-hardware-02.json",
+      "sha256": "6013cb9f7943a910f86fc2583b22f39d0a6ab1db5d9898be12347b576901dfd6",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_context/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/native_controls/remaining_surfaces",
+          "equals": 0
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RRG26.colour-hardware-native",
+      "kind": "native_integration",
+      "scope": "192 authored ordered RGB565 World fills/blends,38199120complete pixels and five refusals; NVIDIA TITAN RTX EGL context verified without fallback. Original547d80 reference; no natural fill reachability, window/scanout, FPS or replacement.",
+      "record": "research/runtime/rendering-remaining-results-20261026/colour-hardware-02.json",
+      "sha256": "6013cb9f7943a910f86fc2583b22f39d0a6ab1db5d9898be12347b576901dfd6",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_context/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/native_controls/remaining_surfaces",
+          "equals": 0
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RRG26.natural-modes",
+      "kind": "static",
+      "scope": "Read-only classification of new original-active later-game eight-frame map1/item15 capture:719mode2,1183mode3,104mode1 colour draws; all2x2. No native CPU splice or generic fill observation. This is static classification of retained live execution, not native implementation/integration credit. The acquisition reused a prior natural-busy prospective scenario at120/four-call intervals; that earlier scenario receives no acceptance from the600/eight-call profile.",
+      "record": "research/runtime/rendering-remaining-results-20261026/natural-colour-index-02.json",
+      "sha256": "48f797c57b90ba9c5114f4b1c0264f7b8b8098fa170641021892dc732a4eba23",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/natural_modes2_3_observed",
+          "equals": true
+        },
+        {
+          "pointer": "/colour_calls",
+          "equals": 2006
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RRG26.natural-original",
+      "kind": "isolated_original",
+      "scope": "Eight fresh current-source late-game samples,14852draws/3840000pixels; native/original owned-zero equality and original-before/live closure. Exactly one native-zero/live difference per frame remains explicit; no live parity.",
+      "record": "research/runtime/rendering-remaining-results-20261026/natural-late-comparison-02.json",
+      "sha256": "1a8a8753657713e0d7c6ce2096faf584336915f9797764a3b139d8a27034bb1d",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_original_live_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/current_source_capture_required",
+          "equals": true
+        },
+        {
+          "pointer": "/live_original_pixels_match",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RRG26.natural-native",
+      "kind": "native_integration",
+      "scope": "Eight fresh current-source late-game samples,14852draws/3840000pixels; native/original owned-zero equality and original-before/live closure. Exactly one native-zero/live difference per frame remains explicit; no live parity.",
+      "record": "research/runtime/rendering-remaining-results-20261026/natural-late-comparison-02.json",
+      "sha256": "1a8a8753657713e0d7c6ce2096faf584336915f9797764a3b139d8a27034bb1d",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_original_live_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/current_source_capture_required",
+          "equals": true
+        },
+        {
+          "pointer": "/live_original_pixels_match",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RRG26.busy-original",
+      "kind": "isolated_original",
+      "scope": "Sixteen retained busy frames freshly replayed on changed shader/decoder:19036draws/7680000pixels,three comparisons exact. Historical acquisition,not a fresh whole journey.",
+      "record": "research/runtime/rendering-remaining-results-20261026/busy-comparison-01.json",
+      "sha256": "a15fd225d255c7e2bc5b02d2f66a6b3d40e04e246e083be8f32ddf48a18c638a",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_original_live_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_original_pixels_match",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RRG26.busy-native",
+      "kind": "native_integration",
+      "scope": "Sixteen retained busy frames freshly replayed on changed shader/decoder:19036draws/7680000pixels,three comparisons exact. Historical acquisition,not a fresh whole journey.",
+      "record": "research/runtime/rendering-remaining-results-20261026/busy-comparison-01.json",
+      "sha256": "a15fd225d255c7e2bc5b02d2f66a6b3d40e04e246e083be8f32ddf48a18c638a",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_original_live_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_original_pixels_match",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RRG26.mode-selection-static",
+      "kind": "static",
+      "scope": "Hash-checked selected original mode2 stores/update mode selection and unchanged draw-wrapper forwarding. Static instructions only; no complete method/providers/lifetimes or arithmetic port claim.",
+      "record": "research/runtime/rendering-remaining-results-20261026/colour-mode-static-02.json",
+      "sha256": "dd59fcbc2040671f283a95d0482f428e938dc1b96fdce47e737331a6e6805da7",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/static_only",
+          "equals": true
+        },
+        {
+          "pointer": "/live_reachability_proved",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RRG26.natural-history-gap",
+      "kind": "static",
+      "scope": "Exact new negative native-zero/live boundary:one pixel per frame at548,433; original diagnostic first-frame terrain clear then wave backend9 propagation. Not original-writer provenance or complete native history.",
+      "record": "research/runtime/rendering-remaining-results-20261026/natural-history-review-01.json",
+      "sha256": "cf14518a361d4341e0ba8b59701c0c398355904dced613456b86135fecd270cb",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/comparisons/native_owned_zero_live",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RRG26.failed-rgb555-configure",
+      "kind": "static",
+      "scope": "Retained failed setup/acquisition/comparison attempt; no engine acceptance or retrospective success.",
+      "record": "research/runtime/rendering-remaining-results-20261026/rgb555-software-01.json",
+      "sha256": "1a20614d92748104bb4927c57f34ad8c62240cefb67039e9b6135a7b08587b4a",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RRG26.failed-rgb555-reference-build",
+      "kind": "static",
+      "scope": "Retained failed setup/acquisition/comparison attempt; no engine acceptance or retrospective success.",
+      "record": "research/runtime/rendering-remaining-results-20261026/rgb555-software-02.json",
+      "sha256": "1912deaaa2089b889762ddf9a0ca147a2fe448e955b08ff7f60c26bfaac9aecc",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RRG26.failed-static-setup",
+      "kind": "static",
+      "scope": "Retained failed setup/acquisition/comparison attempt; no engine acceptance or retrospective success.",
+      "record": "research/runtime/rendering-remaining-results-20261026/colour-mode-static-01.json",
+      "sha256": "a74da39b57bba27c8e266fd8a9f2a9e4291de54a440f98d807543262198ac366",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RRG26.failed-natural-asset-view",
+      "kind": "static",
+      "scope": "Retained failed setup/acquisition/comparison attempt; no engine acceptance or retrospective success.",
+      "record": "research/runtime/rendering-remaining-results-20261026/natural-late-comparison-01.json",
+      "sha256": "2e4405406ad56b30c12c7175474a259261bb47a5f7997d3e2e32689dd6755dea",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RRG26.failed-late-short",
+      "kind": "static",
+      "scope": "Retained failed setup/acquisition/comparison attempt; no engine acceptance or retrospective success.",
+      "record": "research/runtime/rendering-remaining-results-20261026/natural-late-03-original.json",
+      "sha256": "012f42c459987ea0c92f702d3025421730b17fa7e0421b357d17058054dfe719",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RRG26.raw-retention",
+      "kind": "static",
+      "scope": "Exact successful/failed execution capsule SQLite round-trip;2657unique members plus verified duplicate/fixture aliases. Storage provenance only,no engine credit.",
+      "record": "research/runtime/rendering-remaining-results-20261026/raw-catalog-01-review.json",
+      "sha256": "3e8b0f8aeada169dc89b4b65e198e87eacca53b39022ff61369421164d905a92",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RRG26.source-variants",
+      "kind": "static",
+      "scope": "706exact source versions verified against Git base,current incremental source or preserved SHA256-reconstructed intermediate variants. Provenance only,no new execution.",
+      "record": "research/runtime/rendering-remaining-results-20261026/source-variants-01-review.json",
+      "sha256": "928c68a17c466cdfa8dcede860e38c22e69b5e069b00013d0f0aa6818df62b6c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RRG26.initializer-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Execute unchanged original547950 initializer in eighteen owned cases/both formats;mode2,extents,canonical channels,null plane and returned object identity. Supports the pinned selected-range exception only; no native port,upstream update,whole object lifecycle or game reachability.",
+      "record": "research/runtime/rendering-remaining-results-20261026/initializer-original-01.json",
+      "sha256": "602574e943e6417ee9a259d762395c57b91d9705922dea0ad77ecd890d9e2f76",
+      "original_hash_pointer": "/original_sha256",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_execution/cases",
+          "equals": 18
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RRG27.merge-rgb555-software-original",
+      "kind": "isolated_original",
+      "scope": "Fresh merged-source unchanged original547d80/native comparison:128 authored colour-only RGB555/RGB565 World fixtures,31587776 cached/uncached pixel comparisons,640 refusals and public offline555 preview. software context. Original manifests pass before/after. No fresh live game, physical presentation, RGB555 sprites/effects or replacement acceptance.",
+      "record": "research/runtime/rendering-remaining-results-20261026/merge-rgb555-software-20261027-01.json",
+      "sha256": "da9c1de9c30b40f1cd9b4c067e43eee36b33ab1e508e9af451bf386a2ea523c1",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/native_controls/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RRG27.merge-rgb555-software-native",
+      "kind": "native_integration",
+      "scope": "Fresh merged-source unchanged original547d80/native comparison:128 authored colour-only RGB555/RGB565 World fixtures,31587776 cached/uncached pixel comparisons,640 refusals and public offline555 preview. software context. Original manifests pass before/after. No fresh live game, physical presentation, RGB555 sprites/effects or replacement acceptance.",
+      "record": "research/runtime/rendering-remaining-results-20261026/merge-rgb555-software-20261027-01.json",
+      "sha256": "da9c1de9c30b40f1cd9b4c067e43eee36b33ab1e508e9af451bf386a2ea523c1",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/native_controls/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_integration",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RRG27.merge-rgb555-hardware-original",
+      "kind": "isolated_original",
+      "scope": "Fresh merged-source unchanged original547d80/native comparison:128 authored colour-only RGB555/RGB565 World fixtures,31587776 cached/uncached pixel comparisons,640 refusals and public offline555 preview. hardware context. Original manifests pass before/after. No fresh live game, physical presentation, RGB555 sprites/effects or replacement acceptance.",
+      "record": "research/runtime/rendering-remaining-results-20261026/merge-rgb555-hardware-20261027-01.json",
+      "sha256": "80d47a238ed89fc9c020f5997900e866410c04aca5730b178c02be3c4d39defa",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/native_controls/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/hardware_context/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_context/software_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_context/verified",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RRG27.merge-rgb555-hardware-native",
+      "kind": "native_integration",
+      "scope": "Fresh merged-source unchanged original547d80/native comparison:128 authored colour-only RGB555/RGB565 World fixtures,31587776 cached/uncached pixel comparisons,640 refusals and public offline555 preview. hardware context. Original manifests pass before/after. No fresh live game, physical presentation, RGB555 sprites/effects or replacement acceptance.",
+      "record": "research/runtime/rendering-remaining-results-20261026/merge-rgb555-hardware-20261027-01.json",
+      "sha256": "80d47a238ed89fc9c020f5997900e866410c04aca5730b178c02be3c4d39defa",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/native_controls/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/hardware_context/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_context/software_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/native_integration",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_context/verified",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RRG27.merge-rgb555-raw",
+      "kind": "static",
+      "record": "research/runtime/rendering-remaining-results-20261026/merge-rgb555-raw-catalog-20261027-03.json",
+      "sha256": "11685ebc902a9900071e7a13b7758944864e898ed231366f0f9e48afef184100",
+      "scope": "Exact inputs, outputs, logs, selected binaries and CMake caches for the two fresh merged-source colour runs;1316 files. Complete SQLite/tar round-trip checks preserve every size, SHA256 and mode. Storage evidence only; no additional engine milestone.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sqlite_round_trip_verified",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "PLAYEROPEN27.controls03",
+      "kind": "native_integration",
+      "scope": "Current source-bound actual Qt resize/DPI, four process/session destructor fixtures, ASan/UBSan, full-shell deadline without SIGSEGV, existing hard-restart and five actual PE32 invalid-copy geometry/no-write controls. No original game, driver comparison or natural branch credit.",
+      "record": "research/runtime/player-open-items-results-20261027/controls03.json",
+      "sha256": "a49b1cc891f2ea511b666dfc2ea6b00be3606055e99d8ef8b6c92157c6c38257",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_source_target_words_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/zero_native_facade_owners",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "PLAYEROPEN27.storage01",
+      "kind": "live_equivalence",
+      "scope": "Read-only verified join of the fresh actual public native Save/Load/display-rebuild/recreate acceptance, cursor retirement and independent whole-COPY closure. The historical two refusal causes are not retroactively attributed; no natural self/keyed GPU-positive or original-driver pixel claim.",
+      "record": "research/runtime/player-open-items-results-20261027/storage01-acceptance.json",
+      "sha256": "4888dff3183d6e0146c26660dc1538e35bc02a782596c77d39ad3aa5bbeabdd7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/copy_output/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/failed_copy_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/unprepared_copy_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "PLAYEROPEN27.gpu-plan04",
+      "kind": "native_integration",
+      "scope": "Current supplied actual PE32 production facade/bridge and independent native GL replay:23GPU clipping/key/self/alias/empty/partial-error cases, command guards, legacy baseline/restore and two renderer compatibility controls. No actual original caller or natural-game branch credit.",
+      "record": "research/runtime/player-open-items-results-20261027/gpu-plan04.json",
+      "sha256": "b7ee13b1f49a70e2e0fc8832acdf994e1d36b8cf244e178df10481373f616184",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "PLAYERMERGE27.controls02",
+      "kind": "native_integration",
+      "scope": "Fresh combined-master supplied Qt, ASan/UBSan, full-shell deadline and PE32 refused-copy controls. Prospective implementation and scenario bindings; no original-game or natural-caller credit.",
+      "record": "research/runtime/player-open-items-merge-results-20261027/controls02.json",
+      "sha256": "fb19942a83462f39cdea651b38b2d129480716a63c2c830120ef943c3a368c96",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_source_target_words_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/zero_native_facade_owners",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "PLAYERMERGE27.storage01",
+      "kind": "live_equivalence",
+      "scope": "Fresh combined-master public native Save/Load, two display rebuilds and Main Load into a recreated World, normal Quit, cursor/graphics retirement and independent successful emitted COPY output checks. Two refused application calls prevent whole-COPY closure. No original-driver pixel comparison or positive natural self/keyed GPU caller credit.",
+      "record": "research/runtime/player-open-items-merge-results-20261027/storage01-acceptance.json",
+      "sha256": "5c89666979fe99eca74aeac8fa9ff49a48491bcab1aa0b994099ca085096e024",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/native_lifetime_contract_verified",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_entrypoint",
+          "equals": true
+        },
+        {
+          "pointer": "/native_lifetime_contract_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_driver_lifetime_replaced",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/active_clients",
+          "equals": 0
+        },
+        {
+          "pointer": "/cursor/pending_jobs",
+          "equals": 0
+        },
+        {
+          "pointer": "/copy_output/successful_emitted_outputs_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "PLAYERHANDOFF27.controls01",
+      "kind": "native_integration",
+      "scope": "Fresh final combined-source seven Qt cases, four ASan/UBSan destructor cases, full-shell staging exit and five PE32 refused-copy/no-write controls. No original game, original-driver or natural caller credit.",
+      "record": "research/runtime/player-open-items-handoff-results-20261027/controls01.json",
+      "sha256": "83c06c359571a6f96cdeac1aaf7650a1d59c260710a78ff789857b9c3849ecfe",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_source_target_words_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/zero_native_facade_owners",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ADAPTER27.latest-master-identity",
+      "kind": "static",
+      "record": "research/runtime/native-adapter-master-results-20261027/latest-sync01.json",
+      "sha256": "fa7ebfa711808ef6d0c3639df4b8ea8409c9b3c9195db46f841d310e3de5bea8",
+      "scope": "Combine the checked native adapter optimizations with master palette, RGB555/color diagnostics and player lifetime repairs. Exact current complete CPU/GPU/launcher control source and claim identities; independent engine stages unchanged. Current gameplay latency, whole-driver pixel equivalence and live replacement remain pending.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ADAPTER27.cpu-latest-controls",
+      "kind": "native_integration",
+      "record": "research/runtime/native-adapter-master-results-20261027/cpu-controls05.json",
+      "sha256": "f19fa088fd8bf81ee920b873d5fdfdf2eead91ea08602e5346319840cd98b5b9",
+      "scope": "CPU clipping/fill preparation and command replay; supplied inputs, no original EXE or live replacement.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ADAPTER27.gpu-latest-controls",
+      "kind": "native_integration",
+      "record": "research/runtime/native-adapter-master-results-20261027/gpu-controls05.json",
+      "sha256": "60324a20862f5b1cfdebc081f34932da585512e2ac03ef14e6b88ac4c0e928f6",
+      "scope": "Owned facade/production bridge clipping and immutable GPU alias-copy controls.; supplied inputs, no original EXE or live replacement.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ADAPTER27.launcher-latest-controls",
+      "kind": "native_integration",
+      "record": "research/runtime/native-adapter-master-results-20261027/launcher-controls05.json",
+      "sha256": "461dc1f35c4593dc2d27e09d3a4435bac1910cec21c9e13289bd48b1321bd9f0",
+      "scope": "In-memory launch orchestration and actual Bash entrypoint routing. Filesystem initialization, Wine and native-owner execution are mocked.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -387236,7 +388843,9 @@
         "tools/test-actor-profile-palette.py"
       ],
       "evidence": [
-        "PP1.providers.headless-20261022"
+        "PP1.providers.headless-20261022",
+        "PALETTE.providers-current-original-20261026",
+        "PALETTE.providers-current-native-20261026"
       ]
     },
     {
@@ -388337,7 +389946,9 @@
         "CCF25.world-native",
         "RCL26.world-native",
         "RBI26.master-colour-world-native",
-        "RBI26.integrated-colour-world-native"
+        "RBI26.integrated-colour-world-native",
+        "RRG26.colour-hardware-original",
+        "RRG26.colour-hardware-native"
       ]
     },
     {
@@ -388389,7 +390000,9 @@
         "RBI26.master-busy-original",
         "RBI26.master-busy-native",
         "RBI26.integrated-busy-original",
-        "RBI26.integrated-busy-native"
+        "RBI26.integrated-busy-native",
+        "RRG26.busy-original",
+        "RRG26.busy-native"
       ],
       "tests": [
         "tools/compare-retained-world-frames.py",
@@ -388928,7 +390541,8 @@
         "TLDF26.player-controls",
         "TLDF26.master-controls",
         "ADAPTER27.launcher-controls",
-        "ADAPTER27.launcher-final-controls"
+        "ADAPTER27.launcher-final-controls",
+        "ADAPTER27.launcher-latest-controls"
       ]
     },
     {
@@ -388978,7 +390592,8 @@
       ],
       "evidence": [
         "NPL27.storage04",
-        "NPL27.storage05"
+        "NPL27.storage05",
+        "PLAYERMERGE27.storage01"
       ]
     },
     {
@@ -389090,6 +390705,120 @@
         "CAMERA.scene-frame-installed-20261026",
         "CAMERA-MASTER.native-20261027",
         "CAMERA-MASTER.sanitized-20261027"
+      ]
+    },
+    {
+      "id": "PALETTE.platform-delivery-20261026",
+      "scope": "Real Wine profile current-directory, file/default/empty/quoted/truncation returns; unchanged original modes0..9 on three installed-derived palettes, complete RGB555/RGB565 table/source comparison and owned RGB565 scene resource/software-GL pixels, failure rollback and retirement. Original service transcripts are replayed; this is not direct Win98/SEH, physical hardware or installed live-game equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "RE.palette-effect-builders",
+        "RE.palette-effect-modes",
+        "RE.palette-effect-chains",
+        "NR.scene-palette-effects"
+      ],
+      "tests": [
+        "tests/palette-profile-platform.c",
+        "tests/palette-platform-reference.cpp",
+        "tests/palette-platform-scene.cpp",
+        "tools/test-palette-effect-closure.py"
+      ],
+      "evidence": [
+        "PALETTE.closure-original-20261026",
+        "PALETTE.closure-native-20261026"
+      ]
+    },
+    {
+      "id": "world-rgb555-colour-input-20261026",
+      "level": "headless",
+      "scope": "Explicit RGB555 closed colour-only World input with independent original547d80 full-plane comparison, ordered copy/quarter/half modes, clipping and retained packed words. Software and NVIDIA contexts remain separate results. No original simulation, live transport or physical presentation.",
+      "behaviors": [
+        "NR.world-rgb555-colour-input"
+      ],
+      "tests": [
+        "tests/world-colour-555-test.cpp",
+        "tests/world-colour-555-reference.cpp",
+        "tools/test-world-colour-555.py"
+      ],
+      "evidence": [
+        "RRG26.rgb555-software-original",
+        "RRG26.rgb555-software-native",
+        "RRG26.rgb555-hardware-original",
+        "RRG26.rgb555-hardware-native",
+        "RRG27.merge-rgb555-software-original",
+        "RRG27.merge-rgb555-software-native",
+        "RRG27.merge-rgb555-hardware-original",
+        "RRG27.merge-rgb555-hardware-native"
+      ]
+    },
+    {
+      "id": "world-natural-colour-late-comparison-20261026",
+      "level": "headless",
+      "scope": "Eight finite stock map1/fifteen-item original-active World samples after600 queue calls at eight-call intervals, including actual2x2 colour modes1/2/3. Whole native owned-zero planes compare with independent unchanged original-zero and separate live/original-before diagnostics. Current acquisition sources required. No normal Quit, continuous presentation, original simulation replacement or hardware presentation.",
+      "behaviors": [
+        "RS.world-frame"
+      ],
+      "tests": [
+        "tools/compare-retained-world-frames.py",
+        "tests/world-frame-reference.cpp",
+        "compat/legacy/world_frame_main.cpp"
+      ],
+      "evidence": [
+        "RRG26.natural-original",
+        "RRG26.natural-native"
+      ]
+    },
+    {
+      "id": "PLAYEROPEN27.destruction-controls",
+      "level": "headless",
+      "scope": "Supplied active staging/launcher/process-tree/in-flight-stop destruction and current Qt normal restart; independent ASan/UBSan and full-shell deadline. No normal-Quit or historical-stack attribution.",
+      "behaviors": [
+        "NP.menu-session-destruction"
+      ],
+      "tests": [
+        "tests/menu-session-destruction-test.cpp",
+        "tests/qt-exit-during-staging.cpp",
+        "tests/game-hard-restart-test.cpp",
+        "tools/test-player-open-item-controls.py"
+      ],
+      "evidence": [
+        "PLAYEROPEN27.controls03",
+        "PLAYERMERGE27.controls02",
+        "PLAYERHANDOFF27.controls01"
+      ]
+    },
+    {
+      "id": "PLAYEROPEN27.input-resize",
+      "level": "headless",
+      "scope": "Supplied 800-to640 frame shrink without mouse movement, next targeted key, inactive release and growth, both DPI scales and prior client/desktop input admission.",
+      "behaviors": [
+        "NP.input-frame-resize-cursor"
+      ],
+      "tests": [
+        "tests/qt-input-test.cpp",
+        "tools/test-player-open-item-controls.py"
+      ],
+      "evidence": [
+        "PLAYEROPEN27.controls03",
+        "PLAYERMERGE27.controls02",
+        "PLAYERHANDOFF27.controls01"
+      ]
+    },
+    {
+      "id": "PLAYEROPEN27.copy-refusals",
+      "level": "headless",
+      "scope": "Supplied real PE32 owned-facade/bridge invalid Fast rectangles and full source/target WORD preservation; zero COPY intervals and zero final native facade owners.",
+      "behaviors": [
+        "NP.copy-refusal-argument-geometry"
+      ],
+      "tests": [
+        "tests/native-copy-refusal-probe.c",
+        "tools/test-player-open-item-controls.py"
+      ],
+      "evidence": [
+        "PLAYEROPEN27.controls03",
+        "PLAYERMERGE27.controls02",
+        "PLAYERHANDOFF27.controls01"
       ]
     }
   ],
@@ -390526,6 +392255,16 @@
       "evidence": "SP26.original",
       "anchors_pointer": "/original_entry_anchors",
       "scope": "Pinned local provider/failure caller reachable instructions and explicit external tail endpoints. Original execution within the declared supplied-platform and owned storage domain; preserve the historical function inventory gap."
+    },
+    {
+      "id": "colour-mode-initializer-547950",
+      "build": "nocd-40209ca7",
+      "start": 5536080,
+      "end": 5536138,
+      "document": "research/runtime/rendering-remaining-20261026.md",
+      "evidence": "RRG26.initializer-original",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Pinned original shape initializer instructions through ret20,absent from the existing function inventory;selected original execution only. Preserve the inventory gap and unknown upstream providers/lifetimes."
     }
   ],
   "register_imports": [
@@ -390898,7 +392637,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-0e4a45070416994a96f776ee6e582bfadd36c4fa11a4a1fedd6d446111c75890.json",
-    "sha256": "0e4a45070416994a96f776ee6e582bfadd36c4fa11a4a1fedd6d446111c75890"
+    "path": "research/runtime/coverage/source-index-663b61d2723ff59178b4e3e96fac51461edab24425bb0ffec73066ffd544c49b.json",
+    "sha256": "663b61d2723ff59178b4e3e96fac51461edab24425bb0ffec73066ffd544c49b"
   }
 }

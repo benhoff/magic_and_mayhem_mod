@@ -1,6 +1,8 @@
 #include "../compat/legacy/drawing_scene.hpp"
 #include "resource-fixtures.hpp"
 #include <QGuiApplication>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <algorithm>
 #include <iostream>
 using namespace mnm;
@@ -34,5 +36,11 @@ int main(int argc,char** argv)try{
   if(bad==4)for(unsigned n=0;n<12;++n)submit(c);
   rejected([&]{submit(c);});rejected([&]{scene.read();});
  }
- require(renderer.stats().surfaces==0,"World fixture leaked native surfaces");std::cout<<"{\"success\":true,\"cases\":"<<paths.size()<<",\"refusals\":5,\"remaining_surfaces\":0,\"original_oracles_read\":false}\n";return 0;
+ require(renderer.stats().surfaces==0,"World fixture leaked native surfaces");
+ const auto driver=renderer.driver();
+ const QJsonObject result{{"success",true},{"cases",int(paths.size())},{"refusals",5},
+  {"remaining_surfaces",0},{"original_oracles_read",false},
+  {"driver",QJsonObject{{"vendor",QString::fromStdString(driver.vendor)},
+   {"renderer",QString::fromStdString(driver.renderer)},{"version",QString::fromStdString(driver.version)}}}};
+ std::cout<<QJsonDocument(result).toJson(QJsonDocument::Compact).constData()<<'\n';return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

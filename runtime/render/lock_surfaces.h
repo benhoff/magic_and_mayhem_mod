@@ -260,6 +260,7 @@ static const char* game_fill_before(struct GameSurface* dst,void* destination,vo
     p->target_generation=dst->generation;p->epoch=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED);p->valid=1;p->fill=1;
     return "fill_ready";
 }
+#include "copy_fast_rectangle.h"
 static void game_blit_before(void* target,void* destination,void* source,void* rectangle,u32 flags,void* effects,u32 fast,u32 x,u32 y,struct GameBlit* p){
     zero(p,sizeof(*p));p->target=target;p->source=source;
     if(!game_surface_pixels_enter(target))return;
@@ -270,12 +271,20 @@ static void game_blit_before(void* target,void* destination,void* source,void* r
     if(!src || !dst || !src->pixels.data || (!dst->pixels.data && !dst->layout_known))goto done;
     struct Snapshot *a=&src->pixels,*b=&dst->pixels;
     sr.right=(i32)a->width;sr.bottom=(i32)a->height;dr.right=(i32)b->width;dr.bottom=(i32)b->height;shape=1;
+    /* Capture both argument rectangles before either geometric refusal. A
+     * rejected source used to leave a fabricated full-target rectangle; an
+     * oversized Fast x/y used to disappear entirely. Readability and refusal
+     * priority remain independent of this diagnostic capture. */
+    const int source_readable=!rectangle || readable(rectangle,16);
+    const int target_readable=fast || !destination || readable(destination,16);
+    if(rectangle && source_readable)copy(&sr,rectangle,16);
+    if(fast)game_copy_fast_rectangle((const i32*)&sr,x,y,(i32*)&dr);
+    else if(destination && target_readable)copy(&dr,destination,16);
     reason="blit_reject_source_rect";
-    if(rectangle){if(!readable(rectangle,16))goto done;copy(&sr,rectangle,16);}
+    if(!source_readable)goto done;
     if(((!src->gpu_history && !dst->clip) || fast) && !inside(&sr,a->width,a->height))goto done;
     reason="blit_reject_target_rect";
-    if(fast){if(x>b->width || y>b->height)goto done;dr.left=(i32)x;dr.top=(i32)y;dr.right=dr.left+sr.right-sr.left;dr.bottom=dr.top+sr.bottom-sr.top;}
-    else if(destination){if(!readable(destination,16))goto done;copy(&dr,destination,16);}
+    if(!target_readable || (fast && (x>b->width || y>b->height)))goto done;
     if(((!src->gpu_history && !dst->clip) || fast) && !inside(&dr,b->width,b->height))goto done;
     reason="blit_reject_self";if(src==dst && !src->gpu_history)goto done;
     reason="blit_reject_effects";if(effects)goto done;
