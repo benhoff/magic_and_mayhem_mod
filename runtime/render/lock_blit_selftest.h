@@ -69,6 +69,7 @@ static i32 lb_copy(void* object,void* destination,void* source,void* rectangle,u
     lb_entry();++lb_blits;if(lb_fail_next){lb_fail_next=0;return -1;}
     struct LbSurface *a=lb_state(source),*b=lb_state(object);if(a->held || b->held)ExitProcess(115);
     if(lb_mode("reentrant")){lb_seed(a);SetLastError(0x88);}
+    if(lb_mode("reentrant-target")){lb_seed(b);SetLastError(0x88);}
     struct LbRect r={0,0,(i32)a->width,(i32)a->height};if(rectangle)r=*(struct LbRect*)rectangle;
     i32 dx=(i32)x,dy=(i32)y;if(!fast && destination){dx=((struct LbRect*)destination)->left;dy=((struct LbRect*)destination)->top;}
     if(!fast && !destination)dx=dy=0;
@@ -153,11 +154,15 @@ static void test_lock_blits(void){
     if(lb_mode("unsupported")||lb_mode("reseed")){lb_draw(&b,source,0,0x4000000);if(lb_mode("reseed"))lb_seed(&b);}
     if(lb_mode("self"))lb_draw(&b,&b,0,0x1000000);
     lb_draw(target,source,keyed||lb_mode("destination-alias"),keyed?0x11:lb_mode("destination-alias")?0x10:0x1000000);
+    if(lb_mode("retire-source")){
+        SetLastError(0x77);if(((u32 (WIN *)(void*))table[2])(&a)!=0 || GetLastError()!=0x88)ExitProcess(142);
+        for(u32 i=0;i<sizeof(a.pixels);++i)a.pixels[i]=0xdd;
+    }
     u32 draw_count=1+(lb_mode("failed")||lb_mode("unsupported")||lb_mode("reseed")||lb_mode("self"));
     if(lb_mode("update")){lb_put(a.pixels,bytes,0x7ff);lb_seed(&a);lb_draw(&b,&a,1,0x10);++draw_count;}
     if(lb_mode("chain")||lb_mode("update")||lb_mode("rgb24")||lb_mode("rgb32")){lb_draw(&c,&b,1,0x10);++draw_count;}
     if(lb_mode("budget"))for(u32 i=0;i<17;++i){lb_draw(&c,&b,1,0x10);++draw_count;}
-    if(lb_blits!=draw_count || lb_queries!=(lb_mode("alias")||lb_mode("release")||lb_mode("alias-conflict")||lb_mode("destination-alias")) || lb_keys!=(keyed+(lb_mode("key-failed")||lb_mode("key-removed"))+lb_mode("alias-conflict")) || lb_clippers!=2u-lb_mode("created") || lb_creates!=(u32)lb_mode("created") || lb_releases!=(u32)lb_mode("release") || lb_locks!=3u-lb_mode("untracked")+lb_mode("reseed")+lb_mode("update")+lb_mode("reentrant") || lb_unlocks!=lb_locks)ExitProcess(127);
+    if(lb_blits!=draw_count || lb_queries!=(lb_mode("alias")||lb_mode("release")||lb_mode("alias-conflict")||lb_mode("destination-alias")) || lb_keys!=(keyed+(lb_mode("key-failed")||lb_mode("key-removed"))+lb_mode("alias-conflict")) || lb_clippers!=2u-lb_mode("created") || lb_creates!=(u32)lb_mode("created") || lb_releases!=(u32)(lb_mode("release")||lb_mode("retire-source")) || lb_locks!=3u-lb_mode("untracked")+lb_mode("reseed")+lb_mode("update")+lb_mode("reentrant")+lb_mode("reentrant-target") || lb_unlocks!=lb_locks)ExitProcess(127);
     struct LbSurface* expected=(lb_mode("chain")||lb_mode("update")||lb_mode("rgb24")||lb_mode("rgb32")||lb_mode("budget"))?&c:&b;
     HANDLE file=CreateFileA("expected.bin",0x40000000,1,0,1,0x80,0);u32 written=0,length=expected->width*expected->height*bytes;
     if(file==(HANDLE)-1 || !WriteFile(file,expected->pixels,length,&written,0) || written!=length)ExitProcess(128);CloseHandle(file);ExitProcess(0);

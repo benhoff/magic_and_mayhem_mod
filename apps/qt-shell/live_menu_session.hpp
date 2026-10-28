@@ -12,6 +12,7 @@
 class LiveMenuSession final : public QObject {
 public:
     explicit LiveMenuSession(QString repository,QObject* parent=nullptr);
+    ~LiveMenuSession() override;
     bool nativeCommandsEnabled=false;
     bool nativeOnlyEnabled=false;
     int launcherExitCode=-1;

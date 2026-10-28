@@ -25,15 +25,17 @@ def sha(path):
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
 
-def declaration(world):
+def declaration(world, scenario_id=SCENARIO):
     register = json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
     behavior = next(b for b in register['behaviors'] if b['id'] == 'RS.world-frame')
-    scenario = next(s for s in register['scenarios'] if s['id'] == SCENARIO)
+    scenario = next(s for s in register['scenarios'] if s['id'] == scenario_id)
+    if behavior['id'] not in scenario['behaviors'] or scenario['level'] != 'headless':
+        raise ValueError('Selected scenario does not declare the World headless comparison')
     builds = {b['id']: b for b in register['builds']}
     paths = (set(world.sources()) | required_sources(behavior) | set(scenario['tests'])
              | {'tools/coverage_evidence.py', 'tools/coverage_claims.py', 'tools/evidence_local.py'})
     claims = [{'behavior': behavior['id'], 'contract_sha256': behavior_contract(behavior, builds),
-               'scenarios': {SCENARIO: scenario_contract(scenario)}}]
+               'scenarios': {scenario_id: scenario_contract(scenario)}}]
     return claims, {p: sha(ROOT/p) for p in sorted(paths)}
 
 
@@ -41,6 +43,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for option in ('capture-report', 'capture-directory', 'build-dir', 'output-dir', 'report'):
         parser.add_argument('--'+option, type=Path, required=True)
+    parser.add_argument('--scenario',default=SCENARIO,help='Exact registered headless World comparison scope')
+    parser.add_argument('--current-capture',action='store_true',help='Require every acquisition source fingerprint to match current code')
     args = parser.parse_args()
     out = args.output_dir.resolve()
     out.mkdir(parents=True, exist_ok=False)
@@ -49,11 +53,12 @@ def main():
     spec = importlib.util.spec_from_file_location('world_frames', ROOT/'tools/test-world-frames.py')
     world = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(world)
-    claims, sources = declaration(world)
+    claims, sources = declaration(world,args.scenario)
     result = dict(schema=1, success=False, claims=claims, sources=sources, frames=[],
                   source_executable_sha256=world.BUILD_HASH,
-                  scope='Fresh finite native/isolated-original replay of immutable historical busy World inputs. '
-                        'Zero native initialization; separate original-before diagnostic. No fresh live hook, '
+                  current_source_capture_required=args.current_capture,
+                  scope='Fresh finite native/isolated-original replay of immutable captured World inputs. '
+                        'Zero native initialization; separate original-before diagnostic. No normal game journey, '
                         'normal Quit, continuous presentation, hardware or replacement acceptance.')
     (out/'prospective.json').write_text(json.dumps(result, indent=2)+'\n')
     env = dict(os.environ, QT_QPA_PLATFORM='xcb', LIBGL_ALWAYS_SOFTWARE='1')
@@ -79,6 +84,8 @@ def main():
         capture_bytes = read_bytes(args.capture_report, root=ROOT)
         capture = json.loads(capture_bytes)
         directory = args.capture_directory.resolve()
+        if not (directory/'game').is_dir():
+            raise ValueError('Capture game assets are retired or absent; restore its environment-game.sqlite3 before comparison')
         if (directory/'report.json').read_bytes() != capture_bytes:
             raise ValueError('Relocated report differs from retained capture')
         if not (capture['success'] and capture['sources_stable']
@@ -87,6 +94,8 @@ def main():
         result['capture_report_sha256'] = hashlib.sha256(capture_bytes).hexdigest()
         result['historical_capture_source_drift'] = [p for p, h in capture['sources'].items()
                                                    if not (ROOT/p).is_file() or sha(ROOT/p) != h]
+        if args.current_capture and result['historical_capture_source_drift']:
+            raise ValueError('Current acquisition sources changed after capture')
         pin(directory/'report.json')
         paths = sorted(directory/p for p in capture['world_frames'] if p.endswith('.bin'))
         if not 1 <= len(paths) <= 16 or len(paths) != capture['samples']:
@@ -146,7 +155,7 @@ def main():
             result['frames'].append(row)
             if row['native_zero_original_mismatches'] or row['diagnostic_original_live_mismatches']:
                 raise ValueError('Native arithmetic or original observation closure differs: '+path.stem)
-        if declaration(world) != (claims, sources) or any(sha(ROOT/p) != h for p, h in inputs.items()):
+        if declaration(world,args.scenario) != (claims, sources) or any(sha(ROOT/p) != h for p, h in inputs.items()):
             raise ValueError('Execution source, scope or retained input changed')
         result.update(success=True, sources_stable=True, inputs_stable=True, inputs=inputs,
                       samples_compared=len(paths), draws_compared=sum(f['draws'] for f in result['frames']),

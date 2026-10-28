@@ -45,7 +45,14 @@ void InputForwarder::modifiers(Qt::KeyboardModifiers modifiers,int key){
     for(unsigned i=0;i<3;++i){const unsigned vk=16+i;
         state_->key(vk,virtualKeys_.values().contains(vk) || (key!=qtKeys[i] && bool(modifiers&flags[i])));}
 }
+void InputForwarder::constrainPosition(){
+    const auto size=viewport_.frameSize();
+    if(size.isEmpty())return;
+    position_.setX(qBound(0,position_.x(),size.width()-1));
+    position_.setY(qBound(0,position_.y(),size.height()-1));
+}
 bool InputForwarder::send(uint8_t type,uint8_t detail,uint16_t mask){
+    constrainPosition();
     if(host_.sendInput(target_,type,detail,mask,position_,coordinateWindow_))return true;
     keys_.clear();buttons_.clear();virtualKeys_.clear();wheel_=0;target_=0;
     if(state_)state_->clear();
@@ -56,9 +63,9 @@ void InputForwarder::release(){
     for(auto key:keys)send(XCB_KEY_RELEASE,key,state({}));
     for(auto b:buttons){send(XCB_BUTTON_RELEASE,b,state({}));buttons_.remove(b);}
     keys_.clear();buttons_.clear();wheel_=0;
-    virtualKeys_.clear();if(state_){state_->clear();state_->publish(false,position_,viewport_.frameSize());}
+    virtualKeys_.clear();if(state_){constrainPosition();state_->clear();state_->publish(false,position_,viewport_.frameSize());}
 }
-void InputForwarder::heartbeat(){if(state_)state_->publish(!suspended_ && target_ && viewport_.hasFocus() && viewport_.isVisible(),position_,viewport_.frameSize());}
+void InputForwarder::heartbeat(){if(state_){constrainPosition();state_->publish(!suspended_ && target_ && viewport_.hasFocus() && viewport_.isVisible(),position_,viewport_.frameSize());}}
 bool InputForwarder::eventFilter(QObject* object,QEvent* event){
     if(object!=&viewport_)return false;
     if(event->type()==QEvent::FocusOut || event->type()==QEvent::Hide || event->type()==QEvent::WindowDeactivate){release();return false;}

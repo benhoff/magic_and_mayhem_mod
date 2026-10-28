@@ -31,15 +31,15 @@ __declspec(dllexport) i32 WIN RenderRequireCpuHistoryV1(void* object,const void*
  struct Snapshot result,pending;
  if(!game_surface_blank(&pending,&lock->base))goto reject;
  if(!game_surface_blank(&result,&lock->base)){
-  __atomic_sub_fetch(&lock_capture_reserved,pending.length,__ATOMIC_RELAXED);free_snapshot(&pending);goto reject;
+  __atomic_sub_fetch(&lock_capture_reserved,pending.length,__ATOMIC_RELAXED);game_snapshot_free(&pending);goto reject;
  }
  u32 layout[4]={identity[0],identity[1],identity[2],identity[3]};
  if(game_native_cpu_lease_snapshot(object,layout,(u16*)pending.data,pending.length))game_cpu_read_refuse(10,object,0);
- u8* mask=game_cpu_lease_mask(lock,result.length);
+ u8* mask=game_cpu_lease_mask(lock,result.length,0);
  if(!mask){
   u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
   if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || result.length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved)game_cpu_read_refuse(17,object,0);
-  mask=HeapAlloc(GetProcessHeap(),8,result.length);if(!mask)game_cpu_read_refuse(18,object,0);
+  mask=game_buffer_allocate(8,result.length);if(!mask)game_cpu_read_refuse(18,object,0);
   __atomic_add_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);
  }
  if(lock->rectangle)for(u32 y=0;y<identity[2];++y)for(u32 x=0;x<identity[1];++x){
@@ -107,8 +107,8 @@ __declspec(dllexport) i32 WIN RenderRequireCpuHistoryV1(void* object,const void*
  if(!session_resident_unlock(surface,&result,&result,mask) ||
     game_native_cpu_lease_transfer(object,identity,(const u16*)result.data,result.length))game_cpu_read_refuse(14,object,0);
  copy(lock->base.data,result.data,result.length);
- __atomic_sub_fetch(&lock_capture_reserved,pending.length+result.length,__ATOMIC_RELAXED);free_snapshot(&pending);HeapFree(GetProcessHeap(),0,mask);
- __atomic_sub_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);free_snapshot(&result);
+ game_reserved_snapshot_free(&pending);game_reserved_buffer_free(mask,result.length);
+ __atomic_sub_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);game_snapshot_free(&result);
  /* Keep reader admission through any enclosing copy; its final leave clears
   * the marker after publication/current-byte work, before releasing ownership. */
  {u32 values[19]={ticket,surface_id,family,route,caller,identity[9]};lock_diagnostic_values("resident_lock_cpu_materialized",values);}

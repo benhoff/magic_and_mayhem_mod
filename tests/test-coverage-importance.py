@@ -92,10 +92,13 @@ class ImportanceTest(unittest.TestCase):
             'NP.alternate-canvas-owned-generation',
             'NP.alternate-canvas-padded-resident',
             'NP.alternate-canvas-resident-session',
+            'NP.copy-refusal-argument-geometry',
             'NP.cursor-live-ownership',
             'NP.cursor-owned-compositor',
             'NP.cursor-provider-lifetime',
             'NP.graphics-session-provider-retirement',
+            'NP.input-frame-resize-cursor',
+            'NP.menu-session-destruction',
             'NP.native-cpu-copy-plan',
             'NP.native-player-launch',
             'NP.natural-gpu-copy-caller-branches',
@@ -105,10 +108,13 @@ class ImportanceTest(unittest.TestCase):
             'NP.published-gpu-copy-call-proof',
             'NP.screen-owned-provider-recovery',
             'NP.surface-alias-lease-lifecycle',
+            'NP.surface-copy.owned-recovery',
             'NP.windowed-copy-reader-frontier',
             'NP.windowed-quick-copy-callers',
             'NP.world-black-caller-continuations',
+            'NR.scene-frame-camera',
             'NR.world-constant-fill',
+            'NR.world-rgb555-colour-input',
             'RE.terrain-single-cell-captured-cycle',
             'RE.terrain-single-cell-global-storage',
             'RS.alternate-canvas-dispatch-composition',
@@ -139,7 +145,7 @@ class ImportanceTest(unittest.TestCase):
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
         # Selected terrain closeouts retain comparison and acceptance independently.
-        self.assertEqual(result['partial_counts'], {1: 1, 2: 1, 4: 4, 5: 4})
+        self.assertEqual(result['partial_counts'], {1: 1, 2: 1, 4: 3, 5: 4})
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'scoped')
@@ -515,8 +521,7 @@ class TrancheTest(unittest.TestCase):
         completed.update({'RE.terrain_creature_lighting', 'RE.terrain_constraints', 'RE.terrain_generation', 'RE.terrain_lighting', 'RE.terrain_solver', 'AN.world-facing', 'RE.terrain_generated', 'RE.terrain_specific', 'RE.terrain_traversal'})  # N23 bounded native services
         completed.add('RS.shadow-linear-stride')  # bounded implementation in97c3f5b2
         completed.update({'NR.world_scene', 'NR.terrain_scene', 'NR.wine-private-backing-ownership'})  # implementation in4cd9121f
-        unplanned = {'RE.palette-effect-builders', 'RE.terrain-camera-lifecycle',
-                     'RE.terrain-entity-section-rotation', 'RE.terrain-spectator-lighting'}
+        unplanned = {'RE.terrain-camera-lifecycle', 'RE.terrain-entity-section-rotation', 'RE.terrain-spectator-lighting'}
         self.assertEqual({t['behavior'] for t in tasks} | unplanned,
                          expected | completed | {'RS.displacement-final-word-read'})
         self.assertEqual({t['behavior'] for t in tasks if t['implementation'] == 'scoped'}, completed | {'RS.displacement-final-word-read'})
@@ -571,8 +576,10 @@ class TrancheTest(unittest.TestCase):
             'NP.surface-bitmap.indexed-recovery',
         }
         self.assertTrue(surface_components.issubset(scoped_high))
-        self.assertEqual(len(scoped_high), 72 + len(completed) + len(recovered_suppliers)
-                         + len(merged_high) + len(surface_components))
+        palette_aggregate = {'RE.palette-effect-builders'}
+        self.assertTrue(palette_aggregate.issubset(scoped_high))
+        self.assertEqual(len(scoped_high), (72 + len(completed) + len(recovered_suppliers)
+                         + len(merged_high) + len(surface_components) + len(palette_aggregate)))
         for task in tasks:
             execution = task.get('execution_result')
             if execution:
@@ -699,9 +706,7 @@ class TrancheTest(unittest.TestCase):
         next(b for b in r['behaviors'] if b['id'] == 'NP.native-clipped-image-copy')['status']['implementation'] = 'partial'
         plan = importance_view(self.catalog, r, self.tracks)['high_tranche_plan']
         self.assertEqual(plan['selected_count'], 51)
-        self.assertEqual(set(plan['unplanned_high']), {'NP.native-clipped-image-copy',
-                         'RE.palette-effect-builders', 'RE.terrain-camera-lifecycle',
-                         'RE.terrain-entity-section-rotation', 'RE.terrain-spectator-lighting'})
+        self.assertEqual(set(plan['unplanned_high']), {'NP.native-clipped-image-copy', 'RE.terrain-camera-lifecycle', 'RE.terrain-entity-section-rotation', 'RE.terrain-spectator-lighting'})
 
     def test_high_scope_status_weight_and_source_drift_require_review(self):
         for case in ['scope', 'status', 'weight', 'source']:

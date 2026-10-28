@@ -130,3 +130,11 @@ still identifies nine pending actor cases and fifteen callback implementation
 leads. The currently staged colour/palette batch in the main checkout remains
 outside this merge. No camera result closes original actor World cadence or
 shared raw-store callback/resource integration.
+
+## Final master integration, 2026-10-27
+
+The final actor integration merges actual master `29a14068f3a53a48753a8849e8eca5768af4d758`, preserving its palette aggregate, scoped RGB555 colour admission, player lifetime repairs and native adapter changes. Production sources match that parent exactly; this batch adds actor dependency accounting and its guards. The [latest history review](actor-installed-dependency-results-20261027/latest-history-reviewed01.json) accounts for incoming parent/current transitions with pending retrospective receipts where needed; it grants neither past gate success nor fresh engine execution. Historical payload hashes and independent validation stages remain intact.
+
+The [final static inventory](actor-installed-dependency-results-20261027/cases-final-master01.json) still identifies nine required installed-world cases, fifteen selected callbacks with component leads, 275 historical routes, 112 endpoint specifications and 36 unique historical indirect sites. These cases remain pending. Four actor dependency guards pass on the combined tree; the new coverage audit and exact staged gate check bookkeeping and source links rather than whole-session equivalence.
+
+The final incoming range contains twelve commits and 8311 parent/current transitions. Sixteen pending retrospective receipts retain 598 previously unreceipted exact hash pairs, including raw-artifact transitions. The reviewed report records zero unresolved receipt gaps; retrospective receipts add no engine validation.

@@ -9,6 +9,8 @@ API u32 WIN SetEvent(HANDLE);
 API u32 WIN WaitForSingleObject(HANDLE,u32);
 API u32 WIN GetCurrentThreadId(void);
 API u32 WIN SetPixel(void*,i32,i32,u32);
+API int WIN QueryPerformanceCounter(void*);
+API int WIN QueryPerformanceFrequency(void*);
 typedef i32(WIN* Create)(void*,void**,void*);
 typedef i32(WIN* Query)(void*,const u8*,void**);
 typedef u32(WIN* Ref)(void*);
@@ -99,11 +101,95 @@ static void capacity_and_identity(void){
  for(u32 i=0;i<512;++i)need(!unpin(pins[i]),53);
  need(live(p)==0 && !surfaces(),54);++cases;
 }
+__attribute__((used,aligned(16))) static u8 guard_saved[512],guard_before[512],guard_after[512];
+__attribute__((used,aligned(16))) static u32 guard_seed[4]={0x12345678,0xabcdef01,0x87654321,0x10fedcba};
+__attribute__((used)) static Count guard_begin;
+__attribute__((used)) static void(WIN*guard_end)(void);
+__attribute__((used)) static u32 guard_mxcsr=0x5f80;
+__attribute__((naked)) static void guard_state_calls(void){__asm__ volatile(
+ "pushal;fxsave _guard_saved;fninit;fld1;fldz;ldmxcsr _guard_mxcsr;"
+ "movdqu _guard_seed,%xmm0;movdqu _guard_seed,%xmm1;movdqu _guard_seed,%xmm2;movdqu _guard_seed,%xmm3;"
+ "movdqu _guard_seed,%xmm4;movdqu _guard_seed,%xmm5;movdqu _guard_seed,%xmm6;movdqu _guard_seed,%xmm7;"
+ "fxsave _guard_before;calll *_guard_begin;calll *_guard_begin;calll *_guard_end;calll *_guard_end;"
+ "fxsave _guard_after;fxrstor _guard_saved;popal;retl;");}
+static void guard_state(void* module){
+ guard_begin=(Count)GetProcAddress(module,"NativeDrawGuardBeginV1");guard_end=(void(WIN*)(void))GetProcAddress(module,"NativeDrawGuardEndV1");
+ need(guard_begin && guard_end,90);SetLastError(0x13579bdf);guard_state_calls();need(GetLastError()==0x13579bdf,91);
+ for(u32 i=0;i<288;++i){
+  if(i==5 || i==14 || i==15 || i==22 || i==23)continue;
+  if(i>=32 && i<160){u32 reg=(i-32)/16,byte=(i-32)%16,top=(guard_before[3]>>3)&7;
+   if(byte>=10 || !(guard_before[4]&(1u<<((reg+top)&7))))continue;}
+  need(guard_after[i]==guard_before[i],92);
+ }
+ ++cases;
+}
+static void nested_retirement(void* module){
+ Count begin=(Count)GetProcAddress(module,"NativeDrawGuardBeginV1");
+ void(WIN*end)(void)=(void(WIN*)(void))GetProcAddress(module,"NativeDrawGuardEndV1");
+ need(begin&&end,60);
+ void* p=surface(0);need(begin()&&begin(),61);need(!((Ref)vt(p)[2])(p)&&live(p)==1,62);
+ end();need(live(p)==1,63);end();need(live(p)==0&&!surfaces(),64);++cases;
+ /* A pending candidate can gain a public credit before the outer exit. */
+ p=surface(0);need(begin(),65);need(!((Ref)vt(p)[2])(p),66);need(((Ref)vt(p)[1])(p)==1,67);
+ end();need(live(p)==1,68);need(!((Ref)vt(p)[2])(p)&&live(p)==0&&!surfaces(),69);++cases;
+}
+static void attached_retirement(void){
+ need(!((i32(WIN*)(void*,void*,u32))vt(device)[20])(device,0,8),70);
+ for(u32 held=0;held<3;++held){
+  u32 d[31]={108,0x21};d[5]=1;d[26]=0x218;void *front=0,*back=0,*dc=0;
+  need(!((i32(WIN*)(void*,u32*,void**,void*))vt(device)[6])(device,d,&front,0),71);
+  u32 caps[4]={4};need(!((i32(WIN*)(void*,u32*,void**))vt(front)[12])(front,caps,&back),72);
+  if(!held){
+   /* Drop the external back credit; destroying front must drain its child. */
+   need(((Ref)vt(back)[2])(back)==1,73);need(!((Ref)vt(front)[2])(front),74);
+   need(live(front)==0&&live(back)==0&&!surfaces(),75);
+  }else{
+   if(held==1){d[0]=108;need(!((Lock)vt(front)[25])(front,0,d,1,0),76);}
+   else need(!((i32(WIN*)(void*,void**))vt(front)[17])(front,&dc)&&dc,77);
+   need(!((Ref)vt(front)[2])(front)&&live(front)==1,78);
+   need(!((i32(WIN*)(void*,void*,u32))vt(front)[11])(front,0,1),79);
+   if(held==1){
+    /* The Lock moves to back, making the zero-credit front eligible. */
+    need(live(front)==0&&live(back)==1&&surfaces()==1,80);
+    need(!((Unlock)vt(back)[32])(back,(void*)d[9]),81);
+   }else{
+    /* The logical DC still owns front. Restore its physical lease first. */
+    need(live(front)==1&&surfaces()==2,82);
+    need(((i32(WIN*)(void*,void*))vt(front)[26])(front,dc)<0,83);
+    need(((i32(WIN*)(void*,void*,u32))vt(front)[11])(front,0,1)<0,84);
+    need(!((i32(WIN*)(void*,void*))vt(front)[26])(front,dc),85);
+    need(live(front)==0&&live(back)==1&&!dcs(),86);
+   }
+   need(!((Ref)vt(back)[2])(back)&&live(back)==0&&!surfaces(),87);
+  }
+  ++cases;
+ }
+}
+static void scan_cost(void){
+ /* Keep the queried object at the list head: this isolates guard exit from
+  * the separate alias lookup. No timing threshold is a correctness claim. */
+ u32 result[26]={1,20000,64,512};need(QueryPerformanceFrequency(result+4),90);
+ for(u32 size=0;size<2;++size){
+  void* objects[512];u32 count=size?512:64;
+  for(u32 i=0;i<count;++i)objects[i]=surface(0);
+  void* target=objects[count-1];u32 caps[4];
+  for(u32 repeat=0;repeat<5;++repeat){
+   unsigned long long start=0,stop=0;need(QueryPerformanceCounter(&start),91);
+   for(u32 i=0;i<20000;++i)if(((i32(WIN*)(void*,u32*))vt(target)[14])(target,caps)||caps[0]!=0x840)ExitProcess(92);
+   need(QueryPerformanceCounter(&stop)&&stop>=start,93);
+   unsigned long long ticks=stop-start;u32 at=6+size*10+repeat*2;result[at]=(u32)ticks;result[at+1]=(u32)(ticks>>32);
+  }
+  for(u32 i=0;i<count;++i)need(!((Ref)vt(objects[i])[2])(objects[i]),94);
+  need(!surfaces(),95);
+ }
+ u32 done=0;HANDLE f=CreateFileA("provider-scan-cost.bin",0x40000000,1,0,1,0x80,0);
+ need(f!=(HANDLE)-1&&WriteFile(f,result,sizeof(result),&done,0)&&done==sizeof(result),96);CloseHandle(f);
+}
 void start(void){
  void* module=LoadLibraryA("MnmDraw.dll");need(module!=0 && !GetModuleHandleA("ddraw.dll"),2);
  create=(Create)GetProcAddress(module,"NativeDrawCreate");pin=(Pin)GetProcAddress(module,"NativeDrawPinV1");unpin=(Unpin)GetProcAddress(module,"NativeDrawUnpinV1");live=(Live)GetProcAddress(module,"NativeDrawBackingLiveV1");surfaces=(Count)GetProcAddress(module,"NativeDrawSurfaces");devices=(Count)GetProcAddress(module,"NativeDrawObjects");dcs=(Count)GetProcAddress(module,"NativeDrawDCs");
  need(create&&pin&&unpin&&live&&surfaces&&devices&&dcs,3);need(!create(0,&device,0),4);
- pinned_pairs();writer_lifetime();concurrent_lifetime();capacity_and_identity();
+ pinned_pairs();writer_lifetime();concurrent_lifetime();capacity_and_identity();guard_state(module);nested_retirement(module);attached_retirement();scan_cost();
  need(((Ref)vt(device)[2])(device)==0 && !surfaces() && !devices() && !dcs(),5);
  u32 result[8]={1,checks,planes,cases,1600,16,8,512},done=0;HANDLE f=CreateFileA("provider-lifetime.bin",0x40000000,1,0,1,0x80,0);
  need(f!=(HANDLE)-1 && WriteFile(f,result,sizeof(result),&done,0) && done==sizeof(result),6);CloseHandle(f);ExitProcess(0);

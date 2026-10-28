@@ -27,10 +27,10 @@ static int ns_dc_plain(void* dc){
 static void ns_dc_drop(struct NsState* s){
  /* The cached DC belongs to this logical object; its physical lease may have
   * moved to another object, including a retained attached back surface. */
- for(struct NsState* p=ns_owned;p;p=p->next_owned)if(p->storage_dc==s){p->storage_dc=0;if(p->locked>0)--p->locked;ns_guard_refresh(p);}
+ for(struct NsState* p=ns_owned;p;p=p->next_owned)if(p->storage_dc==s){p->storage_dc=0;if(p->locked>0)--p->locked;ns_guard_refresh(p);ns_lifetime_changed(p);}
  if(s->dc){for(u32 i=0;i<128;++i)if(ns_dc_owners[i]==s)ns_dc_owners[i]=0;
   SelectObject(s->dc,s->old_bitmap);DeleteObject(s->bitmap);DeleteDC(s->dc);--ns_dcs;}
- s->dc=s->bitmap=s->old_bitmap=s->dc_bits=0;s->dc_owner=0;ns_guard_refresh(s);nd_status();
+ s->dc=s->bitmap=s->old_bitmap=s->dc_bits=0;s->dc_owner=0;ns_guard_refresh(s);ns_lifetime_changed(s);nd_status();
 }
 static i32 WIN ns_get_dc(struct NsObject* o,void** out){
  if(!out)return ND_INVALID;struct NsState* s=o->state;
