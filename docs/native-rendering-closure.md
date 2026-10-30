@@ -12,6 +12,12 @@ operation/failure requirements. Its `completion_contract` section supplies the
 versioned configurations, completion gates, supplier rules and unresolved scope
 decisions. Existing historical execution reports and hashes are unchanged.
 
+The [required gap register](../research/runtime/rendering-required-gaps-20261030.md)
+and the map's `required_gap_register` section assess every journey subrequirement,
+operation and gate against that baseline. They preserve evidence leads, eight
+conditional scope decisions and unordered closing briefs; they grant no new
+acceptance or execution order.
+
 ## Fixed target
 
 The target retains original No-CD single-player simulation and permitted

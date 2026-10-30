@@ -229,18 +229,24 @@ def acquire(report):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--report', required=True)
-    parser.add_argument('--contract-only', action='store_true',
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--contract-only', action='store_true',
                         help='Review the completion contract and baseline bindings without original media or byte analysis')
+    mode.add_argument('--gaps-only', action='store_true',
+                      help='Review required gaps, evidence leads and unordered closing briefs without original media')
     parser.add_argument('--run-guards', action='store_true',
-                        help='With --contract-only, run isolated completion/admission/mocked-launcher guards')
+                        help='With --contract-only or --gaps-only, run isolated accounting/admission guards')
     args = parser.parse_args()
-    if args.run_guards and not args.contract_only:
-        parser.error('--run-guards requires --contract-only')
+    if args.run_guards and not (args.contract_only or args.gaps_only):
+        parser.error('--run-guards requires --contract-only or --gaps-only')
     target = ROOT/args.report
     require(not target.exists(), 'Refusing to overwrite a report')
-    if args.contract_only:
+    if args.contract_only or args.gaps_only:
         from evidence_local import local_evidence
-        from rendering_completion import review
+        if args.gaps_only:
+            from rendering_gaps import review
+        else:
+            from rendering_completion import review
         require(target.resolve().is_relative_to(ROOT/'research/runtime') and target.suffix == '.json',
                 'Contract review requires a new .json reference under research/runtime')
         with local_evidence(ROOT):
@@ -248,6 +254,8 @@ def main():
         if args.run_guards:
             tests = ['tests/test-rendering-completion.py', 'tests/test-native-only-contract.py',
                      'tests/test-native-player-launcher.py']
+            if args.gaps_only:
+                tests.insert(0, 'tests/test-rendering-gaps.py')
             result['sources'].update({p: evidence_digest(ROOT/p, root=ROOT) for p in tests})
             result['guard_commands'] = []
             for path in tests:

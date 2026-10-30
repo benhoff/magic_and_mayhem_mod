@@ -24533,3 +24533,23 @@ guards pass with stable source fingerprints. The initial source phase remains
 immutable. Completion decisions stay pending; no original comparison, whole-player
 acceptance, integration or replacement promotion follows. Required-gap/task-graph
 and final acceptance artifacts remain separate.
+
+## Required rendering gap register — 2026-10-30
+
+The [artifact 3 review](rendering-required-gaps-20261030.md) adds a checked authored
+register bound to the immutable product baseline and completion-contract revision.
+All 14 journeys/47 subrequirements, 21 operations and ten gates retain an explicit
+assessment and closing brief. The 78 mandatory leaf/gate rows are missing adequate
+current complete proof, not 78 missing features or independent runs. No mandatory
+missing-code/integration finding is newly established. Thirty-six briefs remain
+unordered; dependency/priority selection belongs to artifact 4.
+
+Eight conditional scope decisions, two retained negative observations and one
+optional timing diagnostic retain their distinct classifications. The cursor
+refusals and late-history mismatch preserve original results/source phases,
+without asserting newly reproduced current defects. Native-copy, text/palette,
+player lifetime and recovery mechanisms remain existing evidence leads. Exact
+source-binding matches never imply whole-requirement acceptance. The gaps-only
+checker verifies leads and guards before any original-media/byte path; no game,
+GL, hardware execution or engine-stage promotion occurs. Artifact 5's executed
+acceptance and separate player/recovery decisions remain outstanding.
