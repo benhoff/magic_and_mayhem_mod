@@ -19845,7 +19845,8 @@
         "docs/native-rendering-closure.md",
         "docs/native-rendering-closure.json",
         "research/runtime/rendering-required-dependencies-20261024.md",
-        "docs/native-rendering-dependencies.json"
+        "docs/native-rendering-dependencies.json",
+        "research/runtime/rendering-reviewed-baseline-20261030.md"
       ],
       "implementation": [],
       "tests": [
@@ -19865,7 +19866,10 @@
         "WWORD.frozen-original-20261020",
         "K8EMPTY.word-original-20261020",
         "K8EMPTY.frozen-original-20261020",
-        "P1.required-rendering-dependencies-static-20261024"
+        "P1.required-rendering-dependencies-static-20261024",
+        "BASELINE30.inventory-648ce219",
+        "BASELINE30.review",
+        "BASELINE30.review-final"
       ],
       "status": {
         "understanding": "partial",
@@ -30207,7 +30211,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Reviewed rendering API and producer support report",
-      "scope": "Read-only reconciliation of all required surface matrix categories and inventoried drawing families with explicitly reviewed scoped code, original-executable versus standalone-driver subset comparisons, bounded World entry counts and actual bypass proof. Source/scope/scenario-bound current validation is suppressed on audit errors. Categories overlap and partial support never becomes full-category completion, effort or overall replacement. Synthetic reporter guard tests validate accounting semantics only; engine equivalence, adequacy of discovery/mappings and new live execution are outside scope. The frontier lists original address scopes, current behavior/scenario proof and explicit branch gaps; one current scenario cannot close another, and branch completeness remains unmeasured. Formal14-journey/21-operation acceptance is retained as a static inventory, separate from any new execution.",
+      "scope": "Read-only reconciliation of all required surface matrix categories and inventoried drawing families with explicitly reviewed scoped code, original-executable versus standalone-driver subset comparisons, bounded World entry counts and actual bypass proof. Source/scope/scenario-bound current validation is suppressed on audit errors. Categories overlap and partial support never becomes full-category completion, effort or overall replacement. Synthetic reporter guard tests validate accounting semantics only; engine equivalence, adequacy of discovery/mappings and new live execution are outside scope. The frontier lists original address scopes, current behavior/scenario proof and explicit branch gaps; one current scenario cannot close another, and branch completeness remains unmeasured. Formal14-journey/21-operation acceptance is retained as a static inventory, separate from any new execution. Revision-bound static baselines export committed data only, retain source/scenario proof and authored acceptance separately, record unavailable local readers, and cannot promote engine status or infer full-player acceptance.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -30222,18 +30226,22 @@
         "research/runtime/rendering-coverage-scope-colour-20261025.json",
         "research/runtime/colour-coverage-frontier-20261025.md",
         "research/runtime/rendering-closeout-20261026.md",
-        "research/runtime/rendering-coverage-scope-closeout-20261026.json"
+        "research/runtime/rendering-coverage-scope-closeout-20261026.json",
+        "research/runtime/rendering-reviewed-baseline-20261030.md"
       ],
       "implementation": [
         "tools/rendering_coverage.py",
         "tools/report-rendering-coverage.py",
         "tools/reconcile-rendering-dependencies.py",
         "tools/rendering_frontier.py",
-        "tools/audit-rendering-frontier.py"
+        "tools/audit-rendering-frontier.py",
+        "tools/rendering_baseline.py",
+        "tools/report-rendering-baseline.py"
       ],
       "tests": [
         "tests/test-rendering-coverage.py",
-        "tests/test-rendering-frontier.py"
+        "tests/test-rendering-frontier.py",
+        "tests/test-rendering-baseline.py"
       ],
       "validation_dependencies": [
         "research/runtime/native-surface-operation-matrix.json",
@@ -30256,7 +30264,14 @@
         "CCF25.frontier-controls-reviewed",
         "CCF25.frontier-reviewed",
         "RCL26.controls",
-        "RCL26.frontier-index"
+        "RCL26.frontier-index",
+        "BASELINE30.inventory-648ce219",
+        "BASELINE30.review",
+        "BASELINE30.guards",
+        "BASELINE30.failed-reader",
+        "BASELINE30.failed-export",
+        "BASELINE30.guards-final",
+        "BASELINE30.review-final"
       ],
       "status": {
         "understanding": "scoped",
@@ -361850,6 +361865,148 @@
           "equals": []
         }
       ]
+    },
+    {
+      "id": "BASELINE30.inventory-648ce219",
+      "kind": "static",
+      "scope": "Static reviewed rendering baseline at648ce219: supplied code, declared-source freshness, independent behavior/scenario proof and unchanged14journey/21operation requirements. No original/game/GL execution or complete renderer claim.",
+      "record": "research/runtime/rendering-reviewed-baseline-results-20261030/baseline-01.json",
+      "sha256": "fe3b3e8263f6d216a7e0fce4db45a200c9fdef4c9cd0f857d87dc1de264bd699",
+      "sources_pointer": "/producer_sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/subject/commit",
+          "equals": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7"
+        },
+        {
+          "pointer": "/static_review_only",
+          "equals": true
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        },
+        {
+          "pointer": "/overall_completion_percent",
+          "equals": null
+        }
+      ]
+    },
+    {
+      "id": "BASELINE30.review",
+      "kind": "static",
+      "scope": "Hash-verified read-only review of nine retained adapter/player/colour/palette/history records against the pinned baseline. Failures, source phases and acceptance limits stay separate.",
+      "record": "research/runtime/rendering-reviewed-baseline-results-20261030/review-01.json",
+      "sha256": "0ad751fc0446098ab221cb99788fc959fa5edee15aa532d27c8a6a950c61fe1b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/baseline_payload_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "BASELINE30.guards",
+      "kind": "static",
+      "scope": "Six baseline and ten existing frontier accounting guards. Excludes pending/staged work, preserves conditional dependencies and refuses acceptance inference; no engine validation.",
+      "record": "research/runtime/rendering-reviewed-baseline-results-20261030/controls-01.json",
+      "sha256": "2dd9b339912e490d8d381c12afc54d9b44427fee9907217caebc299e95511770",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "BASELINE30.failed-reader",
+      "kind": "static",
+      "scope": "Retained failed initial frontier audit: configured auxiliary SQLite input unavailable. Unknown proof receives no current credit.",
+      "record": "research/runtime/rendering-reviewed-baseline-results-20261030/frontier-01.json",
+      "sha256": "71d596f9aa6ae01c67c4dd61ee3dbe09adc410a51350bd1ee2d2a1beb6cd7dfa",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/audit_valid",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "BASELINE30.failed-export",
+      "kind": "static",
+      "scope": "Retained setup failure before audit: initial revision exporter rejected tracked working/.gitkeep; corrected exporter and guard exclude working storage.",
+      "record": "research/runtime/rendering-reviewed-baseline-results-20261030/setup-attempt-02.json",
+      "sha256": "2679af7f536b9864f0604c4efec3cf1b029d9eecb5de601bab0cf3832f1613ae",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "BASELINE30.guards-final",
+      "kind": "static",
+      "scope": "Final six baseline and ten frontier guards after isolating fixture Git configuration writes. Static accounting only; no engine or live validation.",
+      "record": "research/runtime/rendering-reviewed-baseline-results-20261030/controls-02.json",
+      "sha256": "c9a387a049297ad4ff7a8760863da76df736bdd82d0dafc82acbef238be1e60b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "BASELINE30.review-final",
+      "kind": "static",
+      "scope": "Final hash-verified static baseline and nine-record scope review on the corrected guard sources; original report/source phases remain immutable.",
+      "record": "research/runtime/rendering-reviewed-baseline-results-20261030/review-02.json",
+      "sha256": "464b881a09ee4d48eb4079f9347f4738f6461a88664d74169c3e4ba5d5b60ab3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -392791,7 +392948,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-eb5014730c2f2f38c9a139c84ff480e8104f410c6fb5b7f8b2bda42923391893.json",
-    "sha256": "eb5014730c2f2f38c9a139c84ff480e8104f410c6fb5b7f8b2bda42923391893"
+    "path": "research/runtime/coverage/source-index-41d7e89abf7c17b7d5aa8ba69cb1705669a9d14038db1c8cb4a831bde90f34f0.json",
+    "sha256": "41d7e89abf7c17b7d5aa8ba69cb1705669a9d14038db1c8cb4a831bde90f34f0"
   }
 }

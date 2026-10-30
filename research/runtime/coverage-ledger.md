@@ -24491,3 +24491,24 @@ See [scoped findings and source phases](player-open-items-20261027.md).
 ### Actor installed-world dependencies: final master integration (2026-10-27)
 
 The actor dependency batch incorporates actual master `29a14068` and preserves its production sources and independent evidence. [Final dependency accounting](actor-installed-dependencies-20261026.md#final-master-integration-2026-10-27) retains all nine pending installed-world cases and fifteen scoped callback implementation leads. Static inventory and retrospective history accounting do not close `RS.actor-downstream-services`, validate whole original sessions or promote live replacement. Four actor guards pass; current bookkeeping audit and the normal staged merge gate are required separately.
+# Reviewed rendering baseline — 2026-10-30
+
+The [reviewed baseline](rendering-reviewed-baseline-20261030.md) pins committed
+tree 648ce219, excluding all main-checkout pending work. The immutable SQLite
+inventory selects 832 rendering behaviors and 720 scenarios. Its full audit has zero
+errors and no source-census/focused-register drift at that revision. Of 3,490 linked
+evidence IDs, 183 have matching declared source bindings and 3,307 have changed inputs;
+these overlapping counts are not missing-code counts or remaining effort.
+Current bound proof covers 56 implementation, 47 comparison and 10 headless integration
+scopes; no selected replacement stage has current proof. Historical statuses and
+evidence fingerprints remain unchanged.
+
+The read-only review verifies nine retained adapter/player/colour/palette/history
+records. It separates supplied code, source freshness, stage/scenario proof and
+assembled-player acceptance. The 14 journeys/21 operations remain authored acceptance
+requirements, with no new journey assessment, engine execution or milestone
+promotion. Six new baseline guards and ten existing frontier guards pass. Initial
+reader/export setup failures remain retained. Available local SQLite inputs are
+hash verified in a frozen Git export; one missing configured auxiliary path is
+recorded without changing shared Git settings. Task-local evidence and verified
+materialized backups stay on durable storage under ordinary reserves.

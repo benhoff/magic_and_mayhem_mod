@@ -1,5 +1,10 @@
 # Complete live drawing replacement
 
+The [reviewed rendering baseline for committed tree 648ce219](../research/runtime/rendering-reviewed-baseline-20261030.md)
+consolidates delivered code, source-bound current/historical proof, retained
+failures and unknowns. It is a static baseline, with no new gameplay validation
+or completion promotion.
+
 The [recovery and acceptance closure map](native-rendering-closure.md) reconciles
 local master `c4510223` into separate bottom-up contracts, top-down journeys and
 a finite blocker list. It preserves this plan's existing journey/operation scope
