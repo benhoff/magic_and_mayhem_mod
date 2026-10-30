@@ -1,50 +1,139 @@
-# Native rendering recovery and acceptance closure
+# Native rendering completion contract
 
-Native rendering reaches completion through two separate decisions: required
-original rendering contracts are recovered to explicit boundaries, and the
-assembled native rendering profiles pass their declared end-to-end acceptance.
-Neither decision substitutes for the other.
+Contract `native-rendering-completion-v1`, revision 1, reconciled 2026-10-30
+against product source `648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7` and the
+[reviewed baseline](../research/runtime/rendering-reviewed-baseline-20261030.md).
+This defines the target and required proof. **Supported-player acceptance and
+original recovery remain pending.** A reviewed contract is not a release result.
 
-This plan reviews local master `c4510223`, including the completed bounded
-terrain/palette scopes and original alternate-ownership diagnostics. The
-[editable closure map](native-rendering-closure.json) links 106 registered
-behaviors in 15 contract groups (the baseline101 plus two P1 helpers,functional acceptance,caller-bound copy output and cursor-provider connection policies) to the existing 14 journeys and 21 operation
-requirements. These are dependency links, not new execution or completion credit.
-The [coverage register](../research/runtime/coverage/register.json) retains its
-independent understanding, implementation, comparison, integration and replacement
-statuses. Broad partial parents do not cancel completed child contracts.
+The [authored closure map](native-rendering-closure.json) is authoritative for
+this contract, 15 dependency groups, 106 linked behaviors, 14 journeys and 21
+operation/failure requirements. Its `completion_contract` section supplies the
+versioned configurations, completion gates, supplier rules and unresolved scope
+decisions. Existing historical execution reports and hashes are unchanged.
 
-## Fixed target and boundaries
+## Fixed target
 
-The original No-CD build is SHA-256
+The target retains original No-CD single-player simulation and permitted
+preparation while native rendering owns visible pixels and required history.
+The original executable SHA-256 is
 `40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168`.
-Original simulation and validated preparation remain suppliers. Native rendering
-owns the visible pixels and required history inside its declared supported scope.
-Native simulation, task-service replacement and gameplay changes are outside this
-milestone. Retail and multiplayer require separate support/evidence.
+Native simulation/task-service replacement and gameplay balance changes remain
+outside this milestone. Retail and multiplayer support require separate evidence.
 
-Keep three execution profiles distinct:
+The primary player uses `native-only-rendering-v1` through `run-native.sh` or
+`run-x86.sh`, which delegates to `tools/run-native-owned.py --native-only`.
+Its target environment is x86 Linux; baseline executions use x86_64, Qt/X11
+(xcb or XWayland), OpenGL and the original PE32 process in Wine on a separate
+private X server. This is not an all-architecture, all-driver or legacy-Windows
+compatibility claim. Exact host, backend/driver, display and asset/source versions
+must accompany each accepted configuration.
 
-| Profile | Existing entry | Acceptance boundary |
+## Configurations and profile boundaries
+
+These are acceptance targets, not newly certified configurations.
+
+| Configuration/profile | Entry or selection | Required boundary |
 | --- | --- | --- |
-| Public resident | `tools/test-native-campaign.py --fps-policy diagnostic` | Existing public gameplay, input and output checks; FPS is diagnostic. |
-| Strict native only | `tools/run-native-owned.py --native-only` | No-forward capability admission, explicit unsupported-path refusal and independently verified completion. A short launch pass does not establish sustained campaign acceptance. |
-| Isolated recovery | `tools/run-native-owned.py --device-recovery` | Opt-in renderer-process recovery with retained committed state; separate from ordinary shared-texture presentation. |
+| Primary default player | `./run-native.sh` or `./run-x86.sh` | Strict native pixel ownership; RGB565 World input; native terrain lighting with capture disabled; native enabled movies. Both 640x480 and 800x600 frames and display rebuild/rebind are required. Record actual host OpenGL provider and music/voice selection. |
+| Primary software variant | `./run-native.sh -- --software-rendering` | The same strict ownership and journey/operation requirements on the actual Mesa software provider. Software output does not certify physical NVIDIA presentation. |
+| Public resident harness | `tools/test-native-campaign.py --fps-policy diagnostic` | Records its actual policy/backend. A harness pass is not automatically a strict-player pass or independent complete presented output. |
+| Isolated recovery | `tools/run-native-owned.py --device-recovery`; add `--native-only` for a complete-native claim | Separate replay/retry/raster/IPC and fault-continuation evidence. It does not certify ordinary shared-texture presentation or physical hardware reset. |
+| Explicit lighting/media variants | `MNM_TERRAIN_LIGHTING=original` or `observe`; admitted skip/music options | Identify the changed preparation/media configuration. Original lighting is permitted preparation, with no native-lighting replacement credit. Disabled movies cannot close enabled-movie requirements; disabled music cannot claim enabled music. |
+| Original renderer compatibility | `./run-x86.sh --original-renderer` | Separate diagnostic backend; no native-pixel takeover credit. |
 
-A result belongs to its actual profile, backend, exact source/input versions and
-reference boundary. The existing journey and operation requirements in
-[`drawing_journeys.py`](../tools/drawing_journeys.py) and its
-[suite](../tests/fixtures/drawing-journeys/suite.json) remain unchanged. Fixed FPS is diagnostic under the user decision of2026-10-25. Functional
-actions, complete output, forward progress, response deadlines and resource
-bounds remain required. Historical benchmark results and their original criteria
-remain unchanged; measurement overhead has not been quantified. Native Qt menu layout, safer memory
-admission and graphics recovery are intentional policies with semantic checks;
-they are not claims of original pixel/driver identity.
+The public launcher defaults to native terrain lighting. A native worker failure
+may retain original lighting for continuation, but its failed/nonzero outcome
+must remain a failure. Selecting original/observe explicitly is a distinct
+preparation backend, not original pixel fallback. Music/voice backend choices
+must be recorded; full audio-engine replacement is not added to this renderer
+contract.
 
-Alternate-buffer requiredness is unresolved. Enabled-padding fullscreen has a
-known original presentation failure. Physical legacy-driver/reset behavior lacks
-acceptance evidence and no Win98/ME host is available. These remain named
-conditional blockers; none becomes a passed test or an implicit exclusion.
+The strict CLI currently rejects startup `--fullscreen`. Original padded
+fullscreen failures and any claimed native fullscreen/padding transition retain
+separate requiredness/output checks. Native padded-storage fixtures and the
+opt-in original allocation repair do not settle original alternate ownership.
+ARM/Asahi, other original builds, RGB555 offline previews and broader platform
+support retain their separate evidence boundaries.
+
+## Ownership and permitted original suppliers
+
+The [reviewed dependency decisions](native-rendering-dependencies.json) define
+which services may remain original. Camera/map/traversal preparation,
+sorting/visibility/animation selection, queue preparation, screen coordination,
+serializers and validated table/configuration production may remain where those
+decisions permit. Their required mutations, ordering, lifetime and failure
+behavior still need accounting. Native surfaces, pixel operations and required
+history must remain owned; original dynamic rasterization/GDI output cannot
+supply the completed frame within a complete-native claim.
+
+Porting the separate `SceneSession`, replacing every actor/task service, or
+installing a standalone camera/minimap/screen model is not automatically a
+prerequisite for native pixel completion. A required unknown supplier still
+blocks its claim until recovered or resolved by an exact justified boundary.
+
+## Required completion proof
+
+All existing 14 journeys, their subrequirements and 21 operations remain.
+Required proof binds actions and contiguous presented frames to appropriate
+independent references, checks caller-visible side effects/returns, and verifies
+resource conservation. Component canvases, recorded intervals, original-only
+observation, admission receipts and clean exit codes keep their own limits.
+Native Qt menu layout and safer admission are intentional policies with semantic
+checks; they do not claim original UI/driver pixel identity.
+
+Normal journeys require normal original Quit, balanced World delivery and
+retired cursor/graphics/process/channel owners. Fault journeys instead check the
+declared terminal-stop/fresh-generation or isolated-continuation policy, expected
+failure and no duplicated work. Force-stop is not normal completion. Unexpected
+refusals block normal acceptance; declared negative cases require their expected
+return, output/state and lifetime checks and cannot disappear from accounting.
+
+Each claimed configuration needs appropriate current source/input-bound evidence.
+Shared component evidence can be reused only with reviewed applicability; the
+contract does not invent an automatic Cartesian product of every option. The
+supported map/save/duration domain must be stated without waiving actual later-map
+progression, victory/defeat or the other fixed requirements. No universal-duration
+or arbitrary-map claim follows from the retained bounded runs.
+
+FPS remains diagnostic under the user decision of 2026-10-25. No fixed FPS floor
+is introduced. Functional response deadlines, forward progress and resource
+bounds remain mandatory; historical benchmark failures stay unchanged.
+
+## Open scope decisions
+
+Eight stable decisions remain explicit in the authored contract: original
+alternate ownership, padded fullscreen, natural callers/readers/writers, prior
+pixel history, supported map/save domain, screen/provider lifetimes, live RGB555
+requiredness and physical/platform compatibility. Each names its affected groups,
+blocking condition, research and closing evidence/boundary. No zero observation,
+fixture, safe refusal or unavailable host implicitly excludes a required path.
+
+Original recovery closes only within its named build/provider scope with required
+contracts accounted for. Supported-player acceptance closes only with appropriate
+current journey/operation/output/lifetime/fault evidence and no unresolved required
+blocker. These decisions can finish separately. Neither this contract nor a static
+checker grants either decision.
+
+## Check the authored contract
+
+```sh
+python3 -B tests/test-rendering-completion.py
+python3 tools/reconcile-rendering-dependencies.py --contract-only --run-guards \
+  --report research/runtime/rendering-completion-contract-results-NEW/review.json
+```
+
+The contract-only mode verifies the immutable baseline, unchanged requirement
+denominator, 31 source witnesses against the product revision, runtime-policy
+selection and explicit scope decisions. It reads no original media and performs
+no engine, GL or gameplay execution. Generated reports go directly to SQLite.
+Source/policy drift requires an exact contract review, not refreshed historical
+execution hashes. Any amendment must preserve explicit scope-change accounting.
+
+The detailed groups, journeys and dated execution notes below retain their
+recorded scopes. A dated statement of current validation does not become current
+at this reconciled source merely by appearing in this document; use the baseline
+and exact execution bindings for freshness.
 
 ## Bottom up original contract closure
 
@@ -59,7 +148,7 @@ semantics. Native policies remain separate from recovered baseline behavior.
 | C01 Surfaces | Owned facade; formats, Lock/DC, aliases and held-flip fixtures | Required original callers, external aliases/writers and failure/release ordering beyond bounded providers. |
 | C02 Pixel history | Ordered restoration, protected backing, GPU copy plans and selected live destinations | Required raw readers and natural clipped/self/keyed GPU-copy callers. |
 | C03 World queue | Native dispatch/raster, continuous delivery and bounded live rendering | Complete required producer dependencies, mutable ownership and installed composition. |
-| C04 Terrain and camera | Bounded map/camera/section/submission implementations; traversal and generated previews | Original construction/update/resource lifetimes and installing the required particular replacements. |
+| C04 Terrain and camera | Bounded map/camera/section/submission implementations; traversal and generated previews | Original preparation may remain; account for required construction/update/resource lifetimes and effects without making a full native camera port mandatory. |
 | C05 Scene producers | Concrete terrain/water/picking, creature/effect/artifact and particle contracts | Runtime suppliers, entity/resource churn and full caller/ownership composition. |
 | C06 Lighting and palettes | All ten bounded palette builders, chains, selection/delivery, previews and selected light contracts | Runtime configuration, complete refresh/input production, failure and scene ownership boundaries. |
 | C07 Sprites and visibility | Sorting, visibility, occlusion and selected sprite/effect comparisons | Complete producer/owner mutations at required scene call sites. |
@@ -128,7 +217,7 @@ unimplemented label is applied to the completed bounded components.
 | B02 Alternate ownership | Unrecovered and requiredness unresolved | Recover the required natural ownership chain or justify an exact bounded exclusion; global reachability remains unknown. |
 | B03 External screen services | Unrecovered | Recover required helper/vtable behavior and screen/callback lifetime beneath the local tick. |
 | B04 Required scene/helper connections | Not integrated | Connect required providers and prove caller effects, ownership and output; name allowed original suppliers. |
-| B05 Strict camera/HUD input Escape/Mini | Current strict 10/30 second cases validated; historical cause unclassified | Retain passing callback/resume/Quit and ownership evidence at the same and extended durations. Historical cause remains a separate investigation. |
+| B05 Strict camera/HUD input Escape/Mini | Historical bounded passes; current combined acceptance pending | Retain prior source-specific results and obtain appropriate current callback/resume/Quit, output and ownership evidence. Historical cause remains separate. |
 | B06 Public FPS diagnostics | Diagnostic; historical benchmark failed | Retain the measured result and instrumentation limits. No fixed FPS threshold blocks functional completion. |
 | B07 Action-bound acceptance | Not validated | Appropriate evidence for all existing 14 journeys and 21 operations. |
 | B08 Transition combinations | Not validated | Movie returns, Preferences variants, actual later maps and both results with fresh resources/output. |

@@ -1,5 +1,10 @@
 # Native renderer player launcher
 
+The [completion contract](native-rendering-closure.md) defines the supported
+player acceptance target, configuration boundaries and remaining scope decisions.
+These launch instructions describe supplied behavior; they do not certify that
+all completion requirements have passed.
+
 On x86 Linux, launch with:
 
 ```sh

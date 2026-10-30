@@ -24512,3 +24512,24 @@ reader/export setup failures remain retained. Available local SQLite inputs are
 hash verified in a frozen Git export; one missing configured auxiliary path is
 recorded without changing shared Git settings. Task-local evidence and verified
 materialized backups stay on durable storage under ordinary reserves.
+
+## Versioned rendering completion contract — 2026-10-30
+
+The [artifact 2 contract review](rendering-completion-contract-20261030.md)
+reconciles the authored completion target with immutable baseline 648ce219.
+It preserves all 14 journeys, 21 operations and 15 source-role groups, defines
+ten completion gates and two pending normal-player configurations, and keeps
+eight scope decisions explicit. Original permitted preparation remains distinct
+from forbidden original pixel fallback; native scene/task-service modernization
+is separate. Default lighting failure keeps its failure even when original
+preparation permits continuation. FPS remains diagnostic with response/progress/
+resource requirements intact. Old B05/P3 current labels become historical authored
+plan states; no registered engine stage or historical evidence hash changes.
+
+The contract-only checker verifies the baseline payload and 31 policy witnesses
+against the product revision without original media/byte or game/GL execution.
+Twelve contract guards, twelve admission guards and eighteen mocked launcher
+guards pass with stable source fingerprints. The initial source phase remains
+immutable. Completion decisions stay pending; no original comparison, whole-player
+acceptance, integration or replacement promotion follows. Required-gap/task-graph
+and final acceptance artifacts remain separate.

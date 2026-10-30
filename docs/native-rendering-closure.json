@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "kind": "authored_rendering_closure_plan",
-  "reviewed_commit": "c451022381223fceebec694ec055f215fda488b2",
+  "reviewed_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7",
   "original_build": "nocd-40209ca7",
   "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
   "scope": {
@@ -12,17 +12,20 @@
       {
         "id": "public-resident",
         "entry": "tools/test-native-campaign.py --fps-policy diagnostic",
-        "boundary": "Public resident functional acceptance with FPS diagnostics; historical throughput benchmarks retain their original criteria and results."
+        "boundary": "Public resident functional harness. Evidence must name the actual runtime policy; a harness pass alone does not establish strict native-only admission or complete presented output. FPS is diagnostic.",
+        "role": "validation_harness"
       },
       {
         "id": "strict-native-only",
         "entry": "tools/run-native-owned.py --native-only",
-        "boundary": "Strict admission/no-forward/terminal policy; short launch is not sustained campaign acceptance."
+        "boundary": "Primary public player via run-native.sh/run-x86.sh and the strict owner. No original pixel fallback; current-source complete journey/output/lifecycle evidence remains required.",
+        "role": "primary_player"
       },
       {
         "id": "isolated-recovery",
         "entry": "tools/run-native-owned.py --device-recovery",
-        "boundary": "Opt-in process-isolated continuation; separate from ordinary shared-texture presentation."
+        "boundary": "Opt-in isolated renderer/replay/raster presentation. A complete-native claim also requires --native-only; fault-continuation proof is separate from ordinary shared-texture presentation and physical reset.",
+        "role": "separate_recovery_profile"
       }
     ],
     "rules": [
@@ -1503,7 +1506,9 @@
       "exit": "Recover required natural allocation/publication/base/source/initial pixels/writers/release, or justify a precise caller/configuration exclusion. Keep global reachability unknown; a new native allocator is not original recovery.",
       "condition": "Requiredness unresolved; cannot silently exclude.",
       "documents": [
-        "research/runtime/alternate-ownership-sessions-20261024.md"
+        "research/runtime/alternate-ownership-sessions-20261024.md",
+        "research/runtime/original-alternate-allocation-repair-20261026.md",
+        "research/runtime/alternate-completion-20261026.md"
       ],
       "state": "open",
       "p1_review": "research/runtime/rendering-required-dependencies-20261024.md"
@@ -1577,7 +1582,7 @@
       "id": "B05",
       "title": "Strict movement Escape and Mini readiness",
       "classification": [
-        "validated_current_scope"
+        "not_validated"
       ],
       "priority": "high",
       "contracts": [
@@ -1595,10 +1600,14 @@
       "documents": [
         "research/runtime/rendering-seventeenth-five-20261023.md"
       ],
-      "state": "validated_current_scope",
+      "state": "pending_current_acceptance",
       "result": "research/runtime/rendering-functional-lifecycle-20261025.md",
-      "limitations": "Strict final-source10/30second Apprentice cases pass. Historical NT17 cause remains unclassified; no universal reliability or complete rendering claim.",
-      "historical_exit": "Reproduce NT17 stress failures, diagnose game/input/driver cause and pass the same movement/Escape/Mini/resume/normal-Quit assertions. A shorter pass cannot close this."
+      "limitations": "Recorded strict10/30second and later bounded player successes retain their exact source phases. The648ce219 baseline does not supply current combined-player acceptance; historical NT17 cause remains unclassified, with no new regression or universal reliability claim.",
+      "historical_exit": "Reproduce NT17 stress failures, diagnose game/input/driver cause and pass the same movement/Escape/Mini/resume/normal-Quit assertions. A shorter pass cannot close this.",
+      "historical_state": "validated_current_scope",
+      "historical_classification": [
+        "validated_current_scope"
+      ]
     },
     {
       "id": "B06",
@@ -1944,9 +1953,11 @@
       "diagnostics": [
         "B06"
       ],
-      "functional_state": "validated_current_scope",
+      "functional_state": "historical_source_scope",
       "result": "research/runtime/rendering-functional-lifecycle-20261025.md",
-      "historical_cause": "unclassified"
+      "historical_cause": "unclassified",
+      "historical_functional_state": "validated_current_scope",
+      "current_combined_acceptance": "pending"
     },
     {
       "id": "P4",
@@ -2010,5 +2021,325 @@
     ],
     "progress": "Track recovery, implementation, comparison, integration and acceptance separately; no weighted completion percentage or silent scope reduction."
   },
-  "p1_dependencies": "docs/native-rendering-dependencies.json"
+  "p1_dependencies": "docs/native-rendering-dependencies.json",
+  "contract_review_history": [
+    {
+      "reviewed_commit": "c451022381223fceebec694ec055f215fda488b2",
+      "description": "Prior dependency/closure map; historical evidence and authored work-package results retain their original source phases."
+    }
+  ],
+  "completion_contract": {
+    "schema": 1,
+    "id": "native-rendering-completion-v1",
+    "revision": 1,
+    "claim_state": "pending_acceptance",
+    "reviewed_source_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7",
+    "baseline": {
+      "record": "research/runtime/rendering-reviewed-baseline-results-20261030/baseline-01.json",
+      "sha256": "fe3b3e8263f6d216a7e0fce4db45a200c9fdef4c9cd0f857d87dc1de264bd699",
+      "source_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7"
+    },
+    "primary_profile": "strict-native-only",
+    "runtime_policy": "native-only-rendering-v1",
+    "player_entries": [
+      "run-native.sh",
+      "run-x86.sh"
+    ],
+    "configurations": [
+      {
+        "state": "target_acceptance_pending",
+        "profile": "strict-native-only",
+        "host": "x86 Linux; baseline executions use x86_64",
+        "display": "Qt/X11 xcb or XWayland with a separate private legacy X server",
+        "world_format": "RGB565",
+        "frame_sizes": [
+          [
+            640,
+            480
+          ],
+          [
+            800,
+            600
+          ]
+        ],
+        "lighting": "native",
+        "lighting_capture": "none",
+        "movies": "native_enabled",
+        "music": "prepared native catalog by default; exact selection recorded",
+        "id": "player-default",
+        "arguments": [],
+        "backend": "Actual host OpenGL provider must be recorded; existing NVIDIA results certify only their own source/provider scope."
+      },
+      {
+        "state": "target_acceptance_pending",
+        "profile": "strict-native-only",
+        "host": "x86 Linux; baseline executions use x86_64",
+        "display": "Qt/X11 xcb or XWayland with a separate private legacy X server",
+        "world_format": "RGB565",
+        "frame_sizes": [
+          [
+            640,
+            480
+          ],
+          [
+            800,
+            600
+          ]
+        ],
+        "lighting": "native",
+        "lighting_capture": "none",
+        "movies": "native_enabled",
+        "music": "prepared native catalog by default; exact selection recorded",
+        "id": "player-software",
+        "arguments": [
+          "--software-rendering"
+        ],
+        "backend": "Mesa software OpenGL; record the actual renderer/provider and display context."
+      }
+    ],
+    "supplier_policy": {
+      "decisions": "docs/native-rendering-dependencies.json",
+      "original_preparation_allowed": true,
+      "original_pixel_fallback_allowed": false,
+      "native_scene_port_required": false,
+      "lighting_default": "native",
+      "lighting_overrides": [
+        "original",
+        "observe"
+      ],
+      "lighting_worker_failure": "Retain the failure and nonzero outcome even if original lighting fallback permits continuation. An original/observe selection is a separately identified preparation backend, not native-lighting replacement proof."
+    },
+    "acceptance": {
+      "journey_catalog": "tests/fixtures/drawing-journeys/suite.json",
+      "journey_catalog_sha256": "3091153e8757c4bc66731ea634e0e5a424397853d4567f1f097054e853c36045",
+      "all_journeys_required": true,
+      "all_operations_required": true,
+      "gates": [
+        {
+          "id": "identity",
+          "condition": "Bind original executable, assets, admitted policy, exact source/compiler closure, backend/driver and configuration to each result."
+        },
+        {
+          "id": "pixels-history",
+          "condition": "Own required visible pixels and history, with independent original/reference output and required caller-visible state, ordering and return values. No original diagnostic pixels may seed native output."
+        },
+        {
+          "id": "journeys",
+          "condition": "Close all fourteen existing journeys and every named subrequirement using appropriate action-bound, contiguous presented-output and semantic/lifetime evidence. Replay/components contribute only within their stated boundaries."
+        },
+        {
+          "id": "operations",
+          "condition": "Account for all twenty-one operation/failure requirements, including clipping, overlap, CPU readers, text/palette lifetime, destination history and cleanup."
+        },
+        {
+          "id": "transitions",
+          "condition": "Cover both 640x480 and 800x600 frame modes and rebuild/rebind; actual later-map progression, victory and defeat cannot be substituted by loading a save or a component fixture."
+        },
+        {
+          "id": "input-media",
+          "condition": "Check camera orientations, picking/hotspot, HUD/minimap/tooltips and pause/Preferences transitions. Enabled-movie requirements include both intros, skip/end and return; disabled media supplies no enabled-media credit."
+        },
+        {
+          "id": "normal-lifetime",
+          "condition": "Normal journeys require original normal Quit, balanced imported/completed/returned Worlds, no pending work and retired cursor/graphics/process/channel owners. Force-stop is not normal completion."
+        },
+        {
+          "id": "fault-lifetime",
+          "condition": "Fault journeys use the declared terminal-stop/fresh-generation or isolated-continuation policy, checking expected failure, exact retirement, identity changes and no duplicated work. Synthetic recovery does not establish physical reset."
+        },
+        {
+          "id": "required-boundaries",
+          "condition": "Resolve required unknown callers/providers/ownership or record a precise evidence-backed scope decision. Zero observations and safe refusal do not prove a required path absent or correct."
+        },
+        {
+          "id": "separate-decisions",
+          "condition": "Record separate original-recovery and supported-player acceptance decisions. Code, source matches, admission, component comparisons and reviewed plans cannot grant full-player acceptance. FPS remains diagnostic; response/progress/resource bounds remain required."
+        }
+      ],
+      "configuration_coverage": "Bind every requirement to suitable current evidence for the claimed configuration. Shared immutable component proof may be reused with a reviewed applicability rationale; do not assume every option forms an automatic Cartesian-product test matrix or waive configuration-specific checks."
+    },
+    "evidence_rules": {
+      "current_source_bindings_required": true,
+      "independent_reference_required": true,
+      "component_proof_is_not_journey_acceptance": true,
+      "admission_is_not_complete_acceptance": true,
+      "normal_and_fault_outcomes_separate": true,
+      "unexpected_refusal_blocks_normal_acceptance": true,
+      "expected_negative_cases_require_state_and_return_checks": true,
+      "disabled_media_cannot_close_enabled_movies": true,
+      "historical_hashes_immutable": true,
+      "no_status_promotion_from_static_review": true
+    },
+    "scope_decisions": [
+      {
+        "id": "SC.alternate-ownership",
+        "contracts": [
+          "C10"
+        ],
+        "blocking_condition": "Any required natural alternate allocation/publication/writer/lifetime path in the claimed player.",
+        "close_when": "Recover the required chain or justify a precise caller/configuration boundary with evidence. The opt-in original allocation repair and native padded storage do not recover historical ownership or prove global unreachability.",
+        "documents": [
+          "research/runtime/original-alternate-allocation-repair-20261026.md",
+          "research/runtime/alternate-completion-20261026.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      },
+      {
+        "id": "SC.padded-fullscreen",
+        "contracts": [
+          "C01",
+          "C09",
+          "C10"
+        ],
+        "blocking_condition": "A claim includes enabled-padding fullscreen or its required presentation transition.",
+        "close_when": "Distinguish original exclusive/padded failures from Qt presentation and native padding; independently validate required output and lifetime. Windowed success and context fixtures do not close the configuration.",
+        "documents": [
+          "research/runtime/screen-presentation-recovery-20261024.md",
+          "research/runtime/alternate-completion-20261026.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      },
+      {
+        "id": "SC.natural-callers",
+        "contracts": [
+          "C01",
+          "C02",
+          "C03"
+        ],
+        "blocking_condition": "Unresolved raw readers, self/keyed GPU copies, aliases/writers or large fills are required by the claimed journeys.",
+        "close_when": "Establish the actual required caller and independently check its output/side effects, or document a precise justified boundary. No positive count is manufactured; zero observations are not global absence.",
+        "documents": [
+          "research/runtime/player-open-items-20261027.md",
+          "research/runtime/rendering-remaining-20261026.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      },
+      {
+        "id": "SC.prior-history",
+        "contracts": [
+          "C02",
+          "C03"
+        ],
+        "blocking_condition": "Complete native/live equality depends on the history preceding the selected late capture interval.",
+        "close_when": "Recover and produce the required owned history. Same-zero-base equality and original-before diagnostics retain their distinct results; establish relevance to the resident player before calling this a current player defect.",
+        "documents": [
+          "research/runtime/rendering-remaining-20261026.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      },
+      {
+        "id": "SC.map-save-domain",
+        "contracts": [
+          "C03",
+          "C13",
+          "C15"
+        ],
+        "blocking_condition": "Final supported campaign/map/save/duration claims have not been explicitly bounded.",
+        "close_when": "Name the supported domain and bounded execution profiles without dropping any of the fourteen journeys or twenty-one operations. Include actual later-map progression and both results; two Quick Battle maps and twelve minutes do not establish arbitrary maps/saves/duration.",
+        "documents": [
+          "research/runtime/native-player-expanded-20261026.md",
+          "docs/native-rendering-closure.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      },
+      {
+        "id": "SC.screen-provider-lifetime",
+        "contracts": [
+          "C09",
+          "C13",
+          "C14"
+        ],
+        "blocking_condition": "A required original screen helper/vtable/callback lifetime or route remains unresolved beneath the retained coordinator.",
+        "close_when": "Account for required Main/Realm/World/Report routing, populated resource ownership and failure/retirement effects within the declared supplier boundary. Local provider fixtures do not automatically recover the real transition router.",
+        "documents": [
+          "research/runtime/screen-provider-master-20261026.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      },
+      {
+        "id": "SC.rgb555-live",
+        "contracts": [
+          "C01",
+          "C03",
+          "C05"
+        ],
+        "blocking_condition": "A claimed required game path produces live RGB555 or RGB555 sprite/effect output.",
+        "close_when": "Establish requiredness and validate the full required production/ingestion/drawing path, or justify an exact supported-format boundary. Existing offline colour-only RGB555 proof is not live support; current RGB565 admission does not prove format1 unreachable.",
+        "documents": [
+          "research/runtime/rendering-remaining-20261026.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      },
+      {
+        "id": "SC.physical-compatibility",
+        "contracts": [
+          "C01",
+          "C02",
+          "C14"
+        ],
+        "blocking_condition": "A claim includes legacy physical-driver identity, Windows exceptional behavior or physical device-loss/reset equivalence.",
+        "close_when": "Supply appropriate physical/platform evidence or name an exact justified bounded Wine/native-provider claim. No unavailable Win98/ME host or synthetic fault is relabeled passed; required provider semantics remain open.",
+        "documents": [
+          "research/runtime/graphics-leases-shutdown-20261024.md",
+          "docs/native-rendering-closure.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      }
+    ],
+    "claim_limits": [
+      "Original simulation, camera/traversal, queue preparation, sorting/visibility, screen coordination and validated data production may remain as the reviewed dependency map permits. Their required mutations and ownership still need accounting.",
+      "Native simulation/task-service replacement, standalone SceneSession modernization and gameplay balance changes are separate milestones.",
+      "The original-renderer compatibility entry, ARM/Asahi, retail/multiplayer, RGB555 offline previews and isolated recovery retain their own support/evidence boundaries. This contract grants none of those broader acceptance claims.",
+      "Different music/voice, lighting, media or backend selections must be identified. Skipped movies/no music cannot substitute for enabled-media requirements; generic audio-engine replacement is not added to this rendering target.",
+      "No fixed FPS floor or universal-duration guarantee is introduced. Retain timing diagnostics and historical benchmark outcomes, while enforcing response deadlines, forward progress and resource bounds."
+    ],
+    "change_control": {
+      "contract_amendment_requires_exact_review": true,
+      "required_unknowns_cannot_be_silently_excluded": true,
+      "new_evidence_id_for_new_execution": true,
+      "baseline_payload_immutable": true,
+      "acceptance_and_recovery_decisions_separate": true
+    },
+    "reviewed_sources": {
+      "apps/qt-shell/CMakeLists.txt": "d459289ce9f5f70de9a9da07c8bd488e3a8d6e136d5cc87cf2881bddf1de3015",
+      "apps/qt-shell/input_forwarder.cpp": "fdf5fbc39bca6efe4d88273492fe120d19cb34f4ea93272a0c2383019b2aa485",
+      "apps/qt-shell/main.cpp": "794763157f46d66c59e7b4e827245d8977630874335ca9d686e8e87865736499",
+      "apps/qt-shell/media_broker.cpp": "59f1fd5ec885b148018b7c5dadab8aa97ab46c88e2822a3087fb440d743457e7",
+      "compat/legacy/world_frame.cpp": "524529ecf257d65cc841bc7fc3a9803e5927cfccd60ea0095e2f97f4712e8965",
+      "compat/legacy/world_frame.hpp": "6c0a5418762ac98955d3e6a645322b1a64cdfdfc2578953770c3cf46d6e19b7a",
+      "reconstruction/rendering/minimap_camera_dispatch.hpp": "3b8f7604972288d4c7f08bca8a518c7c2b21d243ede38f25a02247da9cbaa890",
+      "reconstruction/rendering/palette_effects.cpp": "152ca0bf728853cb3829c738fc7bcb29dd45292f663eb6ea4a2ac3985dbf50d4",
+      "reconstruction/rendering/screen_tick.hpp": "053479b37990e0a301a8d9ee986cb65a4c8c5b65c5b1745ea53a80c1f1cc98fc",
+      "run-native.sh": "4194cb5a986d048bc598bcb5bec7ff9ffcad700cf7250156df19e9b6fa9631e6",
+      "run-x86.sh": "4af90a5054e8710357881e621783c18e51b052bbc2aa9278423cae50e23c52ff",
+      "runtime/canvas-writers/history.h": "c6ba553a7af6e0f3da93f422babc2b8fead353a6ffd5a149f5483f7c485ab0b3",
+      "runtime/canvas-writers/minimap_bridge.c": "7a60a9c3a881c2bf40826856990d462188e0d27467f9b425e5af00365ea51439",
+      "runtime/menu/storage.h": "fb8d7e4f870b5bf954faf276fb3a4d1fd1d1d69193d3eb477dae4b2e7c9063cf",
+      "runtime/native-draw/factory.c": "bf48223a80d2f0081bb47e579cbff437253df1cc52447c14ec97d31a680117c0",
+      "runtime/native-draw/history.h": "ff170be6b0c937e06657dbe506f921ea7a1aaa743097b1dca6fd5ab14b19d752",
+      "runtime/native-draw/surfaces.h": "2f3df566a6611fc24304969323c392835668cf3d0b2fbe2c92d9ce04da6cb681",
+      "runtime/render/bridge.c": "cdbd8a82460c0f4d62ac6712eef77da36eb7e1596825f73638ec08520a25b491",
+      "runtime/render/owned_session.h": "4ad253dbeec0484c25a8c8d0966364b4621131ed9dc17b54fa57e3d23f891f05",
+      "runtime/scene/canvas_producers.c": "28928aba2dd9008d10bacee47c9e72c4a6c4284fcf64343c5c8a76990c28917a",
+      "runtime/scene/world_continuous.c": "e9ee5ac2289844ac7ba056972427f179e306a881417e1c5947647beb3a095b7d",
+      "runtime/scene/world_producer_bypass.c": "0d65713ddfdefe4700bd39b0c6f24298bbf5e24ffd325303785e8463afa7afe9",
+      "runtime/scene/world_raster_batch.c": "9d6e9fd142a48e56dd1050121e5967b996e4feb2abeffc8732a78a5a98668211",
+      "tests/screen-tick-reference.cpp": "8280039cbf57f760be1d8aa24f73f3fcf197bbb9969af9eb85fbdf344c1ea837",
+      "tools/native_only_contract.py": "42964bd14c36eab5ce52189c79d9ed18462fb2c8c217bd7df53c2cb0d3b90767",
+      "tools/native_output_owner.py": "64d6fc6e7663057fda168b444ff0e37ed494fe7ad4f0b61e358a6584fc4215d0",
+      "tools/prepare-menu-observer.py": "fc112133055e4ff89e9655894cf5028d753dae99caa886b501ee91954ef754e4",
+      "tools/prepare-scene-observer.py": "4a92f4bb6c0aef0257455648cddb199dbb087b97f6539b3b0a770abb237f1028",
+      "tools/run-native-game.py": "3964ce5d14125e724cfc1a46e6b3dc2186c6c53d29c5fb67bd664f5c0b26d0fc",
+      "tools/run-native-owned.py": "a253290a8db44367a4d36e683693262c17a53bec596e539ff6caff97847948ff",
+      "tools/terrain_light_session.py": "d621469cd28c0868a1be200ca867b1c94d6a6914e0e685b1f3cf291622a9a48f"
+    }
+  }
 }

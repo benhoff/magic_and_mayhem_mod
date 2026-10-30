@@ -1,5 +1,10 @@
 # Complete live drawing replacement
 
+The [versioned completion contract](native-rendering-closure.md) reconciles the
+supported player/configuration target and required proof against the reviewed
+baseline. Its authored rules and eight open scope decisions grant no new engine
+acceptance; all 14 journeys and 21 operations remain required.
+
 The [reviewed rendering baseline for committed tree 648ce219](../research/runtime/rendering-reviewed-baseline-20261030.md)
 consolidates delivered code, source-bound current/historical proof, retained
 failures and unknowns. It is a static baseline, with no new gameplay validation

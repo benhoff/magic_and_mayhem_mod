@@ -19846,7 +19846,8 @@
         "docs/native-rendering-closure.json",
         "research/runtime/rendering-required-dependencies-20261024.md",
         "docs/native-rendering-dependencies.json",
-        "research/runtime/rendering-reviewed-baseline-20261030.md"
+        "research/runtime/rendering-reviewed-baseline-20261030.md",
+        "research/runtime/rendering-completion-contract-20261030.md"
       ],
       "implementation": [],
       "tests": [
@@ -19869,7 +19870,10 @@
         "P1.required-rendering-dependencies-static-20261024",
         "BASELINE30.inventory-648ce219",
         "BASELINE30.review",
-        "BASELINE30.review-final"
+        "BASELINE30.review-final",
+        "CONTRACT30.reviewed-v1",
+        "CONTRACT30.reviewed-v1-final",
+        "CONTRACT30.baseline-commit-history"
       ],
       "status": {
         "understanding": "partial",
@@ -30211,7 +30215,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Reviewed rendering API and producer support report",
-      "scope": "Read-only reconciliation of all required surface matrix categories and inventoried drawing families with explicitly reviewed scoped code, original-executable versus standalone-driver subset comparisons, bounded World entry counts and actual bypass proof. Source/scope/scenario-bound current validation is suppressed on audit errors. Categories overlap and partial support never becomes full-category completion, effort or overall replacement. Synthetic reporter guard tests validate accounting semantics only; engine equivalence, adequacy of discovery/mappings and new live execution are outside scope. The frontier lists original address scopes, current behavior/scenario proof and explicit branch gaps; one current scenario cannot close another, and branch completeness remains unmeasured. Formal14-journey/21-operation acceptance is retained as a static inventory, separate from any new execution. Revision-bound static baselines export committed data only, retain source/scenario proof and authored acceptance separately, record unavailable local readers, and cannot promote engine status or infer full-player acceptance.",
+      "scope": "Read-only reconciliation of all required surface matrix categories and inventoried drawing families with explicitly reviewed scoped code, original-executable versus standalone-driver subset comparisons, bounded World entry counts and actual bypass proof. Source/scope/scenario-bound current validation is suppressed on audit errors. Categories overlap and partial support never becomes full-category completion, effort or overall replacement. Synthetic reporter guard tests validate accounting semantics only; engine equivalence, adequacy of discovery/mappings and new live execution are outside scope. The frontier lists original address scopes, current behavior/scenario proof and explicit branch gaps; one current scenario cannot close another, and branch completeness remains unmeasured. Formal14-journey/21-operation acceptance is retained as a static inventory, separate from any new execution. Revision-bound static baselines export committed data only, retain source/scenario proof and authored acceptance separately, record unavailable local readers, and cannot promote engine status or infer full-player acceptance. The versioned completion-contract checker consumes the authored target, unchanged journey/operation requirements, configuration/supplier boundaries and unresolved decisions. It verifies31source witnesses against the reviewed product revision without original media or engine execution, and cannot certify acceptance.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -30227,7 +30231,8 @@
         "research/runtime/colour-coverage-frontier-20261025.md",
         "research/runtime/rendering-closeout-20261026.md",
         "research/runtime/rendering-coverage-scope-closeout-20261026.json",
-        "research/runtime/rendering-reviewed-baseline-20261030.md"
+        "research/runtime/rendering-reviewed-baseline-20261030.md",
+        "research/runtime/rendering-completion-contract-20261030.md"
       ],
       "implementation": [
         "tools/rendering_coverage.py",
@@ -30236,12 +30241,14 @@
         "tools/rendering_frontier.py",
         "tools/audit-rendering-frontier.py",
         "tools/rendering_baseline.py",
-        "tools/report-rendering-baseline.py"
+        "tools/report-rendering-baseline.py",
+        "tools/rendering_completion.py"
       ],
       "tests": [
         "tests/test-rendering-coverage.py",
         "tests/test-rendering-frontier.py",
-        "tests/test-rendering-baseline.py"
+        "tests/test-rendering-baseline.py",
+        "tests/test-rendering-completion.py"
       ],
       "validation_dependencies": [
         "research/runtime/native-surface-operation-matrix.json",
@@ -30249,7 +30256,40 @@
         "tools/coverage_audit.py",
         "tools/coverage_claims.py",
         "tools/drawing_journeys.py",
-        "research/runtime/rendering-coverage-scope-colour-20261025.json"
+        "research/runtime/rendering-coverage-scope-colour-20261025.json",
+        "docs/native-rendering-closure.json",
+        "docs/native-rendering-dependencies.json",
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/input_forwarder.cpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/media_broker.cpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "reconstruction/rendering/minimap_camera_dispatch.hpp",
+        "reconstruction/rendering/palette_effects.cpp",
+        "reconstruction/rendering/screen_tick.hpp",
+        "run-native.sh",
+        "run-x86.sh",
+        "runtime/canvas-writers/history.h",
+        "runtime/canvas-writers/minimap_bridge.c",
+        "runtime/menu/storage.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/render/bridge.c",
+        "runtime/render/owned_session.h",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/world_continuous.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "tests/screen-tick-reference.cpp",
+        "tools/native_only_contract.py",
+        "tools/native_output_owner.py",
+        "tools/prepare-menu-observer.py",
+        "tools/prepare-scene-observer.py",
+        "tools/run-native-game.py",
+        "tools/run-native-owned.py",
+        "tools/terrain_light_session.py"
       ],
       "evidence": [
         "TOOL.rendering-coverage.guards-20261010",
@@ -30271,7 +30311,10 @@
         "BASELINE30.failed-reader",
         "BASELINE30.failed-export",
         "BASELINE30.guards-final",
-        "BASELINE30.review-final"
+        "BASELINE30.review-final",
+        "CONTRACT30.reviewed-v1",
+        "CONTRACT30.reviewed-v1-final",
+        "CONTRACT30.baseline-commit-history"
       ],
       "status": {
         "understanding": "scoped",
@@ -362007,6 +362050,152 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CONTRACT30.reviewed-v1",
+      "kind": "static",
+      "scope": "Static artifact2 completion-contract reconciliation: immutable baseline and31policy source witnesses, unchanged14journey/21operation denominator, two target configurations, ten completion gates and eight unresolved scope decisions.42isolated guards pass; no engine, GL, original comparison, acceptance or status promotion.",
+      "record": "research/runtime/rendering-completion-contract-results-20261030/review-02.json",
+      "sha256": "34f38303c13a440f36d9a8ef8df97c718834df99fff2011b2566c9c88f1f74ff",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/guards_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/policy_witnesses_match_baseline",
+          "equals": true
+        },
+        {
+          "pointer": "/baseline/payload_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/journeys",
+          "equals": 14
+        },
+        {
+          "pointer": "/counts/operations",
+          "equals": 21
+        },
+        {
+          "pointer": "/counts/unresolved_scope_decisions",
+          "equals": 8
+        },
+        {
+          "pointer": "/original_media_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/engine_acceptance_assessed",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/status_promotions",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "CONTRACT30.reviewed-v1-final",
+      "kind": "static",
+      "scope": "Final static artifact2 contract reconciliation and42guards, including source-witness completeness and joint original-build identity refusal.31policy sources match the baseline revision. All14journeys/21operations and eight unresolved decisions remain; no engine/media/GL execution or acceptance promotion.",
+      "record": "research/runtime/rendering-completion-contract-results-20261030/review-03.json",
+      "sha256": "ea5025da92c5b7acfb166c4b6b092f93f54391b7ac79db18f339e9cdced6a307",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/guards_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/policy_witnesses_match_baseline",
+          "equals": true
+        },
+        {
+          "pointer": "/baseline/payload_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/journeys",
+          "equals": 14
+        },
+        {
+          "pointer": "/counts/operations",
+          "equals": 21
+        },
+        {
+          "pointer": "/counts/unresolved_scope_decisions",
+          "equals": 8
+        },
+        {
+          "pointer": "/original_media_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/engine_acceptance_assessed",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/status_promotions",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "CONTRACT30.baseline-commit-history",
+      "kind": "static",
+      "scope": "Reviewed648ce219..dae71f85 parent/current payload hashes against exact retained receipts and append-only self-journal:19transitions, no unresolved receipt gaps. This is historical accounting, with no retrospective gate-pass or engine execution assertion.",
+      "record": "research/runtime/rendering-completion-contract-results-20261030/baseline-history-01.json",
+      "sha256": "b103ad57b70da8abef990f35e4f757b393e708ccc0198f6715345dbe056a5b34",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/journal_append_only",
+          "equals": true
+        },
+        {
+          "pointer": "/unresolved_receipt_paths",
+          "equals": []
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        },
+        {
+          "pointer": "/retrospective_gate_pass_claimed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -392948,7 +393137,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-41d7e89abf7c17b7d5aa8ba69cb1705669a9d14038db1c8cb4a831bde90f34f0.json",
-    "sha256": "41d7e89abf7c17b7d5aa8ba69cb1705669a9d14038db1c8cb4a831bde90f34f0"
+    "path": "research/runtime/coverage/source-index-91d74470dedeb07dd78a8bbd299bca9d1dbc991bf123c1b41d26cbde53e58d17.json",
+    "sha256": "91d74470dedeb07dd78a8bbd299bca9d1dbc991bf123c1b41d26cbde53e58d17"
   }
 }
