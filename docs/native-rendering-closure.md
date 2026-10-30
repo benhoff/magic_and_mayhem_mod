@@ -18,6 +18,12 @@ operation and gate against that baseline. They preserve evidence leads, eight
 conditional scope decisions and unordered closing briefs; they grant no new
 acceptance or execution order.
 
+The [execution plan](native-rendering-execution.md) and the map's `execution_plan`
+section now order those briefs: input/evidence locking, required-path triage,
+acceptance pilot, bounded journey/operation work, scope/provider/fault closure and
+artifact 5 handoff. The target and gap assessments remain unchanged; all tasks
+are planned, with no new player acceptance.
+
 ## Fixed target
 
 The target retains original No-CD single-player simulation and permitted

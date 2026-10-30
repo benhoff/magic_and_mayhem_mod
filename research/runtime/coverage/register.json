@@ -19848,7 +19848,9 @@
         "docs/native-rendering-dependencies.json",
         "research/runtime/rendering-reviewed-baseline-20261030.md",
         "research/runtime/rendering-completion-contract-20261030.md",
-        "research/runtime/rendering-required-gaps-20261030.md"
+        "research/runtime/rendering-required-gaps-20261030.md",
+        "docs/native-rendering-execution.md",
+        "research/runtime/rendering-execution-plan-20261030.md"
       ],
       "implementation": [],
       "tests": [
@@ -19877,7 +19879,9 @@
         "CONTRACT30.baseline-commit-history",
         "GAPS30.inventory-v1",
         "GAPS30.inventory-v1-final",
-        "GAPS30.contract-commit-history"
+        "GAPS30.contract-commit-history",
+        "EXECPLAN30.reviewed-v1",
+        "EXECPLAN30.gap-commit-history"
       ],
       "status": {
         "understanding": "partial",
@@ -19895,7 +19899,8 @@
         "RENDER-INT-06: Shipped suite now has one complete323frame recorded_session adapter; zero generic action-bound session adapters for its14journey/21operation requirements. Complete independent action-bound presented-frame parity and sustained full-session hardware60FPS acceptance remain open; historical mismatch is not established as a current reproduced defect.",
         "RENDER-INT-07 repaired: Owned emitter/private queue/mapped V3/stream decoder pass actual traffic beyond4GiB. Finite sequence/capacity/deadline policies remain; fresh original-game V3 Save/Load not yet validated. Enabled-intro history refusal and a no-start attempt are retained unclassified live limitations, not proved transport regressions.",
         "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted.",
-        "The2026-10-30 required_gap_register reconciles earlier phase-specific findings against immutable source648ce219 and the completion contract. All78mandatory leaf/gate assessments need adequate current complete acceptance; this is not78missing implementations. Eight conditional scope decisions and two retained negative observations remain explicit. Existing stage declarations and historical source hashes are preserved; final task ordering and acceptance/recovery decisions remain pending."
+        "The2026-10-30 required_gap_register reconciles earlier phase-specific findings against immutable source648ce219 and the completion contract. All78mandatory leaf/gate assessments need adequate current complete acceptance; this is not78missing implementations. Eight conditional scope decisions and two retained negative observations remain explicit. Existing stage declarations and historical source hashes are preserved; final task ordering and acceptance/recovery decisions remain pending.",
+        "Artifact4 execution_plan now orders all36closing briefs through input/applicability locking, requiredness triage, a current public-player acceptance pilot, normal/progression/operation work, scope/software/fault closure and final join. Every task remains planned. The current suite has no generic presented-frame session case; existing admission/backend and recorded-action evidence do not close that integration. Artifact5 executed acceptance and separate supported-player/original-recovery decisions remain pending; engine stages and historical hashes are unchanged."
       ],
       "implementation_review": {
         "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
@@ -30220,7 +30225,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Reviewed rendering API and producer support report",
-      "scope": "Read-only reconciliation of all required surface matrix categories and inventoried drawing families with explicitly reviewed scoped code, original-executable versus standalone-driver subset comparisons, bounded World entry counts and actual bypass proof. Source/scope/scenario-bound current validation is suppressed on audit errors. Categories overlap and partial support never becomes full-category completion, effort or overall replacement. Synthetic reporter guard tests validate accounting semantics only; engine equivalence, adequacy of discovery/mappings and new live execution are outside scope. The frontier lists original address scopes, current behavior/scenario proof and explicit branch gaps; one current scenario cannot close another, and branch completeness remains unmeasured. Formal14-journey/21-operation acceptance is retained as a static inventory, separate from any new execution. Revision-bound static baselines export committed data only, retain source/scenario proof and authored acceptance separately, record unavailable local readers, and cannot promote engine status or infer full-player acceptance. The versioned completion-contract checker consumes the authored target, unchanged journey/operation requirements, configuration/supplier boundaries and unresolved decisions. It verifies31source witnesses against the reviewed product revision without original media or engine execution, and cannot certify acceptance. The required-gap checker binds the unchanged completion contract and baseline, covers every47journey subrequirement/21operation/10gate, verifies28bounded evidence leads, and preserves8conditional scope decisions,2negative observations and optional timing. Unordered closing briefs and source-binding checks do not establish task priority, missing code, engine acceptance or status promotion.",
+      "scope": "Read-only reconciliation of all required surface matrix categories and inventoried drawing families with explicitly reviewed scoped code, original-executable versus standalone-driver subset comparisons, bounded World entry counts and actual bypass proof. Source/scope/scenario-bound current validation is suppressed on audit errors. Categories overlap and partial support never becomes full-category completion, effort or overall replacement. Synthetic reporter guard tests validate accounting semantics only; engine equivalence, adequacy of discovery/mappings and new live execution are outside scope. The frontier lists original address scopes, current behavior/scenario proof and explicit branch gaps; one current scenario cannot close another, and branch completeness remains unmeasured. Formal14-journey/21-operation acceptance is retained as a static inventory, separate from any new execution. Revision-bound static baselines export committed data only, retain source/scenario proof and authored acceptance separately, record unavailable local readers, and cannot promote engine status or infer full-player acceptance. The versioned completion-contract checker consumes the authored target, unchanged journey/operation requirements, configuration/supplier boundaries and unresolved decisions. It verifies31source witnesses against the reviewed product revision without original media or engine execution, and cannot certify acceptance. The required-gap checker binds the unchanged completion contract and baseline, covers every47journey subrequirement/21operation/10gate, verifies28bounded evidence leads, and preserves8conditional scope decisions,2negative observations and optional timing. Unordered closing briefs and source-binding checks do not establish task priority, missing code, engine acceptance or status promotion. The static execution-plan consumer validates a12task DAG with36closing-brief owners, unchanged contract/gap fingerprints, a public-player pilot before broad reruns, eight conditional engineering scope routes and separate artifact5 decisions. Twelve acceptance-tooling witnesses match product/planning revisions. Dependency waves, reuse and candidate packs are unmeasured planning heuristics, not runtime proof, task execution, time-optimality or engine acceptance.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -30238,7 +30243,9 @@
         "research/runtime/rendering-coverage-scope-closeout-20261026.json",
         "research/runtime/rendering-reviewed-baseline-20261030.md",
         "research/runtime/rendering-completion-contract-20261030.md",
-        "research/runtime/rendering-required-gaps-20261030.md"
+        "research/runtime/rendering-required-gaps-20261030.md",
+        "docs/native-rendering-execution.md",
+        "research/runtime/rendering-execution-plan-20261030.md"
       ],
       "implementation": [
         "tools/rendering_coverage.py",
@@ -30249,14 +30256,16 @@
         "tools/rendering_baseline.py",
         "tools/report-rendering-baseline.py",
         "tools/rendering_completion.py",
-        "tools/rendering_gaps.py"
+        "tools/rendering_gaps.py",
+        "tools/rendering_execution.py"
       ],
       "tests": [
         "tests/test-rendering-coverage.py",
         "tests/test-rendering-frontier.py",
         "tests/test-rendering-baseline.py",
         "tests/test-rendering-completion.py",
-        "tests/test-rendering-gaps.py"
+        "tests/test-rendering-gaps.py",
+        "tests/test-rendering-execution.py"
       ],
       "validation_dependencies": [
         "research/runtime/native-surface-operation-matrix.json",
@@ -30297,7 +30306,18 @@
         "tools/prepare-scene-observer.py",
         "tools/run-native-game.py",
         "tools/run-native-owned.py",
-        "tools/terrain_light_session.py"
+        "tools/terrain_light_session.py",
+        "tools/drawing_session.py",
+        "tools/drawing_recorded_session.py",
+        "tools/drawing_action_session.py",
+        "tools/check-drawing-journeys.py",
+        "tools/retain-drawing-session.py",
+        "tests/fixtures/drawing-journeys/suite.json",
+        "tests/test-drawing-journeys.py",
+        "tests/test-drawing-session.py",
+        "apps/drawing-session/main.cpp",
+        "tools/test-native-owned-campaign.py",
+        "tools/test-native-campaign.py"
       ],
       "evidence": [
         "TOOL.rendering-coverage.guards-20261010",
@@ -30325,7 +30345,9 @@
         "CONTRACT30.baseline-commit-history",
         "GAPS30.inventory-v1",
         "GAPS30.inventory-v1-final",
-        "GAPS30.contract-commit-history"
+        "GAPS30.contract-commit-history",
+        "EXECPLAN30.reviewed-v1",
+        "EXECPLAN30.gap-commit-history"
       ],
       "status": {
         "understanding": "scoped",
@@ -362333,6 +362355,120 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "EXECPLAN30.reviewed-v1",
+      "kind": "static",
+      "scope": "Static artifact4 execution plan bound to unchanged completion/gap sections and source648ce219/planning base7a5c43f4.12planned tasks,36closing briefs,7candidate packs,8conditional scope routes and two product-choice categories.100isolated guards pass;12tooling witnesses verified. No task/engine/media/GL execution, measured optimality, acceptance or stage promotion.",
+      "record": "research/runtime/rendering-execution-plan-results-20261030/review-01.json",
+      "sha256": "476a3d9255f8d2656d4780104be6779ebe22997bf4ebdfc1c882a44bc7539d98",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/guards_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/prerequisite_review_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/execution_tooling_witnesses_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/closing_briefs",
+          "equals": 36
+        },
+        {
+          "pointer": "/counts/required_tasks",
+          "equals": 11
+        },
+        {
+          "pointer": "/counts/optional_tasks",
+          "equals": 1
+        },
+        {
+          "pointer": "/counts/scope_decisions",
+          "equals": 8
+        },
+        {
+          "pointer": "/initial_ready_tasks",
+          "equals": [
+            "EP01"
+          ]
+        },
+        {
+          "pointer": "/suite_frontier/generic_session_cases",
+          "equals": 0
+        },
+        {
+          "pointer": "/optimality_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/task_execution_performed",
+          "equals": false
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_media_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/engine_acceptance_assessed",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/status_promotions",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "EXECPLAN30.gap-commit-history",
+      "kind": "static",
+      "scope": "Reviewed committed4dfa2d30..7a5c43f4 parent/current payload hashes against exact retained receipts and append-only self-journal:14transitions,no unresolved receipt gaps. Historical accounting separate from the current plan batch, retrospective gate pass and engine validation.",
+      "record": "research/runtime/rendering-execution-plan-results-20261030/gaps-history-01.json",
+      "sha256": "acdad4acdae885dc53c6ccb179db4b0d091ea51dc7d58011b83dc7599c5a79e9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/journal_append_only",
+          "equals": true
+        },
+        {
+          "pointer": "/unresolved_receipt_paths",
+          "equals": []
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        },
+        {
+          "pointer": "/retrospective_gate_pass_claimed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -393274,7 +393410,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-3a565dcb94df34d133dfbb54d8c7145d20a909b2c27c349cd4e7c6cf5cbec5c9.json",
-    "sha256": "3a565dcb94df34d133dfbb54d8c7145d20a909b2c27c349cd4e7c6cf5cbec5c9"
+    "path": "research/runtime/coverage/source-index-42ff558ce1e016fbea18525758115fc593f2d4d74e6275a9a424e9e30db10054.json",
+    "sha256": "42ff558ce1e016fbea18525758115fc593f2d4d74e6275a9a424e9e30db10054"
   }
 }

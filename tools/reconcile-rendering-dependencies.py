@@ -234,16 +234,20 @@ def main():
                         help='Review the completion contract and baseline bindings without original media or byte analysis')
     mode.add_argument('--gaps-only', action='store_true',
                       help='Review required gaps, evidence leads and unordered closing briefs without original media')
+    mode.add_argument('--execution-plan-only', action='store_true',
+                      help='Review execution dependencies, evidence reuse and next action without launching any task')
     parser.add_argument('--run-guards', action='store_true',
-                        help='With --contract-only or --gaps-only, run isolated accounting/admission guards')
+                        help='With a static review mode, run isolated accounting/admission guards')
     args = parser.parse_args()
-    if args.run_guards and not (args.contract_only or args.gaps_only):
-        parser.error('--run-guards requires --contract-only or --gaps-only')
+    if args.run_guards and not (args.contract_only or args.gaps_only or args.execution_plan_only):
+        parser.error('--run-guards requires a static review mode')
     target = ROOT/args.report
     require(not target.exists(), 'Refusing to overwrite a report')
-    if args.contract_only or args.gaps_only:
+    if args.contract_only or args.gaps_only or args.execution_plan_only:
         from evidence_local import local_evidence
-        if args.gaps_only:
+        if args.execution_plan_only:
+            from rendering_execution import review
+        elif args.gaps_only:
             from rendering_gaps import review
         else:
             from rendering_completion import review
@@ -254,8 +258,11 @@ def main():
         if args.run_guards:
             tests = ['tests/test-rendering-completion.py', 'tests/test-native-only-contract.py',
                      'tests/test-native-player-launcher.py']
-            if args.gaps_only:
+            if args.gaps_only or args.execution_plan_only:
                 tests.insert(0, 'tests/test-rendering-gaps.py')
+            if args.execution_plan_only:
+                tests = ['tests/test-rendering-execution.py', 'tests/test-drawing-journeys.py',
+                         'tests/test-drawing-session.py', *tests]
             result['sources'].update({p: evidence_digest(ROOT/p, root=ROOT) for p in tests})
             result['guard_commands'] = []
             for path in tests:

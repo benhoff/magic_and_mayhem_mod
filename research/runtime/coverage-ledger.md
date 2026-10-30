@@ -24553,3 +24553,30 @@ source-binding matches never imply whole-requirement acceptance. The gaps-only
 checker verifies leads and guards before any original-media/byte path; no game,
 GL, hardware execution or engine-stage promotion occurs. Artifact 5's executed
 acceptance and separate player/recovery decisions remain outstanding.
+
+## Rendering execution plan — 2026-10-30
+
+The [artifact 4 review](rendering-execution-plan-20261030.md) and
+[execution guide](../../docs/native-rendering-execution.md) bind the unchanged
+completion-contract/gap sections to twelve planned tasks and all 36 closing
+briefs. Input/applicability locking and requiredness triage precede a current
+public-player acceptance pilot. Bounded normal sessions, actual campaign/later-map/
+victory/defeat and operation residuals then feed scope resolution, software deltas,
+fault/restart evidence and a complete requirement join. Seven candidate session
+packs preserve every journey; their count is not an execution estimate.
+
+The inspected suite has no generic presented-frame session case, despite existing
+admission/backend machinery and recorded-EGL action cases. The pilot must connect
+the smallest required evidence plumbing and actual player correlation before broad
+reruns. The plan assigns technical scope investigations to engineering, retaining
+all eight conditional rules; user choices arise only for concrete support-promise
+changes. No immediate user decision is required. Optional timing stays off the
+completion path and no whole native scene/service port is imposed.
+
+Seventeen new plan guards and 83 existing journey/session/prerequisite/admission/
+mocked-launcher guards check dependencies, exact bindings, complete ownership and
+static-versus-executed boundaries. Twelve tooling witnesses match the reviewed
+product/planning revisions. All tasks remain planned, all historical hashes and
+engine stages are preserved, and no original media, game, GL or acceptance execution
+occurs. Artifact 5 remains the actual evidence-backed acceptance and separate
+supported-player/original-recovery closure record.

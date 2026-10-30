@@ -9,6 +9,12 @@ The [required gap register](../research/runtime/rendering-required-gaps-20261030
 connects every required check to existing evidence and a concrete closing brief,
 keeping missing proof separate from missing implementation and unresolved scope.
 
+Start current completion work with the [execution plan](native-rendering-execution.md).
+It orders all 36 closing briefs, puts a real acceptance pilot before broad reruns,
+and identifies the next task and its exit. The dated implementation plan below
+is historical context; its older fixed-FPS and source-specific limitations do
+not replace the current completion contract or evidence-bound gap assessments.
+
 The [reviewed rendering baseline for committed tree 648ce219](../research/runtime/rendering-reviewed-baseline-20261030.md)
 consolidates delivered code, source-bound current/historical proof, retained
 failures and unknowns. It is a static baseline, with no new gameplay validation
@@ -25,7 +31,7 @@ still unavailable.** The original engine continues simulation and preparation;
 selected native modes bypass admitted original pixel producers and World drawing.
 Ordinary observation/partial modes retain their own forwarding policies.
 
-This is the current scope and release plan. The
+This historical section records its scope and release plan. The
 [code-checked integration backlog](../research/runtime/native-rendering-integration-gaps-20261015.md)
 and its [review record](../research/runtime/native-rendering-gap-review-20261016.json)
 separate implementation limits, supported subsets and missing acceptance evidence.
