@@ -24667,3 +24667,32 @@ paint/swap identities, owned initial history, independent reference and positive
 receipt integration are the concrete EP03 implementation work before broader
 acceptance execution. Private-owner research does not stand in for the public
 entrypoint. Product sources, frozen plan/contract and engine stages are unchanged.
+
+## Rendering acceptance research and receipt migration — 2026-10-31
+
+[Artifact 5 research](rendering-acceptance-research-20261031.md) reviews all156
+requirement/configuration rows,48lead/research records and15original-recovery
+groups with106behavior links.24records match their source fingerprints and24
+have changed dependencies; execution-claim identities and complete provenance
+remain separate. All391retained shell compiler inputs still match current code.
+All seven existing reference cases re-admit under their exact original/observed
+or corrected-upload boundaries. No native backend/player is executed or accepted.
+
+Sixteen isolated actual SQLite/API probes keep every row and both decisions
+pending. Restore accepts some metadata rejected or constrained by append;
+candidate assertions also equate integer1with booleantrue. These are researched
+validation/typing requirements for a new execution-capable ledger, not a current
+acceptance bypass. The14actual candidate/work events survive verified backup and
+restore with unchanged IDs/times. The generic coverage summary remains a trusted
+caller interface; per-configuration artifact admission must precede projection.
+
+The transaction experiment also reproduces a prior custom producer error:
+uncommitted raw-review inserts disappear on close. This batch appends the1251
+missing raw receipts across5237da93..04f75b4a with exact immutable payload witnesses,
+checks persistence after reopening and verifies actual journal export. Earlier
+reports/hashes are preserved; no past raw-extension gate pass is claimed.
+The next implementation is EP03's real receipt/validator, versioned ledger
+migration, EP10's dependency/reuse/failure join and EP11's separate verdicts.
+All156acceptance rows, seven player-scope proof conditions and eight original
+scope conditions remain open. No immediate user decision or engine-stage
+promotion follows from this research.

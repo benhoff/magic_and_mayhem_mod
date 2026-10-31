@@ -30268,7 +30268,8 @@
         "docs/native-rendering-acceptance.md",
         "research/runtime/rendering-acceptance-record-20261030.md",
         "research/runtime/rendering-scope-decisions-20261030.md",
-        "research/runtime/rendering-execution-research-20261031.md"
+        "research/runtime/rendering-execution-research-20261031.md",
+        "research/runtime/rendering-acceptance-research-20261031.md"
       ],
       "implementation": [
         "tools/rendering_coverage.py",
@@ -158034,6 +158035,72 @@
       },
       "remaining_gaps": [
         "Actual complete required sprite/effect production and transport remains distinct from this getter/storage contract."
+      ]
+    },
+    {
+      "id": "TOOL.rendering-acceptance-research",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Artifact5 receipt admission, recovery and persistence research",
+      "scope": "Read-only48-record provenance/contract/source diagnostics and all156row/15group106behavior mapping;16isolated actual SQLite/API probes and exact14event backup/restore; seven historical reference admissions without a backend; caller-owned review transaction control. Research diagnoses trust boundaries, strict typing, migration/reuse/invalidation/supersession and separate verdict requirements. It cannot admit execution receipts, pass acceptance, recover original functions or promote engine stages.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-acceptance-research-20261031.md"
+      ],
+      "implementation": [
+        "tools/rendering_acceptance_research.py",
+        "tools/research-rendering-acceptance.py",
+        "tools/research-rendering-acceptance-references.py",
+        "tools/research-rendering-acceptance-persistence.py"
+      ],
+      "tests": [
+        "tests/test-rendering-acceptance-research.py",
+        "tests/test-rendering-acceptance.py",
+        "tests/test-drawing-session.py",
+        "tests/test-drawing-journeys.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_acceptance.py",
+        "tools/rendering_execution.py",
+        "tools/rendering_scope.py",
+        "tools/rendering_completion.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_bookkeeping.py",
+        "tools/coverage_reviews.py",
+        "tools/evidence_local.py",
+        "tools/drawing_journeys.py",
+        "tools/drawing_session.py",
+        "tools/drawing_corpus.py",
+        "tools/drawing_scene_corpus.py",
+        "tools/drawing_sequence.py",
+        "tools/drawing_publication_corpus.py",
+        "tools/drawing_recorded_session.py",
+        "tools/drawing_action_session.py",
+        "tools/check-drawing-journeys.py",
+        "docs/native-rendering-closure.json",
+        "tests/fixtures/drawing-journeys/suite.json"
+      ],
+      "evidence": [
+        "AR5R31.research",
+        "AR5R31.references",
+        "AR5R31.persistence",
+        "AR5R31.history",
+        "AR5R31.guards",
+        "AR5R31.first-attempt"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Collector-specific positive receipt admission awaits the actual EP03 public-player pilot.",
+        "A versioned execution ledger with strict symmetric restore, dependency/configuration/reuse/failure joins and separate closure decisions remains implementation work.",
+        "This research discharges no player acceptance row or original-recovery group; existing7player/8original scope conditions remain."
       ]
     }
   ],
@@ -363578,6 +363645,90 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "AR5R31.research",
+      "kind": "static",
+      "scope": "Actual research of48verified lead/research records,156pending rows,15recovery groups/106links,16real isolated SQLite/API probes and exact14event backup/restore.24source matches/24changed; source/contract/adequacy remain distinct. No original/engine/backend execution or player admission.",
+      "record": "research/runtime/rendering-acceptance-research-results-20261031/research-03.json",
+      "sha256": "6a5065b1a41410931268a77ebbc182258e47bf5b29f073ddba7fda721376bf29",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AR5R31.references",
+      "kind": "static",
+      "scope": "All seven shipped historical reference cases pass actual existing admission.323QuickBattle/238storage/222corrected-storage observed frames keep exact acquisition/reference policies; no native backend or new parity/player result.",
+      "record": "research/runtime/rendering-acceptance-research-results-20261031/references-01.json",
+      "sha256": "7b2a3f899d7be6d67443faeb7508af29b8f905c95802e873672487de87acb9ad",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AR5R31.persistence",
+      "kind": "static",
+      "scope": "Actual isolated coverage-bookkeeper transactions: uncommitted insert disappears on close; locked() commit persists after reopen. Caller error, not an engine or library-contract repair.",
+      "record": "research/runtime/rendering-acceptance-research-results-20261031/persistence-01.json",
+      "sha256": "bb08e16c4139f09094dfabe0da7930dbf490f7363d78a4d1717b4f069f726acf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AR5R31.history",
+      "kind": "static",
+      "scope": "1357committed parent/current transitions5237da93..04f75b4a reviewed.1251missing raw receipts witnessed against exact original producer/retention payloads, committed under locked(), reopened and actually exported to journal. No historical gate pass or new engine validation.",
+      "record": "research/runtime/rendering-acceptance-research-results-20261031/committed-history-03.json",
+      "sha256": "410f5f1b48146543ba7678d4fcd1ec2125e9d562e8ce2ff98bccfec3673a9b7e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AR5R31.guards",
+      "kind": "static",
+      "scope": "112focused provenance/type and existing acceptance/session/journey/scope/execution/gap/completion guards. Synthetic/static; actual SQLite/reference experiments recorded separately.",
+      "record": "research/runtime/rendering-acceptance-research-results-20261031/guards-01.json",
+      "sha256": "4b46a18dfac89efb21070ffa7b1f4b540f78450d926bef8109242d675908bc09",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AR5R31.first-attempt",
+      "kind": "static",
+      "scope": "Preserved first research invocation failure: a resolver opened before new pending SQLite creation could not read the first newly written probe. Reader reopened in new producer; no engine failure or acceptance claim.",
+      "record": "research/runtime/rendering-acceptance-research-results-20261031/research-01.json",
+      "sha256": "7656ca4ad49fd7e0894b499e5a2bfc981511598a4d669b96b4386ee693b0e146",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -394519,7 +394670,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-48fa1135bc571751c016a58550396d8c7cf469fd04516072a035a163c568da4d.json",
-    "sha256": "48fa1135bc571751c016a58550396d8c7cf469fd04516072a035a163c568da4d"
+    "path": "research/runtime/coverage/source-index-0a5cab860c606fc08d39cb8475f2a6c08496834fcfc0eee2c6c65f5e5a82a2fe.json",
+    "sha256": "0a5cab860c606fc08d39cb8475f2a6c08496834fcfc0eee2c6c65f5e5a82a2fe"
   }
 }
