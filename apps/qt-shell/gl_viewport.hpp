@@ -1,5 +1,6 @@
 #pragma once
 #include <QImage>
+#include "acceptance_capture.hpp"
 #include <QPointer>
 #include <functional>
 #include "blit.hpp"
@@ -27,7 +28,9 @@ signals:
     void aboutToCompose();
 public:
     void setFrame(QImage image);
-    void setGpuFrame(mnm::render::GpuFrame frame);
+    void setGpuFrame(mnm::render::GpuFrame frame,std::uint64_t serial=0,std::uint64_t generation=0);
+    std::uint64_t swappedWorldGeneration() const{return acceptanceWorldSwapped_;}
+    std::uint64_t swappedPaint() const{return acceptanceLastSwappedPaint_;}
     std::uint64_t imageUploads() const{return imageUploads_;}
     QSize frameSize() const{return gpuFrame_.valid()?gpuFrame_.size():frame_.size();}
     QRectF imageRect() const;
@@ -38,6 +41,8 @@ public:
     QString error() const{return error_;}
     // Optional native diagnostic observer: false begins painting, true completes.
     std::function<void(bool)> framePaintTiming;
+    std::function<QJsonObject()> acceptanceState;
+    const void* acceptanceOwner=nullptr;
     std::function<bool()> recoverGraphics;
     // The application owns desired visibility; Qt hides widgets on surface loss.
     std::function<bool()> shouldRestorePlatformSurface;
@@ -62,6 +67,10 @@ protected:
     void showEvent(QShowEvent*) override;
 private:
     friend class GlViewportCanvas;
+    AcceptanceCapture acceptance_{"viewport"};
+    std::uint64_t acceptanceWorldPainted_=0,acceptanceWorldSwapped_=0,acceptanceLastSwappedPaint_=0;
+    std::uint64_t acceptanceLease_=0,acceptanceGeneration_=0,acceptancePaint_=0;
+    void capturePaint(const QImage&);
     bool raster_=false,platformRecoveryQueued_=false,platformRecoveryCancelled_=false;
     QPointer<QWidget> platformHost_;
     QPointer<QWindow> platformWindow_;

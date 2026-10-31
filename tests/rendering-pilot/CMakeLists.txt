@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.20)
+project(RenderingPilotControls LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_AUTOMOC ON)
+find_package(Qt6 REQUIRED COMPONENTS Widgets OpenGLWidgets)
+set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
+add_subdirectory(../../apps/qt-shell shell EXCLUDE_FROM_ALL)
+add_executable(pilot-observer observer.cpp ../../apps/qt-shell/gl_viewport.cpp
+  ../../apps/qt-shell/live_command_renderer.cpp ../../apps/qt-shell/command_channel.cpp)
+target_include_directories(pilot-observer PRIVATE ../../apps/qt-shell)
+target_link_libraries(pilot-observer PRIVATE mnm-renderer Qt6::Widgets Qt6::OpenGLWidgets)

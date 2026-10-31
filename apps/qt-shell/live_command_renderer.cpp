@@ -9,8 +9,15 @@
 #include "../../protocols/include/mnm/native_cpu_read_v1.h"
 #include <algorithm>
 LiveCommandRenderer::LiveCommandRenderer(GlViewport& viewport,bool verify):LiveCommandRenderer(viewportRenderTarget(viewport),verify){}
-LiveCommandRenderer::LiveCommandRenderer(NativeRenderTarget target,bool verify):target_(std::move(target)),verify_(verify){}
-LiveCommandRenderer::~LiveCommandRenderer(){abort();}
+LiveCommandRenderer::LiveCommandRenderer(NativeRenderTarget target,bool verify):target_(std::move(target)),verify_(verify){
+    if(target_.observeAcceptance)target_.observeAcceptance([this]{
+        const auto* r=result();return QJsonObject{{"presentation_owner","gui"},{"immutable_lease",false},
+            {"lease",QString::number(acceptancePresentSerial_)},{"world",QString::number(r?r->displayWorldGeneration:0)},
+            {"commands",int(r?r->commands:0)},{"mode",int(r?r->displayMode:0)},{"surface",int(r?r->displaySurface:0)},
+            {"sealed_world",QString::number(r?r->displaySealedGeneration:0)}};
+    },this);
+}
+LiveCommandRenderer::~LiveCommandRenderer(){if(target_.releaseAcceptance)target_.releaseAcceptance(this);abort();}
 bool LiveCommandRenderer::create(const QString& path,quint32 session,quint32 version){if(!channel_.create(path,session,version)){error_=channel_.error();closed_=true;return false;}cpuReplyPath_=path+".cpu-reply";cpuReplySession_=session;decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()>=2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
 bool LiveCommandRenderer::open(const QString& path){if(!channel_.open(path)){error_=channel_.error();closed_=true;return false;}decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()>=2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
 void LiveCommandRenderer::fail(const QString& reason){error_=reason;abort();target_.present({});}
@@ -24,7 +31,7 @@ void LiveCommandRenderer::setPresentationSuspended(bool suspended){
     if(presentationSuspended_==suspended)return;
     presentationSuspended_=suspended;
     if(!suspended && deferredPresentation_.valid()){
-        target_.present(std::move(deferredPresentation_));deferredPresentation_={};
+        ++acceptancePresentSerial_;target_.present(std::move(deferredPresentation_));deferredPresentation_={};
         if(framePresented)framePresented();
     }
 }
@@ -47,7 +54,7 @@ bool LiveCommandRenderer::poll(quint32 budget){
                 if(presentationSuspended_){deferredPresentation_=std::move(frame);return;}
                 // setGpuFrame queues an update. Qt coalesces historical frames
                 // and composes the latest lease after this bounded poll yields.
-                target_.present(std::move(frame));
+                ++acceptancePresentSerial_;target_.present(std::move(frame));
                 if(framePresented)framePresented();
             },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()>=2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded,residentWorld,prepareResidentFrames,reuseSealedUi,[this](const auto& command,const auto& image){publishCpuRead(command,image);},cpuReplySession_,copyDiagnostics});
         }
@@ -66,6 +73,7 @@ bool LiveCommandRenderer::poll(quint32 budget){
                 if(!remaining)break;
                 const auto bytes=channel_.poll(remaining);
                 remaining-=quint32(bytes.size());
+                if(!bytes.isEmpty())acceptance_.append("fragment",{},bytes);
                 pending_=decoder_->append(bytes);cursor_=0;
                 if(cpuReadPending)for(const auto& command:pending_)if(command.operation==MNM_RENDER_STREAM_V5_OPERATION_CPU_READ){
                     cpuReadPending(std::uint64_t(command.words[1])|(std::uint64_t(command.words[2])<<32));break;
@@ -98,7 +106,7 @@ bool LiveCommandRenderer::poll(quint32 budget){
         if(!target_.error().isEmpty())throw std::runtime_error(target_.error().toStdString());
         if(channel_.state()==MNM_RENDER_COMMANDS_V1_STATE_ENDED && channel_.drained() && pending_.empty()){
             // poll() can expose terminal state before all bounded bytes drain.
-            decoder_->finish();consumer_->finish();ended_=true;closed_=true;
+            decoder_->finish();consumer_->finish();acceptance_.append("ended",QJsonObject{{"commands",int(consumer_->result().commands)}});acceptance_.finish();ended_=true;closed_=true;
         }
         return true;
     }catch(const std::exception& e){fail(e.what());return false;}
@@ -143,6 +151,7 @@ void LiveCommandRenderer::publishCpuRead(const mnm::render::SurfaceCommand& c,co
         if(image.pixels[i]>65535)throw std::runtime_error("Non-WORD explicit CPU reply");
         qToLittleEndian(quint16(image.pixels[i]),reply.data()+64+i*2);
     }
+    acceptance_.append("cpu-read",QJsonObject{{"sequence",int(c.sequence)}},reply);
     if(!publishCpuReplyFile(cpuReplyPath_,reply))
         throw std::runtime_error("Explicit CPU reply publication failed");
     if(cpuReadPending)cpuReadPending(0);

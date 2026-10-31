@@ -24696,3 +24696,34 @@ migration, EP10's dependency/reuse/failure join and EP11's separate verdicts.
 All156acceptance rows, seven player-scope proof conditions and eight original
 scope conditions remain open. No immediate user decision or engine-stage
 promotion follows from this research.
+
+
+## Public native rendering acceptance pilot — 2026-10-31
+
+[The execution review](rendering-acceptance-pilot-20261031.md) connects the actual
+public launcher to the first offered Quick Battle, two World visits, original
+input polls after actual World swaps and normal original Quit. The independent
+owned-history/original-routine reference reconstructs 44 Worlds / 73,735 draws and
+matches 113 native Qt swaps, including 58 World swaps and 105,071,100 viewport pixels.
+No original destination or native output seeds the reference. GUI mutable leases
+are bound at paint; completed GPU reads and actual swaps are distinct evidence.
+Original release accounting and command history end with zero retained owners.
+The actual software flag probe completes launch/route/Quit; full pixel acceptance
+for that configuration remains pending. Both Xvfb runs use llvmpipe; no hardware
+comparison, movie/audio content, other scaling or physical scanout is claimed.
+
+NP.rendering-acceptance-pilot records this bounded milestone without promoting
+other engine contracts or final recovery. A strictly typed append-only EP03 ledger
+binds the frozen five-artifact dossier and retains the scoped positive receipt
+through reopen/restore. All 156full requirement rows and both final decisions
+remain pending; complete EP10 dependency/configuration/reuse/failure joining is
+still work. Historical negative attempts remain immutable. Shared product-source
+changes leave earlier evidence fingerprints stale; they were not refreshed and
+no unrelated subsystem was rerun or promoted. Next work is EP04/EP05 expansion,
+EP06 required residuals, EP08 full software proof and EP09 fault/restart exits.
+
+Reviewed maintenance reclaimed 1,350,668,288 allocated main-drive build bytes and
+689,106,944 redundant cold-cache bytes while preserving pins, inputs, active
+consumers and both cache paths. New raw execution evidence is retained in SQLite
+with a verified cold snapshot/restore; build/staging outputs use RAM. These are
+storage and execution provenance, not expanded gameplay or recovery claims.

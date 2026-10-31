@@ -5,6 +5,7 @@
 #include "native_frame_trace.hpp"
 #include "native_worker_status_gate.hpp"
 #include <QThread>
+#include "acceptance_capture.hpp"
 #include <QOffscreenSurface>
 #include <mutex>
 #include <atomic>
@@ -68,5 +69,6 @@ private:
     RenderStageTiming worldTiming_,commandTiming_,extraTiming_,exportTiming_,turnTiming_;
     RenderStageTiming activeWorldTiming_,activeCommandTiming_;
     QJsonArray slowTurns_;
+    AcceptanceCapture acceptance_{"exports"};
     std::uint64_t exports_=0,skipped_=0,highWater_=0,turns_=0,exportAllocations_=0;
 };

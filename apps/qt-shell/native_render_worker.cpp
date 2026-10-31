@@ -80,7 +80,7 @@ bool NativeRenderWorker::poll(bool normalQuit,bool drawAllowed,bool paused){
     }
     if(!status_.error.isEmpty())return false;
     if(frame.valid() && !paused && !recovering){
-        viewport_.setGpuFrame(std::move(frame));
+        viewport_.setGpuFrame(std::move(frame),serial,generation);
         if(frameTrace_.enabled()){
             std::lock_guard<std::mutex> lock(mutex_);guiSerial_=serial;guiGeneration_=generation;
             frameTrace_.recordGui({serial,generation,NativeFrameTrace::now(),0,drawAllowed_,paused_});
@@ -243,6 +243,11 @@ void NativeRenderWorker::run(){
                         else{frozen=rendered_.snapshot();leases.push_back(frozen);++exportAllocations_;}
                         highWater_=std::max(highWater_,std::uint64_t(leases.size()));++exports_;
                         trace.exportSerial=exports_;
+                        const auto* result=commands_->result();
+                        acceptance_.append("export",QJsonObject{{"lease",QString::number(exports_)},{"world",QString::number(uiState.worldOutput?uiState.generation:0)},
+                            {"commands",int(result?result->commands:0)},{"mode",int(result?result->displayMode:0)},
+                            {"surface",int(result?result->displaySurface:0)},{"sealed_world",QString::number(result?result->displaySealedGeneration:0)},
+                            {"width",frozen.size().width()},{"height",frozen.size().height()}});
                         std::lock_guard<std::mutex> lock(mutex_);trace.published=frameTrace_.stamp();readyFrame_=std::move(frozen);readySerial_=exports_;readyGeneration_=uiState.worldOutput?uiState.generation:0;
                     }else{++skipped_;trace.exportBlocked=true;}
                     frameChanged_=false;
@@ -272,4 +277,5 @@ void NativeRenderWorker::run(){
     }
     {std::lock_guard<std::mutex> lock(mutex_);readyFrame_={};}
     rendered_={};leases.clear();commands_.reset();world_.reset();
+    acceptance_.append("retired",QJsonObject{{"export_leases",0},{"command_owner",false},{"world_owner",false}});acceptance_.finish();
 }

@@ -190,3 +190,24 @@ recovery receive separate decisions; a bounded accepted player may retain origin
 recovery gaps. This static plan does not execute the tasks or certify either claim.
 The [review record](../research/runtime/rendering-execution-plan-20261030.md)
 records source/contract checks, guards and local accounting.
+
+
+## EP03 execution update — 2026-10-31
+
+The [public acceptance pilot](../research/runtime/rendering-acceptance-pilot-20261031.md)
+closes the bounded EP03 pipeline with a real current execution/admission receipt.
+The default public entry, enabled intros, first offered Quick Battle, actual World
+swaps, Qt input consumed at an original callback, independent continuous history
+and normal original Quit are connected. All 113 captured native swaps matched,
+including 58 World presentations across 44 original-reference Worlds. The actual
+software flag probe completed the route; full software pixel acceptance remains
+EP08 work. Integer sharp on Xvfb/llvmpipe is the demonstrated viewport/provider.
+
+The frozen plan retains its authored state and witnesses; this dated execution
+receipt supplies progress without rewriting that historical contract. EP01/EP02
+are concretely bound for this pilot's inputs, not for the entire future support
+domain. EP04/EP05 are the next expansion, with EP06 residuals and EP08/EP09
+configuration/fault proof. EP10 still needs a complete per-requirement join before
+EP11 can issue independent player/recovery decisions. All 156 broad obligations
+remain pending; none is automatically closed by a pipeline receipt. No immediate
+user decision blocks the next engineering work.

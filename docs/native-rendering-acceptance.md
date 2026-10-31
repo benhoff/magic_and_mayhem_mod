@@ -1,5 +1,14 @@
 # Native rendering acceptance record
 
+The [2026-10-31 public pilot](../research/runtime/rendering-acceptance-pilot-20261031.md)
+now supplies one admitted `EP03.pipeline` execution receipt: 58 World swaps
+matched an independent original/history reference, with original-polled Qt input
+and normal Quit. The current software-flag probe also completed normally. This
+is a bounded pipeline result; all 156 full acceptance rows and both final
+decisions remain pending. EP10's complete dependency/configuration/reuse/failure
+join is still required. The frozen opening record and its descriptions below
+retain their original phase and hashes.
+
 Artifact 5 is open. The [current reviewed record](../research/runtime/rendering-scope-results-20261030/acceptance-01.json)
 is an immutable SQLite-backed snapshot of the requirements, evidence candidates,
 pending results and separate closure decisions. The append-only local workspace
