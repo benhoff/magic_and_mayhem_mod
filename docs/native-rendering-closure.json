@@ -4513,5 +4513,71 @@
     },
     "strategy": "evidence_led_dependency_and_reuse_heuristic",
     "time_optimality_proved": false
+  },
+  "acceptance_record": {
+    "schema": 1,
+    "id": "native-rendering-acceptance-v1",
+    "revision": 1,
+    "record_base_commit": "e533c9aef25850ccf95819b5b6681c758285eef0",
+    "reviewed_source_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7",
+    "baseline": {
+      "record": "research/runtime/rendering-reviewed-baseline-results-20261030/baseline-01.json",
+      "sha256": "fe3b3e8263f6d216a7e0fce4db45a200c9fdef4c9cd0f857d87dc1de264bd699",
+      "source_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7"
+    },
+    "bindings": {
+      "completion_contract": {
+        "id": "native-rendering-completion-v1",
+        "revision": 1,
+        "sha256": "86c0ccbf89069f94a3073aeec08e0ce161038931fcc00d1fef26c862014d44fb"
+      },
+      "required_gap_register": {
+        "id": "native-rendering-required-gaps-v1",
+        "revision": 1,
+        "sha256": "6cc5d80d45f5a9aa756b700412e865427cd7162db2c6c15798dbd1d606f1d7a9"
+      },
+      "execution_plan": {
+        "id": "native-rendering-execution-v1",
+        "revision": 1,
+        "sha256": "e81fc176086715ca80960657085c0f318efbbda2e64e45218bfba322a234a44d"
+      }
+    },
+    "workspace": "working/coverage/native-rendering-acceptance.sqlite3",
+    "mode": "opening_pending_record",
+    "decision_ids": [
+      "supported-player",
+      "original-recovery"
+    ],
+    "evidence_policy": {
+      "attachments_are_candidates": true,
+      "payloads_and_assertions_verified": true,
+      "source_freshness_separate_from_scope_adequacy": true,
+      "historical_failures_not_current_regressions": true,
+      "no_pass_from_static_review": true,
+      "no_pass_from_attachment": true,
+      "no_task_completion_from_guard_pass": true,
+      "independent_player_and_recovery_decisions": true,
+      "required_unknowns_remain_visible": true,
+      "immutable_events_and_snapshots": true,
+      "new_evidence_id_for_new_execution": true,
+      "sqlite_backups_required": true
+    },
+    "positive_execution_admission": {
+      "state": "not_yet_established",
+      "owner_task": "EP03",
+      "condition": "Establish an actual independently validated current public-player receipt and its collector-specific admission at the pilot; EP10 joins adequate current evidence and EP11 records separate decisions. This opening producer verifies and stores candidates; it cannot certify acceptance."
+    },
+    "first_work": {
+      "task": "EP01",
+      "activity": "Review current source witnesses and all28lead payloads/assertions; classify current recorded source bindings, map every requirement to its owner and seed an applicability review.",
+      "complete": false,
+      "remaining": [
+        "Bind the actual as-built player compiler/binary source closure.",
+        "Bind actual original/assets/save identities and concrete pilot/map/save selectors.",
+        "Name actual host/provider/display/media configuration for each execution and its bounded resource/output budget.",
+        "Review evidence adequacy/applicability per requirement, caller, configuration and reference boundary before reuse."
+      ]
+    },
+    "opening_record": "research/runtime/rendering-acceptance-results-20261030/record-01.json"
   }
 }

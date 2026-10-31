@@ -24580,3 +24580,27 @@ product/planning revisions. All tasks remain planned, all historical hashes and
 engine stages are preserved, and no original media, game, GL or acceptance execution
 occurs. Artifact 5 remains the actual evidence-backed acceptance and separate
 supported-player/original-recovery closure record.
+
+## Rendering acceptance record opened — 2026-10-30
+
+The [artifact 5 opening](rendering-acceptance-record-20261030.md) adds a checked
+SQLite-backed [acceptance dossier](../../docs/native-rendering-acceptance.md),
+bound to unchanged completion/gap/execution sections. All 156 per-configuration
+leaf/operation/gate rows remain pending; eight scope decisions, fifteen original
+recovery groups and both retained negative observations stay explicit. Supported
+player and original recovery decisions remain separate and pending. No new current
+rendering failure or successful acceptance is inferred.
+
+EP01 source/lead-applicability work starts by rechecking witnesses and 28 immutable
+lead payloads/assertions and assigning each requirement its execution owner. Actual
+as-built compiler/binary, original/assets/save, provider/display/media and pilot
+input/budget identities and per-requirement adequacy remain pending; no execution
+task is completed. Append-only candidate attachment verifies hashes/assertions and
+keeps source freshness separate from acceptance. Positive current-player receipt
+admission remains part of the real EP03 pilot; this opening producer cannot set pass.
+
+Twenty-two new dossier guards and 100 prerequisite guards check the boundaries without
+original media/game/GL/hardware execution or engine-stage changes. Workspace and
+evidence backups are verified and retained in SQLite under the storage reserve;
+historical hashes remain unchanged. Artifact 5 is now an open pending evidence
+record, with runtime completion still requiring execution of artifact 4.

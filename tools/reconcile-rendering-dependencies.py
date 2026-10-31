@@ -236,16 +236,20 @@ def main():
                       help='Review required gaps, evidence leads and unordered closing briefs without original media')
     mode.add_argument('--execution-plan-only', action='store_true',
                       help='Review execution dependencies, evidence reuse and next action without launching any task')
+    mode.add_argument('--acceptance-only', action='store_true',
+                      help='Open the pending acceptance dossier and review evidence candidates without launching the player')
     parser.add_argument('--run-guards', action='store_true',
                         help='With a static review mode, run isolated accounting/admission guards')
     args = parser.parse_args()
-    if args.run_guards and not (args.contract_only or args.gaps_only or args.execution_plan_only):
+    if args.run_guards and not (args.contract_only or args.gaps_only or args.execution_plan_only or args.acceptance_only):
         parser.error('--run-guards requires a static review mode')
     target = ROOT/args.report
     require(not target.exists(), 'Refusing to overwrite a report')
-    if args.contract_only or args.gaps_only or args.execution_plan_only:
+    if args.contract_only or args.gaps_only or args.execution_plan_only or args.acceptance_only:
         from evidence_local import local_evidence
-        if args.execution_plan_only:
+        if args.acceptance_only:
+            from rendering_acceptance import review
+        elif args.execution_plan_only:
             from rendering_execution import review
         elif args.gaps_only:
             from rendering_gaps import review
@@ -258,11 +262,13 @@ def main():
         if args.run_guards:
             tests = ['tests/test-rendering-completion.py', 'tests/test-native-only-contract.py',
                      'tests/test-native-player-launcher.py']
-            if args.gaps_only or args.execution_plan_only:
+            if args.gaps_only or args.execution_plan_only or args.acceptance_only:
                 tests.insert(0, 'tests/test-rendering-gaps.py')
-            if args.execution_plan_only:
+            if args.execution_plan_only or args.acceptance_only:
                 tests = ['tests/test-rendering-execution.py', 'tests/test-drawing-journeys.py',
                          'tests/test-drawing-session.py', *tests]
+            if args.acceptance_only:
+                tests.insert(0, 'tests/test-rendering-acceptance.py')
             result['sources'].update({p: evidence_digest(ROOT/p, root=ROOT) for p in tests})
             result['guard_commands'] = []
             for path in tests:

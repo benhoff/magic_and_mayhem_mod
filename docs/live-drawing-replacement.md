@@ -15,6 +15,10 @@ and identifies the next task and its exit. The dated implementation plan below
 is historical context; its older fixed-FPS and source-specific limitations do
 not replace the current completion contract or evidence-bound gap assessments.
 
+The [acceptance record](native-rendering-acceptance.md) is open with separate
+supported-player and original-recovery verdicts, both pending. It retains all
+per-configuration requirements and evidence candidates while the plan is executed.
+
 The [reviewed rendering baseline for committed tree 648ce219](../research/runtime/rendering-reviewed-baseline-20261030.md)
 consolidates delivered code, source-bound current/historical proof, retained
 failures and unknowns. It is a static baseline, with no new gameplay validation

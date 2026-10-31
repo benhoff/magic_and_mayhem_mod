@@ -24,6 +24,11 @@ acceptance pilot, bounded journey/operation work, scope/provider/fault closure a
 artifact 5 handoff. The target and gap assessments remain unchanged; all tasks
 are planned, with no new player acceptance.
 
+The [acceptance record](native-rendering-acceptance.md) now opens artifact 5 with
+per-configuration pending requirements, verified evidence candidates and separate
+supported-player/original-recovery decisions. It records EP01's source/evidence
+review as started; actual execution identities and acceptance remain pending.
+
 ## Fixed target
 
 The target retains original No-CD single-player simulation and permitted

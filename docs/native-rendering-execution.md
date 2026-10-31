@@ -7,6 +7,11 @@ is consumed by `tools/rendering_execution.py`. It binds the exact contract and g
 section fingerprints, product source `648ce219` and planning base `7a5c43f4`.
 **Every task is planned; supported-player acceptance and original recovery remain pending.**
 
+The [artifact 5 acceptance record](native-rendering-acceptance.md) now tracks the
+pending evidence obligations separately from this fixed plan. Opening it starts
+EP01's source/lead-applicability review; actual build/input/provider identities and
+the pilot remain pending. No task is completed by the opening/static guards.
+
 The strategy minimizes unjustified new implementations and redundant execution:
 reuse applicable proof, prove the acceptance pipeline once, share compatible
 bounded sessions, then test residual required paths and provider differences.
