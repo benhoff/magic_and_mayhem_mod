@@ -200,4 +200,6 @@ def review(root):
                 scope='Existing recorded-action cases retain observed-EGL boundaries; admission/ABI exist but the current catalog has no generic presented-frame session case. Pilot must bind actual public-player integration rather than relabel these cases.'),
             evidence_applicability_seed=prerequisite['evidence_leads'],
             seed_is_not_requirement_acceptance=True, authored_plan=execution)
+        if 'scope_review' in prerequisite:
+            report['scope_review'] = prerequisite['scope_review']
         return report

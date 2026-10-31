@@ -199,4 +199,6 @@ def review(root):
             retained_observation_selectors=observations,
             source_binding_matches_do_not_grant_acceptance=True,
             gaps=gaps, conditional_scope_boundaries=plan['completion_contract']['scope_decisions'])
+        if 'scope_review' in completion:
+            report['scope_review'] = completion['scope_review']
         return report

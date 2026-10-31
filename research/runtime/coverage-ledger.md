@@ -24604,3 +24604,38 @@ original media/game/GL/hardware execution or engine-stage changes. Workspace and
 evidence backups are verified and retained in SQLite under the storage reserve;
 historical hashes remain unchanged. Artifact 5 is now an open pending evidence
 record, with runtime completion still requiring execution of artifact 4.
+
+## Rendering scope questions investigated — 2026-10-30
+
+The [technical decision review](rendering-scope-decisions-20261030.md) records all
+eight questions against the unchanged completion/gap/execution sections. No
+immediate user judgment blocks engineering; only a broader final map/save/duration
+promise may require a product choice. Scope answers and completed proof remain
+distinct. The existing x86 Linux/Wine/native-provider promise closes the current
+player physical/platform boundary; original physical/driver/Windows recovery stays
+open, as do seven other player scope proof conditions and all acceptance rows.
+
+Fresh normal/high-DPI Qt controls pass 32 complete-frame and 34 onscreen comparisons
+with F9/fullscreen, retained frames, logical input, Escape and geometry/chrome
+restoration. A production PE32 facade fixture admits default/explicit RGB565 and
+explicit RGB555 descriptors with retained WORDs across two leases and zero owners.
+These are synthetic software-display/non-strict-facade controls, not actual-game,
+strict-player or physical-reset acceptance. The already exposed Qt transition is
+required validation; world-format admission does not exclude RGB555 surfaces.
+
+A fresh byte-only five-route scan decodes 516,000 instructions from the pinned
+No-CD image/current central inventory. The prospective inventory dependency is
+repaired; all five routes still lack recovered natural callers, with computed and
+runtime uncertainty retained. Original manifests verify before/after. The original
+alternate owner remains unrecovered, earlier destination history is required by
+the retained counterexample, and real populated screen routing remains engineering
+work. No zero candidate, authored provider or component fixture closes those gaps.
+
+Current readers consume a hash-bound scope sidecar and propagate effective states
+into the [pending acceptance record](rendering-scope-results-20261030/acceptance-01.json).
+Frozen baseline decisions and historical evidence hashes remain unchanged; all
+156 requirement/configuration rows and both complete-player/recovery verdicts stay
+pending. Failed input-view/declaration/display/include attempts, logs and control
+binaries remain in SQLite. No production rendering or gameplay balance changes.
+
+The full audit initially refused a static caller-scan evidence registration with an execution-claim field. The refusal is retained as `SCOPE30.audit-registration-refusal`; only the registration field was removed. The immutable scan remains static original-byte evidence, with no natural execution/reachability credit. Finish was stopped before staging or committing and the corrected batch is rechecked with the normal gate.

@@ -142,6 +142,15 @@ are reused before proposing another implementation.
 
 ## Engineering findings and user choices
 
+The [technical scope review](../research/runtime/rendering-scope-decisions-20261030.md)
+clarifies this fixed plan: the already exposed Qt toolbar/F9 fullscreen transition
+belongs to EP04/EP08 validation, and RGB555 offscreen surfaces are already admitted
+by the facade. Neither should be treated as an optional feature awaiting a user
+preference. Original exclusive/padded behavior and live RGB555 World production
+retain their separate boundaries. The release-domain promise is the only current
+scope category that may need a later product judgment; technical proof is not a
+reason to ask the user to choose how the engine behaves.
+
 All eight scope decisions remain engineering-owned investigations. Alternate
 storage ownership, natural callers, required history, screen/vtable lifetimes
 and actual format production are facts to establish. A required in-scope path

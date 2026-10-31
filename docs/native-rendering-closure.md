@@ -119,6 +119,15 @@ bounds remain mandatory; historical benchmark failures stay unchanged.
 
 ## Open scope decisions
 
+The [current technical scope review](../research/runtime/rendering-scope-decisions-20261030.md)
+records answers and remaining proof separately. It closes only the existing bounded
+physical/platform promise for the supported player, retaining original-recovery
+limits and seven open proof conditions. Qt toolbar/F9 fullscreen is already
+exposed and required to validate; RGB555 surfaces and RGB565 World transport are
+distinct. No immediate user decision blocks engineering work. The authored
+revision-1 entries below retain the frozen baseline; current readers apply the
+hash-bound `scope_review` sidecar without rewriting those historical decisions.
+
 Eight stable decisions remain explicit in the authored contract: original
 alternate ownership, padded fullscreen, natural callers/readers/writers, prior
 pixel history, supported map/save domain, screen/provider lifetimes, live RGB555

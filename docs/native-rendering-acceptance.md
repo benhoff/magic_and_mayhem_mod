@@ -1,6 +1,6 @@
 # Native rendering acceptance record
 
-Artifact 5 is open. The [reviewed opening record](../research/runtime/rendering-acceptance-results-20261030/record-02.json)
+Artifact 5 is open. The [current reviewed record](../research/runtime/rendering-scope-results-20261030/acceptance-01.json)
 is an immutable SQLite-backed snapshot of the requirements, evidence candidates,
 pending results and separate closure decisions. The append-only local workspace
 can retain further candidate evidence; a new immutable snapshot records each
@@ -19,7 +19,7 @@ comparison/integration/replacement stages remain unchanged.
 | --- | --- | --- |
 | Default player | 78 pending obligations | Adequate current evidence for all 47 journey leaves, 21 operations and ten completion gates under the exact declared configuration |
 | Software player | 78 pending obligations | The same requirements with actual provider-sensitive execution and justified reuse of applicable bounded proof |
-| Conditional scope | Eight unresolved decisions | Their exact conditional blocking rules and close-when clauses; required unknowns cannot become exclusions |
+| Conditional scope | Seven player proof conditions open; physical/platform scope bounded; eight original-recovery scope limits remain | Exact conditional blocking/close-when rules and the evidence-bound technical review; required unknowns cannot become exclusions |
 | Original recovery | Fifteen contract groups retain explicit remaining/recovery exits | Evidence-backed recovery of the required original behavior scope, including branches, lifetimes and unresolved flows; a permitted original supplier is not automatically recovered |
 | Execution | EP01 source/evidence review started; EP01 incomplete | Bind the actual build, original/assets/save and execution configuration, select pilot inputs/budgets and review per-requirement evidence adequacy |
 
@@ -34,6 +34,15 @@ Both retained negative observations remain visible: the earlier cursor-copy
 refusals and the late-frame history mismatch. Their historical results and scope
 stay intact. Current relevance and reproduction remain EP06 work; they do not
 automatically fail an unexecuted current acceptance row.
+
+The [technical scope review](../research/runtime/rendering-scope-decisions-20261030.md)
+answers the eight questions without equating an engineering answer with proof
+completion. It resolves the current Linux/Wine/native-provider promise while
+retaining original physical/driver recovery limits. Qt F9/fullscreen is required
+to validate; RGB555 surface support does not establish live RGB555 World input.
+No current user judgment blocks this work, and all 156 evidence rows stay pending.
+Earlier opening snapshots remain immutable; the workspace may be restored from
+any compatible exported snapshot without changing historical events or outcomes.
 
 ## EP01 work actually performed
 

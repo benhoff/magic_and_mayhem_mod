@@ -124,7 +124,7 @@ def validate(plan, decisions, suite, baseline):
         status_promotions=[], scope='Authored target, supplier/configuration boundaries and completion rules only. No new original/native/game execution, acceptance or status promotion.')
 
 
-def review(root):
+def review(root, *, include_scope_review=True):
     root = Path(root).resolve()
     with Reader(root) as reader:
         plan, decisions = reader.json(PLAN), reader.json(DECISIONS)
@@ -168,4 +168,9 @@ def review(root):
                       sources={p: reader.digest(p) for p in paths},
                       scope_resolution_records=resolution_records,
                       authored_decisions=contract['scope_decisions'], configurations=contract['configurations'])
+        if include_scope_review and 'scope_review' in plan:
+            from rendering_scope import load
+            report['scope_review'] = load(root, reader, plan)
+            report['sources'].update({p: reader.digest(p) for p in
+                                     ['tools/rendering_scope.py', plan['scope_review']['record']]})
         return report

@@ -18120,7 +18120,8 @@
       "original": [],
       "documents": [
         "research/runtime/viewport-presentation.md",
-        "apps/qt-shell/README.md"
+        "apps/qt-shell/README.md",
+        "research/runtime/rendering-scope-decisions-20261030.md"
       ],
       "implementation": [
         "apps/qt-shell/gl_viewport.cpp",
@@ -18137,7 +18138,8 @@
         "tests/viewport-presentation-test.cpp",
         "tests/qt-input-test.cpp",
         "tools/test-viewport-presentation.py",
-        "tests/command-replay-shell.cpp"
+        "tests/command-replay-shell.cpp",
+        "tools/check-rendering-scope-components.py"
       ],
       "evidence": [
         "HOST.presentation.native-20261006",
@@ -18148,7 +18150,10 @@
         "HOST.command-refusal.native-20261006",
         "HOST.fullscreen-native-commit.native-20261007",
         "HOST.fullscreen-native-commit.final-native-20261007",
-        "HOST.presentation.f9-20261007"
+        "HOST.presentation.f9-20261007",
+        "SCOPE30.components-refusal-01",
+        "SCOPE30.components-refusal-02",
+        "SCOPE30.components-current"
       ],
       "status": {
         "understanding": "scoped",
@@ -19852,7 +19857,8 @@
         "docs/native-rendering-execution.md",
         "research/runtime/rendering-execution-plan-20261030.md",
         "docs/native-rendering-acceptance.md",
-        "research/runtime/rendering-acceptance-record-20261030.md"
+        "research/runtime/rendering-acceptance-record-20261030.md",
+        "research/runtime/rendering-scope-decisions-20261030.md"
       ],
       "implementation": [],
       "tests": [
@@ -19886,7 +19892,10 @@
         "EXECPLAN30.gap-commit-history",
         "ACCEPT30.opening-v1",
         "ACCEPT30.opening-v1-reviewed",
-        "ACCEPT30.execution-commit-history"
+        "ACCEPT30.execution-commit-history",
+        "SCOPE30.decisions-reviewed",
+        "SCOPE30.acceptance-reviewed",
+        "SCOPE30.acceptance-commit-history"
       ],
       "status": {
         "understanding": "partial",
@@ -19906,7 +19915,8 @@
         "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted.",
         "The2026-10-30 required_gap_register reconciles earlier phase-specific findings against immutable source648ce219 and the completion contract. All78mandatory leaf/gate assessments need adequate current complete acceptance; this is not78missing implementations. Eight conditional scope decisions and two retained negative observations remain explicit. Existing stage declarations and historical source hashes are preserved; final task ordering and acceptance/recovery decisions remain pending.",
         "Artifact4 execution_plan now orders all36closing briefs through input/applicability locking, requiredness triage, a current public-player acceptance pilot, normal/progression/operation work, scope/software/fault closure and final join. Every task remains planned. The current suite has no generic presented-frame session case; existing admission/backend and recorded-action evidence do not close that integration. Artifact5 executed acceptance and separate supported-player/original-recovery decisions remain pending; engine stages and historical hashes are unchanged.",
-        "Artifact5 acceptance_record is open with156pending evidence obligations across the two target configurations, eight unresolved conditional decisions and fifteen original-recovery groups. EP01 source/lead review starts; actual as-built compiler/binary, original/assets/save, execution provider/display/media, pilot selectors/budgets and per-requirement adequacy remain pending. Immutable candidate attachment/restoration provides no pass or task completion; current public-player receipt admission belongs with EP03, followed by EP10/EP11 evidence joins and separate decisions. No engine stage or historical source hash changes."
+        "Artifact5 acceptance_record is open with156pending evidence obligations across the two target configurations, eight unresolved conditional decisions and fifteen original-recovery groups. EP01 source/lead review starts; actual as-built compiler/binary, original/assets/save, execution provider/display/media, pilot selectors/budgets and per-requirement adequacy remain pending. Immutable candidate attachment/restoration provides no pass or task completion; current public-player receipt admission belongs with EP03, followed by EP10/EP11 evidence joins and separate decisions. No engine stage or historical source hash changes.",
+        "The current scope review records zero immediate user decisions: Qt toolbar/F9 is already required; RGB555 surfaces differ from live World transport; owned destination history and actual screen/provider routes remain required engineering. Only the pre-existing bounded x86 Linux/Wine/Qt/native-provider physical/platform promise closes for player scope. Seven proof conditions, all eight original-recovery scope conditions and all156player evidence obligations remain open; no engine status promotion."
       ],
       "implementation_review": {
         "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
@@ -30231,7 +30241,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Reviewed rendering API and producer support report",
-      "scope": "Read-only reconciliation of all required surface matrix categories and inventoried drawing families with explicitly reviewed scoped code, original-executable versus standalone-driver subset comparisons, bounded World entry counts and actual bypass proof. Source/scope/scenario-bound current validation is suppressed on audit errors. Categories overlap and partial support never becomes full-category completion, effort or overall replacement. Synthetic reporter guard tests validate accounting semantics only; engine equivalence, adequacy of discovery/mappings and new live execution are outside scope. The frontier lists original address scopes, current behavior/scenario proof and explicit branch gaps; one current scenario cannot close another, and branch completeness remains unmeasured. Formal14-journey/21-operation acceptance is retained as a static inventory, separate from any new execution. Revision-bound static baselines export committed data only, retain source/scenario proof and authored acceptance separately, record unavailable local readers, and cannot promote engine status or infer full-player acceptance. The versioned completion-contract checker consumes the authored target, unchanged journey/operation requirements, configuration/supplier boundaries and unresolved decisions. It verifies31source witnesses against the reviewed product revision without original media or engine execution, and cannot certify acceptance. The required-gap checker binds the unchanged completion contract and baseline, covers every47journey subrequirement/21operation/10gate, verifies28bounded evidence leads, and preserves8conditional scope decisions,2negative observations and optional timing. Unordered closing briefs and source-binding checks do not establish task priority, missing code, engine acceptance or status promotion. The static execution-plan consumer validates a12task DAG with36closing-brief owners, unchanged contract/gap fingerprints, a public-player pilot before broad reruns, eight conditional engineering scope routes and separate artifact5 decisions. Twelve acceptance-tooling witnesses match product/planning revisions. Dependency waves, reuse and candidate packs are unmeasured planning heuristics, not runtime proof, task execution, time-optimality or engine acceptance. The artifact5 opening dossier derives156pending requirement/configuration rows, eight scope routes and fifteen original-recovery groups from unchanged bindings. It verifies28lead records, starts EP01 source/lead review without completing actual execution-input identity, and stores immutable SQLite work/candidate events with portable snapshot restoration and verified backups. Candidate/source/guard records cannot pass acceptance; collector-specific positive receipt admission remains EP03 work. Supported-player and original-recovery verdicts stay independently pending.",
+      "scope": "Read-only reconciliation of all required surface matrix categories and inventoried drawing families with explicitly reviewed scoped code, original-executable versus standalone-driver subset comparisons, bounded World entry counts and actual bypass proof. Source/scope/scenario-bound current validation is suppressed on audit errors. Categories overlap and partial support never becomes full-category completion, effort or overall replacement. Synthetic reporter guard tests validate accounting semantics only; engine equivalence, adequacy of discovery/mappings and new live execution are outside scope. The frontier lists original address scopes, current behavior/scenario proof and explicit branch gaps; one current scenario cannot close another, and branch completeness remains unmeasured. Formal14-journey/21-operation acceptance is retained as a static inventory, separate from any new execution. Revision-bound static baselines export committed data only, retain source/scenario proof and authored acceptance separately, record unavailable local readers, and cannot promote engine status or infer full-player acceptance. The versioned completion-contract checker consumes the authored target, unchanged journey/operation requirements, configuration/supplier boundaries and unresolved decisions. It verifies31source witnesses against the reviewed product revision without original media or engine execution, and cannot certify acceptance. The required-gap checker binds the unchanged completion contract and baseline, covers every47journey subrequirement/21operation/10gate, verifies28bounded evidence leads, and preserves8conditional scope decisions,2negative observations and optional timing. Unordered closing briefs and source-binding checks do not establish task priority, missing code, engine acceptance or status promotion. The static execution-plan consumer validates a12task DAG with36closing-brief owners, unchanged contract/gap fingerprints, a public-player pilot before broad reruns, eight conditional engineering scope routes and separate artifact5 decisions. Twelve acceptance-tooling witnesses match product/planning revisions. Dependency waves, reuse and candidate packs are unmeasured planning heuristics, not runtime proof, task execution, time-optimality or engine acceptance. The artifact5 opening dossier derives156pending requirement/configuration rows, eight scope routes and fifteen original-recovery groups from unchanged bindings. It verifies28lead records, starts EP01 source/lead review without completing actual execution-input identity, and stores immutable SQLite work/candidate events with portable snapshot restoration and verified backups. Candidate/source/guard records cannot pass acceptance; collector-specific positive receipt admission remains EP03 work. Supported-player and original-recovery verdicts stay independently pending. The current source/evidence-bound scope sidecar preserves frozen contract/gap/plan sections, distinguishes engineering answers from completed proof, and propagates one existing bounded platform closure with seven player-scope proof conditions and eight original-recovery conditions still open. No immediate user judgment blocks engineering. Fresh component controls and static bytes remain distinct from actual-player acceptance.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -30253,7 +30263,8 @@
         "docs/native-rendering-execution.md",
         "research/runtime/rendering-execution-plan-20261030.md",
         "docs/native-rendering-acceptance.md",
-        "research/runtime/rendering-acceptance-record-20261030.md"
+        "research/runtime/rendering-acceptance-record-20261030.md",
+        "research/runtime/rendering-scope-decisions-20261030.md"
       ],
       "implementation": [
         "tools/rendering_coverage.py",
@@ -30266,7 +30277,8 @@
         "tools/rendering_completion.py",
         "tools/rendering_gaps.py",
         "tools/rendering_execution.py",
-        "tools/rendering_acceptance.py"
+        "tools/rendering_acceptance.py",
+        "tools/rendering_scope.py"
       ],
       "tests": [
         "tests/test-rendering-coverage.py",
@@ -30275,7 +30287,8 @@
         "tests/test-rendering-completion.py",
         "tests/test-rendering-gaps.py",
         "tests/test-rendering-execution.py",
-        "tests/test-rendering-acceptance.py"
+        "tests/test-rendering-acceptance.py",
+        "tests/test-rendering-scope.py"
       ],
       "validation_dependencies": [
         "research/runtime/native-surface-operation-matrix.json",
@@ -30362,7 +30375,16 @@
         "EXECPLAN30.gap-commit-history",
         "ACCEPT30.opening-v1",
         "ACCEPT30.opening-v1-reviewed",
-        "ACCEPT30.execution-commit-history"
+        "ACCEPT30.execution-commit-history",
+        "SCOPE30.display-refusal",
+        "SCOPE30.decision-guard-refusal",
+        "SCOPE30.decisions-reviewed",
+        "SCOPE30.acceptance-reviewed",
+        "SCOPE30.acceptance-commit-history",
+        "SCOPE30.guards-reviewed",
+        "SCOPE30.guard-wrapper-refusal",
+        "SCOPE30.restore-reviewed",
+        "SCOPE30.audit-registration-refusal"
       ],
       "status": {
         "understanding": "scoped",
@@ -153890,7 +153912,8 @@
         }
       ],
       "documents": [
-        "research/runtime/five-pixel-computed-callers-20261025.md"
+        "research/runtime/five-pixel-computed-callers-20261025.md",
+        "research/runtime/rendering-scope-decisions-20261030.md"
       ],
       "implementation": [
         "tools/pixel_caller_values.py",
@@ -153906,14 +153929,18 @@
         "tools/coverage_evidence.py",
         "tools/original-manifest.sh",
         "research/original-files.tsv",
-        "research/runtime/coverage/binary-nocd-alternate-canvas-20261020.json"
+        "research/runtime/coverage/binary-nocd-alternate-canvas-20261020.json",
+        "research/runtime/alternate-completion-results-20261026/binary-nocd-region-builder01.json"
       ],
       "evidence": [
         "FIVE1.computed-controls-20261025",
         "FIVE1.computed-image-20261025",
         "FIVE1.central-controls-20261025",
         "FIVE1.central-image-20261025",
-        "FIVE1.master-controls-20261026"
+        "FIVE1.master-controls-20261026",
+        "SCOPE30.callers-current",
+        "SCOPE30.callers-refusal-01",
+        "SCOPE30.callers-refusal-02"
       ],
       "status": {
         "understanding": "scoped",
@@ -153924,7 +153951,8 @@
       },
       "remaining_gaps": [
         "Natural original-game callers for all five helpers remain unresolved. Preserve provisional unused_candidate classification, existing 43-route denominator and 38-route historical observed union.",
-        "No inter-block/interprocedural values, runtime writer/alias closure, unresolved indirect targets, dynamic or overlapping code, external modules or other builds are closed by this scanner."
+        "No inter-block/interprocedural values, runtime writer/alias closure, unresolved indirect targets, dynamic or overlapping code, external modules or other builds are closed by this scanner.",
+        "Fresh scope review explicitly binds the central inventory before computed-caller scanning. This repairs declaration metadata only; natural reachability and unresolved indirect/runtime writers remain independent."
       ]
     },
     {
@@ -157828,6 +157856,46 @@
       "remaining_gaps": [
         "Historical Storage05 target coordinates are not reconstructed from defaults. A fresh record is required to diagnose any recurrence.",
         "Invalid-rectangle failure rows remain excluded from positive natural-branch and whole-application output claims."
+      ]
+    },
+    {
+      "id": "NP.scope-format-descriptor-control",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native default and explicit surface format descriptors across owned leases",
+      "scope": "Isolated production PE32 native facade: default offscreen RGB565 plus explicit RGB565/RGB555 13x9 descriptors, GetPixelFormat and Lock metadata, retained WORD across two lock/unlock leases and zero surface/device owners after release. Supplied caller and non-strict facade mode; no original executable, natural game format production, RGB555 live World ingestion or strict-player acceptance.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/native-rendering-closure.md",
+        "research/runtime/rendering-scope-decisions-20261030.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/surfaces.h"
+      ],
+      "tests": [
+        "tests/native-scope-format-probe.c",
+        "tools/check-rendering-scope-components.py"
+      ],
+      "validation_dependencies": [
+        "tools/build-native-draw.py",
+        "runtime/shadow/win32_min.h"
+      ],
+      "evidence": [
+        "SCOPE30.components-refusal-01",
+        "SCOPE30.components-refusal-02",
+        "SCOPE30.components-current"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Live game production/transport format requiredness and strict public-player acceptance remain separate."
       ]
     }
   ],
@@ -362646,6 +362714,445 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "SCOPE30.callers-current",
+      "kind": "static",
+      "scope": "Fresh pinned original-byte five-route candidate scan: 516000 decoded instructions, zero candidates, runtime/indirect uncertainty retained. No natural execution, dead-code or unreachability proof.",
+      "record": "research/runtime/rendering-scope-results-20261030/callers-03.json",
+      "sha256": "f07f857853e567196c0263d7634cbe757b3b31deef5205370a19d3e747148055",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_unreachable_proved",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCOPE30.callers-refusal-01",
+      "kind": "static",
+      "scope": "Missing isolated immutable-input view; refused before original-byte scan.",
+      "record": "research/runtime/rendering-scope-results-20261030/callers-01.json",
+      "sha256": "9b31d13a7233b6acd999522b5e5b0a9e242e0fcc107526eac38da6d6668cbd99",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_unreachable_proved",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCOPE30.callers-refusal-02",
+      "kind": "static",
+      "scope": "Original manifests pass; scan refuses missing current-inventory dependency declaration.",
+      "record": "research/runtime/rendering-scope-results-20261030/callers-02.json",
+      "sha256": "a30347f2522ede6943e8ca410f44cd368431d7b958ba5b2808d4692b0a16399f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/global_unreachable_proved",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCOPE30.components-refusal-01",
+      "kind": "static",
+      "scope": "Qt component attempt fails under sandbox display socket restrictions; no component or player acceptance.",
+      "record": "research/runtime/rendering-scope-results-20261030/components-01.json",
+      "sha256": "5c9a02448a33a92e31216c367b12c529155103a733121707b09824216a068396",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/strict_player_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCOPE30.components-refusal-02",
+      "kind": "static",
+      "scope": "Qt and facade controls run, but source-closure guard rejects undeclared renderer include; not accepted as complete current-source evidence.",
+      "record": "research/runtime/rendering-scope-results-20261030/components-02.json",
+      "sha256": "a951056f1b1e26e6005645f86dce0538aa21182a0e6197ed6ff22145bbf078d3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/strict_player_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCOPE30.components-current",
+      "kind": "native_integration",
+      "scope": "Fresh production Qt presentation controls at DPI1/1.5 (32 full-frame,34 onscreen comparisons) and standalone non-strict PE32 facade default565/explicit565/explicit555 metadata/lease/retirement controls. Supplied synthetic callers/software display; no original game, live World555, strict player or physical reset acceptance.",
+      "record": "research/runtime/rendering-scope-results-20261030/components-03.json",
+      "sha256": "c037642b9a2f5090c04bd5138c211924a97f7327dc4bf866d23c8fefd81ba616",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_media_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/strict_player_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_device_reset",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_replacement",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "SCOPE30.display-refusal",
+      "kind": "static",
+      "scope": "Preserved private X11 local/unix socket bind refusal under sandbox; no source or engine regression inferred.",
+      "record": "research/runtime/rendering-scope-results-20261030/display-diagnostic-01.json",
+      "sha256": "1de1a1a1809a23ee8b3324b9dbbd72ed31a6fe44d2de284ca08321472d0cfdea",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCOPE30.decision-guard-refusal",
+      "kind": "static",
+      "scope": "Initial review textual witness uses wrong typed-policy spelling and refuses; retained negative tooling result, no engine policy change.",
+      "record": "research/runtime/rendering-scope-results-20261030/decision-guard-failure-01.json",
+      "sha256": "7a083d0967a7a13e0c9bc558418ed354f2b2712a4438cb782a9517d7924c8317",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCOPE30.decisions-reviewed",
+      "kind": "static",
+      "scope": "Evidence-bound engineering answers to eight questions; zero immediate user decisions. One pre-existing bounded physical/platform player promise closes; seven proof conditions and all eight original-recovery scope conditions remain unresolved. No engine/player acceptance promotion.",
+      "record": "research/runtime/rendering-scope-results-20261030/decisions-01.json",
+      "sha256": "3f500ed15228ee98088bf99ea84d93bbf1423f8ca1733078dc03754c24374a93",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/immediate_user_decisions",
+          "equals": 0
+        },
+        {
+          "pointer": "/counts/player_scope_closed",
+          "equals": 1
+        },
+        {
+          "pointer": "/counts/player_scope_unresolved",
+          "equals": 7
+        },
+        {
+          "pointer": "/counts/original_recovery_scope_unresolved",
+          "equals": 8
+        },
+        {
+          "pointer": "/supported_player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/original_recovery_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/no_engine_status_promotion",
+          "equals": true
+        },
+        {
+          "pointer": "/status_promotions",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "SCOPE30.acceptance-reviewed",
+      "kind": "static",
+      "scope": "Current acceptance readers propagate the evidence-bound scope sidecar: seven player scope proof conditions and eight original-recovery scope conditions unresolved; all156obligations and both verdicts pending.122isolated accounting/admission guards pass, no player execution.",
+      "record": "research/runtime/rendering-scope-results-20261030/acceptance-01.json",
+      "sha256": "49984248d0c4ad1492315f58c70c3cdcc59b04e7edead0e4f58cbc414bc28ca5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/record_valid",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/guards_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/requirement_rows",
+          "equals": 156
+        },
+        {
+          "pointer": "/counts/pending_rows",
+          "equals": 156
+        },
+        {
+          "pointer": "/counts/unresolved_scope_decisions",
+          "equals": 7
+        },
+        {
+          "pointer": "/counts/unresolved_original_recovery_scope_decisions",
+          "equals": 8
+        },
+        {
+          "pointer": "/supported_player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/original_recovery_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCOPE30.acceptance-commit-history",
+      "kind": "static",
+      "scope": "Exact parent/current payload receipt review for e533c9ae..5237da93:16physical transitions, append-only self journal, no missing receipts. Separate from current changes; no retrospective gate-pass claim or engine validation.",
+      "record": "research/runtime/rendering-scope-results-20261030/acceptance-history-01.json",
+      "sha256": "f331e49904b4112ee462d8661bfe72a50060709e642338e266996851b13d321a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/journal_append_only",
+          "equals": true
+        },
+        {
+          "pointer": "/unresolved_receipt_paths",
+          "equals": []
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        },
+        {
+          "pointer": "/retrospective_gate_pass_claimed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCOPE30.guards-reviewed",
+      "kind": "static",
+      "scope": "Twelve isolated scope guards and actual156-row followup identifier join; no omitted requirement, false closure or engine promotion.",
+      "record": "research/runtime/rendering-scope-results-20261030/guards-01.json",
+      "sha256": "4d8c83be730844048ccadc384e9f7900d53b4e19281d1fcb422cd8e64bb8318e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/unknown_followup_requirements",
+          "equals": []
+        },
+        {
+          "pointer": "/requirement_rows",
+          "equals": 156
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCOPE30.guard-wrapper-refusal",
+      "kind": "static",
+      "scope": "Preserved ad hoc wrapper import failure: wrong helper name before followup join; corrected wrapper uses existing requirements helper. No guard or engine implementation failure inferred.",
+      "record": "research/runtime/rendering-scope-results-20261030/guard-wrapper-failure-01.json",
+      "sha256": "bc2b303296a64be560f4ed5b51adbf808e5cac9cafccd993effe75e0d319496e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCOPE30.restore-reviewed",
+      "kind": "static",
+      "scope": "Real acceptance-ledger backup restored in private RAM, exact events/timestamps preserved and effective scope answers reassembled without accepting any player. New generated raw/report references verified against SQLite bytes. Storage/reader proof only.",
+      "record": "research/runtime/rendering-scope-results-20261030/restore-01.json",
+      "sha256": "1d61a6e3798f02590c62d5c2a74e50f8e962d6e10ece64a7f918a684a86327fe",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/backup_hash_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/real_backup_restoration_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/idempotent_snapshot_restoration",
+          "equals": true
+        },
+        {
+          "pointer": "/pending_requirement_rows",
+          "equals": 156
+        },
+        {
+          "pointer": "/unresolved_player_scope",
+          "equals": 7
+        },
+        {
+          "pointer": "/unresolved_original_scope",
+          "equals": 8
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/original_recovery_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/expanded_generated_research_reports",
+          "equals": 0
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SCOPE30.audit-registration-refusal",
+      "kind": "static",
+      "scope": "Audit rejects static caller-scan evidence incorrectly registered with execution claims_pointer. Remove the registration field; original scan payload and source hashes stay unchanged. Finish stopped before staging/commit; this is bookkeeping refusal, not engine validation.",
+      "record": "research/runtime/rendering-scope-results-20261030/audit-registration-refusal-01.json",
+      "sha256": "47d353adc6d84419711e9070661932b00bd5bb3fd3757008b9a0acc0a70f5863",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/engine_execution_performed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -393587,7 +394094,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-7b49ab82b2738ce5c5b3b0baa2f50fb277fee301d8d4790ca7a4b59c146d3758.json",
-    "sha256": "7b49ab82b2738ce5c5b3b0baa2f50fb277fee301d8d4790ca7a4b59c146d3758"
+    "path": "research/runtime/coverage/source-index-12900f919be28a1121de7dad1b62cfe8dfd3e96a39aa315ba040df9679866fd4.json",
+    "sha256": "12900f919be28a1121de7dad1b62cfe8dfd3e96a39aa315ba040df9679866fd4"
   }
 }

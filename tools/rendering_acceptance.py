@@ -217,6 +217,17 @@ def assemble(plan, prerequisite, workspace, attached, host):
     scopes = [dict(id=d['id'], state='unresolved', blocking_condition=d['blocking_condition'],
                    close_when=d['close_when'], resolution_evidence=[], owner_task='EP07')
               for d in plan['completion_contract']['scope_decisions']]
+    if 'scope_review' in prerequisite:
+        review = prerequisite['scope_review']
+        effective = {d['id']: d for d in review['decisions']}
+        for row in scopes:
+            result = effective[row['id']]
+            row.update(state=result['player_scope_state'], original_recovery_state=result['original_recovery_state'],
+                       question_state=result['question_state'], engineering_answer=result['answer'],
+                       technical_remaining=result['technical_remaining'],
+                       user_judgment_required_now=result['user_judgment_required_now'],
+                       resolution_evidence=[review['evidence']] if result['player_scope_state']=='resolved' else [],
+                       scope_review=dict(record=review['record'], sha256=review['sha256']))
     recovery = [dict(id=c['id'], title=c['title'], behaviors=c['behaviors'], state='pending',
                      established_scope=c['established'], remaining=c['remaining'], recovery_exit=c['recovery_exit'])
                 for c in plan['contracts']]
@@ -224,7 +235,7 @@ def assemble(plan, prerequisite, workspace, attached, host):
         reason='No complete current acceptance receipt has been admitted for either target configuration. '
                'Source/guard reviews and candidate attachments do not close acceptance.',
         required_configurations=[c['id'] for c in plan['completion_contract']['configurations']],
-        pending_requirement_rows=len(rows), unresolved_scope_decisions=len(scopes)),
+        pending_requirement_rows=len(rows), unresolved_scope_decisions=sum(s['state']=='unresolved' for s in scopes)),
         dict(id='original-recovery', state='pending', accepted=False,
         reason='Complete original-rendering recovery is not established by the reviewed baseline. '
                'Permitted original suppliers and a bounded supported-player claim do not recover all required '
@@ -237,7 +248,9 @@ def assemble(plan, prerequisite, workspace, attached, host):
         counts=dict(configurations=len(plan['completion_contract']['configurations']),
             journey_requirements_per_configuration=47, operations_per_configuration=21, gates_per_configuration=10,
             requirement_rows=len(rows), pending_rows=len(rows), passed_rows=0, failed_current_rows=0,
-            unresolved_scope_decisions=len(scopes), original_recovery_groups=len(recovery),
+            unresolved_scope_decisions=sum(s['state']=='unresolved' for s in scopes),
+            unresolved_original_recovery_scope_decisions=sum(s.get('original_recovery_state','unresolved')=='unresolved' for s in scopes),
+            original_recovery_groups=len(recovery),
             candidate_evidence_leads=len(prerequisite['evidence_applicability_seed']),
             lead_source_binding_states=dict(lead_counts),
             candidate_attachment_events=sum(e['kind'] == 'candidate_attachment' for e in events)),
