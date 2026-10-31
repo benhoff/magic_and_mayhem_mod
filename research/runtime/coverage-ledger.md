@@ -24639,3 +24639,31 @@ pending. Failed input-view/declaration/display/include attempts, logs and contro
 binaries remain in SQLite. No production rendering or gameplay balance changes.
 
 The full audit initially refused a static caller-scan evidence registration with an execution-claim field. The refusal is retained as `SCOPE30.audit-registration-refusal`; only the registration field was removed. The immutable scan remains static original-byte evidence, with no natural execution/reachability credit. Finish was stopped before staging or committing and the corrected batch is rechecked with the normal gate.
+## Rendering execution research and acceptance handoff — 2026-10-31
+
+[Research and concrete next work](rendering-execution-research-20261031.md)
+bind actual private inputs, 683 maps, 85 region recipes, a fresh Release shell,
+391 compiler inputs and native module/provider identities to product source
+648ce219. Original disassembly and byte-pinned screen/getter contracts preserve
+alias, natural-path and lifetime uncertainty. The unchanged original format
+query executes successfully against native default565/explicit565/explicit555
+surfaces in four isolated cases; complete game/World555 support is not implied.
+
+Fresh strict native Quick Battle, Save/Load with two rebuilds and an explicit
+software Quick Battle complete normally and retire their owned graphics.
+The row-0 and storage observations independently check 1,249 and 3,170 emitted
+copies respectively, without claiming complete composed-frame equality.
+Two enabled-intro runs fail a music-play expectation with zero-volume inputs;
+an explicit-volume control produces seven plays and actual PCM output and
+retires normally. Both failures remain retained. A real save's 153,600-cell World
+exceeds the native inspector's default 65,536-record cap and parses with a bounded
+explicit larger cap; this is an inspection-policy limit, not a rendering defect.
+
+The join reviews 28 evidence leads and every 156 requirement/configuration row;
+five leads match recorded sources and 23 have changed dependencies. All rows
+remain pending. New research evidence does not close the seven player-scope or
+eight original-recovery conditions. Public-wrapper storage admission, actual
+paint/swap identities, owned initial history, independent reference and positive
+receipt integration are the concrete EP03 implementation work before broader
+acceptance execution. Private-owner research does not stand in for the public
+entrypoint. Product sources, frozen plan/contract and engine stages are unchanged.

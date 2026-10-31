@@ -2853,17 +2853,20 @@
       ],
       "documents": [
         "research/formats/save-world-native-loading.md",
-        "assets/README.md"
+        "assets/README.md",
+        "research/runtime/rendering-execution-research-20261031.md"
       ],
       "implementation": [
         "assets/save_world.cpp",
         "assets/save_world.hpp"
       ],
       "tests": [
-        "tests/save-world-loader-test.cpp"
+        "tests/save-world-loader-test.cpp",
+        "tests/save-world-domain-research.cpp"
       ],
       "evidence": [
-        "REVIEW.AS.save_world"
+        "REVIEW.AS.save_world",
+        "RER31.save-domain"
       ],
       "status": {
         "understanding": "partial",
@@ -30264,7 +30267,8 @@
         "research/runtime/rendering-execution-plan-20261030.md",
         "docs/native-rendering-acceptance.md",
         "research/runtime/rendering-acceptance-record-20261030.md",
-        "research/runtime/rendering-scope-decisions-20261030.md"
+        "research/runtime/rendering-scope-decisions-20261030.md",
+        "research/runtime/rendering-execution-research-20261031.md"
       ],
       "implementation": [
         "tools/rendering_coverage.py",
@@ -30278,7 +30282,11 @@
         "tools/rendering_gaps.py",
         "tools/rendering_execution.py",
         "tools/rendering_acceptance.py",
-        "tools/rendering_scope.py"
+        "tools/rendering_scope.py",
+        "tools/collect-rendering-execution-research.py",
+        "tools/research-native-software-session.py",
+        "tools/research-rendering-input-domain.py",
+        "tools/reconcile-rendering-execution-research.py"
       ],
       "tests": [
         "tests/test-rendering-coverage.py",
@@ -30288,7 +30296,9 @@
         "tests/test-rendering-gaps.py",
         "tests/test-rendering-execution.py",
         "tests/test-rendering-acceptance.py",
-        "tests/test-rendering-scope.py"
+        "tests/test-rendering-scope.py",
+        "tests/test-rendering-execution-dossier.py",
+        "tests/test-rendering-menu-evidence.py"
       ],
       "validation_dependencies": [
         "research/runtime/native-surface-operation-matrix.json",
@@ -30384,7 +30394,16 @@
         "SCOPE30.guards-reviewed",
         "SCOPE30.guard-wrapper-refusal",
         "SCOPE30.restore-reviewed",
-        "SCOPE30.audit-registration-refusal"
+        "SCOPE30.audit-registration-refusal",
+        "RER31.software-command",
+        "RER31.music-inputs",
+        "RER31.catalog",
+        "RER31.save-domain",
+        "RER31.join",
+        "RER31.history",
+        "RER31.guards",
+        "RER31.host",
+        "RER31.mapped-libraries"
       ],
       "status": {
         "understanding": "scoped",
@@ -157896,6 +157915,125 @@
       },
       "remaining_gaps": [
         "Live game production/transport format requiredness and strict public-player acceptance remain separate."
+      ]
+    },
+    {
+      "id": "NP.rendering-execution-research",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Execution-input provenance and bounded actual-player research",
+      "scope": "Research tooling for an exact private input copy, installed map metadata, newly compiled shell/source closure, original absolute/literal candidate references and bounded current strict-player observations. Native-only startup/lifecycle, finite natural caller samples and as-built identities do not establish independent complete presented output, all aliases/writers, real router ownership closure, arbitrary maps/saves/duration, physical resets or player acceptance. No original globals or original binary files are modified.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5231672,
+          "scope": "One explicit instruction reading alternate base0x6e1f68; candidate reference only, no complete owner/alias recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821760,
+          "scope": "Original getter publishing RGB mask globals; byte-frontier link, no execution or full semantics implied by this research behavior."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5599296,
+          "scope": "One explicit screen-depth0x6f349c read candidate; no whole router or object lifetime proof."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-execution-research-20261031.md"
+      ],
+      "implementation": [
+        "tools/research-rendering-execution.py",
+        "tools/research-rendering-reference-contracts.py"
+      ],
+      "tests": [
+        "tests/test-rendering-execution-research.py",
+        "tools/test-native-owned-campaign.py"
+      ],
+      "validation_dependencies": [
+        "tools/original_x86.py",
+        "tools/inspect-five-pixel-callers.py",
+        "tools/native_only_contract.py",
+        "tools/test-native-campaign.py",
+        "tools/prepare-menu-observer.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "research/original-files.tsv",
+        "research/runtime/alternate-completion-results-20261026/binary-nocd-region-builder01.json"
+      ],
+      "evidence": [
+        "RER31.inputs",
+        "RER31.build",
+        "RER31.original-references",
+        "RER31.original-contracts",
+        "RER31.quick-row0",
+        "RER31.storage",
+        "RER31.software-row2",
+        "RER31.default-media01-negative",
+        "RER31.default-media02-negative",
+        "RER31.music-control"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Independent current public-player presented-history acceptance and full required route/lifetime/format recovery remain separate."
+      ]
+    },
+    {
+      "id": "NP.original-native-format-query",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Original format query against actual native facade surfaces",
+      "scope": "Unchanged original No-CD58d540normal successful query executes against actual production native primary/default offscreen/explicit565/explicit555 descriptors. Compare selector and three low-WORD masks, preserved neighbor bytes, unchanged original code and balanced native owners. Supplied isolated caller; no original error-formatter/provider failure branch, actual game caller reachability, complete live World555 or original/native pixel equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821760,
+          "scope": "Complete105-byte original getter; successful native COM GetPixelFormat path only."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-execution-research-20261031.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/surfaces.h"
+      ],
+      "tests": [
+        "tests/native-original-format-query.c",
+        "tools/test-rendering-native-format-query.py"
+      ],
+      "validation_dependencies": [
+        "tools/build-native-draw.py",
+        "tools/native_prefix_template.py",
+        "tools/directplay_dx6_launch.py",
+        "runtime/shadow/win32_min.h",
+        "tools/original_x86.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "research/original-files.tsv"
+      ],
+      "evidence": [
+        "RER31.format-query"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Actual complete required sprite/effect production and transport remains distinct from this getter/storage contract."
       ]
     }
   ],
@@ -363153,6 +363291,293 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "RER31.inputs",
+      "kind": "static",
+      "scope": "Exact private pinned installation,4848files,683decoded MAP metadata/no initial saves; finite pilot inputs, not generated World identity.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/inputs-02.json",
+      "sha256": "d704568ae3b0a03a0c666f327add7e928a9f2877a438dc07ebb000a48c4b4781",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RER31.build",
+      "kind": "static",
+      "scope": "Fresh Release shell with391actual compiler inputs and retained binary; no game execution or equivalence.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/build-02.json",
+      "sha256": "69281f241ac2ac63ecc5ad55af756c392b1ca5dd4fa9be4d7bdd73fddf4db420",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RER31.original-references",
+      "kind": "static",
+      "scope": "Fresh516000instruction static census of explicit alternate/mask/stack references and22vtable candidates. No global alias closure or natural reachability.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/original-01.json",
+      "sha256": "967313ce34788580653d69b2d1df2fd56a4888f717eb0b6923b22c0c783568f0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RER31.original-contracts",
+      "kind": "static",
+      "scope": "Byte-pinned original setup/getter/Main/Report/World extents and incoming/outgoing candidates; no complete semantic/router ownership recovery.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/contracts-01.json",
+      "sha256": "cd985328d4d84dfce5399acd78e19addc026d0b7a0ed6bf81fe97844e23aaec0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RER31.format-query",
+      "kind": "native_integration",
+      "scope": "Unchanged105byte original58d540successful query against production NativeDraw default primary/offscreen,explicit565/555; selector/masks/neighbors/code and zero owners checked. No formatter failure, game caller/live555 or full pixel equivalence.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/format-query-01.json",
+      "sha256": "b85e01893d90ee0635c338561bd7f0d48a4f5dbeb7d6440913e4519e43b134ea",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RER31.quick-row0",
+      "kind": "live_observation",
+      "scope": "Current strict native private-owner Quick Battle row0, two World visits and normalQuit,391compiler inputs/nativeDLLadmission,1249independently checked emitted copies. Complete presented-history/public-entry acceptance remains pending.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/quick-row0-06.json",
+      "sha256": "1964e04f328d0e5704c43139330b17af1bba4db21937afdf539f51e0dfaa848b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RER31.storage",
+      "kind": "live_observation",
+      "scope": "Current strict native private-owner fresh campaign Save/Load, two display rebuilds, Main load and normalQuit;3170checked emitted copies and exact351652byte save. Not full restoration/simulation, later-map progression or whole presented-history equality.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/storage-01.json",
+      "sha256": "a4bb53be240efca406c0451215dfa724bcafee36271fb28ec454df501f2d46ad",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RER31.software-row2",
+      "kind": "live_observation",
+      "scope": "Actual supported software flag through unchanged strict private owner, Quick Battle row2, two World visits and normalQuit/native owners retired. Mesa llvmpipe; no hardware differential or whole software acceptance.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/software-row2-01-delegate.json",
+      "sha256": "a07a3e81d45df06f3ecfec7ee008b00b69ecbbb5b46d95f2697ba1b6ec31bfd8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RER31.software-command",
+      "kind": "static",
+      "scope": "Exact research command augmentation forwards real software flag and checks unchanged delegate result; no independent pixel/reference admission.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/software-row2-01.json",
+      "sha256": "d673441c13ec87eed6e7ed5713b8ccb0fa3900bcea736ca65e7aa8a069c93766",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RER31.default-media01-negative",
+      "kind": "live_observation",
+      "scope": "Retained negative media expectation: actual original game completes both native intros and normalQuit, zero-volume input has zero CDplays. Failure preserved; no asserted current renderer defect.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/default-media-01.json",
+      "sha256": "c7f151c396940b411c9f5c3c8185b1e3bc409520a25714abccb9d376e8da0264",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RER31.default-media02-negative",
+      "kind": "live_observation",
+      "scope": "Retained longer functional media attempt: native intros complete, normalQuit, but CDplay expectation still fails on zero-volume input. No acceptance or hypothetical playback-defect promotion.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/default-media-02.json",
+      "sha256": "3e61eed3a053deb9edf9ac615a78360d834a258280c18bc40ed2849f40ffe1a1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RER31.music-control",
+      "kind": "live_observation",
+      "scope": "Explicit isolated15volume control, intros skipped,587balanced Worlds and original functional callbacks/normalQuit. Raw music activity independently validated in research join; not combined default-media acceptance.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/music-volume15-01.json",
+      "sha256": "959c97c26a390360ea2aee094b683ed81d72cafd3807a5af919706d536b18778",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RER31.music-inputs",
+      "kind": "static",
+      "scope": "Exact separate installation with only SOUND/MusicVolume0to15; source installation unmodified, allcontrol files hashed.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/music-control-inputs-01.json",
+      "sha256": "ac68936ffc0fa7edda4e9a46b6e95a088d7a71c7cd8263b157d3bf699a1e541e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RER31.catalog",
+      "kind": "static",
+      "scope": "Read-only85installed realm/Multiplayer recipe census with retained config hashes. Random section selection/placement/World identity not established.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/catalog-01.json",
+      "sha256": "8b389305c6d7ac6556c0eb7a29fefa9a730c5b2b70b46776e1edac01c12bdae2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RER31.save-domain",
+      "kind": "native_integration",
+      "scope": "Read-only exact original-generated save: default65536record cap refuses153600cells at offset300; explicit524288profile parses2793blocks. Native production defaults unchanged; not native simulation restoration.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/save-domain-02.json",
+      "sha256": "e454bbd4c379e55187c7e520d01aa39ff4863bbd4b6ea6bb275cfb98406a1399",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RER31.join",
+      "kind": "static",
+      "scope": "Research applicability join for28leads/156pending rows, exactordered Quicknames/candidate recipeMAP inputs, original bounded menu logs and validated audiblemusic control; concrete presentation/history/oracle/receipt handoff. No requirement/scope closure or acceptance.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/join-01.json",
+      "sha256": "246ef3a028d9d9554f5ec0835eca02604e353644dde5f4e6f8f8cb344f4aa4bd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RER31.history",
+      "kind": "static",
+      "scope": "All79parent/current transitions5237da93..215e505d reviewed;46rawextensions additionally witnessed against immutable producer payloads and queued exact retrospective receipts. No historical gate pass or engine validation.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/scope-history-02.json",
+      "sha256": "acbf11fd081222333b8f9cde6358e790a04a7123200e9a885a86ffe6e58e70eb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RER31.guards",
+      "kind": "static",
+      "scope": "New research identity/reference/menu-log guards and existing artifact completion/gap/execution/acceptance/scope guards; synthetic/static only.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/guards-01.json",
+      "sha256": "9811f71c902cf8b36e3cce84c1740bfe7a0230025f4f05fa155826e8a1b74918",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RER31.host",
+      "kind": "static",
+      "scope": "Exact host tool binary hashes/version attempts and retained12track media catalog provenance; no actual physical provider equivalence.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/host-tools-01.json",
+      "sha256": "d3355259d9402232f0d18255b39a5c733d7890dd78128ed1f499cc01f2a52e58",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RER31.mapped-libraries",
+      "kind": "static",
+      "scope": "Active actual shell process identity and300mapped module hashes in one research session; inventory not output/acceptance.",
+      "record": "research/runtime/rendering-execution-research-results-20261031/qt-process-02.json",
+      "sha256": "478ad87240e189e0aed42c0e317ee5a93af59a66bcb812294b4079473ce40706",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -394094,7 +394519,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-12900f919be28a1121de7dad1b62cfe8dfd3e96a39aa315ba040df9679866fd4.json",
-    "sha256": "12900f919be28a1121de7dad1b62cfe8dfd3e96a39aa315ba040df9679866fd4"
+    "path": "research/runtime/coverage/source-index-48fa1135bc571751c016a58550396d8c7cf469fd04516072a035a163c568da4d.json",
+    "sha256": "48fa1135bc571751c016a58550396d8c7cf469fd04516072a035a163c568da4d"
   }
 }
