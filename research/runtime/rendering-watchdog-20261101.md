@@ -231,3 +231,154 @@ container type. The failed audit and original join bytes remain retained; the
 new `RW02.worker02` / `startup-repair-joined-02.json` registration fixes that
 accounting schema only and does not refresh execution hashes. Filesystem-fault
 and row/stored-limit exhaustion are not directly injected by the fresh controls.
+
+## Parent-debugger sampling follow-up — 2026-11-01
+
+The opt-in `--sample-stalls` normal-quick collector launches the actual unchanged
+Qt ELF as a GDB child. No executable wrapper replaces the recorded build output.
+It records the player and debugger hashes, arguments, command-file hash, stable
+V3 observations and any one-shot sample in bounded execution interchange, then
+imports those bytes with the acquisition into SQLite. The collector always gives
+this route a diagnostic acquisition kind; its comparison remains diagnostic too.
+These runs cannot admit nominal acceptance leaves.
+
+The sampler resolves a single generation through the public owner's admission
+journal. It validates the V3 header, unsigned ring distance, session and file
+identity, and requests one all-thread stack after 1.5 seconds of outstanding
+bytes without ACK progress. Idle, actual ACK progress and ambiguous reads restart
+the interval. READY, terminal and cancelled states do not trigger a sample;
+multiple generations, identity changes or malformed evidence disable observation.
+Only the separate debugger process receives the interrupt. The sampler opens
+the ring read-only and never acknowledges bytes or changes producer deadlines.
+Debugger interruption and polling can perturb scheduling, so this is observation
+within a declared diagnostic environment, not a transparent nominal execution.
+
+[Sampler controls](rendering-watchdog-results-20261101/sampler-controls-01.json)
+pass ten methods covering idle/progress/publication/wrap, terminal states,
+malformed/session/file identities, partial admission, nominal-launch refusal and
+real parent-GDB children. The real controls prove one stack, continuation, normal
+and nonzero exits, fatal-signal handling, and observation-error refusal. Separate
+[admission/build/ring controls](rendering-watchdog-results-20261101/sampler-admission-controls-01.json)
+also pass. These are isolated controls, not game or original-equivalence proof.
+
+World fault02 sampled 33,068 outstanding bytes at ACK 45,364,042 after 1.546 seconds.
+The GUI stack contains `WatchdogHostFault::schedule` and `nanosleep`. The actual
+producer recheck found the same ACK and refused at 5,000 ms, leaving the ring in
+FAILED/INTERRUPTED. The host recorded its planned 6.2-second pause. This confirms
+pre-timeout sampling of that controlled mechanism while retaining the guard.
+It does not reproduce the historical callback/OS cause or terminal CPU-refusal
+ordering. The actual Qt ELF remains
+`56b077654613f15916ff773ba2ecf4243b8d54cc45a3212903b3ff5fb4e9815c`,
+byte-identical to the repaired worker run.
+
+The first relative launch was rejected before execution by the main checkout's
+older parser ([preparation refusal](rendering-watchdog-results-20261101/sampler-launch-refusal-01.json)).
+World fault01 then stopped during staging because the isolated extracted music
+catalog was absent, with zero ring observations. Its negative acquisition remains
+immutable; a [hash-verified catalog copy](rendering-watchdog-results-20261101/sampler-media-setup-01.json)
+supplied the missing input before fault02. Neither preparation failure identifies
+an engine stall. Original media passed the before/after manifest checks.
+
+The final [joined proof](rendering-watchdog-results-20261101/sampler-joined-04.json)
+binds 760 current owned-source fingerprints and only the two narrow native
+policies below. RN31.G.first-world-watchdog remains unresolved.
+
+### Current full-intro result and a focused driver repair
+
+Full-intro02 completed normal Quit, but its unchanged strict comparator rejected
+the original-input proof: only the second Right down/release pair was retained.
+The first Qt publication was subsequently released without a poll receipt. The
+old driver scheduled press at 250ms and release at 700ms; elapsed time alone did
+not establish observed consumption. Exact old poll timing and transient observer
+contention are not recorded, so neither is asserted as the historical cause.
+
+The acceptance-only driver now holds one Qt-owned press until the existing
+MNMIAK01 observer records its original owned poll, releases focus, and awaits
+the corresponding release before continuing display/Results actions. Each phase
+has a 3s admission deadline, without retry or producer-lease renewal. The reader
+refuses malformed/stale/partial/full journals and old World rows. Bounded-size
+receipt reads do not preempt arbitrary OS I/O. Ordinary manual gameplay does not
+install this test driver. The original input hook and strict comparator are
+unchanged.
+
+[Optimized/sanitized controls](rendering-watchdog-results-20261101/sampler-input-controls-02.json)
+keep the semantic key held through a 750ms delayed peer, past the old nominal 450ms
+window, observe release, and refuse a missing peer after the deadline. Two hundred
+Qt event-loop ticks continue during each held control. Standalone build01's Qt/GCC
+include-order failure and exact source preimages remain retained; it is not an
+engine failure.
+
+Fresh World fault03 uses the rebuilt ELF and samples 31,558 unread bytes at
+ACK 45,419,132 after 1.541s. Its actual producer recheck sees the same ACK at 5,000ms
+and refuses. The original guard sources match repaird0bf7a551 exactly.
+
+Full-intro03 uses actual player ELF
+`e779e87fe92059e02ff52a8134b90d0075b339d178cee3b7ca71acbdaea78a57`.
+Intro0/Intro1 complete with 1,777/1,004 decoded and presented video frames, no
+producer cancellation, four actual original input transitions, two World visits,
+a drained ring, normal original Quit and zero owner retirement. Its sampler
+makes 3,822 stable observations, with a 464ms peak pending interval and no stack
+request. The unchanged [independent comparator](rendering-normal-results-20261031/sampler-full-intro-comparison-03.json)
+accepts 92 World swaps against 64 continuously reconstructed original/history
+Worlds and 106,363 original draws: 147,273,180 compared pixels, zero mismatches.
+The original executor reads neither native player pixels nor original destination
+captures as its inputs. Movie/audio content, unleased movie planes and physical
+scanout remain separate from the World/viewport history comparison.
+
+Both player acquisitions and comparisons remain explicitly diagnostic. No nominal
+requirement, complete camera/input recovery or supported-player verdict is granted.
+Shared wrapper/driver edits leave older complete-source acceptance domains pending;
+the new evidence binds only the sampler and receipt-driven acceptance policy.
+
+### Distinct negative evidence retained
+
+Traced full-intro01 reached Main action 1 but no World. The original Main callback 2
+entered and returned; its terminal channel has ACK 1 after client failure, which
+does not order engine/client retirement. Final Intro1 status is COMPLETE with no
+producer cancellation. V3 pending peaked at 52ms, so the command sampler correctly
+made no request. The Main transition/lease cause remains unresolved as
+RW03.G.intro-main-transition. A later finite pass does not close it.
+
+The optional read-only menu observer for intro02 could not checkpoint its
+uncommitted in-memory SQLite transaction. A disposable control reproduces the
+backup wait and succeeds after commit. The owned failed helper was stopped;
+physical output and exact producer are retained in the
+[checkpoint failure](rendering-watchdog-results-20261101/sampler-menu-observer-02-failure.json).
+Its uncheckpointed timeline is unavailable and supports no causal claim. Core
+acquisition and input receipts are independent of that helper; intro03 uses no
+auxiliary observer. Failed join02/03 and their exact producers also remain
+immutable; join04 resolves the negative flow artifact and exact menu-channel
+identity without changing any engine result.
+
+The [committed-history review](rendering-watchdog-results-20261101/sampler-history-review-01.json)
+checks 4fa166010..a4d3a6ee3, including all 1,790 repair and 1,792 merge file transitions,
+and verifies 754 distinct SQLite payloads. Retrospective provenance receipts cover
+previously unlisted binary artifacts and committed journal versions; they assert
+neither a past gate pass nor fresh engine validation. Current uncommitted work is
+accounted separately.
+
+## Watchdog follow-up integrated with cursor diagnostics — 2026-11-01
+
+[RW03.integration01](rendering-watchdog-results-20261101/sampler-integration-joined-02.json)
+binds the actual combined source, including the independently added cursor
+provenance tooling. The explicit drawing-only cursor exercise retains its timed
+input/cursor schedule and gains no receipt-wait input admission. The normal
+acceptance route keeps the new observed-press/release wait; the current strict
+comparator accepts all four original transitions. Neither existing producer guard
+nor the original input hook changes.
+
+The fresh fault samples stable pending bytes after 1.542s, before the unchanged
+5013ms refusal. The combined full-intro run completes both movies, two World visits
+and normal original Quit with a drained ring and zero owners. Its 89 swaps match
+the independent original/history reconstruction across 144967420 pixels with zero
+mismatches. This is current scoped diagnostic evidence; movie/audio content,
+physical scanout, nominal player requirements, the historical five-second
+RN31.G.first-world-watchdog and separate RW03.G.intro-main-transition remain
+outside the claim. Both unresolved failures retain their original evidence.
+
+The later concurrent oracle correction `e5fc9a0eb` is excluded from this bounded
+08f813e1d/2c22e2156 integration snapshot. Its changed paths overlap none of the727
+retained native engine/capture sources. The present comparison preserves its
+original oracle fingerprint; a separate integration must rebuild the corrected
+original history over the same immutable capture before claiming current-master
+comparison. See [the review](rendering-watchdog-results-20261101/sampler-concurrent-oracle-review-01.json).
