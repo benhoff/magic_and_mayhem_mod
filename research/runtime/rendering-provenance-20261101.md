@@ -1,5 +1,12 @@
 # Cursor and destination-history provenance — 2026-11-01
 
+**Follow-up correction:** the later [divergence investigation](rendering-divergence-20261101.md)
+isolates the reported high03 pixel failure to the newer original oracle's
+top-clipping phase reconstruction. Fresh corrected high/low original histories
+match all378,641,280 captured pixels. Native renderer behavior is unchanged.
+The findings below describe the earlier investigation and its immutable reports;
+the reported high-resolution discrepancy is no longer an unresolved native bug.
+
 This bounded EP06 follow-up starts at `4fa166010` and advances its owned source
 checkout to committed master `a4d3a6ee3`, including the capture-worker repair,
 before the final captures. Earlier source variants, failed attempts and exact

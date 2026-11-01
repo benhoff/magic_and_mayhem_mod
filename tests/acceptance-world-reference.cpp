@@ -4,6 +4,9 @@
 #include "sprite-binary-reference.cpp"
 #undef main
 #include "world-raster-reference.hpp"
+#ifndef MNM_ACCEPTANCE_DRAW_WATCH
+#define MNM_ACCEPTANCE_DRAW_WATCH(ordinal,entry,record,pixels)
+#endif
 
 int main(int argc,char** argv)try{
  if(argc!=5)throw std::runtime_error("Expected pinned PE, closed draws, private baseline, output");
@@ -19,6 +22,7 @@ int main(int argc,char** argv)try{
   if(size<96||size>input.size()-at)throw std::runtime_error("Checkpoint draw extent");
   Bytes record(input.begin()+at,input.begin()+at+size);at+=size;
   const auto kind=u32(record,8);
+  MNM_ACCEPTANCE_DRAW_WATCH(i+1,entry,record,pixels);
   if(kind==9){
    if(u32(record,60)==8){
     if((entry!=0x597086&&entry!=0x596cb8)||u32(record,68)||u32(record,80)||u32(record,76)<40||size!=96+u32(record,76))throw std::runtime_error("WORD raster bounds");

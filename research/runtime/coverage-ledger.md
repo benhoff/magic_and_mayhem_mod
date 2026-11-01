@@ -1,3 +1,23 @@
+## Corrected clipped-distortion comparison oracle — 2026-11-01
+
+[Divergence review](rendering-divergence-20261101.md) isolates the earlier high03
+discrepancy to World50/draw83 and the newer original-reference helper. The capture
+already normalized19 skipped top rows; the oracle failed to restore that phase.
+Restoring phase `skip-1` matches the older reference and all576 raw-original
+regression cases, including384 clipped cases that failed before the change.
+All1,830 corrected World50 checkpoints match, with unchanged native witnesses.
+Fresh independent original histories now match165,997,240 high-resolution and
+212,644,040 software-capture pixels. Input/fullscreen guards pass on both.
+
+This is an oracle/tooling repair and fresh original execution over retained
+captures. It changes no native engine/capture source and performs no fresh game
+launch or existing engine/acceptance stage promotion. The previous13,659-pixel
+finding is closed as an oracle defect; its original records/hashes and all failed
+harness attempts remain retained. Older source-writer/initialization/watchdog,
+EP06 configuration acceptance and full-player/replacement gaps remain separate.
+New tooling stages have their own exact current source and scenario claims;
+broader historical evidence may remain stale after shared reference changes.
+
 ## Cursor and prior-destination provenance follow-up — 2026-11-01
 
 [Provenance review](rendering-provenance-20261101.md) confirms the retained
