@@ -97,3 +97,30 @@ def validate_callbacks(data, flow):
     require(any(r[1] == 28 and r[11] == 0x6db967 and r[0] < oks[0][0] for r in rows), 'Original World-to-report observation absent')
     require(callbacks[-1][3] == 3 and callbacks[-1][9] == 4, 'Original Main Quit missing')
     return dict(original_result_ok_sequence=oks[0][0], original_main_quit_sequence=callbacks[-1][0], verified=True)
+
+
+def prepare_launch_manifest(game, manifest):
+    """Required physical TSV input for run-game.sh, with immutable existing pins."""
+    game, manifest = Path(game), Path(manifest)
+    require('original' not in manifest.parts and not manifest.is_symlink(), 'Redirected installation manifest')
+    if not manifest.exists():
+        lines=['sha256\tsize\tpath\n']
+        for path in sorted(game.rglob('*')):
+            if not path.is_file():
+                continue
+            require(not path.is_symlink(), 'Redirected installation file')
+            name=path.relative_to(game).as_posix()
+            require(not any(c in name for c in '\t\r\n'), 'Unsafe installation filename')
+            lines.append(f'{sha(path)}\t{path.stat().st_size}\t{name}\n')
+        manifest.parent.mkdir(parents=True,exist_ok=True)
+        with manifest.open('xb') as out:
+            out.write(''.join(lines).encode())
+    raw=manifest.read_bytes()
+    rows=[line.split('\t') for line in raw.decode().splitlines()]
+    require(rows and rows[0]==['sha256','size','path'] and all(len(r)==3 for r in rows), 'Invalid launcher manifest format')
+    entries={r[2]:(r[0],int(r[1])) for r in rows[1:]}
+    require(len(entries)==len(rows)-1, 'Duplicate launcher manifest identity')
+    for name in ('Chaos.exe','jpeg.dll','CDROMDrive.cfg'):
+        path=game/name
+        require(entries.get(name)==(sha(path),path.stat().st_size), 'Launcher input differs from pinned manifest: '+name)
+    return raw

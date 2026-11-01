@@ -6,7 +6,9 @@ existing independent World-history oracle connected. No live campaign case was
 executed in this preparation batch. Successful tooling guards and a linked player
 do not establish victory, natural defeat, next-map progression or acceptance.
 `GP.progression` retains its existing static understanding and original-owned
-implementation boundaries.
+implementation boundaries. The subsequent [live execution record](rendering-progression-live-20261101.md)
+retains startup/launcher corrections and the first real failed progression
+attempt's natural defeat; preparation success has not become mission completion.
 
 | Case | Primary route | Required outcome |
 | --- | --- | --- |
@@ -23,7 +25,7 @@ unvalidated candidates. The driver never writes health, mana, flags, script stat
 campaign rewards or original simulation memory. A stalled conversation dismissal
 or projected ground order is an attempt, not an input-consumption assertion.
 
-The [prepared inputs](rendering-progression-results-20261101/inputs-04.json)
+The [current prepared inputs](rendering-progression-results-20261101/inputs-10.json)
 pin the No-CD executable, Celtic realm/region configurations, both mission scripts,
 preferences, and the ordered Specific/Random recipes. They hash all 124 candidate
 MAP/NOD/EVT/MPS files: 13 Forest and 18 Plains sections. These are the finite
@@ -34,6 +36,10 @@ preserves the unsupported installed executable finding. The
 [restoration receipt](rendering-progression-results-20261101/inputs-02.json)
 preserves its exact preimage and the canonical original replacement in this task's
 private installation. No main-checkout installation or original file was changed.
+Preparation also materializes and hashes the private installation manifest
+`working/manifests/game-nocd.tsv` required by the public launcher's real preflight.
+An existing mismatched/malformed manifest is refused. The preparation commit's
+[inputs 04](rendering-progression-results-20261101/inputs-04.json) remain historical.
 
 The unchanged 355,405-byte `native-menu-502b06ab.sav` is retained in SQLite with
 SHA-256 `d33f46e282c3c1d7868c04d5746fc2bfbb1f64c8a859eb1428d74efdb547dda5`.
@@ -51,23 +57,29 @@ available, the existing public launcher bootstraps a new owned prefix; use
 The storage guard and existing prefix/output isolation rules remain in force.
 
 ```sh
-python3 tools/working-retention.py run --reserve-gib 5 -- \
+python3 /home/hoff/swdev/magic_and_mayhem_mod/tools/working-retention.py \
+  --root "$PWD" run --reserve-gib 5 -- \
   python3 tools/run-rendering-progression.py --case progression --size 800x600 \
-  --preparation research/runtime/rendering-progression-results-20261101/inputs-04.json \
-  --report research/runtime/rendering-progression-results-20261101/progression-default-high-01.json
+  --preparation research/runtime/rendering-progression-results-20261101/inputs-10.json \
+  --report research/runtime/rendering-progression-results-20261101/progression-default-high-NEW.json
 ```
 
 Use new report names for the separate `victory` and `defeat` runs. Repeat the
 three cases with `--size 640x480`, and with `--software` for each required software
 configuration; those combinations are pending executions, not demonstrated support.
 `--skip-intros` is available for diagnostics and must remain labelled in the
-configuration. Enabled intros are the default acceptance candidate.
+configuration. Diagnostic acquisitions/comparisons have distinct kinds and remain
+ineligible for nominal acceptance. Enabled intros are the default acceptance candidate.
+The main-checkout storage guard changes cwd to its selected root; retain the
+explicit `--root "$PWD"` when invoking it from this owned checkout. Every report
+name must be new, including retries; the recorded failures are immutable.
 
 ```sh
-python3 tools/working-retention.py run --reserve-gib 3 -- \
+python3 /home/hoff/swdev/magic_and_mayhem_mod/tools/working-retention.py \
+  --root "$PWD" run --reserve-gib 3 -- \
   python3 tools/check-rendering-progression.py \
-  --acquisition research/runtime/rendering-progression-results-20261101/progression-default-high-01.json \
-  --report research/runtime/rendering-progression-results-20261101/progression-default-high-compare-01.json
+  --acquisition research/runtime/rendering-progression-results-20261101/progression-default-high-NEW.json \
+  --report research/runtime/rendering-progression-results-20261101/progression-default-high-compare-NEW.json
 ```
 
 The comparator requires the existing `mnm-acceptance-world-history` and
@@ -100,10 +112,11 @@ alone close that lifetime gap. The comparator records this limit explicitly and
 keeps supported-player/original-recovery decisions pending. The retained EP04
 watchdog failure is unaffected by this preparation.
 
-The [tooling review](rendering-progression-results-20261101/guards-02.json)
-records 5 new mutation/projection tests (including 13 rejection mutations),
-10 existing pilot tests, 13 existing normal-acceptance tests and an actual Release
-Qt player link with warnings treated as errors. These are preparation/tooling
+The [current tooling review](rendering-progression-results-20261101/guards-07.json)
+records 9 mutation/projection/manifest/combat-policy/helper-termination checks
+(including 13 semantic rejection mutations), 10 existing pilot tests,
+13 existing normal-acceptance tests, five actual Qt public-control cases and
+Release Qt player/fixture links with warnings treated as errors. These are preparation/tooling
 checks, not original-game comparison or mission completion evidence. Generated
 inputs, failed preparation, logs and review are SQLite references; raw save and
 executable preimage bytes are retained in the same verified evidence stores.

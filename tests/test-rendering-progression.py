@@ -5,11 +5,19 @@ import importlib.util
 import struct
 import sys
 import unittest
+import tempfile
+import hashlib
+import os
+import signal
+import subprocess
+import shutil
+import time
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
-from rendering_progression import validate_flow, validate_callbacks
+from rendering_progression import validate_flow, validate_callbacks, prepare_launch_manifest
 
 
 def flow(case='progression'):
@@ -68,6 +76,29 @@ class ProgressionTests(unittest.TestCase):
         for data in (trace(True), trace()[:-1], trace().replace(struct.pack('<I',0x6db967),struct.pack('<I',0x6cbb78))):
             with self.assertRaises(ValueError):validate_callbacks(data,flow())
 
+    def test_launcher_manifest_is_materialized_for_the_real_consumer(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);game=root/'game';game.mkdir();manifest=root/'manifests/game-nocd.tsv'
+            for name in ('Chaos.exe','jpeg.dll','CDROMDrive.cfg'):(game/name).write_bytes(name.encode())
+            raw=prepare_launch_manifest(game,manifest)
+            self.assertEqual(raw,manifest.read_bytes())
+            records=[row.split('\t') for row in raw.decode().splitlines()[1:]]
+            self.assertEqual({r[2]:r[0] for r in records},{n:hashlib.sha256(n.encode()).hexdigest() for n in ('Chaos.exe','jpeg.dll','CDROMDrive.cfg')})
+            self.assertEqual(prepare_launch_manifest(game,manifest),raw)
+            (game/'Chaos.exe').write_bytes(b'changed input')
+            with self.assertRaises(ValueError):prepare_launch_manifest(game,manifest)
+            self.assertEqual(manifest.read_bytes(),raw)
+
+    def test_malformed_or_duplicate_manifest_cannot_replace_existing_pins(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);game=root/'game';game.mkdir();manifest=root/'manifest.tsv'
+            for name in ('Chaos.exe','jpeg.dll','CDROMDrive.cfg'):(game/name).write_bytes(b'input')
+            raw=prepare_launch_manifest(game,manifest)
+            for bad in (raw.replace(b'\t',b'|'),raw+raw.splitlines(keepends=True)[1]):
+                manifest.write_bytes(bad)
+                with self.assertRaises(ValueError):prepare_launch_manifest(game,manifest)
+                self.assertEqual(manifest.read_bytes(),bad)
+
     def test_projection_bounded_for_remote_target_and_portal(self):
         spec=importlib.util.spec_from_file_location('outcome_input',ROOT/'tools/campaign-outcome-input.py')
         module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
@@ -75,6 +106,44 @@ class ProgressionTests(unittest.TestCase):
         for target in [dict(x=100,y=-100,z=30),dict(x=1,y=2,z=0),hero]:
             x,y=module.target_point(hero,target)
             self.assertTrue(0<=x<800 and 0<=y<600)
+
+    def test_victory_uses_support_and_spells_while_defeat_never_casts(self):
+        spec=importlib.util.spec_from_file_location('outcome_policy',ROOT/'tools/campaign-outcome-input.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        hero=dict(x=0,y=0,z=0,health=200,mana=50*256)
+        enemy=dict(x=3,y=2,z=0,health=100)
+        choose=module.combat_choice
+        self.assertEqual(choose('progression',hero,enemy,0,0,10),'initial-zombie')
+        self.assertEqual(choose('victory',hero,enemy,1,1,10),'zombie')
+        self.assertEqual(choose('progression',hero,enemy,2,2,10),'fireball')
+        self.assertEqual(choose('defeat',hero,enemy,0,0,10),'move')
+        enemy.update(x=1,y=0)
+        self.assertEqual(choose('defeat',hero,enemy,0,0,10),'idle')
+        hero.update(mana=0,health=50)
+        self.assertEqual(choose('victory',hero,enemy,0,6,10),'retreat')
+        enemy['health']=0
+        self.assertEqual(choose('victory',hero,enemy,0,6,10),'portal')
+
+    @unittest.skipUnless(shutil.which('xvfb-run'),'Xvfb required for killed-helper regression')
+    def test_helper_snapshot_survives_owner_termination(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);out=root/'input.json'
+            (root/'events.bin').write_bytes(b'MNMMENU1'+struct.pack('<II',1,64))
+            (root/'gameplay-events.bin').write_bytes(b'MNMGP001'+struct.pack('<II',1,64))
+            process=subprocess.Popen(['xvfb-run','-a',sys.executable,ROOT/'tools/campaign-outcome-input.py',
+                '--rect','0','0','800','600','--case','progression','--experiment',root,
+                '--seconds','30','--output',out],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)
+            try:
+                deadline=time.monotonic()+5
+                while not out.exists() and process.poll() is None and time.monotonic()<deadline:time.sleep(.02)
+                self.assertTrue(out.exists(),'No bounded snapshot while helper is running')
+            finally:
+                if process.poll() is None:os.killpg(process.pid,signal.SIGTERM)
+                process.wait(timeout=5)
+            record=json.loads(out.read_text())
+            self.assertFalse(record['success'])
+            self.assertFalse(record['simulation_writes'])
+            self.assertEqual(record['actions'],[])
 
 
 if __name__=='__main__':unittest.main()

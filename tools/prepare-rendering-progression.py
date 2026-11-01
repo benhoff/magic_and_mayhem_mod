@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import subprocess
 from coverage_evidence import Reader, write_report
-from rendering_progression import PREFIX, CASES, BUILD, recipes, require, sha
+from rendering_progression import PREFIX, CASES, BUILD, recipes, require, sha, prepare_launch_manifest
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -43,6 +43,12 @@ def main():
             target.write_bytes(source.read_bytes())
             require(sha(target) == BUILD, 'Private executable restoration failed')
         report.update(source_game=str(game), maps=recipes(game), saves=[])
+        manifest=ROOT/'working/manifests/game-nocd.tsv'
+        raw=prepare_launch_manifest(game,manifest)
+        record=str(Path(a.report).with_suffix(''))+'-launch-manifest.bin'
+        report['launch_manifest']=dict(path='working/manifests/game-nocd.tsv',
+            sha256=write_report(ROOT,record,raw),bytes=len(raw),record=record,
+            consumer='tools/run-game.sh verify_game',source_game=str(game))
         inputs = ['Chaos.exe', 'Realms/Celtic/Celtic.cfg', 'Realms/Celtic/RealmView.cfg',
                   'Realms/Celtic/CelticScript1.CFG', 'Realms/Celtic/CelticScript2.CFG', 'CFG/prefs.cfg']
         report['configuration_inputs'] = []
@@ -75,6 +81,7 @@ def main():
             'zero surviving native/original owners after normal Main Quit']
         names = ['tools/rendering_progression.py', 'tools/prepare-rendering-progression.py',
                  'tools/run-rendering-progression.py', 'tools/check-rendering-progression.py', 'tools/campaign-outcome-input.py',
+                 'tools/campaign_gameplay.py', 'tools/campaign_spell.py', 'tools/campaign_input_admission.py',
                  'apps/qt-shell/campaign_progression_test.cpp', 'apps/qt-shell/campaign_smoke_test.cpp',
                  'apps/qt-shell/campaign_smoke_test.hpp', 'apps/qt-shell/CMakeLists.txt']
         report['sources'] = {n: sha(ROOT/n) for n in names}

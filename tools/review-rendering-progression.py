@@ -16,6 +16,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--build', type=Path, required=True)
     p.add_argument('--preparation', required=True)
+    p.add_argument('--driver-test', type=Path, help='Built Qt public-control startup regression')
     p.add_argument('--report', required=True)
     a = p.parse_args()
     require(a.report.startswith(PREFIX) and '..' not in Path(a.report).parts and not (ROOT/a.report).exists(), 'New owned report required')
@@ -26,6 +27,8 @@ def main():
         names=set(prepared['sources'])|{'tools/review-rendering-progression.py', 'tools/rendering_pilot.py',
             'tools/rendering_normal_acceptance.py', 'tests/test-rendering-progression.py',
             'tests/test-rendering-pilot.py', 'tests/test-rendering-normal-acceptance.py'}
+        if a.driver_test:
+            names.add('tests/campaign-progression-driver-test.cpp')
         report=dict(schema=1,kind='rendering_progression_preparation_review',success=False,
             sources={n:sha(ROOT/n) for n in sorted(names)},
             preparation=dict(record=a.preparation,sha256=reader.digest(a.preparation)),
@@ -34,14 +37,19 @@ def main():
             commands=[[sys.executable,'-B',ROOT/n] for n in
                 ('tests/test-rendering-progression.py','tests/test-rendering-pilot.py','tests/test-rendering-normal-acceptance.py')]
             commands.append(['cmake','--build',a.build.resolve(),'--target','mnm-qt-shell','--parallel','4'])
+            if a.driver_test:
+                commands.append(['cmake','--build',a.build.resolve(),'--target','campaign-progression-driver-test','--parallel','4'])
+                commands.extend([[a.driver_test.resolve(),case] for case in ('progression','victory','defeat','disabled','wrong-realm')])
             for i,command in enumerate(commands):
                 result=subprocess.run(list(map(str,command)),cwd=ROOT,capture_output=True,timeout=300,
-                    env=dict(os.environ,TMPDIR=str(a.build.resolve().parent/'tmp')))
+                    env=dict(os.environ,TMPDIR=str(a.build.resolve().parent/'tmp'),QT_QPA_PLATFORM='offscreen'))
                 record=str(Path(a.report).with_suffix(''))+f'-check-{i}.log'
                 digest=write_report(ROOT,record,result.stdout+b'\n'+result.stderr)
                 report['checks'].append(dict(command=list(map(str,command)),returncode=result.returncode,record=record,sha256=digest))
                 require(result.returncode==0,'Preparation guard/link failed: '+str(command))
             report['qt_shell_sha256']=sha(a.build/'mnm-qt-shell')
+            if a.driver_test:
+                report['driver_test_sha256']=sha(a.driver_test)
             report['sources_stable']=all(sha(ROOT/n)==h for n,h in report['sources'].items())
             report['success']=report['sources_stable']
         except Exception as error:

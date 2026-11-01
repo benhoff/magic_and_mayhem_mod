@@ -25,6 +25,7 @@ def main():
  game=Path(prepared['source_game'])
  require(recipes(game)==prepared['maps'],'Prepared map inputs changed')
  require(all(sha(game/r['path'])==r['sha256'] for r in prepared['configuration_inputs']),'Prepared executable/configuration changed')
+ require(prepared.get('launch_manifest') and sha(ROOT/prepared['launch_manifest']['path'])==prepared['launch_manifest']['sha256'],'Missing or changed prepared launcher manifest')
  normal=True
  token=Path(a.report).stem;out=ROOT/'working/pilot'/token;out.mkdir(parents=True,exist_ok=False);(out/'.retain').write_text('Actual public pilot and all negative attempts. Retain before RAM teardown.\n')
  launcher=module('run-native-owned.py');campaign=module('test-native-campaign.py')
@@ -48,14 +49,14 @@ def main():
  binary_sha=write_report(ROOT,binary_record,binary.read_bytes())
  names=set(compiled)
  names.update(['run-native.sh','tools/run-native-game.py','tools/run-native-owned.py','tools/run-qt-shell.sh','tools/native_only_contract.py','tools/native_prefix_template.py','tools/experiment_environment.py','tools/directplay_dx6_launch.py','tools/working-retention.py','tools/run-rendering-progression.py','tools/test-native-campaign.py'])
- names.update(prepared['sources']);names.add('tools/menu-game-runner.py');names.update(['tools/menu-storage-input.py','tools/campaign_storage.py','tools/run-rendering-progression.py','tools/campaign_gameplay.py'])
+ names.update(prepared['sources']);names.update(['tools/menu-game-runner.py','tools/run-game.sh','tools/owned-menu-game-runner.py','tools/prepare-menu-observer.py']);names.update(['tools/menu-storage-input.py','tools/campaign_storage.py','tools/run-rendering-progression.py','tools/campaign_gameplay.py'])
  sources={n:sha(ROOT/n) for n in sorted(names)}
- report=dict(schema=1,kind='public_native_progression_acquisition',success=False,player_accepted=False,scenario=a.case,preparation=dict(record=a.preparation,sha256=preparation_sha),
+ report=dict(schema=1,kind='public_native_progression_diagnostic_acquisition' if a.skip_intros else 'public_native_progression_acquisition',success=False,player_accepted=False,scenario=a.case,preparation=dict(record=a.preparation,sha256=preparation_sha),
   sources=sources,source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),session_identity=secrets.token_hex(16),
   configuration=dict(id='player-software' if a.software else 'player-default',software_flag=a.software,skip_intros=a.skip_intros,terrain_lighting='original',native_lighting_capture=False,viewport_scaling='integer-sharp'),
   original_pixels_used_as_native_inputs=False,original_reference_executed=False,scope=__doc__)
  report['player_build']=dict(commands=build_commands,log=dict(record=build_record,sha256=build_sha),binary=dict(path='working/build/qt-shell/mnm-qt-shell',record=binary_record,sha256=binary_sha),compiler_sources={n:sources[n] for n in sorted(compiled)})
- report['configuration']['diagnostic_only']=False
+ report['configuration']['diagnostic_only']=a.skip_intros
  env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINE')) and k not in ['DISPLAY','XAUTHORITY','LIBGL_ALWAYS_SOFTWARE','GALLIUM_DRIVER','MESA_LOADER_DRIVER_OVERRIDE','QT_XCB_GL_INTEGRATION','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES']}
  env.update(QT_QPA_PLATFORM='xcb',LP_NUM_THREADS='4',QT_SCALE_FACTOR='1',WINEDEBUG='-all',TMPDIR=str(out),
   MNM_QT_BUILD_TYPE='Release',MNM_QT_BUILD_TESTS='OFF',MNM_MENU_GAME_SOURCE=str(game),
@@ -102,8 +103,10 @@ def main():
   report['exit_code']=child.returncode
   subprocess.run(['wineserver','-w'],env=dict(env,WINEPREFIX=str(out/'wineprefix')),check=True,timeout=10)
   report['private_wine_stopped']=True
-  if child.returncode:raise ValueError('Public launcher failed; retained its actual output')
-  flow=json.loads((out/'flow.json').read_text());report['flow']=flow
+  flow=json.loads((out/'flow.json').read_text()) if (out/'flow.json').is_file() else None
+  if flow is not None:report['flow']=flow
+  if child.returncode:raise ValueError('Public launcher failed: '+str(flow.get('error') if flow else 'retained its actual output'))
+  require(flow is not None,'Missing public driver flow')
   report['semantic_route']=validate_flow(flow,a.case)
   owners=set((ROOT/'working/tests/native-output-owner').glob('run-*'))-before
   if len(owners)!=1:raise ValueError('Ambiguous public launch owner')
@@ -148,6 +151,15 @@ def main():
   report['success'] &= report['compiler_closure_stable'] and report['player_binary_stable']
   if a.storage_policy:
    report['storage_policy_stable']=sha(policy)==report['storage_policy']['sha256'];report['success'] &= report['storage_policy_stable']
+  # Preserve exact execution/exit/source assertions before importing large raw
+  # captures. An interrupted artifact collector must not lose this boundary or
+  # require a recovery pass to invent the former process's in-memory claims.
+  checkpoint=str(Path(a.report).with_suffix(''))+'-execution.json'
+  execution=dict(report,kind='public_native_progression_execution_checkpoint',
+      acquisition_kind=report['kind'],semantic_acquisition_success=report['success'],
+      success=False,artifact_retention_complete=False)
+  checkpoint_sha=write_report(ROOT,checkpoint,(json.dumps(execution,indent=2)+'\n').encode())
+  report['execution_checkpoint']=dict(record=checkpoint,sha256=checkpoint_sha)
   # Physical files here are bounded execution interchange. Citable bytes go
   # directly to SQLite before this RAM namespace may retire.
   report['artifacts']=[]
@@ -160,9 +172,14 @@ def main():
    candidates += [f for f in session.rglob('*') if f.is_file() and ('game' not in f.relative_to(session).parts or f.suffix.lower() in ('.dll','.cfg','.sav','.ini') or (f.name.startswith('native-') and f.suffix=='.bin'))]
   for f in sorted(set(candidates)):
    limit=2*1024**3 if f==out/'worlds.bin' else 1024**3 if f.parent==out/'capture' and normal else 512*1024**2
-   if f.is_symlink() or f.stat().st_size>limit:continue
-   relative=str(f.relative_to(ROOT));name=str(Path(a.report).with_suffix(''))+'-raw-'+hashlib.sha256(relative.encode()).hexdigest()[:20]+'.bin'
-   raw=f.read_bytes();digest=write_report(ROOT,name,raw);report['artifacts'].append(dict(path=relative,record=name,sha256=digest,bytes=len(raw)))
+   try:
+    if f.is_symlink() or f.stat().st_size>limit:continue
+    relative=str(f.relative_to(ROOT));name=str(Path(a.report).with_suffix(''))+'-raw-'+hashlib.sha256(relative.encode()).hexdigest()[:20]+'.bin'
+    raw=f.read_bytes();digest=write_report(ROOT,name,raw);report['artifacts'].append(dict(path=relative,record=name,sha256=digest,bytes=len(raw)))
+   except Exception as e:
+    report.update(success=False,artifact_retention_error=dict(path=str(f),error=str(e)))
+    break
+  report['artifact_retention_complete']='artifact_retention_error' not in report
   report['artifact_count']=len(report['artifacts']);report['temporary_root']=str(out)
   digest=write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode());print(json.dumps({k:report.get(k) for k in ['success','error','exit_code','artifact_count']}|{'record':a.report,'sha256':digest}),flush=True)
   from evidence_objects import settings

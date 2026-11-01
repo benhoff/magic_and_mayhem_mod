@@ -473,6 +473,10 @@ target_sources(mnm-qt-shell PRIVATE command_replay.cpp viewport_presentation.cpp
 
 # Public campaign smoke automation; keeps ordinary menu feature selection.
 target_sources(mnm-qt-shell PRIVATE campaign_smoke_test.cpp campaign_progression_test.cpp healing_smoke_test.cpp resident_restart_test.cpp)
+add_executable(campaign-progression-driver-test EXCLUDE_FROM_ALL ../../tests/campaign-progression-driver-test.cpp campaign_progression_test.cpp menu_bridge.cpp engine_preferences_store.cpp live_menu_session.cpp gl_viewport.cpp)
+target_include_directories(campaign-progression-driver-test PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+target_link_libraries(campaign-progression-driver-test PRIVATE mnm-main-menu mnm-renderer Qt6::Widgets Qt6::OpenGLWidgets)
+target_compile_options(campaign-progression-driver-test PRIVATE -Wall -Wextra -Werror -pedantic)
 
 # Bounded mapped command transport and presentation adapter.
 target_sources(mnm-qt-shell PRIVATE command_channel.cpp live_command_renderer.cpp render_control.cpp live_command_session.cpp)

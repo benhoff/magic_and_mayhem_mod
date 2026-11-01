@@ -15,6 +15,7 @@
 #include <QJsonObject>
 #include <QElapsedTimer>
 #include <memory>
+#include <cstdio>
 
 // Candidate EP05 automation. Only public controls/physical World input are used.
 // A completed driver is semantic evidence; independent history admission is separate.
@@ -87,10 +88,10 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
         }else if(r->stage==2&&s.screen==18&&s.region.difficulty==1){r->stage=3;r->frames=probe().frames;r->paints=probe().paints;click("regionEntryEnter");}
         else if(r->stage==4&&s.screen==6){
             const auto expected=mode=="defeat"?0u:1u;
-            if(s.defeat.outcome!=expected||s.defeat.texts[19].contains("quit",Qt::CaseInsensitive)){finish(false,"Unexpected/abandoned primary outcome");return;}
             record(s,"natural-report");auto row=r->states.takeAt(r->states.size()-1).toObject();QJsonArray texts;
             for(const auto& text:s.defeat.texts)texts.append(text);
             row["title"]=s.defeat.title;row["texts"]=texts;row["outcome"]=int(s.defeat.outcome);r->states.append(row);
+            if(s.defeat.outcome!=expected||s.defeat.texts[19].contains("quit",Qt::CaseInsensitive)){finish(false,"Unexpected/abandoned primary outcome");return;}
             r->natural=true;r->stage=5;click("battleResultContinue");
         }else if(r->stage==5&&(s.screen==4||s.screen==3)){
             record(s,"result-return");
@@ -114,6 +115,8 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
     auto viewport=session.originalViewportRequested;
     session.originalViewportRequested=[r,viewport,input]{if(viewport)viewport();if(!r->done&&r->stage==10){r->stage=11;input("yes");}};
     auto failed=session.failed;session.failed=[failed,finish](const QString& error){if(failed)failed(error);finish(false,error);};
+    auto output=session.output;
+    session.output=[output](const QString& text){if(output)output(text);std::fprintf(stderr,"%s",qPrintable(text));};
     auto finished=session.finished;session.finished=[r,finished,finish]{if(finished)finished();finish(r->stage==12&&r->natural,"Session finished");};
     auto* timer=new QTimer(&window);timer->setInterval(100);
     QObject::connect(timer,&QTimer::timeout,&window,[r,probe,&window,input,finish,low,click]{
@@ -134,4 +137,6 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
         }
         if(r->clock.elapsed()>780000)finish(false,"Bounded campaign transition deadline exceeded");
     });timer->start();
+    session.smokeSeconds=0;
+    QTimer::singleShot(0,&window,[click]{click("launchGame");});
 }

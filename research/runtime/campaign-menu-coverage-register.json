@@ -3038,11 +3038,12 @@
       "kind": "native_policy",
       "subsystem": "campaign",
       "title": "Experimental original natural campaign victory/defeat report admission",
-      "scope": "V20 experimental exact original report6 singleton/vtable,Main/Realm/World/report stack5,context5/layout0,registered original OK21 and bounded original title/21strings,outcome0/1. Older versions retain Quit provenance/defeat-only. Native copies original scores/reasons and selects original victory/defeat assets; original OK/fade/unwind and fresh Realm return remain active. Private unchanged original OK/fade plus synthetic report state/Qt peers only; no actual mission win,natural defeat,scoring/reward equivalence,persistence,full World cleanup or native drawing-lock fix.",
+      "scope": "V20 experimental exact original report6 singleton/vtable,Main/Realm/World/report stack5,context5/layout0,registered original OK21 and bounded original title/21strings,outcome0/1. Older versions retain Quit provenance/defeat-only. Native copies original scores/reasons and selects original victory/defeat assets; original OK/fade/unwind and fresh Realm return remain active. Private unchanged original OK/fade plus synthetic report state/Qt peers only; no actual mission win,scoring/reward equivalence,persistence,full World cleanup or native drawing-lock fix. A later failed progression run observes a natural original defeat before OK/return; it supplies no complete live integration proof.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/campaign-natural-report.md"
+        "research/runtime/campaign-natural-report.md",
+        "research/runtime/rendering-progression-live-20261101.md"
       ],
       "implementation": [
         "apps/qt-shell/CMakeLists.txt",
@@ -3438,7 +3439,8 @@
         "tools/test-region-entry-contract.py"
       ],
       "evidence": [
-        "UI62.campaign-natural-report"
+        "UI62.campaign-natural-report",
+        "RPS02.progression-negative"
       ],
       "status": {
         "understanding": "partial",
@@ -3446,7 +3448,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "2026-11-01: RPS02.progression-negative observes an actual original natural defeat/title/21strings in a failed progression attempt, rejected before original OK and clean return. Earlier private/synthetic validation remains historical; no live integration or scoring/reward/lifetime claim is promoted."
+      ]
     },
     {
       "id": "NP.campaign-spellbox-dispatch",
@@ -7409,6 +7414,32 @@
         {
           "pointer": "/mission_completion",
           "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS02.progression-negative",
+      "kind": "live_observation",
+      "scope": "Actual full-intro fresh Celtic region1 800x600 World reached natural player death instead of progression. No original report OK, clean retirement, later map, whole-session pixel proof or engine milestone promotion.",
+      "record": "research/runtime/rendering-progression-results-20261101/progression-default-high-03.json",
+      "sha256": "4d9553145f55e8f50b8d5bc6d1ab1c56923603d3c6f75344a0cbfb9f57af6a32",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
         }
       ]
     }

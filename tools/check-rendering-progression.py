@@ -20,8 +20,8 @@ def main():
   with (output/(label+'.log')).open('xb') as log:subprocess.run([str(v) for v in command],cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=300)
  with Reader(ROOT) as reader:
   acquired=reader.json(a.acquisition);report['acquisition']=dict(record=a.acquisition,sha256=reader.digest(a.acquisition))
-  if acquired.get('kind')=='public_native_watchdog_diagnostic_acquisition':
-   report['kind']='public_native_watchdog_diagnostic_comparison'
+  if acquired.get('kind') in ('public_native_watchdog_diagnostic_acquisition','public_native_progression_diagnostic_acquisition'):
+   report['kind']='public_native_progression_diagnostic_comparison'
    report['scope']+=' Injected/diagnostic execution only; ineligible for nominal acceptance.'
   sources=dict(acquired['sources']);sources.update(acquired.get('native_admission',{}).get('native_only',{}).get('sources',{}))
   sources.update({n:digest(ROOT/n) for n in ['tools/rendering_progression.py','tools/rendering_pilot.py','tools/check-rendering-progression.py','tests/acceptance-world-history.cpp','tests/acceptance-world-reference.cpp','tests/sprite-binary-reference.cpp','tests/world-raster-reference.hpp','tests/clipped-word-grayscale-cases.hpp','tools/native_player_quick_acceptance.py','tools/test-menu-observer.py']});report['sources']=sources
@@ -63,7 +63,7 @@ def main():
     require(report['world_domain']['extents']==[list(map(int,acquired['configuration']['requested_size'].split('x')))],'Actual imported RGB565 World mode differs')
     report['driver_scope_facts']=dict(world_extents=report['world_domain']['extents'],presented_world_image_extents=[list(p) for p in sorted({(r['image_width'],r['image_height']) for r,b in observed['paints'].values() if int(r['world'])>0})])
     sources.update(report['lighting']['policy']['sources'])
-   require(acquired['kind']=='public_native_progression_acquisition','Wrong acquisition type')
+   require(acquired['kind'] in ('public_native_progression_acquisition','public_native_progression_diagnostic_acquisition'),'Wrong acquisition type')
    report['semantic_route']=validate_flow(acquired['flow'],acquired['scenario'])
    report['original_menu_actions']=validate_callbacks((session/'events.bin').read_bytes(),acquired['flow'])
    report['transition_worlds']=[]

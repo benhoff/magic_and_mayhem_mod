@@ -24925,3 +24925,72 @@ pixel comparison. No artifact5 row, existing historical result, supported-player
 or original-recovery decision is promoted. Shared smoke/header/build source drift
 leaves previous evidence historical; the EP04 watchdog failure is unaffected.
 See [runbook](rendering-progression-preparation-20261101.md).
+
+### Initial live continuation and refusals
+
+The continuation in [live execution record](rendering-progression-live-20261101.md)
+preserves two setup failures and an actual original natural defeat from the
+failed default 800×600 progression candidate. `RPS02.startup-negative` stopped
+before original execution because public Launch was omitted;
+`RPS02.manifest-negative` stopped at the real launcher's missing installation
+manifest. The corrected driver clicks public Launch, forwards launcher output,
+and preparation materializes/pins the physical TSV with stale-pin refusal.
+Five actual Qt event-loop control cases and process-level killed-helper snapshot
+coverage accompany the changes; `RPS02.guards` records 37 tooling checks and
+actual Release links. `RPS02.inputs` fingerprints this corrected source phase.
+
+`RPS02.progression-negative` executed full enabled intros and fresh Celtic region
+1 in a native 800×600 World. The original hero died: report discriminator 0,
+title `Defeat!  ( The Forest of Pain )`, text19 `You were killed.`. The retained
+2,579-row gameplay trace has zero original player spell casts and unchanged
+12,800 mana; Camulos remained alive at health100. This establishes that run's
+natural death, with high confidence, and refuses progression. It does not prove
+original OK/return, the separate defeat scenario, retirement, victory, later-map
+entry, pixel equivalence or a renderer defect. Original manifests passed and the
+private Wine process stopped. Raw report/channel bytes and byte-exact differing
+intermediate source bodies remain pinned in SQLite; old hashes are unchanged.
+
+Unexpected report strings and failed flows are now retained before refusal;
+atomic incremental physical-input snapshots survive an owner terminating the
+helper. The revised victory policy uses ordinary starting Zombie/Fireball controls
+and requires original caster mana debits/new living owned Zombies before counting
+casts. Fixed thresholds/projections are bounded test policy, not recovered rules.
+Diagnostic skip-intro acquisitions/comparisons are explicitly ineligible for
+nominal default acceptance. The first longer combat diagnostic also reaches the
+existing1GiBviewport capture ceiling before mission end; no whole-session pixel
+history can be claimed from that stream.
+
+The campaign report focused/central registers retain the narrower terminal
+observation separately from their earlier private/synthetic headless result.
+No comparison, live integration, replacement or artifact5 status is promoted.
+Current engine validation remains pending, including CMake/shared player source
+drift, full report return/cleanup and populated object/vptr/generation handoffs.
+
+The revised skip-intro progression attempt also reached natural death. Its
+separately labelled `RPS02.progression-diagnostic-recovery` verifies 291 raw
+artifacts (4,101,798,516 bytes), two original successful Zombie debits and two
+Fireball debits with two defended20-damage Redcap hits. Camulos stayed at100HP;
+both Zombies were left behind. The original collector emitted no final receipt;
+recovery does not invent its lost in-memory exit/source assertions. Exact prior
+source bodies remain retained. The viewport terminal record explicitly says
+`complete: false` / `Acceptance capture stored budget exceeded` after
+5,852,154,000 raw bytes. Wrong outcome, incomplete pixel history and collector
+custody are separate limitations.
+
+Independent defeat execution `RPS02.defeat-default-negative` stopped before World
+at a menu-adapter timeout. `RPS02.defeat-diagnostic-negative` entered the800×600
+World, then hit a cancelled resident producer/original exit124after about21seconds
+of gameplay. No original report OK/clean return is established. The actual
+comparator refusal `RPS02.comparison-refusal` stops before oracle execution at
+`Incomplete actual public acquisition`; it grants no equivalence credit. These
+source-bound failures predate independently landed main capture-worker changes
+and do not claim current-master validation. Separate victory, later map,
+640×480 and software runs remain unexecuted after these refusals.
+
+The final collector now checkpoints exact execution assertions before large raw
+imports and records ordinary artifact-import failures. The checkpoint explicitly
+has success false/artifact retention incomplete. `RPS02.inputs-final` and
+`RPS02.guards-final` pin the final source phase and successful37tooling checks/
+Release links; prospective live execution of that checkpoint remains pending.
+The prior input/guard and live source hashes remain historical. No engine
+status or supported-player acceptance changes.
