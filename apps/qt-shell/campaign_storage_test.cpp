@@ -1,6 +1,7 @@
 #include "campaign_smoke_test.hpp"
 #include "live_menu_session.hpp"
 #include "gl_viewport.hpp"
+#include "preferences_widget.hpp"
 #include "../../protocols/include/mnm/menu_v13.h"
 #include <QApplication>
 #include <QMainWindow>
@@ -19,12 +20,16 @@
 #include <QProcess>
 #include <QElapsedTimer>
 #include <QRadioButton>
+#include <QComboBox>
 #include <QDateTime>
 #include <QThread>
 #include <QtEndian>
 #include <memory>
 #include <cstdio>
 void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,const QString& path,std::function<CampaignPresentationProbe()> probe){
+ if(qEnvironmentVariableIntValue("MNM_ACCEPTANCE_NORMAL")==1){
+  if(auto* scaling=window.findChild<QComboBox*>("viewportScaling"))scaling->setCurrentIndex(2);
+ }
  if(qEnvironmentVariableIntValue("MNM_CAMPAIGN_STORAGE_BOUNDARIES")==1){installCampaignStorageBoundaryTest(app,window,session,path);return;}
  const bool restart=qEnvironmentVariableIntValue("MNM_CAMPAIGN_STORAGE_RESTART")==1;
  const bool resident=qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")=="1";
@@ -34,8 +39,8 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
  const int requestedTimeout=qEnvironmentVariableIntValue("MNM_CAMPAIGN_TIMEOUT_MS");
  const int deadlineMs=requestedTimeout>=25000&&requestedTimeout<=595000?requestedTimeout:240000+loadingDwell*1000;
  const int miniCaptureDelay=qBound(0,qEnvironmentVariableIntValue("MNM_CAMPAIGN_MINI_CAPTURE_DELAY_MS"),1000);
- struct Run {int stage=0,attempts=0,input=0,rebuilds=0,initialResolution=-1;quint32 journalBase=0;bool helper=false,failed=false,reloaded=false;quint32 thread=0;quint64 frames=0,source=0,inputSource=0;QString name,hash,error,renderer;QJsonArray states,checkpoints,renderers;QElapsedTimer dwell,loadingDwell;int loadingDwellMs=0;};auto r=std::make_shared<Run>();r->name=qEnvironmentVariable("MNM_CAMPAIGN_STORAGE_NAME","native-menu-live");r->dwell.start();
- auto write=[r,path,probe,resident,recreateWorld,loadingDwell,deadlineMs](bool success){const auto p=probe();if(!p.renderer.isEmpty()&&p.renderer!=r->renderer){r->renderer=p.renderer;r->renderers.append(p.renderer);}QFile f(path);return f.open(QIODevice::WriteOnly)&&f.write(QJsonDocument(QJsonObject{{"success",success},{"deadline_ms",deadlineMs},{"stage",r->stage},{"error",r->error},{"states",r->states},{"checkpoints",r->checkpoints},{"saved_sha256",r->hash},{"saved_name",r->name},{"save_load",true},{"recreate_world",recreateWorld},{"loading_menu_seconds",loadingDwell},{"loading_menu_elapsed_ms",r->loadingDwellMs},{"display_rebuilds",r->rebuilds},{"initial_resolution",r->initialResolution},{"reloaded_from_main",r->reloaded},{"normal_quit",success&&r->stage==12},{"steps",QJsonArray{}},{"native_command_frames",qint64(p.frames)},{"native_painted_frames",qint64(p.paints)},{"native_command_fallback",p.fallback},{"native_recoveries",int(p.recoveries)},{"native_error",p.error},{"renderer",r->renderer},{"renderer_observations",r->renderers},{"resident_world_requested",resident},{"scope","Native campaign Save/Load, fresh post-action World sources and normal Quit; independent restored World raster comparison is a separate recorded check"}}).toJson())>0&&f.flush();};
+ struct Run {int stage=0,attempts=0,input=0,rebuilds=0,initialResolution=-1,cancelDraft=-1;quint32 journalBase=0;bool helper=false,failed=false,reloaded=false,cancelVerified=false;std::array<int,7> cancelValues{};QByteArray cancelProfile;quint32 thread=0;quint64 frames=0,source=0,inputSource=0;QString name,hash,error,renderer;QJsonArray states,checkpoints,renderers;QElapsedTimer dwell,loadingDwell;int loadingDwellMs=0;};auto r=std::make_shared<Run>();r->name=qEnvironmentVariable("MNM_CAMPAIGN_STORAGE_NAME","native-menu-live");r->dwell.start();
+ auto write=[r,path,probe,resident,recreateWorld,loadingDwell,deadlineMs](bool success){const auto p=probe();if(!p.renderer.isEmpty()&&p.renderer!=r->renderer){r->renderer=p.renderer;r->renderers.append(p.renderer);}QFile f(path);return f.open(QIODevice::WriteOnly)&&f.write(QJsonDocument(QJsonObject{{"success",success},{"deadline_ms",deadlineMs},{"stage",r->stage},{"error",r->error},{"states",r->states},{"checkpoints",r->checkpoints},{"saved_sha256",r->hash},{"saved_name",r->name},{"preferences_cancel_verified",r->cancelVerified},{"preferences_cancel_original_dialogue",r->cancelValues[4]},{"preferences_cancel_draft_dialogue",r->cancelDraft},{"save_load",true},{"recreate_world",recreateWorld},{"loading_menu_seconds",loadingDwell},{"loading_menu_elapsed_ms",r->loadingDwellMs},{"display_rebuilds",r->rebuilds},{"initial_resolution",r->initialResolution},{"reloaded_from_main",r->reloaded},{"normal_quit",success&&r->stage==12},{"steps",QJsonArray{}},{"native_command_frames",qint64(p.frames)},{"native_painted_frames",qint64(p.paints)},{"native_command_fallback",p.fallback},{"native_recoveries",int(p.recoveries)},{"native_error",p.error},{"renderer",r->renderer},{"renderer_observations",r->renderers},{"resident_world_requested",resident},{"scope","Native campaign Save/Load, fresh post-action World sources and normal Quit; independent restored World raster comparison is a separate recorded check"}}).toJson())>0&&f.flush();};
  auto fail=[r,write,&app](const QString& why){if(r->failed)return;r->failed=true;r->error=why;std::fprintf(stderr,"Campaign storage failed: %s\n",qPrintable(why));write(false);app.exit(1);};
  session.miniRequestObserved=[r,fail](quint32 action,bool accepted,const QString& why,const MenuBridge::State& s){
   r->states.append(QJsonObject{{"event","mini-request"},{"time_ms",QDateTime::currentMSecsSinceEpoch()},{"action",int(action)},{"accepted",accepted},{"reason",why},{"screen",int(s.screen)},{"generation",int(s.generation)},{"ack",int(s.ack)},{"stage",r->stage}});
@@ -68,7 +73,30 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
   else if(restart&&r->stage==1&&s.screen==12){auto at=s.storage.names.indexOf(r->name);auto* list=window.findChild<QListWidget*>("loadGameList");if(at<0||!list){fail("Persistent save missing from fresh Main Load");return;}list->setCurrentRow(at);r->stage=8;r->frames=probe().frames;action="loadGameLoad";}
   else if(r->stage==1&&s.screen==18){r->stage=difficulty?13:2;action=difficulty?QString("regionEntryDifficulty%1").arg(difficulty):QString("regionEntryEnter");}
   else if(r->stage==13&&s.screen==18&&s.ready&&s.ack==2){r->stage=2;action="regionEntryEnter";}
-  else if(r->stage==3&&s.screen==17){r->stage=4;action="miniMenuButton2";}
+  else if(r->stage==3&&s.screen==17){
+   if(qEnvironmentVariableIntValue("MNM_ACCEPTANCE_NORMAL")==1){r->stage=20;action="miniMenuButton3";}
+   else{r->stage=4;action="miniMenuButton2";}
+  }
+  else if((r->stage==20||r->stage==22)&&s.screen==10){
+   QFile profile(QDir(session.evidenceDirectory()).filePath("game/CFG/prefs.cfg"));
+   if(!profile.open(QIODevice::ReadOnly)){fail("Preferences profile unavailable");return;}
+   const auto bytes=profile.readAll();
+   if(r->stage==20){
+    r->cancelValues=s.preferences.values;r->cancelProfile=bytes;
+    auto* radio=window.findChild<QRadioButton*>(QString("preferencesRadio%1").arg(5+(s.preferences.values[4]+1)%3));
+    if(!radio||!radio->isEnabled()){fail("Preferences cancellation draft control unavailable");return;}
+    auto* preferences=window.findChild<PreferencesWidget*>();
+    if(!preferences||int(preferences->draftSettings().dialogueSpeed)!=s.preferences.values[4]){fail("Preferences initial draft differs from original values");return;}
+    radio->click();r->cancelDraft=int(preferences->draftSettings().dialogueSpeed);
+    if(r->cancelDraft!=(s.preferences.values[4]+1)%3){fail("Preferences draft did not change before Cancel");return;}
+   }else{
+    if(s.preferences.values!=r->cancelValues||bytes!=r->cancelProfile){fail("Preferences Cancel changed original values/profile");return;}
+    r->cancelVerified=true;
+   }
+   ++r->stage;r->frames=probe().frames;r->source=probe().sourceGeneration;r->dwell.restart();action="preferencesCancel";
+  }
+  else if(r->stage==21&&s.screen==17){r->stage=22;action="miniMenuButton3";}
+  else if(r->stage==23&&s.screen==17){r->stage=4;action="miniMenuButton2";}
   else if(r->stage==4&&s.screen==13){r->stage=5;auto* edit=window.findChild<QLineEdit*>("saveGameFileName");if(!edit){fail("Native Save edit unavailable");return;}edit->setText(r->name);r->frames=probe().frames;r->source=probe().sourceGeneration;r->dwell.restart();action="saveGameSave";}
   else if(r->stage==6&&s.screen==17){r->stage=7;action="miniMenuButton1";}
   else if(r->stage==7&&s.screen==12){auto at=s.storage.names.indexOf(r->name);auto* list=window.findChild<QListWidget*>("loadGameList");if(at<0||!list){fail("Original Load list lacks newly saved row");return;}list->setCurrentRow(at);r->stage=8;r->frames=probe().frames;r->source=probe().sourceGeneration;r->dwell.restart();action="loadGameLoad";}
@@ -116,7 +144,7 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
   if((r->stage==5||r->stage==8)&&presenting&&returned){
    QFile saved(QDir(session.evidenceDirectory()).filePath("game/Save/"+r->name+".sav"));if(!saved.open(QIODevice::ReadOnly)||saved.size()==0){fail("Original writer produced no nonempty save");return;}const auto bytes=saved.readAll();const auto hash=QString::fromLatin1(QCryptographicHash::hash(bytes,QCryptographicHash::Sha256).toHex());if(r->hash.isEmpty())r->hash=hash;else if(r->hash!=hash){fail("Load changed saved bytes");return;}r->stage=r->stage==5?6:9;r->attempts=0;
   }
-  if((r->stage==3||r->stage==6||r->stage==9)&&presenting&&(!resident||p.sourceGeneration>r->inputSource)&&r->dwell.elapsed()>=6000){if(++r->attempts>(difficulty==0&&r->stage==3?24:8)){fail("Original Mini ingress timed out");return;}if(r->attempts==1)r->checkpoints.append(QJsonObject{{"phase",r->stage==3?"before-save":r->stage==6?"after-save":r->reloaded?"after-recreate-load":"after-load"},{"frames",qint64(p.frames)},{"source_generation",QString::number(p.sourceGeneration)},{"source_base",QString::number(r->source)},{"frame_base",qint64(r->frames)},{"native_active",p.active},{"renderer",p.renderer},{"fallback",p.fallback},{"error",p.error}});input("mini");}
+  if((r->stage==3||r->stage==6||r->stage==9||r->stage==21||r->stage==23)&&presenting&&(!resident||p.sourceGeneration>r->inputSource)&&r->dwell.elapsed()>=6000){if(++r->attempts>(difficulty==0&&r->stage==3?24:8)){fail("Original Mini ingress timed out");return;}if(r->attempts==1&&r->stage!=21&&r->stage!=23)r->checkpoints.append(QJsonObject{{"phase",r->stage==3?"before-save":r->stage==6?"after-save":r->reloaded?"after-recreate-load":"after-load"},{"frames",qint64(p.frames)},{"source_generation",QString::number(p.sourceGeneration)},{"source_base",QString::number(r->source)},{"frame_base",qint64(r->frames)},{"native_active",p.active},{"renderer",p.renderer},{"fallback",p.fallback},{"error",p.error}});input("mini");}
  });timer->start();
  auto finished=session.finished;session.finished=[r,finished,write,&app]{if(finished)finished();const bool success=!r->failed&&r->stage==12&&!r->hash.isEmpty();app.exit(success&&write(success)?0:1);};
  if(session.winePrefix.isEmpty())session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");

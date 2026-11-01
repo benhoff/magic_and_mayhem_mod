@@ -11,7 +11,7 @@ import subprocess
 import hashlib
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from campaign_storage import HERMES_CARD_RECT,hermes_title_line
+from campaign_storage import HERMES_CARD_RECT,HERMES_POWER_TITLE_RECT,HERMES_LOW_POWER_TITLE_RECT,hermes_title_line
 
 
 def tutorial_action(text):
@@ -64,16 +64,18 @@ def main():
         from PIL import ImageGrab
         screenshot=a.output.with_name(a.output.stem+'-'+label+'.png')
         image=ImageGrab.grab(xdisplay=os.environ['DISPLAY']).crop((x0,y0,x0+w,y0+h)).resize((800,600));image.save(screenshot)
-        for name,rect in [('select-spell',(360,257,590,292)),('summon',(340,82,560,123)),('hermes',(340,220,530,260)),('hermes-card',HERMES_CARD_RECT)]:
+        calibrations=[('select-spell',(360,257,590,292)),('summon',(340,82,560,123)),('hermes',(340,220,530,260)),('hermes-power-title',HERMES_POWER_TITLE_RECT),('hermes-card',HERMES_CARD_RECT)]
+        if (w,h)==(640,480):calibrations.insert(3,('hermes-low-power-title',HERMES_LOW_POWER_TITLE_RECT))
+        for name,rect in calibrations:
             crop=screenshot.with_name(screenshot.stem+'-'+name+'.png');title=image.crop(rect);scale=2 if name=='hermes-card' else 4;title.resize((title.width*scale,title.height*scale)).save(crop)
             mode=6 if name=='hermes-card' else 7
             result=recognize_title(crop,mode)
             observation=dict(image=screenshot.name,image_sha256=hashlib.sha256(screenshot.read_bytes()).hexdigest(),crop=crop.name,crop_sha256=hashlib.sha256(crop.read_bytes()).hexdigest(),rect=rect,**result)
-            if name=='hermes-card':observation.update(title_rule='hermes-title-line-v1',ocr_mode=mode)
+            if name in ('hermes-card','hermes-power-title','hermes-low-power-title'):observation.update(title_rule='hermes-title-line-v1' if name=='hermes-card' else 'hermes-low-power-title-v1' if name=='hermes-low-power-title' else 'hermes-power-title-v1',ocr_mode=mode)
             observations.append(observation)
             action=None
             if result['ocr_returncode']==0:
-                if name=='hermes-card':
+                if name in ('hermes-card','hermes-power-title','hermes-low-power-title'):
                     if hermes_title_line(result['text']):action=('dismiss',(400,300),1)
                 else:action=tutorial_action(result['text'])
             if action:return action
@@ -103,7 +105,7 @@ def main():
             key=x.XKeysymToKeycode(d,0xff1b)
             for down in (1,0):xt.XTestFakeKeyEvent(d,key,down,0);key_down=bool(down);x.XFlush(d);event('escape',down=bool(down));time.sleep(.25)
         event('complete')
-        a.output.write_text(json.dumps(dict(success=True,mode=a.mode,skip_click=a.skip_click,input_active_checked=bool(a.input_channel),logical_point=point,tutorial_observations=observations,tutorial_actions=actions,opening_progress=progress,escape_sent=send_escape,events=events,scope='Physical input only; channel words are observations, not engine consumption ACKs; original menu/confirmation state checked separately'),indent=2)+'\n')
+        a.output.write_text(json.dumps(dict(success=True,mode=a.mode,viewport_pixels=[w,h],skip_click=a.skip_click,input_active_checked=bool(a.input_channel),logical_point=point,tutorial_observations=observations,tutorial_actions=actions,opening_progress=progress,escape_sent=send_escape,events=events,scope='Physical input only; channel words are observations, not engine consumption ACKs; original menu/confirmation state checked separately'),indent=2)+'\n')
     finally:
         if key_down:xt.XTestFakeKeyEvent(d,key,0,0)
         for button in sorted(buttons_down):xt.XTestFakeButtonEvent(d,button,0,0)

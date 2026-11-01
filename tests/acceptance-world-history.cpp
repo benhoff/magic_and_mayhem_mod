@@ -25,17 +25,30 @@ int main(int argc,char** argv)try{
  auto opened=assets::AssetStore::create(argv[2]);if(auto* e=std::get_if<assets::Error>(&opened))throw std::runtime_error(e->detail);
  const auto store=std::get<assets::AssetStore>(std::move(opened));
  legacy::CanvasProducerReplay history([store](const auto& name){auto opened=store.open(name);if(auto* e=std::get_if<assets::Error>(&opened))throw std::runtime_error(e->detail);auto f=std::get<std::unique_ptr<assets::AssetFile>>(std::move(opened));auto bytes=assets::readWhole(*f,16*1024*1024);if(auto* e=std::get_if<assets::Error>(&bytes))throw std::runtime_error(e->detail);return std::get<std::vector<std::uint8_t>>(std::move(bytes));});
- QFile input(argv[1]);require(input.open(QIODevice::ReadOnly)&&input.size()<=256ll*1024*1024,"Bounded capture");
- require(input.read(8)=="MNMPROF2","Owned independent World capture requires complete MNMPROF2");
- quint64 generation=0;QJsonArray worlds;std::uint64_t totalDraws=0;
+ QFile input(argv[1]);require(input.open(QIODevice::ReadOnly)&&input.size()<=2ll*1024*1024*1024,"Bounded capture");
+ const auto magic=input.read(8);const bool sources=magic=="MNMPROF3";
+ require(sources||magic=="MNMPROF2","Owned independent World capture requires complete source history");
+ quint64 chunks=0,blocks=0,generation=0;QJsonArray worlds;std::uint64_t totalDraws=0;
  while(!input.atEnd()){
-  const auto header=input.read(20);require(header.size()==20,"Source header");
-  const auto g=qFromLittleEndian<quint64>(header.constData());const auto s=qFromLittleEndian<quint32>(header.constData()+8),r=qFromLittleEndian<quint32>(header.constData()+12),n=qFromLittleEndian<quint32>(header.constData()+16);
-  require(g==++generation&&g<=512&&s>=16&&s<=16777216&&r>=64&&r<=197184&&n>4&&n<=s+r+(s+r)/1000+128,"Ordered bounded source");
+  const auto header=input.read(sources?32:20);require(header.size()==(sources?32:20),"Source header");
+  const auto g=qFromLittleEndian<quint64>(header.constData());const auto chunk=sources?qFromLittleEndian<quint64>(header.constData()+8):0;
+  const unsigned offset=sources?16:8;
+  const auto s=qFromLittleEndian<quint32>(header.constData()+offset),r=qFromLittleEndian<quint32>(header.constData()+offset+4),n=qFromLittleEndian<quint32>(header.constData()+offset+8);
+  require(!sources||!qFromLittleEndian<quint32>(header.constData()+28),"Reserved source header");
+  require(g==generation+1&&g<=8192&&++blocks<=8192&&s>=16&&s<=16777216&&(chunk?r==0:r>=64&&r<=197184)&&n>4&&n<=s+r+(s+r)/1000+128,"Ordered bounded source");
   const auto packed=input.read(n);require(packed.size()==n&&qFromBigEndian<quint32>(packed.constData())==s+r,"Source compressed length");
   const auto data=qUncompress(packed);require(data.size()==s+r,"Source decompression");
   auto bytes=[&](unsigned at,unsigned size){return std::vector<std::uint8_t>(data.begin()+at,data.begin()+at+size);};
   const auto source=legacy::decodeCanvasProducers(bytes(0,s),false);
+  if(chunk){
+   require(chunk==++chunks&&source.version==3&&!source.operations.empty(),"Source chunk identity");
+   for(const auto& c:source.operations){
+    require(c.fields[2]!=11&&c.fields[2]!=12&&c.fields[2]!=13&&c.fields[2]!=27,"World/failure in source chunk");
+    history.apply(c);
+   }
+   continue;
+  }
+  ++generation;
   const auto handoff=legacy::prepareRollingHandoff(source,0,bytes(s,r),1,0,legacy::WorldBatchSourcePolicy::ownedV5,false);
   unsigned canvas=0,width=0,height=0,count=0,raster=0;bool active=false;QByteArray draws("MNMSCHK1",8),before;
   for(const auto& c:handoff.stream.operations){const auto& f=c.fields;
@@ -60,6 +73,6 @@ int main(int argc,char** argv)try{
   require(!active&&worlds.size()==int(g),"Every World needs exactly one original result");
  }
  require(generation>0,"Empty original history");
- save(output.filePath("worlds.json"),QJsonDocument(QJsonObject{{"schema",1},{"success",true},{"worlds",worlds},{"draws",QString::number(totalDraws)},{"native_player_pixels_read",false},{"original_destination_capture_read",false},{"reference_history","Owned CPU producer inputs and original raster results chained continuously from initial creation"}}).toJson());
+ save(output.filePath("worlds.json"),QJsonDocument(QJsonObject{{"schema",1},{"success",true},{"source_chunks",QString::number(chunks)},{"worlds",worlds},{"draws",QString::number(totalDraws)},{"native_player_pixels_read",false},{"original_destination_capture_read",false},{"reference_history","Owned CPU producer inputs and original raster results chained continuously from initial creation"}}).toJson());
  std::cout<<generation<<" independently reconstructed Worlds\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

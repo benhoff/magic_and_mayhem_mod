@@ -48,6 +48,41 @@ class StorageTests(unittest.TestCase):
                 bad=copy.deepcopy(record);bad['tutorial_observations'][-1][key]=value;path.write_text(json.dumps(bad))
                 with self.subTest(key=key),self.assertRaises(ValueError):m.validate_mini_inputs(root)
 
+    def test_power_card_crop_requires_exact_title_and_reviewed_rectangle(self):
+        # A portrait artifact must not turn ". Hermes" into an admitted title.
+        self.assertFalse(m.hermes_title_line('. Hermes\nHere lies a magical Place of Power.'))
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);image=root/'image.png';crop=root/'title.png'
+            image.write_bytes(b'fixture image');crop.write_bytes(b'fixture title')
+            import hashlib
+            observation=dict(image=image.name,image_sha256=hashlib.sha256(image.read_bytes()).hexdigest(),crop=crop.name,crop_sha256=hashlib.sha256(crop.read_bytes()).hexdigest(),rect=list(m.HERMES_POWER_TITLE_RECT),title_rule='hermes-power-title-v1',ocr_mode=7,ocr_returncode=0,text='Hermes\n')
+            record=dict(mode='mini',success=True,skip_click=True,escape_sent=False,tutorial_observations=[observation],tutorial_actions=[dict(action='dismiss',button=1,logical_point=[400,300])],events=[dict(event='button',button=1,down=down,point=[400,300]) for down in (True,False)])
+            path=root/'storage-input-1.json';path.write_text(json.dumps(record))
+            (root/'storage-input-0.json').write_text(json.dumps(dict(mode='mini',success=True,skip_click=True,escape_sent=True,events=[dict(event='escape',down=down) for down in (True,False)])))
+            self.assertTrue(m.validate_mini_inputs(root)['verified'])
+            for key,value in [('text','. Hermes'),('text','Speak to Hermes'),('rect',list(m.HERMES_CARD_RECT)),('ocr_mode',6),('ocr_returncode',1)]:
+                bad=copy.deepcopy(record);bad['tutorial_observations'][0][key]=value;path.write_text(json.dumps(bad))
+                with self.subTest(key=key,value=value),self.assertRaises(ValueError):m.validate_mini_inputs(root)
+
+    def test_low_title_branch_is_excluded_from_high_viewports(self):
+        from PIL import Image
+        spec=importlib.util.spec_from_file_location('storage_low_title',ROOT/'tools/menu-storage-input.py');helper=importlib.util.module_from_spec(spec);spec.loader.exec_module(helper)
+        class Function:
+            def __call__(self,*args):return 1
+        library=SimpleNamespace(**{n:Function() for n in ['XOpenDisplay','XFlush','XCloseDisplay','XKeysymToKeycode','XTestFakeMotionEvent','XTestFakeButtonEvent','XTestFakeKeyEvent']})
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            for width,height in [(640,480),(800,600)]:
+                output=root/f'storage-input-{width}.json'
+                def recognize(path,mode=7):return dict(text='Hermes' if 'hermes-low-power-title' in path.name else '',ocr_returncode=0,ocr_error='')
+                args=['helper','--rect','0','0',str(width),str(height),'--mode','mini','--skip-click','--dismiss-dialogue','--output',str(output)]
+                with patch('sys.argv',args),patch.dict(helper.os.environ,DISPLAY=':unused'),patch.object(helper.c,'CDLL',return_value=library),patch.object(helper.time,'sleep'),patch('PIL.ImageGrab.grab',return_value=Image.new('RGB',(width,height))),patch.object(helper,'recognize_title',side_effect=recognize):helper.main()
+                row=json.loads(output.read_text());self.assertEqual(row['viewport_pixels'],[width,height]);self.assertEqual(row['escape_sent'],width==800)
+                low=[o for o in row['tutorial_observations'] if o.get('title_rule')=='hermes-low-power-title-v1'];self.assertEqual(len(low),int(width==640))
+            self.assertTrue(m.validate_mini_inputs(root)['verified'])
+            path=root/'storage-input-640.json';row=json.loads(path.read_text());row['viewport_pixels']=[800,600];path.write_text(json.dumps(row))
+            with self.assertRaises(ValueError):m.validate_mini_inputs(root)
+
     def test_pressure_requires_real_wait_resume_and_complete_shutdown(self):
         high,low=8*1024*1024,4*1024*1024
         def row(name,values):return name+' '+' '.join(f'{v:08x}' for v in values+[0]*(19-len(values)))+'\n'
@@ -216,6 +251,18 @@ class StorageTests(unittest.TestCase):
             for invalid in [True,-1,2,'1']:
                 flow['initial_resolution']=invalid
                 with self.assertRaises(ValueError):m.validate_storage(Path(d),flow)
+
+    def test_display_probes_cannot_move_to_an_unrelated_callback(self):
+        with tempfile.TemporaryDirectory() as d:
+            flow,rows,write=self.fixture(Path(d),recreate=True)
+            # Reordering a complete, dimension-correct probe group before OK
+            # must fail; seeing both dimensions somewhere is insufficient.
+            start=next(i for i,r in enumerate(rows) if r[1]==6)
+            group=rows[start:start+3];del rows[start:start+3]
+            rows[0:0]=group
+            for index,row in enumerate(rows):row[0]=index+1
+            write()
+            with self.assertRaises(ValueError):m.validate_storage(Path(d),flow)
 
     def test_recreated_flow_cannot_reuse_old_checkpoint(self):
         with tempfile.TemporaryDirectory() as d:

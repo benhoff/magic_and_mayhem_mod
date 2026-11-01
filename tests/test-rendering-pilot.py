@@ -5,8 +5,9 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 from rendering_pilot import capture,acquisition,History,rgba,viewport,commands,counter
 import numpy as np
 
-def stream(role,events):
+def stream(role,events,limit=None):
  rows=[({'kind':'open','role':role,'session':'session','version':1},b''),*events];total=sum(len(b) for _,b in rows)
+ if limit is not None:rows[0][0]['stored_limit_bytes']=limit
  rows.append((dict(kind='close',complete=True,error='',raw_bytes=str(total),prior_rows=len(rows)),b''));out=b'MNMACE01'
  for index,(row,body) in enumerate(rows):
   row=dict(row,index=index,host_us=str(1000+index));raw=json.dumps(row).encode();packed=struct.pack('>I',len(body))+zlib.compress(body) if body else b'';out+=struct.pack('<II',len(raw),len(packed))+raw+packed
@@ -21,6 +22,11 @@ class Admission(unittest.TestCase):
   with self.assertRaises((ValueError,json.JSONDecodeError)):capture(bad)
   with self.assertRaises(ValueError):counter('01')
   with self.assertRaises(ValueError):counter(True)
+ def test_stored_capture_budgets_are_explicit_and_bounded(self):
+  event=[(dict(kind='ended',commands=1),b'')]
+  for limit in (256*1024**2,1024*1024**2):self.assertEqual(len(capture(stream('commands',event,limit))),3)
+  for limit in (True,0,1024*1024**2+1,'1073741824'):
+   with self.subTest(limit=limit),self.assertRaises(ValueError):capture(stream('commands',event,limit))
  def test_failure_footer(self):
   raw=stream('commands',[(dict(kind='ended',commands=1),b'')]);raw=raw.replace(b'"complete": true',b'"complete": null')
   with self.assertRaises(ValueError):capture(raw)

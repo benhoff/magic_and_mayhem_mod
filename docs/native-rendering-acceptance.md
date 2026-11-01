@@ -1,13 +1,17 @@
 # Native rendering acceptance record
 
-The [2026-10-31 public pilot](../research/runtime/rendering-acceptance-pilot-20261031.md)
-now supplies one admitted `EP03.pipeline` execution receipt: 58 World swaps
-matched an independent original/history reference, with original-polled Qt input
-and normal Quit. The current software-flag probe also completed normally. This
-is a bounded pipeline result; all 156 full acceptance rows and both final
-decisions remain pending. EP10's complete dependency/configuration/reuse/failure
-join is still required. The frozen opening record and its descriptions below
-retain their original phase and hashes.
+The [EP04 continuation](../research/runtime/rendering-normal-acceptance-20261031.md)
+now records six passed default-player requirements and 150 pending obligations
+(72 default, 78 software). All 1,410 recorded World swaps in the selected Quick,
+800×600 storage and 640×480 storage runs match the independent original/history
+reference. This includes three concrete repairs: actual fullscreen geometry,
+Preferences CPU history synchronization and ready-in-ACK ownership.
+
+The [progress record](../research/runtime/rendering-normal-results-20261031/progress-01.json)
+also retains the unresolved `RN31.G.first-world-watchdog` failure. It blocks the
+supported-player verdict; a later finite pass does not retire it. EP04 remains
+partial and both final decisions remain pending. The opening snapshots and
+contract below preserve their original phase and hashes.
 
 Artifact 5 is open. The [current reviewed record](../research/runtime/rendering-scope-results-20261030/acceptance-01.json)
 is an immutable SQLite-backed snapshot of the requirements, evidence candidates,
@@ -18,23 +22,22 @@ reviewed source phase. The authored `acceptance_record` policy in the
 required-gap register and execution plan.
 
 **Supported-player acceptance: pending. Original-rendering recovery: pending.**
-The record is valid as an opening dossier. It does not certify a player, resolve
-scope or establish a current rendering defect. Implementation and historical
-comparison/integration/replacement stages remain unchanged.
+The earlier record is an opening dossier; it did not certify a player or establish
+a rendering defect. The dated continuation above records the subsequent fixes
+and bounded integration evidence. Original recovery claims remain separate.
 
 ## Current decisions and obligations
 
 | Record | Current result | What closes it |
 | --- | --- | --- |
-| Default player | 78 pending obligations | Adequate current evidence for all 47 journey leaves, 21 operations and ten completion gates under the exact declared configuration |
+| Default player | Six demonstrated leaves; 72 pending obligations; startup failure unresolved | Adequate current evidence for all 47 journey leaves, 21 operations and ten completion gates under the exact declared configuration |
 | Software player | 78 pending obligations | The same requirements with actual provider-sensitive execution and justified reuse of applicable bounded proof |
 | Conditional scope | Seven player proof conditions open; physical/platform scope bounded; eight original-recovery scope limits remain | Exact conditional blocking/close-when rules and the evidence-bound technical review; required unknowns cannot become exclusions |
 | Original recovery | Fifteen contract groups retain explicit remaining/recovery exits | Evidence-backed recovery of the required original behavior scope, including branches, lifetimes and unresolved flows; a permitted original supplier is not automatically recovered |
-| Execution | EP01 source/evidence review started; EP01 incomplete | Bind the actual build, original/assets/save and execution configuration, select pilot inputs/budgets and review per-requirement evidence adequacy |
+| Execution | EP03 pilot and first EP04 batch recorded; broader EP01/EP04 scope incomplete | Bind the actual build, original/assets/save and execution configuration, select pilot inputs/budgets and review per-requirement evidence adequacy |
 
 The 156 rows count proof obligations across two configurations. They are not
-156 missing features, test runs or a completion percentage. No current pass or
-fail execution outcome has been admitted. Existing bounded successes remain
+156 missing features, test runs or a completion percentage. The opening record admitted no pass/fail execution; the dated EP04 continuation above now supplies bounded positive and negative outcomes. Existing bounded successes remain
 useful evidence leads. The record keeps the 28 verified lead identities and
 separates matching recorded sources from changed/historical source phases;
 matching fingerprints do not establish requirement adequacy.
@@ -49,11 +52,11 @@ answers the eight questions without equating an engineering answer with proof
 completion. It resolves the current Linux/Wine/native-provider promise while
 retaining original physical/driver recovery limits. Qt F9/fullscreen is required
 to validate; RGB555 surface support does not establish live RGB555 World input.
-No current user judgment blocks this work, and all 156 evidence rows stay pending.
+No current user judgment blocks this work, and the opening review left all 156 evidence rows pending. The continuation above credits only its six proved leaves.
 Earlier opening snapshots remain immutable; the workspace may be restored from
 any compatible exported snapshot without changing historical events or outcomes.
 
-## EP01 work actually performed
+## EP01 work performed at dossier opening
 
 Opening the record rechecks the completion/gap/execution bindings, product/policy/
 tooling source witnesses and all 28 lead payloads/assertions. It maps every
@@ -61,15 +64,17 @@ requirement to its execution owner and records a source-applicability observatio
 in SQLite. It also records limited host inventory, which does not identify an
 actual GL/display/provider or certify its admission.
 
-The following identities remain pending:
+At opening, the following identities remained pending for execution:
 
 - The actual as-built player and complete compiler/binary source closure.
 - Actual original/assets/save inputs and concrete pilot/map/save selectors.
 - Actual per-run host/provider/display/media choices and bounded output/resource budgets.
 - Per-requirement/caller/configuration/reference-boundary adequacy of reused evidence.
 
-That is the next EP01 work. No original media, native/GL/game or acceptance pilot
-is executed by opening this record. Source and guard checks cannot complete EP01.
+The subsequent EP03 pilot and dated EP04 continuation bind these identities for
+their specific inputs and executions. Broader support-domain admission remains
+pending. Opening the dossier itself executed no native/GL/game acceptance pilot;
+source and guard checks alone cannot complete EP01.
 The [execution plan](native-rendering-execution.md) supplies the order and exits;
 no immediate user product decision blocks that work.
 

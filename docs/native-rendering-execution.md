@@ -211,3 +211,28 @@ configuration/fault proof. EP10 still needs a complete per-requirement join befo
 EP11 can issue independent player/recovery decisions. All 156 broad obligations
 remain pending; none is automatically closed by a pipeline receipt. No immediate
 user decision blocks the next engineering work.
+
+
+## First EP04 execution batch — 2026-10-31
+
+The [reviewed batch](../research/runtime/rendering-normal-acceptance-20261031.md)
+fixes actual Qt fullscreen extent, mandatory native history before original
+campaign Preferences, and Preferences readiness arriving in its opening ACK.
+Current default Quick/high-storage/low-storage proof matches 1,410 recorded World
+swaps against 1,157 original-reference Worlds. Both 640×480 and 800×600 Worlds,
+original Save/Mini Load/Main Load, two applied display rebuilds, changed-draft
+Cancel and normal Quit are connected to independent history/presentation proof.
+
+The unchanged contract now has six admitted default leaves, 150 pending rows and
+both verdicts pending. Exact auxiliary-driver reuse is reviewed against all 14
+retained high-mode decisions; native/capture source drift cannot use that rule.
+Software, other normal/progression/input/media/caller/fault cases and full recovery
+are not closed. The [progress snapshot](../research/runtime/rendering-normal-results-20261031/progress-01.json)
+retains the finite positives and the unresolved first-World watchdog failure.
+
+Next: isolate `RN31.G.first-world-watchdog` with enabled-intro source/command/CPU-read
+and owner/media timing, preserve each attempt, and establish repair/applicability
+before any supported-player verdict. Then complete remaining EP04 camera/picking/
+HUD/resume cases, EP05 progression/results and EP06/EP08/EP09 residuals. EP10's
+complete per-requirement join and EP11's separate decisions remain required. No
+immediate user support-promise choice blocks this engineering work.

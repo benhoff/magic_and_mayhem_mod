@@ -10,29 +10,67 @@ PREFIX='research/runtime/rendering-acceptance-pilot-results-20261031/'
 def digest(path):
  with Path(path).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--acquisition',required=True);p.add_argument('--report',required=True);a=p.parse_args()
- if not a.report.startswith(PREFIX) or (ROOT/a.report).exists():p.error('New immutable owned report required')
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--acquisition',required=True);p.add_argument('--driver-review');p.add_argument('--report',required=True);a=p.parse_args()
+ normal=a.report.startswith('research/runtime/rendering-normal-results-20261031/')
+ if not (a.report.startswith(PREFIX) or normal) or (ROOT/a.report).exists():p.error('New immutable owned report required')
  output=ROOT/'working/pilot'/(Path(a.report).stem+'-verification');output.mkdir(parents=True,exist_ok=False)
- report=dict(schema=1,kind='public_native_pilot_comparison',success=False,player_accepted=False,original_pixels_used_as_native_inputs=False,scope=__doc__)
+ report=dict(schema=1,kind='public_native_normal_comparison' if normal else 'public_native_pilot_comparison',success=False,player_accepted=False,original_pixels_used_as_native_inputs=False,scope=__doc__)
  before=False
  def execute(label,command):
   with (output/(label+'.log')).open('xb') as log:subprocess.run([str(v) for v in command],cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=300)
  with Reader(ROOT) as reader:
   acquired=reader.json(a.acquisition);report['acquisition']=dict(record=a.acquisition,sha256=reader.digest(a.acquisition))
-  sources=dict(acquired['sources']);sources.update(acquired.get('native_admission',{}).get('sources',{}))
+  sources=dict(acquired['sources']);sources.update(acquired.get('native_admission',{}).get('native_only',{}).get('sources',{}))
   sources.update({n:digest(ROOT/n) for n in ['tools/rendering_pilot.py','tools/check-rendering-acceptance-pilot.py','tests/acceptance-world-history.cpp','tests/acceptance-world-reference.cpp','tests/sprite-binary-reference.cpp','tests/world-raster-reference.hpp','tests/clipped-word-grayscale-cases.hpp','tools/native_player_quick_acceptance.py','tools/test-menu-observer.py']});report['sources']=sources
   try:
    require(acquired['success'] is True and acquired['sources_stable'] is True and acquired['private_wine_stopped'] is True and acquired['original_manifest_verified_before_after'] is True,'Incomplete actual public acquisition')
-   require(all(digest(ROOT/n)==h for n,h in sources.items()),'Changed current pilot sources')
+   from rendering_normal_acceptance import DRIVER_SOURCES,reviewed_driver_sources
+   drift={n for n,h in sources.items() if digest(ROOT/n)!=h}
+   require(not drift or (a.driver_review and drift<=DRIVER_SOURCES),'Changed current engine/capture sources')
+   report['original_execution_sources']=dict(sources)
    artifacts={v['path']:v for v in acquired['artifacts']}
    capture_files=[v for path,v in artifacts.items() if '/capture/' in path and path.endswith('.bin')]
-   observed=acquisition([reader.read_bytes(v['record']) for v in capture_files],acquired['session_identity']);report['observations']=observed['observations']
+   streams=[]
+   for artifact in capture_files:
+    raw=reader.read_bytes(artifact['record']);require(sha(raw)==artifact['sha256'],'Capture pointer no longer binds the acquired bytes');streams.append(raw)
+   observed=acquisition(streams,acquired['session_identity']);report['observations']=observed['observations']
+   del streams
+   def bound(path):
+    relative=path.relative_to(ROOT).as_posix();require(relative in artifacts,'Unretained verification input: '+relative)
+    artifact=artifacts[relative];require(digest(path)==artifact['sha256']==reader.digest(artifact['record']),'Changed acquired verification input: '+relative)
+   session=Path(acquired['session']);bound(session/'events.bin')
    report['captured_command_stream_sha256']=sha(observed['commands'])
-   from native_player_quick_acceptance import validate_quick
-   report['original_menu_actions']=validate_quick(Path(acquired['session']),acquired['flow'],0)
-   ack=next(v for path,v in artifacts.items() if path.endswith('/render-input.bin.acceptance'))
-   require(reader.digest(ack['record'])==ack['sha256'],'Original input receipt changed')
-   report['input_acknowledgements']=input_acknowledgements(reader.read_bytes(ack['record']),acquired['flow'],observed)
+   if normal:
+    from rendering_normal_acceptance import lighting,world_domain,preferences_boundary
+    sources['tools/rendering_normal_acceptance.py']=digest(ROOT/'tools/rendering_normal_acceptance.py')
+    report['lighting']=lighting(ROOT,acquired,artifacts)
+    report['world_domain']=world_domain(observed)
+    report['driver_scope_facts']=dict(world_extents=report['world_domain']['extents'],presented_world_image_extents=[list(p) for p in sorted({(r['image_width'],r['image_height']) for r,b in observed['paints'].values() if int(r['world'])>0})])
+    if a.driver_review:
+     reference=dict(record=a.driver_review,sha256=reader.digest(a.driver_review))
+     effective=reviewed_driver_sources(reader,reference,report['acquisition'],acquired,report['driver_scope_facts'])
+     for name in DRIVER_SOURCES:sources[name]=effective[name]
+     sources.update({n:h for n,h in effective.items() if n not in acquired['sources']})
+     report['driver_source_applicability']=reference
+
+    sources.update(report['lighting']['policy']['sources'])
+   if acquired.get('scenario')=='normal-storage':
+    report['preferences_boundary']=preferences_boundary(ROOT,acquired,artifacts)
+    bound(session/'save-store-result.json')
+    bound(session/'game/Save'/(acquired['flow']['saved_name']+'.sav'))
+    for path in Path(acquired['temporary_root']).glob('storage-input-*'):
+     if path.suffix in ('.json','.png'):bound(path)
+    from campaign_storage import validate_storage,validate_mini_inputs,validate_mini_dispatch
+    sources.update({n:digest(ROOT/n) for n in ['tools/campaign_storage.py','tools/menu-storage-input.py']})
+    report['original_menu_actions']=validate_storage(Path(acquired['session']),acquired['flow'],1,Path(acquired['temporary_root']))
+    report['mini_inputs']=validate_mini_inputs(Path(acquired['temporary_root']),acquired['flow'])
+    report['mini_dispatch']=validate_mini_dispatch(acquired['flow'])
+   else:
+    from native_player_quick_acceptance import validate_quick
+    report['original_menu_actions']=validate_quick(Path(acquired['session']),acquired['flow'],0)
+    ack=next(v for path,v in artifacts.items() if path.endswith('/render-input.bin.acceptance'))
+    require(reader.digest(ack['record'])==ack['sha256'],'Original input receipt changed')
+    report['input_acknowledgements']=input_acknowledgements(reader.read_bytes(ack['record']),acquired['flow'],observed)
    root=Path(acquired['temporary_root']);source=root/'worlds.bin';require(digest(source)==artifacts[str(source.relative_to(ROOT))]['sha256'],'World source capture differs')
    history=ROOT/'working/build/qt-shell/mnm-acceptance-world-history';original=ROOT/'working/original-reference';pe=ROOT/'original/Arcane_Nocd/Chaos.exe'
    require(digest(pe)=='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168','Original build mismatch')
@@ -60,9 +98,12 @@ def main():
    for row in index['worlds']:
     g=int(row['generation']);require(g==len(worlds)+1 and Path(row['path']).name==row['path'],'Original World order/path')
     raw=inflate((reference/row['path']).read_bytes());require(len(raw)==row['width']*row['height']*2,'Original World full plane');worlds[g]=np.frombuffer(raw,dtype='<u2').astype('uint32').reshape(row['height'],row['width'])
-   report['original_reference']=dict(worlds=len(worlds),draws=index['draws'],native_player_pixels_read=False,original_destination_capture_read=False,continuous_from_owned_initial_history=True)
+   report['original_reference']=dict(worlds=len(worlds),source_chunks=int(index.get('source_chunks','0')),draws=index['draws'],native_player_pixels_read=False,original_destination_capture_read=False,continuous_from_owned_initial_history=True)
    require(all(digest(assets/n)==h for n,h in asset_hashes.items()),'Reference asset changed');report['asset_inputs_stable']=True
    report['comparison']=compare(observed,worlds);report['success']=report['comparison']['success']
+   if acquired.get('scenario')=='normal-quick':
+    from rendering_normal_acceptance import fullscreen
+    report['fullscreen']=fullscreen(acquired['flow'],observed)
   except Exception as e:report['error']=str(e)
   finally:
    if before:

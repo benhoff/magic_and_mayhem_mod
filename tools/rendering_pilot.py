@@ -21,7 +21,7 @@ def inflate(raw,limit=32*1024**2):
  require(len(body)==size and d.eof and not d.unused_data and not d.unconsumed_tail,'Incomplete compressed plane');return body
 
 def capture(raw):
- require(raw[:8]==b'MNMACE01' and len(raw)<=256*1024**2+8,'Capture envelope')
+ require(raw[:8]==b'MNMACE01' and len(raw)<=1024*1024**2+8,'Capture envelope')
  rows=[];at=8;total=0;last_time=0
  while at<len(raw):
   require(len(rows)<16384 and len(raw)-at>=8,'Capture row budget/header')
@@ -32,6 +32,8 @@ def capture(raw):
   total+=len(data);require(total<=8*1024**3,'Capture raw budget');rows.append((row,data))
  require(len(rows)>=2 and rows[0][0]['kind']=='open' and rows[-1][0]['kind']=='close','Capture is not closed')
  first,last=rows[0][0],rows[-1][0]
+ limit=first.get('stored_limit_bytes',256*1024**2)
+ require(type(limit) is int and limit in (256*1024**2,1024*1024**2) and len(raw)<=limit+8,'Unreviewed stored capture budget')
  require(type(first['version']) is int and first['version']==1 and first['role'] in ('viewport','exports','commands') and type(first['session']) is str and 1<=len(first['session'])<=128,'Capture open identity')
  require(last['complete'] is True and type(last['error']) is str and last['error']=='' and number(last['prior_rows'])==len(rows)-1 and counter(last['raw_bytes'])==total,'Capture incomplete or truncated')
  require(all(r['kind'] not in ('open','close') for r,_ in rows[1:-1]),'Nested capture lifetime')

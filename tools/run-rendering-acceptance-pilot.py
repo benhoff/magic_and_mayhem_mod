@@ -10,14 +10,16 @@ def sha(path):
 def module(name):
  spec=importlib.util.spec_from_file_location(name,ROOT/'tools'/name);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--skip-intros',action='store_true');a=p.parse_args()
- if not a.report.startswith(PREFIX) or (ROOT/a.report).exists():p.error('New owned immutable report required')
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--skip-intros',action='store_true');p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');a=p.parse_args()
+ normal=a.scenario!='pilot';prefix='research/runtime/rendering-normal-results-20261031/' if normal else PREFIX
+ if not a.report.startswith(prefix) or (ROOT/a.report).exists():p.error('New owned immutable report required')
  token=Path(a.report).stem;out=ROOT/'working/pilot'/token;out.mkdir(parents=True,exist_ok=False);(out/'.retain').write_text('Actual public pilot and all negative attempts. Retain before RAM teardown.\n')
  launcher=module('run-native-owned.py');campaign=module('test-native-campaign.py')
  names=set(campaign.linked_compiler_sources(ROOT/'working/build/qt-shell',ROOT))
  names.update(['run-native.sh','tools/run-native-game.py','tools/run-native-owned.py','tools/run-qt-shell.sh','tools/native_only_contract.py','tools/native_prefix_template.py','tools/directplay_dx6_launch.py','tools/working-retention.py','tools/run-rendering-acceptance-pilot.py'])
+ if normal:names.update(['tools/menu-storage-input.py','tools/campaign_storage.py'])
  sources={n:sha(ROOT/n) for n in sorted(names)}
- report=dict(schema=1,kind='public_native_pilot_acquisition',success=False,player_accepted=False,
+ report=dict(schema=1,kind='public_native_normal_acquisition' if normal else 'public_native_pilot_acquisition',success=False,player_accepted=False,scenario=a.scenario,
   sources=sources,source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),session_identity=secrets.token_hex(16),
   configuration=dict(id='software-probe' if a.software else 'default-pilot',software_flag=a.software,skip_intros=a.skip_intros,terrain_lighting='original',native_lighting_capture=False,viewport_scaling='integer-sharp'),
   original_pixels_used_as_native_inputs=False,original_reference_executed=False,scope=__doc__)
@@ -27,6 +29,18 @@ def main():
   MNM_LIVE_MENU_TEST_QT_JOURNEY='1',MNM_QUICK_BATTLE_MAP_ROW='0',MNM_ACCEPTANCE_PILOT='1',MNM_ACCEPTANCE_SKIP_INTROS=str(int(a.skip_intros)),
   MNM_TERRAIN_LIGHTING='original',MNM_NO_ROUTE_SCREENSHOTS='1',MNM_RESIDENT_STAGE_PROFILE='1',MNM_RESIDENT_PROFILE_CAPTURE=str(out/'worlds.bin'),
   MNM_ACCEPTANCE_CAPTURE_DIRECTORY=str(out/'capture'),MNM_ACCEPTANCE_CAPTURE_ID=report['session_identity'])
+ if normal:
+  env.update(MNM_ACCEPTANCE_NORMAL='1',MNM_TERRAIN_LIGHTING='native',MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS='1',XDG_CONFIG_HOME=str(out/'config'))
+  report['configuration']['terrain_lighting']='native'
+  report['configuration']['source_chunks']=True
+  report['configuration'].update(viewport_capture_stored_limit_bytes=1024**3,world_capture_retained_limit_bytes=2*1024**3)
+  report['configuration']['configuration_home']=str(out/'config')
+ if a.scenario=='normal-storage':
+  deadline_ms=350000+(0 if a.skip_intros else 180000)
+  report['configuration'].update(deadline_ms=deadline_ms,movie_budget_ms=0 if a.skip_intros else 180000,viewport_capture_stored_limit_bytes=1024**3,world_capture_retained_limit_bytes=2*1024**3)
+  env.pop('MNM_LIVE_MENU_TEST_QT_JOURNEY')
+  env.update(MNM_CAMPAIGN_SMOKE_TEST='1',MNM_CAMPAIGN_STORAGE='1',MNM_CAMPAIGN_DIFFICULTY='1',MNM_CAMPAIGN_RECREATE_WORLD='1',MNM_MENU_DISPLAY_OBSERVE='1',MNM_CAMPAIGN_STORAGE_NAME='native-render-'+secrets.token_hex(6),MNM_CAMPAIGN_TIMEOUT_MS=str(deadline_ms))
+  report['configuration']['difficulty']=1
  report['installation_inputs']={str(f.relative_to(ROOT/'working/game-nocd')):dict(sha256=sha(f),bytes=f.stat().st_size) for f in sorted((ROOT/'working/game-nocd').rglob('*')) if f.is_file()}
  before_experiments=set((ROOT/'working/experiments/menu-observer').glob('run-*'))
  server=child=None;verified=False;before=set((ROOT/'working/tests/native-output-owner').glob('run-*'))
@@ -41,13 +55,16 @@ def main():
   report['command']=command
   with (out/'public-launch.log').open('xb') as log:
    child=subprocess.Popen(command,cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
-   child.wait(timeout=390)
+   child.wait(timeout=deadline_ms/1000+40 if a.scenario=='normal-storage' else 390)
   report['exit_code']=child.returncode
   subprocess.run(['wineserver','-w'],env=dict(env,WINEPREFIX=str(out/'wineprefix')),check=True,timeout=10)
   report['private_wine_stopped']=True
   if child.returncode:raise ValueError('Public launcher failed; retained its actual output')
   flow=json.loads((out/'flow.json').read_text());report['flow']=flow
-  if flow.get('success') is not True or flow.get('world_visits')!=2 or flow.get('input_via_qt_viewport') is not True or flow.get('native_fallback') is not False:raise ValueError('Actual Quick Battle action route incomplete')
+  if a.scenario=='normal-storage':
+   from campaign_storage import validate_storage_flow
+   validate_storage_flow(flow)
+  elif flow.get('success') is not True or flow.get('world_visits')!=2 or flow.get('input_via_qt_viewport') is not True or flow.get('native_fallback') is not False:raise ValueError('Actual Quick Battle action route incomplete')
   owners=set((ROOT/'working/tests/native-output-owner').glob('run-*'))-before
   if len(owners)!=1:raise ValueError('Ambiguous public launch owner')
   owner=owners.pop();report['owner']=str(owner);sessions=sorted((owner/'sessions').glob('*.json'))
@@ -80,9 +97,10 @@ def main():
   experiments=set((ROOT/'working/experiments/menu-observer').glob('run-*'))-before_experiments
   report['experiments']=[str(v) for v in sorted(experiments)]
   for session in sorted(experiments):
-   candidates += [f for f in session.rglob('*') if f.is_file() and ('game' not in f.relative_to(session).parts or f.suffix.lower() in ('.dll','.cfg','.sav','.ini'))]
+   candidates += [f for f in session.rglob('*') if f.is_file() and ('game' not in f.relative_to(session).parts or f.suffix.lower() in ('.dll','.cfg','.sav','.ini') or (f.name.startswith('native-') and f.suffix=='.bin'))]
   for f in sorted(set(candidates)):
-   if f.is_symlink() or f.stat().st_size>512*1024**2:continue
+   limit=2*1024**3 if f==out/'worlds.bin' else 1024**3 if f.parent==out/'capture' and normal else 512*1024**2
+   if f.is_symlink() or f.stat().st_size>limit:continue
    relative=str(f.relative_to(ROOT));name=str(Path(a.report).with_suffix(''))+'-raw-'+hashlib.sha256(relative.encode()).hexdigest()[:20]+'.bin'
    raw=f.read_bytes();digest=write_report(ROOT,name,raw);report['artifacts'].append(dict(path=relative,record=name,sha256=digest,bytes=len(raw)))
   report['artifact_count']=len(report['artifacts']);report['temporary_root']=str(out)

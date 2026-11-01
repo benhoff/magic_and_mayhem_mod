@@ -70,7 +70,7 @@ LiveMenuSession::~LiveMenuSession(){
 }
 bool LiveMenuSession::start(){
     if(running())return false;
-    storageOpeningGeneration_=0;
+    storageOpeningGeneration_=preferencesOpeningGeneration_=0;
     launcherExitCode=-1;
     preferencesStore_.begin(preferencesStorePath,{});
     cpuRead_=0;cpuReadStarted_=cpuReadGrace_=0;
@@ -189,6 +189,7 @@ bool LiveMenuSession::requestMini(quint32 action){
     if(!refusal.isEmpty()){if(miniRequestObserved)miniRequestObserved(action,false,refusal,state_);return false;}
     pending_=true;requestedAt_=clock_.elapsed();action_=action;
     storageOpeningGeneration_=(action==MNM_MENU_MINI_LOAD||action==MNM_MENU_MINI_SAVE)?state_.generation:0;
+    preferencesOpeningGeneration_=action==MNM_MENU_MINI_PREFERENCES?state_.generation:0;
     if(miniRequestObserved)miniRequestObserved(action,true,{},state_);
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
@@ -217,7 +218,7 @@ bool LiveMenuSession::finishSpells(const std::array<int,63>& assignments){
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 void LiveMenuSession::fallback(const QString& reason){
-    storageOpeningGeneration_=0;resultsAction_=0;preferencesToSave_=false;active_=false;bypass_=!nativeOnlyEnabled;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)bridge_->retire();
+    storageOpeningGeneration_=preferencesOpeningGeneration_=0;resultsAction_=0;preferencesToSave_=false;active_=false;bypass_=!nativeOnlyEnabled;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)bridge_->retire();
     if(failed)failed(reason);
 }
 void LiveMenuSession::saveAcceptedPreferences(){
@@ -250,6 +251,18 @@ bool LiveMenuSession::restoreMiniStorage(const MenuBridge::State& next){
     if(stateChanged)stateChanged(next);
     return true;
 }
+bool LiveMenuSession::restoreCampaignPreferences(const MenuBridge::State& next){
+    // Readiness can arrive in the opening ACK itself. Its generation must be
+    // newer than the requesting Mini visit, rather than newer than the ACK.
+    // Original-controlled entry retains its prior fresh-state admission.
+    if(!campaignPreferencesEnabled||!next.ready||
+       next.screen!=10||next.preferences.parentScreen!=17||next.preferences.depth!=6||
+       next.thread!=state_.thread||next.ack!=state_.ack||next.status!=MNM_MENU_OK||
+       next.generation==(preferencesOpeningGeneration_?preferencesOpeningGeneration_:state_.generation))return false;
+    preferencesOpeningGeneration_=0;inBattle_=false;state_=next;
+    if(stateChanged)stateChanged(next);
+    return true;
+}
 void LiveMenuSession::poll(){
     if(!active_||!bridge_)return;
     if(!mediaActive_&&resultsAction_&&clock_.elapsed()-resultsRequestedAt_>10000){
@@ -268,8 +281,8 @@ void LiveMenuSession::poll(){
                (next.ack!=bridge_->requestedSequence()||next.thread!=state_.thread)){
                 fallback("Menu acknowledgement identity differs; using original menus.");return;
             }
-            if(storageOpeningGeneration_&&(next.ack!=bridge_->requestedSequence()||next.thread!=state_.thread)){
-                fallback("Mini storage acknowledgement identity differs; using original controls.");return;
+            if((storageOpeningGeneration_||preferencesOpeningGeneration_)&&(next.ack!=bridge_->requestedSequence()||next.thread!=state_.thread)){
+                fallback("Mini destination acknowledgement identity differs; using original controls.");return;
             }
             if(resultsAction_){
                 if(next.ack!=bridge_->requestedSequence()||next.thread!=resultsThread_){
@@ -332,7 +345,7 @@ void LiveMenuSession::poll(){
                 // Original viewport owns gameplay, Preferences and Quit confirmation.
                 // Confirmation Yes/No semantics remain entirely in the original game.
                 inBattle_=true;transition_=false;state_=next;
-                if(restoreMiniStorage(next))return;
+                if(restoreMiniStorage(next)||restoreCampaignPreferences(next))return;
                 if(originalViewportRequested)originalViewportRequested();
                 return;
             }
@@ -357,7 +370,7 @@ void LiveMenuSession::poll(){
             inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
         }
         if(inBattle_){
-            if(restoreMiniStorage(next))return;
+            if(restoreMiniStorage(next)||restoreCampaignPreferences(next))return;
             if(progressedMenusEnabled&&next.ready&&(next.screen==18||next.screen==MNM_MENU_GRIMOIRE_SCREEN||(campaignSpellboxEnabled&&next.screen==7))&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
             }
@@ -382,9 +395,6 @@ void LiveMenuSession::poll(){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
             }
             if(!storageOpeningGeneration_&&storageMenusEnabled&&next.ready&&(next.screen==MNM_MENU_LOAD_SCREEN||next.screen==13)&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
-                inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
-            }
-            if(campaignPreferencesEnabled&&next.ready&&next.screen==10&&next.preferences.parentScreen==17&&next.preferences.depth==6&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
             }
             if(miniMenusEnabled()&&next.ready&&next.screen==MNM_MENU_MINI_SCREEN&&(next.mini.battle||(campaignMiniEnabled&&next.mini.context==5&&next.mini.mode==2))&&!next.mini.confirmation&&

@@ -24727,3 +24727,50 @@ Reviewed maintenance reclaimed 1,350,668,288 allocated main-drive build bytes an
 consumers and both cache paths. New raw execution evidence is retained in SQLite
 with a verified cold snapshot/restore; build/staging outputs use RAM. These are
 storage and execution provenance, not expanded gameplay or recovery claims.
+
+
+## First native rendering normal-session batch — 2026-10-31
+
+[Research and bounded findings](rendering-normal-acceptance-20261031.md),
+[requirement progress](rendering-normal-results-20261031/progress-01.json) and
+[scoped execution/control join](rendering-normal-results-20261031/joined-02.json)
+connect current native-lighting default Quick Battle and campaign storage at
+both actual RGB565 World sizes. All 1,410 captured World swaps match independent
+original/history output (1,157 reference Worlds, 1,099,147 original draws).
+The whole recorded viewport/CPU-return cohort passes, without original player
+pixels as oracle inputs; normal original Quit, no forwarding/refusal and graphics
+retirement are checked. Original simulation and owned CPU operation inputs remain
+explicit suppliers, not complete producer/gameplay recovery.
+
+Three concrete native policies now have bounded current integration evidence:
+`NP.rendering-normal-acceptance` remains partially implemented and gains scoped
+live equivalence; `NP.preferences-native-history-boundary` and
+`NP.campaign-preferences-ready-handoff` have scoped implementations/live equivalence.
+They fix F9 geometry, current CPU history before the original Preferences glyph
+consumer, and a ready destination in the same ACK as opening Preferences.
+Original comparison/replacement dimensions remain independent and are not promoted.
+
+RN31.joined binds all current native/compiler sources, original hashes, exact
+collector pairs, both actual World sizes, edited-draft Cancel/reopen, original
+Save/Mini/Main Load, two original display rebuild probes, resource generations,
+input and normal exit. Its 13 control invocations include 48 Python methods,
+thirteen native-panel routes, Qt ownership guards, two DPI presentations and four
+source parser controls. Limited driver reuse retains exact old/new sources and
+replays all 14 real high-mode decisions; only the added 640×480 crop is excluded.
+Current reference comparisons were rerun. Engine/capture drift cannot be waived.
+
+Six default-player leaf obligations pass; 72 default and all 78 software rows stay
+pending. `RN31.G.first-world-watchdog` remains an unresolved full-intro startup
+failure with a command queue timeout/current-history refusal. The later passing
+Quick run and passing short V6 source-chunk comparison do not retire it. Both
+complete-player and original-recovery verdicts remain pending; EP04 is partial.
+Next work isolates that failure before remaining input/HUD/camera, progression,
+operation, software and fault proof and the complete EP10/EP11 join.
+
+Historical failed attempts, source versions and hashes are retained. Shared bridge,
+menu session, glyph diagnostics and collector edits do not renew unrelated original
+contracts or old comparison/implementation claims. The new exact reviews record
+those pending consumers; unrelated historical source staleness is not erased.
+New evidence uses SQLite with verified independent local backups; closed stores
+may relocate through hash-verified aliases while preserving source paths/pins.
+No evidence publication, original modification or gameplay balance change occurs.

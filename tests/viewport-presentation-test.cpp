@@ -48,7 +48,8 @@ void startupAndStreaming(){
     auto* toolbar=window.addToolBar("Game");toolbar->setMovable(false);
     auto* log=new QDockWidget("Launch log",&window);log->setWidget(new QPlainTextEdit(log));window.addDockWidget(Qt::BottomDockWidgetArea,log);
     ViewportPresentation controls(window,*viewport,{GlViewport::Scaling::Smooth,true});controls.addControls(*toolbar);controls.hideInFullscreen(*toolbar);controls.hideInFullscreen(*log);
-    window.resize(900,750);controls.show();settle();require(!toolbar->isHidden(),"Startup fullscreen hid launch controls");
+    window.resize(900,750);controls.show();settle();require(window.isFullScreen(),"Fullscreen state was lost after resizing");require(!toolbar->isHidden(),"Startup fullscreen hid launch controls");
+    require(window.geometry()==window.screen()->geometry(),"Fullscreen window does not cover its actual screen");
     viewport->show();settle();require(viewport->ready(),"Empty native viewport did not initialize");
     require(!toolbar->isHidden() && !log->isHidden(),"Blank native viewport hid launch controls");
     mnm::render::GlBlitter renderer(viewport->context());const auto surface=renderer.create({4,3,std::vector<std::uint32_t>(12,0x1f437f)},{24,{0xff0000,0xff00,0xff}});
@@ -56,13 +57,15 @@ void startupAndStreaming(){
     screenCompare(window,*viewport,QColor(31,67,127));require(toolbar->isHidden() && log->isHidden(),"Ready frame did not hide fullscreen chrome");
     QColor previous(31,67,127);
     for(unsigned i=0;i<8;++i){
-        controls.setFullscreen(i%2==0);screenCompare(window,*viewport,previous);
+        controls.setFullscreen(i%2==0);require(window.isFullScreen()==(i%2==0),"Fullscreen toggle state mismatch");screenCompare(window,*viewport,previous);
+        if(window.isFullScreen())require(window.geometry()==window.screen()->geometry(),"Fullscreen toggle does not cover its actual screen");
         const QColor color(17+i*13,41+i*9,91+i*7);
         renderer.update(surface,0,0,{4,3,std::vector<std::uint32_t>(12,(color.red()<<16)|(color.green()<<8)|color.blue())});
         viewport->setGpuFrame(renderer.presentGpu(surface));screenCompare(window,*viewport,color);
         previous=color;
     }
-    controls.setFullscreen(true);viewport->setGpuFrame({});settle();require(!toolbar->isHidden() && !log->isHidden(),"Empty frame left fullscreen UI black");
+    controls.setFullscreen(true);viewport->setGpuFrame({});settle();
+    require(!toolbar->isHidden() && !log->isHidden(),"Empty frame left fullscreen UI black");
 }
 void compare(GlViewport& viewport,const QImage& source){
     QApplication::processEvents();viewport.repaint();const auto output=viewport.grabFramebuffer();
