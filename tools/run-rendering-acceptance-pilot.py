@@ -41,7 +41,7 @@ def main():
  binary=build/'mnm-qt-shell';binary_record=str(Path(a.report).with_suffix(''))+'-player-binary.bin'
  binary_sha=write_report(ROOT,binary_record,binary.read_bytes())
  names=set(compiled)
- names.update(['run-native.sh','tools/run-native-game.py','tools/run-native-owned.py','tools/run-qt-shell.sh','tools/native_only_contract.py','tools/native_prefix_template.py','tools/directplay_dx6_launch.py','tools/working-retention.py','tools/run-rendering-acceptance-pilot.py','tools/test-native-campaign.py'])
+ names.update(['run-native.sh','tools/run-native-game.py','tools/run-native-owned.py','tools/run-qt-shell.sh','tools/native_only_contract.py','tools/native_prefix_template.py','tools/experiment_environment.py','tools/directplay_dx6_launch.py','tools/working-retention.py','tools/run-rendering-acceptance-pilot.py','tools/test-native-campaign.py'])
  if normal:names.update(['tools/menu-storage-input.py','tools/campaign_storage.py'])
  sources={n:sha(ROOT/n) for n in sorted(names)}
  report=dict(schema=1,kind='public_native_watchdog_diagnostic_acquisition' if a.diagnostic_only else 'public_native_normal_acquisition' if normal else 'public_native_pilot_acquisition',success=False,player_accepted=False,scenario=a.scenario,
@@ -84,13 +84,19 @@ def main():
   report['configuration']['difficulty']=1
  report['installation_inputs']={str(f.relative_to(ROOT/'working/game-nocd')):dict(sha256=sha(f),bytes=f.stat().st_size) for f in sorted((ROOT/'working/game-nocd').rglob('*')) if f.is_file()}
  before_experiments=set((ROOT/'working/experiments/menu-observer').glob('run-*'))
- server=child=None;verified=False;before=set((ROOT/'working/tests/native-output-owner').glob('run-*'))
+ server=child=None;prefix_lease=None;verified=False;before=set((ROOT/'working/tests/native-output-owner').glob('run-*'))
  def execute_log(label,command):
   with (out/(label+'.log')).open('xb') as log:subprocess.run([str(v) for v in command],stdout=log,stderr=subprocess.STDOUT,check=True,timeout=180)
  try:
   execute_log('original-before',[ROOT/'tools/original-manifest.sh','verify']);verified=True
   host=out/'host';host.mkdir();server,owner,_=launcher.start_display(host,allow_glx=True);env.update(DISPLAY=owner['display'],XAUTHORITY=owner['authority'])
-  command=[str(ROOT/'run-native.sh'),'--prefix',str(out/'wineprefix'),'--prefix-template',str(ROOT/'working/fixtures/prefix-seed'),'--','--live-menu-test',str(out/'flow.json')]
+  from evidence_objects import settings
+  if settings(ROOT):
+   from native_prefix_template import borrow
+   prefix_lease,report['prefix_pool']=borrow(ROOT/'working/fixtures/prefix-seed',out/'wineprefix',env)
+  command=[str(ROOT/'run-native.sh'),'--prefix',str(out/'wineprefix')]
+  if prefix_lease is None:command+=['--prefix-template',str(ROOT/'working/fixtures/prefix-seed')]
+  command+=['--','--live-menu-test',str(out/'flow.json')]
   if a.software:command.append('--software-rendering')
   if a.skip_intros:command.append('--skip-movies')
   report['command']=command
@@ -125,6 +131,12 @@ def main():
     try:os.killpg(child.pid,signal.SIGKILL);child.wait(timeout=10)
     except ProcessLookupError:pass
   if server is not None:server.terminate();server.wait(timeout=10)
+  if prefix_lease is not None:
+   try:
+    prefix_lease.close()
+    report['prefix_pool']['returned']=True
+    report['prefix_pool']['receipt']=str(prefix_lease.receipt)
+   except Exception as e:report.update(success=False,prefix_pool_return_error=str(e))
   if verified:
    try:execute_log('original-after',[ROOT/'tools/original-manifest.sh','verify']);report['original_manifest_verified_before_after']=True
    except Exception as e:report.update(success=False,original_verification_error=str(e))
@@ -161,5 +173,9 @@ def main():
    raw=f.read_bytes();digest=write_report(ROOT,name,raw);report['artifacts'].append(dict(path=relative,record=name,sha256=digest,bytes=len(raw)))
   report['artifact_count']=len(report['artifacts']);report['temporary_root']=str(out)
   digest=write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode());print(json.dumps({k:report.get(k) for k in ['success','error','exit_code','artifact_count']}|{'record':a.report,'sha256':digest}),flush=True)
+  from evidence_objects import settings
+  if settings(ROOT) and report.get('private_wine_stopped') is True and (prefix_lease is None or report.get('prefix_pool',{}).get('returned') is True):
+   from evidence_workspace import register_completed
+   register_completed(ROOT,[out,*experiments],dict(record=a.report,sha256=digest))
  return 0 if report['success'] else 1
 if __name__=='__main__':raise SystemExit(main())

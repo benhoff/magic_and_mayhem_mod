@@ -262,7 +262,22 @@ fixtures and source locks as JSON. Evidence pointers in Git preserve exact origi
 SHA-256-pinned SQLite release archives; never refresh historical hashes to
 satisfy current checks. Local commits and local merges, including merges into
 local master, require locally available, hash-verified evidence, retained verified
-SQLite backups and passing coverage checks. Remote publication is not a
+SQLite backups and passing coverage checks. New local storage uses the shared
+immutable object pair in [evidence storage lifecycle](docs/evidence-storage.md):
+configure `mm.evidencePrimary` and `mm.evidenceReplica` on independent filesystems.
+Two verified copies of each unique object are the durable default. Incremental
+object replication and restored typed-record checkpoints satisfy local backup
+retention without adding whole SQLite images for every finish. Preserve the
+current machine free-space floors. Legacy copies retire only through explicit
+source-specific manifests, verified real restores and durable handoff receipts;
+record any retired physical container encoding honestly, without changing an
+original report hash. Stopped completed execution trees may transfer every file
+and original pin into this pair after full restore verification and consumer
+checks, retaining a pinned historical-path restore stub. This does not authorize
+source-checkout removal or generic cleanup of pins/recent/active inputs. Launch
+queues handoff; it never archives. A standard review cache is disposable only
+after its complete schema, rows, drafts and auxiliary data survive a verified
+checkpoint. Current/staged gates still execute; no cached pass is authoritative. Remote publication is not a
 prerequisite for either operation; never upload evidence merely to finish a
 local commit or merge. Keep the local databases and their backup catalogs pinned
 against working-storage cleanup; a Git commit contains references, not payloads.

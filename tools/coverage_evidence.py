@@ -78,13 +78,54 @@ def safe_path(root, name):
 
 
 class Store:
-    def __init__(self, path, readonly=False):
+    def __init__(self, path, readonly=False, shared=False):
         self.path = Path(path)
+        self.shared = False
         if readonly:
             self.db = sqlite3.connect(self.path.resolve().as_uri() + '?mode=ro', uri=True)
         else:
             self.path.parent.mkdir(parents=True, exist_ok=True)
             self.db = sqlite3.connect(self.path, timeout=60)
+            existing = self.db.execute("SELECT 1 FROM sqlite_master WHERE name='metadata'").fetchone()
+            layout = self.db.execute("SELECT value FROM metadata WHERE key='chunk_layout'").fetchone() if existing else None
+            if layout == ('shared-v1',) or (shared and not existing):
+                self._shared_schema()
+            elif shared:
+                self.db.close()
+                raise ValueError('Existing legacy stores require explicit verified import into a shared store')
+            else:
+                self._legacy_schema()
+        layout = self.db.execute("SELECT value FROM metadata WHERE key='chunk_layout'").fetchone()
+        self.shared = layout == ('shared-v1',)
+        if self.db.execute("SELECT value FROM metadata WHERE key='schema'").fetchone() != ('1',):
+            raise ValueError('Unsupported evidence database')
+
+    def _shared_schema(self):
+        # The read schema remains compatible with old Store(readonly=True).
+        # chunks is a view; complete-object and cross-object block identities
+        # are separate, so repeated blocks have one physical representation.
+        self.db.executescript('''
+            PRAGMA journal_mode=WAL;
+            PRAGMA foreign_keys=ON;
+            PRAGMA synchronous=FULL;
+            CREATE TABLE IF NOT EXISTS objects(sha256 TEXT PRIMARY KEY,size INTEGER NOT NULL,git_blob TEXT);
+            CREATE TABLE IF NOT EXISTS blocks(sha256 TEXT PRIMARY KEY,size INTEGER NOT NULL,payload BLOB NOT NULL);
+            CREATE TABLE IF NOT EXISTS object_parts(sha256 TEXT REFERENCES objects(sha256),ordinal INTEGER,
+                block TEXT REFERENCES blocks(sha256),PRIMARY KEY(sha256,ordinal));
+            CREATE VIEW IF NOT EXISTS chunks AS SELECT p.sha256,p.ordinal,b.payload
+                FROM object_parts p JOIN blocks b ON b.sha256=p.block;
+            CREATE TABLE IF NOT EXISTS versions(git_blob TEXT,path TEXT,sha256 TEXT REFERENCES objects(sha256),PRIMARY KEY(git_blob,path));
+            CREATE INDEX IF NOT EXISTS git_blob_lookup ON objects(git_blob);
+            CREATE TABLE IF NOT EXISTS metadata(key TEXT PRIMARY KEY,value TEXT NOT NULL);
+            INSERT OR IGNORE INTO metadata VALUES('schema','1');
+            INSERT OR IGNORE INTO metadata VALUES('chunk_layout','shared-v1');
+        ''')
+        for table in ('objects', 'blocks', 'object_parts', 'versions'):
+            for operation in ('update', 'delete'):
+                self.db.execute(f"CREATE TRIGGER IF NOT EXISTS {table}_no_{operation} BEFORE {operation} ON {table} BEGIN SELECT RAISE(ABORT,'Immutable evidence'); END")
+        self.db.commit()
+
+    def _legacy_schema(self):
             self.db.executescript('''
                 PRAGMA foreign_keys=ON;
                 CREATE TABLE IF NOT EXISTS objects (
@@ -107,8 +148,6 @@ class Store:
                 CREATE TRIGGER IF NOT EXISTS chunks_no_delete BEFORE DELETE ON chunks
                     BEGIN SELECT RAISE(ABORT,'Immutable evidence'); END;
             ''')
-        if self.db.execute("SELECT value FROM metadata WHERE key='schema'").fetchone() != ('1',):
-            raise ValueError('Unsupported evidence database')
 
     def close(self):
         self.db.close()
@@ -128,9 +167,29 @@ class Store:
             compressed.append(zlib.compress(data, 6))
         sha = h.hexdigest()
         if not self.has(sha):
+            if self.shared:
+                need = 1024**2 + len(compressed)*8192
+                for value in compressed:
+                    block = hashlib.sha256(zlib.decompress(value)).hexdigest()
+                    if not self.db.execute('SELECT 1 FROM blocks WHERE sha256=?',(block,)).fetchone():
+                        need += len(value)
+                # WAL permits concurrent readers during large imports. Reserve
+                # both new WAL frames and their eventual database checkpoint,
+                # including already retained frames, before growing either.
+                journal=Path(str(self.path)+'-wal')
+                retained_frames=journal.stat().st_size if journal.exists() else 0
+                if shutil.disk_usage(self.path.parent).free - 2*need - retained_frames < getattr(self,'minimum_free',0):
+                    raise ValueError('Shared evidence write would breach reserve')
             self.db.execute('INSERT INTO objects VALUES (?,?,?)', (sha, size, git_blob))
-            self.db.executemany('INSERT INTO chunks VALUES (?,?,?)',
-                                ((sha, i, value) for i, value in enumerate(compressed)))
+            if self.shared:
+                for i, value in enumerate(compressed):
+                    raw = zlib.decompress(value)
+                    block = hashlib.sha256(raw).hexdigest()
+                    self.db.execute('INSERT OR IGNORE INTO blocks VALUES (?,?,?)', (block,len(raw),value))
+                    self.db.execute('INSERT INTO object_parts VALUES (?,?,?)',(sha,i,block))
+            else:
+                self.db.executemany('INSERT INTO chunks VALUES (?,?,?)',
+                                    ((sha, i, value) for i, value in enumerate(compressed)))
         elif not self.has(sha, size):
             raise ValueError('Evidence size collision')
         return sha
@@ -275,6 +334,10 @@ def opened_store(path, readonly=False):
 def pending_path(root):
     """Use one explicitly configured ignored store across new worktrees."""
     root = Path(root).resolve()
+    from evidence_objects import settings
+    shared = settings(root)
+    if shared:
+        return shared[0]
     value = None
     if (root/".git").exists():
         result = subprocess.run(["git", "-C", str(root), "config", "--get", "mm.evidencePending"],
@@ -514,9 +577,15 @@ def write_report(root, path, data):
                and artifact(target.resolve().relative_to(root).as_posix()))
     if managed:
         safe_path(root, target.resolve().relative_to(root).as_posix())
-        with opened_store(pending_path(root)) as store:
-            with store.db:
-                sha = store.put(io.BytesIO(data), len(data))
+        from evidence_objects import settings, configured
+        shared = settings(root)
+        if shared:
+            with configured(root) as pair:
+                sha = pair.put(io.BytesIO(data), len(data))
+        else:
+            with opened_store(pending_path(root)) as store:
+                with store.db:
+                    sha = store.put(io.BytesIO(data), len(data))
         atomic_replace(target, pointer(sha, len(data)), None)
         return sha
     atomic_replace(target, data, None)

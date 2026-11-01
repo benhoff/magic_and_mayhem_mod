@@ -52,5 +52,26 @@ class Prefix(unittest.TestCase):
                     with self.assertRaises((ValueError,subprocess.TimeoutExpired)):tool.clone(source,target,{})
                 self.assertFalse(target.exists())
 
+    def test_explicit_borrow_reuses_pinned_acceptance_slot_and_retains_registry_delta(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);source,target=self.fixture(root)
+            (target.parent/'.retain').write_text('keep acceptance proof')
+            run=subprocess.run
+            def child(command,**kwargs):
+                return subprocess.CompletedProcess(command,0) if command[0]=='wineserver' else run(command,**kwargs)
+            import experiment_environment as pool
+            with patch.object(tool,'ROOT',root),patch.object(tool,'check_prefix'),patch.object(tool.subprocess,'run',side_effect=child):
+                first,metadata=tool.borrow(source,target,{})
+                inode=(target/'system.reg').stat().st_ino
+                (target/'user.reg').write_bytes(b'unique failed-run registry')
+                receipt=first.receipt;first.close()
+                second_target=target.parent/'next-prefix'
+                second,_=tool.borrow(source,second_target,{})
+                self.assertEqual((second_target/'system.reg').stat().st_ino,inode)
+                self.assertEqual((second_target/'user.reg').read_bytes(),b'owned user')
+                second.close();pool.restore(receipt)
+                self.assertEqual((target/'user.reg').read_bytes(),b'unique failed-run registry')
+            self.assertEqual((target.parent/'.retain').read_text(),'keep acceptance proof')
+
 
 if __name__=='__main__':unittest.main()

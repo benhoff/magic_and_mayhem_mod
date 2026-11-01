@@ -24820,3 +24820,33 @@ media expiry and is rejected by nominal admission. RW01.joined binds 757 current
 source paths, 29 Python methods and six Qt executions. Its new implementation
 and live-observation claims cover only the declared diagnostics; no original
 comparison/replacement or requirement status is promoted.
+
+## Shared evidence storage lifecycle — 2026-11-01
+
+The [storage lifecycle](../../docs/evidence-storage.md) replaces per-worktree
+container growth with shared immutable objects on two independent filesystems,
+verified incremental replication, typed review checkpoints, explicit prefix
+leases and restored execution manifests. Existing source checkouts and unique
+fixture inputs remain retained. The new native policy is storage-only; historical
+report hashes and engine status dimensions remain unchanged. Synthetic recovery
+controls and an actual completed rendering-watchdog batch migration are recorded
+under [storage results](evidence-object-results-20261101/). Prior preliminary
+controls01 retains an interrupted bookkeeping regression; current controls are
+separate immutable results. First-World watchdog attribution/repair and complete
+rendering acceptance remain outstanding.
+
+The [final storage closeout](evidence-object-results-20261101/joined-01.json)
+passes 205 controls in 13 suites with stable inputs, fully hashes 10,155 objects
+in each independent replica and verifies the unchanged legacy reader. Exact
+full restores precede both execution handoffs (47,765 files total). The measured
+retired allocation is 15.75 GiB versus 3.67 GiB for the entire shared pair, a
+12.08 GiB / 76.7% reduction across both drives. Retired page-image encodings are
+explicitly labeled; original report hashes and logical review records survive.
+`ES01.shared-lifecycle` supports only `TOOL.shared-evidence-lifecycle` scoped
+implementation/headless integration. Engine comparisons, the unresolved
+first-World watchdog, and all rendering acceptance gaps remain independent.
+
+[The coverage audit](evidence-object-results-20261101/audit-01.json) has zero
+errors and no storage-specific warnings; the
+[dated summary](coverage/summary-evidence-lifecycle-20261101.md) preserves all
+historical unknowns and stale evidence. No focused-register imports changed.

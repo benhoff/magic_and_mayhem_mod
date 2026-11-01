@@ -11588,7 +11588,8 @@
         ".github/workflows/re-coverage.yml"
       ],
       "remaining_gaps": [
-        "Pending-merge workspace capture now reads verified actual MERGE_HEAD parents,matching staged inheritance rules. New synthetic regression covers absent/arbitrary branch refusal,exact historical receipts,required combined source review and changed-contract loss of inheritance. Broader historical execution evidence retains its original source hashes and pending freshness;no engine milestones are promoted."
+        "Pending-merge workspace capture now reads verified actual MERGE_HEAD parents,matching staged inheritance rules. New synthetic regression covers absent/arbitrary branch refusal,exact historical receipts,required combined source review and changed-contract loss of inheritance. Broader historical execution evidence retains its original source hashes and pending freshness;no engine milestones are promoted.",
+        "2026-11-01: The gate implementation is unchanged; changed review-cache/evidence adapters are validated within TOOL.shared-evidence-lifecycle. Historical gate source fingerprints and validation boundaries remain independent."
       ]
     },
     {
@@ -21478,7 +21479,8 @@
         "entry": "TOOL.coverage-accounting"
       },
       "remaining_gaps": [
-        "Pending-merge workspace capture now reads verified actual MERGE_HEAD parents,matching staged inheritance rules. New synthetic regression covers absent/arbitrary branch refusal,exact historical receipts,required combined source review and changed-contract loss of inheritance. Broader historical execution evidence retains its original source hashes and pending freshness;no engine milestones are promoted."
+        "Pending-merge workspace capture now reads verified actual MERGE_HEAD parents,matching staged inheritance rules. New synthetic regression covers absent/arbitrary branch refusal,exact historical receipts,required combined source review and changed-contract loss of inheritance. Broader historical execution evidence retains its original source hashes and pending freshness;no engine milestones are promoted.",
+        "2026-11-01 shared storage and review-cache lifecycle changes are scoped independently by TOOL.shared-evidence-lifecycle. Historical evidence hashes are retained; this source change does not renew broad old storage/accounting validation."
       ]
     },
     {
@@ -95031,7 +95033,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Only stopped path-owned supplied-DirectPlay prefixes are admitted; clone policy is test provisioning, not fresh-install coverage, restart acceptance or native renderer equivalence."
+        "Only stopped path-owned supplied-DirectPlay prefixes are admitted; clone policy is test provisioning, not fresh-install coverage, restart acceptance or native renderer equivalence.",
+        "2026-11-01: Explicit borrow now holds an existing reusable prefix lease through the public acceptance child lifetime; synthetic pooled owner/reset/registry-delta controls are separate from historical campaign/live execution, which is not renewed."
       ]
     },
     {
@@ -139252,7 +139255,8 @@
         ]
       },
       "remaining_gaps": [
-        "Pending-merge workspace capture now reads verified actual MERGE_HEAD parents,matching staged inheritance rules. New synthetic regression covers absent/arbitrary branch refusal,exact historical receipts,required combined source review and changed-contract loss of inheritance. Broader historical execution evidence retains its original source hashes and pending freshness;no engine milestones are promoted."
+        "Pending-merge workspace capture now reads verified actual MERGE_HEAD parents,matching staged inheritance rules. New synthetic regression covers absent/arbitrary branch refusal,exact historical receipts,required combined source review and changed-contract loss of inheritance. Broader historical execution evidence retains its original source hashes and pending freshness;no engine milestones are promoted.",
+        "2026-11-01: Configured standard review caches checkpoint all typed records and schema before eviction and restore lazily; pending drafts are retained. Historical review/accounting evidence stays source-bound; current scoped storage controls grant no general cached gate approval."
       ]
     },
     {
@@ -139782,7 +139786,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "2026-11-01 shared storage and review-cache lifecycle changes are scoped independently by TOOL.shared-evidence-lifecycle. Historical evidence hashes are retained; this source change does not renew broad old storage/accounting validation."
+      ]
     },
     {
       "id": "RS.actor-downstream-services",
@@ -155788,7 +155795,8 @@
       "remaining_gaps": [
         "Actual Wine/game comparisons and save/load integration remain pending after provisioning changes. Default fresh native campaign prefixes remain private because their DirectPlay admission contract requires an absent prefix before initialization.",
         "Standalone preparers and explicit completed fixture seeds retain full trees; they still require reviewed maintenance.",
-        "Held partial moves/resets and changed baseline identities require review; no destructive recovery or unbounded extra-copy fallback."
+        "Held partial moves/resets and changed baseline identities require review; no destructive recovery or unbounded extra-copy fallback.",
+        "2026-11-01: Acceptance caller now explicitly borrows and returns an admitted pooled prefix. The existing two-slot pool implementation is unchanged. Storage handoffs preserve completed execution file state; no current live campaign/engine milestone is inferred."
       ]
     },
     {
@@ -155851,7 +155859,8 @@
       "remaining_gaps": [
         "Broad environment pins and recent/current consumers still protect substantial output.",
         "Hardlinked mutable stores require full alias/activity review; no claim that every old runner adopts new defaults.",
-        "Storage provenance and host controls do not refresh historical engine validation."
+        "Storage provenance and host controls do not refresh historical engine validation.",
+        "2026-11-01: Shared immutable execution manifests add explicit stopped source-specific handoff and historical-path restoration. Historical generic retention/archive evidence is retained and not renewed by the new storage controls."
       ]
     },
     {
@@ -158409,7 +158418,8 @@
       "remaining_gaps": [
         "RN31.G.first-world-watchdog remains unresolved. Deliberately stopped GUI command consumption reproduces a five-second no-ACK refusal and unread UI/World tail, but does not identify the historical callback/OS stall or reproduce its exact CPU-history terminal ordering.",
         "Media expiry alone was insufficient in the isolated intro fault. The finite nominal pass does not retire the historical failure or renew unrelated high/low storage, software, progression, operation or original-recovery claims.",
-        "Timing output is capped at 256 rows per class at the recorded threshold; no callback attribution outside retained observations, physical driver, arbitrary duration or broad fault/restart acceptance is inferred."
+        "Timing output is capped at 256 rows per class at the recorded threshold; no callback attribution outside retained observations, physical driver, arbitrary duration or broad fault/restart acceptance is inferred.",
+        "2026-11-01 acceptance acquisition now borrows an admitted pooled prefix and queues stopped execution storage handoff. Storage/prefix synthetic controls are separate; historical live watchdog observations retain their source hashes and are not current-wrapper engine validation."
       ],
       "validation_dependencies": [
         "runtime/render/media_bridge.h",
@@ -158417,6 +158427,75 @@
         "runtime/render/command_queue.h",
         "runtime/scene/world_continuous.c",
         "apps/qt-shell/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "TOOL.shared-evidence-lifecycle",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Shared immutable evidence and bounded execution lifecycle",
+      "scope": "Opt-in two-filesystem shared immutable original-byte objects and cross-object compressed blocks; verified grouped publication with concurrent WAL readers and checkpoint headroom, incremental object/root/Git-binding mirror completion, typed SQLite WAL/schema/rowid/BLOB/NUL/float checkpoints with real logical restore, recognized legacy evidence catalog and schema handoff, explicit reviewed two-image snapshot retirement without byte-exact page-image claims, stopped exact execution-file/pin handoff and historical-path restoration, pending-draft review cache eviction/lazy restore, and exclusive existing two-slot admitted-prefix reuse through child lifetime. Synthetic Git/SQLite/filesystem/lease controls and a completed rendering-watchdog batch storage migration only. Source checkouts and unique fixture inputs retained. Unknown tables/schema, active/mutating/special/multiply-linked workspace members held prefix-return failures, and missing/corrupt replicas refuse retirement. No renderer behavior, original comparison, physical-driver validation, off-host durability or historical engine status renewal.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/evidence-storage.md",
+        "research/runtime/coverage-ledger.md",
+        "AGENTS.md"
+      ],
+      "implementation": [
+        "tools/evidence_objects.py",
+        "tools/evidence-objects.py",
+        "tools/evidence_workspace.py",
+        "tools/evidence-workspace.py",
+        "tools/evidence_cache.py",
+        "tools/evidence_legacy_retirement.py",
+        "tools/evidence-storage.json",
+        "tools/coverage_evidence.py",
+        "tools/evidence_local.py",
+        "tools/coverage_bookkeeping.py",
+        "tools/finish-work.py",
+        "tools/native_prefix_template.py",
+        "tools/working-retention.py",
+        "tools/sqlite_snapshot_store.py",
+        "tools/run-rendering-acceptance-pilot.py"
+      ],
+      "tests": [
+        "tests/test-evidence-objects.py",
+        "tests/test-native-prefix-template.py",
+        "tests/test-evidence-store.py",
+        "tests/test-evidence-consolidation.py",
+        "tests/test-local-evidence-workflow.py",
+        "tests/test-coverage-bookkeeping.py",
+        "tests/test-experiment-environment.py",
+        "tests/test-native-player-launcher.py",
+        "tests/test-rendering-normal-acceptance.py",
+        "tests/test-sqlite-snapshot-store.py",
+        "tests/test-working-retention.py",
+        "tests/test-rendering-pilot.py",
+        "tests/test-private-evidence-backup.py"
+      ],
+      "validation_dependencies": [
+        "tools/experiment_environment.py",
+        "tools/compact_snapshot_activity.py",
+        "tools/evidence_consolidation.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_audit.py",
+        "tools/coverage_gate.py",
+        "run-native.sh"
+      ],
+      "evidence": [
+        "ES01.shared-lifecycle"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current controls05 passes 205 cases across 13 suites with unchanged source fingerprints; the joined closeout fully verifies both independent replicas and a retained legacy reader. This is headless storage integration only. Historical live engine/launch evidence retains its original hashes and may be stale; no rendering acceptance dimension is promoted.",
+        "Existing historical batches beyond the explicitly migrated watchdog batch retain their old archives; no whole-repository deduplication or recovered disk-size claim."
       ]
     }
   ],
@@ -364389,6 +364468,41 @@
         }
       ],
       "build": "nocd-40209ca7"
+    },
+    {
+      "id": "ES01.shared-lifecycle",
+      "kind": "native_integration",
+      "scope": "Fresh 205-case source-stable storage/launch/pool regression batch, real completed-watchdog storage migration provenance, current two-filesystem full hash/catalog scrub and unchanged legacy reader recovery. Every original scientific payload hash retained. Measured allocated-byte reduction is separate from filesystem free-space movement; no engine acceptance credit.",
+      "record": "research/runtime/evidence-object-results-20261101/joined-01.json",
+      "sha256": "8a294157f2f26a79549ca63a61686002083cb1b73c0b18319843e594aa823de2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/durable_copies",
+          "equals": 2
+        },
+        {
+          "pointer": "/all_current_objects_hash_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/legacy_reader/success",
+          "equals": true
+        },
+        {
+          "pointer": "/engine_requirements_closed",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -393568,6 +393682,32 @@
         "tests/gpu-presentation-test.cpp",
         "tests/qt-input-test.cpp"
       ]
+    },
+    {
+      "id": "SC.tooling.shared-evidence-lifecycle",
+      "scope": "Independent fixture filesystems test interrupted/corrupt replicas, old read compatibility, exact typed review records, unequal legacy snapshot refusal, full stopped workspace/pin restore and pending draft lazy reopen. Existing two-slot prefix state reset and launcher regressions. Actual completed watchdog batch import, logical snapshot retirement and file-level workspace handoff; storage only.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.shared-evidence-lifecycle"
+      ],
+      "tests": [
+        "tests/test-evidence-objects.py",
+        "tests/test-native-prefix-template.py",
+        "tests/test-evidence-store.py",
+        "tests/test-evidence-consolidation.py",
+        "tests/test-local-evidence-workflow.py",
+        "tests/test-coverage-bookkeeping.py",
+        "tests/test-experiment-environment.py",
+        "tests/test-native-player-launcher.py",
+        "tests/test-rendering-normal-acceptance.py",
+        "tests/test-sqlite-snapshot-store.py",
+        "tests/test-working-retention.py",
+        "tests/test-rendering-pilot.py",
+        "tests/test-private-evidence-backup.py"
+      ],
+      "evidence": [
+        "ES01.shared-lifecycle"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -395385,7 +395525,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-91ea39681f3140a6b69b2906152778924f0d806e324c3ec21136978cdda1af73.json",
-    "sha256": "91ea39681f3140a6b69b2906152778924f0d806e324c3ec21136978cdda1af73"
+    "path": "research/runtime/coverage/source-index-859b6723e39e1d4ad11d0a9ecbdaaa5ecd41555c970ab8f782fca54a5544d139.json",
+    "sha256": "859b6723e39e1d4ad11d0a9ecbdaaa5ecd41555c970ab8f782fca54a5544d139"
   }
 }

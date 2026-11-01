@@ -24,7 +24,10 @@ class Store:
         self.path=Path(path);self.minimum_free=minimum_free
         if "original" in self.path.resolve().parts or ".git" in self.path.resolve().parts:raise ValueError("Unsafe snapshot archive output")
         if self.path.is_symlink():raise ValueError('Snapshot store is a symlink')
-        if readonly:self.db=sqlite3.connect(self.path.resolve().as_uri()+'?mode=ro',uri=True)
+        if readonly:
+            self.db=sqlite3.connect(self.path.resolve().as_uri()+'?mode=ro',uri=True)
+            if self.db.execute("select 1 from sqlite_master where name='retired_checkpoint'").fetchone():
+                self.db.close();raise ValueError('Physical snapshot encoding retired after logical handoff; use evidence-objects.py restore-retired explicitly')
         else:
             self.path.parent.mkdir(parents=True,exist_ok=True)
             pin=self.path.parent/".retain"

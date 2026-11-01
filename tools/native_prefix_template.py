@@ -11,7 +11,7 @@ def sha(path):
     with path.open('rb') as file:return hashlib.file_digest(file,'sha256').hexdigest()
 
 
-def clone(template,target,environment):
+def clone(template,target,environment,*,_pooled=False):
     template=template.resolve();target=Path(target)
     if not target.resolve().is_relative_to((ROOT/'working').resolve()) or target.exists() or target.is_symlink():
         raise ValueError('Prefix clone requires a fresh test-owned working target')
@@ -24,8 +24,8 @@ def clone(template,target,environment):
     before={name:sha(template/name) for name in ('.mnm-directplay-dx6.json','system.reg','user.reg')}
     # This wait never kills a template user's server. Active prefixes refuse.
     subprocess.run(['wineserver','-w'],env=dict(environment,WINEPREFIX=str(template)),check=True,timeout=5)
-    from experiment_environment import stage_prefix
-    stage_prefix(ROOT,template,target)
+    from experiment_environment import stage_prefix,acquire
+    lease=acquire(ROOT,target,template,kind='wineprefix') if _pooled else stage_prefix(ROOT,template,target)
     check_prefix(target)
     copied=target/'.mnm-directplay-dx6.json'
     if copied.is_symlink() or sha(copied)!=before['.mnm-directplay-dx6.json']:
@@ -35,6 +35,16 @@ def clone(template,target,environment):
     # Only the new private owner path changes. Native DLL bytes stay hash-checked.
     copied.write_text(json.dumps(prefix_identity(target.resolve()),indent=2)+'\n')
     check_prefix(template);check_prefix(target)
-    return dict(path=str(template),target=str(target.resolve()),stopped_before_copy=True,
+    result=dict(path=str(template),target=str(target.resolve()),stopped_before_copy=True,
                 source_fingerprints=before,target_owner_sha256=sha(copied),
                 original_template_modified=False)
+    return (lease,result) if _pooled else result
+
+
+def borrow(template,target,environment):
+    """Caller owns the live lease through all producer/consumer work.
+
+    This explicit path permits a loan beneath an acceptance run's parent pin.
+    The pin is not removed, and changed prefix state is retained on return.
+    """
+    return clone(template,target,environment,_pooled=True)

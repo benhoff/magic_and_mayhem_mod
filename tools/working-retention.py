@@ -270,6 +270,18 @@ def main():
     args = parser.parse_args()
     try:
         rules = policy(args.policy)
+        if args.action=='restore':
+            from evidence_workspace import MARKER
+            target=ROOT/args.path
+            # A root or one of its descendants may have been sealed as a unit.
+            for parent in (target,*target.parents):
+                if parent==ROOT/'working':break
+                if (parent/MARKER).is_file():
+                    from evidence_workspace import restore
+                    from evidence_objects import configured
+                    with configured(ROOT) as pair:restore(ROOT,parent,pair)
+                    print('Restored workspace: '+str(parent))
+                    return 0
         if args.action in ('archive', 'restore'):
             from working_archive import archive_lock, maintain, restore as restore_file
             if args.action == 'restore':

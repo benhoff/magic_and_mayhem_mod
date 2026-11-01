@@ -21,14 +21,24 @@ def main():
                         help='Record only declared promoted stages with current complete-source execution proof')
     parser.add_argument('--message', required=True)
     parser.add_argument('--timings', action='store_true', help='Print finish phase durations and return timings_seconds')
+    parser.add_argument('--keep-review-cache',action='store_true',help='Keep a materialized cache after shared-store completion')
     args = parser.parse_args()
+    from evidence_objects import settings
+    handoffs=[]
+    if settings(args.root):
+        from evidence_workspace import finish_completed
+        handoffs=finish_completed(args.root)
     workspace = Workspace(args.root, args.db)
     try:
         result = finish(workspace, args.base, args.reason, args.validation_reason,
                         args.message, args.index_review_reason, args.record_current_promotions, args.timings)
-        print(json.dumps(result, indent=2))
     finally:
         workspace.close()
+    result['workspace_handoffs']=handoffs
+    if settings(args.root) and not args.keep_review_cache and workspace.path == args.root.resolve()/'working/coverage/bookkeeping.sqlite3':
+        from evidence_cache import evict
+        result['review_cache']=evict(args.root,workspace.path)
+    print(json.dumps(result, indent=2))
 
 
 if __name__ == '__main__':
