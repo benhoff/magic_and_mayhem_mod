@@ -7,6 +7,7 @@
 #include <atomic>
 #include <chrono>
 #include <cstdint>
+#include "host_timing_trace.hpp"
 // Opt-in diagnostic interchange stream. The external collector retains its
 // verified bytes in SQLite. No oracle, expected pixel or rendering input returns.
 class AcceptanceCapture final {
@@ -30,6 +31,7 @@ public:
     bool enabled() const{return enabled_;}
     void append(const QString& kind,QJsonObject metadata,const QByteArray& bytes={}){
         if(!enabled_ || !error_.isEmpty() || closed_)return;
+        HostTimingTrace trace("acceptance-append");
         if(rows_>=16384 || bytes.size()>32*1024*1024 || raw_+bytes.size()>8ll*1024*1024*1024){error_="Acceptance capture raw/row budget exceeded";return;}
         metadata["host_us"]=QString::number(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now().time_since_epoch()).count());
         metadata["kind"]=kind;metadata["index"]=int(rows_);

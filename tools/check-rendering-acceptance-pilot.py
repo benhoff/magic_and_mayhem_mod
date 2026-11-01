@@ -20,10 +20,25 @@ def main():
   with (output/(label+'.log')).open('xb') as log:subprocess.run([str(v) for v in command],cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=300)
  with Reader(ROOT) as reader:
   acquired=reader.json(a.acquisition);report['acquisition']=dict(record=a.acquisition,sha256=reader.digest(a.acquisition))
+  if acquired.get('kind')=='public_native_watchdog_diagnostic_acquisition':
+   report['kind']='public_native_watchdog_diagnostic_comparison'
+   report['scope']+=' Injected/diagnostic execution only; ineligible for nominal acceptance.'
   sources=dict(acquired['sources']);sources.update(acquired.get('native_admission',{}).get('native_only',{}).get('sources',{}))
   sources.update({n:digest(ROOT/n) for n in ['tools/rendering_pilot.py','tools/check-rendering-acceptance-pilot.py','tests/acceptance-world-history.cpp','tests/acceptance-world-reference.cpp','tests/sprite-binary-reference.cpp','tests/world-raster-reference.hpp','tests/clipped-word-grayscale-cases.hpp','tools/native_player_quick_acceptance.py','tools/test-menu-observer.py']});report['sources']=sources
   try:
    require(acquired['success'] is True and acquired['sources_stable'] is True and acquired['private_wine_stopped'] is True and acquired['original_manifest_verified_before_after'] is True,'Incomplete actual public acquisition')
+   from rendering_build_binding import require_player_source_closure
+   campaign_spec=importlib.util.spec_from_file_location('binding_campaign',ROOT/'tools/test-native-campaign.py');campaign=importlib.util.module_from_spec(campaign_spec);campaign_spec.loader.exec_module(campaign)
+   linked=set(campaign.linked_compiler_sources(ROOT/'working/build/qt-shell',ROOT))
+   require_player_source_closure(acquired['sources'],linked)
+   sources['tools/rendering_build_binding.py']=digest(ROOT/'tools/rendering_build_binding.py')
+   if acquired.get('player_build'):
+    binding=acquired['player_build'];binary=binding['binary']
+    require(acquired.get('compiler_closure_stable') is True and acquired.get('player_binary_stable') is True,'Unstable as-built player')
+    require(set(binding['compiler_sources'])==linked and all(acquired['sources'][n]==h for n,h in binding['compiler_sources'].items()),'As-built compiler closure differs')
+    require(reader.digest(binary['record'])==binary['sha256']==digest(ROOT/binary['path']),'As-built executable differs')
+    report['player_build_binding']=dict(verified=True,build=binding)
+
    from rendering_normal_acceptance import DRIVER_SOURCES,reviewed_driver_sources
    drift={n for n,h in sources.items() if digest(ROOT/n)!=h}
    require(not drift or (a.driver_review and drift<=DRIVER_SOURCES),'Changed current engine/capture sources')

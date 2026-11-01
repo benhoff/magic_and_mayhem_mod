@@ -82,14 +82,18 @@ class AdmissionTests(unittest.TestCase):
         self.assertEqual(world_domain(dict(commands=stream(0xf800)))['extents'],[[640,480]])
         with self.assertRaises(ValueError):world_domain(dict(commands=stream(0x7c00)))
     def test_execution_and_configuration_failures_refuse(self):
-        mutations=[('success',False),('private_wine_stopped',False),('exit_code',1),('sources_stable',False),('original_pixels_used_as_native_inputs',True)]
+        mutations=[('kind','public_native_watchdog_diagnostic_acquisition'),('success',False),('private_wine_stopped',False),('exit_code',1),('sources_stable',False),('original_pixels_used_as_native_inputs',True)]
         for key,value in mutations:
             with self.subTest(key=key):
                 reader=Reader();pair=reader.pair('normal-quick');reader.data[pair['acquisition']['record']][key]=value;reader.refresh(pair)
                 with self.assertRaises(ValueError):admit(reader,pair)
-        for key,value in [('software_flag',True),('skip_intros',True),('terrain_lighting','original'),('source_chunks',False),('native_lighting_capture',True),('viewport_scaling','smooth')]:
+        for key,value in [('diagnostic_only',True),('injected_fault',{'kind':'gui-stall'}),('software_flag',True),('skip_intros',True),('terrain_lighting','original'),('source_chunks',False),('native_lighting_capture',True),('viewport_scaling','smooth')]:
             reader=Reader();pair=reader.pair('normal-quick');reader.data[pair['acquisition']['record']]['configuration'][key]=value;reader.refresh(pair)
             with self.subTest(key=key),self.assertRaises(ValueError):admit(reader,pair)
+    def test_diagnostic_comparison_cannot_grant_nominal_acceptance(self):
+        reader=Reader();pair=reader.pair('normal-quick')
+        reader.data[pair['comparison']['record']]['kind']='public_native_watchdog_diagnostic_comparison';reader.refresh(pair)
+        with self.assertRaises(ValueError):admit(reader,pair)
     def test_independence_and_cohort_corruption_refuse(self):
         for field in ('native_player_pixels_read','original_destination_capture_read'):
             reader=Reader();pair=reader.pair('normal-quick');reader.data[pair['comparison']['record']]['original_reference'][field]=True;reader.refresh(pair)

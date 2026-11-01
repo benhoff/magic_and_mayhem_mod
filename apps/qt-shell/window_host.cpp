@@ -2,6 +2,7 @@
 #include <QGuiApplication>
 #include <QByteArray>
 #include <cstdlib>
+#include "host_timing_trace.hpp"
 
 WindowHost::WindowHost() {
     if(QGuiApplication::platformName()!=QStringLiteral("xcb"))return;
@@ -150,6 +151,7 @@ xcb_window_t WindowHost::desktopInputWindow(xcb_window_t desktop,QSize frameSize
     return candidate?candidate:inputWindow(desktop,frameSize);
 }
 bool WindowHost::sendInput(xcb_window_t window,uint8_t type,uint8_t detail,uint16_t state,QPoint position,xcb_window_t coordinateWindow) const{
+    HostTimingTrace trace("legacy-x11-input");
     if(!available() || !window)return false;
     if(coordinateWindow){
         auto* translated=xcb_translate_coordinates_reply(connection_,xcb_translate_coordinates(connection_,coordinateWindow,window,position.x(),position.y()),nullptr);

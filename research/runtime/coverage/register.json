@@ -158188,7 +158188,8 @@
         }
       ],
       "documents": [
-        "research/runtime/rendering-normal-acceptance-20261031.md"
+        "research/runtime/rendering-normal-acceptance-20261031.md",
+        "research/runtime/rendering-watchdog-20261101.md"
       ],
       "implementation": [
         "apps/qt-shell/viewport_presentation.cpp",
@@ -158211,7 +158212,17 @@
         "tools/rendering_pilot.py",
         "tools/menu-storage-input.py",
         "tools/prepare-rendering-normal-input.py",
-        "tools/review-rendering-driver-branch.py"
+        "tools/review-rendering-driver-branch.py",
+        "apps/qt-shell/host_timing_trace.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/main.cpp",
+        "run-native.sh",
+        "tools/inspect-rendering-watchdog.py",
+        "apps/qt-shell/host_event_trace.hpp",
+        "tools/rendering_build_binding.py",
+        "apps/qt-shell/watchdog_host_fault.hpp",
+        "tools/test-native-campaign.py"
       ],
       "tests": [
         "tests/test-rendering-normal-acceptance.py",
@@ -158219,7 +158230,8 @@
         "tests/viewport-presentation-test.cpp",
         "tests/native-panel-boundary-test.c",
         "tests/menu-campaign-preferences-test.cpp",
-        "tests/test-rendering-pilot.py"
+        "tests/test-rendering-pilot.py",
+        "tests/test-rendering-build-binding.py"
       ],
       "evidence": [
         "RN31.quick",
@@ -158231,7 +158243,8 @@
         "RN31.progress",
         "RN31.driver-review",
         "RN31.quick-watchdog",
-        "RN31.joined"
+        "RN31.joined",
+        "RW01.cold"
       ],
       "status": {
         "understanding": "scoped",
@@ -158241,12 +158254,16 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Current finite default Quick/high-storage/low-storage executions and complete independent comparisons are joined under RN31.joined. EP04 remains partial; the retained startup watchdog failure blocks supported-player acceptance.",
+        "Historical finite default Quick/high-storage/low-storage executions and complete independent comparisons are joined under RN31.joined. Shared capture/collector changes have pending applicability for those requirements; this diagnostic batch does not renew their whole source domain. EP04 remains partial and the retained startup failure blocks supported-player acceptance.",
         "Only six named leaf exits are implemented in the first requirement join; all other obligations, complete per-dependency scope and final acceptance/recovery verdicts remain pending.",
         "Native lighting provider selection, application and worker retirement are checked; full original lighting-producer recovery and unobserved domains are separate.",
         "No Fit sharp/Smooth, physical scanout, arbitrary map/save/duration, worker presentation or software-profile closure.",
         "RN31.G.first-world-watchdog: full-intro Quick acquisition03 cancelled at native World5 with a five-second command queue stall/current-history refusal. Short diagnostic04 completed and its independent comparison passed with a real V6 source chunk, but neither root cause nor current full-intro applicability is resolved. A later successful finite run does not retire this failure; supported-player acceptance remains blocked.",
-        "Auxiliary-driver reuse is limited to the exact reviewed high/Quick source pairs and retained decisions; it never admits engine/capture drift or old low-resolution recordings. Original source hashes stay in immutable acquisitions and new comparison original_execution_sources. No broad reuse or fresh original recovery is inferred."
+        "Auxiliary-driver reuse is limited to the exact reviewed high/Quick source pairs and retained decisions; it never admits engine/capture drift or old low-resolution recordings. Original source hashes stay in immutable acquisitions and new comparison original_execution_sources. No broad reuse or fresh original recovery is inferred.",
+        "Watchdog investigation at 922062334: retained V3 ring contains 67896 unread bytes after command7671 despite an empty private producer queue; native World5 prepared, imports4. Host observation gaps require causal timing evidence before any repair or failure retirement. See rendering-watchdog-20261101.md.",
+        "RAM execution was refused by unchanged output-isolation policy. Actual experiments use a physical second-NVMe worktree with an explicit100GiB reserve policy and an outer unchanged90GiB main-drive guard; only builds remain in RAM. Default tracked storage policy is unchanged. Setup refusals are retained separately from engine failures.",
+        "RW01 diagnoses retained bytes, adds bounded host timing and explicit fault controls, and repairs pre-build dependency capture. Current nominal evidence is scoped to the selected Quick journey. Root cause/repair of the retained watchdog and full requirements remain pending; see rendering-watchdog-20261101.md.",
+        "RW01.cold observes a final enabled-intro diagnostic with selected Mesa/cache flags verified in the actual Qt process. It completed with no command watchdog; this does not identify or eliminate historical host conditions and grants no cold-cache pixel equivalence or acceptance leaf."
       ],
       "validation_dependencies": [
         "docs/native-rendering-closure.json",
@@ -158339,6 +158356,67 @@
       "remaining_gaps": [
         "Current high/low native cancellation journeys and Qt immediate/delayed/foreign-thread/wrong-ACK/original-controlled admission controls are bound in RN31.joined; no broad menu or original scheduling recovery claim.",
         "Other destination handoffs and original scheduling recovery remain separately scoped."
+      ]
+    },
+    {
+      "id": "NP.rendering-watchdog-observation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded host liveness observations and as-built rendering proof",
+      "scope": "Opt-in capped slow host-operation and complete GUI-event timing; exact complete V3 unread-ring interpretation; explicit one-shot intro/World GUI faults excluded from nominal acceptance; build-before-capture compiler/executable identity and post-run stability. Diagnostic observation on declared Xvfb/llvmpipe sessions only. No attribution or repair of the historical watchdog, relaxed deadline/ownership guard, requirement completion or player/recovery verdict.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-watchdog-20261101.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/host_timing_trace.hpp",
+        "apps/qt-shell/host_event_trace.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/viewport_presentation.cpp",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/live_quick_battle_app_test.cpp",
+        "apps/qt-shell/acceptance_capture.hpp",
+        "tools/inspect-rendering-watchdog.py",
+        "tools/run-rendering-acceptance-pilot.py",
+        "tools/check-rendering-acceptance-pilot.py",
+        "tools/rendering_build_binding.py",
+        "run-native.sh",
+        "apps/qt-shell/watchdog_host_fault.hpp",
+        "tools/rendering_normal_acceptance.py",
+        "tools/test-native-campaign.py"
+      ],
+      "tests": [
+        "tests/test-rendering-build-binding.py",
+        "tests/test-rendering-normal-acceptance.py",
+        "tests/test-rendering-watchdog.py",
+        "tests/test-rendering-pilot.py",
+        "tests/viewport-presentation-test.cpp",
+        "tests/gpu-presentation-test.cpp",
+        "tests/qt-input-test.cpp"
+      ],
+      "evidence": [
+        "RW01.joined"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "RN31.G.first-world-watchdog remains unresolved. Deliberately stopped GUI command consumption reproduces a five-second no-ACK refusal and unread UI/World tail, but does not identify the historical callback/OS stall or reproduce its exact CPU-history terminal ordering.",
+        "Media expiry alone was insufficient in the isolated intro fault. The finite nominal pass does not retire the historical failure or renew unrelated high/low storage, software, progression, operation or original-recovery claims.",
+        "Timing output is capped at 256 rows per class at the recorded threshold; no callback attribution outside retained observations, physical driver, arbitrary duration or broad fault/restart acceptance is inferred."
+      ],
+      "validation_dependencies": [
+        "runtime/render/media_bridge.h",
+        "protocols/include/mnm/media_v1.h",
+        "runtime/render/command_queue.h",
+        "runtime/scene/world_continuous.c",
+        "apps/qt-shell/CMakeLists.txt"
       ]
     }
   ],
@@ -364248,6 +364326,69 @@
       "original_hash_pointer": "/original_source_sha256",
       "equivalence_pointer": "/success",
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "RW01.joined",
+      "kind": "live_observation",
+      "scope": "Current as-built full-intro default Quick observation, separately labeled intro/World GUI faults, strict nominal exclusion and source/compiler/ring/presentation/input controls. Historical no-ACK failure mechanism reproduced; historical callback/OS root cause and repair remain unresolved. No acceptance-leaf or recovery verdict.",
+      "record": "research/runtime/rendering-watchdog-results-20261101/joined-01.json",
+      "sha256": "a0f5a60344014068da3347cca43f0844839b04bc1bb95bb3244d85b53418a560",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/nominal/as_built_player_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/current_intro_fault/nominal_admission_rejected",
+          "equals": true
+        },
+        {
+          "pointer": "/historical_failure/resolution",
+          "equals": "unresolved"
+        },
+        {
+          "pointer": "/new_requirements_passed",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RW01.cold",
+      "kind": "live_observation",
+      "scope": "One enabled-intro diagnostic cache configuration and actual World/normal Quit; no injected GUI pause. It did not expose the historical stall. Environment propagation is verified, but internal driver cache branches or every cache layer are not independently instrumented. No pixel/reference, nominal acceptance or failure-retirement claim.",
+      "record": "research/runtime/rendering-watchdog-results-20261101/cold-driver-review-13.json",
+      "sha256": "9ef34150107ccf51f978950f85f552eef5aae079eda9c257c7fefe05fb130205",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_player_and_environment_bound",
+          "equals": true
+        },
+        {
+          "pointer": "/command_watchdog_observed",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failure_resolution",
+          "equals": "unresolved"
+        },
+        {
+          "pointer": "/cold_cache_pixel_equivalence_claimed",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7"
     }
   ],
   "classifications": [],
@@ -393407,6 +393548,26 @@
         "tests/menu-campaign-preferences-test.cpp",
         "tests/viewport-presentation-test.cpp"
       ]
+    },
+    {
+      "id": "RW01.watchdog-observation",
+      "scope": "As-built default full-intro Quick observation and separately identified intro/World GUI-stall controls; reject diagnostic nominal-admission, late dependency omissions, corrupt/partial/wrapped retained rings, and preserve existing presentation/input controls at DPI1/1.5. Historical watchdog remains unresolved; no acceptance leaf or original recovery is granted.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.rendering-watchdog-observation"
+      ],
+      "evidence": [
+        "RW01.joined"
+      ],
+      "tests": [
+        "tests/test-rendering-build-binding.py",
+        "tests/test-rendering-normal-acceptance.py",
+        "tests/test-rendering-watchdog.py",
+        "tests/test-rendering-pilot.py",
+        "tests/viewport-presentation-test.cpp",
+        "tests/gpu-presentation-test.cpp",
+        "tests/qt-input-test.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -395224,7 +395385,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-9dca1286b52fc0fa69cd0fa4a36aeb3bddb1f58345b7cebee31e110fd66d9e90.json",
-    "sha256": "9dca1286b52fc0fa69cd0fa4a36aeb3bddb1f58345b7cebee31e110fd66d9e90"
+    "path": "research/runtime/coverage/source-index-91ea39681f3140a6b69b2906152778924f0d806e324c3ec21136978cdda1af73.json",
+    "sha256": "91ea39681f3140a6b69b2906152778924f0d806e324c3ec21136978cdda1af73"
   }
 }

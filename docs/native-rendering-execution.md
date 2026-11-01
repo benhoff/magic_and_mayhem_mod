@@ -48,6 +48,22 @@ guard, choose bounded output/retention first, and verify the original manifest
 before and after. Keep durable reports in SQLite through `coverage_evidence.write_report`.
 The local drive reserve must be checked again before any build or capture.
 
+## Current liveness checkpoint — 2026-11-01
+
+The [first-World watchdog investigation](../research/runtime/rendering-watchdog-20261101.md)
+reproduces a true five-second command no-ACK failure by stopping GUI consumption.
+A media timeout alone did not reproduce it. The original callback/host stall and
+its exact CPU-history ordering remain unresolved; passing finite runs do not
+retire that negative evidence. The collector now builds before fingerprinting
+linked dependencies, retains the executable, and checks both again afterward.
+Injected faults are excluded from nominal acceptance.
+
+Continue with causal attribution under the bounded host/event trace before a
+scheduling or ownership repair. Keep this diagnostic checkpoint separate from
+EP04 leaf completion, software/progression proof and the final artifact5 decisions.
+Do not renew historical high/low storage claims merely because the diagnostic
+Quick route passes at a later source phase.
+
 ## Dependency order and exits
 
 ```mermaid

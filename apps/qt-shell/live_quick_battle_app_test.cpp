@@ -2,6 +2,7 @@
 #include "live_menu_session.hpp"
 #include "campaign_smoke_test.hpp"
 #include "gl_viewport.hpp"
+#include "host_timing_trace.hpp"
 #include <QApplication>
 #include <QMainWindow>
 #include <QPushButton>
@@ -110,10 +111,12 @@ void installQuickBattleAppTest(QApplication& app,QMainWindow& window,LiveMenuSes
         if(auto* display=open(nullptr)){focus(display,window.winId(),2,0);flush(display);close(display);}else{e->valid=false;return;}
         QTimer::singleShot(250,&window,[e,key,input]{e->valid&=key(QEvent::KeyPress,Qt::Key_Right,114)&&input("right-down");});
         QTimer::singleShot(700,&window,[e,&window,input]{
+            HostTimingTrace trace("quick-focus-resize");
             auto* v=dynamic_cast<GlViewport*>(window.findChild<QWidget*>("nativeGameViewport"));if(!v){e->valid=false;return;}v->clearFocus();e->focusReleased=input("focus-release");e->valid&=e->focusReleased;v->setFocus(Qt::OtherFocusReason);window.resize(1180,900);e->resized=window.size()==QSize(1180,900);
         });
         if(qEnvironmentVariableIntValue("MNM_ACCEPTANCE_NORMAL")==1){
             auto toggle=[e,&window,key](bool full){
+                HostTimingTrace trace("quick-fullscreen-key");
                 auto* v=window.findChild<GlViewport*>("nativeGameViewport");
                 const auto before=v?v->swappedPaint():0;
                 const bool accepted=key(QEvent::KeyPress,Qt::Key_F9,75)&&key(QEvent::KeyRelease,Qt::Key_F9,75);
@@ -123,7 +126,7 @@ void installQuickBattleAppTest(QApplication& app,QMainWindow& window,LiveMenuSes
             QTimer::singleShot(900,&window,[toggle]{toggle(true);});
             QTimer::singleShot(1400,&window,[toggle]{toggle(false);});
         }
-        QTimer::singleShot(1800,&window,[e,&window,path,key]{window.grab().save(QFileInfo(path).dir().filePath("qt-native-world.png"));e->valid&=key(QEvent::KeyPress,Qt::Key_Escape,9);});
+        QTimer::singleShot(1800,&window,[e,&window,path,key]{HostTimingTrace trace("quick-screenshot");window.grab().save(QFileInfo(path).dir().filePath("qt-native-world.png"));e->valid&=key(QEvent::KeyPress,Qt::Key_Escape,9);});
         QTimer::singleShot(2400,&window,[key]{key(QEvent::KeyRelease,Qt::Key_Escape,9);});
     });timer->start();
     auto finished=session.finished;

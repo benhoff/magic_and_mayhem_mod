@@ -24774,3 +24774,49 @@ those pending consumers; unrelated historical source staleness is not erased.
 New evidence uses SQLite with verified independent local backups; closed stores
 may relocate through hash-verified aliases while preserving source paths/pins.
 No evidence publication, original modification or gameplay balance change occurs.
+
+
+## Native first-World liveness investigation — 2026-11-01
+
+[Research and next discrimination](rendering-watchdog-20261101.md) and the
+[current diagnostic join](rendering-watchdog-results-20261101/joined-01.json)
+record a narrow native policy, `NP.rendering-watchdog-observation`. It covers
+bounded host/event timing, exact retained V3 ring interpretation, explicit
+intro/World GUI faults excluded from nominal acceptance, and as-built compiler
+closure/executable binding. This is scoped diagnostic observation, not a renderer
+repair, original comparison/replacement or new acceptance-leaf verdict.
+
+The retained original ring contains 67,896 unread bytes / 68 ordered commands with
+no CPU_READ; its private publication queue was empty. A controlled 6.2-second
+World GUI stall produces a real 5,004 ms no-ACK watchdog with 68,196 unread bytes.
+Its original producer exits 95, rather than reproducing the old CPU-history
+refusal ordering. A separate intro stall expires the media heartbeat but allows
+matching World output and normal Quit. Media expiry alone is insufficient in
+that control; the specific original callback/host stall remains unknown.
+`RN31.G.first-world-watchdog` stays unresolved and supported-player acceptance
+remains blocked. All five-second guards and native ownership checks remain strict.
+
+Trace08 exposed a collector defect: compiler dependencies were sampled before
+the public rebuild introduced a new header. Its comparison and incomplete-source
+limitation are retained at the original phase. The collector now builds first,
+retains the executable, verifies the linked source set and binary after execution,
+and the comparator rejects omitted dependencies. Current diagnostic execution
+and corruption/late-include/admission/presentation/input controls are joined
+separately. Earlier high/low/Quick evidence and hashes are unchanged; shared
+source edits leave unrelated historical applicability pending.
+
+Execution uses a physical second-NVMe worktree and isolated prefixes with its
+100 GiB reserve; RAM holds builds/staging only. The main-drive 90 GiB guard remains
+active. Failed setup/build attempts, unique source versions and raw evidence
+are retained in SQLite. Local verified backups and exact source/census/review
+accounting are required for closeout. No original or balance changes, publication
+or broad fault/restart, software, progression or original-recovery claim occurs.
+
+The final as-built enabled-intro Quick checkpoint has 55 independent matching
+World swaps, 30 reference Worlds and 52,234 original draws, with zero mismatches
+across 107,869,460 compared viewport/history pixels and normal original Quit.
+The current diagnostic intro-fault run also has 55 matching World swaps after
+media expiry and is rejected by nominal admission. RW01.joined binds 757 current
+source paths, 29 Python methods and six Qt executions. Its new implementation
+and live-observation claims cover only the declared diagnostics; no original
+comparison/replacement or requirement status is promoted.

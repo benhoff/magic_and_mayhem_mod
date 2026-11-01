@@ -1,3 +1,4 @@
+#include "watchdog_host_fault.hpp"
 #include "gl_viewport.hpp"
 #include "native_render_target.hpp"
 #include <QOpenGLContext>
@@ -144,6 +145,7 @@ void GlViewport::initializeGL(){
     ready_=true;dirty_=!gpuFrame_.valid();
 }
 void GlViewport::paintGL(){
+    HostTimingTrace trace("viewport-paint");
     const int width=qRound(this->width()*devicePixelRatioF()),height=qRound(this->height()*devicePixelRatioF());
     glViewport(0,0,width,height);glClearColor(0,0,0,1);glClear(GL_COLOR_BUFFER_BIT);
     if(!ready_ || frameSize().isEmpty()){
@@ -168,7 +170,7 @@ void GlViewport::paintGL(){
     catch(const std::exception& e){acceptance_.fail("GPU paint failed");error_=QString::fromUtf8(e.what());if(recoverGraphics && recoverGraphics())error_.clear();return;}
     if(acceptance_.enabled() && gpuFrame_.valid()){
         QImage observed(width,height,QImage::Format_RGBA8888);
-        glReadPixels(0,0,width,height,GL_RGBA,GL_UNSIGNED_BYTE,observed.bits());
+        {HostTimingTrace readback("acceptance-readback");glReadPixels(0,0,width,height,GL_RGBA,GL_UNSIGNED_BYTE,observed.bits());}
         if(glGetError()!=GL_NO_ERROR)acceptance_.fail("Paint readback failed");
         else capturePaint(observed.transformed(QTransform().scale(1,-1)));
     }else if(acceptance_.enabled())capturePaint({});
@@ -176,6 +178,7 @@ void GlViewport::paintGL(){
 }
 
 void GlViewport::capturePaint(const QImage& image){
+    HostTimingTrace trace("acceptance-paint");
     const auto area=physicalImageRect();
     QJsonObject row{{"paint",QString::number(++acceptancePaint_)},{"lease",QString::number(acceptanceLease_)},{"world",QString::number(acceptanceGeneration_)},
         {"width",qRound(width()*devicePixelRatioF())},{"height",qRound(height()*devicePixelRatioF())},{"frame_width",frameSize().width()},{"frame_height",frameSize().height()},
@@ -186,6 +189,7 @@ void GlViewport::capturePaint(const QImage& image){
     if(gpuFrame_.valid() && acceptanceState){const auto identity=acceptanceState();for(auto i=identity.begin();i!=identity.end();++i)row[i.key()]=i.value();}
     if(gpuFrame_.valid() && row["lease"].toString()=="0")acceptance_.fail("Native paint source identity missing");
     acceptanceWorldPainted_=row["world"].toString().toULongLong();
+    if(acceptanceWorldPainted_)WatchdogHostFault::afterWorldPaint(this);
     acceptance_.append("paint",row,image.isNull()?QByteArray():QByteArray(reinterpret_cast<const char*>(image.constBits()),image.sizeInBytes()));
 }
 NativeRenderTarget viewportRenderTarget(GlViewport& v){

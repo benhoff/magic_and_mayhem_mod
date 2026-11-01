@@ -262,3 +262,12 @@ The [coverage audit](rendering-normal-results-20261031/audit-01.json) reports no
 errors and current implementation/integration support for all three new policies.
 The [generated coverage summary](coverage/summary-rendering-normal-20261031.md)
 retains historical staleness, explicit recovered-range gaps and pending dimensions.
+
+## Subsequent watchdog investigation — 2026-11-01
+
+The [next bounded batch](rendering-watchdog-20261101.md) establishes unread-ring
+and GUI-liveness facts, distinguishes media expiry from stopped World command
+consumption, and fixes pre-build dependency discovery in the collector. It does
+not retire the retained failure or renew this batch's whole high/low source domain.
+The six leaf results above remain at their recorded original source phase;
+complete-player and original-recovery decisions remain pending.

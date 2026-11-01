@@ -6,6 +6,7 @@
 #include <QLayout>
 #include <QPushButton>
 #include <QScreen>
+#include "host_timing_trace.hpp"
 #include <QSignalBlocker>
 #include <QToolBar>
 #include <QTimer>
@@ -62,6 +63,7 @@ void ViewportPresentation::scheduleChromeUpdate(bool repaint){
         }});
 }
 void ViewportPresentation::setFullscreen(bool enabled){
+    HostTimingTrace trace("fullscreen-transition");
     if(enabled!=window_.isFullScreen()){
         if(enabled){
             previousGeometry_=window_.geometry();previousState_=window_.windowState();

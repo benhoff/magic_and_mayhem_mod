@@ -1,3 +1,5 @@
+#include "watchdog_host_fault.hpp"
+#include "host_event_trace.hpp"
 #include "live_realm_controller.hpp"
 #include "live_character_controller.hpp"
 #include "../../protocols/include/mnm/menu_v18.h"
@@ -174,7 +176,7 @@ public:
             liveMenus_->prepareNativeAudio=[this](const QString& path){return createNativeVoices(path,QFileInfo(path).dir().filePath("game/Sounds"));};
             liveMenus_->prepareNativeMedia=[this](const QString& path){
                 media_=std::make_unique<MediaBroker>(*gl_,QFileInfo(path).dir().filePath("game"));
-                media_->frame=[this](QImage frame){if(residentTerminal_)return;menuStack_->setCurrentWidget(viewport_);gl_->setFrame(std::move(frame));placeholder_->hide();gl_->show();gl_->setFocus();};
+                media_->frame=[this,path](QImage frame){if(residentTerminal_)return;WatchdogHostFault::afterMovieFrame(this,path);menuStack_->setCurrentWidget(viewport_);gl_->setFrame(std::move(frame));placeholder_->hide();gl_->show();gl_->setFocus();};
                 media_->movieChanged=[this](bool playing){input_->suspend(residentTerminal_ || playing || (commands_&&commands_->state()!=LiveCommandSession::State::Active));
                     if(liveMenus_)liveMenus_->setMediaActive(playing);
                     if(commands_)commands_->setMediaActive(playing);
@@ -272,6 +274,7 @@ public:
         });
         poll_.setInterval(250);connect(&poll_,&QTimer::timeout,this,[this]{GlViewport::ActivityScope activity(gl_,GlViewport::Activity::WindowDiscovery);discover();});
         inputTimer_.setInterval(50);connect(&inputTimer_,&QTimer::timeout,this,[this]{GlViewport::ActivityScope activity(gl_,GlViewport::Activity::InputHeartbeat);if(input_)input_->heartbeat();});
+        frames_.setObjectName("native-frame-poll");commandDrain_.setObjectName("native-command-drain");poll_.setObjectName("legacy-window-discovery");inputTimer_.setObjectName("native-input-heartbeat");
         frames_.setInterval(16);commandDrain_.setSingleShot(true);commandDrain_.setInterval(0);
         const auto pollFrame=[this]{
             if(!stream_)return;
@@ -414,6 +417,7 @@ private:
         detach_->show();retry_->show();elapsed_.restart();poll_.start();discover();
     }
     bool createNativePresentation(const QString& path,const QString& inputPath,const QString& commandPath,bool continuous,QStringList& arguments){
+        WatchdogHostFault::setCommandPath(commandPath);
             stream_=std::make_unique<FrameStream>();
             if(!stream_->create(path)){statusBar()->showMessage(stream_->error());return false;}
             inputState_=std::make_unique<InputState>();
@@ -581,6 +585,7 @@ private:
         else process_.forceStop(QDir(repo_).filePath("working/wineprefix-x86_64"),stopped);
     }
     void discover(){
+        HostTimingTrace trace("legacy-window-discovery");
         const auto candidates=host_.desktops(excluded_);
         if(opengl_ && !nativeFallback_){
             xcb_window_t target=0;
@@ -753,7 +758,7 @@ int main(int argc,char** argv){
         if(QFile::exists(vendor))qputenv("__EGL_VENDOR_LIBRARY_FILENAMES",vendor.toLocal8Bit());
     }
     QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(format);
-    QApplication app(argc,argv);QCoreApplication::setApplicationName("mnm-qt-shell");
+    HostEventApplication app(argc,argv);QCoreApplication::setApplicationName("mnm-qt-shell");
     QCommandLineParser parser;parser.setApplicationDescription("Magic & Mayhem Qt development shell");parser.addHelpOption();
     addMediaOptions(parser);
     addAudioOptions(parser);
