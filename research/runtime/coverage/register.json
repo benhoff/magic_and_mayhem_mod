@@ -158434,7 +158434,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Shared immutable evidence and bounded execution lifecycle",
-      "scope": "Opt-in two-filesystem shared immutable original-byte objects and cross-object compressed blocks; verified grouped publication with concurrent WAL readers and checkpoint headroom, incremental object/root/Git-binding mirror completion, typed SQLite WAL/schema/rowid/BLOB/NUL/float checkpoints with real logical restore, recognized legacy evidence catalog and schema handoff, explicit reviewed two-image snapshot retirement without byte-exact page-image claims, stopped exact execution-file/pin handoff and historical-path restoration, pending-draft review cache eviction/lazy restore, and exclusive existing two-slot admitted-prefix reuse through child lifetime. Synthetic Git/SQLite/filesystem/lease controls and a completed rendering-watchdog batch storage migration only. Source checkouts and unique fixture inputs retained. Unknown tables/schema, active/mutating/special/multiply-linked workspace members held prefix-return failures, and missing/corrupt replicas refuse retirement. No renderer behavior, original comparison, physical-driver validation, off-host durability or historical engine status renewal.",
+      "scope": "Opt-in two-filesystem shared immutable original-byte objects and cross-object compressed blocks; verified grouped publication with concurrent WAL readers and checkpoint headroom, incremental object/root/Git-binding mirror completion, typed SQLite WAL/schema/rowid/BLOB/NUL/float checkpoints with real logical restore, recognized legacy evidence catalog and schema handoff, explicit reviewed two-image snapshot retirement without byte-exact page-image claims, stopped exact execution-file/pin handoff and historical-path restoration through prior per-file archives, explicit historical checkout roots and refusal of unsafe paths before expansion, pending-draft review cache eviction/lazy restore, and exclusive existing two-slot admitted-prefix reuse through child lifetime. Synthetic Git/SQLite/filesystem/lease controls and a completed rendering-watchdog batch storage migration only. Source checkouts and unique fixture inputs retained. Unknown tables/schema, active/mutating/special/multiply-linked workspace members held prefix-return failures, and missing/corrupt replicas refuse retirement. No renderer behavior, original comparison, physical-driver validation, off-host durability or historical engine status renewal.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -158472,7 +158472,8 @@
         "tests/test-sqlite-snapshot-store.py",
         "tests/test-working-retention.py",
         "tests/test-rendering-pilot.py",
-        "tests/test-private-evidence-backup.py"
+        "tests/test-private-evidence-backup.py",
+        "tests/test-working-archive.py"
       ],
       "validation_dependencies": [
         "tools/experiment_environment.py",
@@ -158481,10 +158482,13 @@
         "tools/coverage_claims.py",
         "tools/coverage_audit.py",
         "tools/coverage_gate.py",
-        "run-native.sh"
+        "run-native.sh",
+        "tools/working_archive.py",
+        "tools/storage_catalog.py"
       ],
       "evidence": [
-        "ES01.shared-lifecycle"
+        "ES01.shared-lifecycle",
+        "ES01.layered-restore"
       ],
       "status": {
         "understanding": "scoped",
@@ -158494,8 +158498,10 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Current controls05 passes 205 cases across 13 suites with unchanged source fingerprints; the joined closeout fully verifies both independent replicas and a retained legacy reader. This is headless storage integration only. Historical live engine/launch evidence retains its original hashes and may be stale; no rendering acceptance dimension is promoted.",
-        "Existing historical batches beyond the explicitly migrated watchdog batch retain their old archives; no whole-repository deduplication or recovered disk-size claim."
+        "Original controls05 and the real two-drive custody proof remain historical for their original scope. The layered restore revision passes 223 source-stable cases in 14 suites, including the legacy archive implementation. This supports current scoped implementation/headless storage integration only; historical engine/launch evidence is not renewed and the broader working-data sweep remains operational custody work.",
+        "Existing historical batches beyond the explicitly migrated watchdog batch retain their old archives; no whole-repository deduplication or recovered disk-size claim.",
+        "The all-working inventory identifies legacy file-level archive layers. Restore must expand the sealed parent and continue the original catalog if the requested descendant is absent. Historical archive backends/catalogs and their exact transport hashes remain retained; whole-disk adoption is operational work, not engine validation.",
+        "ES01.shared-lifecycle retains the original five-change scope and hashes. Current layered-restoration execution is recorded separately; the wider custody rollout does not renew any engine validation."
       ]
     }
   ],
@@ -364503,6 +364509,25 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "ES01.layered-restore",
+      "kind": "native_integration",
+      "scope": "Fresh source-stable 223-case batch across 14 suites: original shared-store controls plus real composed per-file/workspace restore, explicit historical-root routing and unsafe-path refusal before expansion. Independent-filesystem custody remains covered by the shared-store suite and retained real-drive proof. No engine execution, rendering acceptance or whole-disk reclamation claim.",
+      "record": "research/runtime/evidence-object-results-20261101/layered-controls-01.json",
+      "sha256": "b092a111e7d0601ba770ab2c008a3e3f666bfbab95acc4ab87b5ff18f66a456f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -393685,7 +393710,7 @@
     },
     {
       "id": "SC.tooling.shared-evidence-lifecycle",
-      "scope": "Independent fixture filesystems test interrupted/corrupt replicas, old read compatibility, exact typed review records, unequal legacy snapshot refusal, full stopped workspace/pin restore and pending draft lazy reopen. Existing two-slot prefix state reset and launcher regressions. Actual completed watchdog batch import, logical snapshot retirement and file-level workspace handoff; storage only.",
+      "scope": "Independent fixture filesystems test interrupted/corrupt replicas, old read compatibility, exact typed review records, unequal legacy snapshot refusal, full stopped workspace/pin restore and pending draft lazy reopen. Existing two-slot prefix state reset and launcher regressions. Actual completed watchdog batch import, logical snapshot retirement and file-level workspace handoff; storage only. A current layered-restore control expands a sealed parent and restores an older catalogued descendant in one call, including an explicit historical checkout root and refusal of an unsafe path before expansion.",
       "level": "headless",
       "behaviors": [
         "TOOL.shared-evidence-lifecycle"
@@ -393703,10 +393728,12 @@
         "tests/test-sqlite-snapshot-store.py",
         "tests/test-working-retention.py",
         "tests/test-rendering-pilot.py",
-        "tests/test-private-evidence-backup.py"
+        "tests/test-private-evidence-backup.py",
+        "tests/test-working-archive.py"
       ],
       "evidence": [
-        "ES01.shared-lifecycle"
+        "ES01.shared-lifecycle",
+        "ES01.layered-restore"
       ]
     }
   ],
@@ -395525,7 +395552,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-859b6723e39e1d4ad11d0a9ecbdaaa5ecd41555c970ab8f782fca54a5544d139.json",
-    "sha256": "859b6723e39e1d4ad11d0a9ecbdaaa5ecd41555c970ab8f782fca54a5544d139"
+    "path": "research/runtime/coverage/source-index-7a8571cd771915f83764998ef6c115ce5b5c903e04dced3f5bdedacbb073ca5a.json",
+    "sha256": "7a8571cd771915f83764998ef6c115ce5b5c903e04dced3f5bdedacbb073ca5a"
   }
 }

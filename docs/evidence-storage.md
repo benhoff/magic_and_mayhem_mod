@@ -179,3 +179,34 @@ settings and preserved legacy fallback paths are recorded in
 [machine setup](../research/runtime/evidence-object-results-20261101/machine-setup-01.json).
 The checked-in source changes live on `codex/evidence-object-store-20261101`;
 the main checkout's pre-existing edits remain separate.
+
+## Existing file-level archives during the wider rollout
+
+Older runs can contain files already held by the previous per-file archive.
+`working-retention.py restore PATH` expands a sealed parent, then continues the
+original file-level restore if the requested descendant is still absent. It
+validates the working namespace before expanding anything. Select a historical
+checkout explicitly with `--root`; preserve its original catalog and select the
+original storage-tier policy with `--policy` when required. For example:
+
+```sh
+python3 tools/working-retention.py --root /historical/checkout \
+  --policy /preserved/original-policy.json restore working/tests/group/run-id/input.bin
+```
+
+The 2026-11-01 sweep inventories all 206 present checkout working directories and
+1,009 physical SQLite files. Its immutable inventory and run plan are retained in
+the shared SQLite catalog under `project_working_inventory` and
+`working_run_handoff_plan`. The plan separates 5,873 named runs: 2,714 need detailed
+handoff review; 3,159 are held by role/size/newest-run rules. It also holds 1,796
+unclassified groups for role review. These are review classifications, not
+reclaimed-space claims. Active/canonical Wine prefixes, held leases, current
+source-literal inputs, recent regular files/directories, source checkouts and
+unsupported members stay held. Every actual handoff still requires a complete
+file manifest, two verified stores, a real restore and immediate source checks.
+
+The legacy catalog expands to 5.75 GB, so the sweep caches a checksum-bound
+per-run membership flag rather than copying millions of file records into a
+second cache. Failed preflight/index attempts are retained as negative custody
+evidence; they removed no run data. Source checkout aliases and prior archive
+backend aliases remain protected. No engine claim is renewed by this rollout.

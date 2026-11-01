@@ -200,6 +200,53 @@ class Storage(unittest.TestCase):
                         retention.guarded_run(['capture'], self.root, self.rules)
             kill.assert_any_call(child.pid, retention.signal.SIGTERM)
 
+    def layered_fixture(self):
+        import sys
+        sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
+        from working_archive import Archive
+        from evidence_objects import Pair
+        from evidence_workspace import seal
+        case=self.make('working/tests/layered/run-frozen')
+        legacy=case/'historical.bin';body=b'original archived witness'*8192
+        legacy.write_bytes(body)
+        destination=self.root/'archive';destination.mkdir()
+        Archive(self.root,destination,minimum_free_gib=0).store(legacy,prune=True)
+        primary=self.root/'working/objects/primary.sqlite3'
+        replica=self.root/'working/replica/replica.sqlite3'
+        # This control tests restoration routing. Independent-filesystem refusal
+        # and real-drive custody are covered separately by the storage controls.
+        def pair(_):return Pair(primary,replica,require_independent=False)
+        with pair(self.root) as storage:seal(self.root,case,storage,retire=True)
+        policy=self.root/'restore-policy.json'
+        policy.write_text(json.dumps(dict(self.rules,minimum_free_gib=0,archive_root=str(destination))))
+        return legacy,body,policy,pair
+
+    def test_restore_expands_workspace_then_restores_older_file_archive(self):
+        legacy,body,policy,pair=self.layered_fixture()
+        with patch.object(retention,'ROOT',self.root), \
+                patch.object(retention.sys,'argv',['working-retention.py','--policy',str(policy),'restore',str(legacy.relative_to(self.root))]), \
+                patch('evidence_objects.configured',side_effect=pair):
+            self.assertEqual(retention.main(),0)
+        self.assertEqual(legacy.read_bytes(),body)
+        self.assertEqual((legacy.parent/'payload').read_bytes(),b'x'*4096)
+
+    def test_explicit_checkout_root_restores_historical_layers(self):
+        legacy,body,policy,pair=self.layered_fixture()
+        with patch.object(retention.sys,'argv',['working-retention.py','--root',str(self.root),'--policy',str(policy),'restore',str(legacy)]), \
+                patch('evidence_objects.configured',side_effect=pair):
+            self.assertEqual(retention.main(),0)
+        self.assertEqual(legacy.read_bytes(),body)
+
+    def test_restore_refuses_outside_working_before_expanding_a_stub(self):
+        legacy,body,policy,pair=self.layered_fixture()
+        with patch.object(retention,'ROOT',self.root), \
+                patch.object(retention.sys,'argv',['working-retention.py','--policy',str(policy),'restore','working/tests/layered/run-frozen/../../../../original/input']), \
+                patch('evidence_objects.configured',side_effect=pair) as access:
+            with self.assertRaises(SystemExit) as stopped:retention.main()
+            self.assertEqual(stopped.exception.code,1)
+            access.assert_not_called()
+        self.assertTrue((legacy.parent/'.evidence-workspace').is_file())
+
     def test_healthy_command_preserves_exit_status(self):
         self.make('working')
         with patch.object(retention.shutil, 'disk_usage', return_value=SimpleNamespace(free=100 * retention.GIB)), \

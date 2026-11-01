@@ -24861,3 +24861,23 @@ rendering acceptance artifacts and storage proofs are inherited within their
 recorded scopes; historical staleness is retained. No new engine execution,
 requirement completion or replacement is asserted. Pre-existing main-checkout
 metadata edits and untracked reports are preserved separately and remain pending.
+
+## Working-data rollout and layered restoration — 2026-11-01
+
+The wider storage review found 206 working-directory views and 5,873 named runs;
+classification alone grants no deletion or rendering credit. Prior per-file
+archives can sit beneath a new whole-workspace restore. The restore route now
+validates the working path first, selects a historical checkout explicitly,
+expands its sealed parent and continues the original file-level archive when
+needed. Synthetic byte-exact layered restoration and refusal controls cover
+this storage route; old archive/catalog hashes and engine evidence remain
+independent. Current data-transfer results and held reasons remain in the
+mirrored SQLite custody catalog, including failed preflight attempts.
+
+[Layered controls](evidence-object-results-20261101/layered-controls-01.json)
+pass 223 cases in 14 suites with unchanged complete source fingerprints and
+prospective current scope/scenario claims. The
+[rollout survey](evidence-object-results-20261101/rollout-survey-01.json) retains
+the all-working inventory, explicit extra-checkout removal, master integration
+and the first ten legacy-dependent runs held before deletion. No 730 GiB
+reclamation or whole-renderer completion is asserted by the candidate count.
