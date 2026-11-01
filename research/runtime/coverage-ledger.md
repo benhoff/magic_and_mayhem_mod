@@ -1,3 +1,18 @@
+## Retained operations and destination-history residuals — 2026-11-01
+
+[Operations/history review](rendering-operations-history-20261101.md) rechecks the
+complete retained 1,370-call/1,345-COPY clipped acquisition with current readers,
+classifies two earlier failed cursor fast copies by their exact invalid source
+or target rectangle/reason/HRESULT, and reproduces all eight retained one-pixel
+late-history differences. The selected distortion offset locates the required
+source at `(563,433)`, whose entry value is6338; earlier writer, full prefix and
+current required reachability remain open. Fifteen negative controls pass.
+This is fresh offline tooling execution. Historical engine hashes remain exact;
+no current game/native raster execution, acceptance leaf or engine status is
+promoted. The handoff covers36 EP06 operation/configuration obligations and
+separates six EP09 fault obligations, with targeted capture requirements for the
+campaign/watchdog lanes.
+
 ## Native adapter merge with completed master work (2026-10-27)
 
 [Integration evidence](native-adapter-master-20261027.md) combines adapter fixes

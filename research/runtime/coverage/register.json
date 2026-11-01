@@ -20747,7 +20747,8 @@
         "research/runtime/native-world-canvas-history.md",
         "research/formats/world-history-v1.md",
         "renderer/README.md",
-        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json",
+        "research/runtime/rendering-operations-history-20261101.md"
       ],
       "implementation": [
         "renderer/scenes/scene_history.hpp",
@@ -20780,7 +20781,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "2026-11-01 all eight retained late frames still differ at548,433. Selected owned distortion offset15 locates required history source563,433 with frame-entry6338; prior writer, prefix survival, coverage and current-player required reachability remain unproved."
+      ]
     },
     {
       "id": "NR.world-shadow-refusal",
@@ -147641,7 +147645,8 @@
         "research/runtime/native-copy-output-closure-20261025.md",
         "research/formats/native-copy-routes-v2.md",
         "research/runtime/cpu-copy-clipping-20261026.md",
-        "research/runtime/cpu-copy-master-integration-20261026.md"
+        "research/runtime/cpu-copy-master-integration-20261026.md",
+        "research/runtime/rendering-operations-history-20261101.md"
       ],
       "implementation": [
         "renderer/command_copy_diagnostics.cpp",
@@ -147713,7 +147718,8 @@
         "Final48Python controls/replay02 pass. Empty CPU command intervals remain refused by whole-output closure because CPU rows lack an independent expected-piece count;empty clipping is only supplied rendering-control proof. Current live sample has zero such intervals and retains full COPY closure. Native compiled code is unchanged;two Python diagnostic files have separate fresh controls/replay and exact preserved preimages.",
         "Merged with master8c0c4ea4: fresh combined Python/Qt controls and current builds are separate from prior GPU/native and original-game executions. Parent execution fingerprints remain immutable; new live combined-tree observation and original-driver comparison remain pending. See research/runtime/cpu-copy-master-integration-20261026.md.",
         "Current master8a6fcd1a lighting/default history is preserved in final integration. Controls01-04 have zero complete declared-source/claim drift on this combined tree; this read-only continuity is not a new execution. All natural-branch, driver and broader ownership limitations remain separate.",
-        "PLAYERMERGE27 storage01 retains two NS_RECT cursor requests at (640,512)-(680,552) against 640x480 surfaces. All 4188 emitted COPY outputs match, but strict whole-application closure remains false. No prior positive evidence is refreshed and no geometric admission is relaxed."
+        "PLAYERMERGE27 storage01 retains two NS_RECT cursor requests at (640,512)-(680,552) against 640x480 surfaces. All 4188 emitted COPY outputs match, but strict whole-application closure remains false. No prior positive evidence is refreshed and no geometric admission is relaxed.",
+        "2026-11-01 retained-operation review rechecks CPUCLIP1370calls/1345COPY outputs with current readers and explains two older cursor failures as invalid fast rectangles. Changed engine inputs and current caller coordinate/original-driver policy remain pending; no old source hashes or engine statuses are renewed."
       ]
     },
     {
@@ -158511,6 +158517,52 @@
         "ES01.shared-lifecycle retains the original five-change scope and hashes. Current layered-restoration execution is recorded separately; the wider custody rollout does not renew any engine validation.",
         "2026-11-01: Bounded compression/queue controls and a fresh-store benchmark are being recorded separately. Any workload speedup is scoped to the measured inputs; no whole-sweep rate or engine milestone is inferred.",
         "2026-11-01: 235 cases pass in 15 source-stable suites for the bounded block/file pipeline. The retained benchmark measures about 2.7x on one fresh-store roughly 500 MiB workload, not a whole-sweep rate. Earlier source-drift control output remains negative historical evidence. Engine statuses and original evidence hashes are unchanged."
+      ]
+    },
+    {
+      "id": "TOOL.rendering-operations-history-review",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Retained operations and destination-history residual review",
+      "scope": "Offline bounded review of hash-pinned historical cursor COPY refusals, complete clipped COPY caller/pixel bindings and eight retained negative late-history planes. Exact rectangle/reason/HRESULT agreement and selected effective distortion source coordinate; source-applicability inventory and residual capture handoff. Fresh reader/control execution only; no fresh game/native raster execution, original-driver return parity, earlier writer/footprint proof, operation/configuration acceptance or engine milestone promotion.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-operations-history-20261101.md"
+      ],
+      "implementation": [
+        "tools/rendering_operations_history.py",
+        "tools/review-rendering-operations-history.py"
+      ],
+      "tests": [
+        "tests/test-rendering-operations-history.py"
+      ],
+      "validation_dependencies": [
+        "tools/native_copy_routes.py",
+        "tools/native_copy_output.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/natural_gpu_copy_branches.py",
+        "tools/published_copy_routes.py",
+        "tools/native_cursor_journal.py",
+        "tools/coverage_claims.py",
+        "runtime/render/lock_surfaces.h",
+        "compat/legacy/world_frame.cpp",
+        "renderer/blit.cpp"
+      ],
+      "evidence": [
+        "OPH01.offline-review"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current-player coordinate provenance and original-driver return policy for selected invalid fast-copy callers remain pending.",
+        "Selected history dependency identifies source563,433 with entry value6338; full prior writer/prefix, source survival, sprite footprint and current required reachability remain unproved.",
+        "All18 EP06 operations remain pending acceptance in both required configurations; this offline review does not admit acceptance receipts or renew changed engine execution."
       ]
     }
   ],
@@ -364556,6 +364608,45 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "OPH01.offline-review",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-operations-history-results-20261101/offline-review02.json",
+      "sha256": "032b878d97db4cded8cffb6f6f31ffb3e764a99d3ee7aa6db7364b7dac75ec56",
+      "scope": "Offline bounded review of hash-pinned historical cursor COPY refusals, complete clipped COPY caller/pixel bindings and eight retained negative late-history planes. Exact rectangle/reason/HRESULT agreement and selected effective distortion source coordinate; source-applicability inventory and residual capture handoff. Fresh reader/control execution only; no fresh game/native raster execution, original-driver return parity, earlier writer/footprint proof, operation/configuration acceptance or engine milestone promotion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor/invalid_rectangle_refusals_established",
+          "equals": true
+        },
+        {
+          "pointer": "/cpu_copy/all_application_output_closed",
+          "equals": true
+        },
+        {
+          "pointer": "/cpu_copy/historical_analysis_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/history/all_eight_reproduce_one_pixel",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -393765,6 +393856,20 @@
         "ES01.layered-restore",
         "ES01.sweep-throughput"
       ]
+    },
+    {
+      "id": "SC.tooling.rendering-operations-history",
+      "scope": "Headless strict retained archive selection, negative integrity/geometry/history controls, current reader execution over1370call/1345COPY acquisition, cursor invalid-rectangle diagnosis and full retained eight-plane comparison. No renderer/game execution or acceptance.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.rendering-operations-history-review"
+      ],
+      "tests": [
+        "tests/test-rendering-operations-history.py"
+      ],
+      "evidence": [
+        "OPH01.offline-review"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -395582,7 +395687,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-b6805b3f28f9bc54923f43f4ba93907599b1222dafd9ce0e2ca7e56f0eb8774a.json",
-    "sha256": "b6805b3f28f9bc54923f43f4ba93907599b1222dafd9ce0e2ca7e56f0eb8774a"
+    "path": "research/runtime/coverage/source-index-b8657a58c66d76761c6dd47a6dffa03b881db6c045fb53b412799a08ae4191ba.json",
+    "sha256": "b8657a58c66d76761c6dd47a6dffa03b881db6c045fb53b412799a08ae4191ba"
   }
 }
