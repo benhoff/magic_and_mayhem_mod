@@ -1,5 +1,13 @@
 # Native rendering acceptance record
 
+The [2026-11-01 EP06 frontier](../research/runtime/rendering-ep06-20261101.md)
+now binds all 36 operation/configuration obligations to reviewed evidence and
+specific next proofs. It adds no whole-operation acceptance: nominal storage
+failed at the return-to-Main command boundary and the software attempt failed
+before player launch. Individual checked COPY calls and three matching-source
+component leads remain reusable at their stated scope. Existing EP04 leaves
+below retain their historical source phase; neither final verdict advances.
+
 The [EP04 continuation](../research/runtime/rendering-normal-acceptance-20261031.md)
 now records six passed default-player requirements and 150 pending obligations
 (72 default, 78 software). All 1,410 recorded World swaps in the selected Quick,

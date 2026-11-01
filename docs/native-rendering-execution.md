@@ -20,7 +20,16 @@ not been measured, so it is not a mathematically proven time-optimal schedule.
 
 ## Start here
 
-**The next task is EP01: lock execution inputs and evidence applicability.**
+**Current EP06 checkpoint (2026-11-01):** use the
+[reviewed operation frontier](../research/runtime/rendering-ep06-20261101.md).
+It reconciles all 36 operation/configuration obligations and 17 evidence leads;
+three component leads retain matching sources. The new nominal storage run
+exposed a Save/Load-to-Main command-consumption stall. Diagnose that exact boundary
+before further broad captures, then reuse the repaired nominal default/software
+sessions for the missing operation facets. No whole operation or final decision
+was promoted. The EP01 opening instructions below retain their original phase.
+
+**Original EP01 opening task: lock execution inputs and evidence applicability.**
 Freeze the actual assembled source/compiler/binary closure, original/assets/save
 identities and the two target configurations. Select concrete pilot inputs and
 build a requirement/configuration applicability table from the 28 evidence leads.

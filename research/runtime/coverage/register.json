@@ -158219,7 +158219,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native-lighting normal journey acceptance and actual fullscreen extent",
-      "scope": "Bounded default public native-lighting Quick Battle and campaign storage sessions on Xvfb/llvmpipe at Integer sharp, including actual-screen F9 presentation, two display rebuilds, original Save/Mini Load/Main Load, edited-preference Cancel, independent complete presented viewport/history and normal resource retirement. Requirement admission is restricted to individually checked default leaves; software, broader scene/input/media/provider/fault scope and original recovery remain pending.",
+      "scope": "Bounded default public native-lighting Quick Battle and campaign storage sessions on Xvfb/llvmpipe at Integer sharp, including actual-screen F9 presentation, two display rebuilds, original Save/Mini Load/Main Load, edited-preference Cancel, independent complete presented viewport/history and normal resource retirement. Requirement admission is restricted to individually checked default leaves; software, broader scene/input/media/provider/fault scope and original recovery remain pending. The shared strict receipt-admission API also supports explicitly selected player-software for EP06, requiring its actual Mesa software renderer. Existing EP04 progress remains default-only; no complete software-player acceptance follows.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -158316,7 +158316,9 @@
         "DD01 closes the OPP01 high-resolution pixel-failure interpretation: its13659differences came from the original-reference phase reconstruction, not native rendering. The complete retained high/low captures now have zero differences. Historical source563,433 writer/definedness, other engine validation and nominal acceptance remain separate.",
         "DD01 supersedes the interpretation of OPP01 high03 as a native rendering defect: the newer original oracle replayed a clip-adjusted distortion table with an incorrect phase. Restore skip-1, as in the older reference. Fresh independent high/low histories now match all378641280retained pixels, with no native engine/capture source changes. Historical reports/hashes remain unchanged; original source-writer provenance and nominal player acceptance remain separate.",
         "RW03.G.intro-main-transition remains unresolved: diagnostic sampler-full-intro-01 reached Main action1 but no World, with a menu transition/lease timeout and only52 ms maximum V3 pending time. It is separate negative evidence from the historical five-second command watchdog; see rendering-watchdog-20261101.md. No source/acceptance renewal follows from a later pass.",
-        "Sampler full-intro02 completed normal Quit but its strict comparator found only the second original Right press/release pair: the first nominal450ms held window has no retained original poll receipt. The opt-in driver now waits for existing actual-original receipts with a separate3s bound; current diagnostic intro03 observes all four original transitions and independently matching output; this does not renew whole nominal requirements. Comparator/input hook/producer deadlines are unchanged."
+        "Sampler full-intro02 completed normal Quit but its strict comparator found only the second original Right press/release pair: the first nominal450ms held window has no retained original poll receipt. The opt-in driver now waits for existing actual-original receipts with a separate3s bound; current diagnostic intro03 observes all four original transitions and independently matching output; this does not renew whole nominal requirements. Comparator/input hook/producer deadlines are unchanged.",
+        "EP06 shared admission validates explicitly requested software profile/provider while existing nominal/default progress and all broader acceptance requirements keep their prior independent scopes.",
+        "EP06.G.storage-main-command-stall: new nominal default storage01 cancelled at return toward Main after Save/Mini Load, before display rebuild/Main Load/normal Quit;848 completed GPU calls do not close two missing outputs, END, history or lifetime. Software preparation failed before launch. See rendering-ep06-20261101.md; historical RN31/RW03 failures remain unresolved."
       ],
       "validation_dependencies": [
         "docs/native-rendering-closure.json",
@@ -159068,6 +159070,90 @@
         "The3s admission deadline is checked after bounded-size receipt reads and cannot preempt arbitrary OS I/O. Missing or malformed receipts refuse without input retry, producer deadline renewal or ownership changes.",
         "Historical RN31.G.first-world-watchdog and separate RW03.G.intro-main-transition remain unresolved; no nominal acceptance or arbitrary timing/provider claim.",
         "Explicit drawing-only cursor diagnostics retain their existing timed pulse/cursor schedule; they never gain strict original-input admission from this policy."
+      ]
+    },
+    {
+      "id": "NP.rendering-operation-census",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Nominal normal-route operation observation",
+      "scope": "Enable existing all-COPY caller/output observation on otherwise unchanged normal Quick/storage actions with enabled intros. No cursor exercise, injected fault, parent sampling, lease renewal or drawing/admission change. Reject diagnostic/skip-intro/non-normal combinations before launch. Exact source-bound nominal comparison and separate operation facets remain required; census presence alone passes no operation.",
+      "original": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/rendering-ep06-20261101.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-acceptance-pilot.py"
+      ],
+      "tests": [
+        "tests/test-ep06-census-policy.py",
+        "tests/test-native-copy-routes.py",
+        "tests/test-native-copy-output.py"
+      ],
+      "validation_dependencies": [
+        "runtime/render/copy_route_census.h",
+        "protocols/include/mnm/native_copy_routes_v2.h",
+        "tools/native_copy_routes.py",
+        "tools/native_copy_output.py",
+        "tools/natural_gpu_copy_branches.py"
+      ],
+      "evidence": [
+        "EP06.frontier01"
+      ],
+      "remaining_gaps": [
+        "Current nominal default storage reached Cancel/Save/Mini Load but stalled returning toward Main.848 original GPU calls have checked output; two lack it and END is absent. No whole-operation or session acceptance.",
+        "Explicit software execution remains pending after a pre-launch EAGAIN resource failure. Required natural keyed/self/clipped GPU branches were not observed; no absence or scope exclusion is inferred."
+      ]
+    },
+    {
+      "id": "TOOL.rendering-ep06-reconciliation",
+      "kind": "native_policy",
+      "subsystem": "tooling",
+      "title": "Requirement-scoped EP06 reconciliation",
+      "scope": "Unchanged18 EP06 operations in both required configurations,36obligations, separate from3EP09operations/6fault obligations. Join exact current nominal collector/comparison and operation/caller/provider/output/flags/lifetime facets; preserve historical component leads, diagnostic limitations, source drift and required unknowns. Partial facets and absent natural callers cannot pass a complete operation or either final decision.",
+      "original": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/rendering-ep06-20261101.md"
+      ],
+      "implementation": [
+        "tools/rendering_ep06.py",
+        "tools/reconcile-rendering-ep06.py"
+      ],
+      "tests": [
+        "tests/test-rendering-ep06.py"
+      ],
+      "validation_dependencies": [
+        "docs/native-rendering-closure.json",
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_acceptance.py",
+        "tools/native_copy_routes.py",
+        "tools/native_copy_output.py",
+        "tools/natural_gpu_copy_branches.py",
+        "tools/resident_capture.py",
+        "tools/rendering_pilot.py"
+      ],
+      "evidence": [
+        "EP06.frontier01"
+      ],
+      "remaining_gaps": [
+        "All36 whole-operation obligations remain pending; the frontier retains exact missing proofs. Three of17 component leads retain matching recorded sources;14 have source drift. Static reuse and individual completed calls do not establish required scene/caller/lifetime or ABI adequacy.",
+        "EP06.G.storage-main-command-stall: current nominal storage stopped after Mini Load at return toward Main, before rebuild/Main Load/normal Quit. The ring retained1,010,864 unread bytes including CPU_READ; cause remains unproved. Software preparation failed before launch with EAGAIN; no actual software provider observation."
       ]
     }
   ],
@@ -365721,6 +365807,41 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "EP06.frontier01",
+      "kind": "native_integration",
+      "scope": "Verified 36-row EP06 frontier and 47 admission/route/output controls, exact current/historical candidate applicability, retained failed nominal storage individual COPY intervals and pre-launch software preparation failure. Zero whole operation, nominal journey, original recovery or failure retirement credit.",
+      "record": "research/runtime/rendering-ep06-results-20261101/frontier-reviewed06.json",
+      "sha256": "9f5e76b37344982aeeab19f8637aecae4874e7f7185c53de5604be3a767ad255",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/ep06_obligations",
+          "equals": 36
+        },
+        {
+          "pointer": "/whole_operations_accepted",
+          "equals": 0
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/original_recovery_accepted",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -395037,6 +395158,25 @@
         "tests/acceptance-input-ack-test.cpp",
         "tools/test-acceptance-input-ack.py"
       ]
+    },
+    {
+      "id": "SC.rendering-ep06-frontier",
+      "level": "headless",
+      "scope": "Source-bound 36-row operation frontier, candidate applicability, nominal/configuration and physical-input admission controls; retained individual COPY proof from failed nominal storage and separate pre-launch software refusal. No whole-operation, required-scene, player, recovery or failure-retirement acceptance.",
+      "behaviors": [
+        "TOOL.rendering-ep06-reconciliation",
+        "NP.rendering-operation-census"
+      ],
+      "tests": [
+        "tests/test-rendering-ep06.py",
+        "tests/test-ep06-census-policy.py",
+        "tests/test-rendering-normal-acceptance.py",
+        "tests/test-native-copy-routes.py",
+        "tests/test-native-copy-output.py"
+      ],
+      "evidence": [
+        "EP06.frontier01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -396854,7 +396994,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-f7feb762f6f78c3d77763809cf830f537b9d79e598e81e2b5c784a1a7f1d6138.json",
-    "sha256": "f7feb762f6f78c3d77763809cf830f537b9d79e598e81e2b5c784a1a7f1d6138"
+    "path": "research/runtime/coverage/source-index-091fb542a0739cced993a4fcad881a9835ed3e4cf2e074382218bc15cd874d9c.json",
+    "sha256": "091fb542a0739cced993a4fcad881a9835ed3e4cf2e074382218bc15cd874d9c"
   }
 }

@@ -90,7 +90,8 @@ def reviewed_driver_sources(reader,reference,acquisition_reference,acquired,fact
     sources.update(review['sources'])
     return sources
 
-def admit(reader,pair):
+def admit(reader,pair,configuration='player-default'):
+    require(configuration in ('player-default','player-software'),'Unknown target configuration')
     require(set(pair)=={'acquisition','comparison'},'A scoped execution needs both collectors')
     a,c=[receipt(reader,pair[k]) for k in ('acquisition','comparison')]
     require(a['kind']=='public_native_normal_acquisition' and c['kind']=='public_native_normal_comparison' and c['acquisition']==pair['acquisition'],'Mixed EP04 collectors')
@@ -98,11 +99,13 @@ def admit(reader,pair):
     require(all(v['success'] is True and not v.get('error') and v['sources_stable'] is True and v['original_manifest_verified_before_after'] is True and v['original_pixels_used_as_native_inputs'] is False for v in (a,c)),'Incomplete execution or comparison')
     cfg=a['configuration']
     require(cfg.get('diagnostic_only',False) is False and 'injected_fault' not in cfg,'Diagnostic execution is ineligible for nominal acceptance')
-    require(cfg['software_flag'] is False and cfg['skip_intros'] is False and cfg['terrain_lighting']=='native' and cfg.get('source_chunks') is True and cfg['native_lighting_capture'] is False and cfg['viewport_scaling']=='integer-sharp','Execution differs from the default target')
+    require(cfg['software_flag'] is (configuration=='player-software') and cfg['skip_intros'] is False and cfg['terrain_lighting']=='native' and cfg.get('source_chunks') is True and cfg['native_lighting_capture'] is False and cfg['viewport_scaling']=='integer-sharp','Execution differs from the requested target')
     require(a['exit_code']==0 and a['private_wine_stopped'] is True and a['retirement']['state']=='completed' and a['retirement']['forwarded']==0,'Normal original exit or strict ownership missing')
     retired=a['retirement']['graphics_retirement']
     require(retired['process_exit'] is True and retired['resources_released'] is True and not retired['surviving_owners'] and all(v==0 for v in retired['counts'].values()),'Surviving graphics owner')
     resident=a['resident']
+    if configuration=='player-software':
+        require(type(resident['renderer']) is str and resident['renderer'].lower().startswith(('llvmpipe','softpipe')),'Actual Mesa software provider is unproved')
     require(resident['normal_quit_retired'] is True and resident['pending'] is False and not resident['error'] and int(resident['source_copy_rect_refusals'])==0 and resident['renderer'],'World lifetime, provider or refused caller unresolved')
     require(resident.get('source_chunks_enabled') is True and resident.get('stage_profile',{}).get('capture_complete') is True and resident['stage_profile']['capture']['format']==3,'Incomplete current-protocol source history')
     require(c['lighting']['verified'] is True and c['original_menu_actions']['verified'] is True and c['asset_inputs_stable'] is True,'Missing actual lighting/actions/assets')

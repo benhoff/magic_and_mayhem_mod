@@ -10,7 +10,8 @@ def sha(path):
 def module(name):
  spec=importlib.util.spec_from_file_location(name,ROOT/'tools'/name);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--operation-census',action='store_true',help='Closed COPY observations on an otherwise unchanged nominal normal route');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');a=p.parse_args()
+ if a.operation_census and (a.scenario=='pilot' or a.operations_provenance or a.skip_intros or a.diagnostic_only or a.sample_stalls or a.stall_intro_host or a.stall_world_host):p.error('Operation census requires an unchanged nominal normal route with enabled intros')
  if a.operations_provenance:
   if a.scenario!='normal-quick':p.error('Operations provenance requires bounded normal-quick')
   a.diagnostic_only=True
@@ -72,6 +73,9 @@ def main():
  if a.operations_provenance:
   env.update(MNM_NATIVE_COPY_DIAGNOSTICS=str(out/'copy-diagnostics'),MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE='all',MNM_CURSOR_COPY_STATE='1',MNM_CURSOR_COPY_EXERCISE='1')
   report['configuration']['operations_provenance']=dict(copy_scope='all',cursor_state_version=1,qt_cursor_exercise=True)
+ if a.operation_census:
+  env.update(MNM_NATIVE_COPY_DIAGNOSTICS=str(out/'copy-diagnostics'),MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE='all')
+  report['configuration']['operation_census']=dict(copy_scope='all',coordinate_exercise=False,changes_actions=False,changes_admission=False)
  if a.sample_stalls:
   env.update(MNM_ACCEPTANCE_DIAGNOSTIC='1',MNM_ACCEPTANCE_SAMPLE_STALLS='1',MNM_ACCEPTANCE_STALL_SAMPLER_DIR=str(out/'sampler'))
   report['configuration']['parent_debugger_stall_sampling']=dict(threshold_seconds=1.5,max_stack_samples=1,deadline_or_ownership_changed=False)

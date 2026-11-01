@@ -25093,3 +25093,29 @@ implementation/live observation. Historical RN31.G.first-world-watchdog and
 RW03.G.intro-main-transition remain unresolved; no nominal player requirement,
 complete original recovery, movie/audio content, physical scanout or replacement
 milestone is promoted.
+
+## EP06 operation frontier and nominal storage failure — 2026-11-01
+
+The [reviewed frontier](rendering-ep06-20261101.md) reconciles all 18 EP06
+operations in both configurations (36 obligations), preserving all 156 acceptance
+rows, both EP06 gate rows and the separate six EP09 fault-operation obligations.
+All 17 candidate payloads/assertions are verified: three retain matching recorded
+sources; 14 remain historical for changed sources. The new normal-route observer
+does not exercise extra actions or weaken nominal admission. Explicit software
+admission also verifies the actual Mesa provider; EP04 progress stays default-only.
+
+Nominal default storage01 reached Preferences Cancel, Save and Mini Load, then
+failed before Main/rebuild/normal Quit with a resident cancellation and command
+watchdog. The retained ring has 1,010,864 unread bytes, including CPU_READ. Of850
+actual original GPU COPY calls,848 bind complete independently checked command
+intervals and two lack output. All3,951 checked COPY destinations match; this
+incomplete session receives no acceptance credit. Software quick01 failed during
+resource acquisition before launch and proves no renderer result. All original
+manifest and source/binary stability checks passed; negative evidence is retained.
+
+EP06.G.storage-main-command-stall is a new current boundary. The post-click
+5,023ms grab is an unconfirmed lead; collect the GUI stack and ring before timeout
+and repair the actual cause before repeating nominal storage in both targets.
+The historical first-World and intro/Main failures remain unresolved. The new
+reconciliation and its47 focused controls close no whole operation, original
+recovery, replacement, lifecycle or broad player milestone.

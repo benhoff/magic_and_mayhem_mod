@@ -27,6 +27,17 @@ class Reader:
         pair['acquisition']['sha256']=self.digest(a);self.data[c]['acquisition']=copy.deepcopy(pair['acquisition']);pair['comparison']['sha256']=self.digest(c)
 
 class AdmissionTests(unittest.TestCase):
+    def test_software_requires_explicit_target_flag_and_actual_mesa_provider(self):
+        reader=Reader();pair=reader.pair('normal-quick');a=reader.data[pair['acquisition']['record']]
+        with self.assertRaises(ValueError):admit(reader,pair,configuration='player-software')
+        a['configuration']['software_flag']=True;a['resident']['renderer']='llvmpipe (controlled provider)';reader.refresh(pair)
+        self.assertEqual(admit(reader,pair,configuration='player-software')['provider'],a['resident']['renderer'])
+        with self.assertRaises(ValueError):admit(reader,pair)
+        for provider in ['NVIDIA', '', False, 'synthetic software flag only']:
+            a['resident']['renderer']=provider;reader.refresh(pair)
+            with self.subTest(provider=provider),self.assertRaises(ValueError):admit(reader,pair,configuration='player-software')
+        with self.assertRaises(ValueError):admit(reader,pair,configuration='unreviewed-provider')
+
     def test_success_flag_cannot_override_a_recorded_collector_error(self):
         for key in ['acquisition','comparison']:
             reader=Reader();pair=reader.pair('normal-quick')
