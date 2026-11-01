@@ -12348,7 +12348,7 @@ retains1424owned sources/654457216bytes,55complete advancing updates and194API/
 analysis04](draw02-source-worker-egl-campaign-analysis-04.json) binds every observed
 source/worker and retained physical witness, matching193copy regions and193
 whole images/92640000RGBpixels. Final Quick Battle and campaign references
-therefore match649whole images/311520000RGBpixels. Whole-image agreement outside
+therefore match 649whole images/311520000RGBpixels. Whole-image agreement outside
 a partial copy region is visual corroboration, not attribution of those pixels
 to that command. One stable final EGL context per run has no physical witness
 after explicit capture close and remains recorded separately.
@@ -24961,3 +24961,37 @@ receipts from both parents are retained. The worker regression and full-intro
 comparison remain inherited observations within their original scope. This
 merge adds no engine execution and does not resolve the historical five-second
 watchdog. Main-checkout pending edits remain separately retained and uncommitted.
+
+## Diagnostic parent sampling and observed acceptance input — 2026-11-01
+
+[RW03.sampler04](rendering-watchdog-results-20261101/sampler-joined-04.json) binds
+only NP.rendering-stall-sampler and NP.acceptance-input-receipt-wait. The real
+unchanged ELF is a parent-GDB child; a single generation is selected through its
+public admission journal, stable outstanding V3 bytes trigger one stack at 1.5s,
+and current fault03 samples the injected GUI sleep before the unchanged 5,000ms
+refusal. Ten sampler controls plus existing admission/build/ring guards pass.
+
+Strict comparison of baseline intro02 found no first original input receipt.
+The acceptance-only driver now holds one Qt publication until the original poll
+is observed, then waits for release before later actions, with a 3s admission
+bound and no retry or producer-lease renewal. Optimized/sanitized delayed-peer,
+identity/partial/stale and missing-peer controls pass. Current intro03 observes
+all four original transitions and normal Quit; 92 swaps match 64 independent
+original/history Worlds and 147,273,180 pixels, with zero mismatches. Both movies
+complete 1,777/1,004 video frames without producer cancellation. Integration is
+scoped diagnostic observation; original comparison/replacement dimensions and
+all nominal acceptance leaves remain unpromoted.
+
+RN31.G.first-world-watchdog remains unresolved. Distinct traced intro01 Main/Quick
+transition failure RW03.G.intro-main-transition also remains unresolved: its V3
+pending peak was 52ms and no World began. Later passes do not retire either.
+The failed optional observer provides no usable timeline; failures, source
+preimages and provenance are retained. Older whole-source player/equivalence
+claims remain historical/pending after shared collector/driver changes. See
+[the investigation](rendering-watchdog-20261101.md).
+
+The [current generated summary](coverage/summary-watchdog-sampler-20261101.md)
+and [artifact/audit review](rendering-watchdog-results-20261101/sampler-artifact-review-01.json)
+record zero audit errors and current implementation/diagnostic integration support
+for these two policies only. Historical staleness and unknown recovered ranges
+remain explicit; local staged checks still execute independently.

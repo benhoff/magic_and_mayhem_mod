@@ -10,13 +10,16 @@ def sha(path):
 def module(name):
  spec=importlib.util.spec_from_file_location(name,ROOT/'tools'/name);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');a=p.parse_args()
  if a.stall_intro_host and a.stall_world_host:p.error('Choose one diagnostic host fault')
  if a.stall_world_host:
   if a.scenario!='normal-quick':p.error('World host fault requires normal-quick')
   a.diagnostic_only=True
  if a.stall_intro_host:
   if a.skip_intros or a.scenario!='normal-quick':p.error('Intro host fault requires normal-quick with enabled intros')
+  a.diagnostic_only=True
+ if a.sample_stalls:
+  if a.scenario!='normal-quick':p.error('Parent-debugger sampling requires normal-quick')
   a.diagnostic_only=True
  normal=a.scenario!='pilot';prefix='research/runtime/rendering-normal-results-20261031/' if normal else PREFIX
  if not a.report.startswith(prefix) or (ROOT/a.report).exists():p.error('New owned immutable report required')
@@ -43,6 +46,7 @@ def main():
  names=set(compiled)
  names.update(['run-native.sh','tools/run-native-game.py','tools/run-native-owned.py','tools/run-qt-shell.sh','tools/native_only_contract.py','tools/native_prefix_template.py','tools/experiment_environment.py','tools/directplay_dx6_launch.py','tools/working-retention.py','tools/run-rendering-acceptance-pilot.py','tools/test-native-campaign.py'])
  if normal:names.update(['tools/menu-storage-input.py','tools/campaign_storage.py'])
+ if a.sample_stalls:names.update(['tools/sample-rendering-stall.py','tools/rendering_stall_sampler.py'])
  sources={n:sha(ROOT/n) for n in sorted(names)}
  report=dict(schema=1,kind='public_native_watchdog_diagnostic_acquisition' if a.diagnostic_only else 'public_native_normal_acquisition' if normal else 'public_native_pilot_acquisition',success=False,player_accepted=False,scenario=a.scenario,
   sources=sources,source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),session_identity=secrets.token_hex(16),
@@ -62,6 +66,9 @@ def main():
   report['configuration']['source_chunks']=True
   report['configuration'].update(viewport_capture_stored_limit_bytes=1024**3,world_capture_retained_limit_bytes=2*1024**3)
   report['configuration']['configuration_home']=str(out/'config')
+ if a.sample_stalls:
+  env.update(MNM_ACCEPTANCE_DIAGNOSTIC='1',MNM_ACCEPTANCE_SAMPLE_STALLS='1',MNM_ACCEPTANCE_STALL_SAMPLER_DIR=str(out/'sampler'))
+  report['configuration']['parent_debugger_stall_sampling']=dict(threshold_seconds=1.5,max_stack_samples=1,deadline_or_ownership_changed=False)
  if a.trace_timing:
   env['MNM_RESIDENT_POLL_TIMING']='1'
   report['configuration']['bounded_host_timing_trace']=True
@@ -149,6 +156,17 @@ def main():
   report['success'] &= report['compiler_closure_stable'] and report['player_binary_stable']
   if a.storage_policy:
    report['storage_policy_stable']=sha(policy)==report['storage_policy']['sha256'];report['success'] &= report['storage_policy_stable']
+  if a.sample_stalls:
+   try:
+    sampled=json.loads((out/'sampler/result.json').read_text())
+    launch_log=(out/'public-launch.log').read_text(errors='replace')
+    requested=sampled.get('sample') is not None
+    stacks=launch_log.count('MNM_WATCHDOG_STACK_BEGIN')==launch_log.count('MNM_WATCHDOG_STACK_END')==int(requested)
+    binding=sampled['player_binary']['sha256']==binary_sha and sampled['player_binary']['path']==str(binary) and sampled['player_binary_stable'] is True
+    report['stall_sampler']=sampled
+    report['stall_sampler_valid']=stacks and binding and sampled.get('observation_error') is None and sampled['observations']>0
+    report['success'] &= report['stall_sampler_valid'] and sampled['success']
+   except Exception as e:report.update(success=False,stall_sampler_valid=False,stall_sampler_error=str(e))
   if a.stall_intro_host or a.stall_world_host:
    try:
     rows=[json.loads(line[len('NATIVE_HOST_FAULT '):]) for line in (out/'public-launch.log').read_text(errors='replace').splitlines() if line.startswith('NATIVE_HOST_FAULT ')]

@@ -158190,7 +158190,8 @@
         "Other normal journeys, campaign progression/results, required operation/caller residuals, full software pixel proof and fault/restart exits remain EP04..EP09.",
         "Integer sharp is demonstrated. Earlier Fit sharp startup mismatches are retained; every historical cause and current other-scaling equivalence remain unestablished.",
         "No whole CPU-producer, movie/audio-content, physical scanout, worker-owner, arbitrary map/seed or original-recovery claim. Seven player and eight original scope proof conditions remain.",
-        "RW02 isolates a current startup ACK pause to GUI-thread acceptance compression and repairs that stage with a bounded FIFO worker. Current full-intro/control evidence is scoped to NP.acceptance-capture-worker; the exact historical RN31.G.first-world-watchdog cause, CPU-history ordering and retirement remain unresolved. Other acceptance and fault/restart claims are not renewed by this change."
+        "RW02 isolates a current startup ACK pause to GUI-thread acceptance compression and repairs that stage with a bounded FIFO worker. Current full-intro/control evidence is scoped to NP.acceptance-capture-worker; the exact historical RN31.G.first-world-watchdog cause, CPU-history ordering and retirement remain unresolved. Other acceptance and fault/restart claims are not renewed by this change.",
+        "RW03 adds diagnostic sampling and receipt-driven Quick acceptance input, with strict current full-intro output/history agreement. Shared collector/driver source changes leave this older complete source domain pending; the new result binds only its named narrow policies and does not refresh historical hashes or nominal acceptance."
       ]
     },
     {
@@ -158285,7 +158286,9 @@
         "RAM execution was refused by unchanged output-isolation policy. Actual experiments use a physical second-NVMe worktree with an explicit100GiB reserve policy and an outer unchanged90GiB main-drive guard; only builds remain in RAM. Default tracked storage policy is unchanged. Setup refusals are retained separately from engine failures.",
         "RW01 diagnoses retained bytes, adds bounded host timing and explicit fault controls, and repairs pre-build dependency capture. Current nominal evidence is scoped to the selected Quick journey. Root cause/repair of the retained watchdog and full requirements remain pending; see rendering-watchdog-20261101.md.",
         "RW01.cold observes a final enabled-intro diagnostic with selected Mesa/cache flags verified in the actual Qt process. It completed with no command watchdog; this does not identify or eliminate historical host conditions and grants no cold-cache pixel equivalence or acceptance leaf.",
-        "RW02 isolates a current startup ACK pause to GUI-thread acceptance compression and repairs that stage with a bounded FIFO worker. Current full-intro/control evidence is scoped to NP.acceptance-capture-worker; the exact historical RN31.G.first-world-watchdog cause, CPU-history ordering and retirement remain unresolved. Other acceptance and fault/restart claims are not renewed by this change."
+        "RW02 isolates a current startup ACK pause to GUI-thread acceptance compression and repairs that stage with a bounded FIFO worker. Current full-intro/control evidence is scoped to NP.acceptance-capture-worker; the exact historical RN31.G.first-world-watchdog cause, CPU-history ordering and retirement remain unresolved. Other acceptance and fault/restart claims are not renewed by this change.",
+        "RW03.G.intro-main-transition remains unresolved: diagnostic sampler-full-intro-01 reached Main action1 but no World, with a menu transition/lease timeout and only52 ms maximum V3 pending time. It is separate negative evidence from the historical five-second command watchdog; see rendering-watchdog-20261101.md. No source/acceptance renewal follows from a later pass.",
+        "Sampler full-intro02 completed normal Quit but its strict comparator found only the second original Right press/release pair: the first nominal450ms held window has no retained original poll receipt. The opt-in driver now waits for existing actual-original receipts with a separate3s bound; current diagnostic intro03 observes all four original transitions and independently matching output; this does not renew whole nominal requirements. Comparator/input hook/producer deadlines are unchanged."
       ],
       "validation_dependencies": [
         "docs/native-rendering-closure.json",
@@ -158407,7 +158410,11 @@
         "run-native.sh",
         "apps/qt-shell/watchdog_host_fault.hpp",
         "tools/rendering_normal_acceptance.py",
-        "tools/test-native-campaign.py"
+        "tools/test-native-campaign.py",
+        "tools/rendering_stall_sampler.py",
+        "tools/sample-rendering-stall.py",
+        "tools/run-qt-shell.sh",
+        "tools/test-rendering-stall-sampler.py"
       ],
       "tests": [
         "tests/test-rendering-build-binding.py",
@@ -158416,7 +158423,8 @@
         "tests/test-rendering-pilot.py",
         "tests/viewport-presentation-test.cpp",
         "tests/gpu-presentation-test.cpp",
-        "tests/qt-input-test.cpp"
+        "tests/qt-input-test.cpp",
+        "tests/test-rendering-stall-sampler.py"
       ],
       "evidence": [
         "RW01.joined",
@@ -158434,7 +158442,9 @@
         "Media expiry alone was insufficient in the isolated intro fault. The finite nominal pass does not retire the historical failure or renew unrelated high/low storage, software, progression, operation or original-recovery claims.",
         "Timing output is capped at 256 rows per class at the recorded threshold; no callback attribution outside retained observations, physical driver, arbitrary duration or broad fault/restart acceptance is inferred.",
         "2026-11-01 acceptance acquisition now borrows an admitted pooled prefix and queues stopped execution storage handoff. Storage/prefix synthetic controls are separate; historical live watchdog observations retain their source hashes and are not current-wrapper engine validation.",
-        "RW02 isolates a current startup ACK pause to GUI-thread acceptance compression and repairs that stage with a bounded FIFO worker. Current full-intro/control evidence is scoped to NP.acceptance-capture-worker; the exact historical RN31.G.first-world-watchdog cause, CPU-history ordering and retirement remain unresolved. Other acceptance and fault/restart claims are not renewed by this change."
+        "RW02 isolates a current startup ACK pause to GUI-thread acceptance compression and repairs that stage with a bounded FIFO worker. Current full-intro/control evidence is scoped to NP.acceptance-capture-worker; the exact historical RN31.G.first-world-watchdog cause, CPU-history ordering and retirement remain unresolved. Other acceptance and fault/restart claims are not renewed by this change.",
+        "Parent-GDB sampling is diagnostic only. Current-source narrow sampler controls and a bound diagnostic observation are recorded under NP.rendering-stall-sampler/RW03.sampler04; no five-second historical root attribution, deadline renewal, nominal acceptance or original comparison is inferred.",
+        "RW03.G.intro-main-transition remains unresolved: diagnostic sampler-full-intro-01 reached Main action1 but no World, with a menu transition/lease timeout and only52 ms maximum V3 pending time. It is separate negative evidence from the historical five-second command watchdog; see rendering-watchdog-20261101.md. No source/acceptance renewal follows from a later pass."
       ],
       "validation_dependencies": [
         "runtime/render/media_bridge.h",
@@ -158610,7 +158620,107 @@
       "remaining_gaps": [
         "RN31.G.first-world-watchdog remains unresolved: the new sampled pause is below the five-second guard and does not recover the old callback/OS timing or CPU-refusal order.",
         "The caller still performs bounded metadata serialization, snapshot copying and GPU readback; arbitrary GUI, OS, driver and shutdown stalls remain outside this repair.",
-        "Worker or storage overload refuses capture equivalence. Terminal finish joins after producer stop/END or cancellation; it is not a general bounded shutdown guarantee."
+        "Worker or storage overload refuses capture equivalence. Terminal finish joins after producer stop/END or cancellation; it is not a general bounded shutdown guarantee.",
+        "RW03 adds diagnostic sampling and receipt-driven Quick acceptance input, with strict current full-intro output/history agreement. Shared collector/driver source changes leave this older complete source domain pending; the new result binds only its named narrow policies and does not refresh historical hashes or nominal acceptance."
+      ]
+    },
+    {
+      "id": "NP.rendering-stall-sampler",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Read-only pending-ACK sampling under an explicitly diagnostic parent debugger",
+      "scope": "Explicit normal-quick diagnostic only: launch the unchanged as-built Qt ELF as a GDB child, resolve exactly one generation through its public-owner admission journal, and request at most one all-thread stack after 1.5 seconds of stable outstanding V3 bytes without ACK progress. Idle, ACK progress, unstable observations and terminal/cancelled state reset or disable sampling. Validate timing/identity refusals and real parent-debugger continuation/exit propagation, then observe an injected World stall and one enabled-intro Quick journey with independent history comparison. Observer scheduling may perturb diagnostic execution; no nominal acceptance, original behavior recovery, historical five-second attribution, deadline renewal or ownership change.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-watchdog-20261101.md"
+      ],
+      "implementation": [
+        "tools/rendering_stall_sampler.py",
+        "tools/sample-rendering-stall.py",
+        "tools/run-qt-shell.sh",
+        "tools/run-rendering-acceptance-pilot.py",
+        "tools/review-rendering-stall-sampler.py"
+      ],
+      "tests": [
+        "tests/test-rendering-stall-sampler.py",
+        "tools/test-rendering-stall-sampler.py",
+        "tests/test-rendering-normal-acceptance.py",
+        "tests/test-rendering-build-binding.py",
+        "tests/test-rendering-watchdog.py"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/include/mnm/media_v1.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_scheduler.h",
+        "apps/qt-shell/watchdog_host_fault.hpp",
+        "tools/check-rendering-acceptance-pilot.py",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v5.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "apps/qt-shell/acceptance_input_ack.hpp",
+        "apps/qt-shell/live_quick_battle_app_test.cpp"
+      ],
+      "evidence": [
+        "RW03.sampler04"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "RN31.G.first-world-watchdog remains unresolved: current V3 sampling/control observations do not recover the historical callback/OS delay or CPU-refusal ordering.",
+        "RW03.G.intro-main-transition remains unresolved. Traced intro01 expired during Main/Quick transition before any World; its V3 pending peak was52ms. Later finite passes do not retire this separate negative result or establish current equivalence of its old source domain.",
+        "GDB/polling perturb scheduling and remain diagnostic-only; no nominal player leaf, original recovery, arbitrary OS/driver/fault or absence-of-stalls guarantee.",
+        "One admitted V3 generation on normal-quick only; no intro-channel sampling, multiple-generation/restart or arbitrary-duration guarantee."
+      ]
+    },
+    {
+      "id": "NP.acceptance-input-receipt-wait",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Acceptance driver holds a Qt key until the original poll receipt",
+      "scope": "Opt-in acceptance Quick driver publishes one Qt-owned Right press after an actual World swap, keeps it held until the existing MNMIAK01 journal observes the original owned poll, releases focus, and waits for the corresponding original release before resize/fullscreen/Results work. Each observation has a three-second admission deadline without retry or lease renewal. Bounded-size receipt reads do not preempt arbitrary OS I/O. Old 450ms intent windows can miss a slow first original poll; strict original-input admission remains unchanged. Two finite World visits only, not general camera or original input-function recovery.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-watchdog-20261101.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/acceptance_input_ack.hpp",
+        "apps/qt-shell/live_quick_battle_app_test.cpp"
+      ],
+      "tests": [
+        "tests/acceptance-input-ack-test.cpp",
+        "tools/test-acceptance-input-ack.py"
+      ],
+      "validation_dependencies": [
+        "runtime/render/input_polling.h",
+        "tools/rendering_pilot.py",
+        "tools/run-rendering-acceptance-pilot.py",
+        "tools/check-rendering-acceptance-pilot.py",
+        "tools/review-rendering-stall-sampler.py"
+      ],
+      "evidence": [
+        "RW03.sampler04"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Baseline intro02 has no first original poll receipt. Its exact old poll timing and possible transient observer contention are unrecorded. Delayed-peer controls and current four actual transitions validate the focused driver policy, not a complete original input/camera contract.",
+        "The3s admission deadline is checked after bounded-size receipt reads and cannot preempt arbitrary OS I/O. Missing or malformed receipts refuse without input retry, producer deadline renewal or ownership changes.",
+        "Historical RN31.G.first-world-watchdog and separate RW03.G.intro-main-transition remain unresolved; no nominal acceptance or arbitrary timing/provider claim."
       ]
     }
   ],
@@ -364727,6 +364837,58 @@
       ],
       "build": "nocd-40209ca7",
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "RW03.sampler04",
+      "kind": "live_observation",
+      "scope": "Bounded current owned-source parent-GDB identity/timing controls, actual pre-timeout injected-World sampling with the unchanged five-second guard, receipt-driven acceptance-input regression/optimized/sanitized controls and a strict as-built full-intro original-input/output/history comparison. Historical watchdog and distinct Main transition failure remain unresolved; zero nominal requirements or original-recovery promotions.",
+      "record": "research/runtime/rendering-watchdog-results-20261101/sampler-joined-04.json",
+      "sha256": "49a808bee2dd4b148d210091ab430450e6126b4717e50a5ccb39c37fe5496ee8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_deadlines_or_ownership_changed",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failure/resolution",
+          "equals": "unresolved"
+        },
+        {
+          "pointer": "/negative_intro/resolution",
+          "equals": "unresolved"
+        },
+        {
+          "pointer": "/input_driver_repair/baseline_missing_first_poll_receipt",
+          "equals": true
+        },
+        {
+          "pointer": "/full_intro/input_acknowledgements/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/full_intro/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/full_intro/ring_drained",
+          "equals": true
+        },
+        {
+          "pointer": "/nominal_requirements_passed",
+          "equals": 0
+        },
+        {
+          "pointer": "/auxiliary_observer/proof_uses_observer_timeline",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -393965,6 +394127,39 @@
         "tests/acceptance-capture-test.cpp",
         "tools/test-acceptance-capture.py"
       ]
+    },
+    {
+      "id": "RW03.parent-sampler",
+      "scope": "Synthetic idle/progress/wrap/identity and real parent-child GDB controls, explicit World stall under the unchanged five-second command guard, and one full-intro Quick diagnostic with independent original/history comparison and terminal owner checks. Finite diagnostic observations do not retire the historical failure.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.rendering-stall-sampler"
+      ],
+      "evidence": [
+        "RW03.sampler04"
+      ],
+      "tests": [
+        "tests/test-rendering-stall-sampler.py",
+        "tools/test-rendering-stall-sampler.py",
+        "tests/test-rendering-normal-acceptance.py",
+        "tests/test-rendering-build-binding.py",
+        "tests/test-rendering-watchdog.py"
+      ]
+    },
+    {
+      "id": "RW03.original-input-wait",
+      "scope": "Delay a synthetic original peer past the old450ms window while verifying timer progress, immutable sequence/row admission, release and bounded missing-poll refusal under optimized/sanitized builds; then observe two actual original press/release pairs in a current full-intro Quick run and independently compare all captured viewport/World history.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.acceptance-input-receipt-wait"
+      ],
+      "evidence": [
+        "RW03.sampler04"
+      ],
+      "tests": [
+        "tests/acceptance-input-ack-test.cpp",
+        "tools/test-acceptance-input-ack.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -395782,7 +395977,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-455506961814e3895eca48c7de0f4ce7ea10e5616495059684ecb3d99b22a9c7.json",
-    "sha256": "455506961814e3895eca48c7de0f4ce7ea10e5616495059684ecb3d99b22a9c7"
+    "path": "research/runtime/coverage/source-index-494d49a37920d397e476268b878136464fa3e0bcfc7a4190ea62fbbf29f5cdfd.json",
+    "sha256": "494d49a37920d397e476268b878136464fa3e0bcfc7a4190ea62fbbf29f5cdfd"
   }
 }
