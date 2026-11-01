@@ -5,12 +5,13 @@ from pathlib import Path
 import numpy as np
 from coverage_evidence import Reader,write_report
 from rendering_pilot import acquisition,compare,inflate,require,sha,input_acknowledgements
+from rendering_provenance_policy import drawing_only
 ROOT=Path(__file__).resolve().parents[1]
 PREFIX='research/runtime/rendering-acceptance-pilot-results-20261031/'
 def digest(path):
  with Path(path).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--acquisition',required=True);p.add_argument('--driver-review');p.add_argument('--report',required=True);a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--acquisition',required=True);p.add_argument('--driver-review');p.add_argument('--drawing-only',action='store_true',help='Explicit cursor diagnostic only; withhold Right-key ACK admission');p.add_argument('--report',required=True);a=p.parse_args()
  normal=a.report.startswith('research/runtime/rendering-normal-results-20261031/')
  if not (a.report.startswith(PREFIX) or normal) or (ROOT/a.report).exists():p.error('New immutable owned report required')
  output=ROOT/'working/pilot'/(Path(a.report).stem+'-verification');output.mkdir(parents=True,exist_ok=False)
@@ -24,8 +25,12 @@ def main():
    report['kind']='public_native_watchdog_diagnostic_comparison'
    report['scope']+=' Injected/diagnostic execution only; ineligible for nominal acceptance.'
   sources=dict(acquired['sources']);sources.update(acquired.get('native_admission',{}).get('native_only',{}).get('sources',{}))
-  sources.update({n:digest(ROOT/n) for n in ['tools/rendering_pilot.py','tools/check-rendering-acceptance-pilot.py','tests/acceptance-world-history.cpp','tests/acceptance-world-reference.cpp','tests/sprite-binary-reference.cpp','tests/world-raster-reference.hpp','tests/clipped-word-grayscale-cases.hpp','tools/native_player_quick_acceptance.py','tools/test-menu-observer.py']});report['sources']=sources
+  sources.update({n:digest(ROOT/n) for n in ['tools/rendering_pilot.py','tools/check-rendering-acceptance-pilot.py','tests/acceptance-world-history.cpp','tests/acceptance-world-reference.cpp','tests/sprite-binary-reference.cpp','tests/world-raster-reference.hpp','tests/clipped-word-grayscale-cases.hpp','tools/native_player_quick_acceptance.py','tools/test-menu-observer.py','tools/rendering_normal_acceptance.py','tools/rendering_provenance_policy.py']});report['sources']=sources
   try:
+   input_policy=drawing_only(acquired,a.drawing_only)
+   if input_policy is not None:
+    report['input_admission_withheld']=True
+    sources['tools/rendering_provenance_policy.py']=digest(ROOT/'tools/rendering_provenance_policy.py')
    require(acquired['success'] is True and acquired['sources_stable'] is True and acquired['private_wine_stopped'] is True and acquired['original_manifest_verified_before_after'] is True,'Incomplete actual public acquisition')
    from rendering_build_binding import require_player_source_closure
    campaign_spec=importlib.util.spec_from_file_location('binding_campaign',ROOT/'tools/test-native-campaign.py');campaign=importlib.util.module_from_spec(campaign_spec);campaign_spec.loader.exec_module(campaign)
@@ -83,9 +88,11 @@ def main():
    else:
     from native_player_quick_acceptance import validate_quick
     report['original_menu_actions']=validate_quick(Path(acquired['session']),acquired['flow'],0)
-    ack=next(v for path,v in artifacts.items() if path.endswith('/render-input.bin.acceptance'))
-    require(reader.digest(ack['record'])==ack['sha256'],'Original input receipt changed')
-    report['input_acknowledgements']=input_acknowledgements(reader.read_bytes(ack['record']),acquired['flow'],observed)
+    if input_policy is None:
+     ack=next(v for path,v in artifacts.items() if path.endswith('/render-input.bin.acceptance'))
+     require(reader.digest(ack['record'])==ack['sha256'],'Original input receipt changed')
+     report['input_acknowledgements']=input_acknowledgements(reader.read_bytes(ack['record']),acquired['flow'],observed)
+    else:report['input_acknowledgements']=input_policy
    root=Path(acquired['temporary_root']);source=root/'worlds.bin';require(digest(source)==artifacts[str(source.relative_to(ROOT))]['sha256'],'World source capture differs')
    history=ROOT/'working/build/qt-shell/mnm-acceptance-world-history';original=ROOT/'working/original-reference';pe=ROOT/'original/Arcane_Nocd/Chaos.exe'
    require(digest(pe)=='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168','Original build mismatch')
@@ -119,7 +126,7 @@ def main():
    if acquired.get('scenario')=='normal-quick':
     from rendering_normal_acceptance import fullscreen
     report['fullscreen']=fullscreen(acquired['flow'],observed)
-  except Exception as e:report['error']=str(e)
+  except Exception as e:report.update(success=False,error=str(e))
   finally:
    if before:
     try:execute('original-after',[ROOT/'tools/original-manifest.sh','verify']);report['original_manifest_verified_before_after']=True

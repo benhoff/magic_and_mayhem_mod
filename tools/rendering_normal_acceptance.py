@@ -95,7 +95,7 @@ def admit(reader,pair):
     a,c=[receipt(reader,pair[k]) for k in ('acquisition','comparison')]
     require(a['kind']=='public_native_normal_acquisition' and c['kind']=='public_native_normal_comparison' and c['acquisition']==pair['acquisition'],'Mixed EP04 collectors')
     require(a['scenario'] in ('normal-quick','normal-storage'),'Unknown normal scenario')
-    require(all(v['success'] is True and v['sources_stable'] is True and v['original_manifest_verified_before_after'] is True and v['original_pixels_used_as_native_inputs'] is False for v in (a,c)),'Incomplete execution or comparison')
+    require(all(v['success'] is True and not v.get('error') and v['sources_stable'] is True and v['original_manifest_verified_before_after'] is True and v['original_pixels_used_as_native_inputs'] is False for v in (a,c)),'Incomplete execution or comparison')
     cfg=a['configuration']
     require(cfg.get('diagnostic_only',False) is False and 'injected_fault' not in cfg,'Diagnostic execution is ineligible for nominal acceptance')
     require(cfg['software_flag'] is False and cfg['skip_intros'] is False and cfg['terrain_lighting']=='native' and cfg.get('source_chunks') is True and cfg['native_lighting_capture'] is False and cfg['viewport_scaling']=='integer-sharp','Execution differs from the default target')

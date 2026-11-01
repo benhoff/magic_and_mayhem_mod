@@ -27,6 +27,13 @@ class Reader:
         pair['acquisition']['sha256']=self.digest(a);self.data[c]['acquisition']=copy.deepcopy(pair['acquisition']);pair['comparison']['sha256']=self.digest(c)
 
 class AdmissionTests(unittest.TestCase):
+    def test_success_flag_cannot_override_a_recorded_collector_error(self):
+        for key in ['acquisition','comparison']:
+            reader=Reader();pair=reader.pair('normal-quick')
+            reader.data[pair[key]['record']]['error']='Late fullscreen or collector validation failed'
+            reader.refresh(pair)
+            with self.subTest(key=key),self.assertRaises(ValueError):admit(reader,pair)
+
     def test_native_worker_outcome_requires_real_applied_work_without_fallback(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);session=root/'working/session';(session/'terrain-light-session').mkdir(parents=True)

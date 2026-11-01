@@ -10,7 +10,10 @@ def sha(path):
 def module(name):
  spec=importlib.util.spec_from_file_location(name,ROOT/'tools'/name);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');a=p.parse_args()
+ if a.operations_provenance:
+  if a.scenario!='normal-quick':p.error('Operations provenance requires bounded normal-quick')
+  a.diagnostic_only=True
  if a.stall_intro_host and a.stall_world_host:p.error('Choose one diagnostic host fault')
  if a.stall_world_host:
   if a.scenario!='normal-quick':p.error('World host fault requires normal-quick')
@@ -62,6 +65,9 @@ def main():
   report['configuration']['source_chunks']=True
   report['configuration'].update(viewport_capture_stored_limit_bytes=1024**3,world_capture_retained_limit_bytes=2*1024**3)
   report['configuration']['configuration_home']=str(out/'config')
+ if a.operations_provenance:
+  env.update(MNM_NATIVE_COPY_DIAGNOSTICS=str(out/'copy-diagnostics'),MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE='all',MNM_CURSOR_COPY_STATE='1',MNM_CURSOR_COPY_EXERCISE='1')
+  report['configuration']['operations_provenance']=dict(copy_scope='all',cursor_state_version=1,qt_cursor_exercise=True)
  if a.trace_timing:
   env['MNM_RESIDENT_POLL_TIMING']='1'
   report['configuration']['bounded_host_timing_trace']=True

@@ -1,4 +1,5 @@
 #include "../../protocols/include/mnm/native_copy_routes_v2.h"
+#include "cursor_copy_state.h"
 static struct MnmCopyRoutes* game_copy_routes;
 static struct MnmCopyRoutesV2* game_copy_routes_v2;
 static int game_copy_routes_enabled(void){return game_copy_routes || game_copy_routes_v2;}
@@ -18,9 +19,11 @@ static void game_copy_routes_init(void){
   h[2]=all?2:1;h[3]=128;h[4]=all?176:160;h[5]=MNM_COPY_ROUTES_CAPACITY;h[15]=(u32)GetModuleHandleA(0);
   if(readable((void*)h[15],64)){u32 pe=*(u32*)(h[15]+0x3c);
    if(pe<=4096 && readable((void*)(h[15]+pe),84) && *(u32*)(h[15]+pe)==0x4550)h[16]=*(u32*)(h[15]+pe+80);}}
+ if(game_copy_routes_v2)cursor_copy_state_init(game_copy_routes_v2->header);
  SetLastError(error);
 }
 static void game_copy_routes_close(void){
+ if(game_copy_routes_v2)cursor_copy_state_close(game_copy_routes_v2->header);
  if(game_copy_routes_v2){game_copy_routes_v2->header[14]=1;UnmapViewOfFile(game_copy_routes_v2);game_copy_routes_v2=0;}
  if(game_copy_routes){game_copy_routes->header[14]=1;UnmapViewOfFile(game_copy_routes);game_copy_routes=0;}
 }
@@ -54,7 +57,10 @@ static void game_copy_routes_finish(struct GameBlit* p,i32 result,u32 gpu_row){
  r[1]=p->caller;r[2]=p->caller>=base && p->caller-base<extent?p->caller-base:0xffffffffu;
  r[13]=(u32)result;r[33]=p->gpu==2?gpu_row:0;
  if(!(r[10]&32768u))game_copy_routes_missed(4);
- if(game_copy_routes_v2)mnm_copy_routes_v2_record(game_copy_routes_v2,r);else mnm_copy_routes_record(game_copy_routes,r);SetLastError(error);
+ if(game_copy_routes_v2){
+  u32 before=game_copy_routes_v2->header[6];mnm_copy_routes_v2_record(game_copy_routes_v2,r);
+  if(game_copy_routes_v2->header[6]==before+1)cursor_copy_state_observe(game_copy_routes_v2->rows[before]);
+ }else mnm_copy_routes_record(game_copy_routes,r);SetLastError(error);
 }
 #define COPY_COMMAND_CALLBACK(fallback) \
  struct CommandLease command_lease __attribute__((cleanup(command_gate_leave)))=command_gate_enter(); \

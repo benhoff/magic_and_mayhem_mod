@@ -1,3 +1,30 @@
+## Cursor and prior-destination provenance follow-up — 2026-11-01
+
+[Provenance review](rendering-provenance-20261101.md) confirms the retained
+source563,433 to target548,433 dependency with actual original-only perturbations;
+the earlier writer remains open. Current800×600 now reaches2,146 direct-distortion
+calls from World2. Its independent comparison fails at World50/paint162 and totals
+13,659 differing pixels across9presentations. The full owned prefix is retained;
+the first divergent draw/read remains unidentified. The640×480 diagnostic matches
+212,644,040 compared pixels. No full rendering equivalence is claimed.
+Real Wine/native offscreen controls corroborate both exact invalid-rectangle
+returns and preserve all checked pixels. A bounded scalar companion joins
+current cursor COPY calls to saved cursor/window/published-input state without
+changing input, coordinate or admission behavior. Final diagnostics use the
+committed capture-worker repair at mastera4d3a6ee3 and retain default key-input,
+fullscreen, independent pixel/history and retirement checks. Extra observation
+and skipped intros make these diagnostics ineligible for nominal acceptance.
+The exact low/high totals and source identities are retained in the final review.
+
+A late fullscreen exception could previously retain a true comparison-success
+flag. The contradictory record/preimage remain immutable; exceptions now revoke
+success and nominal admission rejects explicit collector errors. Scoped pixel
+results and full presentation/input verdicts stay separate. Existing engine
+milestones and acceptance leaves are unchanged. New-policy/observer validation
+has its own source-bound evidence; earlier source phases and failures remain.
+The new commit-range review fills missing intermediate raw-file receipts without
+asserting historical gate passes or new engine validation.
+
 ## Retained operations and destination-history residuals — 2026-11-01
 
 [Operations/history review](rendering-operations-history-20261101.md) rechecks the
