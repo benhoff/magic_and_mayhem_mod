@@ -60,7 +60,7 @@ def configured(root):
     values = tuple(data[k] for k in ('primary_minimum_free_gib', 'replica_minimum_free_gib'))
     if any(type(n) not in (int, float) or not math.isfinite(n) or n < 0 for n in values):
         raise ValueError('Invalid evidence reserve')
-    return Pair(*paths, minimum_free=tuple(n*1024**3 for n in values))
+    return Pair(*paths, minimum_free=tuple(n*1024**3 for n in values), compression_workers=data.get("compression_workers",4))
 
 
 def _sync(path):
@@ -74,8 +74,10 @@ def _sync(path):
 
 
 class Pair:
-    def __init__(self, primary, replica, *, minimum_free=(0, 0), require_independent=True):
+    def __init__(self, primary, replica, *, minimum_free=(0, 0), require_independent=True, compression_workers=4):
         from coverage_evidence import Store
+        from evidence_blocks import CompressionPool
+        self.compression=CompressionPool(compression_workers)
         self.paths = tuple(Path(p).absolute() for p in (primary, replica))
         if self.paths[0] == self.paths[1]:
             raise ValueError('Distinct evidence replicas required')
@@ -111,6 +113,7 @@ class Pair:
         self.close()
 
     def close(self):
+        self.compression.close()
         for s in self.stores:
             s.close()
         self.stores = []
@@ -144,30 +147,28 @@ class Pair:
         else:
             with store.db:yield
 
-    def put(self, stream, size, git_blob=None):
+    def put(self, stream, size, git_blob=None, *, prepared=None):
         if type(size) is not int or size < 0:
             raise ValueError('Invalid evidence object length')
-        start = stream.tell()
-        h = hashlib.sha256()
-        remaining = size
-        while remaining:
-            data = stream.read(min(1024**2, remaining))
-            if not data:
-                raise ValueError('Truncated evidence input')
-            remaining -= len(data)
-            h.update(data)
-        sha = h.hexdigest()
+        if prepared is not None:
+            if prepared.size!=size:raise ValueError('Prepared evidence size differs')
+            return self._put_prepared(prepared,git_blob)
+        from evidence_blocks import prepare
+        with prepare(self.stores,stream,size,self.compression) as value:
+            return self._put_prepared(value,git_blob)
+
+    def _put_prepared(self,value,git_blob):
+        sha=value.sha256
         for index,s in enumerate(self.stores):
-            if not s.has(sha, size):
-                stream.seek(start)
+            if not s.has(sha,value.size):
                 with self.writing(s):
-                    if s.put(stream, size, git_blob) != sha:
+                    if s.put(None,value.size,git_blob,prepared=value)!=sha:
                         raise ValueError('Object changed during replication')
                 if not self.batching:_sync(s.path)
-            # A successful put is not permission to trust a pre-existing row.
-            identity=(index,sha,size)
+            # Reuse encoding, never the integrity decision for either replica.
+            identity=(index,sha,value.size)
             if not self.batching or identity not in self.batch_verified:
-                s.copy(sha,size,Sink())
+                s.copy(sha,value.size,Sink())
                 if self.batching:self.batch_verified.add(identity)
         return sha
 

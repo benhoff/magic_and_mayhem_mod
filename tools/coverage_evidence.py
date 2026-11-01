@@ -156,7 +156,15 @@ class Store:
         row = self.db.execute('SELECT size FROM objects WHERE sha256=?', (sha,)).fetchone()
         return row is not None and (size is None or row[0] == size)
 
-    def put(self, stream, size, git_blob=None):
+    def put(self, stream, size, git_blob=None, *, prepared=None):
+        if self.shared:
+            from evidence_blocks import CompressionPool, prepare, insert
+            if prepared is not None:
+                if prepared.size!=size:raise ValueError('Prepared evidence size differs')
+                return insert(self,prepared,git_blob)
+            with CompressionPool(1) as pool,prepare([self],stream,size,pool) as value:
+                return insert(self,value,git_blob)
+        if prepared is not None:raise ValueError('Prepared blocks require shared evidence')
         h, compressed, remaining = hashlib.sha256(), [], size
         while remaining:
             data = stream.read(min(CHUNK, remaining))
@@ -167,29 +175,9 @@ class Store:
             compressed.append(zlib.compress(data, 6))
         sha = h.hexdigest()
         if not self.has(sha):
-            if self.shared:
-                need = 1024**2 + len(compressed)*8192
-                for value in compressed:
-                    block = hashlib.sha256(zlib.decompress(value)).hexdigest()
-                    if not self.db.execute('SELECT 1 FROM blocks WHERE sha256=?',(block,)).fetchone():
-                        need += len(value)
-                # WAL permits concurrent readers during large imports. Reserve
-                # both new WAL frames and their eventual database checkpoint,
-                # including already retained frames, before growing either.
-                journal=Path(str(self.path)+'-wal')
-                retained_frames=journal.stat().st_size if journal.exists() else 0
-                if shutil.disk_usage(self.path.parent).free - 2*need - retained_frames < getattr(self,'minimum_free',0):
-                    raise ValueError('Shared evidence write would breach reserve')
             self.db.execute('INSERT INTO objects VALUES (?,?,?)', (sha, size, git_blob))
-            if self.shared:
-                for i, value in enumerate(compressed):
-                    raw = zlib.decompress(value)
-                    block = hashlib.sha256(raw).hexdigest()
-                    self.db.execute('INSERT OR IGNORE INTO blocks VALUES (?,?,?)', (block,len(raw),value))
-                    self.db.execute('INSERT INTO object_parts VALUES (?,?,?)',(sha,i,block))
-            else:
-                self.db.executemany('INSERT INTO chunks VALUES (?,?,?)',
-                                    ((sha, i, value) for i, value in enumerate(compressed)))
+            self.db.executemany('INSERT INTO chunks VALUES (?,?,?)',
+                               ((sha, i, value) for i, value in enumerate(compressed)))
         elif not self.has(sha, size):
             raise ValueError('Evidence size collision')
         return sha

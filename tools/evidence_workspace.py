@@ -5,6 +5,7 @@ into the immutable manifest; a small pinned stub keeps the historical pathname.
 Retirement is a separate explicit action after a real, verified restore.
 """
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -42,7 +43,18 @@ def idle(path):
 
 
 def scan(path, pair=None):
-    rows=[];identities={};allocated=0
+    rows=[];identities={};allocated=0;pending=[]
+    def stamp(s):return (s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns)
+    def flush():
+        if not pending:return
+        from evidence_blocks import prepare_small
+        with prepare_small(pair.stores,[data for p,row,data in pending],pair.compression) as values:
+            for (p,row,data),value in zip(pending,values):
+                stream=io.BytesIO(data);stream.name=str(p)
+                row['sha256']=pair.put(stream,row['size'],prepared=value)
+                if stamp(p.lstat())!=identities[row['path']]:
+                    raise ValueError('Workspace changed while reading: '+row['path'])
+        pending.clear()
     def visit(p):
         nonlocal allocated
         s=p.lstat();rel='.' if p==path else p.relative_to(path).as_posix()
@@ -59,16 +71,25 @@ def scan(path, pair=None):
         elif stat.S_ISREG(s.st_mode):
             if s.st_nlink!=1:raise ValueError('Multiply linked workspace file requires separate review: '+rel)
             row.update(kind='file',size=s.st_size)
-            with p.open('rb') as f:
-                row['sha256']=pair.put(f,s.st_size) if pair else hashlib.file_digest(f,'sha256').hexdigest()
-                a=os.fstat(f.fileno())
-                if (a.st_dev,a.st_ino,a.st_size,a.st_mtime_ns,a.st_ctime_ns)!=identities[rel]:
-                    raise ValueError('Workspace changed while reading: '+rel)
+            if pair and s.st_size<=1024**2:
+                with p.open('rb') as f:
+                    data=f.read(s.st_size+1)
+                    if len(data)!=s.st_size or stamp(os.fstat(f.fileno()))!=identities[rel]:
+                        raise ValueError('Workspace changed while reading: '+rel)
+                pending.append((p,row,data))
+                if len(pending)>=pair.compression.limit:flush()
+            else:
+                if pair:flush()
+                with p.open('rb') as f:
+                    row['sha256']=pair.put(f,s.st_size) if pair else hashlib.file_digest(f,'sha256').hexdigest()
+                    if stamp(os.fstat(f.fileno()))!=identities[rel]:
+                        raise ValueError('Workspace changed while reading: '+rel)
         else:raise ValueError('Special workspace file requires separate preservation: '+rel)
         rows.append(row)
         if row['kind']=='directory':
             for child in sorted(p.iterdir()):visit(child)
     visit(path)
+    if pair:flush()
     return rows,identities,allocated
 
 

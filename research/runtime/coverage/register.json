@@ -21480,7 +21480,8 @@
       },
       "remaining_gaps": [
         "Pending-merge workspace capture now reads verified actual MERGE_HEAD parents,matching staged inheritance rules. New synthetic regression covers absent/arbitrary branch refusal,exact historical receipts,required combined source review and changed-contract loss of inheritance. Broader historical execution evidence retains its original source hashes and pending freshness;no engine milestones are promoted.",
-        "2026-11-01 shared storage and review-cache lifecycle changes are scoped independently by TOOL.shared-evidence-lifecycle. Historical evidence hashes are retained; this source change does not renew broad old storage/accounting validation."
+        "2026-11-01 shared storage and review-cache lifecycle changes are scoped independently by TOOL.shared-evidence-lifecycle. Historical evidence hashes are retained; this source change does not renew broad old storage/accounting validation.",
+        "2026-11-01: Shared encoding and queue throughput changes are reviewed under TOOL.shared-evidence-lifecycle. Historical source/evidence hashes stay unchanged; these storage controls do not renew unrelated engine or prior workflow validation."
       ]
     },
     {
@@ -139788,7 +139789,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "2026-11-01 shared storage and review-cache lifecycle changes are scoped independently by TOOL.shared-evidence-lifecycle. Historical evidence hashes are retained; this source change does not renew broad old storage/accounting validation."
+        "2026-11-01 shared storage and review-cache lifecycle changes are scoped independently by TOOL.shared-evidence-lifecycle. Historical evidence hashes are retained; this source change does not renew broad old storage/accounting validation.",
+        "2026-11-01: Shared encoding and queue throughput changes are reviewed under TOOL.shared-evidence-lifecycle. Historical source/evidence hashes stay unchanged; these storage controls do not renew unrelated engine or prior workflow validation."
       ]
     },
     {
@@ -155860,7 +155862,8 @@
         "Broad environment pins and recent/current consumers still protect substantial output.",
         "Hardlinked mutable stores require full alias/activity review; no claim that every old runner adopts new defaults.",
         "Storage provenance and host controls do not refresh historical engine validation.",
-        "2026-11-01: Shared immutable execution manifests add explicit stopped source-specific handoff and historical-path restoration. Historical generic retention/archive evidence is retained and not renewed by the new storage controls."
+        "2026-11-01: Shared immutable execution manifests add explicit stopped source-specific handoff and historical-path restoration. Historical generic retention/archive evidence is retained and not renewed by the new storage controls.",
+        "2026-11-01: Shared encoding and queue throughput changes are reviewed under TOOL.shared-evidence-lifecycle. Historical source/evidence hashes stay unchanged; these storage controls do not renew unrelated engine or prior workflow validation."
       ]
     },
     {
@@ -158434,7 +158437,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Shared immutable evidence and bounded execution lifecycle",
-      "scope": "Opt-in two-filesystem shared immutable original-byte objects and cross-object compressed blocks; verified grouped publication with concurrent WAL readers and checkpoint headroom, incremental object/root/Git-binding mirror completion, typed SQLite WAL/schema/rowid/BLOB/NUL/float checkpoints with real logical restore, recognized legacy evidence catalog and schema handoff, explicit reviewed two-image snapshot retirement without byte-exact page-image claims, stopped exact execution-file/pin handoff and historical-path restoration through prior per-file archives, explicit historical checkout roots and refusal of unsafe paths before expansion, pending-draft review cache eviction/lazy restore, and exclusive existing two-slot admitted-prefix reuse through child lifetime. Synthetic Git/SQLite/filesystem/lease controls and a completed rendering-watchdog batch storage migration only. Source checkouts and unique fixture inputs retained. Unknown tables/schema, active/mutating/special/multiply-linked workspace members held prefix-return failures, and missing/corrupt replicas refuse retirement. No renderer behavior, original comparison, physical-driver validation, off-host durability or historical engine status renewal.",
+      "scope": "Opt-in two-filesystem shared immutable original-byte objects and cross-object compressed blocks; verified grouped publication with concurrent WAL readers and checkpoint headroom, incremental object/root/Git-binding mirror completion, typed SQLite WAL/schema/rowid/BLOB/NUL/float checkpoints with real logical restore, recognized legacy evidence catalog and schema handoff, explicit reviewed two-image snapshot retirement without byte-exact page-image claims, stopped exact execution-file/pin handoff and historical-path restoration through prior per-file archives, explicit historical checkout roots and refusal of unsafe paths before expansion, pending-draft review cache eviction/lazy restore, and exclusive existing two-slot admitted-prefix reuse through child lifetime. Synthetic Git/SQLite/filesystem/lease controls and a completed rendering-watchdog batch storage migration only. Source checkouts and unique fixture inputs retained. Unknown tables/schema, active/mutating/special/multiply-linked workspace members held prefix-return failures, and missing/corrupt replicas refuse retirement. No renderer behavior, original comparison, physical-driver validation, off-host durability or historical engine status renewal. Shared-v1 writes check raw block identities before compression, encode each missing block once for both destinations, reuse verified existing encodings for replica repair and bound level-six compression across both blocks and small files to four workers/eight queued chunks by default. Caller-thread SQLite writes, WAL reserves and full two-copy decode/hash verification remain required. Run ordering prefers larger eligible allocations on the main device; ordering grants no eligibility or pin exception.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -158457,7 +158460,9 @@
         "tools/native_prefix_template.py",
         "tools/working-retention.py",
         "tools/sqlite_snapshot_store.py",
-        "tools/run-rendering-acceptance-pilot.py"
+        "tools/run-rendering-acceptance-pilot.py",
+        "tools/evidence_blocks.py",
+        "tools/evidence_sweep_schedule.py"
       ],
       "tests": [
         "tests/test-evidence-objects.py",
@@ -158473,7 +158478,8 @@
         "tests/test-working-retention.py",
         "tests/test-rendering-pilot.py",
         "tests/test-private-evidence-backup.py",
-        "tests/test-working-archive.py"
+        "tests/test-working-archive.py",
+        "tests/test-evidence-blocks.py"
       ],
       "validation_dependencies": [
         "tools/experiment_environment.py",
@@ -158488,7 +158494,8 @@
       ],
       "evidence": [
         "ES01.shared-lifecycle",
-        "ES01.layered-restore"
+        "ES01.layered-restore",
+        "ES01.sweep-throughput"
       ],
       "status": {
         "understanding": "scoped",
@@ -158501,7 +158508,9 @@
         "Original controls05 and the real two-drive custody proof remain historical for their original scope. The layered restore revision passes 223 source-stable cases in 14 suites, including the legacy archive implementation. This supports current scoped implementation/headless storage integration only; historical engine/launch evidence is not renewed and the broader working-data sweep remains operational custody work.",
         "Existing historical batches beyond the explicitly migrated watchdog batch retain their old archives; no whole-repository deduplication or recovered disk-size claim.",
         "The all-working inventory identifies legacy file-level archive layers. Restore must expand the sealed parent and continue the original catalog if the requested descendant is absent. Historical archive backends/catalogs and their exact transport hashes remain retained; whole-disk adoption is operational work, not engine validation.",
-        "ES01.shared-lifecycle retains the original five-change scope and hashes. Current layered-restoration execution is recorded separately; the wider custody rollout does not renew any engine validation."
+        "ES01.shared-lifecycle retains the original five-change scope and hashes. Current layered-restoration execution is recorded separately; the wider custody rollout does not renew any engine validation.",
+        "2026-11-01: Bounded compression/queue controls and a fresh-store benchmark are being recorded separately. Any workload speedup is scoped to the measured inputs; no whole-sweep rate or engine milestone is inferred.",
+        "2026-11-01: 235 cases pass in 15 source-stable suites for the bounded block/file pipeline. The retained benchmark measures about 2.7x on one fresh-store roughly 500 MiB workload, not a whole-sweep rate. Earlier source-drift control output remains negative historical evidence. Engine statuses and original evidence hashes are unchanged."
       ]
     }
   ],
@@ -364528,6 +364537,25 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "ES01.sweep-throughput",
+      "kind": "native_integration",
+      "scope": "Fresh source-stable 235-case batch in 15 suites: two-filesystem existing lifecycle controls plus deduplication before encoding, once-per-block encoding across replicas and small files, bounded concurrent level-six compressors, caller-thread SQLite, corruption/interruption/quota refusal and larger-first ordering without eligibility changes. Fresh-store performance is a separate scoped benchmark; no whole-sweep or renderer completion claim.",
+      "record": "research/runtime/sweep-throughput-results-20261101/throughput-controls-02.json",
+      "sha256": "6bd1b2bcf5f84568b41b1717098486ba17f84e38315feb71ffee2c0e109ede76",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -393710,7 +393738,7 @@
     },
     {
       "id": "SC.tooling.shared-evidence-lifecycle",
-      "scope": "Independent fixture filesystems test interrupted/corrupt replicas, old read compatibility, exact typed review records, unequal legacy snapshot refusal, full stopped workspace/pin restore and pending draft lazy reopen. Existing two-slot prefix state reset and launcher regressions. Actual completed watchdog batch import, logical snapshot retirement and file-level workspace handoff; storage only. A current layered-restore control expands a sealed parent and restores an older catalogued descendant in one call, including an explicit historical checkout root and refusal of an unsafe path before expansion.",
+      "scope": "Independent fixture filesystems test interrupted/corrupt replicas, old read compatibility, exact typed review records, unequal legacy snapshot refusal, full stopped workspace/pin restore and pending draft lazy reopen. Existing two-slot prefix state reset and launcher regressions. Actual completed watchdog batch import, logical snapshot retirement and file-level workspace handoff; storage only. A current layered-restore control expands a sealed parent and restores an older catalogued descendant in one call, including an explicit historical checkout root and refusal of an unsafe path before expansion. Fresh block controls cover one encoding across replicas/objects, missing-replica recovery without compression, actual bounded compressor overlap across large blocks and small files, caller-thread SQLite, failed/truncated encoders, quota refusal and unchanged legacy reads; queue tests preserve main-device priority and eligibility metadata.",
       "level": "headless",
       "behaviors": [
         "TOOL.shared-evidence-lifecycle"
@@ -393729,11 +393757,13 @@
         "tests/test-working-retention.py",
         "tests/test-rendering-pilot.py",
         "tests/test-private-evidence-backup.py",
-        "tests/test-working-archive.py"
+        "tests/test-working-archive.py",
+        "tests/test-evidence-blocks.py"
       ],
       "evidence": [
         "ES01.shared-lifecycle",
-        "ES01.layered-restore"
+        "ES01.layered-restore",
+        "ES01.sweep-throughput"
       ]
     }
   ],
@@ -395552,7 +395582,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-7a8571cd771915f83764998ef6c115ce5b5c903e04dced3f5bdedacbb073ca5a.json",
-    "sha256": "7a8571cd771915f83764998ef6c115ce5b5c903e04dced3f5bdedacbb073ca5a"
+    "path": "research/runtime/coverage/source-index-b6805b3f28f9bc54923f43f4ba93907599b1222dafd9ce0e2ca7e56f0eb8774a.json",
+    "sha256": "b6805b3f28f9bc54923f43f4ba93907599b1222dafd9ce0e2ca7e56f0eb8774a"
   }
 }

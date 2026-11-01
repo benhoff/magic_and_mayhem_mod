@@ -210,3 +210,39 @@ per-run membership flag rather than copying millions of file records into a
 second cache. Failed preflight/index attempts are retained as negative custody
 evidence; they removed no run data. Source checkout aliases and prior archive
 backend aliases remain protected. No engine claim is renewed by this rollout.
+
+## Sweep throughput and verification
+
+Shared-v1 admission hashes each raw chunk before requesting compression. Blocks
+present in both stores are reused without encoding. If one replica is missing a
+block, its verified existing compressed bytes supply the repair. New blocks are
+encoded once at the existing zlib level six and the identical encoding feeds
+both stores. Every completed object is still decoded and hash-verified in each
+replica before a reference or retirement can be published.
+
+The compression pool defaults to four workers, with at most eight pending 1 MiB
+chunks. Small files are grouped within that same bound so encoding can overlap
+across files as well as chunks. Each original file identity is checked after
+reading and again after admission; all later full source/restore checks remain.
+`compression_workers` accepts integers from one to eight. Workers receive
+only bytes and perform compression; all SQLite reads, writes, transaction commits
+and publication run on the caller thread. Small reports avoid thread startup.
+Prepared encodings spool after 8 MiB and are released before workspace restoration;
+producer guards and declared scratch capacity remain required. Store schemas,
+source payload hashes, compression level and full real-restore checks are unchanged.
+
+`evidence_sweep_schedule.order_runs` orders reviewed candidates by main-device
+priority and descending allocated size. The maintenance coordinator still checks
+activity, current inputs, leases, newest runs, prior archive paths, source identity
+and pins before each handoff. A larger run gains priority, never eligibility.
+Stop/resume belongs at a completed-case checkpoint with mirrored receipts; do not
+launch competing sweep processes against the same queue and writer lock.
+
+The reviewed fresh-store benchmark is retained in
+`research/runtime/sweep-throughput-results-20261101/benchmark-02-reviewed.json`.
+The same roughly 500 MiB input took 50.5 s with the old writer, 27.0 s with
+one optimized compressor and 18.7 s with four bounded compressors. All variants
+used empty independent stores, retained identical object identities and compressed
+block sizes, and performed a full real restore. This measured workload is about
+2.7 times faster; it does not predict the whole sweep. The source-stable 15-suite
+control report is `throughput-controls-02.json` in the same results directory.

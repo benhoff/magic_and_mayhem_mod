@@ -28,6 +28,7 @@ jobs:
           python3 -B tests/test-coverage-gate.py
           python3 -B tests/test-coverage-bookkeeping.py
           python3 -B tests/test-evidence-store.py
+          python3 -B tests/test-evidence-blocks.py
           python3 -B tests/test-local-evidence-workflow.py
           python3 -B tests/test-private-evidence-backup.py
           python3 -B tests/test-coverage-merge-history.py
@@ -50,6 +51,7 @@ jobs:
           python3 -B tests/test-coverage-gate.py
           python3 -B tests/test-coverage-bookkeeping.py
           python3 -B tests/test-evidence-store.py
+          python3 -B tests/test-evidence-blocks.py
           python3 -B tests/test-local-evidence-workflow.py
           python3 -B tests/test-coverage-merge-history.py
           python3 -B tests/test-coverage-evidence-imports.py

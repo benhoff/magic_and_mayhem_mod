@@ -24881,3 +24881,15 @@ prospective current scope/scenario claims. The
 the all-working inventory, explicit extra-checkout removal, master integration
 and the first ten legacy-dependent runs held before deletion. No 730 GiB
 reclamation or whole-renderer completion is asserted by the candidate count.
+
+
+### 2026-11-01 — bounded sweep compression throughput
+
+The isolated throughput batch checks raw block identities before compression,
+prepares each new level-six encoding once for both independent stores and bounds
+parallel encoding behind one SQLite writer. Larger eligible allocations receive
+queue priority on the main device. Failure, corruption, source/activity, lease,
+pin, newest-run, quota and full actual-restore boundaries remain required. New
+controls and fresh-store timing reports are stored separately from the prior
+shared-lifecycle and layered-restore proofs. This is storage custody/tooling work;
+no renderer requirement or original-engine comparison milestone is promoted.
