@@ -24908,3 +24908,56 @@ pin, newest-run, quota and full actual-restore boundaries remain required. New
 controls and fresh-store timing reports are stored separately from the prior
 shared-lifecycle and layered-restore proofs. This is storage custody/tooling work;
 no renderer requirement or original-engine comparison milestone is promoted.
+
+## Startup capture worker repair — 2026-11-01
+
+`RW02.worker02` / `NP.acceptance-capture-worker` bind a focused repair to a newly
+observed startup pause. A trace-disabled run retained a 2.076-second ACK gap;
+Linux denied sibling debugger attaches. A separate parent-GDB diagnostic sampled
+an actual pending-ACK interval in GUI-thread `deflate/qCompress`, reached from
+`AcceptanceCapture::append` during paint. Its wrapper and retained byte-identical
+player are explicitly separate from nominal as-built admission. This establishes
+an active blocking stage, without assigning every elapsed microsecond or the
+historical five-second failure to that sample.
+
+Capture append now owns/stamps its input and submits to one FIFO compression/file
+writer. The bounded 256 MiB / 256-job queue includes in-flight work, never waits
+for the sink during append, and refuses an incomplete proof on overload/error.
+Only terminal cleanup joins. Raw/stored/row bounds, wire ordering and all original
+five-second guards/native ownership remain strict. The exact synchronous preimage
+fails the held-compression caller-progress regression; optimized and ASan/UBSan
+worker controls pass ownership/order, bounded overflow, compression failure and
+first-refusal checks. The production reader accepts each complete control and
+rejects its three failure streams. Ring/parser/compiler-binding/admission and
+native/sanitized watchdog interleaving controls pass separately.
+
+The repaired as-built enabled-intro Quick run completes both movies, 102 matching
+World swaps, 78 independent reference Worlds, 137,118 original draws and
+153,694,060 compared pixels with zero mismatch. Media cancellation stays clear,
+the ring drains and normal original Quit retires graphics resources. The bounded
+pending-ACK sampler does not trigger. Slow compression/writes are observed on the
+worker; no caller append crosses the retained 50 ms threshold and timing caps
+are not exhausted. This is finite diagnostic integration, not a general latency
+or performance claim.
+
+`RN31.G.first-world-watchdog` remains unresolved: the sampled current pause is
+below five seconds, and the old callback/OS conditions and CPU-history terminal
+ordering are not recovered. The new policy has scoped implementation/live
+observation; original comparison/replacement dimensions and broad player/recovery
+verdicts remain independent. Shared capture-source changes leave the earlier
+pilot/normal/watchdog claims historical outside the fresh narrow evidence.
+No new acceptance leaf, gameplay balance change, original modification or evidence
+publication occurs. Setup refusals, denied attaches, intermediate source versions,
+negative controls and successful executions remain immutable SQLite evidence.
+See [the investigation](rendering-watchdog-20261101.md) and
+[the exact join](rendering-watchdog-results-20261101/startup-repair-joined-02.json).
+
+## Capture-worker integration into local master — 2026-11-01
+
+The [integration review](rendering-watchdog-results-20261101/master-integration-01.json)
+reconciles actual master4fa166010 and repaird0bf7a551 parents. Product and test
+sources match the repair exactly; independent coverage IDs and exact review
+receipts from both parents are retained. The worker regression and full-intro
+comparison remain inherited observations within their original scope. This
+merge adds no engine execution and does not resolve the historical five-second
+watchdog. Main-checkout pending edits remain separately retained and uncommitted.

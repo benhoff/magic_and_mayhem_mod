@@ -149,3 +149,85 @@ Generated reports, raw captures, failed attempts and unique source versions are
 retained through SQLite. Original manifests are verified before and after every
 original-consuming acquisition/comparison. No original file or gameplay balance
 is modified, and no evidence is published.
+
+## Focused capture repair — follow-up batch
+
+This follow-up starts at `65095aee6` in the isolated
+`working/worktrees/startup-watchdog-repair-20261101` checkout. The original
+`RN31.G.first-world-watchdog` remains unresolved. A new current startup pause
+was observed and a blocking capture stage was isolated and repaired; that does
+not establish the callback or OS cause of the old five-second failure.
+
+The traced baseline completed both movies and 55 matching World swaps against
+33 independent reference Worlds / 74,088 original draws. The trace-disabled
+baseline also completed both movies and normal Quit, with 56 matching World
+swaps against 32 reference Worlds / 57,793 original draws. Its command capture
+retains a 2.076-second ACK observation gap. Both sibling debugger attaches were
+denied by the host ptrace policy; no successful stack sample is inferred from
+those attempts.
+
+A separate parent-GDB diagnostic, with movies skipped to isolate startup work,
+measured another pending-ACK pause and sampled the main thread in
+`deflate → qCompress → AcceptanceCapture::append → capturePaint → paintGL`.
+This identifies an active blocking stage on the live command caller with high
+confidence. It does not measure the duration of every individual compression
+call or identify every contributor to either complete observation gap. Its
+launch-path wrapper and exact unchanged ELF are retained separately; the generic
+collector's wrapper hash is explicitly insufficient as a Qt player identity.
+That diagnostic has no nominal admission credit. The exact player was restored
+before the repaired build.
+
+`AcceptanceCapture` now deep-copies and queues snapshots with their caller host
+stamp and row identity. One worker owns compression and all stream-file writes.
+FIFO order, the wire envelope and all raw/stored limits remain strict. A 256 MiB /
+256-job limit includes the in-flight job; exhaustion returns without blocking the
+caller and closes an incomplete proof. A terminal row is reserved for refusal.
+Only terminal `finish`/destruction joins the writer. GPU readback, bounded copying,
+arbitrary GUI freezes and general shutdown scheduling remain separate.
+
+The regression interposes the actual compression entrypoint and holds it while
+the caller must return and reuse its input storage. The exact synchronous
+preimage fails that progress requirement; the worker passes. Optimized and
+ASan/UBSan executions also verify deep ownership, FIFO counters, bounded overflow,
+compression failure and first-refusal preservation. The actual production reader
+accepts the complete stream and rejects all three failure streams in each build.
+No producer lease, watchdog deadline or native ownership guard is relaxed.
+
+The [joined follow-up receipt](rendering-watchdog-results-20261101/startup-repair-joined-02.json)
+binds the failed setup attempts, both baselines, denied attaches, parent-debugger
+capture, exact preimage, regression and repaired execution. `NP.acceptance-capture-worker`
+is the narrow native policy for this change. Historical bytes, source hashes,
+acceptance leaves and independent recovery dimensions are preserved.
+
+The repaired default full-intro run completed with **102 independently matching
+World swaps**, 78 reference Worlds, 137,118 original draws and 153,694,060 compared
+viewport/history pixels, with zero mismatches. Intro0 and Intro1 both completed
+(1,777 and 1,004 presented video frames); there was no producer media cancellation.
+The command ring drained and original Quit released all graphics owners. The
+1.5-second pending-ACK sampler did not trigger. None of the 37 retained slow host
+operations was a caller-side capture append; the timing cap was not reached.
+Worker compression reached 93.340 ms and stream writes 668.604 ms in this run.
+These are bounded observations, not a general latency or frame-rate guarantee.
+
+Reproduce the capture regression in a fresh owned output directory:
+
+```sh
+python3 tools/working-retention.py run --reserve-gib 1 -- \
+  python3 tools/test-acceptance-capture.py \
+    --output working/tests/acceptance-capture-new \
+    --report research/runtime/rendering-watchdog-results-20261101/capture-new.json
+```
+
+For the retained old-stage control, restore the two `startup-repair-before-*.hpp.bin`
+preimages through the SQLite reader into a new directory under `working/`, then
+pass its `acceptance_capture.hpp` with `--baseline-header`. The tool retains the
+expected old failure without granting current implementation credit. The regular
+`run-rendering-acceptance-pilot.py --scenario normal-quick` and independent
+`check-rendering-acceptance-pilot.py` commands remain the live verification path;
+use fresh report identities and the admitted isolated installation/prefix inputs.
+
+The first join retained valid execution assertions but used the wrong scope-claim
+container type. The failed audit and original join bytes remain retained; the
+new `RW02.worker02` / `startup-repair-joined-02.json` registration fixes that
+accounting schema only and does not refresh execution hashes. Filesystem-fault
+and row/stored-limit exhaustion are not directly injected by the fresh controls.
