@@ -183,9 +183,14 @@ class PlayerLaunch(unittest.TestCase):
                          [str(ROOT / 'tools/run-game.sh'), 'check'])
 
     def test_public_entrypoint_guards_launch_but_help_requires_no_storage(self):
-        command = self.capture_shell('run-native.sh', '--', '--skip-movies')
-        self.assertEqual(command[:8], ['python3', '-B', str(ROOT / 'tools/working-retention.py'),
-                                      'run', '--reserve-gib', '4', '--', 'python3'])
+        with patch.dict(os.environ, {'MNM_WORKING_STORAGE_POLICY': str(ROOT/'tools/working-retention.json')}):
+            command = self.capture_shell('run-native.sh', '--', '--skip-movies')
+        self.assertEqual(command[:10], ['python3', '-B', str(ROOT / 'tools/working-retention.py'),
+                                       '--policy', str(ROOT/'tools/working-retention.json'),
+                                       'run', '--reserve-gib', '4', '--', 'python3'])
+        with patch.dict(os.environ, {'MNM_WORKING_STORAGE_POLICY': '/owned/alternate-policy.json'}):
+            alternate = self.capture_shell('run-native.sh', '--', '--skip-movies')
+        self.assertEqual(alternate[3:5], ['--policy', '/owned/alternate-policy.json'])
         self.assertEqual(command[-2:], ['--', '--skip-movies'])
         self.assertEqual(self.capture_shell('run-native.sh', '--help'),
                          ['python3', '-B', str(ROOT / 'tools/run-native-game.py'), '--help'])

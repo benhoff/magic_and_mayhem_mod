@@ -50,6 +50,8 @@ struct CommandDisplayState {
 struct CommandResult {
     QByteArray native;
     QImage presentation;
+    unsigned displayMode=0,displaySurface=0;
+    std::uint64_t displaySealedGeneration=0,displayWorldGeneration=0;
     unsigned commands=0,checks=0,presents=0,colorChecks=0,skippedChecks=0,skippedColorChecks=0;
     unsigned surfaceCopies=0,surfaceCopyFailures=0,resultChecks=0,skippedResultChecks=0,lastCopySequence=0;
     SurfaceCopyResult lastCopy;

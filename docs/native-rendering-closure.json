@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "kind": "authored_rendering_closure_plan",
-  "reviewed_commit": "c451022381223fceebec694ec055f215fda488b2",
+  "reviewed_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7",
   "original_build": "nocd-40209ca7",
   "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
   "scope": {
@@ -12,17 +12,20 @@
       {
         "id": "public-resident",
         "entry": "tools/test-native-campaign.py --fps-policy diagnostic",
-        "boundary": "Public resident functional acceptance with FPS diagnostics; historical throughput benchmarks retain their original criteria and results."
+        "boundary": "Public resident functional harness. Evidence must name the actual runtime policy; a harness pass alone does not establish strict native-only admission or complete presented output. FPS is diagnostic.",
+        "role": "validation_harness"
       },
       {
         "id": "strict-native-only",
         "entry": "tools/run-native-owned.py --native-only",
-        "boundary": "Strict admission/no-forward/terminal policy; short launch is not sustained campaign acceptance."
+        "boundary": "Primary public player via run-native.sh/run-x86.sh and the strict owner. No original pixel fallback; current-source complete journey/output/lifecycle evidence remains required.",
+        "role": "primary_player"
       },
       {
         "id": "isolated-recovery",
         "entry": "tools/run-native-owned.py --device-recovery",
-        "boundary": "Opt-in process-isolated continuation; separate from ordinary shared-texture presentation."
+        "boundary": "Opt-in isolated renderer/replay/raster presentation. A complete-native claim also requires --native-only; fault-continuation proof is separate from ordinary shared-texture presentation and physical reset.",
+        "role": "separate_recovery_profile"
       }
     ],
     "rules": [
@@ -1503,7 +1506,9 @@
       "exit": "Recover required natural allocation/publication/base/source/initial pixels/writers/release, or justify a precise caller/configuration exclusion. Keep global reachability unknown; a new native allocator is not original recovery.",
       "condition": "Requiredness unresolved; cannot silently exclude.",
       "documents": [
-        "research/runtime/alternate-ownership-sessions-20261024.md"
+        "research/runtime/alternate-ownership-sessions-20261024.md",
+        "research/runtime/original-alternate-allocation-repair-20261026.md",
+        "research/runtime/alternate-completion-20261026.md"
       ],
       "state": "open",
       "p1_review": "research/runtime/rendering-required-dependencies-20261024.md"
@@ -1577,7 +1582,7 @@
       "id": "B05",
       "title": "Strict movement Escape and Mini readiness",
       "classification": [
-        "validated_current_scope"
+        "not_validated"
       ],
       "priority": "high",
       "contracts": [
@@ -1595,10 +1600,14 @@
       "documents": [
         "research/runtime/rendering-seventeenth-five-20261023.md"
       ],
-      "state": "validated_current_scope",
+      "state": "pending_current_acceptance",
       "result": "research/runtime/rendering-functional-lifecycle-20261025.md",
-      "limitations": "Strict final-source10/30second Apprentice cases pass. Historical NT17 cause remains unclassified; no universal reliability or complete rendering claim.",
-      "historical_exit": "Reproduce NT17 stress failures, diagnose game/input/driver cause and pass the same movement/Escape/Mini/resume/normal-Quit assertions. A shorter pass cannot close this."
+      "limitations": "Recorded strict10/30second and later bounded player successes retain their exact source phases. The648ce219 baseline does not supply current combined-player acceptance; historical NT17 cause remains unclassified, with no new regression or universal reliability claim.",
+      "historical_exit": "Reproduce NT17 stress failures, diagnose game/input/driver cause and pass the same movement/Escape/Mini/resume/normal-Quit assertions. A shorter pass cannot close this.",
+      "historical_state": "validated_current_scope",
+      "historical_classification": [
+        "validated_current_scope"
+      ]
     },
     {
       "id": "B06",
@@ -1944,9 +1953,11 @@
       "diagnostics": [
         "B06"
       ],
-      "functional_state": "validated_current_scope",
+      "functional_state": "historical_source_scope",
       "result": "research/runtime/rendering-functional-lifecycle-20261025.md",
-      "historical_cause": "unclassified"
+      "historical_cause": "unclassified",
+      "historical_functional_state": "validated_current_scope",
+      "current_combined_acceptance": "pending"
     },
     {
       "id": "P4",
@@ -2010,5 +2021,2571 @@
     ],
     "progress": "Track recovery, implementation, comparison, integration and acceptance separately; no weighted completion percentage or silent scope reduction."
   },
-  "p1_dependencies": "docs/native-rendering-dependencies.json"
+  "p1_dependencies": "docs/native-rendering-dependencies.json",
+  "contract_review_history": [
+    {
+      "reviewed_commit": "c451022381223fceebec694ec055f215fda488b2",
+      "description": "Prior dependency/closure map; historical evidence and authored work-package results retain their original source phases."
+    }
+  ],
+  "completion_contract": {
+    "schema": 1,
+    "id": "native-rendering-completion-v1",
+    "revision": 1,
+    "claim_state": "pending_acceptance",
+    "reviewed_source_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7",
+    "baseline": {
+      "record": "research/runtime/rendering-reviewed-baseline-results-20261030/baseline-01.json",
+      "sha256": "fe3b3e8263f6d216a7e0fce4db45a200c9fdef4c9cd0f857d87dc1de264bd699",
+      "source_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7"
+    },
+    "primary_profile": "strict-native-only",
+    "runtime_policy": "native-only-rendering-v1",
+    "player_entries": [
+      "run-native.sh",
+      "run-x86.sh"
+    ],
+    "configurations": [
+      {
+        "state": "target_acceptance_pending",
+        "profile": "strict-native-only",
+        "host": "x86 Linux; baseline executions use x86_64",
+        "display": "Qt/X11 xcb or XWayland with a separate private legacy X server",
+        "world_format": "RGB565",
+        "frame_sizes": [
+          [
+            640,
+            480
+          ],
+          [
+            800,
+            600
+          ]
+        ],
+        "lighting": "native",
+        "lighting_capture": "none",
+        "movies": "native_enabled",
+        "music": "prepared native catalog by default; exact selection recorded",
+        "id": "player-default",
+        "arguments": [],
+        "backend": "Actual host OpenGL provider must be recorded; existing NVIDIA results certify only their own source/provider scope."
+      },
+      {
+        "state": "target_acceptance_pending",
+        "profile": "strict-native-only",
+        "host": "x86 Linux; baseline executions use x86_64",
+        "display": "Qt/X11 xcb or XWayland with a separate private legacy X server",
+        "world_format": "RGB565",
+        "frame_sizes": [
+          [
+            640,
+            480
+          ],
+          [
+            800,
+            600
+          ]
+        ],
+        "lighting": "native",
+        "lighting_capture": "none",
+        "movies": "native_enabled",
+        "music": "prepared native catalog by default; exact selection recorded",
+        "id": "player-software",
+        "arguments": [
+          "--software-rendering"
+        ],
+        "backend": "Mesa software OpenGL; record the actual renderer/provider and display context."
+      }
+    ],
+    "supplier_policy": {
+      "decisions": "docs/native-rendering-dependencies.json",
+      "original_preparation_allowed": true,
+      "original_pixel_fallback_allowed": false,
+      "native_scene_port_required": false,
+      "lighting_default": "native",
+      "lighting_overrides": [
+        "original",
+        "observe"
+      ],
+      "lighting_worker_failure": "Retain the failure and nonzero outcome even if original lighting fallback permits continuation. An original/observe selection is a separately identified preparation backend, not native-lighting replacement proof."
+    },
+    "acceptance": {
+      "journey_catalog": "tests/fixtures/drawing-journeys/suite.json",
+      "journey_catalog_sha256": "3091153e8757c4bc66731ea634e0e5a424397853d4567f1f097054e853c36045",
+      "all_journeys_required": true,
+      "all_operations_required": true,
+      "gates": [
+        {
+          "id": "identity",
+          "condition": "Bind original executable, assets, admitted policy, exact source/compiler closure, backend/driver and configuration to each result."
+        },
+        {
+          "id": "pixels-history",
+          "condition": "Own required visible pixels and history, with independent original/reference output and required caller-visible state, ordering and return values. No original diagnostic pixels may seed native output."
+        },
+        {
+          "id": "journeys",
+          "condition": "Close all fourteen existing journeys and every named subrequirement using appropriate action-bound, contiguous presented-output and semantic/lifetime evidence. Replay/components contribute only within their stated boundaries."
+        },
+        {
+          "id": "operations",
+          "condition": "Account for all twenty-one operation/failure requirements, including clipping, overlap, CPU readers, text/palette lifetime, destination history and cleanup."
+        },
+        {
+          "id": "transitions",
+          "condition": "Cover both 640x480 and 800x600 frame modes and rebuild/rebind; actual later-map progression, victory and defeat cannot be substituted by loading a save or a component fixture."
+        },
+        {
+          "id": "input-media",
+          "condition": "Check camera orientations, picking/hotspot, HUD/minimap/tooltips and pause/Preferences transitions. Enabled-movie requirements include both intros, skip/end and return; disabled media supplies no enabled-media credit."
+        },
+        {
+          "id": "normal-lifetime",
+          "condition": "Normal journeys require original normal Quit, balanced imported/completed/returned Worlds, no pending work and retired cursor/graphics/process/channel owners. Force-stop is not normal completion."
+        },
+        {
+          "id": "fault-lifetime",
+          "condition": "Fault journeys use the declared terminal-stop/fresh-generation or isolated-continuation policy, checking expected failure, exact retirement, identity changes and no duplicated work. Synthetic recovery does not establish physical reset."
+        },
+        {
+          "id": "required-boundaries",
+          "condition": "Resolve required unknown callers/providers/ownership or record a precise evidence-backed scope decision. Zero observations and safe refusal do not prove a required path absent or correct."
+        },
+        {
+          "id": "separate-decisions",
+          "condition": "Record separate original-recovery and supported-player acceptance decisions. Code, source matches, admission, component comparisons and reviewed plans cannot grant full-player acceptance. FPS remains diagnostic; response/progress/resource bounds remain required."
+        }
+      ],
+      "configuration_coverage": "Bind every requirement to suitable current evidence for the claimed configuration. Shared immutable component proof may be reused with a reviewed applicability rationale; do not assume every option forms an automatic Cartesian-product test matrix or waive configuration-specific checks."
+    },
+    "evidence_rules": {
+      "current_source_bindings_required": true,
+      "independent_reference_required": true,
+      "component_proof_is_not_journey_acceptance": true,
+      "admission_is_not_complete_acceptance": true,
+      "normal_and_fault_outcomes_separate": true,
+      "unexpected_refusal_blocks_normal_acceptance": true,
+      "expected_negative_cases_require_state_and_return_checks": true,
+      "disabled_media_cannot_close_enabled_movies": true,
+      "historical_hashes_immutable": true,
+      "no_status_promotion_from_static_review": true
+    },
+    "scope_decisions": [
+      {
+        "id": "SC.alternate-ownership",
+        "contracts": [
+          "C10"
+        ],
+        "blocking_condition": "Any required natural alternate allocation/publication/writer/lifetime path in the claimed player.",
+        "close_when": "Recover the required chain or justify a precise caller/configuration boundary with evidence. The opt-in original allocation repair and native padded storage do not recover historical ownership or prove global unreachability.",
+        "documents": [
+          "research/runtime/original-alternate-allocation-repair-20261026.md",
+          "research/runtime/alternate-completion-20261026.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      },
+      {
+        "id": "SC.padded-fullscreen",
+        "contracts": [
+          "C01",
+          "C09",
+          "C10"
+        ],
+        "blocking_condition": "A claim includes enabled-padding fullscreen or its required presentation transition.",
+        "close_when": "Distinguish original exclusive/padded failures from Qt presentation and native padding; independently validate required output and lifetime. Windowed success and context fixtures do not close the configuration.",
+        "documents": [
+          "research/runtime/screen-presentation-recovery-20261024.md",
+          "research/runtime/alternate-completion-20261026.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      },
+      {
+        "id": "SC.natural-callers",
+        "contracts": [
+          "C01",
+          "C02",
+          "C03"
+        ],
+        "blocking_condition": "Unresolved raw readers, self/keyed GPU copies, aliases/writers or large fills are required by the claimed journeys.",
+        "close_when": "Establish the actual required caller and independently check its output/side effects, or document a precise justified boundary. No positive count is manufactured; zero observations are not global absence.",
+        "documents": [
+          "research/runtime/player-open-items-20261027.md",
+          "research/runtime/rendering-remaining-20261026.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      },
+      {
+        "id": "SC.prior-history",
+        "contracts": [
+          "C02",
+          "C03"
+        ],
+        "blocking_condition": "Complete native/live equality depends on the history preceding the selected late capture interval.",
+        "close_when": "Recover and produce the required owned history. Same-zero-base equality and original-before diagnostics retain their distinct results; establish relevance to the resident player before calling this a current player defect.",
+        "documents": [
+          "research/runtime/rendering-remaining-20261026.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      },
+      {
+        "id": "SC.map-save-domain",
+        "contracts": [
+          "C03",
+          "C13",
+          "C15"
+        ],
+        "blocking_condition": "Final supported campaign/map/save/duration claims have not been explicitly bounded.",
+        "close_when": "Name the supported domain and bounded execution profiles without dropping any of the fourteen journeys or twenty-one operations. Include actual later-map progression and both results; two Quick Battle maps and twelve minutes do not establish arbitrary maps/saves/duration.",
+        "documents": [
+          "research/runtime/native-player-expanded-20261026.md",
+          "docs/native-rendering-closure.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      },
+      {
+        "id": "SC.screen-provider-lifetime",
+        "contracts": [
+          "C09",
+          "C13",
+          "C14"
+        ],
+        "blocking_condition": "A required original screen helper/vtable/callback lifetime or route remains unresolved beneath the retained coordinator.",
+        "close_when": "Account for required Main/Realm/World/Report routing, populated resource ownership and failure/retirement effects within the declared supplier boundary. Local provider fixtures do not automatically recover the real transition router.",
+        "documents": [
+          "research/runtime/screen-provider-master-20261026.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      },
+      {
+        "id": "SC.rgb555-live",
+        "contracts": [
+          "C01",
+          "C03",
+          "C05"
+        ],
+        "blocking_condition": "A claimed required game path produces live RGB555 or RGB555 sprite/effect output.",
+        "close_when": "Establish requiredness and validate the full required production/ingestion/drawing path, or justify an exact supported-format boundary. Existing offline colour-only RGB555 proof is not live support; current RGB565 admission does not prove format1 unreachable.",
+        "documents": [
+          "research/runtime/rendering-remaining-20261026.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      },
+      {
+        "id": "SC.physical-compatibility",
+        "contracts": [
+          "C01",
+          "C02",
+          "C14"
+        ],
+        "blocking_condition": "A claim includes legacy physical-driver identity, Windows exceptional behavior or physical device-loss/reset equivalence.",
+        "close_when": "Supply appropriate physical/platform evidence or name an exact justified bounded Wine/native-provider claim. No unavailable Win98/ME host or synthetic fault is relabeled passed; required provider semantics remain open.",
+        "documents": [
+          "research/runtime/graphics-leases-shutdown-20261024.md",
+          "docs/native-rendering-closure.md"
+        ],
+        "state": "unresolved",
+        "resolution_evidence": []
+      }
+    ],
+    "claim_limits": [
+      "Original simulation, camera/traversal, queue preparation, sorting/visibility, screen coordination and validated data production may remain as the reviewed dependency map permits. Their required mutations and ownership still need accounting.",
+      "Native simulation/task-service replacement, standalone SceneSession modernization and gameplay balance changes are separate milestones.",
+      "The original-renderer compatibility entry, ARM/Asahi, retail/multiplayer, RGB555 offline previews and isolated recovery retain their own support/evidence boundaries. This contract grants none of those broader acceptance claims.",
+      "Different music/voice, lighting, media or backend selections must be identified. Skipped movies/no music cannot substitute for enabled-media requirements; generic audio-engine replacement is not added to this rendering target.",
+      "No fixed FPS floor or universal-duration guarantee is introduced. Retain timing diagnostics and historical benchmark outcomes, while enforcing response deadlines, forward progress and resource bounds."
+    ],
+    "change_control": {
+      "contract_amendment_requires_exact_review": true,
+      "required_unknowns_cannot_be_silently_excluded": true,
+      "new_evidence_id_for_new_execution": true,
+      "baseline_payload_immutable": true,
+      "acceptance_and_recovery_decisions_separate": true
+    },
+    "reviewed_sources": {
+      "apps/qt-shell/CMakeLists.txt": "d459289ce9f5f70de9a9da07c8bd488e3a8d6e136d5cc87cf2881bddf1de3015",
+      "apps/qt-shell/input_forwarder.cpp": "fdf5fbc39bca6efe4d88273492fe120d19cb34f4ea93272a0c2383019b2aa485",
+      "apps/qt-shell/main.cpp": "794763157f46d66c59e7b4e827245d8977630874335ca9d686e8e87865736499",
+      "apps/qt-shell/media_broker.cpp": "59f1fd5ec885b148018b7c5dadab8aa97ab46c88e2822a3087fb440d743457e7",
+      "compat/legacy/world_frame.cpp": "524529ecf257d65cc841bc7fc3a9803e5927cfccd60ea0095e2f97f4712e8965",
+      "compat/legacy/world_frame.hpp": "6c0a5418762ac98955d3e6a645322b1a64cdfdfc2578953770c3cf46d6e19b7a",
+      "reconstruction/rendering/minimap_camera_dispatch.hpp": "3b8f7604972288d4c7f08bca8a518c7c2b21d243ede38f25a02247da9cbaa890",
+      "reconstruction/rendering/palette_effects.cpp": "152ca0bf728853cb3829c738fc7bcb29dd45292f663eb6ea4a2ac3985dbf50d4",
+      "reconstruction/rendering/screen_tick.hpp": "053479b37990e0a301a8d9ee986cb65a4c8c5b65c5b1745ea53a80c1f1cc98fc",
+      "run-native.sh": "4194cb5a986d048bc598bcb5bec7ff9ffcad700cf7250156df19e9b6fa9631e6",
+      "run-x86.sh": "4af90a5054e8710357881e621783c18e51b052bbc2aa9278423cae50e23c52ff",
+      "runtime/canvas-writers/history.h": "c6ba553a7af6e0f3da93f422babc2b8fead353a6ffd5a149f5483f7c485ab0b3",
+      "runtime/canvas-writers/minimap_bridge.c": "7a60a9c3a881c2bf40826856990d462188e0d27467f9b425e5af00365ea51439",
+      "runtime/menu/storage.h": "fb8d7e4f870b5bf954faf276fb3a4d1fd1d1d69193d3eb477dae4b2e7c9063cf",
+      "runtime/native-draw/factory.c": "bf48223a80d2f0081bb47e579cbff437253df1cc52447c14ec97d31a680117c0",
+      "runtime/native-draw/history.h": "ff170be6b0c937e06657dbe506f921ea7a1aaa743097b1dca6fd5ab14b19d752",
+      "runtime/native-draw/surfaces.h": "2f3df566a6611fc24304969323c392835668cf3d0b2fbe2c92d9ce04da6cb681",
+      "runtime/render/bridge.c": "cdbd8a82460c0f4d62ac6712eef77da36eb7e1596825f73638ec08520a25b491",
+      "runtime/render/owned_session.h": "4ad253dbeec0484c25a8c8d0966364b4621131ed9dc17b54fa57e3d23f891f05",
+      "runtime/scene/canvas_producers.c": "28928aba2dd9008d10bacee47c9e72c4a6c4284fcf64343c5c8a76990c28917a",
+      "runtime/scene/world_continuous.c": "e9ee5ac2289844ac7ba056972427f179e306a881417e1c5947647beb3a095b7d",
+      "runtime/scene/world_producer_bypass.c": "0d65713ddfdefe4700bd39b0c6f24298bbf5e24ffd325303785e8463afa7afe9",
+      "runtime/scene/world_raster_batch.c": "9d6e9fd142a48e56dd1050121e5967b996e4feb2abeffc8732a78a5a98668211",
+      "tests/screen-tick-reference.cpp": "8280039cbf57f760be1d8aa24f73f3fcf197bbb9969af9eb85fbdf344c1ea837",
+      "tools/native_only_contract.py": "42964bd14c36eab5ce52189c79d9ed18462fb2c8c217bd7df53c2cb0d3b90767",
+      "tools/native_output_owner.py": "64d6fc6e7663057fda168b444ff0e37ed494fe7ad4f0b61e358a6584fc4215d0",
+      "tools/prepare-menu-observer.py": "fc112133055e4ff89e9655894cf5028d753dae99caa886b501ee91954ef754e4",
+      "tools/prepare-scene-observer.py": "4a92f4bb6c0aef0257455648cddb199dbb087b97f6539b3b0a770abb237f1028",
+      "tools/run-native-game.py": "3964ce5d14125e724cfc1a46e6b3dc2186c6c53d29c5fb67bd664f5c0b26d0fc",
+      "tools/run-native-owned.py": "a253290a8db44367a4d36e683693262c17a53bec596e539ff6caff97847948ff",
+      "tools/terrain_light_session.py": "d621469cd28c0868a1be200ca867b1c94d6a6914e0e685b1f3cf291622a9a48f"
+    }
+  },
+  "required_gap_register": {
+    "schema": 1,
+    "id": "native-rendering-required-gaps-v1",
+    "revision": 1,
+    "reviewed_source_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7",
+    "baseline": {
+      "record": "research/runtime/rendering-reviewed-baseline-results-20261030/baseline-01.json",
+      "sha256": "fe3b3e8263f6d216a7e0fce4db45a200c9fdef4c9cd0f857d87dc1de264bd699",
+      "source_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7"
+    },
+    "completion_contract": {
+      "id": "native-rendering-completion-v1",
+      "revision": 1,
+      "sha256": "86c0ccbf89069f94a3073aeec08e0ce161038931fcc00d1fef26c862014d44fb"
+    },
+    "assessment_policy": {
+      "missing_proof_does_not_establish_missing_code": true,
+      "component_or_historical_proof_does_not_close_requirement": true,
+      "required_unknowns_cannot_be_silently_excluded": true,
+      "source_freshness_is_not_scope_acceptance": true,
+      "static_register_cannot_promote_engine_status": true,
+      "task_order_not_assessed": true
+    },
+    "task_briefs": [
+      {
+        "id": "RG.J.enabled-movies",
+        "title": "Enabled movie playback and return",
+        "kind": "acceptance",
+        "close_when": "Bind skip/end/return and complete output for both intros in each claimed profile. Bind the claimed configuration and current source/input closure; record all subrequirement and resource results."
+      },
+      {
+        "id": "RG.J.main-setup-menus",
+        "title": "Main and setup menu semantics",
+        "kind": "acceptance",
+        "close_when": "Check settings/cancel outcomes, input ownership and presentation; Qt menu layout is native policy. Bind the claimed configuration and current source/input closure; record all subrequirement and resource results."
+      },
+      {
+        "id": "RG.J.campaign-entry",
+        "title": "Campaign entry and first complete World",
+        "kind": "acceptance",
+        "close_when": "Cover required loading branches, independent first complete output and caller side effects. Bind the claimed configuration and current source/input closure; record all subrequirement and resource results."
+      },
+      {
+        "id": "RG.J.quick-battle-entry",
+        "title": "Quick Battle setup and first World",
+        "kind": "acceptance",
+        "close_when": "Bind setup/loading/first-World parity to claimed live profile; original-only sessions do not establish native acceptance. Bind the claimed configuration and current source/input closure; record all subrequirement and resource results."
+      },
+      {
+        "id": "RG.J.active-world",
+        "title": "Sustained active World acceptance",
+        "kind": "acceptance",
+        "close_when": "Check sustained complete output, side effects, advancing original updates, response deadlines and resource bounds together. FPS is diagnostic. Bind the claimed configuration and current source/input closure; record all subrequirement and resource results."
+      },
+      {
+        "id": "RG.J.camera-motion",
+        "title": "Camera motion with presented scene and picking",
+        "kind": "acceptance",
+        "close_when": "Combine pan, rotations, boundaries, minimap and picking with continuous output checks. Bind the claimed configuration and current source/input closure; record all subrequirement and resource results."
+      },
+      {
+        "id": "RG.J.creatures-effects",
+        "title": "Creatures, combat and effect composition",
+        "kind": "acceptance",
+        "close_when": "Combine required attachments, lighting, visibility and blending with semantic and frame checks. Bind the claimed configuration and current source/input closure; record all subrequirement and resource results."
+      },
+      {
+        "id": "RG.J.hud-minimap-tooltips",
+        "title": "HUD, minimap and tooltip composition",
+        "kind": "acceptance",
+        "close_when": "Bind state, markers, borders/camera and tooltip open/close to complete presented outputs. Bind the claimed configuration and current source/input closure; record all subrequirement and resource results."
+      },
+      {
+        "id": "RG.J.cursor-interaction",
+        "title": "Cursor, picking and selection across transitions",
+        "kind": "acceptance",
+        "close_when": "Check hotspot, picking and selection across scene/menu/storage transitions with independent effects. Bind the claimed configuration and current source/input closure; record all subrequirement and resource results."
+      },
+      {
+        "id": "RG.J.pause-preferences",
+        "title": "Pause, Preferences, cancel and resume",
+        "kind": "acceptance",
+        "close_when": "Resolve strict movement/Mini failure and cover pause/cancel/apply/display branches. Bind the claimed configuration and current source/input closure; record all subrequirement and resource results."
+      },
+      {
+        "id": "RG.J.save-load",
+        "title": "Save, Load and restored World output",
+        "kind": "acceptance",
+        "close_when": "Check current profile actions, fresh resource identities and post-load output; retain corrected/unmodified reference distinctions. Bind the claimed configuration and current source/input closure; record all subrequirement and resource results."
+      },
+      {
+        "id": "RG.J.map-transitions",
+        "title": "Actual later-map progression and retirement",
+        "kind": "acceptance",
+        "close_when": "Observe actual later-map progression, loading and resource retirement; save reload cannot close it. Bind the claimed configuration and current source/input closure; record all subrequirement and resource results."
+      },
+      {
+        "id": "RG.J.battle-results",
+        "title": "Victory, defeat and result return ownership",
+        "kind": "acceptance",
+        "close_when": "Bind both victory and defeat, return actions and resource teardown to current native acceptance. Bind the claimed configuration and current source/input closure; record all subrequirement and resource results."
+      },
+      {
+        "id": "RG.J.shutdown",
+        "title": "Normal shutdown and generation conservation",
+        "kind": "acceptance",
+        "close_when": "Check normal/failed/restarted sessions with independent process/channel/native-owner retirement. Bind the claimed configuration and current source/input closure; record all subrequirement and resource results."
+      },
+      {
+        "id": "RG.OP.copies",
+        "title": "Close copies operation acceptance",
+        "kind": "acceptance",
+        "close_when": "Close every linked operation in its required caller/provider scope with current independent output/state/lifetime proof; retain component, historical and conditional limits."
+      },
+      {
+        "id": "RG.OP.writes",
+        "title": "Close writes operation acceptance",
+        "kind": "acceptance",
+        "close_when": "Close every linked operation in its required caller/provider scope with current independent output/state/lifetime proof; retain component, historical and conditional limits."
+      },
+      {
+        "id": "RG.OP.history",
+        "title": "Close history operation acceptance",
+        "kind": "acceptance",
+        "close_when": "Close every linked operation in its required caller/provider scope with current independent output/state/lifetime proof; retain component, historical and conditional limits."
+      },
+      {
+        "id": "RG.OP.text",
+        "title": "Close text operation acceptance",
+        "kind": "acceptance",
+        "close_when": "Close every linked operation in its required caller/provider scope with current independent output/state/lifetime proof; retain component, historical and conditional limits."
+      },
+      {
+        "id": "RG.OP.images",
+        "title": "Close images operation acceptance",
+        "kind": "acceptance",
+        "close_when": "Close every linked operation in its required caller/provider scope with current independent output/state/lifetime proof; retain component, historical and conditional limits."
+      },
+      {
+        "id": "RG.OP.palettes",
+        "title": "Close palettes operation acceptance",
+        "kind": "acceptance",
+        "close_when": "Close every linked operation in its required caller/provider scope with current independent output/state/lifetime proof; retain component, historical and conditional limits."
+      },
+      {
+        "id": "RG.OP.caller-state",
+        "title": "Close caller-state operation acceptance",
+        "kind": "acceptance",
+        "close_when": "Close every linked operation in its required caller/provider scope with current independent output/state/lifetime proof; retain component, historical and conditional limits."
+      },
+      {
+        "id": "RG.OP.faults",
+        "title": "Close faults operation acceptance",
+        "kind": "acceptance",
+        "close_when": "Close every linked operation in its required caller/provider scope with current independent output/state/lifetime proof; retain component, historical and conditional limits."
+      },
+      {
+        "id": "RG.source-config",
+        "title": "Bind the assembled public player",
+        "kind": "acceptance",
+        "close_when": "Record actual entrypoint, admitted policy, compiled sources/binaries, assets, backend/display/lighting/media selections and bounded scenario identities for the assembled source."
+      },
+      {
+        "id": "RG.acceptance-join",
+        "title": "Reconcile complete requirement evidence",
+        "kind": "closure_review",
+        "close_when": "Join all required current journey/operation receipts by exact configuration/applicability, retaining failures and absent references; no static pass bit substitutes for acceptance."
+      },
+      {
+        "id": "RG.input-media-join",
+        "title": "Reconcile input and media composition",
+        "kind": "acceptance",
+        "close_when": "Bind enabled-media, focus/input, camera/HUD and pause/return evidence to actual current presented source/owner transitions across the linked journeys."
+      },
+      {
+        "id": "RG.scope-join",
+        "title": "Reconcile required provider boundaries",
+        "kind": "requiredness",
+        "close_when": "Resolve every scope decision required by the final claim, with exact supported boundaries and appropriate evidence; required unknowns cannot silently disappear."
+      },
+      {
+        "id": "RG.closure-decisions",
+        "title": "Record separate closure decisions",
+        "kind": "closure_review",
+        "close_when": "Issue separate original-recovery and supported-player acceptance decisions from appropriate current evidence; retain explicit unsupported/platform limits without promoting partial scopes."
+      },
+      {
+        "id": "RG.SC.alternate-ownership",
+        "title": "Resolve alternate-ownership requiredness/boundary",
+        "kind": "requiredness",
+        "close_when": "Recover the required chain or justify a precise caller/configuration boundary with evidence. The opt-in original allocation repair and native padded storage do not recover historical ownership or prove global unreachability."
+      },
+      {
+        "id": "RG.SC.padded-fullscreen",
+        "title": "Resolve padded-fullscreen requiredness/boundary",
+        "kind": "requiredness",
+        "close_when": "Distinguish original exclusive/padded failures from Qt presentation and native padding; independently validate required output and lifetime. Windowed success and context fixtures do not close the configuration."
+      },
+      {
+        "id": "RG.SC.natural-callers",
+        "title": "Resolve natural-callers requiredness/boundary",
+        "kind": "requiredness",
+        "close_when": "Establish the actual required caller and independently check its output/side effects, or document a precise justified boundary. No positive count is manufactured; zero observations are not global absence."
+      },
+      {
+        "id": "RG.SC.prior-history",
+        "title": "Resolve prior-history requiredness/boundary",
+        "kind": "requiredness",
+        "close_when": "Recover and produce the required owned history. Same-zero-base equality and original-before diagnostics retain their distinct results; establish relevance to the resident player before calling this a current player defect."
+      },
+      {
+        "id": "RG.SC.map-save-domain",
+        "title": "Resolve map-save-domain requiredness/boundary",
+        "kind": "requiredness",
+        "close_when": "Name the supported domain and bounded execution profiles without dropping any of the fourteen journeys or twenty-one operations. Include actual later-map progression and both results; two Quick Battle maps and twelve minutes do not establish arbitrary maps/saves/duration."
+      },
+      {
+        "id": "RG.SC.screen-provider-lifetime",
+        "title": "Resolve screen-provider-lifetime requiredness/boundary",
+        "kind": "requiredness",
+        "close_when": "Account for required Main/Realm/World/Report routing, populated resource ownership and failure/retirement effects within the declared supplier boundary. Local provider fixtures do not automatically recover the real transition router."
+      },
+      {
+        "id": "RG.SC.rgb555-live",
+        "title": "Resolve rgb555-live requiredness/boundary",
+        "kind": "requiredness",
+        "close_when": "Establish requiredness and validate the full required production/ingestion/drawing path, or justify an exact supported-format boundary. Existing offline colour-only RGB555 proof is not live support; current RGB565 admission does not prove format1 unreachable."
+      },
+      {
+        "id": "RG.SC.physical-compatibility",
+        "title": "Resolve physical-compatibility requiredness/boundary",
+        "kind": "requiredness",
+        "close_when": "Supply appropriate physical/platform evidence or name an exact justified bounded Wine/native-provider claim. No unavailable Win98/ME host or synthetic fault is relabeled passed; required provider semantics remain open."
+      },
+      {
+        "id": "RG.diagnostics",
+        "title": "Measure current source timing diagnostically",
+        "kind": "diagnostic",
+        "close_when": "Record fresh World cadence and presentation/readback costs under a declared current workload. FPS is diagnostic, while required response/progress/resource checks stay with acceptance tasks."
+      }
+    ],
+    "journeys": [
+      {
+        "id": "enabled-movies",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Native movie/broker paths and retained enabled-intro player runs exist.",
+        "assessment": "No adequate current complete requirement acceptance is established by the reviewed baseline; retained successes/components remain leads, not missing-code findings.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "HOST.media",
+          "HOST.native-menu-media"
+        ],
+        "evidence_leads": [
+          "NPL27.default-media08"
+        ],
+        "subrequirements": [
+          {
+            "id": "both-intros",
+            "classification": "missing_proof",
+            "remaining": "Bind both naturally completed native intros to current public-player source/configuration and complete output/ownership evidence.",
+            "closing_task": "RG.J.enabled-movies"
+          },
+          {
+            "id": "movie-skip",
+            "classification": "missing_proof",
+            "remaining": "Exercise native skip during playback and verify its actual callback, media retirement and destination screen.",
+            "closing_task": "RG.J.enabled-movies"
+          },
+          {
+            "id": "return-to-menu",
+            "classification": "missing_proof",
+            "remaining": "Verify end/skip return to owned menus with current input focus, output and no leaked movie owners.",
+            "closing_task": "RG.J.enabled-movies"
+          }
+        ],
+        "closing_task": "RG.J.enabled-movies"
+      },
+      {
+        "id": "main-setup-menus",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Native Qt menu widgets and public-player entry/return journeys exist.",
+        "assessment": "No adequate current complete requirement acceptance is established by the reviewed baseline; retained successes/components remain leads, not missing-code findings.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-only-launch-contract",
+          "HOST.native-menu-media"
+        ],
+        "evidence_leads": [
+          "NPL27.quick-map-005",
+          "PLAYERMERGE27.storage01"
+        ],
+        "subrequirements": [
+          {
+            "id": "main-menu",
+            "classification": "missing_proof",
+            "remaining": "Bind visible native Main menu and input/focus semantics to the claimed current player.",
+            "closing_task": "RG.J.main-setup-menus"
+          },
+          {
+            "id": "setup-change",
+            "classification": "missing_proof",
+            "remaining": "Check required setup changes against original acknowledgements and resulting configuration, not widget clicks alone.",
+            "closing_task": "RG.J.main-setup-menus"
+          },
+          {
+            "id": "cancel-return",
+            "classification": "missing_proof",
+            "remaining": "Check cancel/return callbacks, preserved setup state, focus and retirement without starting an unintended World.",
+            "closing_task": "RG.J.main-setup-menus"
+          }
+        ],
+        "closing_task": "RG.J.main-setup-menus"
+      },
+      {
+        "id": "campaign-entry",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Resident campaign loading and bounded native entry/storage journeys exist.",
+        "assessment": "No adequate current complete requirement acceptance is established by the reviewed baseline; retained successes/components remain leads, not missing-code findings.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NR.world-live-view",
+          "RS.world-frame",
+          "NP.native-only-launch-contract"
+        ],
+        "evidence_leads": [
+          "PLAYERMERGE27.storage01",
+          "NPL27.default-media08"
+        ],
+        "subrequirements": [
+          {
+            "id": "campaign-selection",
+            "classification": "missing_proof",
+            "remaining": "Bind actual campaign/region selection to the original accepted request and the claimed native configuration.",
+            "closing_task": "RG.J.campaign-entry"
+          },
+          {
+            "id": "loading",
+            "classification": "missing_proof",
+            "remaining": "Verify loading ownership, progress, resource acquisition and first-generation handoff without hidden pixel fallback.",
+            "closing_task": "RG.J.campaign-entry"
+          },
+          {
+            "id": "first-composed-world",
+            "classification": "missing_proof",
+            "remaining": "Compare the complete first presented World and required preparation side effects from an independently justified initial history.",
+            "closing_task": "RG.J.campaign-entry"
+          }
+        ],
+        "closing_task": "RG.J.campaign-entry"
+      },
+      {
+        "id": "quick-battle-entry",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Multiple offered-map player journeys and resident native rendering exist.",
+        "assessment": "No adequate current complete requirement acceptance is established by the reviewed baseline; retained successes/components remain leads, not missing-code findings.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NR.world-live-view",
+          "RS.world-frame",
+          "NP.native-only-launch-contract"
+        ],
+        "evidence_leads": [
+          "NPL27.quick-map-005",
+          "NPL27.quick-map-207"
+        ],
+        "subrequirements": [
+          {
+            "id": "setup-confirm",
+            "classification": "missing_proof",
+            "remaining": "Bind setup/map choice and confirmation to the original acknowledged ordinal and actual game configuration.",
+            "closing_task": "RG.J.quick-battle-entry"
+          },
+          {
+            "id": "loading",
+            "classification": "missing_proof",
+            "remaining": "Verify setup-to-loading-to-World owner and resource transitions on the current player.",
+            "closing_task": "RG.J.quick-battle-entry"
+          },
+          {
+            "id": "first-composed-world",
+            "classification": "missing_proof",
+            "remaining": "Compare the complete first World output and required caller state for the declared supported map/provider.",
+            "closing_task": "RG.J.quick-battle-entry"
+          }
+        ],
+        "closing_task": "RG.J.quick-battle-entry"
+      },
+      {
+        "id": "active-world",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "The resident path and historical twelve-minute physical-input run exist.",
+        "assessment": "No adequate current complete requirement acceptance is established by the reviewed baseline; retained successes/components remain leads, not missing-code findings.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NR.public-resident-world",
+          "NR.scene-history",
+          "RS.world-frame"
+        ],
+        "evidence_leads": [
+          "NPL27.extended05",
+          "NPL27.hardware03"
+        ],
+        "subrequirements": [
+          {
+            "id": "sustained-world",
+            "classification": "missing_proof",
+            "remaining": "Establish current bounded forward progress, complete presented output and resource conservation together; record timing diagnostically.",
+            "closing_task": "RG.J.active-world"
+          },
+          {
+            "id": "animation",
+            "classification": "missing_proof",
+            "remaining": "Bind visible animation changes to admitted source ticks without substituting repeated redraws for new World updates.",
+            "closing_task": "RG.J.active-world"
+          },
+          {
+            "id": "visibility",
+            "classification": "missing_proof",
+            "remaining": "Check visibility/occlusion changes against required scene state and independent output through the active interval.",
+            "closing_task": "RG.J.active-world"
+          }
+        ],
+        "closing_task": "RG.J.active-world"
+      },
+      {
+        "id": "camera-motion",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Four-view components and physical camera/Mini journeys exist; original preparation is permitted.",
+        "assessment": "No adequate current complete requirement acceptance is established by the reviewed baseline; retained successes/components remain leads, not missing-code findings.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NR.world-live-view",
+          "RE.terrain_camera",
+          "RS.minimap-camera-dispatch"
+        ],
+        "evidence_leads": [
+          "NPL27.extended05"
+        ],
+        "subrequirements": [
+          {
+            "id": "pan",
+            "classification": "missing_proof",
+            "remaining": "Check actual pan actions, current camera/source state, contiguous output and picking/HUD alignment.",
+            "closing_task": "RG.J.camera-motion"
+          },
+          {
+            "id": "four-orientations",
+            "classification": "missing_proof",
+            "remaining": "Exercise all four orientations with the required creature/effect/terrain/minimap output; a standalone SceneSession port is not a prerequisite.",
+            "closing_task": "RG.J.camera-motion"
+          },
+          {
+            "id": "viewport-boundaries",
+            "classification": "missing_proof",
+            "remaining": "Check view limits and viewport-edge behavior, including cursor coordinates and clipping after size changes.",
+            "closing_task": "RG.J.camera-motion"
+          }
+        ],
+        "closing_task": "RG.J.camera-motion"
+      },
+      {
+        "id": "creatures-effects",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Sprite, attachment, palette/light components and retained gameplay phases exist.",
+        "assessment": "No adequate current complete requirement acceptance is established by the reviewed baseline; retained successes/components remain leads, not missing-code findings.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NR.sprites",
+          "RS.world-frame",
+          "RE.palette-effect-builders"
+        ],
+        "evidence_leads": [
+          "NPL27.extended05",
+          "COPYOUTPUT.storage-original01-20261025"
+        ],
+        "subrequirements": [
+          {
+            "id": "creature-animation",
+            "classification": "missing_proof",
+            "remaining": "Bind current creature animation output to real World source clocks and resource generations.",
+            "closing_task": "RG.J.creatures-effects"
+          },
+          {
+            "id": "attachment",
+            "classification": "missing_proof",
+            "remaining": "Check required attachments and placement in actual scene composition across relevant views.",
+            "closing_task": "RG.J.creatures-effects"
+          },
+          {
+            "id": "combat",
+            "classification": "missing_proof",
+            "remaining": "Bind combat actions and actual effects/state transitions to complete native output; do not substitute a synthetic combat lab.",
+            "closing_task": "RG.J.creatures-effects"
+          },
+          {
+            "id": "lighting",
+            "classification": "missing_proof",
+            "remaining": "Verify selected default native lighting production/delivery and its failure outcome; original/observe preparation is a separate configuration.",
+            "closing_task": "RG.J.creatures-effects"
+          },
+          {
+            "id": "effect-blending",
+            "classification": "missing_proof",
+            "remaining": "Compare required blend/effect ordering and history-dependent pixels in their actual caller context.",
+            "closing_task": "RG.J.creatures-effects"
+          }
+        ],
+        "closing_task": "RG.J.creatures-effects"
+      },
+      {
+        "id": "hud-minimap-tooltips",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Native pixel kernels and selected marker/read-set/camera helpers exist.",
+        "assessment": "No adequate current complete requirement acceptance is established by the reviewed baseline; retained successes/components remain leads, not missing-code findings.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "RS.minimap-camera-corners",
+          "RS.minimap-camera-dispatch",
+          "NP.glyph-production-route"
+        ],
+        "evidence_leads": [
+          "NPL27.minimap-readset04",
+          "NPL27.extended05",
+          "TLQF26.glyph-original"
+        ],
+        "subrequirements": [
+          {
+            "id": "hud-update",
+            "classification": "missing_proof",
+            "remaining": "Bind HUD updates to current game state and complete post-World composition.",
+            "closing_task": "RG.J.hud-minimap-tooltips"
+          },
+          {
+            "id": "minimap-update",
+            "classification": "missing_proof",
+            "remaining": "Check minimap updates with actual camera/map state and source-generation changes.",
+            "closing_task": "RG.J.hud-minimap-tooltips"
+          },
+          {
+            "id": "markers",
+            "classification": "missing_proof",
+            "remaining": "Check required creature/selection/camera markers and borders in presented output, not isolated stores only.",
+            "closing_task": "RG.J.hud-minimap-tooltips"
+          },
+          {
+            "id": "tooltip-open-close",
+            "classification": "missing_proof",
+            "remaining": "Exercise tooltip open/close and text/background restoration with current font/DC/resource ownership.",
+            "closing_task": "RG.J.hud-minimap-tooltips"
+          }
+        ],
+        "closing_task": "RG.J.hud-minimap-tooltips"
+      },
+      {
+        "id": "cursor-interaction",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Native cursor providers, input-resize repair and bounded public cursor-hook journeys exist.",
+        "assessment": "No adequate current complete requirement acceptance is established by the reviewed baseline; retained successes/components remain leads, not missing-code findings.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.screen-cursor-native-copy-providers",
+          "NP.input-frame-resize-cursor",
+          "NP.native-copy-output-closure"
+        ],
+        "evidence_leads": [
+          "PLAYERMERGE27.storage01",
+          "PLAYERHANDOFF27.controls01"
+        ],
+        "subrequirements": [
+          {
+            "id": "cursor-motion",
+            "classification": "missing_proof",
+            "remaining": "Bind actual cursor motion to the current frame/focus mode through menu, World and rebuild transitions.",
+            "closing_task": "RG.J.cursor-interaction"
+          },
+          {
+            "id": "hotspot",
+            "classification": "missing_proof",
+            "remaining": "Verify hotspot/background restoration and caller-visible behavior, including retained invalid-rectangle requests.",
+            "closing_task": "RG.J.cursor-interaction"
+          },
+          {
+            "id": "picking",
+            "classification": "missing_proof",
+            "remaining": "Verify current picking coordinates and selected object/cell identity after pan, rotation and frame-size changes.",
+            "closing_task": "RG.J.cursor-interaction"
+          },
+          {
+            "id": "selection",
+            "classification": "missing_proof",
+            "remaining": "Check selection state, highlight/output and original acknowledgements without invalid cursor-copy work disappearing from proof.",
+            "closing_task": "RG.J.cursor-interaction"
+          }
+        ],
+        "closing_task": "RG.J.cursor-interaction"
+      },
+      {
+        "id": "pause-preferences",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Strict Mini readiness, Preferences and display rebuild implementations/results exist.",
+        "assessment": "No adequate current complete requirement acceptance is established by the reviewed baseline; retained successes/components remain leads, not missing-code findings.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-only-launch-contract",
+          "NP.native-only-generation-restart",
+          "NR.public-resident-world"
+        ],
+        "evidence_leads": [
+          "NPL27.extended05",
+          "PLAYERMERGE27.storage01"
+        ],
+        "subrequirements": [
+          {
+            "id": "pause",
+            "classification": "missing_proof",
+            "remaining": "Verify real pause/Mini admission, original callback and suspended World/input/media ownership.",
+            "closing_task": "RG.J.pause-preferences"
+          },
+          {
+            "id": "preferences-change",
+            "classification": "missing_proof",
+            "remaining": "Verify required Preferences changes and both display-mode rebuild/rebind paths against actual acknowledgements.",
+            "closing_task": "RG.J.pause-preferences"
+          },
+          {
+            "id": "cancel",
+            "classification": "missing_proof",
+            "remaining": "Check cancel/no-apply semantics and preserved preferences/resources, not just dialog disappearance.",
+            "closing_task": "RG.J.pause-preferences"
+          },
+          {
+            "id": "resume",
+            "classification": "missing_proof",
+            "remaining": "Verify fresh resumed output, input, lighting/history and balanced World continuation after cancel/apply.",
+            "closing_task": "RG.J.pause-preferences"
+          }
+        ],
+        "closing_task": "RG.J.pause-preferences"
+      },
+      {
+        "id": "save-load",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Save/Load, Main Load, two display rebuilds and fresh World recreation have bounded results.",
+        "assessment": "No adequate current complete requirement acceptance is established by the reviewed baseline; retained successes/components remain leads, not missing-code findings.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "RS.world-frame",
+          "NR.scene-history",
+          "NP.native-copy-output-closure"
+        ],
+        "evidence_leads": [
+          "PLAYERMERGE27.storage01",
+          "NPL27.storage04"
+        ],
+        "subrequirements": [
+          {
+            "id": "save",
+            "classification": "missing_proof",
+            "remaining": "Bind save request, acknowledgement and history synchronization to the admitted current source/configuration.",
+            "closing_task": "RG.J.save-load"
+          },
+          {
+            "id": "load",
+            "classification": "missing_proof",
+            "remaining": "Check Mini Load and Main Load with their actual original callbacks and resource-generation changes.",
+            "closing_task": "RG.J.save-load"
+          },
+          {
+            "id": "restored-world",
+            "classification": "missing_proof",
+            "remaining": "Independently compare restored presented output and required state/ownership; emitted COPY matches alone do not close refused calls or the whole session.",
+            "closing_task": "RG.J.save-load"
+          }
+        ],
+        "closing_task": "RG.J.save-load"
+      },
+      {
+        "id": "map-transitions",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Loading/rebind and save-based recreation exist; they do not establish actual next-map progression.",
+        "assessment": "No adequate current complete requirement acceptance is established by the reviewed baseline; retained successes/components remain leads, not missing-code findings.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "RS.world-frame",
+          "NR.continuous-resource-lifetime",
+          "NP.native-only-launch-contract"
+        ],
+        "evidence_leads": [
+          "PLAYERMERGE27.storage01",
+          "COPYOUTPUT.live-storage02-20261025"
+        ],
+        "subrequirements": [
+          {
+            "id": "leave-map",
+            "classification": "missing_proof",
+            "remaining": "Exercise an actual supported leave-map progression event and verify original/native owner retirement.",
+            "closing_task": "RG.J.map-transitions"
+          },
+          {
+            "id": "loading",
+            "classification": "missing_proof",
+            "remaining": "Check real next-map loading and new resources/identities; a saved-map reload is not a substitute.",
+            "closing_task": "RG.J.map-transitions"
+          },
+          {
+            "id": "next-map",
+            "classification": "missing_proof",
+            "remaining": "Bind the actual next-map identity and complete first/resumed output to the supported campaign domain.",
+            "closing_task": "RG.J.map-transitions"
+          }
+        ],
+        "closing_task": "RG.J.map-transitions"
+      },
+      {
+        "id": "battle-results",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Native result/menu controllers and bounded Quit/report paths exist; both real outcomes still need complete scope proof.",
+        "assessment": "No adequate current complete requirement acceptance is established by the reviewed baseline; retained successes/components remain leads, not missing-code findings.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-only-launch-contract",
+          "NR.public-resident-world"
+        ],
+        "evidence_leads": [
+          "NPL27.quick-map-207",
+          "PLAYERMERGE27.storage01"
+        ],
+        "subrequirements": [
+          {
+            "id": "victory",
+            "classification": "missing_proof",
+            "remaining": "Bind an actual victory outcome, result acknowledgement and native result/World retirement to independent semantics/output.",
+            "closing_task": "RG.J.battle-results"
+          },
+          {
+            "id": "defeat",
+            "classification": "missing_proof",
+            "remaining": "Bind an actual defeat outcome with its separate result/retirement path; victory or Quit is not substitute evidence.",
+            "closing_task": "RG.J.battle-results"
+          },
+          {
+            "id": "return-to-menu",
+            "classification": "missing_proof",
+            "remaining": "Verify result-to-Main/setup return, request acknowledgement, focus and zero retired World/graphics owners.",
+            "closing_task": "RG.J.battle-results"
+          }
+        ],
+        "closing_task": "RG.J.battle-results"
+      },
+      {
+        "id": "shutdown",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Normal Quit and zero-owner historical player journeys exist; terminal restart has separate evidence.",
+        "assessment": "No adequate current complete requirement acceptance is established by the reviewed baseline; retained successes/components remain leads, not missing-code findings.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-only-launch-contract",
+          "NP.native-only-generation-restart",
+          "NP.menu-session-destruction"
+        ],
+        "evidence_leads": [
+          "PLAYERMERGE27.storage01",
+          "NPL27.extended05",
+          "RA25.native-only.restart"
+        ],
+        "subrequirements": [
+          {
+            "id": "world-exit",
+            "classification": "missing_proof",
+            "remaining": "Verify accepted World exit drains or correctly cancels work and retires its exact resource generation.",
+            "closing_task": "RG.J.shutdown"
+          },
+          {
+            "id": "menu-exit",
+            "classification": "missing_proof",
+            "remaining": "Verify normal original Main/menu Quit rather than force-stop or a shell exit code alone.",
+            "closing_task": "RG.J.shutdown"
+          },
+          {
+            "id": "cleanup",
+            "classification": "missing_proof",
+            "remaining": "Verify final cursor/graphics/process/channel owners and pending jobs are zero; fault/restart outcomes remain separate from normal completion.",
+            "closing_task": "RG.J.shutdown"
+          }
+        ],
+        "closing_task": "RG.J.shutdown"
+      }
+    ],
+    "operations": [
+      {
+        "id": "copy-opaque",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Current caller-bound emitted output, source/destination authority and required opaque copy routes must be checked together.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-copy-transforms",
+          "NP.native-copy-output-closure",
+          "NP.native-copy-route-census"
+        ],
+        "evidence_leads": [
+          "COPYOUTPUT.gpu-plan04-20261025",
+          "COPYOUTPUT.live-copy02-20261025",
+          "PLAYERMERGE27.storage01",
+          "ADAPTER27.cpu-latest-controls",
+          "ADAPTER27.gpu-latest-controls"
+        ],
+        "closing_task": "RG.OP.copies"
+      },
+      {
+        "id": "copy-keyed",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Retain CPU-keyed successes; establish required keyed-GPU callers or justify their exact boundary without manufacturing positive counts.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-copy-transforms",
+          "NP.native-copy-output-closure",
+          "NP.native-copy-route-census"
+        ],
+        "evidence_leads": [
+          "COPYOUTPUT.gpu-plan04-20261025",
+          "COPYOUTPUT.live-copy02-20261025",
+          "PLAYERMERGE27.storage01",
+          "ADAPTER27.cpu-latest-controls",
+          "ADAPTER27.gpu-latest-controls"
+        ],
+        "closing_task": "RG.OP.copies"
+      },
+      {
+        "id": "copy-clipped",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Verify actual clip rectangles, attached clippers, untouched destination words and caller-visible results on required live routes.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-copy-transforms",
+          "NP.native-copy-output-closure",
+          "NP.native-copy-route-census"
+        ],
+        "evidence_leads": [
+          "COPYOUTPUT.gpu-plan04-20261025",
+          "COPYOUTPUT.live-copy02-20261025",
+          "PLAYERMERGE27.storage01",
+          "ADAPTER27.cpu-latest-controls",
+          "ADAPTER27.gpu-latest-controls"
+        ],
+        "closing_task": "RG.OP.copies"
+      },
+      {
+        "id": "copy-stretched",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Bind required format/stretch/key policy to actual application arguments and independently expected complete destinations.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-copy-transforms",
+          "NP.native-copy-output-closure",
+          "NP.native-copy-route-census"
+        ],
+        "evidence_leads": [
+          "COPYOUTPUT.gpu-plan04-20261025",
+          "COPYOUTPUT.live-copy02-20261025",
+          "PLAYERMERGE27.storage01",
+          "ADAPTER27.cpu-latest-controls",
+          "ADAPTER27.gpu-latest-controls"
+        ],
+        "closing_task": "RG.OP.copies"
+      },
+      {
+        "id": "copy-alias-overlap",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Supplied self/alias controls are not natural reachability; resolve required caller/history semantics and independently check overlapping output.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-copy-transforms",
+          "NP.native-copy-output-closure",
+          "NP.native-copy-route-census"
+        ],
+        "evidence_leads": [
+          "COPYOUTPUT.gpu-plan04-20261025",
+          "COPYOUTPUT.live-copy02-20261025",
+          "PLAYERMERGE27.storage01",
+          "ADAPTER27.cpu-latest-controls",
+          "ADAPTER27.gpu-latest-controls"
+        ],
+        "closing_task": "RG.OP.copies"
+      },
+      {
+        "id": "fill-full",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Verify required full-fill invocation, exact complete output and state; authored large-fill arithmetic does not prove natural active-World use.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-copy-transforms",
+          "RS.world-frame"
+        ],
+        "evidence_leads": [
+          "COPYOUTPUT.gpu-plan04-20261025",
+          "RRG26.colour-hardware-native",
+          "ADAPTER27.cpu-latest-controls"
+        ],
+        "closing_task": "RG.OP.writes"
+      },
+      {
+        "id": "fill-clipped",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Verify required clipping, preserved exterior words, partial-prefix behavior and original/native policy distinction.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-copy-transforms",
+          "RS.world-frame"
+        ],
+        "evidence_leads": [
+          "COPYOUTPUT.gpu-plan04-20261025",
+          "RRG26.colour-hardware-native",
+          "ADAPTER27.cpu-latest-controls"
+        ],
+        "closing_task": "RG.OP.writes"
+      },
+      {
+        "id": "partial-write",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Check dirty-byte/WORD preservation, valid prefixes and rollback/error results in required operation contexts.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-copy-transforms",
+          "RS.world-frame"
+        ],
+        "evidence_leads": [
+          "COPYOUTPUT.gpu-plan04-20261025",
+          "RRG26.colour-hardware-native",
+          "ADAPTER27.cpu-latest-controls"
+        ],
+        "closing_task": "RG.OP.writes"
+      },
+      {
+        "id": "cpu-write-readback",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Verify actual required CPU readers/writers and ordered current history restoration without hidden original pixels or stale authority.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NR.scene-history",
+          "NP.native-cpu-instruction-resume",
+          "RS.world-initial-state"
+        ],
+        "evidence_leads": [
+          "COPYOUTPUT.live-storage02-20261025",
+          "COPYOUTPUT.storage-original01-20261025",
+          "RRG26.natural-native"
+        ],
+        "closing_task": "RG.OP.history"
+      },
+      {
+        "id": "text-font-dc-lifetime",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Connect required glyph/text output to real font/DC acquisition, selection, restore/reload and teardown; isolated kernels do not close caller lifetime.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "RS.glyph-backend",
+          "NP.glyph-production-route",
+          "RS.font-glyph-raster"
+        ],
+        "evidence_leads": [
+          "TLQF26.glyph-original",
+          "NP.glyph-production-route.native-final-20261014"
+        ],
+        "closing_task": "RG.OP.text"
+      },
+      {
+        "id": "image-cropping",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Bind required whole-image/cropped drawing to actual geometry, palette/history and caller effects in current presented output.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-clipped-image-copy",
+          "NR.sprites",
+          "RS.word-route",
+          "RS.world-composition"
+        ],
+        "evidence_leads": [
+          "COPYOUTPUT.storage-original01-20261025",
+          "RS.word-route.state-fix-takeover-20261010"
+        ],
+        "closing_task": "RG.OP.images"
+      },
+      {
+        "id": "sprite-indexed",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Verify required live indexed-source palette/shade/clip/order composition and owned resource generations.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-clipped-image-copy",
+          "NR.sprites",
+          "RS.word-route",
+          "RS.world-composition"
+        ],
+        "evidence_leads": [
+          "COPYOUTPUT.storage-original01-20261025",
+          "RS.word-route.state-fix-takeover-20261010"
+        ],
+        "closing_task": "RG.OP.images"
+      },
+      {
+        "id": "sprite-direct",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Extend selected original raster/component proofs to the actual required direct-sprite callers and complete presented composition.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-clipped-image-copy",
+          "NR.sprites",
+          "RS.word-route",
+          "RS.world-composition"
+        ],
+        "evidence_leads": [
+          "COPYOUTPUT.storage-original01-20261025",
+          "RS.word-route.state-fix-takeover-20261010"
+        ],
+        "closing_task": "RG.OP.images"
+      },
+      {
+        "id": "sprite-auxiliary",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Verify required attachments/auxiliary/effect producers, ordering and ownership in the claimed scene/caller scope.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-clipped-image-copy",
+          "NR.sprites",
+          "RS.word-route",
+          "RS.world-composition"
+        ],
+        "evidence_leads": [
+          "COPYOUTPUT.storage-original01-20261025",
+          "RS.word-route.state-fix-takeover-20261010"
+        ],
+        "closing_task": "RG.OP.images"
+      },
+      {
+        "id": "palette-remap",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Retain bounded builder/provider proof while checking actual current runtime table selection, remapped output and resource revisions.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "RE.palette-effect-builders",
+          "RE.palette-effect-modes",
+          "RE.palette-effect-chains",
+          "RS.actor-palette-builder-providers"
+        ],
+        "evidence_leads": [
+          "PALETTE.closure-native-20261026",
+          "PALETTE.modes-current-20261026",
+          "PALETTE.chains-current-20261026",
+          "PALETTE.providers-current-native-20261026"
+        ],
+        "closing_task": "RG.OP.palettes"
+      },
+      {
+        "id": "palette-cycling",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Check actual palette refresh/input production, selection/delivery, ordering and retirement through required transitions.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "RE.palette-effect-builders",
+          "RE.palette-effect-modes",
+          "RE.palette-effect-chains",
+          "RS.actor-palette-builder-providers"
+        ],
+        "evidence_leads": [
+          "PALETTE.closure-native-20261026",
+          "PALETTE.modes-current-20261026",
+          "PALETTE.chains-current-20261026",
+          "PALETTE.providers-current-native-20261026"
+        ],
+        "closing_task": "RG.OP.palettes"
+      },
+      {
+        "id": "destination-dependency",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Produce required owned initialization and intervening history; same-zero-base kernel equality cannot establish complete live history.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NR.scene-history",
+          "NP.native-cpu-instruction-resume",
+          "RS.world-initial-state"
+        ],
+        "evidence_leads": [
+          "COPYOUTPUT.live-storage02-20261025",
+          "COPYOUTPUT.storage-original01-20261025",
+          "RRG26.natural-native"
+        ],
+        "closing_task": "RG.OP.history"
+      },
+      {
+        "id": "flags-and-return-values",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Check required return/AX/flags/register/state effects alongside pixels; independent native CPU transforms do not imply original driver equivalence.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-clipped-image-copy",
+          "RS.glyph-backend",
+          "RS.word-route"
+        ],
+        "evidence_leads": [
+          "ADAPTER26.image",
+          "TLQF26.glyph-original",
+          "RS.word-route.state-fix-takeover-20261010"
+        ],
+        "closing_task": "RG.OP.caller-state"
+      },
+      {
+        "id": "surface-loss-restore",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Close the required provider loss/restore scope with actual-game fault/lifetime evidence or a precise compatibility boundary; synthetic context rebuild is separate.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-isolated-render-recovery",
+          "NP.native-only-generation-restart",
+          "NP.menu-session-destruction"
+        ],
+        "evidence_leads": [
+          "NATIVE.native-isolated-render-recovery.final-20261018",
+          "RA25.native-only.restart",
+          "PLAYERHANDOFF27.controls01"
+        ],
+        "closing_task": "RG.OP.faults"
+      },
+      {
+        "id": "transition-recovery",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Verify declared terminal-stop/fresh-generation or isolated continuation during real transitions without duplicate work or stale owners.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-isolated-render-recovery",
+          "NP.native-only-generation-restart",
+          "NP.menu-session-destruction"
+        ],
+        "evidence_leads": [
+          "NATIVE.native-isolated-render-recovery.final-20261018",
+          "RA25.native-only.restart",
+          "PLAYERHANDOFF27.controls01"
+        ],
+        "closing_task": "RG.OP.faults"
+      },
+      {
+        "id": "failure-cleanup",
+        "state": "open",
+        "classification": "missing_proof",
+        "implementation_assessment": "Bounded native mechanisms and/or original comparisons are linked; whole required caller/configuration acceptance is not established.",
+        "remaining": "Verify expected refusal/failure result, bounded retirement and new-generation admission; force-stop is not normal Quit and unsupported physical reset is not a pass.",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "behavior_leads": [
+          "NP.native-isolated-render-recovery",
+          "NP.native-only-generation-restart",
+          "NP.menu-session-destruction"
+        ],
+        "evidence_leads": [
+          "NATIVE.native-isolated-render-recovery.final-20261018",
+          "RA25.native-only.restart",
+          "PLAYERHANDOFF27.controls01"
+        ],
+        "closing_task": "RG.OP.faults"
+      }
+    ],
+    "gates": [
+      {
+        "id": "identity",
+        "state": "open",
+        "classification": "missing_proof",
+        "remaining": "Bind original executable, assets, admitted policy, exact source/compiler closure, backend/driver and configuration to each result.",
+        "closing_task": "RG.source-config"
+      },
+      {
+        "id": "pixels-history",
+        "state": "open",
+        "classification": "missing_proof",
+        "remaining": "Own required visible pixels and history, with independent original/reference output and required caller-visible state, ordering and return values. No original diagnostic pixels may seed native output.",
+        "closing_task": "RG.OP.history"
+      },
+      {
+        "id": "journeys",
+        "state": "open",
+        "classification": "missing_proof",
+        "remaining": "Close all fourteen existing journeys and every named subrequirement using appropriate action-bound, contiguous presented-output and semantic/lifetime evidence. Replay/components contribute only within their stated boundaries.",
+        "closing_task": "RG.acceptance-join"
+      },
+      {
+        "id": "operations",
+        "state": "open",
+        "classification": "missing_proof",
+        "remaining": "Account for all twenty-one operation/failure requirements, including clipping, overlap, CPU readers, text/palette lifetime, destination history and cleanup.",
+        "closing_task": "RG.acceptance-join"
+      },
+      {
+        "id": "transitions",
+        "state": "open",
+        "classification": "missing_proof",
+        "remaining": "Cover both 640x480 and 800x600 frame modes and rebuild/rebind; actual later-map progression, victory and defeat cannot be substituted by loading a save or a component fixture.",
+        "closing_task": "RG.J.map-transitions"
+      },
+      {
+        "id": "input-media",
+        "state": "open",
+        "classification": "missing_proof",
+        "remaining": "Check camera orientations, picking/hotspot, HUD/minimap/tooltips and pause/Preferences transitions. Enabled-movie requirements include both intros, skip/end and return; disabled media supplies no enabled-media credit.",
+        "closing_task": "RG.input-media-join"
+      },
+      {
+        "id": "normal-lifetime",
+        "state": "open",
+        "classification": "missing_proof",
+        "remaining": "Normal journeys require original normal Quit, balanced imported/completed/returned Worlds, no pending work and retired cursor/graphics/process/channel owners. Force-stop is not normal completion.",
+        "closing_task": "RG.J.shutdown"
+      },
+      {
+        "id": "fault-lifetime",
+        "state": "open",
+        "classification": "missing_proof",
+        "remaining": "Fault journeys use the declared terminal-stop/fresh-generation or isolated-continuation policy, checking expected failure, exact retirement, identity changes and no duplicated work. Synthetic recovery does not establish physical reset.",
+        "closing_task": "RG.OP.faults"
+      },
+      {
+        "id": "required-boundaries",
+        "state": "open",
+        "classification": "missing_proof",
+        "remaining": "Resolve required unknown callers/providers/ownership or record a precise evidence-backed scope decision. Zero observations and safe refusal do not prove a required path absent or correct.",
+        "closing_task": "RG.scope-join"
+      },
+      {
+        "id": "separate-decisions",
+        "state": "open",
+        "classification": "missing_proof",
+        "remaining": "Record separate original-recovery and supported-player acceptance decisions. Code, source matches, admission, component comparisons and reviewed plans cannot grant full-player acceptance. FPS remains diagnostic; response/progress/resource bounds remain required.",
+        "closing_task": "RG.closure-decisions"
+      }
+    ],
+    "scope_decisions": [
+      {
+        "id": "SC.alternate-ownership",
+        "classification": "requiredness_unresolved",
+        "state": "open",
+        "required_when": "Any required natural alternate allocation/publication/writer/lifetime path in the claimed player.",
+        "closing_task": "RG.SC.alternate-ownership"
+      },
+      {
+        "id": "SC.padded-fullscreen",
+        "classification": "requiredness_unresolved",
+        "state": "open",
+        "required_when": "A claim includes enabled-padding fullscreen or its required presentation transition.",
+        "closing_task": "RG.SC.padded-fullscreen"
+      },
+      {
+        "id": "SC.natural-callers",
+        "classification": "requiredness_unresolved",
+        "state": "open",
+        "required_when": "Unresolved raw readers, self/keyed GPU copies, aliases/writers or large fills are required by the claimed journeys.",
+        "closing_task": "RG.SC.natural-callers"
+      },
+      {
+        "id": "SC.prior-history",
+        "classification": "requiredness_unresolved",
+        "state": "open",
+        "required_when": "Complete native/live equality depends on the history preceding the selected late capture interval.",
+        "closing_task": "RG.SC.prior-history"
+      },
+      {
+        "id": "SC.map-save-domain",
+        "classification": "requiredness_unresolved",
+        "state": "open",
+        "required_when": "Final supported campaign/map/save/duration claims have not been explicitly bounded.",
+        "closing_task": "RG.SC.map-save-domain"
+      },
+      {
+        "id": "SC.screen-provider-lifetime",
+        "classification": "requiredness_unresolved",
+        "state": "open",
+        "required_when": "A required original screen helper/vtable/callback lifetime or route remains unresolved beneath the retained coordinator.",
+        "closing_task": "RG.SC.screen-provider-lifetime"
+      },
+      {
+        "id": "SC.rgb555-live",
+        "classification": "requiredness_unresolved",
+        "state": "open",
+        "required_when": "A claimed required game path produces live RGB555 or RGB555 sprite/effect output.",
+        "closing_task": "RG.SC.rgb555-live"
+      },
+      {
+        "id": "SC.physical-compatibility",
+        "classification": "requiredness_unresolved",
+        "state": "open",
+        "required_when": "A claim includes legacy physical-driver identity, Windows exceptional behavior or physical device-loss/reset equivalence.",
+        "closing_task": "RG.SC.physical-compatibility"
+      }
+    ],
+    "observations": [
+      {
+        "id": "OBS.cursor-refusals",
+        "classification": "recorded_failure",
+        "evidence": "PLAYERMERGE27.storage01",
+        "meaning": "A retained storage interval has refused cursor-copy work and does not close whole-COPY output. Re-establish current relevance/caller correctness before prescribing a code fix; never relax geometric admission merely to clear it.",
+        "closing_task": "RG.J.cursor-interaction"
+      },
+      {
+        "id": "OBS.late-history",
+        "classification": "requiredness_unresolved",
+        "evidence": "RRG26.natural-native",
+        "meaning": "The selected finite replay agrees from the same zero base but lacks complete native/live history equality. Determine required history and current-player relevance; it is not a newly reproduced current player regression.",
+        "closing_task": "RG.SC.prior-history"
+      }
+    ],
+    "diagnostics": [
+      {
+        "id": "DIAG.current-timing",
+        "classification": "diagnostic",
+        "required_for_completion": false,
+        "behavior_leads": [
+          "NR.native-draw-cost-profiling",
+          "NR.native-world-owner-costs"
+        ],
+        "evidence_leads": [
+          "ADAPTER26.performance"
+        ],
+        "remaining": "Current combined-player timing is not supplied by historical approximately19.9fresh-World/s tracing measurements. Retain measurement limits and do not invent a fixed FPS gate.",
+        "closing_task": "RG.diagnostics"
+      }
+    ]
+  },
+  "execution_plan": {
+    "schema": 1,
+    "id": "native-rendering-execution-v1",
+    "revision": 1,
+    "state": "planned_not_executed",
+    "planning_base_commit": "7a5c43f4304138b2edb2626e825d82dfd1a98fe1",
+    "reviewed_source_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7",
+    "completion_contract": {
+      "id": "native-rendering-completion-v1",
+      "revision": 1,
+      "sha256": "86c0ccbf89069f94a3073aeec08e0ce161038931fcc00d1fef26c862014d44fb"
+    },
+    "required_gap_register": {
+      "id": "native-rendering-required-gaps-v1",
+      "revision": 1,
+      "sha256": "6cc5d80d45f5a9aa756b700412e865427cd7162db2c6c15798dbd1d606f1d7a9"
+    },
+    "baseline": {
+      "record": "research/runtime/rendering-reviewed-baseline-results-20261030/baseline-01.json",
+      "sha256": "fe3b3e8263f6d216a7e0fce4db45a200c9fdef4c9cd0f857d87dc1de264bd699",
+      "source_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7"
+    },
+    "objective": "Reach the unchanged supported-player completion contract with the fewest unjustified new implementations and redundant executions; reuse applicable proof and share compatible bounded sessions.",
+    "optimality": "Evidence-led dependency order and reuse heuristic. No measured task durations, minimum-run proof or mathematically optimal critical path is claimed.",
+    "scheduling_rules": {
+      "pilot_before_broad_execution": true,
+      "required_unknown_blocks_affected_claim_only": true,
+      "reuse_requires_requirement_source_caller_config_scope": true,
+      "fix_requires_reproduced_required_defect_or_concrete_missing_capability": true,
+      "failures_preserved_and_pilot_rerun_after_shared_changes": true,
+      "normal_fault_and_original_recovery_separate": true,
+      "no_fixed_fps_completion_gate": true,
+      "no_runtime_port_without_required_contract": true,
+      "no_static_task_completion_or_engine_promotion": true
+    },
+    "tasks": [
+      {
+        "id": "EP01",
+        "title": "Lock the execution inputs and evidence applicability",
+        "state": "planned",
+        "kind": "preparation",
+        "required_for_completion": true,
+        "depends_on": [],
+        "closing_briefs": [
+          "RG.source-config"
+        ],
+        "action": "Freeze the actual assembled player revision and build-input closure, original/assets/save identities and both target backend configurations. Use the reviewed lead records to classify reuse by exact requirement, caller, source, configuration and reference boundary. Name finite candidate campaign/map/save/duration profiles; keep unmeasured claims pending.",
+        "deliverables": [
+          "SQLite execution-input receipt: source/compiler/binary/original/assets/save identities, policy, host/provider/display/lighting/media and per-run identity fields.",
+          "SQLite applicability rows for the 28 existing evidence leads: applicable bounded proof, stale, partial, unavailable or new execution needed; include exact requirement/configuration links and immutable evidence IDs.",
+          "Concrete pilot start/map/save selectors and resource/output budgets; proposed supported-domain bounds with later progression and both results retained."
+        ],
+        "exit_condition": "All pilot inputs and actual provider selections are named and hash-bound; applicable evidence is scoped explicitly and every remaining requirement has an execution or investigation destination. No claim of arbitrary maps/saves/duration.",
+        "scheduling_reason": "Avoid rebuilding or rerunning already applicable components; prevent a fresh run against an unidentified source/configuration.",
+        "reuse_paths": [
+          "tools/rendering_gaps.py",
+          "tools/native_only_contract.py",
+          "tools/run-native-owned.py",
+          "tools/draft-coverage-claims.py",
+          "tools/coverage_evidence.py"
+        ],
+        "on_failure": "Stop the affected run on missing inputs/provenance; retain unavailability as evidence and resolve it without refreshing historical hashes.",
+        "engine_owner": "engineering",
+        "execution_evidence": []
+      },
+      {
+        "id": "EP02",
+        "title": "Triage required paths and supported boundaries",
+        "state": "planned",
+        "kind": "investigation",
+        "required_for_completion": true,
+        "depends_on": [
+          "EP01"
+        ],
+        "closing_briefs": [],
+        "action": "Review all eight scope decisions against the existing contract and concrete candidate journeys. For each, name the required caller/provider, bounded non-applicability argument or unresolved technical question, and an exact observation that settles it. Route actual discoveries to the affected session/operation task. Do not wait for global binary recovery.",
+        "deliverables": [
+          "SQLite scope-triage rows for all eight decisions with source/address/behavior leads, conditional blocking rule, affected requirements, required observation and EP07 resolution owner.",
+          "Product-choice proposals only where the support promise would change; recommendation, consequence and default contract boundary accompany each."
+        ],
+        "exit_condition": "Each decision has an actionable technical investigation or evidence-backed candidate boundary and only affected claims are held. No decision is marked resolved by this plan.",
+        "scheduling_reason": "Discover expensive required branches before broad capture; avoid making unrelated compatibility investigations prerequisites for every run.",
+        "reuse_paths": [
+          "docs/native-rendering-dependencies.json",
+          "tools/rendering_completion.py",
+          "research/runtime/rendering-required-gaps-20261030.md"
+        ],
+        "on_failure": "Retain unknown requiredness and block its affected claim. Ask the user only for an actual product-promise change, with a concrete recommendation.",
+        "engine_owner": "engineering",
+        "execution_evidence": []
+      },
+      {
+        "id": "EP03",
+        "title": "Prove one public-player acceptance pilot",
+        "state": "planned",
+        "kind": "acceptance_pilot",
+        "required_for_completion": true,
+        "depends_on": [
+          "EP01",
+          "EP02"
+        ],
+        "closing_briefs": [],
+        "action": "Run a bounded default-player entry through main/setup and Quick Battle into a composed World, perform one camera/cursor action, and exit through normal original Quit. Bind actual acknowledgements, contiguous World presentation and complete initial history to an independent reference. Check intentional native UI semantics separately from original UI pixels. Add a small software-provider probe after the default pilot. Review and connect existing acquisition/admission/backend pieces before implementing only the missing evidence glue.",
+        "deliverables": [
+          "New SQLite original acquisition/reference and native public-player comparison receipts with immutable IDs and retained raw input/output/action records.",
+          "At least one admitted real action-bound World case with independent output/history and caller effects, plus public-player correlation and normal owner/process retirement.",
+          "Software-provider probe receipt identifying actual provider and any backend-specific failure; it is not full variant acceptance."
+        ],
+        "exit_condition": "A current real public-player action reaches an independently checked contiguous World interval, with owned input/oracle separation, zero unexpected refusal, complete caller/state checks and normal Quit/resource accounting. A comparison of an offline replay alone cannot satisfy public-player integration. The software probe has an explicit outcome.",
+        "scheduling_reason": "Validate that the acceptance pipeline can close a real requirement before paying for long or broad sessions. Existing recorded storage/component success cannot replace this pilot.",
+        "reuse_paths": [
+          "tools/drawing_session.py",
+          "tools/drawing_journeys.py",
+          "tools/check-drawing-journeys.py",
+          "tools/drawing_recorded_session.py",
+          "tools/drawing_action_session.py",
+          "tools/test-native-owned-campaign.py",
+          "apps/drawing-session/main.cpp"
+        ],
+        "on_failure": "Stop broad acceptance expansion if acquisition, oracle independence, history, action binding or current-player correlation fails. Retain the negative receipt, isolate the smallest evidence-glue or reproduced required-runtime fix, then rerun this pilot with new IDs.",
+        "engine_owner": "engineering",
+        "execution_evidence": []
+      },
+      {
+        "id": "EP04",
+        "title": "Close the primary normal-player journeys",
+        "state": "planned",
+        "kind": "acceptance",
+        "required_for_completion": true,
+        "depends_on": [
+          "EP03"
+        ],
+        "closing_briefs": [
+          "RG.J.enabled-movies",
+          "RG.J.main-setup-menus",
+          "RG.J.quick-battle-entry",
+          "RG.J.active-world",
+          "RG.J.camera-motion",
+          "RG.J.creatures-effects",
+          "RG.J.hud-minimap-tooltips",
+          "RG.J.cursor-interaction",
+          "RG.J.pause-preferences",
+          "RG.J.save-load",
+          "RG.J.shutdown"
+        ],
+        "action": "Expand the successful default-player pilot into bounded normal-session packs. Combine compatible movie/menu/entry, camera/combat/HUD/cursor, pause/preferences, Save/Load and shutdown checks while preserving exact action/callback and output histories. Exercise both display modes, display rebuild, actual restored state, native enabled movies and default lighting. Reproduce historical movement/Mini or cursor refusals before prescribing fixes.",
+        "deliverables": [
+          "Current default-player receipts for every linked journey leaf, presented World output/history, UI semantic checks, input/media and per-generation resource conservation.",
+          "A complete mapping from each actual action/callback/frame interval to its requirement and required operation; missing intervals and failures remain explicit."
+        ],
+        "exit_condition": "Every linked journey leaf has adequate current default-player evidence, including normal Quit. Unexpected refusals, dropped histories, unacknowledged actions and unmatched output block the affected pack; no successful-COPY-only whole-session credit.",
+        "scheduling_reason": "Reuse one correctly instrumented run for compatible checks and separate incompatible outcomes or histories into bounded packs.",
+        "reuse_paths": [
+          "tools/test-native-owned-campaign.py",
+          "tools/test-native-campaign.py",
+          "tools/drawing_session.py",
+          "tools/check-drawing-journeys.py",
+          "tools/native_media_acceptance.py"
+        ],
+        "on_failure": "Split and isolate the first failing boundary; fix only an established required defect or missing producer capability, then rerun affected consumers and the pilot when shared inputs/history change.",
+        "engine_owner": "engineering",
+        "execution_evidence": []
+      },
+      {
+        "id": "EP05",
+        "title": "Close campaign progression and both battle outcomes",
+        "state": "planned",
+        "kind": "acceptance",
+        "required_for_completion": true,
+        "depends_on": [
+          "EP03"
+        ],
+        "closing_briefs": [
+          "RG.J.campaign-entry",
+          "RG.J.map-transitions",
+          "RG.J.battle-results"
+        ],
+        "action": "Use concrete candidate campaign/map/save inputs to execute campaign selection/loading, actual later-map progression, victory and defeat, and result-to-menu/setup returns. Keep victory and defeat in separate bounded runs where necessary. Record populated screen/provider handoffs and first complete World histories. A saved-game reload is not later-map progression.",
+        "deliverables": [
+          "Current default-player campaign-entry/later-map/victory/defeat receipts with exact map/save identities, callback acknowledgements, output/history and ownership retirement.",
+          "Observed support-domain evidence and screen-provider lifetimes for EP07; explicit untested map/save/duration bounds remain."
+        ],
+        "exit_condition": "All three journeys and their leaves have independent current evidence, including actual later progression and both results; source/asset/state identity and first-frame history survive each handoff.",
+        "scheduling_reason": "These paths remain prominent proof gaps and exercise providers not established by repeating the already bounded Quick Battle/Save-Load loop.",
+        "reuse_paths": [
+          "tools/test-native-owned-campaign.py",
+          "tools/drawing_campaign_guidance.py",
+          "tools/drawing_session.py",
+          "tools/drawing_action_session.py"
+        ],
+        "on_failure": "Retain the first failed or unsupported transition and its required caller. Do not relabel reload as progression or one battle outcome as both.",
+        "engine_owner": "engineering",
+        "execution_evidence": []
+      },
+      {
+        "id": "EP06",
+        "title": "Close operation and required-caller residuals",
+        "state": "planned",
+        "kind": "acceptance",
+        "required_for_completion": true,
+        "depends_on": [
+          "EP03"
+        ],
+        "closing_briefs": [
+          "RG.OP.copies",
+          "RG.OP.writes",
+          "RG.OP.history",
+          "RG.OP.text",
+          "RG.OP.images",
+          "RG.OP.palettes",
+          "RG.OP.caller-state"
+        ],
+        "action": "Join applicable component/original comparisons with real caller observations from the pilot and available session packs. Execute only residual required copy/write/history/text/image/sprite/palette/caller-state cases. Check flags/returns, aliases, destination dependency, CPU readback and complete source history. Investigate the two retained observations in current caller context before a code fix. Required natural self/keyed GPU/raw-reader paths need actual justified evidence; absence of observations is not global unreachability.",
+        "deliverables": [
+          "Current per-operation/per-caller applicability and residual-comparison receipts, keeping component, original, presented and integration boundaries separate.",
+          "Current relevance/reproduction outcomes for OBS.cursor-refusals and OBS.late-history, with any concrete required fixes and bounded regressions.",
+          "Source/address/provider evidence for natural callers, alternate storage, RGB555 and prior-history resolution in EP07."
+        ],
+        "exit_condition": "Every linked operation has adequate independent evidence for its required scope, including caller-visible effects and lifetime. Bounded fixtures can cover their exact operation scope; they cannot manufacture natural callers or whole-player closure. Required unknown callers/history remain pending.",
+        "scheduling_reason": "Extract multiple operation checks from existing sessions first; avoid rerunning every recovered routine or porting whole services because a historical status is none.",
+        "reuse_paths": [
+          "tools/drawing_session.py",
+          "tools/drawing_copy_order.py",
+          "tools/drawing_recorded_session.py",
+          "tools/rendering_gaps.py"
+        ],
+        "on_failure": "Separate missing evidence glue from a reproduced runtime defect. Preserve geometric admission and negative results; new fixes require source-bound comparison and targeted integration reruns.",
+        "engine_owner": "engineering",
+        "execution_evidence": []
+      },
+      {
+        "id": "EP07",
+        "title": "Resolve the required supplier and support boundaries",
+        "state": "planned",
+        "kind": "scope_resolution",
+        "required_for_completion": true,
+        "depends_on": [
+          "EP02",
+          "EP04",
+          "EP05",
+          "EP06"
+        ],
+        "closing_briefs": [
+          "RG.SC.alternate-ownership",
+          "RG.SC.padded-fullscreen",
+          "RG.SC.natural-callers",
+          "RG.SC.prior-history",
+          "RG.SC.map-save-domain",
+          "RG.SC.screen-provider-lifetime",
+          "RG.SC.rgb555-live",
+          "RG.SC.physical-compatibility"
+        ],
+        "action": "Use triage and actual normal/progression/caller results to resolve each of the eight conditional decisions for the final claim. Recover required supplier semantics or justify a precise evidence-backed boundary. Finalize the finite supported map/save/duration domain. Retain original-recovery limits separately from supported-player acceptance.",
+        "deliverables": [
+          "SQLite decision receipts for all eight scope IDs: conditional applicability, exact supported boundary, evidence IDs and remaining original-recovery limits.",
+          "Concrete user recommendation only if the desired support promise expands or changes the existing contract; no silent waiver of journeys/operations."
+        ],
+        "exit_condition": "Every decision required by the claim has the evidence and boundary demanded by its completion-contract close_when clause. Non-applicability is justified precisely; unknown requiredness is not an exclusion. Record contract amendments and revised hashes separately when necessary.",
+        "scheduling_reason": "Resolve scope using observed real consumers rather than assuming every legacy/platform route must be ported, or silently dropping difficult routes.",
+        "reuse_paths": [
+          "tools/rendering_completion.py",
+          "docs/native-rendering-dependencies.json",
+          "tools/rendering_gaps.py"
+        ],
+        "on_failure": "Hold only the unresolved affected claim. A required in-scope path must be recovered/implemented/validated; a product-boundary change requires an explicit reviewed contract amendment.",
+        "engine_owner": "engineering",
+        "execution_evidence": []
+      },
+      {
+        "id": "EP08",
+        "title": "Close the software configuration with justified reuse",
+        "state": "planned",
+        "kind": "configuration_acceptance",
+        "required_for_completion": true,
+        "depends_on": [
+          "EP04",
+          "EP05",
+          "EP06"
+        ],
+        "closing_briefs": [],
+        "action": "After the early software probe, apply the exact requirement/evidence applicability map to the full software target. Reuse unchanged bounded semantic/operation proof only where its provider/source scope permits; obtain actual software presented-output, input/media, transitions and lifetime results for every required journey. Exercise both frame sizes and rebuild/rebind. Distinguish software provider results from physical-driver claims.",
+        "deliverables": [
+          "Per-requirement software receipts and explicit reused-evidence applicability, with actual Mesa/provider identity and backend-specific results.",
+          "Complete default/software evidence matrix for all 47 journey leaves and 21 operations; output/history/provider-sensitive requirements have actual corresponding evidence."
+        ],
+        "exit_condition": "Both declared configurations have adequate complete scoped evidence; reuse is justified per requirement and never implies a universal hardware or automatic cross-configuration pass. Remaining gaps and failures remain visible.",
+        "scheduling_reason": "Do an early cheap provider probe, then reuse proven provider-independent work and run only justified deltas without reducing required acceptance coverage.",
+        "reuse_paths": [
+          "tools/native_only_contract.py",
+          "tools/drawing_session.py",
+          "tools/check-drawing-journeys.py",
+          "tools/test-native-owned-campaign.py"
+        ],
+        "on_failure": "Retain backend failures and fix the demonstrated provider-specific boundary. Do not hide them by changing the claimed backend or disabling required media.",
+        "engine_owner": "engineering",
+        "execution_evidence": []
+      },
+      {
+        "id": "EP09",
+        "title": "Close fault cleanup and declared restart/recovery",
+        "state": "planned",
+        "kind": "fault_acceptance",
+        "required_for_completion": true,
+        "depends_on": [
+          "EP04"
+        ],
+        "closing_briefs": [
+          "RG.OP.faults"
+        ],
+        "action": "After healthy current normal lifetimes are established, exercise bounded producer/worker/context-owner failures and fresh-generation restart through the declared primary policy. Validate independent return/error/state and process/channel/native-owner retirement. Exercise isolated replay/retry recovery only for its separately declared claim; retain synthetic fault versus actual game and physical reset distinctions.",
+        "deliverables": [
+          "Current normal-versus-expected-fault receipts for surface-loss/restore semantics, transition recovery and failure cleanup, with exact generation IDs and no stale channel/resource reuse.",
+          "Explicit separate isolated-recovery result when claimed, plus physical/platform limits and current restart/media outcomes."
+        ],
+        "exit_condition": "All three fault operation requirements have adequate evidence within their exact declared policy/configuration. Expected faults have correct failure/cleanup/restart behavior; normal sessions still require normal success. No synthetic result certifies physical reset or transparent in-place recovery.",
+        "scheduling_reason": "Test faults on a known healthy assembled path and reuse existing recovery implementations; do not prescribe a recovery rewrite or contaminate normal acceptance with fault outcomes.",
+        "reuse_paths": [
+          "tools/run-native-owned.py",
+          "tools/native_output_owner.py",
+          "tools/test-render-drawing-recovery.py",
+          "tools/drawing_session.py"
+        ],
+        "on_failure": "Preserve the expected fault classification and first failing boundary. Fix only a demonstrated required lifecycle error, then rerun affected normal and fault consumers.",
+        "engine_owner": "engineering",
+        "execution_evidence": []
+      },
+      {
+        "id": "EP10",
+        "title": "Join the complete evidence without losing failures",
+        "state": "planned",
+        "kind": "evidence_join",
+        "required_for_completion": true,
+        "depends_on": [
+          "EP07",
+          "EP08",
+          "EP09"
+        ],
+        "closing_briefs": [
+          "RG.acceptance-join",
+          "RG.input-media-join",
+          "RG.scope-join"
+        ],
+        "action": "Join immutable receipts by exact source/configuration/requirement and explicit applicability. Check all 14 journeys/47 leaves, 21 operations, ten completion gates and required scope decisions. Join input/media and presented World history with the same action/owner identities, preserving normal/fault separation and intentional native UI policies. No overall completion percentage or blanket report success substitutes for acceptance.",
+        "deliverables": [
+          "SQLite final acceptance matrix with exact receipt links, source freshness, reference/native/integration boundaries, all failures, pending requirements and justified support limits.",
+          "A handoff to artifact 5 with separate supported-player and original-recovery evidence sets and explicit pass/pending/fail recommendations."
+        ],
+        "exit_condition": "Every required row/gate has adequate current evidence for the claim, or an explicit pending/fail outcome. The matrix remains reproducible from immutable receipts; unsupported and unrelated scopes remain distinct. Only a fully satisfied claim may receive a positive recommendation.",
+        "scheduling_reason": "One final join prevents duplicate reruns, accidental coverage by unrelated components and loss of negative evidence.",
+        "reuse_paths": [
+          "tools/drawing_journeys.py",
+          "tools/rendering_completion.py",
+          "tools/rendering_gaps.py",
+          "tools/coverage_evidence.py"
+        ],
+        "on_failure": "Return each missing/failed row to its owning task with the exact missing evidence or reproduced defect. Invalidate only affected downstream evidence after source/input changes; preserve all earlier receipts.",
+        "engine_owner": "engineering",
+        "execution_evidence": []
+      },
+      {
+        "id": "EP11",
+        "title": "Execute artifact 5 closure decisions",
+        "state": "planned",
+        "kind": "artifact5_handoff",
+        "required_for_completion": true,
+        "depends_on": [
+          "EP10"
+        ],
+        "closing_briefs": [
+          "RG.closure-decisions"
+        ],
+        "action": "Record the executed acceptance dossier and separately decide supported-player completion and original-engine recovery from EP10 evidence. Keep source/configuration/support limits, failed claims and required unknowns visible. Artifact 4 supplies this handoff; it does not execute or pre-authorize a passing decision.",
+        "deliverables": [
+          "Artifact 5 acceptance record with evidence-backed pass/pending/fail for each separate claim and remaining limitations."
+        ],
+        "exit_condition": "Decisions are based on actual adequate current execution evidence and the reviewed contract, with no promotion from this static plan. Original recovery may remain incomplete after a bounded supported-player acceptance.",
+        "scheduling_reason": "Separate product completion from unlimited original recovery and make completion reviewable against fixed requirements.",
+        "reuse_paths": [
+          "docs/native-rendering-closure.json",
+          "research/runtime/coverage-ledger.md"
+        ],
+        "on_failure": "Record pending/fail rather than manufacturing closure. Retain the exact remaining blockers and owner task.",
+        "engine_owner": "engineering",
+        "execution_evidence": []
+      },
+      {
+        "id": "EP12",
+        "title": "Measure timing when diagnosis is useful",
+        "state": "planned",
+        "kind": "diagnostic",
+        "required_for_completion": false,
+        "depends_on": [
+          "EP03"
+        ],
+        "closing_briefs": [
+          "RG.diagnostics"
+        ],
+        "action": "Optionally measure fresh-World cadence, presentation/readback cost and tracing overhead under an identified current workload. Keep functional response/progress/resource failures with their mandatory acceptance owners.",
+        "deliverables": [
+          "Optional SQLite timing/cost receipt with workload/source/provider and measurement limits."
+        ],
+        "exit_condition": "Measurements retain their bounds; no fixed FPS floor is created and this task is not a completion dependency.",
+        "scheduling_reason": "Keep optional performance investigation off the completion path unless a concrete functional response/progress failure needs diagnosis.",
+        "reuse_paths": [
+          "tools/test-native-campaign.py",
+          "tools/run-native-owned.py"
+        ],
+        "on_failure": "Retain the diagnostic failure or measurement limit; never let a diagnostic FPS target block functional completion.",
+        "engine_owner": "engineering",
+        "execution_evidence": []
+      }
+    ],
+    "recommended_order": [
+      "EP01",
+      "EP02",
+      "EP03",
+      "EP04",
+      "EP05",
+      "EP06",
+      "EP07",
+      "EP08",
+      "EP09",
+      "EP10",
+      "EP11"
+    ],
+    "optional_tasks": [
+      "EP12"
+    ],
+    "first_task": "EP01",
+    "first_action": {
+      "task": "EP01",
+      "instruction": "Freeze the current assembled execution inputs and draft the 28-lead applicability table for the two existing target configurations. Select hash-bound pilot inputs before launching the bounded pilot.",
+      "starting_inputs": [
+        "docs/native-rendering-closure.json",
+        "research/runtime/rendering-required-gaps-results-20261030/review-02.json",
+        "tools/native_only_contract.py",
+        "tools/run-native-owned.py"
+      ],
+      "output": "New SQLite execution-input/applicability receipt with actual source/compiler/binary/assets/save/configuration identity; fields without actual measurements remain pending.",
+      "source_only_checks": [
+        [
+          "python3",
+          "-B",
+          "tests/test-drawing-journeys.py"
+        ],
+        [
+          "python3",
+          "-B",
+          "tests/test-drawing-session.py"
+        ]
+      ],
+      "limits": "These isolated admission guards prepare the acceptance work; they do not build, launch, acquire original output or complete EP01. Use the storage guard and original-manifest checks for subsequent original-artifact experiments."
+    },
+    "session_packs": [
+      {
+        "id": "entry-media",
+        "task": "EP04",
+        "journeys": [
+          "enabled-movies",
+          "main-setup-menus",
+          "quick-battle-entry"
+        ],
+        "route": "Separate natural-intro completion and skip branches; menu/setup cancel and confirm; loading to first owned World; normal Quit. Preserve each branch and exact callback/output interval.",
+        "state": "candidate_not_executed",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "proof": "Exact action/callback, contiguous required World output/history, caller-state and resources. Native UI layout uses explicit semantic policy checks. A pack is a scheduling candidate, not automatic requirement coverage."
+      },
+      {
+        "id": "world-interaction",
+        "task": "EP04",
+        "journeys": [
+          "active-world",
+          "camera-motion",
+          "creatures-effects",
+          "hud-minimap-tooltips",
+          "cursor-interaction"
+        ],
+        "route": "Current advancing World with camera/four views/bounds, actual combat/attachments/lights, HUD/minimap/tooltip and cursor/picking/selection. Share compatible contiguous histories, split workloads only where required.",
+        "state": "candidate_not_executed",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "proof": "Exact action/callback, contiguous required World output/history, caller-state and resources. Native UI layout uses explicit semantic policy checks. A pack is a scheduling candidate, not automatic requirement coverage."
+      },
+      {
+        "id": "storage-display",
+        "task": "EP04",
+        "journeys": [
+          "pause-preferences",
+          "save-load",
+          "shutdown"
+        ],
+        "route": "Actual pause/preferences apply/cancel, both sizes/rebuild, Save/Load and restored state/history, World/menu normal Quit and zero owners. New generation identity after recreation is mandatory.",
+        "state": "candidate_not_executed",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "proof": "Exact action/callback, contiguous required World output/history, caller-state and resources. Native UI layout uses explicit semantic policy checks. A pack is a scheduling candidate, not automatic requirement coverage."
+      },
+      {
+        "id": "campaign-next-map",
+        "task": "EP05",
+        "journeys": [
+          "campaign-entry",
+          "map-transitions"
+        ],
+        "route": "Actual campaign selection/loading and first World, then actual later-map progression and new World history/old-owner retirement. Save reload is a separate path.",
+        "state": "candidate_not_executed",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "proof": "Exact action/callback, contiguous required World output/history, caller-state and resources. Native UI layout uses explicit semantic policy checks. A pack is a scheduling candidate, not automatic requirement coverage."
+      },
+      {
+        "id": "victory",
+        "task": "EP05",
+        "journeys": [
+          "battle-results"
+        ],
+        "route": "Actual victory, report and menu/setup return with callbacks/output/ownership.",
+        "state": "candidate_not_executed",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "proof": "Exact action/callback, contiguous required World output/history, caller-state and resources. Native UI layout uses explicit semantic policy checks. A pack is a scheduling candidate, not automatic requirement coverage."
+      },
+      {
+        "id": "defeat",
+        "task": "EP05",
+        "journeys": [
+          "battle-results"
+        ],
+        "route": "Actual defeat, report and menu/setup return in a distinct bounded run when necessary.",
+        "state": "candidate_not_executed",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "proof": "Exact action/callback, contiguous required World output/history, caller-state and resources. Native UI layout uses explicit semantic policy checks. A pack is a scheduling candidate, not automatic requirement coverage."
+      },
+      {
+        "id": "fault-lifecycle",
+        "task": "EP09",
+        "journeys": [],
+        "route": "Declared expected producer/worker/context-owner faults, terminal cleanup and new generation; separately identify isolated recovery and physical reset scope.",
+        "state": "candidate_not_executed",
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "proof": "Exact action/callback, contiguous required World output/history, caller-state and resources. Native UI layout uses explicit semantic policy checks. A pack is a scheduling candidate, not automatic requirement coverage."
+      }
+    ],
+    "scope_routes": [
+      {
+        "id": "SC.alternate-ownership",
+        "triage_task": "EP02",
+        "resolution_task": "EP07",
+        "blocking_condition": "Any required natural alternate allocation/publication/writer/lifetime path in the claimed player.",
+        "close_when": "Recover the required chain or justify a precise caller/configuration boundary with evidence. The opt-in original allocation repair and native padded storage do not recover historical ownership or prove global unreachability.",
+        "technical_owner": "engineering",
+        "user_choice": null,
+        "state": "unresolved"
+      },
+      {
+        "id": "SC.padded-fullscreen",
+        "triage_task": "EP02",
+        "resolution_task": "EP07",
+        "blocking_condition": "A claim includes enabled-padding fullscreen or its required presentation transition.",
+        "close_when": "Distinguish original exclusive/padded failures from Qt presentation and native padding; independently validate required output and lifetime. Windowed success and context fixtures do not close the configuration.",
+        "technical_owner": "engineering",
+        "user_choice": "PC.expansion",
+        "state": "unresolved"
+      },
+      {
+        "id": "SC.natural-callers",
+        "triage_task": "EP02",
+        "resolution_task": "EP07",
+        "blocking_condition": "Unresolved raw readers, self/keyed GPU copies, aliases/writers or large fills are required by the claimed journeys.",
+        "close_when": "Establish the actual required caller and independently check its output/side effects, or document a precise justified boundary. No positive count is manufactured; zero observations are not global absence.",
+        "technical_owner": "engineering",
+        "user_choice": null,
+        "state": "unresolved"
+      },
+      {
+        "id": "SC.prior-history",
+        "triage_task": "EP02",
+        "resolution_task": "EP07",
+        "blocking_condition": "Complete native/live equality depends on the history preceding the selected late capture interval.",
+        "close_when": "Recover and produce the required owned history. Same-zero-base equality and original-before diagnostics retain their distinct results; establish relevance to the resident player before calling this a current player defect.",
+        "technical_owner": "engineering",
+        "user_choice": null,
+        "state": "unresolved"
+      },
+      {
+        "id": "SC.map-save-domain",
+        "triage_task": "EP02",
+        "resolution_task": "EP07",
+        "blocking_condition": "Final supported campaign/map/save/duration claims have not been explicitly bounded.",
+        "close_when": "Name the supported domain and bounded execution profiles without dropping any of the fourteen journeys or twenty-one operations. Include actual later-map progression and both results; two Quick Battle maps and twelve minutes do not establish arbitrary maps/saves/duration.",
+        "technical_owner": "engineering",
+        "user_choice": "PC.domain",
+        "state": "unresolved"
+      },
+      {
+        "id": "SC.screen-provider-lifetime",
+        "triage_task": "EP02",
+        "resolution_task": "EP07",
+        "blocking_condition": "A required original screen helper/vtable/callback lifetime or route remains unresolved beneath the retained coordinator.",
+        "close_when": "Account for required Main/Realm/World/Report routing, populated resource ownership and failure/retirement effects within the declared supplier boundary. Local provider fixtures do not automatically recover the real transition router.",
+        "technical_owner": "engineering",
+        "user_choice": null,
+        "state": "unresolved"
+      },
+      {
+        "id": "SC.rgb555-live",
+        "triage_task": "EP02",
+        "resolution_task": "EP07",
+        "blocking_condition": "A claimed required game path produces live RGB555 or RGB555 sprite/effect output.",
+        "close_when": "Establish requiredness and validate the full required production/ingestion/drawing path, or justify an exact supported-format boundary. Existing offline colour-only RGB555 proof is not live support; current RGB565 admission does not prove format1 unreachable.",
+        "technical_owner": "engineering",
+        "user_choice": "PC.expansion",
+        "state": "unresolved"
+      },
+      {
+        "id": "SC.physical-compatibility",
+        "triage_task": "EP02",
+        "resolution_task": "EP07",
+        "blocking_condition": "A claim includes legacy physical-driver identity, Windows exceptional behavior or physical device-loss/reset equivalence.",
+        "close_when": "Supply appropriate physical/platform evidence or name an exact justified bounded Wine/native-provider claim. No unavailable Win98/ME host or synthetic fault is relabeled passed; required provider semantics remain open.",
+        "technical_owner": "engineering",
+        "user_choice": "PC.expansion",
+        "state": "unresolved"
+      }
+    ],
+    "product_choices": [
+      {
+        "id": "PC.domain",
+        "topic": "Supported campaign/map/save/duration promise",
+        "recommendation": "Begin with explicitly named finite inputs and bounded profiles covering every existing journey, actual later progression and both battle results. Claim only the domain supported by execution; propose broader promises with their cost.",
+        "ask_user_when": "The desired release promise exceeds the demonstrated finite domain or materially changes the existing target. Technical selection, capture and validation are engineering work.",
+        "blocks_plan": false,
+        "contract_amendment_required_for_target_change": true
+      },
+      {
+        "id": "PC.expansion",
+        "topic": "Additional fullscreen, RGB555 or physical/legacy-platform promises",
+        "recommendation": "Use the existing reviewed strict-player target. Investigate whether any such route is already required by its journeys; never silently exclude it. Treat extra platform/format/presentation promises as an explicit expansion proposal.",
+        "ask_user_when": "A concrete expanded support promise is requested or engineering finds a conflict requiring a change to the existing target. Supply the boundary, evidence, consequence and recommendation first.",
+        "blocks_plan": false,
+        "contract_amendment_required_for_target_change": true
+      }
+    ],
+    "evidence_contract": {
+      "storage": "SQLite via coverage_evidence.write_report; raw retention is bounded and pinned; no new expanded research JSON reports.",
+      "source_binding": "Exact compiled-source/binary/asset/input closure and current applicability; historical IDs and hashes stay immutable.",
+      "acceptance": "All14journeys/47leaves/21operations/10gates for both target configurations with justified per-requirement reuse. Required original callbacks, independent output/history, native UI policy semantics, side effects/returns, input/media, response/progress/resources and normal/fault outcomes remain explicit.",
+      "repair_loop": [
+        "retain_new_failure_receipt",
+        "classify_requiredness_and_provenance",
+        "isolate_smallest_concrete_gap",
+        "implement_bounded_fix_if_needed",
+        "rerun_changed_proof_and_affected_consumers",
+        "rejoin_with_new_evidence_ids"
+      ],
+      "invalidation": "A source/configuration/input change invalidates its affected evidence claims; review dependency/consumer scope before rerun. Never rewrite historical evidence or assume unrelated subsystems need revalidation."
+    },
+    "reviewed_sources": {
+      "tools/drawing_journeys.py": "6a80883cd5169a097e690fa83e8dc9372bebd2340a179c85506e5f53c759c7d4",
+      "tools/drawing_session.py": "b176e6018ea2350945d25505835bb9f53802bb4bba7ad0e2cbaa48dcdcc360bb",
+      "tools/drawing_recorded_session.py": "8a87482171487d4b23bfd33fa1ffe2de49871119114548ad124f902524d892ce",
+      "tools/drawing_action_session.py": "456298ce15ed0e006941ee1a74a09e5058684d040f34c3ea9f6bd2acf974dd74",
+      "tools/check-drawing-journeys.py": "05cc6ecf1d815df70e96cfa13641308538352d4ece527506430cd9067c271fb4",
+      "tools/retain-drawing-session.py": "8e8a028e2df68bede2a92ab69f1c7fcd1592986fcbee3bc91944d39795bbe76e",
+      "tests/fixtures/drawing-journeys/suite.json": "3091153e8757c4bc66731ea634e0e5a424397853d4567f1f097054e853c36045",
+      "tests/test-drawing-journeys.py": "316a23d3d4e669339ca39fd502be34d76e25862ed7b86ed85f1e8c12408f3ca3",
+      "tests/test-drawing-session.py": "f2234dd3104de585c710f37ce756e852b3f2f5599346ca8262b04ee3fd100f6e",
+      "apps/drawing-session/main.cpp": "0ebc2749fbf291adb7488a4a9a30e025ab1611558637098379eee23495d0b084",
+      "tools/test-native-owned-campaign.py": "bfed3cfd5b70bb604582a0afcfe543dee5b8c5f8376c6c2e3ceac64554cd3fe5",
+      "tools/test-native-campaign.py": "d254c605a58272f6d88c3a0495e9c088f18dd79af9462a8e6fc28076c3901b78"
+    },
+    "strategy": "evidence_led_dependency_and_reuse_heuristic",
+    "time_optimality_proved": false
+  },
+  "acceptance_record": {
+    "schema": 1,
+    "id": "native-rendering-acceptance-v1",
+    "revision": 1,
+    "record_base_commit": "e533c9aef25850ccf95819b5b6681c758285eef0",
+    "reviewed_source_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7",
+    "baseline": {
+      "record": "research/runtime/rendering-reviewed-baseline-results-20261030/baseline-01.json",
+      "sha256": "fe3b3e8263f6d216a7e0fce4db45a200c9fdef4c9cd0f857d87dc1de264bd699",
+      "source_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7"
+    },
+    "bindings": {
+      "completion_contract": {
+        "id": "native-rendering-completion-v1",
+        "revision": 1,
+        "sha256": "86c0ccbf89069f94a3073aeec08e0ce161038931fcc00d1fef26c862014d44fb"
+      },
+      "required_gap_register": {
+        "id": "native-rendering-required-gaps-v1",
+        "revision": 1,
+        "sha256": "6cc5d80d45f5a9aa756b700412e865427cd7162db2c6c15798dbd1d606f1d7a9"
+      },
+      "execution_plan": {
+        "id": "native-rendering-execution-v1",
+        "revision": 1,
+        "sha256": "e81fc176086715ca80960657085c0f318efbbda2e64e45218bfba322a234a44d"
+      }
+    },
+    "workspace": "working/coverage/native-rendering-acceptance.sqlite3",
+    "mode": "opening_pending_record",
+    "decision_ids": [
+      "supported-player",
+      "original-recovery"
+    ],
+    "evidence_policy": {
+      "attachments_are_candidates": true,
+      "payloads_and_assertions_verified": true,
+      "source_freshness_separate_from_scope_adequacy": true,
+      "historical_failures_not_current_regressions": true,
+      "no_pass_from_static_review": true,
+      "no_pass_from_attachment": true,
+      "no_task_completion_from_guard_pass": true,
+      "independent_player_and_recovery_decisions": true,
+      "required_unknowns_remain_visible": true,
+      "immutable_events_and_snapshots": true,
+      "new_evidence_id_for_new_execution": true,
+      "sqlite_backups_required": true
+    },
+    "positive_execution_admission": {
+      "state": "not_yet_established",
+      "owner_task": "EP03",
+      "condition": "Establish an actual independently validated current public-player receipt and its collector-specific admission at the pilot; EP10 joins adequate current evidence and EP11 records separate decisions. This opening producer verifies and stores candidates; it cannot certify acceptance."
+    },
+    "first_work": {
+      "task": "EP01",
+      "activity": "Review current source witnesses and all28lead payloads/assertions; classify current recorded source bindings, map every requirement to its owner and seed an applicability review.",
+      "complete": false,
+      "remaining": [
+        "Bind the actual as-built player compiler/binary source closure.",
+        "Bind actual original/assets/save identities and concrete pilot/map/save selectors.",
+        "Name actual host/provider/display/media configuration for each execution and its bounded resource/output budget.",
+        "Review evidence adequacy/applicability per requirement, caller, configuration and reference boundary before reuse."
+      ]
+    },
+    "opening_record": "research/runtime/rendering-acceptance-results-20261030/record-01.json"
+  },
+  "scope_review": {
+    "schema": 1,
+    "id": "rendering-scope-review-v1",
+    "record": "research/runtime/rendering-scope-results-20261030/decisions-01.json",
+    "evidence": "SCOPE30.decisions-reviewed",
+    "applies_to": "supported-player-scope",
+    "baseline_decisions_preserved": true
+  }
 }

@@ -6,6 +6,9 @@ import struct
 from pathlib import Path
 
 HERMES_CARD_RECT = (190,40,610,450)
+# Observed Place of Power card title, excluding the portrait that OCR reads as punctuation.
+HERMES_POWER_TITLE_RECT = (395,105,530,150)
+HERMES_LOW_POWER_TITLE_RECT = (395,105,515,140)
 
 
 def hermes_title_line(text):
@@ -44,13 +47,13 @@ def validate_command_pressure(root):
 
 def validate_mini_dispatch(flow, capture_delay_ms=0):
     requests=[s for s in flow.get('states',[]) if s.get('event')=='mini-request']
-    expected=[29,28,15]+([15] if flow.get('recreate_world') else [])
+    expected=([14,14] if flow.get('preferences_cancel_verified') else [])+[29,28,15]+([15] if flow.get('recreate_world') else [])
     if ([r.get('action') for r in requests]!=expected
             or any(r.get('accepted') is not True or r.get('reason') or r.get('screen')!=17
                    or r.get('generation',0)<=0 for r in requests)):
         raise ValueError('Missing ordered accepted native Mini requests')
     clicks=[s for s in flow.get('states',[]) if s.get('event')=='click' and s.get('action','').startswith('miniMenuButton')]
-    controls=['miniMenuButton2','miniMenuButton1','miniMenuButton4']+(['miniMenuButton4'] if flow.get('recreate_world') else [])
+    controls=(['miniMenuButton3']*2 if flow.get('preferences_cancel_verified') else [])+['miniMenuButton2','miniMenuButton1','miniMenuButton4']+(['miniMenuButton4'] if flow.get('recreate_world') else [])
     if [s['action'] for s in clicks]!=controls:
         raise ValueError('Missing Mini diagnostic capture ordering')
     for request,capture in zip(requests,clicks):
@@ -80,8 +83,10 @@ def validate_mini_inputs(directory, flow=None):
                 if Path(name).name!=name or not name.endswith('.png') or hashlib.sha256((directory/name).read_bytes()).hexdigest()!=observation[kind+'_sha256']:
                     raise ValueError('Mini title image changed after observation')
             if observation.get('title_rule') is not None:
-                if (observation['title_rule']!='hermes-title-line-v1' or
-                        observation.get('rect')!=list(HERMES_CARD_RECT) or observation.get('ocr_mode')!=6):
+                rules={'hermes-title-line-v1':(HERMES_CARD_RECT,6),'hermes-power-title-v1':(HERMES_POWER_TITLE_RECT,7),'hermes-low-power-title-v1':(HERMES_LOW_POWER_TITLE_RECT,7)}
+                rule=rules.get(observation['title_rule'])
+                if observation['title_rule']=='hermes-low-power-title-v1' and record.get('viewport_pixels')!=[640,480]:raise ValueError('Low title calibration outside its admitted viewport')
+                if (rule is None or observation.get('rect')!=list(rule[0]) or observation.get('ocr_mode')!=rule[1]):
                     raise ValueError('Unsupported dynamic Hermes title observation')
                 if observation.get('ocr_returncode')==0 and hermes_title_line(observation.get('text','')):
                     titles.add('hermes');dynamic_title=True
@@ -178,19 +183,32 @@ def validate_storage(experiment, flow, difficulty=1, input_directory=None):
     expected = [(3, 0)] + ([(18, 65536+difficulty)] if difficulty else []) + [(18, 0), (17, 1), (13, 0), (17, 0), (12, 0), (17, 3), (6, 21), (3, 4)]
     if flow.get('recreate_world'):
         expected=expected[:-1]+[(3,3),(10,0),(3,3),(10,0),(3,1),(12,0),(17,3),(6,21),(3,4)]
-        display=[r for r in rows if r[1] in (6,7,8)]
+        display=[]
+        # The normal journey also closes two cancelled campaign Preferences
+        # visits. Their leave probes are not applied display changes. Bind each
+        # required probe group to its actual OK callback and following action.
+        mode_calls=[i for i,r in enumerate(callbacks) if (r[3],r[9])==(10,0)]
+        if len(mode_calls)!=2:raise ValueError('Missing both original Preferences OK callbacks')
+        for index in mode_calls:
+            begin=callbacks[index][0];end=callbacks[index+1][0]
+            group=[r for r in rows if r[1] in (6,7,8) and begin<r[0]<end]
+            if [r[1] for r in group]!=[6,7,8] or any(r[2]!=callbacks[index][2] for r in group):
+                raise ValueError('Display probe is not bound to its original OK callback')
+            display.extend(group)
         # Historical fixtures start High; new journeys record the admitted mode.
         initial=flow.get('initial_resolution',0)
         if type(initial) is not int or initial not in (0,1):raise ValueError('Invalid initial display mode')
         dimensions=[(640,480),(800,600)] if initial==0 else [(800,600),(640,480)]
         if [r[1] for r in display]!=[6,7,8]*2 or [(r[9],r[10]) for r in display if r[1]==7]!=dimensions:
             raise ValueError('Original display rebuild dimensions were not observed')
+    extra=4 if flow.get('preferences_cancel_verified') else 0
+    if extra:expected=expected[:2+int(bool(difficulty))]+[(17,2),(10,1),(17,2),(10,1)]+expected[2+int(bool(difficulty)):]
     if actions != expected or len({r[2] for r in rows if r[1] in (3, 12, 20)}) != 1:
         raise ValueError('Unexpected original Save/Load callback/thread trace: ' + repr(actions))
     # A returned storage callback and new original World event must precede
     # the next Mini action. Merely seeing either event somewhere cannot pass.
     offset = int(bool(difficulty))
-    storage_actions=[(3+offset, 13), (5+offset, 12)]
+    storage_actions=[(3+offset+extra, 13), (5+offset+extra, 12)]
     if flow.get('recreate_world'):storage_actions.append((len(callbacks)-4,12))
     for index, screen in storage_actions:
         begin, end = callbacks[index][0], callbacks[index+1][0]
@@ -207,7 +225,7 @@ def validate_storage(experiment, flow, difficulty=1, input_directory=None):
         elif not any(r[1] in (12, 20) and r[3] == 2 and r[6] == 1 and begin < r[0] < end for r in rows):
             raise ValueError('Original World did not resume after storage action')
     answers = [r for r in rows if r[1] == 22]
-    quits=[6+offset]+([len(callbacks)-3] if flow.get('recreate_world') else [])
+    quits=[6+offset+extra]+([len(callbacks)-3] if flow.get('recreate_world') else [])
     if len(answers) != len(quits) or any(answer[9]!=0 or not callbacks[index][0]<answer[0]<callbacks[index+1][0] for answer,index in zip(answers,quits)):
         raise ValueError('Missing original Quit Yes confirmation')
     name = flow['saved_name']

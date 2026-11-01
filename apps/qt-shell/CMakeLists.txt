@@ -507,3 +507,8 @@ if(BUILD_TESTING)
  target_link_libraries(native-image-encoder-test PRIVATE Qt6::Gui)
  target_compile_options(native-image-encoder-test PRIVATE -UNDEBUG -Wall -Wextra -Werror -pedantic)
 endif()
+
+# Bounded oracle-side acceptance tooling; excluded from ordinary player builds.
+add_executable(mnm-acceptance-world-history EXCLUDE_FROM_ALL ../../tests/acceptance-world-history.cpp)
+target_link_libraries(mnm-acceptance-world-history PRIVATE mnm-world-rolling Qt6::Core)
+target_compile_options(mnm-acceptance-world-history PRIVATE -Wall -Wextra -Werror -pedantic)

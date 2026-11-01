@@ -5,6 +5,8 @@
 #include <QLabel>
 #include <QLayout>
 #include <QPushButton>
+#include <QScreen>
+#include "host_timing_trace.hpp"
 #include <QSignalBlocker>
 #include <QToolBar>
 #include <QTimer>
@@ -61,11 +63,18 @@ void ViewportPresentation::scheduleChromeUpdate(bool repaint){
         }});
 }
 void ViewportPresentation::setFullscreen(bool enabled){
+    HostTimingTrace trace("fullscreen-transition");
     if(enabled!=window_.isFullScreen()){
         if(enabled){
             previousGeometry_=window_.geometry();previousState_=window_.windowState();
             for(auto& item:chrome_)if(item.widget)item.hidden=item.widget->isHidden();
-            fullscreenActive_=true;window_.showFullScreen();
+            fullscreenActive_=true;
+            // A bare X11 server can acknowledge the fullscreen state without
+            // a window manager resizing the native window. Use Qt's logical
+            // screen rectangle before entering fullscreen to preserve its state.
+            // Cached normal geometry still owns restoration.
+            if(auto* screen=window_.screen())window_.setGeometry(screen->geometry());
+            window_.showFullScreen();
         }else{
             fullscreenActive_=false;window_.showNormal();
             for(auto& item:chrome_)if(item.widget)item.widget->setVisible(!item.hidden);

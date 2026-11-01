@@ -24491,3 +24491,373 @@ See [scoped findings and source phases](player-open-items-20261027.md).
 ### Actor installed-world dependencies: final master integration (2026-10-27)
 
 The actor dependency batch incorporates actual master `29a14068` and preserves its production sources and independent evidence. [Final dependency accounting](actor-installed-dependencies-20261026.md#final-master-integration-2026-10-27) retains all nine pending installed-world cases and fifteen scoped callback implementation leads. Static inventory and retrospective history accounting do not close `RS.actor-downstream-services`, validate whole original sessions or promote live replacement. Four actor guards pass; current bookkeeping audit and the normal staged merge gate are required separately.
+# Reviewed rendering baseline — 2026-10-30
+
+The [reviewed baseline](rendering-reviewed-baseline-20261030.md) pins committed
+tree 648ce219, excluding all main-checkout pending work. The immutable SQLite
+inventory selects 832 rendering behaviors and 720 scenarios. Its full audit has zero
+errors and no source-census/focused-register drift at that revision. Of 3,490 linked
+evidence IDs, 183 have matching declared source bindings and 3,307 have changed inputs;
+these overlapping counts are not missing-code counts or remaining effort.
+Current bound proof covers 56 implementation, 47 comparison and 10 headless integration
+scopes; no selected replacement stage has current proof. Historical statuses and
+evidence fingerprints remain unchanged.
+
+The read-only review verifies nine retained adapter/player/colour/palette/history
+records. It separates supplied code, source freshness, stage/scenario proof and
+assembled-player acceptance. The 14 journeys/21 operations remain authored acceptance
+requirements, with no new journey assessment, engine execution or milestone
+promotion. Six new baseline guards and ten existing frontier guards pass. Initial
+reader/export setup failures remain retained. Available local SQLite inputs are
+hash verified in a frozen Git export; one missing configured auxiliary path is
+recorded without changing shared Git settings. Task-local evidence and verified
+materialized backups stay on durable storage under ordinary reserves.
+
+## Versioned rendering completion contract — 2026-10-30
+
+The [artifact 2 contract review](rendering-completion-contract-20261030.md)
+reconciles the authored completion target with immutable baseline 648ce219.
+It preserves all 14 journeys, 21 operations and 15 source-role groups, defines
+ten completion gates and two pending normal-player configurations, and keeps
+eight scope decisions explicit. Original permitted preparation remains distinct
+from forbidden original pixel fallback; native scene/task-service modernization
+is separate. Default lighting failure keeps its failure even when original
+preparation permits continuation. FPS remains diagnostic with response/progress/
+resource requirements intact. Old B05/P3 current labels become historical authored
+plan states; no registered engine stage or historical evidence hash changes.
+
+The contract-only checker verifies the baseline payload and 31 policy witnesses
+against the product revision without original media/byte or game/GL execution.
+Twelve contract guards, twelve admission guards and eighteen mocked launcher
+guards pass with stable source fingerprints. The initial source phase remains
+immutable. Completion decisions stay pending; no original comparison, whole-player
+acceptance, integration or replacement promotion follows. Required-gap/task-graph
+and final acceptance artifacts remain separate.
+
+## Required rendering gap register — 2026-10-30
+
+The [artifact 3 review](rendering-required-gaps-20261030.md) adds a checked authored
+register bound to the immutable product baseline and completion-contract revision.
+All 14 journeys/47 subrequirements, 21 operations and ten gates retain an explicit
+assessment and closing brief. The 78 mandatory leaf/gate rows are missing adequate
+current complete proof, not 78 missing features or independent runs. No mandatory
+missing-code/integration finding is newly established. Thirty-six briefs remain
+unordered; dependency/priority selection belongs to artifact 4.
+
+Eight conditional scope decisions, two retained negative observations and one
+optional timing diagnostic retain their distinct classifications. The cursor
+refusals and late-history mismatch preserve original results/source phases,
+without asserting newly reproduced current defects. Native-copy, text/palette,
+player lifetime and recovery mechanisms remain existing evidence leads. Exact
+source-binding matches never imply whole-requirement acceptance. The gaps-only
+checker verifies leads and guards before any original-media/byte path; no game,
+GL, hardware execution or engine-stage promotion occurs. Artifact 5's executed
+acceptance and separate player/recovery decisions remain outstanding.
+
+## Rendering execution plan — 2026-10-30
+
+The [artifact 4 review](rendering-execution-plan-20261030.md) and
+[execution guide](../../docs/native-rendering-execution.md) bind the unchanged
+completion-contract/gap sections to twelve planned tasks and all 36 closing
+briefs. Input/applicability locking and requiredness triage precede a current
+public-player acceptance pilot. Bounded normal sessions, actual campaign/later-map/
+victory/defeat and operation residuals then feed scope resolution, software deltas,
+fault/restart evidence and a complete requirement join. Seven candidate session
+packs preserve every journey; their count is not an execution estimate.
+
+The inspected suite has no generic presented-frame session case, despite existing
+admission/backend machinery and recorded-EGL action cases. The pilot must connect
+the smallest required evidence plumbing and actual player correlation before broad
+reruns. The plan assigns technical scope investigations to engineering, retaining
+all eight conditional rules; user choices arise only for concrete support-promise
+changes. No immediate user decision is required. Optional timing stays off the
+completion path and no whole native scene/service port is imposed.
+
+Seventeen new plan guards and 83 existing journey/session/prerequisite/admission/
+mocked-launcher guards check dependencies, exact bindings, complete ownership and
+static-versus-executed boundaries. Twelve tooling witnesses match the reviewed
+product/planning revisions. All tasks remain planned, all historical hashes and
+engine stages are preserved, and no original media, game, GL or acceptance execution
+occurs. Artifact 5 remains the actual evidence-backed acceptance and separate
+supported-player/original-recovery closure record.
+
+## Rendering acceptance record opened — 2026-10-30
+
+The [artifact 5 opening](rendering-acceptance-record-20261030.md) adds a checked
+SQLite-backed [acceptance dossier](../../docs/native-rendering-acceptance.md),
+bound to unchanged completion/gap/execution sections. All 156 per-configuration
+leaf/operation/gate rows remain pending; eight scope decisions, fifteen original
+recovery groups and both retained negative observations stay explicit. Supported
+player and original recovery decisions remain separate and pending. No new current
+rendering failure or successful acceptance is inferred.
+
+EP01 source/lead-applicability work starts by rechecking witnesses and 28 immutable
+lead payloads/assertions and assigning each requirement its execution owner. Actual
+as-built compiler/binary, original/assets/save, provider/display/media and pilot
+input/budget identities and per-requirement adequacy remain pending; no execution
+task is completed. Append-only candidate attachment verifies hashes/assertions and
+keeps source freshness separate from acceptance. Positive current-player receipt
+admission remains part of the real EP03 pilot; this opening producer cannot set pass.
+
+Twenty-two new dossier guards and 100 prerequisite guards check the boundaries without
+original media/game/GL/hardware execution or engine-stage changes. Workspace and
+evidence backups are verified and retained in SQLite under the storage reserve;
+historical hashes remain unchanged. Artifact 5 is now an open pending evidence
+record, with runtime completion still requiring execution of artifact 4.
+
+## Rendering scope questions investigated — 2026-10-30
+
+The [technical decision review](rendering-scope-decisions-20261030.md) records all
+eight questions against the unchanged completion/gap/execution sections. No
+immediate user judgment blocks engineering; only a broader final map/save/duration
+promise may require a product choice. Scope answers and completed proof remain
+distinct. The existing x86 Linux/Wine/native-provider promise closes the current
+player physical/platform boundary; original physical/driver/Windows recovery stays
+open, as do seven other player scope proof conditions and all acceptance rows.
+
+Fresh normal/high-DPI Qt controls pass 32 complete-frame and 34 onscreen comparisons
+with F9/fullscreen, retained frames, logical input, Escape and geometry/chrome
+restoration. A production PE32 facade fixture admits default/explicit RGB565 and
+explicit RGB555 descriptors with retained WORDs across two leases and zero owners.
+These are synthetic software-display/non-strict-facade controls, not actual-game,
+strict-player or physical-reset acceptance. The already exposed Qt transition is
+required validation; world-format admission does not exclude RGB555 surfaces.
+
+A fresh byte-only five-route scan decodes 516,000 instructions from the pinned
+No-CD image/current central inventory. The prospective inventory dependency is
+repaired; all five routes still lack recovered natural callers, with computed and
+runtime uncertainty retained. Original manifests verify before/after. The original
+alternate owner remains unrecovered, earlier destination history is required by
+the retained counterexample, and real populated screen routing remains engineering
+work. No zero candidate, authored provider or component fixture closes those gaps.
+
+Current readers consume a hash-bound scope sidecar and propagate effective states
+into the [pending acceptance record](rendering-scope-results-20261030/acceptance-01.json).
+Frozen baseline decisions and historical evidence hashes remain unchanged; all
+156 requirement/configuration rows and both complete-player/recovery verdicts stay
+pending. Failed input-view/declaration/display/include attempts, logs and control
+binaries remain in SQLite. No production rendering or gameplay balance changes.
+
+The full audit initially refused a static caller-scan evidence registration with an execution-claim field. The refusal is retained as `SCOPE30.audit-registration-refusal`; only the registration field was removed. The immutable scan remains static original-byte evidence, with no natural execution/reachability credit. Finish was stopped before staging or committing and the corrected batch is rechecked with the normal gate.
+## Rendering execution research and acceptance handoff — 2026-10-31
+
+[Research and concrete next work](rendering-execution-research-20261031.md)
+bind actual private inputs, 683 maps, 85 region recipes, a fresh Release shell,
+391 compiler inputs and native module/provider identities to product source
+648ce219. Original disassembly and byte-pinned screen/getter contracts preserve
+alias, natural-path and lifetime uncertainty. The unchanged original format
+query executes successfully against native default565/explicit565/explicit555
+surfaces in four isolated cases; complete game/World555 support is not implied.
+
+Fresh strict native Quick Battle, Save/Load with two rebuilds and an explicit
+software Quick Battle complete normally and retire their owned graphics.
+The row-0 and storage observations independently check 1,249 and 3,170 emitted
+copies respectively, without claiming complete composed-frame equality.
+Two enabled-intro runs fail a music-play expectation with zero-volume inputs;
+an explicit-volume control produces seven plays and actual PCM output and
+retires normally. Both failures remain retained. A real save's 153,600-cell World
+exceeds the native inspector's default 65,536-record cap and parses with a bounded
+explicit larger cap; this is an inspection-policy limit, not a rendering defect.
+
+The join reviews 28 evidence leads and every 156 requirement/configuration row;
+five leads match recorded sources and 23 have changed dependencies. All rows
+remain pending. New research evidence does not close the seven player-scope or
+eight original-recovery conditions. Public-wrapper storage admission, actual
+paint/swap identities, owned initial history, independent reference and positive
+receipt integration are the concrete EP03 implementation work before broader
+acceptance execution. Private-owner research does not stand in for the public
+entrypoint. Product sources, frozen plan/contract and engine stages are unchanged.
+
+## Rendering acceptance research and receipt migration — 2026-10-31
+
+[Artifact 5 research](rendering-acceptance-research-20261031.md) reviews all156
+requirement/configuration rows,48lead/research records and15original-recovery
+groups with106behavior links.24records match their source fingerprints and24
+have changed dependencies; execution-claim identities and complete provenance
+remain separate. All391retained shell compiler inputs still match current code.
+All seven existing reference cases re-admit under their exact original/observed
+or corrected-upload boundaries. No native backend/player is executed or accepted.
+
+Sixteen isolated actual SQLite/API probes keep every row and both decisions
+pending. Restore accepts some metadata rejected or constrained by append;
+candidate assertions also equate integer1with booleantrue. These are researched
+validation/typing requirements for a new execution-capable ledger, not a current
+acceptance bypass. The14actual candidate/work events survive verified backup and
+restore with unchanged IDs/times. The generic coverage summary remains a trusted
+caller interface; per-configuration artifact admission must precede projection.
+
+The transaction experiment also reproduces a prior custom producer error:
+uncommitted raw-review inserts disappear on close. This batch appends the1251
+missing raw receipts across5237da93..04f75b4a with exact immutable payload witnesses,
+checks persistence after reopening and verifies actual journal export. Earlier
+reports/hashes are preserved; no past raw-extension gate pass is claimed.
+The next implementation is EP03's real receipt/validator, versioned ledger
+migration, EP10's dependency/reuse/failure join and EP11's separate verdicts.
+All156acceptance rows, seven player-scope proof conditions and eight original
+scope conditions remain open. No immediate user decision or engine-stage
+promotion follows from this research.
+
+
+## Public native rendering acceptance pilot — 2026-10-31
+
+[The execution review](rendering-acceptance-pilot-20261031.md) connects the actual
+public launcher to the first offered Quick Battle, two World visits, original
+input polls after actual World swaps and normal original Quit. The independent
+owned-history/original-routine reference reconstructs 44 Worlds / 73,735 draws and
+matches 113 native Qt swaps, including 58 World swaps and 105,071,100 viewport pixels.
+No original destination or native output seeds the reference. GUI mutable leases
+are bound at paint; completed GPU reads and actual swaps are distinct evidence.
+Original release accounting and command history end with zero retained owners.
+The actual software flag probe completes launch/route/Quit; full pixel acceptance
+for that configuration remains pending. Both Xvfb runs use llvmpipe; no hardware
+comparison, movie/audio content, other scaling or physical scanout is claimed.
+
+NP.rendering-acceptance-pilot records this bounded milestone without promoting
+other engine contracts or final recovery. A strictly typed append-only EP03 ledger
+binds the frozen five-artifact dossier and retains the scoped positive receipt
+through reopen/restore. All 156full requirement rows and both final decisions
+remain pending; complete EP10 dependency/configuration/reuse/failure joining is
+still work. Historical negative attempts remain immutable. Shared product-source
+changes leave earlier evidence fingerprints stale; they were not refreshed and
+no unrelated subsystem was rerun or promoted. Next work is EP04/EP05 expansion,
+EP06 required residuals, EP08 full software proof and EP09 fault/restart exits.
+
+Reviewed maintenance reclaimed 1,350,668,288 allocated main-drive build bytes and
+689,106,944 redundant cold-cache bytes while preserving pins, inputs, active
+consumers and both cache paths. New raw execution evidence is retained in SQLite
+with a verified cold snapshot/restore; build/staging outputs use RAM. These are
+storage and execution provenance, not expanded gameplay or recovery claims.
+
+
+## First native rendering normal-session batch — 2026-10-31
+
+[Research and bounded findings](rendering-normal-acceptance-20261031.md),
+[requirement progress](rendering-normal-results-20261031/progress-01.json) and
+[scoped execution/control join](rendering-normal-results-20261031/joined-02.json)
+connect current native-lighting default Quick Battle and campaign storage at
+both actual RGB565 World sizes. All 1,410 captured World swaps match independent
+original/history output (1,157 reference Worlds, 1,099,147 original draws).
+The whole recorded viewport/CPU-return cohort passes, without original player
+pixels as oracle inputs; normal original Quit, no forwarding/refusal and graphics
+retirement are checked. Original simulation and owned CPU operation inputs remain
+explicit suppliers, not complete producer/gameplay recovery.
+
+Three concrete native policies now have bounded current integration evidence:
+`NP.rendering-normal-acceptance` remains partially implemented and gains scoped
+live equivalence; `NP.preferences-native-history-boundary` and
+`NP.campaign-preferences-ready-handoff` have scoped implementations/live equivalence.
+They fix F9 geometry, current CPU history before the original Preferences glyph
+consumer, and a ready destination in the same ACK as opening Preferences.
+Original comparison/replacement dimensions remain independent and are not promoted.
+
+RN31.joined binds all current native/compiler sources, original hashes, exact
+collector pairs, both actual World sizes, edited-draft Cancel/reopen, original
+Save/Mini/Main Load, two original display rebuild probes, resource generations,
+input and normal exit. Its 13 control invocations include 48 Python methods,
+thirteen native-panel routes, Qt ownership guards, two DPI presentations and four
+source parser controls. Limited driver reuse retains exact old/new sources and
+replays all 14 real high-mode decisions; only the added 640×480 crop is excluded.
+Current reference comparisons were rerun. Engine/capture drift cannot be waived.
+
+Six default-player leaf obligations pass; 72 default and all 78 software rows stay
+pending. `RN31.G.first-world-watchdog` remains an unresolved full-intro startup
+failure with a command queue timeout/current-history refusal. The later passing
+Quick run and passing short V6 source-chunk comparison do not retire it. Both
+complete-player and original-recovery verdicts remain pending; EP04 is partial.
+Next work isolates that failure before remaining input/HUD/camera, progression,
+operation, software and fault proof and the complete EP10/EP11 join.
+
+Historical failed attempts, source versions and hashes are retained. Shared bridge,
+menu session, glyph diagnostics and collector edits do not renew unrelated original
+contracts or old comparison/implementation claims. The new exact reviews record
+those pending consumers; unrelated historical source staleness is not erased.
+New evidence uses SQLite with verified independent local backups; closed stores
+may relocate through hash-verified aliases while preserving source paths/pins.
+No evidence publication, original modification or gameplay balance change occurs.
+
+
+## Native first-World liveness investigation — 2026-11-01
+
+[Research and next discrimination](rendering-watchdog-20261101.md) and the
+[current diagnostic join](rendering-watchdog-results-20261101/joined-01.json)
+record a narrow native policy, `NP.rendering-watchdog-observation`. It covers
+bounded host/event timing, exact retained V3 ring interpretation, explicit
+intro/World GUI faults excluded from nominal acceptance, and as-built compiler
+closure/executable binding. This is scoped diagnostic observation, not a renderer
+repair, original comparison/replacement or new acceptance-leaf verdict.
+
+The retained original ring contains 67,896 unread bytes / 68 ordered commands with
+no CPU_READ; its private publication queue was empty. A controlled 6.2-second
+World GUI stall produces a real 5,004 ms no-ACK watchdog with 68,196 unread bytes.
+Its original producer exits 95, rather than reproducing the old CPU-history
+refusal ordering. A separate intro stall expires the media heartbeat but allows
+matching World output and normal Quit. Media expiry alone is insufficient in
+that control; the specific original callback/host stall remains unknown.
+`RN31.G.first-world-watchdog` stays unresolved and supported-player acceptance
+remains blocked. All five-second guards and native ownership checks remain strict.
+
+Trace08 exposed a collector defect: compiler dependencies were sampled before
+the public rebuild introduced a new header. Its comparison and incomplete-source
+limitation are retained at the original phase. The collector now builds first,
+retains the executable, verifies the linked source set and binary after execution,
+and the comparator rejects omitted dependencies. Current diagnostic execution
+and corruption/late-include/admission/presentation/input controls are joined
+separately. Earlier high/low/Quick evidence and hashes are unchanged; shared
+source edits leave unrelated historical applicability pending.
+
+Execution uses a physical second-NVMe worktree and isolated prefixes with its
+100 GiB reserve; RAM holds builds/staging only. The main-drive 90 GiB guard remains
+active. Failed setup/build attempts, unique source versions and raw evidence
+are retained in SQLite. Local verified backups and exact source/census/review
+accounting are required for closeout. No original or balance changes, publication
+or broad fault/restart, software, progression or original-recovery claim occurs.
+
+The final as-built enabled-intro Quick checkpoint has 55 independent matching
+World swaps, 30 reference Worlds and 52,234 original draws, with zero mismatches
+across 107,869,460 compared viewport/history pixels and normal original Quit.
+The current diagnostic intro-fault run also has 55 matching World swaps after
+media expiry and is rejected by nominal admission. RW01.joined binds 757 current
+source paths, 29 Python methods and six Qt executions. Its new implementation
+and live-observation claims cover only the declared diagnostics; no original
+comparison/replacement or requirement status is promoted.
+
+## Shared evidence storage lifecycle — 2026-11-01
+
+The [storage lifecycle](../../docs/evidence-storage.md) replaces per-worktree
+container growth with shared immutable objects on two independent filesystems,
+verified incremental replication, typed review checkpoints, explicit prefix
+leases and restored execution manifests. Existing source checkouts and unique
+fixture inputs remain retained. The new native policy is storage-only; historical
+report hashes and engine status dimensions remain unchanged. Synthetic recovery
+controls and an actual completed rendering-watchdog batch migration are recorded
+under [storage results](evidence-object-results-20261101/). Prior preliminary
+controls01 retains an interrupted bookkeeping regression; current controls are
+separate immutable results. First-World watchdog attribution/repair and complete
+rendering acceptance remain outstanding.
+
+The [final storage closeout](evidence-object-results-20261101/joined-01.json)
+passes 205 controls in 13 suites with stable inputs, fully hashes 10,155 objects
+in each independent replica and verifies the unchanged legacy reader. Exact
+full restores precede both execution handoffs (47,765 files total). The measured
+retired allocation is 15.75 GiB versus 3.67 GiB for the entire shared pair, a
+12.08 GiB / 76.7% reduction across both drives. Retired page-image encodings are
+explicitly labeled; original report hashes and logical review records survive.
+`ES01.shared-lifecycle` supports only `TOOL.shared-evidence-lifecycle` scoped
+implementation/headless integration. Engine comparisons, the unresolved
+first-World watchdog, and all rendering acceptance gaps remain independent.
+
+[The coverage audit](evidence-object-results-20261101/audit-01.json) has zero
+errors and no storage-specific warnings; the
+[dated summary](coverage/summary-evidence-lifecycle-20261101.md) preserves all
+historical unknowns and stale evidence. No focused-register imports changed.
+
+## Local master integration of rendering preparation and shared storage — 2026-11-01
+
+The [integration review](evidence-object-results-20261101/master-merge-01.json)
+checks actual master648ce219 and incoming45fe9b7f parents. Before accounting
+changes, the entire combined source tree matches the incoming branch, including
+all205 storage-control source fingerprints. Existing engine observations,
+rendering acceptance artifacts and storage proofs are inherited within their
+recorded scopes; historical staleness is retained. No new engine execution,
+requirement completion or replacement is asserted. Pre-existing main-checkout
+metadata edits and untracked reports are preserved separately and remain pending.

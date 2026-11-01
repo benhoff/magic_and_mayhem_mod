@@ -32,6 +32,22 @@ static int extent(u32 at,u32 n,int writable){
  while(at<end){u32 m[7];if(VirtualQuery((void*)at,m,sizeof m)!=sizeof m||m[4]!=0x1000||(m[5]&0x101)||!(m[5]&0xee)||(writable&&!(m[5]&0xcc))||m[0]>at||m[3]>0xffffffffu-m[0])return 0;u32 next=m[0]+m[3];if(next<=at)return 0;at=next<end?next:end;}
  return 1;
 }
+/* Failure-only metadata: distinguish an unavailable early-bound facade service
+ * from a rejected live lease without reading protected pixels or relaxing it. */
+static void glyph_canvas_refusal_details(void){
+ if(!glyph_native_only)return;
+ u32 r[24]={0x474d4e4d,0x31304158,1,96},written=0;
+ void* draw=GetModuleHandleA("MnmDraw.dll");
+ i32 (WIN *current)(const void*,u32,u32,u32,u32,u32)=draw?(i32 (WIN *)(const void*,u32,u32,u32,u32,u32))GetProcAddress(draw,"NativeDrawCpuHistoryV1"):0;
+ r[4]=(u32)glyph_cpu_history;r[5]=(u32)draw;r[6]=(u32)current;r[7]=pending.canvas_bytes;r[8]=pending.canvas;
+ r[9]=pending.stride;r[10]=pending.width;r[11]=pending.height;r[12]=pending.format;
+ r[13]=glyph_cpu_history?(u32)glyph_cpu_history((void*)pending.canvas,2,0,0,0,0):0xffffffffu;
+ r[14]=current?(u32)current((void*)pending.canvas,3,pending.canvas_bytes,0,0,0):0xffffffffu;
+ VirtualQuery((void*)pending.canvas,r+15,28);
+ r[22]=current?(u32)current((void*)pending.canvas,2,0,0,0,0):0xffffffffu;r[23]=GetCurrentThreadId();
+ HANDLE file=CreateFileA("native-glyph-admission.bin",0x40000000,0,0,1,0x80,0);
+ if(file!=(HANDLE)-1){WriteFile(file,r,sizeof r,&written,0);CloseHandle(file);}
+}
 static HANDLE output(const char* suffix){char name[260];u32 n=0;while(n<directory_length){name[n]=directory[n];++n;}while(*suffix)name[n++]=*suffix++;name[n]=0;return CreateFileA(name,0x40000000,1,0,2,0x80,0);}
 static int write(HANDLE f,const void* p,u32 n){u32 done=0;++io_writes;return WriteFile(f,p,n,&done,0)&&done==n;}
 static void flush(void){if(!mode)return;HANDLE f=output("\\glyph-stats.bin");if(f==(HANDLE)-1){++stats[11];return;}if(!write(f,stats,sizeof stats))++stats[11];CloseHandle(f);}
@@ -76,7 +92,8 @@ static int globals(void){
  pending.canvas_bytes=pending.stride*pending.height*2;pending.sentinel=word(0x6f5eac);
  glyph_admission_check=4;glyph_admission_value=pending.sentinel;
  if(pending.sentinel!=0&&pending.sentinel!=0x3f800000)return 0;
- pending.cold=pending.sentinel==0;glyph_admission_check=5;glyph_admission_value=pending.canvas;return extent(pending.canvas,pending.canvas_bytes,1);
+ pending.cold=pending.sentinel==0;glyph_admission_check=5;glyph_admission_value=pending.canvas;
+ if(!extent(pending.canvas,pending.canvas_bytes,1)){glyph_canvas_refusal_details();return 0;}return 1;
 }
 static int recheck(void){
  const u32 clips[]={0x6e0008,0x6cbb6c,0x6a49b8,0x656618};

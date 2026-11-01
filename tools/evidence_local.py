@@ -60,7 +60,7 @@ def backup_sqlite(source, directory):
                     raise ValueError('SQLite snapshot integrity failure')
                 if dest.execute('PRAGMA foreign_key_check').fetchall():
                     raise ValueError('SQLite snapshot foreign-key failure')
-                tables = {row[0] for row in dest.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+                tables = {row[0] for row in dest.execute("SELECT name FROM sqlite_master WHERE type IN ('table','view')")}
         objects = None
         if {'objects', 'chunks'} <= tables:
             store = Store(temporary, readonly=True)
@@ -108,6 +108,12 @@ def retained_backup(source, directory, root):
     import shutil
     import subprocess
     from sqlite_snapshot_store import archive
+    from evidence_objects import settings, logical_checkpoint, checkpoint_objects
+    if settings(root):
+        from coverage_evidence import pending_path
+        if Path(source).resolve() == pending_path(root).resolve():
+            return checkpoint_objects(root)
+        return logical_checkpoint(root, source)
 
     def setting(key):
         result = subprocess.run(["git", "-C", str(root), "config", "--get", key],

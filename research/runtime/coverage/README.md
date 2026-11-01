@@ -735,7 +735,7 @@ python3 tools/finish-work.py \
 ```
 
 The command prepares exact receipts in the local SQLite workspace, verifies the
-whole change gate, exports accepted receipts, makes verified consistent SQLite
+whole change gate, exports accepted receipts, makes verified retained SQLite
 backups, stages the owned worktree and commits with the normal hook enabled.
 It requires all configured archive snapshots locally; `evidence-store.py fetch
 --verify` is a separate explicit setup operation. Local completion never uploads
@@ -749,14 +749,17 @@ Timings grant no cached approval.
 
 Local Git merges, including integration into local master, use the same local
 evidence and verified-backup requirements. They never require publication or
-network access. Keep the evidence database, review workspace and SQLite backup
-catalogs under retained local storage. In this checkout the persistent evidence
-database is `working/coverage/evidence-pending.sqlite3` in the main checkout;
-owned integration worktrees resolve that same store through their local pending
-database link. Review workspaces remain worktree-local. `finish-work.py` returns
-the commit ID and verified backup paths together; preserve that result and the
-backup catalogs. Git contains report identities and exported accounting; a Git
-clone alone does not contain unpublished evidence payloads.
+network access. Keep shared evidence stores and their retention roots under pinned local storage.
+See [evidence storage lifecycle](../../../docs/evidence-storage.md) for the
+configured two-filesystem object pair, incremental backups, completed execution
+handoffs and disposable review caches. Unconfigured checkouts retain their
+previous backup workflow. Configured worktrees share immutable blocks, while
+review workspaces remain local and can be lazily restored from complete typed
+checkpoints. `finish-work.py` returns the commit ID and retained manifests.
+Git contains report identities and exported accounting; a clone alone does not
+contain unpublished evidence payloads. Retiring old page-image backups requires
+an explicit source-specific logical preservation review and real restore; it
+never renews engine evidence or silently promises an old SQLite container SHA.
 
 A normal local finish therefore ends with a Git commit and retained SQLite
 backups. Creating a GitHub release is optional and separate. Remote source
@@ -842,3 +845,9 @@ restore their pointers. This migration supplies no new original-engine compariso
 or live replacement evidence.
 
 Shared local hooks may use the main checkout's absolute .githooks path. They run current gate tooling with `--root` against the selected worktree; staged content and older branch source stay local. The installer preserves an existing absolute path belonging to this checkout.
+
+The [2026-11-01 shared-storage summary](summary-evidence-lifecycle-20261101.md)
+records the scoped evidence lifecycle and retains historical validation gaps.
+[Audit result](../evidence-object-results-20261101/audit-01.json): zero errors,
+no new source-census drift and no warning for `TOOL.shared-evidence-lifecycle`
+or `ES01.shared-lifecycle`. Historical staleness is preserved independently.

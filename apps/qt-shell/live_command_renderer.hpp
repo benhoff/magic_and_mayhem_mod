@@ -3,6 +3,7 @@
 #include "command_channel.hpp"
 #include "commands.hpp"
 #include <memory>
+#include "acceptance_capture.hpp"
 class GlViewport;
 // Application adapter; callers own polling, launch lifecycle and fallback UI.
 class LiveCommandRenderer final {
@@ -36,6 +37,8 @@ public:
     const mnm::render::CommandResult* result() const;
 private:
     void fail(const QString& reason);
+    AcceptanceCapture acceptance_{"commands"};
+    std::uint64_t acceptancePresentSerial_=0;
     NativeRenderTarget target_;bool verify_,ended_=false,closed_=false;
     CommandChannel channel_;std::unique_ptr<mnm::render::CommandDecoder> decoder_;
     std::unique_ptr<mnm::render::GlBlitter> renderer_;

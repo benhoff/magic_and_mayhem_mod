@@ -530,9 +530,8 @@ __declspec(dllexport) u32 WIN RenderOwnedInitialZeroV1(void* object,u32 width,u3
     }
     SetLastError(error);return ok;
 }
-__declspec(dllexport) u32 WIN RenderPrepareStorageV1(u32 action){
+static u32 render_prepare_cpu_panel(u32 action,const char* diagnostic){
     u32 error=GetLastError(),ok=0;void* objects[32];u32 count=0;
-    if(action>1)return 0;
     if(!game_resident_world){SetLastError(error);return 1;}
     struct CommandLease callback __attribute__((cleanup(command_gate_leave)))=command_gate_enter();
     if(!callback.observe){SetLastError(error);return 0;}
@@ -553,8 +552,18 @@ __declspec(dllexport) u32 WIN RenderPrepareStorageV1(u32 action){
 done:
     game_tracker_release();
     if(ok){for(u32 i=0;i<count;++i)game_materialize_dc(objects[i]);
-        lock_diagnostic("resident_storage_materialized",0,0,action,count,0,0,0);}
+        lock_diagnostic(diagnostic,0,0,action,count,0,0,0);}
     SetLastError(error);return ok;
+}
+__declspec(dllexport) u32 WIN RenderPrepareStorageV1(u32 action){
+    if(action>1)return 0;
+    return render_prepare_cpu_panel(action,"resident_storage_materialized");
+}
+/* Preferences' original glyph writer uses the cached World canvas without
+ * opening a new writable Lock. Publish current CPU history before that callback,
+ * under the same ownership/borrow preflight as Save/Load; never open stale pages. */
+__declspec(dllexport) u32 WIN RenderPreparePreferencesV1(void){
+    return render_prepare_cpu_panel(2,"resident_preferences_materialized");
 }
 /* Application orchestration calls this before process exit, outside DllMain.
  * It closes capture admission while original drawing remains installed. */

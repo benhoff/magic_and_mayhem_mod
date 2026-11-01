@@ -71,7 +71,8 @@ class Workspace:
         if not self.path.is_relative_to(self.root/'working'):
             raise ValueError('Database must be inside this worktree\'s ignored working/ directory')
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        self.db = sqlite3.connect(self.path, timeout=30)
+        from evidence_cache import connect_cache
+        self.db = connect_cache(self.root,self.path)
         try:
             self.db.execute('PRAGMA foreign_keys=ON')
             version = self.db.execute('PRAGMA user_version').fetchone()[0]
