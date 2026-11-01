@@ -158169,7 +158169,8 @@
         "RAP31.software-probe",
         "RAP31.controls",
         "RAP31.admission",
-        "RAP31.joined"
+        "RAP31.joined",
+        "RW02.worker02"
       ],
       "status": {
         "understanding": "scoped",
@@ -158182,7 +158183,8 @@
         "All156 broad artifact5 rows and both final decisions remain pending; EP10 complete per-requirement dependency/configuration/reuse/failure joins and EP11 verdicts remain work.",
         "Other normal journeys, campaign progression/results, required operation/caller residuals, full software pixel proof and fault/restart exits remain EP04..EP09.",
         "Integer sharp is demonstrated. Earlier Fit sharp startup mismatches are retained; every historical cause and current other-scaling equivalence remain unestablished.",
-        "No whole CPU-producer, movie/audio-content, physical scanout, worker-owner, arbitrary map/seed or original-recovery claim. Seven player and eight original scope proof conditions remain."
+        "No whole CPU-producer, movie/audio-content, physical scanout, worker-owner, arbitrary map/seed or original-recovery claim. Seven player and eight original scope proof conditions remain.",
+        "RW02 isolates a current startup ACK pause to GUI-thread acceptance compression and repairs that stage with a bounded FIFO worker. Current full-intro/control evidence is scoped to NP.acceptance-capture-worker; the exact historical RN31.G.first-world-watchdog cause, CPU-history ordering and retirement remain unresolved. Other acceptance and fault/restart claims are not renewed by this change."
       ]
     },
     {
@@ -158256,7 +158258,8 @@
         "RN31.driver-review",
         "RN31.quick-watchdog",
         "RN31.joined",
-        "RW01.cold"
+        "RW01.cold",
+        "RW02.worker02"
       ],
       "status": {
         "understanding": "scoped",
@@ -158275,7 +158278,8 @@
         "Watchdog investigation at 922062334: retained V3 ring contains 67896 unread bytes after command7671 despite an empty private producer queue; native World5 prepared, imports4. Host observation gaps require causal timing evidence before any repair or failure retirement. See rendering-watchdog-20261101.md.",
         "RAM execution was refused by unchanged output-isolation policy. Actual experiments use a physical second-NVMe worktree with an explicit100GiB reserve policy and an outer unchanged90GiB main-drive guard; only builds remain in RAM. Default tracked storage policy is unchanged. Setup refusals are retained separately from engine failures.",
         "RW01 diagnoses retained bytes, adds bounded host timing and explicit fault controls, and repairs pre-build dependency capture. Current nominal evidence is scoped to the selected Quick journey. Root cause/repair of the retained watchdog and full requirements remain pending; see rendering-watchdog-20261101.md.",
-        "RW01.cold observes a final enabled-intro diagnostic with selected Mesa/cache flags verified in the actual Qt process. It completed with no command watchdog; this does not identify or eliminate historical host conditions and grants no cold-cache pixel equivalence or acceptance leaf."
+        "RW01.cold observes a final enabled-intro diagnostic with selected Mesa/cache flags verified in the actual Qt process. It completed with no command watchdog; this does not identify or eliminate historical host conditions and grants no cold-cache pixel equivalence or acceptance leaf.",
+        "RW02 isolates a current startup ACK pause to GUI-thread acceptance compression and repairs that stage with a bounded FIFO worker. Current full-intro/control evidence is scoped to NP.acceptance-capture-worker; the exact historical RN31.G.first-world-watchdog cause, CPU-history ordering and retirement remain unresolved. Other acceptance and fault/restart claims are not renewed by this change."
       ],
       "validation_dependencies": [
         "docs/native-rendering-closure.json",
@@ -158409,7 +158413,8 @@
         "tests/qt-input-test.cpp"
       ],
       "evidence": [
-        "RW01.joined"
+        "RW01.joined",
+        "RW02.worker02"
       ],
       "status": {
         "understanding": "scoped",
@@ -158422,7 +158427,8 @@
         "RN31.G.first-world-watchdog remains unresolved. Deliberately stopped GUI command consumption reproduces a five-second no-ACK refusal and unread UI/World tail, but does not identify the historical callback/OS stall or reproduce its exact CPU-history terminal ordering.",
         "Media expiry alone was insufficient in the isolated intro fault. The finite nominal pass does not retire the historical failure or renew unrelated high/low storage, software, progression, operation or original-recovery claims.",
         "Timing output is capped at 256 rows per class at the recorded threshold; no callback attribution outside retained observations, physical driver, arbitrary duration or broad fault/restart acceptance is inferred.",
-        "2026-11-01 acceptance acquisition now borrows an admitted pooled prefix and queues stopped execution storage handoff. Storage/prefix synthetic controls are separate; historical live watchdog observations retain their source hashes and are not current-wrapper engine validation."
+        "2026-11-01 acceptance acquisition now borrows an admitted pooled prefix and queues stopped execution storage handoff. Storage/prefix synthetic controls are separate; historical live watchdog observations retain their source hashes and are not current-wrapper engine validation.",
+        "RW02 isolates a current startup ACK pause to GUI-thread acceptance compression and repairs that stage with a bounded FIFO worker. Current full-intro/control evidence is scoped to NP.acceptance-capture-worker; the exact historical RN31.G.first-world-watchdog cause, CPU-history ordering and retirement remain unresolved. Other acceptance and fault/restart claims are not renewed by this change."
       ],
       "validation_dependencies": [
         "runtime/render/media_bridge.h",
@@ -158511,6 +158517,48 @@
         "ES01.shared-lifecycle retains the original five-change scope and hashes. Current layered-restoration execution is recorded separately; the wider custody rollout does not renew any engine validation.",
         "2026-11-01: Bounded compression/queue controls and a fresh-store benchmark are being recorded separately. Any workload speedup is scoped to the measured inputs; no whole-sweep rate or engine milestone is inferred.",
         "2026-11-01: 235 cases pass in 15 source-stable suites for the bounded block/file pipeline. The retained benchmark measures about 2.7x on one fresh-store roughly 500 MiB workload, not a whole-sweep rate. Earlier source-drift control output remains negative historical evidence. Engine statuses and original evidence hashes are unchanged."
+      ]
+    },
+    {
+      "id": "NP.acceptance-capture-worker",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Ordered bounded acceptance capture outside the live command caller",
+      "scope": "Opt-in MNMACE01 capture freezes host timestamps and deep-owned payloads on the caller, then compresses and writes FIFO records on a dedicated worker. Enqueue has a 256 MiB/256-job bound including the in-flight job; raw, record and stored budgets remain bounded. Overflow, explicit refusal and compression failure produce an incomplete proof; terminal cleanup joins the writer. Native producer deadlines and ownership are unchanged. Scoped compression-stage controls and one as-built enabled-intro Quick journey with independent composed-World/history comparison only; no attribution or retirement of the historical five-second watchdog, physical-provider promise or complete acceptance verdict.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-watchdog-20261101.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/acceptance_capture.hpp"
+      ],
+      "tests": [
+        "tests/acceptance-capture-test.cpp",
+        "tools/test-acceptance-capture.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "tools/rendering_pilot.py",
+        "tools/run-rendering-acceptance-pilot.py",
+        "tools/check-rendering-acceptance-pilot.py"
+      ],
+      "evidence": [
+        "RW02.worker02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "RN31.G.first-world-watchdog remains unresolved: the new sampled pause is below the five-second guard and does not recover the old callback/OS timing or CPU-refusal order.",
+        "The caller still performs bounded metadata serialization, snapshot copying and GPU readback; arbitrary GUI, OS, driver and shutdown stalls remain outside this repair.",
+        "Worker or storage overload refuses capture equivalence. Terminal finish joins after producer stop/END or cancellation; it is not a general bounded shutdown guarantee."
       ]
     }
   ],
@@ -364556,6 +364604,38 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "RW02.worker02",
+      "kind": "live_observation",
+      "scope": "Actual current pending-ACK pause sampled in GUI capture compression, synchronous-preimage regression, optimized/sanitizer worker controls with production-reader negative checks, and repaired as-built full-intro Quick output/history comparison. The original historical five-second failure remains unresolved.",
+      "record": "research/runtime/rendering-watchdog-results-20261101/startup-repair-joined-02.json",
+      "sha256": "5393b8512cd40ae130a5ba8c0ccfc27520f6259a4e3b4e514671917586eb9ae8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/repair/old_stage_regression_observed",
+          "equals": true
+        },
+        {
+          "pointer": "/repair/worker_controls_pass",
+          "equals": true
+        },
+        {
+          "pointer": "/historical_failure/resolution",
+          "equals": "unresolved"
+        },
+        {
+          "pointer": "/new_requirements_passed",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -393765,6 +393845,21 @@
         "ES01.layered-restore",
         "ES01.sweep-throughput"
       ]
+    },
+    {
+      "id": "RW02.capture-worker",
+      "scope": "Hold the actual compression entrypoint while its caller submits owned FIFO observations; verify old caller blocking, new caller progress, byte/metadata ownership, bounded pressure and incomplete-proof rejection under optimized and sanitizer builds. Separately execute the repaired default enabled-intro Quick path with exact player binding, complete World/history oracle and normal resource retirement.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.acceptance-capture-worker"
+      ],
+      "evidence": [
+        "RW02.worker02"
+      ],
+      "tests": [
+        "tests/acceptance-capture-test.cpp",
+        "tools/test-acceptance-capture.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -395582,7 +395677,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-b6805b3f28f9bc54923f43f4ba93907599b1222dafd9ce0e2ca7e56f0eb8774a.json",
-    "sha256": "b6805b3f28f9bc54923f43f4ba93907599b1222dafd9ce0e2ca7e56f0eb8774a"
+    "path": "research/runtime/coverage/source-index-e68b84282df8045297fae66662e7ff0cf802e1d42a03905b074331e791652071.json",
+    "sha256": "e68b84282df8045297fae66662e7ff0cf802e1d42a03905b074331e791652071"
   }
 }
