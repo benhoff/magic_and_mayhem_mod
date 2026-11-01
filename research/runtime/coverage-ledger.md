@@ -24893,3 +24893,35 @@ pin, newest-run, quota and full actual-restore boundaries remain required. New
 controls and fresh-store timing reports are stored separately from the prior
 shared-lifecycle and layered-restore proofs. This is storage custody/tooling work;
 no renderer requirement or original-engine comparison milestone is promoted.
+
+
+## Campaign/progression preparation — 2026-11-01
+
+`NP.rendering-progression-scenarios` prepares three bounded EP05 cases: fresh
+Apprentice Forest of Pain through the original Camulos portal/victory/Realm
+route into Plains of Greenhenge, a separate victory run, and a separate natural
+defeat run. Public Preferences select640x480 or 800x600; the presented World extent
+is asserted. Ordinary physical-input navigation/combat candidates do not modify
+simulation, scripts, health, mana or progression. Quit/reload/wrong outcome,
+same-region re-entry, missing original OK and owner/thread changes refuse proof.
+The cases retain 780-second driver and 540-second World-input deadlines, default
+and software variants, first/later World continuous capture, callback assertions
+and a connected independent history comparator. No live case was run here.
+
+Static input evidence `RPS01.inputs-final` pins 31 candidate sections / 124 MAP, NOD, EVT, MPS
+files, ordered Celtic1/2 recipes, mission scripts/configuration and an unchanged
+355,405-byte save reload control. Actual random placement/grid and save semantic
+position remain unknown. [The first preparation](rendering-progression-results-20261101/inputs-01.json) retains the unsupported installed
+executable refusal; `RPS01.pristine-restoration` pins restoration only in the
+owned copied installation. Original manifests pass before/after. `RPS01.guards-final`
+records 5 new tests with 13 rejection mutations, 10 pilot and 13 normal companion tests,
+and a real Release Qt player link. These are preparation checks, not engine
+comparison/integration/replacement. All reports/raw selected inputs are SQLite.
+
+Live natural outcomes, later-map completion, exact first-frame boundaries,
+original input consumption and populated object/vptr/generation acquire/release
+handoff evidence remain pending independently of final zero-owner checks and
+pixel comparison. No artifact5 row, existing historical result, supported-player
+or original-recovery decision is promoted. Shared smoke/header/build source drift
+leaves previous evidence historical; the EP04 watchdog failure is unaffected.
+See [runbook](rendering-progression-preparation-20261101.md).

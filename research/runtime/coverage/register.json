@@ -158512,6 +158512,76 @@
         "2026-11-01: Bounded compression/queue controls and a fresh-store benchmark are being recorded separately. Any workload speedup is scoped to the measured inputs; no whole-sweep rate or engine milestone is inferred.",
         "2026-11-01: 235 cases pass in 15 source-stable suites for the bounded block/file pipeline. The retained benchmark measures about 2.7x on one fresh-store roughly 500 MiB workload, not a whole-sweep rate. Earlier source-drift control output remains negative historical evidence. Engine statuses and original evidence hashes are unchanged."
       ]
+    },
+    {
+      "id": "NP.rendering-progression-scenarios",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded campaign progression, victory and natural defeat scenario preparation",
+      "scope": "Finite Celtic region1/region2 input selection and hashing, unchanged reload-control save retention, public Qt Preferences/New/Entry/Realm/report controls, physical-input mission-end candidates and strict semantic/independent-history assertions. Preparation guards and a linked Qt player only; no original campaign execution, natural result, actual later-map, assembled-map/RNG identity, populated object/vptr handoff closure or supported-player acceptance is established.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5574864,
+          "scope": "Previously researched original battle launch entry; static scenario frontier, not new execution or whole-function recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5574160,
+          "scope": "Previously researched original battle return entry; progression semantics remain original-owned."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4671392,
+          "scope": "Original report OK callback, reused as a required observation boundary; no fresh execution."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-progression-preparation-20261101.md",
+        "research/runtime/persistence-progression.md",
+        "research/runtime/campaign-natural-report.md"
+      ],
+      "implementation": [
+        "tools/rendering_progression.py",
+        "tools/prepare-rendering-progression.py",
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/campaign-outcome-input.py",
+        "tools/review-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ],
+      "tests": [
+        "tests/test-rendering-progression.py",
+        "tests/test-rendering-pilot.py",
+        "tests/test-rendering-normal-acceptance.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "evidence": [
+        "RPS01.inputs",
+        "RPS01.guards",
+        "RPS01.pristine-restoration",
+        "RPS01.inputs-final",
+        "RPS01.guards-final"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "The three ordinary-input scenario candidates require live execution and original consumption/outcome proof at both frame modes and both configurations; deterministic completion is not established.",
+        "Actual assembled maps/RNG, precise first-complete-frame boundaries, populated original/native object+vptr+generation acquire/release handoffs, reward semantics and final acceptance remain pending.",
+        "The selected unchanged save is a reload/control candidate only; its semantic position and compatibility are unverified.",
+        "Shared campaign smoke/header/build edits leave prior linked execution fingerprints historical; no existing player or original result is renewed. The EP04 watchdog failure remains unresolved.",
+        "The prepared case IDs live in the input receipt. Registered headless/live scenario bindings await matching execution evidence; static preparation does not declare a native integration scenario."
+      ]
     }
   ],
   "evidence": [
@@ -364556,6 +364626,76 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "RPS01.inputs",
+      "kind": "static",
+      "scope": "Static hash-bound31candidate map sections,124MAP/NOD/EVT/MPSfiles,configuration recipes and unchanged355405byte save control; no gameplay execution.",
+      "record": "research/runtime/rendering-progression-results-20261101/inputs-03.json",
+      "sha256": "0b2fa7b5a6277cb71412e009feda4198ec1abd84c45e57a56ccdb4427441f753",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS01.guards",
+      "kind": "static",
+      "scope": "Preparation mutation controls, companion regressions and actual Qt Release player link only; no live/original campaign validation.",
+      "record": "research/runtime/rendering-progression-results-20261101/guards-01.json",
+      "sha256": "1a27e7dde3b812b2257451d1b37b76d008e8b5e2e5ff4033fe3b30f9ff420c60",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS01.pristine-restoration",
+      "kind": "static",
+      "scope": "Private input restoration with exact preimage/canonical executable hashes and original-manifest checks; earlier driver-source phase remains historical.",
+      "record": "research/runtime/rendering-progression-results-20261101/inputs-02.json",
+      "sha256": "058b188de3f0b7ef0d7f085c6b581b4af2144b222eb752181c3f4f3470b1c9f8",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS01.inputs-final",
+      "kind": "static",
+      "scope": "Final static input identities after the final helper-cleanup source review; same finite candidate maps and unchanged save control, no gameplay execution.",
+      "record": "research/runtime/rendering-progression-results-20261101/inputs-04.json",
+      "sha256": "0a3ff21c42b4cf52ba9417ced01de59e793d2a601a30e126f67ef517571f5d4f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS01.guards-final",
+      "kind": "static",
+      "scope": "Fresh28preparation/companion tests and final Release Qt link after final helper cleanup; no original-game or live campaign execution.",
+      "record": "research/runtime/rendering-progression-results-20261101/guards-02.json",
+      "sha256": "0bda9f6932cadb1acd2e69e2772562500bb226dd0b2e47a5c32b11038d9dcf10",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -395582,7 +395722,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-b6805b3f28f9bc54923f43f4ba93907599b1222dafd9ce0e2ca7e56f0eb8774a.json",
-    "sha256": "b6805b3f28f9bc54923f43f4ba93907599b1222dafd9ce0e2ca7e56f0eb8774a"
+    "path": "research/runtime/coverage/source-index-c5fa78dc4b8528bc1bececcfa48795b6606eafd526e5d6fae8029f999b34b4b7.json",
+    "sha256": "c5fa78dc4b8528bc1bececcfa48795b6606eafd526e5d6fae8029f999b34b4b7"
   }
 }
