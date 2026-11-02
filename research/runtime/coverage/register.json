@@ -159583,7 +159583,7 @@
       ],
       "remaining_gaps": [
         "Historical source-acquisition/watchdog causes and the separate late Mini Quit menu-adapter timeout remain unresolved. Finite passes do not retire failures; complete operations, broader journeys, caller ABI/font/DC/unknown branches, original recovery and both final verdicts remain pending.",
-        "613 native COPY destinations lack individual diagnostics after bounded observer exhaustion. Preserve every truncated/success=false diagnostic and the exact missing original-call intervals in EP06.frontier02; full presented-history equality does not prove these unpresented outputs."
+        "613 native COPY destinations lack individual diagnostics after bounded observer exhaustion. Preserve every truncated/success=false diagnostic and the exact missing original-call intervals in EP06.frontier02; full presented-history equality does not prove these unpresented outputs. Offline follow-up CT01.source-replay01 separately checks all613native destinations after8192exact captured anchors; this does not repair the missing historical execution witnesses."
       ]
     },
     {
@@ -159622,7 +159622,7 @@
       ],
       "remaining_gaps": [
         "Historical source-acquisition/watchdog causes and the separate late Mini Quit menu-adapter timeout remain unresolved. Finite passes do not retire failures; complete operations, broader journeys, caller ABI/font/DC/unknown branches, original recovery and both final verdicts remain pending.",
-        "613 native COPY destinations lack individual diagnostics after bounded observer exhaustion. Preserve every truncated/success=false diagnostic and the exact missing original-call intervals in EP06.frontier02; full presented-history equality does not prove these unpresented outputs."
+        "613 native COPY destinations lack individual diagnostics after bounded observer exhaustion. Preserve every truncated/success=false diagnostic and the exact missing original-call intervals in EP06.frontier02; full presented-history equality does not prove these unpresented outputs. Offline follow-up CT01.source-replay01 separately checks all613native destinations after8192exact captured anchors; this does not repair the missing historical execution witnesses."
       ]
     },
     {
@@ -159664,6 +159664,52 @@
       ],
       "remaining_gaps": [
         "613 omitted original-run COPY outputs remain unavailable; fresh replay is separate component evidence. Exact menu action clock alignment, upstream callers, ABI, whole operations, original recovery and final player acceptance remain pending."
+      ]
+    },
+    {
+      "id": "NP.copy-tail-source-replay",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Offline attribution and source-only COPY tail replay",
+      "scope": "Attribute an exhausted captured COPY observer to exact original call intervals and replay retained V5 commands with source-only native Worlds. Offline observer uses explicit bounded backpressure and a separate capacity; it does not change live diagnostics or recover missing historical execution witnesses. Anchor replay against all recorded prefix witnesses and CPU replies before asserting tail native self-consistency.",
+      "original": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/copy-tail-replay-20261102.md"
+      ],
+      "implementation": [
+        "tools/copy_tail_replay.py",
+        "tools/trace-copy-tail.py",
+        "tools/run-copy-tail-replay.py",
+        "tests/copy-tail-replay/main.cpp",
+        "tests/copy-tail-replay/observer.py",
+        "tests/copy-tail-replay/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/test-copy-tail-replay.py"
+      ],
+      "validation_dependencies": [
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_consumer.cpp",
+        "renderer/commands.cpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "tools/native_copy_routes.py",
+        "tools/rendering_pilot.py"
+      ],
+      "evidence": [
+        "CT01.source-replay01",
+        "CT01.cross-history01"
+      ],
+      "remaining_gaps": [
+        "All613 formerly unwitnessed COPY commands now have offline native source-only replay checks anchored by8192captured witnesses and61complete CPU replies. Historical execution still lacks613actual COPY witnesses; the old diagnostic remains truncated/success=false. Replay is native self-consistency, not original operation equivalence.",
+        "Whole-operation acceptance, unobserved caller/scene/clipper/self branches, lifetime/ABI/font/DC boundaries, broader journeys and both final verdicts remain pending."
       ]
     }
   ],
@@ -367818,6 +367864,88 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "CT01.source-replay01",
+      "kind": "native_integration",
+      "scope": "Replay one complete retained software640x480 storage history with canonical native commands and source-only Worlds; independently check8805nativeCOPYdestinations, match8192actual captured witnesses and61fullCPUreplies. Attribute613missing historical witnesses without promoting original comparison, historical completeness, whole operations or final verdicts.",
+      "record": "research/runtime/copy-tail-replay-results-20261102/joined01.json",
+      "sha256": "b1c420e35a8b8a082c6d8af203d1c5f1d772f7e09571f35d0994cf3b17298fca",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_copies_checked",
+          "equals": 8805
+        },
+        {
+          "pointer": "/existing_capture_anchors",
+          "equals": 8192
+        },
+        {
+          "pointer": "/additional_native_replay_checks",
+          "equals": 613
+        },
+        {
+          "pointer": "/cpu_reply_anchors",
+          "equals": 61
+        },
+        {
+          "pointer": "/historical_capture_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/whole_operations_accepted",
+          "equals": 0
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CT01.cross-history01",
+      "kind": "native_integration",
+      "scope": "Fresh postexecution hash comparison: source-only full native history and separately reconstructed original-oracle fixture history agree on source, pre-copy destination, expected and actual full output for every613omittedCOPY. Both executions retain their source/binary identities. No original-run output is recovered and no whole operation, original driver behavior or final acceptance is implied.",
+      "record": "research/runtime/copy-tail-replay-results-20261102/cross-history01.json",
+      "sha256": "5df8b0b6d93b60fa62b3aac7a22a4f32c36ff8e9b78e767a903ab8f9da9c74b6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/copy_destinations_crosschecked",
+          "equals": 613
+        },
+        {
+          "pointer": "/hash_anchors_compared",
+          "equals": 2452
+        },
+        {
+          "pointer": "/historical_capture_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -397297,6 +397425,21 @@
       "evidence": [
         "CT01.offline01"
       ]
+    },
+    {
+      "id": "SC.copy-tail-source-replay",
+      "level": "headless",
+      "scope": "Replay one complete retained software640x480 storage history with canonical native commands and source-only Worlds; independently check8805nativeCOPYdestinations, match8192actual captured witnesses and61fullCPUreplies. Attribute613missing historical witnesses without promoting original comparison, historical completeness, whole operations or final verdicts.",
+      "behaviors": [
+        "NP.copy-tail-source-replay"
+      ],
+      "tests": [
+        "tests/test-copy-tail-replay.py"
+      ],
+      "evidence": [
+        "CT01.source-replay01",
+        "CT01.cross-history01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -399114,7 +399257,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-993884c46b3e938358b1951f75b9c1ccd9443c319e9d1e44bdf1953f8be17ebc.json",
-    "sha256": "993884c46b3e938358b1951f75b9c1ccd9443c319e9d1e44bdf1953f8be17ebc"
+    "path": "research/runtime/coverage/source-index-6493ab4266c13c8d0bac907e0cfa71d9a29a0113b0369b9c29ae0fdb0e839b1f.json",
+    "sha256": "6493ab4266c13c8d0bac907e0cfa71d9a29a0113b0369b9c29ae0fdb0e839b1f"
   }
 }

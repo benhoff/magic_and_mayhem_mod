@@ -25410,3 +25410,40 @@ offline tooling policy gains scoped implementation/headless support. Original
 diagnostic cap/failure, 613 missing actual-run outputs, all 36 whole-operation
 gaps, 148 remaining acceptance requirements and both final verdicts remain pending.
 See [scope and reproducibility](copy-tail-proof-20261102.md).
+## COPY tail source-only follow-up — 2026-11-02
+
+`CT01.source-replay01` / `SC.copy-tail-source-replay` attribute all 613 missing
+software/640x480 storage COPY witnesses to unique closed original call intervals:
+454 CPU-prepared and 159 GPU-prepared, without clipper/self-alias branches.
+Ninety-three use World generations 976–989 and 520 use 990–1,041. The latter
+bucket includes the final checkpoint generation; this is a generation-based
+classification, without per-command temporal/menu attribution.
+See [COPY tail replay](copy-tail-replay-20261102.md) and its SQLite-backed
+`copy-tail-replay-results-20261102/trace01.json`.
+
+The separate offline harness replays 73,615 V5 commands and 1,041 source-only
+native Worlds. All 8,805 COPY destinations / 2,151,556,376 pixels match the
+independent expectation, as do all 8,192 captured source/before/actual/expected
+hash anchors and all 61 complete CPU-read replies. The additional 613 checks
+cover 159,181,280 destination pixels. Only the offline observer uses a 16,384
+count ceiling and bounded sink waits; production sources/deadlines remain
+unchanged, readbacks remain bounded to 32 GiB and FIFO memory to 512 MiB. Exact
+binary/link map, 136 source fingerprints, 14 refusal/identity controls, three
+failed harness/setup attempts and exact changed source preimages are retained.
+Original manifest verification passes before and after execution.
+
+This closes native replay self-consistency for the 613 destinations. Their
+missing historical execution witnesses remain missing: the original diagnostic
+stays success=false/truncated=true, and 159 original GPU-call intervals still
+lack that live output witness. Historical source hashes/results are unchanged.
+Original COPY equivalence, whole operations, ABI/font/DC/unseen branches, broader
+journeys and both final verdicts remain pending. Storage admission remains 8/156
+and EP06 whole-operation acceptance remains 0/36. The next acquisition can target
+the precise caller/World list instead of rerunning solely for native COPY checks.
+
+Both offline histories also agree on all 613 tail sequences: 2,452 source,
+before, expected and actual hash comparisons pass. `CT01.cross-history01` binds
+143 current source files and four deliberate hash-mutation refusals. The
+original-oracle fixture inputs never enter the continuous native harness.
+Generation-990 bucket conventions differ by seven calls, with no exact temporal
+attribution implied. Historical outputs and whole-operation decisions stay open.
