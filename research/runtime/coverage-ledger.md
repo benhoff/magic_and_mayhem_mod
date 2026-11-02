@@ -25093,3 +25093,21 @@ implementation/live observation. Historical RN31.G.first-world-watchdog and
 RW03.G.intro-main-transition remain unresolved; no nominal player requirement,
 complete original recovery, movie/audio content, physical scanout or replacement
 milestone is promoted.
+
+## Bounded Main to Quick timeline — 2026-11-01
+
+[MT01.timeline01](main-quick-timeline-results-20261101/joined-01.json) records an
+opt-in bounded host sideband and durable on-disk SQLite collector. One controlled
+Qt read-suppression timeout retains original callback entry/return, wire ACK and
+client retirement order under unchanged deadlines. Exactly two unforced enabled-
+intro attempts complete Main/Quick, both movies and normal original Quit. The
+unforced failure did not reproduce; neither RW03.G.intro-main-transition nor
+RN31.G.first-world-watchdog is retired and no product repair is asserted.
+
+Only NP.main-quick-timeline gains scoped implementation/live-observation support.
+Original callback execution times are unavailable; receipt intervals and logging
+loss/cap limits remain explicit. Current optimized/sanitized journal controls,
+SQLite abrupt-exit persistence and default startup/movie regression pass. The
+post-retention control handoff metadata refusal and exact old producer are kept;
+no extra controlled launch was used. Other shared LiveMenuSession source domains
+remain historical/pending. See [the investigation](main-quick-timeline-20261101.md).
