@@ -83,6 +83,7 @@ static void init_lock_lifecycle(void){
     if(length && length+28<sizeof(lock_capture_path))lock_capture_path_length=length;
     copy_trace_init(lock_capture_path,lock_capture_path_length);
 }
+#include "cpu_reader_journal.h"
 #include "lock_diagnostics.h"
 /* Tracker work contains no original COM calls. Brief cross-thread overlap can
  * wait without serializing the game API itself. Same-thread entry never waits.

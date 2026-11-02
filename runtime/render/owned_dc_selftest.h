@@ -1,4 +1,5 @@
 /* Ordered handoff fixtures use independently maintained engine pixels. */
+API u32 WIN RenderShutdown(u32);
 static u32 WIN bs_dc_other_thread(void* object){
     SetLastError(0x77);
     if(((i32 (WIN *)(void*,void*))((struct BsSurface*)object)->table[26])(object,bs_dc)!=19 || GetLastError()!=0x88)ExitProcess(221);
@@ -72,5 +73,8 @@ static void bs_test_owned_dc(struct BsSurface* target,struct BsSurface* source){
        bs_locks!=(refused?0u:1u) || bs_unlocks!=bs_locks || bs_queries || bs_creates ||
        bs_descriptions!=(bs_mode("dcs-contended")?2u:1u))ExitProcess(233);
     SelectObject(bs_dc,bs_old_bitmap);if(other)DeleteObject(other);DeleteObject(bs_bitmap);DeleteDC(bs_dc);
+    /* DllMain intentionally does not finalize the command stream. Exercise the
+     * public session shutdown API after the DC has retired, before leaving this fixture. */
+    if(!refused){SetLastError(0x77);if(!RenderShutdown(3000) || GetLastError()!=0x77)ExitProcess(234);}
     ExitProcess(0);
 }

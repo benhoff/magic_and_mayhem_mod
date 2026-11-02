@@ -484,9 +484,45 @@ static void game_cpu_read_refuse(u32 stage,void* object,u32 detail){
     if(file!=(HANDLE)-1){WriteFile(file,record,sizeof(record),&done,0);CloseHandle(file);}
     ExitProcess(124);
 }
+/* All metadata reads below occur under the caller's existing tracker. */
+static void cpu_journal_surface(u32 event,void* object,void* dc,u32 ticket,u32 kind,const u32* fields,
+ u32 backing,u32 pitch,u32 validated,u32 flags,i32 result,u32 borrow){
+ if(!cpu_journal)return;u32 error=GetLastError(),r[32];zero(r,sizeof(r));struct CpuJournalContext* c=cpu_journal_current();
+ if(c)copy(r,c->row,sizeof(r));
+ struct GameSurface* s=game_surface_find(object,0);struct SessionSurface* ss=session_find(object);
+ r[14]=(u32)(s?s->object:object);r[15]=ss?ss->id:0;r[16]=s?s->generation:0;r[17]=game_lock_epoch;r[18]=ticket;
+ r[19]=ss?ss->width:0;r[20]=ss?ss->height:0;
+ if(fields){r[15]=fields[0];r[19]=fields[4];r[20]=fields[5];copy(r+21,fields+6,16);}
+ r[25]=(u32)dc;r[26]=(u32)result;r[27]=kind|flags;r[28]=backing;r[29]=pitch;r[30]=validated;r[31]=borrow;
+ cpu_journal_emit(event,r);
+ if(event==MNM_CRJ_REQUEST)++cpu_journal->header[20];
+ if(event==MNM_CRJ_COMPLETE)++cpu_journal->header[21];SetLastError(error);
+}
+static void cpu_journal_dc_track(void* object,void* dc){
+ if(!cpu_journal)return;u32 error=GetLastError();struct CpuJournalContext* c=cpu_journal_current();
+ struct GameSurface* s=game_surface_find(object,0);u32 identity=(u32)(s?s->object:object);
+ if(!c){__atomic_fetch_or(cpu_journal->header+9,8,__ATOMIC_RELAXED);SetLastError(error);return;}
+ for(u32 i=0;i<64;++i)if(cpu_journal_borrows[i].context && cpu_journal_borrows[i].object==identity && cpu_journal_borrows[i].dc==(u32)dc){__atomic_fetch_or(cpu_journal->header+9,32,__ATOMIC_RELAXED);SetLastError(error);return;}
+ for(u32 i=0;i<64;++i)if(!cpu_journal_borrows[i].context){
+  cpu_journal_borrows[i]=(struct CpuJournalBorrow){identity,(u32)dc,c->row[5]};++cpu_journal->header[23];
+  cpu_journal_surface(MNM_CRJ_DC_TRACKED,object,dc,0,0,0,0,0,0,MNM_CRJ_TRACKED,0,c->row[5]);SetLastError(error);return;
+ }
+ __atomic_fetch_or(cpu_journal->header+9,32,__ATOMIC_RELAXED);SetLastError(error);
+}
+static void cpu_journal_dc_release(void* object,void* dc,i32 result,u32 checkpoint,u32 generation){
+ if(!cpu_journal)return;u32 error=GetLastError();struct GameSurface* s=game_surface_find(object,0);u32 identity=(u32)(s?s->object:object),borrow=0;
+ for(u32 i=0;i<64;++i)if(cpu_journal_borrows[i].context && cpu_journal_borrows[i].object==identity && cpu_journal_borrows[i].dc==(u32)dc){
+  borrow=cpu_journal_borrows[i].context;
+  if(result>=0){zero(cpu_journal_borrows+i,sizeof(cpu_journal_borrows[i]));--cpu_journal->header[23];}break;
+ }
+ cpu_journal_surface(MNM_CRJ_DC_RELEASE,object,dc,0,0,0,0,0,generation,
+  (borrow?MNM_CRJ_TRACKED:0)|(checkpoint?MNM_CRJ_CHECKPOINT:0),result,borrow);SetLastError(error);
+}
 static void game_materialize_reader(void* object,u32 kind){
     if(!game_resident_world)return;
     u32 error=GetLastError();
+    struct CpuJournalContext journal_fallback __attribute__((cleanup(cpu_journal_leave)));zero(&journal_fallback,sizeof(journal_fallback));
+    if(cpu_journal && !cpu_journal_current())cpu_journal_enter(&journal_fallback,MNM_CRJ_OTHER,(u32)__builtin_return_address(0),object,0,0);
     if(!game_surface_pixels_enter(object))game_cpu_read_refuse(1,object,0);
     struct GameSurface* source=game_surface_find(object,0);
     if(!source || !source->gpu_history){game_tracker_release();SetLastError(error);return;}
@@ -508,6 +544,7 @@ static void game_materialize_reader(void* object,u32 kind){
     u32 fields[10]={surface->id,ticket,0,command_channel_session,identity[1],identity[2],identity[4],identity[5],identity[6],identity[7]};
     __atomic_store_n(&game_cpu_transfer_wait,1,__ATOMIC_RELEASE);
     if(!session_record(MNM_RENDER_STREAM_V5_OPERATION_CPU_READ,fields,40,0,0))game_cpu_read_refuse(5,object,0);
+    cpu_journal_surface(MNM_CRJ_REQUEST,object,0,ticket,kind,fields,identity[0],identity[3],generation,0,0,0);
     game_tracker_release();
     char path[544];u32 n=GetEnvironmentVariableA("MNM_RENDER_COMMAND_CHANNEL",path,512);
     if(!n || n>=512)game_cpu_read_refuse(6,object,n);copy(path+n,".cpu-reply",11);
@@ -533,6 +570,7 @@ static void game_materialize_reader(void* object,u32 kind){
     game_surface_drop_at(source,0);source->gpu_history=0;
     copy(&source->pixels,&result,sizeof(result));result.data=0;
     game_surface_bytes+=source->pixels.length;__atomic_sub_fetch(&lock_capture_reserved,source->pixels.length,__ATOMIC_RELAXED);
+    cpu_journal_surface(MNM_CRJ_COMPLETE,object,0,ticket,kind,fields,identity[0],identity[3],generation,MNM_CRJ_VALIDATED,0,0);
     /* The enclosing ordered callback still owns its CPU conversion/DC work.
      * game_copy_leave retires the reader deadline with that complete lease. */
     lock_diagnostic("resident_cpu_materialized",object,0,ticket,fields[0],0,source->pixels.length,0);

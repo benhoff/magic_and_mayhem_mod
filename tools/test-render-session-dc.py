@@ -37,6 +37,11 @@ def rgba_hash(raw, bits):
     for at in range(0, len(raw), bits // 8):
         pixel = int.from_bytes(raw[at:at + bits // 8], 'little')
         rgb = [((pixel & m) // (m & -m)) * 255 // (m // (m & -m)) for m in masks]
+        if bits == 16:
+            # The established RGB565 contract repeats high bits into the low
+            # positions, as the native renderer and independent V5 oracle do.
+            r,g,b=(pixel>>11)&31,(pixel>>5)&63,pixel&31
+            rgb=[(r<<3)|(r>>2),(g<<2)|(g>>4),(b<<3)|(b>>2)]
         output += struct.pack('<I', 0xff000000 | rgb[0] << 16 | rgb[1] << 8 | rgb[2])
     return hashlib.sha256(output).hexdigest()
 
@@ -45,6 +50,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('build', type=Path)
     parser.add_argument('--case', action='append', choices=CASES)
+    parser.add_argument('--wine-prefix', type=Path, default=ROOT / 'working/tests/render-wine')
     args = parser.parse_args()
     if not os.environ.get('DISPLAY'):
         parser.error('Run under xvfb-run -a')
@@ -68,7 +74,7 @@ def main():
     oracle = live.load('dc_oracle', 'tools/test-render-lock-blits.py')
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
     env.update(QT_QPA_PLATFORM='xcb', LIBGL_ALWAYS_SOFTWARE='1', WINEDEBUG='-all',
-               WINEPREFIX=str(ROOT / 'working/tests/render-wine'))
+               WINEPREFIX=str(args.wine_prefix.resolve()))
     report = dict(schema=1, sources=hashes, scope='Bounded application-owned DC bitmap checkpoint '
                   'input into unchanged v1 native GPU commands. Independent synthetic engine pixels; '
                   'no GDI operation replay, original-game pixel equivalence or replacement.', cases=[])

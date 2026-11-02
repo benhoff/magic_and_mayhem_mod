@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Capture a real public-player pilot; retain all results without acceptance promotion."""
-import argparse,hashlib,importlib.util,json,os,secrets,signal,subprocess,sys,time
+import argparse,hashlib,importlib.util,json,os,secrets,signal,sqlite3,subprocess,sys,time
 from pathlib import Path
 from coverage_evidence import write_report
 ROOT=Path(__file__).resolve().parents[1]
@@ -10,7 +10,10 @@ def sha(path):
 def module(name):
  spec=importlib.util.spec_from_file_location(name,ROOT/'tools'/name);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--operation-census',action='store_true',help='Closed COPY observations on an otherwise unchanged nominal normal route');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--sample-storage-main',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');p.add_argument('--copy-callers',action='store_true',help='Diagnostic-only upstream COPY caller observation');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--operation-census',action='store_true',help='Closed COPY observations on an otherwise unchanged nominal normal route');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--sample-storage-main',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');p.add_argument('--copy-callers',action='store_true',help='Diagnostic-only upstream COPY caller observation');p.add_argument('--cpu-reader-journal',action='store_true',help='One enabled-intro software storage reader/DC diagnostic per owned worktree');a=p.parse_args()
+ if a.cpu_reader_journal:
+  if a.scenario!='normal-storage' or not a.software or a.skip_intros or a.operation_census or a.operations_provenance or a.copy_callers or a.sample_stalls or a.sample_storage_main or a.stall_intro_host or a.stall_world_host:p.error('CPU reader journal requires its own enabled-intro software storage diagnostic')
+  a.diagnostic_only=True
  if a.copy_callers:
   if a.scenario!='normal-quick':p.error('COPY caller observation requires bounded normal-quick')
   if a.operation_census or a.operations_provenance or a.sample_stalls or a.stall_intro_host or a.stall_world_host:p.error('COPY caller observation requires its own diagnostic route')
@@ -77,6 +80,10 @@ def main():
   report['configuration']['source_chunks']=True
   report['configuration'].update(viewport_capture_stored_limit_bytes=1024**3,world_capture_retained_limit_bytes=2*1024**3)
   report['configuration']['configuration_home']=str(out/'config')
+ if a.cpu_reader_journal:
+  env.update(MNM_NATIVE_CPU_READER_JOURNAL='1',MNM_ACCEPTANCE_DIAGNOSTIC='1')
+  report['kind']='public_native_cpu_reader_diagnostic_acquisition'
+  report['configuration']['cpu_reader_journal']=dict(version=1,capacity=65536,scalar_only=True,changes_actions=False,changes_deadlines=False)
  if a.operations_provenance:
   env.update(MNM_NATIVE_COPY_DIAGNOSTICS=str(out/'copy-diagnostics'),MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE='all',MNM_CURSOR_COPY_STATE='1',MNM_CURSOR_COPY_EXERCISE='1')
   report['configuration']['operations_provenance']=dict(copy_scope='all',cursor_state_version=1,qt_cursor_exercise=True)
@@ -134,6 +141,14 @@ def main():
   if a.software:command.append('--software-rendering')
   if a.skip_intros:command.append('--skip-movies')
   report['command']=command
+  if a.cpu_reader_journal:
+   budget_path=ROOT/'working/cpu-reader-journal/attempt-budget.sqlite3';budget_path.parent.mkdir(parents=True,exist_ok=True)
+   with sqlite3.connect(budget_path) as budget:
+    budget.execute('CREATE TABLE IF NOT EXISTS attempts(id INTEGER PRIMARY KEY,report TEXT UNIQUE,started_ns INTEGER)')
+    budget.execute('BEGIN IMMEDIATE')
+    if budget.execute('SELECT COUNT(*) FROM attempts').fetchone()[0]>=1:raise ValueError('One CPU reader diagnostic launch already charged')
+    budget.execute('INSERT INTO attempts(report,started_ns) VALUES(?,?)',(a.report,time.monotonic_ns()));budget.commit()
+   report['cpu_reader_attempt_charged']=True
   with (out/'public-launch.log').open('xb') as log:
    child=subprocess.Popen(command,cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
    child.wait(timeout=deadline_ms/1000+40 if a.scenario=='normal-storage' else 390)

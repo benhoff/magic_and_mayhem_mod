@@ -10,6 +10,8 @@ __declspec(dllexport) i32 WIN RenderRequireCpuHistoryV1(void* object,const void*
  struct GameCopyLease admission __attribute__((cleanup(game_copy_leave)))={0,1,0};
  if(__atomic_load_n(&game_copy_owner,__ATOMIC_ACQUIRE)!=GetCurrentThreadId())admission=game_copy_bind_enter();
  if(!admission.observe || game_cpu_reader_thread || !game_tracker_acquire()){SetLastError(error);return 0;}
+ struct CpuJournalContext journal_context __attribute__((cleanup(cpu_journal_leave)));zero(&journal_context,sizeof(journal_context));
+ cpu_journal_enter(&journal_context,MNM_CRJ_EXPLICIT,caller,object,family,route);
  game_cpu_reader_thread=GetCurrentThreadId();game_surface_sync();
  struct GameLock* lock=0;
  for(u32 i=0;i<32;++i)if(game_locks[i].active && game_alias_same(game_locks[i].object,object)){
@@ -50,6 +52,7 @@ __declspec(dllexport) i32 WIN RenderRequireCpuHistoryV1(void* object,const void*
  u32 fields[10]={surface_id,ticket,0,command_channel_session,identity[1],identity[2],identity[4],identity[5],identity[6],identity[7]};
  __atomic_store_n(&game_cpu_transfer_wait,1,__ATOMIC_RELEASE);
  if(!session_record(MNM_RENDER_STREAM_V5_OPERATION_CPU_READ,fields,40,0,0))game_cpu_read_refuse(11,object,0);
+ cpu_journal_surface(MNM_CRJ_REQUEST,object,0,ticket,!family&&!route&&!caller?2:1,fields,identity[0],identity[3],generation,0,0,0);
  game_tracker_release();
  char path[544];u32 n=GetEnvironmentVariableA("MNM_RENDER_COMMAND_CHANNEL",path,512);
  if(!n || n>=512)game_cpu_read_refuse(12,object,n);copy(path+n,".cpu-reply",11);
@@ -107,6 +110,7 @@ __declspec(dllexport) i32 WIN RenderRequireCpuHistoryV1(void* object,const void*
  if(!session_resident_unlock(surface,&result,&result,mask) ||
     game_native_cpu_lease_transfer(object,identity,(const u16*)result.data,result.length))game_cpu_read_refuse(14,object,0);
  copy(lock->base.data,result.data,result.length);
+ cpu_journal_surface(MNM_CRJ_COMPLETE,object,0,ticket,!family&&!route&&!caller?2:1,fields,identity[0],identity[3],generation,MNM_CRJ_VALIDATED,0,0);
  game_reserved_snapshot_free(&pending);game_reserved_buffer_free(mask,result.length);
  __atomic_sub_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);game_snapshot_free(&result);
  /* Keep reader admission through any enclosing copy; its final leave clears
@@ -115,5 +119,5 @@ __declspec(dllexport) i32 WIN RenderRequireCpuHistoryV1(void* object,const void*
  game_cpu_read_completed(!family && !route && !caller?2:1);
  ok=1;
  reject:
- game_cpu_reader_thread=0;game_tracker_release();SetLastError(error);return ok;
+ journal_context.result=ok;game_cpu_reader_thread=0;game_tracker_release();SetLastError(error);return ok;
 }

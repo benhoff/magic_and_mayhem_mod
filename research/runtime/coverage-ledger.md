@@ -25502,3 +25502,30 @@ wrapper/thread/marker/view identities before one bounded acquisition. Use that
 caller map for targeted natural-branch research. No scope decision is required.
 Original driver/ABI comparison, arbitrary readers/aliases, whole operations0/36,
 storage8/156 and final verdicts remain open. See [the reviewed caller baseline](copy-caller-provenance-20261102.md).
+
+## Bounded CPU-reader/DC observation — 2026-11-02
+
+`CRJ01.observation03` adds a loss-refusing opt-in mapped sideband and a strict
+SQLite-backed join of one enabled-intro software640x480 storage diagnostic.
+The sole charged attempt reaches normal Quit: 703 records, 178 closed contexts,
+43 complete CPU request/reply/physical-validation joins and 87 retired DC borrows,
+with zero drops or error flags. Actual World paint metadata confirms640x480;
+two auxiliary40x40reads are retained separately. Reader reasons split37GetDC,
+3Preferences,2Load and1Save. No new pixel comparison or nominal acceptance is
+claimed. Twelve reader controls, optimized/sanitized reservations, Wine opt-in/
+LastError controls and two independently compared DC regression cases pass.
+
+Four preflight contexts share a recorded caller allocation/RVA but lack a pinned
+binary candidate, affecting six reads. Strict complete_observed_chain remains
+false. Direct staged-executable caller matches use PE-header metadata and do not
+verify mapped code or recover original upstream semantics. The earlier analyzer
+extent refusal, no-CRT build refusal and stale legacy fixture failures remain
+immutable. Fixture-only session shutdown and RGB565 oracle corrections do not
+change production rendering policy.
+
+Only the new diagnostic policy gains scoped implementation/live-observation
+support. Original CPU authority, DC/font equivalence, arbitrary readers, historical
+stalls, storage8/156, whole operations0/36 and final verdicts remain open. Shared
+runtime edits can stale earlier evidence without renewing it. See [the bounded
+result and missing links](cpu-reader-journal-20261102.md). No second game attempt
+or gameplay change was made.

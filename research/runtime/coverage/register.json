@@ -159819,6 +159819,63 @@
         "The closed1269-call observation reachesEND/normalQuit/zeroowners, but 99CPU/GPU intervals lack comparisons under unchanged512MiB worker limits. Strict whole-output closure remains false; no CPU per-upstream-caller pixel link or missing witness is claimed.",
         "Natural self/keyed-GPU counts0are finite negative observations, not global absence. Nine observed sites still lack discovered owners. Original COPY ABI/driver comparison, indirect/native-service callers, arbitrary aliases/readers, whole operations0/36, storage8/156 and final verdicts remain unchanged."
       ]
+    },
+    {
+      "id": "NP.cpu-reader-dc-journal",
+      "kind": "native_policy",
+      "subsystem": "runtime_rendering",
+      "title": "Bounded diagnostic CPU-reader and DC journal",
+      "scope": "Opt-in single-generation bounded mapped CPU-reader/DC sideband, with exact diagnostic/pilot gating, one-attempt nonwaiting reservations, context reasons/direct caller PE metadata, request/completion physical validation observations and acquisition/release borrow identities. Join every captured CPU_READ and full reply without new pixel-oracle or nominal acceptance. Unknown modules/upstream callers, dropped/overflowed/unclosed records, untracked DCs and ownership gaps refuse or remain explicit. No drawing, lease, deadline, action or gameplay policy change; no original recovery or replacement.",
+      "original": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/cpu-reader-journal-20261102.md",
+        "research/formats/native-cpu-reader-journal-v1.md"
+      ],
+      "implementation": [
+        "runtime/render/cpu_reader_journal.h",
+        "protocols/include/mnm/native_cpu_reader_journal_v1.h",
+        "tools/cpu_reader_journal.py",
+        "tools/analyze-cpu-reader-journal.py"
+      ],
+      "tests": [
+        "tests/native-cpu-reader-journal-test.c",
+        "tests/test-cpu-reader-journal.py",
+        "tests/cpu-reader-journal-win32.c",
+        "tools/test-native-cpu-reader-journal.py"
+      ],
+      "validation_dependencies": [
+        "runtime/render/bridge.c",
+        "runtime/render/owned_session.h",
+        "runtime/render/cpu_reader.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/command_application_stop.h",
+        "tools/build-render-bridge.py",
+        "tools/run-rendering-acceptance-pilot.py",
+        "tools/storage_cpu_read_binding.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_pilot.py",
+        "tests/test-storage-cpu-read-binding.py",
+        "tools/native_prefix_template.py",
+        "tools/test-render-session-dc.py",
+        "runtime/render/owned_dc_selftest.h",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "CRJ01.observation03"
+      ],
+      "remaining_gaps": [
+        "One diagnostic generation reached normal Quit: 703 closed lossless records, 43 full CPU request/reply/physical-validation joins and 87 retired DC borrows. Four preflight caller contexts at recorded RVA0xad8d lack a pinned binary match, affecting six reads; strict complete_observed_chain remains false. Direct staged-executable caller identities use mapped PE-header metadata, not full mapped-code verification or original upstream recovery. Original DC/font semantics, arbitrary readers, restart/failure coverage, historical stalls and whole-operation/final acceptance remain separate.",
+        "Legacy DC regression fixtures now explicitly close their v1 session with RenderShutdown and use the established RGB565 bit replication. Earlier unclosed-stream, terminal-gate and old-oracle refusals are retained; these test corrections change no production lifecycle or color policy."
+      ]
     }
   ],
   "evidence": [
@@ -368180,6 +368237,73 @@
       "sources_pointer": "/sources",
       "build": "nocd-40209ca7",
       "source_sha256_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "CRJ01.observation03",
+      "kind": "live_observation",
+      "scope": "Opt-in single-generation bounded mapped CPU-reader/DC sideband, with exact diagnostic/pilot gating, one-attempt nonwaiting reservations, context reasons/direct caller PE metadata, request/completion physical validation observations and acquisition/release borrow identities. Join every captured CPU_READ and full reply without new pixel-oracle or nominal acceptance. Unknown modules/upstream callers, dropped/overflowed/unclosed records, untracked DCs and ownership gaps refuse or remain explicit. No drawing, lease, deadline, action or gameplay policy change; no original recovery or replacement.",
+      "record": "research/runtime/cpu-reader-journal-results-20261102/observation03.json",
+      "sha256": "9a07d9869fbc9ef13806fb077077e52297897fe204c7b9ead637182759f0cf1f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/charged_attempts",
+          "equals": 1
+        },
+        {
+          "pointer": "/complete_observed_chain",
+          "equals": false
+        },
+        {
+          "pointer": "/observed/request_count",
+          "equals": 43
+        },
+        {
+          "pointer": "/observed/completion_count",
+          "equals": 43
+        },
+        {
+          "pointer": "/observed/dc_borrows",
+          "equals": 87
+        },
+        {
+          "pointer": "/observed/dc_release_attempts",
+          "equals": 87
+        },
+        {
+          "pointer": "/observed/original_upstream_callers_recovered",
+          "equals": 0
+        },
+        {
+          "pointer": "/journal/records",
+          "equals": 703
+        },
+        {
+          "pointer": "/journal/drops",
+          "equals": 0
+        },
+        {
+          "pointer": "/journal/error_bits",
+          "equals": 0
+        },
+        {
+          "pointer": "/nominal_acceptance",
+          "equals": false
+        },
+        {
+          "pointer": "/pixel_equivalence_asserted",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -397703,6 +397827,22 @@
       "evidence": [
         "CALLER01.quick05"
       ]
+    },
+    {
+      "id": "SC.cpu-reader-dc-journal",
+      "level": "live_observation",
+      "scope": "Opt-in single-generation bounded mapped CPU-reader/DC sideband, with exact diagnostic/pilot gating, one-attempt nonwaiting reservations, context reasons/direct caller PE metadata, request/completion physical validation observations and acquisition/release borrow identities. Join every captured CPU_READ and full reply without new pixel-oracle or nominal acceptance. Unknown modules/upstream callers, dropped/overflowed/unclosed records, untracked DCs and ownership gaps refuse or remain explicit. No drawing, lease, deadline, action or gameplay policy change; no original recovery or replacement.",
+      "behaviors": [
+        "NP.cpu-reader-dc-journal"
+      ],
+      "tests": [
+        "tests/native-cpu-reader-journal-test.c",
+        "tests/test-cpu-reader-journal.py",
+        "tests/cpu-reader-journal-win32.c"
+      ],
+      "evidence": [
+        "CRJ01.observation03"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -399520,7 +399660,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-48b1cb552c3216b3172adcf63d834a7fcf1f3678ecb45e247f2743f4bcfef1a9.json",
-    "sha256": "48b1cb552c3216b3172adcf63d834a7fcf1f3678ecb45e247f2743f4bcfef1a9"
+    "path": "research/runtime/coverage/source-index-79a9955cdc258d057f62b9987046705c2b0aa95e8da778fb6baf901d81d61783.json",
+    "sha256": "79a9955cdc258d057f62b9987046705c2b0aa95e8da778fb6baf901d81d61783"
   }
 }
