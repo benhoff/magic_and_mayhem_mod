@@ -208,7 +208,7 @@ static void game_surface_store(void* object,struct Snapshot* pixels,u32 primary,
     s->back_count_known=(descriptor[1]&0x20)!=0;s->back_count=s->back_count_known?descriptor[5]:0;
     s->generation_origin=7;s->primary=primary;s->layout_known=1;copy(&s->pixels,pixels,sizeof(*pixels));pixels->data=0;game_surface_bytes+=s->pixels.length;
 }
-struct GameBlit {struct Snapshot src,dst;void *source,*target;u32 source_generation,target_generation,epoch,caller,fields[10],valid,bootstrap,fill,fill_value,direct,gpu,src_borrowed,dst_borrowed;u32 routes[44];struct MnmGpuCopyPlan* plan;};
+struct GameBlit {struct Snapshot src,dst;void *source,*target;u32 source_generation,target_generation,epoch,caller,fields[10],valid,bootstrap,fill,fill_value,direct,gpu,src_borrowed,dst_borrowed;u32 routes[44],callers[20];struct MnmGpuCopyPlan* plan;};
 #include "copy_route_census.h"
 static void game_blit_free(struct GameBlit* p){
     if(p->plan){HeapFree(GetProcessHeap(),0,p->plan);p->plan=0;}

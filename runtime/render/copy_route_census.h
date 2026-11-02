@@ -2,6 +2,7 @@
 #include "cursor_copy_state.h"
 static struct MnmCopyRoutes* game_copy_routes;
 static struct MnmCopyRoutesV2* game_copy_routes_v2;
+#include "copy_callers.h"
 static int game_copy_routes_enabled(void){return game_copy_routes || game_copy_routes_v2;}
 static void game_copy_routes_init(void){
  if(!game_resident_world || !lock_capture_path_length)return;
@@ -20,9 +21,11 @@ static void game_copy_routes_init(void){
   if(readable((void*)h[15],64)){u32 pe=*(u32*)(h[15]+0x3c);
    if(pe<=4096 && readable((void*)(h[15]+pe),84) && *(u32*)(h[15]+pe)==0x4550)h[16]=*(u32*)(h[15]+pe+80);}}
  if(game_copy_routes_v2)cursor_copy_state_init(game_copy_routes_v2->header);
+ game_copy_callers_init();
  SetLastError(error);
 }
 static void game_copy_routes_close(void){
+ game_copy_callers_close();
  if(game_copy_routes_v2)cursor_copy_state_close(game_copy_routes_v2->header);
  if(game_copy_routes_v2){game_copy_routes_v2->header[14]=1;UnmapViewOfFile(game_copy_routes_v2);game_copy_routes_v2=0;}
  if(game_copy_routes){game_copy_routes->header[14]=1;UnmapViewOfFile(game_copy_routes);game_copy_routes=0;}
@@ -59,7 +62,7 @@ static void game_copy_routes_finish(struct GameBlit* p,i32 result,u32 gpu_row){
  if(!(r[10]&32768u))game_copy_routes_missed(4);
  if(game_copy_routes_v2){
   u32 before=game_copy_routes_v2->header[6];mnm_copy_routes_v2_record(game_copy_routes_v2,r);
-  if(game_copy_routes_v2->header[6]==before+1)cursor_copy_state_observe(game_copy_routes_v2->rows[before]);
+  if(game_copy_routes_v2->header[6]==before+1){cursor_copy_state_observe(game_copy_routes_v2->rows[before]);game_copy_callers_finish(p,before+1);}
  }else mnm_copy_routes_record(game_copy_routes,r);SetLastError(error);
 }
 #define COPY_COMMAND_CALLBACK(fallback) \

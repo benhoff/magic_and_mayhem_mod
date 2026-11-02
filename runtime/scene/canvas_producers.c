@@ -664,6 +664,7 @@ int canvas_producers_install(void){
  for(u32 j=0;j<HOOKS;++j){if((j>=53&&j<=56&&!producer_trace_mode)||(j>=57&&!extended_stream()))continue;struct Hook* h=hooks+j;u32 old,unused;if(!VirtualProtect((void*)h->address,h->length,0x40,&old))return 0;u8 patch[10]={0xe9};put(patch+1,(u32)h->entry-h->address-5);for(u32 k=5;k<h->length;++k)patch[k]=0x90;copy((void*)h->address,patch,h->length);FlushInstructionCache(GetCurrentProcess(),(void*)h->address,h->length);VirtualProtect((void*)h->address,h->length,old,&unused);}
  if(!publication_install())return 0;enabled=1;if(glyph)glyph_live_installed();return 1;
 }
+#include "copy_caller_handoff.h"
 /* Private PE32 hook handoff to the owning native cursor adapter. Only the seven
  * shared entries are admitted, after validating our installed jump, padding,
  * complete saved instructions and exact continuation. This is not a wire ABI. */

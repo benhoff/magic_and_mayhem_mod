@@ -15392,7 +15392,8 @@
         "research/runtime/opengl-copy-order.md",
         "docs/live-drawing-replacement.md",
         "research/runtime/draw02-canvas-storage-generations.md",
-        "research/runtime/native-copy-route-reachability.md"
+        "research/runtime/native-copy-route-reachability.md",
+        "research/runtime/copy-caller-provenance-20261102.md"
       ],
       "implementation": [],
       "tests": [],
@@ -15403,7 +15404,8 @@
         "NR.copy-order.live-verified-20261006",
         "DRAW02.source-buffer-static-20261012",
         "DRAW02.source-copy-static-20261012",
-        "COPYROUTES.static-20261017"
+        "COPYROUTES.static-20261017",
+        "CALLER01.layouts01"
       ],
       "status": {
         "understanding": "partial",
@@ -159755,6 +159757,67 @@
       ],
       "remaining_gaps": [
         "Completion counters carry no session ID beyond immutable co-retention; sparse lifecycle observations cannot recover every original caller or per-request physical-lease restoration. GetDC versus panel preflight, DC/font lifetime, arbitrary readers, masked writes, whole operations and final verdicts remain pending."
+      ]
+    },
+    {
+      "id": "NP.copy-caller-provenance",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Bounded upstream COPY caller provenance",
+      "scope": "Opt-in scalar companion to the closed V2 COPY census. Verify pinned NoCD complete wrapper code after validating the existing Scene detour and saved trampoline, fixed return-slot layout and exact active published Scene frame, then require a direct original E8 to the wrapper and actual source/destination Surface identities. Direct unhooked slots remain supported. Preserve every unsupported, unreadable, code-mismatched and non-direct frame; the cursor adapter handoff is not implemented. Join only resolved GPU callers with complete independently compared command intervals. CPU caller metadata earns no new per-caller pixel claim. No stack walking, forced alias/key state, rendering admission changes, complete-output requirement, global branch absence or original-driver equivalence.",
+      "original": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "confidence": "provisional",
+      "documents": [
+        "research/runtime/copy-caller-provenance-20261102.md",
+        "research/formats/native-copy-callers-v1.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/native_copy_callers_v1.h",
+        "runtime/render/copy_caller_layouts.h",
+        "runtime/render/copy_callers.h",
+        "runtime/render/bridge.c",
+        "runtime/render/copy_route_census.h",
+        "tools/copy_caller_provenance.py",
+        "tools/observe-copy-callers.py",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/copy_caller_slots.h",
+        "tools/run-rendering-acceptance-pilot.py",
+        "protocols/include/mnm/native_copy_callers_v2.h",
+        "protocols/include/mnm/copy_caller_handoff_v1.h",
+        "runtime/scene/copy_caller_handoff.h",
+        "runtime/scene/canvas_producers.c",
+        "tools/build-scene-observer.py",
+        "tools/copy_caller_output.py"
+      ],
+      "tests": [
+        "tests/native-copy-callers-test.c",
+        "tests/test-copy-caller-provenance.py"
+      ],
+      "validation_dependencies": [
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/native_copy_output.py",
+        "tools/build-render-bridge.py",
+        "protocols/include/mnm/native_copy_routes_v2.h",
+        "tools/natural_gpu_copy_branches.py",
+        "tools/build-native-draw.py",
+        "runtime/native-draw/cursor_owner.h",
+        "runtime/native-draw/cursor_copy_leases.h"
+      ],
+      "evidence": [
+        "CALLER01.quick05"
+      ],
+      "remaining_gaps": [
+        "Fresh quick05 resolves345original calls at20direct sites/21routing groups through the whole-opaque wrapper.77of78resolvedGPUcalls have complete output.899cursor-adapter calls remain code mismatches and25fills unsupported. A separate read-only native cursor scope handoff is needed before targeted scene selection.",
+        "The closed1269-call observation reachesEND/normalQuit/zeroowners, but 99CPU/GPU intervals lack comparisons under unchanged512MiB worker limits. Strict whole-output closure remains false; no CPU per-upstream-caller pixel link or missing witness is claimed.",
+        "Natural self/keyed-GPU counts0are finite negative observations, not global absence. Nine observed sites still lack discovered owners. Original COPY ABI/driver comparison, indirect/native-service callers, arbitrary aliases/readers, whole operations0/36, storage8/156 and final verdicts remain unchanged."
       ]
     }
   ],
@@ -368042,6 +368105,81 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "CALLER01.quick05",
+      "kind": "live_observation",
+      "scope": "A diagnostic public Quick journey reaches normal Quit and zero owners, retaining a complete closed scalar companion/V2 census, original direct caller observations and frozen routing. Only resolved original GPU callers whose whole emitted interval has independent native output checks earn positive output credit. Unsupported, code-mismatched and other unresolved frames, missing comparison intervals and strict whole-output refusal remain explicit. CPU upstream observations have no new per-call pixel claim. No forced key/alias state, global absence, original-driver equivalence, nominal acceptance or whole-operation promotion.",
+      "record": "research/runtime/copy-caller-results-20261102/quick05.json",
+      "sha256": "239ea2efef9347e35069ea75708fa752824ecbc32de960b6bb7ee31a8c6bc74e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_selected_frames_resolved",
+          "equals": false
+        },
+        {
+          "pointer": "/callers/application_calls",
+          "equals": 1269
+        },
+        {
+          "pointer": "/callers/resolved_calls",
+          "equals": 345
+        },
+        {
+          "pointer": "/callers/states/code_mismatch",
+          "equals": 899
+        },
+        {
+          "pointer": "/copy_output/upstream_gpu_calls_with_complete_output",
+          "equals": 77
+        },
+        {
+          "pointer": "/copy_output/all_application_output_closed",
+          "equals": false
+        },
+        {
+          "pointer": "/whole_operations_accepted",
+          "equals": 0
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/original_driver_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CALLER01.layouts01",
+      "kind": "static",
+      "scope": "Pinned NoCD byte inspection: seven selected original COPY wrapper stack layouts and fourteen API return sites. No original driver execution, recovered ABI equivalence or live replacement.",
+      "record": "research/runtime/copy-caller-results-20261102/layouts-reviewed01.json",
+      "sha256": "0a80c4c76bc6700ea1fcd99cc91b2eca3f9f8deb44b675fc04efb8e7c79a3ed3",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_executable_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        }
+      ],
+      "sources_pointer": "/sources",
+      "build": "nocd-40209ca7",
+      "source_sha256_pointer": "/source_executable_sha256"
     }
   ],
   "classifications": [],
@@ -397550,6 +397688,21 @@
       "evidence": [
         "RDB01.binding01"
       ]
+    },
+    {
+      "id": "SC.copy-caller-provenance",
+      "level": "live_observation",
+      "scope": "A diagnostic public Quick journey reaches normal Quit and zero owners, retaining a complete closed scalar companion/V2 census, original direct caller observations and frozen routing. Only resolved original GPU callers whose whole emitted interval has independent native output checks earn positive output credit. Unsupported, code-mismatched and other unresolved frames, missing comparison intervals and strict whole-output refusal remain explicit. CPU upstream observations have no new per-call pixel claim. No forced key/alias state, global absence, original-driver equivalence, nominal acceptance or whole-operation promotion.",
+      "behaviors": [
+        "NP.copy-caller-provenance"
+      ],
+      "tests": [
+        "tests/native-copy-callers-test.c",
+        "tests/test-copy-caller-provenance.py"
+      ],
+      "evidence": [
+        "CALLER01.quick05"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -399367,7 +399520,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6c872a4e3f092fb2b09ddeb7d253ddcb6f36017266097061d772d49567806a13.json",
-    "sha256": "6c872a4e3f092fb2b09ddeb7d253ddcb6f36017266097061d772d49567806a13"
+    "path": "research/runtime/coverage/source-index-48b1cb552c3216b3172adcf63d834a7fcf1f3678ecb45e247f2743f4bcfef1a9.json",
+    "sha256": "48b1cb552c3216b3172adcf63d834a7fcf1f3678ecb45e247f2743f4bcfef1a9"
   }
 }

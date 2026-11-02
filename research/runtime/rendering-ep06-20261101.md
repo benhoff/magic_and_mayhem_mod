@@ -111,3 +111,16 @@ adds checked facets to22of36 rows; all36 whole operations remain pending.
 Historical five-second causes and the separate late menu timeout are not retired.
 Use each row's remaining scene/caller/output/ABI/lifetime proof before new broad
 acquisitions; original recovery and both final decisions remain pending.
+
+## Caller provenance follow-up — 2026-11-02
+
+The [reviewed upstream caller baseline](copy-caller-provenance-20261102.md)
+now resolves345calls at20original direct sites;77GPUcalls also have complete
+independent output. The closed1269-call metadata still contains899cursor-adapter
+code mismatches and25unsupported fills, and99output comparisons are missing.
+This diagnostic closes no whole operation. Natural self/keyed-GPU counts remain0.
+Before another broad scene sweep, implement the separately versioned read-only
+native cursor scope handoff with exact entry caller, protected views,
+thread/nested-scope/physical-marker guards. Then select the smallest scene from
+its caller/branch map. Keep the current queue/count/readback caps and all
+unresolved or missing intervals explicit; no user scope decision is needed.

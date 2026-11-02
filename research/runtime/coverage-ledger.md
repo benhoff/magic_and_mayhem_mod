@@ -25467,3 +25467,38 @@ manifest bookends verify2927files. No game, original executable or new native
 replay runs. Only the new tooling policy gains scoped headless support; original
 CPU-authority/reader milestones and all148remaining/36whole-operation/final
 decision boundaries stay unchanged. See [the binding scope](storage-cpu-read-binding-20261102.md).
+
+## Upstream COPY caller provenance — 2026-11-02
+
+`NP.copy-caller-provenance` / `SC.copy-caller-provenance` add an opt-in scalar
+companion to the closed V2 COPY census. Seven pinned original wrapper layouts,
+fourteen API sites and the existing Scene detour/frame handoff identify original
+callers without stack searching, source/key mutation or rendering admission
+changes. `CALLER01.layouts01` records static byte/layout inspection only;
+`RI.copies` gains no implementation, comparison or replacement milestone.
+
+`CALLER01.quick05` observes 1,269 calls through END/normal Quit with zero owners:
+345 resolved original calls at 20 E8 sites/21 routing groups, 899 code mismatches
+behind the native cursor protected-view adapter, and 25 unsupported fills.
+All 78 resolved GPU calls come from original return RVA0x6ba01;77 have complete
+independent output intervals. The other267 resolved calls have CPU routing and
+no new per-upstream-caller pixel claim. All observed direct sites match existing
+static candidates; nine still lack discovered owners.
+
+The worker drops99 output comparisons under the unchanged512MiB queue budget;
+one is a resolved GPU call and receives no output credit. The complete scalar
+observation and positive per-call proof do not close strict whole-output
+validation. Five retained attempts distinguish launcher/staging refusals,
+expected installed-detour guard failures and the old strict-output failure.
+Exact failed-source preimages, reports, raw data and current source hashes remain
+immutable and locally retained in SQLite. Thirteen caller tests, eighteen GPU
+branch tests and the fourteen-site native controls pass. Original manifest
+bookends verify2927files.
+
+Natural self/keyed-GPU counts remain0finite observations, not global absence.
+Next: add a separately validated read-only handoff at the existing native cursor
+copy scope, preserve native-service/indirect callers as unknown, and test exact
+wrapper/thread/marker/view identities before one bounded acquisition. Use that
+caller map for targeted natural-branch research. No scope decision is required.
+Original driver/ABI comparison, arbitrary readers/aliases, whole operations0/36,
+storage8/156 and final verdicts remain open. See [the reviewed caller baseline](copy-caller-provenance-20261102.md).

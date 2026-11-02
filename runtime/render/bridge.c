@@ -258,6 +258,7 @@ static i32 WIN blt(void* object,void* dest,void* source,void* rect,u32 flags,voi
     int token=history_enter();struct DrawCapture* c=begin_draw(object,dest,source,rect,flags,effects,1,0,0,caller);
     if(token && !c)history_gap(6);
     struct GameBlit propagated;game_blit_before(object,dest,source,rect,flags,effects,0,0,0,&propagated);propagated.caller=caller;
+    game_copy_callers_prepare(&propagated,(u32)__builtin_frame_address(0)+4,0);
     SetLastError(error);i32 status=propagated.gpu?game_gpu_blit(&propagated):((Blt)t->original[5])(object,dest,source,rect,flags,effects);error=GetLastError();
     game_blit_after(&propagated,status);
     game_copy_routes_finish(&propagated,status,game_gpu_census?game_gpu_census->header[6]:0);
@@ -276,6 +277,7 @@ static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 fla
     if(token && !c)history_gap(6);
     game_copy_stage(2);
     struct GameBlit propagated;game_blit_before(object,0,source,rect,flags,0,1,x,y,&propagated);propagated.caller=caller;
+    game_copy_callers_prepare(&propagated,(u32)__builtin_frame_address(0)+4,1);
     game_copy_stage(3);
     SetLastError(error);i32 status=propagated.gpu?game_gpu_blit(&propagated):((BltFast)t->original[7])(object,x,y,source,rect,flags);error=GetLastError();
     game_copy_stage(4);
