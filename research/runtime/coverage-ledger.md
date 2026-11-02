@@ -25392,3 +25392,201 @@ No finite pass retires historical timeout causes or renews broader original/engi
 claims. The incoming campaign histories/claims and historical master startup
 ledger sections are preserved; 9,637 missing artifact edges gain retrospective
 exact receipts without asserting past gate success. See [the review](storage-main-stall-20261101.md).
+
+## Campaign transition continuation — 2026-11-02
+
+[RPS04.victory-region-negative](rendering-progression-results-20261101/completion-progression-default-high-20261102-02.json)
+observes natural Forest victory, its original50XP report/OK, and a settled Realm
+after ordinary tutorial dismissal. The overall acquisition fails at the next
+native projection. Original Realm Activate is acknowledged and the retained
+viewport shows The Plains of Greenhenge entry, but the native Region snapshot is
+rejected. This is no proof of an actual region2 World, normal cleanup, independent
+comparison or lifetime completion. A bounded read-only rejection tracer retains
+the exact guard line and its source fields on a subsequent reproduction; no
+Region admission predicate is relaxed. Diagnostic03 instead dies after defeating
+Camulos and supplies no Region guard evidence.
+
+The historical generation466 CPU refusal now has same-launch module/address
+normalization: generated MnmDraw RVA0xe28c, the Fast wrapper's draw call return.
+Its original admission failure remains unresolved. Terminal authority/bridge
+records preserve the existing fail-closed behavior, and actual PE32 controls
+reject absent, failing and lying reader callbacks. Six active-reader controls
+pass separately. New acquisition provenance freezes native runtime/build inputs
+as well as the Qt compiler closure; historical hashes remain unchanged. Current
+108 preparation/Qt controls pass in their recorded phase. These scoped findings
+do not promote original integration or live replacement statuses. See the
+[batch findings and remaining boundaries](campaign-transition-completion-20261102.md).
+
+RPS04 diagnostic06 identifies the separate Realm Activate refusal: valid original
+mouse-ring index15 is rejected by the native maximum3 check. The established
+original contract has32 records of40 bytes; both native bounds now use exactly
+0..31. [Scoped private controls](rendering-progression-results-20261102/realm-ring-controls-01.json)
+pass128 admissions/131 actions/58 guards through the unchanged original Realm
+tick, checking both modes, all positions, exact1280-byte restoration and preserved
+selected-index advance. Held physical presses and invalid/deferred-invalid
+indices remain refused. Native PE compilation passes. This corrects a concrete
+native ingress bug; fresh live activation and the distinct progressed Region
+projection/World boundary remain pending. Historical evidence and statuses are
+unchanged.
+
+RPS04 diagnostic07 now reaches original Region2 after the ring-bound correction.
+The exact rejected parent has null config/map/callback pointers and retained
+selected-region2/realm-kind1 metadata; the resident-resource-only policy refused it.
+A separate strict suspended-parent case passes [24 original entries/31 refusals](rendering-progression-results-20261102/region-parent-controls-02.json),
+including the actual captured Region2 projection/Enter destination with dynamic
+pointers relocated. Parent allocation release/lifetime is not inferred from
+null pointers. Live travel, second World, cleanup and comparison remain pending.
+
+Diagnostic08 instead ends in natural defeat0 and correctly fails victory before
+exercising those corrected gates. The publisher-documented ordinary guard/follow
+candidate now has a bounded passive +906 reference trace, fresh living identity
+checks and observed bridge movement requirements. [Fresh113 preparation/Qt controls](rendering-progression-results-20261101/completion-guards-20261102-02.json)
+pass; actual delivery/reference/movement and reliability remain pending. This
+does not implement the outstanding custom commander feature or replace AI.
+
+
+Diagnostic10 verifies ordinary follow reference, bridge movement and three owned
+Zombie melee damage rows before natural50XP victory. Both native adapter fixes
+then pass, with actual Region2 Enter and final ready Realm location/destination2;
+the host still times out before a second World claim. Current private controls
+pass36 Enter/34 refusal/18 Qt cases with name-derived realm kind and both guarded
+location relations. The schema2 driver now separates destination travel from
+battle entry and requires a fresh rendering generation plus original tick epoch
+for each claimed World. [Current116 controls](rendering-progression-results-20261101/completion-guards-20261102-05.json)
+pass. Diagnostic11 loses combat before travel and is retained as negative evidence.
+Actual second World, normal cleanup, independent pixels, nominal matrix, lifetime
+and supported-player acceptance remain pending. Historical CPU refusal cause is
+unresolved; no integration/replacement status is promoted by these controls.
+
+
+RPS04 diagnostic20 now closes the previously missing region2-context World
+observation in one exact skip-intro phase: original50XP victory/OK/settled Realm,
+destination travel to2,reselection/battle handoff and fresh800x600 presentation
+3228after3227. The [verified join](rendering-progression-results-20261102/world20-observation-01.json)
+checks original first-three tick pairs19–24/36–41 separated by full World pop31.
+This is no assembled-map/RNG identity or complete lifecycle proof. Whole acquisition
+fails at cleanup input visibility/helper overlap before normal Quit. Current
+cleanup defers each transition until physical-helper retirement and waits for
+visible viewport before confirmation.112Python/five actual Qt startup controls
+and current links pass; current full normal Quit,enabled-intro matrix,independent
+pixels,populated lifetime and supported-player acceptance remain pending. No
+behavior status is promoted. Portal-clear input is unexercised in20; historical
+CPU cause and all exact prior failures/fingerprints stay retained.
+
+The subsequent enabled-intro nominal21/22 runs stop at bounded rearm guards;
+22 retains190HP and recovers4to39mana after reaching exact power XYZ.
+[Its exact diagnosis](rendering-progression-results-20261102/rearm22-diagnosis-01.json)
+preserves the source phase. Current v18 permits210seconds on point while retaining
+42mana and the global540/780second/cast limits.112 Python/five Qt controls pass;
+full current cleanup,nominal matrix and independent pixels remain pending.
+
+Diagnostic23 executes the revised recovery successfully at42mana/182HP but loses
+the Camulos fight. Its [approach diagnosis](rendering-progression-results-20261102/combat23-diagnosis-01.json)
+shows the long movement order continuing during the stable-pose wait. Current
+v19 adds one bounded order to a recent observed wizard pose and requires exact
+arrival/stability before casting.114 Python/five Qt controls pass. This input
+candidate needs fresh original combat/full-route validation; prior diagnostic20
+remains the sole second-World partial milestone.
+
+Diagnostic24 refuses the unsuccessful fixed-position order at its15second
+arrival guard. Current v20 replaces that candidate with one publisher-documented
+ordinary Space-pause casting pair,bounded12seconds,with release required before
+accepting the natural report.112 Python/five Qt controls pass; fresh pause/cast
+execution,complete route,normal Quit,nominal matrix and pixels remain pending.
+No original simulation/AI/health/mana/script/balance field is modified.
+
+Diagnostic25 recovers42mana/179HP but the second bridge support guard refuses
+follower8HP at8.60cells after source6 damage; ordinary pause is unexercised.
+Current v21 starts the same20second catch-up window on observed bridge arrival
+and shortens recovery to36mana.112 Python/five Qt controls pass; enabled-intro
+nominal26 is the fresh execution. No transition/distance/living assertion or
+original gameplay field changes; full normal Quit,pixels and matrix remain pending.
+
+Nominal26 refuses initial follow visibility after opening refill; the healthy
+follower has reached the bridge while wizard remains at power. Current v22
+adds bounded known-bridge visibility staging,retaining actual visible click and
+fresh follow-reference guards.112 Python/five Qt controls pass; diagnostic27
+is the fresh test. Pause,full cleanup,current nominal matrix and pixels remain
+pending; prior diagnostic20 is still the sole second-World partial milestone.
+
+Diagnostic27 extends the partial milestone through second-World Mini Quit/Yes
+and cleanup report OK back to ready Realm. The adapter restores Realm; driver
+stage13 incorrectly waits Main. The verified join retains both typed World
+epochs,Space input/debit observations and exact source preimages. New
+`CP.realm-mode4-mini-return` records selected static Options/confirmation/Realm
+return branches. A bounded ordinary original-control exit driver is implemented
+for validation; native mode4 dispatch,original save implementation/persistence,
+Main Quit,pixels,matrix and populated lifetime remain pending. Guard21 retains
+a C++ capture failure after119 Python controls; corrected build22 is in progress.
+
+The corrected original-control cleanup candidate passes119 Python/five Qt
+startup/30 Qt Region-ownership controls with the complete linked player source
+graph bound. Diagnostic28 is active. Native mode4 dispatch and original save
+implementation remain outside scope; normal Quit,pixels and nominal matrix
+require fresh original execution. No behavior status is promoted.
+
+
+Diagnostic28 now completes the selected full route in600.213seconds: natural
+original50XP/21-text victory/OK,settled Realm,region2 travel/reselection/fresh
+World,two typed original World tick epochs,World Mini Quit/Yes/report OK/Realm,
+original Realm Options/mode4 Quit/Yes/fresh Main,then normal Main Quit. Acquisition
+retains296 artifacts and verifies complete captures,stopped private Wine,zero
+final owners and unchanged source/build closure. It is skip-intro diagnostic
+observation. Independent comparison and enabled-intro matrix remain separate;
+original save/persistence,populated object lifetime,assembled-map/RNG identity
+and supported-player acceptance are not proved. No status promotion.
+
+The3670-World independent replay exceeds its old300second compute limit; the
+negative result is being retained before retry. Three isolated configuration
+producers pass119 Python/five Qt startup/30 Qt ownership controls at the bounded
+900second overall scenario and900second history-replay budgets. The measured
+600.213second skip-intro route plus about242seconds of intro exceeds the former
+780second overall allowance. The540second combat helper,12second Space pair,
+adapter leases and all source/callback/pixel/resource assertions remain unchanged.
+Enabled-intro default640 and software800/640 defeat/progression/victory cases
+are executing independently; no result or acceptance is inferred from launch.
+
+
+Diagnostic28's independent original-history retry now passes all15,347leased
+native Qt swaps/15,292World swaps across3,670original World render generations:13,420,951,500pixels,
+zero differences,18GPU-to-CPU returns and zero remaining command surfaces.
+Original manifests pass; exact oracle binaries and the prior300second timeout
+remain retained in SQLite. This is the exact skip-intro780second player phase
+with900second verification compute allowance,not nominal acceptance or populated
+lifetime/save/simulation equivalence. Current900second player phase23 has fresh
+119Python/five Qt startup/30Qt ownership controls and separate full-intro attempts;
+no old source fingerprint or behavior status is promoted. Audit10 passes in its
+recorded phase with4,491historical stale entries; final scope/census review follows.
+
+The first three nominal configurations fail before World with an unacknowledged
+source-only chunk and host lease/cancellation boundary. Their immutable diagnosis
+records software closed-glyph refusal20/exit124 as a distinct terminal observation,
+without inferring causal order or weakening leases/history checks. Later same-source
+victory attempts enter the requested actual640/software Worlds but produce natural
+defeat and are rejected. Complete current nominal victory/progression remains pending.
+
+
+The complete phase23 nominal acquisition matrix has12current-source full-intro
+attempts: one default800defeat completes original report/OK/Main Quit and resource
+retirement;seven attempts fail before World,and four victory cases enter actual
+Worlds but return natural defeat0 instead of1. Their exact source maps equal the
+current primary bundle. Independent default800defeat history remains a separate
+result. This closes attempt bookkeeping,not complete nominal victory/progression,
+combat repeatability,populated lifetime,save persistence or supported acceptance.
+
+
+Current phase23 enabled-intro default800defeat now independently matches5,702leased
+native swaps/5,642World swaps over1,378original World render generations:
+4,986,399,000pixels,zero differences,zero CPU-read observations andzero remaining
+command surfaces. Its2,785movie/unleased swaps are outside comparison. Original
+report/OK/Main Quit,resource retirement,manifests and current source/binary closure
+pass. Exact oracle binaries are retained. Diagnostic28's corrected leased count
+is15,347of15,348observed swaps;its13,420,951,500pixels/18CPU returns remain
+unchanged. No immutable result hash or behavior status is promoted or refreshed.
+
+
+Final phase24 fixes Region fixture default-all membership when BUILD_TESTING=ON,
+while keeping the explicit target available and excluded from productionOFF builds.
+Separate ON/OFF generated build graphs and154focused controls pass. This is test
+wiring;completed original comparison phases/hashes stay unchanged,and no current
+full-bundle equivalence or engine-status promotion is inferred.

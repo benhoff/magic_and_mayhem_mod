@@ -30,7 +30,7 @@ static void campaign_record(void* object,u32 phase,u32 result){
 }
 static u32 THIS campaign_tick(void* object){
     u32 error=GetLastError();int input=0;
-    if(menu_version>=19){menu_poll(object,1);input=realm_input_begin(object);if(input<0)menu_status=MNM_MENU_UNAVAILABLE;}
+    if(menu_version>=19){menu_poll(object,1);input=realm_input_begin(object);if(input<0){menu_status=MNM_MENU_UNAVAILABLE;realm_activation_diagnostic(object,menu_screen,menu_generation,realm_input_diagnostic_region);}}
     campaign_record(object,1,0);SetLastError(error);
     u32 result=((TickFn)0x5517a0)(object);error=GetLastError();
     if(input>0)realm_input_end();

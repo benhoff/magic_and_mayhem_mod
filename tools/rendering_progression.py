@@ -53,6 +53,7 @@ def recipes(game):
 
 def validate_flow(flow, case):
     require(case in CASES and flow.get('case') == case, 'Wrong progression case')
+    require(flow.get('schema')==2 and flow.get('world_observation_policy')=='fresh-generation-after-handoff-v1','Missing fresh World observation policy')
     require(flow.get('success') is True and flow.get('normal_quit') is True, 'Driver did not finish through original Quit')
     require(flow.get('native_command_fallback') is False and not flow.get('native_error'), 'Renderer fallback/error')
     require(flow.get('size') in ('640x480','800x600'), 'Actual frame mode must be declared')
@@ -70,12 +71,22 @@ def validate_flow(flow, case):
     require(worlds and worlds[0]['region'] == 1 and worlds[0]['realm'] == 'Celtic', 'Wrong initial campaign map')
     require(all([w['width'],w['height']] == dimensions for w in worlds), 'Actual World extent differs from declared frame mode')
     require(all(w['paint'] > 0 and w['world'] > 0 and w['frames'] > 0 for w in worlds), 'World was never presented')
+    require(all(type(w.get('after_world')) is int and 0<=w['after_world']<w['world'] for w in worlds),'Stale World presentation predates the handoff')
     if case in ('progression', 'victory'):
         require(returned[0]['screen'] == 4 and len(worlds) == 2, 'Victory must return to Realm and enter the later map')
         require(worlds[1]['region'] == 2 and worlds[1]['realm'] == 'Celtic' and worlds[1]['world'] > worlds[0]['world'], 'Reload/same-map re-entry is not progression')
         entries = [r for r in rows if r['event'] == 'region-entry']
         require([r['region'] for r in entries] == [1, 2], 'Missing original later-region admission')
     require(not any(r['event'] == 'load' for r in rows), 'Save reload is a different scenario')
+    realm_cleanup=[r for r in rows if r['event']=='cleanup-realm']
+    if realm_cleanup:
+        cleanup=[r for r in rows if r['event']=='cleanup-report'];main=[r for r in rows if r['event']=='cleanup-main']
+        require(case!='defeat' and len(realm_cleanup)==len(cleanup)==len(main)==1,'Ambiguous original Realm cleanup route')
+        realm=realm_cleanup[0]
+        require(realm['screen']==4 and realm.get('kind')==1 and realm.get('location')==2 and
+                realm['sequence']>cleanup[0]['sequence'] and realm['ack']==cleanup[0]['ack']+1 and
+                main[0]['screen']==3 and main[0]['sequence']>realm['sequence'] and main[0]['ack']==realm['ack'],
+                'Original Realm cleanup/parent acknowledgement missing')
     return dict(semantic_route_verified=True, case=case, natural_outcome=report['outcome'],
                 later_map_entered=case != 'defeat', pixel_history_accepted=False,
                 ownership_retirement_accepted=False, supported_player_accepted=False)
@@ -98,7 +109,29 @@ def validate_callbacks(data, flow):
     dispatch=report_callback(rows,natural['thread'],require_return=True)
     require(dispatch is not None and dispatch['return_sequence']==oks[0][0], 'Original report callback dispatch/return absent')
     require(callbacks[-1][3] == 3 and callbacks[-1][9] == 4, 'Original Main Quit missing')
-    return dict(original_report_dispatch=dispatch, original_result_ok_sequence=oks[0][0], original_main_quit_sequence=callbacks[-1][0], verified=True)
+    popped=[r for r in rows if r[0]>oks[0][0] and r[1]==28 and r[3]==2 and r[11]==0x659408 and r[12]==3]
+    epochs=[]
+    require(1<=len(flow['worlds'])<=2,'Unexpected original World visit count')
+    for later in (False,True) if len(flow['worlds'])==2 else (False,):
+        ticks=[r for r in rows if r[1] in (11,12) and (r[0]>popped[0][0] if later and popped else r[0]<oks[0][0] if not later else False)]
+        require(len(ticks)==6 and [(r[1],r[9]) for r in ticks]==[(event,i) for i in range(3) for event in (11,12)],'Missing independent original World tick epoch')
+        require(all(r[2]==natural['thread'] and r[3]==2 and r[4]==r[11]==0x6cbb78 and r[5]==0x5c5dd8 and r[6]==1 and r[12]==4 for r in ticks),'Wrong original World owner/type/thread/stack')
+        epochs.append(dict(first_sequence=ticks[0][0],last_sequence=ticks[-1][0],post_report=later))
+    realm_exit=None
+    if any(r['event']=='cleanup-realm' for r in flow['states']):
+        from campaign_realm_exit import mode4_state,fresh_main
+        require(len(popped)==2,'Missing original cleanup World pop before Realm exit')
+        require(len(oks)==2 and epochs[-1]['last_sequence']<oks[-1][0]<popped[-1][0],
+            'Original later-World cleanup report return absent')
+        cleanup_begin=[r for r in rows if epochs[-1]['last_sequence']<r[0]<oks[-1][0] and r[1]==2 and r[3]==6 and r[9]==21
+            and r[2]==natural['thread'] and r[4]==r[11]==0x6db967 and r[5]==0x5c5ebc and r[6]==1 and r[12]==5]
+        require(len(cleanup_begin)==1,'Original later-World cleanup report dispatch absent')
+        mini=mode4_state(rows,popped[-1][0]);require(mini is not None,'Original Realm mode4 Mini absent')
+        modal=mode4_state(rows,mini['sequence'],True);require(modal is not None,'Original Realm mode4 confirmation absent')
+        main=fresh_main(rows,modal['sequence']);require(main is not None and main['thread']==natural['thread'] and main['sequence']<callbacks[-1][0],
+            'Original Realm exit did not precede Main Quit')
+        realm_exit=dict(mini=mini,confirmation=modal,main=main,scope='Original controls only; no native mode4 dispatch or save-equivalence claim')
+    return dict(original_report_dispatch=dispatch, original_result_ok_sequence=oks[0][0], original_main_quit_sequence=callbacks[-1][0], original_world_epochs=epochs,original_realm_exit=realm_exit,verified=True)
 
 
 def prepare_launch_manifest(game, manifest):

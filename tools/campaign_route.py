@@ -38,6 +38,20 @@ def aim_point(hero,target,size=(800,600),body=False):
     return x,y
 
 
+def follow_point(follower,wizard,size=(800,600),body_offset=40):
+    """Input policy after manual V centres the selected follower, not the wizard."""
+    if (follower['slot']==wizard['slot'] or follower['type']!=14 or wizard['type']!=0
+            or follower['owner']!=0 or wizard['owner']!=0 or not follower['active'] or not wizard['active']
+            or follower['health']<=0 or wizard['health']<=0):
+        raise ValueError('Unsupported living follower/wizard identities')
+    if body_offset not in (40,22,54):
+        raise ValueError('Unsupported bounded follow body point')
+    point=aim_point(follower,wizard,size,body=True)
+    if point is None:return None
+    x,y=point;y+=22-body_offset
+    return (x,y) if y>=64 else None
+
+
 def approach_point(hero,target,size=(800,600)):
     width,height=frame_size(size);x,y=project(hero,target,size)
     dx,dy=x-width/2,y-height/2

@@ -121,6 +121,12 @@ bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<i
     if(firstMain)menuWitness(MNM_MTL_REQUEST_BEFORE,nullptr,action,bridge_->requestedSequence()+1);
     if(!bridge_->request(action,state_,argument,rules))return observe(false,"Current wire ownership or request admission changed");
     quitting_=action==MNM_MENU_QUIT;pending_=true;requestedAt_=clock_.elapsed();action_=action;
+    campaignEnterGeneration_=campaignEnterKind_=campaignEnterThread_=campaignEnterHandoff_=campaignEnterRegion_=0;
+    if(progressedMenusEnabled&&action==MNM_MENU_REGION_ENTER){
+        campaignEnterGeneration_=state_.generation;campaignEnterThread_=state_.thread;campaignEnterHandoff_=state_.region.enterHandoff;
+        campaignEnterRegion_=state_.region.region;
+        campaignEnterKind_=state_.region.realm=="Celtic"?1:state_.region.realm=="Greek"?2:state_.region.realm=="Medieval"?3:0;
+    }
     switch(action){
     case MNM_MENU_REALM_ACTIVATE:target_=(state_.realm.rows[int(argument)-1].owned?4:18);break;
     case MNM_MENU_REALM_CHARACTER:target_=20;break;
@@ -153,6 +159,18 @@ bool LiveMenuSession::requestPreferences(quint32 action,const std::array<int,7>&
 bool LiveMenuSession::requestDefeatContinue(){
     if(!campaignDefeatEnabled||state_.screen!=MNM_MENU_DEFEAT_SCREEN)return false;
     return request(MNM_MENU_DEFEAT_OK);
+}
+bool LiveMenuSession::beginOriginalRealmControls(){
+    if(!progressedMenusEnabled||!realmMenusEnabled||!active_||mediaActive_||inBattle_||pending_||transition_||resultsAction_||
+       !bridge_||!originalViewportRequested||state_.screen!=4||!state_.ready||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)return false;
+    MenuBridge::State current;
+    if(!bridge_->read(current)||current.screen!=4||!current.ready||current.handoff||current.status!=MNM_MENU_OK||current.realm.actions!=7||
+       current.generation!=state_.generation||current.thread!=state_.thread||current.ack!=state_.ack||current.ack!=bridge_->requestedSequence())return false;
+    // The original owns its mode4 Mini, confirmation and save. Keep the lease
+    // and normal fresh-parent restoration while disabling native requests.
+    state_=current;sequence_=current.sequence;lastState_=clock_.elapsed();inBattle_=true;
+    if(stateChanged){auto waiting=current;waiting.ready=0;stateChanged(waiting);}
+    originalViewportRequested();return true;
 }
 bool LiveMenuSession::sameResults(const MenuBridge::State& state) const {
     const auto bit=resultsAction_==MNM_MENU_RESULT_CONTINUE?1u:2u;
@@ -222,6 +240,13 @@ bool LiveMenuSession::finishSpells(const std::array<int,63>& assignments){
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 void LiveMenuSession::fallback(const QString& reason){
+    if(transitionFailureObserved){
+        const auto now=clock_.isValid()?clock_.elapsed():0;
+        TransitionDiagnostic d;d.request=bridge_?bridge_->requestedSequence():0;d.action=action_;d.target=target_;
+        d.flags=(pending_?1u:0u)|(transition_?2u:0u)|(active_?4u:0u)|(mediaActive_?8u:0u)|(inBattle_?16u:0u);
+        d.generation=state_.generation;d.screen=state_.screen;d.ready=state_.ready;d.ack=state_.ack;d.status=state_.status;d.sequence=state_.sequence;d.handoff=state_.handoff;
+        d.requestAgeMs=qMax<qint64>(0,now-requestedAt_);d.stateAgeMs=qMax<qint64>(0,now-lastState_);transitionFailureObserved(d);
+    }
     menuWitness(MNM_MTL_FALLBACK);
     storageOpeningGeneration_=preferencesOpeningGeneration_=0;resultsAction_=0;preferencesToSave_=false;active_=false;bypass_=!nativeOnlyEnabled;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)retireBridge();
     if(failed)failed(reason);
@@ -307,6 +332,10 @@ void LiveMenuSession::poll(){
                 }
                 resultsAction_=0;
             }
+            if(progressedMenusEnabled&&action_==MNM_MENU_REGION_ENTER&&
+               (next.ack!=bridge_->requestedSequence()||next.thread!=campaignEnterThread_)){
+                fallback("Campaign Enter acknowledgement identity differs; using original controls.");return;
+            }
             pending_=false;
             if(next.status!=MNM_MENU_OK){fallback(QString("Menu action rejected (%1); using original menus.").arg(next.status));return;}
             if(campaignBookEnabled&&action_==MNM_MENU_GRIMOIRE_CLOSE){inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;}
@@ -314,6 +343,13 @@ void LiveMenuSession::poll(){
                 inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
             }
             if(action_==MNM_MENU_REGION_ENTER){
+                // The original can finish travel before its ACK is read. The
+                // completed, fresh same-Realm parent is stronger than a transient
+                // handoff flag, and does not authorize a second dispatch.
+                if(progressedMenusEnabled&&campaignEnterGeneration_&&campaignEnterHandoff_==MNM_MENU_HANDOFF_CAMPAIGN_RETURN&&
+                   next.ready&&next.screen==4&&!next.handoff&&next.generation!=campaignEnterGeneration_&&next.realm.kind==campaignEnterKind_&&next.realm.destination==campaignEnterRegion_){
+                    campaignEnterGeneration_=0;inBattle_=false;transition_=false;state_=next;if(stateChanged)stateChanged(next);return;
+                }
                 if(progressedMenusEnabled&&next.handoff==MNM_MENU_HANDOFF_CAMPAIGN_RETURN){inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;}
                 if(next.handoff!=3){fallback("Original campaign Enter returned an unknown destination; using original controls.");return;}
                 inBattle_=true;transition_=false;state_=next;if(battleStarted)battleStarted(3);return;

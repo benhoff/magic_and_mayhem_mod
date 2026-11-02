@@ -18,6 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
 from rendering_progression import validate_flow, validate_callbacks, prepare_launch_manifest
+from rendering_build_binding import native_runtime_source_paths
 
 
 def flow(case='progression'):
@@ -26,20 +27,48 @@ def flow(case='progression'):
     states = [row('main',3,2,0), row('region-entry',18,4,1,region=1),
               row('natural-report',6,8,3,outcome=int(case!='defeat'),title='Original report',texts=['Score']*21),
               row('result-return',4,10,4), row('region-entry',18,12,5,region=2 if case!='defeat' else 1)]
-    return dict(case=case, size='800x600', success=True, normal_quit=True, native_command_fallback=False, native_error='',
-                states=states, worlds=[dict(realm='Celtic',region=n,world=i+1,paint=i+10,frames=i+20,width=800,height=600)
+    return dict(schema=2,world_observation_policy='fresh-generation-after-handoff-v1',case=case, size='800x600', success=True, normal_quit=True, native_command_fallback=False, native_error='',
+                states=states, worlds=[dict(realm='Celtic',region=n,world=i+1,after_world=i,paint=i+10,frames=i+20,width=800,height=600)
                                       for i,n in enumerate([1,2] if case!='defeat' else [1,1])])
 
 
 def trace(quit_first=False):
     values=[]
+    def ticks():
+        for counter in range(3):
+            for event in (11,12):
+                r=[0]*16;r[0]=len(values)+1;r[1]=event;r[2]=40;r[3]=2;r[4]=r[11]=0x6cbb78;r[5]=0x5c5dd8;r[6]=1;r[9]=counter;r[12]=4;values.append(r)
+    ticks()
     for event,screen,arg,active in [(3,3,0,0),(2,6,21,0x6db967),(3,6,21,0x6db967),(28,2,0,0x659408),(3,3,4,0)]:
-        if quit_first and not values:
-            values.append([1,3,40,17,0,0,0,0,0,3,0,0,0,0,0,0])
+        if quit_first and event==3 and screen==3 and arg==0:
+            values.append([len(values)+1,3,40,17,0,0,0,0,0,3,0,0,0,0,0,0])
         row=[0]*16;row[0]=len(values)+1;row[1]=event;row[2]=40;row[3]=screen;row[9]=arg;row[11]=active
         if screen==6:row[4]=0x6db967;row[5]=0x5c5ebc;row[6]=1;row[12]=5
+        if event==28:row[4]=0x6cbb78;row[5]=0x5c5dd8;row[12]=3
         values.append(row)
+        if event==28:ticks()
     return b'MNMMENU1'+struct.pack('<II',1,64)+b''.join(struct.pack('<16I',*r) for r in values)
+
+
+class NativeRuntimeBindingTests(unittest.TestCase):
+    def roots(self,root):
+        for name in ('runtime','reconstruction','protocols','tools'):(root/name).mkdir()
+
+    def test_native_inputs_are_frozen_without_captures_or_original_media(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);self.roots(root)
+            for name in ('runtime/reader.h','protocols/wire.json','tools/build-draw.py',
+                         'runtime/capture.bin','tools/unrelated.py','working/private.h','original/game.h'):
+                path=root/name;path.parent.mkdir(exist_ok=True);path.write_text('input')
+            self.assertEqual(native_runtime_source_paths(root),{'runtime/reader.h','protocols/wire.json','tools/build-draw.py'})
+
+    def test_missing_root_and_escaping_code_refuse_before_execution(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)/'repo';root.mkdir()
+            with self.assertRaises(ValueError):native_runtime_source_paths(root)
+            self.roots(root);outside=Path(directory)/'outside.h';outside.write_text('code')
+            (root/'runtime/escape.h').symlink_to(outside)
+            with self.assertRaises(ValueError):native_runtime_source_paths(root)
 
 
 class ProgressionTests(unittest.TestCase):
@@ -64,7 +93,10 @@ class ProgressionTests(unittest.TestCase):
                    lambda f:f.update(success=False),
                    lambda f:f.update(normal_quit=False),
                    lambda f:f.update(native_command_fallback=True),
-                   lambda f:f['worlds'][1].update(paint=0)]
+                   lambda f:f['worlds'][1].update(paint=0),
+                   lambda f:f['worlds'][1].pop('after_world'),
+                   lambda f:f['worlds'][1].update(after_world=2),
+                   lambda f:f.update(schema=1)]
         for mutation in mutations:
             f=flow();mutation(f)
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):validate_flow(f,'progression')
@@ -77,6 +109,53 @@ class ProgressionTests(unittest.TestCase):
         self.assertTrue(validate_callbacks(trace(),flow())['verified'])
         for data in (trace(True), trace()[:-1], trace().replace(struct.pack('<I',0x6db967),struct.pack('<I',0x6cbb78))):
             with self.assertRaises(ValueError):validate_callbacks(data,flow())
+
+    def test_each_world_needs_a_new_original_tick_epoch_after_result_return(self):
+        rows=[list(r) for r in struct.iter_unpack('<16I',trace()[16:])]
+        later=[i for i,r in enumerate(rows) if r[1] in (11,12)][6:]
+        variants=[]
+        variants.append([r for i,r in enumerate(rows) if i not in later])
+        for field,value in [(2,41),(9,9),(11,0x659408)]:
+            changed=[list(r) for r in rows];changed[later[0]][field]=value;variants.append(changed)
+        for changed in variants:
+            for i,r in enumerate(changed,1):r[0]=i
+            data=trace()[:16]+b''.join(struct.pack('<16I',*r) for r in changed)
+            with self.assertRaises(ValueError):validate_callbacks(data,flow())
+
+    def test_realm_cleanup_preserves_parent_ack_and_original_identity(self):
+        f=flow();f['states'] += [dict(event='cleanup-report',screen=6,sequence=14,ack=6,thread=40),
+            dict(event='cleanup-realm',screen=4,sequence=16,ack=7,thread=40,kind=1,location=2),
+            dict(event='cleanup-main',screen=3,sequence=18,ack=7,thread=40)]
+        self.assertTrue(validate_flow(f,'progression')['semantic_route_verified'])
+        for index,field,value in ((-2,'location',1),(-2,'kind',2),(-2,'ack',6),(-1,'ack',8),(-1,'sequence',16)):
+            bad=copy.deepcopy(f);bad['states'][index][field]=value
+            with self.subTest(field=field),self.assertRaises(ValueError):validate_flow(bad,'progression')
+
+    def test_realm_cleanup_needs_second_report_pop_mode4_modal_and_main_before_quit(self):
+        f=flow();f['states'].append(dict(event='cleanup-realm',thread=40))
+        rows=[list(r) for r in struct.iter_unpack('<16I',trace()[16:])];quit_row=rows.pop()
+        begin=next(r for r in rows if r[1]==2 and r[3]==6);returned=next(r for r in rows if r[1]==3 and r[3]==6)
+        pop=next(r for r in rows if r[1]==28)
+        cleanup_start=len(rows)
+        rows += [list(begin),list(returned),list(pop)]
+        for modal in (0,123):
+            for event,arg,result in ((13,4,5),(14,0,5),(15,modal,0)):
+                rows.append([0,event,40,17,0x6a5088,0x5c6644,1,0,0,arg,result,0x6a5088,4,0,0,0])
+        rows += [[0,4,40,3,0x657ce0,0x5c63e4,1,0,0,0,0,0x657ce0,2,0,0,0],quit_row]
+        def encode(values):
+            return trace()[:16]+b''.join(struct.pack('<16I',i,*r[1:]) for i,r in enumerate(values,1))
+        self.assertIsNotNone(validate_callbacks(encode(rows),f)['original_realm_exit'])
+        for mutation in ('mode','modal','main','cleanup-report'):
+            bad=copy.deepcopy(rows)
+            if mutation=='mode':
+                for r in bad:
+                    if r[1]==13:r[9]=2
+            if mutation=='modal':bad=[r for r in bad if not (r[1]==15 and r[9])]
+            if mutation=='main':
+                for r in bad:
+                    if r[1]==4 and r[3]==3:r[12]=3
+            if mutation=='cleanup-report':bad.pop(cleanup_start)
+            with self.subTest(mutation=mutation),self.assertRaises(ValueError):validate_callbacks(encode(bad),f)
 
     def test_launcher_manifest_is_materialized_for_the_real_consumer(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -152,7 +231,11 @@ class ProgressionTests(unittest.TestCase):
             root=Path(directory);out=root/'input.json'
             # Authored protocol prefix: Main callback, then original report OK
             # dispatch. No World-pop, callback return or gameplay file exists.
-            (root/'events.bin').write_bytes(trace()[:16+2*64])
+            prefix=[list(r) for r in struct.iter_unpack('<16I',trace()[16:])
+                    if (r[1],r[3],r[9]) in ((3,3,0),(2,6,21))]
+            self.assertEqual(len(prefix),2)
+            for i,r in enumerate(prefix,1):r[0]=i
+            (root/'events.bin').write_bytes(trace()[:16]+b''.join(struct.pack('<16I',*r) for r in prefix))
             spec=importlib.util.spec_from_file_location('helper_display',ROOT/'tools/run-native-owned.py')
             launcher=importlib.util.module_from_spec(spec);spec.loader.exec_module(launcher)
             host=root/'host';host.mkdir();server,owner,_=launcher.start_display(host)

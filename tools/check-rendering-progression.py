@@ -14,12 +14,12 @@ def main():
  normal=True
  if not a.report.startswith(PREFIX) or '..' in Path(a.report).parts or (ROOT/a.report).exists():p.error('New immutable owned report required')
  output=ROOT/'working/pilot'/(Path(a.report).stem+'-verification');output.mkdir(parents=True,exist_ok=False)
- report=dict(schema=1,kind='public_native_progression_comparison',success=False,player_accepted=False,original_pixels_used_as_native_inputs=False,scope=__doc__)
+ report=dict(schema=1,kind='public_native_progression_comparison',success=False,player_accepted=False,original_pixels_used_as_native_inputs=False,original_history_deadline_seconds=900,scope=__doc__)
  before=False
- def execute(label,command):
-  with (output/(label+'.log')).open('xb') as log:subprocess.run([str(v) for v in command],cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=300)
+ def execute(label,command,timeout=300):
+  with (output/(label+'.log')).open('xb') as log:subprocess.run([str(v) for v in command],cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=timeout)
  with Reader(ROOT) as reader:
-  acquired=reader.json(a.acquisition);report['acquisition']=dict(record=a.acquisition,sha256=reader.digest(a.acquisition))
+  acquired=reader.json(a.acquisition);report['acquisition']=dict(record=a.acquisition,sha256=reader.digest(a.acquisition));report['acquired_source_fingerprints']=dict(acquired['sources'])
   if acquired.get('kind') in ('public_native_watchdog_diagnostic_acquisition','public_native_progression_diagnostic_acquisition'):
    report['kind']='public_native_progression_diagnostic_comparison'
    report['scope']+=' Injected/diagnostic execution only; ineligible for nominal acceptance.'
@@ -93,7 +93,7 @@ def main():
    require(all(n in acquired['installation_inputs'] and h==acquired['installation_inputs'][n]['sha256'] for n,h in asset_hashes.items()),'Reference asset differs from the named installation')
    report['asset_inputs']=asset_hashes
    reference=output/'reference'
-   execute('original-history',[history,source,Path(acquired['session'])/'game',original,pe,reference])
+   execute('original-history',[history,source,Path(acquired['session'])/'game',original,pe,reference],timeout=900)
    index=json.loads((reference/'worlds.json').read_text());require(index['success'] is True and index['native_player_pixels_read'] is False and index['original_destination_capture_read'] is False,'Oracle history provenance')
    worlds={}
    for row in index['worlds']:

@@ -3,6 +3,9 @@ static u8 realm_payload[MNM_MENU_V19_REALM_SIZE];
 static u32 realm_map_object,realm_map_kind,realm_map_count,realm_map_pointer;
 static u32 realm_map_points[19][2];
 static u32 realm_activation,realm_input_index,realm_saved_input[3];
+enum { REALM_INPUT_RING_COUNT=32 };
+static u32 realm_input_failure_line,realm_input_diagnostic_region;
+static int realm_input_refuse(u32 line){realm_input_failure_line=line;return -1;}
 static int realm_map(u8* p,u32 kind,u32 count){
     u8* map=(u8*)get(p+0x59);
     if(!readable(map,800*600))return 0;
@@ -55,7 +58,7 @@ static u32 realm_dispatch(void* object,u32 action,u32 argument){
     if(action==MNM_MENU_REALM_ACTIVATE){
         if(!argument||argument>get(state+16))return MNM_MENU_INVALID;
         if(!(get(state+32)&(1u<<argument)))return MNM_MENU_UNAVAILABLE;
-        if(!readable((void*)0x641fbc,4)||get((void*)0x641fbc)>3||*(u8*)0x6f2d3d)return MNM_MENU_UNAVAILABLE;
+        if(!readable((void*)0x641fbc,4)||get((void*)0x641fbc)>=REALM_INPUT_RING_COUNT||*(u8*)0x6f2d3d)return MNM_MENU_UNAVAILABLE;
         u32 index=get((void*)0x641fbc);if(!readable((u8*)0x641ab8+index*40,16)||get((u8*)0x641ac4+index*40))return MNM_MENU_UNAVAILABLE;
         realm_activation=argument;return MNM_MENU_OK;
     }
@@ -72,13 +75,14 @@ static u32 realm_dispatch(void* object,u32 action,u32 argument){
 static int realm_input_begin(void* object){
     if(!realm_activation)return 0;
     u8 state[MNM_MENU_V19_REALM_SIZE];u32 id=realm_activation;realm_activation=0;
-    if(!realm_snapshot(object,state)||id>get(state+16)||!(get(state+32)&(1u<<id))||get((void*)0x641fbc)>3||*(u8*)0x6f2d3d)return -1;
+    realm_input_failure_line=0;realm_input_diagnostic_region=id;
+    if(!realm_snapshot(object,state)||id>get(state+16)||!(get(state+32)&(1u<<id))||get((void*)0x641fbc)>=REALM_INPUT_RING_COUNT||*(u8*)0x6f2d3d)return realm_input_refuse(__LINE__);
     u32 index=get((void*)0x641fbc);u8* input=(u8*)0x641ab8+index*40;
-    if(!readable(input,16)||get(input+12))return -1;
+    if(!readable(input,16)||get(input+12))return realm_input_refuse(__LINE__);
     u8* map=(u8*)get((u8*)object+0x59);u32 high=*(u8*)0x6de6d5!=0,width=high?800:640,height=high?600:480;
     u32 x=0,y=0,found=0;
     for(u32 py=0;py<height&&!found;++py)for(u32 px=0;px<width;++px)if(map[(py*600/height)*800+px*800/width]==id){x=px;y=py;found=1;break;}
-    if(!found)return -1;
+    if(!found)return realm_input_refuse(__LINE__);
     realm_input_index=index;realm_saved_input[0]=get(input);realm_saved_input[1]=get(input+4);realm_saved_input[2]=get(input+12);
     put(input,x);put(input+4,y);put(input+12,0);*(u8*)0x6f2d3d=1;return 1;
 }

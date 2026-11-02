@@ -48,16 +48,42 @@ static void fixture(const char* name="Celtic",u32 occupants=0,bool special=false
     word(0x65ae1d,special?3:1);if(special)word(0x65ae21,3);
     region_campaign_enabled=region_grimoire_enabled=1;region_enter_handoff=0;
 }
+static void suspend_parent(){
+    word(0x659408+0x12,0);word(0x659408+0x59,0);word(0x659408+0xa23,0);
+    word(0x659408+0xa2b,0);word(0x659408+0xa2f,unsigned(kind(reinterpret_cast<const char*>(0x659408+0xa49))));word(0x659408+0xa33,get(reinterpret_cast<void*>(0x6578c0+0x6f)));
+}
+static void captured_fixture(const Bytes& raw){
+    check(raw.size()>=64+17*16,"captured header length");const auto* bytes=raw.data();
+    check(get(bytes)==0x524d4e4d&&get(bytes+4)==0x31304745&&get(bytes+8)==1&&get(bytes+12)==64&&
+          get(bytes+16)==raw.size()&&get(bytes+20)==17&&get(bytes+32)==2,"captured Region2 identity");
+    const u32 addresses[]={0x6578c0,0x659408,0x6f349c,0x68991c,0x657ce0,0x65ae1d,0x65af5d,0x65b1d9,0x65ab9d};
+    const u32 lengths[]={0x81,0x1e25,0x48,8,8,320,320,80,320,16,4*0x7e,16,2*0x59,3*0x7a,128,128,800*600};
+    const u32 targets[]={0x6e3000,0x6e3100,0x6e3400,0x6e3500,0x6e3700,0x6e3900,0x6e3980};
+    u32 offset=64+17*16;
+    for(u32 i=0;i<17;++i){const u8* block=bytes+64+i*16;u32 address=get(block),length=get(block+4),available=get(block+8),start=get(block+12);
+        check(length==lengths[i]&&available<=1&&start==offset,"captured descriptor");
+        if(i<9)check(address==addresses[i]&&available,"captured static address");
+        if(i==16){check(!address&&!available,"captured suspended map");continue;}
+        check(available&&start<=raw.size()&&length<=raw.size()-start,"captured readable payload");
+        std::memcpy(reinterpret_cast<void*>(i<9?address:targets[i-9]),bytes+start,length);offset+=length;
+    }
+    check(offset==raw.size(),"captured full payload");
+    for(u32 i=0;i<7;++i)word(0x6578c0+std::array<u32,7>{{0x5b,0x53,0x5f,0x4b,0x4f,0x73,0x78}}[i],targets[i]);
+    for(u32 i=0;i<4;++i)word(0x6e3400+i*4,0x6e3100+i*0x7e);
+    for(u32 i=0;i<2;++i)word(0x6e3500+i*0x59+0x25,0x6e3000);
+    for(u32 i=0;i<3;++i)word(0x6e3700+i*0x7a+0x25,0x6e3000);
+    region_campaign_enabled=region_grimoire_enabled=1;region_enter_handoff=0;
+}
 }
 int main(int argc,char** argv){
-    using namespace region_adapter;check(argc==2,"pinned original image");map_image(read(argv[1]));
+    using namespace region_adapter;check(argc==2||argc==3,"pinned original image and optional captured Region");map_image(read(argv[1]));
     const auto* actionStart=reinterpret_cast<const u8*>(0x4b3420);const Bytes actionBytes(actionStart,actionStart+0x1a0);
     const auto* admissionStart=reinterpret_cast<const u8*>(0x54eec0);const Bytes admissionBytes(admissionStart,admissionStart+0x90);
 #define PATCH(name) stub(name##_address,name##_bytes,reinterpret_cast<void*>(&name))
     PATCH(transition);PATCH(kind);PATCH(wizard);PATCH(sample);
     unsigned entries=0,refusals=0,auxiliary=0,cancels=0;u8 state[320];
-    for(const char* name:{"Celtic","Greek","Medieval"})for(unsigned n:{0u,3u,4u,8u})for(bool special:{false,true}){
-        fixture(name,n,special);check(region_snapshot(reinterpret_cast<void*>(0x6578c0),state,1),"settled Region admission");
+    for(const char* name:{"Celtic","Greek","Medieval"})for(unsigned n:{0u,3u,4u,8u})for(bool special:{false,true})for(bool suspended:{false,true}){
+        fixture(name,n,special);if(suspended)suspend_parent();check(region_snapshot(reinterpret_cast<void*>(0x6578c0),state,1),"settled Region admission");
         const bool allowed=special||n<4;check(bool(get(state+20)&2)==allowed,"capacity/special availability");
         check(get(state+28)==(allowed?(special?3:4):0),"separate original enter handoff");
         const auto result=region_dispatch(reinterpret_cast<void*>(0x6578c0),MNM_MENU_REGION_ENTER,0,1);
@@ -78,7 +104,20 @@ int main(int argc,char** argv){
         fixture();word(change.first,change.second);check(!region_snapshot(reinterpret_cast<void*>(0x6578c0),state,1),"invalid state refused");++refusals;
     }
     fixture();word(0x6e3700+0x7a+8,0);check(region_dispatch(reinterpret_cast<void*>(0x6578c0),MNM_MENU_REGION_SPELLBOX,0,1)==MNM_MENU_UNAVAILABLE,"disabled original auxiliary");++refusals;
+    for(const auto& change:std::array<std::pair<unsigned,unsigned>,10>{{
+        {0x659408+0x12,1},{0x659408+0x59,unsigned(reinterpret_cast<std::uintptr_t>(map.data()))},{0x659408+0xa23,1},
+        {0x659408+0xa2f,0},{0x659408+0xa33,4},{0x659408+0xa2b,1},{0x659408+0xa44,1},
+        {0x659408+0x823,20},{0x659408+0xb49,9},{0x689920,2}}}){
+        fixture();suspend_parent();word(change.first,change.second);check(!region_snapshot(reinterpret_cast<void*>(0x6578c0),state,1),"malformed suspended parent refused");++refusals;
+    }
+    unsigned captured=0;
+    for(const char* name:{"Celtic","Greek","Medieval"}){fixture(name);suspend_parent();word(0x659408+0xa2f,unsigned(kind(name))%3+1);
+        check(!region_snapshot(reinterpret_cast<void*>(0x6578c0),state,1),"wrong nonzero suspended realm kind refused");++refusals;}
+    if(argc==3){captured_fixture(read(argv[2]));
+        check(region_snapshot(reinterpret_cast<void*>(0x6578c0),state,1)&&get(state+24)==2&&get(state+8)==1&&get(state+28)==4&&(get(state+20)&2),"actual captured progressed Region projection");
+        check(region_dispatch(reinterpret_cast<void*>(0x6578c0),MNM_MENU_REGION_ENTER,0,1)==MNM_MENU_OK&&get(reinterpret_cast<void*>(0x65af5d))==2,"captured original Enter destination");++captured;
+    }
     check(!std::memcmp(actionStart,actionBytes.data(),actionBytes.size())&&!std::memcmp(admissionStart,admissionBytes.data(),admissionBytes.size()),"original callback/admission unchanged");
     check(sizeof(region_payload)==320,"production Region lane");
-    std::cout<<"{\"success\":true,\"entries\":"<<entries<<",\"refusals\":"<<refusals<<",\"auxiliary\":"<<auxiliary<<",\"cancels\":"<<cancels<<",\"live_validated\":false}\n";
+    std::cout<<"{\"success\":true,\"entries\":"<<entries<<",\"refusals\":"<<refusals<<",\"auxiliary\":"<<auxiliary<<",\"cancels\":"<<cancels<<",\"captured_cases\":"<<captured<<",\"live_validated\":false}\n";
 }

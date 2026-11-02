@@ -1,4 +1,5 @@
-/* First three original gameplay ticks only; opt-in diagnostic, no simulation replacement. */
+/* First three original gameplay ticks after each confirmed full World exit;
+ * bounded observation only, no extra ticks or simulation replacement. */
 static u32 campaign_world_ticks,campaign_exit_ticks;
 static void campaign_exit_record(void* object,u32 event){
     if(campaign_exit_ticks>=16)return;
@@ -18,6 +19,7 @@ static u32 THIS campaign_world_tick(void* object){
     if(sample){record(12,object,campaign_world_ticks,result);++campaign_world_ticks;}
     if(object==(void*)0x6cbb78){gameplay_sample();admission_sample(1,0,0);}
     if(exit_sample){campaign_exit_record(object,27);u8* owner=(u8*)get((void*)0x6f34e0);if(readable(owner,8))record(28,object,get(owner),get(owner+4));++campaign_exit_ticks;}
+    if(exit_sample&&get((u8*)object+8)==0&&get((void*)0x6f34e0)!=(u32)object)campaign_world_ticks=0;
     SetLastError(error);return result;
 }
 static int install_campaign_world_observe(void){
