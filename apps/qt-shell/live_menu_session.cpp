@@ -48,14 +48,15 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
             channel_=QDir(root_).filePath("channel.bin");bridge_=std::make_unique<MenuBridge>();
             if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled,regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,sessionMenusEnabled&&multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,hostLobbyEnabled&&sessionMenusEnabled&&multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,characterMenusEnabled,realmMenusEnabled,progressedMenusEnabled,campaignSpellboxEnabled,campaignBookEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
             active_=!bypass_;clock_.restart();lastState_=0;
-            if(active_)timer_.start();else bridge_->retire();
+            menuTimeline_.open(QDir(root_).filePath("menu-host-timeline.bin"));menuWitness(MNM_MTL_CREATED);
+            if(active_)timer_.start();else retireBridge();
             QStringList arguments{root_,"--menu-channel",channel_,"--prefix",winePrefix.isEmpty()?QDir(repo_).filePath(hostLobbyEnabled?"working/tests/menu-host-dx6-wine":"working/tests/menu-live-wine"):winePrefix};
             if(nativeCommandsEnabled)arguments.append("--native-render");
             if(smokeSeconds)arguments.append({"--seconds",QString::number(smokeSeconds)});
             process_.start(QDir(repo_).filePath("tools/run-menu-observer.py"),arguments);
             if(launched)launched();
         }else{
-            timer_.stop();active_=false;if(bridge_)bridge_->retire();bridge_.reset();
+            timer_.stop();active_=false;if(bridge_)retireBridge();bridge_.reset();
             if(output)output(QString("Menu launcher exited with status %1. Evidence: %2\n").arg(code).arg(root_));
             if(finished)finished();
         }
@@ -66,7 +67,7 @@ LiveMenuSession::~LiveMenuSession(){
     // Stop delivery before bridge_, state_ and timer_ are torn down. The
     // process owner reaps its children without publishing normal completion.
     timer_.stop();timer_.disconnect(this);process_.disconnect(this);
-    if(bridge_)bridge_->retire();
+    if(bridge_)retireBridge();
 }
 bool LiveMenuSession::start(){
     if(running())return false;
@@ -106,16 +107,18 @@ bool LiveMenuSession::running() const{return preparing_||process_.hardStopping()
 void LiveMenuSession::forceStop(std::function<void(bool,const QString&)> completed){
     const bool staged=preparing_;
     timer_.stop();active_=false;preferencesToSave_=false;pending_=transition_=false;
-    if(bridge_)bridge_->retire();
+    if(bridge_)retireBridge();
     process_.forceStop(staged?QString{}:winePrefix.isEmpty()?QDir(repo_).filePath(hostLobbyEnabled?"working/tests/menu-host-dx6-wine":"working/tests/menu-live-wine"):winePrefix,
         [this,completed=std::move(completed)](bool ok,const QString& error){
             preparing_=false;bridge_.reset();completed(ok,error);
         });
 }
 bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<int,17>* rules){
-    auto observe=[&](bool accepted,const QString& reason){if(requestObserved)requestObserved(action,accepted,reason,state_);return accepted;};
+    auto observe=[&](bool accepted,const QString& reason){if(!accepted)menuWitness(MNM_MTL_REQUEST_REFUSED,nullptr,action);if(requestObserved)requestObserved(action,accepted,reason,state_);return accepted;};
     if(mediaActive_||!active_||inBattle_||pending_||transition_||resultsAction_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)
         return observe(false,QString("Session unavailable: media=%1 active=%2 battle=%3 pending=%4 transition=%5 results=%6").arg(mediaActive_).arg(active_).arg(inBattle_).arg(pending_).arg(transition_).arg(resultsAction_));
+    const bool firstMain=state_.screen==3&&action==MNM_MENU_OPEN_QUICK&&!menuTimeline_.tracked();
+    if(firstMain)menuWitness(MNM_MTL_REQUEST_BEFORE,nullptr,action,bridge_->requestedSequence()+1);
     if(!bridge_->request(action,state_,argument,rules))return observe(false,"Current wire ownership or request admission changed");
     quitting_=action==MNM_MENU_QUIT;pending_=true;requestedAt_=clock_.elapsed();action_=action;
     switch(action){
@@ -137,6 +140,7 @@ bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<i
     case MNM_MENU_SETUP_MAP:target_=25;break;
     default:target_=3;break;
     }
+    if(firstMain){menuWitness(MNM_MTL_REQUEST_PUBLISHED);if(menuTimeline_.suppressRead())menuWitness(MNM_MTL_READ_SUPPRESSED);}
     observe(true,{});
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
@@ -218,7 +222,8 @@ bool LiveMenuSession::finishSpells(const std::array<int,63>& assignments){
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 void LiveMenuSession::fallback(const QString& reason){
-    storageOpeningGeneration_=preferencesOpeningGeneration_=0;resultsAction_=0;preferencesToSave_=false;active_=false;bypass_=!nativeOnlyEnabled;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)bridge_->retire();
+    menuWitness(MNM_MTL_FALLBACK);
+    storageOpeningGeneration_=preferencesOpeningGeneration_=0;resultsAction_=0;preferencesToSave_=false;active_=false;bypass_=!nativeOnlyEnabled;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)retireBridge();
     if(failed)failed(reason);
 }
 void LiveMenuSession::saveAcceptedPreferences(){
@@ -273,7 +278,9 @@ void LiveMenuSession::poll(){
     // the latest engine state unread for delivery after playback completes.
     if(mediaActive_)return;
     MenuBridge::State next;
-    if(bridge_->read(next)&&next.sequence!=sequence_){
+    if(!menuTimeline_.suppressRead()&&bridge_->read(next)&&next.sequence!=sequence_){
+        menuWitness(MNM_MTL_ENGINE_READ,&next);
+        if(menuTimeline_.tracked()&&!menuTimeline_.resolved()&&next.screen==22&&next.ready&&next.ack==bridge_->requestedSequence()){menuWitness(MNM_MTL_DESTINATION_READY,&next);menuTimeline_.resolve();}
         sequence_=next.sequence;lastState_=clock_.elapsed();
         if(next.status==MNM_MENU_RETIRED){fallback("Menu adapter retired; using original menus.");return;}
         if(pending_&&next.ack!=state_.ack){
@@ -356,7 +363,7 @@ void LiveMenuSession::poll(){
                 normalQuitAccepted_=true;
                 // Quit was accepted by the original callback. No further menu ticks
                 // are required while the original engine shuts down.
-                timer_.stop();active_=false;bridge_->retire();
+                timer_.stop();active_=false;retireBridge();
                 if(output)output("Original game Quit accepted; waiting for the launcher to finish.\n");
                 return;
             }
@@ -430,4 +437,23 @@ void LiveMenuSession::poll(){
     if(resultsAction_)submitResults();
     if(!mediaActive_&&!inBattle_&&!cpuReadWaiting(clock_.elapsed())&&(clock_.elapsed()-lastState_>(sequence_?MNM_MENU_V1_LEASE_MS:120000)||((pending_||transition_)&&clock_.elapsed()-requestedAt_>10000)))
         fallback("Menu adapter timed out; using original menus. Requests will not be retried.");
+}
+
+void LiveMenuSession::menuWitness(quint32 event,const MenuBridge::State* observed,quint32 action,quint32 request){
+    if(!menuTimeline_.enabled())return;
+    const bool terminal=event==MNM_MTL_RETIRE_BEFORE||event==MNM_MTL_RETIRE_AFTER;
+    if(event!=MNM_MTL_CREATED&&event!=MNM_MTL_REQUEST_BEFORE&&!terminal&&(!menuTimeline_.tracked()||menuTimeline_.resolved()))return;
+    const auto& snapshot=observed?*observed:state_;
+    const auto now=clock_.isValid()?clock_.elapsed():0;
+    std::array<quint32,16> row{};
+    row[4]=request==UINT32_MAX?(bridge_?bridge_->requestedSequence():0):request;
+    row[5]=action==UINT32_MAX?action_:action;row[6]=snapshot.ack;
+    row[7]=snapshot.generation;row[8]=snapshot.screen;row[9]=snapshot.status;row[10]=snapshot.sequence;
+    row[11]=(pending_?1u:0u)|(transition_?2u:0u)|(active_?4u:0u)|(mediaActive_?8u:0u)|(inBattle_?16u:0u);
+    row[12]=quint32(qMax<qint64>(0,now-requestedAt_));row[13]=quint32(qMax<qint64>(0,now-lastState_));row[14]=target_;
+    menuTimeline_.record(event,row);
+}
+void LiveMenuSession::retireBridge(){
+    if(!bridge_)return;
+    menuWitness(MNM_MTL_RETIRE_BEFORE);bridge_->retire();menuWitness(MNM_MTL_RETIRE_AFTER);
 }

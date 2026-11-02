@@ -25119,3 +25119,31 @@ and repair the actual cause before repeating nominal storage in both targets.
 The historical first-World and intro/Main failures remain unresolved. The new
 reconciliation and its47 focused controls close no whole operation, original
 recovery, replacement, lifecycle or broad player milestone.
+
+## Bounded Main to Quick timeline — 2026-11-01
+
+[MT01.timeline01](main-quick-timeline-results-20261101/joined-01.json) records an
+opt-in bounded host sideband and durable on-disk SQLite collector. One controlled
+Qt read-suppression timeout retains original callback entry/return, wire ACK and
+client retirement order under unchanged deadlines. Exactly two unforced enabled-
+intro attempts complete Main/Quick, both movies and normal original Quit. The
+unforced failure did not reproduce; neither RW03.G.intro-main-transition nor
+RN31.G.first-world-watchdog is retired and no product repair is asserted.
+
+Only NP.main-quick-timeline gains scoped implementation/live-observation support.
+Original callback execution times are unavailable; receipt intervals and logging
+loss/cap limits remain explicit. Current optimized/sanitized journal controls,
+SQLite abrupt-exit persistence and default startup/movie regression pass. The
+post-retention control handoff metadata refusal and exact old producer are kept;
+no extra controlled launch was used. Other shared LiveMenuSession source domains
+remain historical/pending. See [the investigation](main-quick-timeline-20261101.md).
+
+## Main/Quick timeline and concurrent EP06 integration — 2026-11-02
+
+The [integration review](main-quick-timeline-results-20261101/integration-01.json)
+reconciles actual c1afab709/e414b4192 parents in a separate owned checkout. All413
+recorded timeline source fingerprints and contracts match exactly; both parent
+evidence sets and master statuses are preserved. This adds no native attempt or
+original execution. MT01 retains one calibrated control, two unforced full-intro
+passes and the explicit not-reproduced result. Both historical timeout failures
+remain unresolved; unrelated EP06 and nominal storage results retain their scope.

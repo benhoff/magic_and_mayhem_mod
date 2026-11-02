@@ -6502,7 +6502,12 @@
       ],
       "validation_dependencies": [
         "runtime/menu/drawing_actor_latches.h",
-        "runtime/menu/campaign_input_admission_observe.h"
+        "runtime/menu/campaign_input_admission_observe.h",
+        "apps/qt-shell/menu_transition_witness.hpp",
+        "protocols/include/mnm/menu_timeline_v1.h"
+      ],
+      "remaining_gaps": [
+        "MT01 adds opt-in host timeline observation and an explicit diagnostic read-suppression control. This does not renew the original callback contract or identify the historical Main timeout cause; broad historical source domains remain pending after the shared host edit."
       ]
     },
     {
@@ -159154,6 +159159,67 @@
       "remaining_gaps": [
         "All36 whole-operation obligations remain pending; the frontier retains exact missing proofs. Three of17 component leads retain matching recorded sources;14 have source drift. Static reuse and individual completed calls do not establish required scene/caller/lifetime or ABI adequacy.",
         "EP06.G.storage-main-command-stall: current nominal storage stopped after Mini Load at return toward Main, before rebuild/Main Load/normal Quit. The ring retained1,010,864 unread bytes including CPU_READ; cause remains unproved. Software preparation failed before launch with EAGAIN; no actual software provider observation."
+      ]
+    },
+    {
+      "id": "NP.main-quick-timeline",
+      "subsystem": "menu_adapters",
+      "kind": "native_policy",
+      "title": "Bounded durable diagnostic timeline for the first Main to Quick transition",
+      "scope": "Linux explicit diagnostic only. A bounded append-only host sideband records first Main request publication, successful Qt engine-state reads, ready destination, fallback and retirement with CLOCK_MONOTONIC timestamps. A separate read-only collector commits V5 wire snapshots and existing original callback-record visibility intervals to on-disk SQLite. Original callback logs have ordinals but no execution timestamps and can lose contended/capped rows. The sole live control suppresses Qt reads after the accepted first Main request, retaining normal heartbeat and unchanged lease/deadline checks; it calibrates observation, not the historical cause. At most one controlled and two unforced enabled-intro launches per worktree budget. No original recovery, nominal acceptance, whole-menu or absence-of-stalls guarantee.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/main-quick-timeline-20261101.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/menu_transition_witness.hpp",
+        "protocols/include/mnm/menu_timeline_v1.h",
+        "tools/menu_transition_timeline.py",
+        "tools/run-main-quick-timeline.py"
+      ],
+      "tests": [
+        "tests/menu-transition-witness-test.cpp",
+        "tests/test-menu-transition-timeline.py",
+        "tools/test-main-quick-timeline.py",
+        "tests/menu-startup-resources-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/engine_preferences_store.cpp",
+        "apps/qt-shell/engine_preferences_store.hpp",
+        "apps/qt-shell/game_process.hpp",
+        "runtime/menu/observer.c",
+        "runtime/menu/channel.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v5.h",
+        "tools/rendering_stall_sampler.py",
+        "tools/run-native-owned.py",
+        "tools/run-native-game.py",
+        "tools/run-qt-shell.sh",
+        "tools/native_only_contract.py",
+        "tools/native_prefix_template.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "MT01.timeline01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "RW03.G.intro-main-transition and RN31.G.first-world-watchdog remain unresolved; a successful control or finite pass does not retire either.",
+        "Original callback execution times are unavailable. Preserve visibility intervals and ordinals without inventing cross-clock timing; missing records are not absence of execution.",
+        "Mapped pages and read-only collection can perturb scheduling; bounded record sizes do not impose an arbitrary OS I/O latency bound.",
+        "Current controls, one calibrated control and two unforced full-intro observations are recorded under MT01.timeline01. The unforced Main failure did not reproduce; no causal repair or failure closure is claimed.",
+        "One fresh public generation/process only. Reusing the same LiveMenuSession for diagnostic restart is not validated; the collector refuses multiple admissions. Use a fresh process for each bounded attempt."
       ]
     }
   ],
@@ -365842,6 +365908,50 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "MT01.timeline01",
+      "kind": "live_observation",
+      "scope": "One calibrated controlled read-suppression timeout and exactly two unforced enabled-intro attempts. Current Qt/recorder sources and unchanged compiled player are bound; only post-retention prefix-return metadata differs from the old control producer, retained exactly. No fresh control execution at the corrected producer hash is claimed. No product repair or historical failure retirement.",
+      "record": "research/runtime/main-quick-timeline-results-20261101/joined-01.json",
+      "sha256": "1e104dc1f9e7bb7be99030d15279416f4c9693d9a23bbbb946ee912798bbd1a0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/controlled_launches",
+          "equals": 1
+        },
+        {
+          "pointer": "/unforced_launches",
+          "equals": 2
+        },
+        {
+          "pointer": "/unforced_main_failure_reproduced",
+          "equals": false
+        },
+        {
+          "pointer": "/producer_deadlines_changed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_callback_execution_timestamps_available",
+          "equals": false
+        },
+        {
+          "pointer": "/product_repair_made",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_main_failure",
+          "equals": "unresolved"
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -395177,6 +395287,24 @@
       "evidence": [
         "EP06.frontier01"
       ]
+    },
+    {
+      "id": "MT01.first-main",
+      "scope": "Actual Qt publication/read/retire controls, bounded journal/identity refusals and committed SQLite abrupt-exit survival, followed by one read-suppression native timeout and at most two enabled-intro unforced Main/Quick observations. Keep exact failures and no-root-cause outcomes.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.main-quick-timeline"
+      ],
+      "evidence": [
+        "MT01.timeline01"
+      ],
+      "tests": [
+        "tests/menu-transition-witness-test.cpp",
+        "tests/test-menu-transition-timeline.py",
+        "tools/test-main-quick-timeline.py",
+        "tools/run-main-quick-timeline.py",
+        "tests/menu-startup-resources-test.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -396994,7 +397122,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-091fb542a0739cced993a4fcad881a9835ed3e4cf2e074382218bc15cd874d9c.json",
-    "sha256": "091fb542a0739cced993a4fcad881a9835ed3e4cf2e074382218bc15cd874d9c"
+    "path": "research/runtime/coverage/source-index-919a54a245e193e727368884ff7a2870617f5dcd849767a8a38fb9191e55fdd5.json",
+    "sha256": "919a54a245e193e727368884ff7a2870617f5dcd849767a8a38fb9191e55fdd5"
   }
 }

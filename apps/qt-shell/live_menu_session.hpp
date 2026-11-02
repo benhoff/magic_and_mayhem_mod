@@ -1,5 +1,6 @@
 #pragma once
 #include "menu_bridge.hpp"
+#include "menu_transition_witness.hpp"
 #include "engine_preferences_store.hpp"
 #include "../../protocols/include/mnm/menu_v4.h"
 #include <QProcess>
@@ -80,6 +81,9 @@ private:
     friend struct LiveMenuSessionTestAccess; // Synthetic wire/lifecycle validation without a game process.
     void saveAcceptedPreferences();
     void poll();
+    void retireBridge();
+    void menuWitness(quint32 event,const MenuBridge::State* observed=nullptr,quint32 action=UINT32_MAX,quint32 request=UINT32_MAX);
+    MenuTransitionWitness menuTimeline_;
     void submitResults();
     bool sameResults(const MenuBridge::State& state) const;
     bool restoreMiniStorage(const MenuBridge::State& state);
