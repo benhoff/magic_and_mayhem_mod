@@ -159821,7 +159821,8 @@
         "Fresh quick05 resolves345original calls at20direct sites/21routing groups through the whole-opaque wrapper.77of78resolvedGPUcalls have complete output.899cursor-adapter calls remain code mismatches and25fills unsupported. A separate read-only native cursor scope handoff is needed before targeted scene selection.",
         "The closed1269-call observation reachesEND/normalQuit/zeroowners, but 99CPU/GPU intervals lack comparisons under unchanged512MiB worker limits. Strict whole-output closure remains false; no CPU per-upstream-caller pixel link or missing witness is claimed.",
         "Natural self/keyed-GPU counts0are finite negative observations, not global absence. Nine observed sites still lack discovered owners. Original COPY ABI/driver comparison, indirect/native-service callers, arbitrary aliases/readers, whole operations0/36, storage8/156 and final verdicts remain unchanged.",
-        "The V3 extension changes shared source/readers. CALLER01.quick05 retains its original hashes and899unresolved/99missing historical result; current V3 evidence is under CURCALL01.quick01, not a refreshed V2 claim."
+        "The V3 extension changes shared source/readers. CALLER01.quick05 retains its original hashes and899unresolved/99missing historical result; current V3 evidence is under CURCALL01.quick01, not a refreshed V2 claim.",
+        "Combined CPU-reader/cursor integration has fresh portable caller, reader and CPU mapped-journal controls, while existing cursorquick01 remains evidence for its recorded source tree. Shared render/launcher inputs changed; combined-code live COPY validation is pending, without rerunning or refreshing historical source hashes."
       ]
     },
     {
@@ -159895,6 +159896,66 @@
         "Fresh diagnostic cursorquick01 resolves all1002selected COPYs:695through five cursor wrappers at21upstream sites and307through the Scene handoff;41distinct direct original sites total.25fills remain unsupported by the caller reader. Native-service/indirect frames are refused by design; none occur in this finite capture.",
         "The existing strict whole-COPY validator independently compares all1002native outputs (900CPU/369keyedCPU and102GPU), withEND/normalQuit/zeroowners. The new detailed upstream output list credits102GPUcalls,54from cursor wrappers. No new per-upstream CPU pixel policy, original ABI/driver equivalence or universal reliability follows. Earlier99missing comparisons stay missing.",
         "Natural self/keyed-GPU counts remain0finite observations. Fifteen observed direct sites lack discovered owners.115of156static direct candidates, including11explicit-rectangle and28keyed candidates, are unobserved in this journey. Review source/destination provenance for those candidate branches before selecting new scenes. Wholeoperations0/36, storage8/156 and final verdicts remain unchanged."
+      ]
+    },
+    {
+      "id": "NP.cpu-reader-dc-journal",
+      "kind": "native_policy",
+      "subsystem": "runtime_rendering",
+      "title": "Bounded diagnostic CPU-reader and DC journal",
+      "scope": "Opt-in single-generation bounded mapped CPU-reader/DC sideband, with exact diagnostic/pilot gating, one-attempt nonwaiting reservations, context reasons/direct caller PE metadata, request/completion physical validation observations and acquisition/release borrow identities. Join every captured CPU_READ and full reply without new pixel-oracle or nominal acceptance. Unknown modules/upstream callers, dropped/overflowed/unclosed records, untracked DCs and ownership gaps refuse or remain explicit. No drawing, lease, deadline, action or gameplay policy change; no original recovery or replacement.",
+      "original": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/cpu-reader-journal-20261102.md",
+        "research/formats/native-cpu-reader-journal-v1.md",
+        "research/runtime/cpu-reader-integration-20261102.md"
+      ],
+      "implementation": [
+        "runtime/render/cpu_reader_journal.h",
+        "protocols/include/mnm/native_cpu_reader_journal_v1.h",
+        "tools/cpu_reader_journal.py",
+        "tools/analyze-cpu-reader-journal.py"
+      ],
+      "tests": [
+        "tests/native-cpu-reader-journal-test.c",
+        "tests/test-cpu-reader-journal.py",
+        "tests/cpu-reader-journal-win32.c",
+        "tools/test-native-cpu-reader-journal.py"
+      ],
+      "validation_dependencies": [
+        "runtime/render/bridge.c",
+        "runtime/render/owned_session.h",
+        "runtime/render/cpu_reader.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/command_application_stop.h",
+        "tools/build-render-bridge.py",
+        "tools/run-rendering-acceptance-pilot.py",
+        "tools/storage_cpu_read_binding.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_pilot.py",
+        "tests/test-storage-cpu-read-binding.py",
+        "tools/native_prefix_template.py",
+        "tools/test-render-session-dc.py",
+        "runtime/render/owned_dc_selftest.h",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "CRJ01.observation03",
+        "CRJ01.combined-controls01"
+      ],
+      "remaining_gaps": [
+        "One diagnostic generation reached normal Quit: 703 closed lossless records, 43 full CPU request/reply/physical-validation joins and 87 retired DC borrows. Four preflight caller contexts at recorded RVA0xad8d lack a pinned binary match, affecting six reads; strict complete_observed_chain remains false. Direct staged-executable caller identities use mapped PE-header metadata, not full mapped-code verification or original upstream recovery. Original DC/font semantics, arbitrary readers, restart/failure coverage, historical stalls and whole-operation/final acceptance remain separate.",
+        "Legacy DC regression fixtures now explicitly close their v1 session with RenderShutdown and use the established RGB565 bit replication. Earlier unclosed-stream, terminal-gate and old-oracle refusals are retained; these test corrections change no production lifecycle or color policy.",
+        "Integration of frozen CPU journal commit0b34c8596 with cursor commit7b91ee635 changes shared compiled inputs and the public pilot. Fresh combined-source native/reader/gating controls support implementation only; current combined live-observation validation remains pending. Original703-record/43-read/87-DC observation and its four caller gaps retain their exact historical source hashes. No additional original game attempt is authorized or performed in this batch."
       ]
     }
   ],
@@ -368328,6 +368389,100 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CRJ01.observation03",
+      "kind": "live_observation",
+      "scope": "Opt-in single-generation bounded mapped CPU-reader/DC sideband, with exact diagnostic/pilot gating, one-attempt nonwaiting reservations, context reasons/direct caller PE metadata, request/completion physical validation observations and acquisition/release borrow identities. Join every captured CPU_READ and full reply without new pixel-oracle or nominal acceptance. Unknown modules/upstream callers, dropped/overflowed/unclosed records, untracked DCs and ownership gaps refuse or remain explicit. No drawing, lease, deadline, action or gameplay policy change; no original recovery or replacement.",
+      "record": "research/runtime/cpu-reader-journal-results-20261102/observation03.json",
+      "sha256": "9a07d9869fbc9ef13806fb077077e52297897fe204c7b9ead637182759f0cf1f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/charged_attempts",
+          "equals": 1
+        },
+        {
+          "pointer": "/complete_observed_chain",
+          "equals": false
+        },
+        {
+          "pointer": "/observed/request_count",
+          "equals": 43
+        },
+        {
+          "pointer": "/observed/completion_count",
+          "equals": 43
+        },
+        {
+          "pointer": "/observed/dc_borrows",
+          "equals": 87
+        },
+        {
+          "pointer": "/observed/dc_release_attempts",
+          "equals": 87
+        },
+        {
+          "pointer": "/observed/original_upstream_callers_recovered",
+          "equals": 0
+        },
+        {
+          "pointer": "/journal/records",
+          "equals": 703
+        },
+        {
+          "pointer": "/journal/drops",
+          "equals": 0
+        },
+        {
+          "pointer": "/journal/error_bits",
+          "equals": 0
+        },
+        {
+          "pointer": "/nominal_acceptance",
+          "equals": false
+        },
+        {
+          "pointer": "/pixel_equivalence_asserted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CRJ01.combined-controls01",
+      "kind": "native_integration",
+      "scope": "Combined cursor/CPU diagnostic source build, strict CPU writer/decoder and opt-in refusal controls, synthetic Wine mapped journal and LastError. No additional original game or current combined-code live validation.",
+      "record": "research/runtime/cpu-reader-integration-results-20261102/controls01.json",
+      "sha256": "d529bebe6b8322943daa7088f9433fb04e28c53d4b85980ce8147eaa7b3a2f33",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/new_original_game_attempts",
+          "equals": 0
+        },
+        {
+          "pointer": "/combined_live_validation",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -397868,6 +398023,39 @@
       "evidence": [
         "CURCALL01.quick01"
       ]
+    },
+    {
+      "id": "SC.cpu-reader-dc-journal",
+      "level": "live_observation",
+      "scope": "Opt-in single-generation bounded mapped CPU-reader/DC sideband, with exact diagnostic/pilot gating, one-attempt nonwaiting reservations, context reasons/direct caller PE metadata, request/completion physical validation observations and acquisition/release borrow identities. Join every captured CPU_READ and full reply without new pixel-oracle or nominal acceptance. Unknown modules/upstream callers, dropped/overflowed/unclosed records, untracked DCs and ownership gaps refuse or remain explicit. No drawing, lease, deadline, action or gameplay policy change; no original recovery or replacement.",
+      "behaviors": [
+        "NP.cpu-reader-dc-journal"
+      ],
+      "tests": [
+        "tests/native-cpu-reader-journal-test.c",
+        "tests/test-cpu-reader-journal.py",
+        "tests/cpu-reader-journal-win32.c"
+      ],
+      "evidence": [
+        "CRJ01.observation03"
+      ]
+    },
+    {
+      "id": "SC.cpu-reader-dc-journal-combined-controls",
+      "level": "headless",
+      "scope": "Combined cursor/CPU diagnostic source build, strict CPU writer/decoder and opt-in refusal controls, synthetic Wine mapped journal and LastError. No additional original game or current combined-code live validation.",
+      "behaviors": [
+        "NP.cpu-reader-dc-journal"
+      ],
+      "tests": [
+        "tools/test-native-cpu-reader-journal.py",
+        "tests/test-cpu-reader-journal.py",
+        "tests/native-cpu-reader-journal-test.c",
+        "tests/cpu-reader-journal-win32.c"
+      ],
+      "evidence": [
+        "CRJ01.combined-controls01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -399685,7 +399873,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-783d460b1b549184907bcf952f686fe6251c53103d9bf93cede24e07f5e204c2.json",
-    "sha256": "783d460b1b549184907bcf952f686fe6251c53103d9bf93cede24e07f5e204c2"
+    "path": "research/runtime/coverage/source-index-13b4b18cf60dc54d458d1349dafb324e4e2a7133fcff35868fa51e97c8877f7a.json",
+    "sha256": "13b4b18cf60dc54d458d1349dafb324e4e2a7133fcff35868fa51e97c8877f7a"
   }
 }

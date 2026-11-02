@@ -30,6 +30,7 @@ static int command_application_finish(u32 milliseconds){
     history_finish();capture_storage_clear(1);
     command_application_complete=complete;command_application_finished=1;game_tracker_release();
     lock_diagnostic("command_application_stopped",0,0,complete,game_surface_bytes,lock_capture_reserved,0,0);
+    cpu_journal_close((u32)complete);
     SetLastError(error);return complete;
 }
 __declspec(dllexport) u32 WIN RenderStop(u32 milliseconds){
