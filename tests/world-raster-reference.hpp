@@ -1,4 +1,5 @@
 // Precise admitted original raster entry, with a closed effective colour/row table.
+#include <algorithm>
 static unsigned originalRaster(const Bytes& record,std::uintptr_t entry,std::vector<std::uint16_t>& pixels){
  if(record.size()<136||u32(record,8)!=9||u32(record,0)!=record.size())throw std::runtime_error("Closed raster envelope");
  const auto width=u32(record,20),height=u32(record,24),size=u32(record,76),payload=u32(record,80),backend=u32(record,60),mode=u32(record,56),indexed=u32(record,68);
@@ -14,7 +15,15 @@ static unsigned originalRaster(const Bytes& record,std::uintptr_t entry,std::vec
  global(0x658174,reinterpret_cast<std::uintptr_t>(pixels.data()));global(0x6a2dc8,width);global(0x6e1f68,0);global(0x6e1f88,0);
  for(unsigned i=0;i<4;++i)global(i==0?0x6e0008:i==1?0x6cbb6c:i==2?0x6a49b8:0x656618,u32(record,40+i*4));
  const int x=std::int32_t(u32(record,32)),y=std::int32_t(u32(record,36));
- if(backend==9){global(0x6c4830,UINT32_MAX);for(unsigned j=0;j<16;++j)global(0x656640+j*4,u32(record,96+size+j*4));}
+ if(backend==9){
+  // Capture already normalized the table to absolute destination rows,
+  // including the original's skipped top rows. Undo that clipping adjustment
+  // when installing the effective table as original global state.
+  const auto top=std::int64_t(y)-std::int32_t(u32(frame,16));
+  const auto skip=std::max<std::int64_t>(0,std::int32_t(u32(record,44))-top);
+  global(0x6c4830,std::uint32_t(skip-1));
+  for(unsigned j=0;j<16;++j)global(0x656640+j*4,u32(record,96+size+j*4));
+ }
  if(backend<=3||backend==9){using Draw=unsigned (*)(void*,int,int,int,int);return reinterpret_cast<Draw>(entry)(frame.data(),x,y,0,0);}
  if(backend==10){using Shadow=unsigned (__attribute__((fastcall)) *)(void*,int,int);return reinterpret_cast<Shadow>(entry)(frame.data(),x,y);}
  if(backend==7){

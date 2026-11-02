@@ -91,6 +91,19 @@ int main(int argc,char** argv){
         require(received[0].detail==1 && received[0].state==XCB_MOD_MASK_CONTROL,"Button modifiers");
         require(received[1].event_x==799 && received[1].event_y==599 && received[1].state==XCB_BUTTON_MASK_1,"Clamp drag outside image");
         require((received[2].response_type&0x7f)==XCB_BUTTON_RELEASE && received[2].state==XCB_BUTTON_MASK_1,"Release state");
+        // Campaign driver uses documented wizard selection/centering and
+        // conversation advance keys through the production input route.
+        struct CampaignKey {int qt;quint32 scan,vk;};
+        for(const auto binding:{CampaignKey{Qt::Key_W,25,87},CampaignKey{Qt::Key_Return,36,13}}){
+            QKeyEvent press(QEvent::KeyPress,binding.qt,Qt::NoModifier,binding.scan,0,0);
+            QApplication::sendEvent(&viewport,&press);
+            require(stateKey(binding.vk)==0x80000001u,"Campaign key press must publish its Windows key");
+            QKeyEvent release(QEvent::KeyRelease,binding.qt,Qt::NoModifier,binding.scan,0,0);
+            QApplication::sendEvent(&viewport,&release);
+            require(stateKey(binding.vk)==1,"Campaign key release must clear the held bit");
+            received=events();require(received.size()==2&&received[0].detail==binding.scan&&received[1].detail==binding.scan&&
+                (received[0].response_type&0x7f)==XCB_KEY_PRESS&&(received[1].response_type&0x7f)==XCB_KEY_RELEASE,"Campaign key must reach the selected original input window once per edge");
+        }
         key(QEvent::KeyPress);key(QEvent::KeyRelease,true);key(QEvent::KeyPress,true);key(QEvent::KeyRelease);
         require(stateKey(65)==1,"Windows key generation/repeat state");
         require(stateKey(16)==0x80000001,"Held modifier polling state");

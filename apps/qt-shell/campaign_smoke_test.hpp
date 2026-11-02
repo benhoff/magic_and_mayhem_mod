@@ -20,3 +20,5 @@ inline bool campaignResumeConfirmed(const CampaignPresentationProbe& p,quint64 f
     return p.active && p.frames>=frames && p.frames-frames>=3 &&
         (!resident || (p.sourceGeneration>source && p.sourceGeneration-source>=3));
 }
+
+void installCampaignProgressionTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&,std::function<CampaignPresentationProbe()>);

@@ -307,3 +307,14 @@ checks exact pixel round-trip, bounded queue/GUI heartbeat, null/failed output
 and continued work after an authored exception. Camera deadlines, dialogue
 witnesses, gameplay input and ownership checks are unchanged. Each actual-game
 journey result is recorded independently in the tranche-2 execution report.
+
+## RPS03 nominal campaign boundary — 2026-11-01
+
+The [retained campaign refusal](rendering-progression-results-20261101/validation-native-history-refusal-01.json)
+records CPU-authority format 2, generation 466, family 0/route 0 and original exit
+124 after an ordinary power summon in a full-intro default 800×600 run. Refusal
+and exit are confirmed by exact retained bytes; the precise reader/admission/lease
+cause remains unknown. The caller is process-local and unnormalized. No module
+base, original function or cross-launch address identity is inferred. Current
+historical scoped results and statuses are preserved; this is an explicit live
+integration barrier, and no stale-history admission is relaxed.

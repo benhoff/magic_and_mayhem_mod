@@ -24936,55 +24936,223 @@ controls and fresh-store timing reports are stored separately from the prior
 shared-lifecycle and layered-restore proofs. This is storage custody/tooling work;
 no renderer requirement or original-engine comparison milestone is promoted.
 
-## Startup capture worker repair — 2026-11-01
 
-`RW02.worker02` / `NP.acceptance-capture-worker` bind a focused repair to a newly
-observed startup pause. A trace-disabled run retained a 2.076-second ACK gap;
-Linux denied sibling debugger attaches. A separate parent-GDB diagnostic sampled
-an actual pending-ACK interval in GUI-thread `deflate/qCompress`, reached from
-`AcceptanceCapture::append` during paint. Its wrapper and retained byte-identical
-player are explicitly separate from nominal as-built admission. This establishes
-an active blocking stage, without assigning every elapsed microsecond or the
-historical five-second failure to that sample.
 
-Capture append now owns/stamps its input and submits to one FIFO compression/file
-writer. The bounded 256 MiB / 256-job queue includes in-flight work, never waits
-for the sink during append, and refuses an incomplete proof on overload/error.
-Only terminal cleanup joins. Raw/stored/row bounds, wire ordering and all original
-five-second guards/native ownership remain strict. The exact synchronous preimage
-fails the held-compression caller-progress regression; optimized and ASan/UBSan
-worker controls pass ownership/order, bounded overflow, compression failure and
-first-refusal checks. The production reader accepts each complete control and
-rejects its three failure streams. Ring/parser/compiler-binding/admission and
-native/sanitized watchdog interleaving controls pass separately.
 
-The repaired as-built enabled-intro Quick run completes both movies, 102 matching
-World swaps, 78 independent reference Worlds, 137,118 original draws and
-153,694,060 compared pixels with zero mismatch. Media cancellation stays clear,
-the ring drains and normal original Quit retires graphics resources. The bounded
-pending-ACK sampler does not trigger. Slow compression/writes are observed on the
-worker; no caller append crosses the retained 50 ms threshold and timing caps
-are not exhausted. This is finite diagnostic integration, not a general latency
-or performance claim.
+## Campaign/progression preparation — 2026-11-01
 
-`RN31.G.first-world-watchdog` remains unresolved: the sampled current pause is
-below five seconds, and the old callback/OS conditions and CPU-history terminal
-ordering are not recovered. The new policy has scoped implementation/live
-observation; original comparison/replacement dimensions and broad player/recovery
-verdicts remain independent. Shared capture-source changes leave the earlier
-pilot/normal/watchdog claims historical outside the fresh narrow evidence.
-No new acceptance leaf, gameplay balance change, original modification or evidence
-publication occurs. Setup refusals, denied attaches, intermediate source versions,
-negative controls and successful executions remain immutable SQLite evidence.
-See [the investigation](rendering-watchdog-20261101.md) and
-[the exact join](rendering-watchdog-results-20261101/startup-repair-joined-02.json).
+`NP.rendering-progression-scenarios` prepares three bounded EP05 cases: fresh
+Apprentice Forest of Pain through the original Camulos portal/victory/Realm
+route into Plains of Greenhenge, a separate victory run, and a separate natural
+defeat run. Public Preferences select640x480 or 800x600; the presented World extent
+is asserted. Ordinary physical-input navigation/combat candidates do not modify
+simulation, scripts, health, mana or progression. Quit/reload/wrong outcome,
+same-region re-entry, missing original OK and owner/thread changes refuse proof.
+The cases retain 780-second driver and 540-second World-input deadlines, default
+and software variants, first/later World continuous capture, callback assertions
+and a connected independent history comparator. No live case was run here.
 
-## Capture-worker integration into local master — 2026-11-01
+Static input evidence `RPS01.inputs-final` pins 31 candidate sections / 124 MAP, NOD, EVT, MPS
+files, ordered Celtic1/2 recipes, mission scripts/configuration and an unchanged
+355,405-byte save reload control. Actual random placement/grid and save semantic
+position remain unknown. [The first preparation](rendering-progression-results-20261101/inputs-01.json) retains the unsupported installed
+executable refusal; `RPS01.pristine-restoration` pins restoration only in the
+owned copied installation. Original manifests pass before/after. `RPS01.guards-final`
+records 5 new tests with 13 rejection mutations, 10 pilot and 13 normal companion tests,
+and a real Release Qt player link. These are preparation checks, not engine
+comparison/integration/replacement. All reports/raw selected inputs are SQLite.
 
-The [integration review](rendering-watchdog-results-20261101/master-integration-01.json)
-reconciles actual master4fa166010 and repaird0bf7a551 parents. Product and test
-sources match the repair exactly; independent coverage IDs and exact review
-receipts from both parents are retained. The worker regression and full-intro
-comparison remain inherited observations within their original scope. This
-merge adds no engine execution and does not resolve the historical five-second
-watchdog. Main-checkout pending edits remain separately retained and uncommitted.
+Live natural outcomes, later-map completion, exact first-frame boundaries,
+original input consumption and populated object/vptr/generation acquire/release
+handoff evidence remain pending independently of final zero-owner checks and
+pixel comparison. No artifact5 row, existing historical result, supported-player
+or original-recovery decision is promoted. Shared smoke/header/build source drift
+leaves previous evidence historical; the EP04 watchdog failure is unaffected.
+See [runbook](rendering-progression-preparation-20261101.md).
+
+### Initial live continuation and refusals
+
+The continuation in [live execution record](rendering-progression-live-20261101.md)
+preserves two setup failures and an actual original natural defeat from the
+failed default 800×600 progression candidate. `RPS02.startup-negative` stopped
+before original execution because public Launch was omitted;
+`RPS02.manifest-negative` stopped at the real launcher's missing installation
+manifest. The corrected driver clicks public Launch, forwards launcher output,
+and preparation materializes/pins the physical TSV with stale-pin refusal.
+Five actual Qt event-loop control cases and process-level killed-helper snapshot
+coverage accompany the changes; `RPS02.guards` records 37 tooling checks and
+actual Release links. `RPS02.inputs` fingerprints this corrected source phase.
+
+`RPS02.progression-negative` executed full enabled intros and fresh Celtic region
+1 in a native 800×600 World. The original hero died: report discriminator 0,
+title `Defeat!  ( The Forest of Pain )`, text19 `You were killed.`. The retained
+2,579-row gameplay trace has zero original player spell casts and unchanged
+12,800 mana; Camulos remained alive at health100. This establishes that run's
+natural death, with high confidence, and refuses progression. It does not prove
+original OK/return, the separate defeat scenario, retirement, victory, later-map
+entry, pixel equivalence or a renderer defect. Original manifests passed and the
+private Wine process stopped. Raw report/channel bytes and byte-exact differing
+intermediate source bodies remain pinned in SQLite; old hashes are unchanged.
+
+Unexpected report strings and failed flows are now retained before refusal;
+atomic incremental physical-input snapshots survive an owner terminating the
+helper. The revised victory policy uses ordinary starting Zombie/Fireball controls
+and requires original caster mana debits/new living owned Zombies before counting
+casts. Fixed thresholds/projections are bounded test policy, not recovered rules.
+Diagnostic skip-intro acquisitions/comparisons are explicitly ineligible for
+nominal default acceptance. The first longer combat diagnostic also reaches the
+existing1GiBviewport capture ceiling before mission end; no whole-session pixel
+history can be claimed from that stream.
+
+The campaign report focused/central registers retain the narrower terminal
+observation separately from their earlier private/synthetic headless result.
+No comparison, live integration, replacement or artifact5 status is promoted.
+Current engine validation remains pending, including CMake/shared player source
+drift, full report return/cleanup and populated object/vptr/generation handoffs.
+
+The revised skip-intro progression attempt also reached natural death. Its
+separately labelled `RPS02.progression-diagnostic-recovery` verifies 291 raw
+artifacts (4,101,798,516 bytes), two original successful Zombie debits and two
+Fireball debits with two defended20-damage Redcap hits. Camulos stayed at100HP;
+both Zombies were left behind. The original collector emitted no final receipt;
+recovery does not invent its lost in-memory exit/source assertions. Exact prior
+source bodies remain retained. The viewport terminal record explicitly says
+`complete: false` / `Acceptance capture stored budget exceeded` after
+5,852,154,000 raw bytes. Wrong outcome, incomplete pixel history and collector
+custody are separate limitations.
+
+Independent defeat execution `RPS02.defeat-default-negative` stopped before World
+at a menu-adapter timeout. `RPS02.defeat-diagnostic-negative` entered the800×600
+World, then hit a cancelled resident producer/original exit124after about21seconds
+of gameplay. No original report OK/clean return is established. The actual
+comparator refusal `RPS02.comparison-refusal` stops before oracle execution at
+`Incomplete actual public acquisition`; it grants no equivalence credit. These
+source-bound failures predate independently landed main capture-worker changes
+and do not claim current-master validation. Separate victory, later map,
+640×480 and software runs remain unexecuted after these refusals.
+
+The final collector now checkpoints exact execution assertions before large raw
+imports and records ordinary artifact-import failures. The checkpoint explicitly
+has success false/artifact retention incomplete. `RPS02.inputs-final` and
+`RPS02.guards-final` pin the final source phase and successful37tooling checks/
+Release links; prospective live execution of that checkpoint remains pending.
+The prior input/guard and live source hashes remain historical. No engine
+status or supported-player acceptance changes.
+
+### Campaign capture and report-boundary continuation — 2026-11-01
+
+The [owned continuation](campaign-progression-validation-20261101.md) combines
+the campaign preparation/live-negative branch with the current asynchronous
+capture worker. `NP.campaign-viewport-lossless-capture` and
+`NP.campaign-source-lossless-capture` record opt-in lossless diagnostic transports,
+with optimized/sanitizer and independent-reader controls. Every source record
+and paint is preserved; bounded refusal remains incomplete evidence. These
+policies do not replace original simulation or renew historical renderer proofs.
+
+`RPS03.defeat-manual-negative` reaches a natural original defeat, original report
+OK and fresh parent return at 800×600 after enabled intros. The automatic helper
+waits for the wrong World-pop boundary; subsequent manual public Main Quit is
+recorded separately. `RPS03.report-order` identifies callback begin before World
+pop and binds the correction. Automatic rerun, full original pixel comparison,
+victory, later-region entry, mode/provider matrix and populated lifetime closure
+remain pending. `RPS03.waypoints` calibrates a power waypoint against retained
+spawn anchors; actual occupation/mana recovery and combat policy need live proof.
+
+The fresh `RPS03.defeat-default-high` run completes automatically after enabled
+intros: natural defeat, original report OK ACK 5, Main return ACK 6 and normal
+Main Quit. Complete V4 source and V2 viewport captures retain all 1,820 Worlds
+and over 10.5 GB decoded viewport history. `RPS03.defeat-default-high-comparison`
+reconstructs 2,055,857 original draws and matches all 3,007 native presentations
+(2,949 World swaps), totaling 2,629,621,500 pixels with zero differences and zero
+remaining surfaces. Original files, source/compiler closure and executable stay
+stable. No supported-player or populated lifetime promotion is made.
+
+A subsequent input-only phase adds actual-frame HUD/aim geometry and a power
+waypoint with required original debit/living-summon/mana-recovery observations.
+Optional passive hover observation is explicitly diagnostic. That phase still
+requires live victory, later-region entry and the remaining mode/provider cases;
+the successful defeat phase's hashes remain historical after shared driver/build
+source edits. Gameplay balance and original script/simulation are unchanged.
+
+Campaign continuation RPS03: optional-hover diagnostics now confirm ordinary
+movement to the Forest power tile, a 17-mana original Zombie summon and full
+50-mana recovery within the corrected 90-second policy. The third probe reaches
+Camulos but ends in natural player defeat; one Fireball hits an owned Zombie.
+`validation-camulos-tactics-01.json` preserves the exact negative observations.
+A subsequent bridge-bypass/boss-only bounded Fireball burst policy and allied
+firing-line guard pass 93 preparation/Qt controls; fresh victory and region 2
+entry remain pending. The earlier dedicated default 800x600 defeat and independent
+2,629,621,500-pixel match retain their historical source bindings; no engine
+integration, populated lifetime or replacement status is promoted.
+
+RPS03 diagnostic 04 now reaches the original Forest natural victory title and
+21 strings, original OK callback return and World pop to Realm. The overall
+progression attempt times out at its first Realm Map tutorial, so region 2,
+normal Quit and independent comparison remain absent. The captured native frame
+and exact passive records are retained in `validation-realm-tutorial-01.json`.
+The next bounded ordinary-dismissal/deferred-region-selection driver passes 98
+controls, including an actual isolated helper wait/readiness test. Central and
+focused natural-report/Realm entries include these scoped observations while
+retaining their existing integration/replacement statuses and historical hashes.
+
+RPS03 diagnostic05 ends in natural defeat before the new Realm tutorial step.
+`validation-motion16-01.json` identifies original callback0x10 followed by valid
+strictly later World readiness that the former0x60 driver predicate rejects.
+The corrected0x70 physical-input policy retains all position/button/owner/cast
+checks, passes immutable-row replay and99 preparation/Qt controls. This is a
+readiness policy correction; fresh original mission/progression remains pending.
+
+RPS03 diagnostic06 confirms full mana recovery but times out while its direct
+bridge-bypass route loops; wizard health remains196. `validation-bridge-loop-01`
+retains the exact samples and recorded frame. The next pinned policy restores
+the named Bridge point and documented W-twice/Return controls. A portrait-only
+selection/camera diagnosis was unconfirmed and is withdrawn.99 progression guards
+and two production Qt key-input/DPI controls pass; original keyboard consumption,
+tutorial dismissal and full later-map progression still require fresh execution.
+
+RPS03 diagnostic07 confirms a visible opening Hermes conversation with unchanged
+actor state while passive sampler rows keep advancing. The sequence-only detector
+misses it and exhausts the no-click budget. `campaign_dialogue.py` now supplies a
+bounded ordinary Return hint after six seconds of actual actor-state quiet,
+without changing the record parser or claiming a dialogue/clock API. Immutable-row
+replay yields a hint at6.812seconds.105 progression controls and two production
+Qt key/DPI controls pass at source pins12; complete original progression remains
+pending. Historical source fingerprints and prior results stay unchanged.
+
+RPS03 optional-hover diagnostic08 exhausts its matching-Region-callback contract;
+advancing World samples alone do not satisfy that extra predicate. The ordinary
+nominal default800x600 victory attempt then reaches power summon/debit but fails
+at native CPU-history authority (generation466,family0/route0,original exit124).
+`validation-native-history-refusal-01.json` retains exact bytes; caller/reader cause
+remain unassigned and no authority guard is weakened. A separate no-hover
+skip-intro run recovers33→46mana before its90-second driver bound. The next policy
+allows180seconds for actual debit recovery within unchanged540/780bounds and
+passes105controls at input pins13. PoP ownership/regeneration formulas, complete
+current progression and nominal acceptance remain separate pending claims.
+
+
+### Campaign bounded source-13 closeout — 2026-11-01
+
+The [current no-hover diagnostic](rendering-progression-results-20261101/validation-progression-nohover-high-02.json)
+fully recovers the observed power summon debit and reaches Camulos combat, but
+original natural defeat at 322,994 ms correctly fails the required victory
+assertion. All 290 artifacts, exact source/compiler/binary closure, before/after
+original manifests and stopped private Wine are retained. [Combat diagnosis](rendering-progression-results-20261101/validation-refill180-combat-01.json)
+binds 11 accepted player casts, one Camulos Fireball hit from 100 to 80 HP and the actual
+natural report. Input acceptance is separate from impact and outcome; no general
+camera/collision/regeneration formula is inferred. The 105 current preparation/Qt
+controls pass. Full current victory/settled Realm/region 2, 640/software matrix,
+unchanged-save semantics, populated lifetime and supported-player acceptance
+remain pending. Historical successful default defeat and its 2,629,621,500-pixel
+zero-difference comparison retain their own source phase and hashes. No status
+is promoted by this preparation/negative execution batch.
+
+
+The [final campaign preparation audit](rendering-progression-results-20261101/validation-audit-closeout-04.json)
+passes with no structural errors, source-index drift or changed focused imports.
+Three explicit headless prepared scenarios bind actual native Qt controller
+fixture checks through a separately scoped evidence ID; all original-integration
+and replacement statuses remain unchanged. Static preparation, controlled Qt
+integration and actual original transitions remain separate. The7943new SQLite
+reference/payload checks pass; rejected metadata audits are retained, and the
+standing sweep08 was resumed after the owned writer checkpoint was released.

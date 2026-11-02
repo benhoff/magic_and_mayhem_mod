@@ -12,8 +12,12 @@ the incremental build still regenerates it when build inputs change. Changing
 the tests before launching, run `MNM_QT_BUILD_TESTS=ON ./tools/run-qt-shell.sh`.
 Set `MNM_QT_RECONFIGURE=1` to force configuration.
 
-The shell also builds natively on little-endian ARM64 with Qt 6.8 or newer,
-Qt Widgets/OpenGL/Multimedia development packages and XCB. On ARM64,
+The shell requires Qt 6.8 or newer, Qt Widgets/OpenGL/Multimedia development
+packages, XCB and libzstd development headers (1.4 or newer). The optional
+campaign source-capture V4 codec loads the runtime library through Qt only when
+requested. Legacy capture formats keep their existing encoding.
+
+The shell also builds natively on little-endian ARM64. On ARM64,
 `./tools/run-qt-shell.sh --main-menu` opens the installed native menu preview
 without starting Wine. Shell smoke, OpenGL pixel checks and the command-ring
 cross-process regression passed on AArch64 with Qt 6.11.2; mixed x86/ARM live

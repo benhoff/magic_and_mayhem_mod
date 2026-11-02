@@ -23,3 +23,12 @@ cleanup, a real win or saved progress. The reported drawing-lock timeout and
 incomplete recovery snapshot remain a separate unresolved blocker for live
 mission-end validation. No timeout increase or renderer fix is part of this
 menu change.
+
+RPS03 adds separately scoped live observations in
+[campaign transition validation](campaign-progression-validation-20261101.md).
+A dedicated default 800×600 natural defeat completes original OK, Main return and
+automatic Quit, with a full independent pixel/history match at that source phase.
+A later diagnostic reaches the original Forest victory title, 21 strings and OK
+return, then times out on the original first Realm Map tutorial. That intermediate
+victory does not establish the whole progression case, rewards/persistence or
+populated lifetime closure. Historical evidence hashes and statuses are preserved.
