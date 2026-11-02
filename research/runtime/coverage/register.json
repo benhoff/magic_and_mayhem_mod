@@ -159624,6 +159624,47 @@
         "Historical source-acquisition/watchdog causes and the separate late Mini Quit menu-adapter timeout remain unresolved. Finite passes do not retire failures; complete operations, broader journeys, caller ABI/font/DC/unknown branches, original recovery and both final verdicts remain pending.",
         "613 native COPY destinations lack individual diagnostics after bounded observer exhaustion. Preserve every truncated/success=false diagnostic and the exact missing original-call intervals in EP06.frontier02; full presented-history equality does not prove these unpresented outputs."
       ]
+    },
+    {
+      "id": "TOOL.copy-tail-offline-proof",
+      "kind": "native_policy",
+      "subsystem": "tooling",
+      "title": "Retained COPY suffix attribution and bounded offline replay",
+      "scope": "Offline exact attribution of a capped retained COPY suffix to closed original caller intervals, actual command resources/key/geometry and generation checkpoint brackets. Reconstruct fixture inputs from independently retained continuous history and original oracle Worlds; compare isolated native GL COPY outputs with independent complete destinations. No new live run, recovery of omitted actual-run outputs, operation acceptance, original-driver equivalence or replacement.",
+      "original": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/copy-tail-proof-20261102.md"
+      ],
+      "implementation": [
+        "tools/copy_tail_proof.py",
+        "tools/analyze-copy-tail.py",
+        "tools/copy-tail-replay.cpp"
+      ],
+      "tests": [
+        "tests/test-copy-tail-proof.py"
+      ],
+      "validation_dependencies": [
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp"
+      ],
+      "evidence": [
+        "CT01.offline01"
+      ],
+      "remaining_gaps": [
+        "613 omitted original-run COPY outputs remain unavailable; fresh replay is separate component evidence. Exact menu action clock alignment, upstream callers, ABI, whole operations, original recovery and final player acceptance remain pending."
+      ]
     }
   ],
   "evidence": [
@@ -367730,6 +367771,53 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "CT01.offline01",
+      "kind": "native_integration",
+      "scope": "Offline exact attribution of a capped retained COPY suffix to closed original caller intervals, actual command resources/key/geometry and generation checkpoint brackets. Reconstruct fixture inputs from independently retained continuous history and original oracle Worlds; compare isolated native GL COPY outputs with independent complete destinations. No new live run, recovery of omitted actual-run outputs, operation acceptance, original-driver equivalence or replacement.",
+      "record": "research/runtime/copy-tail-results-20261102/joined01.json",
+      "sha256": "9857f8e85a8963485d384d5e2423a63f5dd3d4bc00e5e2f000ec9de7be64f0c1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/unchecked_commands",
+          "equals": 613
+        },
+        {
+          "pointer": "/offline_replay_matches",
+          "equals": 613
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 159181280
+        },
+        {
+          "pointer": "/original_live_outputs_recovered",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_game_acquisitions",
+          "equals": 0
+        },
+        {
+          "pointer": "/whole_operations_accepted",
+          "equals": 0
+        },
+        {
+          "pointer": "/omitted_draw_rejected",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -397195,6 +397283,20 @@
       "evidence": [
         "SM01.capture-burst01"
       ]
+    },
+    {
+      "id": "SC.copy-tail-offline",
+      "level": "headless",
+      "scope": "Offline exact attribution of a capped retained COPY suffix to closed original caller intervals, actual command resources/key/geometry and generation checkpoint brackets. Reconstruct fixture inputs from independently retained continuous history and original oracle Worlds; compare isolated native GL COPY outputs with independent complete destinations. No new live run, recovery of omitted actual-run outputs, operation acceptance, original-driver equivalence or replacement.",
+      "behaviors": [
+        "TOOL.copy-tail-offline-proof"
+      ],
+      "tests": [
+        "tests/test-copy-tail-proof.py"
+      ],
+      "evidence": [
+        "CT01.offline01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -399012,7 +399114,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-c854534e6810a6deb5dc526f619ac122a089809c622c47fd833f12bf1c4c9e5e.json",
-    "sha256": "c854534e6810a6deb5dc526f619ac122a089809c622c47fd833f12bf1c4c9e5e"
+    "path": "research/runtime/coverage/source-index-993884c46b3e938358b1951f75b9c1ccd9443c319e9d1e44bdf1953f8be17ebc.json",
+    "sha256": "993884c46b3e938358b1951f75b9c1ccd9443c319e9d1e44bdf1953f8be17ebc"
   }
 }

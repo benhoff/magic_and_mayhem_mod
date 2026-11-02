@@ -25392,3 +25392,21 @@ No finite pass retires historical timeout causes or renews broader original/engi
 claims. The incoming campaign histories/claims and historical master startup
 ledger sections are preserved; 9,637 missing artifact edges gain retrospective
 exact receipts without asserting past gate success. See [the review](storage-main-stall-20261101.md).
+
+## Retained software-low COPY suffix — 2026-11-02
+
+[CT01.offline01](copy-tail-results-20261102/joined01.json) attributes all 613
+unchecked COPYs to unique original caller intervals and five already documented
+wrapper sites. The suffix covers 353 keyed/260 opaque commands, 454 CPU-prepared/
+159 GPU-prepared routes and World generations 976..1041. Generation checkpoints
+bracket 100 commands after-load through after-recreate-load and 513 after that
+final checkpoint; exact menu-action/clock correspondence remains unproved.
+
+Fresh bounded isolated GL fixtures reconstruct input states from retained owned
+history and independent original oracle Worlds. All 613 full native destinations,
+159,181,280 WORDs, match; an omitted-draw control is rejected and nine join controls
+pass. No game/original executable is run or live pixels recovered. Only the new
+offline tooling policy gains scoped implementation/headless support. Original
+diagnostic cap/failure, 613 missing actual-run outputs, all 36 whole-operation
+gaps, 148 remaining acceptance requirements and both final verdicts remain pending.
+See [scope and reproducibility](copy-tail-proof-20261102.md).
