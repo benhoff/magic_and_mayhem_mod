@@ -79057,7 +79057,8 @@
       "documents": [
         "research/runtime/native-history-readers.md",
         "research/runtime/cpu-reply-publication-fix-20261019.json",
-        "research/runtime/campaign-progression-validation-20261101.md"
+        "research/runtime/campaign-progression-validation-20261101.md",
+        "research/runtime/storage-cpu-read-binding-20261102.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -79128,7 +79129,8 @@
       ],
       "remaining_gaps": [
         "The volatile reply publisher removes a reproduced durable-sync timeout; delayed-writeback and actual GL controls pass, as do two pinned normal journeys. This does not prove every historical stage13 cause or every current-tree/arbitrary-scheduling admission. See research/runtime/cpu-reply-publication-fix-20261019.json.",
-        "RPS03 nominal enabled-intro campaign run reaches generation466 then records native CPU-history refusal version2/family0/route0 and exits124. Process-local caller is unnormalized; precise reader/admission/lease cause and clean end-to-end campaign remain unresolved. Historical results and all statuses are preserved; no stale pixels are admitted."
+        "RPS03 nominal enabled-intro campaign run reaches generation466 then records native CPU-history refusal version2/family0/route0 and exits124. Process-local caller is unnormalized; precise reader/admission/lease cause and clean end-to-end campaign remain unresolved. Historical results and all statuses are preserved; no stale pixels are admitted.",
+        "RDB01.binding01 joins212 retained storage request/reply/counter identities but recovers only16 sparse lifecycle details and no original caller PC. Kind0 combines GetDC with panel preflight. Per-request physical-lease restoration, complete DC lifetime and arbitrary readers remain unproved; existing engine stages and historical campaign refusal stay unchanged."
       ]
     },
     {
@@ -159710,6 +159712,49 @@
       "remaining_gaps": [
         "All613 formerly unwitnessed COPY commands now have offline native source-only replay checks anchored by8192captured witnesses and61complete CPU replies. Historical execution still lacks613actual COPY witnesses; the old diagnostic remains truncated/success=false. Replay is native self-consistency, not original operation equivalence.",
         "Whole-operation acceptance, unobserved caller/scene/clipper/self branches, lifetime/ABI/font/DC boundaries, broader journeys and both final verdicts remain pending."
+      ]
+    },
+    {
+      "id": "TOOL.storage-cpu-read-binding",
+      "kind": "native_policy",
+      "subsystem": "tooling",
+      "title": "Retained storage CPU-read identity and completion binding",
+      "scope": "Offline exact identity join of retained nominal storage V5 CPU_READ requests, complete replies, existing independent comparison digests, shutdown completion-kind counters and sparse lifecycle details. Preserve aggregate versus per-request evidence, co-retained counter session binding, process-local observations and missing original caller/DC-lifetime proof. No new game/native execution, renewed original pixel equivalence, CPU-authority promotion, whole-operation acceptance or replacement.",
+      "original": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/storage-cpu-read-binding-20261102.md",
+        "research/formats/native-cpu-read-counts-v1.md"
+      ],
+      "implementation": [
+        "tools/storage_cpu_read_binding.py",
+        "tools/bind-storage-cpu-reads.py"
+      ],
+      "tests": [
+        "tests/test-storage-cpu-read-binding.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_capture.py",
+        "tools/rendering_pilot.py",
+        "protocols/include/mnm/native_cpu_read_v1.h",
+        "protocols/include/mnm/render_stream_v5.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/cpu_reader.h",
+        "runtime/render/bridge.c",
+        "runtime/render/lock_diagnostics.h"
+      ],
+      "evidence": [
+        "RDB01.binding01"
+      ],
+      "remaining_gaps": [
+        "Completion counters carry no session ID beyond immutable co-retention; sparse lifecycle observations cannot recover every original caller or per-request physical-lease restoration. GetDC versus panel preflight, DC/font lifetime, arbitrary readers, masked writes, whole operations and final verdicts remain pending."
       ]
     }
   ],
@@ -367946,6 +367991,57 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "RDB01.binding01",
+      "kind": "native_integration",
+      "scope": "Offline exact identity join of retained nominal storage V5 CPU_READ requests, complete replies, existing independent comparison digests, shutdown completion-kind counters and sparse lifecycle details. Preserve aggregate versus per-request evidence, co-retained counter session binding, process-local observations and missing original caller/DC-lifetime proof. No new game/native execution, renewed original pixel equivalence, CPU-authority promotion, whole-operation acceptance or replacement.",
+      "record": "research/runtime/cpu-read-binding-results-20261102/binding01.json",
+      "sha256": "23b631d050635820ebdc0e904fd51594fd6ea667740493b92394056b58fb6b82",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/requests_bound",
+          "equals": 212
+        },
+        {
+          "pointer": "/reply_comparisons_bound",
+          "equals": 212
+        },
+        {
+          "pointer": "/lifecycle_details_bound",
+          "equals": 16
+        },
+        {
+          "pointer": "/requests_without_lifecycle_detail",
+          "equals": 196
+        },
+        {
+          "pointer": "/exact_original_callers_recovered",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_game_acquisitions",
+          "equals": 0
+        },
+        {
+          "pointer": "/independent_pixel_comparison_reexecuted",
+          "equals": false
+        },
+        {
+          "pointer": "/whole_operations_accepted",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -397440,6 +397536,20 @@
         "CT01.source-replay01",
         "CT01.cross-history01"
       ]
+    },
+    {
+      "id": "SC.storage-cpu-read-binding",
+      "level": "headless",
+      "scope": "Offline exact identity join of retained nominal storage V5 CPU_READ requests, complete replies, existing independent comparison digests, shutdown completion-kind counters and sparse lifecycle details. Preserve aggregate versus per-request evidence, co-retained counter session binding, process-local observations and missing original caller/DC-lifetime proof. No new game/native execution, renewed original pixel equivalence, CPU-authority promotion, whole-operation acceptance or replacement.",
+      "behaviors": [
+        "TOOL.storage-cpu-read-binding"
+      ],
+      "tests": [
+        "tests/test-storage-cpu-read-binding.py"
+      ],
+      "evidence": [
+        "RDB01.binding01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -399257,7 +399367,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6493ab4266c13c8d0bac907e0cfa71d9a29a0113b0369b9c29ae0fdb0e839b1f.json",
-    "sha256": "6493ab4266c13c8d0bac907e0cfa71d9a29a0113b0369b9c29ae0fdb0e839b1f"
+    "path": "research/runtime/coverage/source-index-6c872a4e3f092fb2b09ddeb7d253ddcb6f36017266097061d772d49567806a13.json",
+    "sha256": "6c872a4e3f092fb2b09ddeb7d253ddcb6f36017266097061d772d49567806a13"
   }
 }

@@ -25447,3 +25447,23 @@ before, expected and actual hash comparisons pass. `CT01.cross-history01` binds
 original-oracle fixture inputs never enter the continuous native harness.
 Generation-990 bucket conventions differ by seven calls, with no exact temporal
 attribution implied. Historical outputs and whole-operation decisions stay open.
+
+## Retained storage CPU-read identity binding — 2026-11-02
+
+[RDB01.binding01](cpu-read-binding-results-20261102/binding01.json) freshly joins
+212 retained requests/replies across the four nominal storage cases to their
+existing independent comparison digests, live logical surface lifetimes,
+generation/nonce identities, terminal reply files and shutdown completion totals.
+Counts are37/59/61/55 for default high/low and software low/high respectively.
+All recorded completion kinds are non-Lock GetDC-or-panel materialization.
+
+Only16 detailed lifecycle records survive;196 requests lack those optional
+details. The128-record/four-per-reason logger can suppress duplicates and drop
+contended records, so absence is not missing execution. No original caller PC,
+GetDC-versus-panel split, complete DC acquire/release or per-request physical
+lease proof is recovered. Counter files carry no session identity beyond exact
+co-retention in the acquisition. Ten refusal/identity controls pass; original
+manifest bookends verify2927files. No game, original executable or new native
+replay runs. Only the new tooling policy gains scoped headless support; original
+CPU-authority/reader milestones and all148remaining/36whole-operation/final
+decision boundaries stay unchanged. See [the binding scope](storage-cpu-read-binding-20261102.md).
