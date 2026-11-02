@@ -147,3 +147,14 @@ self/keyed-GPU positives, indirect/unknown ownership, arbitrary alias/readers,
 original-driver semantics, recovered caller ABI, whole operations and both final
 verdicts remain separate obligations. EP06 whole operations remain 0/36 and
 storage obligations remain 8/156. Historical incomplete captures stay immutable.
+
+## Completed cursor handoff follow-up
+
+The [separate V3 baseline](cursor-copy-callers-20261102.md) implements and
+validates the first two bounded steps above. Its one fresh Quick run resolves
+all1002selected COPY callers, including695through the five cursor wrappers,
+and independently compares all1002native outputs. The V2 figures and hashes in
+this note remain historical. Next research the11unobserved explicit-rectangle
+and28keyed static sites for actual source/alias/authority prerequisites before
+selecting another scene. This observation promotes no original driver or whole
+operation claim.

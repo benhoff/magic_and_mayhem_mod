@@ -15393,7 +15393,8 @@
         "docs/live-drawing-replacement.md",
         "research/runtime/draw02-canvas-storage-generations.md",
         "research/runtime/native-copy-route-reachability.md",
-        "research/runtime/copy-caller-provenance-20261102.md"
+        "research/runtime/copy-caller-provenance-20261102.md",
+        "research/runtime/cursor-copy-callers-20261102.md"
       ],
       "implementation": [],
       "tests": [],
@@ -152318,7 +152319,8 @@
         "research/runtime/cursor-lifetime-completion-20261025.md",
         "research/runtime/cursor-live-ownership-20261025.md",
         "research/runtime/native-player-expanded-20261026.md",
-        "research/runtime/native-player-master-acceptance-20261027.md"
+        "research/runtime/native-player-master-acceptance-20261027.md",
+        "research/runtime/cursor-copy-callers-20261102.md"
       ],
       "implementation": [
         "runtime/native-draw/cursor_owner.h",
@@ -152432,7 +152434,8 @@
       },
       "remaining_gaps": [
         "Scoped native lifetime/scheduling takeover;original copy/client/setup bodies retained. The installed native campaign selects immediate copies;separate production-installer original-code controls cover deferred generations. Unknown legacy-driver aliases,arbitrary abandoned-owner/SEH flows,full scene parity and hardware-driver loss are outside this policy.",
-        "PLAYERMERGE27 public lifetime journey is retained at its exact source phase before the later palette/RGB555 integrations. Final supplied controls are freshly repeated, but there is no new actual-game lifetime claim on the later combined source."
+        "PLAYERMERGE27 public lifetime journey is retained at its exact source phase before the later palette/RGB555 integrations. Final supplied controls are freshly repeated, but there is no new actual-game lifetime claim on the later combined source.",
+        "Opt-in cursor caller diagnostics add exact observed thunks and a read-only active-scope query; default ownership, operands and lifetime policy remain as authored. Source hashes change: CURCALL01.quick01 is scoped diagnostic observation, not a refreshed execution of every original lifetime/concurrency case. Historical broad lifetime evidence remains immutable and current full-suite support is pending."
       ]
     },
     {
@@ -159764,7 +159767,7 @@
       "kind": "native_policy",
       "subsystem": "native_rendering",
       "title": "Bounded upstream COPY caller provenance",
-      "scope": "Opt-in scalar companion to the closed V2 COPY census. Verify pinned NoCD complete wrapper code after validating the existing Scene detour and saved trampoline, fixed return-slot layout and exact active published Scene frame, then require a direct original E8 to the wrapper and actual source/destination Surface identities. Direct unhooked slots remain supported. Preserve every unsupported, unreadable, code-mismatched and non-direct frame; the cursor adapter handoff is not implemented. Join only resolved GPU callers with complete independently compared command intervals. CPU caller metadata earns no new per-caller pixel claim. No stack walking, forced alias/key state, rendering admission changes, complete-output requirement, global branch absence or original-driver equivalence.",
+      "scope": "Opt-in scalar companion to the closed V2 COPY census. Verify pinned NoCD complete wrapper code after validating the existing Scene detour and saved trampoline, fixed return-slot layout and exact active published Scene frame, then require a direct original E8 to the wrapper and actual source/destination Surface identities. Direct unhooked slots remain supported. Preserve every unsupported, unreadable, code-mismatched and non-direct frame; the cursor adapter handoff is outside this retained V2 scope; NP.cursor-copy-caller-provenance accounts the V3 extension. Join only resolved GPU callers with complete independently compared command intervals. CPU caller metadata earns no new per-caller pixel claim. No stack walking, forced alias/key state, rendering admission changes, complete-output requirement, global branch absence or original-driver equivalence.",
       "original": [],
       "status": {
         "understanding": "partial",
@@ -159817,7 +159820,81 @@
       "remaining_gaps": [
         "Fresh quick05 resolves345original calls at20direct sites/21routing groups through the whole-opaque wrapper.77of78resolvedGPUcalls have complete output.899cursor-adapter calls remain code mismatches and25fills unsupported. A separate read-only native cursor scope handoff is needed before targeted scene selection.",
         "The closed1269-call observation reachesEND/normalQuit/zeroowners, but 99CPU/GPU intervals lack comparisons under unchanged512MiB worker limits. Strict whole-output closure remains false; no CPU per-upstream-caller pixel link or missing witness is claimed.",
-        "Natural self/keyed-GPU counts0are finite negative observations, not global absence. Nine observed sites still lack discovered owners. Original COPY ABI/driver comparison, indirect/native-service callers, arbitrary aliases/readers, whole operations0/36, storage8/156 and final verdicts remain unchanged."
+        "Natural self/keyed-GPU counts0are finite negative observations, not global absence. Nine observed sites still lack discovered owners. Original COPY ABI/driver comparison, indirect/native-service callers, arbitrary aliases/readers, whole operations0/36, storage8/156 and final verdicts remain unchanged.",
+        "The V3 extension changes shared source/readers. CALLER01.quick05 retains its original hashes and899unresolved/99missing historical result; current V3 evidence is under CURCALL01.quick01, not a refreshed V2 claim."
+      ]
+    },
+    {
+      "id": "NP.cursor-copy-caller-provenance",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Cursor-adapter upstream COPY caller provenance",
+      "scope": "Diagnostic-only V3 scalar caller companion. Validate native cursor detour/trampoline, exact active top copy scope, current provider owner/thread, physical original return slot/marker and protected source/destination lifetime identities before exposing the actual wrapper-entry caller. Scene handoff and unhooked slots remain separate modes. Require original direct E8 and actual operands for resolution; retain native-service/indirect callers as unresolved. Complete independently checked GPU command intervals alone earn output credit. No operand/lease/admission/queue changes, forced branch, original ABI/driver equivalence, whole-output or global absence claim.",
+      "original": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/cursor-copy-callers-20261102.md",
+        "research/formats/native-copy-callers-v3.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/native_copy_callers_v1.h",
+        "runtime/render/copy_caller_layouts.h",
+        "runtime/render/copy_callers.h",
+        "runtime/render/bridge.c",
+        "runtime/render/copy_route_census.h",
+        "tools/copy_caller_provenance.py",
+        "tools/observe-copy-callers.py",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/copy_caller_slots.h",
+        "tools/run-rendering-acceptance-pilot.py",
+        "protocols/include/mnm/native_copy_callers_v2.h",
+        "protocols/include/mnm/copy_caller_handoff_v1.h",
+        "runtime/scene/copy_caller_handoff.h",
+        "runtime/scene/canvas_producers.c",
+        "tools/build-scene-observer.py",
+        "tools/copy_caller_output.py",
+        "protocols/include/mnm/native_copy_callers_v3.h",
+        "protocols/include/mnm/cursor_copy_caller_v1.h",
+        "runtime/native-draw/cursor_copy_callers.h",
+        "runtime/native-draw/cursor_copy_caller_thunks.h",
+        "runtime/native-draw/cursor_copy_leases.h",
+        "runtime/native-draw/cursor_owner.h",
+        "tools/build-native-draw.py"
+      ],
+      "tests": [
+        "tests/native-copy-callers-test.c",
+        "tests/test-copy-caller-provenance.py",
+        "tests/native-cursor-copy-callers-test.c",
+        "tests/native-cursor-copy-callers-pe32.c"
+      ],
+      "validation_dependencies": [
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/native_copy_output.py",
+        "tools/build-render-bridge.py",
+        "protocols/include/mnm/native_copy_routes_v2.h",
+        "tools/natural_gpu_copy_branches.py",
+        "tools/build-native-draw.py",
+        "runtime/native-draw/cursor_owner.h",
+        "runtime/native-draw/cursor_copy_leases.h",
+        "runtime/native-draw/lifetime_lock.h",
+        "runtime/native-draw/lifetime_dispatch.h",
+        "runtime/native-draw/surfaces.h"
+      ],
+      "evidence": [
+        "CURCALL01.quick01"
+      ],
+      "remaining_gaps": [
+        "Fresh diagnostic cursorquick01 resolves all1002selected COPYs:695through five cursor wrappers at21upstream sites and307through the Scene handoff;41distinct direct original sites total.25fills remain unsupported by the caller reader. Native-service/indirect frames are refused by design; none occur in this finite capture.",
+        "The existing strict whole-COPY validator independently compares all1002native outputs (900CPU/369keyedCPU and102GPU), withEND/normalQuit/zeroowners. The new detailed upstream output list credits102GPUcalls,54from cursor wrappers. No new per-upstream CPU pixel policy, original ABI/driver equivalence or universal reliability follows. Earlier99missing comparisons stay missing.",
+        "Natural self/keyed-GPU counts remain0finite observations. Fifteen observed direct sites lack discovered owners.115of156static direct candidates, including11explicit-rectangle and28keyed candidates, are unobserved in this journey. Review source/destination provenance for those candidate branches before selecting new scenes. Wholeoperations0/36, storage8/156 and final verdicts remain unchanged."
       ]
     }
   ],
@@ -368180,6 +368257,77 @@
       "sources_pointer": "/sources",
       "build": "nocd-40209ca7",
       "source_sha256_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "CURCALL01.quick01",
+      "kind": "live_observation",
+      "record": "research/runtime/cursor-caller-results-20261102/cursorquick01.json",
+      "sha256": "b854a8b574eb2c56909316a8aab8e8bfe62ce106e1fb45a85b212de4cd464e73",
+      "scope": "One diagnostic public Quick journey preserves the closed V2/V3 denominator, normal Quit/zero owners and exact original entry caller/protected-view identity guards for the five native cursor detours. Scene modes and unresolved native-service/indirect frames remain explicit. Only resolved GPU callers with entire independently checked intervals earn positive output proof; missing intervals and strict whole-output failure stay open. No original-driver/ABI or whole-operation promotion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/all_selected_frames_resolved",
+          "equals": true
+        },
+        {
+          "pointer": "/callers/version",
+          "equals": 3
+        },
+        {
+          "pointer": "/callers/application_calls",
+          "equals": 1027
+        },
+        {
+          "pointer": "/callers/resolved_calls",
+          "equals": 1002
+        },
+        {
+          "pointer": "/callers/cursor_handoff_calls",
+          "equals": 695
+        },
+        {
+          "pointer": "/callers/unresolved_cursor_callers",
+          "equals": 0
+        },
+        {
+          "pointer": "/copy_output/upstream_gpu_calls_with_complete_output",
+          "equals": 102
+        },
+        {
+          "pointer": "/copy_output/all_application_output_closed",
+          "equals": true
+        },
+        {
+          "pointer": "/cursor_controls/identity_refusals",
+          "equals": 19
+        },
+        {
+          "pointer": "/cursor_pe32_thunks/checks",
+          "equals": 9
+        },
+        {
+          "pointer": "/whole_operations_accepted",
+          "equals": 0
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/original_driver_equivalence",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -397703,6 +397851,23 @@
       "evidence": [
         "CALLER01.quick05"
       ]
+    },
+    {
+      "id": "SC.cursor-copy-caller-provenance",
+      "level": "live_observation",
+      "scope": "One diagnostic public Quick journey preserves the closed V2/V3 denominator, normal Quit/zero owners and exact original entry caller/protected-view identity guards for the five native cursor detours. Scene modes and unresolved native-service/indirect frames remain explicit. Only resolved GPU callers with entire independently checked intervals earn positive output proof; missing intervals and strict whole-output failure stay open. No original-driver/ABI or whole-operation promotion.",
+      "behaviors": [
+        "NP.cursor-copy-caller-provenance"
+      ],
+      "tests": [
+        "tests/native-copy-callers-test.c",
+        "tests/test-copy-caller-provenance.py",
+        "tests/native-cursor-copy-callers-test.c",
+        "tests/native-cursor-copy-callers-pe32.c"
+      ],
+      "evidence": [
+        "CURCALL01.quick01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -399520,7 +399685,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-48b1cb552c3216b3172adcf63d834a7fcf1f3678ecb45e247f2743f4bcfef1a9.json",
-    "sha256": "48b1cb552c3216b3172adcf63d834a7fcf1f3678ecb45e247f2743f4bcfef1a9"
+    "path": "research/runtime/coverage/source-index-783d460b1b549184907bcf952f686fe6251c53103d9bf93cede24e07f5e204c2.json",
+    "sha256": "783d460b1b549184907bcf952f686fe6251c53103d9bf93cede24e07f5e204c2"
   }
 }

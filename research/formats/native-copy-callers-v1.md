@@ -98,3 +98,7 @@ Successful metadata decoding does not imply that every frame resolves or that
 every output was compared. Positive GPU output links require a resolved upstream
 caller and a complete independently checked emitted interval. Missing intervals,
 CPU per-caller pixel links and strict whole-output closure remain separate.
+
+The separately versioned [V3 cursor extension](native-copy-callers-v3.md) is now
+the current producer. V1/V2 retain the historical meanings and refusals above;
+their recorded payloads and source hashes are unchanged.

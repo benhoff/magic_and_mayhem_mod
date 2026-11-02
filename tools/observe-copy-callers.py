@@ -39,18 +39,20 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--tag', required=True)
     p.add_argument('--skip-intros', action='store_true')
+    p.add_argument('--cursor-handoff', action='store_true')
     args = p.parse_args()
     if not args.tag.isidentifier():
         p.error('Simple new result tag required')
-    name = PREFIX+args.tag+'.json'
+    prefix = 'research/runtime/cursor-caller-results-20261102/' if args.cursor_handoff else PREFIX
+    name = prefix+args.tag+'.json'
     if (ROOT/name).exists():
         p.error('New immutable result required')
     out = ROOT/'working/copy-callers'/args.tag
     out.mkdir(parents=True, exist_ok=False)
     (out/'.retain').write_text('Active caller evidence and negative attempts; preserve inputs.\n')
     reg = json.loads((ROOT/'research/runtime/coverage/register.json').read_bytes())
-    behavior = next(b for b in reg['behaviors'] if b['id'] == 'NP.copy-caller-provenance')
-    scenario = next(s for s in reg['scenarios'] if s['id'] == 'SC.copy-caller-provenance')
+    behavior = next(b for b in reg['behaviors'] if b['id'] == ('NP.cursor-copy-caller-provenance' if args.cursor_handoff else 'NP.copy-caller-provenance'))
+    scenario = next(s for s in reg['scenarios'] if s['id'] == ('SC.cursor-copy-caller-provenance' if args.cursor_handoff else 'SC.copy-caller-provenance'))
     sources = {n: sha((ROOT/n).read_bytes()) for n in required_sources(behavior)}
     report = dict(schema=1, kind='live_copy_caller_observation', success=False, sources=sources,
                   player_accepted=False, whole_operations_accepted=0, original_driver_equivalence=False,
@@ -59,7 +61,7 @@ def main():
                                scenarios={scenario['id']: scenario_contract(scenario)})])
     stage = 'controls'
     try:
-        env = dict(os.environ, TMPDIR='/tmp/mnm-copy-callers-20261102/tmp')
+        env = dict(os.environ, TMPDIR=os.environ.get('TMPDIR','/tmp'))
         command = ['clang', '-std=c11', '-O2', '-Wall', '-Wextra', '-Werror', '-pedantic',
                    str(ROOT/'tests/native-copy-callers-test.c'), '-o', str(out/'caller-controls')]
         subprocess.run(command, check=True, env=env, capture_output=True)
@@ -70,10 +72,23 @@ def main():
         report['reader_controls'] = dict(success=unit.returncode == 0, output=unit.stdout+unit.stderr)
         if unit.returncode:
             raise ValueError('Caller reader refusal controls failed')
+        if args.cursor_handoff:
+            command = ['clang','-std=c11','-O2','-Wall','-Wextra','-Werror','-pedantic',str(ROOT/'tests/native-cursor-copy-callers-test.c'),'-o',str(out/'cursor-controls')]
+            subprocess.run(command,check=True,env=env,capture_output=True)
+            done = subprocess.run([out/'cursor-controls'],check=True,capture_output=True,text=True,env=env)
+            report['cursor_controls'] = json.loads(done.stdout)
+            with Reader(ROOT) as reader:
+                thunk_name = 'research/runtime/cursor-caller-results-20261102/thunk01.json'
+                thunk = reader.json(thunk_name)
+                if not thunk['success'] or thunk['checks']!=9 or any(sha((ROOT/n).read_bytes())!=h for n,h in thunk['sources'].items()):
+                    raise ValueError('Current actual PE32 thunk controls required')
+                report['cursor_pe32_thunks'] = dict(record=thunk_name,sha256=reader.digest(thunk_name),checks=thunk['checks'])
         stage = 'live acquisition'
         acquired_name = 'research/runtime/rendering-normal-results-20261031/copy-callers-'+args.tag+'.json'
         command = [sys.executable, str(ROOT/'tools/run-rendering-acceptance-pilot.py'),
                    '--scenario', 'normal-quick', '--copy-callers', '--report', acquired_name]
+        if args.cursor_handoff:
+            command.append('--cursor-copy-callers')
         if args.skip_intros:
             command.append('--skip-intros')
         report['command'] = command
@@ -105,7 +120,7 @@ def main():
             known = {(v['entry']-0x400000, int(c['call_va'], 16)+5-0x400000): c['discovered_owners']
                      for v in prior['selected_wrappers'].values() for c in v['callers']}
             executable = (session/'game/Chaos.exe').read_bytes()
-            exe_record = PREFIX+args.tag+'-staged-executable.bin'
+            exe_record = prefix+args.tag+'-staged-executable.bin'
             write_report(ROOT, exe_record, executable)
             report['staged_executable'] = dict(record=exe_record, sha256=sha(executable), bytes=len(executable))
             for layout in layouts:
@@ -138,7 +153,7 @@ def main():
         if path.name == '.retain' or not path.is_file():
             continue
         data = path.read_bytes()
-        record = PREFIX+args.tag+'-'+path.name+'.bin'
+        record = prefix+args.tag+'-'+path.name+'.bin'
         write_report(ROOT, record, data)
         artifacts.append(dict(record=record, sha256=sha(data), bytes=len(data)))
     report['artifacts'] = artifacts

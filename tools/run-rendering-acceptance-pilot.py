@@ -10,7 +10,8 @@ def sha(path):
 def module(name):
  spec=importlib.util.spec_from_file_location(name,ROOT/'tools'/name);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--operation-census',action='store_true',help='Closed COPY observations on an otherwise unchanged nominal normal route');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--sample-storage-main',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');p.add_argument('--copy-callers',action='store_true',help='Diagnostic-only upstream COPY caller observation');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--operation-census',action='store_true',help='Closed COPY observations on an otherwise unchanged nominal normal route');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--sample-storage-main',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');p.add_argument('--copy-callers',action='store_true',help='Diagnostic-only upstream COPY caller observation');p.add_argument('--cursor-copy-callers',action='store_true',help='Read-only cursor protected-view caller handoff');a=p.parse_args()
+ if a.cursor_copy_callers and not a.copy_callers:p.error('Cursor copy caller handoff requires COPY caller diagnostic')
  if a.copy_callers:
   if a.scenario!='normal-quick':p.error('COPY caller observation requires bounded normal-quick')
   if a.operation_census or a.operations_provenance or a.sample_stalls or a.stall_intro_host or a.stall_world_host:p.error('COPY caller observation requires its own diagnostic route')
@@ -86,7 +87,10 @@ def main():
  if a.copy_callers:
   env.update(MNM_NATIVE_COPY_CALLERS='1',MNM_NATIVE_COPY_DIAGNOSTICS=str(out/'copy-diagnostics'),MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE='all')
   report['kind']='public_native_copy_caller_diagnostic_acquisition'
-  report['configuration']['copy_callers']=dict(version=2,scalar_only=True,changes_actions=False,changes_admission=False)
+  report['configuration']['copy_callers']=dict(version=3,scalar_only=True,changes_actions=False,changes_admission=False)
+ if a.cursor_copy_callers:
+  env['MNM_NATIVE_CURSOR_COPY_CALLERS']='1'
+  report['configuration']['copy_callers']['cursor_handoff_version']=1
  if a.sample_stalls:
   env.update(MNM_ACCEPTANCE_DIAGNOSTIC='1',MNM_ACCEPTANCE_SAMPLE_STALLS='1',MNM_ACCEPTANCE_STALL_SAMPLER_DIR=str(out/'sampler'))
   report['configuration']['parent_debugger_stall_sampling']=dict(threshold_seconds=1.5,max_stack_samples=1,deadline_or_ownership_changed=False)

@@ -11,11 +11,11 @@ CAPACITY = 65536
 
 
 def decode(raw, routes_header, routes, layouts):
-    if len(raw)<128 or raw[:8] not in (b'MNMCCL01',b'MNMCCL02'):
+    if len(raw)<128 or raw[:8] not in (b'MNMCCL01',b'MNMCCL02',b'MNMCCL03'):
         raise ValueError('COPY caller extent/magic')
     h = struct.unpack_from('<32I', raw)
-    version=h[2];words=16 if version==1 else 20 if version==2 else 0
-    if not words or len(raw)!=128+CAPACITY*words*4 or raw[:8]!=(b'MNMCCL01' if version==1 else b'MNMCCL02'):
+    version=h[2];words=16 if version==1 else 20 if version in (2,3) else 0
+    if not words or len(raw)!=128+CAPACITY*words*4 or raw[:8]!=('MNMCCL0'+str(version)).encode():
         raise ValueError('COPY caller version/extent')
     if (h[2:6] != (version, 128, words*4, CAPACITY) or h[6] != h[8] or h[7] or h[9]
             or not 0 < h[6] <= CAPACITY or h[16] != 1 or any(h[20:])
@@ -40,12 +40,14 @@ def decode(raw, routes_header, routes, layouts):
                 raise ValueError('Caller frame differs from reviewed layout')
             if r[9] == 1 and bool(c[11]) != selected[1]['fast']:
                 raise ValueError('Resolved caller API method differs')
-        if version==2:
+        if version in (2,3):
             mode=r[17]
-            if mode>2 or (r[9]==1 and not mode) or (mode!=2 and (r[16] or r[19])):
+            if mode>(3 if version==3 else 2) or (r[9]==1 and not mode) or (mode not in (2,3) and (r[16] or r[19])):
                 raise ValueError('Caller source-frame mode/identity')
-            if mode==2 and (not r[16] or not r[19] or r[2] not in sites or r[18]!=sites[r[2]][0]['hook_length']):
-                raise ValueError('Scene caller lacks verified handoff')
+            if mode in (2,3) and (not r[16] or not r[19] or r[2] not in sites or r[18]!=sites[r[2]][0]['hook_length']):
+                raise ValueError('Caller lacks verified handoff')
+            if mode==3 and r[3] not in (0x18c140,0x18c360,0x18c4a0,0x18c8a0,0x18ca90):
+                raise ValueError('Cursor handoff outside its five wrapper profiles')
             if mode==1 and r[18] not in (0,sites[r[2]][0]['hook_length']):
                 raise ValueError('Caller detour profile differs')
         if r[9] == 2 and any(r[3:8]):
@@ -59,12 +61,15 @@ def decode(raw, routes_header, routes, layouts):
 def analyze(experiment, layouts):
     directory = Path(experiment)/'lock-capture'
     rh, routes = routes_decode(directory/'copy-routes-v2.bin')
-    paths=[p for p in (directory/'copy-callers-v1.bin',directory/'copy-callers-v2.bin') if p.exists()]
+    paths=[p for p in (directory/'copy-callers-v1.bin',directory/'copy-callers-v2.bin',directory/'copy-callers-v3.bin') if p.exists()]
     if len(paths)!=1:raise ValueError('Unique COPY caller version required')
     raw=paths[0].read_bytes()
     h, rows = decode(raw, rh, routes, layouts)
-    grouped = Counter((r[3], r[6], r[10], bool(r[11]), bool(r[12]),r[17] if h[2]==2 else 1) for r in rows if r[9] == 1)
-    return dict(verified=True, version=h[2], scene_handoff_calls=sum(r[9]==1 and h[2]==2 and r[17]==2 for r in rows), application_calls=len(rows), resolved_calls=sum(r[9] == 1 for r in rows),
+    grouped = Counter((r[3], r[6], r[10], bool(r[11]), bool(r[12]),r[17] if h[2]>=2 else 1) for r in rows if r[9] == 1)
+    return dict(verified=True, version=h[2], scene_handoff_calls=sum(r[9]==1 and h[2]>=2 and r[17]==2 for r in rows), cursor_handoff_calls=sum(r[9]==1 and h[2]==3 and r[17]==3 for r in rows),
+                cursor_handoff_frames=sum(h[2]==3 and r[17]==3 for r in rows),
+                unresolved_cursor_callers=sum(h[2]==3 and r[17]==3 and r[9]!=1 for r in rows),
+                application_calls=len(rows), resolved_calls=sum(r[9] == 1 for r in rows),
                 states=dict(Counter(STATES[r[9]-1] for r in rows)),
                 sha256=hashlib.sha256(raw).hexdigest(),
                 callers=[dict(wrapper_entry_rva=hex(k[0]), caller_return_rva=hex(k[1]),

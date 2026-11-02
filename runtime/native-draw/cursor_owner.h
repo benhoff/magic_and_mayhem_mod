@@ -239,6 +239,7 @@ static void nd_cursor_detach(void){
 }
 static void nd_cursor_install(void){
  if(ns_lifetime_mode!=2 || nd_cursor_installed)return;
+ u32 caller_error=GetLastError();char caller_flag[2];nd_cursor_caller_enabled=GetEnvironmentVariableA("MNM_NATIVE_CURSOR_COPY_CALLERS",caller_flag,2)==1 && caller_flag[0]=='1';SetLastError(caller_error);
  if((u32)GetModuleHandleA(0)!=0x400000 || *(u32*)0x642c58 || *(u32*)0x6f98d4)nd_cursor_fail(__LINE__,0);
  const u32 addresses[18]={0x4a30b0,0x4a37d0,0x4a39a0,0x4a4370,0x4a4380,0x4a44b0,0x4a45b0,0x4a4910,0x4a2f90,0x58d5b0,0x58d660,0x58ad90,0x58b3e0,0x58c140,0x58c360,0x58c4a0,0x58c8a0,0x58ca90};
  const u8* pins[18]={nd_cursor_pin_setup,nd_cursor_pin_dispose,nd_cursor_pin_select,nd_cursor_pin_invalidate,nd_cursor_pin_restore_back,nd_cursor_pin_restore_front,nd_cursor_pin_foreground,nd_cursor_pin_timer,nd_cursor_pin_reload,nd_cursor_pin_enqueue,nd_cursor_pin_drain,nd_cursor_pin_create,nd_cursor_pin_release,nd_cursor_pin_copy_full,nd_cursor_pin_copy_guarded,nd_cursor_pin_copy_opaque,nd_cursor_pin_copy_keyed,nd_cursor_pin_copy_front_keyed};

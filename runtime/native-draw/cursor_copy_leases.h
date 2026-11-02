@@ -34,7 +34,8 @@ static void* nd_cursor_owned_operand(void* object,struct NdCursorView* temporary
  if(!nd_cursor_wrapper(temporary->words,object,&temporary->pin))return 0;
  return temporary->words;
 }
-static void nd_cursor_copy_service(u32 index,void* source,void* dest,const u32* rectangle,u32 x,u32 y){
+#include "cursor_copy_callers.h"
+static void nd_cursor_copy_service(u32 index,void* source,void* dest,const u32* rectangle,u32 x,u32 y,u32 caller){
  struct NdCursorFx entry,exit;nd_cursor_save(&entry);
  struct NsLifeGuard guard __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  struct NdCursorCopy copy;copy.source.pin=copy.dest.pin=0;copy.previous=nd_cursor_copy_active;
@@ -49,16 +50,30 @@ static void nd_cursor_copy_service(u32 index,void* source,void* dest,const u32* 
  }
  struct NdCursorPrimary shadow={*(u32*)0x6f98c0,(u32)d,nd_cursor_primary};
  if(primary){nd_cursor_primary=&shadow;*(u32*)0x6f98c0=(u32)d;}
+ struct NdCursorCaller observed;
+ if(nd_cursor_caller_enabled){
+  struct NsState *a=ns_lifetime_find((void*)((u32*)s)[2]),*b=ns_lifetime_find((void*)((u32*)d)[2]);
+  observed.frame=(struct MnmCursorCallerFrame){index,caller,(u32)s,(u32)d,0,ns_lifetime_thread(),((u32*)s)[2],((u32*)d)[2],a?a->lifetime_identity:0,b?b->lifetime_identity:0};
+  observed.previous=nd_cursor_caller_active;nd_cursor_caller_active=&observed;
+ }
  nd_cursor_copy_active=&copy;nd_cursor_restore(&entry);
- if(index==13)((void(__attribute__((thiscall))*)(void*,void*,u32,u32))nd_cursor_original[index])(s,d,x,y);
+ if(nd_cursor_caller_enabled){
+  if(index==13)nd_copy_caller_whole(nd_cursor_original[index],s,d,x,y,&observed.frame.slot);
+  else nd_copy_caller_rect(nd_cursor_original[index],s,d,rectangle,x,y,&observed.frame.slot);
+ }else if(index==13)((void(__attribute__((thiscall))*)(void*,void*,u32,u32))nd_cursor_original[index])(s,d,x,y);
  else ((void(__attribute__((thiscall))*)(void*,void*,const u32*,u32,u32))nd_cursor_original[index])(s,d,rectangle,x,y);
  nd_cursor_save(&exit);nd_cursor_copy_active=copy.previous;
+ if(nd_cursor_caller_enabled){observed.frame.slot=0;nd_cursor_caller_active=observed.previous;}
  if(primary){if(*(u32*)0x6f98c0==shadow.clone)*(u32*)0x6f98c0=shadow.original;nd_cursor_primary=shadow.previous;}
  nd_cursor_view_drop(&copy.dest);nd_cursor_view_drop(&copy.source);nd_cursor_restore(&exit);
 }
-static void __attribute__((thiscall)) nd_cursor_copy_full(void* s,void* d,u32 x,u32 y){nd_cursor_copy_service(13,s,d,0,x,y);}
-#define ND_CURSOR_COPY(name,index) static void __attribute__((thiscall)) name(void* s,void* d,const u32* r,u32 x,u32 y){nd_cursor_copy_service(index,s,d,r,x,y);}
+static void __attribute__((thiscall)) nd_cursor_copy_full(void* s,void* d,u32 x,u32 y){nd_cursor_copy_service(13,s,d,0,x,y,(u32)__builtin_return_address(0));}
+#define ND_CURSOR_COPY(name,index) static void __attribute__((thiscall)) name(void* s,void* d,const u32* r,u32 x,u32 y){nd_cursor_copy_service(index,s,d,r,x,y,(u32)__builtin_return_address(0));}
 ND_CURSOR_COPY(nd_cursor_copy_guarded,14)
 ND_CURSOR_COPY(nd_cursor_copy_opaque,15)
 ND_CURSOR_COPY(nd_cursor_copy_keyed,16)
 ND_CURSOR_COPY(nd_cursor_copy_front_keyed,17)
+static void* nd_cursor_caller_detour(u32 index){
+ void* entries[5]={(void*)nd_cursor_copy_full,(void*)nd_cursor_copy_guarded,(void*)nd_cursor_copy_opaque,(void*)nd_cursor_copy_keyed,(void*)nd_cursor_copy_front_keyed};
+ return index>=13 && index<=17?entries[index-13]:0;
+}

@@ -124,3 +124,13 @@ native cursor scope handoff with exact entry caller, protected views,
 thread/nested-scope/physical-marker guards. Then select the smallest scene from
 its caller/branch map. Keep the current queue/count/readback caps and all
 unresolved or missing intervals explicit; no user scope decision is needed.
+
+The [cursor handoff follow-up](cursor-copy-callers-20261102.md) now resolves
+all1002selected COPY callers in its bounded Quick run, including695calls through
+all five adapter-owned wrappers. All1002native outputs compare independently;
+normalQuit/zeroowners pass. This new complete run does not recover the prior99
+missing outputs or close a whole operation. The next caller research is narrower:
+trace the11unobserved explicit-rectangle sites and28unobserved keyed sites to
+actual source/destination producers, canonical alias conditions and GPU source
+authority. Use those prerequisites to choose a scene/action; preserve the other
+115total unobserved static candidates and15observed unknown function owners.

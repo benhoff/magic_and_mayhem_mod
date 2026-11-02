@@ -25502,3 +25502,37 @@ wrapper/thread/marker/view identities before one bounded acquisition. Use that
 caller map for targeted natural-branch research. No scope decision is required.
 Original driver/ABI comparison, arbitrary readers/aliases, whole operations0/36,
 storage8/156 and final verdicts remain open. See [the reviewed caller baseline](copy-caller-provenance-20261102.md).
+
+## Cursor COPY provenance handoff — 2026-11-02
+
+`NP.cursor-copy-caller-provenance` / `SC.cursor-copy-caller-provenance` add the
+separate opt-in V3 cursor handoff. Exact installed detour/trampoline guards,
+provider owner/thread and backing lifetime identities, protected views and
+assembly-published original return slot/marker bind the actual entry caller.
+Only the active top scope matches. Native-service/indirect callers retain their
+actual return PC; no queue enqueuer or arbitrary stack candidate substitutes.
+Default ownership, operands, leases and copy admission remain as authored.
+
+`CURCALL01.quick01` freshly observes1027application calls with752source hashes
+unchanged: all1002selected COPYs resolve to41original direct sites/44routing
+groups.695calls use all five native cursor wrappers at21sites;307use the Scene
+handoff.25fills remain unsupported by the caller reader. The existing strict
+whole-COPY validator compares all1002outputs (900CPU,369CPU-keyed,102GPU);
+102detailed upstream GPU intervals,54from cursor wrappers, also have complete
+output. END/normalQuit/zeroowners and2927original-manifest bookends pass.
+
+Nineteen context refusals,9actual production PE32 thunk checks,15caller-reader
+tests,18GPUbranch tests and14-site native resolver/publication controls pass.
+The thunk probe consumes no original image. The new run has no missing outputs;
+old V2 fingerprints and99omitted comparisons remain unchanged. The V3 policy is
+finite diagnostic observation, not a refreshed broad cursor lifetime/driver
+comparison, CPU per-upstream pixel policy, nominal acceptance or live replacement.
+
+Natural self/keyed-GPU counts remain0finite observations. Fifteen observed sites
+lack discovered owners. The retained static/live subtraction leaves115of156
+direct-call candidates unobserved, including11explicit-rectangle and28keyed
+sites. Next research those source/destination producers, alias and GPU-authority
+prerequisites, and controlling actions before selecting another scene. Dynamic
+operands and scene semantics remain hypotheses until traced. Whole operations
+0/36,storage8/156, original ABI/driver/resource/readers and final verdicts remain
+open. See [the finite cursor caller baseline](cursor-copy-callers-20261102.md).

@@ -26,6 +26,26 @@ def fixture():
 
 
 class CallerTests(unittest.TestCase):
+    def test_v3_cursor_handoff_requires_version_and_exact_profile(self):
+        args = list(self.v2());raw = bytearray(args[0]);raw[:8] = b'MNMCCL03'
+        struct.pack_into('<I',raw,8,3);struct.pack_into('<I',raw,128+17*4,3)
+        with self.assertRaisesRegex(ValueError,'five wrapper'):decode(raw,*args[1:])
+        for word,value in ((1,0x58c279),(2,0x18c279),(3,0x18c140)):struct.pack_into('<I',raw,128+word*4,value)
+        route=list(args[2][0]);route[1:3]=[0x58c279,0x18c279];args[2]=[tuple(route)]
+        args[3][0].update(entry_rva=0x18c140,apis=[dict(return_rva=0x18c279,fast=True)])
+        self.assertEqual(decode(raw,*args[1:])[1][0][17],3)
+        for index,value in ((16,0),(17,4),(18,6),(19,0)):
+            bad=bytearray(raw);struct.pack_into('<I',bad,128+index*4,value)
+            with self.subTest(index=index),self.assertRaises(ValueError):decode(bad,*args[1:])
+        raw[:8]=b'MNMCCL02';struct.pack_into('<I',raw,8,2)
+        with self.assertRaises(ValueError):decode(raw,*args[1:])
+
+    def test_cursor_route_requires_caller_diagnostic(self):
+        tool=Path(__file__).resolve().parents[1]/'tools/run-rendering-acceptance-pilot.py'
+        result=subprocess.run([sys.executable,str(tool),'--cursor-copy-callers','--report','invalid.json'],capture_output=True,text=True)
+        self.assertEqual(result.returncode,2)
+        self.assertIn('requires COPY caller diagnostic',result.stderr)
+
     def test_output_credit_requires_both_resolved_caller_and_complete_gpu_proof(self):
         _, _, routes, _ = fixture()
         _, callers = decode(*fixture())

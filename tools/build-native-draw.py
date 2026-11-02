@@ -54,7 +54,7 @@ def build(output, declared=None):
     if declared is not None and closure-set(declared):
         raise ValueError('Undeclared native DLL compiler/builder inputs: '+repr(sorted(closure-set(declared))))
     dll = output/'MnmDraw.dll'
-    exports = {'NativeDrawCursorStopV1':('NativeDrawCursorStopV1',0),'NativeDrawCursorStatusV1':('NativeDrawCursorStatusV1',8),'NativeDrawGuardBeginV1':('NativeDrawGuardBeginV1',0),'NativeDrawGuardEndV1':('NativeDrawGuardEndV1',0),'NativeDrawPinV1':('NativeDrawPinV1',8),'NativeDrawUnpinV1':('NativeDrawUnpinV1',4),'NativeDrawBackingLiveV1':('NativeDrawBackingLiveV1',4),'NativeDrawRetirementsV1':('NativeDrawRetirementsV1',8),'NativeDrawCreate': ('NativeDrawCreate', 12),
+    exports = {'NativeDrawCopyCallerV1':('NativeDrawCopyCallerV1',16),'NativeDrawCursorStopV1':('NativeDrawCursorStopV1',0),'NativeDrawCursorStatusV1':('NativeDrawCursorStatusV1',8),'NativeDrawGuardBeginV1':('NativeDrawGuardBeginV1',0),'NativeDrawGuardEndV1':('NativeDrawGuardEndV1',0),'NativeDrawPinV1':('NativeDrawPinV1',8),'NativeDrawUnpinV1':('NativeDrawUnpinV1',4),'NativeDrawBackingLiveV1':('NativeDrawBackingLiveV1',4),'NativeDrawRetirementsV1':('NativeDrawRetirementsV1',8),'NativeDrawCreate': ('NativeDrawCreate', 12),
                'NativeDrawReleaseStartupProbeV1': ('NativeDrawReleaseStartupProbeV1', 4),
                'DirectDrawCreate': ('NativeDrawCreate', 12),
                'NativeDrawEnumerateA': ('NativeDrawEnumerateA', 8),
