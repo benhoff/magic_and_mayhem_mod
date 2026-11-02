@@ -62623,7 +62623,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/realm-live-adapter.md"
+        "research/runtime/realm-live-adapter.md",
+        "research/runtime/campaign-progression-validation-20261101.md"
       ],
       "implementation": [
         "runtime/menu/realm.h",
@@ -63008,7 +63009,9 @@
         "protocols/include/mnm/world_effect_raster_v1.h"
       ],
       "evidence": [
-        "UI59.realm-adapter-private"
+        "UI59.realm-adapter-private",
+        "RPS03.progression-realm-tutorial-negative",
+        "RPS03.realm-tutorial-diagnosis"
       ],
       "status": {
         "understanding": "partial",
@@ -63016,7 +63019,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "RPS03 original victory return/pop reaches Realm while its first Realm Map tutorial is visible; native settled admission correctly stays unavailable. Ordinary dismissal and genuine progressed settled Realm/region2 execution remain pending; no guard is relaxed."
+      ]
     },
     {
       "id": "NP.loaded-region-menu-dispatch",
@@ -63435,11 +63441,13 @@
       "kind": "native_policy",
       "subsystem": "campaign",
       "title": "Experimental original natural campaign victory/defeat report admission",
-      "scope": "V20 experimental exact original report6 singleton/vtable,Main/Realm/World/report stack5,context5/layout0,registered original OK21 and bounded original title/21strings,outcome0/1. Older versions retain Quit provenance/defeat-only. Native copies original scores/reasons and selects original victory/defeat assets; original OK/fade/unwind and fresh Realm return remain active. Private unchanged original OK/fade plus synthetic report state/Qt peers only; no actual mission win,natural defeat,scoring/reward equivalence,persistence,full World cleanup or native drawing-lock fix.",
+      "scope": "V20 experimental exact original report6 singleton/vtable,Main/Realm/World/report stack5,context5/layout0,registered original OK21 and bounded original title/21strings,outcome0/1. Older versions retain Quit provenance/defeat-only. Native copies original scores/reasons and selects original victory/defeat assets; original OK/fade/unwind and fresh Realm return remain active. Private unchanged original OK/fade plus synthetic report state/Qt peers only; no actual mission win,scoring/reward equivalence,persistence,full World cleanup or native drawing-lock fix. A later failed progression run observes a natural original defeat before OK/return; it supplies no complete live integration proof. RPS03 later observes a complete dedicated default 800x600 natural defeat/OK/Main return/automatic Quit with independent pixel/history match at its historical source phase. A subsequent diagnostic observes natural original victory/title/21strings and OK return, then blocks on the original Realm Map tutorial. These scoped observations do not promote general integration, reward, persistence or populated lifetime claims.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/campaign-natural-report.md"
+        "research/runtime/campaign-natural-report.md",
+        "research/runtime/rendering-progression-live-20261101.md",
+        "research/runtime/campaign-progression-validation-20261101.md"
       ],
       "implementation": [
         "apps/qt-shell/CMakeLists.txt",
@@ -63840,7 +63848,12 @@
         "protocols/include/mnm/world_effect_raster_v1.h"
       ],
       "evidence": [
-        "UI62.campaign-natural-report"
+        "UI62.campaign-natural-report",
+        "RPS02.progression-negative",
+        "RPS03.defeat-default-high",
+        "RPS03.defeat-default-high-comparison",
+        "RPS03.progression-realm-tutorial-negative",
+        "RPS03.realm-tutorial-diagnosis"
       ],
       "status": {
         "understanding": "partial",
@@ -63848,7 +63861,11 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "2026-11-01: RPS02.progression-negative observes an actual original natural defeat/title/21strings in a failed progression attempt, rejected before original OK and clean return. Earlier private/synthetic validation remains historical; no live integration or scoring/reward/lifetime claim is promoted.",
+        "RPS03 default defeat is a complete historical source-phase observation/comparison; later natural victory report/OK is intermediate in a failed progression case. Fresh post-tutorial Realm readiness, later-map entry and populated lifetime closure remain pending; existing statuses are unchanged."
+      ]
     },
     {
       "id": "NP.campaign-spellbox-dispatch",
@@ -78385,7 +78402,8 @@
       "documents": [
         "research/runtime/native-render-completion.md",
         "research/runtime/native-adapter-cost-20261026.md",
-        "research/runtime/native-adapter-master-20261027.md"
+        "research/runtime/native-adapter-master-20261027.md",
+        "research/runtime/campaign-progression-validation-20261101.md"
       ],
       "implementation": [
         "runtime/native-draw/history.h",
@@ -78417,7 +78435,8 @@
         "ADAPTER26.performance",
         "ADAPTER27.master-identity",
         "ADAPTER27.final-master-identity",
-        "ADAPTER27.latest-master-identity"
+        "ADAPTER27.latest-master-identity",
+        "RPS03.native-history-refusal"
       ],
       "status": {
         "understanding": "partial",
@@ -78445,7 +78464,8 @@
         "protocols/include/mnm/world_raster_batch_v3.h"
       ],
       "remaining_gaps": [
-        "20261026 adapter-cost batch: bounded allocator/cache/lifetime/copy controls and strict mixed-context diagnostic runs are recorded separately. All-current application integration, trace-disabled sustained timing, original-driver whole-session pixel equivalence and complete replacement remain pending; historical validation fingerprints and independent stage statuses are preserved."
+        "20261026 adapter-cost batch: bounded allocator/cache/lifetime/copy controls and strict mixed-context diagnostic runs are recorded separately. All-current application integration, trace-disabled sustained timing, original-driver whole-session pixel equivalence and complete replacement remain pending; historical validation fingerprints and independent stage statuses are preserved.",
+        "RPS03 nominal enabled-intro campaign run reaches generation466 then records native CPU-history refusal version2/family0/route0 and exits124. Process-local caller is unnormalized; precise reader/admission/lease cause and clean end-to-end campaign remain unresolved. Historical results and all statuses are preserved; no stale pixels are admitted."
       ]
     },
     {
@@ -78973,7 +78993,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-history-readers.md",
-        "research/runtime/coverage/native-history-readers-incoming-history-20261015.json"
+        "research/runtime/coverage/native-history-readers-incoming-history-20261015.json",
+        "research/runtime/campaign-progression-validation-20261101.md"
       ],
       "implementation": [
         "runtime/native-draw/history.h",
@@ -79003,7 +79024,8 @@
         "NP.pixel-routes.spells-passed-20261015",
         "HOST.native-startup-resources.v2-storage-control-20261016",
         "HOST.native-startup-resources.v3-storage-control-20261016",
-        "HOST.native-startup-resources.v3-natural-storage-20261016"
+        "HOST.native-startup-resources.v3-natural-storage-20261016",
+        "RPS03.native-history-refusal"
       ],
       "status": {
         "understanding": "partial",
@@ -79019,6 +79041,9 @@
         "runtime/menu/campaign_input_admission_observe.h",
         "tools/campaign_gameplay.py",
         "protocols/include/mnm/world_raster_batch_v3.h"
+      ],
+      "remaining_gaps": [
+        "RPS03 nominal enabled-intro campaign run reaches generation466 then records native CPU-history refusal version2/family0/route0 and exits124. Process-local caller is unnormalized; precise reader/admission/lease cause and clean end-to-end campaign remain unresolved. Historical results and all statuses are preserved; no stale pixels are admitted."
       ]
     },
     {
@@ -79031,7 +79056,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-history-readers.md",
-        "research/runtime/cpu-reply-publication-fix-20261019.json"
+        "research/runtime/cpu-reply-publication-fix-20261019.json",
+        "research/runtime/campaign-progression-validation-20261101.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -79082,7 +79108,8 @@
         "CPU.reply.writeback-controls-20261019",
         "CPU.reply.gl-controls-20261019",
         "CPU.reply.normal-campaigns-20261019",
-        "HIGH03.cpu-reply-20261020"
+        "HIGH03.cpu-reply-20261020",
+        "RPS03.native-history-refusal"
       ],
       "status": {
         "understanding": "partial",
@@ -79100,7 +79127,8 @@
         "protocols/include/mnm/world_raster_batch_v3.h"
       ],
       "remaining_gaps": [
-        "The volatile reply publisher removes a reproduced durable-sync timeout; delayed-writeback and actual GL controls pass, as do two pinned normal journeys. This does not prove every historical stage13 cause or every current-tree/arbitrary-scheduling admission. See research/runtime/cpu-reply-publication-fix-20261019.json."
+        "The volatile reply publisher removes a reproduced durable-sync timeout; delayed-writeback and actual GL controls pass, as do two pinned normal journeys. This does not prove every historical stage13 cause or every current-tree/arbitrary-scheduling admission. See research/runtime/cpu-reply-publication-fix-20261019.json.",
+        "RPS03 nominal enabled-intro campaign run reaches generation466 then records native CPU-history refusal version2/family0/route0 and exits124. Process-local caller is unnormalized; precise reader/admission/lease cause and clean end-to-end campaign remain unresolved. Historical results and all statuses are preserved; no stale pixels are admitted."
       ]
     },
     {
@@ -158623,11 +158651,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Ordered bounded acceptance capture outside the live command caller",
-      "scope": "Opt-in MNMACE01 capture freezes host timestamps and deep-owned payloads on the caller, then compresses and writes FIFO records on a dedicated worker. Enqueue has a 256 MiB/256-job bound including the in-flight job; raw, record and stored budgets remain bounded. Overflow, explicit refusal and compression failure produce an incomplete proof; terminal cleanup joins the writer. Native producer deadlines and ownership are unchanged. Scoped compression-stage controls and one as-built enabled-intro Quick journey with independent composed-World/history comparison only; no attribution or retirement of the historical five-second watchdog, physical-provider promise or complete acceptance verdict.",
+      "scope": "Opt-in MNMACE01 capture freezes timestamps and deep-owned payloads on the caller, then compresses/writes FIFO records on one worker. The256MiB byte bound includes in-flight work; image/export queues allow256jobs and the commands stream allows4096small fragments. Raw, total-row and stored budgets remain unchanged and bounded. Overflow, explicit refusal and compression failure leave an incomplete proof; terminal cleanup joins after END/stop. Native deadlines and ownership are unchanged. Scoped blocked-compressor controls and finite enabled-intro storage executions with independent original/history comparison only; no historical-watchdog attribution, physical-provider or whole-player verdict.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/rendering-watchdog-20261101.md"
+        "research/runtime/rendering-watchdog-20261101.md",
+        "research/runtime/storage-main-stall-20261101.md"
       ],
       "implementation": [
         "apps/qt-shell/acceptance_capture.hpp"
@@ -158645,7 +158674,8 @@
         "tools/check-rendering-acceptance-pilot.py"
       ],
       "evidence": [
-        "RW02.worker02"
+        "RW02.worker02",
+        "SM01.capture-burst01"
       ],
       "status": {
         "understanding": "scoped",
@@ -158658,7 +158688,8 @@
         "RN31.G.first-world-watchdog remains unresolved: the new sampled pause is below the five-second guard and does not recover the old callback/OS timing or CPU-refusal order.",
         "The caller still performs bounded metadata serialization, snapshot copying and GPU readback; arbitrary GUI, OS, driver and shutdown stalls remain outside this repair.",
         "Worker or storage overload refuses capture equivalence. Terminal finish joins after producer stop/END or cancellation; it is not a general bounded shutdown guarantee.",
-        "RW03 adds diagnostic sampling and receipt-driven Quick acceptance input, with strict current full-intro output/history agreement. Shared collector/driver source changes leave this older complete source domain pending; the new result binds only its named narrow policies and does not refresh historical hashes or nominal acceptance."
+        "RW03 adds diagnostic sampling and receipt-driven Quick acceptance input, with strict current full-intro output/history agreement. Shared collector/driver source changes leave this older complete source domain pending; the new result binds only its named narrow policies and does not refresh historical hashes or nominal acceptance.",
+        "SM01.G.command-capture-burst: the rejected high03 commands stream remains immutable. Current blocked-compressor tests and four finite nominal storage comparisons support the4096-fragment/unchanged256MiB policy. Future overload still refuses proof; finite passes do not retire old watchdog or separate menu-timeout causes."
       ]
     },
     {
@@ -159111,7 +159142,8 @@
         "tools/natural_gpu_copy_branches.py"
       ],
       "evidence": [
-        "EP06.frontier01"
+        "EP06.frontier01",
+        "EP06.frontier02"
       ],
       "remaining_gaps": [
         "Current nominal default storage reached Cancel/Save/Mini Load but stalled returning toward Main.848 original GPU calls have checked output; two lack it and END is absent. No whole-operation or session acceptance.",
@@ -159154,11 +159186,12 @@
         "tools/rendering_pilot.py"
       ],
       "evidence": [
-        "EP06.frontier01"
+        "EP06.frontier01",
+        "EP06.frontier02"
       ],
       "remaining_gaps": [
         "All36 whole-operation obligations remain pending; the frontier retains exact missing proofs. Three of17 component leads retain matching recorded sources;14 have source drift. Static reuse and individual completed calls do not establish required scene/caller/lifetime or ABI adequacy.",
-        "EP06.G.storage-main-command-stall: current nominal storage stopped after Mini Load at return toward Main, before rebuild/Main Load/normal Quit. The ring retained1,010,864 unread bytes including CPU_READ; cause remains unproved. Software preparation failed before launch with EAGAIN; no actual software provider observation."
+        "Historical EP06.G.storage-main-command-stall retains its failed source phase and pre-launch software EAGAIN. Four current enabled-intro storage journeys now finish with independent original/history comparison and actual default/software providers, supporting eight finite storage leaves. Historical five-second causes and the separate late menu timeout remain unresolved; bounded individual COPY exhaustion remains an explicit operation-proof gap, not a missing whole-viewport comparison."
       ]
     },
     {
@@ -159220,6 +159253,376 @@
         "Mapped pages and read-only collection can perturb scheduling; bounded record sizes do not impose an arbitrary OS I/O latency bound.",
         "Current controls, one calibrated control and two unforced full-intro observations are recorded under MT01.timeline01. The unforced Main failure did not reproduce; no causal repair or failure closure is claimed.",
         "One fresh public generation/process only. Reusing the same LiveMenuSession for diagnostic restart is not validated; the collector refuses multiple admissions. Use a fresh process for each bounded attempt."
+      ]
+    },
+    {
+      "id": "NP.rendering-progression-scenarios",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded campaign progression, victory and natural defeat scenarios and initial live diagnostics",
+      "scope": "Finite Celtic region1/region2 map/save/source hashing, real launcher manifest, public Qt campaign/report controls, bounded ordinary-input mission drivers and separate semantic/history assertions. One dedicated default800x600 natural defeat completes report OK/fresh Main return/automatic normal Quit with exact independent history/presentation match at its historical source phase. Diagnostic04 reaches original natural victory/title/21strings/OK return but blocks on first Realm Map tutorial. Later diagnostics expose no-button callback0x10 readiness omission, a failed direct bridge bypass and a sequence-only dialogue detector. Current authored policy restores the named Bridge, documented W/Return controls and bounded actor-state quiet hints, alongside original report/tutorial guards. Full current victory/region2/normal Quit and remaining configuration cases require fresh execution; no original simulation/balance, populated lifetime or replacement claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5574864,
+          "scope": "Previously researched original battle launch entry; static scenario frontier, not new execution or whole-function recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5574160,
+          "scope": "Previously researched original battle return entry; progression semantics remain original-owned."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4671392,
+          "scope": "Original report OK callback, reused as a required observation boundary; no fresh execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4632512,
+          "scope": "Passive original World/gameplay observation boundary in the failed region1runs only; no whole-function, mission completion, progression/reward or current-code equivalence claim."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-progression-preparation-20261101.md",
+        "research/runtime/persistence-progression.md",
+        "research/runtime/campaign-natural-report.md",
+        "research/runtime/rendering-progression-live-20261101.md",
+        "research/runtime/campaign-progression-validation-20261101.md"
+      ],
+      "implementation": [
+        "tools/rendering_progression.py",
+        "tools/prepare-rendering-progression.py",
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/campaign-outcome-input.py",
+        "tools/review-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "tools/campaign_gameplay.py",
+        "tools/campaign_spell.py",
+        "tools/campaign_input_admission.py",
+        "tools/campaign_route.py",
+        "tools/campaign_report.py",
+        "tools/campaign_return.py",
+        "tools/campaign_dialogue.py"
+      ],
+      "tests": [
+        "tests/test-rendering-progression.py",
+        "tests/test-rendering-pilot.py",
+        "tests/test-rendering-normal-acceptance.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-report.py",
+        "tests/test-campaign-input-admission.py",
+        "tests/test-campaign-input-observation.py",
+        "tests/test-campaign-return.py",
+        "tests/qt-input-test.cpp",
+        "tests/test-campaign-dialogue.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/campaign_input_observation.py",
+        "runtime/menu/campaign_input_admission_observe.h"
+      ],
+      "evidence": [
+        "RPS01.inputs",
+        "RPS01.guards",
+        "RPS01.pristine-restoration",
+        "RPS01.inputs-final",
+        "RPS01.guards-final",
+        "RPS02.inputs",
+        "RPS02.guards",
+        "RPS02.startup-negative",
+        "RPS02.manifest-negative",
+        "RPS02.progression-negative",
+        "RPS02.startup-diagnosis",
+        "RPS02.manifest-diagnosis",
+        "RPS02.combat-diagnosis",
+        "RPS02.defeat-default-negative",
+        "RPS02.defeat-diagnostic-negative",
+        "RPS02.progression-diagnostic-recovery",
+        "RPS02.comparison-refusal",
+        "RPS02.inputs-final",
+        "RPS02.guards-final",
+        "RPS03.inputs",
+        "RPS03.guards",
+        "RPS03.waypoints",
+        "RPS03.defeat-manual-negative",
+        "RPS03.report-order",
+        "RPS03.defeat-default-high",
+        "RPS03.defeat-default-high-comparison",
+        "RPS03.inputs-next",
+        "RPS03.guards-next",
+        "RPS03.progression-hover-negative1",
+        "RPS03.movement-guard-diagnosis",
+        "RPS03.inputs-mode-fix",
+        "RPS03.guards-mode-fix",
+        "RPS03.progression-hover-negative2",
+        "RPS03.power-refill-boundary",
+        "RPS03.inputs-refill90",
+        "RPS03.guards-refill90",
+        "RPS03.progression-hover-negative3",
+        "RPS03.camulos-tactics",
+        "RPS03.inputs-burst",
+        "RPS03.guards-burst",
+        "RPS03.progression-realm-tutorial-negative",
+        "RPS03.realm-tutorial-diagnosis",
+        "RPS03.inputs-realm-tutorial",
+        "RPS03.guards-realm-tutorial",
+        "RPS03.progression-hover-negative5",
+        "RPS03.motion16-diagnosis",
+        "RPS03.motion16-replay",
+        "RPS03.inputs-motion16",
+        "RPS03.guards-motion16",
+        "RPS03.progression-hover-negative6",
+        "RPS03.bridge-loop-diagnosis",
+        "RPS03.manual-controls-bound",
+        "RPS03.inputs-named-bridge",
+        "RPS03.guards-named-bridge",
+        "RPS03.key-native-controls",
+        "RPS03.progression-hover-negative7",
+        "RPS03.opening-dialogue-diagnosis",
+        "RPS03.quiet-replay",
+        "RPS03.inputs-quiet",
+        "RPS03.guards-quiet",
+        "RPS03.key-native-quiet",
+        "RPS03.progression-hover-negative8",
+        "RPS03.hover-contract",
+        "RPS03.victory-default-high-negative1",
+        "RPS03.native-history-refusal",
+        "RPS03.progression-nohover-negative1",
+        "RPS03.refill90-extended-boundary",
+        "RPS03.inputs-refill180",
+        "RPS03.guards-refill180",
+        "RPS03.progression-nohover-negative2",
+        "RPS03.refill180-combat",
+        "RPS03.qt-driver-fixture-current"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Complete current-source natural victory/OK/settled Realm/region2 World/normal Quit remains pending. Diagnostic04 establishes an intermediate original victory only;05dies,06loops at the bypass and07stalls at Hermes. All exact negative receipts and source preimages remain retained.",
+        "The dedicated default800x600 natural defeat and2629621500-pixel zero-difference history bind their historical source phase. Subsequent input/source edits do not renew them;640x480 and software/current matrix cases remain pending.",
+        "Actual assembled-map/RNG identity, precise first-complete-frame boundaries, populated original/native object/vptr/generation acquire/release handoffs, rewards/persistence and supported-player acceptance remain pending.",
+        "The selected unchanged save is a reload/control candidate; semantic position/compatibility are unverified and reload never supplies a progression result.",
+        "The0x70 callback predicate, coordinate/bridge choices, conservative allied firing line and six-second actor-state quiet Return hint are authored input policies. General original event taxonomy, simulation-clock/dialogue API, camera transform/selection and collision formulas are not recovered by these controls.",
+        "Historical startup/manifest/report/refill/readiness failures, budget truncation and interrupted collector limitations remain exact in their own immutable records. Static preparation/replay/Qt controls and final zero owners alone do not establish original comparison, populated lifetime, integration or live replacement.",
+        "Optional hover diagnostic08 exhausts its matching-callback contract; that contract is not nominal input acceptance. The first ordinary nominal victory attempt stops at native CPU-history refusal generation466/original exit124. A separate no-hover skip-intro probe recovers46/50mana before90seconds; current180-second refill allowance and full progression require fresh execution. Actual PoP ownership and regeneration-rate formulas are not established by position/cast/refill observations.",
+        "Source13 no-hover diagnostic02 fully recovers the observed power debit and reaches Camulos combat, with one Fireball hit100to80, but records natural defeat. Original accepted Fireball targets alone do not prove damage. Full victory/Realm/region2 and 640/software executions remain pending. This is an executed negative scenario, not victory acceptance or a recovered impact/camera formula."
+      ]
+    },
+    {
+      "id": "NP.campaign-viewport-lossless-capture",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded lossless campaign viewport history with lazy pixel decoding",
+      "scope": "Opt-in campaign capture delta-encodes each complete native viewport paint against its preceding owned paint, with periodic full keyframes and explicit decoded-byte/row budgets. Every paint/swap remains observable; reader validates exact bases, extents and reconstructed hashes and retains compressed planes for bounded on-demand comparison. Codec policy only, no original simulation, rendering output, lifetime or pixel equivalence claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/formats/campaign-viewport-capture-v2.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/acceptance_capture.hpp",
+        "tools/rendering_capture.py",
+        "tools/rendering_pilot.py"
+      ],
+      "tests": [
+        "tests/acceptance-capture-test.cpp",
+        "tests/test-rendering-capture.py",
+        "tools/test-acceptance-capture.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/host_timing_trace.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py"
+      ],
+      "evidence": [
+        "RPS03.viewport-controls",
+        "RPS03.defeat-default-high",
+        "RPS03.defeat-default-high-comparison"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Optimized/sanitized transport controls pass. One complete default 800x600 natural-defeat source phase passes full independent presentation/history comparison while preserving 10.5 GB decoded viewport bytes. Subsequent input/build edits, other modes/providers, victory/progression and populated lifetime closure remain separate; old fingerprints are unchanged."
+      ]
+    },
+    {
+      "id": "NP.campaign-source-lossless-capture",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Lossless prefix-compressed owned campaign source history",
+      "scope": "Opt-in MNMPROF4 capture compresses complete owned source/request bytes with a previous-record prefix and periodic full keys. Ordinal/base, raw extents and SHA-256 are validated by sequential readers. Legacy formats remain separate. No input/source sampling, destination seeding, original simulation or rendering output change.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/formats/campaign-source-capture-v4.md",
+        "research/runtime/campaign-progression-validation-20261101.md",
+        "apps/qt-shell/README.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/profile_capture_codec.hpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "tools/resident_capture.py"
+      ],
+      "tests": [
+        "tests/campaign-source-capture-test.cpp",
+        "tests/test-campaign-source-capture.py",
+        "tools/test-campaign-source-capture.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "tests/acceptance-world-history.cpp",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "evidence": [
+        "RPS03.source-controls",
+        "RPS03.source-negative",
+        "RPS03.defeat-default-high",
+        "RPS03.defeat-default-high-comparison"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Optimized/sanitized producer/readers and legacy/malformed controls pass. One automatic default 800x600 natural-defeat phase reconstructs all 1820 Worlds through the V4 original-only history oracle and exactly matches full presentation history. Subsequent input/build edits, remaining modes/providers, victory/progression and populated lifetime closure remain separate."
+      ]
+    },
+    {
+      "id": "NP.storage-main-stall-observation",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Storage transition targeted parent-debugger observation",
+      "scope": "Diagnostic-only enabled-intro normal-storage with existing all-COPY observation, actual admitted ring/binary and unchanged one-shot1.5s pending-ACK threshold. Observe either from startup or only after the fresh owned stage8 Mini Load click screenshot completes. At the trigger, read only the actual GDB inferior kernel wait/process/pressure state before interruption. Change no deadlines, heartbeats, ownership, actions or nominal admission. Screenshot completion does not prove original Load completion; pressure alone is not causal proof.",
+      "original": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/storage-main-stall-20261101.md"
+      ],
+      "implementation": [
+        "tools/rendering_stall_sampler.py",
+        "tools/sample-rendering-stall.py",
+        "tools/run-rendering-acceptance-pilot.py"
+      ],
+      "tests": [
+        "tests/test-storage-main-stall.py",
+        "tests/test-rendering-stall-sampler.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "tools/rendering_normal_acceptance.py"
+      ],
+      "evidence": [
+        "SM01.storage-worker01"
+      ],
+      "remaining_gaps": [
+        "Historical source-acquisition/watchdog causes and the separate late Mini Quit menu-adapter timeout remain unresolved. Finite passes do not retire failures; complete operations, broader journeys, caller ABI/font/DC/unknown branches, original recovery and both final verdicts remain pending."
+      ]
+    },
+    {
+      "id": "NP.copy-diagnostic-worker",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Bounded asynchronous COPY proof processing",
+      "scope": "Keep GPU before/after readbacks on their GL owner, then move owned source/before/actual planes and frozen sequence/geometry/ancestry into one bounded FIFO worker for independent CPU expectation, complete comparison, hashes and witness writes.512MiB includes in-flight/expected memory and256jobs; overflow refuses proof, errors remain visible and terminal cleanup joins after END handling. No expected pixels enter rendering/history/CPU replies; no deadline, lease or gameplay changes. Does not establish the historical cause of all watchdog/menu failures.",
+      "original": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/storage-main-stall-20261101.md"
+      ],
+      "implementation": [
+        "renderer/diagnostic_worker.hpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp"
+      ],
+      "tests": [
+        "tests/diagnostic-worker-test.cpp",
+        "tests/render-copy-diagnostics-test.cpp",
+        "tools/test-copy-diagnostic-worker.py"
+      ],
+      "validation_dependencies": [
+        "renderer/commands.hpp",
+        "renderer/blit.hpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "evidence": [
+        "SM01.storage-worker01"
+      ],
+      "remaining_gaps": [
+        "Historical source-acquisition/watchdog causes and the separate late Mini Quit menu-adapter timeout remain unresolved. Finite passes do not retire failures; complete operations, broader journeys, caller ABI/font/DC/unknown branches, original recovery and both final verdicts remain pending.",
+        "613 native COPY destinations lack individual diagnostics after bounded observer exhaustion. Preserve every truncated/success=false diagnostic and the exact missing original-call intervals in EP06.frontier02; full presented-history equality does not prove these unpresented outputs."
+      ]
+    },
+    {
+      "id": "NP.rendering-storage-acceptance",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Explicit default/software storage acceptance",
+      "scope": "Admit only the four finite Save/Load/restored-World/changed-draft-Cancel leaves per explicitly named default or software configuration. Reuse the strict normal collector/comparison admission, current complete sources, unique actual sessions and both640x480/800x600 World domains for each target. Software requires the actual Mesa provider plus its flag. Preserve all156rows, other journeys/operations/gates and both final pending decisions; finite passes do not retire historical failures. Legacy EP04 progress remains default-only.",
+      "original": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/storage-main-stall-20261101.md"
+      ],
+      "implementation": [
+        "tools/rendering_storage_acceptance.py",
+        "tools/join-rendering-storage-acceptance.py"
+      ],
+      "tests": [
+        "tests/test-rendering-storage-acceptance.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_acceptance.py",
+        "docs/native-rendering-closure.json",
+        "tests/test-rendering-normal-acceptance.py"
+      ],
+      "evidence": [
+        "SM01.storage-worker01"
+      ],
+      "remaining_gaps": [
+        "Historical source-acquisition/watchdog causes and the separate late Mini Quit menu-adapter timeout remain unresolved. Finite passes do not retire failures; complete operations, broader journeys, caller ABI/font/DC/unknown branches, original recovery and both final verdicts remain pending.",
+        "613 native COPY destinations lack individual diagnostics after bounded observer exhaustion. Preserve every truncated/success=false diagnostic and the exact missing original-call intervals in EP06.frontier02; full presented-history equality does not prove these unpresented outputs."
       ]
     }
   ],
@@ -365952,6 +366355,1381 @@
           "equals": "unresolved"
         }
       ]
+    },
+    {
+      "id": "RPS01.inputs",
+      "kind": "static",
+      "scope": "Static hash-bound31candidate map sections,124MAP/NOD/EVT/MPSfiles,configuration recipes and unchanged355405byte save control; no gameplay execution.",
+      "record": "research/runtime/rendering-progression-results-20261101/inputs-03.json",
+      "sha256": "0b2fa7b5a6277cb71412e009feda4198ec1abd84c45e57a56ccdb4427441f753",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS01.guards",
+      "kind": "static",
+      "scope": "Preparation mutation controls, companion regressions and actual Qt Release player link only; no live/original campaign validation.",
+      "record": "research/runtime/rendering-progression-results-20261101/guards-01.json",
+      "sha256": "1a27e7dde3b812b2257451d1b37b76d008e8b5e2e5ff4033fe3b30f9ff420c60",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS01.pristine-restoration",
+      "kind": "static",
+      "scope": "Private input restoration with exact preimage/canonical executable hashes and original-manifest checks; earlier driver-source phase remains historical.",
+      "record": "research/runtime/rendering-progression-results-20261101/inputs-02.json",
+      "sha256": "058b188de3f0b7ef0d7f085c6b581b4af2144b222eb752181c3f4f3470b1c9f8",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS01.inputs-final",
+      "kind": "static",
+      "scope": "Final static input identities after the final helper-cleanup source review; same finite candidate maps and unchanged save control, no gameplay execution.",
+      "record": "research/runtime/rendering-progression-results-20261101/inputs-04.json",
+      "sha256": "0a3ff21c42b4cf52ba9417ced01de59e793d2a601a30e126f67ef517571f5d4f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS01.guards-final",
+      "kind": "static",
+      "scope": "Fresh28preparation/companion tests and final Release Qt link after final helper cleanup; no original-game or live campaign execution.",
+      "record": "research/runtime/rendering-progression-results-20261101/guards-02.json",
+      "sha256": "0bda9f6932cadb1acd2e69e2772562500bb226dd0b2e47a5c32b11038d9dcf10",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS02.inputs",
+      "kind": "static",
+      "scope": "Source-bound finite Celtic maps/save control plus the required real launcher TSV; no mission completion.",
+      "record": "research/runtime/rendering-progression-results-20261101/inputs-08.json",
+      "sha256": "e35839aa45131ba4034a6b6b75af83e37f90806ce2ba7b6972c6b38af7d6f78b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS02.guards",
+      "kind": "static",
+      "scope": "37 tooling/control checks and actual Release player/fixture links; no original mission or pixel equivalence.",
+      "record": "research/runtime/rendering-progression-results-20261101/guards-06.json",
+      "sha256": "9dfe0a4f172ae1e468034e2622bdf8632a608f2b106dd15186b6c7c6facce8c4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS02.startup-negative",
+      "kind": "static",
+      "scope": "Retained idle Qt startup failure, manually terminated before any original execution; no campaign validation.",
+      "record": "research/runtime/rendering-progression-results-20261101/progression-default-high-01.json",
+      "sha256": "c0d512dc2e7732e19d6631854f7f7ab44ee040cbeaaf847cd2293ef3a620cf4f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS02.manifest-negative",
+      "kind": "static",
+      "scope": "Actual public launcher refused a missing installation manifest before original process startup; no campaign validation.",
+      "record": "research/runtime/rendering-progression-results-20261101/progression-default-high-02.json",
+      "sha256": "b9f8ad99297f78064828dc64bd9b9d6bb0ffe95f69303e4d81d4f18786e7f1b5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS02.progression-negative",
+      "kind": "live_observation",
+      "scope": "Actual full-intro fresh Celtic region1 800x600 World reached natural player death instead of progression. No original report OK, clean retirement, later map, whole-session pixel proof or engine milestone promotion.",
+      "record": "research/runtime/rendering-progression-results-20261101/progression-default-high-03.json",
+      "sha256": "4d9553145f55e8f50b8d5bc6d1ab1c56923603d3c6f75344a0cbfb9f57af6a32",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS02.startup-diagnosis",
+      "kind": "static",
+      "scope": "Missing public Launch diagnosis and actual Qt synthetic control regression correction; no original execution.",
+      "record": "research/runtime/rendering-progression-results-20261101/startup-diagnosis-01.json",
+      "sha256": "b97260b8aee417c07b88e5fe90615069a3803458c950aee0814999b2bd8b0733",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS02.manifest-diagnosis",
+      "kind": "static",
+      "scope": "Required public-launch manifest refusal and corrected real preflight; no original execution.",
+      "record": "research/runtime/rendering-progression-results-20261101/launch-manifest-diagnosis-01.json",
+      "sha256": "91de39259762f700170a6b1c45bb665ef6fe1bb9999d7cf692f3152f2ecf76d3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS02.combat-diagnosis",
+      "kind": "static",
+      "scope": "Read-only analysis of retained failed progression: natural original defeat, unchanged hero mana and zero player casts. Diagnosis success is not successful progression or renderer equivalence.",
+      "record": "research/runtime/rendering-progression-results-20261101/combat-diagnosis-01.json",
+      "sha256": "9f3724ae6b5fbc2550445693e704ead4ef84357c3c6fbc0417bd9ac5fe024f5b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/renderer_defect_established",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS02.defeat-default-negative",
+      "kind": "live_observation",
+      "scope": "Independent full-intro default defeat attempt refused an actual menu adapter timeout before World entry. No natural report or clean return.",
+      "record": "research/runtime/rendering-progression-results-20261101/defeat-default-high-01.json",
+      "sha256": "4fcbbc2dd340d4090570dccc7c8eacb540fede9c774a89fbf2bcfe21b7e89ec7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS02.defeat-diagnostic-negative",
+      "kind": "live_observation",
+      "scope": "Independent skip-intro defeat diagnostic entered800x600region1World, then original producer exited124and resident producer cancelled after about21seconds of gameplay. No natural result, original OK, clean retirement or pixel proof.",
+      "record": "research/runtime/rendering-progression-results-20261101/defeat-combat-diagnostic-02.json",
+      "sha256": "8c776e418555c5fe03afd755053c6561c888d23d75a231ff833d6bcf6f219ddd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS02.progression-diagnostic-recovery",
+      "kind": "live_observation",
+      "scope": "Failed skip-intro progression: original defeat after two accepted Zombies/two Fireballs. Raw custody recovery only; original collector ended without final receipt, so lost in-memory execution assertions are not reconstructed. Terminal viewport record explicitly refuses stored-budget exhaustion.",
+      "record": "research/runtime/rendering-progression-results-20261101/progression-combat-diagnostic-04-recovery-01.json",
+      "sha256": "3daef13f5ec4161e350c11d9d49ba43654f6971869e6c5544282966f665904f1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/recovery_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/prepared_sources_match_recovery",
+          "equals": true
+        },
+        {
+          "pointer": "/current_player_matches_retained_binary",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/success",
+          "equals": false
+        },
+        {
+          "pointer": "/viewport/last/complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS02.comparison-refusal",
+      "kind": "static",
+      "scope": "Actual comparator refuses the failed diagnostic before oracle execution with Incomplete actual public acquisition. Recorded engine/capture sources are historical after collector checkpoint edit; this is no pixel/equivalence validation.",
+      "record": "research/runtime/rendering-progression-results-20261101/defeat-combat-diagnostic-02-compare-01.json",
+      "sha256": "ffcac8aea539bd55035111600422b49c2d33f15466b26fa1bd9f4182720e94a9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/error",
+          "equals": "Incomplete actual public acquisition"
+        }
+      ]
+    },
+    {
+      "id": "RPS02.inputs-final",
+      "kind": "static",
+      "scope": "Final source-only collector checkpoint phase, finite selected maps and unchanged save control; no prospective live mission validation.",
+      "record": "research/runtime/rendering-progression-results-20261101/inputs-10.json",
+      "sha256": "929140c1244cf1107fbe13cb035be3dd185833c9ccf8d783723fd32216ec9d51",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS02.guards-final",
+      "kind": "static",
+      "scope": "Final37tooling/control checks and actual Release player/fixture links after the execution-checkpoint correction; no prospective original mission, interrupted-collector or pixel-equivalence validation.",
+      "record": "research/runtime/rendering-progression-results-20261101/guards-07.json",
+      "sha256": "8ddc29c95aed0c867f820bc21fba68fece2897447d83a90032dbc7f5cbd5005a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.viewport-controls",
+      "kind": "native_integration",
+      "scope": "Optimized/sanitized lossless viewport worker controls and independent lazy reader reconstruct every source paint. Synthetic diagnostic transport only.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-codec-controls-01.json",
+      "sha256": "fc29898ac134a5113427a4d1702ac68efe790f7a33348c87bab3970f323cfd24",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.source-controls",
+      "kind": "native_integration",
+      "scope": "Optimized/sanitized V4 producer, C++/Python exact decoding, malformed and legacy controls. Synthetic transport only, no original execution.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-source-controls-03.json",
+      "sha256": "5eb987e3433403f63f3db037a3519b37d67b5a8548d5e861667047080ac504fa",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.waypoints",
+      "kind": "static",
+      "scope": "Pinned EVT fixed-section translation calibrated against retained original spawn anchors; no live power capture or mana recovery proof.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-waypoint-calibration-01.json",
+      "sha256": "68045574b4bcc1d82c37041526c9c1755c635d9b48fb35443061d01d1447408b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.inputs",
+      "kind": "static",
+      "scope": "Fresh canonical executable/map/save-control and real launcher source pins.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-inputs-02.json",
+      "sha256": "2c8fe3c5a4e053f7d491331e0fb7e8fac5199ed8fb962302c147e3b2fa927cff",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.guards",
+      "kind": "static",
+      "scope": "52 tooling and Qt public-control checks plus real player links; no original mission comparison.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-guards-02.json",
+      "sha256": "62c4283cd2c2d5738174f8c06c63a455cb5c7658890e502583ca1e1cf7f47c20",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.defeat-manual-negative",
+      "kind": "live_observation",
+      "scope": "Original natural defeat, report OK and return occurred, but the helper waited on the wrong World-pop boundary. Manual Main Quit; failed automatic acquisition retained.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-defeat-default-high-01.json",
+      "sha256": "4df679c62654a1a1e619eab48296b320a670fa43923e2f8c0c083db8ba0655cd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS03.report-order",
+      "kind": "static",
+      "scope": "Exact retained report callback begins before World pop; original OK return, original parent return and manual cleanup are separate from automatic success.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-report-boundary-diagnosis-01.json",
+      "sha256": "75a364e2c152013bc8eac8eb568cdca3af7b24cd0da7888be8437ea74b4f8507",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/callbacks/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/automatic_case_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS03.source-negative",
+      "kind": "native_integration",
+      "scope": "Exact decoding succeeded but level-1 compression missed the synthetic storage-ratio guard. Negative source phase retained; level-3 rerun has a new evidence ID.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-source-controls-02.json",
+      "sha256": "1feb1b9d09d0d3a7be63b32640cd4679dc2174b5b66a3f461652831d139c5042",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS03.defeat-default-high",
+      "kind": "live_observation",
+      "scope": "Separate full-intro default 800x600 fresh campaign reaches original natural defeat, all 21 report strings, original OK callback, fresh Main return ACK and automatic normal Main Quit. Complete untruncated lossless captures, exact as-built sources and final zero owners; independent comparison and populated lifetime closure remain separate.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-defeat-default-high-02.json",
+      "sha256": "531a4a04c7b319081dd0b3ca2fe037e5abe9f7fba206f7cc952be7aa24000b72",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/player_binary_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/compiler_closure_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/artifact_retention_complete",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.defeat-default-high-comparison",
+      "kind": "live_observation",
+      "scope": "Independent original-only continuous history reconstructs 1820 Worlds / 2055857 draws and exactly matches all 3007 captured native presentations (2949 World swaps), totaling 2629621500 pixels on the full-intro automatic default 800x600 natural-defeat route. No populated lifetime, later map, victory or supported-player acceptance claim.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-defeat-default-high-02-comparison.json",
+      "sha256": "18d8cb90ecd08bccd8b9f06f2b35294e2ab0e5b778cb28dc6d3d80f070132edd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/comparison/remaining_surfaces",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "RPS03.inputs-next",
+      "kind": "static",
+      "scope": "Final ordinary-input power/aim/actual-frame and explicit optional passive-hover source/input pins; no live mission claim.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-inputs-04.json",
+      "sha256": "d20fe1b197dadeb2d32c3f705828740e46a51e45ee87d33b13a08ace0d6324f6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.guards-next",
+      "kind": "static",
+      "scope": "92 tooling/original-hover/geometry/semantic/Qt public-control checks and real Release player/fixture links for the new input phase; no original mission execution.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-guards-03.json",
+      "sha256": "7de9d37e0ed6841d352173053ca3d19c3ec84e97ce75767c37376a3da504ec57",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.progression-hover-negative1",
+      "kind": "live_observation",
+      "scope": "Full-intro 800x600 optional-hover diagnostic verifies opening anchors but the new mode-0-only movement guard refuses all 25 right orders (21 fresh mode-1 hovers, four timeouts). No right button, power capture, combat or progression outcome is established. Exact negative source phase retained.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-progression-hover-high-01.json",
+      "sha256": "72e10b688ab036f6e207f793a143131880473f65ca207829a9cde04d44a9e09f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.movement-guard-diagnosis",
+      "kind": "static",
+      "scope": "Exact original-input prefix and helper receipt distinguish 21 fresh mode-1 movement refusals from four hover timeouts, with zero right presses. The mode-0-only diagnostic guard is the failure; subsequent corrected movement/power/progression requires fresh execution.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-movement-guard-diagnosis-01.json",
+      "sha256": "af679cb32a402db7f597c0316609d036abedb0fd3e84e2c9da3f1f17767c86e2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/right_presses",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "RPS03.inputs-mode-fix",
+      "kind": "static",
+      "scope": "Corrected source pins permit the observed selected-ground mode 1 while preserving spell-mode refusal; unchanged canonical maps/save control. No fresh original movement/progression claim.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-inputs-06.json",
+      "sha256": "2fe376fa5dc88e60897de5adb65c786dbbea410f47bc5a81ce4728baf74a82b9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.guards-mode-fix",
+      "kind": "static",
+      "scope": "92 corrected-source Python/original-hover/Qt control checks and actual player/fixture links; fresh original progression remains separate.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-guards-04.json",
+      "sha256": "a23fef0be323ed99024fc65fb72628492b8cd11cc425ba0cf1e15e28d348240a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.progression-hover-negative2",
+      "kind": "live_observation",
+      "scope": "Corrected mode-1 input moves the original wizard to the exact power tile, spends 17 mana on a living owned Zombie and recovers 16 mana. The 60-second policy refuses advancement at 49/50 mana; no mission outcome or later map. Exact negative source phase retained.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-progression-hover-high-02.json",
+      "sha256": "da5a55e0c55a8f8b1a29d9dca773e8490535811454b4850a9474acbd760a3c43",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS03.power-refill-boundary",
+      "kind": "static",
+      "scope": "Exact passive original samples distinguish real power-tile movement/summon/recovery from the driver refill deadline. The corrected 90-second window still needs fresh mission execution.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-power-refill-boundary-01.json",
+      "sha256": "e62a44e1ae0622aa98aa97ee68ee19bf2bcd0fe60c4a93294507414d79235059",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.inputs-refill90",
+      "kind": "static",
+      "scope": "Source/input pins for the measured 90-second refill policy; original game/map/save bytes unchanged.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-inputs-07.json",
+      "sha256": "a6973d7fd262a4bec6f183b470105e61746a9c156b5ebb2dfa924f6f15104a4a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.guards-refill90",
+      "kind": "static",
+      "scope": "92 current-source controls and actual Qt links with complete lossless inline stdout/stderr; all 15 command output byte hashes survive SQLite readback. No original victory/progression claim.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-guards-05.json",
+      "sha256": "fbf312f7012ace1c68150316c6f224b6bf915f8707cee3a3f59af87b989f1275",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.progression-hover-negative3",
+      "kind": "static",
+      "scope": "Natural player defeat after original power capture/full mana recovery and real Camulos damage. No victory, progression or independent comparison.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-progression-hover-high-03.json",
+      "sha256": "fe779bf138c116b8d7181a6b4b8892409422cddf96aad896eb968ef584298046",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS03.camulos-tactics",
+      "kind": "static",
+      "scope": "Exact negative-probe cast/damage observations, including one owned-Zombie Fireball hit. Diagnosis of candidate tactics only.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-camulos-tactics-01.json",
+      "sha256": "c92b11b3c3e873c24f96f1b7943a2b8be2533a899e5738befc75299611e5e394",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.inputs-burst",
+      "kind": "static",
+      "scope": "Input/source pins for bridge bypass, boss-only bounded selected-Fireball burst and allied firing-line guard; original simulation unchanged.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-inputs-08.json",
+      "sha256": "bfaebcf446b5d7e9eb486a26a94a2918518571e1786f8a81afac3d42f56e24d5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.guards-burst",
+      "kind": "static",
+      "scope": "93 preparation controls and actual Qt player/control-fixture links, including living/dead/behind/beyond allied firing-line policy controls. No mission completion claim.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-guards-06.json",
+      "sha256": "9bc8b023d8ab4655028cbf4d8b85e3a8c50e224b519498b922185541322767df",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.progression-realm-tutorial-negative",
+      "kind": "live_observation",
+      "scope": "Fresh diagnostic original victory outcome1/title/21strings and original report OK/return, then World pop to Realm. Full progression fails at its deadline while original Realm Map tutorial remains visible; no region2, normal Quit or pixel comparison.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-progression-hover-high-04.json",
+      "sha256": "47dd3ea89c46f1cc5616a209b74d83827c9b34911699fad8067a2e6af7f53b73",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/states/4/outcome",
+          "equals": 1
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/artifact_retention_complete",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.realm-tutorial-diagnosis",
+      "kind": "static",
+      "scope": "Retained report/callback/pop/channel and recorded native frame identify first Realm tutorial as the missing ordinary-input transition; original settled Realm guards remain unchanged.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-realm-tutorial-01.json",
+      "sha256": "f475293d4ac3f8f902a5e2c23fa3e7d781f522097b54578c5cae19056797527a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.inputs-realm-tutorial",
+      "kind": "static",
+      "scope": "Exact source/input pins for bounded post-victory tutorial clicks after original report return/Realm pop and delayed semantic region selection.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-inputs-09.json",
+      "sha256": "a85f6ae110ca8772fbcd4b5c96644b5804148005ea1186d718c15a437d4b7a2b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.guards-realm-tutorial",
+      "kind": "static",
+      "scope": "98 preparation/Qt controls, including an actual helper process that sends ordinary tutorial clicks and waits for settled original Realm readiness. No original progression claim.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-guards-07.json",
+      "sha256": "e58e15a5159baae80396722c0b88228b122df50948f945ff6792e378f9de05f2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.progression-hover-negative5",
+      "kind": "static",
+      "scope": "Fresh corrected-return driver fails earlier with natural player death, two Fireball casts and mana remaining. The Realm tutorial step is not exercised.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-progression-hover-high-05.json",
+      "sha256": "8a9909a768063e589dea50830d029814556a3baf06580dade77d18bf8f4ffe23",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS03.motion16-diagnosis",
+      "kind": "static",
+      "scope": "Exact original no-button callback0x10 and strictly later World cast-ready sample are excluded by the former0x60 physical-input predicate. No general original event taxonomy or mission claim.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-motion16-01.json",
+      "sha256": "175dd71f8e14c43a28988e828c824b549911446e6e35417abef05229cd083796",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.motion16-replay",
+      "kind": "static",
+      "scope": "Current0x70 input policy replay of retained original negative rows admits only the strictly later World sample and refuses the equal counter. Static replay only.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-motion16-replay-01.json",
+      "sha256": "5132bc735c1034ed4670b79784f7db043e49470192b303f65a0f557c396d5aa4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.inputs-motion16",
+      "kind": "static",
+      "scope": "Exact source/input pins for observed callback0x10 plus unchanged later-World/cast/owner/button guards and bounded Realm tutorial dismissal.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-inputs-10.json",
+      "sha256": "e858dea84b06866426b8d43e6a6a2534a45e34eefdb1a09775e1b91c418850fa",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.guards-motion16",
+      "kind": "static",
+      "scope": "99 preparation and Qt controls, including callback0x10 equal/later World and held/change-button refusals; no original victory/progression claim.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-guards-08.json",
+      "sha256": "15ca1bcaae60c9f77d4dc75ae819c4010bf6405603e7a79215c6a713a0c17fe2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.progression-hover-negative6",
+      "kind": "static",
+      "scope": "Corrected pointer-return guard reaches full mana recovery but the direct bridge-bypass candidate loops until the540-second helper deadline. Wizard remains alive; no combat, tutorial or progression result.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-progression-hover-high-06.json",
+      "sha256": "8793aab8c4971386257f41d50e2fe08eff4c623f5a43dec3f3ac4ae08397266f",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS03.bridge-loop-diagnosis",
+      "kind": "static",
+      "scope": "Exact retained alive-wizard movement samples/orders and native river/bridge frame identify the failed direct bypass candidate; no original pathfinding or camera fault is established.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-bridge-loop-01.json",
+      "sha256": "0d7bdfe2e591dd9b8968227bcdcb249a332ec2e0ca740e7d33fbdfdeb30b6138",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS03.manual-controls-bound",
+      "kind": "static",
+      "scope": "Pinned primary game manual supports candidate W/wizard centering and Return/dialogue inputs. Build-specific original consumption remains pending; portrait-selection hypothesis withdrawn.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-manual-controls-02.json",
+      "sha256": "62d20f43ee3abe00207801d7e0c1d28b76f06988fc7861070866c977821a09bd",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS03.inputs-named-bridge",
+      "kind": "static",
+      "scope": "Source/input pins for documented W/Return input and calibrated original named Bridge candidate, retaining bounded Fireballs, allied firing-line and Realm tutorial guards.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-inputs-11.json",
+      "sha256": "0d4286768c47699f1b06bb06fe81a5e24ad71662caae2841cf479960c64d2bcc",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS03.guards-named-bridge",
+      "kind": "static",
+      "scope": "99 progression preparation/Qt controls against current driver/source pins; no original mission completion claim.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-guards-09.json",
+      "sha256": "baad7fb5ea41a8f6e7d4c851e8e2b796dc9ba69741cd1755c435e2494a8bb07c",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS03.key-native-controls",
+      "kind": "static",
+      "scope": "Current production Qt W/Return key-edge and Windows polling-state publication to a fake selected XCB target, normal and1.5DPI; no original keyboard consumption, camera or dialogue equivalence.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-key-input-controls-01.json",
+      "sha256": "0fa3640881c6df6d52aad87733f40f02f5676642bc0899973b7149c6e78845e3",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS03.progression-hover-negative7",
+      "kind": "static",
+      "scope": "Documented-key driver stops at the opening Hermes dialogue: sampler rows advance while actor state and diagnostic counter remain unchanged, exhausting the no-click readiness budget. No power capture, victory, tutorial return or progression.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-progression-hover-high-07.json",
+      "sha256": "ec75cdf66e47fe4d5f2dcfeb15cb7f081958a03c60625e5280b69815e9ef1c4b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS03.opening-dialogue-diagnosis",
+      "kind": "static",
+      "scope": "Exact repeated original hero state/new sample sequences and captured native Hermes frame establish the sequence-only quiet-detection omission. No general original simulation-clock or dialogue API recovery.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-opening-dialogue-01.json",
+      "sha256": "13bec60ae6196d606ca4fda80b5cb47ebaf1ce260a1c84f5d686317d20adafeb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.quiet-replay",
+      "kind": "static",
+      "scope": "Current bounded actor-state quiet policy replay requests an ordinary Return hint after6.812seconds of unchanged retained actor state despite new sample sequence numbers. No new original execution or input-consumption proof.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-quiet-replay-01.json",
+      "sha256": "075a15bd0b13d53c0c4023b1cac88ce54254013addd86f1927239f0e3e4b2675",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.inputs-quiet",
+      "kind": "static",
+      "scope": "Exact source/input pins for isolated actor-state quiet input hints, documented keys, named Bridge, bounded casts and original report/tutorial guards.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-inputs-12.json",
+      "sha256": "e9dcbb6d6588e161b80180361e87665ee6d9b976aef0d9acb83e90b0dc5d4282",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.guards-quiet",
+      "kind": "static",
+      "scope": "105 current progression preparation and Qt controls, including sampler-vs-state changes, actor activity/set changes, empty state, clock and dismissal-budget refusals. No original mission claim.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-guards-10.json",
+      "sha256": "502fbe6e67b4d2c74b43523e4a6632fa852ac7fa886635661bc78e6c8a4afab8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.key-native-quiet",
+      "kind": "static",
+      "scope": "Current source-phase production Qt W/Return polling-state and targeted fake-window edge controls at normal and1.5DPI. Actual original keyboard, dialogue, camera and mission behavior remain separate.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-key-input-controls-02.json",
+      "sha256": "d840d3b8fb7853822076357a6766e23d8cf959039baaff3e3f2ff26802091c45",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.progression-hover-negative8",
+      "kind": "static",
+      "scope": "Actor-state Return hints advance the opening, but the optional matching-Region-callback contract withholds further buttons and exhausts its budget. No natural outcome or progression.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-progression-hover-high-08.json",
+      "sha256": "f5f6b30007b24c23074846858102b780de8551bb4da20c2aa071847afa716d86",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS03.hover-contract",
+      "kind": "static",
+      "scope": "Retained advancing World samples and requested publication lack a matching original Region callback. The optional predicate is preserved; per-motion callback semantics and normal-input delivery remain separate.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-hover-contract-01.json",
+      "sha256": "300712f3ed2ddffc0f820d58509447a53cb5aba5c8d814f0e453814ad346ea10",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.victory-default-high-negative1",
+      "kind": "static",
+      "scope": "Nominal enabled-intro default800x600 reaches original power Zombie cast/debit, then native rendering fails with CPU-history refusal/original exit124 before natural outcome.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-victory-default-high-01.json",
+      "sha256": "896e8f20cb7b0bdae27e83ad368106d20fb9cd3f8dbde9e305be00818b9546ed",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS03.native-history-refusal",
+      "kind": "static",
+      "scope": "Exact nominal native CPU-history version2 refusal at generation466, family0/route0 and original exit124. Caller remains process-local/unnormalized; no guard weakening, reader fix or timeout attribution.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-native-history-refusal-01.json",
+      "sha256": "93607af388c6174c4cd5b25c22a39ccf1b29bb774a0dbed38e7bdb409e599126",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.progression-nohover-negative1",
+      "kind": "static",
+      "scope": "Ordinary no-extra-observer skip-intro diagnostic reaches power summon and monotonic mana recovery, then its90-second refill allowance ends at46/50. No combat or progression.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-progression-nohover-high-01.json",
+      "sha256": "0e836c38ae82aa5f31c18f6508732bfb9fa1f112fbebce0e4c3e3f00a1dd1857",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS03.refill90-extended-boundary",
+      "kind": "static",
+      "scope": "Exact one17-mana player cast and monotonic33-to46recovery distinguish the driver90-second allowance from extra spending. Ownership/regeneration formula is not recovered; only the driver bound becomes180seconds.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-refill90-extended-01.json",
+      "sha256": "c6a7ba6cbcd00ac5ad04ab93c899e7b4b25916b065888af528be6c05106a6170",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.inputs-refill180",
+      "kind": "static",
+      "scope": "Current source/map/save pins for180-second observed full-debit recovery within unchanged540-second helper/780-second scenario bounds.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-inputs-13.json",
+      "sha256": "01d0c9f1b7fe384799625febf1fa24b604581b3cb85fd371435f33f2ff7003fb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.guards-refill180",
+      "kind": "static",
+      "scope": "105 current progression preparation and Qt controls with exact source/build pins. No original full progression or nominal acceptance claim.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-guards-11.json",
+      "sha256": "61300977e258756648fb137319ad22c2e4ad2a82935c109c9a2da8328443dcb8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.progression-nohover-negative2",
+      "kind": "static",
+      "scope": "Current source13 ordinary-input skip-intro diagnostic recovers the full observed power summon debit and reaches combat, then original natural defeat fails the required victory discriminator. No Realm/region2 or comparison.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-progression-nohover-high-02.json",
+      "sha256": "b14faff15f8cd878a6bcd4afc559fe46aabb54a5304767927ebdf4f093cd1cd6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS03.refill180-combat",
+      "kind": "static",
+      "scope": "Retained full mana recovery, accepted original player casts, one Camulos Fireball hit100to80 and natural defeat distinguish input admission/damage from successful progression. Remaining impact/combat causes are unresolved.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-refill180-combat-01.json",
+      "sha256": "587839fc90aa76effcdd7844876595a7f101787287809bc6d83ca61436cf786a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.qt-driver-fixture-current",
+      "kind": "native_integration",
+      "scope": "Actual native Qt public startup/controller fixture integration for progression, victory, defeat, disabled and wrong-Realm cases, with pinned source and fixture binary. Service/state observations are controlled fixtures; no original game, natural report, actual Realm return/region2, populated lifetime, pixel comparison or player acceptance is established. No behavior integration status is promoted.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-guards-11.json",
+      "sha256": "61300977e258756648fb137319ad22c2e4ad2a82935c109c9a2da8328443dcb8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/checks/12/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/checks/13/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/checks/14/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/checks/15/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/checks/16/returncode",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "SM01.storage-worker01",
+      "kind": "native_integration",
+      "scope": "Current bounded proof-worker and storage admission controls, with four enabled-intro nominal default/software storage executions at both World sizes and independent original/history comparisons. Historical diagnostic stalls and the separate menu timeout stay unresolved; no whole-operation, original-recovery, live replacement or final-player verdict.",
+      "record": "research/runtime/storage-main-stall-results-20261101/joined01.json",
+      "sha256": "82cbadf55257e9b7aeb36b23102bda6b73f209e222ce76d39f608d4ec3846b85",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/passed_storage_requirements",
+          "equals": 8
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 148
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/original_recovery_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SM01.capture-burst01",
+      "kind": "live_observation",
+      "scope": "Observe complete FIFO commands/CPU-read/END capture in four finite enabled-intro nominal storage sessions at both World sizes and explicit default/software configurations, with independent original/history output. Optimized/sanitized blocked-compressor burst/count/byte/refusal controls remain separate from original behavior. No original-recovery, broad scene/provider or historical-watchdog promise.",
+      "record": "research/runtime/storage-main-stall-results-20261101/joined01.json",
+      "sha256": "82cbadf55257e9b7aeb36b23102bda6b73f209e222ce76d39f608d4ec3846b85",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/passed_storage_requirements",
+          "equals": 8
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 148
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/original_recovery_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "EP06.frontier02",
+      "kind": "native_integration",
+      "scope": "Current36-row EP06 frontier reusing four complete nominal storage sessions and47frontier/admission/route/output controls. Retain scoped actual caller/output/history facets, all missing scene/branch/lifetime/ABI boundaries and zero whole-operation/final-decision credit. Earlier negative source phases remain immutable in their own reports.",
+      "record": "research/runtime/rendering-ep06-results-20261101/storage-worker-frontier01.json",
+      "sha256": "d776bbceba07c4e2458dbfb58e420b939b68ed9207122cceca7ef3d60b032ce4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/ep06_obligations",
+          "equals": 36
+        },
+        {
+          "pointer": "/whole_operations_accepted",
+          "equals": 0
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/original_recovery_accepted",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -395285,7 +397063,8 @@
         "tests/test-native-copy-output.py"
       ],
       "evidence": [
-        "EP06.frontier01"
+        "EP06.frontier01",
+        "EP06.frontier02"
       ]
     },
     {
@@ -395304,6 +397083,117 @@
         "tools/test-main-quick-timeline.py",
         "tools/run-main-quick-timeline.py",
         "tests/menu-startup-resources-test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.default-high-natural-defeat-rps03",
+      "level": "live_observation",
+      "scope": "One full-intro default 800x600 ordinary-input natural defeat, original report/return and automatic final Quit with complete captures and exact independent full presentation/history comparison. No victory, later map, populated lifetime or supported-player claim.",
+      "behaviors": [
+        "NP.rendering-progression-scenarios",
+        "NP.campaign-source-lossless-capture",
+        "NP.campaign-viewport-lossless-capture"
+      ],
+      "evidence": [
+        "RPS03.defeat-default-high",
+        "RPS03.defeat-default-high-comparison"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py"
+      ]
+    },
+    {
+      "id": "campaign.progression-bounded-prepared-rps03",
+      "level": "headless",
+      "scope": "Prepared fresh-campaign progression driver requiring natural victory/report/settled Realm and actual Celtic region2 World, original callback/ACK checks and normal Main Quit. Physical-input helper540s/scenario780s; authored800x600/640x480 and default/software variants. This entry binds map/save/source preparation and105tooling/Qt controls only; it does not assert successful original transitions, save-state semantics, pixel comparison, populated lifetime or player acceptance.",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS03.inputs-refill180",
+        "RPS03.guards-refill180",
+        "RPS03.qt-driver-fixture-current"
+      ],
+      "tests": [
+        "tests/test-rendering-progression.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py"
+      ]
+    },
+    {
+      "id": "campaign.victory-bounded-prepared-rps03",
+      "level": "headless",
+      "scope": "Prepared fresh-campaign victory driver requiring natural victory/report/settled Realm and actual Celtic region2 World, original callback/ACK checks and normal Main Quit. Physical-input helper540s/scenario780s; authored800x600/640x480 and default/software variants. This entry binds map/save/source preparation and105tooling/Qt controls only; it does not assert successful original transitions, save-state semantics, pixel comparison, populated lifetime or player acceptance.",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS03.inputs-refill180",
+        "RPS03.guards-refill180",
+        "RPS03.qt-driver-fixture-current"
+      ],
+      "tests": [
+        "tests/test-rendering-progression.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py"
+      ]
+    },
+    {
+      "id": "campaign.defeat-bounded-prepared-rps03",
+      "level": "headless",
+      "scope": "Prepared fresh-campaign defeat driver requiring natural defeat/report/Main return, original callback/ACK checks and normal Main Quit. Physical-input helper540s/scenario780s; authored800x600/640x480 and default/software variants. This entry binds map/save/source preparation and105tooling/Qt controls only; it does not assert successful original transitions, save-state semantics, pixel comparison, populated lifetime or player acceptance.",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS03.inputs-refill180",
+        "RPS03.guards-refill180",
+        "RPS03.qt-driver-fixture-current"
+      ],
+      "tests": [
+        "tests/test-rendering-progression.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py"
+      ]
+    },
+    {
+      "id": "SC.storage-proof-worker",
+      "level": "headless",
+      "scope": "Current bounded proof-worker and storage admission controls, with four enabled-intro nominal default/software storage executions at both World sizes and independent original/history comparisons. Historical diagnostic stalls and the separate menu timeout stay unresolved; no whole-operation, original-recovery, live replacement or final-player verdict.",
+      "behaviors": [
+        "NP.storage-main-stall-observation",
+        "NP.copy-diagnostic-worker",
+        "NP.rendering-storage-acceptance"
+      ],
+      "tests": [
+        "tests/diagnostic-worker-test.cpp",
+        "tests/render-copy-diagnostics-test.cpp",
+        "tests/test-storage-main-stall.py",
+        "tests/test-rendering-stall-sampler.py",
+        "tests/test-rendering-storage-acceptance.py",
+        "tests/test-rendering-normal-acceptance.py"
+      ],
+      "evidence": [
+        "SM01.storage-worker01"
+      ]
+    },
+    {
+      "id": "SC.storage-command-capture-burst",
+      "level": "live_observation",
+      "scope": "Observe complete FIFO commands/CPU-read/END capture in four finite enabled-intro nominal storage sessions at both World sizes and explicit default/software configurations, with independent original/history output. Optimized/sanitized blocked-compressor burst/count/byte/refusal controls remain separate from original behavior. No original-recovery, broad scene/provider or historical-watchdog promise.",
+      "behaviors": [
+        "NP.acceptance-capture-worker"
+      ],
+      "tests": [
+        "tests/acceptance-capture-test.cpp",
+        "tools/test-acceptance-capture.py"
+      ],
+      "evidence": [
+        "SM01.capture-burst01"
       ]
     }
   ],
@@ -396775,7 +398665,7 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "33c8414ce87d2d3a077ec99637aaf5d5480ca0348e700ced0de1c2c17acdb3e3",
+      "sha256": "00c2ea369607409902388609f661519c106c703634107585807c4227fc0ef378",
       "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement. UI47 adds scoped isolated-original region-selection comparison; no live Realm integration. UI48 adds original Character action recovery with price refresh stubbed, no native/live Character. UI49 compares bounded positive-domain Character pricing; native failed-input policy stays separate, live menus pending. UI50 adds experimental opt-in Character headless integration and original80-record wizard-selection finding; genuine live progression remains pending."
     },
     {
@@ -397122,7 +399012,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-919a54a245e193e727368884ff7a2870617f5dcd849767a8a38fb9191e55fdd5.json",
-    "sha256": "919a54a245e193e727368884ff7a2870617f5dcd849767a8a38fb9191e55fdd5"
+    "path": "research/runtime/coverage/source-index-c854534e6810a6deb5dc526f619ac122a089809c622c47fd833f12bf1c4c9e5e.json",
+    "sha256": "c854534e6810a6deb5dc526f619ac122a089809c622c47fd833f12bf1c4c9e5e"
   }
 }

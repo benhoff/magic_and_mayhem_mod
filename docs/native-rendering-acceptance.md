@@ -1,19 +1,18 @@
 # Native rendering acceptance record
 
-The [2026-11-01 EP06 frontier](../research/runtime/rendering-ep06-20261101.md)
-now binds all 36 operation/configuration obligations to reviewed evidence and
-specific next proofs. It adds no whole-operation acceptance: nominal storage
-failed at the return-to-Main command boundary and the software attempt failed
-before player launch. Individual checked COPY calls and three matching-source
-component leads remain reusable at their stated scope. Existing EP04 leaves
-below retain their historical source phase; neither final verdict advances.
+The [reviewed storage follow-up](../research/runtime/storage-main-stall-20261101.md)
+now records 8 passed finite storage/Cancel requirements and 148 pending requirements
+in its selected current-source join. Four enabled-intro default/software cases
+prove both 640x480 and 800x600 World domains, both rebuilds, original Save/Mini/Main
+Load, changed-draft Cancel, independent full viewport/history and normal retirement.
+The same captures refresh the 36-row EP06 frontier; no whole operation passes.
+Historical watchdog/menu failures and both final decisions remain unresolved.
 
-The [EP04 continuation](../research/runtime/rendering-normal-acceptance-20261031.md)
-now records six passed default-player requirements and 150 pending obligations
-(72 default, 78 software). All 1,410 recorded World swaps in the selected Quick,
-800×600 storage and 640×480 storage runs match the independent original/history
-reference. This includes three concrete repairs: actual fullscreen geometry,
-Preferences CPU history synchronization and ready-in-ACK ownership.
+The earlier [EP04 continuation](../research/runtime/rendering-normal-acceptance-20261031.md)
+recorded six default-player requirements and 150 pending obligations at its own
+source phase. Its 1,410 World swaps and the earlier EP06 failed-storage/software
+preparation results remain immutable historical observations. They are not added
+to the current join by changing source hashes.
 
 The [progress record](../research/runtime/rendering-normal-results-20261031/progress-01.json)
 also retains the unresolved `RN31.G.first-world-watchdog` failure. It blocks the

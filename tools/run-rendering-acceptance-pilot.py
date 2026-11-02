@@ -10,7 +10,10 @@ def sha(path):
 def module(name):
  spec=importlib.util.spec_from_file_location(name,ROOT/'tools'/name);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--operation-census',action='store_true',help='Closed COPY observations on an otherwise unchanged nominal normal route');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--operation-census',action='store_true',help='Closed COPY observations on an otherwise unchanged nominal normal route');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--sample-storage-main',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');a=p.parse_args()
+ if a.sample_storage_main:
+  if a.scenario!='normal-storage' or a.skip_intros or a.operations_provenance or a.stall_intro_host or a.stall_world_host:p.error('Storage Main sampling requires enabled-intro normal-storage without injected faults')
+  a.sample_stalls=True;a.diagnostic_only=True
  if a.operation_census and (a.scenario=='pilot' or a.operations_provenance or a.skip_intros or a.diagnostic_only or a.sample_stalls or a.stall_intro_host or a.stall_world_host):p.error('Operation census requires an unchanged nominal normal route with enabled intros')
  if a.operations_provenance:
   if a.scenario!='normal-quick':p.error('Operations provenance requires bounded normal-quick')
@@ -23,7 +26,7 @@ def main():
   if a.skip_intros or a.scenario!='normal-quick':p.error('Intro host fault requires normal-quick with enabled intros')
   a.diagnostic_only=True
  if a.sample_stalls:
-  if a.scenario!='normal-quick':p.error('Parent-debugger sampling requires normal-quick')
+  if a.scenario not in ('normal-quick','normal-storage'):p.error('Parent-debugger sampling requires a normal diagnostic route')
   a.diagnostic_only=True
  normal=a.scenario!='pilot';prefix='research/runtime/rendering-normal-results-20261031/' if normal else PREFIX
  if not a.report.startswith(prefix) or (ROOT/a.report).exists():p.error('New owned immutable report required')
@@ -79,6 +82,12 @@ def main():
  if a.sample_stalls:
   env.update(MNM_ACCEPTANCE_DIAGNOSTIC='1',MNM_ACCEPTANCE_SAMPLE_STALLS='1',MNM_ACCEPTANCE_STALL_SAMPLER_DIR=str(out/'sampler'))
   report['configuration']['parent_debugger_stall_sampling']=dict(threshold_seconds=1.5,max_stack_samples=1,deadline_or_ownership_changed=False)
+ if a.sample_stalls and a.scenario=='normal-storage' and not a.sample_storage_main:
+  env.update(MNM_NATIVE_COPY_DIAGNOSTICS=str(out/'copy-diagnostics'),MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE='all')
+  report['configuration']['storage_stall_diagnostic']=dict(arm_after='startup',copy_scope='all',changes_actions=False,changes_deadlines=False)
+ if a.sample_storage_main:
+  env.update(MNM_ACCEPTANCE_SAMPLE_STORAGE_MAIN='1',MNM_NATIVE_COPY_DIAGNOSTICS=str(out/'copy-diagnostics'),MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE='all')
+  report['configuration']['storage_main_stall_diagnostic']=dict(arm_after='campaign-storage-8.png',copy_scope='all',changes_actions=False,changes_deadlines=False)
  if a.trace_timing:
   env['MNM_RESIDENT_POLL_TIMING']='1'
   report['configuration']['bounded_host_timing_trace']=True

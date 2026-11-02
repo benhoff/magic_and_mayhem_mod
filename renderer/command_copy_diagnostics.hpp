@@ -13,6 +13,8 @@ public:
     bool before(const SurfaceCommand&,GlBlitter&,SurfaceId source,SurfaceId target);
     void after(const SurfaceCommand&,GlBlitter&,SurfaceId target);
     void committed(const SurfaceCommand&);
+    // Terminal cleanup only; never join the sink before acknowledging END.
+    void finish();
 private:
     struct Impl;
     std::unique_ptr<Impl> impl_;

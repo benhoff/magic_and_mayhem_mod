@@ -84,7 +84,9 @@ def fresh_hover(rows, point, after_sequence, already_there=False, require_cast=F
                 # The latest Qt publication cannot preserve obsolete proof.
                 motion_counter = None
                 motion_sequence = row['sequence']
-            elif row.get('callback_mask',0) & 96 and not row['mouse_flags']:
+            # Include the observed 0x10 no-button position return. A
+            # strictly later World sample still supplies hover/cast readiness.
+            elif row.get('callback_mask',0) & 112 and not row['mouse_flags']:
                 motion_counter = row['world_counter']
                 motion_sequence = row['sequence']
         if (motion_counter is None or row.get('kind') != 1 or row['sequence'] <= motion_sequence

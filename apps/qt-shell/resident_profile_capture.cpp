@@ -1,4 +1,5 @@
 #include "resident_profile_capture.hpp"
+#include "profile_capture_codec.hpp"
 #include <QByteArray>
 #include <QElapsedTimer>
 #include <QFile>
@@ -10,34 +11,39 @@
 #include <algorithm>
 struct ResidentProfileCapture::State {
     struct Job {std::uint64_t generation,chunk;unsigned source,request;QByteArray bytes;};
-    QString path,error;
+    QString path,error;unsigned codecVersion=0;
     mutable std::mutex mutex;std::condition_variable ready;
     std::deque<Job> jobs;std::thread worker;
     std::uint64_t limit,queued=0,peakQueued=0,accepted=0,written=0,rawBytes=8,fileBytes=8,acceptedChunks=0,writtenChunks=0;
-    double workerMs=0;const bool sources;bool stopping=false,opened=false,truncated=false,finished=false;
-    explicit State(QString p,std::uint64_t bytes,bool chunks):path(std::move(p)),limit(bytes),sources(chunks){
+    double workerMs=0;const bool sources,prefix;bool stopping=false,opened=false,truncated=false,finished=false;
+    unsigned headerSize()const{return prefix?mnm::profile::HeaderSize:sources?32:20;}
+    explicit State(QString p,std::uint64_t bytes,bool chunks):path(std::move(p)),limit(bytes),sources(chunks),prefix(chunks&&qEnvironmentVariableIntValue("MNM_ACCEPTANCE_CAMPAIGN")==1){
         if(bytes<128 || bytes>256ull*1024*1024)throw std::runtime_error("Resident capture queue bound");
         worker=std::thread([this]{run();});
         std::unique_lock<std::mutex> lock(mutex);ready.wait(lock,[&]{return opened || !error.isEmpty();});
     }
     void run(){
         try {
-            QFile file(path);if(!file.open(QIODevice::WriteOnly|QIODevice::NewOnly) || file.write(sources?"MNMPROF3":"MNMPROF2",8)!=8)
+            auto codec=prefix?std::make_unique<mnm::profile::Encoder>():nullptr;
+            QFile file(path);if(!file.open(QIODevice::WriteOnly|QIODevice::NewOnly) || file.write(prefix?"MNMPROF4":sources?"MNMPROF3":"MNMPROF2",8)!=8)
                 throw std::runtime_error("Cannot create compressed resident corpus");
-            {std::lock_guard<std::mutex> lock(mutex);opened=true;ready.notify_all();}
+            {std::lock_guard<std::mutex> lock(mutex);codecVersion=codec?codec->version():0;opened=true;ready.notify_all();}
             for(;;){
                 Job job;
                 {std::unique_lock<std::mutex> lock(mutex);ready.wait(lock,[&]{return stopping || !jobs.empty();});
                     if(jobs.empty()){break;}
                     job=std::move(jobs.front());jobs.pop_front();}
-                QElapsedTimer timer;timer.start();const auto compressed=qCompress(job.bytes,1);
-                if(compressed.isEmpty() || std::uint64_t(compressed.size())>std::uint64_t(job.bytes.size())+std::uint64_t(job.bytes.size())/1000+128)
+                QElapsedTimer timer;timer.start();QByteArray compressed,header;
+                if(codec){auto encoded=codec->encode(job.bytes);header=mnm::profile::header(job.generation,job.chunk,job.source,job.request,encoded);compressed=std::move(encoded.packed);}
+                else compressed=qCompress(job.bytes,1);
+                const auto overhead=prefix?std::uint64_t(job.bytes.size())/128+1024:std::uint64_t(job.bytes.size())/1000+128;
+                if(compressed.isEmpty() || std::uint64_t(compressed.size())>std::uint64_t(job.bytes.size())+overhead)
                     throw std::runtime_error("Resident capture compression extent");
-                {std::lock_guard<std::mutex> lock(mutex);if((sources?32:20)+std::uint64_t(compressed.size())>16ull*1024*1024*1024-fileBytes){truncated=true;jobs.clear();queued=0;break;}}
-                QByteArray header(sources?32:20,0);for(unsigned i=0;i<8;++i)header[int(i)]=char(job.generation>>(i*8));
+                {std::lock_guard<std::mutex> lock(mutex);if(headerSize()+std::uint64_t(compressed.size())>16ull*1024*1024*1024-fileBytes){truncated=true;jobs.clear();queued=0;break;}}
+                if(!codec){header=QByteArray(headerSize(),0);for(unsigned i=0;i<8;++i)header[int(i)]=char(job.generation>>(i*8));
                 const unsigned fields[]={job.source,job.request,unsigned(compressed.size())};
                 if(sources)for(unsigned i=0;i<8;++i)header[int(8+i)]=char(job.chunk>>(i*8));
-                for(unsigned k=0;k<3;++k)for(unsigned i=0;i<4;++i)header[int((sources?16:8)+k*4+i)]=char(fields[k]>>(i*8));
+                for(unsigned k=0;k<3;++k)for(unsigned i=0;i<4;++i)header[int((sources?16:8)+k*4+i)]=char(fields[k]>>(i*8));}
                 if(file.write(header)!=header.size() || file.write(compressed)!=compressed.size())throw std::runtime_error("Resident capture worker write");
                 {std::lock_guard<std::mutex> lock(mutex);queued-=std::uint64_t(job.bytes.size());if(job.chunk)++writtenChunks;else ++written;fileBytes+=header.size()+std::uint64_t(compressed.size());workerMs+=double(timer.nsecsElapsed())/1000000.;}
             }
@@ -59,15 +65,15 @@ bool ResidentProfileCapture::append(std::uint64_t generation,const std::vector<s
     std::lock_guard<std::mutex> lock(s.mutex);
     if(s.stopping || s.truncated || !s.error.isEmpty())return false;
     if(generation!=s.accepted+1 || source.size()<16 || source.size()>16*1024*1024 || (prefix?(!s.sources || !request.empty()):request.size()<64) || request.size()>197184){s.error="Resident capture generation/extent";return false;}
-    if(s.accepted+s.acceptedChunks>=8192 || size+(s.sources?32:20)>16ull*1024*1024*1024-s.rawBytes || size>s.limit-s.queued){s.truncated=true;return false;}
+    if(s.accepted+s.acceptedChunks>=8192 || size+s.headerSize()>16ull*1024*1024*1024-s.rawBytes || size>s.limit-s.queued){s.truncated=true;return false;}
     State::Job job{generation,prefix?s.acceptedChunks+1:0,unsigned(source.size()),unsigned(request.size()),{}};
     job.bytes.reserve(qsizetype(size));job.bytes.append(reinterpret_cast<const char*>(source.data()),qsizetype(source.size()));job.bytes.append(reinterpret_cast<const char*>(request.data()),qsizetype(request.size()));
-    s.jobs.push_back(std::move(job));if(prefix)++s.acceptedChunks;else ++s.accepted;s.rawBytes+=size+(s.sources?32:20);s.queued+=size;s.peakQueued=std::max(s.peakQueued,s.queued);s.ready.notify_all();return true;
+    s.jobs.push_back(std::move(job));if(prefix)++s.acceptedChunks;else ++s.accepted;s.rawBytes+=size+s.headerSize();s.queued+=size;s.peakQueued=std::max(s.peakQueued,s.queued);s.ready.notify_all();return true;
 }
 void ResidentProfileCapture::finish(){state_->finish();}
 QJsonObject ResidentProfileCapture::report() const {
     const auto& s=*state_;std::lock_guard<std::mutex> lock(s.mutex);
-    return {{"path",s.path},{"format",s.sources?3:2},{"accepted_source_chunks",double(s.acceptedChunks)},{"written_source_chunks",double(s.writtenChunks)},{"error",s.error},{"accepted_worlds",double(s.accepted)},{"written_worlds",double(s.written)},
+    return {{"path",s.path},{"format",s.prefix?4:s.sources?3:2},{"codec",s.prefix?"zstd-prefix-sha256-v1":"qcompress-v1"},{"codec_version",int(s.codecVersion)},{"codec_level",s.prefix?3:1},{"accepted_source_chunks",double(s.acceptedChunks)},{"written_source_chunks",double(s.writtenChunks)},{"error",s.error},{"accepted_worlds",double(s.accepted)},{"written_worlds",double(s.written)},
         {"raw_bytes",double(s.rawBytes)},{"file_bytes",double(s.fileBytes)},{"queue_bytes",double(s.queued)},
         {"peak_queue_bytes",double(s.peakQueued)},{"queue_limit_bytes",double(s.limit)},{"truncated",s.truncated},
         {"finished",s.finished},{"complete",s.finished && s.error.isEmpty() && !s.truncated && s.accepted==s.written && s.acceptedChunks==s.writtenChunks},

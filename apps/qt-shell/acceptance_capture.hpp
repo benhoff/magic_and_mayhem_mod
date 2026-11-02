@@ -3,6 +3,8 @@
 #include <QDir>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
+#include <QCryptographicHash>
 #include <QtEndian>
 #include <atomic>
 #include <chrono>
@@ -22,7 +24,13 @@ public:
         directory_=qEnvironmentVariable("MNM_ACCEPTANCE_CAPTURE_DIRECTORY");
         if(directory_.isEmpty())return;
         enabled_=true;
+        // Command polls can emit many tiny fragments while a prior payload is
+        // compressing. Keep the same byte bound, with a separate finite row
+        // bound for that stream. Image capture retains its256-job limit.
+        if(role=="commands")pendingRowLimit_=4096;
         if(qEnvironmentVariableIntValue("MNM_ACCEPTANCE_NORMAL")==1)storedLimit_=1024ll*1024*1024;
+        campaign_=role=="viewport" && qEnvironmentVariableIntValue("MNM_ACCEPTANCE_CAMPAIGN")==1;
+        if(campaign_){storedLimit_=1024ll*1024*1024;rawLimit_=64ll*1024*1024*1024;rowLimit_=131072;}
         static std::atomic<unsigned> identity{0};
         const auto nonce=qEnvironmentVariable("MNM_ACCEPTANCE_CAPTURE_ID");
         if(nonce.isEmpty() || nonce.size()>128 || !QDir::isAbsolutePath(directory_)){
@@ -31,7 +39,10 @@ public:
         path_=QDir(directory_).filePath(role+"-"+QString::number(++identity)+".bin");
         try{worker_=std::thread([this]{writeLoop();});}
         catch(const std::exception&){error_="Cannot start acceptance capture worker";return;}
-        append("open",QJsonObject{{"role",role},{"session",nonce},{"version",1},{"stored_limit_bytes",double(storedLimit_)}},{});
+        QJsonObject open{{"role",role},{"session",nonce},{"version",campaign_?2:1},{"stored_limit_bytes",double(storedLimit_)},
+            {"queue_limit_bytes",double(QueueLimit)},{"queue_limit_rows",int(pendingRowLimit_)}};
+        if(campaign_){open["policy"]="campaign-lossless-viewport-v1";open["raw_limit_bytes"]=double(rawLimit_);open["row_limit"]=int(rowLimit_);open["keyframe_paints"]=128;}
+        append("open",open,{});
     }
     ~AcceptanceCapture(){finish();}
     bool enabled() const{return enabled_;}
@@ -41,14 +52,14 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
         if(!error_.isEmpty() || closed_)return;
         // Reserve the last row for a terminal record, including failures.
-        if(rows_>=16383 || bytes.size()>32*1024*1024 || raw_+bytes.size()>8ll*1024*1024*1024){
+        if(rows_>=rowLimit_-1 || bytes.size()>32*1024*1024 || raw_+bytes.size()>rawLimit_){
             error_="Acceptance capture raw/row budget exceeded";return;
         }
         metadata["host_us"]=stamp();metadata["kind"]=kind;metadata["index"]=int(rows_);
         auto record=QJsonDocument(metadata).toJson(QJsonDocument::Compact);
         const qint64 charge=record.size()+bytes.size()+8;
         if(record.size()>65536){error_="Acceptance capture metadata budget exceeded";return;}
-        if(pendingRows_>=256 || charge>QueueLimit-queued_){
+        if(pendingRows_>=pendingRowLimit_ || charge>QueueLimit-queued_){
             error_="Acceptance capture queue budget exceeded";return;
         }
         // Deep-copy even fromRawData input. The caller may immediately reuse
@@ -84,7 +95,8 @@ private:
                 fail("Acceptance capture already exists or cannot open");return;
             }
             if(file.write("MNMACE01",8)!=8){fail("Acceptance capture header");return;}
-            qint64 stored=8,writtenRaw=0;unsigned writtenRows=0;bool writable=true;
+            qint64 stored=8,writtenRaw=0;unsigned writtenRows=0,paints=0;bool writable=true;
+            QByteArray previous;QJsonArray previousExtent;int previousIndex=-1;
             for(;;){
                 Job job;
                 {std::unique_lock<std::mutex> lock(mutex_);
@@ -93,10 +105,29 @@ private:
                     job=std::move(jobs_.front());jobs_.pop_front();
                 }
                 if(writable){
+                    QByteArray encoded=job.bytes;
+                    if(campaign_ && !job.bytes.isEmpty()){
+                        auto metadata=QJsonDocument::fromJson(job.record).object();
+                        const int width=metadata["width"].toInt(),height=metadata["height"].toInt();
+                        if(metadata["kind"]!="paint" || width<1 || height<1 || qint64(width)*height*4!=job.bytes.size()){
+                            fail("Campaign capture paint extent");writable=false;
+                        }else{
+                            const QJsonArray extent{width,height};
+                            const bool delta=!previous.isEmpty() && previous.size()==job.bytes.size() && previousExtent==extent && paints%128!=0;
+                            metadata["capture_body_encoding"]=delta?"xor-previous-paint-v1":"full-rgba-v1";
+                            metadata["capture_body_base"]=delta?previousIndex:-1;
+                            metadata["capture_body_sha256"]=QString::fromLatin1(QCryptographicHash::hash(job.bytes,QCryptographicHash::Sha256).toHex());
+                            if(delta){auto* target=encoded.data();const auto* value=job.bytes.constData();const auto* prior=previous.constData();for(qsizetype i=0;i<encoded.size();++i)target[i]=char(uchar(value[i])^uchar(prior[i]));}
+                            previous=job.bytes;previousExtent=extent;previousIndex=metadata["index"].toInt();++paints;
+                            job.record=QJsonDocument(metadata).toJson(QJsonDocument::Compact);
+                        }
+                    }
                     QByteArray packed;
-                    {HostTimingTrace trace("acceptance-worker-compress");if(!job.bytes.isEmpty())packed=qCompress(job.bytes,3);}
+                    {HostTimingTrace trace("acceptance-worker-compress");if(writable && !encoded.isEmpty())packed=qCompress(encoded,3);}
                     const qint64 size=job.record.size()+packed.size()+8;
-                    if(!job.bytes.isEmpty() && packed.isEmpty()){
+                    if(job.record.size()>65536){fail("Acceptance capture metadata budget exceeded");writable=false;}
+                    if(!writable){/* Preserve the first codec refusal and drain owned jobs. */}
+                    else if(!job.bytes.isEmpty() && packed.isEmpty()){
                         fail("Acceptance capture compression failed");writable=false;
                     }else if(size>storedLimit_-stored-CloseReserve){
                         fail("Acceptance capture stored budget exceeded");writable=false;
@@ -119,8 +150,8 @@ private:
         }catch(const std::exception&){fail("Acceptance capture worker failed");}
     }
     QString directory_,path_,error_;
-    bool enabled_=false,closed_=false;
-    unsigned rows_=0,pendingRows_=0;
-    qint64 raw_=0,queued_=0,storedLimit_=256ll*1024*1024;
+    bool enabled_=false,closed_=false,campaign_=false;
+    unsigned rows_=0,pendingRows_=0,rowLimit_=16384,pendingRowLimit_=256;
+    qint64 raw_=0,queued_=0,storedLimit_=256ll*1024*1024,rawLimit_=8ll*1024*1024*1024;
     std::mutex mutex_;std::condition_variable wake_;std::deque<Job> jobs_;std::thread worker_;
 };

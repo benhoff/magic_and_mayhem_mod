@@ -54,3 +54,10 @@ cases, three companion regressions, PE32 linking and the Qt shell build pass
 with stable declared sources/compiler closure and original manifests before/after.
 The earlier include/pointer, freestanding-link and peer-field/status preparation
 failures retain separate pinned run directories; none is live campaign evidence.
+
+The RPS03 [natural victory continuation](campaign-progression-validation-20261101.md)
+observes original report OK/return and World pop to Realm, followed by the first
+Realm Map tutorial. Native settled readiness remains unavailable while that
+original overlay is open. This identifies a missing ordinary-input driver step;
+no settled-admission guard is weakened. Genuine post-tutorial Realm readiness,
+region 2 entry and complete transition acceptance remain separately pending.

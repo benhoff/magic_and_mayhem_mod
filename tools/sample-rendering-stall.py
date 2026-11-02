@@ -21,7 +21,8 @@ def main():
     if args.output.resolve() != args.output or not args.output.is_relative_to(root/'working/pilot'):
         parser.error('Sampler output must be a physical owned pilot path')
     arguments = args.arguments[1:] if args.arguments[:1] == ['--'] else args.arguments
-    return run(args.binary, arguments, OwnedRing(root, args.owner), args.output)
+    return run(args.binary, arguments, OwnedRing(root, args.owner), args.output,
+               storage_main=os.environ.get('MNM_ACCEPTANCE_SAMPLE_STORAGE_MAIN')=='1')
 
 
 if __name__ == '__main__':

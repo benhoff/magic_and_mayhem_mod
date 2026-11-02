@@ -99,3 +99,15 @@ The frontier tool runs 47 focused controls covering target admission, diagnostic
 rejection, changed/aliased raw inputs, fixed denominators, absent branches,
 partial failure proof and the existing route/output validators. Passing these
 controls validates bookkeeping/admission behavior, not renderer completion.
+
+## Storage follow-up — 2026-11-02
+
+The original failure and frontier above retain their exact source phase. The
+[reviewed follow-up](storage-main-stall-20261101.md) moves proven synchronous
+COPY proof work off GUI command service, repairs bounded command-capture bursts,
+and independently compares four complete nominal storage executions at both
+World sizes in default/software configurations. Their reused current frontier
+adds checked facets to22of36 rows; all36 whole operations remain pending.
+Historical five-second causes and the separate late menu timeout are not retired.
+Use each row's remaining scene/caller/output/ABI/lifetime proof before new broad
+acquisitions; original recovery and both final decisions remain pending.

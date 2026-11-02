@@ -144,7 +144,67 @@ def digest(path):
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
 
-def run(binary, arguments, ring, output, debugger='gdb'):
+def owned_wait_snapshot(debugger_pid, binary):
+    """Read the actual inferior's kernel wait before SIGINT can wake it."""
+    result = dict(debugger_pid=debugger_pid, inferiors=[], errors={},
+                  scope='Read-only Linux wait/pressure snapshot before debugger interruption; clocks/PIDs are local and pressure alone does not establish causality.')
+    def read(path):
+        with Path(path).open('r') as stream:
+            body = stream.read(16385)
+        if len(body)>16384:
+            raise ValueError('Unbounded process observation')
+        return body
+    try:
+        children=read(f'/proc/{debugger_pid}/task/{debugger_pid}/children').split()
+        for child in children:
+            if not child.isdecimal():raise ValueError('Invalid inferior process identity')
+            proc=Path('/proc')/child
+            if (proc/'exe').resolve()!=Path(binary):continue
+            status=read(proc/'status')
+            if f'PPid:\t{debugger_pid}\n' not in status:raise ValueError('Inferior parent changed')
+            row=dict(pid=int(child),binary=str(binary),status=status)
+            for field in ('stat','wchan','syscall','io','stack'):
+                try:row[field]=read(proc/field)
+                except (OSError,ValueError) as error:row[field+'_error']=str(error)
+            result['inferiors'].append(row)
+        if len(result['inferiors'])!=1:raise ValueError('Actual debugger inferior is ambiguous')
+    except (OSError,ValueError) as error:result['errors']['inferior']=str(error)
+    for field in ('io','memory'):
+        try:result[field+'_pressure']=read('/proc/pressure/'+field)
+        except (OSError,ValueError) as error:result['errors'][field]=str(error)
+    return result
+
+
+class StorageLoadArm:
+    """Arm only after this fresh collector's Mini Load action screenshot ends."""
+    def __init__(self, output):
+        self.path = Path(output).parent/'campaign-storage-8.png'
+        self.receipt = None
+
+    def ready(self):
+        if self.receipt is not None:
+            return True
+        if self.path.is_symlink():
+            raise ValueError('Symlinked storage sampling arm')
+        if not self.path.exists():
+            return False
+        info = self.path.stat()
+        if info.st_size < 20:
+            return False
+        if info.st_size > 16*1024**2:
+            raise ValueError('Storage sampling arm extent')
+        raw = self.path.read_bytes()
+        if not raw.startswith(b'\x89PNG\r\n\x1a\n') or not raw.endswith(b'\0\0\0\0IEND\xaeB`\x82'):
+            return False  # The original screenshot producer may still be writing.
+        if self.path.stat().st_size != len(raw):
+            return False
+        self.receipt = dict(path=str(self.path), sha256=hashlib.sha256(raw).hexdigest(),
+                            bytes=len(raw), phase='Mini Load click screenshot completed',
+                            original_load_completion_inferred=False)
+        return True
+
+
+def run(binary, arguments, ring, output, debugger='gdb', storage_main=False):
     """Run the unchanged ELF as GDB's child; sample once and preserve exit status.
 
     The caller owns output as bounded execution interchange and imports it into
@@ -161,6 +221,7 @@ def run(binary, arguments, ring, output, debugger='gdb'):
     commands = output/'commands.gdb'
     commands.write_text(GDB_COMMANDS)
     watch = PendingAckWatch()
+    arm = StorageLoadArm(output) if storage_main else None
     result = dict(schema=1, kind='parent_debugger_stall_observation',
                   threshold_seconds=watch.threshold, max_stack_samples=1,
                   player_binary=dict(path=str(binary), sha256=digest(binary)),
@@ -168,6 +229,8 @@ def run(binary, arguments, ring, output, debugger='gdb'):
                   arguments=arguments, command_file_sha256=digest(commands),
                   sample=None, observations=0, success=False, historical_watchdog_resolved=False,
                   deadline_or_ownership_changed=False)
+    if arm is not None:
+        result['storage_main_arm'] = None
     child = None
     old_handlers = {}
     def stop(signum, frame):
@@ -183,7 +246,10 @@ def run(binary, arguments, ring, output, debugger='gdb'):
         while child.poll() is None:
             if error is None:
                 try:
-                    observed = ring.read()
+                    armed = arm is None or arm.ready()
+                    if arm is not None:
+                        result['storage_main_arm'] = arm.receipt
+                    observed = ring.read() if armed else None
                     if observed is None:
                         watch.reset_interval()
                     else:
@@ -191,6 +257,7 @@ def run(binary, arguments, ring, output, debugger='gdb'):
                         result['observations'] += 1
                         if sample:
                             sample['ring'] = str(ring.path)
+                            sample['host_wait'] = owned_wait_snapshot(child.pid,binary)
                             result['sample'] = sample
                             child.send_signal(signal.SIGINT)
                 except (ValueError, OSError, KeyError, json.JSONDecodeError) as exc:

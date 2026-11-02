@@ -20,14 +20,20 @@ not been measured, so it is not a mathematically proven time-optimal schedule.
 
 ## Start here
 
-**Current EP06 checkpoint (2026-11-01):** use the
-[reviewed operation frontier](../research/runtime/rendering-ep06-20261101.md).
-It reconciles all 36 operation/configuration obligations and 17 evidence leads;
-three component leads retain matching sources. The new nominal storage run
-exposed a Save/Load-to-Main command-consumption stall. Diagnose that exact boundary
-before further broad captures, then reuse the repaired nominal default/software
-sessions for the missing operation facets. No whole operation or final decision
-was promoted. The EP01 opening instructions below retain their original phase.
+**Current storage/EP06 checkpoint (2026-11-02):** the
+[reviewed worker/storage follow-up](../research/runtime/storage-main-stall-20261101.md)
+removes synchronous COPY proof processing from GUI command service and handles
+bounded command-fragment bursts. Four complete enabled-intro storage cases at
+both World sizes and both configurations independently match original history.
+The selected current storage join passes 8 of 156 requirements; 148 and both final
+decisions remain pending. Earlier watchdog and separate menu-timeout causes stay open.
+
+Use the refreshed 36-row EP06 frontier linked in that review to close the smallest
+remaining caller/output/history/lifetime facets from the existing captures before
+requesting further sessions. All 36 whole operations are still pending. Broader
+normal journeys, campaign outcomes/progression, ABI/font/DC/unknown branches and
+fault/restart scope remain separate work. The EP01 instructions below retain their
+original phase.
 
 **Original EP01 opening task: lock execution inputs and evidence applicability.**
 Freeze the actual assembled source/compiler/binary closure, original/assets/save

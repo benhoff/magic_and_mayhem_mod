@@ -173,6 +173,14 @@ class HoverTest(unittest.TestCase):
         self.assertIsNone(fresh_hover(rows[:3],(440,310),1,require_cast=True))
         self.assertEqual(fresh_hover(rows,(440,310),1,require_cast=True)['sequence'],4)
 
+    def test_position_return_mask16_still_requires_later_world_and_no_buttons(self):
+        rows=self.rows();rows[1]['callback_mask']=16
+        self.assertIsNone(fresh_hover(rows[:3],(440,310),1,require_cast=True))
+        self.assertEqual(fresh_hover(rows,(440,310),1,require_cast=True)['sequence'],4)
+        for buttons in (1,2,4,8):
+            rows[1]['mouse_flags']=buttons
+            self.assertIsNone(fresh_hover(rows,(440,310),1,require_cast=True))
+
     def test_button_release_is_not_an_original_motion_return(self):
         for change in [dict(callback_mask=8),dict(mouse_flags=8),dict(mouse_flags=4)]:
             rows=self.rows();rows[1].update(change)

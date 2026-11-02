@@ -134,7 +134,7 @@ class ParentDebuggerTests(unittest.TestCase):
     def test_actual_parent_samples_once_continues_and_propagates_exits(self):
         self.assertIsNotNone(shutil.which('gdb'), 'Real parent-debugger control is required')
         parent = Path(os.environ['MNM_STALL_TEST_OUTPUT'])
-        for case, expected, sampled in [('sample', 0, True), ('idle', 0, False),
+        for case, expected, sampled in [('sample', 0, True), ('storage', 0, True), ('idle', 0, False),
                                         ('nonzero', 1, False), ('crash', 139, False), ('invalid', 125, False)]:
             out = parent/case
             with (parent/(case+'.log')).open('xb') as log:
@@ -153,6 +153,13 @@ class ParentDebuggerTests(unittest.TestCase):
                 self.assertIn('clock_nanosleep', text)
                 self.assertLess(value['sample']['pending_seconds'], 2.2)
                 self.assertEqual(value['exit_code'], 0)
+                host=value['sample']['host_wait']
+                self.assertNotIn('inferior',host['errors'])
+                self.assertEqual(len(host['inferiors']),1)
+                self.assertEqual(host['inferiors'][0]['binary'],value['player_binary']['path'])
+            if case == 'storage':
+                self.assertIsNotNone(value['storage_main_arm'])
+                self.assertFalse(value['storage_main_arm']['original_load_completion_inferred'])
             if case == 'invalid':
                 self.assertIn('Invalid V3', value['observation_error'])
 
@@ -162,12 +169,16 @@ def child(case, out):
         path = Path('synthetic-ring')
         def read(self):
             if case == 'invalid':return header(published=CAPACITY+1), SIZE
-            return header(published=32 if case == 'sample' else 0), SIZE
+            return header(published=32 if case in ('sample','storage') else 0), SIZE
     import resource
     resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
     binary = shutil.which('sh' if case == 'crash' else 'false' if case == 'nonzero' else 'sleep')
-    arguments = ['-c', 'kill -SEGV $$'] if case == 'crash' else [] if case == 'nonzero' else ['2.3' if case == 'sample' else '.15']
-    return run(binary, arguments, FakeRing(), out)
+    arguments = ['-c', 'kill -SEGV $$'] if case == 'crash' else [] if case == 'nonzero' else ['3' if case == 'storage' else '2.3' if case == 'sample' else '.15']
+    if case == 'storage':
+        import threading
+        witness=Path(out).parent/'campaign-storage-8.png'
+        threading.Timer(.4,lambda:witness.write_bytes(b'\x89PNG\r\n\x1a\n'+b'x'*40+b'\0\0\0\0IEND\xaeB`\x82')).start()
+    return run(binary, arguments, FakeRing(), out, storage_main=case=='storage')
 
 
 if __name__ == '__main__':

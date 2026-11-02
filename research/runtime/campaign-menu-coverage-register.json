@@ -2236,7 +2236,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/realm-live-adapter.md"
+        "research/runtime/realm-live-adapter.md",
+        "research/runtime/campaign-progression-validation-20261101.md"
       ],
       "implementation": [
         "runtime/menu/realm.h",
@@ -2616,7 +2617,9 @@
         "tools/test-realm-selection-contract.py"
       ],
       "evidence": [
-        "UI59.realm-adapter-private"
+        "UI59.realm-adapter-private",
+        "RPS03.progression-realm-tutorial-negative",
+        "RPS03.realm-tutorial-diagnosis"
       ],
       "status": {
         "understanding": "partial",
@@ -2624,7 +2627,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "RPS03 original victory return/pop reaches Realm while its first Realm Map tutorial is visible; native settled admission correctly stays unavailable. Ordinary dismissal and genuine progressed settled Realm/region2 execution remain pending; no guard is relaxed."
+      ]
     },
     {
       "id": "NP.loaded-region-menu-dispatch",
@@ -3038,11 +3044,13 @@
       "kind": "native_policy",
       "subsystem": "campaign",
       "title": "Experimental original natural campaign victory/defeat report admission",
-      "scope": "V20 experimental exact original report6 singleton/vtable,Main/Realm/World/report stack5,context5/layout0,registered original OK21 and bounded original title/21strings,outcome0/1. Older versions retain Quit provenance/defeat-only. Native copies original scores/reasons and selects original victory/defeat assets; original OK/fade/unwind and fresh Realm return remain active. Private unchanged original OK/fade plus synthetic report state/Qt peers only; no actual mission win,natural defeat,scoring/reward equivalence,persistence,full World cleanup or native drawing-lock fix.",
+      "scope": "V20 experimental exact original report6 singleton/vtable,Main/Realm/World/report stack5,context5/layout0,registered original OK21 and bounded original title/21strings,outcome0/1. Older versions retain Quit provenance/defeat-only. Native copies original scores/reasons and selects original victory/defeat assets; original OK/fade/unwind and fresh Realm return remain active. Private unchanged original OK/fade plus synthetic report state/Qt peers only; no actual mission win,scoring/reward equivalence,persistence,full World cleanup or native drawing-lock fix. A later failed progression run observes a natural original defeat before OK/return; it supplies no complete live integration proof. RPS03 later observes a complete dedicated default 800x600 natural defeat/OK/Main return/automatic Quit with independent pixel/history match at its historical source phase. A subsequent diagnostic observes natural original victory/title/21strings and OK return, then blocks on the original Realm Map tutorial. These scoped observations do not promote general integration, reward, persistence or populated lifetime claims.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/campaign-natural-report.md"
+        "research/runtime/campaign-natural-report.md",
+        "research/runtime/rendering-progression-live-20261101.md",
+        "research/runtime/campaign-progression-validation-20261101.md"
       ],
       "implementation": [
         "apps/qt-shell/CMakeLists.txt",
@@ -3438,7 +3446,12 @@
         "tools/test-region-entry-contract.py"
       ],
       "evidence": [
-        "UI62.campaign-natural-report"
+        "UI62.campaign-natural-report",
+        "RPS02.progression-negative",
+        "RPS03.defeat-default-high",
+        "RPS03.defeat-default-high-comparison",
+        "RPS03.progression-realm-tutorial-negative",
+        "RPS03.realm-tutorial-diagnosis"
       ],
       "status": {
         "understanding": "partial",
@@ -3446,7 +3459,11 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "2026-11-01: RPS02.progression-negative observes an actual original natural defeat/title/21strings in a failed progression attempt, rejected before original OK and clean return. Earlier private/synthetic validation remains historical; no live integration or scoring/reward/lifetime claim is promoted.",
+        "RPS03 default defeat is a complete historical source-phase observation/comparison; later natural victory report/OK is intermediate in a failed progression case. Fresh post-tutorial Realm readiness, later-map entry and populated lifetime closure remain pending; existing statuses are unchanged."
+      ]
     },
     {
       "id": "NP.campaign-spellbox-dispatch",
@@ -7409,6 +7426,140 @@
         {
           "pointer": "/mission_completion",
           "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS02.progression-negative",
+      "kind": "live_observation",
+      "scope": "Actual full-intro fresh Celtic region1 800x600 World reached natural player death instead of progression. No original report OK, clean retirement, later map, whole-session pixel proof or engine milestone promotion.",
+      "record": "research/runtime/rendering-progression-results-20261101/progression-default-high-03.json",
+      "sha256": "4d9553145f55e8f50b8d5bc6d1ab1c56923603d3c6f75344a0cbfb9f57af6a32",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.defeat-default-high",
+      "kind": "live_observation",
+      "scope": "Separate full-intro default 800x600 fresh campaign reaches original natural defeat, all 21 report strings, original OK callback, fresh Main return ACK and automatic normal Main Quit. Complete untruncated lossless captures, exact as-built sources and final zero owners; independent comparison and populated lifetime closure remain separate.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-defeat-default-high-02.json",
+      "sha256": "531a4a04c7b319081dd0b3ca2fe037e5abe9f7fba206f7cc952be7aa24000b72",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/player_binary_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/compiler_closure_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/artifact_retention_complete",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.defeat-default-high-comparison",
+      "kind": "live_observation",
+      "scope": "Independent original-only continuous history reconstructs 1820 Worlds / 2055857 draws and exactly matches all 3007 captured native presentations (2949 World swaps), totaling 2629621500 pixels on the full-intro automatic default 800x600 natural-defeat route. No populated lifetime, later map, victory or supported-player acceptance claim.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-defeat-default-high-02-comparison.json",
+      "sha256": "18d8cb90ecd08bccd8b9f06f2b35294e2ab0e5b778cb28dc6d3d80f070132edd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/comparison/remaining_surfaces",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "RPS03.progression-realm-tutorial-negative",
+      "kind": "live_observation",
+      "scope": "Fresh diagnostic original victory outcome1/title/21strings and original report OK/return, then World pop to Realm. Full progression fails at its deadline while original Realm Map tutorial remains visible; no region2, normal Quit or pixel comparison.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-progression-hover-high-04.json",
+      "sha256": "47dd3ea89c46f1cc5616a209b74d83827c9b34911699fad8067a2e6af7f53b73",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/states/4/outcome",
+          "equals": 1
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/artifact_retention_complete",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS03.realm-tutorial-diagnosis",
+      "kind": "static",
+      "scope": "Retained report/callback/pop/channel and recorded native frame identify first Realm tutorial as the missing ordinary-input transition; original settled Realm guards remain unchanged.",
+      "record": "research/runtime/rendering-progression-results-20261101/validation-realm-tutorial-01.json",
+      "sha256": "f475293d4ac3f8f902a5e2c23fa3e7d781f522097b54578c5cae19056797527a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
         }
       ]
     }

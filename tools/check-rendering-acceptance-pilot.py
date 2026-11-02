@@ -25,7 +25,7 @@ def main():
    report['kind']='public_native_watchdog_diagnostic_comparison'
    report['scope']+=' Injected/diagnostic execution only; ineligible for nominal acceptance.'
   sources=dict(acquired['sources']);sources.update(acquired.get('native_admission',{}).get('native_only',{}).get('sources',{}))
-  sources.update({n:digest(ROOT/n) for n in ['tools/rendering_pilot.py','tools/check-rendering-acceptance-pilot.py','tests/acceptance-world-history.cpp','tests/acceptance-world-reference.cpp','tests/sprite-binary-reference.cpp','tests/world-raster-reference.hpp','tests/clipped-word-grayscale-cases.hpp','tools/native_player_quick_acceptance.py','tools/test-menu-observer.py','tools/rendering_normal_acceptance.py','tools/rendering_provenance_policy.py']});report['sources']=sources
+  sources.update({n:digest(ROOT/n) for n in ['tools/rendering_pilot.py','tools/rendering_capture.py','tools/check-rendering-acceptance-pilot.py','tests/acceptance-world-history.cpp','tests/acceptance-world-reference.cpp','tests/sprite-binary-reference.cpp','tests/world-raster-reference.hpp','tests/clipped-word-grayscale-cases.hpp','tools/native_player_quick_acceptance.py','tools/test-menu-observer.py','tools/rendering_normal_acceptance.py','tools/rendering_provenance_policy.py']});report['sources']=sources
   try:
    input_policy=drawing_only(acquired,a.drawing_only)
    if input_policy is not None:

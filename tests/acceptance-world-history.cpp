@@ -2,6 +2,7 @@
 // Native GPU outputs and original destination captures are never its inputs.
 #include "../compat/legacy/world_rolling_handoff.hpp"
 #include "../compat/legacy/canvas_producers.hpp"
+#include "../apps/qt-shell/profile_capture_codec.hpp"
 #include <QCoreApplication>
 #include <QFile>
 #include <QDir>
@@ -25,19 +26,23 @@ int main(int argc,char** argv)try{
  auto opened=assets::AssetStore::create(argv[2]);if(auto* e=std::get_if<assets::Error>(&opened))throw std::runtime_error(e->detail);
  const auto store=std::get<assets::AssetStore>(std::move(opened));
  legacy::CanvasProducerReplay history([store](const auto& name){auto opened=store.open(name);if(auto* e=std::get_if<assets::Error>(&opened))throw std::runtime_error(e->detail);auto f=std::get<std::unique_ptr<assets::AssetFile>>(std::move(opened));auto bytes=assets::readWhole(*f,16*1024*1024);if(auto* e=std::get_if<assets::Error>(&bytes))throw std::runtime_error(e->detail);return std::get<std::vector<std::uint8_t>>(std::move(bytes));});
- QFile input(argv[1]);require(input.open(QIODevice::ReadOnly)&&input.size()<=2ll*1024*1024*1024,"Bounded capture");
- const auto magic=input.read(8);const bool sources=magic=="MNMPROF3";
+ QFile input(argv[1]);require(input.open(QIODevice::ReadOnly)&&input.size()<=16ll*1024*1024*1024,"Bounded capture");
+ const auto magic=input.read(8);const bool prefix=magic=="MNMPROF4",sources=prefix||magic=="MNMPROF3";
  require(sources||magic=="MNMPROF2","Owned independent World capture requires complete source history");
- quint64 chunks=0,blocks=0,generation=0;QJsonArray worlds;std::uint64_t totalDraws=0;
+ auto codec=prefix?std::make_unique<profile::Decoder>():nullptr;
+ quint64 chunks=0,blocks=0,generation=0,rawBytes=8;QJsonArray worlds;std::uint64_t totalDraws=0;
  while(!input.atEnd()){
-  const auto header=input.read(sources?32:20);require(header.size()==(sources?32:20),"Source header");
+  const unsigned headerSize=prefix?profile::HeaderSize:sources?32:20;
+  const auto header=input.read(headerSize);require(header.size()==headerSize,"Source header");
   const auto g=qFromLittleEndian<quint64>(header.constData());const auto chunk=sources?qFromLittleEndian<quint64>(header.constData()+8):0;
   const unsigned offset=sources?16:8;
   const auto s=qFromLittleEndian<quint32>(header.constData()+offset),r=qFromLittleEndian<quint32>(header.constData()+offset+4),n=qFromLittleEndian<quint32>(header.constData()+offset+8);
-  require(!sources||!qFromLittleEndian<quint32>(header.constData()+28),"Reserved source header");
-  require(g==generation+1&&g<=8192&&++blocks<=8192&&s>=16&&s<=16777216&&(chunk?r==0:r>=64&&r<=197184)&&n>4&&n<=s+r+(s+r)/1000+128,"Ordered bounded source");
-  const auto packed=input.read(n);require(packed.size()==n&&qFromBigEndian<quint32>(packed.constData())==s+r,"Source compressed length");
-  const auto data=qUncompress(packed);require(data.size()==s+r,"Source decompression");
+  require(!sources||prefix||!qFromLittleEndian<quint32>(header.constData()+28),"Reserved source header");
+  require(g==generation+1&&g<=8192&&++blocks<=8192&&s>=16&&s<=16777216&&(chunk?r==0:r>=64&&r<=197184)&&n>4&&n<=s+r+(s+r)/(prefix?128:1000)+(prefix?1024:128),"Ordered bounded source");
+  rawBytes+=headerSize+s+r;require(rawBytes<=16ull*1024*1024*1024,"Bounded decoded source corpus");
+  const auto packed=input.read(n);require(packed.size()==n,"Source compressed length");
+  if(!prefix)require(qFromBigEndian<quint32>(packed.constData())==s+r,"Source compressed raw length");
+  const auto data=codec?codec->decode(header,packed,s+r):qUncompress(packed);require(data.size()==s+r,"Source decompression");
   auto bytes=[&](unsigned at,unsigned size){return std::vector<std::uint8_t>(data.begin()+at,data.begin()+at+size);};
   const auto source=legacy::decodeCanvasProducers(bytes(0,s),false);
   if(chunk){
