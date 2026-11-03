@@ -25869,3 +25869,35 @@ not new original execution or a matched source/RNG outcome comparison. Current
 identity/lifetime/save/full simulation remain pending. No engine status or
 historical fingerprint is promoted or refreshed. Exact results and correction
 scope are in the [closeout](campaign-approach-20261103.md).
+
+## Campaign checkpoint diagnostics — 2026-11-03
+
+CPK03 provides the original No-CD `checkpoint-camulos-05.sav`, SHA256
+`9ec512d4c05a75c20e7cc7befec8398e112c2ca700917f34e93f5501099ee7c1`,
+356531bytes:CF52PoP(23,57,6),184HP/50mana,one living owned Zombie and living
+Camulos. Explicit retained-seed Load/new Save/Load and fresh-process Main Load
+match all five active creatures' slot/type/owner/active/HP/position/mana at
+original +43completion0to1 boundaries. Independent software640comparison covers
+522+39Worlds,632+101leased paints and641008500pixels with zero differences.
+Original manifests,source/compiler/binary closure,normal Quit and final resource
+retirement pass. This is a separately scoped live observation,never fresh
+campaign progression or nominal matrix acceptance. Current183campaign/import
+controls and the synthetic native cache-pressure fixture pass.
+
+An intentional native cache policy reclaims only idle rebuildable sprite/colour
+images before producer storage would exceed the existing64surface/16Mpixelcap;
+canvas identity,validity/history and source resources survive. Exact-cap,
+word-preserving rebuild,incomplete-frame refusal and teardown pass synthetically.
+Populated original storage/pixels complete with this code;no live eviction
+counter or matched source/RNG causal A/B claim is made. All four earlier failed
+acquisitions remain failed,including a real pre-Save budget failure,an unwitnessed
+but normally completed Save/Load,and an opening hover refusal. The last stalled
+frame has no dialogue;the original-hover cause/selection remains unresolved.
+
+The hash-pinned fixture can be copied from SQLite into an owned store while
+preserving every existing save. This does not replace original serialization.
+The native world decoder still rejects22owned candidates and this original-
+loaded fixture at offset300;no limit/grammar is relaxed. Unit-order/resource/
+target policy,actual route suspension,fresh nominal victory/Realm/region2,the
+complete12case matrix,full saved simulation and object lifetimes remain pending.
+See the [checkpoint protocol,commands and evidence](campaign-checkpoints-20261103.md).

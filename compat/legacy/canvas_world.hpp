@@ -36,6 +36,7 @@ public:
   void completeResident();
   void end(const CanvasProducer &);
   render::GpuFrame presentGpu();
+  void releaseCachedImages(){if(scene_)scene_->releaseCachedImages();}
   bool active() const { return active_; }
   unsigned queue() const { return queue_; }
   unsigned canvas() const { return canvas_; }

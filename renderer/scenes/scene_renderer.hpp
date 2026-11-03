@@ -66,6 +66,9 @@ public:
     ResourceCacheStats cacheStats() const;
     ColourRectangleCacheStats colourCacheStats() const;
     void release(const assets::ResourceId&);
+    // Storage pressure outside drawing may evict images rebuilt from sources.
+    // Native canvas/history, decoded resources and presentation leases survive.
+    void releaseCachedImages();
 private:
     std::vector<SceneDraw> pending_;
     std::size_t cursor_=0;

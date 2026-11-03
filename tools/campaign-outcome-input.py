@@ -147,7 +147,9 @@ def main():
     p.add_argument('--experiment', type=Path, required=True)
     p.add_argument('--seconds', type=int, default=540)
     p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--stop-at-rearm',action='store_true',help='Diagnostic only: stop at the observed full-mana power point, before saving')
     a = p.parse_args()
+    require(not a.stop_at_rearm or a.case!='defeat','Checkpoint capture requires the ordinary victory route')
     width,height = frame_size(a.frame_size)
     require(30 <= a.seconds <= 600 and a.rect[2] >= 320 and a.rect[3] >= 240, 'Invalid bounded viewport/deadline')
     result = dict(success=False, case=a.case, frame_size=a.frame_size, actions=[], health_observations=[],
@@ -340,6 +342,11 @@ def main():
                     if onpoint and hero['mana']>=36*256:
                         rearmed=True;follow_wait_since=0;phase='bridge';result['route_stage']=phase
                         result['rearm']['complete']=hero;save()
+                        if a.stop_at_rearm:
+                            require(hero['health']>=60,'Checkpoint wizard has less than60HP')
+                            result.update(success=True,checkpoint_ready=True,checkpoint_actors=actors,
+                                checkpoint_scope='Ordinary route through bridge clearing and full-mana resupply; no outcome or progression acceptance')
+                            save();break
                     else:
                         if rearm_onpoint_since:require(time.monotonic()-rearm_onpoint_since<210,'Bounded on-point rearm did not reach36mana')
                         click(*approach_point(hero,power,a.frame_size),3);time.sleep(1);continue

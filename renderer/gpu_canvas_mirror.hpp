@@ -1,6 +1,7 @@
 #pragma once
 #include "canvas_mirror.hpp"
 #include <unordered_map>
+#include <functional>
 namespace mnm::render {
 // Owns native GPU canvases. The original process never supplies destination
 // pixels and never receives this storage's contents during ordinary delivery.
@@ -18,7 +19,10 @@ public:
   SurfaceId surface(std::uint32_t) const;
   Image readForCpu(std::uint32_t) override;
   std::uint64_t cpuReaderSnapshots() const { return cpuReaderSnapshots_; }
+  // Optional owner callback may discard rebuildable caches, never canvases.
+  void setStoragePressureHandler(std::function<void()> handler) { reclaim_ = std::move(handler); }
 private:
+  std::function<void()> reclaim_;
   std::uint64_t cpuReaderSnapshots_ = 0;
   GlBlitter &renderer_;
   std::unordered_map<std::uint32_t, SurfaceId> surfaces_;

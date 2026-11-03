@@ -115,6 +115,13 @@ if original_gameplay or os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')=='1':
     spells=root/'spell-events.bin'
     if spells.exists() or spells.is_symlink():raise ValueError('Refusing stale spell observation')
     os.environ['MNM_MENU_SPELL_OBSERVE']='Z:'+str(spells).replace('/','\\')
+os.environ.pop('MNM_MENU_CHECKPOINT_OBSERVE',None)
+if os.environ.get('MNM_CAMPAIGN_CHECKPOINT') in ('capture','restore'):
+    if os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')!='1' or not metadata.get('native_render'):
+        raise ValueError('Checkpoint observation requires private native casting diagnostics')
+    checkpoint=root/'checkpoint-events.bin'
+    if checkpoint.exists() or checkpoint.is_symlink():raise ValueError('Stale checkpoint observation')
+    os.environ['MNM_MENU_CHECKPOINT_OBSERVE']='Z:'+str(checkpoint).replace('/','\\')
 os.environ.pop('MNM_MENU_INPUT_ADMISSION_OBSERVE',None)
 if os.environ.get('MNM_CAMPAIGN_INPUT_ADMISSION')=='1':
     if os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')!='1' or not metadata.get('native_render'):

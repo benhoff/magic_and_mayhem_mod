@@ -287,4 +287,11 @@ QImage SceneRenderer::present(){checkThread();if(!valid_)throw std::runtime_erro
 GpuFrame SceneRenderer::presentGpu(){checkThread();if(!valid_)throw std::runtime_error("No complete scene frame");return renderer_.presentGpu(canvas_);}
 ResourceCacheStats SceneRenderer::cacheStats() const{checkThread();return cache_.stats();}
 void SceneRenderer::release(const assets::ResourceId& id){checkThread();cache_.release(id);}
+void SceneRenderer::releaseCachedImages(){
+    checkThread();if(drawing_)throw std::runtime_error("Cannot evict images during an incomplete scene frame");
+    cache_.clear();
+    colourStats_.evictions+=colourCacheStats().entries;colourTiles_.clear();
+    if(colourMask_){renderer_.destroy(colourMask_);colourMask_=0;}
+    if(colourAtlas_){renderer_.destroy(colourAtlas_);colourAtlas_=0;}
+}
 }

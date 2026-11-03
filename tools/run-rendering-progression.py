@@ -12,6 +12,10 @@ def module(name):
  spec=importlib.util.spec_from_file_location(name,ROOT/'tools'/name);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def main():
  p=argparse.ArgumentParser(description=__doc__)
+ p.add_argument('--checkpoint',choices=['capture','restore'],help='Separate diagnostic Save/Load; never nominal progression acceptance')
+ p.add_argument('--checkpoint-name',help='New unique checkpoint- name for capture or exact existing name for restore')
+ p.add_argument('--checkpoint-seed',help='Capture from an unchanged original Save/Load candidate report; new Save/Load witnesses are still required')
+ p.add_argument('--checkpoint-reference',help='Successful capture acquisition report required for restore')
  p.add_argument('--report',required=True);p.add_argument('--case',choices=CASES,required=True)
  p.add_argument('--size',choices=['640x480','800x600'],default='800x600')
  p.add_argument('--preparation',required=True);p.add_argument('--software',action='store_true')
@@ -20,6 +24,32 @@ def main():
  p.add_argument('--startup-main-dwell-ms',type=int,default=0,help='Diagnostic dwell before and after Preferences (0..30000ms); requires --observe-startup-timing')
  p.add_argument('--prefix-template',type=Path);p.add_argument('--skip-intros',action='store_true');p.add_argument('--storage-policy',type=Path)
  a=p.parse_args()
+ if a.checkpoint:
+  from campaign_checkpoint import save_name
+  save_name(a.checkpoint_name or '')
+  require(a.case=='victory' and a.skip_intros and not a.observe_startup_timing,'Checkpoint diagnostics require --case victory --skip-intros without startup timing')
+  store=ROOT/'working/user-saves/native-menu';saved=store/(a.checkpoint_name+'.sav')
+  if a.checkpoint=='capture':
+   require(not saved.exists() and not a.checkpoint_reference,'Capture requires a new save name')
+   if a.checkpoint_seed:
+    with Reader(ROOT) as reader:seed=reader.json(a.checkpoint_seed);seed_sha=reader.digest(a.checkpoint_seed)
+    f=seed.get('flow',{});seed_name=save_name(f.get('saved_name',''));seed_file=store/(seed_name+'.sav')
+    require(seed.get('kind')=='public_native_checkpoint_diagnostic_acquisition' and seed.get('exit_code')==0 and seed.get('sources_stable') is True and seed.get('compiler_closure_stable') is True and seed.get('player_binary_stable') is True and seed.get('private_wine_stopped') is True and seed.get('original_manifest_verified_before_after') is True and seed.get('artifact_retention_complete') is True and f.get('success') is True and f.get('normal_quit') is True and f.get('save_load') is True,'Seed requires a retained normally completed original Save/Load flow; its old acquisition status is not promoted')
+    require(seed_file.is_file() and not seed_file.is_symlink() and sha(seed_file)==f.get('saved_sha256'),'Seed candidate hash mismatch')
+    from campaign_storage import validate_storage_flow
+    validate_storage_flow(f)
+    with Reader(ROOT) as reader:
+     matches=[v for v in seed['artifacts'] if v['path']==str((Path(seed['temporary_root'])/'checkpoint-route.json').relative_to(ROOT))]
+     require(len(matches)==1,'Missing retained seed route')
+     seed_route=reader.json(matches[0]['record']);require(reader.digest(matches[0]['record'])==matches[0]['sha256'],'Seed route hash mismatch')
+    require(seed_route.get('checkpoint_ready') is True and seed_route.get('success') is True and seed_route.get('simulation_writes') is False,'Seed route never reached the checkpoint')
+
+  else:
+   require(not a.checkpoint_seed,'Seed is only an input to a new capture')
+   require(a.checkpoint_reference and saved.is_file() and not saved.is_symlink(),'Restore requires a pinned capture and private existing save')
+   with Reader(ROOT) as reader:reference=reader.json(a.checkpoint_reference);reference_sha=reader.digest(a.checkpoint_reference)
+   require(reference.get('success') is True and reference.get('checkpoint',{}).get('verified') is True and sha(saved)==reference['checkpoint']['save_sha256'],'Restore save/reference hash mismatch')
+ else:require(not a.checkpoint_name and not a.checkpoint_reference and not a.checkpoint_seed,'Checkpoint options require --checkpoint')
  require(0<=a.startup_main_dwell_ms<=30000 and (not a.startup_main_dwell_ms or a.observe_startup_timing),'Bounded startup dwell requires timing diagnostic')
  require(a.report.startswith(PREFIX) and '..' not in Path(a.report).parts and not (ROOT/a.report).exists(),'New owned report required')
  with Reader(ROOT) as reader:
@@ -60,6 +90,7 @@ def main():
  from rendering_build_binding import native_runtime_source_paths
  runtime_names=native_runtime_source_paths(ROOT)
  names.add('tools/rendering_build_binding.py')
+ names.update(['tools/campaign_checkpoint.py','apps/qt-shell/campaign_storage_test.cpp'])
  names.update(runtime_names)
  sources={n:sha(ROOT/n) for n in sorted(names)}
  report=dict(schema=1,kind='public_native_progression_diagnostic_acquisition' if a.skip_intros else 'public_native_progression_acquisition',success=False,player_accepted=False,scenario=a.case,preparation=dict(record=a.preparation,sha256=preparation_sha),
@@ -103,6 +134,18 @@ def main():
   env['MNM_CAMPAIGN_INPUT_ADMISSION']='1'
   report['kind']='public_native_progression_diagnostic_acquisition'
   report['configuration'].update(input_readiness='original-callback-then-later-World-v2',diagnostic_only=True)
+ if a.checkpoint:
+  report.update(kind='public_native_checkpoint_diagnostic_acquisition',scenario='checkpoint-'+a.checkpoint)
+  report['configuration'].update(diagnostic_only=True,checkpoint_mode=a.checkpoint,checkpoint_name=a.checkpoint_name)
+  env.pop('MNM_CAMPAIGN_PROGRESSION_CASE',None)
+  env.update(MNM_CAMPAIGN_CHECKPOINT=a.checkpoint,MNM_CAMPAIGN_STORAGE='1',MNM_CAMPAIGN_DIFFICULTY='1',MNM_CAMPAIGN_STORAGE_NAME=a.checkpoint_name,MNM_CAMPAIGN_TIMEOUT_MS='895000')
+  if a.checkpoint=='capture' and a.checkpoint_seed:
+   report['checkpoint_seed_reference']=dict(record=a.checkpoint_seed,sha256=seed_sha,save_name=seed_name,save_sha256=seed['flow']['saved_sha256'],scope='Unchanged original candidate input only; this acquisition must establish a new Save/Load witness')
+   (out/'checkpoint-route.json').write_bytes((json.dumps(dict(seed_route,seed_reference=report['checkpoint_seed_reference']),indent=2)+'\n').encode())
+   env.update(MNM_CAMPAIGN_CHECKPOINT_SEED=seed_name,MNM_CAMPAIGN_CHECKPOINT_SEED_SHA256=seed['flow']['saved_sha256'])
+  if a.checkpoint=='restore':
+   env['MNM_CAMPAIGN_STORAGE_RESTART']='1'
+   report['checkpoint_reference']=dict(record=a.checkpoint_reference,sha256=reference_sha)
  report['installation_inputs']={str(f.relative_to(game)):dict(sha256=sha(f),bytes=f.stat().st_size) for f in sorted(game.rglob('*')) if f.is_file()}
  before_experiments=set((ROOT/'working/experiments/menu-observer').glob('run-*'))
  server=child=None;prefix_lease=None;verified=False;before=set((ROOT/'working/tests/native-output-owner').glob('run-*'))
@@ -132,7 +175,7 @@ def main():
   if flow is not None:report['flow']=flow
   if child.returncode:raise ValueError('Public launcher failed: '+str(flow.get('error') if flow else 'retained its actual output'))
   require(flow is not None,'Missing public driver flow')
-  report['semantic_route']=validate_flow(flow,a.case)
+  if not a.checkpoint:report['semantic_route']=validate_flow(flow,a.case)
   owners=set((ROOT/'working/tests/native-output-owner').glob('run-*'))-before
   if len(owners)!=1:raise ValueError('Ambiguous public launch owner')
   owner=owners.pop();report['owner']=str(owner);sessions=sorted((owner/'sessions').glob('*.json'))
@@ -156,7 +199,14 @@ def main():
    report['capture_completion'].append(dict(path=str(path.relative_to(ROOT)),role=first['role'],version=first['version'],rows=len(rows),raw_bytes=last['raw_bytes'],complete=last['complete']))
    del rows
   require({r['role'] for r in report['capture_completion']} in ({'viewport','commands'},{'viewport','commands','exports'}),'Incomplete capture role set')
-  report['original_callbacks']=validate_callbacks((session/'events.bin').read_bytes(),flow)
+  if a.checkpoint:
+   from campaign_checkpoint import validate_capture,validate_restore
+   raw_save=(session/'game/Save'/(a.checkpoint_name+'.sav')).read_bytes()
+   if a.checkpoint=='capture':
+    report['checkpoint']=validate_capture(flow,json.loads((out/'checkpoint-route.json').read_text()),(session/'checkpoint-events.bin').read_bytes(),raw_save)
+   else:report['checkpoint']=validate_restore(flow,(session/'checkpoint-events.bin').read_bytes(),raw_save,reference['checkpoint'])
+   require(saved.is_file() and sha(saved)==report['checkpoint']['save_sha256'],'Normal exit did not preserve exact checkpoint in private owned store')
+  else:report['original_callbacks']=validate_callbacks((session/'events.bin').read_bytes(),flow)
   report['map_inputs_stable']=recipes(game)==prepared['maps']
   require(report['map_inputs_stable'],'Input map drift during execution')
   report['independent_history_admission']='pending separate comparison of every first/later World swap and populated owner handoff'

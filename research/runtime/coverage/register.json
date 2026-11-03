@@ -2842,7 +2842,7 @@
       "subsystem": "assets",
       "kind": "recovered",
       "title": "Owned serialized world records",
-      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Current unchanged original-loaded checkpoint and22owned candidates expose a strict map-boundary rejection at300;native complete save restoration remains unsupported and no limit/grammar is relaxed.",
       "confidence": "provisional",
       "original": [
         {
@@ -2854,7 +2854,8 @@
       "documents": [
         "research/formats/save-world-native-loading.md",
         "assets/README.md",
-        "research/runtime/rendering-execution-research-20261031.md"
+        "research/runtime/rendering-execution-research-20261031.md",
+        "research/runtime/campaign-checkpoints-20261103.md"
       ],
       "implementation": [
         "assets/save_world.cpp",
@@ -2866,7 +2867,9 @@
       ],
       "evidence": [
         "REVIEW.AS.save_world",
-        "RER31.save-domain"
+        "RER31.save-domain",
+        "CPK03.inventory",
+        "CPK03.envelope05"
       ],
       "status": {
         "understanding": "partial",
@@ -60543,7 +60546,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/menu-save-store.md"
+        "research/runtime/menu-save-store.md",
+        "research/runtime/campaign-checkpoints-20261103.md"
       ],
       "implementation": [
         "tools/menu_save_store.py"
@@ -60552,7 +60556,9 @@
         "tests/test-menu-save-store.py"
       ],
       "evidence": [
-        "UI37.save-store-unit"
+        "UI37.save-store-unit",
+        "CPK03.import-controls",
+        "CPK03.import05"
       ],
       "status": {
         "understanding": "partial",
@@ -60572,7 +60578,8 @@
       "original": [],
       "documents": [
         "research/runtime/save-load-menu-engine-contract.md",
-        "research/runtime/menu-save-store.md"
+        "research/runtime/menu-save-store.md",
+        "research/runtime/campaign-checkpoints-20261103.md"
       ],
       "implementation": [
         "apps/qt-shell/campaign_storage_test.cpp",
@@ -60597,7 +60604,9 @@
         "UI38.save-load-embedding-scoped",
         "UI38.restore-embedding-scoped",
         "HOST.initiate-storage-original-render-20261015",
-        "HOST.initiate-storage-original-reviewed-20261015"
+        "HOST.initiate-storage-original-reviewed-20261015",
+        "CPK03.capture05",
+        "CPK03.restore05"
       ],
       "status": {
         "understanding": "partial",
@@ -79461,7 +79470,8 @@
       "documents": [
         "research/runtime/native-render-save-load.md",
         "research/runtime/resident-command-pressure.md",
-        "research/runtime/native-save-capture-recovery-20261025.md"
+        "research/runtime/native-save-capture-recovery-20261025.md",
+        "research/runtime/campaign-checkpoints-20261103.md"
       ],
       "implementation": [
         "apps/qt-shell/campaign_storage_test.cpp",
@@ -79530,7 +79540,11 @@
         "SAVECHUNK.controls09-20261025",
         "SAVECHUNK.live06-20261025",
         "SAVECHUNK.controls10-20261025",
-        "SAVECHUNK.live07-20261025"
+        "SAVECHUNK.live07-20261025",
+        "CPK03.capture05",
+        "CPK03.restore05",
+        "CPK03.compare05",
+        "CPK03.restore-compare05"
       ],
       "status": {
         "understanding": "partial",
@@ -159462,7 +159476,8 @@
         "research/runtime/campaign-transition-completion-20261102.md",
         "research/runtime/campaign-master-merge-20261102.md",
         "research/runtime/campaign-nominal-repeatability-20261102.md",
-        "research/runtime/campaign-approach-20261103.md"
+        "research/runtime/campaign-approach-20261103.md",
+        "research/runtime/campaign-checkpoints-20261103.md"
       ],
       "implementation": [
         "tools/rendering_progression.py",
@@ -159787,7 +159802,9 @@
         "RPS06.v32-controls01",
         "RPS06.guards03",
         "RPS06.current-original-negative03",
-        "RPS06.closeout-review02"
+        "RPS06.closeout-review02",
+        "CPK03.guards",
+        "CPK03.closeout"
       ],
       "status": {
         "understanding": "partial",
@@ -160425,6 +160442,151 @@
         "tests/character-wire-fixture.hpp",
         "tools/review-rendering-progression.py"
       ]
+    },
+    {
+      "id": "NP.campaign-checkpoint-diagnostics",
+      "subsystem": "campaign",
+      "kind": "native_policy",
+      "title": "Hash-pinned original Save/Load combat checkpoint diagnostics",
+      "scope": "Diagnostic original NoCD Celtic1checkpoint at CF52PoP(23,57,6),184HP/50mana,one living owned Zombie and living Camulos. Explicit retained-seed Load/new Save/Load and fresh-process restore compare active slot/type/owner/HP/position/mana at original storage +43 completion transitions;source/binary closure,normal Quit and independent software640pixels pass. Fresh ordinary route preparation remains variable and its four failed acquisitions stay failed. Reload is never progression;full simulation,other maps,hardware,object generations and native world parsing remain separate.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5608912,
+          "recovered_range": "campaign-mini-entry-5595d0",
+          "scope": "Existing guarded shared Tick entry only;passive +43 completion sampling after forwarding does not claim whole-body recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4896880,
+          "scope": "Previously registered original Save pending consumption and completion Tick;deferred4ab750callback remains statically documented,not a new inventoried function claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4892112,
+          "scope": "Previously registered original Load pending consumption and completion Tick;deferred4aa800callback remains statically documented,not a new inventoried function claim."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-checkpoints-20261103.md"
+      ],
+      "implementation": [
+        "tools/campaign_checkpoint.py",
+        "tools/run-rendering-progression.py",
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "runtime/menu/campaign_checkpoint_observe.h",
+        "runtime/menu/observer.c",
+        "tools/menu-game-runner.py",
+        "tools/campaign-outcome-input.py",
+        "tools/check-campaign-checkpoint.py"
+      ],
+      "tests": [
+        "tests/test-campaign-checkpoint.py"
+      ],
+      "evidence": [
+        "CPK03.guards",
+        "CPK03.capture05",
+        "CPK03.restore05",
+        "CPK03.compare05",
+        "CPK03.restore-compare05",
+        "CPK03.closeout",
+        "CPK03.negative01",
+        "CPK03.negative02",
+        "CPK03.negative03",
+        "CPK03.negative04",
+        "CPK03.scope-bound05"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "tools/campaign_storage.py",
+        "tools/menu_save_store.py",
+        "runtime/menu/storage.h",
+        "tools/campaign_input_observation.py"
+      ]
+    },
+    {
+      "id": "NP.resident-canvas-cache-pressure",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Evict rebuildable scene images before resident producer allocation",
+      "scope": "Intentional native aggregate storage policy:idle scene sprite/colour caches yield before producer allocation would exceed existing64surface/16Mpixel cap. Owned canvas identity,validity,history,decoded source resources and leases remain;incomplete scene frames refuse reclamation. Synthetic exact-cap/word-preserving rebuild/teardown passes. Original populated storage/pixels complete with current source;no live eviction counter or matched causal A/B claim. No original allocation-policy or engine-equivalence promotion.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/campaign-checkpoints-20261103.md"
+      ],
+      "implementation": [
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/world_rolling_session.cpp"
+      ],
+      "tests": [
+        "tests/resident-canvas-cache-pressure-test.cpp"
+      ],
+      "evidence": [
+        "CPK03.pressure-before",
+        "CPK03.pressure-after",
+        "CPK03.capture05",
+        "CPK03.compare05",
+        "CPK03.closeout"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/blit.cpp",
+        "apps/qt-shell/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "NP.checkpoint-byte-import",
+      "subsystem": "campaign",
+      "kind": "native_policy",
+      "title": "Verified original checkpoint import into owned save storage",
+      "scope": "Copy hash-verified SQLite-retained original checkpoint into the current checkout owned store using existing stage/locked merge. Require a successful retained checkpoint acquisition;optional fresh-process proof must name the same bytes. Reject conflicts,unsafe stems,oversize/empty inputs and paths outside working;preserve every prior save byte. No original serializer replacement,multi-file crash transaction or arbitrary saved-state compatibility claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/campaign-checkpoints-20261103.md"
+      ],
+      "implementation": [
+        "tools/stage-campaign-checkpoint.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_checkpoint.py",
+        "tools/menu_save_store.py"
+      ],
+      "tests": [
+        "tests/test-campaign-checkpoint-import.py"
+      ],
+      "evidence": [
+        "CPK03.import-controls",
+        "CPK03.import05"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -372663,6 +372825,259 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "CPK03.inventory",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-checkpoint-results-20261103/save-candidates-03.json",
+      "sha256": "1ff0827457521e9874c7da9042f865a8e81000fb1c212839ebdc57a23aacc9e8",
+      "scope": "Read-only envelope inspection of22unchanged saves;all strict world decoders reject at300. No original game executed.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.envelope05",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-checkpoint-results-20261103/fixture-envelope-01.json",
+      "sha256": "14c712954a29ce69ee14c3afdb7a3fe4f609bae9ceba97833b1385021d02d41d",
+      "scope": "Original-loaded9ec512d4checkpoint envelope and relative path fields;native world decoder still rejects at300.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.guards",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261101/checkpoint-guards-04.json",
+      "sha256": "0229b1d7c2ea158f2f76fdbf65b1c0688b7bd78c3f2f135cf0dcf54bc0d8b3aa",
+      "scope": "181Python/Qt campaign controls and real player build;no original engine outcome proof.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.pressure-before",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-checkpoint-results-20261103/pressure-before-02.json",
+      "sha256": "eda6fcec5c10f12552d029ddac6ea35cf9584b8b5a15da871153a5cccbf48466",
+      "scope": "Synthetic fixture reproduces old shared64surfacecap refusal;success means expected failure observed.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.pressure-after",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-checkpoint-results-20261103/pressure-after-02.json",
+      "sha256": "abd091c6980267553b6d79f4990feffd0b548d2b943ccc3b227233d39146ea8d",
+      "scope": "Synthetic shared-cap eviction,unchanged canvas words,rebuild,incomplete-frame refusal and zero surfaces.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.import-controls",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-checkpoint-results-20261103/import-controls-01.json",
+      "sha256": "5f64d9b5808d5398138368427dc61999314f0658f3888ceb7c4376c57cb05476",
+      "scope": "Two file-copy controls plus real verified SQLite import and unadmitted-candidate refusal;no original game execution.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.import05",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-checkpoint-results-20261103/fixture-import-02.json",
+      "sha256": "5a45f6282236d203bf7be066c7c2ba35a276e9e690744eab1f79ef49c391c753",
+      "scope": "Copy exact original checkpoint bytes into a new owned store;preserve all existing names/bytes.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.capture05",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/checkpoint-seeded-software-low-05.json",
+      "sha256": "2b320dd1454bb08eaba82f23a3414b76899fdc85c0f43113b1ae7d236ba07589",
+      "scope": "Software640diagnostic:original Main Load of preserved candidate,original new Save/Load,selected fields exact and normal resource retirement. No fresh campaign outcome.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.restore05",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/checkpoint-fresh-restore-software-low-05.json",
+      "sha256": "cf9221415c0a39dcc3f08a4ff11100b955bb6ccc4b759564b686de8384cc841a",
+      "scope": "Fresh original process loads exact9ec512d4save;selected creature fields match Save boundary,normal Quit,source/binary closure and stopped Wine.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.compare05",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/checkpoint-seeded-comparison-05.json",
+      "sha256": "b0543cbf810f78b178aa2b35733806cc5c03ff655978fee1cc6c03f5be3c7c60",
+      "scope": "Independent original/history oracle:522Worlds,632leased paints,552684000pixels,zero differences;diagnostic only.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.restore-compare05",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/checkpoint-fresh-restore-comparison-05.json",
+      "sha256": "89abb83b6dafe073ae867dc5c9cdf3cacebb28af62fc44645229163fb684b16b",
+      "scope": "Independent original/history oracle:39Worlds,101leased paints,88324500pixels,zero differences;diagnostic only.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.closeout",
+      "kind": "static",
+      "record": "research/runtime/campaign-checkpoint-results-20261103/closeout-01.json",
+      "sha256": "6e96b689a9cfe7c60a8745911006b62ece640eeb0fbbfd489abbb834fd2e2117",
+      "scope": "Exact retained phase review;no new game execution,nominal victory/progression or full simulation claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.negative01",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/checkpoint-capture-software-low-01.json",
+      "sha256": "0e31cd198a4fbb1c7a9f152eaec8678dc71662441cc3257a9f56e4a87f82a820",
+      "scope": "Absolute difficulty ack bug;stopped before World.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.negative02",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/checkpoint-capture-software-low-02.json",
+      "sha256": "537d6a1e0c1cdca27168ac1997e2315d52049f3e80f01ba4a8b6f0f1165fc841",
+      "scope": "Reached182HP/36mana then native64surfacebudget failure before Save.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.negative03",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/checkpoint-capture-software-low-03.json",
+      "sha256": "ce3ca79b71929743553b2958acec85d716d71c8bf4796cf5f19ff3ef78f9545d",
+      "scope": "Original Save/Load and normal Quit pass,but observer waits for wrong EAX and records no fields.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.negative04",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/checkpoint-capture-software-low-04.json",
+      "sha256": "d2c18c50b40df9f9715f56d0bdf4bbe5d82305d49e5c275b8579baab20c7c86b",
+      "scope": "Opening stalls;Qt470226published,last original callback470230;hover guard refuses. No dialogue in retained frame.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "CPK03.scope-bound05",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-checkpoint-results-20261103/scope-binding-01.json",
+      "sha256": "1dc5393c98b7c93a347d891f00ccd11833f196c5a6adf6d6eab4526298c5d56f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "scope": "Explicit retrospective scope/scenario binding of current retained original checkpoint and independent-comparison executions. Needed runtime/driver/comparison bytes come from their frozen actual execution records;test bytes come from the successful current pre-execution guard record,and the opaque-store dependency from separately executed current import controls. This combined validation does not claim that the original live report alone pinned every Python import. Every source hash agrees and still matches. No new game execution, historical hash refresh, prior gate-pass assertion, nominal progression or full simulation equivalence.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/retained_original_executions_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/new_original_execution",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -403174,6 +403589,91 @@
         "tools/check-rendering-progression.py",
         "tools/campaign-outcome-input.py"
       ]
+    },
+    {
+      "id": "campaign.checkpoint-protocol-cpk03",
+      "level": "headless",
+      "scope": "Typed storage-boundary framing,selected-field/hash/seed-identity refusals and fresh World checks;synthetic controls only.",
+      "behaviors": [
+        "NP.campaign-checkpoint-diagnostics"
+      ],
+      "evidence": [
+        "CPK03.guards"
+      ],
+      "tests": [
+        "tests/test-campaign-checkpoint.py"
+      ]
+    },
+    {
+      "id": "campaign.checkpoint-storage-cpk03",
+      "level": "live_observation",
+      "scope": "Hash-pinned later Celtic1diagnostic Save/Load and fresh-process restore with184HP/50mana;software640all-swap pixels pass;no fresh campaign progression.",
+      "behaviors": [
+        "NP.campaign-checkpoint-diagnostics"
+      ],
+      "evidence": [
+        "CPK03.capture05",
+        "CPK03.restore05",
+        "CPK03.compare05",
+        "CPK03.restore-compare05",
+        "CPK03.scope-bound05"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-campaign-checkpoint.py",
+        "apps/qt-shell/campaign_storage_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.checkpoint-preparation-negative-cpk03",
+      "level": "live_observation",
+      "scope": "Preserve four source-bound failures and their distinct ack,budget,observer and hover frontiers;no failed acquisition is promoted by later resaving.",
+      "behaviors": [
+        "NP.campaign-checkpoint-diagnostics",
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "CPK03.negative01",
+        "CPK03.negative02",
+        "CPK03.negative03",
+        "CPK03.negative04"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/campaign-outcome-input.py"
+      ]
+    },
+    {
+      "id": "rendering.producer-cache-pressure-cpk03",
+      "level": "headless",
+      "scope": "Bounded synthetic exact-cap cache reclamation preserves native words and rejects incomplete drawing;original allocation policy unchanged.",
+      "behaviors": [
+        "NP.resident-canvas-cache-pressure"
+      ],
+      "evidence": [
+        "CPK03.pressure-before",
+        "CPK03.pressure-after"
+      ],
+      "tests": [
+        "tests/resident-canvas-cache-pressure-test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.checkpoint-byte-import-cpk03",
+      "level": "headless",
+      "scope": "Actual SQLite checkpoint copy,unchanged existing saves,idempotence and conflict/invalid-proof refusal;no original execution.",
+      "behaviors": [
+        "NP.checkpoint-byte-import",
+        "NP.menu-save-store"
+      ],
+      "evidence": [
+        "CPK03.import-controls",
+        "CPK03.import05"
+      ],
+      "tests": [
+        "tests/test-campaign-checkpoint-import.py",
+        "tools/stage-campaign-checkpoint.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -404991,7 +405491,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-adcf3f424776862d002b84e8d0cc847c03729da269ff2bc2e27b1c75d932b377.json",
-    "sha256": "adcf3f424776862d002b84e8d0cc847c03729da269ff2bc2e27b1c75d932b377"
+    "path": "research/runtime/coverage/source-index-22cc5ce6337716786887ab453b5ffe5a753f2f3ef9dce61270ef5b9a7560ba7c.json",
+    "sha256": "22cc5ce6337716786887ab453b5ffe5a753f2f3ef9dce61270ef5b9a7560ba7c"
   }
 }
