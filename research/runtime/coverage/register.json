@@ -159461,7 +159461,8 @@
         "research/runtime/campaign-progression-validation-20261101.md",
         "research/runtime/campaign-transition-completion-20261102.md",
         "research/runtime/campaign-master-merge-20261102.md",
-        "research/runtime/campaign-nominal-repeatability-20261102.md"
+        "research/runtime/campaign-nominal-repeatability-20261102.md",
+        "research/runtime/campaign-approach-20261103.md"
       ],
       "implementation": [
         "tools/rendering_progression.py",
@@ -159773,7 +159774,20 @@
         "RPS05.final-inputs",
         "RPS05.final-guards",
         "RPS05.final-controls02",
-        "RPS05.closeout-review"
+        "RPS05.closeout-review",
+        "RPS06.approach-threat-diagnosis01",
+        "RPS06.preparation01",
+        "RPS06.guards01",
+        "RPS06.escort-original-negative01",
+        "RPS06.v31-controls01",
+        "RPS06.guards02",
+        "RPS06.restricted-unit-refusal",
+        "RPS06.early-escort-original02",
+        "RPS06.resupply-threat-review01",
+        "RPS06.v32-controls01",
+        "RPS06.guards03",
+        "RPS06.current-original-negative03",
+        "RPS06.closeout-review02"
       ],
       "status": {
         "understanding": "partial",
@@ -159793,7 +159807,11 @@
         "Final phase24 changes only CMake default-test membership and has fresh154controls plus ON/OFF build-graph checks. Completed original comparisons retain their exact phase23/diagnostic source fingerprints; their broad source closure is not refreshed to claim current full-bundle equivalence.",
         "Master/campaign merge passes current synthetic CPU and Qt/campaign controls; original observations and pixels retain their parent source phases. Current combined-source live validation and nominal repeatability remain pending. No historical status or source hash is renewed.",
         "RPS05 frozen v23 nominal matrix:all12enter first World,but only2software defeat routes/pixels pass. Six victory/progression attempts naturally lose,two helpers refuse,one World producer cancels and one capture truncates. Original prefix variants,combat/route reliability and current complete-bundle acceptance remain pending;no source hashes/statuses are refreshed.",
-        "RPS05 closes the frozen v23 enabled-intro12case matrix:all enter first World, two software defeat routes/pixels pass and ten strict cases fail. Current v29 adds coalesced immutable helper snapshots, exact post-refill bridge staging, living-line/visibility guards, bounded witnessed support-order attempt and empty-mana retreat;164 synthetic controls pass. Its software640 nominal attempt naturally loses before support order/pause, so current nominal victory/progression and the support policy remain unvalidated. Six v26 target-matched casts hit guard5; sampled guard is beyond target, so collision/trajectory cause remains open. All are authored input policies, not recovered AI/range or native commander gameplay."
+        "RPS05 closes the frozen v23 enabled-intro12case matrix:all enter first World, two software defeat routes/pixels pass and ten strict cases fail. Current v29 adds coalesced immutable helper snapshots, exact post-refill bridge staging, living-line/visibility guards, bounded witnessed support-order attempt and empty-mana retreat;164 synthetic controls pass. Its software640 nominal attempt naturally loses before support order/pause, so current nominal victory/progression and the support policy remain unvalidated. Six v26 target-matched casts hit guard5; sampled guard is beyond target, so collision/trajectory cause remains open. All are authored input policies, not recovered AI/range or native commander gameplay.",
+        "RPS06 confirms v29 omitted a living type11/owner1 attacker because its threat predicate admitted only type10/owner2. Original enemy6 melee removes30HP after cleared bridge; Camulos Fireballs remove remaining111HP. Generic living engaged-attacker input policy has new bounded role/refusal controls; fresh nominal outcome/pixels remain pending. This is an authored policy correction, not AI/collision/range recovery or native commander gameplay.",
+        "RPS06 v30 nominal software640 selects and kills the ignored type11/owner1 escort via original29\u21929\u21920 damage,but reaches bridge at92HP after141HP resupply and later refuses the support-order witness at7HP/12mana. Current v31 adds bounded early bridge combat and two-cast escort bursts;169controls pass,nominal outcome/pixels pending. No stage clock reset,simulation modification or historical source/hash/status renewal.",
+        "RPS06 v31 loses74HP during resupply113\u219239 to original type11/owner1 melee;post-refill interruption is never eligible. Current v32 extends the bounded suspension to resupply,requires affordable casting and resumes the original phase/clocks;173synthetic controls pass. A3second recent melee-role witness covers transient cleared targets but is not stable object/generation proof. Fresh original result/pixels remain pending;no status promotion.",
+        "RPS06 closes3nominal software640 attempts,all failures. V30 confirms broader typed-attacker selection and original escort kill;v31 confirms74HP resupply damage. Current v32 has173guards and retains182HP through resupply but never exercises suspension/recent-melee fallback or records an escort kill;it spends mana on owner1/type10 escorts and naturally loses. Retained v31 resupply poses supply offline gate eligibility only. Unit-order witness,resource/target policy,nominal victory and lifetime/save/full-simulation acceptance remain pending;no historical hash/status is refreshed."
       ]
     },
     {
@@ -372399,6 +372417,252 @@
         }
       ],
       "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS06.approach-threat-diagnosis01",
+      "kind": "static",
+      "record": "research/runtime/campaign-approach-results-20261103/approach-threat-diagnosis-01.json",
+      "sha256": "f887f197749508f82ad98fb11e1dcb739cb8ee6e0d89f355443e25f91845e996",
+      "sources_pointer": "/sources",
+      "scope": "Exact retained v29 bridge pose and original damage-source join proves type11/owner1 attacker omission:30meleeHP then111CamulosFireballHP after bridge. Offline corrected target selection only; no new original execution, sole-cause claim or species-name identification. Test draft source pins remain historical; later guards record exact-coordinate fixture.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/health_loss_after_cleared_bridge/troll_melee",
+          "equals": 30
+        },
+        {
+          "pointer": "/health_loss_after_cleared_bridge/camulos_fireballs",
+          "equals": 111
+        }
+      ]
+    },
+    {
+      "id": "RPS06.preparation01",
+      "kind": "static",
+      "record": "research/runtime/campaign-approach-results-20261103/preparation-01.json",
+      "sha256": "c6c0fcb835962f48c6401b1d8010ec9139c31dea6b6f01fb493f86d8ac115d4d",
+      "sources_pointer": "/sources",
+      "scope": "Private verified game/music and independently admitted stopped prefix copy, RAM productionOFF Qt/fixture/original-only oracle builds and source preimages. Original manifests2927before/after; no original game executed.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS06.guards01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261101/approach-v30-guards-01.json",
+      "sha256": "a0c820f8aa14cb59d67cf027fb69a3101cfc522886c6ed2eafd5edbc2eeaf23b",
+      "sources_pointer": "/sources",
+      "scope": "Current130Python/sevenQt startup/30Region controls pass,total167. Includes exact type11/owner1 bridge attacker and rejected dead/friendly/unengaged/remote targets; no original combat or natural outcome acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS06.escort-original-negative01",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/approach-v30-software-low-nominal-01.json",
+      "sha256": "8042e44aff3ad2c764face2f1b1c2b01fa6da3cb751e69e8aa7a55b2d80caa0f",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v30 enabled-intro software640: corrected type11/owner1 selection executes and original player damage29\u21929\u21920 kills the first escort. Bridge staging loses health before selection; three casts/two same-target damage events recorded. Later support attack witness refuses with wizard7HP and follower29HP. Whole acquisition fails; no victory/pixel acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS06.v31-controls01",
+      "kind": "static",
+      "record": "research/runtime/campaign-approach-results-20261103/v31-controls-01.json",
+      "sha256": "8a647d2c2fd133b280f08ddce25475eb00a324b988ec3df85bb7b646d007425c",
+      "sources_pointer": "/sources",
+      "scope": "Fresh original manifest/input/guard preparation for early post-refill bridge interruption and two-cast escort bursts;production source/compiler closure stable. No original game executed.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS06.guards02",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261101/approach-v31-guards-01.json",
+      "sha256": "4cf75d285948960358810c3d6212c916985e1c2f70cf469d5cdfc099c1015c55",
+      "sources_pointer": "/sources",
+      "scope": "Current132Python/sevenQt startup/30Region controls,total169. Early combat interrupts post-refill bridge staging only;initial power/resupply paths and neutral bridge/Camulos burst policies stay separate. Existing stage clocks are not reset;unit and synthetic controls do not grant original outcome acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS06.restricted-unit-refusal",
+      "kind": "static",
+      "record": "research/runtime/campaign-approach-results-20261103/v31-unit-restricted-context.json",
+      "sha256": "8f1004b3cb66086b3c0c765c9b8e65dc7d2df89d0a1823fef5893e6cae52bec6",
+      "sources_pointer": "/sources",
+      "scope": "Failed synthetic helper unit invocation:private X initialization fails in restricted context. Not an original engine failure;separate approved-context full guard run succeeds. Preserve the failed log and exact source pins.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS06.early-escort-original02",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/approach-v31-software-low-nominal-01.json",
+      "sha256": "4e771ee4d8861e02aed0d2d395f5891ac5ea5cac49c3cefb76d610e57a4ad904",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v31 enabled-intro software640 enters World,but wizard loses74HP to an engaged type11/owner1 attacker during resupply before the post-refill bridge interruption can run. Later support witness refuses at19HP;whole acquisition fails. Manifests,sources and stopped private Wine verified.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS06.resupply-threat-review01",
+      "kind": "static",
+      "record": "research/runtime/campaign-approach-results-20261103/v31-resupply-threat-review-01.json",
+      "sha256": "385610969d99289b7c99bf252711f9f1b683376625092f5eef64690d1bcb2f1a",
+      "sources_pointer": "/sources",
+      "scope": "Original type11/owner1 source6 melee removes74HP during resupply113\u219239. Post-refill-only interruption never executes. Later support witness fails with wizard19HP. No sole-cause/unit-click diagnosis or recovered AI/damage formula.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/confirmed_health_loss",
+          "equals": 74
+        }
+      ]
+    },
+    {
+      "id": "RPS06.v32-controls01",
+      "kind": "static",
+      "record": "research/runtime/campaign-approach-results-20261103/v32-controls-01.json",
+      "sha256": "4c96bbf7e40218bafe7b0bb55033915b727b9d7ea4d5609ba01641335801d42e",
+      "sources_pointer": "/sources",
+      "scope": "Fresh manifest/input/source-preimage preparation and173guards for bounded resupply/bridge combat suspension. No original game executed.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS06.guards03",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261101/approach-v32-guards-01.json",
+      "sha256": "20d0ff3a3ce1d9963bc5df7e129d956c57224dada835493fca0f6b5cdd59a0b6",
+      "sources_pointer": "/sources",
+      "scope": "Current136Python/sevenQt startup/30Region controls,total173. Living hostile roles,short recent original melee witness,stale/wrong-role/unapplied damage refusals,original tick wrap,affordable resupply interruption and two-cast escort budgets pass. Synthetic policy controls,not recovered AI,object identity or original outcome acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS06.current-original-negative03",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/approach-v32-software-low-nominal-01.json",
+      "sha256": "202702525a94358cb9759ba1329c77fc4bc4fc08155fcf4068e4b8ad2153378f",
+      "sources_pointer": "/sources",
+      "scope": "V32 retains182HP through resupply and later returns original Defeat(outcome0). No route interruption or type11 damage is recorded,so no escort-kill or live suspension validation is claimed. V30 proves broader target selection and typed escort kill;v31 proves74HP lost during unsafe resupply. Source/time/RNG variants are not a matched causal comparison. Whole nominal victory acquisition fails;privateWine stopped/manifests/source closure pass.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS06.closeout-review02",
+      "kind": "static",
+      "record": "research/runtime/campaign-approach-results-20261103/closeout-review-02.json",
+      "sha256": "bfbe57872bae28c99afd3a6ba9184b18d55495ad19e7f9df9f8577f7b04e77fa",
+      "sources_pointer": "/sources",
+      "scope": "Static join of three actual bounded nominal attempts,all failures. Original outcomes and source phases remain independent;current173guards are synthetic. No victory/pixel/repeatability or engine status promotion. V32 retains182HP through resupply and later returns original Defeat(outcome0). No route interruption or type11 damage is recorded,so no escort-kill or live suspension validation is claimed. V30 proves broader target selection and typed escort kill;v31 proves74HP lost during unsafe resupply. Source/time/RNG variants are not a matched causal comparison.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -402845,6 +403109,71 @@
         "tools/check-rendering-progression.py",
         "tests/test-rendering-progression.py"
       ]
+    },
+    {
+      "id": "campaign.engaged-approach-threats-rps06",
+      "level": "headless",
+      "scope": "Exact retained bridge pose recognizes owner1/type11 pursuer while refusing dead/friendly/unengaged/remote actors and invalid follower roles. Author input policy only; live outcome remains independent.",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS06.approach-threat-diagnosis01",
+        "RPS06.guards01"
+      ],
+      "tests": [
+        "tests/test-rendering-progression.py",
+        "tools/campaign-outcome-input.py"
+      ]
+    },
+    {
+      "id": "campaign.early-escort-staging-rps06",
+      "level": "headless",
+      "scope": "Post-refill engaged-attacker interruption before exact bridge arrival,with at most4interruptions and unchanged clocks/deadlines. Two-cast type11/owner1 bursts observe actual damage before a follow-up;no lethal/damage formula is assumed.",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS06.guards02",
+        "RPS06.escort-original-negative01"
+      ],
+      "tests": [
+        "tests/test-rendering-progression.py",
+        "tools/campaign-outcome-input.py"
+      ]
+    },
+    {
+      "id": "campaign.resupply-combat-suspension-rps06",
+      "level": "headless",
+      "scope": "Resupply can suspend for an affordable nearby actual attacker and resume its prior phase without resetting clocks. A3second original melee-source/victim role witness handles transient unset target fields;dead/changed roles,old/unapplied damage and wrong victims refuse. Same-role slot reuse/generation remains unresolved.",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS06.guards03",
+        "RPS06.resupply-threat-review01"
+      ],
+      "tests": [
+        "tests/test-rendering-progression.py",
+        "tools/campaign-outcome-input.py"
+      ]
+    },
+    {
+      "id": "campaign.nominal-approach-current-negative-rps06",
+      "level": "live_observation",
+      "scope": "V32 retains182HP through resupply and later returns original Defeat(outcome0). No route interruption or type11 damage is recorded,so no escort-kill or live suspension validation is claimed. V30 proves broader target selection and typed escort kill;v31 proves74HP lost during unsafe resupply. Source/time/RNG variants are not a matched causal comparison.",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS06.current-original-negative03",
+        "RPS06.closeout-review02"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/campaign-outcome-input.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -404662,7 +404991,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-b00a833f7a30f0b2fed7d0dfb817d21b12b2d968b8448fcad71fa35956581d2c.json",
-    "sha256": "b00a833f7a30f0b2fed7d0dfb817d21b12b2d968b8448fcad71fa35956581d2c"
+    "path": "research/runtime/coverage/source-index-adcf3f424776862d002b84e8d0cc847c03729da269ff2bc2e27b1c75d932b377.json",
+    "sha256": "adcf3f424776862d002b84e8d0cc847c03729da269ff2bc2e27b1c75d932b377"
   }
 }

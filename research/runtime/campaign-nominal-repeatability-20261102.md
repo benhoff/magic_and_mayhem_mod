@@ -6,6 +6,9 @@ stall and retains bounded progression, victory and defeat attempts. No original
 simulation, health, mana, AI, script, balance or menu lease is changed. Reliable
 nominal victory/progression and supported-player acceptance remain pending.
 
+The subsequent [approach correction](campaign-approach-20261103.md) starts from
+this committed source phase. Results below retain their original source scopes.
+
 ## Confirmed startup path and application fix
 
 The [focused failure](rendering-progression-results-20261101/repeatability-startup-dwell-software-low-02.json)

@@ -73,6 +73,95 @@ class NativeRuntimeBindingTests(unittest.TestCase):
 
 
 class ProgressionTests(unittest.TestCase):
+    def threat_fixture(self):
+        spec=importlib.util.spec_from_file_location('outcome_threat_policy',ROOT/'tools/campaign-outcome-input.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        # Exact v29 cleared-bridge snapshot: Enemy6 is already pursuing wizard0.
+        hero=dict(sequence=4854,slot=0,type=0,owner=0,active=1,health=141,x=31,y=52,z=4,target=6,mana=9728)
+        follower=dict(sequence=4855,slot=3,type=14,owner=0,active=1,health=90,x=29,y=53,z=4,target=6,mana=0)
+        escort=dict(sequence=4853,slot=6,type=11,owner=1,active=1,health=30,x=32,y=52,z=4,target=0,mana=0)
+        return module,hero,follower,escort
+
+    def test_retained_owner_one_escort_is_prioritized_before_distant_camulos(self):
+        module,hero,follower,escort=self.threat_fixture()
+        boss=dict(escort,slot=4,type=24,health=100,x=44,y=27,target=0)
+        neutral=dict(escort,slot=2,type=10,owner=2,x=31,y=52)
+        actors={v['slot']:v for v in (hero,follower,escort,boss,neutral)}
+        self.assertEqual([v['slot'] for v in module.engaged_threats(hero,actors,3)],[6,2])
+        self.assertEqual(module.combat_choice('victory',hero,escort,1,1,4),'fireball')
+        self.assertEqual(module.combat_choice('defeat',hero,escort,1,1,4),'idle')
+
+    def test_threat_policy_rejects_inactive_friendly_unengaged_and_remote_actors(self):
+        module,hero,follower,escort=self.threat_fixture()
+        for change in (dict(active=0),dict(health=0),dict(owner=0),dict(owner=0xffffffff),
+                       dict(target=0xffffffff),dict(target=9),dict(x=42,y=52),dict(type=24)):
+            candidate=dict(escort,**change)
+            with self.subTest(change=change):
+                self.assertEqual(module.engaged_threats(hero,{0:hero,3:follower,6:candidate},3),[])
+
+    def test_only_a_living_owned_zombie_is_a_protected_follower(self):
+        module,hero,follower,escort=self.threat_fixture();escort=dict(escort,target=3)
+        self.assertEqual(module.engaged_threats(hero,{0:hero,3:follower,6:escort},3),[escort])
+        for change in (dict(active=0),dict(health=0),dict(owner=1),dict(type=10)):
+            with self.subTest(change=change):
+                self.assertEqual(module.engaged_threats(hero,{0:hero,3:dict(follower,**change),6:escort},3),[])
+        self.assertEqual(module.engaged_threats(hero,{0:hero,6:escort},3),[])
+
+    def test_engaged_escort_interrupts_post_refill_staging_before_exact_waypoint(self):
+        module,hero,follower,escort=self.threat_fixture();hero=dict(hero,x=28,y=53)
+        actors={0:hero,3:follower,6:escort}
+        self.assertTrue(module.route_combat_needed('bridge',True,hero,actors,3))
+        for phase,rearmed in [('bridge',False),('power-approach',True),('combat',True)]:
+            self.assertFalse(module.route_combat_needed(phase,rearmed,hero,actors,3))
+        for change in [dict(target=0xffffffff),dict(x=36,y=53),dict(health=0),dict(owner=0)]:
+            with self.subTest(change=change):
+                self.assertFalse(module.route_combat_needed('bridge',True,hero,{0:hero,3:follower,6:dict(escort,**change)},3))
+
+    def test_resupply_can_suspend_for_an_affordable_engaged_attacker(self):
+        module,hero,follower,escort=self.threat_fixture()
+        hero=dict(hero,x=29,y=52,health=113,mana=16*256)
+        escort=dict(escort,x=30,y=53)
+        actors={0:hero,3:follower,6:escort}
+        self.assertTrue(module.route_combat_needed('resupply',False,hero,actors,3))
+        self.assertFalse(module.route_combat_needed('resupply',False,dict(hero,mana=5*256),actors,3))
+        self.assertFalse(module.route_combat_needed('power-refill',False,hero,actors,3))
+
+    def melee_fixture(self,hero):
+        return [[1,2,40,1000,6,11,1,30,hero['slot'],0,0,141,117,1,1,6],
+                [2,1,40,1100,0,0,0,1,117,29,52,4,8,14,6,4096]]
+
+    def test_recent_original_melee_protects_a_transiently_cleared_actor_target(self):
+        module,hero,follower,escort=self.threat_fixture();escort=dict(escort,target=0xffffffff)
+        actors={0:hero,3:follower,6:escort};rows=self.melee_fixture(hero)
+        recent=module.recent_melee_attackers(rows,hero,actors,3)
+        self.assertEqual(recent,{(6,11,1)})
+        self.assertEqual(module.engaged_threats(hero,actors,3),[])
+        self.assertEqual(module.engaged_threats(hero,actors,3,recent=recent),[escort])
+        self.assertTrue(module.route_combat_needed('resupply',False,hero,actors,3,recent))
+        for change in [dict(health=0),dict(type=10),dict(owner=2)]:
+            self.assertEqual(module.engaged_threats(hero,{0:hero,3:follower,6:dict(escort,**change)},3,recent=recent),[])
+
+    def test_recent_melee_rejects_stale_wrong_victim_and_unapplied_damage(self):
+        module,hero,follower,escort=self.threat_fixture();actors={0:hero,3:follower,6:escort}
+        rows=self.melee_fixture(hero)
+        for index,value in [(1,1),(6,0),(7,0),(8,9),(9,14),(10,1),(12,141),(13,0)]:
+            altered=copy.deepcopy(rows);altered[0][index]=value
+            with self.subTest(index=index):self.assertEqual(module.recent_melee_attackers(altered,hero,actors,3),set())
+        rows[-1][3]=4001
+        self.assertEqual(module.recent_melee_attackers(rows,hero,actors,3),set())
+
+    def test_recent_melee_witness_handles_original_tick_wrap(self):
+        module,hero,follower,escort=self.threat_fixture();rows=self.melee_fixture(hero)
+        rows[0][3]=0xfffffffe;rows[-1][3]=2
+        self.assertEqual(module.recent_melee_attackers(rows,hero,{0:hero,3:follower,6:escort},3),{(6,11,1)})
+
+    def test_escort_burst_observes_damage_before_a_third_cast_and_never_overspends(self):
+        module,hero,follower,escort=self.threat_fixture()
+        for mana,limit in [(0,0),(5*256,0),(6*256,1),(11*256,1),(12*256,2),(38*256,2)]:
+            for paused in [False,True]:
+                self.assertEqual(module.fireball_burst_limit(dict(hero,mana=mana),escort,paused),limit)
+        self.assertEqual(module.fireball_burst_limit(hero,dict(escort,type=10,owner=2),False),7)
+
     def test_blocked_snapshot_writer_leaves_producer_free_and_retains_complete_history(self):
         from campaign_outcome_record import AtomicSnapshotWriter
         entered=threading.Event();release=threading.Event();written=[]

@@ -50,6 +50,42 @@ def combat_choice(case, hero, target, nearby_support, casts, since_spell, suppor
     return 'move'
 
 
+def recent_melee_attackers(rows, hero, actors, follow_slot):
+    """Bounded input-policy witness when an actor's target field clears."""
+    if not rows or not hero['active'] or hero['health']<=0:return set()
+    protected={(hero['slot'],hero['type'],hero['owner'])}
+    follower=actors.get(follow_slot)
+    if follower and follower['active'] and follower['health']>0 and follower['owner']==0 and follower['type']==14:
+        protected.add((follow_slot,14,0))
+    now=rows[-1][3]
+    return {tuple(r[4:7]) for r in rows if r[1]==2 and tuple(r[8:11]) in protected
+            and r[6] not in (0,0xffffffff) and signed(r[7])>0 and r[13]
+            and signed(r[11])>signed(r[12]) and ((now-r[3])&0xffffffff)<=3000}
+
+
+def engaged_threats(hero, actors, follow_slot, radius=10, recent=()):
+    """Forest input policy: protect living owned actors from nearby attackers.
+
+    Enemy ownership/type is observed, not inferred from the initial bridge
+    Redcap. Camulos keeps the separate boss casting/portal path.
+    """
+    if not hero['active'] or hero['health']<=0 or hero['owner']!=0 or hero['type']!=0:return []
+    protected={hero['slot']}
+    follower=actors.get(follow_slot)
+    if follower and follower['active'] and follower['health']>0 and follower['owner']==0 and follower['type']==14:
+        protected.add(follow_slot)
+    return [v for v in actors.values() if v['active'] and v['health']>0
+            and v['owner'] not in (0,0xffffffff)
+            and (v['target'] in protected or (v['slot'],v['type'],v['owner']) in recent)
+            and not (v['type']==24 and v['owner']==1)
+            and math.hypot(v['x']-hero['x'],v['y']-hero['y'])<=radius]
+
+
+def route_combat_needed(phase, rearmed, hero, actors, follow_slot, recent=()):
+    """Suspend resupply or post-refill staging for affordable nearby combat."""
+    return (phase=='resupply' or phase=='bridge' and rearmed) and hero['mana']>=6*256 and bool(engaged_threats(hero,actors,follow_slot,7,recent))
+
+
 def firing_line_allies(hero, target, actors, radius=.8):
     return firing_line_blockers(hero,target,actors,radius,friendly_only=True)
 
@@ -94,6 +130,10 @@ def support_for_attack(hero,target,actors):
 
 
 def fireball_burst_limit(hero, target, paused):
+    if target.get('type')==11 and target.get('owner')==1:
+        # The retained escort takes two hits while a third cast is admitted.
+        # Observe damage after two; surviving targets can get another burst.
+        return min(2,max(0,hero['mana']//(6*256)))
     if target.get('type')!=24:return 7
     available=max(0,hero['mana']//(6*256))
     return min(6,available) if paused else min(2,available)
@@ -192,6 +232,7 @@ def main():
         follow_slot=None;follow_start=None;follow_wait_since=0
         follow_stage_target=None;follow_quiet_position=None;follow_quiet_since=0
         firing_position=None;firing_since=0;bridge_attacker=None;rearm_since=0;rearm_onpoint_since=0;rearmed=False
+        interrupted_phase=None
         portal_clear_since=0;portal_clear_goal=None;portal_clear_sent=False;portal_cleared=False
         camulos_approach_since=0;bridge_arrival_since=0
         result.update(casts=[],combat_policy='exact-bridge-visible-support-v29' if a.case!='defeat' else 'ordinary-defeat-v1',route_stage=phase)
@@ -270,7 +311,8 @@ def main():
             if a.case!='defeat' and route is None:
                 route=forest_waypoints(a.experiment/'game')
                 result['route']=route;result['opening_anchors']=validate_opening_anchors(route,rows);save()
-            if a.case!='defeat' and phase=='combat' and bridge_attacker is not None and not rearmed:
+            recent=recent_melee_attackers(rows,hero,actors,follow_slot)
+            if a.case!='defeat' and phase=='combat' and bridge_attacker is not None and not rearmed and not rearm_since:
                 actor=actors.get(bridge_attacker)
                 dead=actor and actor['type']==10 and actor['owner']==2 and actor['health']<=0
                 lethal=[r for r in rows if r[1]==2 and r[8:11]==(bridge_attacker,10,2) and r[13] and signed(r[11])>0 and signed(r[12])<=0]
@@ -278,6 +320,11 @@ def main():
                 if dead or lethal or spell_lethal:
                     phase='resupply';rearm_since=time.monotonic();result['route_stage']=phase
                     result['rearm']=dict(attacker=bridge_attacker,before=hero,lethal=list((lethal or spell_lethal)[-1]) if lethal or spell_lethal else None);save()
+            if a.case!='defeat' and route_combat_needed(phase,rearmed,hero,actors,follow_slot,recent):
+                interruptions=result.setdefault('route_threat_interruptions',[])
+                require(len(interruptions)<4,'Bounded route combat interruptions exhausted')
+                interruptions.append(dict(phase=phase,wizard=dict(hero),threats=engaged_threats(hero,actors,follow_slot,7,recent),recent_melee=[list(v) for v in sorted(recent)],seconds=time.monotonic()-start))
+                interrupted_phase=phase;phase='combat';result['route_stage']=phase;save()
             if a.case!='defeat' and phase!='combat':
                 center();actors=state();hero=actors[hero['slot']]
                 if not hero['active'] or hero['health']<=0:continue
@@ -391,13 +438,19 @@ def main():
                 phase='combat';result['route_stage']=phase;save()
             enemies = [v for v in actors.values() if v['active'] and v['owner'] not in (0,0xffffffff) and v['health'] > 0]
             camulos = [v for v in actors.values() if v['owner']==1 and v['type']==24]
-            threats=[v for v in enemies if v['type']==10 and v['owner']==2 and v['target'] in (hero['slot'],follow_slot)
-                     and math.hypot(v['x']-hero['x'],v['y']-hero['y'])<=10]
+            threats=engaged_threats(hero,actors,follow_slot,recent=recent)
             if camulos and camulos[0]['health'] <= 0:portal=camulos[0]
             if camulos and portal is None:
                 lethal=[r for r in player_fireball_damage(read_spell_rows(a.experiment/'spell-events.bin'),0,hero['slot']) if r[4]==camulos[0]['slot'] and r[5]==24 and r[6]==1 and signed(r[8])<=0]
                 if lethal:
                     portal=dict(camulos[0],health=0);result['portal_candidate_from_original_lethal']=dict(event=list(lethal[-1]),last_position=camulos[0])
+            if interrupted_phase and (not threats or hero['mana']<6*256) and portal is None:
+                # Resume the same required waypoint/follower checks. Existing
+                # stage clocks keep running; combat grants no extra deadline.
+                phase=interrupted_phase;interrupted_phase=None;firing_position=None
+                result['route_stage']=phase
+                result.setdefault('route_combat_resumptions',[]).append(dict(phase=phase,wizard=dict(hero),seconds=time.monotonic()-start))
+                save();continue
             if a.case!='defeat' and portal is not None and not portal_cleared:
                 follower=actors.get(follow_slot)
                 blocked=follower and follower['active'] and follower['health']>0 and math.hypot(follower['x']-portal['x'],follower['y']-portal['y'])<2
@@ -424,7 +477,14 @@ def main():
             if a.case != 'defeat' and portal is not None:target=portal
             elif a.case!='defeat' and threats:
                 target=min(threats,key=lambda e:math.hypot(e['x']-hero['x'],e['y']-hero['y']))
-                if bridge_attacker is None:bridge_attacker=target['slot']
+                if bridge_attacker is None and target['type']==10 and target['owner']==2:
+                    bridge_attacker=target['slot']
+                selections=result.setdefault('engaged_threat_selections',[])
+                if not any((v['target']['slot'],v['target']['type'],v['target']['owner'])==
+                           (target['slot'],target['type'],target['owner']) for v in selections):
+                    require(len(selections)<16,'Bounded engaged-threat identities exhausted')
+                    selections.append(dict(target=dict(target),wizard=dict(hero),
+                        follower=dict(actors.get(follow_slot,{})),seconds=time.monotonic()-start))
             elif a.case != 'defeat' and camulos and camulos[0]['health'] > 0:
                 target=camulos[0]
             elif enemies:target=min(enemies,key=lambda e:math.hypot(e['x']-hero['x'],e['y']-hero['y']))

@@ -25826,3 +25826,46 @@ the sampled guard beyond target, so interception/retargeting cause remains open.
 No historical fingerprint/status is refreshed. Save persistence, populated
 lifetime, full simulation and supported acceptance remain pending. See the
 [reviewed scenarios and exact evidence](campaign-nominal-repeatability-20261102.md).
+
+## Engaged campaign approach threats — 2026-11-03
+
+RPS06 joins the retained v29 cleared-bridge pose with original victim/source
+records: a living type11/owner1 enemy targets wizard0 but the old input predicate
+admits only type10/owner2. After bridge arrival it deals30meleeHP; Camulos then
+removes remaining111HP through six Fireballs. The omission and damage-source
+join are confirmed, not a sole-cause or recovered AI/collision formula claim.
+The driver now prioritizes nearby living hostile actors attacking the wizard or
+its living owned Zombie, while keeping Camulos and neutral-bridge resupply roles
+separate. Current167campaign controls pass. Fresh nominal outcome/pixels remain
+pending; no balance, lease/deadline/budget or behavior-status change. See the
+[bounded correction](campaign-approach-20261103.md).
+
+RPS06 v30 enabled-intro software640 enters World and selects/kills the omitted
+escort through original29→9→0 player Fireball damage. Three casts/two same-target
+hits are recorded; exact bridge arrival has92HP after141HP resupply. Later the
+support-order witness refuses at7HP/12mana, so the whole route fails. Its314
+artifacts, stopped private Wine, manifests and source closure remain retained.
+V31 adds bounded early post-refill bridge combat and two-cast escort bursts;
+existing clocks are not reset and169current campaign controls pass. A restricted
+private-X unit refusal is retained separately. Fresh nominal outcome/pixels
+remain pending; no source hash, engine status or balance field is refreshed.
+
+RPS06 v31's original melee join confirms74HP resupply loss113→39 before bridge
+interruption eligibility. V32 suspends/resumes the exact resupply or post-refill
+bridge phase for affordable nearby combat;initial resupply starts only once and
+clocks are not reset. A3second applied original melee witness handles transient
+unset target fields with current living source/victim role checks. It is not
+stable object/generation or recovered AI proof. Current173guards pass;fresh
+nominal outcome/pixels remain pending, and both earlier failures stay retained.
+
+RPS06 closes three nominal software640 attempts, all strict failures. Current
+v32 retains182HP through resupply, spends mana on owner1/type10 escorts and
+naturally loses with original Defeat0. It records no route interruption or
+supported type11 kill, so live suspension/escort-kill validation is not claimed.
+Retained v31 helper-observed113HP/69HP resupply poses admit the current gate;
+the remote39HP completion pose refuses. This is offline decision eligibility,
+not new original execution or a matched source/RNG outcome comparison. Current
+173guards pass. Unit-order/resource/target policy, nominal victory/progression,
+identity/lifetime/save/full simulation remain pending. No engine status or
+historical fingerprint is promoted or refreshed. Exact results and correction
+scope are in the [closeout](campaign-approach-20261103.md).
