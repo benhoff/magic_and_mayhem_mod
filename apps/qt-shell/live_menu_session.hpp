@@ -61,6 +61,7 @@ public:
     bool miniMenusEnabled() const {return campaignMiniEnabled||MNM_MENU_MINI_EXPERIMENTAL!=0;}
     bool requestPreferences(quint32 action,const std::array<int,7>& values,quint32 slider=0);
     bool requestDefeatContinue();
+    bool beginOriginalRealmControls(); // Ordinary original Options/confirmation; no wire dispatch.
     bool requestResults(quint32 action);
     bool requestMini(quint32 action);
     bool requestMultiplayer(quint32 action,quint32 transport=0,const QString& gameName={},const QString& userName={});
@@ -71,6 +72,12 @@ public:
     // Bounded test/diagnostic witness; an accepted intent is not an engine ACK.
     std::function<void(quint32,bool,const QString&,const MenuBridge::State&)> miniRequestObserved;
     std::function<void(quint32,bool,const QString&,const MenuBridge::State&)> requestObserved;
+    struct TransitionDiagnostic {
+        quint32 request=0,action=0,target=0,flags=0,generation=0,screen=0,ready=0,ack=0,status=0,sequence=0,handoff=0;
+        qint64 requestAgeMs=0,stateAgeMs=0;
+    };
+    // Terminal host observation for bounded scenarios, before fallback clears state.
+    std::function<void(const TransitionDiagnostic&)> transitionFailureObserved;
     std::function<void(const QString&)> output;
     std::function<void(const QString&)> failed;
     std::function<void()> finished;
@@ -107,6 +114,7 @@ private:
     bool mediaActive_=false;
     qint64 mediaStartedAt_=0;
     quint32 sequence_=0,target_=0,action_=0;
+    quint32 campaignEnterGeneration_=0,campaignEnterKind_=0,campaignEnterThread_=0,campaignEnterHandoff_=0,campaignEnterRegion_=0;
     quint32 storageOpeningGeneration_=0,preferencesOpeningGeneration_=0;
     // One user intent; wire IDs remain strictly increasing and once-only.
     quint32 resultsAction_=0,resultsThread_=0,resultsDepth_=0;

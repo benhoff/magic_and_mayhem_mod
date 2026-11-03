@@ -25,6 +25,8 @@ static u32 menu_generation,menu_screen,menu_ready,menu_owner,menu_thread;
 static u32 menu_request,menu_status,menu_heartbeat,menu_seen;
 static int menu_retired;
 static u32 menu_handoff;
+#include "region_diagnostic.h"
+#include "realm_diagnostic.h"
 static u32 menu_admission,menu_admission_reason,menu_admission_records;
 static HANDLE menu_admission_trace;
 static u32 menu_load(u32* p){return __atomic_load_n(p,__ATOMIC_ACQUIRE);}
@@ -164,7 +166,7 @@ static void menu_state(void* object){
         if(region_snapshot(object,next,menu_version>=8)){
             screen=18;if(!equal(next,region_payload,sizeof(next)))++menu_generation;copy(region_payload,next,sizeof(next));
             u8* p=object;ready=!p[0xc]&&!get(p+0x33)&&!get(p+0x37)&&!get(p+0x43);
-        }
+        }else region_snapshot_diagnostic(object);
     }
     if(menu_version>=3&&menu_screen==7&&screen==0&&owner!=menu_owner)menu_handoff=menu_version>=21&&!get(spell_context_payload)?MNM_MENU_HANDOFF_CAMPAIGN_RETURN:2;
     if(menu_version>=2&&ready&&(screen==14||screen==25)){
@@ -262,6 +264,8 @@ static void menu_poll(void* object,int execute){
                 u32 next=get((u8*)object+0x33);menu_handoff=next==0x6f2aa0?1:next==0x6903b8?2:0;
             }
             if(menu_version>=3&&host[3]==MNM_MENU_SPELL_FINISH&&menu_status==MNM_MENU_OK)menu_handoff=menu_version>=21&&!get(spell_context_payload)?MNM_MENU_HANDOFF_CAMPAIGN_RETURN:2;
+            if(host[3]==MNM_MENU_REALM_ACTIVATE&&menu_status==MNM_MENU_UNAVAILABLE)
+                realm_activation_diagnostic(object,action_screen,action_generation,host[5]);
             drawing_action_record(host[2],host[3],action_screen,action_generation,host[5],2,menu_status);
             menu_state(object);
         }

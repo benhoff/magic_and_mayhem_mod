@@ -51,9 +51,16 @@ def main():
  names=set(compiled)
  names.update(['run-native.sh','tools/run-native-game.py','tools/run-native-owned.py','tools/run-qt-shell.sh','tools/native_only_contract.py','tools/native_prefix_template.py','tools/experiment_environment.py','tools/directplay_dx6_launch.py','tools/working-retention.py','tools/run-rendering-progression.py','tools/test-native-campaign.py'])
  names.update(['tools/rendering_capture.py','tools/rendering_pilot.py']);names.update(prepared['sources']);names.update(['tools/menu-game-runner.py','tools/run-game.sh','tools/owned-menu-game-runner.py','tools/prepare-menu-observer.py']);names.update(['tools/menu-storage-input.py','tools/campaign_storage.py','tools/run-rendering-progression.py','tools/campaign_gameplay.py'])
+ # Freeze native runtime inputs as well as the linked Qt compiler closure.
+ # Native DLLs are built by the launcher after the public player build. Their
+ # retained build manifests alone must not hide runtime source drift here.
+ from rendering_build_binding import native_runtime_source_paths
+ runtime_names=native_runtime_source_paths(ROOT)
+ names.add('tools/rendering_build_binding.py')
+ names.update(runtime_names)
  sources={n:sha(ROOT/n) for n in sorted(names)}
  report=dict(schema=1,kind='public_native_progression_diagnostic_acquisition' if a.skip_intros else 'public_native_progression_acquisition',success=False,player_accepted=False,scenario=a.case,preparation=dict(record=a.preparation,sha256=preparation_sha),
-  sources=sources,source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),session_identity=secrets.token_hex(16),
+  sources=sources,native_runtime_sources=sorted(runtime_names),source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),session_identity=secrets.token_hex(16),
   configuration=dict(id='player-software' if a.software else 'player-default',software_flag=a.software,skip_intros=a.skip_intros,terrain_lighting='original',native_lighting_capture=False,viewport_scaling='integer-sharp'),
   original_pixels_used_as_native_inputs=False,original_reference_executed=False,scope=__doc__)
  report['player_build']=dict(commands=build_commands,log=dict(record=build_record,sha256=build_sha),binary=dict(path='working/build/qt-shell/mnm-qt-shell',record=binary_record,sha256=binary_sha),compiler_sources={n:sources[n] for n in sorted(compiled)})
@@ -75,10 +82,12 @@ def main():
   env['MNM_WORKING_STORAGE_POLICY']=str(policy)
   name=str(Path(a.report).with_suffix(''))+'-storage-policy.bin'
   report['storage_policy']=dict(path=str(policy),record=name,sha256=write_report(ROOT,name,policy.read_bytes()))
- deadline_ms=780000
+ deadline_ms=900000
  report['configuration'].update(deadline_ms=deadline_ms,difficulty=1,experimental_campaign_menus=True,requested_size=a.size)
  env.pop('MNM_LIVE_MENU_TEST_QT_JOURNEY')
  env.update(MNM_CAMPAIGN_SMOKE_TEST='1',MNM_CAMPAIGN_PROGRESSION_CASE=a.case,MNM_CAMPAIGN_PROGRESSION_SIZE=a.size,MNM_EXPERIMENTAL_CAMPAIGN_MENUS='1',MNM_CAMPAIGN_CASTING_COMBAT='1')
+ if a.case!='defeat':env['MNM_CAMPAIGN_FOLLOW_OBSERVE']='1'
+ report['configuration']['follow_reference_observation']=a.case!='defeat'
  report['configuration']['input_admission_observation']=a.observe_input_admission
  if a.observe_input_admission:
   env['MNM_CAMPAIGN_INPUT_ADMISSION']='1'

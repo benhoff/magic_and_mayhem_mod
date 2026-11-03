@@ -42,14 +42,18 @@ int main(int argc,char** argv){
     PATCH(sample,sample);PATCH(kind,kind);PATCH(movement,no_stack);PATCH(draw,one_stack);PATCH(draw_prepare,no_stack);
     PATCH(render,render);PATCH(draw_finish,no_stack);PATCH(push,push);PATCH(wizard,wizard);PATCH(tutorial,tutorial);PATCH(free_tutorial,free_tutorial);
     unsigned admissions=0,guards=0,actions=0;u8 state[512];
-    for(bool high:{false,true})for(unsigned selected:{2u,3u}){
+    for(bool high:{false,true})for(unsigned selected:{2u,3u})for(unsigned index=0;index<32;++index){
         fixture(high);check(realm_snapshot(reinterpret_cast<void*>(realm),state),"settled map admission");++admissions;
         check(get(state+16)==3&&get(state+32)==14&&get(state+28)==0xffffffffu,"engine region masks and no-destination sentinel");
-        const auto x=word(0x641ab8),y=word(0x641abc),button=word(0x641ac4);
+        std::array<u8,32*40> ring{};
+        for(unsigned i=0;i<32;++i){global(0x641ab8+i*40,100+i);global(0x641abc+i*40,200+i);global(0x641ac4+i*40,0);}
+        global(0x641fbc,index);std::memcpy(ring.data(),reinterpret_cast<void*>(0x641ab8),ring.size());
         check(realm_dispatch(reinterpret_cast<void*>(realm),MNM_MENU_REALM_ACTIVATE,selected)==MNM_MENU_OK,"activate admitted");
         check(realm_input_begin(reinterpret_cast<void*>(realm))==1,"release ingress");
-        reinterpret_cast<void(__attribute__((thiscall))*)(void*)>(0x5517a0)(reinterpret_cast<void*>(realm));realm_input_end();
-        check(word(0x641ab8)==x&&word(0x641abc)==y&&word(0x641ac4)==button,"physical input restored");
+        reinterpret_cast<void(__attribute__((thiscall))*)(void*)>(0x5517a0)(reinterpret_cast<void*>(realm));
+        global(0x641fbc,(index+1)%32);realm_input_end();
+        check(!std::memcmp(ring.data(),reinterpret_cast<void*>(0x641ab8),ring.size()),"all physical ring records restored");
+        check(word(0x641fbc)==(index+1)%32,"selected index advance preserved");
         if(selected==2)check(word(0x65af5d)==2&&word(realm+0xa2b)==0,"original owned destination branch");
         else check(word(realm+0xa2b)==1&&word(realm+0xa33)==3&&word(realm+0xa2f)==1,"original adjacent Region Entry branch");
         check(!*reinterpret_cast<u8*>(0x6f2d3d),"original consumes latch");++actions;
@@ -63,7 +67,12 @@ int main(int argc,char** argv){
     fixture();hitMap[0]=4;check(!realm_snapshot(reinterpret_cast<void*>(realm),state),"out-of-range hit-map identity");++guards;
     fixture();global(realm+0x1df+3*4,0);check(realm_dispatch(reinterpret_cast<void*>(realm),MNM_MENU_REALM_ACTIVATE,3)==MNM_MENU_UNAVAILABLE,"unowned nonadjacent denied");++guards;
     fixture();check(realm_dispatch(reinterpret_cast<void*>(realm),MNM_MENU_REALM_ACTIVATE,0)==MNM_MENU_INVALID,"region zero denied");++guards;
-    fixture();global(0x641ac4,1);check(realm_dispatch(reinterpret_cast<void*>(realm),MNM_MENU_REALM_ACTIVATE,2)==MNM_MENU_UNAVAILABLE,"physical press not overwritten");++guards;
+    for(unsigned index=0;index<32;++index){fixture();global(0x641fbc,index);global(0x641ac4+index*40,1);
+        check(realm_dispatch(reinterpret_cast<void*>(realm),MNM_MENU_REALM_ACTIVATE,2)==MNM_MENU_UNAVAILABLE&&!realm_activation,"physical press not overwritten");++guards;}
+    for(unsigned index:{32u,0x80000000u,0xffffffffu}){fixture();global(0x641fbc,index);
+        check(realm_dispatch(reinterpret_cast<void*>(realm),MNM_MENU_REALM_ACTIVATE,2)==MNM_MENU_UNAVAILABLE&&!realm_activation,"invalid ring index refused");++guards;}
+    fixture();check(realm_dispatch(reinterpret_cast<void*>(realm),MNM_MENU_REALM_ACTIVATE,2)==MNM_MENU_OK,"pending ring admission");global(0x641fbc,32);
+    check(realm_input_begin(reinterpret_cast<void*>(realm))==-1&&!realm_activation,"changed ring index refused before ingress");++guards;
     fixture();check(realm_dispatch(reinterpret_cast<void*>(realm),MNM_MENU_REALM_ACTIVATE,2)==MNM_MENU_OK,"pending activation");global(realm+0xa44,1);
     check(realm_input_begin(reinterpret_cast<void*>(realm))==-1&&!realm_activation,"changed admission consumes request without mutation");++guards;
     for(unsigned action:{MNM_MENU_REALM_CHARACTER,MNM_MENU_REALM_GRIMOIRE,MNM_MENU_REALM_SPELLBOX}){

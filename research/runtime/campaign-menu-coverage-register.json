@@ -562,7 +562,8 @@
         }
       ],
       "documents": [
-        "research/runtime/region-entry-enter-engine-bridge.md"
+        "research/runtime/region-entry-enter-engine-bridge.md",
+        "research/runtime/campaign-transition-completion-20261102.md"
       ],
       "implementation": [
         "protocols/include/mnm/menu_v7.h",
@@ -598,7 +599,9 @@
         "tools/test-live-campaign-entry.py",
         "tools/test-live-region-enter.py",
         "tools/test-campaign-observer.py",
-        "tools/test-live-region-entry.py"
+        "tools/test-live-region-entry.py",
+        "tests/test-rendering-progression.py",
+        "tools/rendering_progression.py"
       ],
       "evidence": [
         "UI30.fixture",
@@ -606,7 +609,16 @@
         "UI30.diagnostic",
         "UI30.original-live",
         "UI30.live",
-        "UI30.static"
+        "UI30.static",
+        "RPS04.cleanup27-observation",
+        "RPS04.completed-diagnostic28",
+        "RPS04.pixel-history28",
+        "RPS04.nominal-preparation23",
+        "RPS04.nominal-guards23",
+        "RPS04.nominal-defeat-history23",
+        "RPS04.build-membership24",
+        "RPS04.final-preparation24",
+        "RPS04.final-guards24"
       ],
       "status": {
         "understanding": "scoped",
@@ -614,7 +626,11 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "RPS04 adds native counter reset only after confirmed full World exit,then requires typed first-three tick pairs for each claimed World. Initial epoch retains historical live evidence; fresh current post-exit epoch and whole progression remain pending. No extra original ticks or simulation replacement.",
+        "Diagnostic27 confirms both typed World epochs and progresses through cleanup report to Realm; Main Quit,pixels and full lifetime remain pending."
+      ]
     },
     {
       "id": "CP.campaign-mini-cancel",
@@ -2237,7 +2253,9 @@
       "original": [],
       "documents": [
         "research/runtime/realm-live-adapter.md",
-        "research/runtime/campaign-progression-validation-20261101.md"
+        "research/runtime/campaign-progression-validation-20261101.md",
+        "research/runtime/campaign-transition-completion-20261102.md",
+        "research/runtime/mouse-input-ring.md"
       ],
       "implementation": [
         "runtime/menu/realm.h",
@@ -2255,7 +2273,8 @@
         "apps/qt-shell/realm_viewer_widget.hpp",
         "apps/qt-shell/CMakeLists.txt",
         "tools/build-menu-observer.py",
-        "tools/run-menu-observer.py"
+        "tools/run-menu-observer.py",
+        "runtime/menu/realm_diagnostic.h"
       ],
       "tests": [
         "tests/realm-adapter-reference.cpp",
@@ -2619,7 +2638,31 @@
       "evidence": [
         "UI59.realm-adapter-private",
         "RPS03.progression-realm-tutorial-negative",
-        "RPS03.realm-tutorial-diagnosis"
+        "RPS03.realm-tutorial-diagnosis",
+        "RPS04.victory-region-negative",
+        "RPS04.region-projection-diagnosis",
+        "RPS04.realm-activation-negative4",
+        "RPS04.realm-activation-negative6",
+        "RPS04.realm-ring-diagnosis",
+        "RPS04.realm-ring-controls",
+        "RPS04.follow-travel-negative10",
+        "RPS04.follow-travel-observation",
+        "RPS04.retained-travel-wire",
+        "RPS04.parent-kind-correction",
+        "RPS04.parent-control-negative3",
+        "RPS04.parent-handoff-controls",
+        "RPS04.parent-handoff-native-controls",
+        "RPS04.cleanup-negative20",
+        "RPS04.world2-observation",
+        "RPS04.cleanup27-observation",
+        "RPS04.realm-exit-guards",
+        "RPS04.completed-diagnostic28",
+        "RPS04.pixel-history28",
+        "RPS04.nominal-preparation23",
+        "RPS04.nominal-guards23",
+        "RPS04.build-membership24",
+        "RPS04.final-preparation24",
+        "RPS04.final-guards24"
       ],
       "status": {
         "understanding": "partial",
@@ -2629,7 +2672,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "RPS03 original victory return/pop reaches Realm while its first Realm Map tutorial is visible; native settled admission correctly stays unavailable. Ordinary dismissal and genuine progressed settled Realm/region2 execution remain pending; no guard is relaxed."
+        "RPS03 original victory return/pop reaches Realm while its first Realm Map tutorial is visible; native settled admission correctly stays unavailable. Ordinary dismissal and genuine progressed settled Realm/region2 execution remain pending; no guard is relaxed.",
+        "RPS04 diagnostic20 executes corrected32-slot ingress,suspended-parent Region2 travel,current-region reselection and original battle,with fresh region2-context presentation and second original tick epoch after natural50XP victory. Whole run fails before cleanup confirmation; new helper-retirement sequencing requires fresh full route. Matrix,independent pixels,original resource/lifetime and supported-player claims remain pending. Parent null pointers still do not prove allocation release; +a2f is realm kind."
       ]
     },
     {
@@ -2637,11 +2681,12 @@
       "kind": "native_policy",
       "subsystem": "campaign",
       "title": "Guarded loaded-Realm Region Entry and original return policy",
-      "scope": "V20 default-off campaign menus: preserved fresh first-region plus original loaded Main/Realm/Region caller4/depth4,three original realm names,region1..visible19,different0/1 and exact original controls. Original difficulty/Cancel/Grimoire/Spellbox/Character callbacks; Enter special colocated-opponent battle vs bounded occupancy destination return,validated original resulting fields and explicit handoff3/4. Qt atomic region/art projection,availability,ACK/thread and original-parent return. Private unchanged original callbacks/admission with synthetic resources and stub fade/kind/getter/audio,Qt peers and builds only. No genuine progressed campaign,real resource/World/persistence/victory,pause,complete auxiliary ownership or driver/input equivalence.",
+      "scope": "V20 default-off campaign menus: preserved fresh first-region plus original loaded Main/Realm/Region caller4/depth4,three original realm names,region1..visible19,different0/1 and exact original controls. Original difficulty/Cancel/Grimoire/Spellbox/Character callbacks; Enter special colocated-opponent battle vs bounded occupancy destination return,validated original resulting fields and explicit handoff3/4. Qt atomic region/art projection,availability,ACK/thread and original-parent return. Private unchanged original callbacks/admission with synthetic resources and stub fade/kind/getter/audio,Qt peers and builds only. No genuine progressed campaign,real resource/World/persistence/victory,pause,complete auxiliary ownership or driver/input equivalence. RPS04 separately admits the observed adjacent noncurrent Region with null parent config/map/callback,matching realm-kind/selected-region metadata and all existing identity/count/control guards; malformed resource combinations remain refused. Fresh current live World2 is pending.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/region-campaign-live-adapter.md"
+        "research/runtime/region-campaign-live-adapter.md",
+        "research/runtime/campaign-transition-completion-20261102.md"
       ],
       "implementation": [
         "protocols/include/mnm/menu_v20.h",
@@ -2654,7 +2699,8 @@
         "apps/qt-shell/live_menu_session.hpp",
         "tools/build-menu-observer.py",
         "tools/run-menu-observer.py",
-        "apps/qt-shell/CMakeLists.txt"
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/region_diagnostic.h"
       ],
       "tests": [
         "tests/region-campaign-adapter-reference.cpp",
@@ -3029,7 +3075,32 @@
         "tools/test-region-entry-contract.py"
       ],
       "evidence": [
-        "UI60.region-campaign-adapter-private"
+        "UI60.region-campaign-adapter-private",
+        "RPS04.victory-region-negative",
+        "RPS04.region-projection-diagnosis",
+        "RPS04.region-diagnostic-controls",
+        "RPS04.region-parent-negative7",
+        "RPS04.region-parent-diagnosis",
+        "RPS04.region-parent-control-negative1",
+        "RPS04.region-parent-controls",
+        "RPS04.follow-travel-negative10",
+        "RPS04.follow-travel-observation",
+        "RPS04.retained-travel-wire",
+        "RPS04.parent-kind-correction",
+        "RPS04.parent-control-negative3",
+        "RPS04.parent-handoff-controls",
+        "RPS04.parent-handoff-native-controls",
+        "RPS04.cleanup-negative20",
+        "RPS04.world2-observation",
+        "RPS04.cleanup27-observation",
+        "RPS04.realm-exit-guards",
+        "RPS04.completed-diagnostic28",
+        "RPS04.pixel-history28",
+        "RPS04.nominal-preparation23",
+        "RPS04.nominal-guards23",
+        "RPS04.build-membership24",
+        "RPS04.final-preparation24",
+        "RPS04.final-guards24"
       ],
       "status": {
         "understanding": "partial",
@@ -3037,7 +3108,10 @@
         "comparison": "none",
         "integration": "headless",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "RPS04 diagnostic20 executes corrected32-slot ingress,suspended-parent Region2 travel,current-region reselection and original battle,with fresh region2-context presentation and second original tick epoch after natural50XP victory. Whole run fails before cleanup confirmation; new helper-retirement sequencing requires fresh full route. Matrix,independent pixels,original resource/lifetime and supported-player claims remain pending. Parent null pointers still do not prove allocation release; +a2f is realm kind."
+      ]
     },
     {
       "id": "NP.campaign-natural-report-dispatch",
@@ -3050,7 +3124,8 @@
       "documents": [
         "research/runtime/campaign-natural-report.md",
         "research/runtime/rendering-progression-live-20261101.md",
-        "research/runtime/campaign-progression-validation-20261101.md"
+        "research/runtime/campaign-progression-validation-20261101.md",
+        "research/runtime/campaign-transition-completion-20261102.md"
       ],
       "implementation": [
         "apps/qt-shell/CMakeLists.txt",
@@ -3451,7 +3526,9 @@
         "RPS03.defeat-default-high",
         "RPS03.defeat-default-high-comparison",
         "RPS03.progression-realm-tutorial-negative",
-        "RPS03.realm-tutorial-diagnosis"
+        "RPS03.realm-tutorial-diagnosis",
+        "RPS04.victory-region-negative",
+        "RPS04.region-projection-diagnosis"
       ],
       "status": {
         "understanding": "partial",
@@ -5768,6 +5845,83 @@
         "tools/export-menu-support.py",
         "tools/coverage_claims.py"
       ]
+    },
+    {
+      "id": "CP.realm-mode4-mini-return",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Original Realm Options Mini mode4 confirmation and return",
+      "scope": "Selected static mode4/context5 original Options/confirmation branches: option4,Realm Mini mode4,and Yes setting Realm+a37,clearing+a48 and attempting original save4822a0 before Realm return. Bounded host scenario hands ordinary input back to original controls; native Mini mode4 projection/dispatch is not added. No original save implementation,persistence or whole-function recovery.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5569824,
+          "scope": "Option4 sets the original pending Options request. Existing eight-byte entry exception locates this address only; no whole-function or range-wide recovery claim.",
+          "recovered_range": "campaign-entry-54fd20"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5569904,
+          "scope": "Selected original Options rectangle high/low setup only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5576608,
+          "scope": "Initial Realm+a37 branch clears it and requests original parent pop. Existing eight-byte entry exception locates this address only; no whole-function or range-wide recovery claim.",
+          "recovered_range": "campaign-entry-5517a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4924656,
+          "scope": "Mode4 Yes/No branch only;4822a0 save body unresolved. Existing eight-byte entry exception locates this address only; no whole-function or range-wide recovery claim.",
+          "recovered_range": "campaign-mini-quit-entry-4b24f0"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-transition-completion-20261102.md",
+        "research/runtime/campaign-mini-quit-engine-bridge.md"
+      ],
+      "implementation": [
+        "runtime/menu/campaign_mini_observe.h",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "tools/campaign_realm_exit.py",
+        "tools/campaign-realm-exit-input.py"
+      ],
+      "tests": [
+        "tests/test-campaign-realm-exit.py",
+        "tests/menu-region-campaign-test.cpp"
+      ],
+      "evidence": [
+        "RPS04.realm-mode4-static",
+        "RPS04.realm-exit-guards",
+        "RPS04.completed-diagnostic28",
+        "RPS04.pixel-history28",
+        "RPS04.nominal-preparation23",
+        "RPS04.nominal-guards23",
+        "RPS04.build-membership24",
+        "RPS04.final-preparation24",
+        "RPS04.final-guards24"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Diagnostic28 observes original Mode4 Mini/confirmation/fresh Main/normal Quit at800x600 with skipped intros; enabled-intro and640x480 routes remain pending.",
+        "Original4822a0 save inputs,outputs,errors and persistence are not recovered.",
+        "Native Mode4 wire projection/dispatch and complete parent/object lifetime remain outside this bounded original-control driver."
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "tests/campaign-menu-wire-fixture.hpp",
+        "tests/character-wire-fixture.hpp",
+        "tools/review-rendering-progression.py"
+      ]
     }
   ],
   "evidence": [
@@ -7559,6 +7713,580 @@
       "assertions": [
         {
           "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS04.region-diagnostic-controls",
+      "kind": "static",
+      "scope": "Private unchanged original Region callbacks18/refusals15/auxiliary9/cancel2 and actual diagnostic PE32 menu build pass at their recorded source phase. No loaded Region live admission or new guard policy.",
+      "record": "research/runtime/rendering-progression-results-20261102/region-diagnostic-controls-01.json",
+      "sha256": "f032027e8f34258912caa61131846a1f6e9dd7dd73f95c651225a656b1a2b8a3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS04.victory-region-negative",
+      "kind": "live_observation",
+      "scope": "Nominal full-intro800x600 original victory50XP/report/settled Realm and original acknowledged region2activation occur; native region-entry projection times out before actual region2World. Entire acquisition remains failed.",
+      "record": "research/runtime/rendering-progression-results-20261101/completion-progression-default-high-20261102-02.json",
+      "sha256": "7aa16c9fb85299bd68f2f92aaa2a244fc4151c9769e5c661c407191c49325a49",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/states/4/outcome",
+          "equals": 1
+        },
+        {
+          "pointer": "/flow/states/5/screen",
+          "equals": 4
+        }
+      ]
+    },
+    {
+      "id": "RPS04.region-projection-diagnosis",
+      "kind": "static",
+      "scope": "Same-acquisition callback, ACK7/action46/argument2 and losslessly decoded original entry UI identify the progressed Region projection gap; final RETIRED status is host cleanup. No World2, normal Quit or pixel equivalence.",
+      "record": "research/runtime/rendering-progression-results-20261102/realm-entry-projection-diagnosis-01.json",
+      "sha256": "0e053fe2b2057d7d2a1521c18bfd09245ef70dda0b84a657e70117ca4528017d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS04.realm-activation-negative4",
+      "kind": "live_observation",
+      "scope": "Second enabled-intro800x600 natural50XP victory/report/settled Realm; next Activate request is unavailable3 before progressed Region projection. Original reason unresolved; complete progression remains failed.",
+      "record": "research/runtime/rendering-progression-results-20261101/completion-progression-region-diagnostic-20261102-04.json",
+      "sha256": "d3dd5f16509f2647b79c6c6a0eeb9529beab0f6098e8c57bde0deeafaa9dd068",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/states/4/outcome",
+          "equals": 1
+        },
+        {
+          "pointer": "/flow/states/5/screen",
+          "equals": 4
+        }
+      ]
+    },
+    {
+      "id": "RPS04.realm-activation-negative6",
+      "kind": "live_observation",
+      "scope": "Skipped-intro victory50XP/report/settled Realm reaches actual Activate refusal; retained diagnostic proves valid original selected mouse-ring index15 rejected by native maximum3. Overall progression fails.",
+      "record": "research/runtime/rendering-progression-results-20261101/completion-progression-region-diagnostic-20261102-06.json",
+      "sha256": "169931872a703b6bbf78fa31c1c8004c40ea15ad5a1483105cdd21e050e826df",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/states/4/outcome",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS04.realm-ring-diagnosis",
+      "kind": "static",
+      "scope": "Same-acquisition original selected ring index15 and existing unchanged original32-record writer contract identify the native maximum3 bug before deferred ingress. Source preimages preserved; no World2 or pixel comparison.",
+      "record": "research/runtime/rendering-progression-results-20261102/realm-ring-bound-diagnosis-01.json",
+      "sha256": "1d45c3c125edc7d5c6f851fede8fa3c9636bea2c2120ccb3725fa40b2e3fafb0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_index",
+          "equals": 15
+        },
+        {
+          "pointer": "/recovered_ring_records",
+          "equals": 32
+        }
+      ]
+    },
+    {
+      "id": "RPS04.realm-ring-controls",
+      "kind": "static",
+      "scope": "Corrected native bound passes private unchanged original Realm tick at all32 indices,both modes,owned/adjacent branches:128 admissions,131 actions,58 guards; all1280 physical ring bytes restored and selected-index advance preserved. Actual PE build. No live World2,Qt or pixel equivalence claim.",
+      "record": "research/runtime/rendering-progression-results-20261102/realm-ring-controls-01.json",
+      "sha256": "012d7e5a364186fa3d5ab7c8a64899ef580c8a2468abf49c12147153de16c289",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/private/admissions",
+          "equals": 128
+        },
+        {
+          "pointer": "/private/actions",
+          "equals": 131
+        },
+        {
+          "pointer": "/private/guards",
+          "equals": 58
+        },
+        {
+          "pointer": "/private/original_tick_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS04.region-parent-negative7",
+      "kind": "live_observation",
+      "scope": "Corrected32-record Realm ingress reaches actual initialized Region2 after original50XP victory/report/settled Realm. Four consistent original snapshots retain null parent config/map/callback with selected-region2 metadata; native loaded-resource guard refuses. Entire acquisition remains failed.",
+      "record": "research/runtime/rendering-progression-results-20261101/completion-progression-region-diagnostic-20261102-07.json",
+      "sha256": "6b3492798bd46e541096ad2d1f6c25669d6459231a496f3507b08b8f67e91a2e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/states/4/outcome",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS04.region-parent-diagnosis",
+      "kind": "static",
+      "scope": "Verified actual rejected Region2 source line37 and exact parent pointer/selection shape identify the loaded-resource-only policy gap. Allocation release/lifetime and World2 remain unproven; preimages retained.",
+      "record": "research/runtime/rendering-progression-results-20261102/region-parent-suspension-diagnosis-01.json",
+      "sha256": "3e0e2fe4b408be29549bdf3ec44c8edf3a1be27fa9375a81ee6efc05996fd08e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/region",
+          "equals": 2
+        }
+      ]
+    },
+    {
+      "id": "RPS04.region-parent-control-negative1",
+      "kind": "static",
+      "scope": "Captured-state fixture first fails to compile due to ambiguous u32 name; exact failed source and logs retained. No engine validation.",
+      "record": "research/runtime/rendering-progression-results-20261102/region-parent-controls-01.json",
+      "sha256": "04778d7a939a14dffa92017215888f0a2f3f15af4f1f6097d1826f5a04e040f6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS04.region-parent-controls",
+      "kind": "static",
+      "scope": "Private original24 entries/31 refusals/9 auxiliary/2 Cancel cases plus actual captured Region2 projection and original Enter destination pass with strict suspended-parent metadata. Only dynamic resource pointers relocated; native PE build. No fresh live World2 or pixel equivalence claim.",
+      "record": "research/runtime/rendering-progression-results-20261102/region-parent-controls-02.json",
+      "sha256": "bea8dd4b8953031f3e8164265efbfab097fbf215e487300871dec52321880026",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/private/entries",
+          "equals": 24
+        },
+        {
+          "pointer": "/private/refusals",
+          "equals": 31
+        },
+        {
+          "pointer": "/private/captured_cases",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS04.follow-travel-negative10",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/completion-progression-follow-diagnostic-20261102-10.json",
+      "sha256": "4e836fdec67755f2baa6e3df0c5e2c65f44c5ea54cd5077214b4aff82b79f5ff",
+      "scope": "Observed wizard follow/reference/bridge travel and50XP victory/settled Realm/Region2 Enter; final ready Realm location/destination2. Overall host handoff timeout; no accepted World2 or normal Quit.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS04.follow-travel-observation",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/follow-travel-observation-01.json",
+      "sha256": "a4037fcb966a574722ce2df523c8b8ae135e1b765fe9a6bc6655bc5bd490e505",
+      "scope": "Exact acquired follow reference,original actor movement,three owned Zombie damage rows,natural report and final travel wire verify. Single-run support observation; no statistical reliability,World2,pixel or lifetime acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS04.retained-travel-wire",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/retained-channel-read-01.json",
+      "sha256": "aac4bca20875050ae874bb262ca33e702b03f78942a55db0e851e42e08e76048",
+      "scope": "Unchanged production MenuBridge accepts exact retained ready Realm channel at location/destination2 in a private Qt peer. No live host scheduling or handoff-cause proof.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS04.parent-kind-correction",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/parent-kind-correction-01.json",
+      "sha256": "56dd592cda4c4df7c9a7233d3a838c25501b8431238bff0e6a26a5bbd0bfa352",
+      "scope": "Correct earlier authored +a2f caller-label/hardcoded1 policy: field is realm kind1/2/3. Numeric captured Celtic1 remains correct; raw evidence/hash unchanged. Match preserved name and retain different/player-location check.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS04.parent-control-negative3",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/region-parent-controls-03.json",
+      "sha256": "075d932644910f8afafcc1145f5779bf69dcc8292a55b758c0d6512052366261",
+      "scope": "Private original36 entries/34 refusals pass; Qt driver compile fails on unsupported QJsonArray.takeLast. Exact source/log retained; no whole-component pass.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS04.parent-handoff-controls",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/region-parent-controls-04.json",
+      "sha256": "21679fe0f12c8a92d767be03cb30e4e511a486b74fd895fa684dcc4a398fb2c9",
+      "scope": "Current private original36 entries/34 refusals/9 auxiliaries/2 Cancels plus captured Region2 and18 production Qt fast-parent/identity cases pass; PE and actual player build. No current live travel/battle-World or pixel-equivalence promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/private/entries",
+          "equals": 36
+        },
+        {
+          "pointer": "/private/refusals",
+          "equals": 34
+        },
+        {
+          "pointer": "/qt/cases",
+          "equals": 18
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS04.parent-handoff-native-controls",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261102/region-parent-controls-04.json",
+      "sha256": "21679fe0f12c8a92d767be03cb30e4e511a486b74fd895fa684dcc4a398fb2c9",
+      "scope": "18 production Qt session/handoff control executions and native PE/player build in exact controls04 phase,alongside its unchanged-original private callback fixture. Reuses immutable source-bound report; no new live result or status promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/private/entries",
+          "equals": 36
+        },
+        {
+          "pointer": "/private/refusals",
+          "equals": 34
+        },
+        {
+          "pointer": "/qt/cases",
+          "equals": 18
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS04.cleanup-negative20",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/completion-progression-travel-diagnostic-20261102-20.json",
+      "sha256": "12530dda098c975eceef21c1bf24feaf1daa649953df5e6c8071b1f3014c4df2",
+      "scope": "Natural50XP victory/OK/Realm,region2 travel/reselection/battle and fresh presented second World; whole run fails at cleanup input visibility/helper overlap before confirmation/normal Quit.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS04.world2-observation",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261102/world20-observation-01.json",
+      "sha256": "4029a8fc2b1bb5ad4d4c2a47ddad7afa6e2587379b6ec1ce5e4bc214e822cfc3",
+      "scope": "Verified exact-source helper/rearm/follow,original report OK and World pop,region2 travel/battle,fresh presentation1then3228(after3227),and typed original first-three tick pairs19\u201324/36\u201341. Whole acquisition false,skip-intro,no normal Quit/independent pixels/assembled-map identity/lifetime or supported-player claim.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS04.cleanup27-observation",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261102/cleanup27-observation-01.json",
+      "sha256": "b2a6c08f680ad09c10ef7a0b74587e1cd207ef53c8fbdce7f6570d673f0b4575",
+      "scope": "Exact skip-intro27 verifies natural50XP/OK/Realm,two typed World epochs,fresh region2-context presentation,original Mini Quit/Yes/report OK and fresh ready Realm after cleanup. Space pair7.65seconds/six admitted Fireballs; whole run remains false because driver waits Main. No full Quit,pixels,save or pause-contract recovery.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/whole_acquisition_success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS04.realm-mode4-static",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/cleanup27-observation-01.json",
+      "sha256": "b2a6c08f680ad09c10ef7a0b74587e1cd207ef53c8fbdce7f6570d673f0b4575",
+      "scope": "Hash-verified original54fd20 option4,54fd70 high/low Options rectangles,5517a0 Realm+a37 return branch,and4b24f0 mode4 Yes setting that flag and attempting4822a0 save. Static selected branches only; save body,live mode4 controls and Main return remain unexecuted.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/whole_acquisition_success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS04.realm-exit-guards",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261101/completion-guards-20261102-22.json",
+      "sha256": "85ca9b440f4c6551a354ae5617241e2b7174e3b318ac2ee0a39b3b75340ec386",
+      "scope": "119 Python controls,five Qt public startup cases and30 Qt Region/Realm ownership cases pass with full linked player compiler-source graph and exact binaries. Original mode4,save,normal Quit,pixels and lifetime are not executed by these peers.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS04.completed-diagnostic28",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/completion-progression-travel-diagnostic-20261102-28.json",
+      "sha256": "ae01d4d87989d65c4349cd0c18b860b68a4ff00b41883ac2f49d23589ff0fe9b",
+      "scope": "Exact skip-intro800x600 default diagnostic28: natural50XP/21 texts/OK/settled Realm,travel/reselection/region2 World,two original tick epochs,World Mini Quit/Yes/report OK/Realm,original Realm Options/mode4 Quit/Yes/fresh Main and normal Main Quit. Complete captures,stopped private Wine and zero final owners verified. No nominal acceptance,populated lifetime,save persistence or independent pixel claim from acquisition alone.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS04.pixel-history28",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/completion-progression-travel-comparison-20261102-28-retry01.json",
+      "sha256": "b45968e8bc29f9f278d8bd763c1348d0d7ec0a16cc2c42fe60f37da382c1bbfc",
+      "scope": "Exact skip-intro diagnostic28: all15347leased native Qt swaps,including15292World swaps,match independent original-only continuous history of3670World render generations/4107518draws;13420951500pixels/zero differences,18GPU-to-CPU returns andzero remaining command surfaces. Original destination/native player pixels are not oracle inputs. Includes selected natural victory/Realm/region2/original mode4/Main Quit route; no nominal acceptance,save/simulation/pixel-producer equivalence or populated lifetime. Original captured player uses780second bound; verifier900second replay allowance is independently fingerprinted. Later900second player source remains a separate phase. Total observed swaps15348 includes one unleased swap outside this comparison.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS04.nominal-preparation23",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261101/completion-inputs-20261102-23.json",
+      "sha256": "8c042a19a54c8b30338cee364e28bd24cbc31f81f3f646b11e72d95d677bf990",
+      "scope": "Current canonical Celtic map/configuration/executable and unchanged control-save closure;900second overall scenario,540second helper and900second oracle compute bound. No original execution or acceptance.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS04.nominal-guards23",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261101/completion-guards-20261102-23.json",
+      "sha256": "2fae884ffcbc5088d9440a99f132839f9774560c81428146a572a03ee43a04ef",
+      "scope": "Current900second source phase passes119Python,five Qt startup and30Qt Region/Realm ownership controls with full linked compiler graph and exact player/test binaries. No original mission,save,pixel or populated lifetime comparison from these controls.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS04.nominal-defeat-history23",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/completion-defeat-default-high-isolated-20261102-matrix-comparison-01.json",
+      "sha256": "ed0dad6369da00bbd1909febf742a9265c1ccf13bb8f243878560f9cbdcce40c",
+      "scope": "Current phase23 enabled-intro default800x600 natural defeat:5702leased native swaps,including5642World swaps,match1378original World render generations/1580503draws;4986399000pixels/zero differences,zero CPU-read observations andzero remaining command surfaces. Total8487observed swaps includes2785movie/unleased swaps outside comparison. Original report/OK/Main Quit and resource retirement succeed. No full matrix/victory,save/simulation/pixel-producer equivalence,populated lifetime,physical scanout or supported-player acceptance.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/comparison/world_presentations",
+          "equals": 5642
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS04.build-membership24",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/region-fixture-build-membership-24.json",
+      "sha256": "d0d7a82e8c9679db313054dc9b66d94520764b6e73447db48f0c9dbb9d9f14ed",
+      "scope": "Actual separate ON/OFF CMake configurations verify Region fixture default-all membership when CTest registers it,and exclusion with testingOFF. No original game or pixel execution.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS04.final-preparation24",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261101/completion-inputs-20261102-24.json",
+      "sha256": "1918b19de3d685d6cb38c898fd59c481214e58adb31c80db246b8d82914d0b73",
+      "scope": "Final900second scenario/540second helper/900second oracle preparation with corrected test-build membership and unchanged canonical map/save/executable inputs. No original execution.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS04.final-guards24",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261101/completion-guards-20261102-24.json",
+      "sha256": "f511fa05b9e856ac35189392a288128441d6049061b5733d059735f17bffdf76",
+      "scope": "Final source phase passes119Python,five Qt startup and30Qt ownership controls with complete linked compiler graph and exact binaries. Phase24 changes test-only CMake membership; no new original replay or refreshed historical fingerprint.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
           "equals": true
         }
       ]

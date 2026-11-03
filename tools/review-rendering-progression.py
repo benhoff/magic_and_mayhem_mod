@@ -3,6 +3,7 @@
 import argparse
 import base64
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -19,6 +20,7 @@ def main():
     p.add_argument('--build', type=Path, required=True)
     p.add_argument('--preparation', required=True)
     p.add_argument('--driver-test', type=Path, help='Built Qt public-control startup regression')
+    p.add_argument('--region-test', type=Path, help='Built Qt progressed Region/original Realm handoff controls')
     p.add_argument('--report', required=True)
     a = p.parse_args()
     require(a.report.startswith(PREFIX) and '..' not in Path(a.report).parts and not (ROOT/a.report).exists(), 'New owned report required')
@@ -27,21 +29,30 @@ def main():
         require(prepared['success'] is True, 'Successful preparation required')
         require(all(sha(ROOT/n)==h for n,h in prepared['sources'].items()), 'Prepared sources changed')
         names=set(prepared['sources'])|{'tools/review-rendering-progression.py', 'tools/rendering_pilot.py',
-            'tools/run-native-owned.py','tools/campaign_route.py','tools/rendering_normal_acceptance.py', 'tests/test-campaign-input-observation.py','tests/test-campaign-input-admission.py','tests/test-campaign-report.py','tests/test-campaign-dialogue.py','tests/test-campaign-return.py','tests/test-campaign-route.py','tests/test-rendering-capture.py','tests/test-rendering-progression.py',
+            'tools/run-native-owned.py','tools/campaign_route.py','tools/rendering_normal_acceptance.py', 'tests/test-campaign-input-observation.py','tests/test-campaign-input-admission.py','tests/test-campaign-report.py','tests/test-campaign-dialogue.py','tests/test-campaign-return.py','tests/test-campaign-follow.py','tests/test-campaign-realm-exit.py','tests/test-campaign-route.py','tests/test-rendering-capture.py','tests/test-rendering-progression.py',
             'tests/test-rendering-pilot.py', 'tests/test-rendering-normal-acceptance.py'}
         if a.driver_test:
             names.add('tests/campaign-progression-driver-test.cpp')
+        if a.region_test:
+            names.update(['tests/menu-region-campaign-test.cpp','tests/campaign-menu-wire-fixture.hpp','tests/character-wire-fixture.hpp'])
+        spec=importlib.util.spec_from_file_location('review_compiler',ROOT/'tools/test-native-campaign.py')
+        compiler=importlib.util.module_from_spec(spec);spec.loader.exec_module(compiler)
+        linked=set(compiler.linked_compiler_sources(a.build.resolve(),ROOT))
+        names.update(linked);names.add('tools/test-native-campaign.py')
         report=dict(schema=2,kind='rendering_progression_preparation_review',success=False,log_storage='inline-lossless',
             sources={n:sha(ROOT/n) for n in sorted(names)},
             preparation=dict(record=a.preparation,sha256=reader.digest(a.preparation)),
             original_game_executed=False, player_accepted=False, status_promotions=[], checks=[])
         try:
             commands=[[sys.executable,'-B',ROOT/n] for n in
-                ('tests/test-campaign-input-observation.py','tests/test-campaign-input-admission.py','tests/test-campaign-report.py','tests/test-campaign-dialogue.py','tests/test-campaign-return.py','tests/test-campaign-route.py','tests/test-rendering-capture.py','tests/test-rendering-progression.py','tests/test-rendering-pilot.py','tests/test-rendering-normal-acceptance.py')]
+                ('tests/test-campaign-input-observation.py','tests/test-campaign-input-admission.py','tests/test-campaign-report.py','tests/test-campaign-dialogue.py','tests/test-campaign-return.py','tests/test-campaign-follow.py','tests/test-campaign-realm-exit.py','tests/test-campaign-route.py','tests/test-rendering-capture.py','tests/test-rendering-progression.py','tests/test-rendering-pilot.py','tests/test-rendering-normal-acceptance.py')]
             commands.append(['cmake','--build',a.build.resolve(),'--target','mnm-qt-shell','--parallel','4'])
             if a.driver_test:
                 commands.append(['cmake','--build',a.build.resolve(),'--target','campaign-progression-driver-test','--parallel','4'])
                 commands.extend([[a.driver_test.resolve(),case] for case in ('progression','victory','defeat','disabled','wrong-realm')])
+            if a.region_test:
+                commands.append(['cmake','--build',a.build.resolve(),'--target','menu-region-campaign-test','--parallel','4'])
+                commands.append([a.region_test.resolve()])
             for i,command in enumerate(commands):
                 result=subprocess.run(list(map(str,command)),cwd=ROOT,capture_output=True,timeout=300,
                     env=dict(os.environ,TMPDIR=str(a.build.resolve().parent/'tmp'),QT_QPA_PLATFORM='offscreen'))
@@ -54,8 +65,12 @@ def main():
                                              stdout=log(result.stdout),stderr=log(result.stderr)))
                 require(result.returncode==0,'Preparation guard/link failed: '+str(command))
             report['qt_shell_sha256']=sha(a.build/'mnm-qt-shell')
+            require(set(compiler.linked_compiler_sources(a.build.resolve(),ROOT))==linked,'Player compiler source graph changed during review')
+            report['player_compiler_sources']={n:report['sources'][n] for n in sorted(linked)}
             if a.driver_test:
                 report['driver_test_sha256']=sha(a.driver_test)
+            if a.region_test:
+                report['region_test_sha256']=sha(a.region_test)
             report['sources_stable']=all(sha(ROOT/n)==h for n,h in report['sources'].items())
             report['success']=report['sources_stable']
         except Exception as error:
