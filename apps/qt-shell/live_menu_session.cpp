@@ -1,4 +1,5 @@
 #include "live_menu_session.hpp"
+#include "host_timing_trace.hpp"
 #include "../../protocols/include/mnm/menu_v20.h"
 #include "../../protocols/include/mnm/menu_v9.h"
 #include <QDir>
@@ -7,7 +8,7 @@
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
-LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(parent),repo_(std::move(repository)){
+LiveMenuSession::LiveMenuSession(QString repository,QObject* parent,EnginePreferencesPersistence::Commit preferencesCommit):QObject(parent),repo_(std::move(repository)),preferencesStore_(std::move(preferencesCommit)){
     if(qEnvironmentVariableIsSet("MNM_NATIVE_OUTPUT_OWNER"))winePrefix=qEnvironmentVariable("MNM_OWNED_WINE_PREFIX");
     progressedMenusEnabled=qEnvironmentVariable("MNM_EXPERIMENTAL_CAMPAIGN_MENUS")=="1";
     campaignBookEnabled=progressedMenusEnabled;
@@ -71,6 +72,7 @@ LiveMenuSession::~LiveMenuSession(){
 }
 bool LiveMenuSession::start(){
     if(running())return false;
+    preferencesStore_.wait();publishPreferences();
     storageOpeningGeneration_=preferencesOpeningGeneration_=0;
     launcherExitCode=-1;
     preferencesStore_.begin(preferencesStorePath,{});
@@ -253,9 +255,15 @@ void LiveMenuSession::fallback(const QString& reason){
 }
 void LiveMenuSession::saveAcceptedPreferences(){
     if(!preferencesToSave_)return;
+    HostTimingTrace trace("preferences-persistence");
     preferencesToSave_=false;QString error;
-    const bool saved=preferencesStore_.accept(QDir(root_).filePath("game/CFG/prefs.cfg"),acceptedPreferences_,&error);
-    if(output)output(saved?"Preferences saved for future launches.\n":"Preferences remain available in this session; persistence failed: "+error+"\n");
+    publishPreferences();
+    if(!preferencesStore_.accept(QDir(root_).filePath("game/CFG/prefs.cfg"),acceptedPreferences_,&error)&&output)
+        output("Preferences remain available in this session; persistence failed: "+error+"\n");
+}
+void LiveMenuSession::publishPreferences(){
+    for(const auto& result:preferencesStore_.takeResults())if(output)
+        output(result.saved?"Preferences saved for future launches.\n":"Preferences remain available in this session; persistence failed: "+result.error+"\n");
 }
 bool LiveMenuSession::cpuReadWaiting(qint64 now) const{
     return cpuRead_?(now>=cpuReadStarted_ && now-cpuReadStarted_<=10000):now<cpuReadGrace_;
@@ -294,6 +302,7 @@ bool LiveMenuSession::restoreCampaignPreferences(const MenuBridge::State& next){
     return true;
 }
 void LiveMenuSession::poll(){
+    publishPreferences();
     if(!active_||!bridge_)return;
     if(!mediaActive_&&resultsAction_&&clock_.elapsed()-resultsRequestedAt_>10000){
         fallback("Results action did not become ready within ten seconds; using original controls.");return;

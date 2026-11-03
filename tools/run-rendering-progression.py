@@ -16,8 +16,11 @@ def main():
  p.add_argument('--size',choices=['640x480','800x600'],default='800x600')
  p.add_argument('--preparation',required=True);p.add_argument('--software',action='store_true')
  p.add_argument('--observe-input-admission',action='store_true',help='Extra passive original mouse/hover observer; diagnostic, never nominal acceptance')
+ p.add_argument('--observe-startup-timing',action='store_true',help='Existing bounded host/resident timing trace; diagnostic, never nominal acceptance')
+ p.add_argument('--startup-main-dwell-ms',type=int,default=0,help='Diagnostic dwell before and after Preferences (0..30000ms); requires --observe-startup-timing')
  p.add_argument('--prefix-template',type=Path);p.add_argument('--skip-intros',action='store_true');p.add_argument('--storage-policy',type=Path)
  a=p.parse_args()
+ require(0<=a.startup_main_dwell_ms<=30000 and (not a.startup_main_dwell_ms or a.observe_startup_timing),'Bounded startup dwell requires timing diagnostic')
  require(a.report.startswith(PREFIX) and '..' not in Path(a.report).parts and not (ROOT/a.report).exists(),'New owned report required')
  with Reader(ROOT) as reader:
   prepared=reader.json(a.preparation);preparation_sha=reader.digest(a.preparation)
@@ -89,6 +92,13 @@ def main():
  if a.case!='defeat':env['MNM_CAMPAIGN_FOLLOW_OBSERVE']='1'
  report['configuration']['follow_reference_observation']=a.case!='defeat'
  report['configuration']['input_admission_observation']=a.observe_input_admission
+ report['configuration']['startup_timing_observation']=a.observe_startup_timing
+ report['configuration']['startup_main_dwell_ms']=a.startup_main_dwell_ms
+ if a.observe_startup_timing:
+  env['MNM_RESIDENT_POLL_TIMING']='1'
+  env['MNM_CAMPAIGN_STARTUP_DWELL_MS']=str(a.startup_main_dwell_ms)
+  report['kind']='public_native_progression_diagnostic_acquisition'
+  report['configuration']['diagnostic_only']=True
  if a.observe_input_admission:
   env['MNM_CAMPAIGN_INPUT_ADMISSION']='1'
   report['kind']='public_native_progression_diagnostic_acquisition'

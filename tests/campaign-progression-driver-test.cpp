@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QTimer>
+#include <QElapsedTimer>
 #include <QTemporaryDir>
 #include <QFile>
 #include <QJsonDocument>
@@ -18,9 +19,12 @@ int main(int argc,char** argv)try{
     QApplication app(argc,argv);
     const QString test=argc>1?QString::fromLocal8Bit(argv[1]):"progression";
     const bool disabled=test=="disabled",wrongRealm=test=="wrong-realm";
-    const QString mode=(disabled||wrongRealm)?"progression":test;
+    const bool dwell=test=="startup-dwell",cancelDwell=test=="startup-dwell-cancel";
+    const QString mode=(disabled||wrongRealm||dwell||cancelDwell)?"progression":test;
     qputenv("MNM_CAMPAIGN_PROGRESSION_CASE",mode.toUtf8());
     qputenv("MNM_CAMPAIGN_PROGRESSION_SIZE","800x600");
+    qunsetenv("MNM_CAMPAIGN_STARTUP_DWELL_MS");
+    if(dwell||cancelDwell){qputenv("MNM_CAMPAIGN_STARTUP_DWELL_MS","50");qputenv("MNM_RESIDENT_POLL_TIMING","1");}
     QTemporaryDir temporary;if(!temporary.isValid())throw std::runtime_error("Temporary fixture output");
     QMainWindow window;auto* body=new QWidget(&window);auto* layout=new QVBoxLayout(body);
     window.setCentralWidget(body);
@@ -31,7 +35,9 @@ int main(int argc,char** argv)try{
         auto* button=new QPushButton(name,body);button->setObjectName(name);layout->addWidget(button);
         QObject::connect(button,&QPushButton::clicked,&window,[&,name,action]{clicks.append(name);action();});return button;
     };
-    add("launchGame",[&]{state.ack=0;state.screen=3;session.stateChanged(state);})->setEnabled(!disabled);
+    add("launchGame",[&]{state.ack=0;state.screen=3;session.stateChanged(state);
+        if(cancelDwell)QTimer::singleShot(5,&window,[&]{session.failed("Synthetic startup cancellation");});
+    })->setEnabled(!disabled);
     add("mainMenuAction3",[&]{publish(10);});
     add("preferencesRadio1",[]{});
     add("preferencesOk",[&]{publish(3);});
@@ -43,11 +49,16 @@ int main(int argc,char** argv)try{
     QTimer::singleShot(2000,&window,[&]{timedOut=true;app.exit(2);});
     const int code=app.exec();
     if(timedOut||session.running()||session.launcherProcessId())throw std::runtime_error("Missing bounded dispatch or unexpected process launch");
-    if(disabled||wrongRealm){
+    if(disabled||wrongRealm||cancelDwell){
         QFile report(temporary.filePath("flow.json"));if(!report.open(QIODevice::ReadOnly))throw std::runtime_error("Missing refusal report");
         const auto flow=QJsonDocument::fromJson(report.readAll()).object();
-        const auto expected=disabled?"Public control unavailable: launchGame":"Unexpected original region identity";
+        const auto expected=disabled?"Public control unavailable: launchGame":cancelDwell?"Synthetic startup cancellation":"Unexpected original region identity";
         if(code!=1||flow["success"].toBool()||flow["error"].toString()!=expected||entered)throw std::runtime_error("Refusal was bypassed");
+        if(cancelDwell){
+            QElapsedTimer drained;drained.start();
+            QTimer::singleShot(100,&window,[&]{app.quit();});app.exec();
+            if(drained.elapsed()<50||clicks!=QStringList{"launchGame"})throw std::runtime_error("Cancelled dwell dispatched a late public action");
+        }
     }else{
         const QStringList expected{"launchGame","mainMenuAction3","preferencesRadio1","preferencesOk","mainMenuAction0","regionEntryDifficulty1","regionEntryEnter"};
         if(code||!entered||clicks!=expected)throw std::runtime_error("Public startup control sequence differs");

@@ -11,6 +11,7 @@ import math
 import os
 from pathlib import Path
 import struct
+import sys
 import time
 from campaign_gameplay import read_rows, creatures, signed
 from campaign_dialogue import ActorQuietWindow
@@ -19,10 +20,11 @@ from campaign_input_admission import spell_selection_points
 from rendering_progression import CASES, require
 from campaign_report import report_callback
 from campaign_return import read_realm_return_state
-from campaign_route import frame_size, hud_point, approach_point, aim_point, follow_point, forest_waypoints, validate_opening_anchors
+from campaign_route import frame_size, hud_point, approach_point, aim_point, follow_point, forest_waypoints, validate_opening_anchors, bridge_entry_ready
 from campaign_input_observation import decode as input_observations
 from campaign_input_admission import fresh_hover
 from campaign_follow import read_rows as read_follow_rows, followed_wizard
+from campaign_outcome_record import AtomicSnapshotWriter
 
 
 def target_point(hero, target, body=False):
@@ -32,13 +34,15 @@ def target_point(hero, target, body=False):
     return round(400+sx/scale), round(300+sy/scale-(22 if body else 0))
 
 
-def combat_choice(case, hero, target, nearby_support, casts, since_spell):
+def combat_choice(case, hero, target, nearby_support, casts, since_spell, support_ordered=False):
     """Ordinary-play test policy, not recovered AI or spell admission rules."""
     distance=math.hypot(target['x']-hero['x'],target['y']-hero['y'])
     if case=='defeat':
         return 'idle' if distance<2 else 'move'
     if target['health']<=0:
         return 'portal'
+    if support_ordered and target.get('type')==24 and hero['mana']<6*256:
+        return 'retreat' if distance<8 else 'idle'
     if distance<7:
         if hero['mana']>=6*256 and since_spell>=3:
             return 'fireball'
@@ -47,17 +51,52 @@ def combat_choice(case, hero, target, nearby_support, casts, since_spell):
 
 
 def firing_line_allies(hero, target, actors, radius=.8):
+    return firing_line_blockers(hero,target,actors,radius,friendly_only=True)
+
+
+def firing_line_blockers(hero, target, actors, radius=.8, friendly_only=False):
     """Conservative physical-input guard; no claim about recovered collision."""
     dx,dy=target['x']-hero['x'],target['y']-hero['y']
     length=dx*dx+dy*dy
     if not length:return []
     blocked=[]
     for ally in actors.values():
-        if ally['slot'] in (hero['slot'],target['slot']) or ally['owner']!=hero['owner'] or not ally['active'] or ally['health']<=0:continue
+        if ally['slot'] in (hero['slot'],target['slot']) or not ally['active'] or ally['health']<=0:continue
+        if friendly_only and ally['owner']!=hero['owner']:continue
         ax,ay=ally['x']-hero['x'],ally['y']-hero['y']
         t=(ax*dx+ay*dy)/length
         if .05<t<.98 and math.hypot(ax-t*dx,ay-t*dy)<radius:blocked.append(ally['slot'])
     return blocked
+
+
+def fireball_point(hero, target, size):
+    point=aim_point(hero,target,size,body=True)
+    if point is not None and target.get('type')==24:
+        point=(point[0],point[1]-18) if point[1]>=82 else None
+    return point
+
+
+def camulos_pause_point(hero, target, actors, size):
+    """Authored visible staging; not a recovered collision/range rule."""
+    if not hero.get('active') or hero.get('health',0)<=0 or hero.get('owner')!=0:return None
+    if not target.get('active') or target.get('health',0)<=0 or target.get('type')!=24 or target.get('owner')!=1:return None
+    if math.hypot(target['x']-hero['x'],target['y']-hero['y'])>5.5:return None
+    if firing_line_blockers(hero,target,actors):return None
+    return fireball_point(hero,target,size)
+
+
+def support_for_attack(hero,target,actors):
+    """Only an unambiguous living original-friendly selection can be ordered."""
+    if not hero.get('active') or hero.get('health',0)<=0 or hero.get('owner')!=0:return None
+    if not target.get('active') or target.get('health',0)<=0 or target.get('owner')!=1 or target.get('type')!=24:return None
+    friendly=[v for v in actors.values() if v['slot']!=hero['slot'] and v['owner']==0 and v['active'] and v['health']>0]
+    return friendly[0] if len(friendly)==1 and friendly[0]['type']==14 else None
+
+
+def fireball_burst_limit(hero, target, paused):
+    if target.get('type')!=24:return 7
+    available=max(0,hero['mana']//(6*256))
+    return min(6,available) if paused else min(2,available)
 
 
 def main():
@@ -82,12 +121,14 @@ def main():
     xt.XTestFakeMotionEvent.argtypes = [c.c_void_p,c.c_int,c.c_int,c.c_int,c.c_ulong]
     xt.XTestFakeButtonEvent.argtypes = [c.c_void_p,c.c_uint,c.c_int,c.c_ulong]
     start = time.monotonic(); held = set();held_keys=set()
+    snapshots=AtomicSnapshotWriter(a.output)
     def save():
         # The Qt owner can terminate a failed helper before finally executes.
-        # Preserve a bounded, atomic interchange snapshot throughout the run.
-        temporary=a.output.with_suffix('.tmp')
-        temporary.write_text(json.dumps(dict(result,seconds=time.monotonic()-start),indent=2)+'\n')
-        temporary.replace(a.output)
+        # Retain complete cumulative histories in immutable snapshots. One
+        # pending snapshot replaces an older pending image; original passive
+        # events remain authoritative if cancellation interrupts persistence.
+        result['snapshot_persistence']=snapshots.statistics()
+        snapshots.submit((json.dumps(dict(result,seconds=time.monotonic()-start),indent=2)+'\n').encode())
     try:
         display = x.XOpenDisplay(os.environ['DISPLAY'].encode())
         require(display, 'Missing owned native display')
@@ -120,14 +161,15 @@ def main():
                 x.XFlush(display);time.sleep(.12)
             result['actions'].append(dict(seconds=time.monotonic()-start, point=[px,py], button=button))
             save();return True
-        def key(sym):
+        def key(sym,persist=True):
             code=x.XKeysymToKeycode(display,sym);require(code,'Missing original-control key mapping')
             for down in (1,0):
                 require(xt.XTestFakeKeyEvent(display,code,down,0),'Key input failed')
                 if down:held_keys.add(code)
                 else:held_keys.discard(code)
                 x.XFlush(display);time.sleep(.12)
-            result['actions'].append(dict(seconds=time.monotonic()-start,kind='key',keysym=sym));save()
+            result['actions'].append(dict(seconds=time.monotonic()-start,kind='key',keysym=sym))
+            if persist:save()
         def modified_click(sym,point):
             code=x.XKeysymToKeycode(display,sym);require(code,'Missing follow modifier mapping')
             require(xt.XTestFakeKeyEvent(display,code,1,0),'Follow modifier press failed');held_keys.add(code)
@@ -151,7 +193,8 @@ def main():
         follow_stage_target=None;follow_quiet_position=None;follow_quiet_since=0
         firing_position=None;firing_since=0;bridge_attacker=None;rearm_since=0;rearm_onpoint_since=0;rearmed=False
         portal_clear_since=0;portal_clear_goal=None;portal_clear_sent=False;portal_cleared=False
-        result.update(casts=[],combat_policy='visible-follow-refill36-space-v22' if a.case!='defeat' else 'ordinary-defeat-v1',route_stage=phase)
+        camulos_approach_since=0;bridge_arrival_since=0
+        result.update(casts=[],combat_policy='exact-bridge-visible-support-v29' if a.case!='defeat' else 'ordinary-defeat-v1',route_stage=phase)
         save()
         while time.monotonic()-start < a.seconds:
             require(not combat_paused or time.monotonic()-combat_pause_since<12,'Bounded ordinary combat pause exceeded12seconds')
@@ -326,8 +369,15 @@ def main():
                     center();actors=state();hero=actors[hero['slot']]
                     follow_wait_since=0
                 result['bridge_candidate']=bridge
-                if math.hypot(hero['x']-bridge['x'],hero['y']-bridge['y'])>3:
+                if not bridge_entry_ready(hero,bridge,rearmed):
+                    if rearmed:
+                        if not bridge_arrival_since:bridge_arrival_since=time.monotonic()
+                        require(time.monotonic()-bridge_arrival_since<60,'Cleared bridge waypoint was not reached within60seconds')
+                        result.setdefault('cleared_bridge_staging',[]).append(dict(wizard=hero,bridge=bridge,seconds=time.monotonic()-start))
                     click(*approach_point(hero,bridge,a.frame_size),3);time.sleep(.7);continue
+                if rearmed:
+                    result.setdefault('cleared_bridge_arrival',dict(wizard=hero,bridge=bridge,seconds=time.monotonic()-start))
+                    bridge_arrival_since=0
                 follower=actors[follow_slot];distance=math.hypot(follower['x']-hero['x'],follower['y']-hero['y'])
                 if not follow_wait_since:
                     follow_wait_since=time.monotonic()
@@ -389,15 +439,56 @@ def main():
             if portal is None and (not target['active'] or target['health']<=0):continue
             support=[v for v in actors.values() if v['type']==14 and v['owner']==0 and v['active'] and v['health']>0]
             nearby=sum(math.hypot(v['x']-hero['x'],v['y']-hero['y'])<10 for v in support)
-            choice=combat_choice(a.case,hero,target,nearby,summons,time.monotonic()-last_spell)
+            choice=combat_choice(a.case,hero,target,nearby,summons,time.monotonic()-last_spell,
+                support_ordered=result.get('support_attack',{}).get('observed',False))
             result['last_decision']=dict(choice=choice,hero=hero,target=target,nearby_support=nearby)
             if choice!='fireball':firing_position=None
             if choice=='fireball':
                 if target['type']==24 and 'combat_pause' not in result:
+                    attack_point=aim_point(hero,target,a.frame_size,body=True)
+                    if 'support_attack' not in result and attack_point is not None:
+                        source=support_for_attack(hero,target,actors)
+                        require(source is not None,'No unambiguous living owned Zombie for the bounded attack order')
+                        result['support_attack']=dict(before=source,target=target,camera_wizard=hero,point=list(attack_point),observed=False)
+                        # Establish a known spell toggle,then turn it off before
+                        # selecting the creature. Its attack must not inherit
+                        # an armed wizard spell cursor.
+                        toggles=spell_selection_points('fireball')
+                        for toggle in (*toggles,toggles[-1]):click(*hud_point(toggle,a.frame_size));time.sleep(.2)
+                        # X selects the sole friendly creature without moving
+                        # the wizard-centred camera;ordinary right-click orders
+                        # its attack. The original target field is the witness.
+                        key(ord('x'));time.sleep(.2);click(*attack_point,3)
+                        deadline=time.monotonic()+3
+                        while time.monotonic()<deadline:
+                            current_actors=state();current=current_actors.get(source['slot'])
+                            if current and current['active'] and current['health']>0 and current['type']==14 and current['owner']==0 and current['target']==target['slot']:
+                                result['support_attack'].update(observed=True,after=current);break
+                            victim=current_actors.get(target['slot'])
+                            if victim and victim['type']==24 and victim['owner']==1 and victim['health']<=0:
+                                result['support_attack']['target_died_during_watch']=victim;break
+                            time.sleep(.05)
+                        center();save()
+                        require(result['support_attack']['observed'] or result['support_attack'].get('target_died_during_watch'),
+                            'Original Zombie attack target was not observed within3seconds')
+                        actors=state();hero=actors[hero['slot']];target=actors.get(target['slot'],target)
+                        if target['health']<=0:time.sleep(.2);continue
+                    point=camulos_pause_point(hero,target,actors,a.frame_size)
+                    if point is None:
+                        if not camulos_approach_since:camulos_approach_since=time.monotonic()
+                        require(time.monotonic()-camulos_approach_since<25,'No visible clear close firing position within25seconds')
+                        blocked=firing_line_blockers(hero,target,actors)
+                        goal=target
+                        if blocked:
+                            dx,dy=target['x']-hero['x'],target['y']-hero['y'];length=max(1,math.hypot(dx,dy))
+                            goal=dict(x=hero['x']-3*dy/length,y=hero['y']+3*dx/length,z=hero['z'])
+                        move=approach_point(hero,goal,a.frame_size)
+                        result.setdefault('camulos_approach',[]).append(dict(hero=hero,target=target,allies=firing_line_allies(hero,target,actors),blockers=blocked,point=list(move)))
+                        click(*move,3);save();time.sleep(.3);continue
                     # Publisher manual p14/15 permits single-player orders and
                     # casting during Space pause. Use one bounded pair; the
                     # original owns pause,cast admission and resumed simulation.
-                    result['combat_pause']=dict(before=hero,target=target,casts_before=len(result['casts']),released=False)
+                    result['combat_pause']=dict(before=hero,target=target,ready_point=list(point),casts_before=len(result['casts']),released=False)
                     key(0x20);combat_paused=True;combat_pause_since=time.monotonic()
                     firing_position=None;save();time.sleep(.3);continue
                 position=tuple(hero[k] for k in ('x','y','z'))
@@ -406,21 +497,22 @@ def main():
                 if time.monotonic()-firing_since<1:
                     save();time.sleep(.2);continue
                 select('fireball');actors=state();hero=actors[hero['slot']]
-                origin=dict(hero);burst=0
-                for _ in range(7):
+                origin=dict(hero);burst=0;target_before=dict(target)
+                damage_before=read_spell_rows(a.experiment/'spell-events.bin')
+                damage_sequence=damage_before[-1][0] if damage_before else 0
+                burst_limit=fireball_burst_limit(hero,target,combat_paused)
+                for _ in range(burst_limit):
                     require(not combat_paused or time.monotonic()-combat_pause_since<12,'Bounded ordinary combat pause exceeded12seconds')
                     actors=state();hero=actors[hero['slot']];target=actors.get(target['slot'],target)
                     if not hero['active'] or hero['health']<=0 or not target['active'] or target['health']<=0 or hero['mana']<6*256:break
                     if any(hero[k]!=origin[k] for k in ('x','y','z')):break
-                    blocked=firing_line_allies(hero,target,actors)
+                    blocked=firing_line_blockers(hero,target,actors) if target['type']==24 else firing_line_allies(hero,target,actors)
                     if blocked:
-                        result.setdefault('firing_line_refusals',[]).append(dict(hero=hero,target=target,allies=blocked))
+                        result.setdefault('firing_line_refusals',[]).append(dict(hero=hero,target=target,allies=firing_line_allies(hero,target,actors),blockers=blocked))
                         dx,dy=target['x']-hero['x'],target['y']-hero['y'];length=max(1,math.hypot(dx,dy))
                         flank=dict(x=hero['x']-3*dy/length,y=hero['y']+3*dx/length,z=hero['z'])
                         click(*approach_point(hero,flank,a.frame_size),3);break
-                    point=aim_point(origin,target,a.frame_size,body=True)
-                    if point is not None and target['type']==24:
-                        point=(point[0],point[1]-18) if point[1]>=82 else None
+                    point=fireball_point(origin,target,a.frame_size)
                     if point is None:break
                     require(fireballs<24 and len(result['casts'])<40,'Bounded physical cast budget exhausted')
                     spell_rows=read_spell_rows(a.experiment/'spell-events.bin')
@@ -445,8 +537,13 @@ def main():
                     key(0x20);combat_paused=False
                     result['combat_pause'].update(released=True,seconds=time.monotonic()-combat_pause_since,accepted_in_burst=burst,after=state()[hero['slot']]);save()
                 if burst:
-                    result.setdefault('fireball_bursts',[]).append(dict(accepted=burst,origin=origin))
                     save();time.sleep(3)
+                    # A time window can include earlier projectiles. Cast counts
+                    # and this observation never grant semantic victory.
+                    damage=player_fireball_damage(read_spell_rows(a.experiment/'spell-events.bin'),0,hero['slot'])
+                    result.setdefault('fireball_bursts',[]).append(dict(accepted=burst,limit=burst_limit,origin=origin,
+                        target_before=target_before,target_after=state().get(target['slot']),
+                        observed_damage_window=[list(r) for r in damage if r[0]>damage_sequence and r[4]==target['slot']]))
             elif choice=='retreat':
                 point=approach_point(hero,dict(x=2*hero['x']-target['x'],y=2*hero['y']-target['y'],z=hero['z']),a.frame_size)
                 click(*point,3)
@@ -456,19 +553,30 @@ def main():
             save();time.sleep(.7 if choice!='idle' else 1)
         require(result['success'], 'Natural report not reached within bounded ordinary-input attempt')
     except Exception as error:
-        result['error'] = str(error)
+        result.update(success=False,error=str(error))
     finally:
         if display:
             if combat_paused:
-                key(0x20);combat_paused=False
-                result['combat_pause'].update(released=True,released_on_failure=True,seconds=time.monotonic()-combat_pause_since)
+                try:
+                    key(0x20,persist=False);combat_paused=False
+                    result['combat_pause'].update(released=True,released_on_failure=True,seconds=time.monotonic()-combat_pause_since)
+                except Exception as error:
+                    result.update(success=False,error=str(error))
             for button in held:xt.XTestFakeButtonEvent(display,button,0,0)
             for code in held_keys:xt.XTestFakeKeyEvent(display,code,0,0)
             x.XFlush(display);x.XCloseDisplay(display)
         result['seconds'] = time.monotonic()-start
         # Bounded physical interchange; the acquisition collector imports this
         # exact file to SQLite, including failed attempts.
-        save()
+        try:
+            save()
+        except Exception as error:
+            result.update(success=False,error=str(error))
+        try:
+            snapshots.close()
+        except Exception as error:
+            result.update(success=False,error=str(error))
+            print(result['error'],file=sys.stderr)
     return 0 if result['success'] else 1
 
 

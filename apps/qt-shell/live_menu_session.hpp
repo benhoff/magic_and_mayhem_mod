@@ -1,7 +1,7 @@
 #pragma once
 #include "menu_bridge.hpp"
 #include "menu_transition_witness.hpp"
-#include "engine_preferences_store.hpp"
+#include "engine_preferences_persistence.hpp"
 #include "../../protocols/include/mnm/menu_v4.h"
 #include <QProcess>
 #include "game_process.hpp"
@@ -12,7 +12,7 @@
 // Process staging, launch and wire protocol remain outside presentation widgets.
 class LiveMenuSession final : public QObject {
 public:
-    explicit LiveMenuSession(QString repository,QObject* parent=nullptr);
+    explicit LiveMenuSession(QString repository,QObject* parent=nullptr,EnginePreferencesPersistence::Commit preferencesCommit={});
     ~LiveMenuSession() override;
     bool nativeCommandsEnabled=false;
     bool nativeOnlyEnabled=false;
@@ -87,6 +87,7 @@ public:
 private:
     friend struct LiveMenuSessionTestAccess; // Synthetic wire/lifecycle validation without a game process.
     void saveAcceptedPreferences();
+    void publishPreferences();
     void poll();
     void retireBridge();
     void menuWitness(quint32 event,const MenuBridge::State* observed=nullptr,quint32 action=UINT32_MAX,quint32 request=UINT32_MAX);
@@ -96,7 +97,7 @@ private:
     bool restoreMiniStorage(const MenuBridge::State& state);
     bool restoreCampaignPreferences(const MenuBridge::State& state);
     QString repo_,root_,channel_;
-    EnginePreferencesStore preferencesStore_;
+    EnginePreferencesPersistence preferencesStore_;
     bool preferencesToSave_=false;
     std::array<int,7> acceptedPreferences_{};
     GameProcess process_;

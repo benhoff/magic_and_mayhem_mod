@@ -81,7 +81,7 @@ def main():
             'zero surviving native/original owners after normal Main Quit']
         names = ['tools/rendering_progression.py', 'tools/prepare-rendering-progression.py', 'tools/rendering_build_binding.py',
                  'tools/run-rendering-progression.py', 'tools/check-rendering-progression.py', 'tools/campaign-outcome-input.py',
-                 'tools/campaign_route.py','tools/campaign_dialogue.py','tools/campaign_return.py','tools/campaign_follow.py','tools/campaign_realm_exit.py','tools/campaign-realm-exit-input.py','tools/campaign_input_observation.py','tools/campaign_report.py','tools/rendering_capture.py', 'tools/rendering_pilot.py', 'tools/campaign_gameplay.py', 'tools/campaign_spell.py', 'tools/campaign_input_admission.py',
+                 'tools/campaign_outcome_record.py','tools/campaign_route.py','tools/campaign_dialogue.py','tools/campaign_return.py','tools/campaign_follow.py','tools/campaign_realm_exit.py','tools/campaign-realm-exit-input.py','tools/campaign_input_observation.py','tools/campaign_report.py','tools/rendering_capture.py', 'tools/rendering_pilot.py', 'tools/campaign_gameplay.py', 'tools/campaign_spell.py', 'tools/campaign_input_admission.py',
                  'apps/qt-shell/profile_capture_codec.hpp','apps/qt-shell/resident_profile_capture.cpp','apps/qt-shell/resident_profile_capture.hpp','tools/resident_capture.py','tests/acceptance-world-history.cpp','apps/qt-shell/acceptance_capture.hpp','apps/qt-shell/host_timing_trace.hpp','apps/qt-shell/campaign_progression_test.cpp', 'apps/qt-shell/campaign_smoke_test.cpp',
                  'apps/qt-shell/campaign_smoke_test.hpp', 'apps/qt-shell/CMakeLists.txt']
         report['sources'] = {n: sha(ROOT/n) for n in names}

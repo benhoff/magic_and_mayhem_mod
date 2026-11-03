@@ -1,4 +1,5 @@
 #include "engine_preferences_store.hpp"
+#include "host_timing_trace.hpp"
 #include <QCryptographicHash>
 #include <QDir>
 #include <QFile>
@@ -18,9 +19,17 @@ void EnginePreferencesStore::begin(QString path,QByteArray revision){path_=std::
 bool EnginePreferencesStore::valid(const std::array<int,7>& v){
     return v[0]>=0&&v[0]<=15&&v[1]>=-2500&&v[1]<=0&&v[2]>=0&&v[2]<=1&&v[3]>=0&&v[3]<=1&&v[4]>=0&&v[4]<=2&&v[5]>=0&&v[5]<=2&&v[6]>=0&&v[6]<=1;
 }
-bool EnginePreferencesStore::readProfile(const QString& path,std::array<int,7>& values,QString* error){
+bool EnginePreferencesStore::readProfileSnapshot(const QString& path,QByteArray& bytes,QString* error){
     QFile f(path);if(!f.open(QIODevice::ReadOnly)||f.size()>65536)return fail(error,"Cannot read engine-written preferences.");
-    const auto text=QString::fromLatin1(f.readAll());QString section;QMap<QString,QString> found;
+    const auto next=f.readAll();if(next.size()>65536||f.error()!=QFileDevice::NoError)return fail(error,"Cannot read engine-written preferences.");
+    bytes=next;return true;
+}
+bool EnginePreferencesStore::readProfile(const QString& path,std::array<int,7>& values,QString* error){
+    QByteArray bytes;return readProfileSnapshot(path,bytes,error)&&parseProfileSnapshot(bytes,values,error);
+}
+bool EnginePreferencesStore::parseProfileSnapshot(const QByteArray& bytes,std::array<int,7>& values,QString* error){
+    if(bytes.size()>65536)return fail(error,"Cannot read engine-written preferences.");
+    const auto text=QString::fromLatin1(bytes);QString section;QMap<QString,QString> found;
     const QStringList keys{"sound/musicvolume","sound/sfxvolume","video/ishighres","video/cutdownanims","video/dialogspeed","video/maxframespersec","video/windowsize"};
     const QRegularExpression heading("^\\s*\\[([^]]+)\\]\\s*(?:;.*)?$");
     const QRegularExpression assignment("^\\s*([^=;]+?)\\s*=\\s*([^;]*?)(?:\\s*;.*)?$");
@@ -45,13 +54,20 @@ bool EnginePreferencesStore::readProfile(const QString& path,std::array<int,7>& 
 }
 bool EnginePreferencesStore::accept(const QString& profile,const std::array<int,7>& expected,QString* error){
     if(error)error->clear();
-    std::array<int,7> actual{};
     if(path_.isEmpty()||revision_.isEmpty())return fail(error,"Preference persistence was not initialized.");
     if(!valid(expected))return fail(error,"Invalid accepted Preferences values.");
-    if(!readProfile(profile,actual,error))return false;
+    QByteArray bytes;if(!readProfileSnapshot(profile,bytes,error))return false;
+    return acceptSnapshot(bytes,expected,error);
+}
+bool EnginePreferencesStore::acceptSnapshot(const QByteArray& profile,const std::array<int,7>& expected,QString* error){
+    if(error)error->clear();
+    if(path_.isEmpty()||revision_.isEmpty())return fail(error,"Preference persistence was not initialized.");
+    if(!valid(expected))return fail(error,"Invalid accepted Preferences values.");
+    std::array<int,7> actual{};if(!parseProfileSnapshot(profile,actual,error))return false;
     if(actual!=expected)return fail(error,"Original preference writer did not write the accepted settings.");
     const auto parent=QFileInfo(path_).absolutePath();if(!QDir().mkpath(parent))return fail(error,"Cannot create preference store directory.");
-    QLockFile lock(path_+".lock");if(!lock.tryLock(0))return fail(error,"Preference store is in use by another session.");
+    QLockFile lock(path_+".lock");
+    {HostTimingTrace trace("preferences-store-lock");if(!lock.tryLock(0))return fail(error,"Preference store is in use by another session.");}
     QByteArray current="missing";QFile previous(path_);
     if(previous.exists()){
         if(!previous.open(QIODevice::ReadOnly)||previous.size()>65536)return fail(error,"Cannot read existing preference store.");
@@ -61,6 +77,7 @@ bool EnginePreferencesStore::accept(const QString& profile,const std::array<int,
     QJsonArray values;for(int v:actual)values.append(v);
     const auto bytes=QJsonDocument(QJsonObject{{"schema",1},{"source_sha256",build},{"values",values}}).toJson();
     QSaveFile file(path_);file.setDirectWriteFallback(false);
-    if(!file.open(QIODevice::WriteOnly)||file.write(bytes)!=bytes.size()||!file.commit())return fail(error,"Could not atomically save preferences.");
+    {HostTimingTrace trace("preferences-store-commit");
+    if(!file.open(QIODevice::WriteOnly)||file.write(bytes)!=bytes.size()||!file.commit())return fail(error,"Could not atomically save preferences.");}
     revision_=QCryptographicHash::hash(bytes,QCryptographicHash::Sha256).toHex();return true;
 }

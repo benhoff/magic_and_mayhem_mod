@@ -25787,3 +25787,42 @@ original game is launched,existing statuses are unchanged,and current combined
 live validation remains pending. Exact committed-history review,pending-master
 snapshot,local backups and the normal staged merge gate remain separate from
 engine evidence. See [integration scope](campaign-master-merge-20261102.md).
+
+## Nominal campaign startup persistence path — 2026-11-02
+
+RPS05 retains a focused failure with4358.833ms synchronous GUI persistence and
+4360ms state age against the unchanged2000ms menu lease. Two pre-World prefixes
+had already been acknowledged;the corrected diagnosis retains the old narrative
+error and states collecting slot1/no pending chunk. Current bounded immutable
+profile snapshots/FIFO worker preserve original readback,revision,atomicity and
+Cancel rules. A2233.199ms blocked writer leaves the synthetic GUI/menu heartbeat
+live;156campaign controls and six focused fixtures pass. The same skipped-intro
+software640/Main dwell now reaches natural defeat/normal Quit,four prefixes and
+1816Worlds. Independent phase03 comparison matches7129leased swaps and
+6234310500pixels with zero mismatches. Nominal startup/victory repeatability and
+historical variant causes remain separate. Phase01 independently matches
+5821546500leased viewport pixels but has no source-only chunks and retains its
+old source phase. No status promotion or gameplay balance change. See
+[the bounded scope](campaign-nominal-repeatability-20261102.md).
+
+## Campaign nominal matrix and bounded helper closeout — 2026-11-03
+
+Frozen RPS05 v23 completes all12 enabled-intro attempts and all enter first World.
+Two software defeat routes/pixel comparisons pass; six progression/victory cases
+naturally lose, two helpers refuse, one World producer cancels and one completed
+Quit has truncated capture. Software640 matches6777leased swaps/5926486500pixels;
+software800 matches6121/5352814500, both zero differences. Separate skipped-intro
+v23 victory completes50XP/Realm/region2/freshWorld/cleanup and matches11897leased
+swaps/10403926500pixels. These retain their exact source phases, not current
+nominal acceptance. Infrastructure refusals and scheduler handoff remain retained.
+
+Current v29 has164passing campaign guards and one nominal software640 natural
+loss before support order/pause. Immutable coalesced helper snapshot persistence,
+exact post-refill bridge staging, living-line guards, bounded witnessed ordinary
+support order and empty-mana retreat are authored input policies. They grant no
+native commander, recovered AI/range/collision or reliable victory claim. V26's
+six named Camulos casts actually damage guard5; corrected static geometry places
+the sampled guard beyond target, so interception/retargeting cause remains open.
+No historical fingerprint/status is refreshed. Save persistence, populated
+lifetime, full simulation and supported acceptance remain pending. See the
+[reviewed scenarios and exact evidence](campaign-nominal-repeatability-20261102.md).

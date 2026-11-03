@@ -11012,20 +11012,30 @@
       "original": [],
       "documents": [
         "research/runtime/preferences-engine-bridge.md",
-        "research/formats/preferences-config.md"
+        "research/formats/preferences-config.md",
+        "research/runtime/campaign-nominal-repeatability-20261102.md"
       ],
       "implementation": [
         "apps/qt-shell/engine_preferences_store.cpp",
         "apps/qt-shell/engine_preferences_store.hpp",
-        "tools/menu_preferences_store.py"
+        "tools/menu_preferences_store.py",
+        "apps/qt-shell/engine_preferences_persistence.hpp"
       ],
       "tests": [
         "tests/engine-preferences-store-test.cpp",
         "tests/test-menu-preferences-store.py",
-        "apps/qt-shell/live_preferences_restore_test.cpp"
+        "apps/qt-shell/live_preferences_restore_test.cpp",
+        "tests/menu-campaign-preferences-test.cpp"
       ],
       "evidence": [
-        "REVIEW.UI.preferences_store"
+        "REVIEW.UI.preferences_store",
+        "RPS05.prefs-stall02",
+        "RPS05.prefs-stall-diagnosis02",
+        "RPS05.prefs-worker-controls03",
+        "RPS05.prefs-worker-dwell03",
+        "RPS05.prefs-worker-history03",
+        "RPS05.controls04",
+        "RPS05.v23-matrix"
       ],
       "status": {
         "understanding": "partial",
@@ -11033,7 +11043,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "RPS05 confirms a synchronous GUI persistence/2000mslease failure in the focused source phase. Current policy validates immutable original profile snapshots and serializes up to16pending/results on a worker,retaining revision/lock/atomicity,Cancel and owner-drain rules. Synthetic current-code liveness and one skipped-intro original rerun pass;nominal matrix,independent current pixels,power-loss and all-caller behavior remain separate. Historical fingerprints/statuses are not renewed."
+      ]
     },
     {
       "id": "PF.frozen_world",
@@ -11416,7 +11429,8 @@
       "original": [],
       "documents": [
         "research/runtime/preferences-persistence.md",
-        "research/formats/engine-preferences-store.md"
+        "research/formats/engine-preferences-store.md",
+        "research/runtime/campaign-nominal-repeatability-20261102.md"
       ],
       "implementation": [
         "apps/qt-shell/engine_preferences_store.cpp",
@@ -11424,18 +11438,27 @@
         "apps/qt-shell/live_menu_session.cpp",
         "apps/qt-shell/live_menu_session.hpp",
         "tools/menu_preferences_store.py",
-        "tools/prepare-menu-observer.py"
+        "tools/prepare-menu-observer.py",
+        "apps/qt-shell/engine_preferences_persistence.hpp"
       ],
       "tests": [
         "tests/engine-preferences-store-test.cpp",
         "tests/test-menu-preferences-store.py",
         "apps/qt-shell/live_preferences_restore_test.cpp",
-        "tools/test-live-menus.py"
+        "tools/test-live-menus.py",
+        "tests/menu-campaign-preferences-test.cpp"
       ],
       "evidence": [
         "UI24.live",
         "UI24.native",
-        "UI25.live"
+        "UI25.live",
+        "RPS05.prefs-stall02",
+        "RPS05.prefs-stall-diagnosis02",
+        "RPS05.prefs-worker-controls03",
+        "RPS05.prefs-worker-dwell03",
+        "RPS05.prefs-worker-history03",
+        "RPS05.controls04",
+        "RPS05.v23-matrix"
       ],
       "status": {
         "understanding": "scoped",
@@ -11444,7 +11467,10 @@
         "integration": "live_observation",
         "replacement": "none"
       },
-      "confidence": "high_within_scope"
+      "confidence": "high_within_scope",
+      "remaining_gaps": [
+        "RPS05 confirms a synchronous GUI persistence/2000mslease failure in the focused source phase. Current policy validates immutable original profile snapshots and serializes up to16pending/results on a worker,retaining revision/lock/atomicity,Cancel and owner-drain rules. Synthetic current-code liveness and one skipped-intro original rerun pass;nominal matrix,independent current pixels,power-loss and all-caller behavior remain separate. Historical fingerprints/statuses are not renewed."
+      ]
     },
     {
       "id": "TL.effect-table-loader",
@@ -79949,7 +79975,8 @@
       "documents": [
         "research/runtime/native-source-prefix-draining.md",
         "research/formats/world-continuous-v6.md",
-        "research/runtime/native-save-capture-recovery-20261025.md"
+        "research/runtime/native-save-capture-recovery-20261025.md",
+        "research/runtime/campaign-nominal-repeatability-20261102.md"
       ],
       "implementation": [
         "runtime/scene/canvas_producers.c",
@@ -79994,7 +80021,10 @@
         "SAVECHUNK.live05-20261025",
         "SAVECHUNK.live06-20261025",
         "SAVECHUNK.live07-20261025",
-        "RPS04.nominal-startup-source-refusals"
+        "RPS04.nominal-startup-source-refusals",
+        "RPS05.prefs-stall-diagnosis02",
+        "RPS05.prefs-worker-dwell03",
+        "RPS05.prefs-worker-history03"
       ],
       "status": {
         "understanding": "partial",
@@ -80006,7 +80036,8 @@
       "remaining_gaps": [
         "Finite diagnostic capture and independent/asynchronous V5 retain their previous bounds. Single World queues and deferred overlap retain their existing caps. Later maps, unbounded resource churn, hardware, consistent performance and complete original-pixel/simulation equivalence remain separate.",
         "SAVECHUNK.live07 freshly validates the optional V3capture path through120.001s MainLoad pause and507904source records,with no World credit for prefixes. General screen/vtable selection and resource/service ownership remain separate recovery work.",
-        "Enabled-intro phase23 nominal starts expose an unacknowledged pre-World source chunk at generation1/ordinal1 and16384 records before host menu lease failure/cancellation; software variants then retain closed-glyph refusal20/exit124. Exact cause/order and native/host scheduling or work-quantum boundary remain unresolved. Later same-source attempts do enter actual640/software Worlds,so this is not a universal mode failure. Preserve failures and strict history/lease guards; no current complete-startup integration claim follows from older source-only controls."
+        "Enabled-intro phase23 nominal starts expose an unacknowledged pre-World source chunk at generation1/ordinal1 and16384 records before host menu lease failure/cancellation; software variants then retain closed-glyph refusal20/exit124. Exact cause/order and native/host scheduling or work-quantum boundary remain unresolved. Later same-source attempts do enter actual640/software Worlds,so this is not a universal mode failure. Preserve failures and strict history/lease guards; no current complete-startup integration claim follows from older source-only controls.",
+        "Focused RPS05 identifies GUI Preferences persistence exceeding the existing menu lease;two prefixes were acknowledged before failure and final slot was collecting. Worker rerun completes four prefixes and1816Worlds. This does not retrospectively classify every historical pending-source/glyph or pre-ACK failure;strict source/lease guards remain unchanged."
       ],
       "validation_dependencies": [
         "reconstruction/rendering/generic_producer_caller.h",
@@ -150571,7 +150602,8 @@
       ],
       "documents": [
         "research/runtime/native-save-capture-recovery-20261025.md",
-        "research/formats/resident-profile-corpus.md"
+        "research/formats/resident-profile-corpus.md",
+        "research/runtime/campaign-nominal-repeatability-20261102.md"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -150588,7 +150620,10 @@
         "SAVECHUNK.live06-20261025",
         "SAVECHUNK.controls10-20261025",
         "SAVECHUNK.live07-20261025",
-        "RPS04.nominal-startup-source-refusals"
+        "RPS04.nominal-startup-source-refusals",
+        "RPS05.prefs-stall-diagnosis02",
+        "RPS05.prefs-worker-dwell03",
+        "RPS05.prefs-worker-history03"
       ],
       "status": {
         "understanding": "scoped",
@@ -150599,7 +150634,8 @@
       },
       "remaining_gaps": [
         "The bounded diagnostic/host policy is implemented and freshly validated. The recorded live profile is Apprentice Celtic1 on llvmpipe with skipped movies and legacy audio. Other difficulties,hardware,whole-session original pixels,complete restored simulation and independent/asynchronous capture remain separate scope;finite storage refusal remains explicit.",
-        "Enabled-intro phase23 nominal starts expose an unacknowledged pre-World source chunk at generation1/ordinal1 and16384 records before host menu lease failure/cancellation; software variants then retain closed-glyph refusal20/exit124. Exact cause/order and native/host scheduling or work-quantum boundary remain unresolved. Later same-source attempts do enter actual640/software Worlds,so this is not a universal mode failure. Preserve failures and strict history/lease guards; no current complete-startup integration claim follows from older source-only controls."
+        "Enabled-intro phase23 nominal starts expose an unacknowledged pre-World source chunk at generation1/ordinal1 and16384 records before host menu lease failure/cancellation; software variants then retain closed-glyph refusal20/exit124. Exact cause/order and native/host scheduling or work-quantum boundary remain unresolved. Later same-source attempts do enter actual640/software Worlds,so this is not a universal mode failure. Preserve failures and strict history/lease guards; no current complete-startup integration claim follows from older source-only controls.",
+        "Focused RPS05 identifies GUI Preferences persistence exceeding the existing menu lease;two prefixes were acknowledged before failure and final slot was collecting. Worker rerun completes four prefixes and1816Worlds. This does not retrospectively classify every historical pending-source/glyph or pre-ACK failure;strict source/lease guards remain unchanged."
       ]
     },
     {
@@ -159424,7 +159460,8 @@
         "research/runtime/rendering-progression-live-20261101.md",
         "research/runtime/campaign-progression-validation-20261101.md",
         "research/runtime/campaign-transition-completion-20261102.md",
-        "research/runtime/campaign-master-merge-20261102.md"
+        "research/runtime/campaign-master-merge-20261102.md",
+        "research/runtime/campaign-nominal-repeatability-20261102.md"
       ],
       "implementation": [
         "tools/rendering_progression.py",
@@ -159450,7 +159487,8 @@
         "apps/qt-shell/live_menu_session.cpp",
         "apps/qt-shell/live_menu_session.hpp",
         "tools/campaign_realm_exit.py",
-        "tools/campaign-realm-exit-input.py"
+        "tools/campaign-realm-exit-input.py",
+        "tools/campaign_outcome_record.py"
       ],
       "tests": [
         "tests/test-rendering-progression.py",
@@ -159688,7 +159726,54 @@
         "RPS04.master-merge-setup-negative1",
         "RPS04.master-merge-setup-negative2",
         "RPS04.master-merge-setup-negative3",
-        "RPS04.master-merge-setup-negative4"
+        "RPS04.master-merge-setup-negative4",
+        "RPS05.preparation01",
+        "RPS05.guards01",
+        "RPS05.victory-input-review01",
+        "RPS05.timing01",
+        "RPS05.timing01-history",
+        "RPS05.prefs-stall02",
+        "RPS05.prefs-stall-diagnosis02",
+        "RPS05.prefs-worker-controls03",
+        "RPS05.prefs-worker-dwell03",
+        "RPS05.prefs-worker-history03",
+        "RPS05.victory-policy-prototype01",
+        "RPS05.controls04",
+        "RPS05.victory-diagnostic04",
+        "RPS05.victory-history04",
+        "RPS05.v23-defeat-default-high",
+        "RPS05.v23-progression-default-high",
+        "RPS05.v23-victory-default-high",
+        "RPS05.v23-defeat-default-low",
+        "RPS05.v23-progression-default-low",
+        "RPS05.v23-victory-default-low",
+        "RPS05.v23-defeat-software-high",
+        "RPS05.v23-defeat-software-high-history",
+        "RPS05.v23-progression-software-high",
+        "RPS05.v23-victory-software-high",
+        "RPS05.v23-defeat-software-low",
+        "RPS05.v23-defeat-software-low-history",
+        "RPS05.v23-progression-software-low",
+        "RPS05.v23-victory-software-low",
+        "RPS05.v23-matrix",
+        "RPS05.v23-matrix-review",
+        "RPS05.candidate24-controls",
+        "RPS05.candidate25-controls",
+        "RPS05.candidate26-controls",
+        "RPS05.candidate27-controls",
+        "RPS05.candidate28-controls",
+        "RPS05.candidate29-controls",
+        "RPS05.candidate24-nominal-negative",
+        "RPS05.candidate25-nominal-negative",
+        "RPS05.candidate26-nominal-negative",
+        "RPS05.candidate28-nominal-negative",
+        "RPS05.candidate29-nominal-negative",
+        "RPS05.guard-hit-review02",
+        "RPS05.candidate29-adoption",
+        "RPS05.final-inputs",
+        "RPS05.final-guards",
+        "RPS05.final-controls02",
+        "RPS05.closeout-review"
       ],
       "status": {
         "understanding": "partial",
@@ -159706,7 +159791,9 @@
         "The historical generation466 native CPU-history refusal has exact same-launch caller normalization and new bounded terminal diagnostics; its admission/materialization cause remains unresolved. Preserve all native refusal rules and failure/source preimages.",
         "Historical preparations,negative combat/navigation/portal/startup runs and their successful bounded controls retain exact source scopes. No current original equivalence,integration,populated lifetime or live replacement promotion follows from static/synthetic controls or diagnostic capture alone.",
         "Final phase24 changes only CMake default-test membership and has fresh154controls plus ON/OFF build-graph checks. Completed original comparisons retain their exact phase23/diagnostic source fingerprints; their broad source closure is not refreshed to claim current full-bundle equivalence.",
-        "Master/campaign merge passes current synthetic CPU and Qt/campaign controls; original observations and pixels retain their parent source phases. Current combined-source live validation and nominal repeatability remain pending. No historical status or source hash is renewed."
+        "Master/campaign merge passes current synthetic CPU and Qt/campaign controls; original observations and pixels retain their parent source phases. Current combined-source live validation and nominal repeatability remain pending. No historical status or source hash is renewed.",
+        "RPS05 frozen v23 nominal matrix:all12enter first World,but only2software defeat routes/pixels pass. Six victory/progression attempts naturally lose,two helpers refuse,one World producer cancels and one capture truncates. Original prefix variants,combat/route reliability and current complete-bundle acceptance remain pending;no source hashes/statuses are refreshed.",
+        "RPS05 closes the frozen v23 enabled-intro12case matrix:all enter first World, two software defeat routes/pixels pass and ten strict cases fail. Current v29 adds coalesced immutable helper snapshots, exact post-refill bridge staging, living-line/visibility guards, bounded witnessed support-order attempt and empty-mana retreat;164 synthetic controls pass. Its software640 nominal attempt naturally loses before support order/pause, so current nominal victory/progression and the support policy remain unvalidated. Six v26 target-matched casts hit guard5; sampled guard is beyond target, so collision/trajectory cause remains open. All are authored input policies, not recovered AI/range or native commander gameplay."
       ]
     },
     {
@@ -371150,6 +371237,1168 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "RPS05.preparation01",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-inputs-01.json",
+      "sha256": "9fb8073dad6086a860479a2d4063dd1b1a95a03553e5ca8bed70ab4fa35ec377",
+      "sources_pointer": "/sources",
+      "scope": "Current bounded map/config/save preparation only; no original game or transition validation.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.guards01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-guards-01.json",
+      "sha256": "71f83517d08cc7b5efb940161e3be7b74041944531db5b6fd05e0f9c2fd96fa4",
+      "sources_pointer": "/sources",
+      "scope": "Fresh current player and Qt fixture links;119Python,five startup and30Region/Realm controls. No live route or original comparison.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.victory-input-review01",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-victory-input-review-01.json",
+      "sha256": "3329e882df46d9faa08b9671f3640f81cd053de20d0ad387db85b23160bdcca1",
+      "sources_pointer": "/sources",
+      "scope": "Exact retained four nominal failures plus successful diagnostic input join; cast acceptance differs from actual damage. No new original execution or projectile cause claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.timing01",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-startup-software-low-01.json",
+      "sha256": "f906f2a9727a9d5ec053cbefd7df82b4966eac461242c3081d3e63a974ff7d8d",
+      "sources_pointer": "/sources",
+      "scope": "Enabled-intro diagnostic software640 natural defeat/normal Quit;zero source chunks,so not the failed prefix boundary. Exact prior source phase retained.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.timing01-history",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-startup-software-low-comparison-01.json",
+      "sha256": "b287b0610470184db75397788915e85f2ff462a2dc9309bf6617e710516d6960",
+      "sources_pointer": "/sources",
+      "scope": "Exact diagnostic phase matches5821546500leased viewport pixels over1772original render generations. Diagnostic/ineligible nominal acceptance;no current-source renewal.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS05.prefs-stall02",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-startup-dwell-software-low-02.json",
+      "sha256": "7a3bd0154c680b0ef9eae1fd5f5e3bf27be5fb2b50ef50c873cd542be8710d44",
+      "sources_pointer": "/sources",
+      "scope": "Focused skipped-intro software640/Main dwell acknowledges two pre-World chunks,then synchronous GUI Preferences persistence exceeds unchanged menu lease and cancels. Retain exact negative acquisition.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.prefs-stall-diagnosis02",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-startup02-persistence-diagnosis-02.json",
+      "sha256": "c3d2df4c515ca8bec5ba8cb37ef84c23e1c12bf0acbe6a0797a8b31cd7c5e578",
+      "sources_pointer": "/sources",
+      "scope": "Corrected exact diagnosis:4358.833msGUI persistence,4360msstate age and2000mslease. Two acknowledged prefixes;final slot collecting,not a pending source request. Historical variants remain separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.prefs-worker-controls03",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-phase03-controls.json",
+      "sha256": "364153514eeaf4d92926fc578946f576d5dab15cb735657bbf60d0ada5f7a892",
+      "sources_pointer": "/sources",
+      "scope": "Current bounded FIFO persistence,immutable original snapshots,revision conflict,backlog,shutdown and real Qt mapped-menu heartbeat beyond unchanged lease;156campaign controls and six focused fixtures. No original game from controls.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/blocked_writer_heartbeat/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.prefs-worker-dwell03",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-startup-dwell-software-low-03.json",
+      "sha256": "0c0d230c972ef3e31ea03cd5e03bad994f997963ffa363e55e6983f2859480d5",
+      "sources_pointer": "/sources",
+      "scope": "Same focused skipped-intro software640/Main dwell now completes natural defeat/normal Quit,four prefixes and1816Worlds;stable sources and private shutdown. Nominal matrix and comparison separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.prefs-worker-history03",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-startup-dwell-software-low-comparison-03.json",
+      "sha256": "0c6b04892bc247e0300fd3b965908f69dca66bf4b49cb3aa969eb805a2a5e528",
+      "sources_pointer": "/sources",
+      "scope": "Exact phase03 focused software640 diagnostic:7129leased swaps/6234310500pixels,zero mismatches,1816Worlds and four source-only prefixes. Nominal repeatability,other startup variants and current helper phase remain separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS05.victory-policy-prototype01",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-victory-policy-prototype-01.json",
+      "sha256": "87714596ba8056822f7e46d9fcf2d0cc7cf38d1679bc110b5ee381a5b7bd5376",
+      "sources_pointer": "/sources",
+      "scope": "Six pure prototype cases join retained pre-pause poses and close/visible/friendly-line/mana guards. No original game or production driver execution;the recorded prototype zero-mana edge is fixed and tested in phase04.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.controls04",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-phase04-controls.json",
+      "sha256": "2461f60d561b3f1d75d642490f867a53a09c6b583ce13977f77c0d404c1c90d1",
+      "sources_pointer": "/sources",
+      "scope": "Current bounded persistence/lifecycle fixtures and158campaign controls,including v23 close visible pre-pause targeting and no-overspend/reserved-followup boundaries. Synthetic controls,not a live victory claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.victory-diagnostic04",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-victory-software-low-04.json",
+      "sha256": "0d8aed83b73aac47259c98ce0e6aa36be7ca9d640bb6ccb4efa152e03132771c",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v23 skipped-intro software640 ordinary victory:original50XP report/OK,Realm travel and region2 World3295after3294,cleanup and normal Main Quit in461.732seconds. All296artifacts/stable sources/player/stopped private Wine. Diagnostic/ineligible nominal;independent pixels,separate simulation/save/lifetime/player claims remain pending.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/normal_quit",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.victory-history04",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-victory-software-low-comparison-04.json",
+      "sha256": "a5d508f8fe5ddc9d036c89bdd804dfeb83e5976809f763c98cfb6ba1fccd3956",
+      "sources_pointer": "/sources",
+      "scope": "Exact v23 skipped-intro software640 victory/Realm/region2/normal Quit diagnostic:all11897leased swaps/10403926500pixels match3304original render generations with zero differences;zero source-only chunks. Diagnostic/ineligible nominal;subsequent nominal combat failures remain negative and no repeatability or simulation/save/lifetime/player claim follows.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-matrix",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-matrix-v23r2-results.json",
+      "sha256": "c9b90b182e3160ac9ae9d7282644a146fb838bfc0776cb8419d789285d5679a0",
+      "sources_pointer": "/sources",
+      "scope": "Exact join of twelve frozen v23 enabled-intro attempts,all entering first World;two software defeat acquisitions/comparisons pass and ten strict cases fail. Guard-refused pre-command attempts remain separate. No full matrix acceptance,statistical repeatability,current helper renewal or engine status promotion.",
+      "assertions": [
+        {
+          "pointer": "/complete",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-defeat-default-high",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-matrix-v23-default-high-defeat.json",
+      "sha256": "ce9acefd4bcd0b53070fa2f8b78adc43aee436a28544424076e16487a1f31fb9",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v23 enabled-intro default-high/defeat:bounded-helper-refusal. First World observed;whole acquisition success=false. No route/pixel acceptance. Natural report not reached within bounded ordinary-input attempt",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/worlds/0/region",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-progression-default-high",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-matrix-v23-default-high-progression.json",
+      "sha256": "fd1e5e012f8cebe1ac250d52caa1ca2042543ea0124f8831db47501c136a8921",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v23 enabled-intro default-high/progression:natural-defeat-rejected-by-victory-assertion. First World observed;whole acquisition success=false. No route/pixel acceptance. Public launcher failed: Unexpected/abandoned primary outcome",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/worlds/0/region",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-victory-default-high",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-matrix-v23-default-high-victory.json",
+      "sha256": "8e6aa969530f12f59e3bbd7d1a884fc8ecc528dbf7732448bd164e0e2d894db6",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v23 enabled-intro default-high/victory:resident-world-producer-cancellation. First World observed;whole acquisition success=false. No route/pixel acceptance. Public launcher failed: Native rendering refused: Resident World producer cancelled",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/worlds/0/region",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-defeat-default-low",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-matrix-v23r1-default-low-defeat.json",
+      "sha256": "7db097f9d475aab587e872fa9f8782a184b9751a88c25bc73d8f7168a1a1bd66",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v23 enabled-intro default-low/defeat:capture-refusal-after-normal-quit. First World observed;whole acquisition success=false. No route/pixel acceptance. Capture incomplete or truncated",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/worlds/0/region",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-progression-default-low",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-matrix-v23r1-default-low-progression.json",
+      "sha256": "45b11f35ad8f681c77d5c9c692bda1832dfffbeb555ae0a45782fd404292ae8a",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v23 enabled-intro default-low/progression:natural-defeat-rejected-by-victory-assertion. First World observed;whole acquisition success=false. No route/pixel acceptance. Public launcher failed: Unexpected/abandoned primary outcome",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/worlds/0/region",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-victory-default-low",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-matrix-v23r1-default-low-victory.json",
+      "sha256": "e93781c1cfdec2f59461ef72b33d56c542d0a2e1c42aef94bd820c9569ffa597",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v23 enabled-intro default-low/victory:natural-defeat-rejected-by-victory-assertion. First World observed;whole acquisition success=false. No route/pixel acceptance. Public launcher failed: Unexpected/abandoned primary outcome",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/worlds/0/region",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-defeat-software-high",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-matrix-v23r2-software-high-defeat.json",
+      "sha256": "80d43d7fe9bd333f8206e5fff398a4808673e099f5b56bdd09114204ebd9c601",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v23 enabled-intro software-high/defeat:complete-defeat-and-independent-pixels. First World observed;whole acquisition success=true. Natural defeat/normal Quit complete;pixels are separate evidence.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/worlds/0/region",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-defeat-software-high-history",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-matrix-v23r2-software-high-defeat-comparison-r2.json",
+      "sha256": "0b8c5caa22a9aba07b01dba2493c970df054068c16e29749b720655b9d01a5e5",
+      "sources_pointer": "/sources",
+      "scope": "Exact frozen v23 nominal software-high natural defeat/normal Quit:6121leased native swaps/5352814500pixels match1792original render generations with zero differences. Movie/unleased swaps,CPU pixel producer semantics,physical scanout,save/simulation and populated lifetime remain outside this comparison.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-progression-software-high",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-matrix-v23r1-software-high-progression.json",
+      "sha256": "e6aee156250c84c90ebf466636aef4da7ad1d9946fa7cdad0784c64f2a8abd36",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v23 enabled-intro software-high/progression:natural-defeat-rejected-by-victory-assertion. First World observed;whole acquisition success=false. No route/pixel acceptance. Public launcher failed: Unexpected/abandoned primary outcome",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/worlds/0/region",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-victory-software-high",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-matrix-v23r1-software-high-victory.json",
+      "sha256": "d07260689f6b8b2f6107989a29aef5d90aa57fe1d501a2c311d5f1ab00844d09",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v23 enabled-intro software-high/victory:bounded-helper-refusal. First World observed;whole acquisition success=false. No route/pixel acceptance. Follower died before the combat route",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/worlds/0/region",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-defeat-software-low",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-matrix-v23-software-low-defeat.json",
+      "sha256": "a7020b3633967df6514981e0808bc164e1b7843f14f37c61ebe451e64616ffb5",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v23 enabled-intro software-low/defeat:complete-defeat-and-independent-pixels. First World observed;whole acquisition success=true. Natural defeat/normal Quit complete;pixels are separate evidence.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/worlds/0/region",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-defeat-software-low-history",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-matrix-v23-software-low-defeat-comparison.json",
+      "sha256": "3a3d71b399f36d50fc7371eba54c10e4472d37526b63e7a9a46e36d02e5ca4d7",
+      "sources_pointer": "/sources",
+      "scope": "Exact frozen v23 nominal software-low natural defeat/normal Quit:6777leased native swaps/5926486500pixels match1886original render generations with zero differences. Movie/unleased swaps,CPU pixel producer semantics,physical scanout,save/simulation and populated lifetime remain outside this comparison.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-progression-software-low",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-matrix-v23r2-software-low-progression.json",
+      "sha256": "efe8449ad2d239ffdd35751e26f25f0fe988051bc84280040ce6e20cd722ae88",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v23 enabled-intro software-low/progression:natural-defeat-rejected-by-victory-assertion. First World observed;whole acquisition success=false. No route/pixel acceptance. Public launcher failed: Unexpected/abandoned primary outcome",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/worlds/0/region",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-victory-software-low",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-matrix-v23-software-low-victory.json",
+      "sha256": "9b2e5f55ba825c34155baadc28469b63ad3f08c95dcd08f3fe05bf79e1fe3c6b",
+      "sources_pointer": "/sources",
+      "scope": "Frozen v23 enabled-intro software-low/victory:natural-defeat-rejected-by-victory-assertion. First World observed;whole acquisition success=false. No route/pixel acceptance. Public launcher failed: Unexpected/abandoned primary outcome",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/flow/worlds/0/region",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-matrix-review",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-v23-matrix-review-01.json",
+      "sha256": "9229301bd9903bcae8f04e3c42d7e38e3ff7f75b4f8bf8e2b60461653a2d5761",
+      "sources_pointer": "/sources",
+      "scope": "Exact twelve-case failure classification and helper/pause/damage join;two complete software defeat/pixel passes,six natural defeats rejected for victory/progression,two helper refusals,one World producer cancellation and one truncated-capture refusal. Does not attribute sole causes or renew old source phases.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.candidate24-controls",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-candidate-v24-preparation.json",
+      "sha256": "454ef7ade9a93c750b8f7f1592b0426d552c9e503d3592b7768a1ff9e622a2f0",
+      "scope": "Exact isolated candidate v24 preparation and 158 bounded campaign controls. Synthetic tooling validation only; retained source preimages and logs do not grant original outcome acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.candidate25-controls",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-candidate-v25-controls.json",
+      "sha256": "02bd3413d50e485b18addc6009ab7f39d407e11d7025c5f248eff7b4d430d860",
+      "scope": "Exact isolated candidate v25 preparation and 160 bounded campaign controls. Synthetic tooling validation only; retained source preimages and logs do not grant original outcome acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.candidate26-controls",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-candidate-v26-controls.json",
+      "sha256": "bbe5eeb628ff98f191f0dd010b7f2fbce7d80d5ebecbd9d6e46478548980667e",
+      "scope": "Exact isolated candidate v26 preparation and 161 bounded campaign controls. Synthetic tooling validation only; retained source preimages and logs do not grant original outcome acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.candidate27-controls",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-candidate-v27-controls.json",
+      "sha256": "c2fe8e5c30233c5c2f2ea0b3a77a6145c684f347005475e8db5da7d01b1c32e1",
+      "scope": "Exact isolated candidate v27 preparation and 162 bounded campaign controls. Synthetic tooling validation only; retained source preimages and logs do not grant original outcome acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.candidate28-controls",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-candidate-v28-controls.json",
+      "sha256": "cb3d6b1460d7154d9fae2bf3d33a69bbf85150a7a3b678e556f6c575457460f7",
+      "scope": "Exact isolated candidate v28 preparation and 163 bounded campaign controls. Synthetic tooling validation only; retained source preimages and logs do not grant original outcome acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.candidate29-controls",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-candidate-v29-controls.json",
+      "sha256": "95bb4ad3e360339db707766acfe0e6a424873ca220c82a6ce93e53cfc5ec442e",
+      "scope": "Exact isolated candidate v29 preparation and 164 bounded campaign controls. Synthetic tooling validation only; retained source preimages and logs do not grant original outcome acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.candidate24-nominal-negative",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-candidate-v24-software-low-nominal-01.json",
+      "sha256": "95589426dd95cf78f72c291057f5c814beb391a04dacbcaac67e813d33ee810b",
+      "scope": "Isolated enabled-intro software640 candidate v24: Rearm travel exceeded its unchanged 60-second bound before Camulos; no victory or sole timing-cause inference.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.candidate25-nominal-negative",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-candidate-v25-software-low-nominal-01.json",
+      "sha256": "bfc8c9a914991ceb615b43c96cd0d683071b7720481b7e65eaf9df1a45eb8a2c",
+      "scope": "Isolated enabled-intro software640 candidate v25: Helper reached its unchanged 540-second bound without reaching Camulos. Snapshot writes moved off the input path; input delivery/consumption remains distinct.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.candidate26-nominal-negative",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-candidate-v26-software-low-nominal-01.json",
+      "sha256": "7ce93e605e701586cf232047fa0a7da5d5f0c205e41eb719903b94006f19db52",
+      "scope": "Isolated enabled-intro software640 candidate v26: Exact cleared bridge was reached, but six target-matched casts damaged guard5 and none damaged Camulos; natural defeat is correctly rejected.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.candidate28-nominal-negative",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-candidate-v28-software-low-nominal-01.json",
+      "sha256": "f5104e80d5b6f422978484bb086542c31edc340a4d75f0443734649a98784c96",
+      "scope": "Isolated enabled-intro software640 candidate v28: Mandatory close firing posture exceeded its 25-second bound while the target moved. No support attack or paused burst executed.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.candidate29-nominal-negative",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-candidate-v29-software-low-nominal-01.json",
+      "sha256": "b2576b60f4d84c11009e8e2675162ba8d814799965aeeeb8d6ad6016346ec6ae",
+      "scope": "Isolated enabled-intro software640 candidate v29: Exact cleared bridge was reached at 277.300 seconds with141HP, but wizard died before support order/pause; natural defeat is correctly rejected. New support policy remains unvalidated.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/skip_intros",
+          "equals": false
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.guard-hit-review02",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-v26-guard-hit-review-02.json",
+      "sha256": "69c22f22ba378a11097e4c7882a3ff5235cbfeb565073594c90fddc5ac73e3c2",
+      "scope": "Corrected static join of six original defended-damage events hitting guard5 instead of the named Camulos target. Sampled guard ray parameter1.3 is beyond target, with no sampled segment blocker. Collision/retargeting/trajectory cause remains open; old narrative preserved.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.candidate29-adoption",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-candidate-v29-adoption.json",
+      "sha256": "92de21d9a7ad326782ffdf5ad3ed566d141576cfa94722509fbb86eda27fa88c",
+      "scope": "Exact six-file adoption from isolated candidate into owned batch; all445 execution-source pins match. Historical phases retain original hashes. Adoption is not live acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.final-inputs",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-final-inputs-01.json",
+      "sha256": "96ad21e05b088a4eb38971551454ec219c640d442b6743aa9a304855b0b093ff",
+      "scope": "Current selected map/config/executable/save-control hashes and prepared bounded scenario inputs. Save position/compatibility and persistence remain unverified.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.final-guards",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-final-guards-01.json",
+      "sha256": "460f3b2f02984683b224b377246c145697f2ce097baf9a60015682921e2bbe5a",
+      "scope": "Current127Python/sevenQt startup/30Region controls pass, total164. No original game executed by these controls.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.final-controls02",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-final-controls-02.json",
+      "sha256": "e6ffa57453992dbb1ded7b83bfc4b1dd22cc4a519b17d6d0cb19c2b5a3627779",
+      "scope": "Corrected current164-control preparation review. Six lifecycle/persistence C++ fixtures retain their earlier phase04 execution; unchanged C++ source bytes checked, no fresh fixture rerun claimed.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "RPS05.closeout-review",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-closeout-review-01.json",
+      "sha256": "563ba09b0984eb993d5c6b73d071cf0378b331d751130ebddbc3d1781d185cef",
+      "scope": "Review completion, not nominal route acceptance. Full v23 matrix is historical frozen source; current v29 has164 controls and one failed nominal software640 attempt. No behavior status promotion, collision recovery, save/persistence, full simulation or populated lifetime claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
     }
   ],
   "classifications": [],
@@ -401313,6 +402562,289 @@
         "tools/check-rendering-progression.py",
         "apps/qt-shell/campaign_progression_test.cpp"
       ]
+    },
+    {
+      "id": "campaign.preferences-worker-heartbeat-rps05",
+      "level": "headless",
+      "scope": "Synthetic real Qt/mapped-menu heartbeat survives a blocked persistence worker beyond unchanged2000mslease;FIFO snapshots,revision conflict,bounded backlog and shutdown drain remain native policy controls.",
+      "behaviors": [
+        "UI.preferences_store",
+        "NP.preferences-persistence"
+      ],
+      "evidence": [
+        "RPS05.prefs-worker-controls03",
+        "RPS05.controls04"
+      ],
+      "tests": [
+        "tests/engine-preferences-store-test.cpp",
+        "tests/menu-campaign-preferences-test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.preferences-dwell-defeat-history-rps05",
+      "level": "live_observation",
+      "scope": "Focused skipped-intro software640 Main dwell crosses four source-only prefixes,natural defeat,normal Quit and7129leased-swap independent history comparison;diagnostic/ineligible nominal,other startup variants and gameplay semantics remain separate.",
+      "behaviors": [
+        "NP.rendering-progression-scenarios",
+        "NR.menu-loading-source-chunks",
+        "NP.resident-source-chunk-capture",
+        "NP.preferences-persistence"
+      ],
+      "evidence": [
+        "RPS05.prefs-stall02",
+        "RPS05.prefs-stall-diagnosis02",
+        "RPS05.prefs-worker-dwell03",
+        "RPS05.prefs-worker-history03"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.camulos-input-bounds-rps05",
+      "level": "headless",
+      "scope": "Pure v23 ordinary-input controls reject retained invisible640poses,living-friendly line,dead/foreign/remote targets and mana overspend;reserve bounded follow-ups. No original combat or natural victory proven by these controls.",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.controls04"
+      ],
+      "tests": [
+        "tests/test-rendering-progression.py",
+        "tools/campaign-outcome-input.py"
+      ]
+    },
+    {
+      "id": "campaign.v23-diagnostic-victory-rps05",
+      "level": "live_observation",
+      "scope": "Frozen v23 skipped-intro software640 ordinary victory:original50XP report/OK,Realm travel and region2 World3295after3294,cleanup and normal Main Quit in461.732seconds. All296artifacts/stable sources/player/stopped private Wine. Diagnostic/ineligible nominal;independent pixels,separate simulation/save/lifetime/player claims remain pending.",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.victory-diagnostic04",
+        "RPS05.victory-history04"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/campaign-outcome-input.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.v23-defeat-default-high-rps05",
+      "level": "live_observation",
+      "scope": "Frozen v23 enabled-intro default-high/defeat:bounded-helper-refusal. First World observed;whole acquisition success=false. No route/pixel acceptance. Natural report not reached within bounded ordinary-input attempt",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.v23-defeat-default-high"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.v23-progression-default-high-rps05",
+      "level": "live_observation",
+      "scope": "Frozen v23 enabled-intro default-high/progression:natural-defeat-rejected-by-victory-assertion. First World observed;whole acquisition success=false. No route/pixel acceptance. Public launcher failed: Unexpected/abandoned primary outcome",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.v23-progression-default-high"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.v23-victory-default-high-rps05",
+      "level": "live_observation",
+      "scope": "Frozen v23 enabled-intro default-high/victory:resident-world-producer-cancellation. First World observed;whole acquisition success=false. No route/pixel acceptance. Public launcher failed: Native rendering refused: Resident World producer cancelled",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.v23-victory-default-high"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.v23-defeat-default-low-rps05",
+      "level": "live_observation",
+      "scope": "Frozen v23 enabled-intro default-low/defeat:capture-refusal-after-normal-quit. First World observed;whole acquisition success=false. No route/pixel acceptance. Capture incomplete or truncated",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.v23-defeat-default-low"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.v23-progression-default-low-rps05",
+      "level": "live_observation",
+      "scope": "Frozen v23 enabled-intro default-low/progression:natural-defeat-rejected-by-victory-assertion. First World observed;whole acquisition success=false. No route/pixel acceptance. Public launcher failed: Unexpected/abandoned primary outcome",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.v23-progression-default-low"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.v23-victory-default-low-rps05",
+      "level": "live_observation",
+      "scope": "Frozen v23 enabled-intro default-low/victory:natural-defeat-rejected-by-victory-assertion. First World observed;whole acquisition success=false. No route/pixel acceptance. Public launcher failed: Unexpected/abandoned primary outcome",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.v23-victory-default-low"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.v23-defeat-software-high-rps05",
+      "level": "live_observation",
+      "scope": "Frozen v23 enabled-intro software-high/defeat:complete-defeat-and-independent-pixels. First World observed;whole acquisition success=true. Natural defeat/normal Quit complete;pixels are separate evidence.",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.v23-defeat-software-high",
+        "RPS05.v23-defeat-software-high-history"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.v23-progression-software-high-rps05",
+      "level": "live_observation",
+      "scope": "Frozen v23 enabled-intro software-high/progression:natural-defeat-rejected-by-victory-assertion. First World observed;whole acquisition success=false. No route/pixel acceptance. Public launcher failed: Unexpected/abandoned primary outcome",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.v23-progression-software-high"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.v23-victory-software-high-rps05",
+      "level": "live_observation",
+      "scope": "Frozen v23 enabled-intro software-high/victory:bounded-helper-refusal. First World observed;whole acquisition success=false. No route/pixel acceptance. Follower died before the combat route",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.v23-victory-software-high"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.v23-defeat-software-low-rps05",
+      "level": "live_observation",
+      "scope": "Frozen v23 enabled-intro software-low/defeat:complete-defeat-and-independent-pixels. First World observed;whole acquisition success=true. Natural defeat/normal Quit complete;pixels are separate evidence.",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.v23-defeat-software-low",
+        "RPS05.v23-defeat-software-low-history"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.v23-progression-software-low-rps05",
+      "level": "live_observation",
+      "scope": "Frozen v23 enabled-intro software-low/progression:natural-defeat-rejected-by-victory-assertion. First World observed;whole acquisition success=false. No route/pixel acceptance. Public launcher failed: Unexpected/abandoned primary outcome",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.v23-progression-software-low"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.v23-victory-software-low-rps05",
+      "level": "live_observation",
+      "scope": "Frozen v23 enabled-intro software-low/victory:natural-defeat-rejected-by-victory-assertion. First World observed;whole acquisition success=false. No route/pixel acceptance. Public launcher failed: Unexpected/abandoned primary outcome",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.v23-victory-software-low"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.current-v29-software-low-negative-rps05",
+      "level": "live_observation",
+      "scope": "Exact cleared bridge was reached at 277.300 seconds with141HP, but wizard died before support order/pause; natural defeat is correctly rejected. New support policy remains unvalidated.",
+      "behaviors": [
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "RPS05.final-guards",
+        "RPS05.candidate29-nominal-negative",
+        "RPS05.closeout-review"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tests/test-rendering-progression.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -402763,8 +404295,8 @@
   "register_imports": [
     {
       "path": "research/runtime/preferences-coverage-register.json",
-      "sha256": "4e7b92835b2f38e1a7194d7bc1a2844396f09c00b9c3236662e9410dc133270e",
-      "scope": "Reviewed Preferences focused-register snapshot consolidated into the central register; subsequent focused edits require explicit reconciliation."
+      "sha256": "0310881ccd451ddb2b4d7f6381e3ee5f741c9f0b7b90e0e2515a4c1468668cf9",
+      "scope": "Reviewed Preferences focused-register snapshot consolidated into the central register; subsequent focused edits require explicit reconciliation. RPS05 bounded persistence worker,synthetic controls and scoped original diagnostic reconciled;historical statuses unchanged."
     },
     {
       "path": "research/runtime/effect-lighting-coverage.json",
@@ -403130,7 +404662,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6d3ca48d138618e40be4fd6e484348e1c8dd3b3e79004e954551ec871b725b2b.json",
-    "sha256": "6d3ca48d138618e40be4fd6e484348e1c8dd3b3e79004e954551ec871b725b2b"
+    "path": "research/runtime/coverage/source-index-b00a833f7a30f0b2fed7d0dfb817d21b12b2d968b8448fcad71fa35956581d2c.json",
+    "sha256": "b00a833f7a30f0b2fed7d0dfb817d21b12b2d968b8448fcad71fa35956581d2c"
   }
 }

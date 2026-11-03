@@ -24,9 +24,12 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
     const auto mode=qEnvironmentVariable("MNM_CAMPAIGN_PROGRESSION_CASE");
     const auto size=qEnvironmentVariable("MNM_CAMPAIGN_PROGRESSION_SIZE","800x600");
     const bool low=size=="640x480";
+    bool dwellValid=true;
+    const auto dwellText=qEnvironmentVariable("MNM_CAMPAIGN_STARTUP_DWELL_MS");
+    const int startupDwell=dwellText.isEmpty()?0:dwellText.toInt(&dwellValid);
     struct Run {int stage=0,region=1,visits=0,input=0,realmIndex=-1,travels=0;quint32 thread=0;quint64 frames=0,paints=0,worldBaseline=0;bool done=false,helper=false,natural=false;QJsonArray states,worlds,observations;QJsonObject failure;QElapsedTimer clock;QProcess* process=nullptr;};
     auto r=std::make_shared<Run>();r->clock.start();
-    auto finish=[r,path,probe,&app,mode,size](bool success,const QString& error){
+    auto finish=[r,path,probe,&app,mode,size,startupDwell](bool success,const QString& error){
         if(r->done)return;
         r->done=true;
         if(r->process&&r->process->state()!=QProcess::NotRunning)r->process->kill();
@@ -34,6 +37,7 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
         const QJsonObject result{{"schema",2},{"world_observation_policy","fresh-generation-after-handoff-v1"},{"size",size},{"case",mode},{"success",success},{"error",success?QString{}:error},
             {"normal_quit",success&&r->stage==12},{"stage",r->stage},{"states",r->states},{"worlds",r->worlds},
             {"native_command_fallback",p.fallback},{"native_error",p.error},{"elapsed_ms",r->clock.elapsed()},
+            {"startup_main_dwell_ms",startupDwell},
             {"pixel_history_accepted",false},{"ownership_retirement_accepted",false},{"session_observations",r->observations},{"session_failure",r->failure}};
         const auto bytes=QJsonDocument(result).toJson();
         const bool saved=file.open(QIODevice::WriteOnly)&&file.write(bytes)==bytes.size()&&file.commit();
@@ -41,6 +45,10 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
     };
     if((mode!="progression"&&mode!="victory"&&mode!="defeat")||(size!="640x480"&&size!="800x600")){
         QTimer::singleShot(0,&window,[finish]{finish(false,"Unknown progression case");});return;
+    }
+    if(!dwellValid||startupDwell<0||startupDwell>30000||
+       (startupDwell&&qEnvironmentVariableIntValue("MNM_RESIDENT_POLL_TIMING")!=1)){
+        QTimer::singleShot(0,&window,[finish]{finish(false,"Invalid diagnostic startup dwell");});return;
     }
     if(auto* scaling=window.findChild<QComboBox*>("viewportScaling"))scaling->setCurrentIndex(2);
     session.skipMoviesEnabled=qEnvironmentVariableIntValue("MNM_ACCEPTANCE_SKIP_INTROS")==1;
@@ -55,6 +63,15 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
         r->states.append(QJsonObject{{"event",event},{"screen",int(s.screen)},{"generation",int(s.generation)},
             {"sequence",int(s.sequence)},{"ack",int(s.ack)},{"thread",int(s.thread)},
             {"region",int(s.region.region)},{"realm",s.region.realm},{"different",int(s.region.different)},{"enter_handoff",int(s.region.enterHandoff)}});
+    };
+    auto startupAction=[r,&window,click,startupDwell](int waiting,int destination,const QString& action){
+        r->stage=waiting;
+        const auto dispatch=[r,click,waiting,destination,action]{
+            if(r->done||r->stage!=waiting)return;
+            r->stage=destination;click(action);
+        };
+        if(startupDwell)QTimer::singleShot(startupDwell,&window,dispatch);
+        else dispatch();
     };
     auto input=[r,path,&window,&session,finish,mode](QString purpose){
         auto* viewport=window.findChild<GlViewport*>("nativeGameViewport");
@@ -77,15 +94,15 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
         process->start("python3",args);
     };
     auto previous=session.stateChanged;
-    session.stateChanged=[r,previous,record,click,finish,mode,probe,low](const MenuBridge::State& s){
+    session.stateChanged=[r,previous,record,click,finish,mode,probe,low,startupAction](const MenuBridge::State& s){
         r->observations.append(QJsonObject{{"ms",r->clock.elapsed()},{"stage",r->stage},{"screen",int(s.screen)},{"ready",int(s.ready)},{"ack",int(s.ack)},{"generation",int(s.generation)},{"sequence",int(s.sequence)},{"handoff",int(s.handoff)}});
         if(r->observations.size()>256)r->observations.removeAt(0);
         if(previous)previous(s);
         if(r->done||!s.ready)return;
         if(r->thread&&r->thread!=s.thread){finish(false,"Engine owner thread changed");return;}r->thread=s.thread;
-        if(r->stage==0&&s.screen==3){record(s,"main");r->stage=100;click("mainMenuAction3");}
+        if(r->stage==0&&s.screen==3){record(s,"main");startupAction(99,100,"mainMenuAction3");}
         else if(r->stage==100&&s.screen==10){record(s,"display-configuration");r->stage=101;click(low?"preferencesRadio2":"preferencesRadio1");click("preferencesOk");}
-        else if(r->stage==101&&s.screen==3){record(s,"configured-main");r->stage=1;click("mainMenuAction0");}
+        else if(r->stage==101&&s.screen==3){record(s,"configured-main");startupAction(102,1,"mainMenuAction0");}
         else if((r->stage==1||r->stage==7)&&s.screen==18){
             if(s.region.realm.compare("Celtic",Qt::CaseInsensitive)||s.region.region!=quint32(r->region)){finish(false,"Unexpected original region identity");return;}
             record(s,r->region==2&&s.region.enterHandoff==4?"region-travel-entry":"region-entry");r->stage=2;click("regionEntryDifficulty1");

@@ -2,10 +2,21 @@
 import sys,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from campaign_route import hud_point,project,aim_point,approach_point,validate_opening_anchors
+from campaign_route import hud_point,project,aim_point,approach_point,validate_opening_anchors,bridge_entry_ready
 
 
 class Route(unittest.TestCase):
+    def test_refilled_bridge_entry_requires_the_waypoint_before_final_approach(self):
+        bridge=dict(x=31,y=52,z=4)
+        # Retained v25 left staging at29,53 then never reached Camulos.
+        short=dict(x=29,y=53,z=4)
+        self.assertTrue(bridge_entry_ready(short,bridge,False))
+        self.assertFalse(bridge_entry_ready(short,bridge,True))
+        for point in (dict(x=30,y=52,z=4),dict(x=31,y=51,z=4),dict(x=31,y=52,z=5)):
+            self.assertFalse(bridge_entry_ready(point,bridge,True))
+        self.assertTrue(bridge_entry_ready(bridge,bridge,True))
+        self.assertFalse(bridge_entry_ready(dict(x=20,y=52,z=4),bridge,False))
+
     def test_hud_is_anchored_to_native_right_bottom_edges(self):
         self.assertEqual(hud_point((477,575),(640,480)),(317,455))
         self.assertEqual(hud_point((523,575),(640,480)),(363,455))

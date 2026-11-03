@@ -49,7 +49,7 @@ def main():
             commands.append(['cmake','--build',a.build.resolve(),'--target','mnm-qt-shell','--parallel','4'])
             if a.driver_test:
                 commands.append(['cmake','--build',a.build.resolve(),'--target','campaign-progression-driver-test','--parallel','4'])
-                commands.extend([[a.driver_test.resolve(),case] for case in ('progression','victory','defeat','disabled','wrong-realm')])
+                commands.extend([[a.driver_test.resolve(),case] for case in ('progression','victory','defeat','disabled','wrong-realm','startup-dwell','startup-dwell-cancel')])
             if a.region_test:
                 commands.append(['cmake','--build',a.build.resolve(),'--target','menu-region-campaign-test','--parallel','4'])
                 commands.append([a.region_test.resolve()])

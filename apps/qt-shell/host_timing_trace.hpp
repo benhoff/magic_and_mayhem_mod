@@ -1,6 +1,8 @@
 #pragma once
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QCoreApplication>
+#include <QThread>
 #include <chrono>
 #include <atomic>
 #include <cstdio>
@@ -18,6 +20,8 @@ public:
         static std::atomic<unsigned> rows{0};
         if(rows.fetch_add(1,std::memory_order_relaxed)>=256)return;
         const auto row=QJsonDocument(QJsonObject{{"stage",QString::fromLatin1(stage_)},
+            {"thread_id",QString::number(quintptr(QThread::currentThreadId()),16)},
+            {"gui_thread",QCoreApplication::instance()&&QThread::currentThread()==QCoreApplication::instance()->thread()},
             {"begin_host_us",QString::number(std::chrono::duration_cast<std::chrono::microseconds>(start_.time_since_epoch()).count())},
             {"elapsed_us",QString::number(elapsed)}}).toJson(QJsonDocument::Compact);
         std::fprintf(stderr,"NATIVE_HOST_OPERATION %s\n",row.constData());

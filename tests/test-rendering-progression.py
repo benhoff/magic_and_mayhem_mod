@@ -13,6 +13,7 @@ import subprocess
 import shutil
 import time
 import json
+import threading
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -72,6 +73,49 @@ class NativeRuntimeBindingTests(unittest.TestCase):
 
 
 class ProgressionTests(unittest.TestCase):
+    def test_blocked_snapshot_writer_leaves_producer_free_and_retains_complete_history(self):
+        from campaign_outcome_record import AtomicSnapshotWriter
+        entered=threading.Event();release=threading.Event();written=[]
+        def blocked(payload):
+            if not written:
+                entered.set()
+                if not release.wait(5):raise RuntimeError('Test writer was not released')
+            written.append(payload)
+        writer=AtomicSnapshotWriter(Path('unused-physical-interchange'),write=blocked)
+        try:
+            writer.submit(b'{"actions":[]}')
+            self.assertTrue(entered.wait(2))
+            actions=[]
+            for i in range(64):
+                actions.append(i)
+                writer.submit(json.dumps(dict(actions=actions)).encode())
+            # The producer reaches here while the first disk operation is
+            # blocked;one pending immutable image contains every action.
+            self.assertFalse(release.is_set())
+            self.assertEqual(written,[])
+            actions.append('after-serialization')
+        finally:
+            release.set();writer.close()
+        self.assertEqual(len(written),2)
+        self.assertEqual(json.loads(written[-1])['actions'],list(range(64)))
+        self.assertEqual(writer.statistics()['coalesced'],63)
+        with self.assertRaises(RuntimeError):writer.submit(b'{}')
+
+    def test_snapshot_failure_and_bounds_cannot_replace_existing_interchange(self):
+        from campaign_outcome_record import AtomicSnapshotWriter
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'result.json';path.write_bytes(b'previous')
+            def fail(payload):raise OSError('Injected atomic write refusal')
+            writer=AtomicSnapshotWriter(path,write=fail)
+            with self.assertRaises(ValueError):writer.submit(b'x'*(writer.MAX_BYTES+1))
+            writer.submit(b'new')
+            with self.assertRaisesRegex(RuntimeError,'Injected atomic write refusal'):writer.close()
+            self.assertEqual(path.read_bytes(),b'previous')
+            writer=AtomicSnapshotWriter(path)
+            writer.submit(b'{"success":false}');writer.close()
+            self.assertEqual(json.loads(path.read_bytes()),dict(success=False))
+            self.assertFalse(path.with_suffix('.tmp').exists())
+
     def test_distinct_legitimate_routes_remain_preparation_not_pixel_acceptance(self):
         for case in ('progression','victory','defeat'):
             result=validate_flow(flow(case),case)
@@ -224,6 +268,83 @@ class ProgressionTests(unittest.TestCase):
             self.assertEqual(check(**changes),[])
         target.update(x=0)
         self.assertEqual(module.firing_line_allies(hero,target,{2:ally}),[])
+
+    def test_boss_volley_also_refuses_living_enemy_interceptors(self):
+        spec=importlib.util.spec_from_file_location('blocker_policy',ROOT/'tools/campaign-outcome-input.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        hero=dict(slot=0,owner=0,x=40,y=30,z=4,active=1,health=141)
+        target=dict(slot=4,type=24,owner=1,x=39,y=27,z=4,active=1,health=100)
+        guard=dict(slot=5,type=10,owner=1,x=40,y=29,z=4,active=1,health=110)
+        actors={0:hero,4:target,5:guard}
+        self.assertEqual(module.firing_line_allies(hero,target,actors),[])
+        self.assertEqual(module.firing_line_blockers(hero,target,actors),[5])
+        self.assertIsNone(module.camulos_pause_point(hero,target,actors,(640,480)))
+        for changes in (dict(health=0),dict(active=0),dict(x=43)):
+            self.assertEqual(module.firing_line_blockers(hero,target,{0:hero,4:target,5:dict(guard,**changes)}),[])
+
+    def test_camulos_pause_requires_close_visible_living_clear_target(self):
+        spec=importlib.util.spec_from_file_location('pause_policy',ROOT/'tools/campaign-outcome-input.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        hero=dict(slot=0,owner=0,type=0,x=40,y=30,z=4,active=1,health=200,mana=36*256)
+        target=dict(slot=4,owner=1,type=24,x=39,y=27,z=4,active=1,health=100)
+        for size in ((800,600),(640,480)):
+            actors={0:hero,4:target}
+            self.assertIsNotNone(module.camulos_pause_point(hero,target,actors,size))
+            ally=dict(slot=3,owner=0,x=40,y=29,z=4,active=1,health=80)
+            self.assertIsNone(module.camulos_pause_point(hero,target,{**actors,3:ally},size))
+            for changes in (dict(health=0),dict(active=0),dict(owner=0),dict(type=10),dict(x=6)):
+                self.assertIsNone(module.camulos_pause_point(hero,dict(target,**changes),actors,size))
+        earlier_hero=dict(hero,x=42,y=31,z=4,health=70)
+        earlier_target=dict(target,x=43,y=27,z=5)
+        for size in ((800,600),(640,480)):
+            self.assertIsNotNone(module.camulos_pause_point(earlier_hero,earlier_target,{0:earlier_hero,4:earlier_target},size))
+            east_hero=dict(hero,x=44,y=30)
+            self.assertIsNotNone(module.camulos_pause_point(east_hero,earlier_target,{0:east_hero,4:earlier_target},size))
+        # Retained 640 before-pause poses from nominal failures: never consume
+        # the single Space pair at these projected positions.
+        for hp,tp in (((41,33,4),(44,27,4)),((42,35,5),(45,29,4))):
+            h=dict(hero,**dict(zip(('x','y','z'),hp)));t=dict(target,**dict(zip(('x','y','z'),tp)))
+            self.assertIsNone(module.fireball_point(h,t,(640,480)))
+            self.assertIsNone(module.camulos_pause_point(h,t,{0:h,4:t},(640,480)))
+
+    def test_camulos_burst_uses_available_volley_without_overspending(self):
+        spec=importlib.util.spec_from_file_location('burst_policy',ROOT/'tools/campaign-outcome-input.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        for mana in range(0,51*256,127):
+            for paused in (False,True):
+                limit=module.fireball_burst_limit(dict(mana=mana),dict(type=24),paused)
+                self.assertGreaterEqual(limit,0)
+                self.assertLessEqual(limit*6*256,mana)
+                self.assertLessEqual(limit,6 if paused else 2)
+                if paused and mana>=36*256:self.assertEqual(limit,6)
+        self.assertEqual(module.fireball_burst_limit(dict(mana=36*256),dict(type=24),True),6)
+        self.assertEqual(module.fireball_burst_limit(dict(mana=36*256),dict(type=10),True),7)
+
+    def test_support_attack_requires_one_living_owned_zombie_and_current_enemy(self):
+        spec=importlib.util.spec_from_file_location('support_policy',ROOT/'tools/campaign-outcome-input.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        hero=dict(slot=0,type=0,owner=0,active=1,health=100)
+        enemy=dict(slot=4,type=24,owner=1,active=1,health=100)
+        ally=dict(slot=17,type=14,owner=0,active=1,health=90)
+        self.assertEqual(module.support_for_attack(hero,enemy,{0:hero,4:enemy,17:ally}),ally)
+        for changes in (dict(health=0),dict(active=0),dict(type=10),dict(owner=1)):
+            self.assertIsNone(module.support_for_attack(hero,enemy,{0:hero,17:dict(ally,**changes)}))
+        self.assertIsNone(module.support_for_attack(hero,enemy,{0:hero,17:ally,18:dict(ally,slot=18)}))
+        self.assertIsNone(module.support_for_attack(hero,dict(enemy,health=0),{17:ally}))
+        self.assertIsNone(module.support_for_attack(dict(hero,owner=1),enemy,{17:ally}))
+
+    def test_empty_mana_support_policy_does_not_chase_boss_back_into_range(self):
+        spec=importlib.util.spec_from_file_location('support_range',ROOT/'tools/campaign-outcome-input.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        hero=dict(x=0,y=0,health=100,mana=0)
+        enemy=dict(type=24,x=9,y=0,health=100)
+        self.assertEqual(module.combat_choice('victory',hero,enemy,1,1,10,True),'idle')
+        enemy['x']=5
+        self.assertEqual(module.combat_choice('progression',hero,enemy,1,1,10,True),'retreat')
+        enemy['health']=0
+        self.assertEqual(module.combat_choice('victory',hero,enemy,1,1,10,True),'portal')
+        enemy.update(health=100,x=9)
+        self.assertEqual(module.combat_choice('defeat',hero,enemy,1,1,10,True),'move')
 
     @unittest.skipUnless(shutil.which('xvfb-run'),'Xvfb required for helper regression')
     def test_report_callback_retires_helper_before_world_pop_or_return(self):
