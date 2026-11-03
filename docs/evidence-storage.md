@@ -1,5 +1,8 @@
 # Evidence storage lifecycle
 
+For lightweight campaign diagnostics, shared input provisioning and automatic
+comparison-output handoff, see [campaign check storage](check-storage.md).
+
 The storage unit for new local work is an immutable artifact or typed SQLite
 record, rather than a complete database file or execution directory. Exactly two
 verified copies of each new unique object live on independent filesystems. All

@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--game', type=Path, required=True)
+    p.add_argument('--game', type=Path, help='Defaults to the verified shared game input')
     p.add_argument('--save', type=Path, action='append', default=[])
     p.add_argument('--restore-pristine-executable', action='store_true',
                    help='Restore the hash-pinned No-CD executable in this worktree\'s private working/game-nocd only')
@@ -26,10 +26,12 @@ def main():
     try:
         subprocess.run([ROOT/'tools/original-manifest.sh', 'verify'], check=True)
         verified = True
-        game = a.game.resolve(strict=True)
+        from check_inputs import paths
+        shared=paths(ROOT)
+        game = (a.game or shared.get('game') or ROOT/'working/game-nocd').resolve(strict=True)
         if a.restore_pristine_executable:
             target = game/'Chaos.exe'
-            require(game == ROOT/'working/game-nocd' and not a.game.is_symlink() and not target.is_symlink() and target.stat().st_nlink == 1,
+            require(game == ROOT/'working/game-nocd' and a.game is not None and not a.game.is_symlink() and not target.is_symlink() and target.stat().st_nlink == 1,
                     'Executable restoration requires a physical private installation, with no shared hardlink')
             require(a.expected_executable_sha256 and sha(target) == a.expected_executable_sha256,
                     'Private executable preimage mismatch')
@@ -71,7 +73,7 @@ def main():
             deadline_seconds=900, world_driver_seconds=540,
             configurations=['player-default', 'player-software'],
             frame_modes=[[640,480], [800,600]],
-            command=['python3', 'tools/run-rendering-progression.py', '--case', case, '--preparation', a.report,
+            command=['python3', 'tools/run-rendering-progression.py', '--case', case, '--evidence-mode', 'full', '--preparation', a.report,
                      '--report', PREFIX+case+'-RUN.json']) for case in CASES]
         report['assertions'] = ['ordinary input only; original simulation and scripts unchanged',
             'natural report discriminator, all 21 texts and original OK acknowledgement',
@@ -79,8 +81,8 @@ def main():
             'fresh Realm admission and Celtic region 2 World; reload is never progression',
             'all initial and later World output/history and populated handoffs must be independently checked',
             'zero surviving native/original owners after normal Main Quit']
-        names = ['tools/rendering_progression.py', 'tools/prepare-rendering-progression.py', 'tools/rendering_build_binding.py',
-                 'tools/run-rendering-progression.py', 'tools/check-rendering-progression.py', 'tools/campaign-outcome-input.py',
+        names = ['tools/rendering_progression.py', 'tools/check_inputs.py', 'tools/prepare-rendering-progression.py', 'tools/rendering_build_binding.py',
+                 'tools/run-rendering-progression.py', 'tools/check_capture_policy.py', 'tools/check-rendering-progression.py', 'tools/campaign-outcome-input.py',
                  'tools/campaign_outcome_record.py','tools/campaign_route.py','tools/campaign_dialogue.py','tools/campaign_return.py','tools/campaign_follow.py','tools/campaign_realm_exit.py','tools/campaign-realm-exit-input.py','tools/campaign_input_observation.py','tools/campaign_report.py','tools/rendering_capture.py', 'tools/rendering_pilot.py', 'tools/campaign_gameplay.py', 'tools/campaign_spell.py', 'tools/campaign_input_admission.py',
                  'apps/qt-shell/profile_capture_codec.hpp','apps/qt-shell/resident_profile_capture.cpp','apps/qt-shell/resident_profile_capture.hpp','tools/resident_capture.py','tests/acceptance-world-history.cpp','apps/qt-shell/acceptance_capture.hpp','apps/qt-shell/host_timing_trace.hpp','apps/qt-shell/campaign_progression_test.cpp', 'apps/qt-shell/campaign_smoke_test.cpp',
                  'apps/qt-shell/campaign_smoke_test.hpp', 'apps/qt-shell/CMakeLists.txt']

@@ -24,6 +24,8 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
     const auto mode=qEnvironmentVariable("MNM_CAMPAIGN_PROGRESSION_CASE");
     const auto size=qEnvironmentVariable("MNM_CAMPAIGN_PROGRESSION_SIZE","800x600");
     const bool low=size=="640x480";
+    const int requestedDeadline=qEnvironmentVariableIntValue("MNM_CAMPAIGN_TIMEOUT_MS");
+    const int deadlineMs=requestedDeadline>0?qBound(15000,requestedDeadline,900000):900000;
     bool dwellValid=true;
     const auto dwellText=qEnvironmentVariable("MNM_CAMPAIGN_STARTUP_DWELL_MS");
     const int startupDwell=dwellText.isEmpty()?0:dwellText.toInt(&dwellValid);
@@ -162,7 +164,7 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
     session.output=[output](const QString& text){if(output)output(text);std::fprintf(stderr,"%s",qPrintable(text));};
     auto finished=session.finished;session.finished=[r,finished,finish]{if(finished)finished();finish(r->stage==12&&r->natural,"Session finished");};
     auto* timer=new QTimer(&window);timer->setInterval(100);
-    QObject::connect(timer,&QTimer::timeout,&window,[r,probe,&window,&session,input,finish,low,click]{
+    QObject::connect(timer,&QTimer::timeout,&window,[r,probe,&window,&session,input,finish,low,click,deadlineMs]{
         if(r->done)return;
         const auto p=probe();
         if(r->stage==16&&!r->helper){r->stage=7;click(QString("realmViewerRegion%1").arg(r->realmIndex));click("realmViewerEnter");}
@@ -189,7 +191,7 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
             if(r->visits==1){r->stage=4;input("outcome");}
             else if(!r->helper){r->stage=9;input("mini");}
         }
-        if(r->clock.elapsed()>900000)finish(false,"Bounded campaign transition deadline exceeded");
+        if(r->clock.elapsed()>deadlineMs)finish(false,"Bounded campaign transition deadline exceeded");
     });timer->start();
     session.smokeSeconds=0;
     QTimer::singleShot(0,&window,[click]{click("launchGame");});

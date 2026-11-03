@@ -55,7 +55,10 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     if native_draw and not (native_render and actions):raise ValueError('Native graphics requires native menus and command presentation')
     if experimental_mini and not actions:raise ValueError("Experimental Mini Menu requires action staging")
     source=(Path(source_game) if source_game else REPO/'working/game-nocd').resolve()
-    if not source.is_relative_to(REPO/'working') or not source.is_dir():raise ValueError('Menu source game must be a directory under working/')
+    if not source.is_relative_to(REPO/'working'):
+        from check_inputs import paths
+        if paths(REPO).get('game')!=source:raise ValueError('Menu source game must be owned or a verified shared input')
+    if not source.is_dir():raise ValueError('Menu source game must be a directory')
     data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=HASH:raise ValueError('Unsupported executable; refusing staging')
     dll=build_adapter('tools/build-menu-observer.py',lambda: module('menu_build','tools/build-menu-observer.py').build(experimental_mini=experimental_mini),options={'experimental_mini':experimental_mini})
@@ -194,7 +197,9 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     if native_music:
         from native_music_launch import stage as stage_music
         music_source=(music_assets or REPO/'working/assets/native-cd-audio-20261012').resolve()
-        if not music_source.is_relative_to(REPO/'working'):raise ValueError('Prepared music source must be under working/')
+        if not music_source.is_relative_to(REPO/'working'):
+            from check_inputs import paths
+            if paths(REPO).get('assets')!=music_source:raise ValueError('Prepared music source must be owned or a verified shared input')
         metadata.update(stage_music(root,music_source,persistent=persistent))
     from directplay_dx6_launch import stage as stage_directplay
     metadata['directplay_dx6']=stage_directplay(root)

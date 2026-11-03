@@ -9,6 +9,13 @@ module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
 
 
 class ImportTest(unittest.TestCase):
+    def test_lightweight_checkpoint_is_a_byte_copy_proof_only_with_checkpoint_context(self):
+        for mode in ('capture','restore'):
+            report=dict(kind='public_native_campaign_lightweight_diagnostic',scenario='checkpoint-'+mode,configuration=dict(checkpoint_mode=mode))
+            self.assertTrue(module.checkpoint_acquisition(report))
+            self.assertFalse(module.checkpoint_acquisition(dict(report,scenario='victory')))
+        self.assertFalse(module.checkpoint_acquisition(dict(kind='public_native_campaign_lightweight_diagnostic')))
+
     def test_import_preserves_existing_saves_and_is_idempotent(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);store=root/'store';game=root/'game';(game/'Save').mkdir(parents=True)

@@ -125,7 +125,7 @@ In the owned prepared checkout, choose `progression`, `victory` or `defeat`, a
 fresh report name, `--size 800x600` or `640x480`, and optional `--software`:
 
 ```bash
-python3 tools/run-rendering-progression.py \
+python3 tools/run-rendering-progression.py --evidence-mode full \
   --case victory --size 640x480 --software \
   --prefix-template working/fixtures/prefix-seed \
   --preparation research/runtime/rendering-progression-results-20261101/repeatability-final-inputs-01.json \

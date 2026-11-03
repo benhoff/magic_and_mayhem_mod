@@ -94,7 +94,12 @@ def main(argv=None, root=ROOT):
         missing = [name for name in required if shutil.which(name) is None]
         if missing:
             raise ValueError('Missing required programs: ' + ', '.join(missing))
-        if not (root / 'working/game-nocd/Chaos.exe').is_file():
+        source_game=Path(environment.get('MNM_MENU_GAME_SOURCE',root/'working/game-nocd')).resolve()
+        if not source_game.is_relative_to(root/'working'):
+            from check_inputs import paths
+            if paths(root).get('game')!=source_game:
+                raise ValueError('Native game source must be owned or a verified shared input')
+        if not (source_game/'Chaos.exe').is_file():
             raise ValueError('Prepare the working installation with tools/prepare-working.sh first')
         prefix.parent.mkdir(parents=True, exist_ok=True)
         lock = prefix.with_name(prefix.name + '.native-player.lock')

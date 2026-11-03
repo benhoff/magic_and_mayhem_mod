@@ -12,6 +12,8 @@ def module(name):
  spec=importlib.util.spec_from_file_location(name,ROOT/'tools'/name);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def main():
  p=argparse.ArgumentParser(description=__doc__)
+ p.add_argument('--evidence-mode',choices=['diagnostic','full'],default='diagnostic',help='Default: bounded semantic diagnostics without pixel/World captures; full is required for rendering evidence')
+ p.add_argument('--deadline-seconds',type=int,help='15..900; default diagnostic120/full900')
  p.add_argument('--checkpoint',choices=['capture','restore'],help='Separate diagnostic Save/Load; never nominal progression acceptance')
  p.add_argument('--checkpoint-name',help='New unique checkpoint- name for capture or exact existing name for restore')
  p.add_argument('--checkpoint-seed',help='Capture from an unchanged original Save/Load candidate report; new Save/Load witnesses are still required')
@@ -24,6 +26,9 @@ def main():
  p.add_argument('--startup-main-dwell-ms',type=int,default=0,help='Diagnostic dwell before and after Preferences (0..30000ms); requires --observe-startup-timing')
  p.add_argument('--prefix-template',type=Path);p.add_argument('--skip-intros',action='store_true');p.add_argument('--storage-policy',type=Path)
  a=p.parse_args()
+ from check_capture_policy import policy
+ capture_policy=policy(a.evidence_mode,a.deadline_seconds)
+ full=capture_policy['full_capture']
  if a.checkpoint:
   from campaign_checkpoint import save_name
   save_name(a.checkpoint_name or '')
@@ -56,6 +61,8 @@ def main():
   prepared=reader.json(a.preparation);preparation_sha=reader.digest(a.preparation)
  require(prepared['kind']=='rendering_progression_preparation' and prepared['success'] is True,'Valid preparation required')
  require(all(sha(ROOT/n)==h for n,h in prepared['sources'].items()),'Prepared driver sources changed; prepare a new result')
+ from check_inputs import paths as shared_paths
+ shared_inputs=shared_paths(ROOT)
  game=Path(prepared['source_game'])
  require(recipes(game)==prepared['maps'],'Prepared map inputs changed')
  require(all(sha(game/r['path'])==r['sha256'] for r in prepared['configuration_inputs']),'Prepared executable/configuration changed')
@@ -89,7 +96,7 @@ def main():
  # retained build manifests alone must not hide runtime source drift here.
  from rendering_build_binding import native_runtime_source_paths
  runtime_names=native_runtime_source_paths(ROOT)
- names.add('tools/rendering_build_binding.py')
+ names.update(['tools/rendering_build_binding.py','tools/check_capture_policy.py','tools/check_inputs.py'])
  names.update(['tools/campaign_checkpoint.py','apps/qt-shell/campaign_storage_test.cpp'])
  names.update(runtime_names)
  sources={n:sha(ROOT/n) for n in sorted(names)}
@@ -97,8 +104,9 @@ def main():
   sources=sources,native_runtime_sources=sorted(runtime_names),source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),session_identity=secrets.token_hex(16),
   configuration=dict(id='player-software' if a.software else 'player-default',software_flag=a.software,skip_intros=a.skip_intros,terrain_lighting='original',native_lighting_capture=False,viewport_scaling='integer-sharp'),
   original_pixels_used_as_native_inputs=False,original_reference_executed=False,scope=__doc__)
+ report['shared_inputs']={k:str(v) for k,v in shared_inputs.items()}
  report['player_build']=dict(commands=build_commands,log=dict(record=build_record,sha256=build_sha),binary=dict(path='working/build/qt-shell/mnm-qt-shell',record=binary_record,sha256=binary_sha),compiler_sources={n:sources[n] for n in sorted(compiled)})
- report['configuration']['diagnostic_only']=a.skip_intros
+ report['configuration'].update(evidence_mode=a.evidence_mode,capture_policy=capture_policy,diagnostic_only=a.skip_intros or not full)
  env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINE')) and k not in ['DISPLAY','XAUTHORITY','LIBGL_ALWAYS_SOFTWARE','GALLIUM_DRIVER','MESA_LOADER_DRIVER_OVERRIDE','QT_XCB_GL_INTEGRATION','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES']}
  env.update(QT_QPA_PLATFORM='xcb',LP_NUM_THREADS='4',QT_SCALE_FACTOR='1',WINEDEBUG='-all',TMPDIR=str(out),
   MNM_QT_BUILD_TYPE='Release',MNM_QT_BUILD_TESTS='OFF',MNM_MENU_GAME_SOURCE=str(game),
@@ -116,10 +124,10 @@ def main():
   env['MNM_WORKING_STORAGE_POLICY']=str(policy)
   name=str(Path(a.report).with_suffix(''))+'-storage-policy.bin'
   report['storage_policy']=dict(path=str(policy),record=name,sha256=write_report(ROOT,name,policy.read_bytes()))
- deadline_ms=900000
+ deadline_ms=capture_policy['deadline_seconds']*1000
  report['configuration'].update(deadline_ms=deadline_ms,difficulty=1,experimental_campaign_menus=True,requested_size=a.size)
  env.pop('MNM_LIVE_MENU_TEST_QT_JOURNEY')
- env.update(MNM_CAMPAIGN_SMOKE_TEST='1',MNM_CAMPAIGN_PROGRESSION_CASE=a.case,MNM_CAMPAIGN_PROGRESSION_SIZE=a.size,MNM_EXPERIMENTAL_CAMPAIGN_MENUS='1',MNM_CAMPAIGN_CASTING_COMBAT='1')
+ env.update(MNM_CAMPAIGN_TIMEOUT_MS=str(deadline_ms-5000),MNM_CAMPAIGN_SMOKE_TEST='1',MNM_CAMPAIGN_PROGRESSION_CASE=a.case,MNM_CAMPAIGN_PROGRESSION_SIZE=a.size,MNM_EXPERIMENTAL_CAMPAIGN_MENUS='1',MNM_CAMPAIGN_CASTING_COMBAT='1')
  if a.case!='defeat':env['MNM_CAMPAIGN_FOLLOW_OBSERVE']='1'
  report['configuration']['follow_reference_observation']=a.case!='defeat'
  report['configuration']['input_admission_observation']=a.observe_input_admission
@@ -138,7 +146,7 @@ def main():
   report.update(kind='public_native_checkpoint_diagnostic_acquisition',scenario='checkpoint-'+a.checkpoint)
   report['configuration'].update(diagnostic_only=True,checkpoint_mode=a.checkpoint,checkpoint_name=a.checkpoint_name)
   env.pop('MNM_CAMPAIGN_PROGRESSION_CASE',None)
-  env.update(MNM_CAMPAIGN_CHECKPOINT=a.checkpoint,MNM_CAMPAIGN_STORAGE='1',MNM_CAMPAIGN_DIFFICULTY='1',MNM_CAMPAIGN_STORAGE_NAME=a.checkpoint_name,MNM_CAMPAIGN_TIMEOUT_MS='895000')
+  env.update(MNM_CAMPAIGN_CHECKPOINT=a.checkpoint,MNM_CAMPAIGN_STORAGE='1',MNM_CAMPAIGN_DIFFICULTY='1',MNM_CAMPAIGN_STORAGE_NAME=a.checkpoint_name,MNM_CAMPAIGN_TIMEOUT_MS=str(deadline_ms-5000))
   if a.checkpoint=='capture' and a.checkpoint_seed:
    report['checkpoint_seed_reference']=dict(record=a.checkpoint_seed,sha256=seed_sha,save_name=seed_name,save_sha256=seed['flow']['saved_sha256'],scope='Unchanged original candidate input only; this acquisition must establish a new Save/Load witness')
    (out/'checkpoint-route.json').write_bytes((json.dumps(dict(seed_route,seed_reference=report['checkpoint_seed_reference']),indent=2)+'\n').encode())
@@ -146,6 +154,11 @@ def main():
   if a.checkpoint=='restore':
    env['MNM_CAMPAIGN_STORAGE_RESTART']='1'
    report['checkpoint_reference']=dict(record=a.checkpoint_reference,sha256=reference_sha)
+ if not full:
+  report['kind']='public_native_campaign_lightweight_diagnostic'
+  report['configuration'].update(source_chunks=False,viewport_capture_stored_limit_bytes=0,viewport_capture_raw_limit_bytes=0,world_capture_retained_limit_bytes=0)
+  for key in ('MNM_ACCEPTANCE_CAPTURE_DIRECTORY','MNM_ACCEPTANCE_CAPTURE_ID','MNM_RESIDENT_PROFILE_CAPTURE','MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS'):
+   env.pop(key,None)
  report['installation_inputs']={str(f.relative_to(game)):dict(sha256=sha(f),bytes=f.stat().st_size) for f in sorted(game.rglob('*')) if f.is_file()}
  before_experiments=set((ROOT/'working/experiments/menu-observer').glob('run-*'))
  server=child=None;prefix_lease=None;verified=False;before=set((ROOT/'working/tests/native-output-owner').glob('run-*'))
@@ -155,13 +168,14 @@ def main():
   execute_log('original-before',[ROOT/'tools/original-manifest.sh','verify']);verified=True
   host=out/'host';host.mkdir();server,owner,_=launcher.start_display(host,allow_glx=True);env.update(DISPLAY=owner['display'],XAUTHORITY=owner['authority'])
   from evidence_objects import settings
-  template=a.prefix_template or ROOT/'working/fixtures/prefix-seed'
+  template=a.prefix_template or shared_inputs.get('prefix') or ROOT/'working/fixtures/prefix-seed'
   if settings(ROOT) and template.is_dir():
    from native_prefix_template import borrow
    prefix_lease,report['prefix_pool']=borrow(template,out/'wineprefix',env)
   command=[str(ROOT/'run-native.sh'),'--prefix',str(out/'wineprefix')]
   if prefix_lease is None and template.is_dir():command+=['--prefix-template',str(template)]
   command+=['--','--live-menu-test',str(out/'flow.json')]
+  if shared_inputs.get('assets'):command+=['--music-assets',str(shared_inputs['assets'])]
   if a.software:command.append('--software-rendering')
   if a.skip_intros:command.append('--skip-movies')
   report['command']=command
@@ -188,17 +202,18 @@ def main():
   require(retired['process_exit'] is True and retired['resources_released'] is True and not retired['surviving_owners'] and all(v==0 for v in retired['counts'].values()),'Surviving native/original owners')
   report['native_admission']=json.loads((session/'native-output-admission.json').read_text())
   report['resident']=json.loads((session/'resident-world-report.json').read_text())
-  source_capture=report['resident'].get('stage_profile',{}).get('capture',{})
-  require(source_capture.get('complete') is True and source_capture.get('truncated') is False,'Incomplete continuous World/source capture')
-  require(source_capture.get('format')==4 and source_capture.get('codec')=='zstd-prefix-sha256-v1','Campaign World/source capture policy missing')
-  from rendering_pilot import capture
-  report['capture_completion']=[]
-  for path in sorted((out/'capture').glob('*.bin')):
-   rows=capture(path.read_bytes());first,last=rows[0][0],rows[-1][0]
-   if first['role']=='viewport':require(first['version']==2 and first.get('policy')=='campaign-lossless-viewport-v1','Campaign viewport capture policy missing')
-   report['capture_completion'].append(dict(path=str(path.relative_to(ROOT)),role=first['role'],version=first['version'],rows=len(rows),raw_bytes=last['raw_bytes'],complete=last['complete']))
-   del rows
-  require({r['role'] for r in report['capture_completion']} in ({'viewport','commands'},{'viewport','commands','exports'}),'Incomplete capture role set')
+  if full:
+   source_capture=report['resident'].get('stage_profile',{}).get('capture',{})
+   require(source_capture.get('complete') is True and source_capture.get('truncated') is False,'Incomplete continuous World/source capture')
+   require(source_capture.get('format')==4 and source_capture.get('codec')=='zstd-prefix-sha256-v1','Campaign World/source capture policy missing')
+   from rendering_pilot import capture
+   report['capture_completion']=[]
+   for path in sorted((out/'capture').glob('*.bin')):
+    rows=capture(path.read_bytes());first,last=rows[0][0],rows[-1][0]
+    if first['role']=='viewport':require(first['version']==2 and first.get('policy')=='campaign-lossless-viewport-v1','Campaign viewport capture policy missing')
+    report['capture_completion'].append(dict(path=str(path.relative_to(ROOT)),role=first['role'],version=first['version'],rows=len(rows),raw_bytes=last['raw_bytes'],complete=last['complete']))
+    del rows
+   require({r['role'] for r in report['capture_completion']} in ({'viewport','commands'},{'viewport','commands','exports'}),'Incomplete capture role set')
   if a.checkpoint:
    from campaign_checkpoint import validate_capture,validate_restore
    raw_save=(session/'game/Save'/(a.checkpoint_name+'.sav')).read_bytes()
@@ -207,9 +222,10 @@ def main():
    else:report['checkpoint']=validate_restore(flow,(session/'checkpoint-events.bin').read_bytes(),raw_save,reference['checkpoint'])
    require(saved.is_file() and sha(saved)==report['checkpoint']['save_sha256'],'Normal exit did not preserve exact checkpoint in private owned store')
   else:report['original_callbacks']=validate_callbacks((session/'events.bin').read_bytes(),flow)
+  require(shared_paths(ROOT)==shared_inputs,'Shared input binding changed during execution')
   report['map_inputs_stable']=recipes(game)==prepared['maps']
   require(report['map_inputs_stable'],'Input map drift during execution')
-  report['independent_history_admission']='pending separate comparison of every first/later World swap and populated owner handoff'
+  report['independent_history_admission']='pending separate comparison of every first/later World swap and populated owner handoff' if full else 'ineligible lightweight diagnostic; no World/pixel capture requested'
   report['success']=True
  except Exception as e:report['error']=str(e)
  finally:
@@ -218,6 +234,12 @@ def main():
    except (ProcessLookupError,subprocess.TimeoutExpired):
     try:os.killpg(child.pid,signal.SIGKILL);child.wait(timeout=10)
     except ProcessLookupError:pass
+  if child is not None and child.poll() is not None and (out/'wineprefix').is_dir():
+   try:
+    from check_capture_policy import stop_private_prefix
+    report['prefix_shutdown']=stop_private_prefix(out/'wineprefix',env)
+    report['private_wine_stopped']=True
+   except Exception as e:report.update(success=False,private_wine_stopped=False,prefix_shutdown_error=str(e))
   if server is not None:server.terminate();server.wait(timeout=10)
   if prefix_lease is not None:
    try:

@@ -15,9 +15,11 @@ def main():
  if not a.report.startswith(PREFIX) or '..' in Path(a.report).parts or (ROOT/a.report).exists():p.error('New immutable owned report required')
  output=ROOT/'working/pilot'/(Path(a.report).stem+'-verification');output.mkdir(parents=True,exist_ok=False)
  report=dict(schema=1,kind='public_native_progression_comparison',success=False,player_accepted=False,original_pixels_used_as_native_inputs=False,original_history_deadline_seconds=900,scope=__doc__)
+ from comparison_process import Processes
+ processes=Processes()
  before=False
  def execute(label,command,timeout=300):
-  with (output/(label+'.log')).open('xb') as log:subprocess.run([str(v) for v in command],cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=timeout)
+  with (output/(label+'.log')).open('xb') as log:processes.run([str(v) for v in command],cwd=ROOT,stdout=log,timeout=timeout)
  with Reader(ROOT) as reader:
   acquired=reader.json(a.acquisition);report['acquisition']=dict(record=a.acquisition,sha256=reader.digest(a.acquisition));report['acquired_source_fingerprints']=dict(acquired['sources'])
   if acquired.get('kind') in ('public_native_watchdog_diagnostic_acquisition','public_native_progression_diagnostic_acquisition'):
@@ -26,6 +28,9 @@ def main():
   sources=dict(acquired['sources']);sources.update(acquired.get('native_admission',{}).get('native_only',{}).get('sources',{}))
   sources.update({n:digest(ROOT/n) for n in ['tools/rendering_progression.py','tools/rendering_pilot.py','tools/rendering_capture.py','tools/check-rendering-progression.py','tests/acceptance-world-history.cpp','tests/acceptance-world-reference.cpp','tests/sprite-binary-reference.cpp','tests/world-raster-reference.hpp','tests/clipped-word-grayscale-cases.hpp','tools/native_player_quick_acceptance.py','tools/test-menu-observer.py']});report['sources']=sources
   try:
+   from check_capture_policy import require_full
+   require_full(acquired)
+   sources.update({n:digest(ROOT/n) for n in ['tools/check_capture_policy.py','tools/comparison_process.py','tools/evidence_workspace.py']})
    require(acquired['success'] is True and acquired['sources_stable'] is True and acquired['private_wine_stopped'] is True and acquired['original_manifest_verified_before_after'] is True,'Incomplete actual public acquisition')
    from rendering_build_binding import require_player_source_closure
    campaign_spec=importlib.util.spec_from_file_location('binding_campaign',ROOT/'tools/test-native-campaign.py');campaign=importlib.util.module_from_spec(campaign_spec);campaign_spec.loader.exec_module(campaign)
@@ -112,6 +117,11 @@ def main():
    for f in sorted(output.rglob('*')):
     if f.is_file():
      name=str(Path(a.report).with_suffix(''))+'-'+hashlib.sha256(str(f.relative_to(output)).encode()).hexdigest()[:20]+'.bin';data=f.read_bytes();h=write_report(ROOT,name,data);report['artifacts'].append(dict(path=str(f.relative_to(output)),record=name,sha256=h,bytes=len(data)))
+   report.update(output_directory=str(output),comparison_processes_stopped=processes.stopped(),artifact_retention_complete=True)
    h=write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode());print(json.dumps({k:report.get(k) for k in ['success','error','observations','original_reference']}|{'record':a.report,'sha256':h}),flush=True)
+ from evidence_objects import settings
+ if settings(ROOT) and report['comparison_processes_stopped']:
+  from evidence_workspace import register_completed
+  register_completed(ROOT,[output],dict(record=a.report,sha256=h),producer='comparison')
  return 0 if report['success'] else 1
 if __name__=='__main__':raise SystemExit(main())

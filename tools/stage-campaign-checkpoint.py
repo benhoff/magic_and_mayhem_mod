@@ -13,6 +13,12 @@ from rendering_progression import require
 ROOT=Path(__file__).resolve().parents[1]
 
 
+def checkpoint_acquisition(report):
+    if report.get('kind')=='public_native_checkpoint_diagnostic_acquisition':return True
+    mode=report.get('configuration',{}).get('checkpoint_mode')
+    return report.get('kind')=='public_native_campaign_lightweight_diagnostic' and mode in ('capture','restore') and report.get('scenario')=='checkpoint-'+mode
+
+
 def import_exact(raw,name,store,temporary_root):
     """Use the save store's existing locked, conflict-checked copy transaction."""
     name=save_name(name)+'.sav';expected=hashlib.sha256(raw).hexdigest()
@@ -48,14 +54,14 @@ def main():
         with Reader(ROOT) as reader:
             acquired=reader.json(a.acquisition)
             report['acquisition']=dict(record=a.acquisition,sha256=reader.digest(a.acquisition))
-            require(acquired.get('kind')=='public_native_checkpoint_diagnostic_acquisition' and acquired.get('success') is True
+            require(checkpoint_acquisition(acquired) and acquired.get('success') is True
                     and acquired.get('checkpoint',{}).get('verified') is True and acquired.get('private_wine_stopped') is True
                     and acquired.get('artifact_retention_complete') is True and acquired.get('sources_stable') is True
                     and acquired.get('original_manifest_verified_before_after') is True and acquired.get('player_binary_stable') is True,'Successful retained checkpoint acquisition required')
             expected=acquired['checkpoint']['save_sha256'];source_name=acquired['configuration']['checkpoint_name']
             if a.restore_proof:
                 restored=reader.json(a.restore_proof)
-                require(restored.get('kind')=='public_native_checkpoint_diagnostic_acquisition' and restored.get('success') is True and restored.get('scenario')=='checkpoint-restore'
+                require(checkpoint_acquisition(restored) and restored.get('success') is True and restored.get('scenario')=='checkpoint-restore'
                         and restored.get('private_wine_stopped') is True and restored.get('artifact_retention_complete') is True
                         and restored.get('checkpoint',{}).get('save_sha256')==expected and restored['checkpoint'].get('verified') is True,
                         'Fresh-process restore proof does not match this checkpoint')

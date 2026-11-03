@@ -90,7 +90,7 @@ working installation and admitted fixture prefix. In the retained owned checkout
 available. Use a new output name for each bounded run:
 
 ```bash
-python3 tools/run-rendering-progression.py \
+python3 tools/run-rendering-progression.py --evidence-mode full \
   --case victory --checkpoint restore --checkpoint-name checkpoint-camulos-05 \
   --checkpoint-reference research/runtime/rendering-progression-results-20261101/checkpoint-seeded-software-low-05.json \
   --preparation research/runtime/rendering-progression-results-20261101/checkpoint-inputs-04.json \

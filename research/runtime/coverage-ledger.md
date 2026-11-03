@@ -25901,3 +25901,48 @@ loaded fixture at offset300;no limit/grammar is relaxed. Unit-order/resource/
 target policy,actual route suspension,fresh nominal victory/Realm/region2,the
 complete12case matrix,full saved simulation and object lifetimes remain pending.
 See the [checkpoint protocol,commands and evidence](campaign-checkpoints-20261103.md).
+
+
+## 2026-11-03 — bounded check storage and reviewed output custody
+
+`TOOL.check-storage-budget` separates the diagnostic default (120seconds plus
+cleanup grace, no viewport/history/World capture) from explicit full evidence
+(default900seconds, unchanged lossless capture/comparison requirements).
+Preparation emits full-mode acceptance commands. Lightweight output is refused
+before the pixel oracle and remains usable only for its verified semantic/
+selected-field checkpoint and opaque byte-copy scope.
+
+[Current evidence](check-storage-results-20261103/validation-closeout-01.json)
+records two catalog-only original software640 checkpoint restores:0 versus
+48,895,866render capture bytes, matching pinned save/selected fields, normal
+Quit and returned exclusive prefix loans. Full comparison covers50original
+Worlds,112leased paints and97,944,000pixels with zero differences. Current41
+storage/prefix/import Python tests,144campaign Python tests and7Qt driver cases
+pass. Headless policy claims pin their complete executed control/compiler source
+closure separately from the live original results. Initial music-path admission
+failure and the early missing-preparation guard refusal remain retained.
+
+A fingerprinted shared game/assets/admitted-prefix set and SQLite catalogs avoid
+new per-checkout input copies. Catalog-only setup preserves existing private
+installations/saves; source resolution and runtime-alias refusal keep writes in
+private copies. Live normal return is confirmed; forced private Wine shutdown
+command selection has headless controls and remains a separate live boundary.
+
+[Historical lighting custody](check-storage-results-20261103/historical-retirement-01.json)
+and [comparison custody](check-storage-results-20261103/comparison-retirement-01.json)
+preserve thirteen explicitly reviewed completed trees with every file/pin,
+both independent stores and exact real restores before retirement:12.422GiB
+allocated reclaimed. Old failed observations/comparisons and source hashes keep
+their original status. Source checkouts, current inputs, unique sources, held
+prefixes and old archive catalogs remain preserved. The
+[new Wine/comparison queue proof](check-storage-results-20261103/queued-handoff-01.json)
+adds twelve stopped completed trees, including the automatically queued full
+comparison, with5.141GiB temporary output retired after exact restores.
+Filesystem free space and shared-store growth are recorded separately.
+
+These are intentional host storage policies and bounded diagnostic results.
+They do not renew historical engine fingerprints or establish fresh nominal
+campaign victory/progression, the12case matrix, populated handoff lifetimes,
+whole saved simulation, native world parsing, gameplay orders or balance.
+See [check storage](check-storage-20261103.md) and
+[runnable commands](../../docs/check-storage.md).

@@ -301,7 +301,7 @@ a new name for each execution. From that checkout, a nominal fresh campaign run
 
 ```sh
 python3 tools/working-retention.py --root "$PWD" run --reserve-gib 6 -- \
-  python3 tools/run-rendering-progression.py \
+  python3 tools/run-rendering-progression.py --evidence-mode full \
   --case progression --size 800x600 \
   --preparation research/runtime/rendering-progression-results-20261101/validation-inputs-13.json \
   --report research/runtime/rendering-progression-results-20261101/user-progression-default-high-01.json

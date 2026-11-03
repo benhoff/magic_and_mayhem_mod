@@ -209,15 +209,34 @@ def restore(root,path,pair):
     return path
 
 
-def register_completed(root,paths,report):
+def register_completed(root,paths,report,*,producer='wine'):
     """Queue handoff only; launch never archives or removes execution data."""
     from evidence_objects import configured
     from coverage_evidence import Reader
     root=Path(root).resolve()
     with Reader(root) as reader:
         data=reader.json(report['record'])
-        if reader.digest(report['record'])!=report['sha256'] or data.get('private_wine_stopped') is not True:
-            raise ValueError('Completed execution lacks stopped producer proof')
+        if reader.digest(report['record'])!=report['sha256']:
+            raise ValueError('Completed execution report hash differs')
+        if producer=='wine':
+            if data.get('private_wine_stopped') is not True:
+                raise ValueError('Completed execution lacks stopped producer proof')
+        elif producer=='comparison':
+            if data.get('kind') not in ('public_native_progression_comparison','public_native_progression_diagnostic_comparison','public_native_checkpoint_diagnostic_comparison') or data.get('comparison_processes_stopped') is not True or data.get('artifact_retention_complete') is not True:
+                raise ValueError('Completed comparison lacks stopped producer and retained artifact proof')
+            if len(paths)!=1 or str(Path(paths[0]).absolute())!=data.get('output_directory'):
+                raise ValueError('Comparison output path differs')
+            path=safe(root,paths[0]);idle(path)
+            artifacts={v['path']:v for v in data['artifacts']}
+            files={f.relative_to(path).as_posix():f for f in path.rglob('*') if f.is_file()}
+            if set(files)!=set(artifacts):raise ValueError('Comparison artifact membership differs')
+            for name,f in files.items():
+                artifact=artifacts[name]
+                if f.is_symlink():raise ValueError('Comparison artifact is redirected: '+name)
+                with f.open('rb') as stream:actual=hashlib.file_digest(stream,'sha256').hexdigest()
+                if f.is_symlink() or actual!=artifact['sha256'] or reader.digest(artifact['record'])!=artifact['sha256']:
+                    raise ValueError('Comparison artifact differs: '+name)
+        else:raise ValueError('Unknown completed producer')
     if data.get('prefix_pool') and data['prefix_pool'].get('returned') is not True:
         raise ValueError('Held prefix state requires review before execution handoff')
     sources=dict(data['sources'])
@@ -230,6 +249,11 @@ def register_completed(root,paths,report):
                 if not p.resolve().is_relative_to(root) or name.startswith('original/'):
                     raise ValueError('Execution source snapshot escapes repository code')
                 body=reader.read_bytes(name)
+                if hashlib.sha256(body).hexdigest()!=sha:
+                    if producer!='comparison':raise ValueError('Execution source changed before sealing: '+name)
+                    previous=pair.stores[0].db.execute('SELECT size FROM objects WHERE sha256=?',(sha,)).fetchone()
+                    if previous is None:raise ValueError('Execution source changed without retained original bytes: '+name)
+                    body=pair.read(sha,previous[0])
                 actual=pair.bytes(body)
                 if actual!=sha:raise ValueError('Execution source changed before sealing: '+name)
                 snapshot[name]=dict(sha256=sha,size=len(body))

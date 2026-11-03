@@ -59,7 +59,7 @@ The storage guard and existing prefix/output isolation rules remain in force.
 ```sh
 python3 /home/hoff/swdev/magic_and_mayhem_mod/tools/working-retention.py \
   --root "$PWD" run --reserve-gib 5 -- \
-  python3 tools/run-rendering-progression.py --case progression --size 800x600 \
+  python3 tools/run-rendering-progression.py --evidence-mode full --case progression --size 800x600 \
   --preparation research/runtime/rendering-progression-results-20261101/inputs-10.json \
   --report research/runtime/rendering-progression-results-20261101/progression-default-high-NEW.json
 ```

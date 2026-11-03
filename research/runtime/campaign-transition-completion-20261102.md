@@ -360,7 +360,7 @@ export TMPDIR=/tmp/mnm-campaign-transition-completion-20261102/tmp
 export CAMPAIGN_PREFIX_TEMPLATE=/home/hoff/swdev/magic_and_mayhem_mod/working/worktrees/campaign-progression-prep-20261101/working/pilot/progression-default-high-01/wineprefix
 python3 /home/hoff/swdev/magic_and_mayhem_mod/tools/working-retention.py \
   --root "$PWD" run --reserve-gib 6 -- \
-  python3 tools/run-rendering-progression.py --case progression --size 800x600 \
+  python3 tools/run-rendering-progression.py --evidence-mode full --case progression --size 800x600 \
   --preparation research/runtime/rendering-progression-results-20261101/completion-inputs-20261102-24.json \
   --prefix-template "$CAMPAIGN_PREFIX_TEMPLATE" \
   --report research/runtime/rendering-progression-results-20261101/completion-progression-default-high-NEW.json

@@ -95232,7 +95232,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-pixel-forwarding-guard.md",
-        "research/runtime/native-render-completion-20261017.md"
+        "research/runtime/native-render-completion-20261017.md",
+        "docs/check-storage.md"
       ],
       "implementation": [
         "tools/native_prefix_template.py"
@@ -95251,7 +95252,9 @@
       "evidence": [
         "NATIVE.completion.controls-20261017",
         "NATIVE.completion.native-storage-20261017",
-        "NATIVE.completion.prefix-clone-20261017"
+        "NATIVE.completion.prefix-clone-20261017",
+        "STOR03.controls05",
+        "STOR03.guards02"
       ],
       "status": {
         "understanding": "partial",
@@ -95262,7 +95265,8 @@
       },
       "remaining_gaps": [
         "Only stopped path-owned supplied-DirectPlay prefixes are admitted; clone policy is test provisioning, not fresh-install coverage, restart acceptance or native renderer equivalence.",
-        "2026-11-01: Explicit borrow now holds an existing reusable prefix lease through the public acceptance child lifetime; synthetic pooled owner/reset/registry-delta controls are separate from historical campaign/live execution, which is not renewed."
+        "2026-11-01: Explicit borrow now holds an existing reusable prefix lease through the public acceptance child lifetime; synthetic pooled owner/reset/registry-delta controls are separate from historical campaign/live execution, which is not renewed.",
+        "2026-11-03 storage batch: default diagnostics/full evidence, shared catalog inputs, safe private runtime copying and comparison custody are independently scoped under TOOL.check-storage-budget. Historical engine evidence hashes/statuses are retained; edited source paths may leave their older execution evidence stale. Only the recorded short checkpoint scope and storage controls are newly exercised."
       ]
     },
     {
@@ -155889,7 +155893,8 @@
       "original": [],
       "documents": [
         "docs/working-retention.md",
-        "research/runtime/environment-reuse-20261026.md"
+        "research/runtime/environment-reuse-20261026.md",
+        "docs/check-storage.md"
       ],
       "implementation": [
         "tools/experiment_environment.py",
@@ -156025,7 +156030,9 @@
         "EENV26.controls-final",
         "EENV26.wine-final",
         "EENV26.controls-merged",
-        "EENV26.controls-merged-save-reset"
+        "EENV26.controls-merged-save-reset",
+        "STOR03.controls05",
+        "STOR03.guards02"
       ],
       "status": {
         "understanding": "partial",
@@ -156038,7 +156045,8 @@
         "Actual Wine/game comparisons and save/load integration remain pending after provisioning changes. Default fresh native campaign prefixes remain private because their DirectPlay admission contract requires an absent prefix before initialization.",
         "Standalone preparers and explicit completed fixture seeds retain full trees; they still require reviewed maintenance.",
         "Held partial moves/resets and changed baseline identities require review; no destructive recovery or unbounded extra-copy fallback.",
-        "2026-11-01: Acceptance caller now explicitly borrows and returns an admitted pooled prefix. The existing two-slot pool implementation is unchanged. Storage handoffs preserve completed execution file state; no current live campaign/engine milestone is inferred."
+        "2026-11-01: Acceptance caller now explicitly borrows and returns an admitted pooled prefix. The existing two-slot pool implementation is unchanged. Storage handoffs preserve completed execution file state; no current live campaign/engine milestone is inferred.",
+        "2026-11-03 storage batch: default diagnostics/full evidence, shared catalog inputs, safe private runtime copying and comparison custody are independently scoped under TOOL.check-storage-budget. Historical engine evidence hashes/statuses are retained; edited source paths may leave their older execution evidence stale. Only the recorded short checkpoint scope and storage controls are newly exercised."
       ]
     },
     {
@@ -158713,7 +158721,8 @@
       "documents": [
         "docs/evidence-storage.md",
         "research/runtime/coverage-ledger.md",
-        "AGENTS.md"
+        "AGENTS.md",
+        "docs/check-storage.md"
       ],
       "implementation": [
         "tools/evidence_objects.py",
@@ -158765,7 +158774,9 @@
       "evidence": [
         "ES01.shared-lifecycle",
         "ES01.layered-restore",
-        "ES01.sweep-throughput"
+        "ES01.sweep-throughput",
+        "STOR03.controls05",
+        "STOR03.guards02"
       ],
       "status": {
         "understanding": "scoped",
@@ -158780,7 +158791,8 @@
         "The all-working inventory identifies legacy file-level archive layers. Restore must expand the sealed parent and continue the original catalog if the requested descendant is absent. Historical archive backends/catalogs and their exact transport hashes remain retained; whole-disk adoption is operational work, not engine validation.",
         "ES01.shared-lifecycle retains the original five-change scope and hashes. Current layered-restoration execution is recorded separately; the wider custody rollout does not renew any engine validation.",
         "2026-11-01: Bounded compression/queue controls and a fresh-store benchmark are being recorded separately. Any workload speedup is scoped to the measured inputs; no whole-sweep rate or engine milestone is inferred.",
-        "2026-11-01: 235 cases pass in 15 source-stable suites for the bounded block/file pipeline. The retained benchmark measures about 2.7x on one fresh-store roughly 500 MiB workload, not a whole-sweep rate. Earlier source-drift control output remains negative historical evidence. Engine statuses and original evidence hashes are unchanged."
+        "2026-11-01: 235 cases pass in 15 source-stable suites for the bounded block/file pipeline. The retained benchmark measures about 2.7x on one fresh-store roughly 500 MiB workload, not a whole-sweep rate. Earlier source-drift control output remains negative historical evidence. Engine statuses and original evidence hashes are unchanged.",
+        "2026-11-03 storage batch: default diagnostics/full evidence, shared catalog inputs, safe private runtime copying and comparison custody are independently scoped under TOOL.check-storage-budget. Historical engine evidence hashes/statuses are retained; edited source paths may leave their older execution evidence stale. Only the recorded short checkpoint scope and storage controls are newly exercised."
       ]
     },
     {
@@ -159477,7 +159489,8 @@
         "research/runtime/campaign-master-merge-20261102.md",
         "research/runtime/campaign-nominal-repeatability-20261102.md",
         "research/runtime/campaign-approach-20261103.md",
-        "research/runtime/campaign-checkpoints-20261103.md"
+        "research/runtime/campaign-checkpoints-20261103.md",
+        "docs/check-storage.md"
       ],
       "implementation": [
         "tools/rendering_progression.py",
@@ -159804,7 +159817,9 @@
         "RPS06.current-original-negative03",
         "RPS06.closeout-review02",
         "CPK03.guards",
-        "CPK03.closeout"
+        "CPK03.closeout",
+        "STOR03.controls05",
+        "STOR03.guards02"
       ],
       "status": {
         "understanding": "partial",
@@ -159828,7 +159843,8 @@
         "RPS06 confirms v29 omitted a living type11/owner1 attacker because its threat predicate admitted only type10/owner2. Original enemy6 melee removes30HP after cleared bridge; Camulos Fireballs remove remaining111HP. Generic living engaged-attacker input policy has new bounded role/refusal controls; fresh nominal outcome/pixels remain pending. This is an authored policy correction, not AI/collision/range recovery or native commander gameplay.",
         "RPS06 v30 nominal software640 selects and kills the ignored type11/owner1 escort via original29\u21929\u21920 damage,but reaches bridge at92HP after141HP resupply and later refuses the support-order witness at7HP/12mana. Current v31 adds bounded early bridge combat and two-cast escort bursts;169controls pass,nominal outcome/pixels pending. No stage clock reset,simulation modification or historical source/hash/status renewal.",
         "RPS06 v31 loses74HP during resupply113\u219239 to original type11/owner1 melee;post-refill interruption is never eligible. Current v32 extends the bounded suspension to resupply,requires affordable casting and resumes the original phase/clocks;173synthetic controls pass. A3second recent melee-role witness covers transient cleared targets but is not stable object/generation proof. Fresh original result/pixels remain pending;no status promotion.",
-        "RPS06 closes3nominal software640 attempts,all failures. V30 confirms broader typed-attacker selection and original escort kill;v31 confirms74HP resupply damage. Current v32 has173guards and retains182HP through resupply but never exercises suspension/recent-melee fallback or records an escort kill;it spends mana on owner1/type10 escorts and naturally loses. Retained v31 resupply poses supply offline gate eligibility only. Unit-order witness,resource/target policy,nominal victory and lifetime/save/full-simulation acceptance remain pending;no historical hash/status is refreshed."
+        "RPS06 closes3nominal software640 attempts,all failures. V30 confirms broader typed-attacker selection and original escort kill;v31 confirms74HP resupply damage. Current v32 has173guards and retains182HP through resupply but never exercises suspension/recent-melee fallback or records an escort kill;it spends mana on owner1/type10 escorts and naturally loses. Retained v31 resupply poses supply offline gate eligibility only. Unit-order witness,resource/target policy,nominal victory and lifetime/save/full-simulation acceptance remain pending;no historical hash/status is refreshed.",
+        "2026-11-03 storage batch: default diagnostics/full evidence, shared catalog inputs, safe private runtime copying and comparison custody are independently scoped under TOOL.check-storage-budget. Historical engine evidence hashes/statuses are retained; edited source paths may leave their older execution evidence stale. Only the recorded short checkpoint scope and storage controls are newly exercised."
       ]
     },
     {
@@ -160469,7 +160485,8 @@
         }
       ],
       "documents": [
-        "research/runtime/campaign-checkpoints-20261103.md"
+        "research/runtime/campaign-checkpoints-20261103.md",
+        "docs/check-storage.md"
       ],
       "implementation": [
         "tools/campaign_checkpoint.py",
@@ -160495,7 +160512,9 @@
         "CPK03.negative02",
         "CPK03.negative03",
         "CPK03.negative04",
-        "CPK03.scope-bound05"
+        "CPK03.scope-bound05",
+        "STOR03.controls05",
+        "STOR03.guards02"
       ],
       "status": {
         "understanding": "partial",
@@ -160509,6 +160528,9 @@
         "tools/menu_save_store.py",
         "runtime/menu/storage.h",
         "tools/campaign_input_observation.py"
+      ],
+      "remaining_gaps": [
+        "2026-11-03 storage batch: default diagnostics/full evidence, shared catalog inputs, safe private runtime copying and comparison custody are independently scoped under TOOL.check-storage-budget. Historical engine evidence hashes/statuses are retained; edited source paths may leave their older execution evidence stale. Only the recorded short checkpoint scope and storage controls are newly exercised."
       ]
     },
     {
@@ -160564,7 +160586,8 @@
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/campaign-checkpoints-20261103.md"
+        "research/runtime/campaign-checkpoints-20261103.md",
+        "docs/check-storage.md"
       ],
       "implementation": [
         "tools/stage-campaign-checkpoint.py"
@@ -160578,7 +160601,9 @@
       ],
       "evidence": [
         "CPK03.import-controls",
-        "CPK03.import05"
+        "CPK03.import05",
+        "STOR03.controls05",
+        "STOR03.guards02"
       ],
       "status": {
         "understanding": "partial",
@@ -160586,7 +160611,83 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "2026-11-03 storage batch: default diagnostics/full evidence, shared catalog inputs, safe private runtime copying and comparison custody are independently scoped under TOOL.check-storage-budget. Historical engine evidence hashes/statuses are retained; edited source paths may leave their older execution evidence stale. Only the recorded short checkpoint scope and storage controls are newly exercised."
+      ]
+    },
+    {
+      "id": "TOOL.check-storage-budget",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Bounded campaign diagnostics, shared immutable inputs and verified comparison custody",
+      "scope": "Intentional host storage policy: diagnostic default120seconds plus cleanup grace with no rendering captures and explicit full900second evidence mode; strict lightweight comparison refusal; exact lightweight checkpoint byte-copy eligibility; fingerprinted project-shared game/assets/admitted-prefix inputs, catalog-only preservation and exclusively pooled mutable prefix loans; canonical source resolution and private writable runtime copies; owned comparison process groups, exact retained artifact admission and full restored dual-store output handoff. Headless controls establish policy/refusal/copy/ownership behavior and Qt driver guards, not original full simulation, real forced-Wine-timeout equivalence, nominal victory/progression, other maps/hardware or automatic generic deletion.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/check-storage.md",
+        "docs/evidence-storage.md",
+        "research/runtime/check-storage-20261103.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "tools/check_capture_policy.py",
+        "tools/check_inputs.py",
+        "tools/prepare-check-inputs.py",
+        "tools/comparison_process.py",
+        "tools/evidence_workspace.py",
+        "tools/prepare-menu-observer.py",
+        "tools/run-game.sh",
+        "tools/run-native-game.py",
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/check-campaign-checkpoint.py",
+        "tools/stage-campaign-checkpoint.py",
+        "apps/qt-shell/campaign_progression_test.cpp"
+      ],
+      "tests": [
+        "tests/test-check-storage.py",
+        "tests/test-evidence-objects.py",
+        "tests/test-native-prefix-template.py",
+        "tests/test-fixture-prefix-borrow.py",
+        "tests/test-campaign-checkpoint-import.py",
+        "tests/campaign-progression-driver-test.cpp"
+      ],
+      "validation_dependencies": [
+        "tools/experiment_environment.py",
+        "tools/native_prefix_template.py",
+        "tools/evidence_objects.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "STOR03.controls05",
+        "STOR03.guards02",
+        "STOR03.shared02",
+        "STOR03.light04",
+        "STOR03.full01",
+        "STOR03.compare01",
+        "STOR03.refusal01",
+        "STOR03.light-import01",
+        "STOR03.historical-retirement01",
+        "STOR03.comparison-retirement01",
+        "STOR03.negative-light01",
+        "STOR03.headless-bound01",
+        "STOR03.headless-bound02",
+        "STOR03.validation-closeout01",
+        "STOR03.queued-handoff01"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Forced private Wine shutdown command selection has headless controls; live timeout/forced-stop behavior is not promoted by normally completed checkpoint runs.",
+        "Full rendering proof remains an explicit separate original/history comparison; lightweight output cannot promote nominal acceptance, full saved simulation, native parsing or campaign progression.",
+        "Thirteen specifically reviewed historical output trees were transferred; source checkouts, canonical/current inputs, unique sources, archived missing-member catalogs and other held trees remain retained. No whole worktree deletion or global garbage collection."
+      ]
     }
   ],
   "evidence": [
@@ -373078,6 +373179,245 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "STOR03.controls05",
+      "kind": "native_integration",
+      "record": "research/runtime/check-storage-results-20261103/tooling-controls-05.json",
+      "sha256": "ae1ba7772dba4d7457346652e1e546babeef39d4eaaac055fdd222f50f4962f6",
+      "scope": "41 current storage/prefix/import controls; synthetic private-copy and real dual-filesystem custody/refusal tests, no original game.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "STOR03.guards02",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261101/storage-guards-02.json",
+      "sha256": "35518d80af621d374bbd45350052217baeebacfe69d19bc47b608e8f00dd6a4b",
+      "scope": "144 campaign Python controls and7 Qt driver cases with current actual player link; no live campaign acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "STOR03.shared02",
+      "kind": "native_integration",
+      "record": "research/runtime/check-storage-results-20261103/shared-inputs-02.json",
+      "sha256": "2b93cd8681a9fcd514f7122887222b23eb2f77cecaa80f27707a0725126da585",
+      "scope": "Idempotent catalog-only provision of one shared game/assets/admitted-prefix set, with exact source admission; existing local inputs preserved.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "STOR03.light04",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/storage-light-restore-04.json",
+      "sha256": "16959875b63c6c4a3d991a2664030abdacc2eac8d8c5455022ffde5304c9a595",
+      "scope": "Current software640 original checkpoint restore with catalog-only shared inputs, selected-field equality, normal Quit, returned prefix and no full capture; not pixel/nominal acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "STOR03.full01",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/storage-full-restore-01.json",
+      "sha256": "372896f173c5b01fcd07c7e7a1ac738cb429383d0b8fe1c60b61dcadda22d630",
+      "scope": "Explicit full-mode software640 restore with complete existing capture formats and normal resource/prefix retirement; independent comparison is separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "STOR03.compare01",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/storage-full-comparison-01.json",
+      "sha256": "703c56b8e0241bcba7895c6dd07552b9aba6233b278b7975cfefebb271e6bf69",
+      "scope": "Independent original/history all-paint comparison of full checkpoint restore; stopped comparison producer and exact artifacts queued for handoff, diagnostic only.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "STOR03.refusal01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261101/storage-light-comparison-refused-01.json",
+      "sha256": "f86ffb638c6f9c1d9f03c71763ec341119d90acd1d59658dc708dafefdaa6735",
+      "scope": "Current lightweight acquisition refused before original pixel execution; failed comparison remains failed.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/error",
+          "equals": "Lightweight diagnostic has no full rendering evidence; rerun with --evidence-mode full"
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "STOR03.light-import01",
+      "kind": "native_integration",
+      "record": "research/runtime/check-storage-results-20261103/light-checkpoint-import-01.json",
+      "sha256": "8f2850fb1c1c3a182be816811b5988ad3476f1dd9080fac5a314aebb3a2fee73",
+      "scope": "Actual exact opaque checkpoint copy admitted from a lightweight checkpoint restore; no serializer or full rendering claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "STOR03.historical-retirement01",
+      "kind": "native_integration",
+      "record": "research/runtime/check-storage-results-20261103/custody-source-attribution-01.json",
+      "sha256": "249911db98ab9fe9b7cee106466c7c42c76cc92e5cf61ddbef53dbefd3149952",
+      "scope": "Nine old completed lighting outputs, including historical failures, preserve all files/pins in both stores and pass exact restores;9.961GiB allocated reclaimed; no engine promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/custody_results/historical/success",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_parent_hashes",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "STOR03.comparison-retirement01",
+      "kind": "native_integration",
+      "record": "research/runtime/check-storage-results-20261103/custody-source-attribution-01.json",
+      "sha256": "249911db98ab9fe9b7cee106466c7c42c76cc92e5cf61ddbef53dbefd3149952",
+      "scope": "Four existing completed comparison directories exactly match retained artifact membership/hashes and pass full restored dual-store handoff;2.461GiB allocated reclaimed; old source phases/statuses unchanged.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/custody_results/comparisons/success",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_parent_hashes",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "STOR03.negative-light01",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/storage-light-restore-01.json",
+      "sha256": "9b831d7ac721bafa796ca0202ff221600a1b67b48fb1f9fef1fa47abade59f6b",
+      "scope": "Initial shared-input probe fails at old music-source checkout-path guard before World; original failure retained and its exact code phase remains historical.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "STOR03.headless-bound01",
+      "kind": "static",
+      "record": "research/runtime/check-storage-results-20261103/headless-scope-binding-01.json",
+      "sha256": "8c87498fe11b644af792bbce8d97ce539d251a4fcbb941046c43a5daea263908",
+      "scope": "Initial minimal required-source binding draft, retained before commit; superseded by complete actual execution-source closure STOR03.headless-bound02 and supports no current stage.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "STOR03.headless-bound02",
+      "kind": "native_integration",
+      "record": "research/runtime/check-storage-results-20261103/headless-scope-binding-02.json",
+      "sha256": "3abd01f5e93ff130e752a7dd3da5ec805ff4d2f8e42588ed8e0615e75cbb2120",
+      "scope": "Exact retrospective behavior/scenario binding of the actual current41storage/prefix/import controls and144campaign Python plus7Qt driver cases. Every required source agrees and remains current. This binding executes no original game and promotes only the intentional host policy headless scope, not any original engine comparison, live replacement or broader campaign claim. This closeout binding additionally pins the complete actual control and compiler-source closure, including transitive helpers; the minimal required-source draft01 is retained separately and supports no current stage.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "STOR03.validation-closeout01",
+      "kind": "static",
+      "record": "research/runtime/check-storage-results-20261103/validation-closeout-01.json",
+      "sha256": "a326d429f8bef0bf397e68dd0fbe0ad78a15ea4126317f72c771d24650a62b89",
+      "scope": "Current exact execution join:0 versus48,895,866render capture bytes, independent97,944,000pixels without differences; no new execution in this review.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "STOR03.queued-handoff01",
+      "kind": "native_integration",
+      "record": "research/runtime/check-storage-results-20261103/custody-source-attribution-01.json",
+      "sha256": "249911db98ab9fe9b7cee106466c7c42c76cc92e5cf61ddbef53dbefd3149952",
+      "scope": "Actual12queued stopped execution/comparison paths fully restored from both stores and retired;5.141GiB allocated reclaimed, including the newly queued full comparison.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/custody_results/queued/success",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_parent_hashes",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources"
     }
   ],
   "classifications": [],
@@ -403674,6 +404014,66 @@
         "tests/test-campaign-checkpoint-import.py",
         "tools/stage-campaign-checkpoint.py"
       ]
+    },
+    {
+      "id": "tooling.check-storage-controls-stor03",
+      "level": "headless",
+      "scope": "41 storage/evidence/prefix/import Python tests,144 campaign Python tests and7 Qt driver cases; retain actual command results and exact current source hashes. No original game execution in these control suites.",
+      "behaviors": [
+        "TOOL.check-storage-budget"
+      ],
+      "evidence": [
+        "STOR03.controls05",
+        "STOR03.guards02",
+        "STOR03.headless-bound01",
+        "STOR03.headless-bound02"
+      ],
+      "tests": [
+        "tests/test-check-storage.py",
+        "tests/test-evidence-objects.py",
+        "tests/test-native-prefix-template.py",
+        "tests/test-fixture-prefix-borrow.py",
+        "tests/test-campaign-checkpoint-import.py",
+        "tests/campaign-progression-driver-test.cpp"
+      ]
+    },
+    {
+      "id": "campaign.check-storage-checkpoint-stor03",
+      "level": "live_observation",
+      "scope": "Catalog-only software640 original checkpoint restored in lightweight and explicit full modes; selected fields and normal retirement/prefix return verified, full mode compared independently. Not fresh campaign victory/progression or full saved simulation.",
+      "behaviors": [
+        "TOOL.check-storage-budget",
+        "NP.campaign-checkpoint-diagnostics",
+        "NP.rendering-progression-scenarios"
+      ],
+      "evidence": [
+        "STOR03.light04",
+        "STOR03.full01",
+        "STOR03.compare01",
+        "STOR03.refusal01",
+        "STOR03.negative-light01"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-campaign-checkpoint.py"
+      ]
+    },
+    {
+      "id": "tooling.check-output-retirement-stor03",
+      "level": "headless",
+      "scope": "Explicit reviewed historical custody:9completed lighting outputs and4completed comparison outputs, exact manifests, two verified stores, real restores and pinned stubs. Source checkouts and historical hashes/statuses preserved.",
+      "behaviors": [
+        "TOOL.check-storage-budget",
+        "TOOL.shared-evidence-lifecycle"
+      ],
+      "evidence": [
+        "STOR03.historical-retirement01",
+        "STOR03.comparison-retirement01"
+      ],
+      "tests": [
+        "tools/evidence_workspace.py",
+        "tests/test-check-storage.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -405491,7 +405891,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-22cc5ce6337716786887ab453b5ffe5a753f2f3ef9dce61270ef5b9a7560ba7c.json",
-    "sha256": "22cc5ce6337716786887ab453b5ffe5a753f2f3ef9dce61270ef5b9a7560ba7c"
+    "path": "research/runtime/coverage/source-index-6dc23904494ce89fc9f970e1ee0580666da17395a322729a663e76c541540b64.json",
+    "sha256": "6dc23904494ce89fc9f970e1ee0580666da17395a322729a663e76c541540b64"
   }
 }
