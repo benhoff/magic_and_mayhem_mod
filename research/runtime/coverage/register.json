@@ -28958,7 +28958,8 @@
         "runtime/menu/drawing_region_input.h"
       ],
       "remaining_gaps": [
-        "2026-10-20 remaining Medium follow-up: native display phase, bounded physical-input readiness/position proof, integer projection, pending accepted-summon attribution and portable owned-snapshot CLI are implemented and current bounded controls pass. Hardware009completed its raw functional/Quit journey but failed source19FPSat7.604087;010confirmed summon/Fireball/melee/lethal before original wizard death prevented retreat, at7.691299sourceFPS. Sources/originals/cleanup are recorded independently. Full current-source functional/Quit reliability, other failure/routes, physical loss/Restore, full equivalence and sustained60FPS remain pending. No thresholds, gameplay balance, default status cadence or historical milestones are changed."
+        "2026-10-20 remaining Medium follow-up: native display phase, bounded physical-input readiness/position proof, integer projection, pending accepted-summon attribution and portable owned-snapshot CLI are implemented and current bounded controls pass. Hardware009completed its raw functional/Quit journey but failed source19FPSat7.604087;010confirmed summon/Fireball/melee/lethal before original wizard death prevented retreat, at7.691299sourceFPS. Sources/originals/cleanup are recorded independently. Full current-source functional/Quit reliability, other failure/routes, physical loss/Restore, full equivalence and sustained60FPS remain pending. No thresholds, gameplay balance, default status cadence or historical milestones are changed.",
+        "2026-11-03 order-admission batch: passive opcode5checkpoint movement and strict latest-hover guard are scoped under INPUT.campaign-order-admission. Prior source fingerprints/statuses remain historical; no new attack, spell, nominal campaign or rendering-equivalence validation is asserted for this broader contract."
       ]
     },
     {
@@ -159844,7 +159845,8 @@
         "RPS06 v30 nominal software640 selects and kills the ignored type11/owner1 escort via original29\u21929\u21920 damage,but reaches bridge at92HP after141HP resupply and later refuses the support-order witness at7HP/12mana. Current v31 adds bounded early bridge combat and two-cast escort bursts;169controls pass,nominal outcome/pixels pending. No stage clock reset,simulation modification or historical source/hash/status renewal.",
         "RPS06 v31 loses74HP during resupply113\u219239 to original type11/owner1 melee;post-refill interruption is never eligible. Current v32 extends the bounded suspension to resupply,requires affordable casting and resumes the original phase/clocks;173synthetic controls pass. A3second recent melee-role witness covers transient cleared targets but is not stable object/generation proof. Fresh original result/pixels remain pending;no status promotion.",
         "RPS06 closes3nominal software640 attempts,all failures. V30 confirms broader typed-attacker selection and original escort kill;v31 confirms74HP resupply damage. Current v32 has173guards and retains182HP through resupply but never exercises suspension/recent-melee fallback or records an escort kill;it spends mana on owner1/type10 escorts and naturally loses. Retained v31 resupply poses supply offline gate eligibility only. Unit-order witness,resource/target policy,nominal victory and lifetime/save/full-simulation acceptance remain pending;no historical hash/status is refreshed.",
-        "2026-11-03 storage batch: default diagnostics/full evidence, shared catalog inputs, safe private runtime copying and comparison custody are independently scoped under TOOL.check-storage-budget. Historical engine evidence hashes/statuses are retained; edited source paths may leave their older execution evidence stale. Only the recorded short checkpoint scope and storage controls are newly exercised."
+        "2026-11-03 storage batch: default diagnostics/full evidence, shared catalog inputs, safe private runtime copying and comparison custody are independently scoped under TOOL.check-storage-budget. Historical engine evidence hashes/statuses are retained; edited source paths may leave their older execution evidence stale. Only the recorded short checkpoint scope and storage controls are newly exercised.",
+        "2026-11-03 order-admission batch: passive opcode5checkpoint movement and strict latest-hover guard are scoped under INPUT.campaign-order-admission. Prior source fingerprints/statuses remain historical; no new attack, spell, nominal campaign or rendering-equivalence validation is asserted for this broader contract."
       ]
     },
     {
@@ -160530,7 +160532,8 @@
         "tools/campaign_input_observation.py"
       ],
       "remaining_gaps": [
-        "2026-11-03 storage batch: default diagnostics/full evidence, shared catalog inputs, safe private runtime copying and comparison custody are independently scoped under TOOL.check-storage-budget. Historical engine evidence hashes/statuses are retained; edited source paths may leave their older execution evidence stale. Only the recorded short checkpoint scope and storage controls are newly exercised."
+        "2026-11-03 storage batch: default diagnostics/full evidence, shared catalog inputs, safe private runtime copying and comparison custody are independently scoped under TOOL.check-storage-budget. Historical engine evidence hashes/statuses are retained; edited source paths may leave their older execution evidence stale. Only the recorded short checkpoint scope and storage controls are newly exercised.",
+        "2026-11-03 order-admission batch: passive opcode5checkpoint movement and strict latest-hover guard are scoped under INPUT.campaign-order-admission. Prior source fingerprints/statuses remain historical; no new attack, spell, nominal campaign or rendering-equivalence validation is asserted for this broader contract."
       ]
     },
     {
@@ -160687,6 +160690,72 @@
         "Forced private Wine shutdown command selection has headless controls; live timeout/forced-stop behavior is not promoted by normally completed checkpoint runs.",
         "Full rendering proof remains an explicit separate original/history comparison; lightweight output cannot promote nominal acceptance, full saved simulation, native parsing or campaign progression.",
         "Thirteen specifically reviewed historical output trees were transferred; source checkouts, canonical/current inputs, unique sources, archived missing-member catalogs and other held trees remain retained. No whole worktree deletion or global garbage collection."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-order-admission",
+      "subsystem": "input",
+      "kind": "recovered",
+      "title": "Original Region selection and command-buffer admission",
+      "scope": "Bounded passive current NoCD checkpoint observation: original X selection of sole living owned Zombie, synchronous opcode5move submission and subsequent original movement. Every callback pair binds to existing Region envelope. Latest-hover full-prefix guard is native test policy; attack delivery/engagement, route suspension, nominal progression and whole callback semantics remain pending.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056532,
+          "relation": "data",
+          "scope": "Existing guarded Region vtable slot points to4fdad0. Whole callback boundary remains unassigned; no new whole-function claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5471184,
+          "scope": "Static producer uses table stride21, record length+8 and header command count+16; no new producer detour."
+        }
+      ],
+      "documents": [
+        "research/runtime/rts-controls.md",
+        "research/runtime/campaign-order-admission-20261103.md"
+      ],
+      "implementation": [
+        "runtime/menu/campaign_order_observe.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/drawing_region_input.h",
+        "tools/campaign_order_observation.py",
+        "tools/campaign-order-input.py",
+        "tools/run-rendering-progression.py",
+        "tools/menu-game-runner.py",
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "tools/campaign_input_admission.py"
+      ],
+      "tests": [
+        "tests/test-campaign-order-observation.py",
+        "tools/review-rendering-progression.py",
+        "tests/test-campaign-input-admission.py"
+      ],
+      "evidence": [
+        "CAO03.guards02",
+        "CAO03.hover-regression01",
+        "CAO03.original02",
+        "CAO03.binding01",
+        "CAO03.headless-bound01",
+        "CAO03.live-bound01",
+        "CAO03.guards03",
+        "CAO03.hover-regression02",
+        "CAO03.original03",
+        "CAO03.binding02",
+        "CAO03.headless-bound02",
+        "CAO03.live-bound02"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "confidence": "provisional",
+      "remaining_gaps": [
+        "Whole original callback boundary, allocation generations, producer rotation and delivery remain unassigned or separately scoped. Selection and buffer submission cannot stand in for engagement, movement completion, route suspension or nominal progression."
       ]
     }
   ],
@@ -373418,6 +373487,206 @@
         }
       ],
       "sources_pointer": "/sources"
+    },
+    {
+      "id": "CAO03.guards02",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261101/order-admission-guards-02.json",
+      "sha256": "1b2a87a1c74e5b0fc541b65d7cc5b7b5eaa131ad0f00447c1c59c5a498d89b17",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "scope": "154focused Python cases and7Qt driver cases; current strict hover and order decoder, no original comparison."
+    },
+    {
+      "id": "CAO03.hover-regression01",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-order-admission-results-20261103/hover-regression-01.json",
+      "sha256": "e4c79090873c39a56900eb988e6f43b8b69ac8c5eb0774f0450a97656bae1c72",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "scope": "Two late-prefix regressions fail exact previous function and pass current function."
+    },
+    {
+      "id": "CAO03.original02",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/order-admission-probe-02.json",
+      "sha256": "df2eea4d5397d07594aee89e7c35c293429140d97b684c3730c96d202d5f7ca6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "scope": "Current diagnostic software640 original checkpoint: sole-Zombie primary selection, opcode5buffer submission, later original movement, normal Quit and exact unchanged saved bytes. No nominal progression or pixel comparison."
+    },
+    {
+      "id": "CAO03.binding01",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-order-admission-results-20261103/observation-binding-01.json",
+      "sha256": "8a7275ce161b9d8be001266a6c4a3a9c6606c8f0207d2d3837e70fb6025081c8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "scope": "Every original Region callback bound to complete order trace by ordinal,mask,thread and tick ordering; producer static inspection retained separately."
+    },
+    {
+      "id": "CAO03.custody01",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-order-admission-results-20261103/execution-custody-01.json",
+      "sha256": "76f7c0f2fb15308f4353a524f75c2c3cbdc7a181597596caff2974d18eed7be3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "scope": "Stopped execution custody, two verified copies and exact real restoration; storage provenance only."
+    },
+    {
+      "id": "CAO03.headless-bound01",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-order-admission-results-20261103/scope-binding-headless-01.json",
+      "sha256": "36eb2b9fcc8143e2b5a5b24b09a0925c2e4cb3ac8f47941be16330030510883c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Exact retrospective current-source join for headless scope:154Python and7Qt controls, plus separately retained original checkpoint selection/opcode5submission/movement observation. This binding executes no new original game and asserts no attack, nominal progression, rendering equivalence or replacement.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CAO03.live-bound01",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-order-admission-results-20261103/scope-binding-live-01.json",
+      "sha256": "7db7456bfc9d1e5e11c53d2dcff7051926fe73306250d130b92018ac789262c2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Exact retrospective current-source join for live scope:154Python and7Qt controls, plus separately retained original checkpoint selection/opcode5submission/movement observation. This binding executes no new original game and asserts no attack, nominal progression, rendering equivalence or replacement.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CAO03.guards03",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261101/order-admission-guards-03.json",
+      "sha256": "79794984deca108ae8eb9a38cb500bb27d4762052d6e9991161aa03a978131b5",
+      "scope": "156Python cases and7Qt driver cases with all four latest-prefix/entered/nested-callback regression controls.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CAO03.hover-regression02",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-order-admission-results-20261103/hover-regression-02.json",
+      "sha256": "5b92f6303c5a1b39be09757e6ea308e06aa8c7288753d507423ebae3496deb8d",
+      "scope": "Four cases fail exact previous source; pending/nested cases also fail verified intermediate source; all pass final current source.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CAO03.original03",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/order-admission-probe-03.json",
+      "sha256": "de1ad00dbc9f71644bbb3c9cbab299463a8dc5247f64b926e4848afb4c48dbb2",
+      "scope": "Final current original checkpoint probe: sole-Zombie selection, opcode5submission and later movement, strict complete-prefix/pending-callback hover gate, normal Quit and unchanged save.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CAO03.binding02",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-order-admission-results-20261103/observation-binding-02.json",
+      "sha256": "ec72283da714c1e8fae60ae343025efa0bab2210bce83743b17feef69650f015",
+      "scope": "Complete original Region callback envelope binding for all three source phases; third is current.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CAO03.custody02",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-order-admission-results-20261103/execution-custody-02.json",
+      "sha256": "e57c7f02b662408b9b65272b46b4381fd72b8ff383578e0483cc812e48261054",
+      "scope": "Final two stopped trees pass dual-store custody and exact restoration; no additional engine validation.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CAO03.headless-bound02",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-order-admission-results-20261103/scope-binding-headless-02.json",
+      "sha256": "3f2219cccc5cb6fc358c0f6e5b6e3599ad0e73cc38cd1ae09842739b28f53ed2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Exact retrospective current-source join for headless scope:156Python and7Qt controls, plus separately retained original checkpoint selection/opcode5submission/movement observation. This binding executes no new original game and asserts no attack, nominal progression, rendering equivalence or replacement.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CAO03.live-bound02",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-order-admission-results-20261103/scope-binding-live-02.json",
+      "sha256": "840f76cc2f997d75f24e902081bce48b890713de1c26ba9c1dd4c07242545fcd",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Exact retrospective current-source join for live scope:156Python and7Qt controls, plus separately retained original checkpoint selection/opcode5submission/movement observation. This binding executes no new original game and asserts no attack, nominal progression, rendering equivalence or replacement.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -404074,6 +404343,47 @@
         "tools/evidence_workspace.py",
         "tests/test-check-storage.py"
       ]
+    },
+    {
+      "id": "input.campaign-order-prefix-cao03",
+      "level": "headless",
+      "scope": "Strict finite wire decoder and complete-prefix hover regression refusal; no original simulation replacement.",
+      "behaviors": [
+        "INPUT.campaign-order-admission"
+      ],
+      "evidence": [
+        "CAO03.guards02",
+        "CAO03.hover-regression01",
+        "CAO03.headless-bound01",
+        "CAO03.guards03",
+        "CAO03.hover-regression02",
+        "CAO03.headless-bound02"
+      ],
+      "tests": [
+        "tests/test-campaign-order-observation.py",
+        "tests/test-campaign-input-admission.py"
+      ]
+    },
+    {
+      "id": "input.campaign-checkpoint-move-cao03",
+      "level": "live_observation",
+      "scope": "Verified original Save/Load checkpoint, X selects sole Zombie, one original move submission and subsequent movement, normal cleanup. Attack, victory and rendering acceptance remain separate.",
+      "behaviors": [
+        "INPUT.campaign-order-admission",
+        "NP.campaign-checkpoint-diagnostics"
+      ],
+      "evidence": [
+        "CAO03.original02",
+        "CAO03.binding01",
+        "CAO03.live-bound01",
+        "CAO03.original03",
+        "CAO03.binding02",
+        "CAO03.live-bound02"
+      ],
+      "tests": [
+        "tools/campaign-order-input.py",
+        "tools/run-rendering-progression.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -405891,7 +406201,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6dc23904494ce89fc9f970e1ee0580666da17395a322729a663e76c541540b64.json",
-    "sha256": "6dc23904494ce89fc9f970e1ee0580666da17395a322729a663e76c541540b64"
+    "path": "research/runtime/coverage/source-index-607072d26053c27b5277c132803f2940491ae2bae163b9c6fc6c70bf2c445a39.json",
+    "sha256": "607072d26053c27b5277c132803f2940491ae2bae163b9c6fc6c70bf2c445a39"
   }
 }

@@ -25946,3 +25946,28 @@ campaign victory/progression, the12case matrix, populated handoff lifetimes,
 whole saved simulation, native world parsing, gameplay orders or balance.
 See [check storage](check-storage-20261103.md) and
 [runnable commands](../../docs/check-storage.md).
+
+### Campaign selection and order admission — 2026-11-03
+
+`INPUT.campaign-order-admission` adds a bounded passive buffer observer and
+strict reader, reusing the existing original Region callback and World-return
+hooks. Three original software640 checkpoint probes observed sole-Zombie primary
+selection, a 21-byte opcode5move submission and later independent movement.
+Every one of the ten Region callback pairs per run binds to the existing
+independent callback envelope. Only the final repeat matches the current latest-hover
+sources; the first two remain historical. All three retained unchanged save bytes,
+normal Quit, stopped Wine and complete evidence. This is live observation,
+not original/native equivalence or replacement.
+
+The physical-input guard now examines the complete prefix before accepting
+hover readiness. Four prefix/pending/nested-callback regressions fail the previous source and pass
+the fix; current focused checks passed156Python cases and7Qt driver cases.
+The repeat verifies the stricter guard against actual original callbacks and
+World returns. Six stopped output trees were retained in two verified stores,
+restored exactly and retired to pinned stubs; no pixel captures were requested.
+
+Attack delivery/engagement, mana under combat, route suspension and fresh nominal
+victory→Realm→region2plus independent rendering comparison remain pending before
+the12case matrix. Existing broader campaign/spell/rendering evidence and source
+hashes remain historical; this observation does not renew those claims. See
+[the scoped findings and runnable probe](campaign-order-admission-20261103.md).

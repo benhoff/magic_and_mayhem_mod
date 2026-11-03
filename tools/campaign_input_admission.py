@@ -73,12 +73,26 @@ def fresh_hover(rows, point, after_sequence, already_there=False, require_cast=F
     callbacks = [r for r in before if r.get('kind') == 3]
     known_original = bool(callbacks and callbacks[-1]['flags'] & 64
                           and matches(callbacks[-1]['mouse']) and not callbacks[-1]['mouse_flags'] & 3)
-    motion_counter = before[-1]['world_counter'] if already_there and known_original else None
+    pending_callbacks = 0
+    for row in before:
+        if row.get('kind') == 2:
+            pending_callbacks += 1
+        elif row.get('kind') == 3:
+            pending_callbacks = max(0, pending_callbacks - 1)
+    motion_counter = before[-1]['world_counter'] if already_there and known_original and not pending_callbacks else None
     motion_sequence = after_sequence
+    candidate = None
     for row in rows:
         if row['sequence'] <= after_sequence:
             continue
+        if row.get('kind') == 2:
+            pending_callbacks += 1
+            candidate = None
+            motion_counter = None
+            motion_sequence = row['sequence']
         if row.get('kind') == 3:
+            pending_callbacks = max(0, pending_callbacks - 1)
+            candidate = None
             if not row['flags'] & 64 or not matches(row['mouse']) or row['mouse_flags'] & 3:
                 # A later original callback supersedes the earlier position.
                 # The latest Qt publication cannot preserve obsolete proof.
@@ -89,7 +103,9 @@ def fresh_hover(rows, point, after_sequence, already_there=False, require_cast=F
             elif row.get('callback_mask',0) & 112 and not row['mouse_flags']:
                 motion_counter = row['world_counter']
                 motion_sequence = row['sequence']
-        if (motion_counter is None or row.get('kind') != 1 or row['sequence'] <= motion_sequence
+        if row.get('kind') == 1:
+            candidate = None
+        if (pending_callbacks or motion_counter is None or row.get('kind') != 1 or row['sequence'] <= motion_sequence
                 or not 0 < (row['world_counter']-motion_counter) % 2**32 < 2**31
                 or row['flags'] & 40 != 40 or row['input_active'] != 1
                 or not matches([row['x'], row['y']])):
@@ -98,8 +114,8 @@ def fresh_hover(rows, point, after_sequence, already_there=False, require_cast=F
                 or not 0 <= row['selected_slot'] < row['spell_count'] or not row['receiver_slot_plus_one']
                 or any(not 0 <= value < bound for value, bound in zip(row['ground'], row['ground_bounds']))):
             continue
-        return row
-    return None
+        candidate = row
+    return candidate
 
 
 class DialogueReadiness:

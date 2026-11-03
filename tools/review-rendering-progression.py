@@ -30,9 +30,9 @@ def main():
         require(all(sha(ROOT/n)==h for n,h in prepared['sources'].items()), 'Prepared sources changed')
         names=set(prepared['sources'])|{'tools/review-rendering-progression.py', 'tools/rendering_pilot.py',
             'tools/run-native-owned.py','tools/campaign_route.py','tools/rendering_normal_acceptance.py', 'tests/test-campaign-input-observation.py','tests/test-campaign-input-admission.py','tests/test-campaign-report.py','tests/test-campaign-dialogue.py','tests/test-campaign-return.py','tests/test-campaign-follow.py','tests/test-campaign-realm-exit.py','tests/test-campaign-route.py','tests/test-rendering-capture.py','tests/test-rendering-progression.py',
-            'tests/test-rendering-pilot.py', 'tests/test-rendering-normal-acceptance.py','tests/test-campaign-checkpoint.py','tools/campaign_checkpoint.py'}
+            'tests/test-rendering-pilot.py', 'tests/test-rendering-normal-acceptance.py','tests/test-campaign-order-observation.py','tests/test-campaign-checkpoint.py','tools/campaign_checkpoint.py'}
         if a.driver_test:
-            names.add('tests/campaign-progression-driver-test.cpp')
+            names.update(['tools/campaign_order_observation.py','tests/campaign-progression-driver-test.cpp'])
         if a.region_test:
             names.update(['tests/menu-region-campaign-test.cpp','tests/campaign-menu-wire-fixture.hpp','tests/character-wire-fixture.hpp'])
         spec=importlib.util.spec_from_file_location('review_compiler',ROOT/'tools/test-native-campaign.py')
@@ -45,7 +45,7 @@ def main():
             original_game_executed=False, player_accepted=False, status_promotions=[], checks=[])
         try:
             commands=[[sys.executable,'-B',ROOT/n] for n in
-                ('tests/test-campaign-checkpoint.py','tests/test-campaign-input-observation.py','tests/test-campaign-input-admission.py','tests/test-campaign-report.py','tests/test-campaign-dialogue.py','tests/test-campaign-return.py','tests/test-campaign-follow.py','tests/test-campaign-realm-exit.py','tests/test-campaign-route.py','tests/test-rendering-capture.py','tests/test-rendering-progression.py','tests/test-rendering-pilot.py','tests/test-rendering-normal-acceptance.py')]
+                ('tests/test-campaign-order-observation.py','tests/test-campaign-checkpoint.py','tests/test-campaign-input-observation.py','tests/test-campaign-input-admission.py','tests/test-campaign-report.py','tests/test-campaign-dialogue.py','tests/test-campaign-return.py','tests/test-campaign-follow.py','tests/test-campaign-realm-exit.py','tests/test-campaign-route.py','tests/test-rendering-capture.py','tests/test-rendering-progression.py','tests/test-rendering-pilot.py','tests/test-rendering-normal-acceptance.py')]
             commands.append(['cmake','--build',a.build.resolve(),'--target','mnm-qt-shell','--parallel','4'])
             if a.driver_test:
                 commands.append(['cmake','--build',a.build.resolve(),'--target','campaign-progression-driver-test','--parallel','4'])

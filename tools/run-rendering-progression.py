@@ -15,6 +15,7 @@ def main():
  p.add_argument('--evidence-mode',choices=['diagnostic','full'],default='diagnostic',help='Default: bounded semantic diagnostics without pixel/World captures; full is required for rendering evidence')
  p.add_argument('--deadline-seconds',type=int,help='15..900; default diagnostic120/full900')
  p.add_argument('--checkpoint',choices=['capture','restore'],help='Separate diagnostic Save/Load; never nominal progression acceptance')
+ p.add_argument('--checkpoint-probe',choices=['orders'],help='Bounded physical selection/move probe after verified original checkpoint restore')
  p.add_argument('--checkpoint-name',help='New unique checkpoint- name for capture or exact existing name for restore')
  p.add_argument('--checkpoint-seed',help='Capture from an unchanged original Save/Load candidate report; new Save/Load witnesses are still required')
  p.add_argument('--checkpoint-reference',help='Successful capture acquisition report required for restore')
@@ -26,6 +27,7 @@ def main():
  p.add_argument('--startup-main-dwell-ms',type=int,default=0,help='Diagnostic dwell before and after Preferences (0..30000ms); requires --observe-startup-timing')
  p.add_argument('--prefix-template',type=Path);p.add_argument('--skip-intros',action='store_true');p.add_argument('--storage-policy',type=Path)
  a=p.parse_args()
+ require(not a.checkpoint_probe or a.checkpoint=='restore','Checkpoint probe requires restore')
  from check_capture_policy import policy
  capture_policy=policy(a.evidence_mode,a.deadline_seconds)
  full=capture_policy['full_capture']
@@ -97,7 +99,7 @@ def main():
  from rendering_build_binding import native_runtime_source_paths
  runtime_names=native_runtime_source_paths(ROOT)
  names.update(['tools/rendering_build_binding.py','tools/check_capture_policy.py','tools/check_inputs.py'])
- names.update(['tools/campaign_checkpoint.py','apps/qt-shell/campaign_storage_test.cpp'])
+ names.update(['tools/campaign_checkpoint.py','apps/qt-shell/campaign_storage_test.cpp','tools/campaign_order_observation.py','tools/campaign-order-input.py'])
  names.update(runtime_names)
  sources={n:sha(ROOT/n) for n in sorted(names)}
  report=dict(schema=1,kind='public_native_progression_diagnostic_acquisition' if a.skip_intros else 'public_native_progression_acquisition',success=False,player_accepted=False,scenario=a.case,preparation=dict(record=a.preparation,sha256=preparation_sha),
@@ -138,10 +140,13 @@ def main():
   env['MNM_CAMPAIGN_STARTUP_DWELL_MS']=str(a.startup_main_dwell_ms)
   report['kind']='public_native_progression_diagnostic_acquisition'
   report['configuration']['diagnostic_only']=True
- if a.observe_input_admission:
+ if a.observe_input_admission or a.checkpoint_probe:
   env['MNM_CAMPAIGN_INPUT_ADMISSION']='1'
   report['kind']='public_native_progression_diagnostic_acquisition'
   report['configuration'].update(input_readiness='original-callback-then-later-World-v2',diagnostic_only=True)
+ if a.checkpoint_probe:
+  env.update(MNM_CAMPAIGN_ORDER_ADMISSION='1',MNM_CAMPAIGN_CHECKPOINT_PROBE=a.checkpoint_probe)
+  report['configuration']['checkpoint_probe']=a.checkpoint_probe
  if a.checkpoint:
   report.update(kind='public_native_checkpoint_diagnostic_acquisition',scenario='checkpoint-'+a.checkpoint)
   report['configuration'].update(diagnostic_only=True,checkpoint_mode=a.checkpoint,checkpoint_name=a.checkpoint_name)
@@ -221,7 +226,14 @@ def main():
     report['checkpoint']=validate_capture(flow,json.loads((out/'checkpoint-route.json').read_text()),(session/'checkpoint-events.bin').read_bytes(),raw_save)
    else:report['checkpoint']=validate_restore(flow,(session/'checkpoint-events.bin').read_bytes(),raw_save,reference['checkpoint'])
    require(saved.is_file() and sha(saved)==report['checkpoint']['save_sha256'],'Normal exit did not preserve exact checkpoint in private owned store')
-  else:report['original_callbacks']=validate_callbacks((session/'events.bin').read_bytes(),flow)
+  if a.checkpoint_probe:
+   from campaign_order_observation import decode as decode_orders
+   report['checkpoint_probe']=json.loads((out/'checkpoint-orders.json').read_text())
+   observed=decode_orders((session/'order-admission.bin').read_bytes())
+   report['order_observation']=dict(rows=len(observed['rows']),pending_callbacks=observed['pending_callbacks'],command_delivery_proved=False)
+   require(not observed['pending_callbacks'],'Order observation ended within a callback')
+   require(report['checkpoint_probe'].get('success') is True,'Bounded checkpoint order probe failed: '+str(report['checkpoint_probe'].get('error')))
+  if not a.checkpoint:report['original_callbacks']=validate_callbacks((session/'events.bin').read_bytes(),flow)
   require(shared_paths(ROOT)==shared_inputs,'Shared input binding changed during execution')
   report['map_inputs_stable']=recipes(game)==prepared['maps']
   require(report['map_inputs_stable'],'Input map drift during execution')

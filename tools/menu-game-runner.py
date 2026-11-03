@@ -123,6 +123,13 @@ if os.environ.get('MNM_CAMPAIGN_CHECKPOINT') in ('capture','restore'):
     if checkpoint.exists() or checkpoint.is_symlink():raise ValueError('Stale checkpoint observation')
     os.environ['MNM_MENU_CHECKPOINT_OBSERVE']='Z:'+str(checkpoint).replace('/','\\')
 os.environ.pop('MNM_MENU_INPUT_ADMISSION_OBSERVE',None)
+os.environ.pop('MNM_MENU_ORDER_ADMISSION_OBSERVE',None)
+if os.environ.get('MNM_CAMPAIGN_ORDER_ADMISSION')=='1':
+    if os.environ.get('MNM_CAMPAIGN_INPUT_ADMISSION')!='1':
+        raise ValueError('Order admission requires the private input diagnostic')
+    order=root/'order-admission.bin'
+    if order.exists() or order.is_symlink():raise ValueError('Stale order observation')
+    os.environ['MNM_MENU_ORDER_ADMISSION_OBSERVE']='Z:'+str(order).replace('/','\\')
 if os.environ.get('MNM_CAMPAIGN_INPUT_ADMISSION')=='1':
     if os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')!='1' or not metadata.get('native_render'):
         raise ValueError('Input admission observation requires the private casting diagnostic')

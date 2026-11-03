@@ -57,6 +57,10 @@ static void region_input_snapshot(u32* row,void* object,u32 mask,RegionMouseReco
 }
 static u32 THIS region_input_callback(void* object,u32 mask,RegionMouseRecord mouse){
  u8 fp[512] __attribute__((aligned(16)));u32 error=GetLastError();region_input_fp_save(fp);
+#ifdef MNM_CAMPAIGN_ORDER_OBSERVER
+ u32 order_before[9]={0},order_call=0;
+ if(order_file){order_call=++order_calls;order_sample(2,order_call,mask,order_before);}
+#endif
  u32 at=0xffffffff,thread=GetCurrentThreadId();
  if(region_input_file){
   u32 owner=region_input_thread;
@@ -85,6 +89,9 @@ static u32 THIS region_input_callback(void* object,u32 mask,RegionMouseRecord mo
   --region_input_pending;}
 #ifdef MNM_CAMPAIGN_INPUT_ADMISSION_OBSERVER
  admission_sample(3,mask,mouse.words);
+#endif
+#ifdef MNM_CAMPAIGN_ORDER_OBSERVER
+ order_sample(3,order_call,mask,order_before);
 #endif
  region_input_fp_restore(fp);SetLastError(error);return result;
 }
