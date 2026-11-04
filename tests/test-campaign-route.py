@@ -10,12 +10,21 @@ class Route(unittest.TestCase):
         bridge=dict(x=31,y=52,z=4)
         # Retained v25 left staging at29,53 then never reached Camulos.
         short=dict(x=29,y=53,z=4)
-        self.assertTrue(bridge_entry_ready(short,bridge,False))
+        self.assertFalse(bridge_entry_ready(short,bridge,False))
         self.assertFalse(bridge_entry_ready(short,bridge,True))
         for point in (dict(x=30,y=52,z=4),dict(x=31,y=51,z=4),dict(x=31,y=52,z=5)):
             self.assertFalse(bridge_entry_ready(point,bridge,True))
         self.assertTrue(bridge_entry_ready(bridge,bridge,True))
         self.assertFalse(bridge_entry_ready(dict(x=20,y=52,z=4),bridge,False))
+
+    def test_initial_bridge_refuses_the_retained_high_resolution_stall_pose(self):
+        bridge=dict(x=31,y=52,z=4)
+        # Original800x600 attempt advanced here, drifted to20,49 and timed out.
+        self.assertFalse(bridge_entry_ready(dict(x=28,y=52,z=4),bridge,False))
+        self.assertFalse(bridge_entry_ready(dict(x=29,y=52,z=4),bridge,False))
+        self.assertTrue(bridge_entry_ready(dict(x=30,y=52,z=4),bridge,False))
+        self.assertTrue(bridge_entry_ready(dict(x=30,y=51,z=4),bridge,False))
+        self.assertTrue(bridge_entry_ready(bridge,bridge,False))
 
     def test_hud_is_anchored_to_native_right_bottom_edges(self):
         self.assertEqual(hud_point((477,575),(640,480)),(317,455))

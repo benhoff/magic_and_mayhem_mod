@@ -62,10 +62,12 @@ def approach_point(hero,target,size=(800,600)):
 def bridge_entry_ready(hero,bridge,rearmed):
     """Authored staging: reach the cleared bridge before the final approach.
 
-    Initial approach keeps space for the living neutral bridge defender.
+    Initial approach permits one adjacent horizontal cell, including diagonals,
+    to leave space for the living neutral defender. Three cells short admitted
+    the retained800x600 route before the bridge was reached.
     """
     if rearmed:return all(hero[k]==bridge[k] for k in ('x','y','z'))
-    return sum((hero[k]-bridge[k])**2 for k in ('x','y'))<=9
+    return sum((hero[k]-bridge[k])**2 for k in ('x','y'))<=2
 
 
 def forest_waypoints(game):

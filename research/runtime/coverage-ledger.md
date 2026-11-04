@@ -26080,3 +26080,78 @@ original manifests pass, and3046comparison artifacts are retained in SQLite.
 branches. Historical branch fingerprints remain unchanged. Route interruption,
 other11branches, populated lifetimes, native save parsing, physical scanout and
 native simulation/balance remain separate pending boundaries.
+
+
+### Nominal campaign matrix continuation — 2026-11-03
+
+Eleven remaining configured branches are seeded independently before execution.
+The earlier enabled-intro full software640 victory result retains its exact
+source and report hashes; it is not a fresh repeat. Each new matrix cell requires
+its own natural outcome, original callbacks, full captures, independent history
+comparison and verified custody. Initial cell validation remains pending. See
+[campaign matrix scope and evidence](campaign-matrix-20261103.md).
+
+Matrix continuation first software800 attempt fails after542seconds without a
+natural report. It admitted initial combat at28,52, three cells short of31,52,
+then drifted/stalled; no sole-cause claim. INPUT.campaign-initial-bridge-staging
+requires adjacent-cell staging with a60second bound, preserving exact cleared
+waypoint admission. New route dependencies leave the prior nominal software640
+result historical: current-source matrix execution/comparison is pending again.
+All original hashes,317artifacts, negative observations and source preimages stay
+retained; no original movement/AI/balance or whole-campaign status is promoted.
+
+Current initial-bridge staging has a separately bound capture-free original800
+diagnostic: admission at30,52, neutral defender clearing,194HP/36mana resupply,
+original Save/Load and normal Quit. This supports only the scoped driver boundary;
+no nominal matrix cell, pixel, full-save or sole-cause milestone follows.
+
+Source 2 software800 clears/refills but fails at the original support-order guard:
+living Zombie35,47 projects outside the Wizard40,31 camera, so no selection click
+is sent. Wizard98HP and Zombie90HP remain alive; Space releases on failure. The
+new INPUT.campaign-offscreen-support-selection policy requires candidate-checked
+scene hover, one X and a fresh latest sole-primary World witness before the
+separate original opcode7 assertion. Four refusal controls pass; new current
+original execution remains pending. All prior report/source hashes are retained.
+
+Source 3 full800 fails after a valid scene hover and one paused X: original primary
+remains Wizard0; Space releases, no opcode7 follows. Visually checked manualp15
+says X selects the next friendly creature. Source 4 permits a two-press candidate
+cycle, deliberately exercised by checkpoint combat, and refuses whole-prefix
+pending callbacks. Original cycle order/paused consumption/visibility are not
+recovered; all earlier success/failure/source hashes remain unchanged.
+
+Campaign matrix source 6: current211Python,7Qt driver and4presentation controls
+pass. A separately bound forced-team original800 checkpoint verifies ordinary
+Ctrl9 assignment/recall, complete-prefix sole-primary acknowledgements, boss
+candidate after recall and exact Zombie3-to-Camulos4 opcode7 append, with original
+Save/Load/Quit and pause release. No delivery, damage or nominal/pixel claim.
+Earlier source phases and failures retain exact hashes. Twelve frozen full
+enabled-intro matrix cells and route interruption remain separate.
+
+Campaign matrix source 7 now supplies scoped live observation for
+INPUT.campaign-resupply-combat-suspension: two resupply interruptions/resumptions,
+subsequent full refill and a post-refill bridge interruption/resumption against
+type 10 and type 11 owner 1 attackers. Independent original GP and cast/debit/
+attributed-damage rows are bound in route-suspension-live-binding-07.json. The
+whole progression run still loses; low-mana resumptions do not imply cleared
+threats. Repeated-run/full AI, damage, collision, lifetime and native simulation
+remain outside scope. All earlier source hashes and negatives are retained.
+
+Campaign matrix source 7 current natural offscreen team recall has a scoped live
+binding within failed default640 progression. Original raw order/GP/spell bytes
+independently match sole-primary selection, opcode7 actor3/target4 append,
+subsequent GP target4 and three Boss damage events100to40. Pause releases in4.75s;
+whole campaign fails later rearm travel. The Wizard is stationary during recall,
+so moving-camera regression and delivery causality remain pending. See the two
+team-recall source 7 binding/crosscheck reports and campaign-matrix-20261103.md.
+No successful whole matrix, pixel or native commander feature claim follows.
+
+Campaign matrix source 7 completes12 enabled-intro/full-capture attempts: 4
+defeat configuration passes and 8 requested victory/progression failures.
+Independent comparisons cover 6646 original Worlds /
+26033 native World presentations / 22966119000
+pixels with zero differences. All 28 case trees pass exact
+dual-store custody/restore before retirement. Current whole nominal victory/
+progression remain pending; scoped bridge, offscreen order/damage and route
+interruption/resumption results are independent. See matrix-closeout-07.json and
+campaign-matrix-20261103.md for each failed boundary and remaining scope.

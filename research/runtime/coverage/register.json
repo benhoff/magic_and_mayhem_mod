@@ -159569,7 +159569,10 @@
         "apps/qt-shell/campaign_smoke_test.hpp",
         "apps/qt-shell/CMakeLists.txt",
         "tools/campaign_input_observation.py",
-        "runtime/menu/campaign_input_admission_observe.h"
+        "runtime/menu/campaign_input_admission_observe.h",
+        "tests/test-campaign-route.py",
+        "tools/campaign_target_admission.py",
+        "tests/test-campaign-target-admission.py"
       ],
       "evidence": [
         "RPS01.inputs",
@@ -159847,7 +159850,8 @@
         "CPK03.guards",
         "CPK03.closeout",
         "STOR03.controls05",
-        "STOR03.guards02"
+        "STOR03.guards02",
+        "MTR03.matrix-closeout07"
       ],
       "status": {
         "understanding": "partial",
@@ -159874,7 +159878,11 @@
         "RPS06 closes3nominal software640 attempts,all failures. V30 confirms broader typed-attacker selection and original escort kill;v31 confirms74HP resupply damage. Current v32 has173guards and retains182HP through resupply but never exercises suspension/recent-melee fallback or records an escort kill;it spends mana on owner1/type10 escorts and naturally loses. Retained v31 resupply poses supply offline gate eligibility only. Unit-order witness,resource/target policy,nominal victory and lifetime/save/full-simulation acceptance remain pending;no historical hash/status is refreshed.",
         "2026-11-03 storage batch: default diagnostics/full evidence, shared catalog inputs, safe private runtime copying and comparison custody are independently scoped under TOOL.check-storage-budget. Historical engine evidence hashes/statuses are retained; edited source paths may leave their older execution evidence stale. Only the recorded short checkpoint scope and storage controls are newly exercised.",
         "2026-11-03 order-admission batch: passive opcode5checkpoint movement and strict latest-hover guard are scoped under INPUT.campaign-order-admission. Prior source fingerprints/statuses remain historical; no new attack, spell, nominal campaign or rendering-equivalence validation is asserted for this broader contract.",
-        "2026-11-03 target-admission batch: bounded V3 candidate/World-return policy and checkpoint opcode7 submission are scoped separately under INPUT.campaign-target-admission and INPUT.campaign-support-attack-submission. One historical-wrapper paused Fireball accepted six-mana debit; older hashes/statuses remain historical. Edited broader source dependencies are pending renewed comparison; no complete spell/pause equivalence, nominal progression, rendering or replacement promotion."
+        "2026-11-03 target-admission batch: bounded V3 candidate/World-return policy and checkpoint opcode7 submission are scoped separately under INPUT.campaign-target-admission and INPUT.campaign-support-attack-submission. One historical-wrapper paused Fireball accepted six-mana debit; older hashes/statuses remain historical. Edited broader source dependencies are pending renewed comparison; no complete spell/pause equivalence, nominal progression, rendering or replacement promotion.",
+        "2026-11-03 matrix continuation: initial-bridge staging is an explicit source dependency. The earlier800x600 attempt timed out after admission three cells short. New adjacent-cell admission and60second initial staging bound require fresh original execution/comparison; preserve all earlier success/failure hashes. Broader historical status is not renewed by fixture controls.",
+        "2026-11-03 matrix source phase3: the second800 attempt reaches the boss with a living offscreen Zombie, so its scene selection sends no click. New bounded candidate-checked scene hover/X fallback and latest sole-primary World witness require fresh source-bound execution. Prior guards, route and nominal/negative hashes remain historical; no original key/picking/delivery or matrix status is renewed.",
+        "Matrix source4 corrects documented next-friendly cycling with a two-press bound and full pending-callback prefix checks. Checkpoint combat deliberately exercises that path. Earlier successful mouse/bridge and failed keyboard source phases retain exact hashes; current nominal validation remains pending.",
+        "Frozen source7 matrix completes12 attempts: 4 configured defeat route/pixel/custody passes and 8 requested victory/progression failures. Scope-bound bridge, offscreen team/order and route suspension/resumption observations do not close current nominal victory/progression or repeated-run reliability."
       ]
     },
     {
@@ -160557,12 +160565,19 @@
         "tools/campaign_storage.py",
         "tools/menu_save_store.py",
         "runtime/menu/storage.h",
-        "tools/campaign_input_observation.py"
+        "tools/campaign_input_observation.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tools/campaign_target_admission.py",
+        "tests/test-campaign-target-admission.py"
       ],
       "remaining_gaps": [
         "2026-11-03 storage batch: default diagnostics/full evidence, shared catalog inputs, safe private runtime copying and comparison custody are independently scoped under TOOL.check-storage-budget. Historical engine evidence hashes/statuses are retained; edited source paths may leave their older execution evidence stale. Only the recorded short checkpoint scope and storage controls are newly exercised.",
         "2026-11-03 order-admission batch: passive opcode5checkpoint movement and strict latest-hover guard are scoped under INPUT.campaign-order-admission. Prior source fingerprints/statuses remain historical; no new attack, spell, nominal campaign or rendering-equivalence validation is asserted for this broader contract.",
-        "2026-11-03 target-admission batch: bounded V3 candidate/World-return policy and checkpoint opcode7 submission are scoped separately under INPUT.campaign-target-admission and INPUT.campaign-support-attack-submission. One historical-wrapper paused Fireball accepted six-mana debit; older hashes/statuses remain historical. Edited broader source dependencies are pending renewed comparison; no complete spell/pause equivalence, nominal progression, rendering or replacement promotion."
+        "2026-11-03 target-admission batch: bounded V3 candidate/World-return policy and checkpoint opcode7 submission are scoped separately under INPUT.campaign-target-admission and INPUT.campaign-support-attack-submission. One historical-wrapper paused Fireball accepted six-mana debit; older hashes/statuses remain historical. Edited broader source dependencies are pending renewed comparison; no complete spell/pause equivalence, nominal progression, rendering or replacement promotion.",
+        "2026-11-03 matrix continuation: initial-bridge staging is an explicit source dependency. The earlier800x600 attempt timed out after admission three cells short. New adjacent-cell admission and60second initial staging bound require fresh original execution/comparison; preserve all earlier success/failure hashes. Broader historical status is not renewed by fixture controls.",
+        "2026-11-03 matrix source phase3: the second800 attempt reaches the boss with a living offscreen Zombie, so its scene selection sends no click. New bounded candidate-checked scene hover/X fallback and latest sole-primary World witness require fresh source-bound execution. Prior guards, route and nominal/negative hashes remain historical; no original key/picking/delivery or matrix status is renewed.",
+        "Matrix source4 corrects documented next-friendly cycling with a two-press bound and full pending-callback prefix checks. Checkpoint combat deliberately exercises that path. Earlier successful mouse/bridge and failed keyboard source phases retain exact hashes; current nominal validation remains pending."
       ]
     },
     {
@@ -160895,7 +160910,8 @@
         "CAT03.support04",
         "CAT03.observation-review02",
         "CAT03.headless-bound03",
-        "CAT03.live-bound03"
+        "CAT03.live-bound03",
+        "MTR03.support-selection.scene03"
       ],
       "status": {
         "understanding": "partial",
@@ -160910,7 +160926,16 @@
         "runtime/menu/campaign_world_observe.h",
         "tools/campaign_input_observation.py",
         "tools/campaign_order_observation.py",
-        "tools/campaign_input_admission.py"
+        "tools/campaign_input_admission.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "remaining_gaps": [
+        "2026-11-03 matrix continuation: initial-bridge staging is an explicit source dependency. The earlier800x600 attempt timed out after admission three cells short. New adjacent-cell admission and60second initial staging bound require fresh original execution/comparison; preserve all earlier success/failure hashes. Broader historical status is not renewed by fixture controls.",
+        "2026-11-03 matrix source phase3: the second800 attempt reaches the boss with a living offscreen Zombie, so its scene selection sends no click. New bounded candidate-checked scene hover/X fallback and latest sole-primary World witness require fresh source-bound execution. Prior guards, route and nominal/negative hashes remain historical; no original key/picking/delivery or matrix status is renewed.",
+        "Source3 capture-free800 checkpoint passes latest sole-primary World witness and original opcode7 via scene selection. It does not exercise offscreen X; raw observation alone does not renew broader scope-bound validation.",
+        "Matrix source4 corrects documented next-friendly cycling with a two-press bound and full pending-callback prefix checks. Checkpoint combat deliberately exercises that path. Earlier successful mouse/bridge and failed keyboard source phases retain exact hashes; current nominal validation remains pending."
       ]
     },
     {
@@ -161003,7 +161028,10 @@
       ],
       "validation_dependencies": [
         "tools/campaign_gameplay.py",
-        "tools/campaign_spell.py"
+        "tools/campaign_spell.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
       ],
       "evidence": [
         "CAT03.fresh-combat-negative03",
@@ -161020,7 +161048,10 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Fresh diagnostic04 reaches original supported boss targeting, six accepted paused casts and50XP victory/Realm/region2with a living Wizard. Reserve formula remains an authored estimate; nominal intro/full pixel case, other configurations, route interruption and the12case matrix are separate."
+        "Fresh diagnostic04 reaches original supported boss targeting, six accepted paused casts and50XP victory/Realm/region2with a living Wizard. Reserve formula remains an authored estimate; nominal intro/full pixel case, other configurations, route interruption and the12case matrix are separate.",
+        "2026-11-03 matrix continuation: initial-bridge staging is an explicit source dependency. The earlier800x600 attempt timed out after admission three cells short. New adjacent-cell admission and60second initial staging bound require fresh original execution/comparison; preserve all earlier success/failure hashes. Broader historical status is not renewed by fixture controls.",
+        "2026-11-03 matrix source phase3: the second800 attempt reaches the boss with a living offscreen Zombie, so its scene selection sends no click. New bounded candidate-checked scene hover/X fallback and latest sole-primary World witness require fresh source-bound execution. Prior guards, route and nominal/negative hashes remain historical; no original key/picking/delivery or matrix status is renewed.",
+        "Matrix source4 corrects documented next-friendly cycling with a two-press bound and full pending-callback prefix checks. Checkpoint combat deliberately exercises that path. Earlier successful mouse/bridge and failed keyboard source phases retain exact hashes; current nominal validation remains pending."
       ]
     },
     {
@@ -161050,7 +161081,10 @@
         "runtime/menu/campaign_gameplay_observe.h",
         "runtime/menu/campaign_spell_observe.h",
         "tools/campaign_order_observation.py",
-        "tools/campaign_input_admission.py"
+        "tools/campaign_input_admission.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
       ],
       "evidence": [
         "CAT03.supported-diagnostic-bound01",
@@ -161063,7 +161097,12 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "2026-11-03 matrix continuation: initial-bridge staging is an explicit source dependency. The earlier800x600 attempt timed out after admission three cells short. New adjacent-cell admission and60second initial staging bound require fresh original execution/comparison; preserve all earlier success/failure hashes. Broader historical status is not renewed by fixture controls.",
+        "2026-11-03 matrix source phase3: the second800 attempt reaches the boss with a living offscreen Zombie, so its scene selection sends no click. New bounded candidate-checked scene hover/X fallback and latest sole-primary World witness require fresh source-bound execution. Prior guards, route and nominal/negative hashes remain historical; no original key/picking/delivery or matrix status is renewed.",
+        "Matrix source4 corrects documented next-friendly cycling with a two-press bound and full pending-callback prefix checks. Checkpoint combat deliberately exercises that path. Earlier successful mouse/bridge and failed keyboard source phases retain exact hashes; current nominal validation remains pending."
+      ]
     },
     {
       "id": "HOST.campaign-nominal-world-history",
@@ -161104,12 +161143,23 @@
         "apps/qt-shell/CMakeLists.txt",
         "runtime/menu/campaign_world_observe.h",
         "tools/campaign-outcome-input.py",
-        "tools/campaign_target_admission.py"
+        "tools/campaign_target_admission.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
       ],
       "evidence": [
         "CAT03.nominal-full01",
         "CAT03.nominal-comparison01",
-        "CAT03.nominal-history-bound02"
+        "CAT03.nominal-history-bound02",
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07",
+        "MTR03.victory-software-640x480.negative07",
+        "MTR03.matrix-closeout07"
       ],
       "status": {
         "understanding": "partial",
@@ -161117,7 +161167,999 @@
         "comparison": "none",
         "integration": "live_equivalence",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "2026-11-03 matrix continuation: initial-bridge staging is an explicit source dependency. The earlier800x600 attempt timed out after admission three cells short. New adjacent-cell admission and60second initial staging bound require fresh original execution/comparison; preserve all earlier success/failure hashes. Broader historical status is not renewed by fixture controls.",
+        "2026-11-03 matrix source phase3: the second800 attempt reaches the boss with a living offscreen Zombie, so its scene selection sends no click. New bounded candidate-checked scene hover/X fallback and latest sole-primary World witness require fresh source-bound execution. Prior guards, route and nominal/negative hashes remain historical; no original key/picking/delivery or matrix status is renewed.",
+        "Matrix source4 corrects documented next-friendly cycling with a two-press bound and full pending-callback prefix checks. Checkpoint combat deliberately exercises that path. Earlier successful mouse/bridge and failed keyboard source phases retain exact hashes; current nominal validation remains pending.",
+        "Failed acquisition research/runtime/rendering-progression-results-20261101/matrix-victory-software-640x480-07.json: Public launcher failed: Outcome input failed: "
+      ]
+    },
+    {
+      "id": "HOST.campaign-matrix.victory.software.800x600",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Nominal campaign victory: software 800x600",
+      "scope": "One enabled-intro full-capture victory/software/800x600 branch. Require fresh original campaign entry, the natural outcome and original result OK, Realm travel and actual Celtic region2 World, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Guarded original World Tick vtable-slot context only; neither complete original Tick recovery nor native simulation replacement."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/rendering_progression.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "tests": [
+        "tests/acceptance-world-reference.cpp",
+        "tests/acceptance-world-history.cpp",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound01",
+        "MTR03.victory-software-800x600.negative01",
+        "MTR03.headless-bound02",
+        "MTR03.victory-software-800x600.negative02",
+        "MTR03.headless-bound03",
+        "MTR03.victory-software-800x600.negative03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.victory-software-800x600.negative06",
+        "MTR03.headless-bound07",
+        "MTR03.victory-software-800x600.negative07",
+        "MTR03.matrix-closeout07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current execution and independent comparison pending for this configured matrix branch.",
+        "Failed acquisition research/runtime/rendering-progression-results-20261101/matrix-victory-software-800x600-01.json: Public launcher failed: Outcome input failed: ",
+        "2026-11-03 matrix continuation: initial-bridge staging is an explicit source dependency. The earlier800x600 attempt timed out after admission three cells short. New adjacent-cell admission and60second initial staging bound require fresh original execution/comparison; preserve all earlier success/failure hashes. Broader historical status is not renewed by fixture controls.",
+        "Failed acquisition research/runtime/rendering-progression-results-20261101/matrix-victory-software-800x600-02.json: Public launcher failed: Outcome input failed: ",
+        "2026-11-03 matrix source phase3: the second800 attempt reaches the boss with a living offscreen Zombie, so its scene selection sends no click. New bounded candidate-checked scene hover/X fallback and latest sole-primary World witness require fresh source-bound execution. Prior guards, route and nominal/negative hashes remain historical; no original key/picking/delivery or matrix status is renewed.",
+        "Failed acquisition research/runtime/rendering-progression-results-20261101/matrix-victory-software-800x600-03.json: Public launcher failed: Outcome input failed: ",
+        "Matrix source4 corrects documented next-friendly cycling with a two-press bound and full pending-callback prefix checks. Checkpoint combat deliberately exercises that path. Earlier successful mouse/bridge and failed keyboard source phases retain exact hashes; current nominal validation remains pending.",
+        "Failed acquisition research/runtime/rendering-progression-results-20261101/matrix-victory-software-800x600-06.json: Public launcher failed: Outcome input failed: ",
+        "Failed acquisition research/runtime/rendering-progression-results-20261101/matrix-victory-software-800x600-07.json: Public launcher failed: Outcome input failed: "
+      ]
+    },
+    {
+      "id": "HOST.campaign-matrix.victory.default.640x480",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Nominal campaign victory: default 640x480",
+      "scope": "One enabled-intro full-capture victory/default/640x480 branch. Require fresh original campaign entry, the natural outcome and original result OK, Realm travel and actual Celtic region2 World, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Guarded original World Tick vtable-slot context only; neither complete original Tick recovery nor native simulation replacement."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/rendering_progression.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "tests": [
+        "tests/acceptance-world-reference.cpp",
+        "tests/acceptance-world-history.cpp",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound01",
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07",
+        "MTR03.victory-default-640x480.negative07",
+        "MTR03.matrix-closeout07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current execution and independent comparison pending for this configured matrix branch.",
+        "2026-11-03 matrix continuation: initial-bridge staging is an explicit source dependency. The earlier800x600 attempt timed out after admission three cells short. New adjacent-cell admission and60second initial staging bound require fresh original execution/comparison; preserve all earlier success/failure hashes. Broader historical status is not renewed by fixture controls.",
+        "2026-11-03 matrix source phase3: the second800 attempt reaches the boss with a living offscreen Zombie, so its scene selection sends no click. New bounded candidate-checked scene hover/X fallback and latest sole-primary World witness require fresh source-bound execution. Prior guards, route and nominal/negative hashes remain historical; no original key/picking/delivery or matrix status is renewed.",
+        "Matrix source4 corrects documented next-friendly cycling with a two-press bound and full pending-callback prefix checks. Checkpoint combat deliberately exercises that path. Earlier successful mouse/bridge and failed keyboard source phases retain exact hashes; current nominal validation remains pending.",
+        "Failed acquisition research/runtime/rendering-progression-results-20261101/matrix-victory-default-640x480-07.json: Public launcher failed: Outcome input failed: "
+      ]
+    },
+    {
+      "id": "HOST.campaign-matrix.victory.default.800x600",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Nominal campaign victory: default 800x600",
+      "scope": "One enabled-intro full-capture victory/default/800x600 branch. Require fresh original campaign entry, the natural outcome and original result OK, Realm travel and actual Celtic region2 World, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Guarded original World Tick vtable-slot context only; neither complete original Tick recovery nor native simulation replacement."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/rendering_progression.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "tests": [
+        "tests/acceptance-world-reference.cpp",
+        "tests/acceptance-world-history.cpp",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound01",
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07",
+        "MTR03.victory-default-800x600.negative07",
+        "MTR03.matrix-closeout07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current execution and independent comparison pending for this configured matrix branch.",
+        "2026-11-03 matrix continuation: initial-bridge staging is an explicit source dependency. The earlier800x600 attempt timed out after admission three cells short. New adjacent-cell admission and60second initial staging bound require fresh original execution/comparison; preserve all earlier success/failure hashes. Broader historical status is not renewed by fixture controls.",
+        "2026-11-03 matrix source phase3: the second800 attempt reaches the boss with a living offscreen Zombie, so its scene selection sends no click. New bounded candidate-checked scene hover/X fallback and latest sole-primary World witness require fresh source-bound execution. Prior guards, route and nominal/negative hashes remain historical; no original key/picking/delivery or matrix status is renewed.",
+        "Matrix source4 corrects documented next-friendly cycling with a two-press bound and full pending-callback prefix checks. Checkpoint combat deliberately exercises that path. Earlier successful mouse/bridge and failed keyboard source phases retain exact hashes; current nominal validation remains pending.",
+        "Failed acquisition research/runtime/rendering-progression-results-20261101/matrix-victory-default-800x600-07.json: Public launcher failed: Unexpected/abandoned primary outcome"
+      ]
+    },
+    {
+      "id": "HOST.campaign-matrix.progression.software.640x480",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Nominal campaign progression: software 640x480",
+      "scope": "One enabled-intro full-capture progression/software/640x480 branch. Require fresh original campaign entry, the natural outcome and original result OK, Realm travel and actual Celtic region2 World, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Guarded original World Tick vtable-slot context only; neither complete original Tick recovery nor native simulation replacement."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/rendering_progression.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "tests": [
+        "tests/acceptance-world-reference.cpp",
+        "tests/acceptance-world-history.cpp",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound01",
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07",
+        "MTR03.progression-software-640x480.negative07",
+        "MTR03.matrix-closeout07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current execution and independent comparison pending for this configured matrix branch.",
+        "2026-11-03 matrix continuation: initial-bridge staging is an explicit source dependency. The earlier800x600 attempt timed out after admission three cells short. New adjacent-cell admission and60second initial staging bound require fresh original execution/comparison; preserve all earlier success/failure hashes. Broader historical status is not renewed by fixture controls.",
+        "2026-11-03 matrix source phase3: the second800 attempt reaches the boss with a living offscreen Zombie, so its scene selection sends no click. New bounded candidate-checked scene hover/X fallback and latest sole-primary World witness require fresh source-bound execution. Prior guards, route and nominal/negative hashes remain historical; no original key/picking/delivery or matrix status is renewed.",
+        "Matrix source4 corrects documented next-friendly cycling with a two-press bound and full pending-callback prefix checks. Checkpoint combat deliberately exercises that path. Earlier successful mouse/bridge and failed keyboard source phases retain exact hashes; current nominal validation remains pending.",
+        "Failed acquisition research/runtime/rendering-progression-results-20261101/matrix-progression-software-640x480-07.json: Public launcher failed: Outcome input failed: "
+      ]
+    },
+    {
+      "id": "HOST.campaign-matrix.progression.software.800x600",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Nominal campaign progression: software 800x600",
+      "scope": "One enabled-intro full-capture progression/software/800x600 branch. Require fresh original campaign entry, the natural outcome and original result OK, Realm travel and actual Celtic region2 World, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Guarded original World Tick vtable-slot context only; neither complete original Tick recovery nor native simulation replacement."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/rendering_progression.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "tests": [
+        "tests/acceptance-world-reference.cpp",
+        "tests/acceptance-world-history.cpp",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound01",
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07",
+        "MTR03.progression-software-800x600.negative07",
+        "MTR03.matrix-closeout07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current execution and independent comparison pending for this configured matrix branch.",
+        "2026-11-03 matrix continuation: initial-bridge staging is an explicit source dependency. The earlier800x600 attempt timed out after admission three cells short. New adjacent-cell admission and60second initial staging bound require fresh original execution/comparison; preserve all earlier success/failure hashes. Broader historical status is not renewed by fixture controls.",
+        "2026-11-03 matrix source phase3: the second800 attempt reaches the boss with a living offscreen Zombie, so its scene selection sends no click. New bounded candidate-checked scene hover/X fallback and latest sole-primary World witness require fresh source-bound execution. Prior guards, route and nominal/negative hashes remain historical; no original key/picking/delivery or matrix status is renewed.",
+        "Matrix source4 corrects documented next-friendly cycling with a two-press bound and full pending-callback prefix checks. Checkpoint combat deliberately exercises that path. Earlier successful mouse/bridge and failed keyboard source phases retain exact hashes; current nominal validation remains pending.",
+        "Failed acquisition research/runtime/rendering-progression-results-20261101/matrix-progression-software-800x600-07.json: Public launcher failed: Outcome input failed: "
+      ]
+    },
+    {
+      "id": "HOST.campaign-matrix.progression.default.640x480",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Nominal campaign progression: default 640x480",
+      "scope": "One enabled-intro full-capture progression/default/640x480 branch. Require fresh original campaign entry, the natural outcome and original result OK, Realm travel and actual Celtic region2 World, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Guarded original World Tick vtable-slot context only; neither complete original Tick recovery nor native simulation replacement."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/rendering_progression.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "tests": [
+        "tests/acceptance-world-reference.cpp",
+        "tests/acceptance-world-history.cpp",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound01",
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07",
+        "MTR03.progression-default-640x480.negative07",
+        "MTR03.matrix-closeout07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current execution and independent comparison pending for this configured matrix branch.",
+        "2026-11-03 matrix continuation: initial-bridge staging is an explicit source dependency. The earlier800x600 attempt timed out after admission three cells short. New adjacent-cell admission and60second initial staging bound require fresh original execution/comparison; preserve all earlier success/failure hashes. Broader historical status is not renewed by fixture controls.",
+        "2026-11-03 matrix source phase3: the second800 attempt reaches the boss with a living offscreen Zombie, so its scene selection sends no click. New bounded candidate-checked scene hover/X fallback and latest sole-primary World witness require fresh source-bound execution. Prior guards, route and nominal/negative hashes remain historical; no original key/picking/delivery or matrix status is renewed.",
+        "Matrix source4 corrects documented next-friendly cycling with a two-press bound and full pending-callback prefix checks. Checkpoint combat deliberately exercises that path. Earlier successful mouse/bridge and failed keyboard source phases retain exact hashes; current nominal validation remains pending.",
+        "Failed acquisition research/runtime/rendering-progression-results-20261101/matrix-progression-default-640x480-07.json: Public launcher failed: Outcome input failed: "
+      ]
+    },
+    {
+      "id": "HOST.campaign-matrix.progression.default.800x600",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Nominal campaign progression: default 800x600",
+      "scope": "One enabled-intro full-capture progression/default/800x600 branch. Require fresh original campaign entry, the natural outcome and original result OK, Realm travel and actual Celtic region2 World, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Guarded original World Tick vtable-slot context only; neither complete original Tick recovery nor native simulation replacement."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/rendering_progression.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "tests": [
+        "tests/acceptance-world-reference.cpp",
+        "tests/acceptance-world-history.cpp",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound01",
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07",
+        "MTR03.progression-default-800x600.negative07",
+        "MTR03.matrix-closeout07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current execution and independent comparison pending for this configured matrix branch.",
+        "2026-11-03 matrix continuation: initial-bridge staging is an explicit source dependency. The earlier800x600 attempt timed out after admission three cells short. New adjacent-cell admission and60second initial staging bound require fresh original execution/comparison; preserve all earlier success/failure hashes. Broader historical status is not renewed by fixture controls.",
+        "2026-11-03 matrix source phase3: the second800 attempt reaches the boss with a living offscreen Zombie, so its scene selection sends no click. New bounded candidate-checked scene hover/X fallback and latest sole-primary World witness require fresh source-bound execution. Prior guards, route and nominal/negative hashes remain historical; no original key/picking/delivery or matrix status is renewed.",
+        "Matrix source4 corrects documented next-friendly cycling with a two-press bound and full pending-callback prefix checks. Checkpoint combat deliberately exercises that path. Earlier successful mouse/bridge and failed keyboard source phases retain exact hashes; current nominal validation remains pending.",
+        "Failed acquisition research/runtime/rendering-progression-results-20261101/matrix-progression-default-800x600-07.json: Public launcher failed: Outcome input failed: "
+      ]
+    },
+    {
+      "id": "HOST.campaign-matrix.defeat.software.640x480",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Nominal campaign defeat: software 640x480",
+      "scope": "One enabled-intro full-capture defeat/software/640x480 branch. Require fresh original campaign entry, the natural outcome and original result OK, original return to Main, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Guarded original World Tick vtable-slot context only; neither complete original Tick recovery nor native simulation replacement."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/rendering_progression.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "tests": [
+        "tests/acceptance-world-reference.cpp",
+        "tests/acceptance-world-history.cpp",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound01",
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07",
+        "MTR03.defeat-software-640x480.bound07",
+        "MTR03.matrix-closeout07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "One configured execution only. Repeated-run reliability, route interruption/resumption, populated lifetimes, native save parsing, physical scanout, native simulation and balance remain separate; other configured branches require their own proof."
+      ]
+    },
+    {
+      "id": "HOST.campaign-matrix.defeat.software.800x600",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Nominal campaign defeat: software 800x600",
+      "scope": "One enabled-intro full-capture defeat/software/800x600 branch. Require fresh original campaign entry, the natural outcome and original result OK, original return to Main, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Guarded original World Tick vtable-slot context only; neither complete original Tick recovery nor native simulation replacement."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/rendering_progression.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "tests": [
+        "tests/acceptance-world-reference.cpp",
+        "tests/acceptance-world-history.cpp",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound01",
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07",
+        "MTR03.defeat-software-800x600.bound07",
+        "MTR03.matrix-closeout07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "One configured execution only. Repeated-run reliability, route interruption/resumption, populated lifetimes, native save parsing, physical scanout, native simulation and balance remain separate; other configured branches require their own proof."
+      ]
+    },
+    {
+      "id": "HOST.campaign-matrix.defeat.default.640x480",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Nominal campaign defeat: default 640x480",
+      "scope": "One enabled-intro full-capture defeat/default/640x480 branch. Require fresh original campaign entry, the natural outcome and original result OK, original return to Main, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Guarded original World Tick vtable-slot context only; neither complete original Tick recovery nor native simulation replacement."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/rendering_progression.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "tests": [
+        "tests/acceptance-world-reference.cpp",
+        "tests/acceptance-world-history.cpp",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound01",
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07",
+        "MTR03.defeat-default-640x480.bound07",
+        "MTR03.matrix-closeout07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "One configured execution only. Repeated-run reliability, route interruption/resumption, populated lifetimes, native save parsing, physical scanout, native simulation and balance remain separate; other configured branches require their own proof."
+      ]
+    },
+    {
+      "id": "HOST.campaign-matrix.defeat.default.800x600",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Nominal campaign defeat: default 800x600",
+      "scope": "One enabled-intro full-capture defeat/default/800x600 branch. Require fresh original campaign entry, the natural outcome and original result OK, original return to Main, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Guarded original World Tick vtable-slot context only; neither complete original Tick recovery nor native simulation replacement."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py",
+        "tools/rendering_progression.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "tests": [
+        "tests/acceptance-world-reference.cpp",
+        "tests/acceptance-world-history.cpp",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound01",
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07",
+        "MTR03.defeat-default-800x600.bound07",
+        "MTR03.matrix-closeout07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "One configured execution only. Repeated-run reliability, route interruption/resumption, populated lifetimes, native save parsing, physical scanout, native simulation and balance remain separate; other configured branches require their own proof."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-initial-bridge-staging",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Bounded initial bridge staging before campaign combat",
+      "scope": "Authored initial Forest bridge staging within one adjacent horizontal grid cell, including diagonals, before first combat; retain exact post-refill waypoint admission. Both initial and cleared staging have60second bounds, original hover/World-return admission remains mandatory, and actual original outcomes decide success. Retained800x600 pose28,52 is refused for bridge31,52; the earlier stall is not attributed solely to this threshold. No original pathfinding/collision/range/AI formula, whole campaign, route interruption, native simulation or balance claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Original forwarded World Tick context for sampled actor positions only; adjacent staging is authored native driver policy."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md"
+      ],
+      "implementation": [
+        "tools/campaign_route.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_gameplay.py",
+        "tools/campaign_target_admission.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "MTR03.victory-software-800x600.negative01",
+        "MTR03.headless-bound02",
+        "MTR03.initial-bridge.live02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07",
+        "MTR03.bridge-boundaries.live07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current source7 initial and cleared bridge boundaries pass within a failed full800 campaign. Whole nominal outcome/pixels, repeatability, complete movement/collision and route interruption remain separate."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-offscreen-support-selection",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Bounded friendly cycling with original sole-primary acknowledgement",
+      "scope": "Bounded friendly-cycle selection primitive with a fresh complete-prefix sole-primary World witness. Source4 checkpoint selects support after two paused X presses; the subsequent boss candidate and attack fail. Selection does not establish camera preservation, command delivery or nominal outcome.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056532,
+          "relation": "data",
+          "scope": "Original Region input-vtable context only; no complete key-selector recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Forwarded original World Tick context for passive candidate/pool/primary samples only."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md",
+        "research/runtime/rts-controls.md"
+      ],
+      "implementation": [
+        "tools/campaign_target_admission.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "tests": [
+        "tests/test-campaign-target-admission.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_input_admission.py",
+        "tools/campaign_input_observation.py",
+        "tools/campaign_order_observation.py"
+      ],
+      "evidence": [
+        "MTR03.victory-software-800x600.negative02",
+        "MTR03.headless-bound03",
+        "MTR03.support-selection.scene03",
+        "MTR03.victory-software-800x600.negative03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.friendly-cycle.partial04",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current211Python controls pass, including nested whole-prefix pending/changed-role refusals. Original private team recall, sole-primary/opcode7 and nominal matrix remain pending; earlier X failures retain their exact source phases."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-offscreen-team-recall",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Verified private support team recall before bounded combat",
+      "scope": "Native driver policy uses ordinary Ctrl9 to assign the sole living owned support, observes Wizard primary then one9 support primary, and returns to Wizard. At offscreen boss approach or forced checkpoint diagnostic, one9 must produce a fresh sole-support bitmap and original boss scene candidate before Space pause. Exact original opcode7 remains mandatory and separate. No recovered complete keyboard/camera semantics, group persistence, native commander gameplay, command delivery or balance claim. Preserve the actually admitted boss physical point across unpaused recall; a refreshed moving actor pose is not a new camera basis. Every attack candidate remains independently checked.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056532,
+          "relation": "data",
+          "scope": "Original Region input-vtable context only; no complete key-selector recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Forwarded original World Tick context for passive candidate/pool/primary samples only."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md",
+        "research/runtime/rts-controls.md"
+      ],
+      "implementation": [
+        "tools/campaign_target_admission.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "tests": [
+        "tests/test-campaign-target-admission.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_input_admission.py",
+        "tools/campaign_input_observation.py",
+        "tools/campaign_order_observation.py",
+        "tools/campaign_gameplay.py",
+        "tools/campaign_spell.py",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "tools/prepare-menu-observer.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound05",
+        "MTR03.team-recall.negative05",
+        "MTR03.headless-bound06",
+        "MTR03.team-recall.live06",
+        "MTR03.headless-bound07",
+        "MTR03.team-recall.nominal-negative07",
+        "MTR03.team-recall.raw07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current default640 full progression run validates natural offscreen team recall, retained admitted candidate point and original opcode7 submission. Original GP source target4 and Boss damage100to40 are observed, but whole campaign fails on rearm travel. Wizard is stationary during recall; moving-pose regression, original delivery causality, complete group/camera/lifetime semantics and repeatability remain pending."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-resupply-combat-suspension",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Bounded route suspension and resumption for affordable nearby combat",
+      "scope": "Authored physical driver suspends resupply or a post-refill bridge phase for an active living hostile within seven horizontal tiles targeting the living player Wizard/known owned Zombie follower, or attributed in the preceding three-second melee window, when at least six mana is available. At most four interruptions; preserve the interrupted phase and resume it when no eligible affordable threat remains. Resume may be caused by insufficient mana while the enemy lives; it does not imply threat clearance, completed refill or successful outcome. Native policy only, not recovered original AI scheduling, full damage/pathfinding, commander gameplay, simulation replacement or balance.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Original World Tick context for the passive creature/damage samples consumed by the authored input policy; no original scheduler recovery."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-matrix-20261103.md",
+        "research/runtime/campaign-approach-20261103.md"
+      ],
+      "implementation": [
+        "tools/campaign-outcome-input.py"
+      ],
+      "tests": [
+        "tests/test-rendering-progression.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_gameplay.py",
+        "tools/campaign_spell.py",
+        "tools/campaign_route.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_input_admission.py",
+        "tools/campaign_input_observation.py",
+        "tools/campaign_order_observation.py",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "tools/prepare-menu-observer.py"
+      ],
+      "evidence": [
+        "MTR03.route-suspension.live07"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "One current original run validates three scoped interruptions/resumptions and a subsequent full refill. Two resupply resumptions occur because mana is insufficient while the hostile remains alive; the bridge resumption follows independently attributed lethal damage. Whole campaign still fails; repeated-run reliability, complete threat/AI/collision/damage/lifetime semantics and native simulation remain pending."
+      ]
     }
   ],
   "evidence": [
@@ -374549,6 +375591,592 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "MTR03.headless-bound01",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-matrix-results-20261103/headless-scope-binding-01.json",
+      "sha256": "886681974f8943d4a685b2ab58fbdfcabd434c323fa8aee62af8a6f028043937",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Partial implementation controls and fresh player/independent-oracle build only. Runtime header bytes match the retained earlier original wire execution. No new configured original outcome, original comparison, live integration, complete matrix, repeated-run, lifetime, save-parser, scanout, native-simulation or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.victory-software-800x600.negative01",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/matrix-victory-software-800x600-01.json",
+      "sha256": "e881c3d59439dec566f7094ff40cdcaef68e82e3d1d9768144fbc0a7d8afc0af",
+      "sources_pointer": "/sources",
+      "scope": "Negative configured nominal acquisition only; preserve its actual outcome/error. No successful branch, pixel or milestone claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.headless-bound02",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-matrix-results-20261103/headless-scope-binding-02.json",
+      "sha256": "ada749c45e333c5a5e834cd55df36d54188b3fb56291ee24438d30d149b458bc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Partial implementation controls and fresh player/independent-oracle build only. Runtime header bytes match the retained earlier original wire execution. No new configured original outcome, original comparison, live integration, complete matrix, repeated-run, lifetime, save-parser, scanout, native-simulation or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.initial-bridge.live02",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-matrix-results-20261103/initial-bridge-live-binding-02.json",
+      "sha256": "9463c2b744c0172de20ca693952b69e6d31be2f5e7ac3e08045df07d7165c26e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "One skipped-intro capture-free original800x600 route admits initial combat at30,52, clears the neutral bridge defender, refills at23,57,6 and completes original Save/Load and normal Quit. No nominal outcome/pixel, complete saved simulation, native parsing, sole-cause, AI/range or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.victory-software-800x600.negative02",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/matrix-victory-software-800x600-02.json",
+      "sha256": "886a0db6a2dadd6bfdbbb358ae749894483076905ca5480829bb76149765bc3c",
+      "sources_pointer": "/sources",
+      "scope": "Negative configured nominal acquisition only; preserve its actual outcome/error. No successful branch, pixel or milestone claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.headless-bound03",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-matrix-results-20261103/headless-scope-binding-03.json",
+      "sha256": "ea0ef8c896a0a34254c3ba67bd4227e156af89e753230a04376d144e422be1ae",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Partial implementation controls and current player/independent-oracle build only. Runtime header bytes match the retained earlier original wire execution. No new configured original outcome, original comparison, live integration, complete matrix, repeated-run, lifetime, save-parser, scanout, native-simulation or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.support-selection.scene03",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-matrix-results-20261103/support-selection-scene-review-03.json",
+      "sha256": "5d2670151cb3d6db0fa6c382ab63edeb7b923880ac00020611904c50551e9eab",
+      "sources_pointer": "/sources",
+      "scope": "Current capture-free800 checkpoint Save/Load/Quit and stricter latest-World sole-primary witness pass via scene mouse selection; actual original opcode7 submission is separate. Source body is just inside view at48,390, so the new offscreen X branch remains unexercised/headless. No command delivery, boss damage, nominal outcome/pixels, complete keyboard or saved-simulation claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/offscreen_x_exercised",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "MTR03.victory-software-800x600.negative03",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/matrix-victory-software-800x600-03.json",
+      "sha256": "43e17a2d78bc19e984e63757f733023920cb9b6fd8a473ca0d014b53cebb88fe",
+      "sources_pointer": "/sources",
+      "scope": "Negative configured nominal acquisition only; preserve its actual outcome/error. No successful branch, pixel or milestone claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.headless-bound04",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-matrix-results-20261103/headless-scope-binding-04.json",
+      "sha256": "e0febdcfb9340a0ed45da4afbe499117ccd8db97f659b8fef2d0421ac948b2b6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Partial implementation controls and current player/independent-oracle build only. Runtime header bytes match the retained earlier original wire execution. No new configured original outcome, original comparison, live integration, complete matrix, repeated-run, lifetime, save-parser, scanout, native-simulation or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.headless-bound05",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-matrix-results-20261103/headless-scope-binding-05.json",
+      "sha256": "ce6668f57529280f6a7fa8e4c1282297c5bf3f2d501db87fb06f1b891532b28f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Partial implementation controls and current player/independent-oracle build only. Runtime header bytes match the retained earlier original wire execution. No new configured original outcome, original comparison, live integration, complete matrix, repeated-run, lifetime, save-parser, scanout, native-simulation or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.friendly-cycle.partial04",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/matrix-friendly-cycle-probe-04.json",
+      "sha256": "5cc2590a4acaedf5920320aa07aad8a90c812c31aaa9efff60f310d6b9030849",
+      "sources_pointer": "/sources",
+      "scope": "Historical source4 checkpoint is a failed whole diagnostic with normal Quit. Two paused X presses give a sole-support primary; later boss candidates refuse and no opcode7 is submitted. Camera movement remains a hypothesis. No current-source, attack or nominal promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.team-recall.negative05",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/matrix-team-recall-probe-05.json",
+      "sha256": "f62cb7a8b64e58c3afc812229c781b2595201a17b0bdb296ebd475fb457882be",
+      "sources_pointer": "/sources",
+      "scope": "Original private team assignment and recall produce Wizard0 then support3 sole-primary witnesses. Whole diagnostic fails waiting for return-to-Wizard acknowledgement. Later passive samples contain Wizard0; exact wait failure timing is unresolved. No boss attempt, opcode7, nominal or pixel claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.headless-bound06",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-matrix-results-20261103/headless-scope-binding-06.json",
+      "sha256": "635ffc68fdc6d775465e81fc721df6b65f3038495327416f30c4919558e98d34",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Partial implementation controls and current player/independent-oracle build only. Runtime header bytes match the retained earlier original wire execution. No new configured original outcome, original comparison, live integration, complete matrix, repeated-run, lifetime, save-parser, scanout, native-simulation or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.team-recall.live06",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-matrix-results-20261103/team-recall-live-binding-06.json",
+      "sha256": "89ea0ef1ad6bf8323a35156fc25f4e8685856b0e7078cbecc23c82823e38dce9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "One capture-free skipped-intro original800 checkpoint verifies private Ctrl9 assignment, Wizard/support/Wizard primary transitions, forced boss team recall, fresh original boss candidate and exact Zombie3-to-Camulos4 opcode7 buffer append. Original Save/Load/Quit and pause release pass. No delivery, damage, natural offscreen visibility, nominal outcome/pixels, complete group/camera handling or saved simulation claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.victory-software-800x600.negative06",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/matrix-victory-software-800x600-06.json",
+      "sha256": "21f13f30b55453cd28d505c85fb51ddd4597393b701a3d72321faf288bc8f0e7",
+      "sources_pointer": "/sources",
+      "scope": "Negative configured nominal acquisition only; preserve its actual outcome/error. No successful branch, pixel or milestone claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.headless-bound07",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-matrix-results-20261103/headless-scope-binding-07.json",
+      "sha256": "82ee13c16206f4c6ea688e2cc925ad28a93f8c9f86249958bfe4c2e5e294d7f3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Partial implementation controls and current player/independent-oracle build only. Runtime header bytes match the retained earlier original wire execution. No new configured original outcome, original comparison, live integration, complete matrix, repeated-run, lifetime, save-parser, scanout, native-simulation or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.victory-software-800x600.negative07",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/matrix-victory-software-800x600-07.json",
+      "sha256": "f24bca09a9874e3391b242af5d32690c8056804cc696de43f9ab40acb774adba",
+      "sources_pointer": "/sources",
+      "scope": "Negative configured nominal acquisition only; preserve its actual outcome/error. No successful branch, pixel or milestone claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.bridge-boundaries.live07",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-matrix-results-20261103/bridge-boundaries-negative-nominal-binding-07.json",
+      "sha256": "1feb04eacfefb162b86516d1c762cff72000a5292aef2d2abf310728fa8f40ba",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Scoped bridge boundaries within a failed full enabled-intro software800 campaign: initial adjacent30,52 admission, original neutral-defender lethal observation, full-mana reserve at23,57,6 and exact cleared31,52 return. The later campaign times out. No successful whole campaign, boss control, pixel, Save/Load/Quit or recovered movement/collision claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/whole_campaign_passed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "MTR03.victory-software-640x480.negative07",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/matrix-victory-software-640x480-07.json",
+      "sha256": "7a038c83a833668a6a2c1a5a618f1cc7d2ec9dddd7c2c6329f1a4dffc3363622",
+      "sources_pointer": "/sources",
+      "scope": "Negative configured nominal acquisition only; preserve its actual outcome/error. No successful branch, pixel or milestone claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.victory-default-640x480.negative07",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/matrix-victory-default-640x480-07.json",
+      "sha256": "f29958e53d9c30eb3769481891b69dfd51c5fd88b9cf6498c3b731fd20d96599",
+      "sources_pointer": "/sources",
+      "scope": "Negative configured nominal acquisition only; preserve its actual outcome/error. No successful branch, pixel or milestone claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.victory-default-800x600.negative07",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/matrix-victory-default-800x600-07.json",
+      "sha256": "d70e77209c35b5a49acfd4ede7ba07b35fa1d78c24deba3d14d6654de75c5f65",
+      "sources_pointer": "/sources",
+      "scope": "Negative configured nominal acquisition only; preserve its actual outcome/error. No successful branch, pixel or milestone claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.progression-software-640x480.negative07",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/matrix-progression-software-640x480-07.json",
+      "sha256": "e77fce0745e91cb84aade49e0e8bff593be3966ce1ef765ddface63bcea503ef",
+      "sources_pointer": "/sources",
+      "scope": "Negative configured nominal acquisition only; preserve its actual outcome/error. No successful branch, pixel or milestone claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.route-suspension.live07",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-matrix-results-20261103/route-suspension-live-binding-07.json",
+      "sha256": "f97498ba490cd440e79c9723e973ce8f48bc2d18df512c2e63e02c0141411628",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current full enabled-intro software640 progression attempt remains failed. Within it, original role/position/mana observations support two resupply interruptions against type10/owner1 slot6, low-mana resumptions, subsequent full refill and a post-refill bridge interruption against type11/owner1 slot1 followed by resumption. Independently decoded original accepted Fireball/debit and attributed damage records accompany the intervals. No original AI scheduler, whole campaign, pixels, balance, complete actor lifetime or replacement claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/whole_campaign_passed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "MTR03.progression-software-800x600.negative07",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/matrix-progression-software-800x600-07.json",
+      "sha256": "b6806b51161f9b67498865609e7535b7d6de4fabef3da1a6489789db298c22b2",
+      "sources_pointer": "/sources",
+      "scope": "Negative configured nominal acquisition only; preserve its actual outcome/error. No successful branch, pixel or milestone claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.progression-default-640x480.negative07",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/matrix-progression-default-640x480-07.json",
+      "sha256": "bffe859687a1ec723568cafab7088571e32051c09d51176d42b9099f8785903f",
+      "sources_pointer": "/sources",
+      "scope": "Negative configured nominal acquisition only; preserve its actual outcome/error. No successful branch, pixel or milestone claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.team-recall.nominal-negative07",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-matrix-results-20261103/team-recall-nominal-negative-live-binding-07.json",
+      "sha256": "98e14052fe3b3ff2c55f7ff788d5e48d4c4e5abb0609142af782dfc688be50ce",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "One failed full enabled-intro default640 progression run verifies natural offscreen team recall, fresh sole-support primary, retained admitted scene point and independently checked original Zombie3-to-Camulos4 opcode7 append. Subsequent GP target4 and three original Boss damage events100to40 are recorded separately from command delivery causality. The Wizard stays stationary during recall; moving-pose camera regression, whole outcome/pixels, complete group/camera/lifetime semantics and repeatability remain pending",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.team-recall.raw07",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-matrix-results-20261103/team-recall-raw-crosscheck-07.json",
+      "sha256": "3977a158510e1e25b34dd963ee63e617b99c266d0168c0555c2fd798be189256",
+      "sources_pointer": "/sources",
+      "scope": "Independent redecoding of retained passive original order/GP/spell bytes matches the helper-carried sole-primary, opcode7, source/target role snapshots, subsequent GP target4 and three player-attributed Boss damage rows100to40. This crosscheck does not prove command delivery causality, moving-camera semantics, whole campaign, pixels, complete actor lifetime or simulation replacement.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/whole_campaign_passed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "MTR03.progression-default-800x600.negative07",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/matrix-progression-default-800x600-07.json",
+      "sha256": "c4f181b1acc27fe2add51fdcec5cc57e4fb2bc936fa84ec194393744d30fc4d2",
+      "sources_pointer": "/sources",
+      "scope": "Negative configured nominal acquisition only; preserve its actual outcome/error. No successful branch, pixel or milestone claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MTR03.defeat-software-640x480.bound07",
+      "kind": "live_equivalence",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/live_pixels_match",
+      "record": "research/runtime/campaign-matrix-results-20261103/branch-defeat-software-640x480-07.json",
+      "sha256": "d9db870fb2e70136a8d0508f6bb8dc4841e3582c70f44e6b5407553e6893f0fe",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "One enabled-intro full-capture defeat/software/640x480 branch. Require fresh original campaign entry, the natural outcome and original result OK, original return to Main, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "MTR03.defeat-default-640x480.bound07",
+      "kind": "live_equivalence",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/live_pixels_match",
+      "record": "research/runtime/campaign-matrix-results-20261103/branch-defeat-default-640x480-07.json",
+      "sha256": "a8ac9e1542fa2551005eedb6c8ef00db2e808c8aacfe34e101d0a82a43a3ae80",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "One enabled-intro full-capture defeat/default/640x480 branch. Require fresh original campaign entry, the natural outcome and original result OK, original return to Main, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "MTR03.defeat-software-800x600.bound07",
+      "kind": "live_equivalence",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/live_pixels_match",
+      "record": "research/runtime/campaign-matrix-results-20261103/branch-defeat-software-800x600-07.json",
+      "sha256": "fb3e5efb3ea460ad07deeaadd9f38638cc36b7fa98f6de2b4eadca8dbf9e548d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "One enabled-intro full-capture defeat/software/800x600 branch. Require fresh original campaign entry, the natural outcome and original result OK, original return to Main, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "MTR03.defeat-default-800x600.bound07",
+      "kind": "live_equivalence",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/live_pixels_match",
+      "record": "research/runtime/campaign-matrix-results-20261103/branch-defeat-default-800x600-07.json",
+      "sha256": "42c2cff354496001d0c2aa1dc4e55f669ad860a53f79120d8274c76472004425",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "One enabled-intro full-capture defeat/default/800x600 branch. Require fresh original campaign entry, the natural outcome and original result OK, original return to Main, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "MTR03.matrix-closeout07",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-matrix-results-20261103/matrix-closeout-07.json",
+      "sha256": "23f54d2d8679408a023666218b8c6d6e8bf5fde02f66f4a5c82c200d184397c6",
+      "sources_pointer": "/sources",
+      "scope": "Complete frozen enabled-intro/full-capture configured pass/fail matrix. A cell passes only after its own natural requested outcome, return/normal Quit, independent continuous original-history/native-viewport comparison, stable source/compiler/input manifests and verified completed-output custody. Partial original route/selection/order/damage observations are separately bound inside failed campaigns. Historical source phases and fingerprints are preserved. No twelve-pass, repeated-run reliability, successful current nominal victory/progression, recovered complete camera/AI/collision/damage, populated lifetime, physical scanout, native save parser, full native simulation or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/completed",
+          "equals": true
+        },
+        {
+          "pointer": "/attempted",
+          "equals": 12
+        },
+        {
+          "pointer": "/all_required_passed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -405399,6 +407027,425 @@
       "evidence": [
         "CAT03.nominal-history-bound02"
       ]
+    },
+    {
+      "id": "input.initial-bridge-staging-controls-mtr03",
+      "level": "headless",
+      "scope": "Authored initial Forest bridge staging within one adjacent horizontal grid cell, including diagonals, before first combat; retain exact post-refill waypoint admission. Both initial and cleared staging have60second bounds, original hover/World-return admission remains mandatory, and actual original outcomes decide success. Retained800x600 pose28,52 is refused for bridge31,52; the earlier stall is not attributed solely to this threshold. No original pathfinding/collision/range/AI formula, whole campaign, route interruption, native simulation or balance claim.",
+      "behaviors": [
+        "INPUT.campaign-initial-bridge-staging"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-victory-software-800x600-controls",
+      "level": "headless",
+      "scope": "Current partial driver controls and compile/presentation prerequisites for the planned configured branch only; no original branch outcome or live pixel result. HOST.campaign-matrix.victory.software.800x600",
+      "behaviors": [
+        "HOST.campaign-matrix.victory.software.800x600"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "evidence": [
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-victory-default-640x480-controls",
+      "level": "headless",
+      "scope": "Current partial driver controls and compile/presentation prerequisites for the planned configured branch only; no original branch outcome or live pixel result. HOST.campaign-matrix.victory.default.640x480",
+      "behaviors": [
+        "HOST.campaign-matrix.victory.default.640x480"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "evidence": [
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-victory-default-800x600-controls",
+      "level": "headless",
+      "scope": "Current partial driver controls and compile/presentation prerequisites for the planned configured branch only; no original branch outcome or live pixel result. HOST.campaign-matrix.victory.default.800x600",
+      "behaviors": [
+        "HOST.campaign-matrix.victory.default.800x600"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "evidence": [
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-progression-software-640x480-controls",
+      "level": "headless",
+      "scope": "Current partial driver controls and compile/presentation prerequisites for the planned configured branch only; no original branch outcome or live pixel result. HOST.campaign-matrix.progression.software.640x480",
+      "behaviors": [
+        "HOST.campaign-matrix.progression.software.640x480"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "evidence": [
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-progression-software-800x600-controls",
+      "level": "headless",
+      "scope": "Current partial driver controls and compile/presentation prerequisites for the planned configured branch only; no original branch outcome or live pixel result. HOST.campaign-matrix.progression.software.800x600",
+      "behaviors": [
+        "HOST.campaign-matrix.progression.software.800x600"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "evidence": [
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-progression-default-640x480-controls",
+      "level": "headless",
+      "scope": "Current partial driver controls and compile/presentation prerequisites for the planned configured branch only; no original branch outcome or live pixel result. HOST.campaign-matrix.progression.default.640x480",
+      "behaviors": [
+        "HOST.campaign-matrix.progression.default.640x480"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "evidence": [
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-progression-default-800x600-controls",
+      "level": "headless",
+      "scope": "Current partial driver controls and compile/presentation prerequisites for the planned configured branch only; no original branch outcome or live pixel result. HOST.campaign-matrix.progression.default.800x600",
+      "behaviors": [
+        "HOST.campaign-matrix.progression.default.800x600"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "evidence": [
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-defeat-software-640x480-controls",
+      "level": "headless",
+      "scope": "Current partial driver controls and compile/presentation prerequisites for the planned configured branch only; no original branch outcome or live pixel result. HOST.campaign-matrix.defeat.software.640x480",
+      "behaviors": [
+        "HOST.campaign-matrix.defeat.software.640x480"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "evidence": [
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-defeat-software-800x600-controls",
+      "level": "headless",
+      "scope": "Current partial driver controls and compile/presentation prerequisites for the planned configured branch only; no original branch outcome or live pixel result. HOST.campaign-matrix.defeat.software.800x600",
+      "behaviors": [
+        "HOST.campaign-matrix.defeat.software.800x600"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "evidence": [
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-defeat-default-640x480-controls",
+      "level": "headless",
+      "scope": "Current partial driver controls and compile/presentation prerequisites for the planned configured branch only; no original branch outcome or live pixel result. HOST.campaign-matrix.defeat.default.640x480",
+      "behaviors": [
+        "HOST.campaign-matrix.defeat.default.640x480"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "evidence": [
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-defeat-default-800x600-controls",
+      "level": "headless",
+      "scope": "Current partial driver controls and compile/presentation prerequisites for the planned configured branch only; no original branch outcome or live pixel result. HOST.campaign-matrix.defeat.default.800x600",
+      "behaviors": [
+        "HOST.campaign-matrix.defeat.default.800x600"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py",
+        "tests/campaign-progression-driver-test.cpp",
+        "tests/viewport-world-readiness-test.cpp"
+      ],
+      "evidence": [
+        "MTR03.headless-bound02",
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ]
+    },
+    {
+      "id": "input.initial-bridge-staging-original800-mtr03",
+      "level": "live_observation",
+      "scope": "One skipped-intro capture-free original800x600 route admits initial combat at30,52, clears the neutral bridge defender, refills at23,57,6 and completes original Save/Load and normal Quit. No nominal outcome/pixel, complete saved simulation, native parsing, sole-cause, AI/range or balance claim.",
+      "behaviors": [
+        "INPUT.campaign-initial-bridge-staging"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "evidence": [
+        "MTR03.initial-bridge.live02"
+      ]
+    },
+    {
+      "id": "input.offscreen-support-selection-controls-mtr03",
+      "level": "headless",
+      "scope": "Current fresh-prefix/sole-primary/valid-pool and changed-role refusal controls only. No original paused X or delivery claim.",
+      "behaviors": [
+        "INPUT.campaign-offscreen-support-selection"
+      ],
+      "tests": [
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound03",
+        "MTR03.headless-bound04",
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ]
+    },
+    {
+      "id": "input.offscreen-team-recall-controls-mtr03",
+      "level": "headless",
+      "scope": "Primary bitmap and whole-prefix refusal controls only; original team assignment/recall and camera candidate require separate live execution.",
+      "behaviors": [
+        "INPUT.campaign-offscreen-team-recall"
+      ],
+      "tests": [
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "MTR03.headless-bound05",
+        "MTR03.headless-bound06",
+        "MTR03.headless-bound07"
+      ]
+    },
+    {
+      "id": "input.team-recall-checkpoint800-mtr03",
+      "level": "live_observation",
+      "scope": "One capture-free skipped-intro original800 checkpoint verifies private Ctrl9 assignment, Wizard/support/Wizard primary transitions, forced boss team recall, fresh original boss candidate and exact Zombie3-to-Camulos4 opcode7 buffer append. Original Save/Load/Quit and pause release pass. No delivery, damage, natural offscreen visibility, nominal outcome/pixels, complete group/camera handling or saved simulation claim.",
+      "behaviors": [
+        "INPUT.campaign-offscreen-team-recall"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "evidence": [
+        "MTR03.team-recall.live06"
+      ]
+    },
+    {
+      "id": "input.bridge-staging-nominal-negative800-mtr03",
+      "level": "live_observation",
+      "scope": "Scoped bridge boundaries within a failed full enabled-intro software800 campaign: initial adjacent30,52 admission, original neutral-defender lethal observation, full-mana reserve at23,57,6 and exact cleared31,52 return. The later campaign times out. No successful whole campaign, boss control, pixel, Save/Load/Quit or recovered movement/collision claim.",
+      "behaviors": [
+        "INPUT.campaign-initial-bridge-staging"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "evidence": [
+        "MTR03.bridge-boundaries.live07"
+      ]
+    },
+    {
+      "id": "input.route-suspension-resumption-original640-mtr03",
+      "level": "live_observation",
+      "scope": "Current full enabled-intro software640 progression attempt remains failed. Within it, original role/position/mana observations support two resupply interruptions against type10/owner1 slot6, low-mana resumptions, subsequent full refill and a post-refill bridge interruption against type11/owner1 slot1 followed by resumption. Independently decoded original accepted Fireball/debit and attributed damage records accompany the intervals. No original AI scheduler, whole campaign, pixels, balance, complete actor lifetime or replacement claim.",
+      "behaviors": [
+        "INPUT.campaign-resupply-combat-suspension"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tests/test-rendering-progression.py"
+      ],
+      "evidence": [
+        "MTR03.route-suspension.live07"
+      ]
+    },
+    {
+      "id": "input.team-recall-nominal-negative640-point-mtr03",
+      "level": "live_observation",
+      "scope": "One failed full enabled-intro default640 progression run verifies natural offscreen team recall, fresh sole-support primary, retained admitted scene point and independently checked original Zombie3-to-Camulos4 opcode7 append. Subsequent GP target4 and three original Boss damage events100to40 are recorded separately from command delivery causality. The Wizard stays stationary during recall; moving-pose camera regression, whole outcome/pixels, complete group/camera/lifetime semantics and repeatability remain pending",
+      "behaviors": [
+        "INPUT.campaign-offscreen-team-recall"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "evidence": [
+        "MTR03.team-recall.nominal-negative07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-defeat-software-640x480",
+      "level": "live_equivalence",
+      "scope": "One enabled-intro full-capture defeat/software/640x480 branch. Require fresh original campaign entry, the natural outcome and original result OK, original return to Main, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "behaviors": [
+        "HOST.campaign-matrix.defeat.software.640x480"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py"
+      ],
+      "evidence": [
+        "MTR03.defeat-software-640x480.bound07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-defeat-default-640x480",
+      "level": "live_equivalence",
+      "scope": "One enabled-intro full-capture defeat/default/640x480 branch. Require fresh original campaign entry, the natural outcome and original result OK, original return to Main, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "behaviors": [
+        "HOST.campaign-matrix.defeat.default.640x480"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py"
+      ],
+      "evidence": [
+        "MTR03.defeat-default-640x480.bound07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-defeat-software-800x600",
+      "level": "live_equivalence",
+      "scope": "One enabled-intro full-capture defeat/software/800x600 branch. Require fresh original campaign entry, the natural outcome and original result OK, original return to Main, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "behaviors": [
+        "HOST.campaign-matrix.defeat.software.800x600"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py"
+      ],
+      "evidence": [
+        "MTR03.defeat-software-800x600.bound07"
+      ]
+    },
+    {
+      "id": "host.campaign-matrix-defeat-default-800x600",
+      "level": "live_equivalence",
+      "scope": "One enabled-intro full-capture defeat/default/800x600 branch. Require fresh original campaign entry, the natural outcome and original result OK, original return to Main, normal Main Quit, independent continuous original World-history and every captured native viewport comparison, source/compiler stability and complete artifact custody. No checkpoint/skip-intro substitution, whole matrix, repeated-run reliability, populated object/vptr/generation lifetime, physical scanout, native save parsing, whole native simulation or balance claim.",
+      "behaviors": [
+        "HOST.campaign-matrix.defeat.default.800x600"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/check-rendering-progression.py"
+      ],
+      "evidence": [
+        "MTR03.defeat-default-800x600.bound07"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -407216,7 +409263,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-3ab2af1180cc0957d93a6f82730d826c16a543578e1e594ee187d09fcc232f71.json",
-    "sha256": "3ab2af1180cc0957d93a6f82730d826c16a543578e1e594ee187d09fcc232f71"
+    "path": "research/runtime/coverage/source-index-3b61468daecf599d7e5fedd6e27934735f8bed7b6c2616aabef02bd6cae10501.json",
+    "sha256": "3b61468daecf599d7e5fedd6e27934735f8bed7b6c2616aabef02bd6cae10501"
   }
 }

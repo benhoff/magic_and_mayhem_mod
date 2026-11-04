@@ -50,6 +50,33 @@ def reserved_boss_target(hero,actors,rearmed,interrupted=False):
     return boss if casts<=6 and hero.get('mana',0)>=casts*6*256 else None
 
 
+def primary_selection_after(rows,slot,after_sequence):
+    """Fresh complete-prefix primary bitmap; actor roles belong to the caller."""
+    if (type(after_sequence) is not int or after_sequence<0
+            or type(slot) is not int or not 0<=slot<256):
+        raise ValueError('Invalid bounded selection observation identity')
+    if not rows:return None
+    latest=rows[-1]
+    if (latest['kind']!=1 or latest['sequence']<=after_sequence
+            or not latest['flags']&1 or latest['primary']!=[slot]):return None
+    pending=set()
+    for row in rows:
+        if row['kind']==2:pending.add(row['call'])
+        elif row['kind']==3:pending.discard(row['call'])
+    if pending:return None
+    return latest
+
+
+def support_selection_after(rows,source,after_sequence):
+    """Fresh sole-primary World witness, independent of the selection input."""
+    if type(after_sequence) is not int or after_sequence<0:
+        raise ValueError('Invalid bounded selection observation identity')
+    if (not source.get('active') or source.get('health',0)<=0 or source.get('type')!=14
+            or source.get('owner')!=0 or type(source.get('slot')) is not int
+            or not 0<=source['slot']<256):return None
+    return primary_selection_after(rows,source['slot'],after_sequence)
+
+
 def support_attack_submission(rows,source,target,after_sequence):
     """Witness original opcode7 buffer submission; never infer engagement."""
     if not (source.get('active') and source.get('health',0)>0 and source.get('type')==14 and source.get('owner')==0

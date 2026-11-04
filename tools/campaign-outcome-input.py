@@ -25,7 +25,7 @@ from campaign_input_observation import decode as input_observations
 from campaign_input_admission import fresh_hover
 from campaign_follow import read_rows as read_follow_rows, followed_wizard
 from campaign_order_observation import decode as order_observations
-from campaign_target_admission import candidate_after_hover,hover_nudge,support_attack_submission,reserved_boss_target
+from campaign_target_admission import candidate_after_hover,hover_nudge,support_attack_submission,support_selection_after,primary_selection_after,reserved_boss_target
 from campaign_outcome_record import AtomicSnapshotWriter
 
 
@@ -182,7 +182,7 @@ def main():
         require(display, 'Missing owned native display')
         def click(px, py, button=1, cast=False,target_actor=None):
             require(0 <= px < width and 0 <= py < height, 'Projection outside actual viewport')
-            observe=(button==3 or target_actor is not None) and os.environ.get('MNM_CAMPAIGN_INPUT_ADMISSION')=='1'
+            observe=(button in (3,None) or target_actor is not None) and os.environ.get('MNM_CAMPAIGN_INPUT_ADMISSION')=='1'
             path=a.experiment/'input-admission.bin'
             prior=input_observations(path.read_bytes())['rows'] if observe else []
             after=prior[-1]['sequence'] if prior else 0
@@ -211,6 +211,9 @@ def main():
                     save();require(len(refusals)<=24,'Bounded original-hover refusal budget exhausted')
                     return False
                 result.setdefault('hover_admissions',[]).append(dict(after=after,ready=admitted['sequence'],point=[px,py],cast=cast,mode=admitted['mode'],ground=admitted['ground'],hit_class=admitted['hit_class'],hit_index=admitted['hit_index']))
+            if button is None:
+                result['actions'].append(dict(seconds=time.monotonic()-start,kind='hover',point=[px,py],button_sent=False))
+                save();return True
             for down in (1,0):
                 require(xt.XTestFakeButtonEvent(display, button, down, 0), 'Click failed')
                 if down:held.add(button)
@@ -242,6 +245,53 @@ def main():
         def center():
             # Publisher manual p15: W selects the wizard; a second W centers it.
             key(ord('w'));key(ord('w'));time.sleep(.4)
+        def wait_primary(slot,after):
+            began=time.monotonic();until=began+2;selected=None
+            witness=dict(slot=slot,after=after,budget_seconds=2,samples=[])
+            result.setdefault('primary_waits',[]).append(witness)
+            while time.monotonic()<until:
+                observed=order_rows();selected=primary_selection_after(observed,slot,after)
+                if observed and (not witness['samples'] or witness['samples'][-1]['sequence']!=observed[-1]['sequence']):
+                    latest=observed[-1]
+                    witness['samples'].append({k:latest[k] for k in ('sequence','kind','flags','primary','world_return_ordinal')})
+                if selected:break
+                time.sleep(.05)
+            witness.update(seconds=time.monotonic()-began,selected=selected);save()
+            return selected
+        def cycle_support(source):
+            require(click(width//2,height//2+80,None),'Original scene was not ready for friendly cycling')
+            attempts=[];selected=None
+            result.setdefault('friendly_cycles',[]).append(dict(source=source,attempts=attempts,budget=2))
+            for _ in range(2):
+                after=order_rows()[-1]['sequence'];attempt=dict(after=after,selected=None);attempts.append(attempt);save()
+                key(ord('x'));selected=wait_primary(source['slot'],after);attempt['selected']=selected;save()
+                if selected:break
+            require(selected is not None,'Bounded friendly cycle did not select the sole owned Zombie')
+            return selected
+        def modified_key(modifier,symbol):
+            code=x.XKeysymToKeycode(display,modifier);require(code,'Missing team modifier mapping')
+            require(xt.XTestFakeKeyEvent(display,code,1,0),'Team modifier press failed');held_keys.add(code)
+            x.XFlush(display);time.sleep(.12)
+            result['actions'].append(dict(seconds=time.monotonic()-start,kind='modifier',keysym=modifier,down=True));save()
+            try:key(symbol)
+            finally:
+                require(xt.XTestFakeKeyEvent(display,code,0,0),'Team modifier release failed');held_keys.discard(code)
+                x.XFlush(display);time.sleep(.12)
+                result['actions'].append(dict(seconds=time.monotonic()-start,kind='modifier',keysym=modifier,down=False));save()
+        def prepare_support_team(source,wizard):
+            # Manualp15 separates team recall from a subsequent focusing press.
+            # Use only the private experiment's team9 and verify real bitmaps.
+            require(wait_primary(source['slot'],0) is not None,'Team assignment lacks the sole support selection')
+            modified_key(0xffe3,ord('9'))
+            team=dict(number=9,source=source,wizard=wizard,verified=False);result['support_team']=team;save()
+            after=order_rows()[-1]['sequence'];center()
+            team['wizard_selection']=wait_primary(wizard['slot'],after)
+            require(team['wizard_selection'] is not None,'Original wizard selection before team recall was not observed')
+            after=order_rows()[-1]['sequence'];key(ord('9'));team['recall']=wait_primary(source['slot'],after)
+            require(team['recall'] is not None,'Original private team9 recall did not select the sole support')
+            team['verified']=True;save()
+            after=order_rows()[-1]['sequence'];center()
+            require(wait_primary(wizard['slot'],after) is not None,'Original wizard selection after team preparation was not observed')
         def select(spell):
             for point in spell_selection_points(spell):click(*hud_point(point,a.frame_size));time.sleep(.2)
         last_sequence = 0; last_change = start; portal = None;quiet=ActorQuietWindow()
@@ -254,7 +304,7 @@ def main():
         interrupted_phase=None
         portal_clear_since=0;portal_clear_goal=None;portal_clear_sent=False;portal_cleared=False
         camulos_approach_since=0;bridge_arrival_since=0
-        result.update(casts=[],combat_policy='observed-target-boss-reserve-v34' if a.case!='defeat' else 'ordinary-defeat-v1',route_stage=phase)
+        result.update(casts=[],combat_policy='observed-target-retained-scene-point-v40' if a.case!='defeat' else 'ordinary-defeat-v1',route_stage=phase)
         save()
         while time.monotonic()-start < a.seconds:
             require(not combat_paused or time.monotonic()-combat_pause_since<12,'Bounded ordinary combat pause exceeded12seconds')
@@ -426,7 +476,7 @@ def main():
                     follow_slot=follower['slot'];follow_start=[follower[k] for k in ('x','y','z')]
                     # Manual p15: V centres the next selected friendly. With
                     # exactly one selected follower this makes its origin explicit.
-                    key(ord('x'));path=a.experiment/'game/native-creature-follow.bin'
+                    cycle_support(follower);path=a.experiment/'game/native-creature-follow.bin'
                     deadline=time.monotonic()+5;observed=None;attempts=[]
                     for offset in (40,22,54):
                         if time.monotonic()>=deadline:break
@@ -448,18 +498,16 @@ def main():
                         if observed:break
                     result['support_follow']['reference_observed']=observed;save()
                     require(observed is not None,'Ordinary guard/follow did not establish a fresh living wizard reference')
-                    center();actors=state();hero=actors[hero['slot']]
+                    prepare_support_team(follower,hero);actors=state();hero=actors[hero['slot']]
                     follow_wait_since=0
                 result['bridge_candidate']=bridge
                 if not bridge_entry_ready(hero,bridge,rearmed):
-                    if rearmed:
-                        if not bridge_arrival_since:bridge_arrival_since=time.monotonic()
-                        require(time.monotonic()-bridge_arrival_since<60,'Cleared bridge waypoint was not reached within60seconds')
-                        result.setdefault('cleared_bridge_staging',[]).append(dict(wizard=hero,bridge=bridge,seconds=time.monotonic()-start))
+                    if not bridge_arrival_since:bridge_arrival_since=time.monotonic()
+                    require(time.monotonic()-bridge_arrival_since<60,('Cleared' if rearmed else 'Initial')+' bridge waypoint was not reached within60seconds')
+                    result.setdefault('cleared_bridge_staging' if rearmed else 'initial_bridge_staging',[]).append(dict(wizard=hero,bridge=bridge,seconds=time.monotonic()-start))
                     click(*approach_point(hero,bridge,a.frame_size),3);time.sleep(.7);continue
-                if rearmed:
-                    result.setdefault('cleared_bridge_arrival',dict(wizard=hero,bridge=bridge,seconds=time.monotonic()-start))
-                    bridge_arrival_since=0
+                result.setdefault('cleared_bridge_arrival' if rearmed else 'initial_bridge_arrival',dict(wizard=hero,bridge=bridge,seconds=time.monotonic()-start))
+                bridge_arrival_since=0
                 follower=actors[follow_slot];distance=math.hypot(follower['x']-hero['x'],follower['y']-hero['y'])
                 if not follow_wait_since:
                     follow_wait_since=time.monotonic()
@@ -558,19 +606,39 @@ def main():
                         move=approach_point(hero,goal,a.frame_size)
                         result.setdefault('camulos_approach',[]).append(dict(hero=hero,target=target,allies=firing_line_allies(hero,target,actors),blockers=blocked,point=list(move)))
                         click(*move,3);save();time.sleep(.3);continue
+                    source=support_for_attack(hero,target,actors)
+                    require(source is not None,'No unambiguous living owned Zombie for the bounded attack order')
+                    selected=None;admitted_boss_point=None;camera_wizard=dict(hero)
+                    if a.resume_checkpoint or aim_point(hero,source,a.frame_size,body=True) is None:
+                        require(result.get('support_team',{}).get('verified'),'Offscreen selection lacks a verified private team')
+                        selection_after=order_rows()[-1]['sequence'];key(ord('9'))
+                        selected=wait_primary(source['slot'],selection_after)
+                        result['support_team']['boss_recall']=dict(after=selection_after,selected=selected,diagnostic_forced=a.resume_checkpoint)
+                        save();require(selected is not None,'Original team recall did not select the sole support')
+                        scene_point=aim_point(hero,target,a.frame_size,body=True)
+                        require(scene_point is not None and click(*scene_point,None,target_actor=target['slot']),'Original boss candidate was not ready after team recall')
+                        # The wizard may move while an unpaused recall is
+                        # acknowledged. A new actor pose is not a new camera
+                        # origin. Recheck this admitted physical point below.
+                        admitted_boss_point=scene_point
+                        result['support_team']['boss_recall']['admitted_boss_point']=list(scene_point)
+                        actors=state();hero=actors[hero['slot']];target=actors[target['slot']]
+                        refreshed=support_for_attack(hero,target,actors)
+                        require(refreshed is not None and refreshed['slot']==source['slot'],'Support role changed during team recall')
+                        source=refreshed;point=camulos_pause_point(hero,target,actors,a.frame_size)
+                        require(point is not None,'Close clear firing position changed during team recall')
                     # Publisher manual p14/15 permits single-player orders and
                     # casting during Space pause. Use one bounded pair; the
                     # original owns pause,cast admission and resumed simulation.
                     result['combat_pause']=dict(before=hero,target=target,ready_point=list(point),casts_before=len(result['casts']),released=False)
                     key(0x20);combat_paused=True;combat_pause_since=time.monotonic()
-                    source=support_for_attack(hero,target,actors)
-                    require(source is not None,'No unambiguous living owned Zombie for the bounded attack order')
-                    result['support_attack']=dict(before=source,target=target,camera_wizard=hero,observed=False,submitted=False)
+                    result['support_attack']=dict(before=source,target=target,camera_wizard=camera_wizard,pause_wizard=hero,admitted_boss_point=list(admitted_boss_point) if admitted_boss_point else None,observed=False,submitted=False)
                     # Select through an actual scene candidate before arming a
                     # spell. Re-clicking the Fireball icon leaves mode2 active
                     # in the original; it is not a cancellation acknowledgement.
-                    selection_after=order_rows()[-1]['sequence'];selected=None;selection_attempts=[]
-                    for body_offset in (22,40,54):
+                    selection_after=order_rows()[-1]['sequence'];selection_attempts=[]
+                    result['support_attack']['selection_method']='verified-team-recall' if selected else 'scene-candidate-mouse'
+                    for body_offset in (() if selected else (22,40,54)):
                         projected=aim_point(hero,source,a.frame_size,body=True)
                         if projected is None:break
                         select_point=(projected[0],projected[1]+22-body_offset)
@@ -580,16 +648,16 @@ def main():
                         if not sent:continue
                         until=time.monotonic()+.7
                         while time.monotonic()<until:
-                            selected=next((v for v in reversed(order_rows()) if v['kind']==1 and v['sequence']>selection_after and v['flags']&1 and v['primary']==[source['slot']]),None)
+                            selected=support_selection_after(order_rows(),source,selection_after)
                             if selected:break
                             time.sleep(.05)
                         if selected:break
                     result['support_attack']['selection_attempts']=selection_attempts
-                    require(selected is not None,'Original paused mouse selection did not identify the sole owned Zombie')
+                    require(selected is not None,'Original paused selection did not identify the sole owned Zombie')
                     result['support_attack']['selection']=selected
                     submitted=None;attempts=[]
                     for body_offset in (22,40,54):
-                        projected=aim_point(hero,target,a.frame_size,body=True)
+                        projected=admitted_boss_point or aim_point(hero,target,a.frame_size,body=True)
                         if projected is None:break
                         attack_point=(projected[0],projected[1]+22-body_offset)
                         if not (48<=attack_point[0]<width-40 and 64<=attack_point[1]<height-90):continue

@@ -3,7 +3,7 @@ from pathlib import Path
 import sys
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from campaign_target_admission import candidate_after_hover,empty_candidate_after_hover,hover_nudge,support_attack_submission,reserved_boss_target
+from campaign_target_admission import candidate_after_hover,empty_candidate_after_hover,hover_nudge,support_attack_submission,support_selection_after,primary_selection_after,reserved_boss_target
 
 
 class Candidate(unittest.TestCase):
@@ -73,6 +73,54 @@ class Candidate(unittest.TestCase):
         a=dict(kind=2,sequence=11,call=1,mask=4,flags=35,primary=[3],records=[])
         b=dict(a,kind=3,sequence=12,flags=39,records=[dict(opcode=7,actor_slot=3,target_slot=4)])
         return source,target,[a,b]
+
+    def test_selection_needs_a_new_complete_sole_primary_world(self):
+        source,_,_=self.attack()
+        row=dict(kind=1,sequence=21,flags=1,primary=[3])
+        self.assertIs(support_selection_after([row],source,20),row)
+        self.assertIsNone(support_selection_after([row],source,21))
+
+    def test_generic_primary_witness_can_acknowledge_wizard_before_team_recall(self):
+        row=dict(kind=1,sequence=21,flags=1,primary=[0])
+        self.assertIs(primary_selection_after([row],0,20),row)
+        self.assertIsNone(primary_selection_after([row],3,20))
+
+    def test_generic_primary_witness_rejects_unbounded_and_boolean_actor_ids(self):
+        for slot in (-1,256,True,None):
+            with self.assertRaises(ValueError):primary_selection_after([],slot,0)
+
+    def test_selection_refuses_unknown_pool_pending_callback_and_other_primary(self):
+        source,_,_=self.attack()
+        for changes in (dict(flags=0),dict(kind=2),dict(kind=3),dict(primary=[0]),dict(primary=[3,7])):
+            row=dict(kind=1,sequence=21,flags=1,primary=[3]);row.update(changes)
+            self.assertIsNone(support_selection_after([row],source,20))
+
+    def test_later_selection_state_supersedes_an_earlier_sole_primary(self):
+        source,_,_=self.attack()
+        first=dict(kind=1,sequence=21,flags=1,primary=[3])
+        for latest in (dict(first,sequence=22,primary=[0]),dict(first,sequence=22,kind=2)):
+            self.assertIsNone(support_selection_after([first,latest],source,20))
+
+    def test_world_sample_inside_an_unreturned_callback_is_not_selection_ack(self):
+        source,_,_=self.attack();world=dict(kind=1,sequence=21,flags=1,primary=[3])
+        entered=dict(kind=2,sequence=10,call=1)
+        self.assertIsNone(support_selection_after([entered,world],source,20))
+        returned=dict(kind=3,sequence=11,call=1)
+        self.assertIs(support_selection_after([entered,returned,world],source,20),world)
+
+    def test_inner_return_does_not_close_an_outer_pending_callback(self):
+        source,_,_=self.attack();world=dict(kind=1,sequence=21,flags=1,primary=[3])
+        rows=[dict(kind=2,sequence=10,call=1),dict(kind=2,sequence=11,call=2),dict(kind=3,sequence=12,call=2),world]
+        self.assertIsNone(support_selection_after(rows,source,20))
+        latest=dict(world,sequence=23)
+        self.assertIs(support_selection_after(rows+[dict(kind=3,sequence=22,call=1),latest],source,20),latest)
+
+    def test_selection_refuses_changed_dead_and_unbounded_source_roles(self):
+        for changes in (dict(active=0),dict(health=0),dict(type=10),dict(owner=1),dict(slot=256),dict(slot=True)):
+            source,_,_=self.attack();source.update(changes)
+            self.assertIsNone(support_selection_after([dict(kind=1,sequence=21,flags=1,primary=[3])],source,20))
+        source,_,_=self.attack()
+        with self.assertRaises(ValueError):support_selection_after([],source,-1)
 
     def test_submission_is_distinct_from_combat_target_or_delivery(self):
         source,target,rows=self.attack();source['target']=0xffffffff
