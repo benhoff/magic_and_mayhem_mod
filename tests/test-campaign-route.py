@@ -2,7 +2,7 @@
 import sys,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from campaign_route import hud_point,project,aim_point,approach_point,validate_opening_anchors,bridge_entry_ready
+from campaign_route import hud_point,project,aim_point,approach_point,validate_opening_anchors,bridge_entry_ready,bridge_defender_slot
 
 
 class Route(unittest.TestCase):
@@ -52,6 +52,13 @@ class Route(unittest.TestCase):
         for slot,point in ((15,(7,67,4)),(70,(31,52,4))):
             r=[0]*16;r[1]=1;r[4]=slot;r[5]=10;r[6]=2;r[9:12]=point;rows.append(r)
         self.assertTrue(validate_opening_anchors(route,rows)['verified'])
+        self.assertEqual(bridge_defender_slot(route,rows),70)
+        # Later movement does not change the spawn identity.
+        moved=list(rows[1]);moved[9:12]=(35,48,4)
+        self.assertEqual(bridge_defender_slot(route,rows+[moved]),70)
+        duplicate=list(rows[1]);duplicate[4]=71
+        with self.assertRaises(ValueError):bridge_defender_slot(route,rows+[duplicate])
+        with self.assertRaises(ValueError):bridge_defender_slot(route,rows[:1])
         rows[0][9]=8
         with self.assertRaises(ValueError):validate_opening_anchors(route,rows)
 

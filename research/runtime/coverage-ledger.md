@@ -26155,3 +26155,13 @@ dual-store custody/restore before retirement. Current whole nominal victory/
 progression remain pending; scoped bridge, offscreen order/damage and route
 interruption/resumption results are independent. See matrix-closeout-07.json and
 campaign-matrix-20261103.md for each failed boundary and remaining scope.
+
+## Campaign bridge-clear/refill ordering — 2026-11-04
+
+The retained source7 default640 progression failure enters boss combat before its next outer-loop bridge-death check, then starts refill after three boss casts. The new bounded driver pins the bridge defender from its calibrated first World spawn and prevents initial boss fallback before observed death and completed exact-point36mana refill. This is authored test-driver policy. Fixture controls and fresh original execution are separate; full nominal success, the eight outstanding victory/progression matrix cases, moving-camera target readiness and native gameplay remain pending. See `campaign-bridge-clear-20261104.md` and `INPUT.campaign-bridge-clear-refill-gate`.
+
+Source41 controls pass224cases. One capture-free software800 diagnostic observes the pinned defender dead before resupply, then exact23,57,6 refill at187HP/36mana without prior boss orders/casts; original scoped Save/Load and normal Quit pass. `BCG04.checkpoint.live01` binds independently decoded GP samples2021/3850. Integration for this new native policy is `live_observation`; comparison/replacement remain `none`. Full enabled-intro outcome/pixels and repeatability remain separate.
+
+The source41 enabled-intro full software800 attempt also reaches exact bridge/refill before boss actions (164HP/36mana), then validates moving-Wizard41,31to41,30 retained-point624,230 team recall/opcode7. Four attributed Boss hits100to20 are followed by an inactive zero-HP sample, without captured Boss lethal; the existing portal candidate leads to a43,28 stall and original natural Defeat. No full-case or pixel promotion. `BCG04.full-boundaries.live01` binds raw order1795/1804/1805 and GP/spell crosschecks. Newly mapped `INPUT.campaign-terminal-boss-portal-candidate` retains integration/comparison/replacement `none`; terminal/exit semantics and guarded portal ingress are next. All four completed case trees pass mirrored custody/real restore and are retired. Historical frozen matrix remains4/12passes.
+
+`BCG04.terminal-negative.raw01` additionally preserves all six defended Boss spell returns: four reductions100to20, then two unchanged20to20 returns, before inactive-zero GP6304. The mechanism is unresolved; no kill, invulnerability, health-floor or portal-trigger claim follows from these samples.

@@ -112,3 +112,14 @@ def validate_opening_anchors(route,rows):
     if not expected<=positions:
         raise ValueError('Original opening spawns do not support calibrated route')
     return dict(verified=True,neutral_spawn_positions=[list(p) for p in sorted(expected)])
+
+
+def bridge_defender_slot(route,rows):
+    """Pin the calibrated opening defender by its first World sample, not slot."""
+    first={}
+    for row in rows:
+        if row[1]==1:first.setdefault(row[4],row)
+    point=tuple(route['points']['CF52 Bridge'][k] for k in ('x','y','z'))
+    matches=[r[4] for r in first.values() if tuple(r[5:7])==(10,2) and tuple(r[9:12])==point]
+    if len(matches)!=1:raise ValueError('Ambiguous original opening bridge defender')
+    return matches[0]

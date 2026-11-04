@@ -20,7 +20,7 @@ from campaign_input_admission import spell_selection_points
 from rendering_progression import CASES, require
 from campaign_report import report_callback
 from campaign_return import read_realm_return_state
-from campaign_route import frame_size, hud_point, approach_point, aim_point, follow_point, forest_waypoints, validate_opening_anchors, bridge_entry_ready
+from campaign_route import frame_size, hud_point, approach_point, aim_point, follow_point, forest_waypoints, validate_opening_anchors, bridge_entry_ready, bridge_defender_slot
 from campaign_input_observation import decode as input_observations
 from campaign_input_admission import fresh_hover
 from campaign_follow import read_rows as read_follow_rows, followed_wizard
@@ -86,6 +86,29 @@ def engaged_threats(hero, actors, follow_slot, radius=10, recent=()):
 def route_combat_needed(phase, rearmed, hero, actors, follow_slot, recent=()):
     """Suspend resupply or post-refill staging for affordable nearby combat."""
     return (phase=='resupply' or phase=='bridge' and rearmed) and hero['mana']>=6*256 and bool(engaged_threats(hero,actors,follow_slot,7,recent))
+
+
+def bridge_clearance(actors,slot,rows,spell_damage):
+    """Observed death only; absence, a different role or a refused hit is no proof."""
+    actor=actors.get(slot)
+    if actor and actor['type']==10 and actor['owner']==2 and actor['health']<=0:
+        return dict(actor=dict(actor),lethal=None)
+    lethal=[r for r in rows if r[1]==2 and tuple(r[8:11])==(slot,10,2)
+            and r[13] and signed(r[11])>0 and signed(r[12])<=0]
+    spell=[r for r in spell_damage if tuple(r[4:7])==(slot,10,2)
+           and signed(r[7])>0 and signed(r[8])<=0]
+    if lethal or spell:return dict(actor=None,lethal=list((lethal or spell)[-1]))
+    return None
+
+
+def pre_refill_target(hero,actors,slot,threats):
+    """Keep initial combat at the bridge until its observed death and refill."""
+    eligible=[v for v in threats if v['type']!=24]
+    if eligible:return min(eligible,key=lambda v:math.hypot(v['x']-hero['x'],v['y']-hero['y']))
+    defender=actors.get(slot)
+    if defender and defender['type']==10 and defender['owner']==2 and defender['active'] and defender['health']>0:
+        return defender
+    return None
 
 
 def firing_line_allies(hero, target, actors, radius=.8):
@@ -304,7 +327,7 @@ def main():
         interrupted_phase=None
         portal_clear_since=0;portal_clear_goal=None;portal_clear_sent=False;portal_cleared=False
         camulos_approach_since=0;bridge_arrival_since=0
-        result.update(casts=[],combat_policy='observed-target-retained-scene-point-v40' if a.case!='defeat' else 'ordinary-defeat-v1',route_stage=phase)
+        result.update(casts=[],combat_policy='observed-bridge-clear-refill-gate-v41' if a.case!='defeat' else 'ordinary-defeat-v1',route_stage=phase)
         save()
         while time.monotonic()-start < a.seconds:
             require(not combat_paused or time.monotonic()-combat_pause_since<12,'Bounded ordinary combat pause exceeded12seconds')
@@ -389,17 +412,17 @@ def main():
                     power=route['points']['CF52 PoP']
                     require(all(hero[k]==power[k] for k in ('x','y','z')) and hero['mana']>=36*256,'Restored checkpoint is not at the observed ready power point')
                     result['checkpoint_start']=dict(wizard=hero,actors=actors,scope='Original verified save input only; no opening-route or nominal progression claim')
-                else:result['opening_anchors']=validate_opening_anchors(route,rows)
+                else:
+                    result['opening_anchors']=validate_opening_anchors(route,rows)
+                    bridge_attacker=bridge_defender_slot(route,rows)
+                    result['bridge_defender']=dict(slot=bridge_attacker,type=10,owner=2,spawn=route['points']['CF52 Bridge'])
                 save()
             recent=recent_melee_attackers(rows,hero,actors,follow_slot)
-            if a.case!='defeat' and phase=='combat' and bridge_attacker is not None and not rearmed and not rearm_since:
-                actor=actors.get(bridge_attacker)
-                dead=actor and actor['type']==10 and actor['owner']==2 and actor['health']<=0
-                lethal=[r for r in rows if r[1]==2 and r[8:11]==(bridge_attacker,10,2) and r[13] and signed(r[11])>0 and signed(r[12])<=0]
-                spell_lethal=[r for r in player_fireball_damage(read_spell_rows(a.experiment/'spell-events.bin'),0,hero['slot']) if r[4:7]==(bridge_attacker,10,2) and signed(r[8])<=0]
-                if dead or lethal or spell_lethal:
+            if a.case!='defeat' and phase in ('bridge','combat') and bridge_attacker is not None and not rearmed and not rearm_since:
+                clearance=bridge_clearance(actors,bridge_attacker,rows,player_fireball_damage(read_spell_rows(a.experiment/'spell-events.bin'),0,hero['slot']))
+                if clearance:
                     phase='resupply';rearm_since=time.monotonic();result['route_stage']=phase
-                    result['rearm']=dict(attacker=bridge_attacker,before=hero,lethal=list((lethal or spell_lethal)[-1]) if lethal or spell_lethal else None);save()
+                    result['rearm']=dict(attacker=bridge_attacker,before=hero,**clearance);save()
             if a.case!='defeat' and route_combat_needed(phase,rearmed,hero,actors,follow_slot,recent):
                 interruptions=result.setdefault('route_threat_interruptions',[])
                 require(len(interruptions)<4,'Bounded route combat interruptions exhausted')
@@ -559,6 +582,9 @@ def main():
                 if portal_clear_since:result['portal_clear']['after']=follower;save()
             reserved=reserved_boss_target(hero,actors,rearmed,interrupted_phase is not None) if a.case!='defeat' and portal is None else None
             if a.case != 'defeat' and portal is not None:target=portal
+            elif a.case!='defeat' and not rearmed and interrupted_phase is None:
+                target=pre_refill_target(hero,actors,bridge_attacker,threats)
+                if target is None:time.sleep(.2);continue
             elif reserved is not None:
                 target=reserved
                 result.setdefault('boss_reserve_priority',dict(wizard=dict(hero),target=dict(target),
@@ -566,8 +592,6 @@ def main():
                     scope='Native physical test priority only; actual original cast/debit/damage and outcome checks remain required'))
             elif a.case!='defeat' and threats:
                 target=min(threats,key=lambda e:math.hypot(e['x']-hero['x'],e['y']-hero['y']))
-                if bridge_attacker is None and target['type']==10 and target['owner']==2:
-                    bridge_attacker=target['slot']
                 selections=result.setdefault('engaged_threat_selections',[])
                 if not any((v['target']['slot'],v['target']['type'],v['target']['owner'])==
                            (target['slot'],target['type'],target['owner']) for v in selections):
@@ -586,6 +610,8 @@ def main():
                 save();time.sleep(.2);continue
             target=actors.get(target['slot'],target) if portal is None else portal
             if portal is None and (not target['active'] or target['health']<=0):continue
+            if a.case!='defeat' and target['type']==24 and portal is None:
+                require(rearmed and interrupted_phase is None,'Boss combat requires completed bridge clearing and refill')
             support=[v for v in actors.values() if v['type']==14 and v['owner']==0 and v['active'] and v['health']>0]
             nearby=sum(math.hypot(v['x']-hero['x'],v['y']-hero['y'])<10 for v in support)
             choice=combat_choice(a.case,hero,target,nearby,summons,time.monotonic()-last_spell,

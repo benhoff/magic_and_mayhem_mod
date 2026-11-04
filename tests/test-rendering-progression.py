@@ -73,6 +73,36 @@ class NativeRuntimeBindingTests(unittest.TestCase):
 
 
 class ProgressionTests(unittest.TestCase):
+    def test_bridge_death_needs_the_pinned_role_or_applied_original_lethal(self):
+        module,hero,follower,escort=self.threat_fixture()
+        dead=dict(escort,slot=2,type=10,owner=2,health=0)
+        self.assertIsNotNone(module.bridge_clearance({2:dead},2,[],[]))
+        for actor in (dict(dead,type=24),dict(dead,owner=1),dict(dead,health=1)):
+            self.assertIsNone(module.bridge_clearance({2:actor},2,[],[]))
+        self.assertIsNone(module.bridge_clearance({},2,[],[]))
+        # A disappearing corpse is admissible only with retained lethal proof.
+        lethal=[3318,2,40,423105439,3,14,0,87,2,10,2,4,0,1,1,6]
+        self.assertIsNotNone(module.bridge_clearance({},2,[lethal],[]))
+        for index,value in ((8,7),(9,24),(10,1),(11,0),(12,1),(13,0)):
+            row=list(lethal);row[index]=value
+            with self.subTest(index=index):self.assertIsNone(module.bridge_clearance({},2,[row],[]))
+        spell=[1,3,40,1000,2,10,2,20,0,1,20,0,71,0x48ed24,0,0]
+        self.assertIsNotNone(module.bridge_clearance({},2,[],[spell]))
+        spell[8]=1
+        self.assertIsNone(module.bridge_clearance({},2,[],[spell]))
+
+    def test_initial_combat_never_falls_through_to_the_boss_before_refill(self):
+        module,hero,follower,escort=self.threat_fixture()
+        boss=dict(escort,slot=4,type=24,health=100,x=42,y=26)
+        neutral=dict(escort,slot=2,type=10,owner=2,x=31,y=52,target=0xffffffff)
+        actors={v['slot']:v for v in (hero,follower,escort,boss,neutral)}
+        self.assertEqual(module.pre_refill_target(hero,actors,2,[]),neutral)
+        self.assertEqual(module.pre_refill_target(hero,actors,2,[boss]),neutral)
+        self.assertEqual(module.pre_refill_target(hero,actors,2,[escort,boss]),escort)
+        for actor in (dict(neutral,health=0),dict(neutral,owner=1),dict(neutral,type=24),dict(neutral,active=0)):
+            self.assertIsNone(module.pre_refill_target(hero,{2:actor,4:boss},2,[]))
+        self.assertIsNone(module.pre_refill_target(hero,{4:boss},2,[]))
+
     def threat_fixture(self):
         spec=importlib.util.spec_from_file_location('outcome_threat_policy',ROOT/'tools/campaign-outcome-input.py')
         module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
