@@ -24,6 +24,26 @@ def authority_bytes(cookie):
     return struct.pack('>H', 65535) + b''.join(struct.pack('>H', len(v))+v for v in fields)
 
 
+def _display_number(pipe, server):
+    # Keep the read end open until Xvfb completes its newline-terminated reply.
+    # A pipe read may return only the digits, before the final newline write.
+    deadline = time.monotonic() + 10
+    data = b''
+    while b'\n' not in data:
+        if len(data) >= 32:
+            raise RuntimeError('Private X server display line exceeded its bound')
+        remaining = deadline - time.monotonic()
+        if remaining <= 0 or not select.select([pipe], [], [], remaining)[0]:
+            raise RuntimeError('Private X server did not publish a complete display line')
+        chunk = os.read(pipe, 32-len(data))
+        if not chunk:
+            raise RuntimeError('Private X server closed its display pipe before newline')
+        data += chunk
+    if not data.endswith(b'\n') or not data[:-1].isdigit() or server.poll() is not None:
+        raise RuntimeError('Private X server failed initialization')
+    return data[:-1].decode('ascii')
+
+
 def start_display(directory, allow_glx=False):
     cookie = os.urandom(16)
     authority = directory/'Xauthority'
@@ -43,11 +63,7 @@ def start_display(directory, allow_glx=False):
         os.close(write)
         log.close()
     try:
-        if not select.select([read], [], [], 10)[0]:
-            raise RuntimeError('Private X server did not publish a display')
-        number = os.read(read, 32).decode().strip()
-        if not number.isdigit() or server.poll() is not None:
-            raise RuntimeError('Private X server failed initialization')
+        number = _display_number(read, server)
         socket = Path('/tmp/.X11-unix')/('X'+number)
         info = socket.stat()
         receipt = dict(schema=1, policy='native-only-private-x11-v1', owner_pid=os.getpid(),

@@ -23,15 +23,16 @@ static int order_open(void){
  if(!readable((void*)0x537bd0,8)||!equal((void*)0x537bd0,producer,8))return 0;
  order_file=CreateFileA(path,0x40000000,1,0,1,0x80,0);
  if(order_file==(HANDLE)-1){order_file=0;return 0;}
- u32 h[4]={0},wrote=0;copy(h,"MNMCOA01",8);h[2]=1;h[3]=256;
+ u32 h[4]={0},wrote=0;copy(h,"MNMCOA01",8);h[2]=3;h[3]=272;
  if(!WriteFile(order_file,h,16,&wrote,0)||wrote!=16){CloseHandle(order_file);order_file=0;return 0;}return 1;
 }
 static void order_sample(u32 kind,u32 call,u32 mask,u32* before){
  if(!order_file)return;
- u32 error=GetLastError(),tick=GetTickCount(),thread=GetCurrentThreadId(),r[64],now[9];
- for(u32 i=0;i<64;++i)((volatile u32*)r)[i]=0;
+ u32 error=GetLastError(),tick=GetTickCount(),thread=GetCurrentThreadId(),r[68],now[9];
+ for(u32 i=0;i<68;++i)((volatile u32*)r)[i]=0;
  if(kind==1&&order_count&&tick-order_tick<250){SetLastError(error);return;}
  if(!order_owner)order_owner=thread;
+ r[64]=admission_world_returns;
  r[0]=order_count+1;r[1]=tick;r[2]=thread;r[3]=kind;r[5]=call;r[6]=mask;
  if(thread!=order_owner)r[4]|=16;
  if(readable((void*)0x6c4830,4))r[7]=get((void*)0x6c4830);
@@ -43,6 +44,16 @@ static void order_sample(u32 kind,u32 call,u32 mask,u32* before){
    if(latch_collect(a,base,capacity)&&latch_collect(b,base,capacity)&&equal(a,b,sizeof(a))&&
       get((void*)MNM_LATCH_POOL)==base&&get((void*)(MNM_LATCH_POOL+4))==capacity){
     r[4]|=1;r[8]=capacity;copy(r+9,a+10,12);copy(r+12,a+24,64);
+    /* V2: the original candidate pointer is a numeric observation, not the
+     * final command receiver or an allocation generation. */
+    if(readable((void*)MNM_LATCH_HIT,4)){
+     u32 hit=get((void*)MNM_LATCH_HIT);
+     if(!hit)r[4]|=64;
+     else if(hit>=base&&(hit-base)%0xe4b==0){
+      u32 slot=(hit-base)/0xe4b;
+      if(slot<capacity&&(a[16+slot/32]&(1u<<(slot%32)))&&readable((void*)hit,0x178)&&get((void*)hit)==slot){r[4]|=64;r[63]=slot+1;}
+     }
+    }
    }
   }
  }
@@ -64,7 +75,7 @@ static void order_sample(u32 kind,u32 call,u32 mask,u32* before){
  }
  if(order_count>=8191)r[4]|=0x80000000u;
  u32 wrote=0;
- if(!WriteFile(order_file,r,256,&wrote,0)||wrote!=256||r[4]&0x80000000u){CloseHandle(order_file);order_file=0;}
+ if(!WriteFile(order_file,r,272,&wrote,0)||wrote!=272||r[4]&0x80000000u){CloseHandle(order_file);order_file=0;}
  else{++order_count;if(kind==1)order_tick=tick;}
  SetLastError(error);
 }

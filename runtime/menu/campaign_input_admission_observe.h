@@ -4,13 +4,14 @@
  * never retained actor pointers or original allocation generations. */
 static HANDLE admission_file;
 static u32 *admission_input;
+static u32 admission_world_returns;
 static u32 admission_count,admission_previous[32],admission_last_tick;
 static int admission_open(void){
  char path[2048];u32 n=GetEnvironmentVariableA("MNM_MENU_INPUT_ADMISSION_OBSERVE",path,sizeof(path));
  if(!n)return 1;if(n>=sizeof(path))return 0;
  admission_file=CreateFileA(path,0x40000000,1,0,1,0x80,0);
  if(admission_file==(HANDLE)-1){admission_file=0;return 0;}
- u8 header[16]={'M','N','M','C','A','I','0','1',2,0,0,0,128,0,0,0};u32 wrote;
+ u8 header[16]={'M','N','M','C','A','I','0','1',3,0,0,0,144,0,0,0};u32 wrote;
  if(!WriteFile(admission_file,header,16,&wrote,0)||wrote!=16){CloseHandle(admission_file);admission_file=0;return 0;}
  n=GetEnvironmentVariableA("MNM_RENDER_INPUT",path,sizeof(path));
  if(n&&n<sizeof(path)){
@@ -26,7 +27,9 @@ static int admission_open(void){
 }
 static void admission_sample(u32 kind,u32 mask,const u32* mouse){
  if(!admission_file)return;
- u32 error=GetLastError(),r[32]={0},tick=GetTickCount();
+ u32 error=GetLastError(),r[36],tick=GetTickCount();
+ for(u32 i=0;i<36;++i)((volatile u32*)r)[i]=0;
+ r[4]|=128;r[32]=admission_world_returns;
  r[0]=admission_count+1;r[1]=tick;r[2]=GetCurrentThreadId();r[3]=kind;
  u8* bar=(void*)0x6a2dd0;
  if(readable(bar,0x1925)){
@@ -69,7 +72,7 @@ static void admission_sample(u32 kind,u32 mask,const u32* mouse){
  if(kind==1&&same&&tick-admission_last_tick<500){SetLastError(error);return;}
  if(admission_count>=4095)r[4]|=0x80000000u;
  u32 wrote=0;
- if(!WriteFile(admission_file,r,128,&wrote,0)||wrote!=128||r[4]&0x80000000u){CloseHandle(admission_file);admission_file=0;}
+ if(!WriteFile(admission_file,r,144,&wrote,0)||wrote!=144||r[4]&0x80000000u){CloseHandle(admission_file);admission_file=0;}
  else{++admission_count;copy(admission_previous,r,128);admission_last_tick=tick;}
  SetLastError(error);
 }

@@ -79,7 +79,13 @@ def fresh_hover(rows, point, after_sequence, already_there=False, require_cast=F
             pending_callbacks += 1
         elif row.get('kind') == 3:
             pending_callbacks = max(0, pending_callbacks - 1)
-    motion_counter = before[-1]['world_counter'] if already_there and known_original and not pending_callbacks else None
+    def stamp(row):
+        ordinal=row.get('world_return_ordinal')
+        if row['flags']&128:
+            return ('return',ordinal) if type(ordinal) is int and 0<=ordinal<2**32 else None
+        if ordinal is not None:return None
+        return ('clock',row['world_counter'])
+    motion_stamp = stamp(before[-1]) if already_there and known_original and not pending_callbacks else None
     motion_sequence = after_sequence
     candidate = None
     for row in rows:
@@ -88,7 +94,7 @@ def fresh_hover(rows, point, after_sequence, already_there=False, require_cast=F
         if row.get('kind') == 2:
             pending_callbacks += 1
             candidate = None
-            motion_counter = None
+            motion_stamp = None
             motion_sequence = row['sequence']
         if row.get('kind') == 3:
             pending_callbacks = max(0, pending_callbacks - 1)
@@ -96,17 +102,18 @@ def fresh_hover(rows, point, after_sequence, already_there=False, require_cast=F
             if not row['flags'] & 64 or not matches(row['mouse']) or row['mouse_flags'] & 3:
                 # A later original callback supersedes the earlier position.
                 # The latest Qt publication cannot preserve obsolete proof.
-                motion_counter = None
+                motion_stamp = None
                 motion_sequence = row['sequence']
             # Include the observed 0x10 no-button position return. A
             # strictly later World sample still supplies hover/cast readiness.
             elif row.get('callback_mask',0) & 112 and not row['mouse_flags']:
-                motion_counter = row['world_counter']
+                motion_stamp = stamp(row)
                 motion_sequence = row['sequence']
         if row.get('kind') == 1:
             candidate = None
-        if (pending_callbacks or motion_counter is None or row.get('kind') != 1 or row['sequence'] <= motion_sequence
-                or not 0 < (row['world_counter']-motion_counter) % 2**32 < 2**31
+        world_stamp = stamp(row)
+        if (pending_callbacks or motion_stamp is None or world_stamp is None or motion_stamp[0]!=world_stamp[0] or row.get('kind') != 1 or row['sequence'] <= motion_sequence
+                or not 0 < (world_stamp[1]-motion_stamp[1]) % 2**32 < 2**31
                 or row['flags'] & 40 != 40 or row['input_active'] != 1
                 or not matches([row['x'], row['y']])):
             continue

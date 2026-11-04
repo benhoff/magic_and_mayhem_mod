@@ -76,7 +76,7 @@ void GlViewport::paintEvent(QPaintEvent* event){
     emit aboutToCompose();
     if(gpuFrame_.valid() && framePaintTiming)framePaintTiming(false);
     {QPainter painter(this);paintRaster(painter);}
-    if(acceptance_.enabled())capturePaint(grabFramebuffer());
+    observePaint(acceptance_.enabled()?grabFramebuffer():QImage{},!frameSize().isEmpty());
     if(gpuFrame_.valid() && framePaintTiming)framePaintTiming(true);
     emit frameSwapped();
 }
@@ -149,7 +149,7 @@ void GlViewport::paintGL(){
     const int width=qRound(this->width()*devicePixelRatioF()),height=qRound(this->height()*devicePixelRatioF());
     glViewport(0,0,width,height);glClearColor(0,0,0,1);glClear(GL_COLOR_BUFFER_BIT);
     if(!ready_ || frameSize().isEmpty()){
-        if(acceptance_.enabled() && width>0 && height>0)capturePaint({});
+        if(width>0 && height>0)observePaint({},false);
         return;
     }
     if(gpuFrame_.valid() && framePaintTiming)framePaintTiming(false);
@@ -172,24 +172,32 @@ void GlViewport::paintGL(){
         QImage observed(width,height,QImage::Format_RGBA8888);
         {HostTimingTrace readback("acceptance-readback");glReadPixels(0,0,width,height,GL_RGBA,GL_UNSIGNED_BYTE,observed.bits());}
         if(glGetError()!=GL_NO_ERROR)acceptance_.fail("Paint readback failed");
-        else capturePaint(observed.transformed(QTransform().scale(1,-1)));
-    }else if(acceptance_.enabled())capturePaint({});
+        else observePaint(observed.transformed(QTransform().scale(1,-1)));
+    }else observePaint({});
     if(gpuFrame_.valid() && error_.isEmpty() && framePaintTiming)framePaintTiming(true);
 }
 
-void GlViewport::capturePaint(const QImage& image){
+void GlViewport::observePaint(const QImage& image,bool frameDrawn){
     HostTimingTrace trace("acceptance-paint");
+    // Presentation readiness belongs to the painted frame, independently of
+    // optional pixel recording. Assignment alone never advances swapped state.
+    frameDrawn=frameDrawn && !frameSize().isEmpty();
+    QJsonObject identity;
+    if(frameDrawn && gpuFrame_.valid() && acceptanceState)identity=acceptanceState();
+    ++acceptancePaint_;
+    const auto world=identity.constFind("world");
+    acceptanceWorldPainted_=frameDrawn?(world==identity.constEnd()?acceptanceGeneration_:world->toString().toULongLong()):0;
+    if(acceptanceWorldPainted_)WatchdogHostFault::afterWorldPaint(this);
+    if(!acceptance_.enabled())return;
     const auto area=physicalImageRect();
-    QJsonObject row{{"paint",QString::number(++acceptancePaint_)},{"lease",QString::number(acceptanceLease_)},{"world",QString::number(acceptanceGeneration_)},
+    QJsonObject row{{"paint",QString::number(acceptancePaint_)},{"lease",QString::number(acceptanceLease_)},{"world",QString::number(acceptanceWorldPainted_)},
         {"width",qRound(width()*devicePixelRatioF())},{"height",qRound(height()*devicePixelRatioF())},{"frame_width",frameSize().width()},{"frame_height",frameSize().height()},
         {"left",area.x()},{"top",area.y()},{"image_width",area.width()},{"image_height",area.height()},
         {"transport",raster_?"raster":"opengl"},{"gpu_read_complete",!raster_ && !image.isNull()},{"scaling",int(scaling_)},
         {"native_gpu_frame",gpuFrame_.valid()},{"pixels_captured",!image.isNull()},
         {"presentation_owner","dedicated"},{"immutable_lease",true}};
-    if(gpuFrame_.valid() && acceptanceState){const auto identity=acceptanceState();for(auto i=identity.begin();i!=identity.end();++i)row[i.key()]=i.value();}
-    if(gpuFrame_.valid() && row["lease"].toString()=="0")acceptance_.fail("Native paint source identity missing");
-    acceptanceWorldPainted_=row["world"].toString().toULongLong();
-    if(acceptanceWorldPainted_)WatchdogHostFault::afterWorldPaint(this);
+    for(auto i=identity.begin();i!=identity.end();++i)row[i.key()]=i.value();
+    if(frameDrawn && gpuFrame_.valid() && row["lease"].toString()=="0")acceptance_.fail("Native paint source identity missing");
     acceptance_.append("paint",row,image.isNull()?QByteArray():QByteArray(reinterpret_cast<const char*>(image.constBits()),image.sizeInBytes()));
 }
 NativeRenderTarget viewportRenderTarget(GlViewport& v){

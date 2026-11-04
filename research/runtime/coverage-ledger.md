@@ -25971,3 +25971,112 @@ victory→Realm→region2plus independent rendering comparison remain pending be
 the12case matrix. Existing broader campaign/spell/rendering evidence and source
 hashes remain historical; this observation does not renew those claims. See
 [the scoped findings and runnable probe](campaign-order-admission-20261103.md).
+
+### Campaign target admission and attack submission — 2026-11-03
+
+`INPUT.campaign-target-admission` and
+`INPUT.campaign-support-attack-submission` separate validated original candidate
+identity, primary selection and actual World-return readiness from buffer
+submission, later engagement and outcome. V3 passive wires preserve legacy
+readers and add actual forwarded World-return ordinals; no extra original ticks
+or simulation writes are introduced. A held simulation clock alone is an
+insufficient proxy for original hover updates.
+
+Current isolated controls pass183Python cases and7Qt driver cases. Four logical
+return-token controls distinguish the previous clock policy from the current
+return policy; these authored fixtures remain separate from original execution.
+Six retained original diagnostics bind260callback pairs to the independent
+Region envelope. Earlier phases remain historical with their exact source
+snapshots. One historical-wrapper original Fireball was accepted on empty
+ground during a held clock for6mana (50→44), with HP184 unchanged. This is one
+cast/debit observation, not damage or complete pause/spell equivalence.
+
+The final current-source checkpoint probe selects the sole owned Zombie with
+candidate-checked left input, then witnesses a new original right-press opcode7
+buffer append for actor3,target4. The sampled clock holds3164 while actual
+World-return ordinals advance769→776 and the independent candidate changes
+Zombie→Camulos. Submission does not prove delivery or later gameplay engagement.
+Original Save/Load, unchanged save bytes, normal Quit, stopped Wine and complete
+source/binary evidence pass. The helper stops before the boss volley.
+
+Two failed attack preparations remain failed: X while the pointer describes
+HUD does not establish paused keyboard semantics; repeated Fireball icon input
+leaves spell mode2 active and the noncast guard refuses the creature click.
+Direct scene selection before arming spells passes. The guard is retained; the
+driver no longer treats an icon click as cancellation acknowledgement.
+Ten completed output trees passed dual-store custody and exact restoration
+before pinned retirement; active runs, shared inputs and source checkouts remain.
+
+Fresh natural victory→Realm→region2, live route interruption/resumption, attack
+engagement, full rendering comparison and the12case matrix remain separate
+pending milestones. Existing wider campaign/spell/rendering evidence hashes and
+statuses remain historical. Native save parsing still rejects the verified
+original-loaded checkpoint at offset300. See
+[target diagnostics and runnable boundaries](campaign-target-admission-20261103.md).
+
+The subsequent lightweight fresh entry exposed an independent host-readiness
+boundary: painted/swapped World identity was updated only when capture was on.
+`HOST.capture-independent-world-readiness` separates that counter from optional
+pixel evidence. Exact old-source OpenGL/raster controls fail without capture;
+all four capture-on/off cases pass the correction, without accepting queued
+frames before paint/swap or writing capture files in lightweight mode.
+The original timed-out attempt remains failed and has a separately retained
+idle-prefix recovery receipt; no normal-Quit/outcome is asserted for it.
+A second attempt stopped before game launch when private Xvfb could not finish
+its display-number reply. `HOST.private-display-line-readiness` requires the
+complete newline-terminated reply across split reads under32bytes/10seconds.
+Fifteen logical controls and ten actual private-server starts pass; this does
+not renew complete output isolation or rendering acceptance. All original
+negative report/source fingerprints remain retained.
+
+Current-source checkpoint repeat04 also passes direct sole-Zombie selection and
+original opcode7submission with unchanged50mana before the volley. Its73paired
+callbacks agree with the independent Region envelope; seven original phases now
+retain333paired observations. The current202Python/7Qt/4native controls are bound
+to the two input contracts and the native host contracts separately.
+Fresh lightweight attempt03 admits actual World1(640×480,paint60,82frames) and
+physical gameplay, then correctly fails on the original defeat discriminator.
+Six original player Fireballs clear the bridge107HP→0; resupply recovers16→36mana,
+but later escorts consume the boss reserve. The negative campaign remains failed;
+only the narrow first-World readiness milestone receives live observation.
+`INPUT.campaign-boss-mana-reserve` adds an authored supported/rearmed target
+priority under a six-cast estimate; four focused role/budget/interruption guards
+pass. Checkpoint04 observes the priority without nearby escorts and stops before
+casting. Live reserve conflict, damage, living-player victory and nominal
+progression remain pending. No damage formula or gameplay balance is changed.
+
+Current source now passes fresh supported diagnostic04: original50XP victory,
+OK/settled Realm/travel, actual region2World and normal Main Quit with zero
+remaining graphics owners. It skips intros and captures no pixels, so nominal
+rendering acceptance is still pending. Original boss target acquisition follows
+the verified Zombie buffer submission; six accepted paused Fireballs debit37→1
+mana while Wizard HP stays84. Four attributed damage rows reduce boss100→20;
+script-owned retreat/portal follows, and the Wizard enters at16HP. No original
+Zombie melee boss-damage row was observed, and complete command-delivery or
+melee-lethal causality is not inferred. All327input callback pairs in the fresh
+run bind to the independent Region envelope. This sequence has its own narrow
+`HOST.campaign-supported-boss-diagnostic` live scope; wider contracts retain their
+historical fingerprints and independent pending boundaries.
+Eleven additional completed trees, including the separately recovered timeout,
+passed dual-store preservation and exact restoration before retirement. The
+old negative's1373source files are retained by exact hash. Source checkouts,
+canonical inputs and the active full rendering run remain preserved.
+
+Enabled-intro full nominal software640 acquisition now passes original victory,
+Realm/travel/region2and normal Main Quit with stable source/player closure and
+complete evidence. It keeps the independent pixel result pending: the original
+replay has completed3042Worlds/2477427draw calls without native-player or original
+destination-pixel inputs; all captured native paints still require comparison.
+Full viewport storage is about515MiB for36.9GB raw under the64GiB/1GiB policy.
+No other matrix branch or population/save/scanout boundary is inferred.
+
+The independent enabled-intro nominal software640 comparison now passes:
+3042original Worlds/2477427draw calls,10491native World presentations and
+9227724000pixels have zero differences. First swaps of World1/region2World3034
+are both covered; command surfaces and comparison process groups retire.
+Original/native pixel inputs remain independent, source stability and unchanged
+original manifests pass, and3046comparison artifacts are retained in SQLite.
+`HOST.campaign-nominal-world-history` records only this1of12current-source matrix
+branches. Historical branch fingerprints remain unchanged. Route interruption,
+other11branches, populated lifetimes, native save parsing, physical scanout and
+native simulation/balance remain separate pending boundaries.

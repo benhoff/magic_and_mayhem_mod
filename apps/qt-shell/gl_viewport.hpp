@@ -70,7 +70,7 @@ private:
     AcceptanceCapture acceptance_{"viewport"};
     std::uint64_t acceptanceWorldPainted_=0,acceptanceWorldSwapped_=0,acceptanceLastSwappedPaint_=0;
     std::uint64_t acceptanceLease_=0,acceptanceGeneration_=0,acceptancePaint_=0;
-    void capturePaint(const QImage&);
+    void observePaint(const QImage&,bool frameDrawn=true);
     bool raster_=false,platformRecoveryQueued_=false,platformRecoveryCancelled_=false;
     QPointer<QWidget> platformHost_;
     QPointer<QWindow> platformWindow_;

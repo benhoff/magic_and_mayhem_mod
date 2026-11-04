@@ -1,5 +1,6 @@
 """Admission and namespace-boundary controls; no original game inputs."""
 import copy
+import importlib.util
 import hashlib
 import json
 import os
@@ -12,6 +13,34 @@ import unittest
 from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 import native_output_owner as owner
+
+spec=importlib.util.spec_from_file_location('owned_run',Path(__file__).resolve().parents[1]/'tools/run-native-owned.py')
+owned_run=importlib.util.module_from_spec(spec);spec.loader.exec_module(owned_run)
+
+
+class DisplayLine(unittest.TestCase):
+    def number(self,chunks,server_code=None,ready=True):
+        server=SimpleNamespace(poll=lambda:server_code)
+        with patch.object(owned_run.select,'select',return_value=([7],[],[]) if ready else ([],[],[])),patch.object(owned_run.os,'read',side_effect=chunks) as read:
+            value=owned_run._display_number(7,server)
+            return value,read.call_count
+
+    def test_complete_line(self):
+        self.assertEqual(self.number([b'17\n']),('17',1))
+
+    def test_split_digits_and_newline_must_all_be_consumed(self):
+        self.assertEqual(self.number([b'1',b'7',b'\n']),('17',3))
+
+    def test_digits_without_newline_refuse_eof(self):
+        with self.assertRaisesRegex(RuntimeError,'before newline'):self.number([b'17',b''])
+
+    def test_malformed_and_overlong_lines_refuse(self):
+        for line in (b'\n',b' 17\n',b'17x\n',b'17\n4\n',b'\xff\n',b'9'*32):
+            with self.subTest(line=line),self.assertRaises(RuntimeError):self.number([line])
+
+    def test_timeout_or_exited_server_refuse(self):
+        with self.assertRaisesRegex(RuntimeError,'complete display line'):self.number([],ready=False)
+        with self.assertRaisesRegex(RuntimeError,'initialization'):self.number([b'17\n'],server_code=1)
 
 
 class Ownership(unittest.TestCase):

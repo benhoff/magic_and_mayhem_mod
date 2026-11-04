@@ -22,6 +22,7 @@ def main():
     p.add_argument('--driver-test', type=Path, help='Built Qt public-control startup regression')
     p.add_argument('--region-test', type=Path, help='Built Qt progressed Region/original Realm handoff controls')
     p.add_argument('--report', required=True)
+    p.add_argument('--world-readiness-test', type=Path, help='Built native paint/swap identity regression in both transports and capture modes')
     a = p.parse_args()
     require(a.report.startswith(PREFIX) and '..' not in Path(a.report).parts and not (ROOT/a.report).exists(), 'New owned report required')
     with Reader(ROOT) as reader:
@@ -30,7 +31,7 @@ def main():
         require(all(sha(ROOT/n)==h for n,h in prepared['sources'].items()), 'Prepared sources changed')
         names=set(prepared['sources'])|{'tools/review-rendering-progression.py', 'tools/rendering_pilot.py',
             'tools/run-native-owned.py','tools/campaign_route.py','tools/rendering_normal_acceptance.py', 'tests/test-campaign-input-observation.py','tests/test-campaign-input-admission.py','tests/test-campaign-report.py','tests/test-campaign-dialogue.py','tests/test-campaign-return.py','tests/test-campaign-follow.py','tests/test-campaign-realm-exit.py','tests/test-campaign-route.py','tests/test-rendering-capture.py','tests/test-rendering-progression.py',
-            'tests/test-rendering-pilot.py', 'tests/test-rendering-normal-acceptance.py','tests/test-campaign-order-observation.py','tests/test-campaign-checkpoint.py','tools/campaign_checkpoint.py'}
+            'tests/test-rendering-pilot.py', 'tests/test-rendering-normal-acceptance.py','tests/test-native-output-owner.py','tests/test-campaign-target-admission.py','tests/test-campaign-order-observation.py','tests/test-campaign-checkpoint.py','tools/campaign_checkpoint.py'}
         if a.driver_test:
             names.update(['tools/campaign_order_observation.py','tests/campaign-progression-driver-test.cpp'])
         if a.region_test:
@@ -39,13 +40,14 @@ def main():
         compiler=importlib.util.module_from_spec(spec);spec.loader.exec_module(compiler)
         linked=set(compiler.linked_compiler_sources(a.build.resolve(),ROOT))
         names.update(linked);names.add('tools/test-native-campaign.py')
+        if a.world_readiness_test:names.add('tests/viewport-world-readiness-test.cpp')
         report=dict(schema=2,kind='rendering_progression_preparation_review',success=False,log_storage='inline-lossless',
             sources={n:sha(ROOT/n) for n in sorted(names)},
             preparation=dict(record=a.preparation,sha256=reader.digest(a.preparation)),
             original_game_executed=False, player_accepted=False, status_promotions=[], checks=[])
         try:
             commands=[[sys.executable,'-B',ROOT/n] for n in
-                ('tests/test-campaign-order-observation.py','tests/test-campaign-checkpoint.py','tests/test-campaign-input-observation.py','tests/test-campaign-input-admission.py','tests/test-campaign-report.py','tests/test-campaign-dialogue.py','tests/test-campaign-return.py','tests/test-campaign-follow.py','tests/test-campaign-realm-exit.py','tests/test-campaign-route.py','tests/test-rendering-capture.py','tests/test-rendering-progression.py','tests/test-rendering-pilot.py','tests/test-rendering-normal-acceptance.py')]
+                ('tests/test-native-output-owner.py','tests/test-campaign-target-admission.py','tests/test-campaign-order-observation.py','tests/test-campaign-checkpoint.py','tests/test-campaign-input-observation.py','tests/test-campaign-input-admission.py','tests/test-campaign-report.py','tests/test-campaign-dialogue.py','tests/test-campaign-return.py','tests/test-campaign-follow.py','tests/test-campaign-realm-exit.py','tests/test-campaign-route.py','tests/test-rendering-capture.py','tests/test-rendering-progression.py','tests/test-rendering-pilot.py','tests/test-rendering-normal-acceptance.py')]
             commands.append(['cmake','--build',a.build.resolve(),'--target','mnm-qt-shell','--parallel','4'])
             if a.driver_test:
                 commands.append(['cmake','--build',a.build.resolve(),'--target','campaign-progression-driver-test','--parallel','4'])
@@ -53,6 +55,13 @@ def main():
             if a.region_test:
                 commands.append(['cmake','--build',a.build.resolve(),'--target','menu-region-campaign-test','--parallel','4'])
                 commands.append([a.region_test.resolve()])
+            if a.world_readiness_test:
+                commands.append(['cmake','--build',a.build.resolve(),'--target','viewport-world-readiness-test','--parallel','4'])
+                for transport in ('opengl','raster'):
+                    for recording in ('light','capture'):
+                        commands.append(['env','QT_QPA_PLATFORM=xcb','LIBGL_ALWAYS_SOFTWARE=1',
+                            'MNM_RENDER_SERVICE_PATH='+str(a.build.resolve()/'renderer/mnm-render-service'),
+                            'xvfb-run','-a',a.world_readiness_test.resolve(),transport,recording])
             for i,command in enumerate(commands):
                 result=subprocess.run(list(map(str,command)),cwd=ROOT,capture_output=True,timeout=300,
                     env=dict(os.environ,TMPDIR=str(a.build.resolve().parent/'tmp'),QT_QPA_PLATFORM='offscreen'))
@@ -71,6 +80,7 @@ def main():
                 report['driver_test_sha256']=sha(a.driver_test)
             if a.region_test:
                 report['region_test_sha256']=sha(a.region_test)
+            if a.world_readiness_test:report['world_readiness_test_sha256']=sha(a.world_readiness_test)
             report['sources_stable']=all(sha(ROOT/n)==h for n,h in report['sources'].items())
             report['success']=report['sources_stable']
         except Exception as error:

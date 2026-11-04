@@ -14,11 +14,11 @@ def sample(kind,call=0):
     return r
 
 
-def wire(*rows):
-    data=b'MNMCOA01'+struct.pack('<II',1,256)
+def wire(*rows,version=1):
+    data=b'MNMCOA01'+struct.pack('<II',version,272 if version==3 else 256)
     for i,r in enumerate(rows,1):
         r=r.copy();r[0]=i;r[1]=100+i
-        data+=struct.pack('<64I',*r)
+        data+=struct.pack('<68I' if version==3 else '<64I',*r)
     return data
 
 
@@ -68,6 +68,44 @@ class Orders(unittest.TestCase):
         with self.assertRaises(ValueError):decode(wire(a,b)[:-1])
         b[2]=43
         with self.assertRaises(ValueError):decode(wire(a,b))
+
+    def test_v2_candidate_slot_is_distinct_from_selection(self):
+        r=sample(1);r[4]|=64;r[63]=1
+        result=decode(wire(r,version=2));row=result['rows'][0]
+        self.assertEqual(result['wire_version'],2)
+        self.assertEqual(row['primary'],[3])
+        self.assertTrue(row['candidate_valid'])
+        self.assertEqual(row['candidate_slot_plus_one'],1)
+        with self.assertRaises(ValueError):decode(wire(r))
+
+    def test_v2_null_and_unvalidated_candidate_are_distinct(self):
+        r=sample(1)
+        self.assertFalse(decode(wire(r,version=2))['rows'][0]['candidate_valid'])
+        r[4]|=64
+        self.assertTrue(decode(wire(r,version=2))['rows'][0]['candidate_valid'])
+
+    def test_v2_candidate_requires_valid_pool_and_slot_bounds(self):
+        for flag,slot in ((35,1),(34|64,1),(35|64,6)):
+            r=sample(1);r[4]=flag;r[63]=slot
+            with self.subTest(flag=flag,slot=slot),self.assertRaises(ValueError):decode(wire(r,version=2))
+
+    def test_v3_keeps_candidate_and_exact_world_return_token(self):
+        a=sample(1)+[10,0,0,0];a[4]|=64;a[63]=1
+        b=a.copy();b[64]=11
+        rows=decode(wire(a,b,version=3))['rows']
+        self.assertEqual([r['world_return_ordinal'] for r in rows],[10,11])
+        self.assertEqual(rows[-1]['candidate_slot_plus_one'],1)
+
+    def test_v3_backward_return_token_and_reserved_words_refuse(self):
+        a=sample(1)+[10,0,0,0];b=a.copy();b[64]=9
+        with self.assertRaises(ValueError):decode(wire(a,b,version=3))
+        for index in (65,66,67):
+            bad=a.copy();bad[index]=1
+            with self.subTest(index=index),self.assertRaises(ValueError):decode(wire(bad,version=3))
+
+    def test_v3_return_token_wrap_is_forward(self):
+        a=sample(1)+[0xffffffff,0,0,0];b=a.copy();b[64]=0
+        self.assertEqual(decode(wire(a,b,version=3))['rows'][-1]['world_return_ordinal'],0)
 
 
 if __name__=='__main__':unittest.main()

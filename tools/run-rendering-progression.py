@@ -15,7 +15,7 @@ def main():
  p.add_argument('--evidence-mode',choices=['diagnostic','full'],default='diagnostic',help='Default: bounded semantic diagnostics without pixel/World captures; full is required for rendering evidence')
  p.add_argument('--deadline-seconds',type=int,help='15..900; default diagnostic120/full900')
  p.add_argument('--checkpoint',choices=['capture','restore'],help='Separate diagnostic Save/Load; never nominal progression acceptance')
- p.add_argument('--checkpoint-probe',choices=['orders'],help='Bounded physical selection/move probe after verified original checkpoint restore')
+ p.add_argument('--checkpoint-probe',choices=['orders','paused-orders','paused-cast','combat'],help='Bounded physical selection/move or Space-toggle/candidate probe after verified original checkpoint restore')
  p.add_argument('--checkpoint-name',help='New unique checkpoint- name for capture or exact existing name for restore')
  p.add_argument('--checkpoint-seed',help='Capture from an unchanged original Save/Load candidate report; new Save/Load witnesses are still required')
  p.add_argument('--checkpoint-reference',help='Successful capture acquisition report required for restore')
@@ -99,7 +99,7 @@ def main():
  from rendering_build_binding import native_runtime_source_paths
  runtime_names=native_runtime_source_paths(ROOT)
  names.update(['tools/rendering_build_binding.py','tools/check_capture_policy.py','tools/check_inputs.py'])
- names.update(['tools/campaign_checkpoint.py','apps/qt-shell/campaign_storage_test.cpp','tools/campaign_order_observation.py','tools/campaign-order-input.py'])
+ names.update(['tools/campaign_checkpoint.py','apps/qt-shell/campaign_storage_test.cpp','tools/campaign_order_observation.py','tools/campaign-order-input.py','tools/campaign_target_admission.py'])
  names.update(runtime_names)
  sources={n:sha(ROOT/n) for n in sorted(names)}
  report=dict(schema=1,kind='public_native_progression_diagnostic_acquisition' if a.skip_intros else 'public_native_progression_acquisition',success=False,player_accepted=False,scenario=a.case,preparation=dict(record=a.preparation,sha256=preparation_sha),
@@ -132,7 +132,14 @@ def main():
  env.update(MNM_CAMPAIGN_TIMEOUT_MS=str(deadline_ms-5000),MNM_CAMPAIGN_SMOKE_TEST='1',MNM_CAMPAIGN_PROGRESSION_CASE=a.case,MNM_CAMPAIGN_PROGRESSION_SIZE=a.size,MNM_EXPERIMENTAL_CAMPAIGN_MENUS='1',MNM_CAMPAIGN_CASTING_COMBAT='1')
  if a.case!='defeat':env['MNM_CAMPAIGN_FOLLOW_OBSERVE']='1'
  report['configuration']['follow_reference_observation']=a.case!='defeat'
- report['configuration']['input_admission_observation']=a.observe_input_admission
+ baseline_orders=a.case!='defeat'
+ report['configuration']['input_admission_observation']=a.observe_input_admission or baseline_orders
+ report['configuration']['order_admission_observation']=baseline_orders or bool(a.checkpoint_probe)
+ if baseline_orders:
+  env.update(MNM_CAMPAIGN_INPUT_ADMISSION='1',MNM_CAMPAIGN_ORDER_ADMISSION='1')
+  report['configuration']['input_readiness']='original-callback-then-original-World-return-v3'
+  report['configuration']['order_acknowledgement']='original-selected-actor-opcode7-buffer-submission'
+
  report['configuration']['startup_timing_observation']=a.observe_startup_timing
  report['configuration']['startup_main_dwell_ms']=a.startup_main_dwell_ms
  if a.observe_startup_timing:
@@ -143,7 +150,7 @@ def main():
  if a.observe_input_admission or a.checkpoint_probe:
   env['MNM_CAMPAIGN_INPUT_ADMISSION']='1'
   report['kind']='public_native_progression_diagnostic_acquisition'
-  report['configuration'].update(input_readiness='original-callback-then-later-World-v2',diagnostic_only=True)
+  report['configuration'].update(input_readiness='original-callback-then-original-World-return-v3',diagnostic_only=True)
  if a.checkpoint_probe:
   env.update(MNM_CAMPAIGN_ORDER_ADMISSION='1',MNM_CAMPAIGN_CHECKPOINT_PROBE=a.checkpoint_probe)
   report['configuration']['checkpoint_probe']=a.checkpoint_probe

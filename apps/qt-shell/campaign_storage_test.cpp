@@ -92,17 +92,20 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
   const auto rect=viewport->imageRect();const auto origin=viewport->mapToGlobal(rect.topLeft().toPoint());
   window.activateWindow();window.raise();viewport->setFocus();
   const auto output=QFileInfo(path).dir().filePath("checkpoint-orders.json");
+  const bool combat=qEnvironmentVariable("MNM_CAMPAIGN_CHECKPOINT_PROBE")=="combat";
   auto* process=new QProcess(&window);r->helper=true;r->orderProbed=true;
   QObject::connect(process,&QProcess::errorOccurred,&window,[fail](QProcess::ProcessError e){if(e==QProcess::FailedToStart)fail("Order helper failed to start");});
-  QObject::connect(process,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),&window,[r,process,output,fail](int code,QProcess::ExitStatus status){
+  QObject::connect(process,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),&window,[r,process,output,fail,combat](int code,QProcess::ExitStatus status){
    r->helper=false;QFile file(output);QJsonObject result;
    if(file.open(QIODevice::ReadOnly))result=QJsonDocument::fromJson(file.readAll()).object();
-   if(code||status!=QProcess::NormalExit||!result.value("completed").toBool()||result.value("simulation_writes").toBool(true))
+   if((code&&!(combat&&code==1&&!result.value("success").toBool(true)))||status!=QProcess::NormalExit||!result.value("completed").toBool()||result.value("simulation_writes").toBool(true))
     fail("Order probe did not complete safely: "+QString::fromLocal8Bit(process->readAllStandardError()));
-   else{r->states.append(QJsonObject{{"event","checkpoint-order-probe"},{"result",result}});r->dwell.restart();}
+   else{r->states.append(QJsonObject{{"event","checkpoint-order-probe"},{"result",result}});if(!combat)r->dwell.restart();}
    process->deleteLater();
   });
-  process->start("python3",{QDir::current().filePath("tools/campaign-order-input.py"),"--experiment",session.evidenceDirectory(),"--rect",QString::number(origin.x()),QString::number(origin.y()),QString::number(qRound(rect.width())),QString::number(qRound(rect.height())),"--frame-size",QString::number(viewport->frameSize().width()),QString::number(viewport->frameSize().height()),"--output",output});
+  QStringList args{QDir::current().filePath(combat?"tools/campaign-outcome-input.py":"tools/campaign-order-input.py"),"--experiment",session.evidenceDirectory(),"--rect",QString::number(origin.x()),QString::number(origin.y()),QString::number(qRound(rect.width())),QString::number(qRound(rect.height())),"--frame-size",QString::number(viewport->frameSize().width()),QString::number(viewport->frameSize().height()),"--output",output};
+  if(combat)args<<"--case"<<"victory"<<"--resume-checkpoint"<<"--stop-after-support-attack"<<"--seconds"<<"240";
+  process->start("python3",args);
  };
  auto output=session.output;session.output=[output](const QString& s){if(output)output(s);std::fprintf(stderr,"%s",qPrintable(s));};auto failed=session.failed;session.failed=[failed,fail](const QString& s){if(failed)failed(s);fail(s);};
  auto old=session.stateChanged;session.stateChanged=[r,old,fail,click,probe,restart,difficulty,checkpointDiagnostic,recreateWorld,loadingDwell,miniCaptureDelay,&session,&window,path](const MenuBridge::State& s){
@@ -194,7 +197,7 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
    }else r->stage=r->stage==5?6:9;
    r->attempts=0;
   }
-  if(r->stage==9&&presenting&&!r->orderProbed&&qEnvironmentVariable("MNM_CAMPAIGN_CHECKPOINT_PROBE")=="orders"){probeOrders();return;}
+  if(r->stage==9&&presenting&&!r->orderProbed&&!qEnvironmentVariable("MNM_CAMPAIGN_CHECKPOINT_PROBE").isEmpty()){probeOrders();return;}
   if(checkpoint&&r->stage==3&&presenting&&!r->checkpointReady){prepareCheckpoint();return;}
   if((r->stage==3||r->stage==6||r->stage==9||r->stage==21||r->stage==23)&&presenting&&(!resident||p.sourceGeneration>r->inputSource)&&r->dwell.elapsed()>=6000){if(++r->attempts>(difficulty==0&&r->stage==3?24:8)){fail("Original Mini ingress timed out");return;}if(r->attempts==1&&r->stage!=21&&r->stage!=23)r->checkpoints.append(QJsonObject{{"phase",r->stage==3?"before-save":r->stage==6?"after-save":r->reloaded?"after-recreate-load":"after-load"},{"frames",qint64(p.frames)},{"source_generation",QString::number(p.sourceGeneration)},{"source_base",QString::number(r->source)},{"frame_base",qint64(r->frames)},{"native_active",p.active},{"renderer",p.renderer},{"fallback",p.fallback},{"error",p.error}});input("mini");}
  });timer->start();
