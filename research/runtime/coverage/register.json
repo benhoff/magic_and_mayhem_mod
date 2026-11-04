@@ -162078,7 +162078,8 @@
       "documents": [
         "research/runtime/campaign-matrix-20261103.md",
         "research/runtime/rts-controls.md",
-        "research/runtime/campaign-terminal-20261104.md"
+        "research/runtime/campaign-terminal-20261104.md",
+        "research/runtime/campaign-boss-hover-20261104.md"
       ],
       "implementation": [
         "tools/campaign_target_admission.py",
@@ -162107,7 +162108,8 @@
         "MTR03.headless-bound07",
         "MTR03.team-recall.nominal-negative07",
         "MTR03.team-recall.raw07",
-        "BCG04.full-boundaries.live01"
+        "BCG04.full-boundaries.live01",
+        "BH04.checkpoint.live01"
       ],
       "status": {
         "understanding": "partial",
@@ -162121,7 +162123,9 @@
         "Source45 checkpoint06 passes rounded-goal arrival and original follow proof but the pre-pause body22hover560,198 selects guard5 beyond Boss4. Source46 tries four bounded original-candidate-checked body/foot pixels, retaining only an actually admitted Boss point; no button or role/camera guarantee is manufactured. Fresh source46 evidence pending.",
         "Probe08 validates corrected restore/normal Quit but refuses a firing-position change during unpaused recall. Source47 allows at most two fresh pre-pause revalidations inside the original25second preparation clock; actual source/target, candidate, close-clear position, sole support and opcode7 remain mandatory. Fresh source47 execution pending.",
         "Source48 checkpoint10 passes235controls but fails before the terminal hint/portal branch at the unchanged25second Boss preparation bound. The diagnostic remains failed, with both stopped output trees hash-verified and restore-tested in mirrored custody. This run does not validate terminal Return consumption, actual portal entry or reliable nominal progression.",
-        "Current source48 enabled-intro capture-free software800 completes original bridge clearing/refill, then fails all four no-button Boss scene candidates at118WizardHP/100BossHP. Neither terminal Return nor portal is exercised. Candidate checks remain strict; reliable camera/scene admission, whole nominal victory/progression, current pixels and the12case matrix remain pending. All11stopped cases retain mirrored exact-restore custody."
+        "Current source48 enabled-intro capture-free software800 completes original bridge clearing/refill, then fails all four no-button Boss scene candidates at118WizardHP/100BossHP. Neither terminal Return nor portal is exercised. Candidate checks remain strict; reliable camera/scene admission, whole nominal victory/progression, current pixels and the12case matrix remain pending. All11stopped cases retain mirrored exact-restore custody.",
+        "Current policy refreshes Boss pose per no-button hover while retaining the centered Wizard reference, under existing four-probe/25second bounds. Historical live evidence retains exact source hashes; current original execution and complete camera semantics remain pending.",
+        "Source49current checkpoint passes forced team-recall/no-button candidate and original opcode7, strict restore and normal Quit. Its separate enabled-intro run uses on-screen support selection, so natural offscreen reliability is unexercised. That run reaches100to20Boss damage, one native Return attempt and three original Wizard opcode5acks, then fails24portal candidates. BH04.nominal.scoped01binds only the packet/input-attempt stages; actual portal entry, key consumption, terminal/camera/delivery/AI semantics, whole outcome, pixels and the12case matrix remain pending."
       ]
     },
     {
@@ -162298,7 +162302,8 @@
         }
       ],
       "documents": [
-        "research/runtime/campaign-terminal-20261104.md"
+        "research/runtime/campaign-terminal-20261104.md",
+        "research/runtime/campaign-boss-hover-20261104.md"
       ],
       "implementation": [
         "tools/campaign-outcome-input.py",
@@ -162332,13 +162337,14 @@
         "CT04.guards06",
         "CT04.guards07",
         "CT04.guards08",
-        "CT04.guards09"
+        "CT04.guards09",
+        "BH04.nominal.scoped01"
       ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "remaining_gaps": [
@@ -162347,7 +162353,8 @@
         "Source43 retry04 refuses24scene points and sends no portal buttons, ending with normal Quit but a failed command probe. Retained native frame shows the portal base below several rejected pixels. Source44 adds centers of the3x3ground-cell neighborhood under the same24attempt/30second caps. Correct earlier provisional wording: recovered539080 dispatch maps opcode0xa to coordinate attack50ca30, not interaction. The driver now accepts only actual opcode5moves; typed19byte opcode10 decoding remains available but is refused as a move. Fresh current validation pending.",
         "Current-source probe05 repeats the pre-existing follow-goal quantization deadlock before portal testing. New INPUT.campaign-rounded-follow-staging handles that prerequisite without reducing the separation threshold, widening the20second deadline or waiving original selection/follow proof.",
         "Source48 checkpoint10 passes235controls but fails before the terminal hint/portal branch at the unchanged25second Boss preparation bound. The diagnostic remains failed, with both stopped output trees hash-verified and restore-tested in mirrored custody. This run does not validate terminal Return consumption, actual portal entry or reliable nominal progression.",
-        "Current source48 enabled-intro capture-free software800 completes original bridge clearing/refill, then fails all four no-button Boss scene candidates at118WizardHP/100BossHP. Neither terminal Return nor portal is exercised. Candidate checks remain strict; reliable camera/scene admission, whole nominal victory/progression, current pixels and the12case matrix remain pending. All11stopped cases retain mirrored exact-restore custody."
+        "Current source48 enabled-intro capture-free software800 completes original bridge clearing/refill, then fails all four no-button Boss scene candidates at118WizardHP/100BossHP. Neither terminal Return nor portal is exercised. Candidate checks remain strict; reliable camera/scene admission, whole nominal victory/progression, current pixels and the12case matrix remain pending. All11stopped cases retain mirrored exact-restore custody.",
+        "Source49current checkpoint passes forced team-recall/no-button candidate and original opcode7, strict restore and normal Quit. Its separate enabled-intro run uses on-screen support selection, so natural offscreen reliability is unexercised. That run reaches100to20Boss damage, one native Return attempt and three original Wizard opcode5acks, then fails24portal candidates. BH04.nominal.scoped01binds only the packet/input-attempt stages; actual portal entry, key consumption, terminal/camera/delivery/AI semantics, whole outcome, pixels and the12case matrix remain pending."
       ]
     },
     {
@@ -162410,7 +162417,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/campaign-terminal-20261104.md"
+        "research/runtime/campaign-terminal-20261104.md",
+        "research/runtime/campaign-boss-hover-20261104.md"
       ],
       "implementation": [
         "tools/campaign_dialogue.py",
@@ -162425,19 +162433,65 @@
         "runtime/menu/campaign_spell_observe.h"
       ],
       "evidence": [
-        "CT04.guards09"
+        "CT04.guards09",
+        "BH04.nominal.scoped01"
       ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "remaining_gaps": [
         "Hypothesis only until fresh original execution; a Return attempt is not proof of conversation consumption or terminal script advancement.",
         "Source48 checkpoint10 passes235controls but fails before the terminal hint/portal branch at the unchanged25second Boss preparation bound. The diagnostic remains failed, with both stopped output trees hash-verified and restore-tested in mirrored custody. This run does not validate terminal Return consumption, actual portal entry or reliable nominal progression.",
-        "Current source48 enabled-intro capture-free software800 completes original bridge clearing/refill, then fails all four no-button Boss scene candidates at118WizardHP/100BossHP. Neither terminal Return nor portal is exercised. Candidate checks remain strict; reliable camera/scene admission, whole nominal victory/progression, current pixels and the12case matrix remain pending. All11stopped cases retain mirrored exact-restore custody."
+        "Current source48 enabled-intro capture-free software800 completes original bridge clearing/refill, then fails all four no-button Boss scene candidates at118WizardHP/100BossHP. Neither terminal Return nor portal is exercised. Candidate checks remain strict; reliable camera/scene admission, whole nominal victory/progression, current pixels and the12case matrix remain pending. All11stopped cases retain mirrored exact-restore custody.",
+        "Source49current checkpoint passes forced team-recall/no-button candidate and original opcode7, strict restore and normal Quit. Its separate enabled-intro run uses on-screen support selection, so natural offscreen reliability is unexercised. That run reaches100to20Boss damage, one native Return attempt and three original Wizard opcode5acks, then fails24portal candidates. BH04.nominal.scoped01binds only the packet/input-attempt stages; actual portal entry, key consumption, terminal/camera/delivery/AI semantics, whole outcome, pixels and the12case matrix remain pending."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-moving-boss-hover",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Latest sampled Boss pose for each bounded original hover",
+      "scope": "Authored no-button pre-pause Boss hover policy refreshes the observed Wizard/Boss/support roles and Boss pose separately before each of at most four body/foot probes, while preserving the Wizard reference sampled after ordinary W,W centering. Later Wizard movement is not another camera origin. Only a fresh original matching scene candidate admits a physical point; unchanged sole-support, geometry, original opcode7,25second preparation, two revalidations and12second pause checks remain mandatory. Latest available actor samples do not recover camera coordinates, predict motion, identify allocation generations or prove command delivery/whole campaign/AI equivalence.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/campaign-boss-hover-20261104.md"
+      ],
+      "implementation": [
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_route.py"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_gameplay.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_input_admission.py",
+        "tools/campaign_input_observation.py",
+        "tools/campaign_order_observation.py",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_input_admission_observe.h",
+        "runtime/menu/campaign_order_observe.h"
+      ],
+      "evidence": [
+        "BH04.guards01",
+        "BH04.checkpoint.live01"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Retained source48 nominal trace proves a stale projected Boss input; this is not camera recovery. Current238controls and one successful capture-free original software800checkpoint verify later actor snapshots, original matching candidate, exact support3-to-Boss4opcode7, strict restore and normal Quit. Repeated-run reliability, natural moving-Boss route/outcome, full camera/delivery/AI semantics, pixels and the12case matrix remain pending.",
+        "Source49current checkpoint passes forced team-recall/no-button candidate and original opcode7, strict restore and normal Quit. Its separate enabled-intro run uses on-screen support selection, so natural offscreen reliability is unexercised. That run reaches100to20Boss damage, one native Return attempt and three original Wizard opcode5acks, then fails24portal candidates. BH04.nominal.scoped01binds only the packet/input-attempt stages; actual portal entry, key consumption, terminal/camera/delivery/AI semantics, whole outcome, pixels and the12case matrix remain pending."
       ]
     }
   ],
@@ -376660,6 +376714,71 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "BH04.guards01",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-boss-hover-results-20261104/headless-binding-01.json",
+      "sha256": "d1695090eed4722631bb8d04e87514d19b4280ffb70253398de0662a5c5b9993",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current retained-motion regression, fixed-camera-reference and changing/dead/ambiguous-role refusal controls for four safe no-button Boss probes. Current native host compile, seven Qt driver and four presentation controls. No new original candidate/order, camera recovery, whole campaign, pixels or simulation claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "BH04.checkpoint.live01",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-boss-hover-results-20261104/checkpoint-live-binding-01.json",
+      "sha256": "c59ade7d3b884d4c765d9a3febf0d922165ae1bb9d6f3713d88005cd4db7679e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current scoped original scene admission and command-buffer acknowledgement only; strict restore/normal Quit and bounded pause pass. Successful diagnostic stops before boss volley or outcome. No camera recovery, command delivery, whole campaign, pixels, native simulation or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/whole_campaign_passed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "BH04.nominal.scoped01",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-boss-hover-results-20261104/nominal-stage-observations-01.json",
+      "sha256": "a94ec7b55b958bdf166963c56776e101b8c6e2628f78600554b3a0328f35855d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Independent verification of three original Wizard move acknowledgements and one native Return attempt only, within an overall failed enabled-intro diagnostic. This nominal run uses on-screen support selection, so it does not exercise the new per-probe team-recall path. No portal entry, key consumption, whole outcome, pixels, camera/delivery/AI/simulation or balance claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/acquisition_success",
+          "equals": false
+        },
+        {
+          "pointer": "/whole_campaign_passed",
+          "equals": false
+        },
+        {
+          "pointer": "/portal_entry_proved",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -408155,6 +408274,80 @@
       "evidence": [
         "CT04.guards09"
       ]
+    },
+    {
+      "id": "input.moving-boss-hover-controls-bh04-01",
+      "level": "headless",
+      "scope": "Current retained-motion regression, fixed-camera-reference and changing/dead/ambiguous-role refusal controls for four safe no-button Boss probes. Current native host compile, seven Qt driver and four presentation controls. No new original candidate/order, camera recovery, whole campaign, pixels or simulation claim.",
+      "behaviors": [
+        "INPUT.campaign-moving-boss-hover"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py"
+      ],
+      "evidence": [
+        "BH04.guards01"
+      ]
+    },
+    {
+      "id": "input.moving-boss-hover-checkpoint-bh04",
+      "level": "live_observation",
+      "scope": "One capture-free original software800 checkpoint diagnostic reads refreshed actor snapshots for a no-button Boss hover, preserves its post-center camera-reference snapshot, independently validates the original mouse/World/candidate witness and observes actual sole-support opcode7submission. Strict original restore/normal Quit pass. No moving-camera recovery, full repeated reliability, command delivery, natural victory/progression or pixels.",
+      "behaviors": [
+        "INPUT.campaign-moving-boss-hover"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "evidence": [
+        "BH04.checkpoint.live01"
+      ]
+    },
+    {
+      "id": "input.team-boss-order-checkpoint-bh04",
+      "level": "live_observation",
+      "scope": "One current checkpoint diagnostic selects the owned Zombie through its verified private team, admits an original Boss scene candidate and submits actual opcode7from that support to the expected Boss. No complete keyboard/camera, group persistence, engagement causality, commander gameplay or whole outcome claim.",
+      "behaviors": [
+        "INPUT.campaign-offscreen-team-recall"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "evidence": [
+        "BH04.checkpoint.live01"
+      ]
+    },
+    {
+      "id": "input.portal-move-partial-nominal-bh04",
+      "level": "live_observation",
+      "scope": "Three source49original Wizard opcode5near-portal move acknowledgements in one failed enabled-intro software800diagnostic: raw null-candidate right-entry/return, sole Wizard and exact signed destinations verified. No actual portal trigger/entry, terminal/death semantics, command delivery, natural victory or pixels.",
+      "behaviors": [
+        "INPUT.campaign-portal-command-admission"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "evidence": [
+        "BH04.nominal.scoped01"
+      ]
+    },
+    {
+      "id": "input.terminal-return-attempt-nominal-bh04",
+      "level": "live_observation",
+      "scope": "One source49ordinary Return injection attempt after fresh original player-attributed Fireball damage40to20on active Camulos in a failed nominal diagnostic. Raw actor/cast-lineage/damage and one recorded key attempt verified. No dialogue detection, original key consumption, terminal advancement, causality or victory claim.",
+      "behaviors": [
+        "INPUT.campaign-terminal-return-hint"
+      ],
+      "tests": [
+        "tools/run-rendering-progression.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "evidence": [
+        "BH04.nominal.scoped01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -409972,7 +410165,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-ecd719aa7ce0b781dbc9865922102ca3f8d6570fbe5d7e8c588e5efb11feba73.json",
-    "sha256": "ecd719aa7ce0b781dbc9865922102ca3f8d6570fbe5d7e8c588e5efb11feba73"
+    "path": "research/runtime/coverage/source-index-658f16162951ec48889bc41a2746a332ab0fd904bcd1f4b545bb9c3aeb7e7c33.json",
+    "sha256": "658f16162951ec48889bc41a2746a332ab0fd904bcd1f4b545bb9c3aeb7e7c33"
   }
 }

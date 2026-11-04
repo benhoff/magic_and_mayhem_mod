@@ -99,6 +99,30 @@ def boss_candidate_points(hero,target,size=(800,600)):
             if 64<=point[1]+22-offset<height-90]
 
 
+def moving_boss_hover(camera_wizard,actors,target_slot,source_slot,attempt,size=(800,600)):
+    """Fresh actor pose with the retained post-center camera reference.
+
+    This is authored geometry, not camera recovery or original hit admission.
+    Moving the Wizard after centering does not supply another camera origin.
+    """
+    if type(attempt) is not int or not 0<=attempt<4:return None
+    def living(actor,kind,owner):
+        return (actor is not None and actor.get('type')==kind and actor.get('owner')==owner
+                and actor.get('active') and actor.get('health',0)>0)
+    if not living(camera_wizard,0,0):return None
+    hero=actors.get(camera_wizard['slot']);boss=actors.get(target_slot)
+    friendly=[v for v in actors.values() if v.get('slot')!=camera_wizard['slot']
+              and v.get('owner')==0 and v.get('active') and v.get('health',0)>0]
+    if (not living(hero,0,0) or not living(boss,24,1) or len(friendly)!=1
+            or friendly[0].get('slot')!=source_slot or not living(friendly[0],14,0)):return None
+    width,height=frame_size(size);offset=(22,0,40,54)[attempt]
+    x,y=project(camera_wizard,boss,size);y-=offset
+    if (not 48<=x<width-40 or not 64<=y<height-90
+            or x>width-170 and (y<100 or y>height-180)):return None
+    return dict(point=[x,y],body_offset=offset,camera_wizard=dict(camera_wizard),
+                wizard=dict(hero),target=dict(boss),source=dict(friendly[0]))
+
+
 def forest_waypoints(game):
     game=Path(game);cfg=game/'Realms/Celtic/Celtic.cfg'
     config=configparser.ConfigParser(interpolation=None,strict=False)

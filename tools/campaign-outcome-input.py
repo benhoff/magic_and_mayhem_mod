@@ -20,7 +20,7 @@ from campaign_input_admission import spell_selection_points
 from rendering_progression import CASES, require
 from campaign_report import report_callback
 from campaign_return import read_realm_return_state
-from campaign_route import frame_size, hud_point, approach_point, aim_point, follow_point, forest_waypoints, validate_opening_anchors, bridge_entry_ready, bridge_defender_slot, portal_points, follow_staging_goal_reached, boss_candidate_points
+from campaign_route import frame_size, hud_point, approach_point, aim_point, follow_point, forest_waypoints, validate_opening_anchors, bridge_entry_ready, bridge_defender_slot, portal_points, follow_staging_goal_reached, moving_boss_hover
 from campaign_input_observation import decode as input_observations
 from campaign_input_admission import fresh_hover
 from campaign_follow import read_rows as read_follow_rows, followed_wizard
@@ -342,7 +342,7 @@ def main():
         interrupted_phase=None
         portal_clear_since=0;portal_clear_goal=None;portal_clear_sent=False;portal_cleared=False
         camulos_approach_since=0;bridge_arrival_since=0;portal_since=0
-        result.update(casts=[],combat_policy='observed-portal-command-admission-v48' if a.case!='defeat' else 'ordinary-defeat-v1',route_stage=phase)
+        result.update(casts=[],combat_policy='observed-moving-boss-hover-v49' if a.case!='defeat' else 'ordinary-defeat-v1',route_stage=phase)
         save()
         while time.monotonic()-start < a.seconds:
             require(not combat_paused or time.monotonic()-combat_pause_since<12,'Bounded ordinary combat pause exceeded12seconds')
@@ -697,9 +697,14 @@ def main():
                         save();require(selected is not None,'Original team recall did not select the sole support')
                         candidates=[];scene_point=None
                         result['support_team']['boss_recall']['candidate_attempts']=candidates
-                        for physical in boss_candidate_points(hero,target,a.frame_size):
+                        for probe in range(4):
+                            require(time.monotonic()-camulos_approach_since<25,'Bounded Boss preparation exceeded25seconds')
+                            witness=moving_boss_hover(camera_wizard,state(),target['slot'],source['slot'],probe,a.frame_size)
+                            if witness is None:
+                                candidates.append(dict(attempt=probe,admitted=False,witness=None,button_sent=False));save();continue
+                            physical=witness['point']
                             admitted=click(*physical,None,target_actor=target['slot'])
-                            candidates.append(dict(point=list(physical),admitted=admitted));save()
+                            candidates.append(dict(attempt=probe,point=list(physical),admitted=admitted,witness=witness,button_sent=False));save()
                             if admitted:scene_point=physical;break
                         require(scene_point is not None,'Original boss candidate was not ready after bounded team-recall hover probes')
                         # The wizard may move while an unpaused recall is
@@ -719,6 +724,7 @@ def main():
                     # Publisher manual p14/15 permits single-player orders and
                     # casting during Space pause. Use one bounded pair; the
                     # original owns pause,cast admission and resumed simulation.
+                    require(time.monotonic()-camulos_approach_since<25,'Bounded Boss preparation exceeded25seconds')
                     result['combat_pause']=dict(before=hero,target=target,ready_point=list(point),casts_before=len(result['casts']),released=False)
                     key(0x20);combat_paused=True;combat_pause_since=time.monotonic()
                     result['support_attack']=dict(before=source,target=target,camera_wizard=camera_wizard,pause_wizard=hero,admitted_boss_point=list(admitted_boss_point) if admitted_boss_point else None,observed=False,submitted=False)

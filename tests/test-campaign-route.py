@@ -2,10 +2,43 @@
 import sys,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from campaign_route import hud_point,project,aim_point,approach_point,validate_opening_anchors,bridge_entry_ready,bridge_defender_slot,portal_points,follow_staging_goal_reached,boss_candidate_points
+from campaign_route import hud_point,project,aim_point,approach_point,validate_opening_anchors,bridge_entry_ready,bridge_defender_slot,portal_points,follow_staging_goal_reached,boss_candidate_points,moving_boss_hover
 
 
 class Route(unittest.TestCase):
+    def hover_actors(self):
+        camera=dict(sequence=5853,slot=0,type=0,owner=0,active=1,health=118,x=42,y=30,z=4)
+        boss=dict(sequence=5865,slot=4,type=24,owner=1,active=1,health=100,x=44,y=26,z=4)
+        source=dict(sequence=5864,slot=3,type=14,owner=0,active=1,health=80,x=35,y=38,z=4)
+        return camera,{0:dict(camera),3:source,4:boss}
+    def test_retained_moving_boss_reprojects_each_probe_without_rebasing_camera(self):
+        camera,actors=self.hover_actors()
+        first=moving_boss_hover(camera,actors,4,3,0)
+        self.assertEqual(first['point'],[592,246])  # Original stale point was528,230.
+        actors[0].update(x=43,y=28);actors[4].update(y=25)
+        second=moving_boss_hover(camera,actors,4,3,1)
+        self.assertEqual(second['point'],[624,252])
+        self.assertEqual(second['camera_wizard'],camera)
+        self.assertEqual(second['wizard']['x'],43)
+        self.assertEqual(first['target']['y'],26)  # Retained witness cannot mutate.
+        self.assertNotEqual(second['point'],list(project(actors[0],actors[4])))
+    def test_moving_boss_hover_refuses_changed_dead_or_ambiguous_roles(self):
+        for slot,field,value in ((0,'health',0),(0,'owner',1),(0,'type',14),(4,'active',0),(4,'type',10),(4,'owner',2),(3,'health',0),(3,'type',10),(3,'owner',1)):
+            camera,actors=self.hover_actors();actors[slot][field]=value
+            self.assertIsNone(moving_boss_hover(camera,actors,4,3,0),(slot,field,value))
+        camera,actors=self.hover_actors();actors[6]=dict(actors[3],slot=6)
+        self.assertIsNone(moving_boss_hover(camera,actors,4,3,0))
+        self.assertIsNone(moving_boss_hover(dict(camera,active=0),actors,4,3,0))
+    def test_moving_boss_hover_preserves_four_probe_and_safe_viewport_bounds(self):
+        camera,actors=self.hover_actors()
+        for size in ((640,480),(800,600)):
+            for attempt in range(4):
+                witness=moving_boss_hover(camera,actors,4,3,attempt,size)
+                if witness:
+                    x,y=witness['point'];self.assertTrue(48<=x<size[0]-40 and 64<=y<size[1]-90)
+        for attempt in (-1,4,5,True):self.assertIsNone(moving_boss_hover(camera,actors,4,3,attempt))
+        actors[4].update(x=200,y=200)
+        self.assertIsNone(moving_boss_hover(camera,actors,4,3,0))
     def test_boss_hover_includes_feet_when_body_projection_hits_rear_guard(self):
         hero=dict(x=42,y=31,z=4);boss=dict(x=42,y=26,z=4)
         self.assertEqual(boss_candidate_points(hero,boss),[(560,198),(560,220),(560,180),(560,166)])
