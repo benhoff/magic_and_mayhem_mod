@@ -14,18 +14,29 @@ from cpu_reader_journal import decode,chains,pe_identity,resolve_callers,wire_re
 from rendering_pilot import require
 from coverage_claims import required_sources,behavior_contract,scenario_contract
 
+def expected_world_extent(acquisition, size=None):
+    """Keep the historical default; explicit profiles must match admitted mode."""
+    if size is None:return (640,480)
+    profiles={'640x480':(1,(640,480)),'800x600':(0,(800,600))}
+    require(size in profiles,'Unsupported diagnostic World size')
+    initial=acquisition.get('flow',{}).get('initial_resolution')
+    mode,extent=profiles[size]
+    require(type(initial) is int and initial==mode,'Explicit World size differs from acquisition initial mode')
+    return extent
+
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--acquisition',required=True);p.add_argument('--report',required=True)
     p.add_argument('--retained-context',help='Earlier analysis record: reuse its pinned module candidates and charged-attempt receipt without live files')
     p.add_argument('--control',action='append',help='Current immutable journal/DC control report; defaults to the original retained pair')
     p.add_argument('--loader-control',help='Current successful PE32 Wine loader control enabling the single ImageBase candidate rule')
+    p.add_argument('--world-size',choices=['640x480','800x600'],help='Explicit World extent bound to the acquisition initial mode; omitted preserves the historical640x480 default')
     a=p.parse_args()
     reg=json.loads((ROOT/'research/runtime/coverage/register.json').read_bytes())
     behavior=next(b for b in reg['behaviors'] if b['id']=='NP.cpu-reader-dc-journal')
     scenario=next(s for s in reg['scenarios'] if s['id']=='SC.cpu-reader-dc-journal')
     names=sorted(required_sources(behavior))
     source={n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in names}
-    result=dict(schema=1,success=False,scope='Single software 640x480 enabled-intro normal-storage diagnostic. Full CPU reply identity/extent and observer metadata joins; no new pixel oracle, nominal acceptance, original upstream caller recovery or replacement.',sources=source,acquisition=a.acquisition,nominal_acceptance=False,pixel_equivalence_asserted=False,missing_links=[])
+    result=dict(schema=1,success=False,scope=f'Single software {a.world_size or "640x480"} enabled-intro normal-storage diagnostic. Full CPU reply identity/extent and observer metadata joins; no new pixel oracle, nominal acceptance, original upstream caller recovery or replacement.',sources=source,acquisition=a.acquisition,nominal_acceptance=False,pixel_equivalence_asserted=False,missing_links=[])
     result['claims']=[dict(behavior=behavior['id'],contract_sha256=behavior_contract(behavior,{b['id']:b for b in reg['builds']}),scenarios={scenario['id']:scenario_contract(scenario)})]
     with Reader(ROOT) as d:
         acq=d.json(a.acquisition);result['acquisition_sha256']=hashlib.sha256(d.read_bytes(a.acquisition)).hexdigest()
@@ -45,6 +56,8 @@ def main():
                     and acq['configuration']['diagnostic_only'] is True and acq['configuration']['deadline_ms']==530000
                     and acq['configuration']['movie_budget_ms']==180000,'Wrong diagnostic route')
             require(acq['cpu_reader_attempt_charged'] is True,'Uncharged diagnostic attempt')
+            expected=expected_world_extent(acq,a.world_size)
+            result['world_size_policy']=dict(expected=list(expected),source='explicit acquisition initial mode' if a.world_size else 'historical640x480 default')
             if context is None:
                 budget=ROOT/'working/cpu-reader-journal/attempt-budget.sqlite3'
                 with sqlite3.connect(f'file:{budget}?mode=ro',uri=True) as db:
@@ -95,7 +108,7 @@ def main():
                     require(meta['native_gpu_frame'] is True,'World metadata is not a native frame')
                     world_extents[(meta['frame_width'],meta['frame_height'])]+=1
             require(last and last['kind']=='close' and last['complete'] is True and last['error']=='','Diagnostic viewport closure')
-            require(set(world_extents)=={(640,480)},'Unexpected observed World extent')
+            require(set(world_extents)=={expected},'Unexpected observed World extent')
             result['world_paint_extents']=[dict(width=w,height=z,paints=n) for (w,z),n in world_extents.items()]
             result['reader_extents']=[dict(width=w,height=z,requests=n) for (w,z),n in Counter((x['words'][4],x['words'][5]) for x in requests.values()).items()]
             result['viewport_metadata_artifact']=viewport_ref

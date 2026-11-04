@@ -127923,7 +127923,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-render-functional-closure.md",
-        "research/runtime/critical-top20-rendering-fixes-20261019.md"
+        "research/runtime/critical-top20-rendering-fixes-20261019.md",
+        "research/runtime/rendering-storage-ownership-20261104.md"
       ],
       "implementation": [
         "apps/qt-shell/main.cpp",
@@ -127958,7 +127959,8 @@
         "CRIT20.session-current-20261019",
         "CRIT20.functional-snapshot-20261019",
         "CRIT20.session-retry-current-20261019",
-        "RA25.native-only.restart"
+        "RA25.native-only.restart",
+        "SO04.fault-restart-gui01"
       ],
       "status": {
         "understanding": "scoped",
@@ -127970,7 +127972,8 @@
       "remaining_gaps": [
         "Headless current implementation controls pass. Broader original-game/driver equivalence, all-game caller coverage and complete replacement remain separate; bounded stress/restart acquisition is in progress.",
         "Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md.",
-        "Retained functional-closure runs are historical after subsequent shared renderer changes. Current-code acceptance and source-bound status promotion remain pending; implementation sources and old report hashes are preserved."
+        "Retained functional-closure runs are historical after subsequent shared renderer changes. Current-code acceptance and source-bound status promotion remain pending; implementation sources and old report hashes are preserved.",
+        "2026-11-04 current GUI-resident V3 native-only fault/Hard Restart passes with522ms stable terminal cleanup, distinct old/new launcher/channel identities and fresh normal Quit with zero graphics owners/forwarding. The failed generation gets no completion credit. Historical both-owner results remain independent; current worker/V5 fault, physical context loss, in-place/save continuity, media/audio restart and failure-path pixels are not promoted."
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -160377,7 +160380,8 @@
         "research/formats/native-cpu-reader-journal-v1.md",
         "research/runtime/cpu-reader-integration-20261102.md",
         "research/runtime/campaign-master-merge-20261102.md",
-        "research/runtime/rendering-cpu-ownership-20261104.md"
+        "research/runtime/rendering-cpu-ownership-20261104.md",
+        "research/runtime/rendering-storage-ownership-20261104.md"
       ],
       "implementation": [
         "runtime/render/cpu_reader_journal.h",
@@ -160389,7 +160393,8 @@
         "tests/native-cpu-reader-journal-test.c",
         "tests/test-cpu-reader-journal.py",
         "tests/cpu-reader-journal-win32.c",
-        "tools/test-native-cpu-reader-journal.py"
+        "tools/test-native-cpu-reader-journal.py",
+        "tests/test-cpu-reader-analysis.py"
       ],
       "validation_dependencies": [
         "runtime/render/bridge.c",
@@ -160413,7 +160418,8 @@
         "CRJ01.observation03",
         "CRJ01.combined-controls01",
         "RPS04.master-merge-cpu-controls",
-        "CO04.controls01"
+        "CO04.controls01",
+        "SO04.journal02"
       ],
       "remaining_gaps": [
         "One diagnostic generation reached normal Quit: 703 closed lossless records, 43 full CPU request/reply/physical-validation joins and 87 retired DC borrows. Four preflight caller contexts at recorded RVA0xad8d lack a pinned binary match, affecting six reads; strict complete_observed_chain remains false. Direct staged-executable caller identities use mapped PE-header metadata, not full mapped-code verification or original upstream recovery. Original DC/font semantics, arbitrary readers, restart/failure coverage, historical stalls and whole-operation/final acceptance remain separate.",
@@ -160421,7 +160427,8 @@
         "Integration of frozen CPU journal commit0b34c8596 with cursor commit7b91ee635 changes shared compiled inputs and the public pilot. Fresh combined-source native/reader/gating controls support implementation only; current combined live-observation validation remains pending. Original703-record/43-read/87-DC observation and its four caller gaps retain their exact historical source hashes. No additional original game attempt is authorized or performed in this batch.",
         "Master/campaign merge passes current synthetic CPU and Qt/campaign controls; original observations and pixels retain their parent source phases. Current combined-source live validation and nominal repeatability remain pending. No historical status or source hash is renewed.",
         "2026-11-04 loader-candidate follow-up separates raw historical missing links from a new controlled ImageBase interpretation; old report bytes/source hashes and original upstream/code-verification limits remain intact. Current storage/rebuild chain and independent full history/pixels require a fresh bounded diagnostic; no old result is renewed.",
-        "2026-11-04: current synthetic reservation/gating/DC controls pass, but the single charged public diagnostic exits before Chaos for a missing launcher TSV. Repaired setup and strict analysis/comparison refusals do not renew live observation or pixels. The optional loader model resolves only historical pinned file candidates; complete current observed chain remains unproved. Attempt row and all negative evidence are preserved."
+        "2026-11-04: current synthetic reservation/gating/DC controls pass, but the single charged public diagnostic exits before Chaos for a missing launcher TSV. Repaired setup and strict analysis/comparison refusals do not renew live observation or pixels. The optional loader model resolves only historical pinned file candidates; complete current observed chain remains unproved. Attempt row and all negative evidence are preserved.",
+        "2026-11-04 fresh High800x600 diagnostic closes230contexts,54reads and113DC borrows with no missing links under an explicit acquisition-bound size profile. The original640-only refusal and all historical source phases remain unchanged. Caller resolution is pinned header metadata only; original upstream/mapped-code identity, arbitrary readers, nominal acceptance and broad failure coverage remain separate. Independent reply/pixel proof is separately scoped under NP.software-storage-reader-ownership."
       ]
     },
     {
@@ -162513,7 +162520,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/rendering-cpu-ownership-20261104.md"
+        "research/runtime/rendering-cpu-ownership-20261104.md",
+        "research/runtime/rendering-storage-ownership-20261104.md"
       ],
       "implementation": [
         "tools/cpu_reader_journal.py",
@@ -162523,7 +162531,8 @@
         "tests/test-cpu-reader-journal.py",
         "tests/cpu-reader-loader-fixture.c",
         "tests/cpu-reader-loader-win32.c",
-        "tools/test-cpu-reader-loader.py"
+        "tools/test-cpu-reader-loader.py",
+        "tests/test-cpu-reader-analysis.py"
       ],
       "validation_dependencies": [
         "runtime/shadow/win32_min.h",
@@ -162533,7 +162542,8 @@
         "protocols/include/mnm/native_cpu_reader_journal_v1.h"
       ],
       "evidence": [
-        "CO04.controls01"
+        "CO04.controls01",
+        "SO04.loader-current01"
       ],
       "status": {
         "understanding": "partial",
@@ -162543,7 +162553,62 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Synthetic Wine11.16 forced relocation verifies that only ImageBase changes. Strict resolver guards and static reanalysis resolve the four historical contexts to one pinned MnmMenu.dll candidate each. Historical mapped header/code bytes and original upstream call sites remain unavailable. The current single charged storage diagnostic failed before Chaos on its missing launcher TSV; setup is repaired and nonlaunching integrity checks pass, but fresh live CPU/DC ownership and independent pixels remain pending."
+        "Synthetic Wine11.16 forced relocation verifies that only ImageBase changes. Strict resolver guards and static reanalysis resolve the four historical contexts to one pinned MnmMenu.dll candidate each. Historical mapped header/code bytes and original upstream call sites remain unavailable. The current single charged storage diagnostic failed before Chaos on its missing launcher TSV; setup is repaired and nonlaunching integrity checks pass, but fresh live CPU/DC ownership and independent pixels remain pending.",
+        "The profile-only analyzer change retains the old CO04 source phase; SO04.loader-current01 newly binds the unchanged empirical loader control to the executed current profile/refusal tests and230-context analysis. Candidate metadata remains distinct from mapped-code/upstream identity. No historical hash is refreshed or old game/synthetic execution repeated."
+      ]
+    },
+    {
+      "id": "NP.software-storage-reader-ownership",
+      "subsystem": "runtime_rendering",
+      "kind": "native_policy",
+      "title": "Software storage reader/DC and independent reply/presentation coherence",
+      "scope": "One enabled-intro diagnostic software800x600 storage/rebuild journey on the public native player. Admit only an exact acquisition/journal/comparison triple with stable compiled sources, lossless normally closed CPU/DC observations, complete request/reply/physical-lease and DC borrow/release joins, unique pinned caller metadata candidates, independent original-history full reply and presented-pixel matches, expected Save/Mini Load/Main Load/preferences/rebuild actions and final normal resource retirement. Mapped metadata does not prove mapped-code equality or original upstream caller semantics. This diagnostic never grants nominal software acceptance, whole operations, arbitrary readers, repeated-run reliability, fault/restart, physical scanout or original replacement.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/rendering-storage-ownership-20261104.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-acceptance-pilot.py",
+        "tools/analyze-cpu-reader-journal.py",
+        "tools/check-rendering-acceptance-pilot.py",
+        "tools/cpu_reader_journal.py",
+        "tools/storage_cpu_read_binding.py",
+        "tools/rendering_pilot.py"
+      ],
+      "tests": [
+        "tests/test-cpu-reader-journal.py",
+        "tests/test-storage-cpu-read-binding.py",
+        "tests/test-rendering-pilot.py",
+        "tests/acceptance-world-history.cpp",
+        "tests/acceptance-world-reference.cpp",
+        "tests/test-cpu-reader-analysis.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_capture.py",
+        "tools/campaign_storage.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/native_only_contract.py",
+        "runtime/render/cpu_reader_journal.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/cpu_reader.h",
+        "runtime/render/lock_dc.h",
+        "protocols/include/mnm/native_cpu_reader_journal_v1.h",
+        "protocols/include/mnm/native_cpu_read_v1.h",
+        "protocols/include/mnm/render_stream_v5.h"
+      ],
+      "evidence": [
+        "SO04.storage-ownership02"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "One current software High800x600 diagnostic passes complete observed CPU/DC joins and independent full reply/presentation comparison. Repeated-run reliability, other profiles, original upstream/mapped-code identity, arbitrary readers, nominal/whole-operation acceptance, physical scanout and V5 fault handling remain separate. The later GUI-resident V3 fault journey is independently scoped under NP.native-only-generation-restart."
       ]
     }
   ],
@@ -376854,6 +376919,133 @@
           "equals": 75
         }
       ]
+    },
+    {
+      "id": "SO04.storage-ownership02",
+      "kind": "live_equivalence",
+      "record": "research/runtime/rendering-storage-ownership-results-20261104/ownership-pixel-binding-02.json",
+      "sha256": "9d576ab9ce0024296213340881d3c77ce96cd002491323a9286c8a2de1ac5dd2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "One enabled-intro diagnostic software800x600 storage/rebuild journey on the public native player. Admit only an exact acquisition/journal/comparison triple with stable compiled sources, lossless normally closed CPU/DC observations, complete request/reply/physical-lease and DC borrow/release joins, unique pinned caller metadata candidates, independent original-history full reply and presented-pixel matches, expected Save/Mini Load/Main Load/preferences/rebuild actions and final normal resource retirement. Mapped metadata does not prove mapped-code equality or original upstream caller semantics. This diagnostic never grants nominal software acceptance, whole operations, arbitrary readers, repeated-run reliability, fault/restart, physical scanout or original replacement.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/current_live_validation",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/nominal_player_accepted",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_source_sha256",
+      "equivalence_pointer": "/independent_reply_pixel_equivalence"
+    },
+    {
+      "id": "SO04.journal02",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-storage-ownership-results-20261104/current-observation-02.json",
+      "sha256": "b5d1f3eae35f003faa5300dd3050513d569c5abdc62bd639e63b27b394132a36",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "One source-bound enabled-intro software High800x600 storage/rebuild diagnostic:230closed contexts,54full CPU/physical joins,113retired DC borrows and unique pinned caller metadata candidates. No pixel assertion in this observer report, mapped-code/upstream recovery, nominal acceptance or replacement.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/complete_observed_chain",
+          "equals": true
+        },
+        {
+          "pointer": "/observed/request_count",
+          "equals": 54
+        },
+        {
+          "pointer": "/observed/dc_borrows",
+          "equals": 113
+        }
+      ]
+    },
+    {
+      "id": "SO04.fault-restart-gui01",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-storage-ownership-results-20261104/fault-restart-gui-01.json",
+      "sha256": "fa4825edc11ae08e37e00a23bc8331c8554264a04bb403c00ad939ec9c226320",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "One current GUI-resident software native-only V3 controlled failure/Hard Restart with522ms stable terminal predicates, distinct old/new identities, old launcher gone and exactly one fresh normally completed generation with zero graphics owners/forwarding. Skipped intros/music disabled. No V5/worker fault, pixels, context loss, save continuity, media/audio restart or full replacement.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/engine_journey/live_sessions",
+          "equals": 2
+        },
+        {
+          "pointer": "/engine_journey/terminal_stable_ms",
+          "equals": 522
+        },
+        {
+          "pointer": "/graphics_retirement/resources_released",
+          "equals": true
+        },
+        {
+          "pointer": "/routes/forwarded",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "SO04.loader-current01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-storage-ownership-results-20261104/loader-current-binding-01.json",
+      "sha256": "397a1be0c8c10981ab297f951dc3cbd19932bc05ec027f5049f3feb31af9d566",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Unchanged strict pinned-file/Wine ImageBase model and retained same-source synthetic relocation control, with newly executed explicit-profile/legacy-default refusals and current source-bound230-context analysis. Candidate metadata only; no mapped-code/upstream equivalence, original rerun or nominal acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/current_profile_tests_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/mapped_code_equality_proved",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -406408,7 +406600,8 @@
         "tests/cpu-reader-journal-win32.c"
       ],
       "evidence": [
-        "CRJ01.observation03"
+        "CRJ01.observation03",
+        "SO04.journal02"
       ]
     },
     {
@@ -408444,6 +408637,60 @@
       "evidence": [
         "CO04.controls01"
       ]
+    },
+    {
+      "id": "SC.software-storage-reader-ownership-so04",
+      "level": "live_equivalence",
+      "scope": "One enabled-intro diagnostic software800x600 storage/rebuild journey on the public native player. Admit only an exact acquisition/journal/comparison triple with stable compiled sources, lossless normally closed CPU/DC observations, complete request/reply/physical-lease and DC borrow/release joins, unique pinned caller metadata candidates, independent original-history full reply and presented-pixel matches, expected Save/Mini Load/Main Load/preferences/rebuild actions and final normal resource retirement. Mapped metadata does not prove mapped-code equality or original upstream caller semantics. This diagnostic never grants nominal software acceptance, whole operations, arbitrary readers, repeated-run reliability, fault/restart, physical scanout or original replacement.",
+      "behaviors": [
+        "NP.software-storage-reader-ownership"
+      ],
+      "tests": [
+        "tests/test-cpu-reader-journal.py",
+        "tests/test-storage-cpu-read-binding.py",
+        "tests/test-rendering-pilot.py",
+        "tests/acceptance-world-history.cpp",
+        "tests/acceptance-world-reference.cpp",
+        "tests/test-cpu-reader-analysis.py"
+      ],
+      "evidence": [
+        "SO04.storage-ownership02"
+      ]
+    },
+    {
+      "id": "SC.native-only-fault-restart-so04",
+      "level": "live_observation",
+      "scope": "One current GUI-resident software native-only V3 campaign journey with skipped intros: controlled producer failure only after three live World imports/paints, all terminal predicates stable500ms, public Hard restart, distinct old/new launcher/channel/World identities, old launcher absent, and exactly one fresh normally completed generation with zero graphics owners. No physical context loss, in-place recovery, save continuity, V5 fault handling, pixels or media/audio restart claim.",
+      "behaviors": [
+        "NP.native-only-generation-restart"
+      ],
+      "tests": [
+        "tools/test-native-owned-campaign.py",
+        "apps/qt-shell/resident_restart_test.cpp",
+        "tests/test-native-live-restart.py",
+        "tests/test-native-only-contract.py"
+      ],
+      "evidence": [
+        "SO04.fault-restart-gui01"
+      ]
+    },
+    {
+      "id": "SC.cpu-reader-loader-profile-so04",
+      "level": "headless",
+      "scope": "Unchanged strict pinned-file/Wine ImageBase model and retained same-source synthetic relocation control, with newly executed explicit-profile/legacy-default refusals and current source-bound230-context analysis. Candidate metadata only; no mapped-code/upstream equivalence, original rerun or nominal acceptance.",
+      "behaviors": [
+        "NP.cpu-reader-loader-identity"
+      ],
+      "tests": [
+        "tests/test-cpu-reader-journal.py",
+        "tests/cpu-reader-loader-fixture.c",
+        "tests/cpu-reader-loader-win32.c",
+        "tools/test-cpu-reader-loader.py",
+        "tests/test-cpu-reader-analysis.py"
+      ],
+      "evidence": [
+        "SO04.loader-current01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -410261,7 +410508,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-0805184c4291d2b1d823569388438680c6166926cb9aa735297a64bdf1347812.json",
-    "sha256": "0805184c4291d2b1d823569388438680c6166926cb9aa735297a64bdf1347812"
+    "path": "research/runtime/coverage/source-index-3c0d08aeeaa91e36452172d8f8d77e708040d184df7f6ceba7be090cbbe6f27d.json",
+    "sha256": "3c0d08aeeaa91e36452172d8f8d77e708040d184df7f6ceba7be090cbbe6f27d"
   }
 }
