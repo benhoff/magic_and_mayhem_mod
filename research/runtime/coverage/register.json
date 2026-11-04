@@ -160758,7 +160758,8 @@
       ],
       "documents": [
         "research/runtime/rts-controls.md",
-        "research/runtime/campaign-order-admission-20261103.md"
+        "research/runtime/campaign-order-admission-20261103.md",
+        "research/runtime/campaign-terminal-20261104.md"
       ],
       "implementation": [
         "runtime/menu/campaign_order_observe.h",
@@ -160801,7 +160802,8 @@
       "confidence": "provisional",
       "remaining_gaps": [
         "Whole original callback boundary, allocation generations, producer rotation and delivery remain unassigned or separately scoped. Selection and buffer submission cannot stand in for engagement, movement completion, route suspension or nominal progression.",
-        "2026-11-03 target-admission batch: bounded V3 candidate/World-return policy and checkpoint opcode7 submission are scoped separately under INPUT.campaign-target-admission and INPUT.campaign-support-attack-submission. One historical-wrapper paused Fireball accepted six-mana debit; older hashes/statuses remain historical. Edited broader source dependencies are pending renewed comparison; no complete spell/pause equivalence, nominal progression, rendering or replacement promotion."
+        "2026-11-03 target-admission batch: bounded V3 candidate/World-return policy and checkpoint opcode7 submission are scoped separately under INPUT.campaign-target-admission and INPUT.campaign-support-attack-submission. One historical-wrapper paused Fireball accepted six-mana debit; older hashes/statuses remain historical. Edited broader source dependencies are pending renewed comparison; no complete spell/pause equivalence, nominal progression, rendering or replacement promotion.",
+        "2026-11-04 terminal investigation: installed script16 configures a portal at Camulos when DEAD_IN_BATTLE; events17/21 refer to EXITED_FROM_BATTLE. Raw failed portal right presses append opcode7 against guards, whereas historical successful approaches append5/10. New candidate and command admission under INPUT.campaign-portal-command-admission and typed opcode10 fields require fresh current-source validation. Preserve every prior source hash and status boundary."
       ]
     },
     {
@@ -162075,7 +162077,8 @@
       ],
       "documents": [
         "research/runtime/campaign-matrix-20261103.md",
-        "research/runtime/rts-controls.md"
+        "research/runtime/rts-controls.md",
+        "research/runtime/campaign-terminal-20261104.md"
       ],
       "implementation": [
         "tools/campaign_target_admission.py",
@@ -162092,7 +162095,9 @@
         "tools/campaign_spell.py",
         "runtime/menu/campaign_gameplay_observe.h",
         "runtime/menu/campaign_spell_observe.h",
-        "tools/prepare-menu-observer.py"
+        "tools/prepare-menu-observer.py",
+        "tools/campaign_route.py",
+        "tests/test-campaign-route.py"
       ],
       "evidence": [
         "MTR03.headless-bound05",
@@ -162112,7 +162117,11 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "One current enabled-intro software800 run validates natural offscreen private team recall with Wizard movement41,31to41,30, retained admitted point624,230, original opcode7 and separately observed GP target4/damage100to20. This is one moving-pose sample, not complete camera/keyboard or command-delivery causality. Whole campaign fails at the terminal Boss/portal candidate; repeated-run reliability and lifecycle remain pending."
+        "One current enabled-intro software800 run validates natural offscreen private team recall with Wizard movement41,31to41,30, retained admitted point624,230, original opcode7 and separately observed GP target4/damage100to20. This is one moving-pose sample, not complete camera/keyboard or command-delivery causality. Whole campaign fails at the terminal Boss/portal candidate; repeated-run reliability and lifecycle remain pending.",
+        "Source45 checkpoint06 passes rounded-goal arrival and original follow proof but the pre-pause body22hover560,198 selects guard5 beyond Boss4. Source46 tries four bounded original-candidate-checked body/foot pixels, retaining only an actually admitted Boss point; no button or role/camera guarantee is manufactured. Fresh source46 evidence pending.",
+        "Probe08 validates corrected restore/normal Quit but refuses a firing-position change during unpaused recall. Source47 allows at most two fresh pre-pause revalidations inside the original25second preparation clock; actual source/target, candidate, close-clear position, sole support and opcode7 remain mandatory. Fresh source47 execution pending.",
+        "Source48 checkpoint10 passes235controls but fails before the terminal hint/portal branch at the unchanged25second Boss preparation bound. The diagnostic remains failed, with both stopped output trees hash-verified and restore-tested in mirrored custody. This run does not validate terminal Return consumption, actual portal entry or reliable nominal progression.",
+        "Current source48 enabled-intro capture-free software800 completes original bridge clearing/refill, then fails all four no-button Boss scene candidates at118WizardHP/100BossHP. Neither terminal Return nor portal is exercised. Candidate checks remain strict; reliable camera/scene admission, whole nominal victory/progression, current pixels and the12case matrix remain pending. All11stopped cases retain mirrored exact-restore custody."
       ]
     },
     {
@@ -162233,7 +162242,8 @@
         }
       ],
       "documents": [
-        "research/runtime/campaign-bridge-clear-20261104.md"
+        "research/runtime/campaign-bridge-clear-20261104.md",
+        "research/runtime/campaign-terminal-20261104.md"
       ],
       "implementation": [
         "tools/campaign-outcome-input.py"
@@ -162263,7 +162273,171 @@
       },
       "remaining_gaps": [
         "Current full software800 execution follows four attributed Boss hits100to20 with an inactive zero-HP sample and portal-targeted ground clicks. Wizard remains43,28 while guards occupy43,27/z5 and44,27/z4; original natural Defeat follows. No original lethal Boss row or successful exit trigger is proved. Distinguish inactive terminal/escape state from confirmed death and investigate original ground-order/portal ingress before changing the heuristic.",
-        "The same six defended Boss spell rows88/91/94/97/100/103 record HP100to80to60to40to20 then20to20 twice. The last active Boss sample has20HP before inactive-zero GP6304. This does not recover an armor, invulnerability, health-floor or script mechanism. Resolve this terminal transition and original exit trigger before treating zeroed inactive fields as a kill."
+        "The same six defended Boss spell rows88/91/94/97/100/103 record HP100to80to60to40to20 then20to20 twice. The last active Boss sample has20HP before inactive-zero GP6304. This does not recover an armor, invulnerability, health-floor or script mechanism. Resolve this terminal transition and original exit trigger before treating zeroed inactive fields as a kill.",
+        "2026-11-04 terminal investigation: installed script16 configures a portal at Camulos when DEAD_IN_BATTLE; events17/21 refer to EXITED_FROM_BATTLE. Raw failed portal right presses append opcode7 against guards, whereas historical successful approaches append5/10. New candidate and command admission under INPUT.campaign-portal-command-admission and typed opcode10 fields require fresh current-source validation. Preserve every prior source hash and status boundary."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-portal-command-admission",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Candidate-checked original Wizard portal-approach command acknowledgement",
+      "scope": "Authored physical driver reselects the sole living player Wizard, tries at most24 bounded portal pixels within30seconds, requires a fresh validated null actor candidate and a near-goal original ground sample allowing an actor-free adjacent sidestep, then requires a fresh paired right-press opcode5/21byte move record for that Wizard with a near-goal signed cell destination different from the current cell (or the exact portal cell) and a closed sole-primary World prefix. Refuse creature attack opcode7 and coordinate attack opcode10, changed/mixed selection and unrelated destinations. A separate checkpoint portal probe stops at acknowledgement before outcome acceptance. This does not recover portal/20HP/death/terrain/path/delivery semantics, implement commander gameplay or alter balance; natural report and actual region handoff still decide full campaign acceptance.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5471184,
+          "scope": "Existing guarded original length-tagged producer for observed opcodes5/10 only, not delivery or complete interaction semantics."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Passive original World-return/selection/creature context only."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-terminal-20261104.md"
+      ],
+      "implementation": [
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_route.py",
+        "tools/campaign_order_observation.py",
+        "tools/run-rendering-progression.py",
+        "apps/qt-shell/campaign_storage_test.cpp"
+      ],
+      "tests": [
+        "tests/test-campaign-target-admission.py",
+        "tests/test-campaign-order-observation.py",
+        "tests/test-campaign-route.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_gameplay.py",
+        "tools/campaign_spell.py",
+        "tools/campaign_input_admission.py",
+        "tools/campaign_input_observation.py",
+        "runtime/menu/campaign_order_observe.h",
+        "runtime/menu/campaign_input_admission_observe.h",
+        "tools/prepare-menu-observer.py",
+        "tools/campaign_follow.py",
+        "runtime/menu/campaign_follow_observe.h"
+      ],
+      "evidence": [
+        "CT04.guards02",
+        "CT04.guards03",
+        "CT04.guards04",
+        "CT04.guards05",
+        "CT04.guards06",
+        "CT04.guards07",
+        "CT04.guards08",
+        "CT04.guards09"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current235fixture/Qt/presentation controls pass. Phase07 acknowledges an actual original Wizard move and normal Quit but fails missing host metadata; phase08 passes corrected strict restore/normal Quit but fails changed firing geometry. Phase09 reaches20HP with Camulos active and times out; phase10 exceeds the existing25second Boss preparation bound before exercising the portal branch. No current whole-case or original portal trigger/20HP mechanism/reliable pathfinding claim.",
+        "Source42 checkpoint probe safely rejects18portal attempts without any button press: direct points identify guard5, while empty41,25 is refused by the monotone-distance rule at Wizard42,27 and portal42,26. Player dies; helper reaches240seconds and native host reports unavailable viewport. Source43 allows only a bounded adjacent actor-free sidestep while keeping24attempts/30seconds and original command acknowledgement; fresh current validation pending.",
+        "Source43 retry04 refuses24scene points and sends no portal buttons, ending with normal Quit but a failed command probe. Retained native frame shows the portal base below several rejected pixels. Source44 adds centers of the3x3ground-cell neighborhood under the same24attempt/30second caps. Correct earlier provisional wording: recovered539080 dispatch maps opcode0xa to coordinate attack50ca30, not interaction. The driver now accepts only actual opcode5moves; typed19byte opcode10 decoding remains available but is refused as a move. Fresh current validation pending.",
+        "Current-source probe05 repeats the pre-existing follow-goal quantization deadlock before portal testing. New INPUT.campaign-rounded-follow-staging handles that prerequisite without reducing the separation threshold, widening the20second deadline or waiving original selection/follow proof.",
+        "Source48 checkpoint10 passes235controls but fails before the terminal hint/portal branch at the unchanged25second Boss preparation bound. The diagnostic remains failed, with both stopped output trees hash-verified and restore-tested in mirrored custody. This run does not validate terminal Return consumption, actual portal entry or reliable nominal progression.",
+        "Current source48 enabled-intro capture-free software800 completes original bridge clearing/refill, then fails all four no-button Boss scene candidates at118WizardHP/100BossHP. Neither terminal Return nor portal is exercised. Candidate checks remain strict; reliable camera/scene admission, whole nominal victory/progression, current pixels and the12case matrix remain pending. All11stopped cases retain mirrored exact-restore custody."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-rounded-follow-staging",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Rounded follow-staging goal admission before original selection checks",
+      "scope": "Authored physical driver stops repeating a floating-point follow-staging destination when the living Wizard already occupies its nearest integer XYZ cell, even if the optional three-cell separation threshold has not been reached. This only permits the existing quiet-position, actual source scene candidate, fresh sole-friendly primary and original guard/follow-reference checks to run. It does not assert a completed follow from proximity, recover original coordinate rounding/pathfinding/AI or alter balance. Keep the original20second follow-staging deadline.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6053352,
+          "relation": "data",
+          "scope": "Passive original World Tick role and cell observations only; rounding escape is native test policy."
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-terminal-20261104.md"
+      ],
+      "implementation": [
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_route.py"
+      ],
+      "tests": [
+        "tests/test-campaign-route.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_gameplay.py",
+        "tools/campaign_follow.py",
+        "tools/campaign_target_admission.py",
+        "runtime/menu/campaign_follow_observe.h"
+      ],
+      "evidence": [
+        "CT04.guards05",
+        "CT04.guards06",
+        "CT04.guards07",
+        "CT04.guards08",
+        "CT04.guards09"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Two retained checkpoint runs reproduce the quantized-goal stall, before any portal command. The new rounding escape preserves stronger original candidate/selection/follow checks and20second bound; current original follow and portal validation remain pending.",
+        "Source48 checkpoint10 passes235controls but fails before the terminal hint/portal branch at the unchanged25second Boss preparation bound. The diagnostic remains failed, with both stopped output trees hash-verified and restore-tested in mirrored custody. This run does not validate terminal Return consumption, actual portal entry or reliable nominal progression.",
+        "Current source48 enabled-intro capture-free software800 completes original bridge clearing/refill, then fails all four no-button Boss scene candidates at118WizardHP/100BossHP. Neither terminal Return nor portal is exercised. Candidate checks remain strict; reliable camera/scene admission, whole nominal victory/progression, current pixels and the12case matrix remain pending. All11stopped cases retain mirrored exact-restore custody."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-terminal-return-hint",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "One ordinary Return hint after fresh terminal Boss damage",
+      "scope": "Authored bounded input hypothesis: at most one Return key after fresh player-Wizard Fireball damage from above20 to20HP while the expected Camulos remains active. Exact actor roles, caster attribution, spell, applied damage and wrap-safe10second freshness are mandatory. It does not identify dialogue, recover an engine20HP rule, assert death or exit, grant resources or establish a campaign outcome; original report and actual region handoff remain required.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/campaign-terminal-20261104.md"
+      ],
+      "implementation": [
+        "tools/campaign_dialogue.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "tests": [
+        "tests/test-campaign-dialogue.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_gameplay.py",
+        "tools/campaign_spell.py",
+        "runtime/menu/campaign_spell_observe.h"
+      ],
+      "evidence": [
+        "CT04.guards09"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Hypothesis only until fresh original execution; a Return attempt is not proof of conversation consumption or terminal script advancement.",
+        "Source48 checkpoint10 passes235controls but fails before the terminal hint/portal branch at the unchanged25second Boss preparation bound. The diagnostic remains failed, with both stopped output trees hash-verified and restore-tested in mirrored custody. This run does not validate terminal Return consumption, actual portal entry or reliable nominal progression.",
+        "Current source48 enabled-intro capture-free software800 completes original bridge clearing/refill, then fails all four no-button Boss scene candidates at118WizardHP/100BossHP. Neither terminal Return nor portal is exercised. Candidate checks remain strict; reliable camera/scene admission, whole nominal victory/progression, current pixels and the12case matrix remain pending. All11stopped cases retain mirrored exact-restore custody."
       ]
     }
   ],
@@ -376366,6 +376540,126 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CT04.guards02",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-terminal-results-20261104/headless-binding-02.json",
+      "sha256": "0b3c899fb5e21898f90640c8c88b2b5e4724bd42ffd67b89091246eaf102dfd7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current mutation controls for literal opcode10 decoding, portal pixel limits, progressing cell admission, fresh closed sole-Wizard prefix and exact5/10 receiver/destination acknowledgement. Guarded native host compile, seven Qt driver and four native presentation controls only; no new original portal/terminal/delivery, full campaign or pixels.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CT04.guards03",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-terminal-results-20261104/headless-binding-03.json",
+      "sha256": "57043f03818b6501fafdfa7cb5731b78917fe632106fc01096627abe6692a184",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current mutation controls for literal opcode10 decoding, portal pixel limits, adjacent-cell sidestep admission, fresh closed sole-Wizard prefix and exact5/10 receiver/destination acknowledgement. Guarded native host compile, seven Qt driver and four native presentation controls only; no new original portal/terminal/delivery, full campaign or pixels.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CT04.guards04",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-terminal-results-20261104/headless-binding-04.json",
+      "sha256": "946207856fd66a1ece038081798a14a752ecd4f7b2d031bd0f7d7150d9bc0983",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current mutation controls for literal opcode10 decoding, portal pixel limits, adjacent-cell sidestep admission, fresh closed sole-Wizard prefix and exact opcode5receiver/destination acknowledgement and opcode7/10refusal. Guarded native host compile, seven Qt driver and four native presentation controls only; no new original portal/terminal/delivery, full campaign or pixels.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CT04.guards05",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-terminal-results-20261104/headless-binding-05.json",
+      "sha256": "9e4f28b6862e2b0c5f21f1cc6125f5866381ee943343baadd692b4156c13d7a7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current rounded-goal escape and bounded portal cell/pixel, closed sole-Wizard prefix, opcode5receiver/destination acknowledgement and opcode7/10refusal controls. Actual source-candidate/follow reference and original command delivery/outcome remain separate. Native host compile, seven Qt driver and four presentation controls; no original terminal/portal, whole campaign, pixel or simulation claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CT04.guards06",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-terminal-results-20261104/headless-binding-06.json",
+      "sha256": "6fc4f6383d3e1951c30c7417865f111064afa0fd5a57c17bae3a93c6daaa92fb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current rounded-goal escape and bounded portal cell/pixel, closed sole-Wizard prefix, opcode5receiver/destination acknowledgement and opcode7/10refusal controls. Actual source-candidate/follow reference and original command delivery/outcome remain separate. Native host compile, seven Qt driver and four presentation controls; no original terminal/portal, whole campaign, pixel or simulation claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CT04.guards07",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-terminal-results-20261104/headless-binding-07.json",
+      "sha256": "c3891ef8ae84d3123a238dfad4934e623faae199587505af259e45dc202810d8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current rounded-goal escape and bounded portal cell/pixel, closed sole-Wizard prefix, opcode5receiver/destination acknowledgement and opcode7/10refusal controls. Actual source-candidate/follow reference and original command delivery/outcome remain separate. Native host compile, seven Qt driver and four presentation controls; no original terminal/portal, whole campaign, pixel or simulation claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CT04.guards08",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-terminal-results-20261104/headless-binding-08.json",
+      "sha256": "5e66d6904464a0eb216e504920caefcf82bb7c114faa23705236dfde87278575",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current rounded-goal escape and bounded portal cell/pixel, closed sole-Wizard prefix, opcode5receiver/destination acknowledgement and opcode7/10refusal controls. Actual source-candidate/follow reference and original command delivery/outcome remain separate. Native host compile, seven Qt driver and four presentation controls; no original terminal/portal, whole campaign, pixel or simulation claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CT04.guards09",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-terminal-results-20261104/headless-binding-09.json",
+      "sha256": "31ba9289efbdc1a438b12113e8f41c5e24c9dd53090bf12681d96434794aa157",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current one-shot terminal Return freshness/role/damage refusal, rounded-goal escape and bounded portal cell/pixel, closed sole-Wizard prefix, opcode5receiver/destination acknowledgement and opcode7/10refusal controls. Actual source-candidate/follow reference and original command delivery/outcome remain separate. Native host compile, seven Qt driver and four presentation controls; no original terminal/portal, whole campaign, pixel or simulation claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -407726,6 +408020,141 @@
       "evidence": [
         "BCG04.terminal-negative.raw01"
       ]
+    },
+    {
+      "id": "input.portal-command-controls-ct04",
+      "level": "headless",
+      "scope": "Current mutation controls for literal opcode10 decoding, portal pixel limits, progressing cell admission, fresh closed sole-Wizard prefix and exact5/10 receiver/destination acknowledgement. Guarded native host compile, seven Qt driver and four native presentation controls only; no new original portal/terminal/delivery, full campaign or pixels.",
+      "behaviors": [
+        "INPUT.campaign-portal-command-admission"
+      ],
+      "tests": [
+        "tests/test-campaign-target-admission.py",
+        "tests/test-campaign-order-observation.py",
+        "tests/test-campaign-route.py"
+      ],
+      "evidence": [
+        "CT04.guards02"
+      ]
+    },
+    {
+      "id": "input.portal-command-controls-ct04-03",
+      "level": "headless",
+      "scope": "Current mutation controls for literal opcode10 decoding, portal pixel limits, adjacent-cell sidestep admission, fresh closed sole-Wizard prefix and exact5/10 receiver/destination acknowledgement. Guarded native host compile, seven Qt driver and four native presentation controls only; no new original portal/terminal/delivery, full campaign or pixels.",
+      "behaviors": [
+        "INPUT.campaign-portal-command-admission"
+      ],
+      "tests": [
+        "tests/test-campaign-target-admission.py",
+        "tests/test-campaign-order-observation.py",
+        "tests/test-campaign-route.py"
+      ],
+      "evidence": [
+        "CT04.guards03"
+      ]
+    },
+    {
+      "id": "input.portal-command-controls-ct04-04",
+      "level": "headless",
+      "scope": "Current mutation controls for literal opcode10 decoding, portal pixel limits, adjacent-cell sidestep admission, fresh closed sole-Wizard prefix and exact opcode5receiver/destination acknowledgement and opcode7/10refusal. Guarded native host compile, seven Qt driver and four native presentation controls only; no new original portal/terminal/delivery, full campaign or pixels.",
+      "behaviors": [
+        "INPUT.campaign-portal-command-admission"
+      ],
+      "tests": [
+        "tests/test-campaign-target-admission.py",
+        "tests/test-campaign-order-observation.py",
+        "tests/test-campaign-route.py"
+      ],
+      "evidence": [
+        "CT04.guards04"
+      ]
+    },
+    {
+      "id": "input.terminal-prerequisite-controls-ct04-05",
+      "level": "headless",
+      "scope": "Current rounded-goal escape and bounded portal cell/pixel, closed sole-Wizard prefix, opcode5receiver/destination acknowledgement and opcode7/10refusal controls. Actual source-candidate/follow reference and original command delivery/outcome remain separate. Native host compile, seven Qt driver and four presentation controls; no original terminal/portal, whole campaign, pixel or simulation claim.",
+      "behaviors": [
+        "INPUT.campaign-portal-command-admission",
+        "INPUT.campaign-rounded-follow-staging"
+      ],
+      "tests": [
+        "tests/test-campaign-order-observation.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "CT04.guards05"
+      ]
+    },
+    {
+      "id": "input.terminal-prerequisite-controls-ct04-06",
+      "level": "headless",
+      "scope": "Current rounded-goal escape and bounded portal cell/pixel, closed sole-Wizard prefix, opcode5receiver/destination acknowledgement and opcode7/10refusal controls. Actual source-candidate/follow reference and original command delivery/outcome remain separate. Native host compile, seven Qt driver and four presentation controls; no original terminal/portal, whole campaign, pixel or simulation claim.",
+      "behaviors": [
+        "INPUT.campaign-portal-command-admission",
+        "INPUT.campaign-rounded-follow-staging"
+      ],
+      "tests": [
+        "tests/test-campaign-order-observation.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "CT04.guards06"
+      ]
+    },
+    {
+      "id": "input.terminal-prerequisite-controls-ct04-07",
+      "level": "headless",
+      "scope": "Current rounded-goal escape and bounded portal cell/pixel, closed sole-Wizard prefix, opcode5receiver/destination acknowledgement and opcode7/10refusal controls. Actual source-candidate/follow reference and original command delivery/outcome remain separate. Native host compile, seven Qt driver and four presentation controls; no original terminal/portal, whole campaign, pixel or simulation claim.",
+      "behaviors": [
+        "INPUT.campaign-portal-command-admission",
+        "INPUT.campaign-rounded-follow-staging"
+      ],
+      "tests": [
+        "tests/test-campaign-order-observation.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "CT04.guards07"
+      ]
+    },
+    {
+      "id": "input.terminal-prerequisite-controls-ct04-08",
+      "level": "headless",
+      "scope": "Current rounded-goal escape and bounded portal cell/pixel, closed sole-Wizard prefix, opcode5receiver/destination acknowledgement and opcode7/10refusal controls. Actual source-candidate/follow reference and original command delivery/outcome remain separate. Native host compile, seven Qt driver and four presentation controls; no original terminal/portal, whole campaign, pixel or simulation claim.",
+      "behaviors": [
+        "INPUT.campaign-portal-command-admission",
+        "INPUT.campaign-rounded-follow-staging"
+      ],
+      "tests": [
+        "tests/test-campaign-order-observation.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "CT04.guards08"
+      ]
+    },
+    {
+      "id": "input.terminal-prerequisite-controls-ct04-09",
+      "level": "headless",
+      "scope": "Current one-shot terminal Return freshness/role/damage refusal, rounded-goal escape and bounded portal cell/pixel, closed sole-Wizard prefix, opcode5receiver/destination acknowledgement and opcode7/10refusal controls. Actual source-candidate/follow reference and original command delivery/outcome remain separate. Native host compile, seven Qt driver and four presentation controls; no original terminal/portal, whole campaign, pixel or simulation claim.",
+      "behaviors": [
+        "INPUT.campaign-portal-command-admission",
+        "INPUT.campaign-rounded-follow-staging",
+        "INPUT.campaign-terminal-return-hint"
+      ],
+      "tests": [
+        "tests/test-campaign-dialogue.py",
+        "tests/test-campaign-order-observation.py",
+        "tests/test-campaign-route.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "evidence": [
+        "CT04.guards09"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -409543,7 +409972,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-88ec32a6540edc772cb91e43c1841190ab4d326bd599e737a48aafc475f4859c.json",
-    "sha256": "88ec32a6540edc772cb91e43c1841190ab4d326bd599e737a48aafc475f4859c"
+    "path": "research/runtime/coverage/source-index-ecd719aa7ce0b781dbc9865922102ca3f8d6570fbe5d7e8c588e5efb11feba73.json",
+    "sha256": "ecd719aa7ce0b781dbc9865922102ca3f8d6570fbe5d7e8c588e5efb11feba73"
   }
 }

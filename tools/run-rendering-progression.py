@@ -15,7 +15,7 @@ def main():
  p.add_argument('--evidence-mode',choices=['diagnostic','full'],default='diagnostic',help='Default: bounded semantic diagnostics without pixel/World captures; full is required for rendering evidence')
  p.add_argument('--deadline-seconds',type=int,help='15..900; default diagnostic120/full900')
  p.add_argument('--checkpoint',choices=['capture','restore'],help='Separate diagnostic Save/Load; never nominal progression acceptance')
- p.add_argument('--checkpoint-probe',choices=['orders','paused-orders','paused-cast','combat'],help='Bounded physical selection/move or Space-toggle/candidate probe after verified original checkpoint restore')
+ p.add_argument('--checkpoint-probe',choices=['orders','paused-orders','paused-cast','combat','portal'],help='Bounded physical selection/move, combat-order or portal-command probe after verified original checkpoint restore')
  p.add_argument('--checkpoint-name',help='New unique checkpoint- name for capture or exact existing name for restore')
  p.add_argument('--checkpoint-seed',help='Capture from an unchanged original Save/Load candidate report; new Save/Load witnesses are still required')
  p.add_argument('--checkpoint-reference',help='Successful capture acquisition report required for restore')

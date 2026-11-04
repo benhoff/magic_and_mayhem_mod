@@ -37,6 +37,18 @@ class Orders(unittest.TestCase):
         self.assertFalse(result['command_delivery_proved'])
         self.assertEqual(result['pending_callbacks'],[])
 
+    def test_retained_original_opcode10_has_actor_and_signed_cell_fields(self):
+        # Literal original successful portal-approach record, not a live result.
+        record=bytes.fromhex('000000000a00000013000000002b001b000500')
+        a=sample(2,1);b=sample(3,1);b[4]|=4
+        b[30]+=19;b[31]+=1;b[32]+=19;b[34:36]=[19,1]
+        b[36:60]=struct.unpack('<24I',record+bytes(96-len(record)))
+        command=decode(wire(a,b))['rows'][-1]['records'][0]
+        self.assertEqual((command['opcode'],command['actor_slot'],command['destination']),(10,0,[43,27,5]))
+        record=struct.pack('<IIIBhhh',0,10,19,3,-2,27,-1)
+        b[36:60]=struct.unpack('<24I',record+bytes(96-len(record)))
+        self.assertEqual(decode(wire(a,b))['rows'][-1]['records'][0]['destination'],[-2,27,-1])
+
     def test_prefix_can_end_inside_callback(self):
         self.assertEqual(decode(wire(sample(2,1)))['pending_callbacks'],[1])
 

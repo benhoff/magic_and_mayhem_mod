@@ -92,3 +92,35 @@ def support_attack_submission(rows,source,target,after_sequence):
             if command['opcode']==7 and command.get('actor_slot')==source['slot'] and command.get('target_slot')==target['slot']:
                 return dict(entry=before,returned=r,command=command,command_delivery_proved=False)
     return None
+
+
+def portal_destination(hero,portal,point):
+    """Authored adjacent-cell sidestep bound, not a recovered path/exit trigger."""
+    if (not isinstance(point,(list,tuple)) or len(point)!=3
+            or any(type(v) is not int for v in point)):return False
+    remaining=sum((point[i]-portal[k])**2 for i,k in enumerate(('x','y')))
+    moved=any(point[i]!=hero[k] for i,k in enumerate(('x','y','z')))
+    return remaining<=2 and abs(point[2]-portal['z'])<=1 and (moved or remaining==0)
+
+
+def portal_move_submission(rows,hero,portal,after_sequence):
+    """Fresh sole-Wizard opcode5 move acknowledgement, never command delivery."""
+    if type(after_sequence) is not int or after_sequence<0:raise ValueError('Invalid observation identity')
+    if (hero.get('type')!=0 or hero.get('owner')!=0 or not hero.get('active')
+            or hero.get('health',0)<=0 or type(hero.get('slot')) is not int
+            or not 0<=hero['slot']<256):return None
+    if primary_selection_after(rows,hero['slot'],after_sequence) is None:return None
+    entries={r['call']:r for r in rows if r['kind']==2}
+    for row in rows:
+        if row['sequence']<=after_sequence or row['kind']!=3 or row['mask']!=4 or row['flags']&5!=5:continue
+        before=entries.get(row['call'])
+        if (not before or before['sequence']<=after_sequence or not before['flags']&1
+                or before['primary']!=[hero['slot']] or row['primary']!=[hero['slot']]
+                or len(row['records'])!=1):continue
+        command=row['records'][0]
+        if (command['opcode']==5 and command.get('length')==21
+                and command.get('mode')==0 and command.get('extra')==0
+                and command.get('actor_slot')==hero['slot']
+                and portal_destination(hero,portal,command.get('destination'))):
+            return dict(entry=before,returned=row,command=command,command_delivery_proved=False)
+    return None

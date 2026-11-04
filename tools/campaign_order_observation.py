@@ -50,10 +50,12 @@ def decode(data):
                 opcode,length=struct.unpack_from('<II',raw,offset+4)
                 if length<12 or length>r[34]-offset:raise ValueError('Invalid command length')
                 record=dict(opcode=opcode,length=length,raw_hex=raw[offset:offset+length].hex())
-                if opcode in (5,6,7,11,12,13) and length>=13:record['actor_slot']=raw[offset+12]
+                if opcode in (5,6,7,10,11,12,13) and length>=13:record['actor_slot']=raw[offset+12]
                 if opcode in (7,11,13) and length>=14:record['target_slot']=raw[offset+13]
                 if opcode in (5,12) and length>=21:
                     record.update(destination=list(struct.unpack_from('<3h',raw,offset+13)),mode=raw[offset+19],extra=raw[offset+20])
+                if opcode==10 and length==19:
+                    record['destination']=list(struct.unpack_from('<3h',raw,offset+13))
                 records.append(record);offset+=length
             if len(records)!=r[35] or any(raw[r[34]:]):raise ValueError('Append length/count/padding disagrees')
         elif any(r[34:60]):raise ValueError('Unverified or over-budget append')

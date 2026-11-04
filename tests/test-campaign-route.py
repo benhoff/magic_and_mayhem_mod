@@ -2,10 +2,32 @@
 import sys,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from campaign_route import hud_point,project,aim_point,approach_point,validate_opening_anchors,bridge_entry_ready,bridge_defender_slot
+from campaign_route import hud_point,project,aim_point,approach_point,validate_opening_anchors,bridge_entry_ready,bridge_defender_slot,portal_points,follow_staging_goal_reached,boss_candidate_points
 
 
 class Route(unittest.TestCase):
+    def test_boss_hover_includes_feet_when_body_projection_hits_rear_guard(self):
+        hero=dict(x=42,y=31,z=4);boss=dict(x=42,y=26,z=4)
+        self.assertEqual(boss_candidate_points(hero,boss),[(560,198),(560,220),(560,180),(560,166)])
+        self.assertEqual(boss_candidate_points(hero,dict(x=200,y=200,z=4)),[])
+        for size in ((640,480),(800,600)):
+            self.assertTrue(all(64<=y<size[1]-90 for x,y in boss_candidate_points(hero,boss,size)))
+    def test_retained_quantized_follow_goal_does_not_repeat_the_current_cell(self):
+        hero=dict(x=26,y=55,z=4);goal=dict(x=26.391993216020353,y=54.88000423998728,z=4)
+        self.assertTrue(follow_staging_goal_reached(hero,goal))
+        for changed in (dict(x=25),dict(y=54),dict(z=5)):
+            self.assertFalse(follow_staging_goal_reached(dict(hero,**changed),goal))
+        self.assertFalse(follow_staging_goal_reached(hero,None))
+        self.assertFalse(follow_staging_goal_reached(hero,dict(goal,x=float('nan'))))
+    def test_portal_alternatives_are_bounded_physical_points_in_both_frames(self):
+        hero=dict(x=43,y=28,z=4);portal=dict(x=43,y=26,z=4)
+        points=portal_points(hero,portal)
+        self.assertEqual(points[:3],[(464,268),(464,300),(496,284)])
+        for size in ((640,480),(800,600)):
+            values=portal_points(hero,portal,size)
+            self.assertTrue(1<=len(values)<=12)
+            self.assertTrue(all(48<=x<size[0]-40 and 64<=y<size[1]-90 for x,y in values))
+        self.assertEqual(portal_points(hero,dict(x=400,y=400,z=4)),[])
     def test_refilled_bridge_entry_requires_the_waypoint_before_final_approach(self):
         bridge=dict(x=31,y=52,z=4)
         # Retained v25 left staging at29,53 then never reached Camulos.

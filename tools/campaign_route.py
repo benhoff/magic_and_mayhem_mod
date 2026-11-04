@@ -6,6 +6,7 @@ spawn anchors in validation-waypoint-calibration-01.json.
 """
 import configparser
 import hashlib
+import math
 from pathlib import Path
 import re
 import struct
@@ -68,6 +69,34 @@ def bridge_entry_ready(hero,bridge,rearmed):
     """
     if rearmed:return all(hero[k]==bridge[k] for k in ('x','y','z'))
     return sum((hero[k]-bridge[k])**2 for k in ('x','y'))<=2
+
+
+def portal_points(hero,portal,size=(800,600)):
+    """Bounded physical alternatives; the original still owns each scene hit."""
+    width,height=frame_size(size);x,y=project(hero,portal,size)
+    points=[]
+    offsets=[(32*(dx-dy),16*(dx+dy)) for dx,dy in
+             ((0,0),(1,1),(1,0),(0,1),(-1,0),(0,-1),(-1,1),(1,-1),(-1,-1))]
+    for dx,dy in offsets+[(0,-22),(0,-40),(0,-54)]:
+        px,py=x+dx,y+dy
+        if (48<=px<width-40 and 64<=py<height-90
+                and not (px>width-170 and (py<100 or py>height-180))):points.append((px,py))
+    return points
+
+
+def follow_staging_goal_reached(hero,goal):
+    """Authored cell-quantization escape; actual selection/follow still required."""
+    return (goal is not None and all(math.isfinite(goal[k]) for k in ('x','y','z'))
+            and all(hero[k]==round(goal[k]) for k in ('x','y','z')))
+
+
+def boss_candidate_points(hero,target,size=(800,600)):
+    """Four physical probes; only an original matching actor admits one."""
+    point=aim_point(hero,target,size,body=True)
+    if point is None:return []
+    width,height=frame_size(size)
+    return [(point[0],point[1]+22-offset) for offset in (22,0,40,54)
+            if 64<=point[1]+22-offset<height-90]
 
 
 def forest_waypoints(game):

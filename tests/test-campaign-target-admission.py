@@ -3,10 +3,57 @@ from pathlib import Path
 import sys
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from campaign_target_admission import candidate_after_hover,empty_candidate_after_hover,hover_nudge,support_attack_submission,support_selection_after,primary_selection_after,reserved_boss_target
+from campaign_target_admission import candidate_after_hover,empty_candidate_after_hover,hover_nudge,support_attack_submission,support_selection_after,primary_selection_after,reserved_boss_target,portal_destination,portal_move_submission
 
 
 class Candidate(unittest.TestCase):
+    def portal(self,opcode=5):
+        hero=dict(slot=0,type=0,owner=0,active=1,health=143,x=43,y=28,z=4)
+        goal=dict(x=43,y=26,z=4)
+        cmd=dict(opcode=opcode,length=21 if opcode==5 else 19,actor_slot=0,destination=[43,26,4],mode=0,extra=0)
+        entry=dict(kind=2,sequence=11,call=1,mask=4,flags=35,primary=[0],records=[])
+        returned=dict(entry,kind=3,sequence=12,flags=39,records=[cmd])
+        world=dict(kind=1,sequence=13,flags=1,primary=[0])
+        return hero,goal,[entry,returned,world]
+
+    def test_portal_requires_nearby_goal_and_actual_original_move(self):
+        for opcode in (5,):
+            hero,goal,rows=self.portal(opcode)
+            result=portal_move_submission(rows,hero,goal,10)
+            self.assertEqual(result['command']['opcode'],opcode)
+            self.assertFalse(result['command_delivery_proved'])
+        for point in ([43,29,4],[45,26,4],[43,26,6],[True,26,4],None,[43,26]):
+            with self.subTest(point=point):self.assertFalse(portal_destination(hero,goal,point))
+        self.assertTrue(portal_destination(hero,goal,[43,27,5]))
+
+    def test_portal_refuses_retained_guard_attack_and_wrong_receiver_destination(self):
+        for change in (dict(opcode=7,length=14,target_slot=1),dict(opcode=10,length=19),dict(actor_slot=3),dict(length=19),dict(destination=[43,28,4]),dict(mode=1),dict(extra=1)):
+            hero,goal,rows=self.portal();rows[1]['records'][0].update(change)
+            with self.subTest(change=change):self.assertIsNone(portal_move_submission(rows,hero,goal,10))
+        for change in (dict(type=14),dict(owner=1),dict(active=0),dict(health=0),dict(slot=True)):
+            hero,goal,rows=self.portal();hero.update(change)
+            with self.subTest(role=change):self.assertIsNone(portal_move_submission(rows,hero,goal,10))
+
+    def test_portal_requires_closed_fresh_sole_wizard_prefix(self):
+        for index,change in ((0,dict(primary=[3])),(1,dict(primary=[0,3])),(1,dict(mask=5)),(1,dict(flags=35)),(2,dict(primary=[3])),(2,dict(flags=0))):
+            hero,goal,rows=self.portal();rows[index].update(change)
+            with self.subTest(index=index,change=change):self.assertIsNone(portal_move_submission(rows,hero,goal,10))
+        hero,goal,rows=self.portal()
+        self.assertIsNone(portal_move_submission(rows,hero,goal,12))
+        self.assertIsNone(portal_move_submission(rows[:-1],hero,goal,10))
+        rows.insert(0,dict(rows[0],call=2,sequence=9))
+        self.assertIsNone(portal_move_submission(rows,hero,goal,10))
+
+    def test_retained_one_cell_stall_allows_actor_free_adjacent_sidestep(self):
+        hero,goal,rows=self.portal();hero.update(x=42,y=27);goal.update(x=42,y=26)
+        # The first live probe refused this empty ground while guard5 covered
+        # both direct pixels. A monotone distance rule prevented going around.
+        rows[1]['records'][0]['destination']=[41,25,4]
+        self.assertTrue(portal_destination(hero,goal,[41,25,4]))
+        self.assertIsNotNone(portal_move_submission(rows,hero,goal,10))
+        self.assertFalse(portal_destination(hero,goal,[42,27,4]))
+        self.assertFalse(portal_destination(hero,goal,[40,24,4]))
+
     def row(self,**updates):
         return dict(dict(kind=1,sequence=20,world_counter=42,candidate_valid=True,candidate_slot_plus_one=5),**updates)
 

@@ -28,3 +28,15 @@ class ActorQuietWindow:
             if self.dismissals>=self.maximum:raise ValueError('Bounded quiet actor dismissal budget exhausted')
             self.dismissals+=1;self.changed=now;return True
         return False
+
+
+def terminal_return_hint(hero,boss,damage,tick,already=False):
+    """One authored input hint;20HP does not identify dialogue or an exit rule."""
+    if (already or not hero.get('active') or hero.get('health',0)<=0
+            or hero.get('type')!=0 or hero.get('owner')!=0
+            or not boss.get('active') or boss.get('health')!=20
+            or boss.get('type')!=24 or boss.get('owner')!=1):return None
+    matches=[r for r in damage if r[1]==3 and r[4:7]==(boss['slot'],24,1)
+             and r[7]>20 and r[8]==20 and r[9] and r[11]==0 and r[12]==71
+             and r[14]==hero['slot'] and r[15]==0 and ((tick-r[3])&0xffffffff)<=10000]
+    return matches[-1] if matches else None
