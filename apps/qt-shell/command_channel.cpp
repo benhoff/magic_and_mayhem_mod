@@ -70,4 +70,11 @@ QByteArray CommandChannel::poll(quint32 budget){
         QByteArray result(reinterpret_cast<const char*>(mapping_+64+consumed_),count);consumed_+=count;return result;
     }catch(const std::exception& e){error_=e.what();cancel();throw;}
 }
+void CommandChannel::requireProducerHealthy() const {
+    validate();
+    const auto state=load(mapping_,24),cancelled=load(mapping_,32);
+    require(state<=MNM_RENDER_COMMANDS_V1_STATE_FAILED && cancelled<=1,"Invalid producer state at CPU read boundary");
+    require(state!=MNM_RENDER_COMMANDS_V1_STATE_FAILED && !cancelled,"Terminal producer at CPU read boundary");
+    require(state!=MNM_RENDER_COMMANDS_V1_STATE_ENDED || !load(mapping_,28),"Ended producer has failure reason");
+}
 void CommandChannel::cancel(){if(version_>=2){mnm_ring_cancel(&ring_);return;}if(mapping_)__atomic_store_n(reinterpret_cast<quint32*>(mapping_+32),qToLittleEndian<quint32>(1),__ATOMIC_RELEASE);}

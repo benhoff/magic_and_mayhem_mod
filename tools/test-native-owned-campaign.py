@@ -22,6 +22,7 @@ def main():
     parser.add_argument('--functional-lifecycle',action='store_true',help='Require both stress phases, original Mini/No/Yes callbacks,64balanced Worlds and complete resource retirement; FPS is diagnostic')
     parser.add_argument('--native-only',action='store_true',help='Exercise the strict native-only startup/failure/outcome contract')
     parser.add_argument('--restart',action='store_true',help='Inject a live producer failure, use public Hard restart, then quit a fresh generation')
+    parser.add_argument('--independent-world',action='store_true',help='Use and verify the dedicated render worker in a native-only restart journey')
     parser.add_argument('--prefix-template',type=Path)
     parser.add_argument('--player-entrypoint',choices=['fresh','reuse'],help='Exercise run-x86.sh with the real default persistent player prefix')
     parser.add_argument('--source-game',type=Path,required=True)
@@ -41,6 +42,7 @@ def main():
     parser.add_argument('--claims',type=Path,required=True)
     parser.add_argument('--report',type=Path,required=True)
     args=parser.parse_args()
+    if args.independent_world and (not args.native_only or not args.restart or args.player_entrypoint):parser.error('Independent World requires the isolated native-only restart journey')
     if args.recreate_world:args.save_load=True
     if args.default_media and args.no_native_music:parser.error('Default media cannot disable native music')
     if args.allow_initial_silence and not args.default_media:parser.error('Initial silence admission requires default media validation')
@@ -67,7 +69,8 @@ def main():
         qt_build_type=args.qt_build_type,fps_policy='diagnostic',functional_lifecycle_requested=args.functional_lifecycle,
         native_music_disabled=args.no_native_music,default_media_requested=args.default_media,
         hardware_requested=args.hardware,menu_cycles=args.menu_cycles,save_load_requested=args.save_load,
-        recreate_world_requested=args.recreate_world,quick_map_row_requested=args.quick_map_row,scope=__doc__)
+        recreate_world_requested=args.recreate_world,quick_map_row_requested=args.quick_map_row,
+        render_owner_requested='dedicated-thread' if args.independent_world else 'gui-resident',scope=__doc__)
     journey_seconds=max(270,240+(args.menu_cycles+1)*args.stress_seconds+args.menu_cycles*30)+ (120 if args.default_media else 0)
     env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINE'))}
     env.update(XDG_CONFIG_HOME=str(root/'config'),PYTHONDONTWRITEBYTECODE='1',TMPDIR=str(root),LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS='4',
@@ -116,6 +119,7 @@ def main():
             command=[str(ROOT/'tools/run-native-owned.py'),'--prefix',str(expected_prefix),'--output',str(owner),*(['--native-only'] if args.native_only else []),'--']
         command += [
                  *([] if args.default_media else ['--skip-movies']),*(['--no-native-music'] if args.no_native_music else []),
+                 *(['--independent-world'] if args.independent_world else []),
                  '--live-menu-test',str(root/'flow.json')]
         with (root/'shell.log').open('x') as out:
             child=subprocess.Popen(command,cwd=ROOT,env=env,stdout=out,stderr=subprocess.STDOUT,start_new_session=True)
@@ -176,7 +180,10 @@ def main():
         report['routes']=validate_routes(read_counters(session/'game'))
         if args.restart:
             from test_native_restart_support import validate_flow
-            report['engine_journey']=validate_flow(flow)
+            report['engine_journey']=validate_flow(flow,expected_owner='dedicated-thread' if args.independent_world else None,
+                expected_stream_version=5 if args.independent_world else None)
+            if args.independent_world and report['resident'].get('native_render_owner')!='dedicated-thread':
+                raise RuntimeError('Final resident report did not confirm the dedicated render owner')
         elif args.save_load:
             from campaign_storage import validate_storage,validate_storage_flow,validate_mini_dispatch,validate_mini_inputs
             if bool(flow.get('recreate_world'))!=args.recreate_world:raise ValueError('Requested display/map recreation was not executed')

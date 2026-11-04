@@ -1,0 +1,33 @@
+# Dedicated worker / V5 fault and Hard Restart — 2026-11-04
+
+This bounded batch starts at `913af9c`. It fixes a reproduced terminal CPU-reply defect and validates one actual-game dedicated-worker fault/Hard Restart journey. These are separate proofs: the live fault occurs after World presentation, with zero CPU materializations observed at both injection/admission points. It does not interrupt a pending live CPU_READ.
+
+The mapped `MNMRDC03` transport remains version3. Its decoded `MNMCMD05` commands are version5 (`protocols/include/mnm/render_stream_v5.h`, operation21 CPU_READ; `runtime/render/owned_session.h` emits5). The old GUI journey observed the transport identity; it did not independently record decoded version. Historical results and fingerprints remain unchanged. The new command-consumer metadata reports decoded version after admission, while each live event separately records actual owner, transport and CPU materializations through the existing worker status copy.
+
+The native policies are `NP.cpu-read-terminal-publication` and `NP.worker-v5-fault-restart`. Neither asserts recovered original behavior or a new executable address. Understanding is scoped, implementation remains partial, comparison/replacement remain none; headless integration and live observation have separate scenario/evidence links.
+
+## Reproduced boundary and fix
+
+The V5 control initializes an actual GL source/consumer, queues only a CPU_READ, and marks its mapped producer failed or cancelled in the pending-ticket notification before readback. Before the fix, the renderer published a success reply from already copied commands before observing producer failure at its next poll. `v5-terminal-baseline-05.json` records this witnessed failure: “terminal producer published a CPU reply”. Confidence is high for this exact known-terminal boundary.
+
+`CommandChannel::requireProducerHealthy()` verifies mapped identity, state/cancellation ranges and terminal failure without advancing cursors. The renderer calls it after announcing the pending ticket, before queued CPU_READ execution, and before reply acceptance/publication. Existing failure teardown clears the wait, cancels the channel and retires surfaces. Cleanly ended producers may still drain queued commands. This is a checkpoint policy; a producer can still fail after the last check. It is not atomic failure/publication exclusion.
+
+All exploratory phases are retained. Baseline01's apparent pass is invalid as regression proof: a fixture failed before its loose wait check witnessed injection. Baseline02 tightens that witness. Baseline03–04 expose the existing one-consumer-context GPU-frame constraint; merely re-exporting the same source does not create another owner. Baseline05 supplies a fresh GL source per consumer and reaches the intended fault point, demonstrating the production defect. Those fixture refusals are not claimed as renderer defects.
+
+The fixed native control passes failed and cancelled cases with zero terminal readbacks/replies, cleared waits and zero surfaces. Both cases are followed by a fresh channel/session and successful WORD comparison; all four successful reads compare1,920,000 WORDs. Five wire refusals,36 malformed reply checks and wrong-session refusal remain covered. `terminal-cpu-proof-01.json` repeats this scoped control with the complete frozen source declaration and exact behavior/scenario claim; earlier narrow-source results remain retained.
+
+## Current controls and actual observation
+
+Nine restart-validator cases and12native-only contract cases pass. Explicit worker/version admission rejects missing or mismatched observations; the legacy GUI validator remains compatible. Existing worker controls pass172native presentations,25diagnostic framebuffer checks, immutable/slow GUI leases, bounded tracing and pause/drain. Four terminal cases each start a fresh worker. The initial trace-disabled worker-test refusal remains in `native-controls-01.json`; `native-controls-02.json` uses the documented trace/status flags and passes. Production was rebuilt with `BUILD_TESTING=OFF` before the original run.
+
+One charged attempt creates exactly two private generations under software llvmpipe, skipped intros, disabled native music, no full rendering captures and an isolated Wine prefix. Both events report `dedicated-thread`, decoded5, transport3 and CPU materializations0. The first has60frames/53paints and the second122frames/107paints; each reaches source generation3. A controlled producer failure is followed by539ms of stable terminal cleanup, public Hard Restart, distinct channel/launcher/session identities and observed old-launcher absence. The failed generation is recorded as restarted, without normal rendering/completion credit. The fresh generation completes original normal Quit, with zero surviving graphics owners, pixel bytes and forwarding (664native route calls; incomplete route coverage remains explicit). Original-manifest checks pass before/after.
+
+`worker-fault-restart-01.json`, `fault-retained-observation-01.json` and `custody-fault-01.json` retain exact frozen source/claim records, raw evidence, stopped-private-prefix verification and three complete output trees. Both SQLite copies and a real restoration must pass before those explicitly completed trees retire. Source checkouts, canonical inputs, private held fixtures, all budgets and failures remain retained. The original attempt budget stays one; no retry or budget reset occurred.
+
+The review of `404030bb..913af9c` covers1,750changed paths with exact parent/current receipts and no unresolved gaps. It adds accounting, not retrospective validation. New generated reports/raw inputs/operator programs use SQLite references; physical claims under ignored working are a bounded required producer input.
+
+## Remaining boundaries
+
+A live CPU_READ interruption, physical context loss, failures racing after the final publication check, saved/in-place/media recovery, original upstream ABI/mapped-code semantics, performance and repeated-run reliability remain pending. There is no new independent original-pixel comparison. Changes to shared renderer/host sources make prior source-bound software storage/pixel evidence historical for this code phase; its original hashes and independent milestones are preserved. Nominal campaign victory/progression and gameplay balance remain separate.
+
+The next bounded rendering check is an actual-game worker fault timed to an observed pending CPU_READ, with an independently witnessed ticket/reply boundary and fresh-generation completion. It needs a prospective driver/declaration and separate attempt budget; current zero CPU counts cannot supply that proof.

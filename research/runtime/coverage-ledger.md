@@ -26191,3 +26191,32 @@ Software storage ownership validation (2026-11-04, prospective): a new separatel
 Software storage ownership result (2026-11-04): the source404030bb enabled-intro High800x600 software journey passes Save/Mini Load/Main Load, two rebuilds, Preferences Cancel and normal Quit. The strict current join closes230caller contexts,54CPU requests/completions and113DC borrows/releases with no missing links. Independent history reproduces797Worlds/817011draws; all54full replies and898986000presented pixels match (961World presentations, zero mismatches/remaining surfaces). The earlier640-only analysis refusal is preserved; a new explicit size selector must match the typed acquisition mode, with5new profile tests,10capture/history and10CPU binding controls passing. No native code, original launch, deadline or historical fingerprint is rewritten. NP.software-storage-reader-ownership records only this diagnostic profile, with mapped-code/upstream and nominal/whole-operation limits intact.
 
 Native fault/restart result (2026-11-04): after the storage proof passed, one separately charged current GUI-resident native-only V3 journey passes the existing controlled producer fault, nine terminal predicates stable522ms, public Hard Restart, distinct launcher/channel/World identities, old-launcher absence, fresh World and ordinary Quit. The failed generation is `restarted` without completion credit; exactly one fresh generation finishes with zero graphics owners/forwarded calls. Four transition and twelve contract controls pass. Both generations' exact sources/raw evidence and stopped-prefix proof are retained. This does not renew both-owner historical coverage or prove V5/worker fault handling, physical context loss, in-place/save continuity, media/audio restart or pixels for the failure journey. See `rendering-storage-ownership-20261104.md` and its SQLite-backed results; completed output retires only after dual-store and real-restore custody.
+
+## Dedicated worker/V5 terminal replies and Hard Restart — 2026-11-04
+
+Starting at913af9c, `NP.cpu-read-terminal-publication` fixes a witnessed queued V5
+CPU_READ success-reply publication after an already failed/cancelled producer.
+The headless GL proof checks both terminal causes, zero readbacks/replies,
+cleared waits/surfaces and two fresh read sessions;1,920,000successful WORDs
+compare. Failed exploratory fixture phases and an initial missing-trace-flags
+worker refusal remain retained.21Python controls,172worker presentations,
+25diagnostic framebuffer checks and4terminal/fresh-worker cases pass.
+
+One separately charged native-only software dedicated-worker journey observes
+actual owner, decoded stream5 and transport3 in both generations, with CPU
+materializations0at both World points. Controlled failure gives539ms stable
+terminal cleanup; public Hard Restart creates distinct identities, old launcher
+absence and a fresh original normal Quit with zero graphics owners/forwarding.
+The failed generation gets no normal completion credit. Three complete trees
+receive verified dual-SQLite and real-restore custody before retirement.
+`NP.worker-v5-fault-restart` is live observation, independently of the headless
+pending-CPU_READ proof. The prior GUI run's observed V3 transport must not be
+used to infer its decoded stream version. Historical hashes remain unchanged.
+
+See `rendering-worker-restart-20261104.md` and the SQLite-backed
+`rendering-worker-restart-results-20261104/batch-closeout-01.json`. No current
+original-pixel comparison, live pending-read fault, atomic failure/publication
+exclusion, physical context loss, saved/in-place/media recovery, original ABI
+or whole renderer replacement is asserted. Shared-source changes leave prior
+software storage/pixel evidence historical for this phase. Next: a separately
+budgeted actual-game worker fault at a witnessed pending CPU_READ boundary.

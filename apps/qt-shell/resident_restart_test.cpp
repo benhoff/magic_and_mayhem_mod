@@ -119,7 +119,8 @@ void installResidentRestartTest(QApplication& app,QMainWindow& window,LiveMenuSe
             auto* words=reinterpret_cast<uint32_t*>(bytes);const auto identity=words[4];
             const bool valid=mnm_ring_identity(words,identity)&&mnm_ring_load(words+6)==1;
             event({{"step","live-world"},{"cycle",r->cycle},{"root",session.evidenceDirectory()},{"identity",int(identity)},
-                {"launcher_pid",session.launcherProcessId()},{"frames",qint64(p.frames)},{"paints",qint64(p.paints)},{"source_generation",qint64(p.sourceGeneration)},{"renderer",p.renderer}});
+                {"launcher_pid",session.launcherProcessId()},{"frames",qint64(p.frames)},{"paints",qint64(p.paints)},{"source_generation",qint64(p.sourceGeneration)},{"renderer",p.renderer},
+                {"render_owner",p.renderOwner},{"command_stream_version",int(p.commandStreamVersion)},{"transport_version",int(words[2])},{"cpu_materializations",qint64(p.cpuMaterializations)}});
             if(!valid){channel.unmap(bytes);finish(false,"Live producer identity/state invalid");return;}
             if(!r->cycle){
                 r->firstRoot=session.evidenceDirectory();r->firstIdentity=identity;r->firstPid=session.launcherProcessId();

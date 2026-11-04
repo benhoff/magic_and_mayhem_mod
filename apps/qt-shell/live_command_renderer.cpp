@@ -76,13 +76,15 @@ bool LiveCommandRenderer::poll(quint32 budget){
                 if(!bytes.isEmpty())acceptance_.append("fragment",{},bytes);
                 pending_=decoder_->append(bytes);cursor_=0;
                 if(cpuReadPending)for(const auto& command:pending_)if(command.operation==MNM_RENDER_STREAM_V5_OPERATION_CPU_READ){
-                    cpuReadPending(std::uint64_t(command.words[1])|(std::uint64_t(command.words[2])<<32));break;
+                    cpuReadPending(std::uint64_t(command.words[1])|(std::uint64_t(command.words[2])<<32));
+                    channel_.requireProducerHealthy();break;
                 }
                 if(bytes.isEmpty())break;
             }
             const auto first=cursor_;
             while(cursor_<pending_.size()){
                 const auto& command=pending_[cursor_];
+                if(command.operation==MNM_RENDER_STREAM_V5_OPERATION_CPU_READ)channel_.requireProducerHealthy();
                 if(command.operation==MNM_RENDER_STREAM_V4_OPERATION_WORLD && residentReady){
                     const auto& w=command.words;
                     const auto generation=std::uint64_t(w[1])|(std::uint64_t(w[2])<<32),nonce=std::uint64_t(w[3])|(std::uint64_t(w[4])<<32);
@@ -151,6 +153,7 @@ void LiveCommandRenderer::publishCpuRead(const mnm::render::SurfaceCommand& c,co
         if(image.pixels[i]>65535)throw std::runtime_error("Non-WORD explicit CPU reply");
         qToLittleEndian(quint16(image.pixels[i]),reply.data()+64+i*2);
     }
+    channel_.requireProducerHealthy();
     acceptance_.append("cpu-read",QJsonObject{{"sequence",int(c.sequence)}},reply);
     if(!publishCpuReplyFile(cpuReplyPath_,reply))
         throw std::runtime_error("Explicit CPU reply publication failed");

@@ -176,6 +176,7 @@ struct CommandConsumer::Impl {
     void active(){renderer.stats();require(state==CommandConsumerState::Active,"Command consumer is closed");require(!executing,"Recursive command execution is unsupported");}
     void execute(const SurfaceCommand& c){
         const auto& w=c.words;admission.accept(c);
+        output.commandStreamVersion=c.version;
         if(recipe && c.operation!=1 && c.operation!=6 && c.operation!=13 && c.operation!=14 && c.operation!=MNM_RENDER_STREAM_V4_OPERATION_WORLD)
             measure(0,[&]{recipe->record(c,handles);});
         switch(c.operation){

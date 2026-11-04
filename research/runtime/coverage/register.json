@@ -127960,7 +127960,8 @@
         "CRIT20.functional-snapshot-20261019",
         "CRIT20.session-retry-current-20261019",
         "RA25.native-only.restart",
-        "SO04.fault-restart-gui01"
+        "SO04.fault-restart-gui01",
+        "WR04.worker-fault01"
       ],
       "status": {
         "understanding": "scoped",
@@ -127973,7 +127974,8 @@
         "Headless current implementation controls pass. Broader original-game/driver equivalence, all-game caller coverage and complete replacement remain separate; bounded stress/restart acquisition is in progress.",
         "Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md.",
         "Retained functional-closure runs are historical after subsequent shared renderer changes. Current-code acceptance and source-bound status promotion remain pending; implementation sources and old report hashes are preserved.",
-        "2026-11-04 current GUI-resident V3 native-only fault/Hard Restart passes with522ms stable terminal cleanup, distinct old/new launcher/channel identities and fresh normal Quit with zero graphics owners/forwarding. The failed generation gets no completion credit. Historical both-owner results remain independent; current worker/V5 fault, physical context loss, in-place/save continuity, media/audio restart and failure-path pixels are not promoted."
+        "2026-11-04 current GUI-resident V3 native-only fault/Hard Restart passes with522ms stable terminal cleanup, distinct old/new launcher/channel identities and fresh normal Quit with zero graphics owners/forwarding. The failed generation gets no completion credit. Historical both-owner results remain independent; current worker/V5 fault, physical context loss, in-place/save continuity, media/audio restart and failure-path pixels are not promoted.",
+        "2026-11-04 worker source phase: actual dedicated-thread owner, decoded stream5 and transport3 pass one controlled fault/Hard Restart journey with539ms stable cleanup and fresh normal Quit/zero owners/forwarding. Both World observations have CPU materializations0; no live pending-CPU_READ interruption, failure-path pixels, physical context loss, in-place/save/media recovery or repeated-run reliability. Prior GUI transport observation does not independently prove decoded stream version."
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -162608,7 +162610,94 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "One current software High800x600 diagnostic passes complete observed CPU/DC joins and independent full reply/presentation comparison. Repeated-run reliability, other profiles, original upstream/mapped-code identity, arbitrary readers, nominal/whole-operation acceptance, physical scanout and V5 fault handling remain separate. The later GUI-resident V3 fault journey is independently scoped under NP.native-only-generation-restart."
+        "One current software High800x600 diagnostic passes complete observed CPU/DC joins and independent full reply/presentation comparison. Repeated-run reliability, other profiles, original upstream/mapped-code identity, arbitrary readers, nominal/whole-operation acceptance, physical scanout and V5 fault handling remain separate. The later GUI-resident V3 fault journey is independently scoped under NP.native-only-generation-restart.",
+        "2026-11-04 worker/V5 source phase changes shared renderer/host inputs. The retained SO04.storage-ownership01 comparison remains historical with original fingerprints; no independent pixel rerun is asserted in this batch."
+      ]
+    },
+    {
+      "kind": "native_policy",
+      "subsystem": "runtime_rendering",
+      "original": [],
+      "confidence": "high_within_scope",
+      "evidence": [
+        "WR04.terminal-cpu01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "documents": [
+        "research/runtime/rendering-worker-restart-20261104.md"
+      ],
+      "id": "NP.cpu-read-terminal-publication",
+      "title": "V5 CPU replies refuse an observed terminal producer",
+      "scope": "At a queued V5 CPU_READ boundary and immediately before reply publication, check the current mapped command producer identity/state/cancellation without advancing its cursors. An already observed failed/cancelled producer must not cause a native readback or new success reply; close pending waits and retire native surfaces. Checkpoints do not claim atomic exclusion of failures racing after the final check, original CPU authority, saved recovery or original ABI.",
+      "implementation": [
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/live_command_renderer.cpp"
+      ],
+      "tests": [
+        "tests/native-cpu-materialization-test.cpp"
+      ],
+      "validation_dependencies": [
+        "renderer/commands.hpp",
+        "renderer/command_consumer.cpp",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/native_cpu_read_v1.h"
+      ],
+      "remaining_gaps": [
+        "The mapped producer may still fail after the final checkpoint; this is not atomic exclusion of arbitrary concurrent failure. No actual-game fault timed to a pending CPU_READ, original ABI equivalence, saved/in-place/media recovery or physical context-loss validation."
+      ]
+    },
+    {
+      "kind": "native_policy",
+      "subsystem": "runtime_rendering",
+      "original": [],
+      "confidence": "high_within_scope",
+      "evidence": [
+        "WR04.worker-fault01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "documents": [
+        "research/runtime/rendering-worker-restart-20261104.md"
+      ],
+      "id": "NP.worker-v5-fault-restart",
+      "title": "Worker owner and decoded V5 producer-fault Hard Restart",
+      "scope": "One software native-only dedicated-worker campaign journey: observe actual render owner, decoded command-stream version5, transport-ring version3 and CPU materialization count before a controlled terminal producer failure. Require three live World imports/paints, stable terminal cleanup500ms, public Hard Restart, distinct launcher/channel/World identities, old launcher absent and fresh original normal Quit with zero graphics owners/forwarding. Do not infer decoded stream version from transport version or requested CLI flags. No physical context loss, in-place/saved/media recovery, original pixels or live pending-CPU-read cancellation claim.",
+      "implementation": [
+        "tools/test-native-owned-campaign.py",
+        "tools/test_native_restart_support.py",
+        "apps/qt-shell/resident_restart_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/main.cpp",
+        "renderer/commands.hpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "tests": [
+        "tests/test-native-live-restart.py",
+        "tests/native-render-worker-test.cpp",
+        "tests/resident-terminal-restart-test.cpp",
+        "tests/native-cpu-materialization-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "protocols/include/mnm/render_stream_v5.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "tools/native_only_contract.py"
+      ],
+      "remaining_gaps": [
+        "2026-11-04 worker source phase: actual dedicated-thread owner, decoded stream5 and transport3 pass one controlled fault/Hard Restart journey with539ms stable cleanup and fresh normal Quit/zero owners/forwarding. Both World observations have CPU materializations0; no live pending-CPU_READ interruption, failure-path pixels, physical context loss, in-place/save/media recovery or repeated-run reliability. Prior GUI transport observation does not independently prove decoded stream version."
       ]
     }
   ],
@@ -377046,6 +377135,60 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "WR04.terminal-cpu01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-worker-restart-results-20261104/terminal-cpu-proof-01.json",
+      "sha256": "4dc43425630fdb8f7ccbfe4b84ceff9813b2cc62ba860b761bc6549c9cd3c742",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "At a queued V5 CPU_READ boundary and immediately before reply publication, check the current mapped command producer identity/state/cancellation without advancing its cursors. An already observed failed/cancelled producer must not cause a native readback or new success reply; close pending waits and retire native surfaces. Checkpoints do not claim atomic exclusion of failures racing after the final check, original CPU authority, saved recovery or original ABI.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/execution/results/terminal_readbacks",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "WR04.worker-fault01",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-worker-restart-results-20261104/fault-retained-observation-01.json",
+      "sha256": "bab612b6986eb7308d9e000d8359fd706711685e72795d5815a0fc44c7a3ea3d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "One software native-only dedicated-worker campaign journey: observe actual render owner, decoded command-stream version5, transport-ring version3 and CPU materialization count before a controlled terminal producer failure. Require three live World imports/paints, stable terminal cleanup500ms, public Hard Restart, distinct launcher/channel/World identities, old launcher absent and fresh original normal Quit with zero graphics owners/forwarding. Do not infer decoded stream version from transport version or requested CLI flags. No physical context loss, in-place/saved/media recovery, original pixels or live pending-CPU-read cancellation claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/engine_journey/observed_render_owner",
+          "equals": "dedicated-thread"
+        },
+        {
+          "pointer": "/engine_journey/command_stream_version",
+          "equals": 5
+        },
+        {
+          "pointer": "/engine_journey/live_pending_cpu_read_fault_proved",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -408691,6 +408834,37 @@
       "evidence": [
         "SO04.loader-current01"
       ]
+    },
+    {
+      "id": "SC.worker-v5-fault-restart-wr04",
+      "level": "live_observation",
+      "scope": "One software native-only dedicated-worker campaign journey: observe actual render owner, decoded command-stream version5, transport-ring version3 and CPU materialization count before a controlled terminal producer failure. Require three live World imports/paints, stable terminal cleanup500ms, public Hard Restart, distinct launcher/channel/World identities, old launcher absent and fresh original normal Quit with zero graphics owners/forwarding. Do not infer decoded stream version from transport version or requested CLI flags. No physical context loss, in-place/saved/media recovery, original pixels or live pending-CPU-read cancellation claim.",
+      "behaviors": [
+        "NP.worker-v5-fault-restart",
+        "NP.native-only-generation-restart"
+      ],
+      "tests": [
+        "tools/test-native-owned-campaign.py",
+        "apps/qt-shell/resident_restart_test.cpp",
+        "tests/test-native-live-restart.py"
+      ],
+      "evidence": [
+        "WR04.worker-fault01"
+      ]
+    },
+    {
+      "id": "SC.cpu-read-terminal-publication-wr04",
+      "level": "headless",
+      "scope": "At a queued V5 CPU_READ boundary and immediately before reply publication, check the current mapped command producer identity/state/cancellation without advancing its cursors. An already observed failed/cancelled producer must not cause a native readback or new success reply; close pending waits and retire native surfaces. Checkpoints do not claim atomic exclusion of failures racing after the final check, original CPU authority, saved recovery or original ABI.",
+      "behaviors": [
+        "NP.cpu-read-terminal-publication"
+      ],
+      "tests": [
+        "tests/native-cpu-materialization-test.cpp"
+      ],
+      "evidence": [
+        "WR04.terminal-cpu01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -410508,7 +410682,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-3c0d08aeeaa91e36452172d8f8d77e708040d184df7f6ceba7be090cbbe6f27d.json",
-    "sha256": "3c0d08aeeaa91e36452172d8f8d77e708040d184df7f6ceba7be090cbbe6f27d"
+    "path": "research/runtime/coverage/source-index-a1e604b47b573d9745591b700a5979faf64d65f133e99ed8f8da1921726a620b.json",
+    "sha256": "a1e604b47b573d9745591b700a5979faf64d65f133e99ed8f8da1921726a620b"
   }
 }
