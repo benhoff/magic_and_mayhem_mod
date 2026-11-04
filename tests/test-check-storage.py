@@ -122,7 +122,7 @@ fixture=importlib.util.module_from_spec(spec);spec.loader.exec_module(fixture)
 class Comparisons(unittest.TestCase):
     setUp=fixture.Objects.setUp
 
-    def report(self,*,stopped=True):
+    def report(self,*,stopped=True,kind='public_native_checkpoint_diagnostic_comparison'):
         output=self.root/'working/pilot/comparison';output.mkdir(parents=True)
         (output/'.retain').write_text('original comparison pin')
         (output/'words.bin').write_bytes(b'exact original comparison words')
@@ -131,7 +131,7 @@ class Comparisons(unittest.TestCase):
             name='research/runtime/raw-'+f.name+'.bin';sha=write_report(self.root,name,f.read_bytes())
             artifacts.append(dict(path=f.name,record=name,sha256=sha,bytes=f.stat().st_size))
         source=self.root/'tools/driver.py';source.parent.mkdir();source.write_bytes(b'executed original phase')
-        data=dict(kind='public_native_checkpoint_diagnostic_comparison',success=False,
+        data=dict(kind=kind,success=False,
                   output_directory=str(output),comparison_processes_stopped=stopped,
                   artifact_retention_complete=True,artifacts=artifacts,
                   sources={'tools/driver.py':hashlib.sha256(source.read_bytes()).hexdigest()})
@@ -143,6 +143,14 @@ class Comparisons(unittest.TestCase):
         self.assertEqual((output/'words.bin').read_bytes(),b'exact original comparison words')
         results=finish_completed(self.root)
         self.assertTrue(results[0]['real_restore_verified']);self.assertTrue((output/MARKER).is_file())
+
+    def test_cpu_reader_comparison_uses_the_same_verified_handoff(self):
+        output,ref=self.report(kind='public_native_cpu_reader_diagnostic_comparison')
+        register_completed(self.root,[output],ref,producer='comparison')
+        self.assertTrue((output/'words.bin').is_file())
+        result=finish_completed(self.root)
+        self.assertTrue(result[0]['real_restore_verified'])
+        self.assertTrue((output/MARKER).is_file())
 
     def test_unstopped_or_changed_comparison_cannot_queue(self):
         output,ref=self.report(stopped=False)

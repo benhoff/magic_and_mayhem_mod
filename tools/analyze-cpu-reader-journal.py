@@ -16,7 +16,10 @@ from coverage_claims import required_sources,behavior_contract,scenario_contract
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--acquisition',required=True);p.add_argument('--report',required=True)
-    p.add_argument('--retained-context',help='Earlier analysis record: reuse its pinned module candidates and charged-attempt receipt without live files');a=p.parse_args()
+    p.add_argument('--retained-context',help='Earlier analysis record: reuse its pinned module candidates and charged-attempt receipt without live files')
+    p.add_argument('--control',action='append',help='Current immutable journal/DC control report; defaults to the original retained pair')
+    p.add_argument('--loader-control',help='Current successful PE32 Wine loader control enabling the single ImageBase candidate rule')
+    a=p.parse_args()
     reg=json.loads((ROOT/'research/runtime/coverage/register.json').read_bytes())
     behavior=next(b for b in reg['behaviors'] if b['id']=='NP.cpu-reader-dc-journal')
     scenario=next(s for s in reg['scenarios'] if s['id']=='SC.cpu-reader-dc-journal')
@@ -51,12 +54,20 @@ def main():
             require(acq['success'] and acq['sources_stable'] and acq['compiler_closure_stable'] and acq['player_binary_stable']
                     and acq['private_wine_stopped'] and acq['original_manifest_verified_before_after'],'Incomplete public diagnostic acquisition')
             result['controls']=[]
-            for name in ('controls04','dc-regression04'):
-                record='research/runtime/cpu-reader-journal-results-20261102/'+name+'.json'
+            controls=a.control or ['research/runtime/cpu-reader-journal-results-20261102/'+n+'.json' for n in ('controls04','dc-regression04')]
+            for record in controls:
                 control=d.json(record);require(control['success'],'Journal/DC controls failed')
                 require(all(d.digest(n)==h for n,h in control['sources'].items()),'Journal/DC control sources changed')
                 result['controls'].append(dict(record=record,sha256=d.digest(record)))
                 source.update(control['sources'])
+            if a.loader_control:
+                control=d.json(a.loader_control)
+                require(control.get('kind')=='pe32_loader_header_control' and control['success']
+                        and control['sources_stable'] and control['only_image_base_changed']
+                        and control['relocated_pointer_value_verified'],'Loader header control refused')
+                require(all(d.digest(n)==h for n,h in control['sources'].items()),'Loader control sources changed')
+                source.update(control['sources'])
+                result['loader_control']=dict(record=a.loader_control,sha256=d.digest(a.loader_control),wine_version=control['wine_version'])
             source.update(acq['sources'])
             source.update(acq['native_admission']['native_only']['sources'])
             require(all(d.digest(n)==h for n,h in source.items()),'Acquisition compiled sources changed')
@@ -90,11 +101,12 @@ def main():
             result['viewport_metadata_artifact']=viewport_ref
             classes=Counter(x['reader_kind'] for x in observed['requests'])
             require([classes[i] for i in range(4)]==list(counts['kinds'].values()),'Per-request reader class/count differs')
-            modules=[]
+            modules=[];module_bytes={}
             for entry in acq['artifacts']:
                 if not entry['path'].lower().endswith('.dll'):continue
                 raw=d.read_bytes(entry['record']);require(hashlib.sha256(raw).hexdigest()==entry['sha256'],'Pinned module differs')
                 modules.append(dict(name=Path(entry['path']).name,identity=pe_identity(raw),sha256=entry['sha256'],record=entry['record']))
+                module_bytes[entry['sha256']]=raw
             # This private executable is a candidate, never assumed to match a PC.
             prior={m['name']:m for m in context['pinned_modules']} if context else {}
             exe=d.read_bytes(prior['Chaos.exe']['record']) if context else (ROOT/'working/game-nocd/Chaos.exe').read_bytes()
@@ -103,6 +115,7 @@ def main():
             er=prior['Chaos.exe']['record'] if context else str(Path(a.report).with_suffix(''))+'-executable.bin'
             if context is None:write_report(ROOT,er,exe)
             modules.append(dict(name='Chaos.exe',identity=pe_identity(exe),sha256=eh,record=er))
+            module_bytes[eh]=exe
             # The launcher adds verified imports to its private executable. Its
             # PE headers can therefore differ from the unmodified fixture's.
             staged=Path(acq['session'])/'game/Chaos.exe'
@@ -114,7 +127,8 @@ def main():
                         and staged.is_file() and not staged.is_symlink(),'Staged executable candidate escaped its owned session')
                 se=staged.read_bytes();sr=str(Path(a.report).with_suffix(''))+'-staged-executable.bin';sh=write_report(ROOT,sr,se)
             modules.append(dict(name='staged Chaos.exe',identity=pe_identity(se),sha256=sh,record=sr,observed_path=str(staged),mapped_code_hash_verified=False))
-            callers=resolve_callers(observed.pop('context_callers'),modules)
+            module_bytes[sh]=se
+            callers=resolve_callers(observed.pop('context_callers'),modules,module_bytes=module_bytes if a.loader_control else None)
             missing=observed['missing_links']
             for c in callers:
                 if not c['module_resolved']:missing.append(dict(kind='caller_binary_unresolved',context=c['context'],candidates=c.get('candidate_binary_count',0)))

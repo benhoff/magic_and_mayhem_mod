@@ -160376,7 +160376,8 @@
         "research/runtime/cpu-reader-journal-20261102.md",
         "research/formats/native-cpu-reader-journal-v1.md",
         "research/runtime/cpu-reader-integration-20261102.md",
-        "research/runtime/campaign-master-merge-20261102.md"
+        "research/runtime/campaign-master-merge-20261102.md",
+        "research/runtime/rendering-cpu-ownership-20261104.md"
       ],
       "implementation": [
         "runtime/render/cpu_reader_journal.h",
@@ -160411,13 +160412,16 @@
       "evidence": [
         "CRJ01.observation03",
         "CRJ01.combined-controls01",
-        "RPS04.master-merge-cpu-controls"
+        "RPS04.master-merge-cpu-controls",
+        "CO04.controls01"
       ],
       "remaining_gaps": [
         "One diagnostic generation reached normal Quit: 703 closed lossless records, 43 full CPU request/reply/physical-validation joins and 87 retired DC borrows. Four preflight caller contexts at recorded RVA0xad8d lack a pinned binary match, affecting six reads; strict complete_observed_chain remains false. Direct staged-executable caller identities use mapped PE-header metadata, not full mapped-code verification or original upstream recovery. Original DC/font semantics, arbitrary readers, restart/failure coverage, historical stalls and whole-operation/final acceptance remain separate.",
         "Legacy DC regression fixtures now explicitly close their v1 session with RenderShutdown and use the established RGB565 bit replication. Earlier unclosed-stream, terminal-gate and old-oracle refusals are retained; these test corrections change no production lifecycle or color policy.",
         "Integration of frozen CPU journal commit0b34c8596 with cursor commit7b91ee635 changes shared compiled inputs and the public pilot. Fresh combined-source native/reader/gating controls support implementation only; current combined live-observation validation remains pending. Original703-record/43-read/87-DC observation and its four caller gaps retain their exact historical source hashes. No additional original game attempt is authorized or performed in this batch.",
-        "Master/campaign merge passes current synthetic CPU and Qt/campaign controls; original observations and pixels retain their parent source phases. Current combined-source live validation and nominal repeatability remain pending. No historical status or source hash is renewed."
+        "Master/campaign merge passes current synthetic CPU and Qt/campaign controls; original observations and pixels retain their parent source phases. Current combined-source live validation and nominal repeatability remain pending. No historical status or source hash is renewed.",
+        "2026-11-04 loader-candidate follow-up separates raw historical missing links from a new controlled ImageBase interpretation; old report bytes/source hashes and original upstream/code-verification limits remain intact. Current storage/rebuild chain and independent full history/pixels require a fresh bounded diagnostic; no old result is renewed.",
+        "2026-11-04: current synthetic reservation/gating/DC controls pass, but the single charged public diagnostic exits before Chaos for a missing launcher TSV. Repaired setup and strict analysis/comparison refusals do not renew live observation or pixels. The optional loader model resolves only historical pinned file candidates; complete current observed chain remains unproved. Attempt row and all negative evidence are preserved."
       ]
     },
     {
@@ -160675,7 +160679,8 @@
         "docs/check-storage.md",
         "docs/evidence-storage.md",
         "research/runtime/check-storage-20261103.md",
-        "research/runtime/coverage-ledger.md"
+        "research/runtime/coverage-ledger.md",
+        "research/runtime/rendering-cpu-ownership-20261104.md"
       ],
       "implementation": [
         "tools/check_capture_policy.py",
@@ -160690,7 +160695,9 @@
         "tools/check-rendering-progression.py",
         "tools/check-campaign-checkpoint.py",
         "tools/stage-campaign-checkpoint.py",
-        "apps/qt-shell/campaign_progression_test.cpp"
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "tools/check-rendering-acceptance-pilot.py",
+        "tools/run-rendering-acceptance-pilot.py"
       ],
       "tests": [
         "tests/test-check-storage.py",
@@ -160704,7 +160711,9 @@
         "tools/experiment_environment.py",
         "tools/native_prefix_template.py",
         "tools/evidence_objects.py",
-        "tools/coverage_evidence.py"
+        "tools/coverage_evidence.py",
+        "tools/rendering_progression.py",
+        "tools/rendering_pilot.py"
       ],
       "evidence": [
         "STOR03.controls05",
@@ -160734,7 +160743,8 @@
         "Forced private Wine shutdown command selection has headless controls; live timeout/forced-stop behavior is not promoted by normally completed checkpoint runs.",
         "Full rendering proof remains an explicit separate original/history comparison; lightweight output cannot promote nominal acceptance, full saved simulation, native parsing or campaign progression.",
         "Thirteen specifically reviewed historical output trees were transferred; source checkouts, canonical/current inputs, unique sources, archived missing-member catalogs and other held trees remain retained. No whole worktree deletion or global garbage collection.",
-        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation."
+        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation.",
+        "2026-11-04 renderer follow-up extends exact stopped/retained comparison custody to pilot/normal/CPU/watchdog report kinds and prepares/verifies the existing physical launcher TSV before prefix borrowing and launch charging. The single current charged diagnostic stopped before Chaos because that TSV was absent; strict analysis and independent comparison refuse, with all290artifacts retained. Setup repair,75Python controls and real synthetic comparison restore pass. No second original launch or current full CPU/DC/pixel validation is claimed."
       ]
     },
     {
@@ -162492,6 +162502,48 @@
       "remaining_gaps": [
         "Retained source48 nominal trace proves a stale projected Boss input; this is not camera recovery. Current238controls and one successful capture-free original software800checkpoint verify later actor snapshots, original matching candidate, exact support3-to-Boss4opcode7, strict restore and normal Quit. Repeated-run reliability, natural moving-Boss route/outcome, full camera/delivery/AI semantics, pixels and the12case matrix remain pending.",
         "Source49current checkpoint passes forced team-recall/no-button candidate and original opcode7, strict restore and normal Quit. Its separate enabled-intro run uses on-screen support selection, so natural offscreen reliability is unexercised. That run reaches100to20Boss damage, one native Return attempt and three original Wizard opcode5acks, then fails24portal candidates. BH04.nominal.scoped01binds only the packet/input-attempt stages; actual portal entry, key consumption, terminal/camera/delivery/AI semantics, whole outcome, pixels and the12case matrix remain pending."
+      ]
+    },
+    {
+      "id": "NP.cpu-reader-loader-identity",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Pinned PE32 caller candidates with observed Wine header relocation",
+      "scope": "Optional CPU-reader analysis verifies every supplied module byte payload against its SHA256 and exact file header before considering the observed Wine PE32 DLL ImageBase rewrite. Only relocatable dynamic-base i386 DLLs and valid observed allocation/PC/RVA bounds are eligible; all other file header bytes remain fixed. Exact and adjusted candidates share one ambiguity denominator. Unique matching header metadata identifies a pinned file candidate, never mapped-code equality, an original upstream caller or authority to render/read/patch. Runtime journal layout and pixel/lease/deadline behavior are unchanged.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-cpu-ownership-20261104.md"
+      ],
+      "implementation": [
+        "tools/cpu_reader_journal.py",
+        "tools/analyze-cpu-reader-journal.py"
+      ],
+      "tests": [
+        "tests/test-cpu-reader-journal.py",
+        "tests/cpu-reader-loader-fixture.c",
+        "tests/cpu-reader-loader-win32.c",
+        "tools/test-cpu-reader-loader.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "tools/native_prefix_template.py",
+        "tools/rendering_pilot.py",
+        "tools/storage_cpu_read_binding.py",
+        "protocols/include/mnm/native_cpu_reader_journal_v1.h"
+      ],
+      "evidence": [
+        "CO04.controls01"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Synthetic Wine11.16 forced relocation verifies that only ImageBase changes. Strict resolver guards and static reanalysis resolve the four historical contexts to one pinned MnmMenu.dll candidate each. Historical mapped header/code bytes and original upstream call sites remain unavailable. The current single charged storage diagnostic failed before Chaos on its missing launcher TSV; setup is repaired and nonlaunching integrity checks pass, but fresh live CPU/DC ownership and independent pixels remain pending."
       ]
     }
   ],
@@ -376779,6 +376831,29 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CO04.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-cpu-ownership-results-20261104/headless-binding-01.json",
+      "sha256": "93fc277cc7800433e9c93c0a1b51d9e67673322767d1471ce5e347fa054acbee",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current synthetic Wine loader/header, strict pinned caller/ambiguity guards, optimized/sanitized journal reservations and four Wine journal gates, plus actual native GPU/Wine DC failure/retry/retirement controls. Historical caller interpretation is static only; current original launch failed before Chaos, so no current live chain or pixels.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/current_live_validation",
+          "equals": false
+        },
+        {
+          "pointer": "/python_controls",
+          "equals": 75
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -408348,6 +408423,27 @@
       "evidence": [
         "BH04.nominal.scoped01"
       ]
+    },
+    {
+      "id": "SC.cpu-reader-ownership-controls-co04",
+      "level": "headless",
+      "scope": "Current synthetic Wine loader/header, strict pinned caller/ambiguity guards, optimized/sanitized journal reservations and four Wine journal gates, plus actual native GPU/Wine DC failure/retry/retirement controls. Historical caller interpretation is static only; current original launch failed before Chaos, so no current live chain or pixels.",
+      "behaviors": [
+        "NP.cpu-reader-loader-identity",
+        "NP.cpu-reader-dc-journal"
+      ],
+      "tests": [
+        "tests/cpu-reader-journal-win32.c",
+        "tests/cpu-reader-loader-fixture.c",
+        "tests/cpu-reader-loader-win32.c",
+        "tests/native-cpu-reader-journal-test.c",
+        "tests/test-cpu-reader-journal.py",
+        "tools/test-cpu-reader-loader.py",
+        "tools/test-native-cpu-reader-journal.py"
+      ],
+      "evidence": [
+        "CO04.controls01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -410165,7 +410261,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-658f16162951ec48889bc41a2746a332ab0fd904bcd1f4b545bb9c3aeb7e7c33.json",
-    "sha256": "658f16162951ec48889bc41a2746a332ab0fd904bcd1f4b545bb9c3aeb7e7c33"
+    "path": "research/runtime/coverage/source-index-0805184c4291d2b1d823569388438680c6166926cb9aa735297a64bdf1347812.json",
+    "sha256": "0805184c4291d2b1d823569388438680c6166926cb9aa735297a64bdf1347812"
   }
 }

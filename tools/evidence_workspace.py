@@ -222,7 +222,7 @@ def register_completed(root,paths,report,*,producer='wine'):
             if data.get('private_wine_stopped') is not True:
                 raise ValueError('Completed execution lacks stopped producer proof')
         elif producer=='comparison':
-            if data.get('kind') not in ('public_native_progression_comparison','public_native_progression_diagnostic_comparison','public_native_checkpoint_diagnostic_comparison') or data.get('comparison_processes_stopped') is not True or data.get('artifact_retention_complete') is not True:
+            if data.get('kind') not in ('public_native_progression_comparison','public_native_progression_diagnostic_comparison','public_native_checkpoint_diagnostic_comparison','public_native_pilot_comparison','public_native_normal_comparison','public_native_watchdog_diagnostic_comparison','public_native_cpu_reader_diagnostic_comparison') or data.get('comparison_processes_stopped') is not True or data.get('artifact_retention_complete') is not True:
                 raise ValueError('Completed comparison lacks stopped producer and retained artifact proof')
             if len(paths)!=1 or str(Path(paths[0]).absolute())!=data.get('output_directory'):
                 raise ValueError('Comparison output path differs')

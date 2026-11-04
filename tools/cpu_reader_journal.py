@@ -185,17 +185,64 @@ def pe_identity(raw):
     return (extent,struct.unpack_from('<I',raw,pe+8)[0],value,headers)
 
 
-def resolve_callers(callers, modules):
+def loader_pe_identity(raw, allocation_base):
+    """Model the observed Wine PE32 DLL ImageBase rewrite in owned bytes only.
+
+    The resulting fingerprint identifies a pinned file candidate, not mapped
+    code or an original upstream caller. All other header bytes are preserved.
+    """
+    identity=pe_identity(raw);pe=struct.unpack_from('<I',raw,60)[0];opt=pe+24
+    require(type(allocation_base) is int and allocation_base>=65536
+            and allocation_base%65536==0 and allocation_base+identity[0]<=2**32,
+            'Loader allocation base/extent')
+    require(struct.unpack_from('<H',raw,pe+4)[0]==0x14c
+            and struct.unpack_from('<H',raw,pe+20)[0]>=224
+            and opt+224<=identity[3] and struct.unpack_from('<H',raw,opt)[0]==0x10b,
+            'Loader identity requires a bounded PE32 i386 header')
+    flags=struct.unpack_from('<H',raw,pe+22)[0]
+    require(flags&0x2000 and not flags&1 and struct.unpack_from('<H',raw,opt+70)[0]&0x40,
+            'Loader identity requires a relocatable dynamic-base DLL')
+    require(struct.unpack_from('<I',raw,opt+92)[0]>=6,'Loader relocation directory missing')
+    reloc,size=struct.unpack_from('<II',raw,opt+96+5*8)
+    require(reloc and size>=8 and reloc+size<=identity[0],'Loader relocation directory extent')
+    adjusted=bytearray(raw[:identity[3]])
+    struct.pack_into('<I',adjusted,opt+28,allocation_base)
+    return pe_identity(adjusted)
+
+
+def resolve_callers(callers, modules, *, module_bytes=None):
     """Unique pinned binary identity from mapped PE-header metadata, not code."""
+    import hashlib
     catalog={}
     for module in modules:
         catalog.setdefault(tuple(module['identity']),{})[module['sha256']]=module
+        if module_bytes is not None:
+            raw=module_bytes.get(module['sha256'])
+            require(isinstance(raw,bytes) and hashlib.sha256(raw).hexdigest()==module['sha256']
+                    and pe_identity(raw)==tuple(module['identity']),'Pinned caller candidate bytes/identity differ')
     rows=[]
     for c in callers:
-        matches=catalog.get((c['extent'],c['timestamp'],c['header_fnv'],c['header_bytes']),{}) if c['rva'] is not None else {}
+        observed=(c['extent'],c['timestamp'],c['header_fnv'],c['header_bytes'])
+        matches=dict(catalog.get(observed,{})) if c['rva'] is not None else {}
+        adjusted=set()
+        if module_bytes is not None and c['rva'] is not None:
+            def address(value):
+                require(type(value) in (int,str),'Caller address type')
+                return int(value,0) if isinstance(value,str) else value
+            base,pc,rva=map(address,(c['base'],c['pc'],c['rva']))
+            require(0<base<=pc<2**32 and pc-base==rva<c['extent'],'Caller allocation/PC/RVA differ')
+            for module in modules:
+                original=tuple(module['identity']);sha=module['sha256']
+                if sha in matches or original[:2]!=observed[:2] or original[3]!=observed[3]:continue
+                try:identity=loader_pe_identity(module_bytes[sha],base)
+                except ValueError:continue
+                if identity==observed:matches[sha]=module;adjusted.add(sha)
         item=dict(c,identity_method='mapped PE-header metadata plus unique pinned file candidate',mapped_code_hash_verified=False)
         if len(matches)==1:
             m=next(iter(matches.values()));item.update(module=m['name'],module_sha256=m['sha256'],module_resolved=True)
+            if m['sha256'] in adjusted:
+                item.update(identity_method='Wine ImageBase-adjusted PE-header metadata plus unique pinned file candidate',
+                            header_adjustment=dict(field='OptionalHeader.ImageBase',allocation_base=c['base'],all_other_file_header_bytes_preserved=True))
         else:item.update(module_resolved=False,candidate_binary_count=len(matches))
         rows.append(item)
     return rows

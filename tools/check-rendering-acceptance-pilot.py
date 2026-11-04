@@ -16,16 +16,22 @@ def main():
  if not (a.report.startswith(PREFIX) or normal) or (ROOT/a.report).exists():p.error('New immutable owned report required')
  output=ROOT/'working/pilot'/(Path(a.report).stem+'-verification');output.mkdir(parents=True,exist_ok=False)
  report=dict(schema=1,kind='public_native_normal_comparison' if normal else 'public_native_pilot_comparison',success=False,player_accepted=False,original_pixels_used_as_native_inputs=False,scope=__doc__)
+ from comparison_process import Processes
+ processes=Processes()
  before=False
  def execute(label,command):
-  with (output/(label+'.log')).open('xb') as log:subprocess.run([str(v) for v in command],cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=300)
+  with (output/(label+'.log')).open('xb') as log:processes.run([str(v) for v in command],cwd=ROOT,stdout=log,timeout=300)
  with Reader(ROOT) as reader:
   acquired=reader.json(a.acquisition);report['acquisition']=dict(record=a.acquisition,sha256=reader.digest(a.acquisition))
   if acquired.get('kind')=='public_native_watchdog_diagnostic_acquisition':
    report['kind']='public_native_watchdog_diagnostic_comparison'
    report['scope']+=' Injected/diagnostic execution only; ineligible for nominal acceptance.'
+  elif acquired.get('kind')=='public_native_cpu_reader_diagnostic_acquisition':
+   report['kind']='public_native_cpu_reader_diagnostic_comparison'
+   report['scope']+=' CPU-reader diagnostic execution only; ineligible for nominal acceptance.'
   sources=dict(acquired['sources']);sources.update(acquired.get('native_admission',{}).get('native_only',{}).get('sources',{}))
   sources.update({n:digest(ROOT/n) for n in ['tools/rendering_pilot.py','tools/rendering_capture.py','tools/check-rendering-acceptance-pilot.py','tests/acceptance-world-history.cpp','tests/acceptance-world-reference.cpp','tests/sprite-binary-reference.cpp','tests/world-raster-reference.hpp','tests/clipped-word-grayscale-cases.hpp','tools/native_player_quick_acceptance.py','tools/test-menu-observer.py','tools/rendering_normal_acceptance.py','tools/rendering_provenance_policy.py']});report['sources']=sources
+  sources.update({n:digest(ROOT/n) for n in ['tools/comparison_process.py','tools/evidence_workspace.py']})
   try:
    input_policy=drawing_only(acquired,a.drawing_only)
    if input_policy is not None:
@@ -136,6 +142,11 @@ def main():
    for f in sorted(output.rglob('*')):
     if f.is_file():
      name=str(Path(a.report).with_suffix(''))+'-'+hashlib.sha256(str(f.relative_to(output)).encode()).hexdigest()[:20]+'.bin';data=f.read_bytes();h=write_report(ROOT,name,data);report['artifacts'].append(dict(path=str(f.relative_to(output)),record=name,sha256=h,bytes=len(data)))
+   report.update(output_directory=str(output),comparison_processes_stopped=processes.stopped(),artifact_retention_complete=True)
    h=write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode());print(json.dumps({k:report.get(k) for k in ['success','error','observations','original_reference']}|{'record':a.report,'sha256':h}),flush=True)
+ from evidence_objects import settings
+ if settings(ROOT) and report['comparison_processes_stopped']:
+  from evidence_workspace import register_completed
+  register_completed(ROOT,[output],dict(record=a.report,sha256=h),producer='comparison')
  return 0 if report['success'] else 1
 if __name__=='__main__':raise SystemExit(main())

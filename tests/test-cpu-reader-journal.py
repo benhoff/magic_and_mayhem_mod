@@ -2,12 +2,24 @@
 from copy import deepcopy
 from pathlib import Path
 import struct
+import hashlib
 import importlib.util
 import subprocess
 import sys
 import unittest
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'tools'))
-from cpu_reader_journal import SIZE,CAPACITY,decode,chains,resolve_callers,pe_identity,wire_reads
+from cpu_reader_journal import SIZE,CAPACITY,decode,chains,resolve_callers,pe_identity,loader_pe_identity,wire_reads
+
+
+def loader_fixture():
+    """Authored header fixture; the actual loader has a separate Wine control."""
+    raw=bytearray(2048);raw[:2]=b'MZ';struct.pack_into('<I',raw,60,128)
+    raw[128:132]=b'PE\0\0';struct.pack_into('<HHI',raw,132,0x14c,1,0)
+    struct.pack_into('<HH',raw,148,224,0x2000);opt=152
+    struct.pack_into('<H',raw,opt,0x10b);struct.pack_into('<I',raw,opt+28,0x10000000)
+    struct.pack_into('<II',raw,opt+56,0x4000,1024);struct.pack_into('<H',raw,opt+70,0x40)
+    struct.pack_into('<I',raw,opt+92,16);struct.pack_into('<II',raw,opt+136,0x3000,12)
+    return bytes(raw)
 
 
 def fixture():
@@ -108,6 +120,47 @@ class JournalTests(unittest.TestCase):
     def test_pe_header_bound_and_unknown_image_refuse(self):
         for data in (b'',b'MZ'+b'\0'*62):
             with self.assertRaises(ValueError):pe_identity(data)
+
+    def test_loader_rule_changes_only_image_base_and_keeps_the_file_immutable(self):
+        raw=loader_fixture();before=hashlib.sha256(raw).digest();base=0x79610000
+        mapped=bytearray(raw);struct.pack_into('<I',mapped,180,base)
+        self.assertEqual(loader_pe_identity(raw,base),pe_identity(mapped))
+        self.assertNotEqual(pe_identity(raw),pe_identity(mapped))
+        self.assertEqual(hashlib.sha256(raw).digest(),before)
+
+    def test_loader_candidate_requires_pinned_bytes_and_explicit_observation(self):
+        raw=loader_fixture();sha=hashlib.sha256(raw).hexdigest();identity=loader_pe_identity(raw,0x79610000)
+        module=dict(name='fixture.dll',identity=pe_identity(raw),sha256=sha)
+        c=dict(context=1,base='0x79610000',pc='0x79610100',rva='0x100',extent=identity[0],timestamp=identity[1],header_fnv=identity[2],header_bytes=identity[3])
+        self.assertFalse(resolve_callers([c],[module])[0]['module_resolved'])
+        result=resolve_callers([c],[module],module_bytes={sha:raw})[0]
+        self.assertTrue(result['module_resolved']);self.assertFalse(result['mapped_code_hash_verified'])
+        self.assertEqual(result['header_adjustment']['field'],'OptionalHeader.ImageBase')
+        for blobs in ({},{sha:raw[:-1]}):
+            with self.assertRaises(ValueError):resolve_callers([c],[module],module_bytes=blobs)
+        with self.assertRaises(ValueError):resolve_callers([dict(c,pc='0x79610200')],[module],module_bytes={sha:raw})
+
+    def test_exact_and_loader_adjusted_candidates_remain_ambiguous(self):
+        raw=loader_fixture();adjusted=bytearray(raw);struct.pack_into('<I',adjusted,180,0x79610000)
+        altered=bytearray(adjusted);altered[-1]=1
+        files=[raw,bytes(altered)];modules=[dict(name=str(i)+'.dll',sha256=hashlib.sha256(v).hexdigest(),identity=pe_identity(v)) for i,v in enumerate(files)]
+        identity=pe_identity(adjusted);c=dict(context=1,base='0x79610000',pc='0x79610100',rva='0x100',extent=identity[0],timestamp=0,header_fnv=identity[2],header_bytes=1024)
+        result=resolve_callers([c],modules,module_bytes={m['sha256']:v for m,v in zip(modules,files)})[0]
+        self.assertFalse(result['module_resolved']);self.assertEqual(result['candidate_binary_count'],2)
+
+    def test_loader_rule_refuses_unsupported_images_and_allocation_shapes(self):
+        raw=loader_fixture()
+        for offset,fmt,value in ((132,'H',0x8664),(150,'H',0x2001),(150,'H',0),(152,'H',0x20b),(222,'H',0),(244,'I',5),(288,'I',0),(292,'I',4),(292,'I',0xfffffff0)):
+            bad=bytearray(raw);struct.pack_into('<'+fmt,bad,offset,value)
+            with self.assertRaises(ValueError):loader_pe_identity(bytes(bad),0x79610000)
+        for base in (0,1,0x79610001,0x100000000,True,-65536):
+            with self.assertRaises(ValueError):loader_pe_identity(raw,base)
+
+    def test_unexplained_header_change_never_resolves_as_relocation(self):
+        raw=loader_fixture();sha=hashlib.sha256(raw).hexdigest();module=dict(name='fixture.dll',identity=pe_identity(raw),sha256=sha)
+        mapped=bytearray(raw);struct.pack_into('<I',mapped,180,0x79610000);mapped[300]^=1
+        identity=pe_identity(mapped);c=dict(context=1,base='0x79610000',pc='0x79610100',rva='0x100',extent=identity[0],timestamp=0,header_fnv=identity[2],header_bytes=1024)
+        self.assertFalse(resolve_callers([c],[module],module_bytes={sha:raw})[0]['module_resolved'])
 
     def test_launcher_rejects_conflicting_routes_before_build(self):
         variants=[[],['--software','--skip-intros'],['--software','--copy-callers'],['--software','--operation-census'],['--software','--sample-stalls'],['--software','--stall-world-host']]

@@ -62,6 +62,7 @@ def main():
  names.update(['run-native.sh','tools/run-native-game.py','tools/run-native-owned.py','tools/run-qt-shell.sh','tools/native_only_contract.py','tools/native_prefix_template.py','tools/experiment_environment.py','tools/directplay_dx6_launch.py','tools/working-retention.py','tools/run-rendering-acceptance-pilot.py','tools/test-native-campaign.py'])
  if normal:names.update(['tools/menu-storage-input.py','tools/campaign_storage.py'])
  if a.sample_stalls:names.update(['tools/sample-rendering-stall.py','tools/rendering_stall_sampler.py'])
+ names.add('tools/rendering_progression.py')
  sources={n:sha(ROOT/n) for n in sorted(names)}
  report=dict(schema=1,kind='public_native_watchdog_diagnostic_acquisition' if a.diagnostic_only else 'public_native_normal_acquisition' if normal else 'public_native_pilot_acquisition',success=False,player_accepted=False,scenario=a.scenario,
   sources=sources,source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),session_identity=secrets.token_hex(16),
@@ -134,6 +135,14 @@ def main():
   with (out/(label+'.log')).open('xb') as log:subprocess.run([str(v) for v in command],stdout=log,stderr=subprocess.STDOUT,check=True,timeout=180)
  try:
   execute_log('original-before',[ROOT/'tools/original-manifest.sh','verify']);verified=True
+  # The legacy launcher still consumes a physical TSV even for catalog inputs.
+  # Validate/materialize it before borrowing a prefix or charging a launch.
+  from rendering_progression import prepare_launch_manifest
+  manifest=ROOT/'working/manifests/game-nocd.tsv'
+  raw=prepare_launch_manifest(ROOT/'working/game-nocd',manifest)
+  record=str(Path(a.report).with_suffix(''))+'-launch-manifest.bin'
+  report['launch_manifest']=dict(path=str(manifest.relative_to(ROOT)),record=record,
+      sha256=write_report(ROOT,record,raw),bytes=len(raw),consumer='tools/run-game.sh verify_game')
   host=out/'host';host.mkdir();server,owner,_=launcher.start_display(host,allow_glx=True);env.update(DISPLAY=owner['display'],XAUTHORITY=owner['authority'])
   from evidence_objects import settings
   if settings(ROOT):
