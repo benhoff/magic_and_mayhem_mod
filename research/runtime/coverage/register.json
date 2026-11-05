@@ -162987,6 +162987,51 @@
       "remaining_gaps": [
         "SW05.G.scope: no visible animation/source-tick semantics, occlusion, complete camera/picking/HUD, CPU destination requests, hardware, arbitrary duration/provider or complete rendering acceptance inferred."
       ]
+    },
+    {
+      "id": "NP.cleanup-storage-closeout",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Existing normal-player cleanup and storage acceptance closeout",
+      "scope": "Requirement-scoped current cleanup and Save/Load/restored-World/changed-draft-Cancel acceptance at actual640x480 and800x600 for both explicit default/software configurations. Re-evaluate retained compatible Quick pairs for cursor/input/graphics/process/channel/pending-job retirement and prior sustained/setup/Quit leaves. Execute unchanged existing normal-storage collectors for current storage sources. Full156-row denominator and both final pending decisions remain independent.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-cleanup-storage-closeout-20261105.md"
+      ],
+      "implementation": [
+        "tools/join-rendering-normal-acceptance.py"
+      ],
+      "tests": [
+        "tests/test-rendering-normal-acceptance.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_acceptance.py",
+        "tools/coverage_claims.py",
+        "docs/native-rendering-closure.json",
+        "tools/native_cursor_journal.py",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/include/mnm/render_control_v1.h"
+      ],
+      "evidence": [
+        "CS05.software640-save-negative01",
+        "CS05.cleanup-storage-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CS05.G.scope: final player/recovery verdicts, fault/restart and remaining140rows remain separate.",
+        "CS05.G.save-admission: first nominal software640 run stalls at stage5 after Qt Save click; retained host lane has request8/MiniSave29 and no SaveAccept publication. Native refusal cause and reliability remain unresolved even if a finite repeat passes. No normal cleanup/pixel acceptance from this failed run."
+      ]
     }
   ],
   "evidence": [
@@ -377787,6 +377832,155 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CS05.software640-save-negative01",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-cleanup-storage-results-20261105/software640-save-negative-01.json",
+      "sha256": "ff3d824bd2fe3489a0ce1224a9a726ea8297ab2fc126dad6d876a3a2f8cfc0c1",
+      "sources_pointer": "/sources",
+      "scope": "Unexpected nominal explicit-software640 stage5 deadline after Qt Save click. Co-retained host lane remains request8/MiniSave29, with empty host Save name and no SaveAccept31 publication. Failure therefore precedes original Save callback, without proving which native admission guard prevented it. Driver native_error is empty; no normal Quit or independent pixel acceptance is granted. One separately reviewed unchanged-code repeat may establish only finite success; this failure/reliability gap remains open. The root contract fingerprint records observation context only; this central observation is intentionally unbound for milestone promotion. Positive finite closeout requires its separate complete equivalence binding.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/nominal_acceptance",
+          "equals": false
+        },
+        {
+          "pointer": "/acquisition_success",
+          "equals": false
+        },
+        {
+          "pointer": "/driver_stage",
+          "equals": 5
+        },
+        {
+          "pointer": "/save_accept_request_published",
+          "equals": false
+        },
+        {
+          "pointer": "/last_host_request",
+          "equals": 8
+        },
+        {
+          "pointer": "/last_host_action",
+          "equals": 29
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": false
+        },
+        {
+          "pointer": "/original_comparison_performed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CS05.cleanup-storage-closed01",
+      "kind": "live_equivalence",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-cleanup-storage-results-20261105/current-closeout-binding-01.json",
+      "sha256": "a72f4644e1c8366df7123311212006d2b7ddda6d5e62c515569bc188f710551a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "equivalence_pointer": "/independent_pixel_equivalence",
+      "scope": "Close cleanup and the finite Save/Load/restored-World/changed-draft-Cancel leaves for both explicit targets at both actual sizes. Re-evaluate four compatible Quick pairs and renew their sustained/setup/Quit leaves, then compare four new unchanged normal-storage cases. Direct terminal input/cursor/command/control/graphics/process/source checks supplement full swap-history and CPU-reply comparisons. Sixteen current rows in this pack, ten newly closed and six renewed; other140rows and both final decisions remain pending. No fixture, renderer, runtime probe or gameplay scenario is added. Historic cursor refusals remain visible; zero queued jobs is not deferred-branch exercise. The first nominal software640 attempt failed before SaveAccept publication; its one separately reviewed unchanged-case repeat supplies finite positive proof only. That native admission/reliability gap and the failed original attempt remain open and durable. No old source hash is refreshed.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/new_original_attempts",
+          "equals": 5
+        },
+        {
+          "pointer": "/failed_new_original_cases",
+          "equals": 1
+        },
+        {
+          "pointer": "/successful_new_original_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/failed_attempt_retained",
+          "equals": true
+        },
+        {
+          "pointer": "/reused_original_executions",
+          "equals": 4
+        },
+        {
+          "pointer": "/admitted_domains",
+          "equals": 8
+        },
+        {
+          "pointer": "/controls",
+          "equals": 44
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 16
+        },
+        {
+          "pointer": "/new_cleanup_rows",
+          "equals": 2
+        },
+        {
+          "pointer": "/new_storage_rows",
+          "equals": 8
+        },
+        {
+          "pointer": "/cleanup_domains",
+          "equals": 8
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/terminal_cursor_pending_jobs",
+          "equals": 0
+        },
+        {
+          "pointer": "/private_inputs_restored",
+          "equals": true
+        },
+        {
+          "pointer": "/renderer_changed",
+          "equals": false
+        },
+        {
+          "pointer": "/new_runtime_instrumentation",
+          "equals": false
+        },
+        {
+          "pointer": "/new_gameplay_scenario",
+          "equals": false
+        },
+        {
+          "pointer": "/new_fixture",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -409573,6 +409767,22 @@
       "evidence": [
         "SW05.sustained-world-closed01"
       ]
+    },
+    {
+      "id": "CS05.existing-normal-cleanup-storage",
+      "level": "live_equivalence",
+      "scope": "Requirement-scoped current cleanup and Save/Load/restored-World/changed-draft-Cancel acceptance at actual640x480 and800x600 for both explicit default/software configurations. Re-evaluate retained compatible Quick pairs for cursor/input/graphics/process/channel/pending-job retirement and prior sustained/setup/Quit leaves. Execute unchanged existing normal-storage collectors for current storage sources. Full156-row denominator and both final pending decisions remain independent.",
+      "behaviors": [
+        "NP.cleanup-storage-closeout"
+      ],
+      "tests": [
+        "tools/join-rendering-normal-acceptance.py",
+        "tests/test-rendering-normal-acceptance.py"
+      ],
+      "evidence": [
+        "CS05.software640-save-negative01",
+        "CS05.cleanup-storage-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -411390,7 +411600,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-4c987b32b2244c1a730bf2dad0b965227d8446569535a4d7f8f6a6841caa572c.json",
-    "sha256": "4c987b32b2244c1a730bf2dad0b965227d8446569535a4d7f8f6a6841caa572c"
+    "path": "research/runtime/coverage/source-index-363f38316fe57fae9cd16fdbf435f4f6437b310727757cebbdd7021b55811b3b.json",
+    "sha256": "363f38316fe57fae9cd16fdbf435f4f6437b310727757cebbdd7021b55811b3b"
   }
 }

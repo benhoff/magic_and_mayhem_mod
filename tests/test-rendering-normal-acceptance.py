@@ -238,4 +238,69 @@ class SustainedCloseoutTests(unittest.TestCase):
         raw=b'MNMPROF3'+raw[8:];artifact['sha256']=hashlib.sha256(raw).hexdigest();reader.refresh(pair)
         with self.assertRaises(ValueError):self.join.sustained_admit(reader,pair)
 
+
+class CleanupStorageCloseoutTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        SustainedCloseoutTests.setUpClass();cls.join=SustainedCloseoutTests.join
+    # Use the existing suite and wire layouts; no new execution fixture.
+    def cleanup(self):
+        a=dict(session='owned/session',private_wine_stopped=True,resident=dict(pending=False,normal_quit_retired=True,imports='3',completed='3',verified_returns='3'))
+        shell=dict(schema=1,policy='native-only-rendering-v1',session=a['session'],state='completed',normal_quit=True,renderer_retired=True,fallback=False,error='',launcher_exit=0,restart_requested=False,force_stop_verified=False)
+        admission=dict(session=a['session'],native_only=dict(policy=shell['policy']),prefix='owned/prefix')
+        process=dict(original_exit_code=0,cleanup_after_original_exit=True,prefix=admission['prefix'])
+        def wire(magic,words,size):
+            raw=bytearray(size);raw[:8]=magic
+            struct.pack_into('<'+str(len(words))+'I',raw,8,*words)
+            return bytes(raw)
+        inputs=wire(b'MNMINK01',[1,1088,2,0],1088)
+        ring=wire(b'MNMRDC03',[3,1048640,7,25,2,0,1,25],1048640)
+        control=wire(b'MNMRCV01',[1,576,7,1,3,0,1,1,1,0,2],576)
+        head=[0x434d4e4d,0x31574f52,1,64,0x40209ca7,18,32768]+[0]*9
+        install=[1,1]+[0]*14;end=[2,10,0,0,0,1,3,2,1]+[0]*7
+        cursor=struct.pack('<48I',*(head+install+end))
+        graphics=struct.pack('<16I',0x444d4e4d,0x31544552,1,64,1,*([0]*6),2,3,0,0,0)
+        return [a,shell,admission,process,inputs,ring,control,cursor,graphics]
+
+    def test_cleanup_needs_all_terminal_owners_and_balanced_work(self):
+        result=self.join.cleanup_state(*self.cleanup())
+        self.assertTrue(result['verified']);self.assertEqual(result['cursor']['queue_cancelled'],1)
+        self.assertEqual(result['published'],result['acknowledged'])
+
+    def test_exit_alone_does_not_certify_cleanup(self):
+        for index,key,value in [(0,'private_wine_stopped',False),(1,'renderer_retired',False),(1,'normal_quit',False),(1,'state','failed'),(1,'fallback',True),(1,'restart_requested',True),(1,'force_stop_verified',True),(1,'session','other'),(2,'session','other'),(3,'original_exit_code',1),(3,'cleanup_after_original_exit',False),(3,'prefix','other')]:
+            args=self.cleanup();args[index][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):self.join.cleanup_state(*args)
+        for key,value in [('pending',True),('imports','4'),('verified_returns','2'),('normal_quit_retired',False)]:
+            args=self.cleanup();args[0]['resident'][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):self.join.cleanup_state(*args)
+
+    def test_input_must_be_inactive_stable_and_released(self):
+        for offset,value in [(8,2),(12,1084),(16,3),(20,1),(64,0x80000001)]:
+            args=self.cleanup();raw=bytearray(args[4]);struct.pack_into('<I',raw,offset,value);args[4]=bytes(raw)
+            with self.subTest(offset=offset),self.assertRaises(ValueError):self.join.cleanup_state(*args)
+
+    def test_channel_stop_ack_identity_and_drain_are_required(self):
+        for index,offset,value in [(5,20,26),(5,24,1),(5,28,3),(5,32,0),(6,16,8),(6,24,1),(6,32,0),(6,36,2),(6,40,0),(6,48,1),(6,64,1)]:
+            args=self.cleanup();raw=bytearray(args[index]);struct.pack_into('<I',raw,offset,value);args[index]=bytes(raw)
+            with self.subTest(index=index,offset=offset),self.assertRaises(ValueError):self.join.cleanup_state(*args)
+
+    def test_cursor_and_graphics_must_quiesce_before_reclamation(self):
+        for index,offset,value in [(7,128+12,1),(7,128+16,1),(7,128+20,0),(7,128+24,4),(8,20,1),(8,52,1)]:
+            args=self.cleanup();raw=bytearray(args[index]);struct.pack_into('<I',raw,offset,value);args[index]=bytes(raw)
+            with self.subTest(index=index,offset=offset),self.assertRaises(ValueError):self.join.cleanup_state(*args)
+
+    def test_sixteen_rows_require_distinct_complete_storage_and_cleanup_domains(self):
+        plan=json.loads((ROOT/'docs/native-rendering-closure.json').read_text())
+        quick=[dict(verified=True,domain=(c,size),identity='q'+str(i),pair={},provider='controlled',cleanup=dict(verified=True)) for i,(c,size) in enumerate((c,z) for c in ('player-default','player-software') for z in ((640,480),(800,600)))]
+        storage=[dict(r,identity='s'+str(i)) for i,r in enumerate(quick)]
+        rows=self.join.cleanup_storage_rows(plan,quick,storage)
+        self.assertEqual(sum(r['state']=='passed' for r in rows),16)
+        allowed={**self.join.SUSTAINED_LEAVES,**self.join.CLEANUP_LEAVES,**self.join.STORAGE_LEAVES}
+        self.assertTrue(all(r['state']=='pending' for r in rows if r['id'] not in allowed))
+        for bad in (storage[:-1],storage+[storage[0]],storage[:3]+[dict(storage[-1],identity=quick[0]['identity'])]):
+            with self.assertRaises(ValueError):self.join.cleanup_storage_rows(plan,quick,bad)
+        quick[-1]['cleanup']['verified']=False
+        with self.assertRaises(ValueError):self.join.cleanup_storage_rows(plan,quick,storage)
+
 if __name__=='__main__':unittest.main()

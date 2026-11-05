@@ -209,14 +209,161 @@ def sustained_progress(plan,reader,pairs):
         decisions={'supported-player':'pending','original-recovery':'pending'},historical_failures_retired=False,
         scope='Close bounded sustained World, setup-confirm and menu-exit leaves for both explicit targets at both actual sizes using existing normal collectors. Source/render progress is independent of the separate animation/simulation/visibility requirements. Six current rows in this pack; other historical packs are not silently unioned or refreshed. No whole rendering decision follows.')
 
+
+CLEANUP_LEAVES={'journey.shutdown.cleanup':'Final native cursor, input, graphics, original process, command/control channel and source jobs are quiescent under normal original Quit.'}
+STORAGE_LEAVES={
+    'journey.save-load.save':'Original Save acknowledgement and exact owned persisted bytes.',
+    'journey.save-load.load':'Original Mini/Main Load dispatch, fresh generations and both display rebuilds.',
+    'journey.save-load.restored-world':'Every presented restored World occurrence matches independent complete original history.',
+    'journey.pause-preferences.cancel':'An actual changed draft Cancel restores original values and profile bytes.'}
+CLEANUP_SOURCES=('tools/native_cursor_journal.py','protocols/include/mnm/input_v1.h',
+    'protocols/include/mnm/render_commands_v3.h','protocols/include/mnm/render_control_v1.h')
+
+
+def retained_artifact(reader,a,suffix):
+    files=[v for v in a['artifacts'] if v['path'].endswith('/'+suffix)]
+    require(len(files)==1,'Missing or ambiguous retained cleanup artifact: '+suffix)
+    v=files[0];body=reader.read_bytes(v['record'])
+    require(len(body)==v['bytes'] and hashlib.sha256(body).hexdigest()==v['sha256'],
+            'Retained artifact bytes differ: '+suffix)
+    return body
+
+
+def cleanup_state(a,shell,admission,process,input_bytes,ring_bytes,control_bytes,cursor_bytes,graphics_bytes):
+    """Terminal wire owners and real journals; no process-exit-only inference."""
+    from native_cursor_journal import decode
+    policy='native-only-rendering-v1'
+    require(shell.get('schema')==1 and shell.get('policy')==policy and shell.get('session')==a['session']
+            and admission.get('session')==a['session'] and admission.get('native_only',{}).get('policy')==policy,
+            'Cleanup session/policy identity differs')
+    require(shell.get('state')=='completed' and shell.get('normal_quit') is True
+            and shell.get('renderer_retired') is True and shell.get('fallback') is False
+            and not shell.get('error') and type(shell.get('launcher_exit')) is int and shell['launcher_exit']==0
+            and shell.get('restart_requested') is False and shell.get('force_stop_verified') is False,
+            'Cleanup needs normal shell/renderer retirement')
+    require(type(process.get('original_exit_code')) is int and process['original_exit_code']==0
+            and process.get('cleanup_after_original_exit') is True and process.get('prefix')==admission.get('prefix')
+            and a.get('private_wine_stopped') is True,'Original/private process cleanup incomplete')
+    require(len(input_bytes)==1088 and input_bytes[:8]==b'MNMINK01','Invalid terminal input extent')
+    keys=struct.unpack('<272I',input_bytes)
+    require(keys[2:4]==(1,1088) and keys[4]>0 and keys[4]%2==0 and keys[5]==0
+            and not any(v&0x80000000 for v in keys[16:]),'Active or held terminal input')
+    require(len(ring_bytes)==1048640 and ring_bytes[:8]==b'MNMRDC03','Invalid terminal command channel')
+    ring=struct.unpack_from('<16I',ring_bytes)
+    require(ring[2:4]==(3,1048640) and ring[4]>0 and ring[5]>0 and ring[5]==ring[9]
+            and ring[6:9]==(2,0,1) and not any(ring[10:]),'Command channel is not drained/ended')
+    require(len(control_bytes)==576 and control_bytes[:8]==b'MNMRCV01','Invalid terminal control channel')
+    control=struct.unpack_from('<16I',control_bytes)
+    require(control[2:5]==(1,576,ring[4]) and control[5]>0 and control[5]==control[8]
+            and control[6:8]==(3,0) and control[9:13]==(1,1,0,2) and not any(control[13:])
+            and not any(control_bytes[64:]),'Control STOP is pending, refused or belongs to another generation')
+    cursor=decode(cursor_bytes)
+    require(cursor['closed'] is True and cursor['active_clients']==cursor['pending_jobs']==0
+            and cursor['queue_accepted']==cursor['queue_completed']+cursor['queue_cancelled'],
+            'Cursor owners/jobs survive')
+    require(len(graphics_bytes)==64,'Surviving graphics inventory')
+    graphics=struct.unpack('<16I',graphics_bytes)
+    require(graphics[:5]==(0x444d4e4d,0x31544552,1,64,1) and not any(graphics[5:11])
+            and graphics[11]>0 and graphics[12]>0 and not any(graphics[13:]),'Graphics owners survive normal Quit')
+    resident=a['resident']
+    require(resident['pending'] is False and resident['normal_quit_retired'] is True
+            and int(resident['imports'])==int(resident['completed'])==int(resident['verified_returns'])>0,
+            'Source work survives or omits a return')
+    return dict(verified=True,cursor=cursor,input_active=0,held_keys=0,
+        command_session=ring[4],published=ring[5],acknowledged=ring[9],command_ended=True,
+        stop_requested=control[5],stop_acknowledged=control[8],producer_stopped=True,
+        source_imports=int(resident['imports']),source_returns=int(resident['verified_returns']),
+        pending_jobs=0,graphics_owners=0,original_exit=0,private_wine_stopped=True,
+        renderer_retired=True,normal_quit=True,
+        scope='Terminal native protocol owners, input, cursor lifetime journal, pre-reclamation graphics inventory and balanced source returns. Cursor refusal counts and unexercised deferred-job branches remain visible; no fault/restart or OS-wide handle inventory claim.')
+
+
+def cleanup_proof(reader,a):
+    values=[json.loads(retained_artifact(reader,a,n)) for n in
+            ('native-only-session.json','native-output-admission.json','original-process-result.json')]
+    raw=[retained_artifact(reader,a,n) for n in ('render-input.bin','render-commands.bin',
+        'render-commands.bin.control','native-cursor-lifetime.bin','native-draw-retirement.bin')]
+    return cleanup_state(a,*values,*raw)
+
+
+def cleanup_storage_rows(plan,quick,storage):
+    prior=close_rows(plan,quick);close_rows(plan,storage) # same strict four unique actual domains
+    require(not ({r['identity'] for r in quick}&{r['identity'] for r in storage}),
+            'Storage and Quick reuse an actual session')
+    leaves={**SUSTAINED_LEAVES,**CLEANUP_LEAVES,**STORAGE_LEAVES}
+    for row in prior:
+        runs=storage if row['id'] in STORAGE_LEAVES else quick
+        if row['id'] in CLEANUP_LEAVES:
+            require(all(r.get('cleanup',{}).get('verified') is True for r in runs),'Unverified cleanup domain')
+        if row['id'] in CLEANUP_LEAVES or row['id'] in STORAGE_LEAVES:
+            row.update(state='passed',admitted_execution_evidence=[dict(reason=leaves[row['id']],
+                execution=r['pair'],actual_world_extents=[list(r['domain'][1])],provider=r['provider'])
+                for r in runs if r['domain'][0]==row['configuration']])
+    require(len(prior)==156 and sum(r['state']=='passed' for r in prior)==16,'Cleanup/storage scope changed')
+    return prior
+
+
+def cleanup_storage_progress(plan,reader,pairs):
+    require(len(pairs)==8,'Cleanup/storage closeout requires four Quick and four storage executions')
+    quick=[p for p in pairs if receipt(reader,p['acquisition'])['scenario']=='normal-quick']
+    storage=[p for p in pairs if receipt(reader,p['acquisition'])['scenario']=='normal-storage']
+    prior=sustained_progress(plan,reader,quick);sources=dict(prior['sources']);runs=[]
+    for run in prior['executions']:
+        run['cleanup']=cleanup_proof(reader,receipt(reader,run['pair']['acquisition']))
+    for pair in storage:
+        a=receipt(reader,pair['acquisition']);c=receipt(reader,pair['comparison'])
+        require(type(a['configuration']['software_flag']) is bool,'Missing explicit storage target flag')
+        configuration='player-software' if a['configuration']['software_flag'] else 'player-default'
+        admitted=sustained_admit(reader,pair,configuration)
+        require(len(admitted['world_extents'])==1,'Ambiguous storage World size')
+        streams=[retained_artifact(reader,a,v['path'].split('/capture/')[-1]) for v in a['artifacts']
+                 if '/capture/' in v['path'] and v['path'].endswith('.bin')]
+        observed=acquisition(streams,a['session_identity'])
+        require(hashlib.sha256(observed['commands']).hexdigest()==c['captured_command_stream_sha256'],
+                'Storage resource ledger differs from independent compared commands')
+        resources=resource_history(observed['commands'])
+        domain=[dict(generation=r['generation'],width=r['width'],height=r['height']) for r in resources['worlds']]
+        require(domain==c['world_domain']['worlds'] and len(domain)==c['original_reference']['worlds']
+                ==int(a['resident']['completed'])==int(a['resident']['verified_returns']),
+                'Storage source/resource generation omitted')
+        paints=presented_world_interval(observed,c['comparison'])
+        from storage_cpu_read_binding import join_reads
+        captured_commands=[v for v in a['artifacts'] if '/capture/commands-' in v['path']]
+        require(len(captured_commands)==1,'Ambiguous storage CPU command capture')
+        delivery=join_reads(reader.read_bytes(captured_commands[0]['record']),a['session_identity'],
+            retained_artifact(reader,a,'game/native-cpu-read-counts.bin'),c['comparison']['cpu_reads'],
+            retained_artifact(reader,a,'lock-capture/lifecycle.log'),retained_artifact(reader,a,'render-commands.bin.cpu-reply'))
+        require(delivery==c['cpu_delivery'] and delivery['request_count']>0,
+                'Storage CPU requests/replies differ from independent comparison')
+        for n,h in admitted['sources'].items():
+            require(n not in sources or sources[n]==h,'Mixed current collector source phases');sources[n]=h
+        runs.append(dict(verified=True,identity=a['session_identity'],domain=(configuration,tuple(admitted['world_extents'][0])),
+            pair=pair,provider=admitted['provider'],source_generations=len(domain),
+            world_presentations=len(paints),pixels=admitted['pixels'],resources=resources,
+            storage_actions=c['original_menu_actions'],preferences=c['preferences_boundary'],cpu_delivery=c['cpu_delivery'],
+            cleanup=cleanup_proof(reader,a)))
+    sources.update({n:reader.digest(n) for n in CLEANUP_SOURCES})
+    require(all(reader.digest(n)==h for n,h in sources.items()),'Changed current cleanup/storage sources')
+    rows=cleanup_storage_rows(plan,prior['executions'],runs)
+    return dict(schema=1,kind='native_rendering_cleanup_storage_closeout',success=True,
+        dossier_identity=fingerprint(requirements(plan)),sources=sources,
+        executions=prior['executions']+runs,requirements=rows,passed_requirements=16,pending_requirements=140,
+        closed_leaf_ids=sorted({**SUSTAINED_LEAVES,**CLEANUP_LEAVES,**STORAGE_LEAVES}),
+        new_cleanup_rows=2,new_storage_rows=8,renewed_sustained_setup_quit_rows=6,
+        decisions={'supported-player':'pending','original-recovery':'pending'},historical_failures_retired=False,
+        scope='Eight named leaves across both explicit targets and both actual sizes, using existing collectors. Four compatible Quick pairs are re-evaluated and four storage pairs exercise Save, Mini/Main Load, restored output and changed-draft Cancel. Terminal input/cursor/graphics/process/channel/source owners are checked directly. Other140rows and both final decisions remain pending; historical failures and unexecuted branches retain their scope.')
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--execution',nargs=2,action='append',required=True,metavar=('ACQUISITION','COMPARISON'))
-    p.add_argument('--sustained-world',action='store_true',help='Close sustained World plus setup/Quit using all four existing Quick domains');p.add_argument('--negative',action='append',default=[]);p.add_argument('--report',required=True);a=p.parse_args()
+    p.add_argument('--cleanup-storage',action='store_true',help='Close cleanup and four storage leaves while renewing sustained/setup/Quit');p.add_argument('--sustained-world',action='store_true',help='Close sustained World plus setup/Quit using all four existing Quick domains');p.add_argument('--negative',action='append',default=[]);p.add_argument('--report',required=True);a=p.parse_args()
     if not a.report.startswith(PREFIX) or (ROOT/a.report).exists():p.error('New immutable owned report required')
     with Reader(ROOT) as reader:
         pairs=[{k:dict(record=n,sha256=reader.digest(n)) for k,n in zip(('acquisition','comparison'),names)} for names in a.execution]
-        if a.sustained_world:
+        if a.cleanup_storage:
+            if a.sustained_world or a.negative:p.error('Cleanup/storage pack has its own exact scope')
+            report=cleanup_storage_progress(reader.json('docs/native-rendering-closure.json'),reader,pairs)
+        elif a.sustained_world:
             if a.negative:p.error('Sustained pack retains negative history separately; no failure is retired')
             report=sustained_progress(reader.json('docs/native-rendering-closure.json'),reader,pairs)
         else:report=progress(reader.json('docs/native-rendering-closure.json'),reader,pairs,[dict(record=n,sha256=reader.digest(n)) for n in a.negative])
