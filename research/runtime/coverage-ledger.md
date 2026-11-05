@@ -26311,3 +26311,36 @@ See [the bounded cohort](rendering-player-acceptance-20261104.md) and immutable
   configuration matrix remain pending. No new frozen requirement leaf or final
   player/recovery decision passes. The earlier eight-domain cohort keeps its old
   source phase; unchanged-route claims are not renewed by this pilot.
+
+### Sustained World acceptance closed — 2026-11-05
+
+`SW05.sustained-world-closed01` closes `active-world.sustained-world` for both
+explicit player targets at both actual sizes. The same pack renews current
+`quick-battle-entry.setup-confirm` and `shutdown.menu-exit` evidence. These are
+three closed leaves / six profile rows: two newly closed sustained rows and four
+renewed setup/Quit rows. The unchanged dossier has 156 rows; this pack covers six,
+leaving 150 outside its closeout scope. Historical packs are retained separately.
+
+One compatible default800 capture/comparison is reused; exactly three missing
+ordinary Quick cases run. All four cases cover 392 original source generations,
+1,298 presented Worlds and 1,529,038,940 independently compared pixels with zero
+mismatches. All 406 command surface creates balance 406 deletes; each source
+generation has conserved surface/palette identity/count and logical-plane bytes.
+Original Quit has zero native graphics owners/forwarding and no pending World.
+Timing is diagnostic. Both final rendering decisions remain pending.
+
+The existing acceptance join gains a requirement-scoped closeout mode and complete
+format4 admission. Its old format3-only refusal and initial duplicate-swap join
+refusal remain retained. The corrected join accounts every actual swap occurrence;
+no game rerun, renderer change, runtime probe, fixture or new gameplay scenario is
+needed. The four existing suites pass 38 controls. Nine stopped execution/comparison
+trees pass two verified stores and a real restore before retirement, reclaiming
+4,307,357,696 allocated bytes; private source inputs are restored exactly. Shared
+inputs, source checkouts and historical hashes remain preserved. GA05's shared
+normal-admission guard-file fingerprint becomes historical; its renderer/oracle
+closures remain unchanged and are separately verified for reuse here.
+
+Animation/visibility, full camera/picking/selection/HUD/tooltip semantics, CPU
+routes, whole operations/gates and hardware/general-duration claims remain open.
+See [the closeout](rendering-sustained-closeout-20261105.md) and its immutable
+`rendering-sustained-results-20261105/current-closeout-binding-01.json`.

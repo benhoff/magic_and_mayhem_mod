@@ -162,4 +162,80 @@ class AdmissionTests(unittest.TestCase):
         reader=Reader();pair=reader.pair('normal-quick')
         with self.assertRaises(ValueError):progress(plan,reader,[pair,pair])
 
+
+
+class SustainedCloseoutTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        import importlib.util
+        spec=importlib.util.spec_from_file_location('existing_acceptance_join',ROOT/'tools/join-rendering-normal-acceptance.py')
+        cls.join=importlib.util.module_from_spec(spec);spec.loader.exec_module(cls.join)
+
+    def command_bytes(self,rows):
+        return b'MNMCMD05'+struct.pack('<II',5,16)+b''.join(struct.pack('<III',op,i,len(body))+body for i,(op,body) in enumerate(rows,1))
+
+    def resource_rows(self):
+        create=(1,struct.pack('<7I',1,640,480,16,0xf800,0x7e0,31)+bytes(640*480*2))
+        return [create,*[(19,struct.pack('<5I',1,g,0,1,2)) for g in (1,2,3)],(7,struct.pack('<I',1)),(8,b'')]
+
+    def test_existing_command_lifetimes_conserve_each_world_and_end(self):
+        result=self.join.resource_history(self.command_bytes(self.resource_rows()))
+        self.assertTrue(result['verified']);self.assertEqual((result['creates'],result['deletes']),(1,1))
+        self.assertEqual([r['generation'] for r in result['worlds']],[1,2,3])
+        self.assertTrue(all(r['logical_surface_bytes']==640*480*2 for r in result['worlds']))
+        self.assertEqual(result['created_bytes'],result['deleted_bytes'])
+
+    def test_missing_end_leak_unknown_delete_alias_and_generation_gap_refuse(self):
+        original=self.resource_rows()
+        cases=[original[:-1],original[:4]+original[5:],original[:4]+[(7,struct.pack('<I',9)),(8,b'')],
+               original[:1]+original,original[:2]+[(19,struct.pack('<5I',1,4,0,1,2))]+original[3:],
+               original[:2]+[(19,struct.pack('<5I',9,2,0,1,2))]+original[3:]]
+        for rows in cases:
+            with self.subTest(rows=len(rows)),self.assertRaises(ValueError):self.join.resource_history(self.command_bytes(rows))
+
+    def test_palette_generation_and_lifetime_are_conserved(self):
+        rows=self.resource_rows();palette=(12,struct.pack('<2I',3,7)+bytes(256*3));release=(15,struct.pack('<2I',3,7))
+        good=rows[:1]+[palette]+rows[1:-1]+[release,rows[-1]]
+        r=self.join.resource_history(self.command_bytes(good));self.assertEqual((r['palette_creates'],r['palette_deletes']),(1,1))
+        for bad in (good[:-2]+[rows[-1]],good[:-2]+[(15,struct.pack('<2I',3,8)),rows[-1]]):
+            with self.assertRaises(ValueError):self.join.resource_history(self.command_bytes(bad))
+
+    def test_only_three_named_leaves_close_for_the_complete_matrix(self):
+        plan=json.loads((ROOT/'docs/native-rendering-closure.json').read_text())
+        runs=[dict(verified=True,domain=(c,size),identity=str(i),pair={},provider='controlled') for i,(c,size) in enumerate((c,z) for c in ('player-default','player-software') for z in ((640,480),(800,600)))]
+        rows=self.join.close_rows(plan,runs)
+        self.assertEqual(sum(r['state']=='passed' for r in rows),6)
+        self.assertTrue(all(r['state']=='pending' for r in rows if r['id'] not in self.join.SUSTAINED_LEAVES))
+        for bad in (runs[:-1],runs+[runs[0]],runs[:3]+[dict(runs[-1],identity='0')],runs[:3]+[dict(runs[-1],verified=False)]):
+            with self.assertRaises(ValueError):self.join.close_rows(plan,bad)
+
+    def test_each_actual_swap_occurrence_is_preserved(self):
+        observed=dict(swaps=[1,2,2,3],paints={1:(dict(world='0'),b''),2:(dict(world='1'),b''),3:(dict(world='2'),b'')})
+        matches=[dict(paint=2,world=1),dict(paint=2,world=1),dict(paint=3,world=2)]
+        self.assertEqual(len(self.join.presented_world_interval(observed,dict(comparisons=matches))),3)
+        for bad in (matches[1:],matches+[matches[-1]],[dict(matches[0],world=3),*matches[1:]]):
+            with self.assertRaises(ValueError):self.join.presented_world_interval(observed,dict(comparisons=bad))
+
+    def test_sustained_admission_keeps_the_existing_native_guards(self):
+        for where,path,value in [('a',('configuration','diagnostic_only'),True),('a',('configuration','skip_intros'),True),('a',('resident','pending'),True),('a',('retirement','forwarded'),1),('a',('resident','source_copy_rect_refusals'),'1'),('c',('lighting','verified'),False),('c',('input_acknowledgements','verified'),False),('c',('comparison','mismatching_pixels'),1),('c',('original_reference','native_player_pixels_read'),True)]:
+            reader=Reader();pair=reader.pair('normal-quick');record=reader.data[pair['acquisition' if where=='a' else 'comparison']['record']]
+            target=record
+            for key in path[:-1]:target=target[key]
+            target[path[-1]]=value;reader.refresh(pair)
+            with self.subTest(path=path),self.assertRaises(ValueError):self.join.sustained_admit(reader,pair)
+
+    def test_lossless_capture_metadata_cannot_fake_completeness(self):
+        reader=Reader();pair=reader.pair('normal-quick');a=reader.data[pair['acquisition']['record']]
+        raw=b'MNMPROF4'+b'controlled-prefix-payload';name=PREFIX+'controlled-worlds.bin'
+        reader.read_bytes=lambda n:raw
+        artifact=dict(path='working/owned/worlds.bin',record=name,sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))
+        a['artifacts']=[artifact];a['resident']['completed']='3';a['resident']['stage_profile']['capture']=dict(format=4,codec='zstd-prefix-sha256-v1',complete=True,finished=True,truncated=False,error='',queue_bytes=0,accepted_worlds=3,written_worlds=3,accepted_source_chunks=2,written_source_chunks=2,file_bytes=len(raw))
+        reader.refresh(pair);self.assertEqual(self.join.sustained_admit(reader,pair)['scenario'],'normal-quick')
+        for key,value in [('complete',False),('finished',False),('truncated',True),('error','codec refusal'),('queue_bytes',1),('written_worlds',2),('written_source_chunks',1),('file_bytes',len(raw)+1),('format',5)]:
+            capture=a['resident']['stage_profile']['capture'];old=capture[key];capture[key]=value;reader.refresh(pair)
+            with self.subTest(key=key),self.assertRaises(ValueError):self.join.sustained_admit(reader,pair)
+            capture[key]=old
+        raw=b'MNMPROF3'+raw[8:];artifact['sha256']=hashlib.sha256(raw).hexdigest();reader.refresh(pair)
+        with self.assertRaises(ValueError):self.join.sustained_admit(reader,pair)
+
 if __name__=='__main__':unittest.main()

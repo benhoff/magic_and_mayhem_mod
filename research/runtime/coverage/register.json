@@ -162945,7 +162945,47 @@
       "remaining_gaps": [
         "GA05.G.binding: periodic scalar observations and host presentation fences do not establish an exact original scalar-to-source-generation join, full tooltip text/restoration or general picking/selection semantics.",
         "GA05.G.domain: only one default800x600 run is admitted. No current software/640x480 gameplay matrix, hardware, CPU destination request, uninterrupted state/actor lifetime or full player/recovery claim. Earlier eight-domain storage/Quick evidence retains its historical source phase.",
-        "GA05.G.capture-scheduling: lossless capture completes the finite final case under unchanged byte caps, but the prior worker backlog is not profiled. No universal capture throughput, arbitrary scheduling/I/O guarantee or retirement of historical capture refusals is inferred."
+        "GA05.G.capture-scheduling: lossless capture completes the finite final case under unchanged byte caps, but the prior worker backlog is not profiled. No universal capture throughput, arbitrary scheduling/I/O guarantee or retirement of historical capture refusals is inferred.",
+        "SW05 extends the shared normal-acceptance guard test file. GA05 retains its exact historical guard-source hash; the reused default800 acquisition/comparison renderer and oracle source closures remain unchanged and are separately admitted under the sustained closeout. No old hash is refreshed."
+      ]
+    },
+    {
+      "id": "NP.sustained-world-closeout",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Existing normal-player sustained World acceptance closeout",
+      "scope": "Requirement-scoped closeout of bounded source/render forward progress, complete independently compared presented output and conserved command surface/palette lifetimes at each source generation, plus original zero-owner Quit. Require actual640x480 and800x600 for both explicit default/software targets. Reuse existing collectors and prior compatible default800 acquisition/comparison; same pack also supplies current setup-confirm/menu-exit facts. Animation, visibility, camera/picking/HUD semantics, CPU-route exercise and whole player/recovery remain separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-sustained-closeout-20261105.md"
+      ],
+      "implementation": [
+        "tools/join-rendering-normal-acceptance.py"
+      ],
+      "tests": [
+        "tests/test-rendering-normal-acceptance.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_acceptance.py",
+        "tools/coverage_claims.py",
+        "docs/native-rendering-closure.json"
+      ],
+      "evidence": [
+        "SW05.sustained-world-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "SW05.G.scope: no visible animation/source-tick semantics, occlusion, complete camera/picking/HUD, CPU destination requests, hardware, arbitrary duration/provider or complete rendering acceptance inferred."
       ]
     }
   ],
@@ -377673,6 +377713,80 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "SW05.sustained-world-closed01",
+      "kind": "live_equivalence",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-sustained-results-20261105/current-closeout-binding-01.json",
+      "sha256": "dda253aaf7f94f5966cd21672b9e71cd02ba7755ea4a69f25a89427e5a8d0f2c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "equivalence_pointer": "/independent_pixel_equivalence",
+      "scope": "Close exactly sustained-world, setup-confirm and menu-exit leaves for default/software at both actual sizes using unchanged existing collectors and three missing cases plus one compatible retained case. Every presented World swap occurrence is matched, every imported generation conserves command surface/palette lifetimes, and native original Quit has zero graphics owners/forwarding. Existing source format4 is admitted with explicit retained-byte/completeness checks. No fixture, renderer, timing gate or runtime probe is added. Other150rows, original recovery and all broader camera/picking/HUD/animation/visibility/CPU/media/fault/hardware claims remain separate. The initial legacy-format and duplicate-swap accounting refusals remain retained; no original execution was repeated to resolve them.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/new_original_attempts",
+          "equals": 3
+        },
+        {
+          "pointer": "/reused_original_executions",
+          "equals": 1
+        },
+        {
+          "pointer": "/admitted_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/controls",
+          "equals": 38
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 6
+        },
+        {
+          "pointer": "/new_sustained_rows",
+          "equals": 2
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/resource_generations_verified",
+          "equals": 392
+        },
+        {
+          "pointer": "/private_inputs_restored",
+          "equals": true
+        },
+        {
+          "pointer": "/renderer_changed",
+          "equals": false
+        },
+        {
+          "pointer": "/new_runtime_instrumentation",
+          "equals": false
+        },
+        {
+          "pointer": "/new_gameplay_scenario",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -409444,6 +409558,21 @@
       "evidence": [
         "GA05.public-gameplay-default800-01"
       ]
+    },
+    {
+      "id": "SW05.existing-normal-sustained-closeout",
+      "scope": "Existing normal Quick collectors at both actual sizes for explicit default/software targets: sustained source/render progress, every compared World presentation occurrence, per-generation command resource conservation and original zero-owner Quit; same pack supplies setup confirmation/menu-exit.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "NP.sustained-world-closeout"
+      ],
+      "tests": [
+        "tools/join-rendering-normal-acceptance.py",
+        "tests/test-rendering-normal-acceptance.py"
+      ],
+      "evidence": [
+        "SW05.sustained-world-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -411261,7 +411390,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-8a085f390bf636c6eeafb9bb2ba17a8bdc39d98746dab7f37f4c241f3374e24e.json",
-    "sha256": "8a085f390bf636c6eeafb9bb2ba17a8bdc39d98746dab7f37f4c241f3374e24e"
+    "path": "research/runtime/coverage/source-index-4c987b32b2244c1a730bf2dad0b965227d8446569535a4d7f8f6a6841caa572c.json",
+    "sha256": "4c987b32b2244c1a730bf2dad0b965227d8446569535a4d7f8f6a6841caa572c"
   }
 }
