@@ -26254,3 +26254,35 @@ pixels, arbitrary race exclusion, physical context loss, saved/in-place/media
 recovery, repeated-run or nominal campaign acceptance. Earlier source-bound
 results retain their historical fingerprints. Next: ordinary worker Save/Load
 with successful CPU replies and independent request/completion checks.
+
+
+## Ordinary public-player acceptance cohort — 2026-11-04
+
+`PA04.public-player-cohort02` records eight fresh ordinary public GUI-resident
+campaign storage/Quick Battle executions, each at both actual frame sizes for
+the default and explicit software profiles. Enabled intros/native lighting,
+source/configuration/binary stability, independent full presented history and
+CPU replies, original callbacks, normal Quit/zero graphics owners/forwarding
+all pass. All100 controls pass (57 Python,25 Qt menu,18 capture);4,282 complete presented Worlds,
+4,243,578,160 pixels and222 full CPU replies compare with zero
+pixel differences. Storage aggregate original completion joins are separate
+from unproved per-caller semantics. Both display rebuilds and exact private-input
+restoration pass. All24 stopped execution/comparison trees have verified dual-
+store and real-restore custody before retirement.
+
+Ten total attempts preserve one prior positive and one failed software phase.
+The repaired campaign Continue policy accepts an already-ready Main only with
+exact ACK/thread/status and fresh-generation checks. Normal viewport backlog
+allows4096jobs under the unchanged256MiB charge; strict refusal remains and
+the prior worker stall is unassigned. Both preimage regressions are retained.
+
+The finite source-phase join admits16/156 requirement rows and leaves140 plus
+both final decisions pending. First-World pixels do not prove every preparation
+side effect/caller state. Preferences credit is resolution-only; camera/picking,
+HUD/visibility, movie output/skip/return, natural progression/results, whole
+operations/gates, unknown original branches and historical failures remain
+separate. Earlier evidence hashes are unchanged. The retained37-candidate
+applicability review verifies all payloads/assertions, finds33 changed source
+sets and4 matching candidates, and grants no pass from source matching alone.
+See [the bounded cohort](rendering-player-acceptance-20261104.md) and immutable
+`rendering-player-acceptance-results-20261104/batch-closeout-02.json`.

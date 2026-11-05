@@ -157349,7 +157349,8 @@
         "New direct-ready-root ACK regression failed before the fix. Current controls03 passes17 timing/identity cases,including immediate Main/Quick roots and an unready-root continuation. Current quick05 completes native menu return and Quit.",
         "Previous current-tree GAP and prior stage8 deadline remain immutable negative observations;no deterministic shutdown,arbitrary menu or driver equivalence claim.",
         "Merged with master8c0c4ea4: fresh combined Python/Qt controls and current builds are separate from prior GPU/native and original-game executions. Parent execution fingerprints remain immutable; new live combined-tree observation and original-driver comparison remain pending. See research/runtime/cpu-copy-master-integration-20261026.md.",
-        "Current master8a6fcd1a lighting/default history is preserved in final integration. Controls01-04 have zero complete declared-source/claim drift on this combined tree; this read-only continuity is not a new execution. All natural-branch, driver and broader ownership limitations remain separate."
+        "Current master8a6fcd1a lighting/default history is preserved in final integration. Controls01-04 have zero complete declared-source/claim drift on this combined tree; this read-only continuity is not a new execution. All natural-branch, driver and broader ownership limitations remain separate.",
+        "PA04 separately repairs campaign DEFEAT_OK already-ready Main acknowledgement. This Results Quit scope remains separate; shared-source changes retain prior hashes and pending broader applicability."
       ]
     },
     {
@@ -158881,7 +158882,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Ordered bounded acceptance capture outside the live command caller",
-      "scope": "Opt-in MNMACE01 capture freezes timestamps and deep-owned payloads on the caller, then compresses/writes FIFO records on one worker. The256MiB byte bound includes in-flight work; image/export queues allow256jobs and the commands stream allows4096small fragments. Raw, total-row and stored budgets remain unchanged and bounded. Overflow, explicit refusal and compression failure leave an incomplete proof; terminal cleanup joins after END/stop. Native deadlines and ownership are unchanged. Scoped blocked-compressor controls and finite enabled-intro storage executions with independent original/history comparison only; no historical-watchdog attribution, physical-provider or whole-player verdict.",
+      "scope": "Opt-in MNMACE01 capture freezes timestamps and deep-owned payloads on the caller, then compresses/writes FIFO records on one worker. The256MiB byte bound includes in-flight work; default image/export queues allow256jobs; commands and normal viewport queues allow4096jobs under that same byte bound. Raw, total-row and stored budgets remain unchanged and bounded. Overflow, explicit refusal and compression failure leave an incomplete proof; terminal cleanup joins after END/stop. Native deadlines and ownership are unchanged. Scoped blocked-compressor controls and finite enabled-intro storage executions with independent original/history comparison only; no historical-watchdog attribution, physical-provider or whole-player verdict.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -158919,7 +158920,8 @@
         "The caller still performs bounded metadata serialization, snapshot copying and GPU readback; arbitrary GUI, OS, driver and shutdown stalls remain outside this repair.",
         "Worker or storage overload refuses capture equivalence. Terminal finish joins after producer stop/END or cancellation; it is not a general bounded shutdown guarantee.",
         "RW03 adds diagnostic sampling and receipt-driven Quick acceptance input, with strict current full-intro output/history agreement. Shared collector/driver source changes leave this older complete source domain pending; the new result binds only its named narrow policies and does not refresh historical hashes or nominal acceptance.",
-        "SM01.G.command-capture-burst: the rejected high03 commands stream remains immutable. Current blocked-compressor tests and four finite nominal storage comparisons support the4096-fragment/unchanged256MiB policy. Future overload still refuses proof; finite passes do not retire old watchdog or separate menu-timeout causes."
+        "SM01.G.command-capture-burst: the rejected high03 commands stream remains immutable. Current blocked-compressor tests and four finite nominal storage comparisons support the4096-fragment/unchanged256MiB policy. Future overload still refuses proof; finite passes do not retire old watchdog or separate menu-timeout causes.",
+        "PA04 retains an intro-only normal-viewport queue refusal and a separate campaign Continue ready-Main race. New normal viewport backlog tolerance has a distinct policy/controls; it does not attribute the worker stall or renew historical source hashes. Broader old worker claims retain their historical limitations."
       ]
     },
     {
@@ -162758,6 +162760,127 @@
       },
       "remaining_gaps": [
         "2026-11-04 source phases: one charged dedicated-worker V5/V3 journey captures queued CPU ticket1, matching producer request/refusal, no new readback/reply,532ms stable terminal cleanup and fresh normal Quit/zero owners/forwarding. Initial automated analysis remains failed for an incorrect canonical/interface pointer equality; only the Python validator/test changed,26controls and complete current acceptance replay pass over unchanged engine/compiler inputs. Failed-process exit receipt is absent and its exit status stays unobserved. No successful Save/Load, canonical/interface ABI relation, arbitrary race exclusion, physical context loss, saved/in-place/media recovery, original pixels or repeated-run reliability."
+      ]
+    },
+    {
+      "id": "NP.public-player-cohort",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Bounded public-player requirement acceptance",
+      "scope": "Frozen ordinary Quick Battle and campaign storage cohort for explicit default/software profiles at both actual frame sizes. Strict normal admission, unique actual sessions and one current source phase; reuse only proved leaves, preserve all156requirements and independent pending decisions. Campaign selection and original display changes require callback facts. Independent first presented pixels are facts, not complete caller-state proof. CPU replies reconcile complete independent comparisons with original aggregate completion, without identifying every caller.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "tools/rendering_player_acceptance.py",
+        "tools/check-rendering-acceptance-pilot.py",
+        "tools/campaign_storage.py"
+      ],
+      "tests": [
+        "tests/test-rendering-player-acceptance.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-player-acceptance-20261104.md"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_acceptance.py",
+        "tools/storage_cpu_read_binding.py",
+        "tools/rendering_pilot.py",
+        "docs/native-rendering-closure.json",
+        "protocols/include/mnm/menu_v7.h",
+        "runtime/menu/region_entry.h"
+      ],
+      "evidence": [
+        "PA04.public-player-cohort01",
+        "PA04.public-player-cohort02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Finite ordinary public GUI-resident cohort only: eight cases, both profile flags and actual sizes, enabled intros/native lighting. First-World required caller preparation remains unproved despite complete first viewport equality. Resolution Preferences only; other settings, camera, picking, HUD, visibility, media output/return, whole operations/gates, natural progression/results, unknown original branches, historical failure causes and both final decisions remain pending. CPU aggregate completion does not identify every original caller."
+      ]
+    },
+    {
+      "id": "HOST.campaign-result-ready-main",
+      "title": "Campaign Continue ACK may already contain ready Main",
+      "scope": "Native host policy for campaign DEFEAT_OK only: require the requested ACK, owning thread, successful status, changed generation and ready Main with zero handoff before immediately restoring native menus. Preserve delayed-root ownership, reject wrong ACK/thread/status, never invent another generation or repeat original callbacks. Broader Realm/natural-result and arbitrary timing remain separate.",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "apps/qt-shell/live_menu_session.cpp"
+      ],
+      "tests": [
+        "tests/menu-result-controller-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "protocols/include/mnm/menu_v11.h"
+      ],
+      "documents": [
+        "research/runtime/rendering-player-acceptance-20261104.md"
+      ],
+      "evidence": [
+        "PA04.public-player-cohort01",
+        "PA04.public-player-cohort02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Both preimage regressions are retained. Current deterministic controls and the eight current-source ordinary journeys pass; the exact prior capture-worker stall, arbitrary scheduling/I/O, other root/result paths, original recovery and complete player acceptance remain pending."
+      ]
+    },
+    {
+      "id": "NP.normal-viewport-metadata-burst",
+      "title": "Bounded normal viewport metadata backlog",
+      "scope": "Opt-in normal viewport capture permits4096pending jobs under the unchanged256MiB including in-flight byte bound. Default image/export queues remain256; commands retain4096. Total rows/raw/stored budgets, strict incomplete-proof refusal and FIFO deep ownership stay unchanged. A witnessed intro-only queue refusal motivates bounded backlog tolerance, without assigning the worker stall or fixing arbitrary I/O stalls.",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "apps/qt-shell/acceptance_capture.hpp"
+      ],
+      "tests": [
+        "tests/acceptance-capture-test.cpp",
+        "tools/test-acceptance-capture.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/host_timing_trace.hpp",
+        "tools/rendering_capture.py",
+        "tools/rendering_pilot.py",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp"
+      ],
+      "documents": [
+        "research/runtime/rendering-player-acceptance-20261104.md"
+      ],
+      "evidence": [
+        "PA04.public-player-cohort01",
+        "PA04.public-player-cohort02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Both preimage regressions are retained. Current deterministic controls and the eight current-source ordinary journeys pass; the exact prior capture-worker stall, arbitrary scheduling/I/O, other root/result paths, original recovery and complete player acceptance remain pending."
       ]
     }
   ],
@@ -377307,6 +377430,106 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "PA04.public-player-cohort01",
+      "kind": "live_equivalence",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_source_sha256",
+      "equivalence_pointer": "/independent_pixel_equivalence",
+      "record": "research/runtime/rendering-player-acceptance-results-20261104/current-cohort-binding-01.json",
+      "sha256": "12c7855f2334c85dfb5e1ee1042775babd46abd054a8fdc1f00b5350c919d07b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Frozen ordinary Quick Battle and campaign storage cohort for explicit default/software profiles at both actual frame sizes. Strict normal admission, unique actual sessions and one current source phase; reuse only proved leaves, preserve all156requirements and independent pending decisions. Campaign selection and original display changes require callback facts. Independent first presented pixels are facts, not complete caller-state proof. CPU replies reconcile complete independent comparisons with original aggregate completion, without identifying every caller.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_attempts",
+          "equals": 10
+        },
+        {
+          "pointer": "/current_cohort_attempts",
+          "equals": 8
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 16
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 140
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "PA04.public-player-cohort02",
+      "kind": "live_equivalence",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_source_sha256",
+      "equivalence_pointer": "/independent_pixel_equivalence",
+      "record": "research/runtime/rendering-player-acceptance-results-20261104/current-cohort-binding-02.json",
+      "sha256": "8cfb6d5e77660cfd9703d10b7546183b3dfedbcbdd0e9cf5c6bb59edd9d10a33",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Frozen ordinary Quick Battle and campaign storage cohort for explicit default/software profiles at both actual frame sizes. Strict normal admission, unique actual sessions and one current source phase; reuse only proved leaves, preserve all156requirements and independent pending decisions. Campaign selection and original display changes require callback facts. Independent first presented pixels are facts, not complete caller-state proof. CPU replies reconcile complete independent comparisons with original aggregate completion, without identifying every caller.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_attempts",
+          "equals": 10
+        },
+        {
+          "pointer": "/current_cohort_attempts",
+          "equals": 8
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 16
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 140
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        },
+        {
+          "pointer": "/classification_only",
+          "equals": true
+        },
+        {
+          "pointer": "/new_original_execution",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -409014,6 +409237,54 @@
       "evidence": [
         "PR04.terminal-controls01"
       ]
+    },
+    {
+      "id": "SC.public-player-cohort-pa04",
+      "level": "live_equivalence",
+      "scope": "Frozen ordinary Quick Battle and campaign storage cohort for explicit default/software profiles at both actual frame sizes. Strict normal admission, unique actual sessions and one current source phase; reuse only proved leaves, preserve all156requirements and independent pending decisions. Campaign selection and original display changes require callback facts. Independent first presented pixels are facts, not complete caller-state proof. CPU replies reconcile complete independent comparisons with original aggregate completion, without identifying every caller.",
+      "behaviors": [
+        "NP.public-player-cohort"
+      ],
+      "tests": [
+        "tests/test-rendering-player-acceptance.py",
+        "tools/run-rendering-acceptance-pilot.py",
+        "tools/check-rendering-acceptance-pilot.py"
+      ],
+      "evidence": [
+        "PA04.public-player-cohort01",
+        "PA04.public-player-cohort02"
+      ]
+    },
+    {
+      "id": "SC.HOST.campaign-result-ready-main-pa04",
+      "level": "live_equivalence",
+      "scope": "Native host policy for campaign DEFEAT_OK only: require the requested ACK, owning thread, successful status, changed generation and ready Main with zero handoff before immediately restoring native menus. Preserve delayed-root ownership, reject wrong ACK/thread/status, never invent another generation or repeat original callbacks. Broader Realm/natural-result and arbitrary timing remain separate.",
+      "behaviors": [
+        "HOST.campaign-result-ready-main"
+      ],
+      "tests": [
+        "tests/menu-result-controller-test.cpp"
+      ],
+      "evidence": [
+        "PA04.public-player-cohort01",
+        "PA04.public-player-cohort02"
+      ]
+    },
+    {
+      "id": "SC.NP.normal-viewport-metadata-burst-pa04",
+      "level": "live_equivalence",
+      "scope": "Opt-in normal viewport capture permits4096pending jobs under the unchanged256MiB including in-flight byte bound. Default image/export queues remain256; commands retain4096. Total rows/raw/stored budgets, strict incomplete-proof refusal and FIFO deep ownership stay unchanged. A witnessed intro-only queue refusal motivates bounded backlog tolerance, without assigning the worker stall or fixing arbitrary I/O stalls.",
+      "behaviors": [
+        "NP.normal-viewport-metadata-burst"
+      ],
+      "tests": [
+        "tests/acceptance-capture-test.cpp",
+        "tools/test-acceptance-capture.py"
+      ],
+      "evidence": [
+        "PA04.public-player-cohort01",
+        "PA04.public-player-cohort02"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -410831,7 +411102,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-e7eebb5d83e03244a5b87f19e954d49e33d29a593f33a76a34e31d73f8ab2794.json",
-    "sha256": "e7eebb5d83e03244a5b87f19e954d49e33d29a593f33a76a34e31d73f8ab2794"
+    "path": "research/runtime/coverage/source-index-640b5fdf349f30cd627d5712b4882f10bee8ae5658e38760bba20da8f733b842.json",
+    "sha256": "640b5fdf349f30cd627d5712b4882f10bee8ae5658e38760bba20da8f733b842"
   }
 }

@@ -129,6 +129,18 @@ def main():
    report['original_reference']=dict(worlds=len(worlds),source_chunks=int(index.get('source_chunks','0')),draws=index['draws'],native_player_pixels_read=False,original_destination_capture_read=False,continuous_from_owned_initial_history=True)
    require(all(digest(assets/n)==h for n,h in asset_hashes.items()),'Reference asset changed');report['asset_inputs_stable']=True
    report['comparison']=compare(observed,worlds);report['success']=report['comparison']['success']
+   if normal:
+    from rendering_player_acceptance import first_presented
+    sources.update({n:digest(ROOT/n) for n in ['tools/rendering_player_acceptance.py','tools/rendering_storage_acceptance.py','tools/rendering_acceptance.py','tools/coverage_claims.py']})
+    report['first_presented_world']=first_presented(observed,report['comparison'],report['original_reference'])
+   if acquired.get('scenario')=='normal-storage':
+    from storage_cpu_read_binding import join_reads
+    sources['tools/storage_cpu_read_binding.py']=digest(ROOT/'tools/storage_cpu_read_binding.py')
+    command=[v for v in capture_files if '/commands-' in v['path']]
+    require(len(command)==1,'Ambiguous retained CPU command capture')
+    def retained(path):
+     bound(path);return reader.read_bytes(artifacts[path.relative_to(ROOT).as_posix()]['record'])
+    report['cpu_delivery']=join_reads(reader.read_bytes(command[0]['record']),acquired['session_identity'],retained(session/'game/native-cpu-read-counts.bin'),report['comparison']['cpu_reads'],retained(session/'lock-capture/lifecycle.log'),retained(session/'render-commands.bin.cpu-reply'))
    if acquired.get('scenario')=='normal-quick':
     from rendering_normal_acceptance import fullscreen
     report['fullscreen']=fullscreen(acquired['flow'],observed)

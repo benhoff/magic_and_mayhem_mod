@@ -318,6 +318,10 @@ void LiveMenuSession::poll(){
         sequence_=next.sequence;lastState_=clock_.elapsed();
         if(next.status==MNM_MENU_RETIRED){fallback("Menu adapter retired; using original menus.");return;}
         if(pending_&&next.ack!=state_.ack){
+            if(action_==MNM_MENU_DEFEAT_OK &&
+               (next.ack!=bridge_->requestedSequence()||next.thread!=state_.thread)){
+                fallback("Campaign Continue acknowledgement identity differs; using original controls.");return;
+            }
             if(((progressedMenusEnabled&&(state_.screen==18||action_==MNM_MENU_DEFEAT_OK||action_==MNM_MENU_SPELL_FINISH||(campaignBookEnabled&&(action_==MNM_MENU_GRIMOIRE_SELECT||action_==MNM_MENU_GRIMOIRE_CLOSE))))||(action_>=MNM_MENU_REALM_ACTIVATE&&action_<=MNM_MENU_REGION_SPELLBOX)||action_==MNM_MENU_CHARACTER_ADJUST||action_==MNM_MENU_CHARACTER_OK||action_==MNM_MENU_CHARACTER_CANCEL)&&
                (next.ack!=bridge_->requestedSequence()||next.thread!=state_.thread)){
                 fallback("Menu acknowledgement identity differs; using original menus.");return;
@@ -386,6 +390,15 @@ void LiveMenuSession::poll(){
                 inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
             }
             if(action_==MNM_MENU_SESSION_JOIN||action_==MNM_MENU_MULTIPLAYER_SUBMIT||action_==MNM_MENU_STORAGE_ACCEPT||action_==MNM_MENU_STORAGE_CANCEL||action_==MNM_MENU_MINI_LOAD||action_==MNM_MENU_MINI_SAVE||action_==MNM_MENU_DEFEAT_OK||action_==MNM_MENU_RESULT_CONTINUE||action_==MNM_MENU_RESULT_QUIT||action_==MNM_MENU_MINI_CANCEL||action_==MNM_MENU_MINI_PREFERENCES||action_==MNM_MENU_MINI_QUIT){
+                // Campaign Continue can likewise return all the way to Main
+                // before this poll sees its ACK. Preserve that fresh ready root
+                // instead of requiring a second, nonexistent generation.
+                if(action_==MNM_MENU_DEFEAT_OK && next.ready && next.screen==3 &&
+                   !next.handoff && next.generation!=state_.generation){
+                    inBattle_=false;transition_=false;state_=next;
+                    if(stateChanged)stateChanged(next);
+                    return;
+                }
                 // Quit can finish the return before its ACK is read. Results
                 // ownership/thread/ACK and OK status were checked above. Do not
                 // require another generation after this already-ready root.

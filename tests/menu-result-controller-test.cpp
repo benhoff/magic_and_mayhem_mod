@@ -1,5 +1,6 @@
 #include "live_result_menu_controller.hpp"
 #include "../protocols/include/mnm/menu_v5.h"
+#include "../protocols/include/mnm/menu_v11.h"
 #include <QApplication>
 #include <QPushButton>
 #include <QLabel>
@@ -18,7 +19,36 @@ struct LiveMenuSessionTestAccess {
     static void deactivate(LiveMenuSession& s){s.active_=false;}
     static void advanceMedia(LiveMenuSession& s){s.lastState_-=10001;s.requestedAt_-=10001;s.resultsRequestedAt_-=10001;s.mediaStartedAt_-=10001;}
     static void expire(LiveMenuSession& s){s.resultsRequestedAt_=-10001;}
+    static void initializeCampaign(LiveMenuSession& s,const QString& path){
+        s.bridge_=std::make_unique<MenuBridge>();require(s.bridge_->create(path,true,true,true,true,true,true,true,true,true,true));s.active_=true;s.clock_.start();
+    }
 };
+static void campaignReturnChecks(){
+    QTemporaryDir root;require(root.isValid());
+    for(unsigned variant=0;variant<8;++variant){
+        LiveMenuSession session("/unused");const auto path=root.filePath(QString("campaign-%1.bin").arg(variant));
+        LiveMenuSessionTestAccess::initializeCampaign(session,path);
+        QFile peer(path);require(peer.open(QIODevice::ReadWrite));auto* bytes=peer.map(0,MNM_MENU_V11_SIZE);require(bytes);
+        auto put=[&](int word,quint32 value){qToLittleEndian(value,bytes+word*4);};
+        unsigned sequence=0,roots=0,failures=0,handoffs=0;
+        session.stateChanged=[&](const MenuBridge::State& s){if(s.screen==3&&s.ready)++roots;};
+        session.failed=[&](const QString&){++failures;};session.originalViewportRequested=[&]{++handoffs;};
+        auto state=[&](unsigned generation,unsigned ack,unsigned ready,unsigned screen=3,unsigned status=MNM_MENU_OK,unsigned thread=316,unsigned handoff=0){
+            put(32,++sequence);put(33,generation);put(34,screen);put(35,ready);put(36,ack);put(37,status);put(38,thread);put(39,handoff);
+            constexpr int at=MNM_MENU_V11_DEFEAT/4;put(at,1);put(at+1,5);put(at+2,5);put(at+3,0);
+            bytes[MNM_MENU_V11_DEFEAT+16]='D';bytes[MNM_MENU_V11_DEFEAT+272+256*19]='Q';put(32,++sequence);
+        };
+        state(99,0,1,6);LiveMenuSessionTestAccess::poll(session);require(session.requestDefeatContinue());
+        require(qFromLittleEndian<quint32>(bytes+28)==1);
+        state(variant==6?99:103,variant==2?2:1,variant==1?0:1,variant==7?22:3,
+              variant==4?MNM_MENU_UNAVAILABLE:MNM_MENU_OK,variant==3?317:316,variant==5?3:0);
+        LiveMenuSessionTestAccess::poll(session);
+        if(variant==1){require(!roots&&handoffs==1);state(104,1,1);LiveMenuSessionTestAccess::poll(session);}
+        if(variant<=1){require(roots==1&&!failures);for(int i=0;i<3;++i){state(104+i,1,1);LiveMenuSessionTestAccess::poll(session);}require(qFromLittleEndian<quint32>(bytes+28)==1);}
+        else {require(!roots);if(variant>=2&&variant<=4)require(failures==1);}
+        peer.unmap(bytes);
+    }
+}
 static void timingChecks(){
     QTemporaryDir root;require(root.isValid());
     for(unsigned variant=0;variant<17;++variant){
@@ -94,5 +124,6 @@ int main(int argc,char** argv){
     require(widget.findChild<QLabel*>("quickResultText7")->isHidden()&&widget.findChild<QPushButton*>("quickResultAction1")->hasFocus()&&!quit->isEnabled());
     state.results.context=2;QString error;require(!controller.present(state,&error)&&!error.isEmpty());
     timingChecks();
-    std::puts("Results controller checks passed: 17 timing/identity cases");
+    campaignReturnChecks();
+    std::puts("Results controller checks passed: 17 Results and 8 campaign timing/identity cases");
 }

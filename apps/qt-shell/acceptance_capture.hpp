@@ -25,9 +25,10 @@ public:
         if(directory_.isEmpty())return;
         enabled_=true;
         // Command polls can emit many tiny fragments while a prior payload is
-        // compressing. Keep the same byte bound, with a separate finite row
-        // bound for that stream. Image capture retains its256-job limit.
-        if(role=="commands")pendingRowLimit_=4096;
+        // compressing. Normal viewport capture also emits many body-free
+        // intro paint/swap records. Bound both streams by4096jobs while keeping
+        // the same256MiB charge, including in-flight payloads.
+        if(role=="commands" || (role=="viewport" && qEnvironmentVariableIntValue("MNM_ACCEPTANCE_NORMAL")==1))pendingRowLimit_=4096;
         if(qEnvironmentVariableIntValue("MNM_ACCEPTANCE_NORMAL")==1)storedLimit_=1024ll*1024*1024;
         campaign_=role=="viewport" && qEnvironmentVariableIntValue("MNM_ACCEPTANCE_CAMPAIGN")==1;
         if(campaign_){storedLimit_=1024ll*1024*1024;rawLimit_=64ll*1024*1024*1024;rowLimit_=131072;}

@@ -241,6 +241,11 @@ def validate_storage(experiment, flow, difficulty=1, input_directory=None):
     if not merged.get('merged') or hashlib.sha256(owned.read_bytes()).hexdigest() != digest:
         raise ValueError('Normal Quit did not persist the owned save')
     return dict(verified=True, difficulty=difficulty, tutorial=tutorial, original_callbacks=actions, checkpoints=checkpoints,
+                campaign_selection=dict(verified=True, callbacks=actions[:2+int(bool(difficulty))],
+                    thread=callbacks[0][2], scope='Original Main campaign and New Campaign confirmation; default initial region only.'),
+                display_rebuilds=dict(verified=bool(flow.get('recreate_world')),
+                    dimensions=[list((r[9],r[10])) for r in display if r[1]==7] if flow.get('recreate_world') else [],
+                    callback_sequences=[callbacks[i][0] for i in mode_calls] if flow.get('recreate_world') else []),
                 saved_sha256=digest, save_bytes=saved.stat().st_size,
                 owned_save_persisted=True,
                 events_sha256=hashlib.sha256(data).hexdigest(),

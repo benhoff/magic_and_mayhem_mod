@@ -80,14 +80,15 @@ QJsonObject gated(const QString& root,bool pressure){
         {"directory",directory},{"rows",int(rows.size())}};
 }
 
-QJsonObject commandBurst(const QString& root,bool pressure){
+QJsonObject commandBurst(const QString& root,bool pressure,bool normalViewport=false){
     const auto directory=temporary(root);
     qputenv("MNM_ACCEPTANCE_CAPTURE_DIRECTORY",directory.toUtf8());
+    if(normalViewport)qputenv("MNM_ACCEPTANCE_NORMAL","1");
     {std::lock_guard<std::mutex> lock(gateMutex);blocked=true;entered=released=false;}
     std::promise<void> submitted;auto ready=submitted.get_future();std::string error;
     const int count=pressure?5000:1024;
     std::thread producer([&]{try{
-        AcceptanceCapture capture("commands");
+        AcceptanceCapture capture(normalViewport?"viewport":"commands");
         for(int i=0;i<count;++i)capture.append("fragment",{{"ordinal",i}},QByteArray::number(i));
         if(!pressure){capture.append("cpu-read",{{"sequence",1}},"reply");capture.append("ended",{});}
         submitted.set_value();capture.finish();
@@ -97,6 +98,7 @@ QJsonObject commandBurst(const QString& root,bool pressure){
     const bool returned=ready.wait_for(std::chrono::seconds(2))==std::future_status::ready;
     {std::lock_guard<std::mutex> lock(gateMutex);released=true;}gateChanged.notify_all();producer.join();
     require(error.empty() && stageEntered,"Command burst control did not reach compressor");
+    if(normalViewport)qunsetenv("MNM_ACCEPTANCE_NORMAL");
     const auto rows=read(directory);const auto close=rows.back().metadata;int fragments=0;
     bool ordered=true;
     for(const auto& row:rows)if(row.metadata["kind"]=="fragment"){
@@ -108,7 +110,7 @@ QJsonObject commandBurst(const QString& root,bool pressure){
         (close["complete"].toBool() && fragments==count && rows.size()==std::size_t(count+4)
          && rows[rows.size()-3].metadata["kind"]=="cpu-read" && rows[rows.size()-3].body=="reply"
          && rows[rows.size()-2].metadata["kind"]=="ended");
-    return {{"success",returned&&bound&&ordered&&valid},{"command_fragment_burst",true},{"overflow_expected",pressure},
+    return {{"success",returned&&bound&&ordered&&valid},{"command_fragment_burst",!normalViewport},{"normal_viewport_burst",normalViewport},{"overflow_expected",pressure},
         {"append_returned_while_compression_blocked",returned},{"full_ordered_commands_or_refusal",ordered&&valid},
         {"directory",directory},{"fragments",fragments}};
 }
@@ -186,6 +188,7 @@ int main(int argc,char** argv)try{
     if(!baseline){
         cases.append(gated(root,true));
         cases.append(commandBurst(root,false));cases.append(commandBurst(root,true));
+        cases.append(commandBurst(root,false,true));cases.append(commandBurst(root,true,true));
         {std::lock_guard<std::mutex> lock(gateMutex);blocked=false;compressionFailure=true;}
         const auto directory=temporary(root);qputenv("MNM_ACCEPTANCE_CAPTURE_DIRECTORY",directory.toUtf8());
         {AcceptanceCapture capture("viewport");capture.append("paint",{},"x");capture.finish();}

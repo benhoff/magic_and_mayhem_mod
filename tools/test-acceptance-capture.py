@@ -47,7 +47,7 @@ def main():
      except ValueError as e:
       assert 'Capture incomplete or truncated' in str(e),str(e)
       rejected+=1
-    assert (accepted,rejected)==(3,4),'Production reader did not distinguish complete and refused proofs'
+    assert (accepted,rejected)==(4,5),'Production reader did not distinguish complete and refused proofs'
     report['checks'][-1]['production_reader']=dict(complete_accepted=accepted,incomplete_rejected=rejected)
   report['success']=not bool(a.baseline_header)
  except Exception as e:report['error']=str(e)
