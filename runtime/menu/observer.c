@@ -140,8 +140,8 @@ static int install(void){
         menu_init();
         if(!install_grimoire_observe())menu_retired=1;
         if(!install_campaign_observe())menu_retired=1;
-        if((campaign_log||menu_version>=8)&&!install_campaign_world_observe())menu_retired=1;
         if(!install_gameplay_observe()||!checkpoint_open()||!admission_open()||!order_open())menu_retired=1;
+        if((campaign_log||menu_version>=8||admission_file)&&!install_campaign_world_observe())menu_retired=1;
         if((campaign_log||menu_version>=9)&&!install_campaign_mini_observe())menu_retired=1;
         if(campaign_log&&menu_version<7&&!install_campaign_navigation())menu_retired=1;
         if(menu_version>=7){

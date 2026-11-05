@@ -130,8 +130,15 @@ if os.environ.get('MNM_CAMPAIGN_ORDER_ADMISSION')=='1':
     order=root/'order-admission.bin'
     if order.exists() or order.is_symlink():raise ValueError('Stale order observation')
     os.environ['MNM_MENU_ORDER_ADMISSION_OBSERVE']='Z:'+str(order).replace('/','\\')
-if os.environ.get('MNM_CAMPAIGN_INPUT_ADMISSION')=='1':
-    if os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')!='1' or not metadata.get('native_render'):
+gameplay_acceptance=os.environ.get('MNM_ACCEPTANCE_GAMEPLAY')=='1'
+if gameplay_acceptance:
+    if not metadata.get('native_render') or not metadata.get('resident_world'):raise ValueError('Gameplay acceptance requires the ordinary resident native player')
+    for flag,name in [('MNM_DRAW_HUD_STATE_FILE','hud-state.bin'),('MNM_DRAW_SEMANTIC_STATE_FILE','semantic-state.bin'),('MNM_DRAW_ACTOR_LATCH_FILE','actor-latches.bin')]:
+        target=root/name
+        if target.exists() or target.is_symlink():raise ValueError('Stale gameplay acceptance observation')
+        os.environ[flag]='Z:'+str(target).replace('/','\\')
+if os.environ.get('MNM_CAMPAIGN_INPUT_ADMISSION')=='1' or gameplay_acceptance:
+    if (os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')!='1' and not gameplay_acceptance) or not metadata.get('native_render'):
         raise ValueError('Input admission observation requires the private casting diagnostic')
     admission=root/'input-admission.bin'
     if admission.exists() or admission.is_symlink():raise ValueError('Stale input admission observation')

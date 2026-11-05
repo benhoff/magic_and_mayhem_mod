@@ -74372,7 +74372,8 @@
       "original": [],
       "documents": [
         "research/runtime/draw02-qt-quick-battle-app.md",
-        "research/runtime/draw02-master-integration-20261015.md"
+        "research/runtime/draw02-master-integration-20261015.md",
+        "research/runtime/rendering-gameplay-acceptance-20261105.md"
       ],
       "implementation": [
         "apps/qt-shell/live_quick_battle_app_test.cpp",
@@ -75380,7 +75381,8 @@
         "reconstruction/rendering/kind8_class.h",
         "protocols/include/mnm/world_effect_raster_v1.h",
         "reconstruction/rendering/kind8_sprite_class.h",
-        "runtime/scene/kind8_sprite_admission.h"
+        "runtime/scene/kind8_sprite_admission.h",
+        "apps/qt-shell/acceptance_gameplay_test.hpp"
       ],
       "evidence": [
         "DRAW02.qt-quick-battle-app-01-20261014",
@@ -75403,7 +75405,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Original CPU writers still supply surface uploads in this app mode. Full source-owned live rendering, independent live pixel parity, hardware validation, semantic camera/picking behavior and universal teardown remain unproved. Rapid input across Results/fade transitions can be refused by the adapter; this test waits for settled readiness and never retries a consumed request."
+        "Original CPU writers still supply surface uploads in this app mode. Full source-owned live rendering, independent live pixel parity, hardware validation, semantic camera/picking behavior and universal teardown remain unproved. Rapid input across Results/fade transitions can be refused by the adapter; this test waits for settled readiness and never retries a consumed request.",
+        "GA05 adds a separately scoped opt-in800x600 gameplay witness and passive World sampling. Existing source hashes remain historical; this batch does not rerun the prior eight-domain cohort, grant whole camera/picking/HUD leaves or renew unchanged-route execution claims after source drift."
       ]
     },
     {
@@ -158469,7 +158472,8 @@
         "RW02 isolates a current startup ACK pause to GUI-thread acceptance compression and repairs that stage with a bounded FIFO worker. Current full-intro/control evidence is scoped to NP.acceptance-capture-worker; the exact historical RN31.G.first-world-watchdog cause, CPU-history ordering and retirement remain unresolved. Other acceptance and fault/restart claims are not renewed by this change.",
         "2026-11-01 provenance follow-up retains original-only source-pixel causality, bounded current cursor/driver observations and diagnostic comparison boundaries separately. Failed/mixed earlier reports and source preimages remain immutable. No existing engine/player milestone is promoted; current nominal admission still requires complete input, fullscreen, source and no-error proof.",
         "RW03 adds diagnostic sampling and receipt-driven Quick acceptance input, with strict current full-intro output/history agreement. Shared collector/driver source changes leave this older complete source domain pending; the new result binds only its named narrow policies and does not refresh historical hashes or nominal acceptance.",
-        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation."
+        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation.",
+        "GA05 adds a separately scoped opt-in800x600 gameplay witness and passive World sampling. Existing source hashes remain historical; this batch does not rerun the prior eight-domain cohort, grant whole camera/picking/HUD leaves or renew unchanged-route execution claims after source drift."
       ]
     },
     {
@@ -158577,7 +158581,8 @@
         "Sampler full-intro02 completed normal Quit but its strict comparator found only the second original Right press/release pair: the first nominal450ms held window has no retained original poll receipt. The opt-in driver now waits for existing actual-original receipts with a separate3s bound; current diagnostic intro03 observes all four original transitions and independently matching output; this does not renew whole nominal requirements. Comparator/input hook/producer deadlines are unchanged.",
         "EP06 shared admission validates explicitly requested software profile/provider while existing nominal/default progress and all broader acceptance requirements keep their prior independent scopes.",
         "EP06.G.storage-main-command-stall: new nominal default storage01 cancelled at return toward Main after Save/Mini Load, before display rebuild/Main Load/normal Quit;848 completed GPU calls do not close two missing outputs, END, history or lifetime. Software preparation failed before launch. See rendering-ep06-20261101.md; historical RN31/RW03 failures remain unresolved.",
-        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation."
+        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation.",
+        "GA05 adds a separately scoped opt-in800x600 gameplay witness and passive World sampling. Existing source hashes remain historical; this batch does not rerun the prior eight-domain cohort, grant whole camera/picking/HUD leaves or renew unchanged-route execution claims after source drift."
       ],
       "validation_dependencies": [
         "docs/native-rendering-closure.json",
@@ -162881,6 +162886,66 @@
       },
       "remaining_gaps": [
         "Both preimage regressions are retained. Current deterministic controls and the eight current-source ordinary journeys pass; the exact prior capture-worker stall, arbitrary scheduling/I/O, other root/result paths, original recovery and complete player acceptance remain pending."
+      ]
+    },
+    {
+      "id": "NP.public-player-gameplay-witness",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Public-player camera, hit, latch and pause witness",
+      "scope": "Opt-in actual 800x600 GUI-resident normal Quick route: Qt actions and presentation fences joined to independent read-only original camera, hit, Region callback, latch and World counter samples; complete presented output retains the existing independent source-history comparison. Temporal association is explicit and does not invent exact source-frame or full picking/tooltip recovery.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4632512,
+          "scope": "Pinned original World callback used only as an owner-return observation boundary; full callback and camera/picking implementations are not recovered here."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-gameplay-acceptance-20261105.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/acceptance_gameplay_test.hpp",
+        "apps/qt-shell/live_quick_battle_app_test.cpp",
+        "tools/run-rendering-acceptance-pilot.py",
+        "tools/menu-game-runner.py",
+        "tools/rendering_gameplay_acceptance.py"
+      ],
+      "tests": [
+        "tests/test-rendering-gameplay-acceptance.py"
+      ],
+      "validation_dependencies": [
+        "runtime/menu/observer.c",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/drawing_hud_state.h",
+        "runtime/menu/drawing_semantic_state.h",
+        "runtime/menu/drawing_actor_latches.h",
+        "runtime/menu/drawing_region_input.h",
+        "runtime/menu/campaign_input_admission_observe.h",
+        "tools/drawing_hud_state.py",
+        "tools/drawing_semantic_state.py",
+        "tools/drawing_actor_latches.py",
+        "tools/drawing_region_input.py",
+        "tools/campaign_input_observation.py",
+        "tools/check-rendering-acceptance-pilot.py",
+        "tools/drawing_input_point.py",
+        "tools/drawing_api_session.py"
+      ],
+      "evidence": [
+        "GA05.public-gameplay-default800-01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "GA05.G.binding: periodic scalar observations and host presentation fences do not establish an exact original scalar-to-source-generation join, full tooltip text/restoration or general picking/selection semantics.",
+        "GA05.G.domain: only one default800x600 run is admitted. No current software/640x480 gameplay matrix, hardware, CPU destination request, uninterrupted state/actor lifetime or full player/recovery claim. Earlier eight-domain storage/Quick evidence retains its historical source phase.",
+        "GA05.G.capture-scheduling: lossless capture completes the finite final case under unchanged byte caps, but the prior worker backlog is not profiled. No universal capture throughput, arbitrary scheduling/I/O guarantee or retirement of historical capture refusals is inferred."
       ]
     }
   ],
@@ -377530,6 +377595,84 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "GA05.public-gameplay-default800-01",
+      "kind": "live_equivalence",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-gameplay-results-20261105/current-gameplay-binding-01.json",
+      "sha256": "fa7d01483afdf7a9b9ca5de942b51b98d3f9eee2bc704fd4ea2ec704ecc5c08b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "equivalence_pointer": "/independent_pixel_equivalence",
+      "scope": "One default-profile800x600 public GUI-resident Quick gameplay case. Exact owner/tick original state, known living wizard latch callbacks and contiguous original pause-mode interval are associated with bounded actual action windows. Every presented native World independently matches continuous original raster history. This is scoped native integration, not exact scalar-to-source-generation, complete camera/picking/HUD/tooltip recovery, CPU-request exercise, hardware, other profile/size or whole-player acceptance. Prior rejected and positive source phases remain immutable.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/controls",
+          "equals": 74
+        },
+        {
+          "pointer": "/original_attempts",
+          "equals": 3
+        },
+        {
+          "pointer": "/current_admitted_executions",
+          "equals": 1
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/marker_binding/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/state/four_orientations/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/state/pan/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/state/wizard_latch_toggle/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/state/pause_resume/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/minimap_routes/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/exact_scalar_to_source_frame_binding_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/tooltip_text_and_restoration_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -409285,6 +409428,22 @@
         "PA04.public-player-cohort01",
         "PA04.public-player-cohort02"
       ]
+    },
+    {
+      "id": "GA05.public-player-gameplay-default-800",
+      "scope": "One enabled-intro actual800x600 GUI-resident default Quick run with all four original orientations, pan, validated wizard latch toggle, HUD hover intent, sampled counter pause/resume, complete continuous-history pixel comparison and normal Quit. Exact scalar/frame, tooltip and full requirements remain pending.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "NP.public-player-gameplay-witness"
+      ],
+      "tests": [
+        "apps/qt-shell/acceptance_gameplay_test.hpp",
+        "tools/rendering_gameplay_acceptance.py",
+        "tests/test-rendering-gameplay-acceptance.py"
+      ],
+      "evidence": [
+        "GA05.public-gameplay-default800-01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -411102,7 +411261,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-640b5fdf349f30cd627d5712b4882f10bee8ae5658e38760bba20da8f733b842.json",
-    "sha256": "640b5fdf349f30cd627d5712b4882f10bee8ae5658e38760bba20da8f733b842"
+    "path": "research/runtime/coverage/source-index-8a085f390bf636c6eeafb9bb2ba17a8bdc39d98746dab7f37f4c241f3374e24e.json",
+    "sha256": "8a085f390bf636c6eeafb9bb2ba17a8bdc39d98746dab7f37f4c241f3374e24e"
   }
 }

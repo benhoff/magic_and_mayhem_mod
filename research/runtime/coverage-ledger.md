@@ -26286,3 +26286,28 @@ applicability review verifies all payloads/assertions, finds33 changed source
 sets and4 matching candidates, and grants no pass from source matching alone.
 See [the bounded cohort](rendering-player-acceptance-20261104.md) and immutable
 `rendering-player-acceptance-results-20261104/batch-closeout-02.json`.
+
+### Public-player gameplay rendering pilot — 2026-11-05
+
+- `GA05.public-gameplay-default 800-01` / `NP.public-player-gameplay-witness`:
+  one enabled-intro GUI-resident default 800×600 Quick run observes all four camera
+  orientations, pan, two original living-wizard raw-latch toggles and pointer-away
+  continuity, the three camera bodies used by the four-case minimap table, and
+  original0→1→0 pause mode with a1,077ms stable World-counter interval. All 51
+  action markers bind exact retained original-admission rows/ticks.
+- 74 controls pass. Complete independent original history validates 1,020 presented
+  Worlds and 1,081,095,840 pixels with zero mismatches. Normal Quit and zero graphics
+  owners/forwarding pass. CPU destination requests are zero in this case. Actual
+  default provider is llvmpipe; hardware and other profile/size coverage stay open.
+- Three bounded attempts retain the cold/deadline plus missing World-sampler
+  failure and a normal-Quit capture-queue refusal. The latter is fixed by enabling
+  the existing lossless delta viewport policy: 4.35 GB raw fits 56.9 MB, every paint
+  retained, unchanged 256MiB queue/1GiB stored limits. A fixed 40 s allowance covers
+  extra gameplay actions without renewing producer/input leases. Independent state
+  reanalyses retain the initial coarse-pause-window refusal and stricter mode/row
+  guards; no fourth game launch or historical hash refresh follows.
+- Exact scalar-to-sealed-source-generation identity, tooltip text/restoration,
+  complete picking/selection/animation/visibility semantics and a current gameplay
+  configuration matrix remain pending. No new frozen requirement leaf or final
+  player/recovery decision passes. The earlier eight-domain cohort keeps its old
+  source phase; unchanged-route claims are not renewed by this pilot.

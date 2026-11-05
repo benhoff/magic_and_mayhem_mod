@@ -10,7 +10,8 @@ def sha(path):
 def module(name):
  spec=importlib.util.spec_from_file_location(name,ROOT/'tools'/name);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--operation-census',action='store_true',help='Closed COPY observations on an otherwise unchanged nominal normal route');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--sample-storage-main',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');p.add_argument('--copy-callers',action='store_true',help='Diagnostic-only upstream COPY caller observation');p.add_argument('--cursor-copy-callers',action='store_true',help='Read-only cursor protected-view caller handoff');p.add_argument('--cpu-reader-journal',action='store_true',help='One enabled-intro software storage reader/DC diagnostic per owned worktree');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--gameplay-witness',action='store_true',help='Bounded 800x600 public Quick camera, hover, latch and pause witness');p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--operation-census',action='store_true',help='Closed COPY observations on an otherwise unchanged nominal normal route');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--sample-storage-main',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');p.add_argument('--copy-callers',action='store_true',help='Diagnostic-only upstream COPY caller observation');p.add_argument('--cursor-copy-callers',action='store_true',help='Read-only cursor protected-view caller handoff');p.add_argument('--cpu-reader-journal',action='store_true',help='One enabled-intro software storage reader/DC diagnostic per owned worktree');a=p.parse_args()
+ if a.gameplay_witness and (a.scenario!='normal-quick' or a.skip_intros or a.diagnostic_only or a.copy_callers or a.cpu_reader_journal or a.sample_stalls or a.operations_provenance or a.stall_intro_host or a.stall_world_host):p.error('Gameplay witness requires enabled-intro nominal normal-quick')
  if a.cursor_copy_callers and not a.copy_callers:p.error('Cursor copy caller handoff requires COPY caller diagnostic')
  if a.cpu_reader_journal:
   if a.scenario!='normal-storage' or not a.software or a.skip_intros or a.operation_census or a.operations_provenance or a.copy_callers or a.sample_stalls or a.sample_storage_main or a.stall_intro_host or a.stall_world_host:p.error('CPU reader journal requires its own enabled-intro software storage diagnostic')
@@ -63,6 +64,10 @@ def main():
  if normal:names.update(['tools/menu-storage-input.py','tools/campaign_storage.py'])
  if a.sample_stalls:names.update(['tools/sample-rendering-stall.py','tools/rendering_stall_sampler.py'])
  names.add('tools/rendering_progression.py')
+ if a.gameplay_witness:
+  from rendering_build_binding import native_runtime_source_paths
+  names.update(native_runtime_source_paths(ROOT))
+  names.update(['tools/menu-game-runner.py','tools/drawing_hud_state.py','tools/drawing_semantic_state.py','tools/drawing_actor_latches.py','tools/drawing_region_input.py','tools/campaign_input_observation.py','tools/rendering_build_binding.py'])
  sources={n:sha(ROOT/n) for n in sorted(names)}
  report=dict(schema=1,kind='public_native_watchdog_diagnostic_acquisition' if a.diagnostic_only else 'public_native_normal_acquisition' if normal else 'public_native_pilot_acquisition',success=False,player_accepted=False,scenario=a.scenario,
   sources=sources,source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),session_identity=secrets.token_hex(16),
@@ -82,6 +87,11 @@ def main():
   report['configuration']['source_chunks']=True
   report['configuration'].update(viewport_capture_stored_limit_bytes=1024**3,world_capture_retained_limit_bytes=2*1024**3)
   report['configuration']['configuration_home']=str(out/'config')
+ if a.gameplay_witness:
+  env.update(MNM_ACCEPTANCE_GAMEPLAY='1',MNM_ACCEPTANCE_CAMPAIGN='1')
+  report['configuration']['gameplay_witness']=True
+  report['configuration']['gameplay_extra_budget_ms']=40000
+  report['configuration']['viewport_capture_policy']='campaign-lossless-viewport-v1'
  if a.cpu_reader_journal:
   env.update(MNM_NATIVE_CPU_READER_JOURNAL='1',MNM_ACCEPTANCE_DIAGNOSTIC='1')
   report['kind']='public_native_cpu_reader_diagnostic_acquisition'
@@ -164,7 +174,7 @@ def main():
    report['cpu_reader_attempt_charged']=True
   with (out/'public-launch.log').open('xb') as log:
    child=subprocess.Popen(command,cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
-   child.wait(timeout=deadline_ms/1000+40 if a.scenario=='normal-storage' else 390)
+   child.wait(timeout=deadline_ms/1000+40 if a.scenario=='normal-storage' else 430 if a.gameplay_witness else 390)
   report['exit_code']=child.returncode
   subprocess.run(['wineserver','-w'],env=dict(env,WINEPREFIX=str(out/'wineprefix')),check=True,timeout=10)
   report['private_wine_stopped']=True

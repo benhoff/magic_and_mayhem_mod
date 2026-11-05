@@ -4,6 +4,7 @@
 #include "gl_viewport.hpp"
 #include "host_timing_trace.hpp"
 #include "acceptance_input_ack.hpp"
+#include "acceptance_gameplay_test.hpp"
 #include <QApplication>
 #include <QMainWindow>
 #include <QPushButton>
@@ -29,6 +30,7 @@ void installQuickBattleAppTest(QApplication& app,QMainWindow& window,LiveMenuSes
     const QString& path,std::function<CampaignPresentationProbe()> probe){
     struct Evidence {int mapRow=1;QString mapId,mapName;unsigned stage=0;unsigned worldVisits=0;unsigned originalInputRows=0;quint32 thread=0;bool done=false,valid=true,world=false,actions=false,focusReleased=false,resized=false,escape=false;quint64 initialFrames=0,initialPaints=0;QElapsedTimer worldClock;QJsonArray states,inputs,probes,display,cursor;};
     auto e=std::make_shared<Evidence>();
+    auto gameplay=std::make_shared<QJsonArray>();
     if(qEnvironmentVariableIntValue("MNM_ACCEPTANCE_PILOT")==1){
         if(auto* scaling=window.findChild<QComboBox*>("viewportScaling"))scaling->setCurrentIndex(2);
         else e->valid=false;
@@ -36,11 +38,11 @@ void installQuickBattleAppTest(QApplication& app,QMainWindow& window,LiveMenuSes
     if(qEnvironmentVariableIsSet("MNM_QUICK_BATTLE_MAP_ROW")){bool ok=false;e->mapRow=qEnvironmentVariableIntValue("MNM_QUICK_BATTLE_MAP_ROW",&ok);e->valid=ok&&e->mapRow>=0&&e->mapRow<32;}
     session.skipMoviesEnabled=qEnvironmentVariableIntValue("MNM_ACCEPTANCE_PILOT")!=1 || qEnvironmentVariableIntValue("MNM_ACCEPTANCE_SKIP_INTROS")==1; // Pilot can retain enabled default intros.
     session.resultMenusEnabled=true;session.preferencesMenusEnabled=false;session.regionMenusEnabled=false;
-    auto fail=[e,probe,path,&app](const QString& error){
+    auto fail=[e,gameplay,probe,path,&app](const QString& error){
         if(e->done)return;
         e->done=true;e->valid=false;
         const auto p=probe();QFile file(path);
-        if(file.open(QIODevice::WriteOnly|QIODevice::NewOnly))file.write(QJsonDocument(QJsonObject{{"cursor_probe",e->cursor},{"success",false},{"error",error},{"selected_map_row",e->mapRow},{"selected_map_id",e->mapId},{"selected_map_name",e->mapName},{"stage",int(e->stage)},{"world",e->world},{"actions",e->actions},{"states",e->states},{"inputs",e->inputs},{"world_presentation",e->probes},{"native_frames",double(p.frames)},{"native_paints",double(p.paints)},{"native_active",p.active},{"native_fallback",p.fallback},{"native_error",p.error}}).toJson());
+        if(file.open(QIODevice::WriteOnly|QIODevice::NewOnly))file.write(QJsonDocument(QJsonObject{{"gameplay_witness",*gameplay},{"cursor_probe",e->cursor},{"success",false},{"error",error},{"selected_map_row",e->mapRow},{"selected_map_id",e->mapId},{"selected_map_name",e->mapName},{"stage",int(e->stage)},{"world",e->world},{"actions",e->actions},{"states",e->states},{"inputs",e->inputs},{"world_presentation",e->probes},{"native_frames",double(p.frames)},{"native_paints",double(p.paints)},{"native_active",p.active},{"native_fallback",p.fallback},{"native_error",p.error}}).toJson());
         std::fprintf(stderr,"Quick Battle app refused: %s\n",qPrintable(error));app.exit(1);
     };
     auto failure=session.failed;
@@ -92,7 +94,7 @@ void installQuickBattleAppTest(QApplication& app,QMainWindow& window,LiveMenuSes
         if(e->stage==7){const auto p=probe();e->actions=false;e->escape=false;e->initialFrames=p.frames;e->initialPaints=p.paints;e->worldClock.restart();++e->worldVisits;}
     };
     auto* timer=new QTimer(&window);timer->setInterval(50);
-    QObject::connect(timer,&QTimer::timeout,&window,[e,probe,&window,&session,path,key,input,fail]{
+    QObject::connect(timer,&QTimer::timeout,&window,[e,gameplay,probe,&window,&session,path,key,input,fail]{
         if(e->done)return;
         const auto p=probe();
         if(p.fallback||!p.error.isEmpty()){fail(p.error.isEmpty()?QString("Native presentation fallback"):p.error);return;}
@@ -161,18 +163,19 @@ void installQuickBattleAppTest(QApplication& app,QMainWindow& window,LiveMenuSes
         };
         if(qEnvironmentVariableIntValue("MNM_ACCEPTANCE_PILOT")==1 && qEnvironmentVariableIntValue("MNM_CURSOR_COPY_EXERCISE")!=1){
             const auto receipt=QDir(session.evidenceDirectory()).filePath("render-input.bin.acceptance");
-            QTimer::singleShot(250,&window,[e,&window,key,input,releaseInput,afterInput,receipt,fail]{
+            QTimer::singleShot(250,&window,[e,gameplay,&session,&window,key,input,releaseInput,afterInput,receipt,fail]{
                 if(e->done)return;
                 if(!key(QEvent::KeyPress,Qt::Key_Right,114)||!input("right-down")){fail("Qt Right publication failed");return;}
                 const auto published=quint32(e->inputs.last().toObject().value("sequence").toInt());
                 AcceptanceInputAck::wait(&window,receipt,e->originalInputRows,published,true,
-                    [e,&window,releaseInput,afterInput,receipt,fail](unsigned row){
+                    [e,gameplay,&session,&window,releaseInput,afterInput,receipt,fail](unsigned row){
                         if(e->done)return;
                         releaseInput();
                         if(!e->valid){fail("Qt focus release failed");return;}
                         const auto released=quint32(e->inputs.last().toObject().value("sequence").toInt());
                         AcceptanceInputAck::wait(&window,receipt,row,released,false,
-                            [e,afterInput](unsigned releasedRow){if(e->done)return;e->originalInputRows=releasedRow;afterInput();},
+                            [e,gameplay,&session,&window,afterInput,fail](unsigned releasedRow){if(e->done)return;e->originalInputRows=releasedRow;
+                                if(qEnvironmentVariableIntValue("MNM_ACCEPTANCE_GAMEPLAY")==1 && e->worldVisits==1)acceptanceGameplay(window,session.evidenceDirectory(),gameplay,afterInput,fail);else afterInput();},
                             [fail]{fail("Original Right release receipt did not arrive within three seconds");});
                     },[fail]{fail("Original Right press receipt did not arrive within three seconds");});
             });
@@ -183,18 +186,18 @@ void installQuickBattleAppTest(QApplication& app,QMainWindow& window,LiveMenuSes
         }
     });timer->start();
     auto finished=session.finished;
-    session.finished=[e,finished,probe,path,&app]{
+    session.finished=[e,gameplay,finished,probe,path,&app]{
         if(finished)finished();
         if(e->done)return;
         e->done=true;
         const auto p=probe();
         const bool success=e->valid&&e->stage==10&&e->worldVisits==2&&e->world&&e->actions&&e->focusReleased&&e->resized&&e->escape&&!p.fallback&&p.error.isEmpty()&&p.recoveries==0;
         QFile file(path);bool saved=file.open(QIODevice::WriteOnly|QIODevice::NewOnly);
-        if(saved)saved=file.write(QJsonDocument(QJsonObject{{"cursor_probe",e->cursor},{"success",success},{"selected_map_row",e->mapRow},{"selected_map_id",e->mapId},{"selected_map_name",e->mapName},{"states",e->states},{"inputs",e->inputs},{"world_presentation",e->probes},{"native_frames",double(p.frames)},{"native_paints",double(p.paints)},{"native_fallback",p.fallback},{"native_error",p.error},{"recoveries",int(p.recoveries)},{"focus_release",e->focusReleased},{"resize",e->resized},{"escape_results",e->escape},{"input_via_qt_viewport",true},{"original_input_wait",qEnvironmentVariableIntValue("MNM_ACCEPTANCE_PILOT")==1 && qEnvironmentVariableIntValue("MNM_CURSOR_COPY_EXERCISE")!=1},{"original_input_rows",int(e->originalInputRows)},{"original_input_wait_limit_ms",AcceptanceInputAck::DeadlineMs},{"world_visits",int(e->worldVisits)},{"results_delay_ms",0},{"escape_hold_ms",600},{"rapid_duplicate_clicks",true},{"fullscreen_transitions",e->display},{"scope","Bounded native Qt menu/command Quick Battle journey with Qt-forwarded input, focus-release, viewport resize, Results and normal Quit; original CPU raster remains active, no independent pixel comparison or complete replacement claim"}}).toJson())>0&&file.flush();
+        if(saved)saved=file.write(QJsonDocument(QJsonObject{{"gameplay_witness",*gameplay},{"cursor_probe",e->cursor},{"success",success},{"selected_map_row",e->mapRow},{"selected_map_id",e->mapId},{"selected_map_name",e->mapName},{"states",e->states},{"inputs",e->inputs},{"world_presentation",e->probes},{"native_frames",double(p.frames)},{"native_paints",double(p.paints)},{"native_fallback",p.fallback},{"native_error",p.error},{"recoveries",int(p.recoveries)},{"focus_release",e->focusReleased},{"resize",e->resized},{"escape_results",e->escape},{"input_via_qt_viewport",true},{"original_input_wait",qEnvironmentVariableIntValue("MNM_ACCEPTANCE_PILOT")==1 && qEnvironmentVariableIntValue("MNM_CURSOR_COPY_EXERCISE")!=1},{"original_input_rows",int(e->originalInputRows)},{"original_input_wait_limit_ms",AcceptanceInputAck::DeadlineMs},{"world_visits",int(e->worldVisits)},{"results_delay_ms",0},{"escape_hold_ms",600},{"rapid_duplicate_clicks",true},{"fullscreen_transitions",e->display},{"scope","Bounded native Qt menu/command Quick Battle journey with Qt-forwarded input, focus-release, viewport resize, Results and normal Quit; original CPU raster remains active, no independent pixel comparison or complete replacement claim"}}).toJson())>0&&file.flush();
         app.exit(success&&saved?0:1);
     };
     if(session.winePrefix.isEmpty())session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");
     session.smokeSeconds=0;
-    QTimer::singleShot(qEnvironmentVariableIntValue("MNM_ACCEPTANCE_PILOT")==1?300000:180000,&window,[fail]{fail("Quick Battle app deadline exceeded");});
+    QTimer::singleShot(qEnvironmentVariableIntValue("MNM_ACCEPTANCE_PILOT")==1?(qEnvironmentVariableIntValue("MNM_ACCEPTANCE_GAMEPLAY")==1?340000:300000):180000,&window,[fail]{fail("Quick Battle app deadline exceeded");});
     QTimer::singleShot(0,&window,[&window]{if(auto* b=window.findChild<QPushButton*>("launchGame"))b->click();});
 }
