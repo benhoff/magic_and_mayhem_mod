@@ -10,6 +10,7 @@
 #include <QAbstractButton>
 #include <QTimer>
 #include <QFile>
+#include <QLineEdit>
 #include <QDir>
 #include <QFileInfo>
 #include <QSaveFile>
@@ -22,18 +23,19 @@
 #include <cerrno>
 
 void installResidentRestartTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,const QString& path,
-    std::function<CampaignPresentationProbe()> probe,std::function<QJsonObject()> cleanup){
+    std::function<CampaignPresentationProbe()> probe,std::function<QJsonObject()> cleanup,std::function<bool()> armPendingCpuRead){
+    const bool pendingCpu=qEnvironmentVariableIntValue("MNM_RESIDENT_PENDING_CPU_TEST")==1;
     struct Run {
         int stage=0,cycle=0;bool done=false;quint64 frames=0,paints=0,source=0;
         QElapsedTimer clock,terminal;QJsonArray events;QString firstRoot;quint32 firstIdentity=0;qint64 firstPid=0;
     };
     auto r=std::make_shared<Run>();r->clock.start();
     auto event=[r](QJsonObject e){e["milliseconds"]=r->clock.elapsed();r->events.append(e);};
-    auto finish=[r,path,&app](bool ok,const QString& error){
+    auto finish=[r,path,pendingCpu,&app](bool ok,const QString& error){
         if(r->done)return;
         r->done=true;QSaveFile out(path);
         const QJsonObject result{{"success",ok},{"error",error},{"events",r->events},
-            {"scope","Actual original-game producer failure after resident World presentation, terminal cleanup, public Hard restart, fresh World and normal Quit. No physical context loss, freeze, in-place recovery or pixel equivalence claim."}};
+            {"pending_cpu_read_requested",pendingCpu},{"scope","Actual original-game producer failure after resident World presentation, terminal cleanup, public Hard restart, fresh World and normal Quit. No physical context loss, freeze, in-place recovery or pixel equivalence claim."}};
         const auto bytes=QJsonDocument(result).toJson();
         const bool saved=out.open(QIODevice::WriteOnly)&&out.write(bytes)==bytes.size()&&out.commit();
         std::fprintf(stderr,"Resident restart %s: %s\n",ok&&saved?"complete":"failed",qPrintable(error));app.exit(ok&&saved?0:1);
@@ -51,14 +53,29 @@ void installResidentRestartTest(QApplication& app,QMainWindow& window,LiveMenuSe
         });p->start("python3",args);
     };
     auto output=session.output;session.output=[output](const QString& s){if(output)output(s);std::fprintf(stderr,"%s",qPrintable(s));};
-    auto failed=session.failed;session.failed=[failed,finish](const QString& s){if(failed)failed(s);finish(false,"Menu session failed: "+s);};
-    auto state=session.stateChanged;session.stateChanged=[r,state,event,click,&window](const MenuBridge::State& s){
+    auto failed=session.failed;session.failed=[failed,finish,r,pendingCpu,&session](const QString& s){
+        if(failed)failed(s);
+        if(pendingCpu&&!r->cycle&&(r->stage==13||r->stage==14||r->stage==5||r->stage==6)){
+            QFile f(QDir(session.evidenceDirectory()).filePath("pending-cpu-fault.json"));
+            if(f.open(QIODevice::ReadOnly)&&QJsonDocument::fromJson(f.readAll()).object().value("injected").toBool())return;
+        }
+        finish(false,"Menu session failed: "+s);
+    };
+    auto state=session.stateChanged;session.stateChanged=[r,state,event,click,finish,armPendingCpuRead,pendingCpu,&window](const MenuBridge::State& s){
         if(state)state(s);
         if(r->done||!s.ready)return;
         QString button;
         if(r->stage==0&&s.screen==3&&s.ack==0){r->stage=1;button="mainMenuAction0";event({{"step","main"},{"cycle",r->cycle}});}
         else if(r->stage==1&&s.screen==18&&s.ack==1){r->stage=2;button="regionEntryDifficulty1";}
         else if(r->stage==2&&s.screen==18&&s.ack==2){r->stage=3;button="regionEntryEnter";}
+        else if(pendingCpu&&!r->cycle&&r->stage==12&&s.screen==17){
+            if(!armPendingCpuRead||!armPendingCpuRead()){finish(false,"Pending CPU fault adapter unavailable");return;}
+            event({{"step","pending-read-armed"},{"trigger","public-mini-save"}});r->stage=13;r->terminal.start();button="miniMenuButton2";
+        }
+        else if(pendingCpu&&!r->cycle&&r->stage==13&&s.screen==13){
+            auto* edit=window.findChild<QLineEdit*>("saveGameFileName");if(!edit){finish(false,"Save filename unavailable");return;}
+            edit->setText("pending-cpu-fault-test");r->stage=14;button="saveGameSave";
+        }
         else if(r->stage==7&&s.screen==17){r->stage=8;button="miniMenuButton4";}
         else if(r->stage==9&&s.screen==MNM_MENU_DEFEAT_SCREEN){r->stage=10;button="battleResultContinue";}
         else if(r->stage==10&&s.screen==3){r->stage=11;button="mainMenuAction4";event({{"step","normal-main-quit"}});}
@@ -80,14 +97,15 @@ void installResidentRestartTest(QApplication& app,QMainWindow& window,LiveMenuSe
         const auto rect=view->imageRect();const auto pos=view->mapToGlobal(rect.topLeft().toPoint());
         helper({QDir::current().filePath("tools/campaign-quit-input.py"),"--rect",QString::number(pos.x()),QString::number(pos.y()),QString::number(qRound(rect.width())),QString::number(qRound(rect.height())),"--answer","yes","--experiment",session.evidenceDirectory(),"--output",QFileInfo(path).dir().filePath("quit-input.json")},{});
     };
-    auto finished=session.finished;session.finished=[r,finished,finish,event,&session]{
+    auto finished=session.finished;session.finished=[r,finished,finish,event,pendingCpu,&session]{
         const bool quit=session.normalQuitAccepted();if(finished)finished();
         if(r->done)return;
+        if(pendingCpu&&!r->cycle&&(r->stage==13||r->stage==14||r->stage==5||r->stage==6))return;
         event({{"step","producer-finished"},{"normal_quit_accepted",quit},{"stage",r->stage}});
         finish(r->stage==11&&quit,r->stage==11&&quit?QString():QString("Producer exited before completed restart journey"));
     };
     auto* poll=new QTimer(&window);poll->setInterval(50);
-    QObject::connect(poll,&QTimer::timeout,&window,[r,probe,cleanup,event,finish,click,helper,path,&window,&session]{
+    QObject::connect(poll,&QTimer::timeout,&window,[r,probe,cleanup,event,finish,click,helper,path,pendingCpu,&window,&session]{
         if(r->done)return;
         const auto p=probe();
         // The ordinary Quit input helper requires retained native/original
@@ -124,6 +142,10 @@ void installResidentRestartTest(QApplication& app,QMainWindow& window,LiveMenuSe
             if(!valid){channel.unmap(bytes);finish(false,"Live producer identity/state invalid");return;}
             if(!r->cycle){
                 r->firstRoot=session.evidenceDirectory();r->firstIdentity=identity;r->firstPid=session.launcherProcessId();
+                if(pendingCpu){
+                    channel.unmap(bytes);r->stage=12;window.activateWindow();window.raise();
+                    helper({QDir::current().filePath("tools/test-live-campaign-mini.py"),"--send-escape"},{});return;
+                }
                 // Test-only terminal fault. Never claim the real writer or modify its cursors/payload.
                 mnm_ring_writer fault{};fault.map=words;fault.session=identity;fault.version=words[2];
                 mnm_ring_fail(&fault,MNM_RENDER_COMMANDS_V2_REASON_INVALID);
@@ -138,12 +160,24 @@ void installResidentRestartTest(QApplication& app,QMainWindow& window,LiveMenuSe
             event({{"step","fresh-session-confirmed"},{"old_launcher_gone",true}});r->stage=7;window.activateWindow();window.raise();
             helper({QDir::current().filePath("tools/test-live-campaign-mini.py"),"--send-escape"},{});return;
         }
+        if(pendingCpu&&!r->cycle&&(r->stage==13||r->stage==14)){
+            QFile fault(QDir(session.evidenceDirectory()).filePath("pending-cpu-fault.json"));
+            if(fault.open(QIODevice::ReadOnly)){
+                const auto observation=QJsonDocument::fromJson(fault.readAll()).object();
+                if(observation.value("injected").toBool()){
+                    event({{"step","producer-failure-injected"},{"reason",observation.value("reason")},{"pending_cpu",observation}});r->stage=5;
+                }
+            }
+            if(r->stage!=5){if(r->terminal.elapsed()>60000)finish(false,"No witnessed pending CPU read after public Save");return;}
+        }
         if(r->stage==5){
             auto s=cleanup();if(!s.value("terminal").toBool())return;
             if(!s.value("restart_available").toBool())return; // Native-only force-stop must finish first.
             for(auto it=s.begin();it!=s.end();++it)if(!it.value().toBool()){event(s);finish(false,"Incomplete terminal cleanup: "+it.key());return;}
-            if(!p.fallback||p.active||p.error.isEmpty()||p.recoveries){finish(false,"Failed generation retried or remained active");return;}
-            event({{"step","terminal-cleanup"},{"state",s},{"error",p.error}});r->frames=p.frames;r->paints=p.paints;r->terminal.start();r->stage=6;
+            if((!pendingCpu&&!p.fallback)||p.active||p.error.isEmpty()||p.recoveries){finish(false,"Failed generation retried or remained active");return;}
+            QJsonObject terminal{{"step","terminal-cleanup"},{"state",s},{"error",p.error},{"fallback_flag",p.fallback}};
+            if(pendingCpu){QFile f(QDir(r->firstRoot).filePath("pending-cpu-fault.json"));if(!f.open(QIODevice::ReadOnly)){finish(false,"Pending CPU final record missing");return;}const auto record=QJsonDocument::fromJson(f.readAll()).object();if(!record.value("finalized").toBool()){finish(false,"Pending CPU terminal checks missing");return;}terminal["pending_cpu"]=record;}
+            event(terminal);r->frames=p.frames;r->paints=p.paints;r->terminal.start();r->stage=6;
         }
         if(r->stage==6){
             auto s=cleanup();for(auto it=s.begin();it!=s.end();++it)if(!it.value().toBool()){finish(false,"Terminal state resurrected: "+it.key());return;}

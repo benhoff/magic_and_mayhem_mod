@@ -1,10 +1,20 @@
 """Strict acceptance of the bounded actual-game failure/restart journey."""
 
 
-def validate_flow(flow, *, expected_owner=None, expected_stream_version=None):
+def validate_flow(flow, *, expected_owner=None, expected_stream_version=None, pending_cpu=False):
     if flow.get('success') is not True or flow.get('error'):
         raise ValueError('Restart journey failed: '+str(flow.get('error')))
     events = flow['events']
+    if pending_cpu:
+        if expected_owner!='dedicated-thread' or expected_stream_version!=5 or flow.get('pending_cpu_read_requested') is not True:
+            raise ValueError('Pending CPU proof requires its explicit worker/V5 journey')
+        if len(events)!=14 or events[3].get('step')!='pending-read-armed' or events[3].get('trigger')!='public-mini-save':
+            raise ValueError('Missing bounded pending-read arm/Save transition')
+        if not events[2]['milliseconds']<=events[3]['milliseconds']<=events[4]['milliseconds']:
+            raise ValueError('Pending-read arm timeline differs')
+        events=events[:3]+events[4:]
+    elif flow.get('pending_cpu_read_requested'):
+        raise ValueError('Pending CPU journey needs its strict witness validator')
     steps = [e.get('step') for e in events]
     required = ['main', 'handoff', 'live-world', 'producer-failure-injected', 'terminal-cleanup',
                 'terminal-stable', 'hard-restart-click', 'main', 'handoff', 'live-world',
@@ -46,4 +56,45 @@ def validate_flow(flow, *, expected_owner=None, expected_stream_version=None):
     if expected_stream_version is not None:
         result.update(command_stream_version=expected_stream_version,transport_version=3,
                       cpu_materializations_at_world=[e['cpu_materializations'] for e in worlds],live_pending_cpu_read_fault_proved=False)
+    if pending_cpu:
+        before=events[3].get('pending_cpu',{});after=events[4].get('pending_cpu',{})
+        _pending_witness(before,after,worlds[0]['identity'])
+        result.update(live_pending_cpu_read_fault_proved=True,pending_cpu_ticket=before['request'][1],
+                      original_request_reason=before['original_request'][6],no_new_reply=True,no_new_readback=True)
     return result
+
+
+def _pending_witness(before,after,identity):
+    if not isinstance(before,dict) or not isinstance(after,dict):raise ValueError('Pending CPU witness must be an object')
+    required={'schema','command_stream_version','transport_version','worker_thread','injected','reason','sequence','request','original_request','original_wait','original_refusal','readbacks_before','materializations_before','reply_sha256_before'}
+    if not required<=before.keys() or before.get('worker_thread') is not True or before.get('injected') is not True:
+        raise ValueError('Initial pending CPU witness incomplete')
+    if type(before['sequence']) is not int or not 0<before['sequence']<=0xffffffff:
+        raise ValueError('Pending CPU command sequence missing')
+    if not before or not all(after.get(k) is True for k in ('injected','worker_thread','finalized','pending_cleared','no_new_reply','no_new_readback')):
+        raise ValueError('Pending CPU terminal witness incomplete')
+    if any(after.get(k)!=v for k,v in before.items()) or type(after.get('remaining_surfaces')) is not int or after['remaining_surfaces']!=0:
+        raise ValueError('Pending CPU observations changed or leaked surfaces')
+    if any(type(before.get(k)) is not int for k in ('schema','command_stream_version','transport_version','reason')) or before.get('schema')!=1 or before.get('command_stream_version')!=5 or before.get('transport_version')!=3 or before.get('reason')!=5:
+        raise ValueError('Pending CPU wire/schema/fault identity')
+    w=before.get('request',[]);r=before.get('original_request',[]);d=before.get('original_wait',[]);f=before.get('original_refusal',[])
+    if len(w)!=10 or len(r)!=32 or len(d) not in (0,16) or len(f)!=8 or any(type(v) is not int or not 0<=v<=0xffffffff for v in w+r+d+f):
+        raise ValueError('Pending CPU original/decoded witness extent/type')
+    if not w[0] or not w[1] or w[2] or w[3]!=identity or not (1<=w[4]<=2048 and 1<=w[5]<=2048) or not any(w[6:8]) or not any(w[8:10]):
+        raise ValueError('Pending CPU request identity')
+    if r[1]!=2 or not r[0] or not r[2] or not r[5] or r[6] not in range(1,8) or [r[15],r[18],0,r[4],r[19],r[20],*r[21:25]]!=w:
+        raise ValueError('Original request differs from decoded pending CPU read')
+    # The journal canonicalizes GameSurface::object; the refusal retains the
+    # caller's interface pointer. Bind the unique ticket/session, retain both
+    # addresses, and do not infer an ABI alias/offset from numeric equality.
+    if f[0]!=0x434d4e4d or f[1]!=1 or f[2] not in (7,13) or not f[3] or not r[14] or f[5]!=w[1] or f[7]!=identity:
+        raise ValueError('Original reply-wait refusal does not match the pending request')
+    if f[2]==13 and not d:raise ValueError('Explicit reader wait diagnostic missing')
+    if d and (d[0]!=0x574d4e4d or d[1]!=1 or d[2]!=w[1] or d[3]!=0 or d[4]!=r[2] or d[9]!=1 or d[13]!=3):
+        raise ValueError('Original failed wait does not match the pending request')
+    for key in ('readbacks_before','materializations_before'):
+        value=before.get(key)
+        if not isinstance(value,str) or not value.isascii() or not value.isdecimal():raise ValueError('Pending CPU native count missing')
+    digest=before.get('reply_sha256_before')
+    if not isinstance(digest,str) or digest and (len(digest)!=64 or any(c not in '0123456789abcdef' for c in digest)):
+        raise ValueError('Pending CPU prior reply identity missing')

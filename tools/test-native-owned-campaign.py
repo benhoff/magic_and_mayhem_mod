@@ -23,6 +23,7 @@ def main():
     parser.add_argument('--native-only',action='store_true',help='Exercise the strict native-only startup/failure/outcome contract')
     parser.add_argument('--restart',action='store_true',help='Inject a live producer failure, use public Hard restart, then quit a fresh generation')
     parser.add_argument('--independent-world',action='store_true',help='Use and verify the dedicated render worker in a native-only restart journey')
+    parser.add_argument('--pending-cpu-read-fault',action='store_true',help='Require an original pending CPU-read witness during dedicated-worker restart')
     parser.add_argument('--prefix-template',type=Path)
     parser.add_argument('--player-entrypoint',choices=['fresh','reuse'],help='Exercise run-x86.sh with the real default persistent player prefix')
     parser.add_argument('--source-game',type=Path,required=True)
@@ -42,6 +43,7 @@ def main():
     parser.add_argument('--claims',type=Path,required=True)
     parser.add_argument('--report',type=Path,required=True)
     args=parser.parse_args()
+    if args.pending_cpu_read_fault and not args.independent_world:parser.error('Pending CPU fault requires the isolated dedicated-worker restart journey')
     if args.independent_world and (not args.native_only or not args.restart or args.player_entrypoint):parser.error('Independent World requires the isolated native-only restart journey')
     if args.recreate_world:args.save_load=True
     if args.default_media and args.no_native_music:parser.error('Default media cannot disable native music')
@@ -70,7 +72,7 @@ def main():
         native_music_disabled=args.no_native_music,default_media_requested=args.default_media,
         hardware_requested=args.hardware,menu_cycles=args.menu_cycles,save_load_requested=args.save_load,
         recreate_world_requested=args.recreate_world,quick_map_row_requested=args.quick_map_row,
-        render_owner_requested='dedicated-thread' if args.independent_world else 'gui-resident',scope=__doc__)
+        pending_cpu_read_fault_requested=args.pending_cpu_read_fault,render_owner_requested='dedicated-thread' if args.independent_world else 'gui-resident',scope=__doc__)
     journey_seconds=max(270,240+(args.menu_cycles+1)*args.stress_seconds+args.menu_cycles*30)+ (120 if args.default_media else 0)
     env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINE'))}
     env.update(XDG_CONFIG_HOME=str(root/'config'),PYTHONDONTWRITEBYTECODE='1',TMPDIR=str(root),LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS='4',
@@ -88,6 +90,8 @@ def main():
         env.update(MNM_LIVE_MENU_TEST_QT_JOURNEY='1',MNM_QUICK_BATTLE_MAP_ROW=str(args.quick_map_row))
     if args.copy_census:
         env.update(MNM_NATIVE_COPY_DIAGNOSTICS=str(root/'copy-diagnostics'),MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE='all')
+    if args.pending_cpu_read_fault:
+        env.update(MNM_RESIDENT_PENDING_CPU_TEST='1',MNM_NATIVE_CPU_READER_JOURNAL='1',MNM_ACCEPTANCE_DIAGNOSTIC='1',MNM_ACCEPTANCE_PILOT='1')
     if args.restart:
         env.pop('MNM_CAMPAIGN_SMOKE_TEST');env['MNM_RESIDENT_RESTART_TEST']='1'
     server=child=None;verified=False;owner=root/'owner'
@@ -181,7 +185,7 @@ def main():
         if args.restart:
             from test_native_restart_support import validate_flow
             report['engine_journey']=validate_flow(flow,expected_owner='dedicated-thread' if args.independent_world else None,
-                expected_stream_version=5 if args.independent_world else None)
+                expected_stream_version=5 if args.independent_world else None,pending_cpu=args.pending_cpu_read_fault)
             if args.independent_world and report['resident'].get('native_render_owner')!='dedicated-thread':
                 raise RuntimeError('Final resident report did not confirm the dedicated render owner')
         elif args.save_load:

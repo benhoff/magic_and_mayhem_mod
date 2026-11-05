@@ -21,6 +21,9 @@ public:
     void recoverGraphics(){if(renderer_)renderer_->recoverContext(target_.context(),target_.offscreen);}
     std::function<void()> framePresented;
     std::function<void(std::uint64_t)> cpuReadPending;
+    // Optional observation of the first decoded CPU_READ in a queued batch,
+    // before any command in that batch executes. Configure before polling.
+    std::function<void(const mnm::render::SurfaceCommand&,const mnm::render::CommandResult&)> cpuReadQueued;
     std::function<mnm::render::GpuFrame(std::uint64_t,std::uint64_t)> residentWorld;
     std::function<bool(std::uint64_t,std::uint64_t)> residentReady;
     bool prepareResidentFrames=false,reuseSealedUi=false;

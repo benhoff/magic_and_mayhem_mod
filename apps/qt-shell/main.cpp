@@ -1,3 +1,4 @@
+#include "pending_cpu_fault_test.hpp"
 #include "watchdog_host_fault.hpp"
 #include "host_event_trace.hpp"
 #include "live_realm_controller.hpp"
@@ -94,6 +95,7 @@ class Shell final:public QMainWindow {
     QElapsedTimer nativePollTick_;
     unsigned nativePollTimingRows_=0;
 public:
+    bool armPendingCpuReadFault(){return renderWorker_&&pendingCpuFault_&&pendingCpuFault_->arm();}
     QJsonObject residentFailureState() const {
         return {{"terminal",residentTerminal_},{"owners_retired",!renderWorker_&&!commands_&&!residentWorld_},
             {"timers_stopped",!frames_.isActive()&&!commandDrain_.isActive()&&!poll_.isActive()&&!inputTimer_.isActive()},
@@ -443,6 +445,10 @@ private:
                 if(resident && qEnvironmentVariableIntValue("MNM_WORLD_SNAPSHOT")==1){
                     try{renderWorker_=std::make_unique<NativeRenderWorker>(*gl_,directory.filePath("world-continuous.bin"),directory.filePath("game"),residentWorldReport_);}
                     catch(const std::exception& e){statusBar()->showMessage(e.what());return false;}
+                    if(qEnvironmentVariableIntValue("MNM_RESIDENT_PENDING_CPU_TEST")==1&&qEnvironmentVariableIntValue("MNM_RESIDENT_RESTART_TEST")==1){
+                        pendingCpuFault_=std::make_shared<PendingCpuFaultTest>(commandPath,session);
+                        renderWorker_->cpuReadQueued=[fault=pendingCpuFault_](const auto& command,const auto& result){fault->observe(command,result);};
+                    }else pendingCpuFault_.reset();
                     renderWorker_->framePresented=presented;
                     // Repeated copied status does not re-run widget transitions.
                     renderWorker_->stateChanged=[this,stateChanged](auto state){if(state!=lastRenderState_){lastRenderState_=state;stateChanged(state);}};
@@ -526,6 +532,11 @@ private:
         process_.start(launcher,arguments);
         if(!check){elapsed_.restart();poll_.start();statusBar()->showMessage("Waiting for the game window…");}
     }
+    void finishPendingCpuFault(){
+        if(!pendingCpuFault_||!renderWorker_)return;
+        try{pendingCpuFault_->finish(renderWorker_->result(),renderWorker_->pendingCpuRead());}
+        catch(const std::exception& e){residentWorldError_=QString::fromUtf8(e.what());log_->appendPlainText("Pending CPU test refused: "+residentWorldError_);}
+    }
     void residentFailed(const QString& message){
         if(nativeOnly_){
             nativeOnlySession_.fail(message);
@@ -539,7 +550,7 @@ private:
         if(media_)media_->stop();
         if(input_){input_->suspend(true);input_->setTarget(0);}
         if(gl_){gl_->setGpuFrame({});gl_->setFrame({});gl_->hide();}
-        if(renderWorker_){renderWorker_->abort();renderWorker_.reset();}
+        if(renderWorker_){renderWorker_->abort();finishPendingCpuFault();renderWorker_.reset();}
         if(commands_){commands_->abort();commands_.reset();}
         if(residentWorld_){residentWorld_->abort(message);residentWorld_->saveReport(residentWorldReport_);residentWorld_.reset();}
         retry_->setEnabled(false);fallback_->setEnabled(false);
@@ -635,7 +646,7 @@ private:
             if(!evidence.open(QIODevice::WriteOnly|QIODevice::NewOnly)||evidence.write(bytes)!=bytes.size())log_->appendPlainText("Cannot save native music session evidence.");
         }
         music_.reset();
-        if(renderWorker_){if(restarting_)renderWorker_->abort();else if(!renderWorker_->finishProducer()){rendererFinished=false;residentTerminal_=true;residentWorldError_=renderWorker_->error();log_->appendPlainText("Native render owner stopped: "+residentWorldError_);}renderWorker_.reset();}
+        if(renderWorker_){if(restarting_)renderWorker_->abort();else if(!renderWorker_->finishProducer()){rendererFinished=false;residentTerminal_=true;residentWorldError_=renderWorker_->error();log_->appendPlainText("Native render owner stopped: "+residentWorldError_);}finishPendingCpuFault();renderWorker_.reset();}
         if(restarting_&&residentWorld_)residentWorld_->abort("Game force-stopped for hard restart");
         if(residentWorld_){try{residentWorld_->saveReport(residentWorldReport_);}catch(const std::exception& e){log_->appendPlainText(e.what());residentWorld_->saveReport(residentWorldReport_);}}
         if(commands_){if(restarting_)commands_->abort();else if(!commands_->finishProducer()){rendererFinished=false;log_->appendPlainText("Native command producer stopped: "+commands_->error());}commands_.reset();}
@@ -678,7 +689,7 @@ private:
     SpellboxWidget* liveSpells_=nullptr;std::unique_ptr<LiveSpellMenuController> spellMenus_;
     std::unique_ptr<LiveBattleMenuController> battleMenus_;
     std::unique_ptr<LiveMenuSession> liveMenus_;QStackedWidget* menuStack_=nullptr;MainMenuWidget* liveMain_=nullptr;QuickBattleMenuWidget* liveQuick_=nullptr;QPushButton* fallback_=nullptr;bool menuAssetsLoaded_=false,closeAfterGame_=false;
-    QString repo_;bool restarting_=false;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false,nativeFallback_=false;std::unique_ptr<NativeRenderWorker> renderWorker_;LiveCommandSession::State lastRenderState_=LiveCommandSession::State::WaitingFrame;std::unique_ptr<LiveCommandSession> commands_;std::unique_ptr<ResidentWorldSession> residentWorld_;QString residentWorldReport_,residentWorldError_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_,commandDrain_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;std::unique_ptr<mnm::audio::MusicBroker> music_;QTimer inputTimer_;GameProcess process_;QTimer poll_;QElapsedTimer elapsed_;
+    QString repo_;bool restarting_=false;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false,nativeFallback_=false;std::shared_ptr<PendingCpuFaultTest> pendingCpuFault_;std::unique_ptr<NativeRenderWorker> renderWorker_;LiveCommandSession::State lastRenderState_=LiveCommandSession::State::WaitingFrame;std::unique_ptr<LiveCommandSession> commands_;std::unique_ptr<ResidentWorldSession> residentWorld_;QString residentWorldReport_,residentWorldError_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_,commandDrain_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;std::unique_ptr<mnm::audio::MusicBroker> music_;QTimer inputTimer_;GameProcess process_;QTimer poll_;QElapsedTimer elapsed_;
     QSet<xcb_window_t> excluded_;bool checking_=false;
     QWidget* viewport_=nullptr;QVBoxLayout* layout_=nullptr;QLabel* placeholder_=nullptr;
     QWidget* container_=nullptr;QWindow* foreign_=nullptr;xcb_window_t windowId_=0;
@@ -1044,7 +1055,7 @@ int main(int argc,char** argv){
     if(parser.isSet("live-menu-test")){
         if(qEnvironmentVariable("MNM_RESIDENT_RESTART_TEST")=="1"){
             if(!parser.isSet("resident-world"))parser.showHelp(2);
-            installResidentRestartTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();},[&shell]{return shell.residentFailureState();});
+            installResidentRestartTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();},[&shell]{return shell.residentFailureState();},[&shell]{return shell.armPendingCpuReadFault();});
         }
         else if(qEnvironmentVariableIsSet("MNM_LIVE_MENU_TEST_QT_JOURNEY"))installQuickBattleAppTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
         else if(qEnvironmentVariableIsSet("MNM_CAMPAIGN_SMOKE_TEST"))installCampaignSmokeTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});

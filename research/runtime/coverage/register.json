@@ -127961,7 +127961,8 @@
         "CRIT20.session-retry-current-20261019",
         "RA25.native-only.restart",
         "SO04.fault-restart-gui01",
-        "WR04.worker-fault01"
+        "WR04.worker-fault01",
+        "PR04.pending-cpu01"
       ],
       "status": {
         "understanding": "scoped",
@@ -127975,7 +127976,8 @@
         "Commit boundary20261018: implementation is included, while current combined-source validation remains pending. Preserve all retained execution fingerprints and successful historical reports; no uncommitted status promotion is renewed by this source/accounting commit. See research/runtime/native-only-commit-boundary-20261018.md.",
         "Retained functional-closure runs are historical after subsequent shared renderer changes. Current-code acceptance and source-bound status promotion remain pending; implementation sources and old report hashes are preserved.",
         "2026-11-04 current GUI-resident V3 native-only fault/Hard Restart passes with522ms stable terminal cleanup, distinct old/new launcher/channel identities and fresh normal Quit with zero graphics owners/forwarding. The failed generation gets no completion credit. Historical both-owner results remain independent; current worker/V5 fault, physical context loss, in-place/save continuity, media/audio restart and failure-path pixels are not promoted.",
-        "2026-11-04 worker source phase: actual dedicated-thread owner, decoded stream5 and transport3 pass one controlled fault/Hard Restart journey with539ms stable cleanup and fresh normal Quit/zero owners/forwarding. Both World observations have CPU materializations0; no live pending-CPU_READ interruption, failure-path pixels, physical context loss, in-place/save/media recovery or repeated-run reliability. Prior GUI transport observation does not independently prove decoded stream version."
+        "2026-11-04 worker source phase: actual dedicated-thread owner, decoded stream5 and transport3 pass one controlled fault/Hard Restart journey with539ms stable cleanup and fresh normal Quit/zero owners/forwarding. Both World observations have CPU materializations0; no live pending-CPU_READ interruption, failure-path pixels, physical context loss, in-place/save/media recovery or repeated-run reliability. Prior GUI transport observation does not independently prove decoded stream version.",
+        "2026-11-04 source phases: one charged dedicated-worker V5/V3 journey captures queued CPU ticket1, matching producer request/refusal, no new readback/reply,532ms stable terminal cleanup and fresh normal Quit/zero owners/forwarding. Initial automated analysis remains failed for an incorrect canonical/interface pointer equality; only the Python validator/test changed,26controls and complete current acceptance replay pass over unchanged engine/compiler inputs. Failed-process exit receipt is absent and its exit status stays unobserved. No successful Save/Load, canonical/interface ABI relation, arbitrary race exclusion, physical context loss, saved/in-place/media recovery, original pixels or repeated-run reliability."
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -162620,7 +162622,8 @@
       "original": [],
       "confidence": "high_within_scope",
       "evidence": [
-        "WR04.terminal-cpu01"
+        "WR04.terminal-cpu01",
+        "PR04.terminal-controls01"
       ],
       "status": {
         "understanding": "scoped",
@@ -162650,7 +162653,8 @@
         "protocols/include/mnm/native_cpu_read_v1.h"
       ],
       "remaining_gaps": [
-        "The mapped producer may still fail after the final checkpoint; this is not atomic exclusion of arbitrary concurrent failure. No actual-game fault timed to a pending CPU_READ, original ABI equivalence, saved/in-place/media recovery or physical context-loss validation."
+        "The mapped producer may still fail after the final checkpoint; this is not atomic exclusion of arbitrary concurrent failure. No actual-game fault timed to a pending CPU_READ, original ABI equivalence, saved/in-place/media recovery or physical context-loss validation.",
+        "PR04 separately records the one witnessed live worker pending-read/Hard Restart observation. The original report remains an analysis refusal; corrected current replay uses unchanged native code and records both pointer identities independently. The headless checkpoint policy remains a separate milestone; arbitrary failures after the final health check are not atomically excluded."
       ]
     },
     {
@@ -162698,6 +162702,62 @@
       ],
       "remaining_gaps": [
         "2026-11-04 worker source phase: actual dedicated-thread owner, decoded stream5 and transport3 pass one controlled fault/Hard Restart journey with539ms stable cleanup and fresh normal Quit/zero owners/forwarding. Both World observations have CPU materializations0; no live pending-CPU_READ interruption, failure-path pixels, physical context loss, in-place/save/media recovery or repeated-run reliability. Prior GUI transport observation does not independently prove decoded stream version."
+      ]
+    },
+    {
+      "id": "NP.worker-pending-cpu-fault",
+      "kind": "native_policy",
+      "subsystem": "runtime_rendering",
+      "title": "Witnessed live worker pending CPU-read failure and fresh restart",
+      "scope": "One opt-in software native-only dedicated-worker decoded V5 / transport V3 journey: arm after actual World progress; require a decoded queued CPU_READ and matching original-producer journal request before setting terminal failure, retain the original failed-wait ticket, forbid new native readbacks/materializations/replies and require cleared pending waits/surfaces. Public Hard Restart must create distinct identities and a fresh World with normal Quit and zero graphics owners/forwarding. Diagnostic observation and bounded waits are explicit. No successful Save/Load, original ABI/pixel equivalence, arbitrary concurrent-failure exclusion, physical context loss, saved/in-place/media recovery or repeated-run reliability.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "apps/qt-shell/pending_cpu_fault_test.hpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/resident_restart_test.cpp",
+        "apps/qt-shell/resident_restart_test.hpp",
+        "tools/test-native-owned-campaign.py",
+        "tools/test_native_restart_support.py"
+      ],
+      "tests": [
+        "tests/pending-cpu-fault-test.cpp",
+        "tests/test-native-live-restart.py",
+        "tests/native-cpu-materialization-test.cpp",
+        "tests/resident-terminal-restart-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/rendering-pending-read-20261104.md"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/render/cpu_reader.h",
+        "runtime/render/cpu_reader_journal.h",
+        "protocols/include/mnm/native_cpu_reader_journal_v1.h",
+        "protocols/include/mnm/native_cpu_read_v1.h",
+        "protocols/include/mnm/render_stream_v5.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "tools/cpu_reader_journal.py",
+        "tools/native_only_contract.py"
+      ],
+      "evidence": [
+        "PR04.pending-cpu01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "2026-11-04 source phases: one charged dedicated-worker V5/V3 journey captures queued CPU ticket1, matching producer request/refusal, no new readback/reply,532ms stable terminal cleanup and fresh normal Quit/zero owners/forwarding. Initial automated analysis remains failed for an incorrect canonical/interface pointer equality; only the Python validator/test changed,26controls and complete current acceptance replay pass over unchanged engine/compiler inputs. Failed-process exit receipt is absent and its exit status stays unobserved. No successful Save/Load, canonical/interface ABI relation, arbitrary race exclusion, physical context loss, saved/in-place/media recovery, original pixels or repeated-run reliability."
       ]
     }
   ],
@@ -377189,6 +377249,64 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "PR04.pending-cpu01",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-pending-read-results-20261104/live-retained-reanalysis-02.json",
+      "sha256": "fdea5b6ce2c7b3b44e464ba40cb51651ec9d354f566bae48c1738cdd6ed4f905",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "One opt-in software native-only dedicated-worker decoded V5 / transport V3 journey: arm after actual World progress; require a decoded queued CPU_READ and matching original-producer journal request before setting terminal failure, retain the original failed-wait ticket, forbid new native readbacks/materializations/replies and require cleared pending waits/surfaces. Public Hard Restart must create distinct identities and a fresh World with normal Quit and zero graphics owners/forwarding. Diagnostic observation and bounded waits are explicit. No successful Save/Load, original ABI/pixel equivalence, arbitrary concurrent-failure exclusion, physical context loss, saved/in-place/media recovery or repeated-run reliability.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/current_engine_sources_observed",
+          "equals": true
+        },
+        {
+          "pointer": "/new_original_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/original_acquisition_success",
+          "equals": false
+        },
+        {
+          "pointer": "/engine_journey/live_pending_cpu_read_fault_proved",
+          "equals": true
+        },
+        {
+          "pointer": "/engine_journey/no_new_reply",
+          "equals": true
+        },
+        {
+          "pointer": "/engine_journey/no_new_readback",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "PR04.terminal-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-pending-read-results-20261104/terminal-controls-binding-01.json",
+      "sha256": "4a912ee54e9b7eeed08ef4985e749766634a34bc6fe95639752a56ceaf44efee",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "At a queued V5 CPU_READ boundary and immediately before reply publication, check the current mapped command producer identity/state/cancellation without advancing its cursors. An already observed failed/cancelled producer must not cause a native readback or new success reply; close pending waits and retire native surfaces. Checkpoints do not claim atomic exclusion of failures racing after the final check, original CPU authority, saved recovery or original ABI.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/results/terminal_readbacks",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -408865,6 +408983,37 @@
       "evidence": [
         "WR04.terminal-cpu01"
       ]
+    },
+    {
+      "id": "SC.worker-pending-cpu-pr04",
+      "level": "live_observation",
+      "scope": "One opt-in software native-only dedicated-worker decoded V5 / transport V3 journey: arm after actual World progress; require a decoded queued CPU_READ and matching original-producer journal request before setting terminal failure, retain the original failed-wait ticket, forbid new native readbacks/materializations/replies and require cleared pending waits/surfaces. Public Hard Restart must create distinct identities and a fresh World with normal Quit and zero graphics owners/forwarding. Diagnostic observation and bounded waits are explicit. No successful Save/Load, original ABI/pixel equivalence, arbitrary concurrent-failure exclusion, physical context loss, saved/in-place/media recovery or repeated-run reliability.",
+      "behaviors": [
+        "NP.worker-pending-cpu-fault",
+        "NP.native-only-generation-restart"
+      ],
+      "tests": [
+        "tools/test-native-owned-campaign.py",
+        "apps/qt-shell/resident_restart_test.cpp",
+        "tests/test-native-live-restart.py"
+      ],
+      "evidence": [
+        "PR04.pending-cpu01"
+      ]
+    },
+    {
+      "id": "SC.terminal-cpu-current-pr04",
+      "level": "headless",
+      "scope": "At a queued V5 CPU_READ boundary and immediately before reply publication, check the current mapped command producer identity/state/cancellation without advancing its cursors. An already observed failed/cancelled producer must not cause a native readback or new success reply; close pending waits and retire native surfaces. Checkpoints do not claim atomic exclusion of failures racing after the final check, original CPU authority, saved recovery or original ABI.",
+      "behaviors": [
+        "NP.cpu-read-terminal-publication"
+      ],
+      "tests": [
+        "tests/native-cpu-materialization-test.cpp"
+      ],
+      "evidence": [
+        "PR04.terminal-controls01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -410682,7 +410831,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-a1e604b47b573d9745591b700a5979faf64d65f133e99ed8f8da1921726a620b.json",
-    "sha256": "a1e604b47b573d9745591b700a5979faf64d65f133e99ed8f8da1921726a620b"
+    "path": "research/runtime/coverage/source-index-e7eebb5d83e03244a5b87f19e954d49e33d29a593f33a76a34e31d73f8ab2794.json",
+    "sha256": "e7eebb5d83e03244a5b87f19e954d49e33d29a593f33a76a34e31d73f8ab2794"
   }
 }

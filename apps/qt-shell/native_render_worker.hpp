@@ -29,6 +29,8 @@ public:
     const mnm::render::CommandResult* result() const{return status_.hasResult?&status_.result:nullptr;}
     QJsonObject report() const{return status_.report;}
     std::function<void()> framePresented;
+    // Immutable after create/first poll; invoked only by the render worker.
+    std::function<void(const mnm::render::SurfaceCommand&,const mnm::render::CommandResult&)> cpuReadQueued;
     std::function<void(LiveCommandSession::State)> stateChanged;
 private:
     std::atomic<std::uint64_t> pendingCpuRead_{0};

@@ -75,8 +75,9 @@ bool LiveCommandRenderer::poll(quint32 budget){
                 remaining-=quint32(bytes.size());
                 if(!bytes.isEmpty())acceptance_.append("fragment",{},bytes);
                 pending_=decoder_->append(bytes);cursor_=0;
-                if(cpuReadPending)for(const auto& command:pending_)if(command.operation==MNM_RENDER_STREAM_V5_OPERATION_CPU_READ){
-                    cpuReadPending(std::uint64_t(command.words[1])|(std::uint64_t(command.words[2])<<32));
+                if(cpuReadPending||cpuReadQueued)for(const auto& command:pending_)if(command.operation==MNM_RENDER_STREAM_V5_OPERATION_CPU_READ){
+                    if(cpuReadPending)cpuReadPending(std::uint64_t(command.words[1])|(std::uint64_t(command.words[2])<<32));
+                    if(cpuReadQueued)cpuReadQueued(command,consumer_->result());
                     channel_.requireProducerHealthy();break;
                 }
                 if(bytes.isEmpty())break;

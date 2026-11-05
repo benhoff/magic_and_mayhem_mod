@@ -87,5 +87,59 @@ class RestartAcceptance(unittest.TestCase):
             self.assertEqual(p.returncode,2)
             self.assertIn('Independent World requires',p.stderr)
 
+    def pending(self):
+        flow=self.worker();flow['pending_cpu_read_requested']=True
+        w=[2,1,0,42,800,600,3,0,7,0];r=[0]*32
+        r[0]=1;r[1]=2;r[2]=99;r[4]=42;r[5]=1;r[6]=3;r[14]=0x1234;r[15]=2;r[17]=100;r[18]=1;r[19]=800;r[20]=600;r[21]=3;r[23]=7
+        q=dict(schema=1,command_stream_version=5,transport_version=3,worker_thread=True,injected=True,reason=5,
+               sequence=10,request=w,original_request=r,original_refusal=[0x434d4e4d,1,7,0x1234,1,1,100,42],
+               original_wait=[],readbacks_before='0',materializations_before='0',reply_sha256_before='')
+        flow['events'][3]['pending_cpu']=q
+        flow['events'][4]['pending_cpu']=dict(q,finalized=True,no_new_readback=True,no_new_reply=True,pending_cleared=True,remaining_surfaces=0)
+        flow['events'].insert(3,dict(step='pending-read-armed',milliseconds=2500,trigger='public-mini-save'))
+        return flow
+
+    def test_pending_original_request_and_failed_wait_join(self):
+        result=validate_flow(self.pending(),expected_owner='dedicated-thread',expected_stream_version=5,pending_cpu=True)
+        self.assertTrue(result['live_pending_cpu_read_fault_proved'])
+        self.assertEqual(result['pending_cpu_ticket'],1)
+
+    def test_pending_rejects_each_missing_or_changed_witness(self):
+        initial=self.pending()
+        for event in [4,5]:
+            for key in list(initial['events'][event]['pending_cpu']):
+                flow=copy.deepcopy(initial);del flow['events'][event]['pending_cpu'][key]
+                with self.subTest(event=event,key=key),self.assertRaises((ValueError,KeyError)):
+                    validate_flow(flow,expected_owner='dedicated-thread',expected_stream_version=5,pending_cpu=True)
+        for field,index in [('request',1),('original_request',18),('original_refusal',5)]:
+            flow=copy.deepcopy(initial)
+            for event in [4,5]:flow['events'][event]['pending_cpu'][field][index]+=1
+            with self.subTest(field=field),self.assertRaises(ValueError):
+                validate_flow(flow,expected_owner='dedicated-thread',expected_stream_version=5,pending_cpu=True)
+
+    def test_pending_explicit_wait_requires_diagnostic(self):
+        flow=self.pending()
+        for index in [4,5]:flow['events'][index]['pending_cpu']['original_refusal'][2]=13
+        with self.assertRaises(ValueError):validate_flow(flow,expected_owner='dedicated-thread',expected_stream_version=5,pending_cpu=True)
+        wait=[0x574d4e4d,1,1,0,99,0,0,0,1,1,0,0,0,3,0,0]
+        for index in [4,5]:flow['events'][index]['pending_cpu']['original_wait']=wait
+        self.assertTrue(validate_flow(flow,expected_owner='dedicated-thread',expected_stream_version=5,pending_cpu=True)['success'])
+
+    def test_pending_cannot_use_legacy_or_world_only_validation(self):
+        with self.assertRaises(ValueError):validate_flow(self.pending(),expected_owner='dedicated-thread',expected_stream_version=5)
+        with self.assertRaises(ValueError):validate_flow(self.worker(),expected_owner='dedicated-thread',expected_stream_version=5,pending_cpu=True)
+
+
+    def test_pending_keeps_canonical_and_interface_pointers_independent(self):
+        for pointer in [0x1234+12,0x98760]:
+            flow=self.pending()
+            for index in [4,5]:flow['events'][index]['pending_cpu']['original_refusal'][3]=pointer
+            self.assertTrue(validate_flow(flow,expected_owner='dedicated-thread',expected_stream_version=5,pending_cpu=True)['success'])
+        for key,value in [(3,0),(5,2),(7,43)]:
+            flow=self.pending()
+            for index in [4,5]:flow['events'][index]['pending_cpu']['original_refusal'][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):
+                validate_flow(flow,expected_owner='dedicated-thread',expected_stream_version=5,pending_cpu=True)
+
 
 if __name__ == '__main__':unittest.main()

@@ -26220,3 +26220,37 @@ exclusion, physical context loss, saved/in-place/media recovery, original ABI
 or whole renderer replacement is asserted. Shared-source changes leave prior
 software storage/pixel evidence historical for this phase. Next: a separately
 budgeted actual-game worker fault at a witnessed pending CPU_READ boundary.
+
+## Witnessed worker pending CPU read — 2026-11-04
+
+`NP.worker-pending-cpu-fault` adds an opt-in worker-side queued-read observer and
+bounded public Save/fault/Hard Restart driver. One charged native-only software
+journey witnesses V5ticket1/surface86/800x600/history7 and a matching original
+GetDC request/refusal before readback. Terminal checks find no new reply or
+native readback/materialization, cleared wait and zero surfaces. Stable cleanup
+lasts532ms; distinct fresh identities, old-launcher absence, normal Quit/exit0,
+7balanced Worlds and zero graphics owners/forwarding pass. Both World-point
+CPU counts remain0; the later decoded request/journal join supplies the new proof.
+
+The automated acquisition remains a retained analysis failure: its validator
+wrongly equated canonical journal and raw interface pointers. Only two Python
+analysis/test files changed after execution.26current Python controls and the
+complete retained-record acceptance replay pass over unchanged native engine,
+Qt/hook and compiler sources (`PR04.pending-cpu01`). No second original run or
+old hash refresh is asserted. An initial replay refusal is retained because the
+failed launcher lacks a process-exit receipt; that exit status stays unobserved.
+The failed generation is restarted without normal-completion credit.
+
+Actual GL failed/cancelled boundary and fresh-read controls compare1,920,000WORDs;
+worker-thread adapter controls and4terminal/fresh-worker cases pass. The headless
+checkpoint policy (`PR04.terminal-controls01`) stays independent. Initial missing
+Python fields/build include and all exact intermediate source phases remain
+retained.520raw artifacts and3completed trees have verified dual-store and real-
+restore custody. See `rendering-pending-read-20261104.md` and SQLite-backed
+`rendering-pending-read-results-20261104/batch-closeout-01.json`.
+
+No successful Save/Load, stable pointer alias ABI, original upstream semantics,
+pixels, arbitrary race exclusion, physical context loss, saved/in-place/media
+recovery, repeated-run or nominal campaign acceptance. Earlier source-bound
+results retain their historical fingerprints. Next: ordinary worker Save/Load
+with successful CPU replies and independent request/completion checks.
