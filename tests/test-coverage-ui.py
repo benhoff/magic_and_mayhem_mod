@@ -12,6 +12,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from coverage_ui import binary_view, enrich_behaviors, measure, safe_file, summarize, union_size, track_view, spell_view, request_authority_allowed, CoverageServer, ROOT, TRACKS
+from coverage_rendering_artifacts import rendering_artifacts_view, artifact_files
 
 
 def behavior(bid='one', kind='recovered', implementation='partial'):
@@ -21,6 +22,67 @@ def behavior(bid='one', kind='recovered', implementation='partial'):
                                    for stage in ('implementation', 'comparison', 'integration', 'replacement')},
             'status': {'understanding': 'partial', 'implementation': implementation,
                        'comparison': 'none', 'integration': 'none', 'replacement': 'none'}}
+
+
+class RenderingArtifactsTest(unittest.TestCase):
+    def setUp(self):
+        self.definition = json.loads((ROOT / TRACKS).read_text())
+        closure = json.loads((ROOT / self.definition['rendering_artifacts']['closure']).read_text())
+        gaps = closure['required_gap_register']
+        self.rows = []
+        for cfg in closure['completion_contract']['configurations']:
+            for journey in gaps['journeys']:
+                for leaf in journey['subrequirements']:
+                    self.rows.append({'id': 'journey.' + journey['id'] + '.' + leaf['id'],
+                                      'configuration': cfg['id'], 'state': 'pending', 'owner_task': 'EP04'})
+            for kind in ('operations', 'gates'):
+                for row in gaps[kind]:
+                    self.rows.append({'id': ('operation.' if kind == 'operations' else 'gate.') + row['id'],
+                                      'configuration': cfg['id'], 'state': 'pending', 'owner_task': 'EP06'})
+        import hashlib
+        self.report = {'requirements': self.rows, 'sources': {TRACKS: hashlib.sha256((ROOT/TRACKS).read_bytes()).hexdigest()},
+                       'scope': 'Fixture only', 'decisions': {'supported-player': 'pending', 'original-recovery': 'pending'},
+                       'passed_requirements': 999}
+
+    def view(self):
+        with patch('coverage_rendering_artifacts.read_json', return_value=self.report):
+            return rendering_artifacts_view(ROOT, self.definition)
+
+    def test_inventory_and_scoped_passes_do_not_complete_plan(self):
+        self.rows[0]['state'] = 'passed'
+        view = self.view()
+        self.assertEqual(view['gaps']['leaves'], 47)
+        self.assertEqual(view['progress']['total'], 156)
+        self.assertEqual(view['progress']['counts'], {'passed': 1, 'pending': 155})
+        self.assertEqual(view['progress']['state'], 'matching_sources')
+        ep04 = next(t for t in view['plan']['tasks'] if t['id'] == 'EP04')
+        self.assertEqual(ep04['recorded']['passed'], 1)
+        self.assertEqual(ep04['state'], 'planned')
+        self.assertEqual(view['progress']['decisions']['supported-player'], 'pending')
+        self.assertIn(view['closure'], artifact_files(view))
+        self.assertIn(view['progress']['record'], artifact_files(view))
+
+    def test_drift_preserves_historical_results_and_failures(self):
+        self.rows[0]['state'] = 'failed'
+        self.report['sources'][TRACKS] = '0' * 64
+        view = self.view()
+        self.assertEqual(view['progress']['state'], 'historical')
+        self.assertEqual(view['progress']['changed_sources'], [TRACKS])
+        self.assertEqual(view['progress']['counts']['failed'], 1)
+
+    def test_missing_proof_does_not_break_roadmap(self):
+        with patch('coverage_rendering_artifacts.read_json', side_effect=ValueError('Missing SQLite payload')):
+            view = rendering_artifacts_view(ROOT, self.definition)
+        self.assertEqual(view['progress']['state'], 'unavailable')
+        self.assertNotIn('counts', view['progress'])
+        self.assertEqual(len(view['plan']['tasks']), 12)
+        self.assertTrue(all(j['recorded']['total'] == 0 for j in view['gaps']['journeys']))
+
+    def test_duplicates_and_missing_rows_are_not_accepted(self):
+        self.rows[-1] = self.rows[0]
+        self.assertEqual(self.view()['progress']['state'], 'unavailable')
+        self.rows.pop()
+        self.assertEqual(self.view()['progress']['state'], 'unavailable')
 
 
 class MetricsTest(unittest.TestCase):

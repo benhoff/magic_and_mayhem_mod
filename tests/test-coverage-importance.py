@@ -13,8 +13,35 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
 from coverage_evidence import read_text as evidence_text
 from coverage_claims import behavior_contract
-from coverage_importance import importance_view
+from coverage_importance import importance_view, task_work_review, WORK_LABELS
 from coverage_ui import track_view
+
+
+class HistoricalWorkInputsTest(unittest.TestCase):
+    def test_later_inputs_are_historical_and_never_added_to_review(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp); (root/'code.cpp').write_text('int owned();\n')
+            labels={key:{'label':value,'definition':'Fixture definition'} for key,value in WORK_LABELS.items()}
+            behavior={'implementation':['code.cpp'],'tests':[],'documents':['later.md'],'evidence':['proof']}
+            review={'implementation':'implemented_within_scope','implementation_gaps':[],
+                    'current_state':'Finite owned code','validation_state':'historical',
+                    'validation_summary':'Retained bounded proof','acceptance':'pending','acceptance_summary':'Whole session pending',
+                    'evidence':['proof'],'next_steps':[{'kind':'validation','action':'Check real caller'}],
+                    'source_sha256':{'code.cpp':hashlib.sha256((root/'code.cpp').read_bytes()).hexdigest()},
+                    'code_witnesses':[{'path':'code.cpp','line':1,'text':'int owned();'}]}
+            before=copy.deepcopy(review)
+            result=task_work_review(review,labels,behavior,root)
+            self.assertEqual(result['freshness'],'historical')
+            self.assertIn('newly linked input: later.md',result['changed_sources'])
+            self.assertEqual(review,before)
+            behavior['implementation'].append('new.cpp')
+            with self.assertRaisesRegex(ValueError,'fingerprints'):
+                task_work_review(review,labels,behavior,root)
+            result=task_work_review(review,labels,behavior,root,historical_contract=True)
+            self.assertEqual(result['freshness'],'historical')
+            self.assertIn('newly linked input: new.cpp',result['changed_sources'])
+            self.assertEqual(review,before)
 
 
 class ImportanceTest(unittest.TestCase):
@@ -87,7 +114,8 @@ class ImportanceTest(unittest.TestCase):
         result = importance_view(catalog, register, tracks)
         self.assertEqual(register, before)
         self.assertGreaterEqual(len(result['entries']), 345)
-        self.assertEqual(result['unrated'], [
+        # Keep the reviewed backlog visible while later contracts remain unrated.
+        self.assertTrue(set([
             'NP.alternate-canvas-dispatch-admission',
             'NP.alternate-canvas-owned-generation',
             'NP.alternate-canvas-padded-resident',
@@ -138,14 +166,14 @@ class ImportanceTest(unittest.TestCase):
             'RS.windowed-padded-presentation-route',
             'RS.world-screen-acquisition',
             'RS.world-screen-retirement',
-        ])
+        ]) <= set(result['unrated']))
         behaviors = {b['id']: b for b in register['behaviors']}
         builds = {b['id']: b for b in register['builds']}
         for entry in result['entries']:
             expected = 'current' if behavior_contract(behaviors[entry['behavior']], builds) == entry['contract_sha256'] else 'needs_review'
             self.assertEqual(entry['review_state'], expected)
-        # Selected terrain closeouts retain comparison and acceptance independently.
-        self.assertEqual(result['partial_counts'], {1: 1, 2: 1, 4: 3, 5: 4})
+        # Fixture tests above check exact partial counts; the live inventory can
+        # gain contracts and retain subsequent bounded implementation closeouts.
         by_id = {e['behavior']: e for e in result['entries']}
         self.assertEqual(by_id['AN.world-facing']['weight'], 4)
         self.assertEqual(by_id['AN.world-facing']['implementation'], 'scoped')

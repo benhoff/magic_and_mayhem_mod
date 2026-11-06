@@ -78,6 +78,17 @@ class ReviewTest(unittest.TestCase):
         self.assertNotIn('new.cpp',row['reviewed_paths'])
         self.assertEqual(self.r,before)
         self.assertEqual((self.root/'review.json').read_bytes(),record)
+    def test_new_document_links_do_not_rewrite_or_certify_old_review(self):
+        (self.root/'later.md').write_text('Later research with pending proof.\n')
+        self.b['documents'].append('later.md')
+        before=copy.deepcopy(self.r);record=(self.root/'review.json').read_bytes()
+        row=load_reviews(self.root,self.r)[0]['entries'][0]
+        self.assertTrue(row['contract_current'])
+        self.assertEqual(row['freshness'],'historical')
+        self.assertIn('newly linked input: later.md',row['changed_sources'])
+        self.assertNotIn('later.md',row['reviewed_paths'])
+        self.assertEqual(self.r,before)
+        self.assertEqual((self.root/'review.json').read_bytes(),record)
     def test_paths_cannot_open_original_working_or_escape(self):
         for p in ['../escape','/etc/passwd','original/game.exe','working/a','x/../original/game.exe']:
             with self.subTest(path=p),self.assertRaises(ValueError):safe(self.root,p)

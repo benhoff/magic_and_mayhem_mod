@@ -26367,3 +26367,30 @@ pre-Save admission/reliability and other unresolved boundaries stay open. See
 [evidence applicability](../runtime/evidence-applicability-20261105.md) and
 [workflow](../../docs/evidence-applicability.md). SQLite reports retain exact
 source/status anchors, superseded reviews and controls without payload duplication.
+
+
+## Native-rendering artifact dashboard — 2026-11-03
+
+The read-only coverage UI now presents completion artifacts 2, 3 and 4 from the
+authored closure map, the explicitly selected SQLite storage acceptance snapshot
+and dated task updates. It separates defined contract/gap/plan work from the
+selected 8/156 recorded passes, 148 pending obligations, broader task closure and
+the pending supported-player/original-recovery decisions. Changed report source
+bindings label the snapshot historical; missing proof supplies no inferred count.
+Per-configuration leaf states, task dependencies/deliverables/exits and later COPY,
+CPU-reader/DC and campaign diagnostics remain visible without adding unjoined
+evidence to the acceptance count. UI tests validate presentation only; no engine
+status, original hash or historical evidence fingerprint is promoted or refreshed.
+
+
+### Pending dashboard/accounting work reviewed — 2026-11-05
+
+The user authorizes committing the previously preserved dashboard, historical
+review readers, SQLite workflow guidance and exact source-census references. The
+old pending AS.tag entry predates the later installed sprite-player closeout; the
+current accepted AS.tag definition/status/evidence is retained unchanged. Every
+original pending byte, including that older entry, is retained in the paired
+snapshot linked from `rendering-closeout-bite-results-20261105/pending-reconciliation-01.json`.
+Headless dashboard/control tests validate presentation and historical-input
+handling; browser preview and engine execution remain separate. No original
+fingerprint or engine milestone is renewed by this bookkeeping commit.

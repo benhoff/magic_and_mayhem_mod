@@ -73,7 +73,11 @@ def load_reviews(root,register):
             required=set(b['implementation'])|set(b['tests'])|set(b['documents'])|set(b.get('validation_dependencies',[]))
             contract_current=behavior_contract(b,builds)==e['contract_sha256']
             missing=sorted(required-set(e['reviewed_paths']))
-            if (missing and contract_current) or not set(e['reviewed_paths']).issubset(sources):
+            # Research links are outside behavior_contract(). A newly attached
+            # document can leave that contract identical without being reviewed
+            # by this immutable snapshot. Retain it as historical input drift.
+            missing_contract_inputs=set(missing)-set(b['documents'])
+            if (missing_contract_inputs and contract_current) or not set(e['reviewed_paths']).issubset(sources):
                 raise ValueError('Incomplete reviewed source paths: '+bid)
             changed=[p for p in e['reviewed_paths'] if hashes[p]!=sources[p]]
             # A historical contract cannot review subsequently linked inputs.

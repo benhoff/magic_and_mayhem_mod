@@ -56,6 +56,18 @@ IDs include internal/unnamed entries and are not a count of distinct playable
 spells. No slot is classified unreachable from its name. See the
 [spell accounting review](../../research/runtime/spell-progress-accounting-20261020.md).
 
+The **Native rendering: artifacts 2, 3 & 4** panel leads the rendering page.
+It shows the completion contract and target configurations, the mapped
+journey/operation/gate gaps, and the execution plan with task dependencies,
+recorded updates, remaining proof and closure conditions. Expand each artifact
+for details and links. Counts come from the selected immutable SQLite acceptance
+snapshot configured in `tracks.json`; they count proof obligations, not features,
+effort or whole-renderer completion. Changed report source bindings mark results
+historical. Missing evidence displays unavailable rather than zero passes.
+Later scoped execution notes stay separate from that snapshot's admitted rows;
+refreshing the audit never adds them together or promotes final acceptance.
+Curated notes and the selected snapshot require explicit upkeep in `tracks.json`.
+
 The **Native rendering** page separates **Implementation** from **Validation**.
 Its **Critical partial contracts: what remains** panel assigns each current
 Critical partial contract one primary need: missing implementation, original
