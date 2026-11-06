@@ -387,4 +387,90 @@ class LightingCloseoutTests(unittest.TestCase):
         parent['requirements'][0]['state']='passed'
         with self.assertRaises(ValueError):self.join.lighting_menu_rows(plan,parent,runs)
 
+
+class PreferencesResumeCloseoutTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        SustainedCloseoutTests.setUpClass();cls.join=SustainedCloseoutTests.join
+
+    def case(self):
+        def ready(stage,screen,ack,generation):return dict(stage=stage,screen=screen,ack=ack,generation=generation,thread=1)
+        def click(stage,action,t):return dict(event='click',stage=stage,action=action,time_ms=t,capture_begin_ms=t,capture_end_ms=t+1,injected_capture_delay_ms=0)
+        def marker(stage,n,name):return dict(event='mini-input',stage=stage,source_generation=str(n),record=name)
+        states=[ready(21,10,4,16),click(21,'preferencesCancel',1),marker(21,10,'cancel1.json'),ready(22,17,5,22),
+                ready(23,10,6,26),click(23,'preferencesCancel',20),marker(23,30,'cancel2.json'),ready(4,17,7,32),
+                ready(15,10,14,69),click(15,'preferencesOk',40),ready(16,3,15,73),ready(17,10,16,77),click(17,'preferencesOk',50),
+                ready(18,3,17,81),ready(8,12,18,85),click(8,'loadGameLoad',55),marker(9,80,'reload.json'),ready(10,17,19,93)]
+        flow=dict(success=True,normal_quit=True,resident_world_requested=True,preferences_cancel_verified=True,display_rebuilds=2,reloaded_from_main=True,native_command_fallback=False,native_error='',native_recoveries=0,states=states,checkpoints=[dict(phase='after-recreate-load',native_active=True,fallback=False,error='',source_generation='80',source_base='60',frames=1000,frame_base=900)])
+        records={}
+        for name,t in [('cancel1.json',10),('cancel2.json',30),('reload.json',60)]:
+            events=[dict(event='escape',down=True,time_ms=t,input_words={'4':10,'5':1}),dict(event='escape',down=False,time_ms=t+1,input_words={'4':12,'5':0}),dict(event='complete',time_ms=t+2,input_words={'4':14,'5':0})]
+            records[name]=dict(success=True,mode='mini',skip_click=True,input_active_checked=True,escape_sent=True,viewport_pixels=[800,600],tutorial_actions=[],events=events)
+        compared=[dict(world=n,paint=n,pixels=480000,mismatching_pixels=0,actual_sha256='a'*64,expected_sha256='a'*64) for n in [10,11,12,30,31,32,80,81,82]]
+        resources=[dict(generation=i,width=800,height=600,creates=1,deletes=0,surfaces=1,created_bytes=960000,deleted_bytes=0,logical_surface_bytes=960000,palette_creates=0,palette_deletes=0,palettes=0) for i in range(1,83)]
+        return [flow,records,compared,resources,(800,600)]
+
+    def test_all_three_returns_bind_original_input_fresh_output_and_resource_history(self):
+        result=self.join.preferences_resume_state(*self.case())
+        self.assertTrue(result['verified']);self.assertEqual(result['presentations'],9)
+        self.assertEqual([p['source_marker'] for p in result['returns']],[10,30,80])
+        self.assertEqual([p['serialized_source_baseline'] for p in result['returns']],[None,None,60])
+
+    def test_physical_edges_active_input_and_no_scene_click_are_required(self):
+        for field,value in [('success',False),('skip_click',False),('input_active_checked',False),('escape_sent',False),('viewport_pixels',[640,480]),('tutorial_actions',[{'action':'click'}])]:
+            args=self.case();args[1]['cancel1.json'][field]=value
+            with self.subTest(field=field),self.assertRaises(ValueError):self.join.preferences_resume_state(*args)
+        for index,key,value in [(0,'5',0),(0,'4',11),(2,'4',8)]:
+            args=self.case();args[1]['cancel1.json']['events'][index]['input_words'][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):self.join.preferences_resume_state(*args)
+        args=self.case();args[1]['cancel1.json']['events'][1]['down']=True
+        with self.assertRaises(ValueError):self.join.preferences_resume_state(*args)
+
+    def test_original_ack_thread_and_both_cancel_apply_paths_are_required(self):
+        for index,key,value in [(3,'ack',4),(3,'thread',2),(7,'screen',3),(17,'ack',18)]:
+            args=self.case();args[0]['states'][index][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):self.join.preferences_resume_state(*args)
+        for index in [1,5,9,12,14,16]:
+            args=self.case();args[0]['states'].pop(index)
+            with self.subTest(index=index),self.assertRaises((ValueError,KeyError)):self.join.preferences_resume_state(*args)
+
+    def test_cached_partial_or_mismatched_presentations_do_not_close_resume(self):
+        args=self.case();args[2].pop()
+        with self.assertRaises(ValueError):self.join.preferences_resume_state(*args)
+        for key,value in [('world',9),('mismatching_pixels',1),('pixels',0),('actual_sha256','b'*64)]:
+            args=self.case();args[2][0][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):self.join.preferences_resume_state(*args)
+        args=self.case();args[0]['checkpoints'][0]['source_base']='80'
+        with self.assertRaises(ValueError):self.join.preferences_resume_state(*args)
+        args=self.case();args[0]['resident_world_requested']=False
+        with self.assertRaises(ValueError):self.join.preferences_resume_state(*args)
+        args=self.case();args[0]['checkpoints'][0]['source_base']='-1'
+        with self.assertRaises(ValueError):self.join.preferences_resume_state(*args)
+
+    def test_resumed_resource_generation_and_conservation_must_match(self):
+        for key,value in [('generation',8),('width',640),('surfaces',0),('logical_surface_bytes',1),('palettes',1)]:
+            args=self.case();args[3][9][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):self.join.preferences_resume_state(*args)
+
+    def rows(self):
+        plan=json.loads((ROOT/'docs/native-rendering-closure.json').read_text())
+        allowed=set(self.join.SUSTAINED_LEAVES)|set(self.join.CLEANUP_LEAVES)|set(self.join.STORAGE_LEAVES)|set(self.join.LIGHTING_MENU_LEAVES)
+        parent=dict(dossier_identity=self.join.fingerprint(self.join.requirements(plan)),passed_requirements=22,requirements=[dict(r,state='passed' if r['id'] in allowed else 'pending') for r in self.join.requirements(plan)])
+        runs=[dict(identity=str(i),domain=(c,z),resume=dict(verified=True),pair={},provider='controlled') for i,(c,z) in enumerate((c,z) for c in ('player-default','player-software') for z in ((640,480),(800,600)))]
+        return plan,parent,runs
+
+    def test_only_two_resume_rows_are_added_and_all_parent_rows_stay_exact(self):
+        plan,parent,runs=self.rows();before=copy.deepcopy(parent);rows=self.join.preferences_resume_rows(plan,parent,runs)
+        self.assertEqual(sum(r['state']=='passed' for r in rows),24);self.assertEqual(parent,before)
+        for a,b in zip(parent['requirements'],rows):
+            if a['id']!=self.join.RESUME_LEAF:self.assertEqual(a,b)
+
+    def test_domain_aliasing_unverified_proof_and_wrong_parent_inventory_refuse(self):
+        plan,parent,runs=self.rows()
+        for bad in [runs[:-1],runs+[runs[0]],runs[:3]+[runs[0]],runs[:3]+[dict(runs[-1],resume=dict(verified=False))]]:
+            with self.assertRaises(ValueError):self.join.preferences_resume_rows(plan,parent,bad)
+        passed=next(v for v in parent['requirements'] if v['state']=='passed');pending=next(v for v in parent['requirements'] if v['state']=='pending')
+        passed['state']='pending';pending['state']='passed'
+        with self.assertRaises(ValueError):self.join.preferences_resume_rows(plan,parent,runs)
+
 if __name__=='__main__':unittest.main()

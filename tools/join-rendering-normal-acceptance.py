@@ -500,16 +500,158 @@ def lighting_menu_progress(plan,reader,parent_evidence):
         decisions={'supported-player':'pending','original-recovery':'pending'},historical_failures_retired=False,
         scope='Preserve the accepted sixteen cleanup/storage/sustained/setup/Quit rows; renew four bounded initial-campaign/resolution rows and close two selected native-lighting leaves. Both explicit targets at both actual sizes, using retained channels/outcomes and independently compared World captures. Lighting failure injection, changing-light scenes, original lighting-call equivalence, other134rows and both final decisions remain separate.')
 
+
+RESUME_PRODUCERS={
+ 'apps/qt-shell/campaign_storage_test.cpp':'ca6dfae748bb5b0d59dedc986b985fac2b5689c5001b5829d946a66a0922a658',
+ 'apps/qt-shell/campaign_smoke_test.hpp':'15bb571a2d5374746c29a0adc0528e030e3374ef3937ecac72c79817adb4be26',
+ 'apps/qt-shell/main.cpp':'310afc28328ffaa0cb3810cb10e4b9e84b5ebcaedf93c8b4cd3171b91c01859d',
+ 'tools/menu-storage-input.py':'6fc4434d85949f67f62c754b7b811f48a7cc585cd86e8b44134745523b9a9f52'}
+RESUME_LEAF='journey.pause-preferences.resume'
+
+
+def preferences_resume_state(flow,records,compared,resources,size):
+    """The frozen producer admits each input only after fresh source/output progress.
+
+    Cancel baselines were not serialized. Reaching its stage21/23 input branch
+    proves the reviewed active/+11frames/+3sources/6s predicate, not a measured
+    numeric baseline. Raw physical edges and original ready-state ACKs supply
+    independent effect; matching presented generations supply complete output.
+    """
+    require(flow['success'] is True and flow['normal_quit'] is True and flow['resident_world_requested'] is True and flow['preferences_cancel_verified'] is True
+            and flow['display_rebuilds']==2 and flow['reloaded_from_main'] is True
+            and flow['native_command_fallback'] is False and not flow['native_error'] and flow['native_recoveries']==0,
+            'Incomplete native Preferences continuation')
+    states=flow['states'];ready=[s for s in states if 'event' not in s]
+    threads={s['thread'] for s in ready};require(len(threads)==1 and next(iter(threads))>0,'Changed original menu thread')
+    cancels=[i for i,s in enumerate(states) if s.get('event')=='click' and s.get('action')=='preferencesCancel']
+    applies=[i for i,s in enumerate(states) if s.get('event')=='click' and s.get('action')=='preferencesOk']
+    require([states[i]['stage'] for i in cancels]==[21,23] and [states[i]['stage'] for i in applies]==[15,17]
+            and cancels[-1]<applies[0]<applies[-1],'Missing Cancel/Apply sequence')
+    checkpoints={v['phase']:v for v in flow['checkpoints']};cp=checkpoints['after-recreate-load']
+    require(cp['native_active'] is True and cp['fallback'] is False and not cp['error']
+            and counter(cp['source_generation'])>=counter(cp['source_base'])+3 and cp['frames']>cp['frame_base']+10,
+            'Apply/reload did not import fresh native Worlds')
+    proofs=[]
+    for phase,start,expected_stage in [(21,cancels[0],22),(23,cancels[1],4),(9,applies[-1],10)]:
+        action=states[start]
+        require(action.get('injected_capture_delay_ms')==0 and action['time_ms']<=action['capture_begin_ms']<=action['capture_end_ms'],
+                'Diagnostic/malformed action capture')
+        end=next((i for i in range(start+1,len(states)) if 'event' not in states[i] and states[i]['screen']==17),None)
+        require(end is not None and states[end]['stage']==expected_stage,'No original Mini return after resumed physical input')
+        destination=states[end]
+        selected=[(i,s) for i,s in enumerate(states[start+1:end],start+1) if s.get('event')=='mini-input' and s['stage']==phase]
+        require(selected,'Missing post-action input marker');_,marker=selected[-1];n=counter(marker['source_generation'])
+        record=records[marker['record']]
+        require(record['success'] is True and record['mode']=='mini' and record['skip_click'] is True
+                and record['input_active_checked'] is True and record['escape_sent'] is True
+                and record['viewport_pixels']==list(size) and not record['tutorial_actions'],
+                'Resume input was missing, inactive or mixed with a scene click')
+        edges=record['events'];require([v['event'] for v in edges]==['escape','escape','complete']
+            and [v['down'] for v in edges[:2]]==[True,False] and action['capture_end_ms']<=edges[0]['time_ms']<edges[1]['time_ms']<=edges[2]['time_ms'],
+            'Physical Escape ordering differs')
+        words=[v['input_words'] for v in edges];sequences=[v['4'] for v in words]
+        require(words[0]['5']==1 and all(type(v) is int and v>0 and v%2==0 for v in sequences)
+                and sequences==sorted(sequences),'Inactive/unstable resumed native input')
+        if phase in (21,23):
+            opening=next((s for s in reversed(states[:start]) if 'event' not in s),None)
+            require(opening and opening['screen']==10 and opening['stage']==phase and destination['ack']==opening['ack']+1
+                    and destination['generation']>opening['generation'],'Preferences Cancel original ACK/generation differs')
+            baseline=None
+        else:
+            loads=[s for s in states[start+1:end] if 'event' not in s and s['screen']==12 and s['stage']==8]
+            require(len(loads)==1 and destination['ack']==loads[0]['ack']+1 and destination['generation']>loads[0]['generation']
+                    and n>=counter(cp['source_generation']),'Main Apply/Load ACK or fresh input source differs')
+            baseline=counter(cp['source_base'])
+        matches=[r for r in compared if n<=r['world']<=n+2]
+        require({r['world'] for r in matches}=={n,n+1,n+2} and all(r['pixels']>0 and r['mismatching_pixels']==0
+                and r['actual_sha256']==r['expected_sha256'] for r in matches),'Missing three fresh independently compared presented Worlds')
+        conserved=[]
+        for generation in (n,n+1,n+2):
+            require(0<generation<=len(resources),'Resumed resource generation missing');r=resources[generation-1]
+            require(r['generation']==generation and (r['width'],r['height'])==tuple(size)
+                    and r['creates']-r['deletes']==r['surfaces']>0
+                    and r['created_bytes']-r['deleted_bytes']==r['logical_surface_bytes']>0
+                    and r['palette_creates']-r['palette_deletes']==r['palettes']>=0,'Resumed resource identity/conservation differs')
+            conserved.append(r)
+        proofs.append(dict(phase='cancel-'+str(phase) if phase!=9 else 'main-apply-reload',verified=True,
+            input_record=marker['record'],source_marker=n,serialized_source_baseline=baseline,
+            freshness_basis='Frozen actual producer requires active native presentation, >10 new frames, >=3 new source imports and >=6s dwell before this physical input. Cancel numeric baselines were not serialized.',
+            original_destination=destination,physical_escape=edges,compared_presentations=matches,resources=conserved))
+    return dict(verified=True,returns=proofs,presentations=sum(len(v['compared_presentations']) for v in proofs),
+        pixels=sum(r['pixels'] for p in proofs for r in p['compared_presentations']),
+        scope='Both Mini Cancels and supported Main resolution Apply/rebuild/Load return to fresh native output and actual original Mini via physical Escape. No direct Mini Apply, pause timing or exact wall-clock/paint simultaneity is inferred.')
+
+
+def preferences_resume_rows(plan,parent,runs):
+    validate(plan);expected={(c,tuple(z)) for c in ('player-default','player-software') for z in ((640,480),(800,600))}
+    require(len(runs)==4 and {(r['domain'][0],tuple(r['domain'][1])) for r in runs}==expected
+            and len({r['identity'] for r in runs})==4 and all(r['resume']['verified'] is True for r in runs),'Missing/duplicate resume domain')
+    template=requirements(plan)
+    require(parent['dossier_identity']==fingerprint(template) and parent['passed_requirements']==22
+            and len(parent['requirements'])==156 and sum(v['state']=='passed' for v in parent['requirements'])==22
+            and {v['id'] for v in parent['requirements'] if v['state']=='passed'}==set(SUSTAINED_LEAVES)|set(CLEANUP_LEAVES)|set(STORAGE_LEAVES)|set(LIGHTING_MENU_LEAVES)
+            and [(r['configuration'],r['id']) for r in parent['requirements']]==[(r['configuration'],r['id']) for r in template],
+            'Changed accepted parent inventory')
+    rows=[]
+    for before in parent['requirements']:
+        row=dict(before)
+        if row['id']==RESUME_LEAF:
+            require(row['state']=='pending','Resume was already closed in this parent')
+            row.update(state='passed',admitted_execution_evidence=[dict(reason='Physical original Mini admission follows fresh source/output after both Cancel and supported Main Apply/reload, with lighting/history/resource checks.',execution=r['pair'],actual_world_extents=[list(r['domain'][1])],provider=r['provider']) for r in runs if r['domain'][0]==row['configuration']])
+        rows.append(row)
+    require(sum(r['state']=='passed' for r in rows)==24,'Resume closeout scope changed');return rows
+
+
+def preferences_resume_progress(plan,reader,parent_evidence):
+    import subprocess,sys
+    root=reader.root
+    checked=subprocess.run([sys.executable,str(root/'tools/evidence-applicability.py'),'plan','--root',str(root),'--evidence',parent_evidence,
+        '--behavior','NP.normal-lighting-menu-closeout','--require-applicable'],cwd=root,capture_output=True,text=True)
+    require(checked.returncode==0,'Lighting/menu parent is impacted: '+checked.stderr);impact=json.loads(checked.stdout)
+    require(impact['current_scope_preserved'] is True and not impact['source_actions'],'Parent needs targeted revalidation')
+    reference=impact['retained_input'];binding=reader.json(reference['record']);require(reader.digest(reference['record'])==reference['sha256'] and binding['success'] is True and binding['independent_pixel_equivalence'] is True,'Invalid accepted parent')
+    parent=receipt(reader,binding['inputs']['progress']);storage=receipt(reader,parent['parent_closeout']);by_identity={r['identity']:r for r in storage['executions']};runs=[]
+    for previous in parent['executions']:
+        pair=previous['pair'];a=receipt(reader,pair['acquisition']);c=receipt(reader,pair['comparison']);old=by_identity[previous['identity']]
+        require(a['session_identity']==old['identity'] and a['scenario']=='normal-storage' and c['success'] is True
+                and c['acquisition']==pair['acquisition'] and c['mini_inputs']['verified'] is True and c['mini_dispatch']['verified'] is True,
+                'Missing original acknowledged storage/input context')
+        for name,sha in RESUME_PRODUCERS.items():
+            require(reader.digest(name)==sha and a['sources'][name]==sha,'Reviewed resume producer changed: '+name)
+        records={}
+        checked_inputs={v['path']:v for v in c['mini_inputs']['records']}
+        for marker in a['flow']['states']:
+            if marker.get('event')!='mini-input':continue
+            name=marker['record'];raw=retained_artifact(reader,a,name)
+            require(name in checked_inputs and hashlib.sha256(raw).hexdigest()==checked_inputs[name]['sha256'],'Unbound physical input record')
+            records[name]=json.loads(raw)
+        proof=preferences_resume_state(a['flow'],records,c['comparison']['comparisons'],old['resources']['worlds'],previous['domain'][1])
+        require(previous['lighting']['verified'] is True and all(previous['lighting']['statistics'][k]==0 for k in ('fallback','refused','disabled','error','rejected')),'Lighting failed across resumed session')
+        runs.append(dict(identity=old['identity'],domain=old['domain'],pair=pair,provider=old['provider'],resume=proof,lighting=previous['lighting']))
+    rows=preferences_resume_rows(plan,parent,runs);sources={n:reader.digest(n) for n in binding['sources']}
+    return dict(schema=1,kind='native_rendering_preferences_resume_closeout',success=True,sources=sources,
+        accepted_parent=dict(evidence=parent_evidence,binding=reference,applicability=impact),parent_progress=binding['inputs']['progress'],
+        dossier_identity=fingerprint(requirements(plan)),requirements=rows,executions=runs,passed_requirements=24,pending_requirements=132,
+        inherited_current_rows=22,new_resume_rows=2,closed_leaf_ids=sorted(set(parent['closed_leaf_ids'])|{RESUME_LEAF}),
+        reviewed_producer_sources=RESUME_PRODUCERS,returns=sum(len(r['resume']['returns']) for r in runs),
+        selected_presentations=sum(r['resume']['presentations'] for r in runs),selected_pixels=sum(r['resume']['pixels'] for r in runs),
+        original_game_runs=0,new_pixel_comparisons=0,historical_failures_retired=False,decisions=parent['decisions'],
+        scope='Two resume rows at both profiles/sizes; preserve22 accepted rows. Join actual physical input/original Mini ACKs and three fresh fully compared source generations per supported Cancel/Main Apply-reload return, resource conservation and accepted native lighting/history. Frozen producer establishes freshness; Cancel numeric baselines were not serialized. Direct Mini Apply, pause timing, Main focus, movie output/return, other132rows and both final decisions remain separate.')
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--execution',nargs=2,action='append',default=[],metavar=('ACQUISITION','COMPARISON'))
+    p.add_argument('--preferences-resume',action='store_true',help='Close supported Preferences Cancel/Main Apply-reload resume from retained evidence');
     p.add_argument('--lighting-menu',action='store_true',help='Analyze retained lighting and campaign/display facts while preserving the applicable cleanup/storage parent');p.add_argument('--parent-evidence')
     p.add_argument('--cleanup-storage',action='store_true',help='Close cleanup and four storage leaves while renewing sustained/setup/Quit');p.add_argument('--sustained-world',action='store_true',help='Close sustained World plus setup/Quit using all four existing Quick domains');p.add_argument('--negative',action='append',default=[]);p.add_argument('--report',required=True);a=p.parse_args()
     if not a.report.startswith(PREFIX) or (ROOT/a.report).exists():p.error('New immutable owned report required')
-    if not a.lighting_menu and (not a.execution or a.parent_evidence):p.error('Existing modes require executions; parent evidence is for lighting/menu')
+    if not (a.lighting_menu or a.preferences_resume) and (not a.execution or a.parent_evidence):p.error('Existing modes require executions; parent evidence is for lighting/menu')
     with Reader(ROOT) as reader:
         pairs=[{k:dict(record=n,sha256=reader.digest(n)) for k,n in zip(('acquisition','comparison'),names)} for names in a.execution]
-        if a.lighting_menu:
+        if a.preferences_resume:
+            if a.execution or a.lighting_menu or a.cleanup_storage or a.sustained_world or a.negative:p.error('Preferences resume consumes its exact accepted parent')
+            report=preferences_resume_progress(reader.json('docs/native-rendering-closure.json'),reader,a.parent_evidence or 'LM05.lighting-menu-closed01')
+        elif a.lighting_menu:
             if a.execution or a.cleanup_storage or a.sustained_world or a.negative:p.error('Lighting/menu consumes its exact accepted parent and retained inputs')
             report=lighting_menu_progress(reader.json('docs/native-rendering-closure.json'),reader,a.parent_evidence or 'CS05.cleanup-storage-closed01')
         elif a.cleanup_storage:

@@ -26416,3 +26416,27 @@ and its SQLite bindings/open-item review. Movie/camera/picking/HUD/state,
 natural progression/results, remaining operations, original-caller/ABI/font/DC/
 provider and fault boundaries stay separate. No changing-light scene or original
 lighting-call equivalence is inferred. The pre-Save admission/reliability gap remains.
+
+
+### Preferences resume from retained native output — 2026-11-05
+
+`PR05.preferences-resume-closed01` closes two finite resume rows, preserving all
+22 accepted parent rows: 24/156 pass, 132 pending; both final decisions remain
+pending. Four default/software, 640x480/800x600 cases bind 12 returns (two Mini
+Cancels and Main resolution Apply/rebuild/Main Load per case), physical Escape
+and original Mini ACK/thread to 36 fresh previously compared native World
+presentations totaling 31,482,000 pixels, resource conservation and accepted
+lighting/history. The hash-locked actual resident producer establishes its fresh
+frame/import/dwell predicate; Cancel numeric baselines were not serialized and
+are not invented. 81 current normal/UI/client controls pass. No game execution,
+new pixel comparison, fixture or renderer/runtime change occurs.
+
+The new LM05 applicability review preserves its existing analysis/test closure;
+CS05/SW05 remain applicable with raw drift and no revalidation actions. Old
+source hashes/statuses/evidence and failures stay unchanged. The UI selects the
+24-row pack while presentation sources remain separate from native proof.
+Direct Mini Apply, other settings, pause timing, full journey, ready Main focus,
+actual movie output/skip-return, remaining operations/fault/provider boundaries
+and the known pre-Save admission/reliability failure remain open. See
+[Preferences resume review](rendering-preferences-resume-20261105.md) for evidence,
+the source-derived freshness limit and the bounded rerun command.

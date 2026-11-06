@@ -20,6 +20,17 @@ not been measured, so it is not a mathematically proven time-optimal schedule.
 
 ## Start here
 
+**Preferences resume closeout (2026-11-05):** the
+[retained-data resume review](../research/runtime/rendering-preferences-resume-20261105.md)
+preserves all 22 accepted parent rows and closes two resume rows: **24/156**,
+with 132 rows and both final decisions pending. Four profile/size domains bind
+12 Cancel/Main Apply-reload returns to physical Escape/original Mini ACKs,
+36 fresh previously compared World presentations and resource conservation.
+81 controls pass. No new game run, pixel comparison or fixture is added.
+Direct Mini Apply, pause timing and the full journey remain separate. The review
+also identifies missing ready Main focus and actual movie output/skip-return
+evidence; existing captures cannot close those items.
+
 **Selected lighting/menu closeout (2026-11-05):** the
 [retained-data closeout](../research/runtime/rendering-lighting-menu-closeout-20261105.md)
 preserves 16 accepted cleanup/storage/sustained/setup/Quit rows, renews four
