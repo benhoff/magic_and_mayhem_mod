@@ -11,6 +11,7 @@ models with address/undefined-behavior sanitizers, or
 `python3 tests/test-decompilation-baseline.py` for checksum/PE-byte verification
 and tamper rejection. These are host/static tests, not live-game equivalence.
 
+`python3 -B tests/test-evidence-applicability.py` checks preservation-only source boundaries, immutable anchors, phase plans, supersession and fresh-checkout SQLite creation.
 `python3 -B tests/test-re-coverage.py` checks discovery/evidence claim guards.
 `python3 -B tests/test-coverage-gate.py` checks hash-bound change receipts,
 shared-source impact, renames, pending validation, immutable original evidence,

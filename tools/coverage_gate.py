@@ -51,7 +51,7 @@ def gap_items(report):
     """Stable identities, with staleness tracked per evidence/source pair."""
     result = {}
     for kind, items in sorted(report['findings'].items()):
-        if kind in DRIFT:
+        if kind in DRIFT or kind == 'source_applicability':
             continue
         if kind in {'validation_gaps', 'retired_execution_claims'} and not report.get('claim_bindings_required'):
             continue  # Historical trees retain their pre-adoption accounting contract.
@@ -126,7 +126,7 @@ def _snapshot(root, register, reader):
                     'evidence': sorted((evidence[e] for e in behavior['evidence']), key=lambda e: e['id']),
                     'scenarios': sorted((s for s in register['scenarios'] if bid in s['behaviors']), key=lambda s: s['id'])}
         behaviors[bid] = {'sha256': digest(contract), 'record': behavior}
-    return {'schema': SCHEMA, 'scope': 'Reviewed accounting baseline; gaps remain unresolved and evidence remains historical.',
+    return {'schema': SCHEMA, 'evidence_applicability': register.get('evidence_applicability', []), 'scope': 'Reviewed accounting baseline; gaps remain unresolved and evidence remains historical.',
             'sources': sources, 'behaviors': behaviors, 'evidence': evidence,
             'evidence_keys': evidence_keys, 'evidence_sources': evidence_sources,
             'evidence_id_imports': register.get('evidence_id_imports', []),
@@ -188,6 +188,10 @@ def immutable_errors(before, after, merge_history=None):
     for build, sha in before['builds'].items():
         if after['builds'].get(build) != sha:
             errors.append(f'Original build removed or rebound: {build}')
+    current_applicability = {r['id']: r for r in after.get('evidence_applicability', [])}
+    for ref in before.get('evidence_applicability', []):
+        if current_applicability.get(ref['id']) != ref:
+            errors.append('Historical source-applicability review removed or rewritten: ' + ref['id'])
     imports=(merge_history or {}).get('evidence_id_imports', [])
     for item in before.get('evidence_id_imports', []):
         if item not in after.get('evidence_id_imports', []):

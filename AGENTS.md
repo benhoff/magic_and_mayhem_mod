@@ -86,6 +86,26 @@ infer semantic mappings or update the register automatically.
 - Keep understanding, implementation, original comparison, integration and live
   replacement statuses independent. Record intentional native policies separately
   from recovered baseline behavior. A function link covers only its stated scope.
+- Treat source drift as an impact review, not a reset of completed behavior.
+  Follow [targeted revalidation](docs/evidence-applicability.md).
+  Before launching another original-game run for an existing claim, inspect
+  `python3 tools/evidence-applicability.py plan --evidence <id> --behavior <id>`.
+  Use `--require-applicable` when consuming an unchanged accepted parent proof.
+  A preserved scope can supply retained inputs to a new analysis; an old
+  collector's whole-file freshness refusal alone does not justify recollection.
+  Documentation/accounting edits without a contract change require accounting.
+  Control changes require current controls; analyzer changes require retained-data
+  analysis; oracle changes require retained-capture comparison. Recollect only
+  affected runtime/input/scenario evidence, or evidence genuinely missing from
+  retained captures. Do not rerun a full matrix merely to make every hash current.
+- Preserve unchanged existing milestones with reviewed source-applicability
+  boundaries where appropriate. These reports pin original source bytes, existing
+  behavior/scenario contracts and accepted statuses; audits freshly compare the
+  named Python callables, conservative local dependencies and module initialization.
+  They preserve applicability, not exact byte freshness, new CLI/test-discovery
+  coverage, widened input domains or status promotions. Native/runtime sources
+  remain full-hash dependencies. Retain raw staleness and every superseded review;
+  do not replace old hashes or use an applicability report as fresh execution.
 - Preserve historical evidence and its recorded source hashes. Register a new
   result under a new evidence ID; never refresh old hashes just to clear staleness.
   Source-only changes may leave evidence stale: report the affected limitation,

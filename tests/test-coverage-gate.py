@@ -16,7 +16,7 @@ from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
-from coverage_gate import BASELINE, REGISTER, REVIEWS, check, changes, digest, draft, snapshot, source_index, file_digest
+from coverage_gate import BASELINE, REGISTER, REVIEWS, check, changes, digest, draft, snapshot, source_index, file_digest, immutable_errors
 from coverage_claims import behavior_contract, scenario_contract
 from coverage_evidence import Reader
 from coverage_reviews import ARCHIVES, load_journal, read_journal, split_journal
@@ -100,6 +100,26 @@ class GateTests(unittest.TestCase):
 
     def assert_error(self, result, text):
         self.assertTrue(any(text in e for e in result['errors']), result['errors'])
+
+    def test_applicability_reviews_are_append_only(self):
+        before=copy.deepcopy(self.before);after=copy.deepcopy(self.before)
+        ref=dict(id='scope-old',record='research/runtime/coverage/applicability/old.json',sha256='a'*64)
+        before['evidence_applicability']=[ref];after['evidence_applicability']=[]
+        self.assertTrue(any('source-applicability' in e for e in immutable_errors(before,after)))
+        after['evidence_applicability']=[ref,dict(ref,id='scope-next')]
+        self.assertEqual(immutable_errors(before,after),[])
+        after['evidence_applicability'][0]=dict(ref,sha256='b'*64)
+        self.assertTrue(any('source-applicability' in e for e in immutable_errors(before,after)))
+
+    def test_compatible_historical_proof_cannot_record_changed_source_as_fresh_execution(self):
+        self.write('tests/model.py','changed verification only\n');after,report=self.current()
+        # The real audit integration separately tests scoped preservation. Even
+        # preserved readiness cannot turn old raw fingerprints into a new run.
+        report['behaviors'][0]['current_validation']['comparison'].update(state='current',evidence=['old-original'],reviewed_applicability={'old-original':'reviewed-callables'})
+        review=self.receipt(after=after);review['reviews'][0]['validation'].update(status='recorded',evidence=['old-original'],reason='Attempt to misuse old applicable evidence as new execution.')
+        result=check(self.before,after,review,report)
+        self.assert_error(result,'stale: old-original')
+        self.assert_error(result,'does not fingerprint changed source')
 
     def test_unchanged_backlog_passes_and_is_retained(self):
         result = self.result()
@@ -799,7 +819,7 @@ class GateTests(unittest.TestCase):
         self.assertEqual(json.loads(target.read_text())['sources'], self.before['sources'])
 
     def prepare_hook(self):
-        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_claims.py', 'coverage_evidence.py', 'coverage_merge_history.py', 'coverage_reviews.py', 'index-coverage-sources.py', 'evidence_local.py'):
+        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_applicability.py', 'coverage_claims.py', 'coverage_evidence.py', 'coverage_merge_history.py', 'coverage_reviews.py', 'index-coverage-sources.py', 'evidence_local.py', 'evidence_objects.py'):
             self.write('tools/' + name, (ROOT/'tools'/name).read_text())
         self.write('.githooks/pre-commit', (ROOT/'.githooks/pre-commit').read_text())
         (self.root/'.githooks/pre-commit').chmod(0o755)
@@ -820,7 +840,8 @@ class GateTests(unittest.TestCase):
         self.assertIn(b'--staged --base HEAD', commit.stderr)
         self.json(REVIEWS, self.receipt())
         cli.git(self.root, 'add', '.')
-        cli.git(self.root, 'commit', '-qm', 'exact reviewed change')
+        result=subprocess.run(['git','-C',str(self.root),'commit','-qm','exact reviewed change'],capture_output=True)
+        self.assertEqual(result.returncode,0,result.stderr.decode()+result.stdout.decode())
 
     def test_hook_install_is_local_idempotent_and_reversible(self):
         self.prepare_hook()

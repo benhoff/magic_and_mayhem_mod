@@ -26349,3 +26349,21 @@ See [the closeout](rendering-sustained-closeout-20261105.md) and its immutable
 ## Native cleanup and storage closeout — 2026-11-05
 
 `NP.cleanup-storage-closeout` / `CS05.cleanup-storage-closed01` closes normal shutdown cleanup and finite Save/Load/restored-World/changed-draft-Cancel at both actual sizes for both explicit profiles. Four compatible Quick pairs are re-evaluated; five new storage attempts include four independent passes and one retained pre-Save software640 deadline. One reviewed unchanged repetition passes without resolving the native admission/reliability gap. The current pack renews sustained/setup/Quit:16of156rows,10new and6renewed; other140rows and both final decisions remain pending. 44 targeted guards, 3713 source generations, 5256 World swap occurrences and 5231671940 independent pixels pass with zero mismatches; 212 storage CPU requests/replies join exactly. Direct terminal input/cursor/channel/graphics/process/source assertions show zero pending work and native owners under normal original Quit. Historic cursor refusals, sparse caller identification, fault/restart and unexecuted deferred branches retain their limits. Prior SW05 derived evidence keeps historical join/test hashes; actual frozen Quick acquisition/comparison sources remain current for this re-evaluation. No renderer/probe/fixture/driver change or final-player/original-recovery claim. Fourteen completed trees pass two stores and real restores, reclaiming13.276GiB; private input hashes restore exactly. See [bounded closeout](rendering-cleanup-storage-closeout-20261105.md) and SQLite binding `rendering-cleanup-storage-results-20261105/current-closeout-binding-01.json`.
+
+
+### Scoped evidence applicability — 2026-11-05
+
+`TOOL.scoped-evidence-applicability` now separates raw historical source drift
+from applicability of an exact accepted behavior/scenario/stage. Immutable
+reviews preserve existing CS05 cleanup/storage and SW05 sustained claims across
+unrelated callable/test changes; the raw one/three changed sources remain visible.
+No original runs, historical hash refreshes or existing engine status promotions
+occur. `EA05.scoped-applicability-controls03` passes 287 synthetic checks including
+the real hook/audit. Controls01/02 remain historical. Phase plans request controls,
+retained-data analysis or retained-capture comparison before recollection;
+uncovered and native/runtime changes still require affected-scenario validation.
+New scope/status requires new appropriate proof. The native pack remains 16/156;
+pre-Save admission/reliability and other unresolved boundaries stay open. See
+[evidence applicability](../runtime/evidence-applicability-20261105.md) and
+[workflow](../../docs/evidence-applicability.md). SQLite reports retain exact
+source/status anchors, superseded reviews and controls without payload duplication.

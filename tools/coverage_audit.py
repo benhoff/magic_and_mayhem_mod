@@ -5,7 +5,8 @@ from pathlib import Path
 import re
 from bisect import bisect_right
 from functools import cache, lru_cache
-from coverage_claims import validation_support
+from coverage_claims import validation_support, stage_kinds
+from coverage_applicability import evaluate as source_applicability, plan as revalidation_plan
 from coverage_evidence import Reader, evidence_digest
 
 STAGES = {
@@ -456,12 +457,26 @@ def _audit(root, register, reader, *, recorded_sources=None):
         if findings['behavior_anchors_outside_discovered_functions']:
             warnings.append('Pinned recovered code exists outside Ghidra function bodies; explicit range links preserve this discovery gap.')
         stale_ids = {item['id'] for item in findings['stale_evidence']}
-        rows = [{**behavior, 'evidence_freshness': 'stale' if set(behavior['evidence']) & stale_ids else
+        changed_sources = {item['id']: item['changed_sources'] for item in findings['stale_evidence']}
+        applicability, applicability_rows = source_applicability(root, register, builds, evidence,
+            evidence_sources, evidence_claims, scenarios,
+            lambda p: record_json(file(p)), lambda p: reader.read_bytes(file(p)), lambda p: cached_sha(file(p)))
+        findings['source_applicability'] = applicability_rows
+        rows = []
+        for bid, behavior in behaviors.items():
+            support = validation_support(behavior, builds, evidence, evidence_sources,
+                                         evidence_claims, scenarios, stale_ids,
+                                         applicability.get(bid, {}), changed_sources)
+            needed_kinds = {kind for stage, value in support.items() if value['state'] == 'pending'
+                            for kind in stage_kinds(stage, behavior['status'][stage])}
+            rows.append({**behavior, 'evidence_freshness': 'stale' if set(behavior['evidence']) & stale_ids else
                  ('current_fingerprints' if behavior['evidence'] else 'no_evidence'),
-                 'current_validation': validation_support(behavior, builds, evidence, evidence_sources,
-                                                           evidence_claims, scenarios, stale_ids),
-                 'scenarios': [sid for sid, s in scenarios.items() if bid in s['behaviors']]}
-                for bid, behavior in behaviors.items()]
+                 'current_validation': support,
+                 'revalidation_plan': [dict(evidence=eid, **step) for eid in behavior['evidence']
+                     if eid in changed_sources and bid in evidence_claims.get(eid, {})
+                     and evidence[eid]['kind'] in needed_kinds
+                     for step in revalidation_plan(changed_sources[eid], applicability.get(bid, {}).get(eid))],
+                 'scenarios': [sid for sid, s in scenarios.items() if bid in s['behaviors']]})
         for row in rows:
             for stage, support in row['current_validation'].items():
                 if support['state'] == 'pending':

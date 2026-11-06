@@ -163032,6 +163032,49 @@
         "CS05.G.scope: final player/recovery verdicts, fault/restart and remaining140rows remain separate.",
         "CS05.G.save-admission: first nominal software640 run stalls at stage5 after Qt Save click; retained host lane has request8/MiniSave29 and no SaveAccept publication. Native refusal cause and reliability remain unresolved even if a finite repeat passes. No normal cleanup/pixel acceptance from this failed run."
       ]
+    },
+    {
+      "id": "TOOL.scoped-evidence-applicability",
+      "kind": "native_policy",
+      "subsystem": "tooling",
+      "title": "Preserve verified contracts across unrelated verification-source changes",
+      "scope": "Offline preservation-only applicability of existing exact behavior/scenario execution claims through reviewed Python callable boundaries. Immutable original report/source hashes remain authoritative; fresh audits compare the original callable/global/import closure against current bytes. Uncovered runtime changes, changed scoped code, widened contracts, missing dependencies and status promotions receive no waiver. Phase plans distinguish control reruns, retained-data analysis/comparison and affected original execution. This tooling introduces no engine proof, new original execution or inferred complete dependency graph.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/evidence-applicability-20261105.md",
+        "docs/evidence-applicability.md"
+      ],
+      "implementation": [
+        "tools/coverage_applicability.py",
+        "tools/evidence-applicability.py"
+      ],
+      "tests": [
+        "tests/test-evidence-applicability.py",
+        "tests/test-re-coverage.py",
+        "tests/test-coverage-gate.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_audit.py",
+        "tools/coverage_gate.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "EA05.scoped-applicability-controls01",
+        "EA05.scoped-applicability-controls02",
+        "EA05.scoped-applicability-controls03"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "EA05.G.scope: callable roots and phase ownership require explicit review; arbitrary C/C++ or Python runtime changes are not declared equivalent. No original behavior milestone is promoted by a compatibility certificate."
+      ]
     }
   ],
   "evidence": [
@@ -377981,6 +378024,99 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "EA05.scoped-applicability-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/evidence-applicability-results-20261105/controls-final-01.json",
+      "sha256": "4c0bedae18cd70c120d5b716374fac1f5ccbd6ea5b250bdeb2a02c08d3145274",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current synthetic projection, immutable baseline, scope/scenario, stage-preservation, CLI preflight/SQLite, full audit and actual pre-commit guards. Existing accounting, local workflow, storage and merge/shard suites verify no enforcement bypass. No engine behavior or original run is claimed.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_hashes_rewritten",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_status_promotions",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "EA05.scoped-applicability-controls02",
+      "kind": "native_integration",
+      "record": "research/runtime/evidence-applicability-results-20261105/controls-final-02.json",
+      "sha256": "78f47d4bf2bcf220d1bf210beb048990714e92bab1b62723bb05ebc6ab4324b4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current synthetic projection, immutable baseline, scope/scenario, stage-preservation, CLI preflight/SQLite, full audit and actual pre-commit guards. Existing accounting, local workflow, storage and merge/shard suites verify no enforcement bypass. No engine behavior or original run is claimed.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_hashes_rewritten",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_status_promotions",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "EA05.scoped-applicability-controls03",
+      "kind": "native_integration",
+      "record": "research/runtime/evidence-applicability-results-20261105/controls-final-03.json",
+      "sha256": "efff15de60c90fc053cd1f905b409e7ee05879c72e6709c18683b17cb5c8bc31",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current synthetic projection, immutable baseline, scope/scenario, stage-preservation, CLI preflight/SQLite, full audit and actual pre-commit guards. Existing accounting, local workflow, storage and merge/shard suites verify no enforcement bypass. No engine behavior or original run is claimed.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_hashes_rewritten",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_status_promotions",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -409783,6 +409919,24 @@
         "CS05.software640-save-negative01",
         "CS05.cleanup-storage-closed01"
       ]
+    },
+    {
+      "id": "EA05.scoped-applicability-controls",
+      "level": "headless",
+      "scope": "Synthetic exact-source/contract/scope/phase and preservation-only guards, including integration into the real audit/gate and retained SW05/CS05 applicability without new game execution.",
+      "behaviors": [
+        "TOOL.scoped-evidence-applicability"
+      ],
+      "tests": [
+        "tests/test-evidence-applicability.py",
+        "tests/test-re-coverage.py",
+        "tests/test-coverage-gate.py"
+      ],
+      "evidence": [
+        "EA05.scoped-applicability-controls01",
+        "EA05.scoped-applicability-controls02",
+        "EA05.scoped-applicability-controls03"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -411600,7 +411754,29 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-363f38316fe57fae9cd16fdbf435f4f6437b310727757cebbdd7021b55811b3b.json",
-    "sha256": "363f38316fe57fae9cd16fdbf435f4f6437b310727757cebbdd7021b55811b3b"
-  }
+    "path": "research/runtime/coverage/source-index-9a63fe12631303d309388600c366cb9d12fac0f35f1c4a80c89f3062c298b2b5.json",
+    "sha256": "9a63fe12631303d309388600c366cb9d12fac0f35f1c4a80c89f3062c298b2b5"
+  },
+  "evidence_applicability": [
+    {
+      "id": "EA05.CS05-verification-boundary01",
+      "record": "research/runtime/coverage/applicability/ea05-cs05-01.json",
+      "sha256": "6043c89f82ec283f245f90ba7a94ed7e5ac9e13430a6fd8c3dd4e567524c3db8"
+    },
+    {
+      "id": "EA05.SW05-verification-boundary01",
+      "record": "research/runtime/coverage/applicability/ea05-sw05-01.json",
+      "sha256": "4fa7a60946ebdf3058186ed995f124c7c3b969bcac5bad43ca80b61d94e75172"
+    },
+    {
+      "id": "EA05.CS05-verification-boundary02",
+      "record": "research/runtime/coverage/applicability/ea05-cs05-02.json",
+      "sha256": "a331a8e799e0a4c33458629cbe43be236e5bbe0ccead92ebd86fa57fc3955b78"
+    },
+    {
+      "id": "EA05.SW05-verification-boundary02",
+      "record": "research/runtime/coverage/applicability/ea05-sw05-02.json",
+      "sha256": "6186feca0613a04dbf0bc0b0b1428a43af699696f3836fd3a5d3a8831f68b7fe"
+    }
+  ]
 }
