@@ -26597,3 +26597,22 @@ collector/positive gate remain unvalidated end to end. Earlier38accepted rows an
 all statuses/evidence definitions are unchanged;118rows/bothdecisions and known
 failures remain open. No native/runtime edit, binary build or new game fixture.
 See [camera diagnostics](rendering-camera-matrix-closeout-20261106.md).
+
+
+## Indexed source and destination-history operation closeout — 2026-11-06
+
+`DH06.indexed-history-closed01` closes4operation rows: native indexed sprites and
+destination-dependent history at both profiles and actual640/800, using8accepted
+Quick/Campaign storage cases.3713owned source generations, exact request sequence/
+entry/low16AX/FNV-CRC32C, frame/colour/clip/order inputs and nonempty covered
+indexed/clipped/projected-shadow witnesses join5256World-tagged swaps and
+4779555440reused independent viewport pixels. All149post-import compositions
+remain compared;3retained GPU-frame textures outlive logical command handles
+under their separate owner and receive no current-import scene credit.8cases
+also have visible nonzero indexed palette lookups.54focused checks pass.
+No new game, comparison, native/runtime edit, build or fixture. All38accepted
+parent rows/definitions remain unchanged:42/156passed114pending,bothdecisions
+pending. CPU caller/whole ABI, upstream palette generation, other sprite/operation
+families, first-World preparation, camera/Sharp/input, natural progression/results,
+fault/provider and all known historical/Save/camera failures remain separate.
+See [the operation closeout](rendering-destination-closeout-20261106.md).

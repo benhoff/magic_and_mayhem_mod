@@ -163526,6 +163526,77 @@
         "CM06.G.sharp:3819024negative viewport differences lie on exact rational texel boundaries and match an adjacent independent expected texel. Sharp display/reference compatibility remains unresolved; no oracle relaxation, native fix or universal hardware rounding claim.",
         "CM06.G.scope: camera picking/HUD alignment, viewport limits, full periodic scalar identity, animation/combat, whole minimap/pause, both final decisions and known Save/historical failures remain open."
       ]
+    },
+    {
+      "id": "NP.destination-history-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Owned indexed source and continuous destination-history operation acceptance",
+      "scope": "Close selected native indexed-sprite and destination-dependency operation rows for both explicit public-player profiles at actual640x480/800x600 using all8accepted Quick/Campaign storage cases. Bind every source generation and natural indexed/destination-reading raster family to owned source incarnations, exact palette/frame/clip/order inputs, continuously defined original reference history and actual independently matched native World swaps. This finite native operation scope does not recover whole original caller ABI, arbitrary maps/negative displacement, auxiliary/direct sprite families, CPU reader callers, faults or final player/recovery decisions.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5854839,
+          "scope": "Existing indexed RGB565 copy entry observed in exact retained request descriptors. Finite owned source/colour/clip/order to native output only; no whole-function recovery or ABI claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5760320,
+          "scope": "Existing projected-shadow entry with natural nonempty indexed source masks and destination reads in the retained domain. This links selected initialized history and output, not full original routing/ABI or arbitrary displacement."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-destination-closeout-20261106.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-destination-history.py"
+      ],
+      "tests": [
+        "tests/test-rendering-destination-history.py"
+      ],
+      "validation_dependencies": [
+        "tools/close-rendering-world-exit.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/resident_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "tools/rendering_acceptance.py",
+        "tools/evidence-applicability.py",
+        "docs/native-rendering-closure.json",
+        "tests/acceptance-world-history.cpp",
+        "tests/acceptance-world-reference.cpp",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "renderer/canvas_sequence.cpp",
+        "assets/sprite_loader.cpp",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/canvas_sequence.hpp",
+        "compat/legacy/canvas_producers.hpp",
+        "renderer/blit.cpp"
+      ],
+      "evidence": [
+        "DH06.controls01",
+        "DH06.indexed-history-closed01",
+        "DH06.controls02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "DH06.G.original: full original ABI/register/flags, physical allocation/writer ownership, upstream palette/shade builders and arbitrary history outside this named eight-case native domain remain separate. Low16AX/request guards do not close the flags/return operation.",
+        "DH06.G.other: raw CPU reader identities, direct/auxiliary sprite families, negative displacement/new maps, fonts/DC, provider/fault and exhaustive API lifetimes, first-World caller preparation, camera/Sharp/input issues and both decisions remain open. Known historical history/Save/camera failures are not retired."
+      ]
     }
   ],
   "evidence": [
@@ -379142,6 +379213,105 @@
           "equals": 38
         }
       ]
+    },
+    {
+      "id": "DH06.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-destination-results-20261106/controls-final-01.json",
+      "sha256": "53a991b884e42d3e9fb4b1c16a92fa1d9b04c08e95650117e3d4e7913a327679",
+      "sources_pointer": "/native_sources",
+      "claims_pointer": "/claims",
+      "scope": "15actual retained source/CRC/request/palette/visible-coverage/import/output/domain negative guards,30UI and9client checks;8real coloured indexed source inspections. Sandbox HTTP refusal, schema/presentation analysis mistakes and stopped duplicate analysis are retained. No new game/fixture or pixel comparison; presentation sources remain separate from native acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 54
+        },
+        {
+          "pointer": "/actual_case_controls_without_skips",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DH06.indexed-history-closed01",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-destination-results-20261106/current-closeout-binding-01.json",
+      "sha256": "2142e93112fbde003abf92ca7412d4dbcdfc84e8ceba2b6aa7790a89f6c20c69",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "scope": "Close selected native indexed-sprite and destination-dependency operation rows for both explicit public-player profiles at actual640x480/800x600 using all8accepted Quick/Campaign storage cases. Bind every source generation and natural indexed/destination-reading raster family to owned source incarnations, exact palette/frame/clip/order inputs, continuously defined original reference history and actual independently matched native World swaps. This finite native operation scope does not recover whole original caller ABI, arbitrary maps/negative displacement, auxiliary/direct sprite families, CPU reader callers, faults or final player/recovery decisions.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 42
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 4
+        },
+        {
+          "pointer": "/source_generations",
+          "equals": 3713
+        },
+        {
+          "pointer": "/world_presentations",
+          "equals": 5256
+        },
+        {
+          "pointer": "/nontrivial_colour_domains",
+          "equals": 8
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DH06.controls02",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-destination-results-20261106/controls-final-02.json",
+      "sha256": "433bbbeb68ce1b1c61193638f8e87e5881f2e02bda71bd09d51a64830240910d",
+      "sources_pointer": "/native_sources",
+      "claims_pointer": "/claims",
+      "scope": "Current compact progress projection consumes exactly the156proven source-analysis rows and unchanged native fingerprints; actual UI view reports42passed114pending.15native guards remain source-identical,39UI/client guards rerun after selector change. Rich source analysis lacks the UI-only scope field; preserve its payload/hash and use this consumer projection. No native change, new game/fixture/comparison or new acceptance promotion beyond the4proven operation rows.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 54
+        },
+        {
+          "pointer": "/actual_view/state",
+          "equals": "matching_sources"
+        },
+        {
+          "pointer": "/actual_view/counts/passed",
+          "equals": 42
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -411079,6 +411249,20 @@
       "evidence": [
         "CM06.retained-diagnostics01"
       ]
+    },
+    {
+      "id": "DH06.eight-domain-indexed-history",
+      "level": "live_observation",
+      "scope": "Close selected native indexed-sprite and destination-dependency operation rows for both explicit public-player profiles at actual640x480/800x600 using all8accepted Quick/Campaign storage cases. Bind every source generation and natural indexed/destination-reading raster family to owned source incarnations, exact palette/frame/clip/order inputs, continuously defined original reference history and actual independently matched native World swaps. This finite native operation scope does not recover whole original caller ABI, arbitrary maps/negative displacement, auxiliary/direct sprite families, CPU reader callers, faults or final player/recovery decisions.",
+      "behaviors": [
+        "NP.destination-history-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-destination-history.py"
+      ],
+      "evidence": [
+        "DH06.indexed-history-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -412896,8 +413080,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-4973d8790df4bc45bd3080521471898ade85376a0b9e916a63e7ccc59f91cbd7.json",
-    "sha256": "4973d8790df4bc45bd3080521471898ade85376a0b9e916a63e7ccc59f91cbd7"
+    "path": "research/runtime/coverage/source-index-4b093a27234524e48ddd348b16e3255b4c48738289ea4eab4abd5b6f106511ca.json",
+    "sha256": "4b093a27234524e48ddd348b16e3255b4c48738289ea4eab4abd5b6f106511ca"
   },
   "evidence_applicability": [
     {
