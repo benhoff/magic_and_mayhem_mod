@@ -20,6 +20,17 @@ not been measured, so it is not a mathematically proven time-optimal schedule.
 
 ## Start here
 
+**Natural movie return closeout (2026-11-06):** the
+[retained media-to-Main review](../research/runtime/rendering-movie-return-closeout-20261106.md)
+closes natural completion/return for both profiles, preserving 36 accepted rows:
+**38/156 passed**, 118 rows and both final decisions pending. Four public sessions
+bind both completed native intro requests and uncancelled media acknowledgement
+to the initial painted/focused Main and actual physical input/original callbacks.
+85 focused controls pass. Eight full decoded-stream digests match independent
+expected data for identical inputs; the delivery counters are not physical swaps.
+Complete movie viewport output and movie-skip remain open. No new game, decode,
+native code/build or fixture is added; all earlier source scopes stay accepted.
+
 **Normal World-exit closeout (2026-11-06):** the
 [retained World-exit review](../research/runtime/rendering-world-exit-closeout-20261106.md)
 preserves 34 accepted rows and closes terminal World exit for both profiles:

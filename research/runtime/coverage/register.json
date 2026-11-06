@@ -163332,6 +163332,82 @@
       "remaining_gaps": [
         "WX06.G.scope: other120rows, map progression, every intermediate external API owner, faults/providers, both final decisions and known CS05 pre-Save admission/reliability remain open."
       ]
+    },
+    {
+      "id": "NP.normal-movie-return-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Natural native movie completion and ready Main return",
+      "scope": "Close2natural movie-return rows across4retained public default/software High/Low contexts, preserving36accepted rows. Both intro requests reach normal EOF with exact delivered decoded-frame counts/digests for unchanged inputs and completed uncancelled media acknowledgements; initial Main is painted/focused and accepts physical input with actual original callbacks, no World and normal Quit. Native UI logical800x600. No new game/decode/per-pixel comparison/native code/build/fixture. Movie GPU output, skip return, exact EOF/first-paint simultaneity, original DirectShow/audio-device equivalence, other118rows, both final decisions and known Save admission/historical failures remain separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-movie-return-closeout-20261106.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-movie-return.py"
+      ],
+      "tests": [
+        "tests/test-rendering-movie-return-closeout.py",
+        "tests/test-rendering-menu-acceptance.py",
+        "tests/test-native-player-media.py",
+        "tests/test-native-media-launch.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_acceptance.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_applicability.py",
+        "tools/evidence-applicability.py",
+        "tools/coverage_evidence.py",
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/main.cpp",
+        "tools/menu-storage-input.py",
+        "tools/campaign_storage.py",
+        "docs/native-rendering-closure.json",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "apps/qt-shell/live_quick_battle_app_test.cpp",
+        "tools/rendering_player_acceptance.py",
+        "tools/native_prefix_template.py",
+        "tools/native_only_contract.py",
+        "apps/qt-shell/main_menu_widget.cpp",
+        "apps/qt-shell/map_selection_widget.cpp",
+        "apps/qt-shell/single_player_battle_widget.cpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "protocols/include/mnm/menu_v2.h",
+        "tools/rendering_menu_accessibility.py",
+        "tools/run-rendering-menu-acceptance.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/test-native-movie-frames.py",
+        "tools/native_media_acceptance.py",
+        "apps/qt-shell/native_playback.cpp",
+        "apps/qt-shell/native_playback.hpp",
+        "apps/qt-shell/media_broker.cpp",
+        "apps/qt-shell/media_broker.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "runtime/render/media_bridge.h",
+        "protocols/python/mnm_protocols/media_v1.py",
+        "protocols/schemas/media-v1.json",
+        "protocols/include/mnm/media_v1.h"
+      ],
+      "evidence": [
+        "MR06.controls01",
+        "MR06.natural-movie-return-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "MR06.G.scope: actual whole-movie viewport/skip, exact EOF/first-paint timing,118otherrows, both decisions, provider/fault and known Save admission/historical failures remain open."
+      ]
     }
   ],
   "evidence": [
@@ -378725,6 +378801,98 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "MR06.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-movie-return-results-20261106/controls-final-01.json",
+      "sha256": "9b3f91a3bcdbd60bee32f4b0919fee08e84cf5363d480b4bf237cd5c273c8a6b",
+      "sources_pointer": "/native_sources",
+      "claims_pointer": "/claims",
+      "scope": "16new actual-case and19existing menu guards run without skips;7media,4launch,30UI and9client checks pass. Reject missing/changed/cancelled/hidden video, incomplete acknowledgements, wrong inputs/decoded digests, missing initial Main paint/focus/input, raw artifact tampering and invalid domains. No game/decode/build/fixture; UI sources stay separate from native proof.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 85
+        },
+        {
+          "pointer": "/actual_case_controls_without_skips",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MR06.natural-movie-return-closed01",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-movie-return-results-20261106/current-closeout-binding-01.json",
+      "sha256": "bcc2e5644b302682d3459e2240b270c4c98c3d9fb5597564b4435af50249c194",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "scope": "Close2natural movie-return rows across4retained public default/software High/Low contexts, preserving36accepted rows. Both intro requests reach normal EOF with exact delivered decoded-frame counts/digests for unchanged inputs and completed uncancelled media acknowledgements; initial Main is painted/focused and accepts physical input with actual original callbacks, no World and normal Quit. Native UI logical800x600. No new game/decode/per-pixel comparison/native code/build/fixture. Movie GPU output, skip return, exact EOF/first-paint simultaneity, original DirectShow/audio-device equivalence, other118rows, both final decisions and known Save admission/historical failures remain separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_decodes",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 38
+        },
+        {
+          "pointer": "/new_movie_return_rows",
+          "equals": 2
+        },
+        {
+          "pointer": "/natural_main_returns",
+          "equals": 4
+        },
+        {
+          "pointer": "/complete_movie_requests",
+          "equals": 8
+        },
+        {
+          "pointer": "/matched_decoded_frames",
+          "equals": 11124
+        },
+        {
+          "pointer": "/initial_main_painted_captures",
+          "equals": 4
+        },
+        {
+          "pointer": "/movie_gpu_pixels_compared",
+          "equals": 0
+        },
+        {
+          "pointer": "/skip_return_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/old_reference_native_status_promoted",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -410616,6 +410784,23 @@
       "evidence": [
         "WX06.normal-world-exit-closed01"
       ]
+    },
+    {
+      "id": "MR06.retained-natural-movie-return",
+      "level": "live_observation",
+      "scope": "Close2natural movie-return rows across4retained public default/software High/Low contexts, preserving36accepted rows. Both intro requests reach normal EOF with exact delivered decoded-frame counts/digests for unchanged inputs and completed uncancelled media acknowledgements; initial Main is painted/focused and accepts physical input with actual original callbacks, no World and normal Quit. Native UI logical800x600. No new game/decode/per-pixel comparison/native code/build/fixture. Movie GPU output, skip return, exact EOF/first-paint simultaneity, original DirectShow/audio-device equivalence, other118rows, both final decisions and known Save admission/historical failures remain separate.",
+      "behaviors": [
+        "NP.normal-movie-return-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-movie-return-closeout.py",
+        "tests/test-rendering-menu-acceptance.py",
+        "tests/test-native-player-media.py",
+        "tests/test-native-media-launch.py"
+      ],
+      "evidence": [
+        "MR06.natural-movie-return-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -412433,8 +412618,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-b4fe6c880e9ee755b4fd1c832b3af563fbf49f99a7615ec4e0157b585c8604b0.json",
-    "sha256": "b4fe6c880e9ee755b4fd1c832b3af563fbf49f99a7615ec4e0157b585c8604b0"
+    "path": "research/runtime/coverage/source-index-f2f1ba547ed7d09f73b8c4d69927e037f3a0c6d92fab791b14e5cae6c598a327.json",
+    "sha256": "f2f1ba547ed7d09f73b8c4d69927e037f3a0c6d92fab791b14e5cae6c598a327"
   },
   "evidence_applicability": [
     {

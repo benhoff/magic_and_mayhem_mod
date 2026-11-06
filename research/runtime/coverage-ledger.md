@@ -26532,3 +26532,33 @@ LH05,PR05,LM05,CS05,SW05 stay accepted with no actions. Other120rows, both final
 decisions, natural later-map/results, movie/first-World/state/operation/fault/provider
 boundaries and the known CS05 pre-Save admission/reliability failure remain open.
 See [World-exit review](rendering-world-exit-closeout-20261106.md).
+
+
+### Natural enabled movie return to Main — 2026-11-06
+
+`MR06.natural-movie-return-closed01` closes two natural movie-return rows,
+preserving all36accepted parent rows:38/156passed118pending; both final decisions
+stay pending. Four retained public default/software High/Low contexts have native
+availability, accepted complete Intro0/Intro1, exact uncancelled final media ACK
+and initial original Main readiness. Each initial Main screenshot is painted with
+enabled focused Quick Battle in the focused host; physical Preferences input and
+actual original callbacks prove resumed menu input. Normal Quit retires owners,
+with zero unintended Worlds. Native menus stay800x600logical; no World size is
+inferred and prior actual-size proof remains accepted.
+
+Eight ordered decoded RGBA digests match retained independent expected data for
+identical encoded assets:11124frames and2562969600decoded pixels covered by digest
+equality. Reference-tool bytes are unchanged; old native binary/source freshness
+and milestone status are not promoted. The delivery counter measures callbacks,
+not physical swaps:movie GPU pixels compared remain0. Complete movie viewport
+output, movie-skip, exact EOF/first-paint simultaneity, original DirectShow placement/
+control/audio-device equivalence remain separate; only return rows close.
+
+85current actual-case/menu/media/launch/UI/client checks pass, including16new
+negative guards and existing19menu guards without skips. No new game, decoder run,
+native/runtime code, binary build, per-pixel comparison or game fixture. New
+reports use SQLite; raw capture trees remain in their verified stores. Earlier
+analyzers/tests and all existing behavior/evidence definitions remain unchanged;
+WX06/MS06/LH05/PR05/LM05/CS05/SW05 stay accepted with no actions. Other118rows,
+both decisions and known Save admission/historical failures remain open. See
+[natural movie-return review](rendering-movie-return-closeout-20261106.md).
