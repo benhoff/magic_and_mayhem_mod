@@ -20,6 +20,19 @@ not been measured, so it is not a mathematically proven time-optimal schedule.
 
 ## Start here
 
+**Selected lighting/menu closeout (2026-11-05):** the
+[retained-data closeout](../research/runtime/rendering-lighting-menu-closeout-20261105.md)
+preserves 16 accepted cleanup/storage/sustained/setup/Quit rows, renews four
+initial-campaign/resolution rows and closes two selected native-lighting rows.
+The current selected pack is **22/156**, with 134 rows and both final decisions
+pending. All four profile/size domains reuse retained original/World evidence;
+2,472 lighting calls match processed/applied counts and terminal source-bound
+worker/channel checks. No new game run, pixel comparison or fixture is added.
+The two earlier closeout scopes remain applicable after the analysis changes.
+Review the linked open-item inventory before another acquisition. Movie/menu
+return, camera/picking/HUD/state bindings, natural progression/results and
+operation/fault/provider boundaries remain separate work.
+
 **Current storage/EP06 checkpoint (2026-11-02):** the
 [reviewed worker/storage follow-up](../research/runtime/storage-main-stall-20261101.md)
 removes synchronous COPY proof processing from GUI command service and handles

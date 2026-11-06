@@ -163076,6 +163076,50 @@
       "remaining_gaps": [
         "EA05.G.scope: callable roots and phase ownership require explicit review; arbitrary C/C++ or Python runtime changes are not declared equivalent. No original behavior milestone is promoted by a compatibility certificate."
       ]
+    },
+    {
+      "id": "NP.normal-lighting-menu-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Selected native lighting and retained campaign/display acceptance closeout",
+      "scope": "Requirement-scoped selected native lighting production/delivery/normal worker retirement on both explicit public player targets at actual640x480 and800x600. Bind retained SQLite outcomes and final nonce/sequence/input/reply channels to complete already independently compared Worlds. Preserve the accepted16 cleanup/storage/sustained/setup/Quit rows and renew4 previously accepted initial-campaign/resolution rows. No changing-light scene, original lighting-call equivalence, fault branch, arbitrary map/save/provider, whole journey, whole rendering or final acceptance is inferred.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-lighting-menu-closeout-20261105.md"
+      ],
+      "implementation": [
+        "tools/join-rendering-normal-acceptance.py"
+      ],
+      "tests": [
+        "tests/test-rendering-normal-acceptance.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_acceptance.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_applicability.py",
+        "tools/evidence-applicability.py",
+        "tools/coverage_evidence.py",
+        "tools/terrain_light_session.py",
+        "protocols/include/mnm/terrain_light_session_v1.h",
+        "protocols/include/mnm/terrain_light_v1.h",
+        "docs/native-rendering-closure.json"
+      ],
+      "evidence": [
+        "LM05.controls01",
+        "LM05.lighting-menu-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "LM05.G.scope: other134rows, movies/camera/picking/HUD/animation/visibility, natural progression/results, operation/original-caller/fault/provider boundaries, changing-light scenes and both final decisions remain separate. Retained nominal Save admission/reliability failure remains unresolved."
+      ]
     }
   ],
   "evidence": [
@@ -378118,6 +378162,67 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "LM05.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-lighting-menu-results-20261105/controls-final-01.json",
+      "sha256": "86538a9545cc8840663e62b4969f897c650f6cc1cf5ab6ab1f4767cc88ca7417",
+      "sources_pointer": "/native_sources",
+      "claims_pointer": "/claims",
+      "scope": "Current existing join/SQLite/channel/closure guards plus affected dashboard/client controls. UI source dependencies remain separate from native claim provenance. No original game or new pixel comparison.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "LM05.lighting-menu-closed01",
+      "kind": "live_equivalence",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-lighting-menu-results-20261105/current-closeout-binding-01.json",
+      "sha256": "86a79f056d3ae826d431f8f176279cc19a989e86be6ef174a192fba9d6a932ef",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "equivalence_pointer": "/independent_pixel_equivalence",
+      "scope": "Preserve the accepted sixteen cleanup/storage/sustained/setup/Quit rows; renew four bounded initial-campaign/resolution rows and close two selected native-lighting leaves. Both explicit targets at both actual sizes, using retained channels/outcomes and independently compared World captures. Lighting failure injection, changing-light scenes, original lighting-call equivalence, other134rows and both final decisions remain separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 22
+        },
+        {
+          "pointer": "/lighting_calls",
+          "equals": 2472
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -409939,6 +410044,20 @@
         "EA05.scoped-applicability-controls02",
         "EA05.scoped-applicability-controls03"
       ]
+    },
+    {
+      "id": "LM05.selected-lighting-campaign-display",
+      "level": "live_equivalence",
+      "scope": "Selected native lighting and initial campaign/resolution callbacks on retained normal public-player default/software cases at both actual sizes, with complete accepted original/native World output and normal ownership. No whole rendering, changing-light or fault-path claim.",
+      "behaviors": [
+        "NP.normal-lighting-menu-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-normal-acceptance.py"
+      ],
+      "evidence": [
+        "LM05.lighting-menu-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -411756,8 +411875,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-12ecd692240c0cdbc42fae4e76c005b59bcbb9b113902e3aff05a8ec449947da.json",
-    "sha256": "12ecd692240c0cdbc42fae4e76c005b59bcbb9b113902e3aff05a8ec449947da"
+    "path": "research/runtime/coverage/source-index-b020effdbc567cf02192563e1e13167b11a3e54f0813f61ad956b88685fc05c0.json",
+    "sha256": "b020effdbc567cf02192563e1e13167b11a3e54f0813f61ad956b88685fc05c0"
   },
   "evidence_applicability": [
     {
@@ -411779,6 +411898,11 @@
       "id": "EA05.SW05-verification-boundary02",
       "record": "research/runtime/coverage/applicability/ea05-sw05-02.json",
       "sha256": "6186feca0613a04dbf0bc0b0b1428a43af699696f3836fd3a5d3a8831f68b7fe"
+    },
+    {
+      "id": "EA05.CS05-verification-boundary03",
+      "record": "research/runtime/coverage/applicability/ea05-cs05-03.json",
+      "sha256": "384799fbf561700aa63a2d0b91bfb29203e3785d5a737e17fbf447bba7316f4d"
     }
   ]
 }

@@ -303,4 +303,88 @@ class CleanupStorageCloseoutTests(unittest.TestCase):
         quick[-1]['cleanup']['verified']=False
         with self.assertRaises(ValueError):self.join.cleanup_storage_rows(plan,quick,storage)
 
+
+class LightingCloseoutTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        SustainedCloseoutTests.setUpClass();cls.join=SustainedCloseoutTests.join
+
+    def state(self):
+        cap=8*1024*1024;nonce=b'12345678';seq=3
+        inp=bytearray(305);inp[:8]=b'MNMLIT01'
+        for at,n in {8:1,12:128,16:len(inp),20:seq,32:1,36:1,40:1,44:1,104:11,108:0x46b8fc,112:1}.items():struct.pack_into('<I',inp,at,n)
+        inp[24:32]=nonce;struct.pack_into('<I',inp,120,self.join.lighting_checksum(inp))
+        reply=bytearray(85);reply[:8]=b'MNMLRP01';lo,hi=struct.unpack('<2I',nonce)
+        struct.pack_into('<6I',reply,8,1,len(reply),seq,lo,hi,struct.unpack_from('<I',inp,120)[0])
+        channel=bytearray(128+3*cap);channel[:8]=b'MNMLS001'
+        words=[1,cap,6,len(inp),len(reply),0,seq,lo,hi,1,0,0]+[0]*18
+        struct.pack_into('<30I',channel,8,*words)
+        for index,n in {14:3,15:3,19:3,23:10,24:25,25:0x46b8fc,26:11}.items():struct.pack_into('<I',channel,index*4,n)
+        channel[128:128+len(inp)]=inp;channel[128+cap:128+cap+len(reply)]=reply
+        names=['calls','applied','fallback','refused','disabled','processed','rejected','compared','mismatches','max_wait_ms','max_compute_us','last_caller','last_clock','last_changed','error','records','trace_active']
+        result=dict(success=True,error=None,mode='native',source_bound=True,worker_exit=0,worker_exited_early=False,
+                    statistics=dict(zip(names,struct.unpack_from('<17I',channel,56))))
+        return [dict(nonce=nonce.hex(),mode='native',capture='none'),result,self.outcome(result),channel]
+
+    def outcome(self,result,duplicate=False):
+        db=sqlite3.connect(':memory:')
+        db.execute('CREATE TABLE results(payload TEXT)');db.execute('CREATE TABLE lifecycle(pid INTEGER,start_ticks INTEGER,phase TEXT)')
+        db.execute('INSERT INTO lifecycle VALUES (123,999,?)',('started',))
+        db.execute('INSERT INTO results VALUES (?)',(json.dumps(result),))
+        if duplicate:db.execute('INSERT INTO results VALUES (?)',(json.dumps(result),))
+        raw=db.serialize();db.close();return raw
+
+    def test_lighting_counts_final_exchange_and_worker_outcome_agree(self):
+        row=self.join.lighting_state(*self.state())
+        self.assertTrue(row['verified']);self.assertEqual(row['sequence'],3);self.assertEqual(row['terminal_phase'],'closed')
+        self.assertEqual(row['caller'],0x46b8fc)
+
+    def test_fallback_missing_application_and_abnormal_worker_do_not_close_lighting(self):
+        for field,value in [('success',False),('error','timeout'),('source_bound',False),('mode','observe'),('worker_exit',1),('worker_exited_early',True)]:
+            args=self.state();args[1][field]=value;args[2]=self.outcome(args[1])
+            with self.subTest(field=field),self.assertRaises(ValueError):self.join.lighting_state(*args)
+        for index,name,value in [(14,'calls',4),(15,'applied',2),(16,'fallback',1),(17,'refused',1),(18,'disabled',1),(19,'processed',2),(20,'rejected',1),(21,'compared',1),(28,'error',1),(30,'trace_active',1)]:
+            args=self.state();struct.pack_into('<I',args[3],index*4,value);args[1]['statistics'][name]=value;args[2]=self.outcome(args[1])
+            with self.subTest(field=name),self.assertRaises(ValueError):self.join.lighting_state(*args)
+
+    def test_foreign_session_pending_request_and_diagnostic_capture_refuse(self):
+        for at,value in [(8,2),(16,1),(36,0),(44,0),(48,1),(52,1),(124,1)]:
+            args=self.state();struct.pack_into('<I',args[3],at,value)
+            with self.subTest(offset=at),self.assertRaises(ValueError):self.join.lighting_state(*args)
+        args=self.state();args[2]=self.outcome(args[1],duplicate=True)
+        with self.assertRaises(ValueError):self.join.lighting_state(*args)
+
+    def test_final_request_or_reply_mutation_cannot_inherit_application_counts(self):
+        cap=8*1024*1024
+        for at in [128+20,128+24,128+104,128+108,128+120,128+300,128+cap+16,128+cap+20,128+cap+28,128+cap+32,128+cap+36]:
+            args=self.state();args[3][at]^=255
+            with self.subTest(offset=at),self.assertRaises(ValueError):self.join.lighting_state(*args)
+
+    def test_selection_and_both_original_resolution_callbacks_are_required(self):
+        menu=dict(campaign_selection=dict(verified=True,callbacks=[[3,0],[18,65537],[18,0]],thread=1),display_rebuilds=dict(verified=True,dimensions=[[640,480],[800,600]],callback_sequences=[10,20]))
+        self.assertEqual(self.join.lighting_menu_actions(menu,(800,600))[0]['thread'],1)
+        for section,key,value in [('campaign_selection','verified',False),('campaign_selection','callbacks',[[3,0]]),('campaign_selection','thread',0),('display_rebuilds','verified',False),('display_rebuilds','dimensions',[[800,600],[640,480]]),('display_rebuilds','callback_sequences',[10,10])]:
+            bad=copy.deepcopy(menu);bad[section][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):self.join.lighting_menu_actions(bad,(800,600))
+
+    def rows(self):
+        plan=json.loads((ROOT/'docs/native-rendering-closure.json').read_text())
+        quick=[dict(verified=True,domain=(c,z),identity='q'+str(i),pair={},provider='controlled',cleanup=dict(verified=True)) for i,(c,z) in enumerate((c,z) for c in ('player-default','player-software') for z in ((640,480),(800,600)))]
+        storage=[dict(r,identity='s'+str(i)) for i,r in enumerate(quick)]
+        parent=dict(dossier_identity=self.join.fingerprint(self.join.requirements(plan)),requirements=self.join.cleanup_storage_rows(plan,quick,storage),passed_requirements=16)
+        return plan,parent,storage
+
+    def test_exact_twenty_two_rows_preserve_parent_and_leave_other_requirements_pending(self):
+        plan,parent,runs=self.rows();before=copy.deepcopy(parent);rows=self.join.lighting_menu_rows(plan,parent,runs)
+        self.assertEqual(sum(r['state']=='passed' for r in rows),22);self.assertEqual(parent,before)
+        for old,row in zip(parent['requirements'],rows):
+            if old['id'] not in self.join.LIGHTING_MENU_LEAVES:self.assertEqual(row,old)
+
+    def test_missing_duplicate_unverified_domain_or_expanded_parent_refuse(self):
+        plan,parent,runs=self.rows()
+        for bad in [runs[:-1],runs+[runs[0]],runs[:3]+[runs[0]],runs[:3]+[dict(runs[-1],verified=False)],runs[:3]+[dict(runs[-1],identity=runs[0]['identity'])]]:
+            with self.assertRaises(ValueError):self.join.lighting_menu_rows(plan,parent,bad)
+        parent['requirements'][0]['state']='passed'
+        with self.assertRaises(ValueError):self.join.lighting_menu_rows(plan,parent,runs)
+
 if __name__=='__main__':unittest.main()

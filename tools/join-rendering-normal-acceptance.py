@@ -353,14 +353,166 @@ def cleanup_storage_progress(plan,reader,pairs):
         decisions={'supported-player':'pending','original-recovery':'pending'},historical_failures_retired=False,
         scope='Eight named leaves across both explicit targets and both actual sizes, using existing collectors. Four compatible Quick pairs are re-evaluated and four storage pairs exercise Save, Mini/Main Load, restored output and changed-draft Cancel. Terminal input/cursor/graphics/process/channel/source owners are checked directly. Other140rows and both final decisions remain pending; historical failures and unexecuted branches retain their scope.')
 
+
+LIGHTING_MENU_LEAVES={
+    'journey.creatures-effects.lighting':'Selected native lighting processes and applies every observed request without fallback/refusal, binds its final reply to the session/request/input, and retires its worker; complete retained World output is independently compared.',
+    'journey.campaign-entry.campaign-selection':'Original initial campaign/difficulty/region confirmation on the actual current profile and World size.',
+    'journey.pause-preferences.preferences-change':'Original Preferences OK callbacks and both ordered display rebuild/rebind paths; resolution setting only.'}
+
+
+def lighting_checksum(raw):
+    value=2166136261
+    for i,byte in enumerate(raw):
+        value=((value ^ (0 if 120<=i<124 else byte))*16777619)&0xffffffff
+    return value
+
+
+def lighting_state(policy,result,outcome,channel):
+    """Join retained worker SQLite outcome to its exact terminal wire exchange."""
+    import sqlite3
+    require(len(outcome)<=1024*1024 and outcome.startswith(b'SQLite format 3\0'),'Invalid retained lighting outcome')
+    db=sqlite3.connect(':memory:')
+    try:
+        db.deserialize(outcome);db.execute('PRAGMA query_only=ON')
+        rows=db.execute('SELECT payload FROM results').fetchall()
+        life=db.execute('SELECT pid,start_ticks,phase FROM lifecycle').fetchall()
+        require(len(rows)==1 and json.loads(rows[0][0])==result and len(life)==1
+                and life[0][0]>0 and life[0][1]>0 and life[0][2]=='started','Unbound/ambiguous lighting worker outcome')
+    finally:db.close()
+    cap=8*1024*1024
+    require(len(channel)==128+3*cap and channel[:8]==b'MNMLS001','Invalid lighting channel extent/magic')
+    w=struct.unpack_from('<32I',channel)
+    require(w[2:5]==(1,cap,6) and w[11:14]==(1,0,0) and w[31]==0
+            and any(channel[36:44]) and channel[36:44].hex()==policy['nonce']
+            and policy['mode']=='native' and policy['capture']=='none','Lighting session identity/mode/terminal phase differs')
+    require(result['success'] is True and not result['error'] and result['source_bound'] is True
+            and result['mode']=='native' and result['worker_exit']==0 and result['worker_exited_early'] is False,
+            'Lighting worker did not complete normal retirement')
+    stats=dict(zip(('calls','applied','fallback','refused','disabled','processed','rejected','compared','mismatches',
+                   'max_wait_ms','max_compute_us','last_caller','last_clock','last_changed','error','records','trace_active'),w[14:31]))
+    require(stats==result['statistics'] and w[8]==stats['calls']==stats['applied']==stats['processed']>0
+            and all(stats[k]==0 for k in ('fallback','refused','disabled','rejected','error','compared','mismatches','records','trace_active')),
+            'Lighting did not process/apply every call or entered a diagnostic/failure branch')
+    require(300<=w[5]<=cap and 80<=w[6]<=cap and w[7]==0,'Lighting input/reply extent differs')
+    inp=channel[128:128+w[5]];reply=channel[128+cap:128+cap+w[6]]
+    u=lambda at:struct.unpack_from('<I',inp,at)[0]
+    require(inp[:8]==b'MNMLIT01' and (u(8),u(12),u(16),u(20))==(1,128,len(inp),w[8])
+            and inp[24:32]==channel[36:44] and (u(112),u(116),u(124))==(1,0,0)
+            and u(120)==lighting_checksum(inp) and (u(104),u(108))==(stats['last_clock'],stats['last_caller']),
+            'Final lighting input identity/checksum/caller differs')
+    width,height,layers,count=u(32),u(36),u(40),u(44)
+    require(1<=width<=128 and 1<=height<=128 and 1<=layers<=32 and count==width*height*((layers+1)//2)
+            and u(76)<=65536 and u(80)<=65536 and u(84)<=65536 and u(88)<=u(84)
+            and u(68)<=1 and u(72)<=1 and len(inp)==300+u(76)*28+u(84)*32+count*5,
+            'Final lighting input geometry/source bounds differ')
+    require(reply[:8]==b'MNMLRP01' and struct.unpack_from('<4I',reply,8)==(1,len(reply),w[8],w[9])
+            and struct.unpack_from('<2I',reply,24)==(w[10],u(120)) and len(reply)==80+count*5
+            and struct.unpack_from('<I',reply,32)[0]==0,'Final lighting reply identity/input binding differs')
+    state=struct.unpack_from('<11I',reply,36)
+    require(state[0]<8 and state[3]<=65536 and state[4]<=1 and state[5]<=1 and state[8]<=65536
+            and state[9]<=1 and state[10]<=1,'Final lighting reply state bounds differ')
+    return dict(verified=True,statistics=stats,sequence=w[8],nonce=policy['nonce'],terminal_phase='closed',
+        input_sha256=hashlib.sha256(inp).hexdigest(),reply_sha256=hashlib.sha256(reply).hexdigest(),
+        caller=stats['last_caller'],clock=stats['last_clock'],worker_exit=0,
+        scope='Complete observed request/process/application counts, source-bound final wire exchange and normal worker retirement. Zero failures observed; no injected failure, changing-light scene or original lighting-call equivalence is inferred.')
+
+
+def lighting_menu_rows(plan,parent,runs):
+    validate(plan)
+    expected={(c,tuple(z)) for c in ('player-default','player-software') for z in ((640,480),(800,600))}
+    require(len(runs)==4 and {tuple((r['domain'][0],tuple(r['domain'][1]))) for r in runs}==expected
+            and len({r['identity'] for r in runs})==4 and all(r['verified'] is True for r in runs),
+            'Lighting/menu pack lacks distinct verified target domains')
+    template=requirements(plan)
+    require(parent['dossier_identity']==fingerprint(template) and len(parent['requirements'])==156
+            and [(r['configuration'],r['id']) for r in parent['requirements']]==[(r['configuration'],r['id']) for r in template]
+            and sum(r['state']=='passed' for r in parent['requirements'])==parent['passed_requirements']==16
+            and {r['id'] for r in parent['requirements'] if r['state']=='passed'}==set(SUSTAINED_LEAVES)|set(CLEANUP_LEAVES)|set(STORAGE_LEAVES),
+            'Accepted parent requirement scope differs')
+    rows=[]
+    for old in parent['requirements']:
+        row=dict(old)
+        if row['id'] in LIGHTING_MENU_LEAVES:
+            row.update(state='passed',admitted_execution_evidence=[dict(reason=LIGHTING_MENU_LEAVES[row['id']],
+                execution=r['pair'],actual_world_extents=[list(r['domain'][1])],provider=r['provider'])
+                for r in runs if r['domain'][0]==row['configuration']])
+        rows.append(row)
+    require(sum(r['state']=='passed' for r in rows)==22,'Lighting/menu scope changed')
+    return rows
+
+
+
+def lighting_menu_actions(menu,size):
+    selection=menu['campaign_selection'];display=menu['display_rebuilds']
+    require(selection['verified'] is True and selection['callbacks']==[[3,0],[18,65537],[18,0]]
+            and type(selection['thread']) is int and selection['thread']>0,'Unproved initial campaign selection')
+    require(tuple(size) in ((800,600),(640,480)),'Unknown actual display size')
+    order=[[640,480],[800,600]] if tuple(size)==(800,600) else [[800,600],[640,480]]
+    require(display['verified'] is True and display['dimensions']==order and len(display['callback_sequences'])==2
+            and len(set(display['callback_sequences']))==2 and all(type(n) is int and n>0 for n in display['callback_sequences']),
+            'Both actual original Preferences rebuilds are required')
+    return selection,display
+
+
+def lighting_menu_progress(plan,reader,parent_evidence):
+    """Consume an applicable accepted parent; analyze retained data, not recollect."""
+    import subprocess,sys
+    root=reader.root
+    command=[sys.executable,str(root/'tools/evidence-applicability.py'),'plan','--root',str(root),
+             '--evidence',parent_evidence,'--behavior','NP.cleanup-storage-closeout','--require-applicable']
+    checked=subprocess.run(command,cwd=root,capture_output=True,text=True)
+    require(checked.returncode==0,'Accepted cleanup parent is impacted: '+checked.stderr)
+    impact=json.loads(checked.stdout)
+    require(impact['current_scope_preserved'] is True and not impact['source_actions'],'Parent needs targeted revalidation')
+    binding=reader.json(impact['retained_input']['record'])
+    require(reader.digest(impact['retained_input']['record'])==impact['retained_input']['sha256']
+            and binding['success'] is True and binding['independent_pixel_equivalence'] is True,'Changed accepted parent binding')
+    parent_reference=binding['inputs']['closeout'];parent=receipt(reader,parent_reference)
+    require(parent['success'] is True and parent['decisions']=={'supported-player':'pending','original-recovery':'pending'},'Invalid parent decision scope')
+    sources={n:reader.digest(n) for n in binding['sources']};runs=[]
+    for previous in parent['executions']:
+        if 'storage_actions' not in previous:continue
+        pair=previous['pair'];a=receipt(reader,pair['acquisition']);c=receipt(reader,pair['comparison'])
+        require(a['scenario']=='normal-storage' and c['acquisition']==pair['acquisition'] and c['success'] is True
+                and c['original_menu_actions']['verified'] is True and c['lighting']['verified'] is True,'Invalid retained storage/lighting facts')
+        cfg=a['configuration'];domain=(('player-software' if cfg['software_flag'] else 'player-default'),tuple(c['world_domain']['extents'][0]))
+        require(domain==(previous['domain'][0],tuple(previous['domain'][1])) and type(cfg['software_flag']) is bool
+                and cfg['terrain_lighting']=='native' and cfg['native_lighting_capture'] is False,'Lighting target differs from admitted parent')
+        lighting=c['lighting'];policy=lighting['policy']
+        require(all(reader.digest(n)==h for n,h in policy['sources'].items()),'Lighting runtime/compiler source changed')
+        for suffix,sha in [('game/MnmLight.dll',policy['dll_sha256']),('lighting-build/mnm-terrain-light-session',policy['worker_sha256'])]:
+            raw=retained_artifact(reader,a,suffix);require(hashlib.sha256(raw).hexdigest()==sha,'Lighting loaded binary differs')
+        outcome=retained_artifact(reader,a,'terrain-light-session/outcome.sqlite3')
+        require(hashlib.sha256(outcome).hexdigest()==lighting['record']['sha256'],'Lighting outcome differs from comparison')
+        proof=lighting_state(policy,lighting['result'],outcome,retained_artifact(reader,a,'terrain-light-session/channel.bin'))
+        selection,display=lighting_menu_actions(c['original_menu_actions'],domain[1])
+        runs.append(dict(verified=True,identity=a['session_identity'],domain=domain,pair=pair,provider=previous['provider'],
+            lighting=proof,lighting_outcome=lighting['record'],campaign_selection=selection,display_rebuilds=display))
+    rows=lighting_menu_rows(plan,parent,runs)
+    sources.update({n:reader.digest(n) for n in ('tools/evidence-applicability.py','tools/coverage_applicability.py','tools/coverage_evidence.py',
+        'tests/test-rendering-normal-acceptance.py','protocols/include/mnm/terrain_light_session_v1.h','protocols/include/mnm/terrain_light_v1.h','tools/terrain_light_session.py')})
+    return dict(schema=1,kind='native_rendering_lighting_menu_closeout',success=True,sources=sources,
+        accepted_parent=dict(evidence=parent_evidence,binding=impact['retained_input'],applicability=impact),parent_closeout=parent_reference,
+        dossier_identity=fingerprint(requirements(plan)),requirements=rows,executions=runs,passed_requirements=22,pending_requirements=134,
+        inherited_current_rows=16,renewed_previously_accepted_selection_preferences_rows=4,new_lighting_rows=2,
+        closed_leaf_ids=sorted(set(parent['closed_leaf_ids'])|set(LIGHTING_MENU_LEAVES)),
+        lighting_calls=sum(r['lighting']['statistics']['calls'] for r in runs),original_game_runs=0,
+        decisions={'supported-player':'pending','original-recovery':'pending'},historical_failures_retired=False,
+        scope='Preserve the accepted sixteen cleanup/storage/sustained/setup/Quit rows; renew four bounded initial-campaign/resolution rows and close two selected native-lighting leaves. Both explicit targets at both actual sizes, using retained channels/outcomes and independently compared World captures. Lighting failure injection, changing-light scenes, original lighting-call equivalence, other134rows and both final decisions remain separate.')
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--execution',nargs=2,action='append',required=True,metavar=('ACQUISITION','COMPARISON'))
+    p.add_argument('--execution',nargs=2,action='append',default=[],metavar=('ACQUISITION','COMPARISON'))
+    p.add_argument('--lighting-menu',action='store_true',help='Analyze retained lighting and campaign/display facts while preserving the applicable cleanup/storage parent');p.add_argument('--parent-evidence')
     p.add_argument('--cleanup-storage',action='store_true',help='Close cleanup and four storage leaves while renewing sustained/setup/Quit');p.add_argument('--sustained-world',action='store_true',help='Close sustained World plus setup/Quit using all four existing Quick domains');p.add_argument('--negative',action='append',default=[]);p.add_argument('--report',required=True);a=p.parse_args()
     if not a.report.startswith(PREFIX) or (ROOT/a.report).exists():p.error('New immutable owned report required')
+    if not a.lighting_menu and (not a.execution or a.parent_evidence):p.error('Existing modes require executions; parent evidence is for lighting/menu')
     with Reader(ROOT) as reader:
         pairs=[{k:dict(record=n,sha256=reader.digest(n)) for k,n in zip(('acquisition','comparison'),names)} for names in a.execution]
-        if a.cleanup_storage:
+        if a.lighting_menu:
+            if a.execution or a.cleanup_storage or a.sustained_world or a.negative:p.error('Lighting/menu consumes its exact accepted parent and retained inputs')
+            report=lighting_menu_progress(reader.json('docs/native-rendering-closure.json'),reader,a.parent_evidence or 'CS05.cleanup-storage-closed01')
+        elif a.cleanup_storage:
             if a.sustained_world or a.negative:p.error('Cleanup/storage pack has its own exact scope')
             report=cleanup_storage_progress(reader.json('docs/native-rendering-closure.json'),reader,pairs)
         elif a.sustained_world:

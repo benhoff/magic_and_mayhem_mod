@@ -26394,3 +26394,25 @@ snapshot linked from `rendering-closeout-bite-results-20261105/pending-reconcili
 Headless dashboard/control tests validate presentation and historical-input
 handling; browser preview and engine execution remain separate. No original
 fingerprint or engine milestone is renewed by this bookkeeping commit.
+
+
+### Selected native lighting and retained menu closeout — 2026-11-05
+
+`LM05.lighting-menu-closed01` closes the selected native-lighting leaf for both
+explicit profiles at both actual World sizes. Four retained storage runs bind
+2,472 calls/processes/applications, exact worker SQLite outcomes, binary/source
+identities, terminal CLOSED channels and final request/reply nonce/sequence/input
+checksum/caller/clock, with zero fallback/refusal/error and normal worker exit 0.
+The accepted CS05 parent preserves 16 rows; four previously accepted initial
+campaign/resolution rows are renewed and two lighting rows are new: 22/156 pass,
+134 pending, both final decisions pending. 74 current guards pass. No new original
+run, pixel comparison, renderer/runtime change or game fixture is introduced.
+CS05 review03 and the unchanged SW05 review preserve their existing scopes
+across the passive join/test additions, retaining raw three-file drift with no
+rerun actions. Historical hashes/failures and superseded reviews are unchanged.
+The dashboard selects the new pack while its presentation inputs stay outside
+native proof dependencies. See [lighting/menu closeout](rendering-lighting-menu-closeout-20261105.md)
+and its SQLite bindings/open-item review. Movie/camera/picking/HUD/state,
+natural progression/results, remaining operations, original-caller/ABI/font/DC/
+provider and fault boundaries stay separate. No changing-light scene or original
+lighting-call equivalence is inferred. The pre-Save admission/reliability gap remains.
