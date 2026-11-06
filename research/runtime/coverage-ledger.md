@@ -26562,3 +26562,20 @@ analyzers/tests and all existing behavior/evidence definitions remain unchanged;
 WX06/MS06/LH05/PR05/LM05/CS05/SW05 stay accepted with no actions. Other118rows,
 both decisions and known Save admission/historical failures remain open. See
 [natural movie-return review](rendering-movie-return-closeout-20261106.md).
+
+
+## Source-camera/output binding closeout — 2026-11-06
+
+`OC06.source-camera-output-closed01` closes the finite retained default800 Quick
+orientation/minimap-center source-generation/output prerequisite. Original owned
+terrain and camera/cell/creature arguments agree; the four-case selector uses
+three bodies, and six action windows show0,3,2,1,0 plus changed map center.191
+source generations and1020actual World swap occurrences join to native import
+incarnations and complete independent original output, covering1027751340reused
+viewport pixels. Current native/runtime and oracle sources are accepted through
+MR06/WX06; the old gameplay shared-test fingerprint is preserved. No new game,
+pixel comparison, native code/build or fixture. The full periodic scalar join,
+software/640 gameplay, picking/HUD/viewport limits, simulation pause, full camera
+requirements, known Save admission/historical failures and both decisions remain
+open. All38accepted requirement rows are unchanged;118pending. See
+[the closeout](rendering-source-camera-closeout-20261106.md).

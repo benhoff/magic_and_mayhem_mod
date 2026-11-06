@@ -20,6 +20,16 @@ not been measured, so it is not a mathematically proven time-optimal schedule.
 
 ## Start here
 
+**Source-camera closeout (2026-11-06):** the
+[retained source-generation review](../research/runtime/rendering-source-camera-closeout-20261106.md)
+closes the finite default800 orientation/minimap-center to native-output binding
+prerequisite. Existing producer arguments identify all four views in the exact
+source generations, with checked terrain/marker order, imported lifetimes and
+1,020 already compared World swaps. No new game, sampler, build or fixture.
+Full camera rows still require software/640 gameplay and picking/HUD alignment;
+**38/156 remain passed**, 118 rows and both decisions pending. Reuse this join
+when extending the existing gameplay driver.
+
 **Natural movie return closeout (2026-11-06):** the
 [retained media-to-Main review](../research/runtime/rendering-movie-return-closeout-20261106.md)
 closes natural completion/return for both profiles, preserving 36 accepted rows:

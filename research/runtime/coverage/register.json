@@ -163408,6 +163408,61 @@
       "remaining_gaps": [
         "MR06.G.scope: actual whole-movie viewport/skip, exact EOF/first-paint timing,118otherrows, both decisions, provider/fault and known Save admission/historical failures remain open."
       ]
+    },
+    {
+      "id": "NP.source-camera-output-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Source-generation camera and minimap output binding",
+      "scope": "Close the finite default800 Quick source-camera/output binding gap: exact owned minimap/terrain arguments, four-case body/order, nonempty creature markers and captured raster/shadow/displacement routes join to source generations, live import incarnations and every independently compared native swap. Six physical action windows show0,3,2,1,0 and changed source map center. This is source-argument identity, not periodic HUD/semantic scalar identity, picking alignment, actor animation/combat, whole minimap or pause semantics. Software/640 gameplay and whole camera leaves remain open; preserve all38accepted rows and both pending decisions. No new game, pixel comparison, native code/build or fixture.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5594172,
+          "scope": "Existing recovered minimap selector identity only; no new whole-function recovery or original ABI equivalence."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-source-camera-closeout-20261106.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-source-camera.py"
+      ],
+      "tests": [
+        "tests/test-rendering-source-camera-closeout.py",
+        "tests/test-rendering-gameplay-acceptance.py"
+      ],
+      "validation_dependencies": [
+        "tools/resident_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/rendering_gameplay_acceptance.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/evidence-applicability.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "docs/native-rendering-closure.json",
+        "runtime/scene/canvas_producers.c",
+        "reconstruction/rendering/minimap_camera_dispatch.hpp"
+      ],
+      "evidence": [
+        "OC06.controls01",
+        "OC06.source-camera-output-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "OC06.G.domain: software and640 camera gameplay domains, full picking/HUD alignment, tooltip/selection and complete simulation pause remain open; no full frozen requirement pass from this bounded proof.",
+        "OC06.G.scalar: owned minimap source arguments now bind to exact native output; periodic HUD/semantic samples, full camera-world coordinates, viewport/picking/HUD alignment and whole minimap remain separate."
+      ]
     }
   ],
   "evidence": [
@@ -378893,6 +378948,94 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "OC06.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-source-camera-results-20261106/controls-final-01.json",
+      "sha256": "c2743343e8cb655d9b8a078fd74478ab427d06d83b76541f45888de9d01b0c0d",
+      "sources_pointer": "/native_sources",
+      "claims_pointer": "/claims",
+      "scope": "20actual-case source/action/output controls,12existing gameplay,30UI and9client checks pass. Reject missing/changed source views/centers/order/body, missing terrain/markers/shadow/displacement, redraw-only progress, wrong action windows/pan, dropped/duplicate swaps, wrong source/lease/complete pixels, non-GPU/unowned output, dependent oracle or missing returns. No game/fixture/build. UI sources separate from native proof.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 71
+        },
+        {
+          "pointer": "/actual_case_controls_without_skips",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OC06.source-camera-output-closed01",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-source-camera-results-20261106/current-closeout-binding-01.json",
+      "sha256": "438d9cc8bca02d436549a97edda3dc0d7537bb80b23587b7062db376af23c991",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "scope": "Close the finite default800 Quick source-camera/output binding gap: exact owned minimap/terrain arguments, four-case body/order, nonempty creature markers and captured raster/shadow/displacement routes join to source generations, live import incarnations and every independently compared native swap. Six physical action windows show0,3,2,1,0 and changed source map center. This is source-argument identity, not periodic HUD/semantic scalar identity, picking alignment, actor animation/combat, whole minimap or pause semantics. Software/640 gameplay and whole camera leaves remain open; preserve all38accepted rows and both pending decisions. No new game, pixel comparison, native code/build or fixture.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 38
+        },
+        {
+          "pointer": "/source_generations",
+          "equals": 191
+        },
+        {
+          "pointer": "/world_presentations",
+          "equals": 1020
+        },
+        {
+          "pointer": "/source_orientation_to_presented_output_proved",
+          "equals": true
+        },
+        {
+          "pointer": "/source_map_center_pan_proved",
+          "equals": true
+        },
+        {
+          "pointer": "/exact_periodic_scalar_to_source_frame_binding_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/full_camera_picking_hud_requirement_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -410801,6 +410944,21 @@
       "evidence": [
         "MR06.natural-movie-return-closed01"
       ]
+    },
+    {
+      "id": "OC06.retained-default800-camera-source-output",
+      "level": "live_observation",
+      "scope": "Close the finite default800 Quick source-camera/output binding gap: exact owned minimap/terrain arguments, four-case body/order, nonempty creature markers and captured raster/shadow/displacement routes join to source generations, live import incarnations and every independently compared native swap. Six physical action windows show0,3,2,1,0 and changed source map center. This is source-argument identity, not periodic HUD/semantic scalar identity, picking alignment, actor animation/combat, whole minimap or pause semantics. Software/640 gameplay and whole camera leaves remain open; preserve all38accepted rows and both pending decisions. No new game, pixel comparison, native code/build or fixture.",
+      "behaviors": [
+        "NP.source-camera-output-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-source-camera-closeout.py",
+        "tests/test-rendering-gameplay-acceptance.py"
+      ],
+      "evidence": [
+        "OC06.source-camera-output-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -412618,8 +412776,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-f2f1ba547ed7d09f73b8c4d69927e037f3a0c6d92fab791b14e5cae6c598a327.json",
-    "sha256": "f2f1ba547ed7d09f73b8c4d69927e037f3a0c6d92fab791b14e5cae6c598a327"
+    "path": "research/runtime/coverage/source-index-08ee1a0d934f682c3b82d16e0baf1a8a796d7fd30bb75bf7cb7154a4684810b8.json",
+    "sha256": "08ee1a0d934f682c3b82d16e0baf1a8a796d7fd30bb75bf7cb7154a4684810b8"
   },
   "evidence_applicability": [
     {
