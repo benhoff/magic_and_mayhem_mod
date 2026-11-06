@@ -163166,6 +163166,56 @@
       "remaining_gaps": [
         "PR05.G.scope: other132rows, direct Mini Apply/other settings, pause timing, Main focus, movies, scene/picking/HUD, natural progression/results, operations/fault/provider boundaries and both final decisions remain separate. CS05 pre-Save admission/reliability remains open."
       ]
+    },
+    {
+      "id": "NP.loading-handoff-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Native Campaign and Quick loading ownership and first-generation handoff",
+      "scope": "Close only4loading rows across8retained Campaign/Quick cases:default/software at actual640x480/800x600. Bind original entry callbacks, native pre-World surface, owned first3World imports, resource acquisition/conservation and actual complete compared swaps. Preserve24accepted parent rows. No complete original caller-preparation, loading-art equivalence, later-map loading or whole-player claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-loading-handoff-20261105.md"
+      ],
+      "implementation": [
+        "tools/join-rendering-normal-acceptance.py"
+      ],
+      "tests": [
+        "tests/test-rendering-normal-acceptance.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_acceptance.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_applicability.py",
+        "tools/evidence-applicability.py",
+        "tools/coverage_evidence.py",
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/main.cpp",
+        "tools/menu-storage-input.py",
+        "tools/campaign_storage.py",
+        "docs/native-rendering-closure.json",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "apps/qt-shell/live_quick_battle_app_test.cpp",
+        "tools/rendering_player_acceptance.py"
+      ],
+      "evidence": [
+        "LH05.controls01",
+        "LH05.loading-handoff-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "LH05.G.scope: first-World caller preparation, loading-art equivalence, later-map progress, other128rows and both final decisions remain separate. Known CS05 pre-Save admission/reliability stays open."
+      ]
     }
   ],
   "evidence": [
@@ -378334,6 +378384,71 @@
           "equals": 36
         }
       ]
+    },
+    {
+      "id": "LH05.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-loading-handoff-results-20261105/controls-final-01.json",
+      "sha256": "075e71cf8b16d5f5d16c6f0c52378d91fc343f42f0a998ca8b8116a16cb480da",
+      "sources_pointer": "/native_sources",
+      "claims_pointer": "/claims",
+      "scope": "Current normal suite includes8new loading guards; affected UI/server/client checks stay separate from native proof dependencies. No game run or browser preview.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "LH05.loading-handoff-closed01",
+      "kind": "live_equivalence",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-loading-handoff-results-20261105/current-closeout-binding-01.json",
+      "sha256": "2aba5ee9452f972d0bc0a974e8d8a4fdd4d156cc0c58ad34428864f8d298504c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "equivalence_pointer": "/independent_pixel_equivalence",
+      "scope": "Four Campaign/Quick loading rows at both profiles/sizes; preserve24accepted rows. Native pre-World surface ownership, first imports/resources, complete compared first-generation handoff and advancing Worlds1..3. No complete original caller-preparation, loading-art equivalence, natural later-map loading, other128rows or final decision follows.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 28
+        },
+        {
+          "pointer": "/loading_handoffs",
+          "equals": 8
+        },
+        {
+          "pointer": "/compared_presentations",
+          "equals": 32
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -410183,6 +410298,20 @@
       "evidence": [
         "PR05.preferences-resume-closed01"
       ]
+    },
+    {
+      "id": "LH05.retained-native-loading",
+      "level": "live_equivalence",
+      "scope": "Close only4loading rows across8retained Campaign/Quick cases:default/software at actual640x480/800x600. Bind original entry callbacks, native pre-World surface, owned first3World imports, resource acquisition/conservation and actual complete compared swaps. Preserve24accepted parent rows. No complete original caller-preparation, loading-art equivalence, later-map loading or whole-player claim.",
+      "behaviors": [
+        "NP.loading-handoff-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-normal-acceptance.py"
+      ],
+      "evidence": [
+        "LH05.loading-handoff-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -412000,8 +412129,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-97b691e322fc3585cbdd435be2e03c0fec64968cd4519d5e9483b9ce29a194ca.json",
-    "sha256": "97b691e322fc3585cbdd435be2e03c0fec64968cd4519d5e9483b9ce29a194ca"
+    "path": "research/runtime/coverage/source-index-12c9292f59156d380933439498dc3843a05f338285e13552fad546722a14715a.json",
+    "sha256": "12c9292f59156d380933439498dc3843a05f338285e13552fad546722a14715a"
   },
   "evidence_applicability": [
     {
@@ -412033,6 +412162,11 @@
       "id": "PR05.LM05-verification-boundary01",
       "record": "research/runtime/coverage/applicability/pr05-lm05-01.json",
       "sha256": "fe6aa31c4a3bf295cce463ebbadb05e5f9c500e4d4ae2cac6bc2c15ece222726"
+    },
+    {
+      "id": "LH05.PR05-verification-boundary01",
+      "record": "research/runtime/coverage/applicability/lh05-pr05-01.json",
+      "sha256": "05a375df0e8c813f7d02ebc32ec24538003b70b7359fc1ab45a082cc5bb3c600"
     }
   ]
 }

@@ -638,17 +638,174 @@ def preferences_resume_progress(plan,reader,parent_evidence):
         original_game_runs=0,new_pixel_comparisons=0,historical_failures_retired=False,decisions=parent['decisions'],
         scope='Two resume rows at both profiles/sizes; preserve22 accepted rows. Join actual physical input/original Mini ACKs and three fresh fully compared source generations per supported Cancel/Main Apply-reload return, resource conservation and accepted native lighting/history. Frozen producer establishes freshness; Cancel numeric baselines were not serialized. Direct Mini Apply, pause timing, Main focus, movie output/return, other132rows and both final decisions remain separate.')
 
+LOADING_LEAVES={'journey.campaign-entry.loading','journey.quick-battle-entry.loading'}
+
+
+def loading_handoff_state(acquired,compared,observed,resources,size):
+    """Bind the native loading surface to first World imports and actual swaps.
+
+    Original caller preparation, loading-art equivalence and natural map progress
+    are separate contracts. The existing accepted full-history comparison is reused.
+    """
+    scenario=acquired['scenario'];flow=acquired['flow'];menu=compared['original_menu_actions']
+    require(scenario in ('normal-storage','normal-quick') and flow['success'] is True
+            and menu['verified'] is True,'Missing acknowledged loading journey')
+    if scenario=='normal-storage':
+        require(menu['campaign_selection']['verified'] is True
+                and menu['campaign_selection']['callbacks']==[[3,0],[18,65537],[18,0]]
+                and flow['resident_world_requested'] is True and flow['native_command_fallback'] is False
+                and not flow['native_error'] and flow['native_recoveries']==0,'Campaign entry did not reach native ownership')
+        checkpoint=next(v for v in flow['checkpoints'] if v['phase']=='before-save')
+        require(checkpoint['native_active'] is True and checkpoint['fallback'] is False and not checkpoint['error']
+                and counter(checkpoint['source_base'])==0 and counter(checkpoint['source_generation'])>=3
+                and checkpoint['frames']>checkpoint['frame_base']+10,'No fresh initial Campaign progress')
+    else:
+        require(menu['original_callbacks'][:6]==[[3,2],[22,2],[14,2],[25,0],[14,1],[7,12]]
+                and flow['world_visits']==menu['world_visits']==2 and flow['native_fallback'] is False
+                and not flow['native_error'] and flow['recoveries']==0,'Setup/spell/start callback chain differs')
+        checkpoint=flow['world_presentation'][0]
+        require(checkpoint['active'] is True and checkpoint['fallback'] is False and checkpoint['frames']>10
+                and checkpoint['paints']>0 and checkpoint['recoveries']==0,'No native initial Quick progress')
+    ready=[v for v in flow['states'] if 'event' not in v]
+    require(ready and len({v['thread'] for v in ready})==1 and ready[0]['thread']>0,'Changed loading original thread')
+    reference=compared['original_reference'];comparison=compared['comparison']
+    require(reference['continuous_from_owned_initial_history'] is True
+            and reference['native_player_pixels_read'] is False and reference['original_destination_capture_read'] is False
+            and reference['worlds']==len(resources['worlds'])>=3 and comparison['success'] is True
+            and comparison['mismatching_pixels']==comparison['remaining_surfaces']==0,'Incomplete owned loading history')
+    require(resources['verified'] is True and resources['remaining_surfaces']==resources['remaining_palettes']==0
+            and resources['creates']==resources['deletes'] and resources['created_bytes']==resources['deleted_bytes']
+            and resources['palette_creates']==resources['palette_deletes'],'Loading resources did not retire normally')
+    shown=[observed['paints'][p][0] for p in observed['swaps']]
+    first=next((i for i,v in enumerate(shown) if counter(v['world'])>0),None)
+    require(first is not None and counter(shown[first]['world'])==1,'First native World import/handoff missing')
+    before=[v for v in shown[:first] if counter(v['lease'])>0]
+    require(before and counter(before[-1]['world'])==0,'No owned pre-World loading presentation')
+    selected=[before[-1]]
+    for generation in (1,2,3):
+        row=next((v for v in shown[first:] if counter(v['world'])==generation),None)
+        require(row is not None,'Missing advancing loading handoff generation');selected.append(row)
+    matches=[]
+    for row in selected:
+        require(row['presentation_owner']=='gui' and row['immutable_lease'] is False and row['native_gpu_frame'] is True
+                and row['pixels_captured'] is True and row['gpu_read_complete'] is True and row['transport']=='opengl'
+                and counter(row['lease'])>0 and row['surface']>0 and row['mode'] in (0,1)
+                and (row['frame_width'],row['frame_height'])==tuple(size),'Loading presentation owner/domain differs')
+        rows=[v for v in comparison['comparisons'] if v['paint']==counter(row['paint'])]
+        require(len(rows)==1,'Loading swapped comparison missing/ambiguous');match=rows[0]
+        require(match['world']==counter(row['world']) and match['pixels']==row['width']*row['height']>0
+                and match['mismatching_pixels']==0 and match['actual_sha256']==match['expected_sha256'],
+                'Loading handoff complete output mismatch')
+        matches.append(match)
+    require([counter(v['host_us']) for v in selected]==sorted({counter(v['host_us']) for v in selected})
+            and [counter(v['paint']) for v in selected]==sorted({counter(v['paint']) for v in selected})
+            and [v['commands'] for v in selected]==sorted(v['commands'] for v in selected),
+            'Loading presentation/command progress regressed')
+    first_proof=compared['first_presented_world']
+    require(first_proof['verified'] is True and first_proof['paint']==counter(selected[1]['paint'])
+            and first_proof['generation']==1 and first_proof['pixels']==matches[1]['pixels']
+            and first_proof['sha256']==matches[1]['actual_sha256'],'First swapped handoff identity differs')
+    live={};owners=[]
+    for op,seq,payload in commands(observed['commands']):
+        if op==1:
+            sid,w,h,bits,*_=struct.unpack_from('<7I',payload);live[sid]=dict(surface=sid,created_sequence=seq,width=w,height=h,bits=bits)
+        elif op==7:del live[struct.unpack('<I',payload)[0]]
+        elif op==19:
+            sid,lo,hi,_,_=struct.unpack('<5I',payload);generation=lo+(hi<<32)
+            if generation>3:break
+            row=resources['worlds'][generation-1];presentation=selected[generation]
+            require(generation==len(owners)+1 and row['generation']==generation and row['sequence']==seq
+                    and sid in live and presentation['surface'] in live
+                    and (live[sid]['width'],live[sid]['height'],live[sid]['bits'])==(*size,16)
+                    and row['creates']-row['deletes']==row['surfaces']==len(live)>0
+                    and row['created_bytes']-row['deleted_bytes']==row['logical_surface_bytes']>0
+                    and seq<=presentation['commands'],'Loading import/presentation resources are not owned')
+            owners.append(dict(generation=generation,sequence=seq,import_owner=live[sid],presentation_surface=presentation['surface'],resources=row))
+    require(len(owners)==3,'Incomplete first loading imports')
+    return dict(verified=True,scenario=scenario,original_thread=ready[0]['thread'],checkpoint=checkpoint,
+        presented_handoff=selected,compared_handoff=matches,imports=owners,
+        first_caller_preparation_proved=first_proof['complete_caller_preparation_proved'],
+        scope='Native loading ownership/resource acquisition and first-generation handoff followed by fresh Worlds1..3. Reuses accepted complete output/history. No loading-art/original caller-preparation, later-map progression or new comparison claim.')
+
+
+def loading_handoff_rows(plan,parent,runs):
+    validate(plan);expected={(c,s,z) for c in ('player-default','player-software')
+        for s in ('normal-quick','normal-storage') for z in ((640,480),(800,600))}
+    require(len(runs)==8 and {(r['domain'][0],r['scenario'],tuple(r['domain'][1])) for r in runs}==expected
+            and len({r['identity'] for r in runs})==8 and all(r['loading']['verified'] is True for r in runs),
+            'Missing/duplicate/unverified loading domain')
+    template=requirements(plan);accepted=set(SUSTAINED_LEAVES)|set(CLEANUP_LEAVES)|set(STORAGE_LEAVES)|set(LIGHTING_MENU_LEAVES)|{RESUME_LEAF}
+    require(parent['dossier_identity']==fingerprint(template) and parent['passed_requirements']==24
+            and len(parent['requirements'])==156 and sum(v['state']=='passed' for v in parent['requirements'])==24
+            and {v['id'] for v in parent['requirements'] if v['state']=='passed'}==accepted
+            and [(v['configuration'],v['id']) for v in parent['requirements']]==[(v['configuration'],v['id']) for v in template],
+            'Changed accepted loading parent inventory')
+    rows=[]
+    for previous in parent['requirements']:
+        row=dict(previous)
+        if row['id'] in LOADING_LEAVES:
+            require(row['state']=='pending','Loading was already closed')
+            scenario='normal-storage' if row['id']=='journey.campaign-entry.loading' else 'normal-quick'
+            row.update(state='passed',admitted_execution_evidence=[dict(reason=r['loading']['scope'],execution=r['pair'],
+                actual_world_extents=[list(r['domain'][1])],provider=r['provider']) for r in runs
+                if r['domain'][0]==row['configuration'] and r['scenario']==scenario])
+        rows.append(row)
+    require(sum(v['state']=='passed' for v in rows)==28,'Loading closeout scope changed');return rows
+
+
+def loading_handoff_progress(plan,reader,parent_evidence):
+    import subprocess,sys
+    root=reader.root
+    checked=subprocess.run([sys.executable,str(root/'tools/evidence-applicability.py'),'plan','--root',str(root),
+        '--evidence',parent_evidence,'--behavior','NP.preferences-resume-closeout','--require-applicable'],cwd=root,capture_output=True,text=True)
+    require(checked.returncode==0,'Resume parent is impacted: '+checked.stderr);impact=json.loads(checked.stdout)
+    require(impact['current_scope_preserved'] is True and not impact['source_actions'],'Resume parent needs targeted revalidation')
+    reference=impact['retained_input'];binding=reader.json(reference['record'])
+    require(reader.digest(reference['record'])==reference['sha256'],'Accepted loading parent hash differs')
+    require(binding['success'] is True and binding['independent_pixel_equivalence'] is True,'Invalid accepted loading parent')
+    parent=receipt(reader,binding['inputs']['progress']);lighting_ref=parent['accepted_parent']['binding']
+    lighting=reader.json(lighting_ref['record']);require(reader.digest(lighting_ref['record'])==lighting_ref['sha256'],'Accepted lighting parent hash differs')
+    previous=receipt(reader,lighting['inputs']['progress']);storage=receipt(reader,previous['parent_closeout'])
+    runs=[]
+    for old in storage['executions']:
+        pair=old['pair'];a=receipt(reader,pair['acquisition']);c=receipt(reader,pair['comparison'])
+        require(a['session_identity']==old['identity'] and a['success'] is c['success'] is True,'Unaccepted loading execution')
+        streams=[]
+        for v in a['artifacts']:
+            if '/capture/' not in v['path'] or not v['path'].endswith('.bin'):continue
+            raw=reader.read_bytes(v['record']);require(len(raw)==v['bytes'] and hashlib.sha256(raw).hexdigest()==v['sha256'],'Changed retained loading capture');streams.append(raw)
+        observed=acquisition(streams,a['session_identity'])
+        require(hashlib.sha256(observed['commands']).hexdigest()==c['captured_command_stream_sha256'],'Loading command/resource ledger differs')
+        resources=resource_history(observed['commands']);require(resources==old['resources'],'Changed loading resource accounting')
+        proof=loading_handoff_state(a,c,observed,resources,old['domain'][1])
+        runs.append(dict(identity=old['identity'],domain=old['domain'],scenario=a['scenario'],pair=pair,provider=old['provider'],loading=proof))
+    rows=loading_handoff_rows(plan,parent,runs);sources={n:reader.digest(n) for n in binding['sources']}
+    return dict(schema=1,kind='native_rendering_loading_handoff_closeout',success=True,sources=sources,
+        accepted_parent=dict(evidence=parent_evidence,binding=reference,applicability=impact),
+        dossier_identity=fingerprint(requirements(plan)),requirements=rows,executions=runs,
+        passed_requirements=28,pending_requirements=128,inherited_current_rows=24,new_loading_rows=4,
+        closed_leaf_ids=sorted(set(parent['closed_leaf_ids'])|LOADING_LEAVES),loading_handoffs=len(runs),
+        compared_presentations=sum(len(v['loading']['compared_handoff']) for v in runs),
+        compared_pixels=sum(p['pixels'] for v in runs for p in v['loading']['compared_handoff']),
+        original_game_runs=0,new_pixel_comparisons=0,historical_failures_retired=False,decisions=parent['decisions'],
+        scope='Four Campaign/Quick loading rows at both profiles/sizes; preserve24accepted rows. Native pre-World surface ownership, first imports/resources, complete compared first-generation handoff and advancing Worlds1..3. No complete original caller-preparation, loading-art equivalence, natural later-map loading, other128rows or final decision follows.')
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--execution',nargs=2,action='append',default=[],metavar=('ACQUISITION','COMPARISON'))
+    p.add_argument('--loading-handoff',action='store_true',help='Close native Campaign/Quick loading ownership and first-generation handoff from retained evidence')
     p.add_argument('--preferences-resume',action='store_true',help='Close supported Preferences Cancel/Main Apply-reload resume from retained evidence');
     p.add_argument('--lighting-menu',action='store_true',help='Analyze retained lighting and campaign/display facts while preserving the applicable cleanup/storage parent');p.add_argument('--parent-evidence')
     p.add_argument('--cleanup-storage',action='store_true',help='Close cleanup and four storage leaves while renewing sustained/setup/Quit');p.add_argument('--sustained-world',action='store_true',help='Close sustained World plus setup/Quit using all four existing Quick domains');p.add_argument('--negative',action='append',default=[]);p.add_argument('--report',required=True);a=p.parse_args()
     if not a.report.startswith(PREFIX) or (ROOT/a.report).exists():p.error('New immutable owned report required')
-    if not (a.lighting_menu or a.preferences_resume) and (not a.execution or a.parent_evidence):p.error('Existing modes require executions; parent evidence is for lighting/menu')
+    if not (a.lighting_menu or a.preferences_resume or a.loading_handoff) and (not a.execution or a.parent_evidence):p.error('Existing modes require executions; parent evidence is for lighting/menu')
     with Reader(ROOT) as reader:
         pairs=[{k:dict(record=n,sha256=reader.digest(n)) for k,n in zip(('acquisition','comparison'),names)} for names in a.execution]
-        if a.preferences_resume:
+        if a.loading_handoff:
+            if a.execution or a.preferences_resume or a.lighting_menu or a.cleanup_storage or a.sustained_world or a.negative:p.error('Loading handoff consumes its exact accepted parent')
+            report=loading_handoff_progress(reader.json('docs/native-rendering-closure.json'),reader,a.parent_evidence or 'PR05.preferences-resume-closed01')
+        elif a.preferences_resume:
             if a.execution or a.lighting_menu or a.cleanup_storage or a.sustained_world or a.negative:p.error('Preferences resume consumes its exact accepted parent')
             report=preferences_resume_progress(reader.json('docs/native-rendering-closure.json'),reader,a.parent_evidence or 'LM05.lighting-menu-closed01')
         elif a.lighting_menu:

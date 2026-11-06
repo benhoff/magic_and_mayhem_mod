@@ -473,4 +473,113 @@ class PreferencesResumeCloseoutTests(unittest.TestCase):
         passed['state']='pending';pending['state']='passed'
         with self.assertRaises(ValueError):self.join.preferences_resume_rows(plan,parent,runs)
 
+
+class LoadingHandoffCloseoutTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        SustainedCloseoutTests.setUpClass();cls.join=SustainedCloseoutTests.join
+
+    def case(self,scenario='normal-quick'):
+        def packet(op,seq,payload):return struct.pack('<III',op,seq,len(payload))+payload
+        raw=b'MNMCMD05'+struct.pack('<II',5,16)
+        for sid in (2,3):raw+=packet(1,sid-1,struct.pack('<7I',sid,800,600,16,0xf800,0x7e0,31)+bytes(960000))
+        for g in (1,2,3):raw+=packet(19,g+2,struct.pack('<5I',3,g,0,0,0))
+        raw+=packet(7,6,struct.pack('<I',3))+packet(7,7,struct.pack('<I',2))+packet(8,8,b'')
+        resources=self.join.resource_history(raw)
+        paints={i+1:(dict(kind='paint',paint=str(i+1),world=str(i),lease=str(i+1),host_us=str(i+1),commands=i+2,
+            presentation_owner='gui',immutable_lease=False,native_gpu_frame=True,pixels_captured=True,gpu_read_complete=True,
+            transport='opengl',surface=2,mode=0,frame_width=800,frame_height=600,width=800,height=600),b'') for i in range(4)}
+        observed=dict(paints=paints,swaps=list(paints),commands=raw)
+        matches=[dict(paint=i+1,world=i,pixels=480000,mismatching_pixels=0,actual_sha256='a'*64,expected_sha256='a'*64) for i in range(4)]
+        flow=dict(success=True,states=[dict(thread=1)],world_visits=2,native_fallback=False,native_error='',recoveries=0,
+            world_presentation=[dict(active=True,fallback=False,frames=11,paints=1,recoveries=0)])
+        menu=dict(verified=True,world_visits=2,original_callbacks=[[3,2],[22,2],[14,2],[25,0],[14,1],[7,12]])
+        if scenario=='normal-storage':
+            flow.update(resident_world_requested=True,native_command_fallback=False,native_recoveries=0,
+                checkpoints=[dict(phase='before-save',native_active=True,fallback=False,error='',source_base='0',source_generation='3',frames=11,frame_base=0)])
+            menu['campaign_selection']=dict(verified=True,callbacks=[[3,0],[18,65537],[18,0]])
+        a=dict(scenario=scenario,flow=flow)
+        c=dict(original_menu_actions=menu,original_reference=dict(continuous_from_owned_initial_history=True,native_player_pixels_read=False,
+            original_destination_capture_read=False,worlds=3),comparison=dict(success=True,mismatching_pixels=0,remaining_surfaces=0,comparisons=matches),
+            first_presented_world=dict(verified=True,paint=2,generation=1,pixels=480000,sha256='a'*64,complete_caller_preparation_proved=False))
+        return [a,c,observed,resources,(800,600)]
+
+    def test_both_entries_bind_loading_owner_first_import_and_fresh_swaps(self):
+        for scenario in ('normal-storage','normal-quick'):
+            result=self.join.loading_handoff_state(*self.case(scenario))
+            self.assertTrue(result['verified']);self.assertEqual(len(result['imports']),3)
+            self.assertEqual([v['world'] for v in result['compared_handoff']],[0,1,2,3])
+            self.assertFalse(result['first_caller_preparation_proved'])
+
+    def test_original_callback_chain_and_initial_progress_are_required(self):
+        for scenario in ('normal-storage','normal-quick'):
+            args=self.case(scenario);args[1]['original_menu_actions']['verified']=False
+            with self.assertRaises(ValueError):self.join.loading_handoff_state(*args)
+        args=self.case();args[1]['original_menu_actions']['original_callbacks'][5]=[7,0]
+        with self.assertRaises(ValueError):self.join.loading_handoff_state(*args)
+        args=self.case('normal-storage');args[0]['flow']['checkpoints'][0]['source_base']='1'
+        with self.assertRaises(ValueError):self.join.loading_handoff_state(*args)
+        args=self.case();args[0]['flow']['world_presentation'][0]['active']=False
+        with self.assertRaises(ValueError):self.join.loading_handoff_state(*args)
+
+    def test_missing_pre_world_owner_or_source_generation_refuses(self):
+        for paint in (1,2,3,4):
+            args=self.case();args[2]['swaps'].remove(paint)
+            with self.subTest(paint=paint),self.assertRaises(ValueError):self.join.loading_handoff_state(*args)
+        for key,value in [('presentation_owner','dedicated'),('immutable_lease',True),('native_gpu_frame',False),
+                          ('pixels_captured',False),('gpu_read_complete',False),('transport','image'),('frame_width',640),('lease','0')]:
+            args=self.case();args[2]['paints'][2][0][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):self.join.loading_handoff_state(*args)
+
+    def test_partial_mismatched_or_out_of_order_output_refuses(self):
+        for key,value in [('pixels',1),('world',0),('mismatching_pixels',1),('actual_sha256','b'*64)]:
+            args=self.case();args[1]['comparison']['comparisons'][1][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):self.join.loading_handoff_state(*args)
+        args=self.case();args[2]['paints'][2][0]['host_us']='1'
+        with self.assertRaises(ValueError):self.join.loading_handoff_state(*args)
+        args=self.case();args[1]['first_presented_world']['paint']=3
+        with self.assertRaises(ValueError):self.join.loading_handoff_state(*args)
+
+    def test_dependent_or_incomplete_history_and_surviving_resources_refuse(self):
+        for key,value in [('continuous_from_owned_initial_history',False),('native_player_pixels_read',True),('original_destination_capture_read',True),('worlds',2)]:
+            args=self.case();args[1]['original_reference'][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):self.join.loading_handoff_state(*args)
+        for key,value in [('remaining_surfaces',1),('remaining_palettes',1),('deleted_bytes',0)]:
+            args=self.case();args[3][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):self.join.loading_handoff_state(*args)
+
+    def test_import_resource_identity_and_publication_order_must_match(self):
+        for key,value in [('generation',2),('sequence',2),('surfaces',1),('logical_surface_bytes',0)]:
+            args=self.case();args[3]['worlds'][0][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):self.join.loading_handoff_state(*args)
+        args=self.case();args[2]['paints'][2][0]['commands']=2
+        with self.assertRaises(ValueError):self.join.loading_handoff_state(*args)
+
+    def rows(self):
+        plan=json.loads((ROOT/'docs/native-rendering-closure.json').read_text())
+        allowed=set(self.join.SUSTAINED_LEAVES)|set(self.join.CLEANUP_LEAVES)|set(self.join.STORAGE_LEAVES)|set(self.join.LIGHTING_MENU_LEAVES)
+        parent=dict(dossier_identity=self.join.fingerprint(self.join.requirements(plan)),passed_requirements=22,
+            requirements=[dict(r,state='passed' if r['id'] in allowed else 'pending') for r in self.join.requirements(plan)])
+        for row in parent['requirements']:
+            if row['id']==self.join.RESUME_LEAF:row['state']='passed'
+        parent['passed_requirements']=24
+        runs=[dict(identity=str(i),domain=(c,z),scenario=s,pair={},provider='controlled',loading=dict(verified=True,scope='controls'))
+            for i,(c,s,z) in enumerate((c,s,z) for c in ('player-default','player-software') for s in ('normal-quick','normal-storage') for z in ((640,480),(800,600)))]
+        return plan,parent,runs
+
+    def test_only_four_loading_rows_are_added_and_parent_is_unchanged(self):
+        plan,parent,runs=self.rows();before=copy.deepcopy(parent);rows=self.join.loading_handoff_rows(plan,parent,runs)
+        self.assertEqual(sum(v['state']=='passed' for v in rows),28);self.assertEqual(parent,before)
+        for a,b in zip(parent['requirements'],rows):
+            if a['id'] not in self.join.LOADING_LEAVES:self.assertEqual(a,b)
+
+    def test_missing_duplicate_unverified_domains_and_parent_aliasing_refuse(self):
+        plan,parent,runs=self.rows()
+        for bad in [runs[:-1],runs+[runs[0]],runs[:-1]+[runs[0]],runs[:-1]+[dict(runs[-1],loading=dict(verified=False))]]:
+            with self.assertRaises(ValueError):self.join.loading_handoff_rows(plan,parent,bad)
+        passed=next(v for v in parent['requirements'] if v['state']=='passed');pending=next(v for v in parent['requirements'] if v['state']=='pending')
+        passed['state']='pending';pending['state']='passed'
+        with self.assertRaises(ValueError):self.join.loading_handoff_rows(plan,parent,runs)
+
+
 if __name__=='__main__':unittest.main()

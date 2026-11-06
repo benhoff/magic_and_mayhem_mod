@@ -26440,3 +26440,27 @@ actual movie output/skip-return, remaining operations/fault/provider boundaries
 and the known pre-Save admission/reliability failure remain open. See
 [Preferences resume review](rendering-preferences-resume-20261105.md) for evidence,
 the source-derived freshness limit and the bounded rerun command.
+
+
+### Native Campaign and Quick loading handoff — 2026-11-05
+
+`LH05.loading-handoff-closed01` closes four loading rows, preserving all 24
+accepted parent rows: 28/156 pass, 128 pending; both final decisions remain
+pending. Eight Campaign/Quick cases cover default/software and actual
+640x480/800x600. Original entry callbacks and native progress bind the swapped
+pre-World GUI surface to owned RGB565 imports and actual Worlds1..3, with exact
+CREATE/import/presentation sequence and count/byte conservation. All32selected
+presentations reuse independent complete-output comparisons:27,984,000pixels,
+zero mismatches, continuous owned history and no destination/native-player oracle
+seeding.89current normal/UI/client controls pass. No new game, pixel comparison,
+fixture or renderer/runtime change occurs.
+
+The exact PR05 applicability review preserves its unchanged callable/test scope;
+LM05/CS05/SW05 remain applicable with raw drift and zero source actions. Existing
+behavior/status/evidence definitions and failures remain unchanged. The UI selects
+28rows without adding presentation dependencies to native proof. Every retained
+first-World comparison still explicitly lacks complete caller-preparation proof;
+those rows, loading-art equivalence, real later-map loading, per-World exit
+retirement and all remaining scope stay pending. The CS05 pre-Save admission/
+reliability failure remains open. See [loading-handoff review](rendering-loading-handoff-20261105.md)
+for exact evidence, controls, limits and a bounded rerun command.

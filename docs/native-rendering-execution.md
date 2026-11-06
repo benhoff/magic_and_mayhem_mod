@@ -20,6 +20,17 @@ not been measured, so it is not a mathematically proven time-optimal schedule.
 
 ## Start here
 
+**Campaign/Quick loading closeout (2026-11-05):** the
+[retained loading-handoff review](../research/runtime/rendering-loading-handoff-20261105.md)
+preserves 24 accepted rows and closes four loading rows: **28/156**, with 128
+rows and both final decisions pending. Eight existing entry cases bind original
+callbacks, native pre-World ownership, first source/resource imports and fresh
+World progress to 32 previously compared presentations. 89 controls pass.
+No new game run, pixel comparison, fixture or renderer/runtime change is added.
+First-composed-World caller preparation stays explicitly unproved; inspect that
+exact missing state before another acquisition. Loading-art equivalence and
+later-map loading remain separate.
+
 **Preferences resume closeout (2026-11-05):** the
 [retained-data resume review](../research/runtime/rendering-preferences-resume-20261105.md)
 preserves all 22 accepted parent rows and closes two resume rows: **24/156**,
