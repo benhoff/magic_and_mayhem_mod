@@ -163463,6 +163463,69 @@
         "OC06.G.domain: software and640 camera gameplay domains, full picking/HUD alignment, tooltip/selection and complete simulation pause remain open; no full frozen requirement pass from this bounded proof.",
         "OC06.G.scalar: owned minimap source arguments now bind to exact native output; periodic HUD/semantic samples, full camera-world coordinates, viewport/picking/HUD alignment and whole minimap remain separate."
       ]
+    },
+    {
+      "id": "NP.camera-capture-diagnostics",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Retained camera source facets and negative sampling diagnosis",
+      "scope": "Validate finite retained software800 source/action facets and classify every negative Sharp viewport difference using unchanged independent expected rasters. Every actual Cell call must agree with the camera/terrain/creature contract, including two-Cell packets. Verify physical menu misses published no new host request. This is offline diagnostic tooling, not positive viewport equality, a successful revised driver, native implementation repair, universal GPU tie behavior or a full camera acceptance row.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5594172,
+          "scope": "Existing recovered four-case minimap selector identity only; whole function and ABI remain separate."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-camera-matrix-closeout-20261106.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-camera-acceptance.py",
+        "tools/check-rendering-camera-acceptance.py",
+        "tools/close-rendering-camera-matrix.py"
+      ],
+      "tests": [
+        "tests/test-rendering-camera-matrix.py"
+      ],
+      "validation_dependencies": [
+        "tools/run-rendering-menu-acceptance.py",
+        "tools/rendering_menu_accessibility.py",
+        "tools/close-rendering-source-camera.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/resident_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "docs/native-rendering-closure.json",
+        "tools/native_only_contract.py",
+        "tools/native_prefix_template.py",
+        "tools/rendering_build_binding.py",
+        "tools/rendering_gameplay_acceptance.py",
+        "tools/campaign_input_observation.py",
+        "tools/test-menu-observer.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/comparison_process.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "CM06.retained-diagnostics01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CM06.G.matrix: all missing Integer profile/size camera acquisitions and successful strict positive comparison remain pending; only the earlier default800 OC06 domain is accepted. No full orientation row promoted.",
+        "CM06.G.input: two physical mouse actions published no host request despite ready original menus; precise delivery cause remains unisolated. Batch stopped after3actual games and2zero-game preparation refusals. Final guarded external driver and strict positive gate have no successful current-source run.",
+        "CM06.G.sharp:3819024negative viewport differences lie on exact rational texel boundaries and match an adjacent independent expected texel. Sharp display/reference compatibility remains unresolved; no oracle relaxation, native fix or universal hardware rounding claim.",
+        "CM06.G.scope: camera picking/HUD alignment, viewport limits, full periodic scalar identity, animation/combat, whole minimap/pause, both final decisions and known Save/historical failures remain open."
+      ]
     }
   ],
   "evidence": [
@@ -379036,6 +379099,49 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CM06.retained-diagnostics01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-camera-matrix-results-20261106/current-diagnostics-binding-01.json",
+      "sha256": "2a895ac67df854c7afbbf60df499b897bd70bb667492388234bc0ebc2f640dd9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Validate finite retained software800 source/action facets and classify every negative Sharp viewport difference using unchanged independent expected rasters. Every actual Cell call must agree with the camera/terrain/creature contract, including two-Cell packets. Verify physical menu misses published no new host request. This is offline diagnostic tooling, not positive viewport equality, a successful revised driver, native implementation repair, universal GPU tie behavior or a full camera acceptance row.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/controls",
+          "equals": 31
+        },
+        {
+          "pointer": "/batch_original_game_runs",
+          "equals": 3
+        },
+        {
+          "pointer": "/source_generations",
+          "equals": 215
+        },
+        {
+          "pointer": "/sharp_mismatches",
+          "equals": 3819024
+        },
+        {
+          "pointer": "/full_orientation_matrix_passed",
+          "equals": false
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 38
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -410959,6 +411065,20 @@
       "evidence": [
         "OC06.source-camera-output-closed01"
       ]
+    },
+    {
+      "id": "CM06.retained-camera-diagnostics",
+      "level": "headless",
+      "scope": "Retained software800 camera cycle, single/two-Cell source packets, complete unchanged negative independent comparison, exact failed host-request channels and stopped bounded attempts. No current positive camera matrix or new acceptance row.",
+      "behaviors": [
+        "NP.camera-capture-diagnostics"
+      ],
+      "tests": [
+        "tests/test-rendering-camera-matrix.py"
+      ],
+      "evidence": [
+        "CM06.retained-diagnostics01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -412776,8 +412896,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-08ee1a0d934f682c3b82d16e0baf1a8a796d7fd30bb75bf7cb7154a4684810b8.json",
-    "sha256": "08ee1a0d934f682c3b82d16e0baf1a8a796d7fd30bb75bf7cb7154a4684810b8"
+    "path": "research/runtime/coverage/source-index-4973d8790df4bc45bd3080521471898ade85376a0b9e916a63e7ccc59f91cbd7.json",
+    "sha256": "4973d8790df4bc45bd3080521471898ade85376a0b9e916a63e7ccc59f91cbd7"
   },
   "evidence_applicability": [
     {

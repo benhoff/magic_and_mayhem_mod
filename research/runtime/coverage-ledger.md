@@ -26579,3 +26579,21 @@ software/640 gameplay, picking/HUD/viewport limits, simulation pause, full camer
 requirements, known Save admission/historical failures and both decisions remain
 open. All38accepted requirement rows are unchanged;118pending. See
 [the closeout](rendering-source-camera-closeout-20261106.md).
+
+
+## Retained camera diagnostics — 2026-11-06
+
+`CM06.retained-diagnostics01` validates finite software800 source/action facets:
+215source generations,120single-Cell and94two-Cell packets plus startup, all4views
+and changed pan center. Every Cell call is checked against the unchanged earlier
+contract. Independent viewport output remains negative: all3819024Sharp differences
+across288comparisons reproduce at exact rational texel boundaries and match an
+adjacent expected texel. No tolerance/oracle/native change or universal rounding
+claim. Five public requests launched3actual games and2zero-game refusals; the two
+Integer games missed physical menu actions before World, publishing no next host
+request. Precise mouse delivery cause stays open; forced stops are not normal Quit.
+The batch is stopped and640cases were never launched. Final revised external
+collector/positive gate remain unvalidated end to end. Earlier38accepted rows and
+all statuses/evidence definitions are unchanged;118rows/bothdecisions and known
+failures remain open. No native/runtime edit, binary build or new game fixture.
+See [camera diagnostics](rendering-camera-matrix-closeout-20261106.md).
