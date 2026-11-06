@@ -20,6 +20,20 @@ not been measured, so it is not a mathematically proven time-optimal schedule.
 
 ## Start here
 
+**Public Main/setup closeout (2026-11-06):** the
+[menu acceptance review](../research/runtime/rendering-main-setup-closeout-20261106.md)
+closes setup changes, ready Main focus/input and Cancel/return for both profiles:
+**34/156 passed**, preserving all 28 parent rows, with 122 rows and both final
+decisions pending. Four public sessions observe the original High/Low selector,
+68 callback effects, changed mana/lives/handicap/map, direct returned focus and
+zero unintended Worlds. Map Cancel preserves current setup; outer Setup Cancel
+restores entry defaults. 108 current controls pass. The accepted native binary
+and all 405 compiler sources are unchanged; only external driver/analysis code is
+added. Native menus retain their 800x600 logical layout, with no inferred World
+extent or original-menu pixel equivalence. Movie output/return, complete
+first-World caller preparation and the known pre-Save admission failure remain
+open. Reanalyse retained cases before acquiring another original session.
+
 **Campaign/Quick loading closeout (2026-11-05):** the
 [retained loading-handoff review](../research/runtime/rendering-loading-handoff-20261105.md)
 preserves 24 accepted rows and closes four loading rows: **28/156**, with 128

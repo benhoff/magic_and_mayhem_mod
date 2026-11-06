@@ -26464,3 +26464,37 @@ those rows, loading-art equivalence, real later-map loading, per-World exit
 retirement and all remaining scope stay pending. The CS05 pre-Save admission/
 reliability failure remains open. See [loading-handoff review](rendering-loading-handoff-20261105.md)
 for exact evidence, controls, limits and a bounded rerun command.
+
+
+### Public Main/setup native acceptance — 2026-11-06
+
+`MS06.main-setup-closed01` closes setup-change, main-menu and cancel-return for
+both profiles: six new rows preserve all 28 accepted parent rows, giving 34/156
+passed and 122 pending. Both final decisions remain pending. Four public sessions
+cover default/software and directly observed original High/Low preferences;
+native Qt menus use the existing 800x600 logical layout without entering a World.
+Sixty-eight original callback effects bind actual rule/handicap/map changes,
+16 ready Main focus observations, 16 Cancel-return focus observations, physical
+Space/Escape effects and normal Quit. Map Cancel preserves the complete current
+setup; outer Setup Cancel restores entry defaults. Fresh original setup recreates
+AI names/portraits; their identity is not asserted across new Create actions.
+
+The accepted native executable and 405 compiler-source dependencies remain exact.
+Only an external public physical/accessibility driver and retained-data assertions
+are added; no renderer/runtime/native code, patch, fixture or new World comparison.
+Native menu presentation/focus is an intentional policy, with no original-menu
+pixel-equivalence claim. Seven actual original sessions include four passes and
+three retained harness/assertion failures; two staging refusals and one prefix
+preflight refusal launched no game. Repair records correct old requested-launch
+counters without replacing historical hashes. No positive domain was repeated.
+
+`MS06.controls01` records 108 current controls, including evidence-backed guards
+with no skips. Raw states/images/events, producer preimages, negative attempts,
+prefix recovery and exact input restoration remain in SQLite and the verified
+local evidence pair. The exact LH05 applicability boundary preserves its unchanged
+analysis/tests; LH05/PR05/LM05/CS05/SW05 remain current with no actions. UI selection
+stays separate from native source dependencies. Existing behavior/evidence/status
+definitions, unknowns and negative evidence remain unchanged. Movie output/return,
+first-World preparation, later-map/results, remaining operations/fault/providers,
+both decisions and the known CS05 pre-Save admission/reliability failure remain
+open. See [Main/setup closeout](rendering-main-setup-closeout-20261106.md).

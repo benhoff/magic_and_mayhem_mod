@@ -791,18 +791,69 @@ def loading_handoff_progress(plan,reader,parent_evidence):
         scope='Four Campaign/Quick loading rows at both profiles/sizes; preserve24accepted rows. Native pre-World surface ownership, first imports/resources, complete compared first-generation handoff and advancing Worlds1..3. No complete original caller-preparation, loading-art equivalence, natural later-map loading, other128rows or final decision follows.')
 
 
+
+def main_setup_progress(plan,reader,parent_evidence,case_names):
+    import subprocess,sys,importlib.util
+    from rendering_menu_acceptance import validate_artifacts,close_rows
+    root=reader.root
+    checked=subprocess.run([sys.executable,str(root/'tools/evidence-applicability.py'),'plan','--root',str(root),
+        '--evidence',parent_evidence,'--behavior','NP.loading-handoff-closeout','--require-applicable'],cwd=root,capture_output=True,text=True)
+    require(checked.returncode==0,'Loading parent is impacted: '+checked.stderr);impact=json.loads(checked.stdout)
+    require(impact['current_scope_preserved'] is True and not impact['source_actions'],'Loading parent needs targeted revalidation')
+    reference=impact['retained_input'];binding=reader.json(reference['record'])
+    require(reader.digest(reference['record'])==reference['sha256'] and binding['success'] is True,'Accepted menu parent hash differs')
+    parent=receipt(reader,binding['inputs']['progress']);runs=[];sources={n:reader.digest(n) for n in binding['sources']}
+    spec=importlib.util.spec_from_file_location('public_menu_events',root/'tools/test-menu-observer.py');decoder=importlib.util.module_from_spec(spec);spec.loader.exec_module(decoder)
+    from rendering_menu_acceptance import artifact
+    for name in case_names:
+        require(name.startswith('research/runtime/rendering-main-setup-results-20261106/') and '..' not in Path(name).parts,'Unsafe public menu case')
+        a=reader.json(name);case=dict(record=name,sha256=reader.digest(name))
+        require(all(reader.digest(n)==h for n,h in a['sources'].items()),'Public menu producer changed')
+        require(all(reader.digest(n)==h for n,h in a['compiler_sources'].items()),'Public menu compiled source changed')
+        plan_input=reader.json(a['input_plan']['record']);require(reader.digest(a['input_plan']['record'])==a['input_plan']['sha256']
+            and a['player_binary']['sha256']==plan_input['player_binary']['sha256'],'Public menu binary/input phase differs')
+        require(('--software-rendering' in a['command']) is a['configuration']['software_flag'],'Menu provider flag differs')
+        events=decoder.decode(artifact(reader,a,'events.bin'))
+        callbacks=[[v['menu_id'],v['argument']] for v in events if v['event']==3]
+        proof=validate_artifacts(reader,a,callbacks)
+        admission=json.loads(artifact(reader,a,'native-output-admission.json'))['native_only']
+        require(admission['policy']=='native-only-rendering-v1','Missing native-only menu admission')
+        for phase in (a['sources'],a['compiler_sources'],admission['sources']):
+            for n,h in phase.items():
+                require(reader.digest(n)==h and (n not in sources or sources[n]==h),'Mixed current menu source phase: '+n);sources[n]=h
+        runs.append(dict(identity=a['session'],acquisition=case,configuration=a['configuration'],proof=proof,
+            player_binary=a['player_binary'],retirement=a['retirement'],screenshots=[dict(label=v['label'],path=v['path'],sha256=v['sha256']) for v in a['screenshots']]))
+    rows=close_rows(plan,parent,runs)
+    sources.update({n:reader.digest(n) for n in ('tools/rendering_menu_acceptance.py','tools/rendering_menu_accessibility.py',
+        'tools/run-rendering-menu-acceptance.py','tests/test-rendering-menu-acceptance.py','tools/test-menu-observer.py')})
+    return dict(schema=1,kind='native_rendering_main_setup_menu_closeout',success=True,sources=sources,
+        accepted_parent=dict(evidence=parent_evidence,binding=reference,applicability=impact),dossier_identity=fingerprint(requirements(plan)),
+        requirements=rows,executions=runs,passed_requirements=34,pending_requirements=122,inherited_current_rows=28,new_menu_rows=6,
+        closed_leaf_ids=sorted(set(parent['closed_leaf_ids'])|set(('journey.main-setup-menus.setup-change','journey.main-setup-menus.main-menu','journey.main-setup-menus.cancel-return'))),
+        positive_original_game_runs=4,worlds_started=0,new_world_pixel_comparisons=0,new_native_binary_or_runtime_code=False,new_game_fixture=False,
+        ready_main_observations=sum(len(v['proof']['main_ready']) for v in runs),cancel_focus_observations=sum(len(v['proof']['cancel_ready']) for v in runs),
+        original_callback_effects=sum(len(v['proof']['original_callbacks']) for v in runs),native_ui_original_pixel_equivalence_claimed=False,
+        historical_failures_retired=False,decisions=parent['decisions'],
+        scope='Close6Main/setup rows across default/software and actual original High/Low selector contexts, preserving28accepted parent rows. Native UI layout stays800x600logical and no World starts. Observe ready Main focus/physical Space, original mana/lives/handicap/map changes, Map Cancel current-state preservation and outer Setup Cancel entry-default restoration; original fresh AI cosmetics are retained separately. Native UI is intentional policy, not original-menu pixel equality. Other122rows, native World/caller preparation, media output, faults/providers, both final decisions and known Save admission/reliability remain separate.')
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--execution',nargs=2,action='append',default=[],metavar=('ACQUISITION','COMPARISON'))
+    p.add_argument('--main-setup',action='store_true',help='Close Main focus and setup changes/cancel using four external public-menu cases')
+    p.add_argument('--menu-case',action='append',default=[],help='Immutable external public-menu acquisition')
     p.add_argument('--loading-handoff',action='store_true',help='Close native Campaign/Quick loading ownership and first-generation handoff from retained evidence')
     p.add_argument('--preferences-resume',action='store_true',help='Close supported Preferences Cancel/Main Apply-reload resume from retained evidence');
     p.add_argument('--lighting-menu',action='store_true',help='Analyze retained lighting and campaign/display facts while preserving the applicable cleanup/storage parent');p.add_argument('--parent-evidence')
     p.add_argument('--cleanup-storage',action='store_true',help='Close cleanup and four storage leaves while renewing sustained/setup/Quit');p.add_argument('--sustained-world',action='store_true',help='Close sustained World plus setup/Quit using all four existing Quick domains');p.add_argument('--negative',action='append',default=[]);p.add_argument('--report',required=True);a=p.parse_args()
     if not a.report.startswith(PREFIX) or (ROOT/a.report).exists():p.error('New immutable owned report required')
-    if not (a.lighting_menu or a.preferences_resume or a.loading_handoff) and (not a.execution or a.parent_evidence):p.error('Existing modes require executions; parent evidence is for lighting/menu')
+    if not (a.lighting_menu or a.preferences_resume or a.loading_handoff or a.main_setup) and (not a.execution or a.parent_evidence):p.error('Existing modes require executions; parent evidence is for lighting/menu')
+    if a.menu_case and not a.main_setup:p.error('--menu-case requires --main-setup')
     with Reader(ROOT) as reader:
         pairs=[{k:dict(record=n,sha256=reader.digest(n)) for k,n in zip(('acquisition','comparison'),names)} for names in a.execution]
-        if a.loading_handoff:
+        if a.main_setup:
+            if a.execution or a.preferences_resume or a.lighting_menu or a.cleanup_storage or a.sustained_world or a.loading_handoff or a.negative or len(a.menu_case)!=4:p.error('Main/setup consumes four exact menu cases and its accepted parent')
+            report=main_setup_progress(reader.json('docs/native-rendering-closure.json'),reader,a.parent_evidence or 'LH05.loading-handoff-closed01',a.menu_case)
+        elif a.loading_handoff:
             if a.execution or a.preferences_resume or a.lighting_menu or a.cleanup_storage or a.sustained_world or a.negative:p.error('Loading handoff consumes its exact accepted parent')
             report=loading_handoff_progress(reader.json('docs/native-rendering-closure.json'),reader,a.parent_evidence or 'PR05.preferences-resume-closed01')
         elif a.preferences_resume:

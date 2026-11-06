@@ -163216,6 +163216,68 @@
       "remaining_gaps": [
         "LH05.G.scope: first-World caller preparation, loading-art equivalence, later-map progress, other128rows and both final decisions remain separate. Known CS05 pre-Save admission/reliability stays open."
       ]
+    },
+    {
+      "id": "NP.main-setup-menu-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Public Main focus and setup changes/cancel acceptance",
+      "scope": "Close6Main/setup rows across default/software and actual original High/Low selector contexts, preserving28accepted parent rows. Native UI layout stays800x600logical and no World starts. Observe ready Main focus/physical Space, original mana/lives/handicap/map changes, Map Cancel current-state preservation and outer Setup Cancel entry-default restoration; original fresh AI cosmetics are retained separately. Native UI is intentional policy, not original-menu pixel equality. Other122rows, native World/caller preparation, media output, faults/providers, both final decisions and known Save admission/reliability remain separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-main-setup-closeout-20261106.md"
+      ],
+      "implementation": [
+        "tools/rendering_menu_accessibility.py",
+        "tools/run-rendering-menu-acceptance.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/join-rendering-normal-acceptance.py"
+      ],
+      "tests": [
+        "tests/test-rendering-menu-acceptance.py",
+        "tests/test-rendering-normal-acceptance.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_acceptance.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_applicability.py",
+        "tools/evidence-applicability.py",
+        "tools/coverage_evidence.py",
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/main.cpp",
+        "tools/menu-storage-input.py",
+        "tools/campaign_storage.py",
+        "docs/native-rendering-closure.json",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "apps/qt-shell/live_quick_battle_app_test.cpp",
+        "tools/rendering_player_acceptance.py",
+        "tools/native_prefix_template.py",
+        "tools/native_only_contract.py",
+        "apps/qt-shell/main_menu_widget.cpp",
+        "apps/qt-shell/map_selection_widget.cpp",
+        "apps/qt-shell/single_player_battle_widget.cpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "protocols/include/mnm/menu_v2.h"
+      ],
+      "evidence": [
+        "MS06.controls01",
+        "MS06.main-setup-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "MS06.G.scope: other122rows, hardware/providers, movies, first-World preparation, gameplay/fault boundaries, both final decisions and known CS05 pre-Save admission/reliability remain separate.",
+        "MS06.G.paint: some transition snapshots precede repaint; retained visible Main controls prove finite output, not every transition paint simultaneity or original-menu pixel equality."
+      ]
     }
   ],
   "evidence": [
@@ -378449,6 +378511,82 @@
           "equals": 32
         }
       ]
+    },
+    {
+      "id": "MS06.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-main-setup-results-20261106/controls-final-01.json",
+      "sha256": "a537846b41ae43b0a6dbde7e033708c2a7d4de0508c3fe48b7bec14486c25704",
+      "sources_pointer": "/native_sources",
+      "claims_pointer": "/claims",
+      "scope": "Current actual-case and protocol guards reject changed ACK/effects/focus/draft/map/source/domain/retirement; blank Main captures cannot satisfy visible native output. Existing50normal plus30UI and9client tests preserve parent behavior. Controls consume retained observations and run no game.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 108
+        },
+        {
+          "pointer": "/evidence_backed_menu_controls_no_skips",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "MS06.main-setup-closed01",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-main-setup-results-20261106/current-closeout-binding-01.json",
+      "sha256": "c91b882310c3800b4a0a8b11fa62d4e8f395e175a3a6634671f18796a2494a45",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "scope": "Close6Main/setup rows across default/software and actual original High/Low selector contexts, preserving28accepted parent rows. Native UI layout stays800x600logical and no World starts. Observe ready Main focus/physical Space, original mana/lives/handicap/map changes, Map Cancel current-state preservation and outer Setup Cancel entry-default restoration; original fresh AI cosmetics are retained separately. Native UI is intentional policy, not original-menu pixel equality. Other122rows, native World/caller preparation, media output, faults/providers, both final decisions and known Save admission/reliability remain separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 7
+        },
+        {
+          "pointer": "/positive_original_game_runs",
+          "equals": 4
+        },
+        {
+          "pointer": "/worlds_started",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 34
+        },
+        {
+          "pointer": "/new_menu_rows",
+          "equals": 6
+        },
+        {
+          "pointer": "/original_callback_effects",
+          "equals": 68
+        },
+        {
+          "pointer": "/native_ui_original_pixel_equivalence_claimed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -410312,6 +410450,20 @@
       "evidence": [
         "LH05.loading-handoff-closed01"
       ]
+    },
+    {
+      "id": "MS06.public-main-setup-menus",
+      "level": "live_observation",
+      "scope": "Close6Main/setup rows across default/software and actual original High/Low selector contexts, preserving28accepted parent rows. Native UI layout stays800x600logical and no World starts. Observe ready Main focus/physical Space, original mana/lives/handicap/map changes, Map Cancel current-state preservation and outer Setup Cancel entry-default restoration; original fresh AI cosmetics are retained separately. Native UI is intentional policy, not original-menu pixel equality. Other122rows, native World/caller preparation, media output, faults/providers, both final decisions and known Save admission/reliability remain separate.",
+      "behaviors": [
+        "NP.main-setup-menu-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-menu-acceptance.py"
+      ],
+      "evidence": [
+        "MS06.main-setup-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -412129,8 +412281,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-12c9292f59156d380933439498dc3843a05f338285e13552fad546722a14715a.json",
-    "sha256": "12c9292f59156d380933439498dc3843a05f338285e13552fad546722a14715a"
+    "path": "research/runtime/coverage/source-index-4fa3b0c5f21d7a7f5ec42246e237d768cb9c87778ebed3960240f35e35f37b0a.json",
+    "sha256": "4fa3b0c5f21d7a7f5ec42246e237d768cb9c87778ebed3960240f35e35f37b0a"
   },
   "evidence_applicability": [
     {
@@ -412167,6 +412319,11 @@
       "id": "LH05.PR05-verification-boundary01",
       "record": "research/runtime/coverage/applicability/lh05-pr05-01.json",
       "sha256": "05a375df0e8c813f7d02ebc32ec24538003b70b7359fc1ab45a082cc5bb3c600"
+    },
+    {
+      "id": "MS06.LH05-verification-boundary01",
+      "record": "research/runtime/coverage/applicability/ms06-lh05-01.json",
+      "sha256": "78fda64372be601dc4f1bb4ae658db0a763d907fe71a150e9af27bff7643b7f8"
     }
   ]
 }
