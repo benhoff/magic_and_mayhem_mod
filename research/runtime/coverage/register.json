@@ -163278,6 +163278,60 @@
         "MS06.G.scope: other122rows, hardware/providers, movies, first-World preparation, gameplay/fault boundaries, both final decisions and known CS05 pre-Save admission/reliability remain separate.",
         "MS06.G.paint: some transition snapshots precede repaint; retained visible Main controls prove finite output, not every transition paint simultaneity or original-menu pixel equality."
       ]
+    },
+    {
+      "id": "NP.normal-world-exit-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Normal terminal World exit and retirement",
+      "scope": "Close2normal terminal World-exit rows across8retained Quick/storage default/software640/800domains, preserving34accepted rows. Bind actual original exit callbacks, last independently compared swapped World, every imported source incarnation/command END, known cancelled next WRITING slot, acknowledged producer Stop, returned jobs and zero native owners at normal Quit. No new game, pixel comparison, native code or fixture. Other120rows, natural later-map, intermediate every-API owner, faults/providers, both final decisions and known Save admission/reliability remain separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-world-exit-closeout-20261106.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-world-exit.py"
+      ],
+      "tests": [
+        "tests/test-rendering-world-exit-closeout.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_acceptance.py",
+        "tools/coverage_claims.py",
+        "docs/native-rendering-closure.json",
+        "tools/native_cursor_journal.py",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/rendering_player_acceptance.py",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/world_continuous.c",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "protocols/include/mnm/world_continuous_v6.h",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "apps/qt-shell/resident_world_session.cpp"
+      ],
+      "evidence": [
+        "WX06.controls01",
+        "WX06.normal-world-exit-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "WX06.G.scope: other120rows, map progression, every intermediate external API owner, faults/providers, both final decisions and known CS05 pre-Save admission/reliability remain open."
+      ]
     }
   ],
   "evidence": [
@@ -378587,6 +378641,90 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "WX06.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-world-exit-results-20261106/controls-final-01.json",
+      "sha256": "1f10beaa7724b9b2028524e82f3e4880c2d39214a05a446bcb540944fb312aa8",
+      "sources_pointer": "/native_sources",
+      "claims_pointer": "/claims",
+      "scope": "14current controls consume actual retained source/command/viewport/menu/terminal evidence and reject changed ownership/nonce/slot/generation/menu/output/END/jobs/domains. Existing50normal plus30UI/9client pass; no game fixture, native code or original execution. Presentation sources are separate from native proof.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 103
+        },
+        {
+          "pointer": "/actual_case_controls_without_skips",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "WX06.normal-world-exit-closed01",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-world-exit-results-20261106/current-closeout-binding-01.json",
+      "sha256": "59f172b65d57e46791df84f2ada3c1ca3a65faf90421bf5b3087b56f6fcae35d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "scope": "Close2normal terminal World-exit rows across8retained Quick/storage default/software640/800domains, preserving34accepted rows. Bind actual original exit callbacks, last independently compared swapped World, every imported source incarnation/command END, known cancelled next WRITING slot, acknowledged producer Stop, returned jobs and zero native owners at normal Quit. No new game, pixel comparison, native code or fixture. Other120rows, natural later-map, intermediate every-API owner, faults/providers, both final decisions and known Save admission/reliability remain separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 36
+        },
+        {
+          "pointer": "/new_world_exit_rows",
+          "equals": 2
+        },
+        {
+          "pointer": "/source_imports",
+          "equals": 3713
+        },
+        {
+          "pointer": "/normal_cancelled_next_writers",
+          "equals": 8
+        },
+        {
+          "pointer": "/native_owned_slots",
+          "equals": 0
+        },
+        {
+          "pointer": "/all_import_incarnations_deleted",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_and_stop_verified",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -410464,6 +410602,20 @@
       "evidence": [
         "MS06.main-setup-closed01"
       ]
+    },
+    {
+      "id": "WX06.retained-normal-world-exit",
+      "level": "live_observation",
+      "scope": "Close2normal terminal World-exit rows across8retained Quick/storage default/software640/800domains, preserving34accepted rows. Bind actual original exit callbacks, last independently compared swapped World, every imported source incarnation/command END, known cancelled next WRITING slot, acknowledged producer Stop, returned jobs and zero native owners at normal Quit. No new game, pixel comparison, native code or fixture. Other120rows, natural later-map, intermediate every-API owner, faults/providers, both final decisions and known Save admission/reliability remain separate.",
+      "behaviors": [
+        "NP.normal-world-exit-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-world-exit-closeout.py"
+      ],
+      "evidence": [
+        "WX06.normal-world-exit-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -412281,8 +412433,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-4fa3b0c5f21d7a7f5ec42246e237d768cb9c87778ebed3960240f35e35f37b0a.json",
-    "sha256": "4fa3b0c5f21d7a7f5ec42246e237d768cb9c87778ebed3960240f35e35f37b0a"
+    "path": "research/runtime/coverage/source-index-b4fe6c880e9ee755b4fd1c832b3af563fbf49f99a7615ec4e0157b585c8604b0.json",
+    "sha256": "b4fe6c880e9ee755b4fd1c832b3af563fbf49f99a7615ec4e0157b585c8604b0"
   },
   "evidence_applicability": [
     {

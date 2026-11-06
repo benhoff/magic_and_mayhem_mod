@@ -20,6 +20,18 @@ not been measured, so it is not a mathematically proven time-optimal schedule.
 
 ## Start here
 
+**Normal World-exit closeout (2026-11-06):** the
+[retained World-exit review](../research/runtime/rendering-world-exit-closeout-20261106.md)
+preserves 34 accepted rows and closes terminal World exit for both profiles:
+**36/156 passed**, 120 rows and both final decisions pending. Eight existing
+Quick/storage domains bind actual exit callbacks and final compared output to
+3,713 imported surface lifetimes, command END, cancelled next original source
+writes, acknowledged Stop and zero native jobs/owners at normal Quit. 103 controls
+pass. No game run, fresh pixel comparison, native code/build or fixture is added.
+Earlier analyzers/tests stay unchanged. Natural later-map exit/loading/results,
+intermediate every-API lifetimes, faults/restart and the known Save admission
+failure remain separate; reuse retained proof before another acquisition.
+
 **Public Main/setup closeout (2026-11-06):** the
 [menu acceptance review](../research/runtime/rendering-main-setup-closeout-20261106.md)
 closes setup changes, ready Main focus/input and Cancel/return for both profiles:

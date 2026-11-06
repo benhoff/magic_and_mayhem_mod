@@ -26498,3 +26498,37 @@ definitions, unknowns and negative evidence remain unchanged. Movie output/retur
 first-World preparation, later-map/results, remaining operations/fault/providers,
 both decisions and the known CS05 pre-Save admission/reliability failure remain
 open. See [Main/setup closeout](rendering-main-setup-closeout-20261106.md).
+
+
+### Normal terminal World exit — 2026-11-06
+
+`WX06.normal-world-exit-closed01` closes two shutdown World-exit rows, preserving
+34 accepted rows:36/156 passed,120 pending; both final decisions remain pending.
+Eight existing Quick/storage default/software640/800 domains bind original
+Results/Quick/Main or restored Campaign/Main exit callbacks to the last actual
+swapped native World and its accepted independent complete-output comparison.
+Eight presentations reuse7,486,400pixels, zero mismatches; no new comparison.
+Every one of3,713imported World generations has an owned surface incarnation and
+ordered CREATE/import/DELETE/END. The entire accepted resource ledger rederives
+exactly. Coalesced source generations need not each have a swap.
+
+Both retained V6 slot headers prove one FREE completed slot and one original-owned
+next WRITING slot, with no native-owned work. Known producer close records reason1
+then cancels the partial next source write:cancelled1/finished0 remains explicit.
+An acknowledged producer Stop, drained END, returned source work, released input,
+terminal cursor jobs/clients, pre-reclamation graphics inventory, renderer and
+original/private process checks prove normal retirement. No process-exit-only,
+successful FINISHED, immediate every-API intermediate retirement, physical VRAM
+or OS-wide handle census claim is made.
+
+103current actual-case/normal/UI/client checks pass, including14evidence-backed
+controls without skips. Diagnostic pretty-printer refusal, three earlier passing
+analysis versions, the refused test-harness invocation, exact source preimages
+and guard/provenance reviews remain
+immutable. All reports are SQLite-backed; no whole capture restore, new game,
+native/runtime change, binary build or game fixture occurs. Earlier analyzer/test
+files and all preexisting behavior/evidence definitions remain unchanged. MS06,
+LH05,PR05,LM05,CS05,SW05 stay accepted with no actions. Other120rows, both final
+decisions, natural later-map/results, movie/first-World/state/operation/fault/provider
+boundaries and the known CS05 pre-Save admission/reliability failure remain open.
+See [World-exit review](rendering-world-exit-closeout-20261106.md).
