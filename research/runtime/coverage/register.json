@@ -163764,6 +163764,60 @@
         "BD06.G.original: whole original ABI/registers/flags, physical ownership and upstream palette builders remain separate from these finite actual source/output samples.",
         "BD06.G.other: attachment/combat, raw CPU-reader identities, arbitrary maps/durations/negative displacement, fonts/DC/providers/faults, first-World preparation, camera/Sharp/input, progression/results and both decisions remain open. All historical failures are preserved."
       ]
+    },
+    {
+      "id": "NP.opaque-cropped-copy-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Natural caller-bound opaque and cropped copy output",
+      "scope": "Finite valid opaque whole-source RGB565 copies in eight retained Quick/Campaign cases and cropped RGB565 copies in the four Campaign/storage cases, both explicit profiles and actual640/800. Closed original application route/authority intervals, live native source/destination incarnations, independent complete copy destinations and actual viewport coordinate lineage. Preserve46parent rows, refused caller failures and both decisions. No keyed/alias/attached-clipper/stretch route, original driver/ABI, arbitrary input/fault/provider or final completion claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816128,
+          "scope": "Existing selected opaque-copy wrapper/call-site context only; current native copy/output policy, no new whole-function or original-driver equivalence."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-copy-closeout-20261106.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-opaque-cropped-copy.py"
+      ],
+      "tests": [
+        "tests/test-rendering-copy-closeout.py"
+      ],
+      "validation_dependencies": [
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "tools/rendering_acceptance.py",
+        "tools/evidence-applicability.py",
+        "docs/native-rendering-closure.json"
+      ],
+      "evidence": [
+        "CP06.controls01",
+        "CP06.opaque-cropped-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP06.G.original: whole original driver/ABI/registers/flags, upstream CPU producer semantics, physical allocation ownership and arbitrary formats remain separate from valid RGB565 copy inputs/output.",
+        "CP06.G.other: keyed GPU/self-alias/attached-clipper/stretch/fault/loss/Restore domains, four refused low-resolution cursor calls, unproved Quick cropped output, first-World preparation, camera/Sharp/input, progression/results and both decisions remain open. All historical failures preserved."
+      ]
     }
   ],
   "evidence": [
@@ -379652,6 +379706,78 @@
           "equals": "completed"
         }
       ]
+    },
+    {
+      "id": "CP06.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-copy-results-20261106/controls-final-01.json",
+      "sha256": "8da71836d88bff0cbd61fece14ba44f132692f47e2ad39264f84a0f60fb62410",
+      "sources_pointer": "/native_sources",
+      "claims_pointer": "/claims",
+      "scope": "15 actual retained caller/authority/source/before/complete-destination/viewport/domain guards,30 UI and9client checks. Negative Software Quick crop probe, exact preimages and four refused cursor calls retained. No new game/fixture/build/original execution; UI source bindings remain separate from native proof. Controls are not live scenario execution evidence.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 54
+        },
+        {
+          "pointer": "/actual_case_controls_without_skips",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CP06.opaque-cropped-closed01",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-copy-results-20261106/current-closeout-binding-01.json",
+      "sha256": "72f7a0165350bc765849c37bac094125cf8b627476e2396c4d913de93bf5aa8c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "scope": "Finite valid opaque whole-source RGB565 copies in eight retained Quick/Campaign cases and cropped RGB565 copies in the four Campaign/storage cases, both explicit profiles and actual640/800. Closed original application route/authority intervals, live native source/destination incarnations, independent complete copy destinations and actual viewport coordinate lineage. Preserve46parent rows, refused caller failures and both decisions. No keyed/alias/attached-clipper/stretch route, original driver/ABI, arbitrary input/fault/provider or final completion claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_original_reference_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 50
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 4
+        },
+        {
+          "pointer": "/new_retained_viewport_samples",
+          "equals": 36
+        },
+        {
+          "pointer": "/authority_domains",
+          "equals": 8
+        },
+        {
+          "pointer": "/retained_refused_calls",
+          "equals": 4
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -411635,6 +411761,20 @@
       "evidence": [
         "BD06.blend-direct-closed01"
       ]
+    },
+    {
+      "id": "CP06.eight-domain-opaque-campaign-crop",
+      "level": "live_observation",
+      "scope": "Finite valid opaque whole-source RGB565 copies in eight retained Quick/Campaign cases and cropped RGB565 copies in the four Campaign/storage cases, both explicit profiles and actual640/800. Closed original application route/authority intervals, live native source/destination incarnations, independent complete copy destinations and actual viewport coordinate lineage. Preserve46parent rows, refused caller failures and both decisions. No keyed/alias/attached-clipper/stretch route, original driver/ABI, arbitrary input/fault/provider or final completion claim.",
+      "behaviors": [
+        "NP.opaque-cropped-copy-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-copy-closeout.py"
+      ],
+      "evidence": [
+        "CP06.opaque-cropped-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -413452,8 +413592,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-9c2faea6959ad834a3882944e05bd4f3390882ec2a70a3af725f160684d5905f.json",
-    "sha256": "9c2faea6959ad834a3882944e05bd4f3390882ec2a70a3af725f160684d5905f"
+    "path": "research/runtime/coverage/source-index-8d36230a55b81e4827fb9d0dad89657348a75f6bb63cdef1053c8e35b2fbcc5f.json",
+    "sha256": "8d36230a55b81e4827fb9d0dad89657348a75f6bb63cdef1053c8e35b2fbcc5f"
   },
   "evidence_applicability": [
     {

@@ -26688,3 +26688,32 @@ drift does not renew whole-player applicability or erase historical failures;
 both final decisions stay pending. Exact committed-history/artifact reviews
 retain source versions and identify accounting separately from execution. See
 [the integration](rendering-defect-fixes-integration-20261106.md).
+### CP06 caller-bound opaque/cropped native copies — 2026-11-06
+
+Native acceptance reaches 50/156 passed, 106 pending: opaque copies and image
+cropping close for both explicit profiles. Whole-source RGB565 output uses eight
+retained Quick/Campaign cases; cropped output uses the four Campaign/storage
+cases, at actual 640/800. Closed original caller/authority/result intervals bind
+every emitted copy. Selected source/before/complete native destination hashes
+match independent copy transforms; both CPU/GPU source routes have witnesses.
+Thirty-six source-coordinate-to-viewport witnesses span three distinct source
+generations per admitted kind/domain. Preserve all 46 parent rows and both pending
+decisions. No alias/clipper/GPU-keyed positives are manufactured; four low-resolution
+invalid-rectangle cursor calls remain failures without emitted COPY intervals.
+Software Quick crop inadequacy and exact analyzer preimages remain negative
+history. No game, native/runtime edit, build, fixture or original reference run.
+Original driver/ABI/CPU producer recovery, other copy families, known caller issues,
+camera/Sharp, progression/results and provider/fault boundaries remain open.
+See [bounded evidence and controls](rendering-copy-closeout-20261106.md).
+
+### Native defect fixes and concurrent copy closeout integration — 2026-11-06
+
+The tested native fix and integration `07aef58b1` also retain concurrent copy
+closeout `0e642f81d`. Stable behavior/evidence identities, exact review receipts,
+the 50-row pack and both complete ledger additions survive. No native source or
+native regression test changes. RF06's scoped implementation/preview proof stays
+current; broader CP06/BD06 source bindings remain historical where the corrected
+native sources differ. The supplemental committed-history review checks each
+commit against its actual first parent and distinguishes exact accounting from
+new execution. Both final rendering decisions remain pending. No new game run,
+build, reference execution or acceptance promotion is claimed by this merge.

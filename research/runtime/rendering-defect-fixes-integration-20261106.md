@@ -36,3 +36,13 @@ native source changes leave full current applicability pending. Neither final
 rendering decision or existing whole-player milestone is promoted. Original-game
 camera repetitions, exact cause attribution for every earlier failure, broader
 provider/domain support and repeated-run reliability remain separate work.
+
+The main checkout advanced again to caller-bound copy closeout `0e642f81d`
+while the first integration hook ran. Its analysis, controls, 50-row acceptance
+pack and exact receipts are also preserved. It changes no native source or
+native regression test. The same tested fix code and RF06 evidence remain
+current for their scoped implementation/preview claims. CP06's broader native
+source bindings retain their original hashes and historical limitations; this
+merge does not renew them. A supplemental exact committed-history review covers
+both the previous integration and the incoming copy commit against their own
+first parents. No additional game, build or rendering acceptance is claimed.
