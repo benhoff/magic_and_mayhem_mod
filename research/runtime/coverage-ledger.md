@@ -27041,3 +27041,17 @@ unisolated cause, not a fixed renderer bug or a leak inference. Both picking
 rows and same-World rebuild continuity remain pending. No further original run
 is authorized by this exhausted batch plan. See
 [PR07 scope/evidence](rendering-picking-resize-20261107.md).
+
+### OP07 retained CPU transport operation rows — 2026-11-07
+
+Two CPU write/readback rows close from four already admitted normal-storage
+640/800 default/software domains:212complete actual reply buffers independently
+match ordered history, with12meaningful full CPU uploads reaching distinct
+checked recorded complete GPU COPY planes. Reads and writes are separate paths;
+no same-buffer read-modify-read, physical untouched-word, arbitrary raw-reader,
+font/DC lifetime or full ABI claim. PR07 pan rows and all76parent rows remain:
+78/156passed78pending;16operation rows still open with retained leads and exact
+admission/caller/lifecycle/output gaps. Failed early analyses/source preimages
+and known640cursor refusals remain. New Python analysis/accounting only; no game,
+capture, native code/build or fixture. See
+[operation closeout](rendering-operations-closeout-20261107.md).

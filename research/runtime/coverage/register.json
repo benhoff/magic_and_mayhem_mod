@@ -167591,6 +167591,60 @@
       "remaining_gaps": [
         "PR07.P.scope: frame-size picking remains blocked by the retained second-World timeout. Cell/ray, full HUD/selection/hotspot, arbitrary views/maps/providers and response deadlines remain separate."
       ]
+    },
+    {
+      "id": "NP.rendering-operations-closeout",
+      "title": "Bounded rendering operation acceptance",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Close only typed CPU write/readback transport for default/software at actual640/800 from four already accepted storage domains:212complete actual reply buffers versus independent ordered history and12meaningful full CPU uploads reaching independently checked complete recorded GPU COPY source/prior/destination planes. Reads and uploads are separate paths; no same-buffer read-modify-read, physically untouched exterior, arbitrary raw-reader, original producer arithmetic, font/DC lifetime or whole ABI claim. Assess the other eight pending non-fault operation requirements without promotion. Preserve all76incoming rows, failures, historical source phases, provider/caller limits and both decisions;78/156passed78pending. No new game/native/build/fixture.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-operations-closeout-20261107.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-operations.py",
+        "tools/join-rendering-operations-acceptance.py"
+      ],
+      "tests": [
+        "tests/test-rendering-operations-closeout.py",
+        "tests/test-storage-cpu-read-binding.py",
+        "tests/test-rendering-operations-join.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/cpu_reader_journal.py",
+        "tools/storage_cpu_read_binding.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-opaque-cropped-copy.py",
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/resident_capture.py",
+        "tools/evidence_objects.py",
+        "docs/native-rendering-closure.json"
+      ],
+      "evidence": [
+        "OP07.cpu-transport-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "OP07.G.operations: sixteen rows remain open: clipped/stretched/alias COPY, full/clipped fill, text/font/DC lifetime, palette cycling and complete flags/returns. Retained triage pins specific caller/output/admission/lifecycle gaps; zero observations do not prove absence, and failed old quick02 cannot bypass primary identity/lifetime admission.",
+        "OP07.G.scope: selected twelve writers are full UPDATEs; equal nonzero history values do not prove physically untouched storage. Reads and writes are separate paths. Arbitrary escaped raw readers, same-buffer read-modify-read, upstream original producer arithmetic, complete original ABI/font lifetime and unknown providers remain unclaimed.",
+        "OP07.G.source: current Python retained-data replay and pure acceptance join only. Historical native/original/compiler/player/viewport full hashes and every failure remain. No new original/native execution, game fixture, source freshness waiver, whole-renderer or final decision promotion."
+      ]
     }
   ],
   "evidence": [
@@ -384694,6 +384748,83 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "OP07.cpu-transport-closed01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-operations-results-20261107/cpu-transport-binding-01.json",
+      "sha256": "2f82c9ff68e2f22cec38e0eddd6590a5beb12458e1fc7e6f753d5478d269d27d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Close only typed CPU write/readback transport for default/software at actual640/800 from four already accepted storage domains:212complete actual reply buffers versus independent ordered history and12meaningful full CPU uploads reaching independently checked complete recorded GPU COPY source/prior/destination planes. Reads and uploads are separate paths; no same-buffer read-modify-read, physically untouched exterior, arbitrary raw-reader, original producer arithmetic, font/DC lifetime or whole ABI claim. Assess the other eight pending non-fault operation requirements without promotion. Preserve all76incoming rows, failures, historical source phases, provider/caller limits and both decisions;78/156passed78pending. No new game/native/build/fixture.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/actual_cpu_reads",
+          "equals": 212
+        },
+        {
+          "pointer": "/writer_witnesses",
+          "equals": 12
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 78
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/same_buffer_read_modify_read_claim",
+          "equals": false
+        },
+        {
+          "pointer": "/physically_untouched_exterior_claim",
+          "equals": false
+        },
+        {
+          "pointer": "/whole_original_abi_claim",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "OP07.guards01",
+      "kind": "static",
+      "record": "research/runtime/rendering-operations-results-20261107/controls-final-01.json",
+      "sha256": "297a44764da83fc83d3229522345daa4894fa235e715f398ce13f805a3081717",
+      "sources_pointer": "/sources",
+      "scope": "Actual retained CPU transport/counter/writer/refusal and pure inventory join guards plus existing UI/client checks. Guard mutations earn no new game or native execution credit.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 90
+        },
+        {
+          "pointer": "/no_skips",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -417827,6 +417958,70 @@
       "evidence": [
         "PR07.pan02"
       ]
+    },
+    {
+      "id": "OP07.cpu-transport.01",
+      "level": "headless",
+      "scope": "All actual retained DC/panel replies and three meaningful CPU upload/GPU COPY output witnesses for ['player-default', [800, 600]]. Independent ordered history, full actual reply bytes, recorded complete actual GPU source/prior/destination hashes, successful COPY caller and live identities/counters. Separate read/write paths; no same-buffer cycle, physically untouched exterior, arbitrary reader/font/ABI or current native execution.",
+      "behaviors": [
+        "NP.rendering-operations-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-operations-closeout.py",
+        "tests/test-storage-cpu-read-binding.py",
+        "tests/test-rendering-operations-join.py"
+      ],
+      "evidence": [
+        "OP07.cpu-transport-closed01"
+      ]
+    },
+    {
+      "id": "OP07.cpu-transport.02",
+      "level": "headless",
+      "scope": "All actual retained DC/panel replies and three meaningful CPU upload/GPU COPY output witnesses for ['player-software', [800, 600]]. Independent ordered history, full actual reply bytes, recorded complete actual GPU source/prior/destination hashes, successful COPY caller and live identities/counters. Separate read/write paths; no same-buffer cycle, physically untouched exterior, arbitrary reader/font/ABI or current native execution.",
+      "behaviors": [
+        "NP.rendering-operations-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-operations-closeout.py",
+        "tests/test-storage-cpu-read-binding.py",
+        "tests/test-rendering-operations-join.py"
+      ],
+      "evidence": [
+        "OP07.cpu-transport-closed01"
+      ]
+    },
+    {
+      "id": "OP07.cpu-transport.03",
+      "level": "headless",
+      "scope": "All actual retained DC/panel replies and three meaningful CPU upload/GPU COPY output witnesses for ['player-default', [640, 480]]. Independent ordered history, full actual reply bytes, recorded complete actual GPU source/prior/destination hashes, successful COPY caller and live identities/counters. Separate read/write paths; no same-buffer cycle, physically untouched exterior, arbitrary reader/font/ABI or current native execution.",
+      "behaviors": [
+        "NP.rendering-operations-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-operations-closeout.py",
+        "tests/test-storage-cpu-read-binding.py",
+        "tests/test-rendering-operations-join.py"
+      ],
+      "evidence": [
+        "OP07.cpu-transport-closed01"
+      ]
+    },
+    {
+      "id": "OP07.cpu-transport.04",
+      "level": "headless",
+      "scope": "All actual retained DC/panel replies and three meaningful CPU upload/GPU COPY output witnesses for ['player-software', [640, 480]]. Independent ordered history, full actual reply bytes, recorded complete actual GPU source/prior/destination hashes, successful COPY caller and live identities/counters. Separate read/write paths; no same-buffer cycle, physically untouched exterior, arbitrary reader/font/ABI or current native execution.",
+      "behaviors": [
+        "NP.rendering-operations-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-operations-closeout.py",
+        "tests/test-storage-cpu-read-binding.py",
+        "tests/test-rendering-operations-join.py"
+      ],
+      "evidence": [
+        "OP07.cpu-transport-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -419644,8 +419839,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-1d052f9609287662665b2dbb57872b4de0b2f2dcb54d2a96f1ca0a97e14ce2d6.json",
-    "sha256": "1d052f9609287662665b2dbb57872b4de0b2f2dcb54d2a96f1ca0a97e14ce2d6"
+    "path": "research/runtime/coverage/source-index-11705efff0bb3f3d98c8dfde803e18f5bede70240963a59029770fcd66caa6fc.json",
+    "sha256": "11705efff0bb3f3d98c8dfde803e18f5bede70240963a59029770fcd66caa6fc"
   },
   "evidence_applicability": [
     {
