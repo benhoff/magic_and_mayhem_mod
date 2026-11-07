@@ -26785,3 +26785,26 @@ reset previously observed finite positives.52frozen rows and both final decision
 remain unchanged. Both committed first-parent ranges have exact file receipts and
 no unresolved gaps. No additional build/test/game execution is claimed. See
 [cursor integration boundary](cursor-resolution-integration-20261107.md).
+
+## Ten fixed-FPS completion conditions reconciled — 2026-11-07
+
+`FPS07.scope-reconciled01` applies the already approved diagnostic-FPS completion
+policy to ten older native component gap entries: scene production/budget, owned
+snapshot delivery, prepared World/command replay, masked scratch reuse, colour
+cache, covered displacement, retained World image and owner-cost profiling.
+See [exact scopes](rendering-ten-fps-closeouts-20261107.md). Historical benchmarks
+and every functional/pixel/ownership/deadline/progress/resource gap remain intact.
+Existing completion/acceptance guards execute; no new fixture, engine code,
+player run, status promotion or acceptance row. Preserve52accepted/104pending,
+raw native source drift and both pending decisions.
+
+
+### Cursor correction and diagnostic-FPS accounting integration — 2026-11-07
+
+The tested cursor correction also preserves FPS-accounting70f85f66b and its exact
+receipts, unchanged contracts/milestones and complete ledger addition. Native
+sources and tests remain byte-identical to f1b42ad8c. The existing diagnostic-FPS
+policy does not waive output, progress, deadline or resource bounds. Both latest
+first-parent histories have no missing exact receipt. No new execution or frozen
+row promotion is claimed;52rows and both pending decisions retain their phases.
+See [integration](cursor-resolution-integration-20261107.md).

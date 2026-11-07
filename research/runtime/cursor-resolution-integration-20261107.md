@@ -23,3 +23,11 @@ The integration's committed-history review checks both commits against their
 actual first parents and verifies exact receipts for every changed file (excluding
 the self-referential journal), with no missing intermediate version. This is
 source/artifact accounting, not retrospective gate approval or new execution.
+
+The subsequent independent FPS-accounting commit `70f85f66b` is also preserved.
+It applies the existing diagnostic-FPS decision to ten older component gap
+entries and changes no engine code, test source, requirement denominator or
+milestone. Its functional/pixel/deadline/ownership gaps and all historical
+benchmarks remain. A second exact first-parent review covers that commit and the
+preceding integration with no gaps. Native sources and tests still match
+`f1b42ad8c`; the accounting update supplies no new live-rendering execution.
