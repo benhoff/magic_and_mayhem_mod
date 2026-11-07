@@ -66,7 +66,7 @@ def decode(raw, complete=True):
         elif r[2]==23:
             if r[14]>16384 or r[18]!=r[14]*12:raise ValueError('Invalid point requests')
         elif r[2]==22:
-            if not 1<=r[14]<=256 or r[14]%2 or not 1<=r[15]<=256 or r[16]>(3 if owned or (extended and r[19]==0xfffffffe) else 0) or (owned and r[19]!=0xfffffffe) or r[17]>1 or r[18]!=r[14]*r[15]*3 or any(payload[2::3][i]>1 for i in range(r[14]*r[15])):raise ValueError('Invalid minimap terrain input')
+            if not 1<=r[14]<=256 or r[14]%2 or not 1<=r[15]<=256 or r[16]>(3 if owned or (extended and r[19]==0xfffffffe) else 0) or (owned and r[19]!=0xfffffffe) or r[17]>1 or r[18]!=r[14]*r[15]*3 or any(value>1 for value in payload[2::3]):raise ValueError('Invalid minimap terrain input')
         elif r[2]==19:
             if not 40<=r[19]<=1064 or r[20]>2097152 or r[18]!=r[19]+r[20]:raise ValueError('Invalid closed DIB input')
         elif r[2]==18:

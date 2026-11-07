@@ -26808,3 +26808,34 @@ policy does not waive output, progress, deadline or resource bounds. Both latest
 first-parent histories have no missing exact receipt. No new execution or frozen
 row promotion is claimed;52rows and both pending decisions retain their phases.
 See [integration](cursor-resolution-integration-20261107.md).
+
+## IP07 — finite camera/cursor/picking and physical pixel alignment, 2026-11-07
+
+Fix the reproduced native Sharp/Integer input/display mismatch using physical
+pixel centres, including fractional-DPR borders. Current GPU controls pass
+673734input/framebuffer samples,68complete/34onscreen comparisons and actual XCB
+input regressions at DPR1/1.5. Add the optional read-only same-owner frame/cursor/
+original Region witness. The default/software800/640 Quick matrix passes both
+scales, four views and Up pan:4210source generations,12077actual World swaps,
+10561336500viewport pixels with zero independent-reference differences,
+80original selection toggles and normal zero-owner Quit in all four cases.
+
+`IP07.matrix01` binds current native/compiler/player/oracle sources and exact
+retained execution bytes. Thirty Python witness/readiness guards and unchanged
+optimized/sanitized native controls pass; the completed PE32 wrapper fixture is
+reanalyzed from its retained capture. No original poll, hit test or simulation
+tick was added. Numeric actor identities are not allocation generations. The
+checked5c6a54Region vtable cell anchors callback4fdad0; its function inventory and
+whole-body recovery remain unresolved. Raw camera/producer-center transforms,
+atomic HUD/source semantics and broad cursor/picking/viewport bounds remain open.
+
+Retain every preparation/native/control/analysis failure and all plans. The
+insufficient640capture is recollected once under an observed three-generation
+readiness barrier; the sufficient800capture is retained. Software800World60 has
+a3082ms poll-to-return interval and3365ms frame-to-callback gap under lossless
+capture. Cause/production attribution and response-deadline validation remain
+pending. Both final rendering decisions are unchanged. Admission of the two
+four-orientation configuration rows is pending the exact inherited inventory
+join; this feature proof itself promotes no frozen acceptance row. See
+[closeout](rendering-interaction-20261107.md) and SQLite `matrix-01.json` under
+`rendering-interaction-results-20261107/`.

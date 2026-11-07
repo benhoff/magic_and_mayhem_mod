@@ -100,6 +100,8 @@ static u32 THIS result_tick(void* object){
 #include "campaign_checkpoint_observe.h"
 #include "campaign_input_admission_observe.h"
 #include "campaign_order_observe.h"
+#define MNM_FRAME_INPUT_OBSERVATION 1
+static void frame_input_sample(u32,u32,void*,u32,const u32*,u32,u32);
 #include "campaign_world_observe.h"
 #include "campaign_mini_observe.h"
 #include "region_entry_observe.h"
@@ -239,7 +241,7 @@ static int install(void){
     }
     VirtualProtect((void*)0x5c63e4,0x4c,table_protect,&unused);
     VirtualProtect((void*)0x4a83a0,8,quick_protect,&unused);VirtualProtect((void*)0x4a75c0,7,main_protect,&unused);
-    return log_file!=0&&region_input_open();
+    return log_file!=0&&region_input_open()&&frame_input_open();
 }
 __declspec(dllexport) void MenuAnchor(void){}
 #ifdef MNM_MENU_SELFTEST
@@ -254,5 +256,5 @@ int WIN DllMain(void* dll,u32 reason,void* reserved){
 #ifndef MNM_MENU_SELFTEST
     if(reason==1){u32 error=GetLastError();install();SetLastError(error);}
 #endif
-    if(reason==0){if(checkpoint_file)CloseHandle(checkpoint_file);semantic_state_close();hud_state_close();region_input_close();admission_close();order_close();latch_close();if(gameplay_follow_file)CloseHandle(gameplay_follow_file);if(grimoire_log)CloseHandle(grimoire_log);if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_admission_trace)CloseHandle(menu_admission_trace);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
+    if(reason==0){if(checkpoint_file)CloseHandle(checkpoint_file);frame_input_close();semantic_state_close();hud_state_close();region_input_close();admission_close();order_close();latch_close();if(gameplay_follow_file)CloseHandle(gameplay_follow_file);if(grimoire_log)CloseHandle(grimoire_log);if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_admission_trace)CloseHandle(menu_admission_trace);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
 }

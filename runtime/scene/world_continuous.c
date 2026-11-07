@@ -14,6 +14,11 @@ static ResidentWorldBind continuous_public_bind;
 static u32 continuous_written;
 static u32 continuous_generation_low = 1, continuous_generation_high,
            continuous_slot_index;
+#include "world_frame_observation.h"
+__declspec(dllexport) u32 WIN SceneWorldFrameObservationV1(u32 owner,u32* out,u32 bytes){
+ if(owner!=GetCurrentThreadId())return 0;
+ return frame_observation_read(owner,out,bytes);
+}
 static u32 continuous_load(u8 *p, u32 n) {
   return __atomic_load_n((u32 *)(p + n * 4), __ATOMIC_ACQUIRE);
 }
@@ -251,6 +256,8 @@ static int continuous_return(void) {
     return 0;
   put(slot + 32, bytes);
   put(slot + 60, continuous_time());
+  frame_observation_returned(continuous_generation_low,continuous_generation_high,
+                            continuous_nonce_low,continuous_nonce_high,batch_owner);
   continuous_store(slot, 0, MNM_CONT_RETURNED);
   const u32 low = get(continuous_map + 48), high = get(continuous_map + 52);
   if ((low || high) && low == continuous_generation_low &&
@@ -276,6 +283,7 @@ static void continuous_mark_screen(int begin) {
 static void continuous_mark_entry(void) {
   if (continuous_map){
     batch_owner=GetCurrentThreadId();
+    frame_observation_begin(batch_owner);
     u8* slot=continuous_slot();
     put(slot+48,continuous_time());
     if(continuous_pacer_mask==3){put(slot+64,continuous_pacer_start);put(slot+68,continuous_pacer_end);put(slot+72,3);}
