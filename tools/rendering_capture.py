@@ -8,6 +8,7 @@ import numpy as np
 from rendering_pilot import require, number, counter, inflate
 
 CAMPAIGN_POLICY = 'campaign-lossless-viewport-v1'
+MOVIE_POLICY = 'movie-lossless-viewport-v1'
 CAMPAIGN_RAW = 64*1024**3
 CAMPAIGN_ROWS = 131072
 
@@ -81,7 +82,7 @@ class Planes:
 
 
 def capture(raw):
-    require(raw[:8] == b'MNMACE01' and len(raw) <= 1024**3+8, 'Capture envelope')
+    require(raw[:8] == b'MNMACE01' and len(raw) <= 2*1024**3+8, 'Capture envelope')
     rows, at, total, last_time = [], 8, 0, 0
     row_limit, raw_limit, campaign = 16384, 8*1024**3, False
     planes = Planes(raw)
@@ -96,7 +97,7 @@ def capture(raw):
                 and type(row['kind']) is str, 'Capture row identity')
         if not rows:
             require(row['kind'] == 'open' and type(row['version']) is int
-                    and row['version'] in (1, 2), 'Capture open version')
+                    and row['version'] in (1, 2, 3), 'Capture open version')
             if row['version'] == 2:
                 require(row['role'] == 'viewport' and row.get('policy') == CAMPAIGN_POLICY
                         and type(row.get('raw_limit_bytes')) is int and row['raw_limit_bytes'] == CAMPAIGN_RAW
@@ -104,6 +105,16 @@ def capture(raw):
                         and type(row.get('keyframe_paints')) is int and row['keyframe_paints'] == 128
                         and type(row.get('stored_limit_bytes')) is int and row['stored_limit_bytes'] == 1024**3,
                         'Unreviewed campaign capture policy')
+                campaign, row_limit, raw_limit = True, CAMPAIGN_ROWS, CAMPAIGN_RAW
+            elif row['version'] == 3:
+                require(row['role'] == 'viewport' and row.get('policy') == MOVIE_POLICY
+                        and type(row.get('raw_limit_bytes')) is int and row['raw_limit_bytes'] == CAMPAIGN_RAW
+                        and type(row.get('row_limit')) is int and row['row_limit'] == CAMPAIGN_ROWS
+                        and type(row.get('keyframe_paints')) is int and row['keyframe_paints'] == 128
+                        and type(row.get('stored_limit_bytes')) is int and row['stored_limit_bytes'] == 2*1024**3
+                        and type(row.get('queue_limit_bytes')) is int and row['queue_limit_bytes'] == 256*1024**2
+                        and type(row.get('queue_limit_rows')) is int and row['queue_limit_rows'] == 4096,
+                        'Unreviewed movie capture policy')
                 campaign, row_limit, raw_limit = True, CAMPAIGN_ROWS, CAMPAIGN_RAW
         observed = counter(row['host_us'])
         require(observed >= last_time, 'Capture clock regressed'); last_time = observed
@@ -123,7 +134,8 @@ def capture(raw):
     require(len(rows) >= 2 and rows[-1][0]['kind'] == 'close', 'Capture is not closed')
     first, last = rows[0][0], rows[-1][0]
     limit = first.get('stored_limit_bytes', 256*1024**2)
-    require(type(limit) is int and limit in (256*1024**2, 1024**3) and len(raw) <= limit+8,
+    allowed = (2*1024**3,) if first['version'] == 3 else (256*1024**2, 1024**3)
+    require(type(limit) is int and limit in allowed and len(raw) <= limit+8,
             'Unreviewed stored capture budget')
     require(first['role'] in ('viewport', 'exports', 'commands') and type(first['session']) is str
             and 1 <= len(first['session']) <= 128, 'Capture open identity')

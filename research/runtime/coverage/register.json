@@ -167647,6 +167647,70 @@
       ]
     },
     {
+      "id": "NP.enabled-intros-output",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Complete enabled intro viewport output",
+      "scope": "Bind both naturally completed native intro streams and every actual captured OpenGL presentation to independent expected RGBA with exact full-viewport letterbox/scaling, default/software High/Low inputs, ready Main and normal retirement. Earlier skips/returns remain independent. No original DirectShow/placement/audio-device or physical-driver equivalence; no whole-player acceptance.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-enabled-intros-closeout-20261107.md"
+      ],
+      "implementation": [
+        "tools/prepare-rendering-enabled-intros.py",
+        "tools/run-rendering-enabled-intros.py",
+        "tools/rendering_intro_output.py",
+        "tools/close-rendering-enabled-intros.py",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp"
+      ],
+      "tests": [
+        "tests/test-rendering-enabled-intros.py",
+        "tests/test-rendering-capture.py",
+        "tests/test-rendering-pilot.py",
+        "tests/acceptance-capture-test.cpp",
+        "tests/test-native-player-media.py",
+        "tests/test-native-media-launch.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/acceptance_capture.hpp",
+        "apps/qt-shell/native_playback.cpp",
+        "apps/qt-shell/media_broker.cpp",
+        "apps/qt-shell/main.cpp",
+        "tools/rendering_capture.py",
+        "tools/close-rendering-movie-return.py",
+        "tools/close-rendering-identity-gates.py",
+        "tools/close-rendering-retained-rows.py",
+        "tools/run-rendering-menu-acceptance.py",
+        "tools/rendering_menu_accessibility.py",
+        "tools/native_only_contract.py",
+        "tools/native_prefix_template.py",
+        "tools/run-native-owned.py",
+        "docs/native-rendering-closure.json",
+        "tools/test-acceptance-capture.py",
+        "apps/qt-shell/host_timing_trace.hpp",
+        "tools/rendering_build_binding.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "IN07.enabled-intros-closed01",
+        "IN07.guards01",
+        "IN07.capture-controls01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "IN07.G.scope: physical-driver/original DirectShow/device equivalence, exact EOF/first-paint simultaneity, other required rows and both final decisions remain separate.",
+        "IN07.G.history: earlier accepted native execution remains at recorded historical full hashes; capture-only changes do not renew those executions."
+      ]
+    },
+    {
       "id": "NP.first-world-composition-closeout",
       "title": "First composed Campaign and Quick World entry",
       "kind": "native_policy",
@@ -385034,6 +385098,161 @@
       ]
     },
     {
+      "id": "IN07.acceptance-join01",
+      "kind": "static",
+      "record": "research/runtime/rendering-enabled-intros-results-20261107/integrated-acceptance-01.json",
+      "sha256": "5c9dcd201bc420b73aebcf19448271d2a2c57deaabc7ca85b216af24ea897b6d",
+      "sources_pointer": "/sources",
+      "scope": "Add exactly both current enabled-intro output rows to all incoming recorded acceptance rows. Preserve both pending decisions, complete original evidence attachments and separate historical source phases. This bookkeeping join executes no game/pixel analysis and renews no other native/driver/original recovery claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 80
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/preserved_all_incoming_rows",
+          "equals": true
+        },
+        {
+          "pointer": "/new_original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_per_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_hashes_refreshed",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "IN07.enabled-intros-closed01",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-enabled-intros-results-20261107/enabled-intros-binding-01.json",
+      "sha256": "f1eb2e0c6a90f0171c39f27c0ef95027cf3f74e41e26c18a61aced27c56e157c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "scope": "Bind both naturally completed native intro streams and every actual captured OpenGL presentation to independent expected RGBA with exact full-viewport letterbox/scaling, default/software High/Low inputs, ready Main and normal retirement. Earlier skips/returns remain independent. No original DirectShow/placement/audio-device or physical-driver equivalence; no whole-player acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 4
+        },
+        {
+          "pointer": "/batch_original_game_runs",
+          "equals": 5
+        },
+        {
+          "pointer": "/complete_movie_requests",
+          "equals": 8
+        },
+        {
+          "pointer": "/decoded_movie_frames",
+          "equals": 11124
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/post_movie_gui_pixel_credit",
+          "equals": 0
+        },
+        {
+          "pointer": "/raw_current_identity_admissions",
+          "equals": 4
+        },
+        {
+          "pointer": "/raw_current_normal_lifetime_admissions",
+          "equals": 4
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_scanout_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/original_directshow_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "IN07.guards01",
+      "kind": "static",
+      "record": "research/runtime/rendering-enabled-intros-results-20261107/controls-final-01.json",
+      "sha256": "9843cf5e0186ab6c245d3cd8d4e87cc88bd41c1a7ce281cdacf3337bbf9a8d7c",
+      "sources_pointer": "/sources",
+      "scope": "Real retained movie/viewport/provenance/lifetime mutations, exact bounded v3 policy and unchanged v1/v2 compatibility, native worker controls and UI/client checks. No guard mutation supplies game execution or wider driver/original equivalence.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 108
+        },
+        {
+          "pointer": "/no_skips",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "IN07.capture-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-enabled-intros-results-20261107/capture-controls-01.json",
+      "sha256": "f8cc139cb4a5dc67fca671b118bfce328e5d2dc728718994db5e67a894cdd88d",
+      "sources_pointer": "/sources",
+      "scope": "Current native asynchronous capture ownership/order, compression-stage and refusal controls; exact old campaign lazy reader checks. No actual movie/original-game credit from the synthetic worker controls.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
       "id": "FW07.first-world-closed01",
       "kind": "native_integration",
       "record": "research/runtime/rendering-first-world-results-20261107/first-world-binding-01.json",
@@ -385109,6 +385328,48 @@
         {
           "pointer": "/original_manifest_verified_before_after",
           "equals": true
+        }
+      ]
+    },
+    {
+      "id": "IN07.acceptance-join02",
+      "kind": "static",
+      "record": "research/runtime/rendering-enabled-intros-results-20261107/integrated-acceptance-02.json",
+      "sha256": "1d19f8793a1e4e471be472ce545d58c1a644659c8649d5937b8d6d05198b4bac",
+      "sources_pointer": "/sources",
+      "scope": "Add exactly both current enabled-intro output rows to all incoming recorded acceptance rows. Preserve both pending decisions, complete original evidence attachments and separate historical source phases. This bookkeeping join executes no game/pixel analysis and renews no other native/driver/original recovery claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 84
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/preserved_all_incoming_rows",
+          "equals": true
+        },
+        {
+          "pointer": "/new_original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_per_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_hashes_refreshed",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
         }
       ]
     },
@@ -385261,6 +385522,48 @@
         {
           "pointer": "/no_skips",
           "equals": true
+        }
+      ]
+    },
+    {
+      "id": "IN07.acceptance-join03",
+      "kind": "static",
+      "record": "research/runtime/rendering-enabled-intros-results-20261107/integrated-acceptance-03.json",
+      "sha256": "3f315bfd6878ee5d48eebd05aa7932f1828a113b3e80a91f08b26e2d125bccc3",
+      "sources_pointer": "/sources",
+      "scope": "Add exactly both current enabled-intro output rows to all incoming recorded acceptance rows. Preserve both pending decisions, complete original evidence attachments and separate historical source phases. This bookkeeping join executes no game/pixel analysis and renews no other native/driver/original recovery claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 88
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/preserved_all_incoming_rows",
+          "equals": true
+        },
+        {
+          "pointer": "/new_original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_per_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_hashes_refreshed",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
         }
       ]
     }
@@ -418462,6 +418765,62 @@
       ]
     },
     {
+      "id": "IN07.movie.01",
+      "level": "live_observation",
+      "scope": "Both complete enabled native intros in research/runtime/rendering-enabled-intros-results-20261107/default-high-05.json, ordered independently decoded RGBA and all actual movie viewport paints/swaps, changing output throughout both clips, exact media acknowledgements, ready Main/physical original callbacks and raw normal retirement. Post-movie GUI frames are retained separately without movie pixel credit. No World, physical scanout, original DirectShow/device equivalence or final player decision.",
+      "behaviors": [
+        "NP.enabled-intros-output"
+      ],
+      "tests": [
+        "tests/test-rendering-enabled-intros.py"
+      ],
+      "evidence": [
+        "IN07.enabled-intros-closed01"
+      ]
+    },
+    {
+      "id": "IN07.movie.02",
+      "level": "live_observation",
+      "scope": "Both complete enabled native intros in research/runtime/rendering-enabled-intros-results-20261107/software-high-01.json, ordered independently decoded RGBA and all actual movie viewport paints/swaps, changing output throughout both clips, exact media acknowledgements, ready Main/physical original callbacks and raw normal retirement. Post-movie GUI frames are retained separately without movie pixel credit. No World, physical scanout, original DirectShow/device equivalence or final player decision.",
+      "behaviors": [
+        "NP.enabled-intros-output"
+      ],
+      "tests": [
+        "tests/test-rendering-enabled-intros.py"
+      ],
+      "evidence": [
+        "IN07.enabled-intros-closed01"
+      ]
+    },
+    {
+      "id": "IN07.movie.03",
+      "level": "live_observation",
+      "scope": "Both complete enabled native intros in research/runtime/rendering-enabled-intros-results-20261107/default-low-01.json, ordered independently decoded RGBA and all actual movie viewport paints/swaps, changing output throughout both clips, exact media acknowledgements, ready Main/physical original callbacks and raw normal retirement. Post-movie GUI frames are retained separately without movie pixel credit. No World, physical scanout, original DirectShow/device equivalence or final player decision.",
+      "behaviors": [
+        "NP.enabled-intros-output"
+      ],
+      "tests": [
+        "tests/test-rendering-enabled-intros.py"
+      ],
+      "evidence": [
+        "IN07.enabled-intros-closed01"
+      ]
+    },
+    {
+      "id": "IN07.movie.04",
+      "level": "live_observation",
+      "scope": "Both complete enabled native intros in research/runtime/rendering-enabled-intros-results-20261107/software-low-01.json, ordered independently decoded RGBA and all actual movie viewport paints/swaps, changing output throughout both clips, exact media acknowledgements, ready Main/physical original callbacks and raw normal retirement. Post-movie GUI frames are retained separately without movie pixel credit. No World, physical scanout, original DirectShow/device equivalence or final player decision.",
+      "behaviors": [
+        "NP.enabled-intros-output"
+      ],
+      "tests": [
+        "tests/test-rendering-enabled-intros.py"
+      ],
+      "evidence": [
+        "IN07.enabled-intros-closed01"
+      ]
+    },
+    {
       "id": "FW07.first-world.01",
       "title": "First World player-default normal-quick 640",
       "scope": "Fresh retained-data first-queue/caller preservation and complete initial native viewport reconstruction for player-default/normal-quick/640. Historical native execution and original preparation remain separate.",
@@ -420473,8 +420832,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-63537bb41ae655343160877c1f28580f62cef8bc06605f3d7989149d51d4f84e.json",
-    "sha256": "63537bb41ae655343160877c1f28580f62cef8bc06605f3d7989149d51d4f84e"
+    "path": "research/runtime/coverage/source-index-223d9a8b3a6785503ba057974148d5d209b9f800d1ca547716510909d0539ab1.json",
+    "sha256": "223d9a8b3a6785503ba057974148d5d209b9f800d1ca547716510909d0539ab1"
   },
   "evidence_applicability": [
     {

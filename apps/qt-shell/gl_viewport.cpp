@@ -88,7 +88,15 @@ QImage GlViewport::grabFramebuffer(){
 }
 GlViewport::~GlViewport(){if(context()){disconnect(context(),nullptr,this,nullptr);makeCurrent();release();doneCurrent();}}
 void GlViewport::release(){if(texture_)glDeleteTextures(1,&texture_);texture_=0;textureSize_={};vertices_.destroy();vao_.destroy();shader_.removeAllShaders();gpuShader_.removeAllShaders();ready_=false;}
-void GlViewport::setFrame(QImage image){acceptanceLease_=acceptanceGeneration_=0;if(ready_)error_.clear();gpuFrame_={};frame_=image.convertToFormat(QImage::Format_RGBA8888);dirty_=true;if(canvas_)canvas_->update();else update();}
+void GlViewport::setFrame(QImage image){
+    acceptanceLease_=acceptanceGeneration_=0;if(ready_)error_.clear();gpuFrame_={};frame_=image.convertToFormat(QImage::Format_RGBA8888);dirty_=true;
+    if(acceptance_.enabled() && acceptanceImages_){
+        ++acceptanceImage_;
+        acceptance_.append("image",{{"image",QString::number(acceptanceImage_)},{"width",frame_.width()},{"height",frame_.height()},
+            {"rgba_sha256",QString::fromLatin1(QCryptographicHash::hash(QByteArrayView(reinterpret_cast<const char*>(frame_.constBits()),frame_.sizeInBytes()),QCryptographicHash::Sha256).toHex())}});
+    }
+    if(canvas_)canvas_->update();else update();
+}
 void GlViewport::setGpuFrame(mnm::render::GpuFrame frame,std::uint64_t serial,std::uint64_t generation){acceptanceLease_=serial;acceptanceGeneration_=generation;if(frame.valid() && raster_!=frame.hasRaster())throw std::runtime_error("Frame transport does not match viewport");if(ready_)error_.clear();gpuFrame_=std::move(frame);frame_={};dirty_=false;if(canvas_)canvas_->update();else update();}
 QRect GlViewport::physicalImageRect() const{
     if(frameSize().isEmpty())return {};
@@ -191,7 +199,7 @@ void GlViewport::paintGL(){
     vao_.bind();glDrawArrays(GL_TRIANGLE_STRIP,0,4);vao_.release();shader.release();
     if(gpuFrame_.valid())try {gpuFrame_.samplingComplete();}
     catch(const std::exception& e){acceptance_.fail("GPU paint failed");error_=QString::fromUtf8(e.what());if(recoverGraphics && recoverGraphics())error_.clear();return;}
-    if(acceptance_.enabled() && gpuFrame_.valid()){
+    if(acceptance_.enabled() && (gpuFrame_.valid() || (acceptanceImages_ && !frame_.isNull()))){
         QImage observed(width,height,QImage::Format_RGBA8888);
         {HostTimingTrace readback("acceptance-readback");glReadPixels(0,0,width,height,GL_RGBA,GL_UNSIGNED_BYTE,observed.bits());}
         if(glGetError()!=GL_NO_ERROR)acceptance_.fail("Paint readback failed");
@@ -219,6 +227,7 @@ void GlViewport::observePaint(const QImage& image,bool frameDrawn){
         {"transport",raster_?"raster":"opengl"},{"gpu_read_complete",!raster_ && !image.isNull()},{"scaling",int(scaling_)},
         {"native_gpu_frame",gpuFrame_.valid()},{"pixels_captured",!image.isNull()},
         {"presentation_owner","dedicated"},{"immutable_lease",true}};
+    if(acceptanceImages_)row["image"]=QString::number(acceptanceImage_);
     for(auto i=identity.begin();i!=identity.end();++i)row[i.key()]=i.value();
     if(frameDrawn && gpuFrame_.valid() && row["lease"].toString()=="0")acceptance_.fail("Native paint source identity missing");
     acceptance_.append("paint",row,image.isNull()?QByteArray():QByteArray(reinterpret_cast<const char*>(image.constBits()),image.sizeInBytes()));

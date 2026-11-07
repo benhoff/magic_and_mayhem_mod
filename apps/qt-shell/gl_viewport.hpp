@@ -68,6 +68,8 @@ protected:
 private:
     friend class GlViewportCanvas;
     AcceptanceCapture acceptance_{"viewport"};
+    const bool acceptanceImages_=qEnvironmentVariableIntValue("MNM_ACCEPTANCE_IMAGES")==1;
+    std::uint64_t acceptanceImage_=0;
     std::uint64_t acceptanceWorldPainted_=0,acceptanceWorldSwapped_=0,acceptanceLastSwappedPaint_=0;
     std::uint64_t acceptanceLease_=0,acceptanceGeneration_=0,acceptancePaint_=0;
     void observePaint(const QImage&,bool frameDrawn=true);
