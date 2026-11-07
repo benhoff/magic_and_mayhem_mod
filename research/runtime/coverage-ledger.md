@@ -26650,3 +26650,19 @@ history. No game, native/runtime edit, build, fixture or original reference run.
 Original driver/ABI/CPU producer recovery, other copy families, known caller issues,
 camera/Sharp, progression/results and provider/fault boundaries remain open.
 See [bounded evidence and controls](rendering-copy-closeout-20261106.md).
+
+### SK06 public enabled-intro Escape — 2026-11-06
+
+Native acceptance reaches 52/156 passed, 104 pending: movie skip closes for both
+profiles using four real default/software High/Low public cases. Physical Escape
+interrupts accepted visible Intro0 or Intro1 delivery; exact stable media wire and
+history acknowledge cancellation. The later-intro cases first complete Intro0
+with retained independent decoded-output equality. Painted/focused Main accepts
+real input with exact original callbacks, then normal Quit retires graphics/media
+and starts no World. All 50 parent rows and both decisions are preserved. The
+accepted player and 405 compiler sources are unchanged; no new game fixture or
+native/runtime edit. Keep the missing-original-alias refusal, two zero-game
+staging/accessibility failures, exact driver preimages and all private input/prefix
+records. Source preferences restore exactly. Movie GPU/original audiovisual/ABI,
+fault/provider, known cursor/camera/Sharp issues and other journeys remain open.
+See [bounded proof and controls](rendering-movie-skip-closeout-20261106.md).

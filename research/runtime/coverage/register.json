@@ -163724,6 +163724,56 @@
         "CP06.G.original: whole original driver/ABI/registers/flags, upstream CPU producer semantics, physical allocation ownership and arbitrary formats remain separate from valid RGB565 copy inputs/output.",
         "CP06.G.other: keyed GPU/self-alias/attached-clipper/stretch/fault/loss/Restore domains, four refused low-resolution cursor calls, unproved Quick cropped output, first-World preparation, camera/Sharp/input, progression/results and both decisions remain open. All historical failures preserved."
       ]
+    },
+    {
+      "id": "NP.movie-skip-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Public enabled-movie Escape and focused menu return",
+      "scope": "Bounded current public player with enabled native intros: physical Escape after accepted visible playback, exact cancelled media request/result and owned retirement, then painted/focused Main, real input/original callback and normal Quit without World. Both explicit profiles and original High/Low contexts using unchanged accepted binary/inputs. No whole movie GPU/original pixel, codec/driver/audio waveform, arbitrary error/restart/provider or final decision claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-movie-skip-closeout-20261106.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-movie-skip.py",
+        "tools/close-rendering-movie-skip.py"
+      ],
+      "tests": [
+        "tests/test-rendering-movie-skip.py"
+      ],
+      "validation_dependencies": [
+        "tools/run-rendering-menu-acceptance.py",
+        "tools/rendering_menu_accessibility.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/close-rendering-movie-return.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/native_prefix_template.py",
+        "tools/native_only_contract.py",
+        "tools/run-native-owned.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "tools/rendering_acceptance.py",
+        "tools/evidence-applicability.py",
+        "protocols/python/mnm_protocols/media_v1.py",
+        "docs/native-rendering-closure.json"
+      ],
+      "evidence": [
+        "SK06.controls01",
+        "SK06.movie-skip-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "SK06.G.output: whole movie GPU/physical output and original DirectShow/codec/driver/audio-waveform/ABI equivalence remain separate. Partial skipped delivery is not both-intro completion.",
+        "SK06.G.other: arbitrary faults/restarts/providers, firstWorld, camera/Sharp/cursor and progression/results failures remain open; preserve50parent rows and both pending decisions."
+      ]
     }
   ],
   "evidence": [
@@ -379579,6 +379629,74 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "SK06.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-movie-skip-results-20261106/controls-final-01.json",
+      "sha256": "fbaf4a649bd525e06904b074c6cfae67f828f188f94c5d8de7365c8e8b3c2564",
+      "sources_pointer": "/native_sources",
+      "claims_pointer": "/claims",
+      "scope": "16actual public media/snapshot/input/Main/ownership negative controls,30UI and9client checks. Preserve missing-original-alias and two zero-game staging/accessibility refusals with exact sources. Controls receive no live scenario execution credit.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 55
+        },
+        {
+          "pointer": "/actual_case_controls_without_skips",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "SK06.movie-skip-closed01",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-movie-skip-results-20261106/current-closeout-binding-01.json",
+      "sha256": "7f0554dde7ae5bec97bf5e203e2d5116ef3e7c5cb392325b2782318f6a3d08bc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "scope": "Bounded current public player with enabled native intros: physical Escape after accepted visible playback, exact cancelled media request/result and owned retirement, then painted/focused Main, real input/original callback and normal Quit without World. Both explicit profiles and original High/Low contexts using unchanged accepted binary/inputs. No whole movie GPU/original pixel, codec/driver/audio waveform, arbitrary error/restart/provider or final decision claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 4
+        },
+        {
+          "pointer": "/skipped_requests",
+          "equals": 4
+        },
+        {
+          "pointer": "/worlds_started",
+          "equals": 0
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 52
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/movie_gpu_output_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -411558,6 +411676,20 @@
       "evidence": [
         "CP06.opaque-cropped-closed01"
       ]
+    },
+    {
+      "id": "SK06.public-enabled-intro-escape",
+      "level": "live_observation",
+      "scope": "Bounded current public player with enabled native intros: physical Escape after accepted visible playback, exact cancelled media request/result and owned retirement, then painted/focused Main, real input/original callback and normal Quit without World. Both explicit profiles and original High/Low contexts using unchanged accepted binary/inputs. No whole movie GPU/original pixel, codec/driver/audio waveform, arbitrary error/restart/provider or final decision claim.",
+      "behaviors": [
+        "NP.movie-skip-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-movie-skip.py"
+      ],
+      "evidence": [
+        "SK06.movie-skip-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -413375,8 +413507,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-c9283ec8ec991f1a5560825c21428417dd2d8c0a827faf2dd9a0043023847405.json",
-    "sha256": "c9283ec8ec991f1a5560825c21428417dd2d8c0a827faf2dd9a0043023847405"
+    "path": "research/runtime/coverage/source-index-313b431c0578fbfa7ea02ec7f026db548cf1372a02ee21d3f870f80e9752b5f7.json",
+    "sha256": "313b431c0578fbfa7ea02ec7f026db548cf1372a02ee21d3f870f80e9752b5f7"
   },
   "evidence_applicability": [
     {
