@@ -26617,6 +26617,43 @@ families, first-World preparation, camera/Sharp/input, natural progression/resul
 fault/provider and all known historical/Save/camera failures remain separate.
 See [the operation closeout](rendering-destination-closeout-20261106.md).
 
+
+## Native Sharp sampling and lost menu intents repaired — 2026-11-06
+
+`RF06.native-regressions01` validates native code corrections, separately from
+acceptance-row accounting. The exact retained Sharp geometry reproduces a
+floating-point nearest-texel boundary error in the old shader. Both OpenGL
+presentation paths now use physical pixel centres and integer source-coordinate
+division; the independent reference, tolerance and Smooth policy are unchanged.
+286complete framebuffer and34on-screen comparisons pass at DPR1/1.5.
+
+Main/Map and Save can lose a valid action when the bridge snapshot overlaps
+an original publication. The native session now retains one owned unpublished
+intent for at most500ms of active menu time, preserves its generation/screen/
+thread/ACK and arguments, and rechecks every bridge guard before dispatch. It
+never resends a published request.21forced publication cases,3real XTest button
+actions and8existing menu suites pass. Stable owner/readiness changes, retirement,
+expiry and overtaking input refuse; media pauses dispatch and stop/restart
+discards the intent. Save now records accepted/refused submissions rather than
+allowing a silent refusal to wait for the overall diagnostic deadline.
+
+The historical CM06/CS05 records prove their earlier failure boundaries, without
+identifying every exact cause. Their hashes/results and all prior milestones stay
+unchanged. These native-source changes require targeted current execution; the
+42-row retained pack is not renewed and neither final decision is promoted.
+See [native defect fixes](rendering-defect-fixes-20261106.md). New reports, failures,
+prospective claims and exact tested executables are retained through SQLite.
+
+The targeted skipped-intro software640 original diagnostic also passes Save,
+Mini Load, two display rebuilds, Main Load, restored gameplay and normal Quit.
+One original Save and two Load callbacks bind three accepted storage submissions;
+846imports/returns balance,12,254native calls forward0pixels and all graphics
+owners retire. One actual game follows four retained zero-game preparation
+refusals. Exact-source/current preview proof remains separate from independent
+World-pixel equivalence, historical cause attribution and repeated-run reliability.
+`RF06.software640-storage-diagnostic01` retains that finite positive observation;
+no acceptance row or old evidence is promoted/refreshed.
+
 ### BD06 natural direct sprites and blend pixels — 2026-11-06
 
 Native acceptance reaches 46/156 passed, 110 pending: direct sprites and the
@@ -26633,6 +26670,24 @@ original reference execution. Original ABI, attachment/combat, palette builders,
 CPU callers, camera/Sharp, progression, provider/fault domains and known failures
 remain open. See [bounded evidence and controls](rendering-blend-direct-closeout-20261106.md).
 
+
+## Native defect fixes and concurrent closeout integration — 2026-11-06
+
+Native commit ac08de541 and concurrent direct/blend closeout661b4ea2d retain
+both parents, stable IDs, exact receipts and full ledger additions. The latter
+changes no native source; the tested native sources/regressions stay exact.
+`RF06.public-main-map-input01` additionally passes real public Main/Preferences/
+Quick/Setup/Map mouse OK/back/Main Quit with nine exact original ready ACKs,
+physical XTest delivery, zero World entry and normal native retirement. One
+preceding accessibility startup failure launches no game; its exact source,
+raw data and interrupted prefix recovery are retained. Private runtime/Mesa
+preflight precedes the repaired case. The stopped camera batch stays stopped.
+
+The incoming46-row pack remains at its original source phase. Native-source
+drift does not renew whole-player applicability or erase historical failures;
+both final decisions stay pending. Exact committed-history/artifact reviews
+retain source versions and identify accounting separately from execution. See
+[the integration](rendering-defect-fixes-integration-20261106.md).
 ### CP06 caller-bound opaque/cropped native copies — 2026-11-06
 
 Native acceptance reaches 50/156 passed, 106 pending: opaque copies and image
@@ -26651,6 +26706,18 @@ Original driver/ABI/CPU producer recovery, other copy families, known caller iss
 camera/Sharp, progression/results and provider/fault boundaries remain open.
 See [bounded evidence and controls](rendering-copy-closeout-20261106.md).
 
+### Native defect fixes and concurrent copy closeout integration — 2026-11-06
+
+The tested native fix and integration `07aef58b1` also retain concurrent copy
+closeout `0e642f81d`. Stable behavior/evidence identities, exact review receipts,
+the 50-row pack and both complete ledger additions survive. No native source or
+native regression test changes. RF06's scoped implementation/preview proof stays
+current; broader CP06/BD06 source bindings remain historical where the corrected
+native sources differ. The supplemental committed-history review checks each
+commit against its actual first parent and distinguishes exact accounting from
+new execution. Both final rendering decisions remain pending. No new game run,
+build, reference execution or acceptance promotion is claimed by this merge.
+
 ### SK06 public enabled-intro Escape — 2026-11-06
 
 Native acceptance reaches 52/156 passed, 104 pending: movie skip closes for both
@@ -26666,3 +26733,6 @@ staging/accessibility failures, exact driver preimages and all private input/pre
 records. Source preferences restore exactly. Movie GPU/original audiovisual/ABI,
 fault/provider, known cursor/camera/Sharp issues and other journeys remain open.
 See [bounded proof and controls](rendering-movie-skip-closeout-20261106.md).
+
+
+SK06 integration source boundary: concurrent master bed0d49cb959f596bd9b9b4f97488148fc4d5128 changes viewport/menu native sources. The four accepted movie-skip cases and55controls remain pinned to player94c70f6b and their recorded compiler closure; no current-code applicability is inferred for the newer C++ version. Keep52accepted rows and both decisions, retain raw staleness and require targeted revalidation before claiming current-source execution. Incoming RF06fixes and their tests/evidence remain unchanged. See rendering-movie-skip-results-20261106/concurrent-integration-review-01.json.

@@ -53,6 +53,10 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
   r->states.append(QJsonObject{{"event","menu-request"},{"action",int(action)},{"accepted",accepted},{"reason",why},{"screen",int(s.screen)},{"generation",int(s.generation)},{"ack",int(s.ack)},{"stage",r->stage}});
   if(!accepted)fail("Public menu request refused: "+why);
  };
+ session.storageRequestObserved=[r,fail](quint32 action,bool accepted,const QString& why,const MenuBridge::State& s){
+  r->states.append(QJsonObject{{"event","storage-request"},{"time_ms",QDateTime::currentMSecsSinceEpoch()},{"action",int(action)},{"accepted",accepted},{"reason",why},{"screen",int(s.screen)},{"generation",int(s.generation)},{"ack",int(s.ack)},{"stage",r->stage}});
+  if(!accepted)fail("Native storage action rejected: "+why);
+ };
  auto click=[&window,fail](const QString& name){auto* b=window.findChild<QAbstractButton*>(name);if(!b||!b->isVisible()||!b->isEnabled()){fail("Native control unavailable: "+name);return;}b->click();};
  auto input=[r,fail,probe,resident,difficulty,&session,&window,path](const QString& mode){
   auto* gl=dynamic_cast<GlViewport*>(window.findChild<QWidget*>("nativeGameViewport"));QWidget* v=gl&&gl->isVisible()?static_cast<QWidget*>(gl):window.findChild<QWidget*>("legacyGameContainer");if(!v||!v->isVisible()){fail("Game viewport unavailable");return;}window.activateWindow();window.raise();v->setFocus();const QRectF rect=gl&&gl->isVisible()?gl->imageRect():QRectF((v->width()-800)/2,(v->height()-600)/2,800,600);const auto origin=v->mapToGlobal(rect.topLeft().toPoint());auto* p=new QProcess(&window);r->helper=true;

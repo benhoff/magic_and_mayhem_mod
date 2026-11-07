@@ -122,11 +122,30 @@ struct KeyObserver:QObject {
         return false;
     }
 };
+void sharpBoundaryCases(){
+    GlViewport viewport;viewport.resize(1100,795);viewport.show();settle();
+    require(viewport.ready(),"Sharp regression viewport did not initialize");
+    mnm::render::GlBlitter renderer(viewport.context());
+    for(const auto size:{QSize(800,600),QSize(640,480),QSize(799,599)}){
+        QImage image(size,QImage::Format_RGBA8888);mnm::render::Image native{size.width(),size.height(),{}};
+        for(int y=0;y<size.height();++y)for(int x=0;x<size.width();++x){
+            const QColor color(x%256,y%256,(x*17+y*31)%256);
+            image.setPixelColor(x,y,color);native.pixels.push_back((color.red()<<16)|(color.green()<<8)|color.blue());
+        }
+        const auto surface=renderer.create(native,{24,{0xff0000,0xff00,0xff}});
+        for(const auto output:{QSize(1100,795),QSize(1079,807),QSize(641,481)}){
+            viewport.resize(output);viewport.setFrame(image);compare(viewport,image);
+            viewport.setGpuFrame(renderer.presentGpu(surface));compare(viewport,image);
+        }
+        renderer.destroy(surface);
+    }
+}
 }
 int main(int argc,char** argv){
     QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(format);
     QApplication app(argc,argv);
     try {
+        sharpBoundaryCases();
         startupAndStreaming();
         QMainWindow window;auto* viewport=new GlViewport(&window);window.setCentralWidget(viewport);
         auto* toolbar=window.addToolBar("Presentation");toolbar->setMovable(false);

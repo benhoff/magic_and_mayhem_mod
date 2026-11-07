@@ -29,6 +29,7 @@ public:
     ~MenuBridge();
     bool create(const QString& path,bool battle=false,bool spells=false,bool mini=false,bool results=false,bool preferences=false,bool region=false,bool enter=false,bool campaignMini=false,bool campaignQuit=false,bool campaignDefeat=false,bool campaignPreferences=false,bool storage=false,bool grimoire=false,bool multiplayer=false,bool sessions=false,bool lobby=false,bool character=false,bool realm=false,bool campaign=false,bool campaignSpells=false,bool campaignBook=false);
     bool read(State& state) const;
+    bool readUnstable() const { return readUnstable_; }
     void heartbeat(bool alive=true);
     bool request(quint32 action,const State& state,quint32 argument=0,const std::array<int,17>* rules=nullptr);
     bool finishSpells(const State&,const std::array<int,63>& assignments);
@@ -38,6 +39,8 @@ public:
     quint32 requestedSequence() const { return request_; }
     void retire();
 private:
+    bool readSnapshot(State& state) const;
+    mutable bool readUnstable_=false;
     QFile file_;
     uchar* mapping_=nullptr;
     quint32 heartbeat_=0,request_=0;

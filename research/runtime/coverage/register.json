@@ -163599,6 +163599,100 @@
       ]
     },
     {
+      "id": "HOST.sharp-pixel-centres",
+      "title": "Exact physical-pixel nearest presentation",
+      "scope": "Native Sharp/Integer OpenGL presentation samples the source using the exact integer quotient of physical destination pixel centres, independent of interpolated UV rounding. Both CPU RGBA and native integer textures preserve top-left orientation and aspect-fit letterboxing. Synthetic Mesa source800x600/640x480/799x599 and three viewport extents at DPR1/1.5; smooth filtering retains its existing policy. Historical negative captures, original gameplay/picking, arbitrary physical providers and complete player acceptance are not promoted.",
+      "implementation": [
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp"
+      ],
+      "tests": [
+        "tests/viewport-presentation-test.cpp",
+        "tests/gpu-presentation-test.cpp",
+        "tools/test-rendering-defect-fixes.py"
+      ],
+      "validation_dependencies": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "apps/qt-shell/viewport_presentation.cpp",
+        "apps/qt-shell/viewport_presentation.hpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/coverage_evidence.py"
+      ],
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-defect-fixes-20261106.md"
+      ],
+      "evidence": [
+        "RF06.native-regressions01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "RF06.G.live: current original-game failure repetition and exact attribution of each historical CM06/CS05 failure remain pending; no historical evidence or whole-player acceptance promotion."
+      ]
+    },
+    {
+      "id": "HOST.menu-publication-intent",
+      "title": "Retain one menu intent across an unstable publication",
+      "scope": "Native Main/Map and storage submissions distinguish unstable seqlock reads from stable refusal. Own one unpublished intent, filename and optional setup rules; retry on subsequent GUI polls within500ms of active menu time against the original generation/screen/thread/ACK and unchanged bridge admission. Never resend a published request or accept a second overtaking action. Refuse stable owner/readiness changes, retirement and expiry; pause during media and discard on stop/restart. Save records exact request/refusal diagnostics. Synthetic wire and physical XTest/AT-SPI controls only; historical CM06/CS05 exact causes and current original-game repetitions remain pending.",
+      "implementation": [
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/campaign_storage_test.cpp"
+      ],
+      "tests": [
+        "tests/menu-storage-bridge-test.cpp",
+        "tools/test-rendering-defect-fixes.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/live_storage_menu_controller.cpp",
+        "apps/qt-shell/live_storage_menu_controller.hpp",
+        "apps/qt-shell/save_game_widget.cpp",
+        "apps/qt-shell/save_game_widget.hpp",
+        "apps/qt-shell/engine_preferences_store.cpp",
+        "apps/qt-shell/engine_preferences_store.hpp",
+        "apps/qt-shell/menu_transition_witness.hpp",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v13.h",
+        "tools/rendering_menu_accessibility.py",
+        "tools/coverage_evidence.py"
+      ],
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-defect-fixes-20261106.md",
+        "research/runtime/rendering-defect-fixes-integration-20261106.md"
+      ],
+      "evidence": [
+        "RF06.native-regressions01",
+        "RF06.software640-storage-diagnostic01",
+        "RF06.public-main-map-input01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "RF06.G.live: one skipped-intro software640 original storage diagnostic and one actual public Main/Map physical-input diagnostic pass separately. Current original-game camera/other-domain repetitions, exact attribution of every historical CM06/CS05 miss, repeated-run reliability and full nominal acceptance remain pending."
+      ]
+    },
+    {
       "id": "NP.blend-direct-closeout",
       "kind": "native_policy",
       "subsystem": "native_rendering",
@@ -379491,6 +379585,76 @@
       ]
     },
     {
+      "id": "RF06.native-regressions01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-defect-fixes-results-20261106/native-regressions-01.json",
+      "sha256": "a02f11e339c142faf45041d5536a093700f3102471260f69768858443c6a59fc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Actual isolated Qt/Mesa Sharp and GPU presentation at DPR1/1.5, forced menu-publication ownership/deadline guards and external XTest/AT-SPI press/release delivery.286complete framebuffer comparisons,34onscreen comparisons and3physical actions. No original game, historical negative retirement or whole-player acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/binaries_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "RF06.software640-storage-diagnostic01",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-defect-fixes-results-20261106/software640-storage-binding-01.json",
+      "sha256": "cc00f58dbee80b1eb1b13fd830439e8839ac31c4ae99955d04d8579fcb541aeb",
+      "sources_pointer": "/sources",
+      "scope": "One current skipped-intro explicit-software640 original Save/Mini Load/two display rebuilds/Main Load/resumed World/normal Quit diagnostic. Three accepted storage requests bind one original Save and two Load callbacks,846source imports/returns and zero forwarding/retired graphics owners. Four preparation refusals launch no original game. Unbound finite observation: no independent new World pixels, exact attribution of every historical failure, repeated-run reliability, enabled-intro acceptance or milestone promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 1
+        },
+        {
+          "pointer": "/original_save_callbacks",
+          "equals": 1
+        },
+        {
+          "pointer": "/original_load_callbacks",
+          "equals": 2
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/forwarded_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/acceptance_rows_promoted",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
       "id": "BD06.controls01",
       "kind": "native_integration",
       "record": "research/runtime/rendering-blend-direct-results-20261106/controls-final-01.json",
@@ -379555,6 +379719,41 @@
         {
           "pointer": "/historical_failures_retired",
           "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RF06.public-main-map-input01",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-defect-fixes-integration-results-20261106/public-main-map-input-01.json",
+      "sha256": "35b8f23fc7ddf9c56af6717791a567cb0522ed1b9dbdf26b5f83b712d4a9c458",
+      "sources_pointer": "/sources",
+      "scope": "One current public Qt software/low skipped-intro Main/Preferences Cancel/physical Quick/Setup/Map mouse OK/back/Main Quit diagnostic. Nine exact original ready states/ACKs bind actual physical mouse actions to completed menu callbacks with zero World entry and normal native retirement. A preceding accessibility bus abort launched no original game; its prefix and failure are preserved. Unbound finite observation, not whole camera, output equivalence, repeated-run reliability or acceptance-row promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 1
+        },
+        {
+          "pointer": "/worlds",
+          "equals": 0
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/retirement/state",
+          "equals": "completed"
         }
       ]
     },
@@ -411650,6 +411849,24 @@
       ]
     },
     {
+      "id": "hosting.rendering-defect-regressions",
+      "level": "preview",
+      "scope": "Synthetic exact Sharp and unpublished menu intent corrections with actual isolated Qt/Mesa and physical XTest input; no original game or historical failure retirement.",
+      "behaviors": [
+        "HOST.sharp-pixel-centres",
+        "HOST.menu-publication-intent"
+      ],
+      "tests": [
+        "tools/test-rendering-defect-fixes.py",
+        "tests/viewport-presentation-test.cpp",
+        "tests/menu-storage-bridge-test.cpp",
+        "tests/gpu-presentation-test.cpp"
+      ],
+      "evidence": [
+        "RF06.native-regressions01"
+      ]
+    },
+    {
       "id": "BD06.four-domain-natural-blend-direct",
       "level": "live_observation",
       "scope": "Finite natural Campaign/storage direct RGB565 sprite and half/quarter blend output at both explicit profiles and actual 640/800 sizes. Exact queued source/request bytes, last-writer coverage, independently reconstructed original result words and actual native viewport source-coordinate lineage. Complete prior composition comparisons and all 42 accepted rows are preserved. No whole original ABI, attachment/combat, upstream palette builder, raw CPU caller, new maps/faults/providers or final decision claim.",
@@ -413507,8 +413724,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-313b431c0578fbfa7ea02ec7f026db548cf1372a02ee21d3f870f80e9752b5f7.json",
-    "sha256": "313b431c0578fbfa7ea02ec7f026db548cf1372a02ee21d3f870f80e9752b5f7"
+    "path": "research/runtime/coverage/source-index-f80d7d978ecf96fb0c79c9ea6d73d99c3439c4119d0fa13b36f2b15df8fc0c1a.json",
+    "sha256": "f80d7d978ecf96fb0c79c9ea6d73d99c3439c4119d0fa13b36f2b15df8fc0c1a"
   },
   "evidence_applicability": [
     {

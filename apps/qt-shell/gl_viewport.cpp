@@ -117,8 +117,14 @@ void GlViewport::initializeGL(){
         "#version 330 core\nlayout(location=0) in vec2 position;layout(location=1) in vec2 uv;out vec2 texcoord;void main(){gl_Position=vec4(position,0,1);texcoord=uv;}") ||
        !shader_.addShaderFromSourceCode(QOpenGLShader::Fragment,
         "#version 330 core\nin vec2 texcoord;out vec4 color;uniform sampler2D frame;uniform bool smoothScaling;"
+        "uniform ivec2 imageOrigin;uniform ivec2 imageExtent;"
         "vec4 pixel(ivec2 p){return texelFetch(frame,clamp(p,ivec2(0),textureSize(frame,0)-1),0);}"
-        "void main(){if(!smoothScaling){color=texture(frame,texcoord);return;}"
+        // Pixel centres and an exact integer quotient define nearest sampling,
+        // including ties. Interpolated UVs can fall on either side of a texel
+        // boundary after floating-point interpolation on the same GL driver.
+        "ivec2 nearestPixel(){uvec2 p=uvec2(ivec2(gl_FragCoord.xy)-imageOrigin);p.y=uint(imageExtent.y)-1u-p.y;"
+        "return ivec2(((2u*p+1u)*uvec2(textureSize(frame,0)))/(2u*uvec2(imageExtent)));}"
+        "void main(){if(!smoothScaling){color=pixel(nearestPixel());return;}"
         "vec2 p=texcoord*vec2(textureSize(frame,0))-0.5;ivec2 lo=ivec2(floor(p));vec2 f=fract(p);"
         "color=mix(mix(pixel(lo),pixel(lo+ivec2(1,0)),f.x),mix(pixel(lo+ivec2(0,1)),pixel(lo+ivec2(1,1)),f.x),f.y);}") || !shader_.link()){
         error_=shader_.log();return;
@@ -128,8 +134,11 @@ void GlViewport::initializeGL(){
        !gpuShader_.addShaderFromSourceCode(QOpenGLShader::Fragment,
         // Integer textures cannot use GL_LINEAR; filter in the presentation shader only.
         "#version 330 core\nin vec2 texcoord;out vec4 color;uniform usampler2D frame;uniform bool smoothScaling;"
+        "uniform ivec2 imageOrigin;uniform ivec2 imageExtent;"
         "vec4 pixel(ivec2 p){return vec4(texelFetch(frame,clamp(p,ivec2(0),textureSize(frame,0)-1),0))/255.0;}"
-        "void main(){if(!smoothScaling){color=vec4(texture(frame,texcoord))/255.0;return;}"
+        "ivec2 nearestPixel(){uvec2 p=uvec2(ivec2(gl_FragCoord.xy)-imageOrigin);p.y=uint(imageExtent.y)-1u-p.y;"
+        "return ivec2(((2u*p+1u)*uvec2(textureSize(frame,0)))/(2u*uvec2(imageExtent)));}"
+        "void main(){if(!smoothScaling){color=pixel(nearestPixel());return;}"
         "vec2 p=texcoord*vec2(textureSize(frame,0))-0.5;ivec2 lo=ivec2(floor(p));vec2 f=fract(p);"
         "color=mix(mix(pixel(lo),pixel(lo+ivec2(1,0)),f.x),mix(pixel(lo+ivec2(0,1)),pixel(lo+ivec2(1,1)),f.x),f.y);}") || !gpuShader_.link()){
         error_=gpuShader_.log();return;
@@ -165,6 +174,8 @@ void GlViewport::paintGL(){
     glViewport(rect.x(),height-rect.y()-rect.height(),rect.width(),rect.height());
     auto& shader=gpuFrame_.valid()?gpuShader_:shader_;
     shader.bind();shader.setUniformValue("frame",0);shader.setUniformValue("smoothScaling",scaling_==Scaling::Smooth);
+    glUniform2i(shader.uniformLocation("imageOrigin"),rect.x(),height-rect.y()-rect.height());
+    glUniform2i(shader.uniformLocation("imageExtent"),rect.width(),rect.height());
     vao_.bind();glDrawArrays(GL_TRIANGLE_STRIP,0,4);vao_.release();shader.release();
     if(gpuFrame_.valid())try {gpuFrame_.samplingComplete();}
     catch(const std::exception& e){acceptance_.fail("GPU paint failed");error_=QString::fromUtf8(e.what());if(recoverGraphics && recoverGraphics())error_.clear();return;}

@@ -89,3 +89,16 @@ Failed stages and their sources remain citable; no historical hash is refreshed.
 Verified paired objects and local backups remain pinned. No remote operation is
 included. Original audiovisual/ABI recovery, all other pending rows, known
 cursor/camera/Sharp issues, progression/results and both decisions remain open.
+
+
+## Concurrent native source boundary
+
+Master advanced with Sharp sampling and unpublished menu-action fixes while this
+batch ran. Integration preserves those native bytes and their existing evidence.
+The four movie-skip cases and55controls validate their exact accepted player
+build94c70f6b and recorded compiler source phase. The newer viewport/menu C++
+version has pending applicability for these claims; old hashes and failures are
+not refreshed. The52row acceptance pack is retained as historical source-bound
+acceptance, with both final decisions pending. No new original/current-player
+execution is claimed by the merge. Exact changed paths and before/current hashes
+are in `concurrent-integration-review-01.json`.
