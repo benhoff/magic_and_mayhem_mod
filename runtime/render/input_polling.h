@@ -10,6 +10,7 @@ static int input_desktop_coordinates;
 static InputKey input_original_async,input_original_key;
 static InputCursor input_original_cursor;static InputClient input_client;
 static u32 input_pressed[MNM_INPUT_V1_KEY_COUNT],input_sequence,input_seen;
+#include "cursor_observation.h"
 static int input_supported_key(i32 code){
     return code==1 || code==2 || code==4 || code==8 || code==9 || code==13 || (code>=16 && code<=19) || code==27 ||
         (code>=32 && code<=40) || code==45 || code==46 || (code>=48 && code<=57) || (code>=65 && code<=90) ||
@@ -59,12 +60,16 @@ static short WIN input_key(i32 code){
 }
 static i32 WIN input_cursor(i32* output){
     u32 error=GetLastError(),value,sequence;i32 point[2];
+    cursor_observation_invalidate();
     if(!input_window || !readable(output,8) || !input_snapshot(-1,&value,point,&sequence) || (!input_desktop_coordinates && !input_client(input_window,point))){
         SetLastError(error);return input_original_cursor(output);
     }
-    copy(output,point,8);SetLastError(error);return 1;
+    copy(output,point,8);
+    cursor_observation_complete(sequence,point,(u32)__builtin_return_address(0));
+    SetLastError(error);return 1;
 }
 static void input_init(void){
+    char observe[2048];cursor_observation_enabled=GetEnvironmentVariableA("MNM_DRAW_FRAME_INPUT_FILE",observe,sizeof(observe))>0;
     char path[512];u32 length=GetEnvironmentVariableA("MNM_RENDER_INPUT",path,sizeof(path));if(!length || length>=sizeof(path))return;
     HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)return;
     if(GetFileSize(file,0)!=MNM_INPUT_V1_SIZE){CloseHandle(file);return;}

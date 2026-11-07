@@ -22,6 +22,7 @@ namespace {
 void require(bool value,const char* message){if(!value)throw std::runtime_error(message);}
 unsigned comparisons=0;
 unsigned onscreenComparisons=0;
+std::uint64_t inputPixels=0;
 void settle(){QEventLoop loop;QTimer::singleShot(100,&loop,&QEventLoop::quit);loop.exec();}
 void screenCompare(QMainWindow& window,GlViewport& viewport,QColor expected){
     settle();const auto screenshot=window.screen()->grabWindow(window.winId()).toImage();
@@ -101,11 +102,33 @@ void compare(GlViewport& viewport,const QImage& source){
             std::fprintf(stderr,"Pixel mismatch at %d,%d channel %d: %d vs %.3f\n",x,y,c,channels[c],expected[c]);
             throw std::runtime_error("Framebuffer disagrees with independent scaling oracle");
         }
+        // Dense complete X/Y axes cover every rounding boundary; the interior
+        // grid also checks paired coordinates. Sample three positions within
+        // each physical pixel against actual GPU output, not another mapPoint.
+        if(viewport.scaling()!=GlViewport::Scaling::Smooth &&
+           (x==left || y==top || x==left+w-1 || y==top+h-1 || (x%37==0 && y%37==0))){
+            for(const double fraction:{0.0,0.25,0.75}){
+                QPoint picked;
+                const bool inside=x>=left && x<left+w && y>=top && y<top+h;
+                const bool admitted=viewport.imagePoint({(x+fraction)/ratio,(y+fraction)/ratio},picked);
+                if(admitted!=inside){
+                    std::fprintf(stderr,"Input border at physical %d,%d fraction %.2f DPR %.2f, logical %.17g,%.17g; image %d,%d %dx%d; admitted %d expected %d\n",x,y,fraction,ratio,(x+fraction)/ratio,(y+fraction)/ratio,left,top,w,h,int(admitted),int(inside));
+                    throw std::runtime_error("Physical input and image borders diverged");
+                }
+                if(inside && source.pixelColor(picked)!=color){
+                    std::fprintf(stderr,"Input picks %d,%d (%08x), framebuffer pixel %d,%d displays %08x; source %dx%d, image %d,%d %dx%d, DPR %.2f\n",picked.x(),picked.y(),source.pixelColor(picked).rgba(),x,y,color.rgba(),source.width(),source.height(),left,top,w,h,ratio);
+                    throw std::runtime_error("Input picks a different source pixel from the displayed framebuffer");
+                }
+                ++inputPixels;
+            }
+        }
     }
     QPoint point;
     for(const auto logical: {QPoint(0,0),QPoint(source.width()/2,source.height()/2),QPoint(source.width()-1,source.height()-1)}){
         const QPointF position(rect.x()+(logical.x()+0.5)*rect.width()/source.width(),rect.y()+(logical.y()+0.5)*rect.height()/source.height());
-        require(viewport.imagePoint(position,point) && point==logical,"Logical input coordinates changed");
+        require(viewport.imagePoint(position,point),"Visible input point refused");
+        if(viewport.scaling()==GlViewport::Scaling::Smooth)require(point==logical,"Smooth logical input coordinates changed");
+        else require(source.pixelColor(point)==output.pixelColor(int(std::floor(position.x()*ratio)),int(std::floor(position.y()*ratio))),"Fractional input differs from displayed pixel");
     }
     require(!viewport.imagePoint({rect.right()+0.1,rect.center().y()},point),"Right border admitted");
     require(viewport.imagePoint({rect.right()+10,rect.bottom()+10},point,true) && point==QPoint(source.width()-1,source.height()-1),"Drag clamp changed");
@@ -203,6 +226,6 @@ int main(int argc,char** argv){
         QImage large(800,600,QImage::Format_RGBA8888);large.fill(QColor(31,63,127));viewport->setFrame(large);
         window.resize(350,350);viewport->setScaling(GlViewport::Scaling::Integer);compare(*viewport,large);
         require(viewport->imageRect().width()<=viewport->width() && viewport->imageRect().height()<=viewport->height(),"Integer fallback cropped frame");
-        std::printf("{\"success\":true,\"full_frame_comparisons\":%u,\"onscreen_comparisons\":%u,\"empty_frame_controls\":true,\"cpu_gpu_scaling\":true,\"logical_input_preserved\":true,\"fullscreen_restore\":true,\"f9_consumed\":true,\"escape_forwarded\":true,\"presentation_readbacks\":0,\"gpu_scaling_uploads\":0}\n",comparisons,onscreenComparisons);
+        std::printf("{\"success\":true,\"full_frame_comparisons\":%u,\"onscreen_comparisons\":%u,\"input_framebuffer_samples\":%llu,\"empty_frame_controls\":true,\"cpu_gpu_scaling\":true,\"logical_input_preserved\":true,\"fullscreen_restore\":true,\"f9_consumed\":true,\"escape_forwarded\":true,\"presentation_readbacks\":0,\"gpu_scaling_uploads\":0}\n",comparisons,onscreenComparisons,static_cast<unsigned long long>(inputPixels));
     }catch(const std::exception& error){std::fprintf(stderr,"Presentation test failed: %s\n",error.what());return 1;}
 }

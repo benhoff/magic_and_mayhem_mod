@@ -131,6 +131,13 @@ if os.environ.get('MNM_CAMPAIGN_ORDER_ADMISSION')=='1':
     if order.exists() or order.is_symlink():raise ValueError('Stale order observation')
     os.environ['MNM_MENU_ORDER_ADMISSION_OBSERVE']='Z:'+str(order).replace('/','\\')
 gameplay_acceptance=os.environ.get('MNM_ACCEPTANCE_GAMEPLAY')=='1'
+if os.environ.get('MNM_ACCEPTANCE_FRAME_INPUT')=='1':
+    if not gameplay_acceptance:raise ValueError('Frame/input witness requires gameplay acceptance')
+    target=root/'frame-input.bin'
+    if target.exists() or target.is_symlink():raise ValueError('Stale frame/input witness')
+    os.environ['MNM_DRAW_FRAME_INPUT_FILE']='Z:'+str(target).replace('/',chr(92))
+    os.environ['MNM_DRAW_REGION_TRACK_SLOT']='0'
+
 if gameplay_acceptance:
     if not metadata.get('native_render') or not metadata.get('resident_world'):raise ValueError('Gameplay acceptance requires the ordinary resident native player')
     for flag,name in [('MNM_DRAW_HUD_STATE_FILE','hud-state.bin'),('MNM_DRAW_SEMANTIC_STATE_FILE','semantic-state.bin'),('MNM_DRAW_ACTOR_LATCH_FILE','actor-latches.bin')]:

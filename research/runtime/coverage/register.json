@@ -164291,6 +164291,240 @@
         "AA07.G.source: new Python retained-data analysis is current. Native implementation/original comparison/viewport execution retain exact recorded full source hashes and eight inherited source differences. No native full-hash waiver or new engine execution.",
         "AA07.G.scope: original ANI/controller/timing recovery, actor-pool lifecycle, full attachment/combat/upstream visibility, unowned wave reads, arbitrary maps/views/providers, software creature-animation and remaining89rows/both decisions remain separate. Every historical failure remains retained."
       ]
+    },
+    {
+      "id": "NP.camera-cursor-picking-frame-witness",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Same-owner source-frame camera, cursor and picking witness",
+      "scope": "Optional bounded read-only original Region entry/return and World-return observations with completed source generation/session nonce, actual original cursor API point, camera fields and numeric pool/slot hit and tracked wizard state. Finite Quick matrix: four views and pan, default/software,640/800, Sharp/Integer. No allocation generation or whole-game picking claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056532,
+          "relation": "data",
+          "scope": "Checked original Region vtable cell identifies callback4fdad0; read-only entry/return witness around the forwarded callback. Callback function inventory and whole-body recovery remain unresolved."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4632512,
+          "scope": "Existing observed World return; no added simulation tick."
+        }
+      ],
+      "documents": [
+        "research/formats/drawing-frame-input.md",
+        "research/runtime/rendering-interaction-20261107.md"
+      ],
+      "implementation": [
+        "runtime/scene/world_frame_observation.h",
+        "runtime/scene/world_continuous.c",
+        "runtime/menu/drawing_frame_input.h",
+        "runtime/menu/drawing_region_input.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/observer.c",
+        "tools/menu-game-runner.py",
+        "tools/build-scene-observer.py",
+        "runtime/render/cursor_observation.h",
+        "runtime/render/input_polling.h",
+        "tools/build-render-bridge.py",
+        "tools/run-rendering-interaction.py",
+        "tools/check-rendering-interaction.py",
+        "tools/prepare-rendering-interaction.py",
+        "tools/rendering_interaction.py",
+        "tools/rendering_interaction_live.py",
+        "tools/rendering_interaction_assessment.py",
+        "tools/rendering_interaction_budget.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/close-rendering-interaction.py",
+        "tools/run-rendering-interaction-stable.py",
+        "tools/prepare-rendering-interaction-stable.py",
+        "tools/rendering_interaction_stability.py"
+      ],
+      "tests": [
+        "tests/frame-input-observation.cpp",
+        "tests/test-rendering-interaction.py",
+        "tests/test-rendering-interaction-stable.py"
+      ],
+      "validation_dependencies": [
+        "runtime/menu/drawing_region_tracked_actor.h",
+        "runtime/menu/drawing_hud_state.h",
+        "runtime/drawing/input_point.h",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "tools/run-rendering-camera-acceptance.py",
+        "tools/run-rendering-menu-acceptance.py",
+        "tools/rendering_menu_accessibility.py",
+        "tools/resident_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/close-rendering-camera-matrix.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_gameplay_acceptance.py",
+        "tools/campaign_input_observation.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/rendering_build_binding.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "IP07.matrix01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "IP07.G.lifetime: pool/slot observations are not allocation generations; broader targets, combat, tooltip semantics and whole-game picking remain outside scope.",
+        "IP07.G.callback-inventory: callback4fdad0 remains outside the discovered function inventory; the checked vtable cell and prologue do not recover its whole body.",
+        "IP07.G.camera-transform: raw camera words and producer map-center arguments have different representations; this witness proves orientation/frame identity and pan changes, not their full transform.",
+        "IP07.G.capture-timing: software800World60 returns3082ms after a completed cursor poll; the first toggle frame/callback gap is3365ms under lossless capture. Cause/production attribution and response deadlines remain unproved."
+      ],
+      "validation_domain": {
+        "original_build": "nocd-40209ca7",
+        "map": "Celtic Forest One (small)",
+        "actual_sizes": [
+          [
+            800,
+            600
+          ],
+          [
+            640,
+            480
+          ]
+        ],
+        "software_flags": [
+          false,
+          true
+        ],
+        "scaling": [
+          "sharp",
+          "integer"
+        ],
+        "view_cycle": [
+          0,
+          3,
+          2,
+          1,
+          0
+        ],
+        "pan": "one220ms Up",
+        "actor": {
+          "slot": 0,
+          "type": 0,
+          "owner": 0
+        },
+        "minimum_presented_source_generations": 3,
+        "maximum_post_settle_presentation_us": 500000,
+        "provider": "Xvfb/Mesa llvmpipe, DPR1",
+        "exclusions": [
+          "allocation generations",
+          "whole-game picking",
+          "whole camera bounds",
+          "pause semantics",
+          "arbitrary physical providers"
+        ],
+        "hover_endpoint": "Before the following original selection callback entry; native ordinal/tick belongs to its actual completed original action; physical release within1s and completed host action within6s; three actually displayed correct cursor/hit generations; original transients retained",
+        "cursor_freshness": "Three distinct actual polls after the released original source boundary; elapsed poll-to-World-return ages are recorded rather than treated as response-deadline validation"
+      }
+    },
+    {
+      "id": "HOST.input-framebuffer-pixel-centres",
+      "title": "Physical pointer selects the displayed nearest source pixel",
+      "scope": "Intentional native Sharp/Integer policy: quantize the pointer to its physical display pixel and map that pixel centre with the same rectangle as nearest presentation, including fractional DPR and integer small-window fallback. Original frame coordinates and simulation remain unchanged. Smooth input keeps its continuous policy. A GPU-backed preimage shows source(0,0) picked while physical pixel(21,0) displays source(1,0) at800x600/1100x795.",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-interaction-20261107.md",
+        "research/runtime/viewport-presentation.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "tools/close-rendering-interaction.py"
+      ],
+      "tests": [
+        "tests/viewport-presentation-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/input_forwarder.cpp",
+        "apps/qt-shell/viewport_presentation.cpp",
+        "apps/qt-shell/viewport_presentation.hpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "IP07.matrix01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "IP07.G.input-domain: validated recorded layouts/source sizes at DPR1/1.5 and finite original matrix at DPR1; arbitrary physical providers and full cursor/picking semantics remain outside scope."
+      ],
+      "validation_domain": {
+        "actual_dpr": [
+          1,
+          1.5
+        ],
+        "test_policy": "Actual GPU framebuffer colour versus picked source pixel; complete axes, interior grid and subpixel offsets across recorded layouts/scales; real XCB input controls; finite original four-domain matrix at DPR1",
+        "exclusions": [
+          "arbitrary physical providers",
+          "whole-game picking"
+        ]
+      }
+    },
+    {
+      "id": "NP.four-view-acceptance-closeout",
+      "title": "Current four-view matrix admission for two frozen configuration rows",
+      "scope": "Admit only journey.camera-motion.four-orientations for default/software from the complete actual640/800 Sharp/Integer matrix: three displayed source generations per view, required creature/shadow/displacement/terrain/minimap routes, complete independent viewport pixels and normal Quit. Preserve the frozen156row definition, every inherited row/source phase, all failures and pending decisions. Pan/HUD, whole cursor/picking/selection/hotspots, viewport edges and response deadlines are separate.",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-interaction-20261107.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-interaction-acceptance.py"
+      ],
+      "tests": [
+        "tests/test-rendering-interaction-acceptance.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_completion.py",
+        "tools/rendering_pilot.py",
+        "tools/close-rendering-interaction.py",
+        "docs/native-rendering-closure.json"
+      ],
+      "evidence": [
+        "IP07.fourviews01",
+        "IP07.fourviews02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "IP07.G.four-view-scope: only the two four-orientation configuration rows are admitted. Pan/HUD, viewport edges/rebuilds, whole cursor/picking/selection/hotspots, response deadlines and both decisions remain pending.",
+        "IP07.G.parent-source: inherited rows retain their exact historical native/analyzer source phases and all raw drift; current native validation applies only to the named new four-view matrix. No native full-hash waiver."
+      ]
     }
   ],
   "evidence": [
@@ -380879,6 +381113,193 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "IP07.matrix01",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-interaction-results-20261107/matrix-01.json",
+      "sha256": "3bcda707dd9d3393279a4de498a048d5f4405ddabebcc8a570b9592492a0977d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "scope": "Current finite Quick camera/cursor/picking matrix: default/software actual800/640, Sharp/Integer, four orientations and Up pan, exact source-only wizard coordinates, original callbacks and selection continuity, full independent native viewport pixels and normal Quit. Fixed Xvfb/Mesa provider; source/callback clock ordering is causal, not a response-deadline or atomic HUD snapshot claim. All failed source/control/analysis phases and the software capture timing qualification remain.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/view_windows",
+          "equals": 32
+        },
+        {
+          "pointer": "/pan_windows",
+          "equals": 8
+        },
+        {
+          "pointer": "/selection_toggles",
+          "equals": 80
+        },
+        {
+          "pointer": "/source_generations",
+          "equals": 4210
+        },
+        {
+          "pointer": "/world_presentations",
+          "equals": 12077
+        },
+        {
+          "pointer": "/retained_pixels",
+          "equals": 10561336500
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/four_view_required_routes_proved",
+          "equals": true
+        },
+        {
+          "pointer": "/response_deadlines_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/atomic_hud_snapshot_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/whole_game_picking_proved",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "IP07.fourviews01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-interaction-results-20261107/four-view-closeout-01.json",
+      "sha256": "18006c0fb1c39228d788e436c09f9ecb6ecedab8a68338bc1692533f45088253",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Current retained-data admission of only the two four-orientation rows from the complete default/software800/640 Sharp/Integer IP07 live matrix. Frozen156row inventory, required source routes, complete independent native pixels and normal Quit are checked. Inherited67rows/source phases and every failure/decision remain. No new game, original-reference execution, pixel comparison, native source waiver, response-deadline or whole camera/cursor/picking promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 69
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 87
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_source_waivers",
+          "equals": false
+        },
+        {
+          "pointer": "/response_deadlines_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/pan_hud_requirement_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/viewport_boundaries_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "IP07.fourviews02",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-interaction-results-20261107/four-view-closeout-02.json",
+      "sha256": "4d53ade7e5d6d18b5c6a7de0e933c6116f7190d1f97741b42e7436b9f2757ac9",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Current retained-data admission of only the two four-orientation rows from the complete default/software800/640 Sharp/Integer IP07 live matrix. Frozen156row inventory, required source routes, complete independent native pixels and normal Quit are checked. Inherited67rows/source phases and every failure/decision remain. No new game, original-reference execution, pixel comparison, native source waiver, response-deadline or whole camera/cursor/picking promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 69
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 87
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_source_waivers",
+          "equals": false
+        },
+        {
+          "pointer": "/response_deadlines_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/pan_hud_requirement_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/viewport_boundaries_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -413297,6 +413718,39 @@
         "AA07.animation-closed01",
         "AA07.auxiliary-closed01"
       ]
+    },
+    {
+      "id": "native.camera-cursor-picking-four-domains",
+      "level": "live_observation",
+      "scope": "Finite public Quick Celtic Forest One: four views and Up pan in default/software800/640, each Sharp/Integer. Same-owner completed source frames and actual GPU output bind source-derived living wizard hits, paired original selection toggles and retained cursor backgrounds; normal Quit. Numeric pool/slot identity only; no full-game picking, allocation generations, pause semantics, arbitrary providers or full frozen acceptance.",
+      "behaviors": [
+        "HOST.input-framebuffer-pixel-centres",
+        "NP.camera-cursor-picking-frame-witness"
+      ],
+      "tests": [
+        "tools/run-rendering-interaction.py",
+        "tools/check-rendering-interaction.py",
+        "tools/close-rendering-interaction.py"
+      ],
+      "evidence": [
+        "IP07.matrix01"
+      ]
+    },
+    {
+      "id": "native.four-view-acceptance-closeout",
+      "level": "headless",
+      "scope": "Analyze the complete current four-domain matrix against the frozen156row inventory. Admit only two four-orientation rows with actual required source routes/output/normal Quit; preserve every inherited row/source phase, failure and pending decision. Unit matrices are admission guards, not game evidence.",
+      "behaviors": [
+        "NP.four-view-acceptance-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-interaction-acceptance.py",
+        "tools/close-rendering-interaction-acceptance.py"
+      ],
+      "evidence": [
+        "IP07.fourviews01",
+        "IP07.fourviews02"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -415114,8 +415568,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-01f594552ce38a3c569c474336f445d88555c7641082089455c7bee000a4d5bb.json",
-    "sha256": "01f594552ce38a3c569c474336f445d88555c7641082089455c7bee000a4d5bb"
+    "path": "research/runtime/coverage/source-index-d31a7ff0d4bcc60898cc9ee7a829ba14c11ddff498d4d66c6ed510aeaa1507f9.json",
+    "sha256": "d31a7ff0d4bcc60898cc9ee7a829ba14c11ddff498d4d66c6ed510aeaa1507f9"
   },
   "evidence_applicability": [
     {

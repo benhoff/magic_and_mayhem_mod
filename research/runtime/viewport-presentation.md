@@ -91,3 +91,6 @@ Fresh F9 execution: `viewport-presentation-f9-20261007.json` retains successful
 Xvfb/Mesa normal and high-DPI tests, 240 complete framebuffer comparisons,
 F9 consumption/repeat suppression, geometry/chrome restoration, input and
 fullscreen CLI regressions. The shell and standalone replay targets rebuilt.
+
+
+2026-11-07 input alignment correction: Sharp and Integer input now identifies the physical display pixel under the pointer and maps its centre to the displayed source texel. The former corner mapping could pick the neighboring texel at noninteger fit scales. Exact physical borders survive fractional-DPR round trips through one-ULP normalization. Smooth continuous input retains its prior policy. The GPU-backed preimage, corrected CPU/GPU framebuffer and XCB forwarding controls are in [the interaction closeout](rendering-interaction-20261107.md); earlier evidence and hashes remain historical.

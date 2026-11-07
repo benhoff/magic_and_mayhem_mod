@@ -3,6 +3,7 @@
 #include "native_render_target.hpp"
 #include <QOpenGLContext>
 #include <cmath>
+#include <limits>
 #include <QPainter>
 #include <QTransform>
 #include <QResizeEvent>
@@ -105,8 +106,19 @@ QRectF GlViewport::imageRect() const{
 }
 bool GlViewport::imagePoint(QPointF position,QPoint& point,bool clamp) const{
     const auto rect=imageRect();if(rect.isEmpty())return false;
-    const double x=(position.x()-rect.x())*frameSize().width()/rect.width();
-    const double y=(position.y()-rect.y())*frameSize().height()/rect.height();
+    double x=(position.x()-rect.x())*frameSize().width()/rect.width();
+    double y=(position.y()-rect.y())*frameSize().height()/rect.height();
+    if(scaling_!=Scaling::Smooth){
+        // A pointer identifies a physical display pixel. Nearest presentation
+        // samples that pixel's centre, including fractional DPR and fit scales.
+        // Mapping its corner instead can pick the adjacent source texel.
+        const auto area=physicalImageRect();const auto ratio=devicePixelRatioF();
+        // Dividing an integer native position by fractional DPR and multiplying
+        // it back can land one ULP below its physical pixel boundary.
+        const auto centre=[ratio](double coordinate){return std::floor(std::nextafter(coordinate*ratio,std::numeric_limits<double>::infinity()))+0.5;};
+        x=(centre(position.x())-area.x())*frameSize().width()/area.width();
+        y=(centre(position.y())-area.y())*frameSize().height()/area.height();
+    }
     if(!clamp && (x<0 || y<0 || x>=frameSize().width() || y>=frameSize().height()))return false;
     point={qBound(0,int(std::floor(x)),frameSize().width()-1),qBound(0,int(std::floor(y)),frameSize().height()-1)};return true;
 }

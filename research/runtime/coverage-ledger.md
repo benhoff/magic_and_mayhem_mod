@@ -26913,3 +26913,58 @@ historical full hashes and eight source differences. No game/reference run,
 capture, native code/build or new game fixture. See
 [closeout](rendering-five-acceptance-closeout-20261107.md) and immutable SQLite
 `rendering-five-results-20261107/closeout-analysis-03.json`.
+
+## IP07 — finite camera/cursor/picking and physical pixel alignment, 2026-11-07
+
+Fix the reproduced native Sharp/Integer input/display mismatch using physical
+pixel centres, including fractional-DPR borders. Current GPU controls pass
+673734input/framebuffer samples,68complete/34onscreen comparisons and actual XCB
+input regressions at DPR1/1.5. Add the optional read-only same-owner frame/cursor/
+original Region witness. The default/software800/640 Quick matrix passes both
+scales, four views and Up pan:4210source generations,12077actual World swaps,
+10561336500viewport pixels with zero independent-reference differences,
+80original selection toggles and normal zero-owner Quit in all four cases.
+
+`IP07.matrix01` binds current native/compiler/player/oracle sources and exact
+retained execution bytes. Thirty Python witness/readiness guards and unchanged
+optimized/sanitized native controls pass; the completed PE32 wrapper fixture is
+reanalyzed from its retained capture. No original poll, hit test or simulation
+tick was added. Numeric actor identities are not allocation generations. The
+checked5c6a54Region vtable cell anchors callback4fdad0; its function inventory and
+whole-body recovery remain unresolved. Raw camera/producer-center transforms,
+atomic HUD/source semantics and broad cursor/picking/viewport bounds remain open.
+
+Retain every preparation/native/control/analysis failure and all plans. The
+insufficient640capture is recollected once under an observed three-generation
+readiness barrier; the sufficient800capture is retained. Software800World60 has
+a3082ms poll-to-return interval and3365ms frame-to-callback gap under lossless
+capture. Cause/production attribution and response-deadline validation remain
+pending. Both final rendering decisions are unchanged. Admission of the two
+four-orientation configuration rows is pending the exact inherited inventory
+join; this feature proof itself promotes no frozen acceptance row. See
+[closeout](rendering-interaction-20261107.md) and SQLite `matrix-01.json` under
+`rendering-interaction-results-20261107/`.
+
+### IP07 integration and four-orientation admission
+
+Integrate feature5154b3d63 with master0c3678eb6, preserving the intervening
+functional, keyed/palette, minimap and animation/auxiliary closeouts.
+`IP07.fourviews01` joins the exact67-row parent inventory to the current IP07
+matrix and its96required source-route frames. Only the two four-orientation
+configuration rows close:69/156passed,87pending. The four row-admission guards
+pass; they cannot substitute for actual player/source/output evidence. All
+inherited native/analyzer source fingerprints and raw drift remain historical;
+no native full-hash waiver or new original/pixel execution is asserted by this
+join. Both decisions, all failures and the capture timing/response-deadline
+qualification remain. Broad pan/HUD, viewport boundaries/rebuilds, cursor motion,
+hotspots, picking/selection and actor lifetimes remain separate.
+
+The current admission evidence is `IP07.fourviews02`, preserving the first
+join and adding its required explicit UI scope. The actual read-only UI
+projection verifies 69 passed / 87 pending. Four admission, 30 Python UI,
+nine client and 22 acceptance guards pass without skips. Final incoming
+animation and feature committed-history hashes are retained in
+`incoming-master-history-04.json`. Its 4028 missing raw-artifact receipts are
+added retrospectively through SQLite in `incoming-master-history-05.json`.
+All payloads verified; preserve the failed first review and original commits.
+This accounting does not assert new engine execution or a historical gate pass.
