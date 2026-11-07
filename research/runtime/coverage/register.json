@@ -163896,6 +163896,110 @@
         "SK06.G.output: whole movie GPU/physical output and original DirectShow/codec/driver/audio-waveform/ABI equivalence remain separate. Partial skipped delivery is not both-intro completion.",
         "SK06.G.other: arbitrary faults/restarts/providers, firstWorld, camera/Sharp/cursor and progression/results failures remain open; preserve50parent rows and both pending decisions."
       ]
+    },
+    {
+      "id": "NP.partial-write-closeout",
+      "title": "Retained caller-bound partial-write preservation",
+      "scope": "Eight retained Quick/Campaign default/software640/800 domains: exact successful RGB565 copy source/before/complete destination and visible lineage prove changed interior and preserved exterior WORDs. New analysis/current component controls only; recorded whole-player source phases and historical refusals remain explicit. No generic CPU writer, arbitrary byte/mask/driver/ABI, current whole-GUI equivalence or final decision claim.",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-functional-ten-closeout-20261107.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-functional-ten.py"
+      ],
+      "tests": [
+        "tests/test-rendering-functional-ten.py"
+      ],
+      "validation_dependencies": [
+        "docs/native-rendering-closure.json",
+        "tests/native-cpu-copy-plan-probe.c",
+        "tools/build-native-draw.py",
+        "tools/build-render-bridge.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-opaque-cropped-copy.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/native_copy_routes.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/resident_capture.py",
+        "tools/test-native-gpu-copy-plan.py"
+      ],
+      "evidence": [
+        "FT07.partial-write-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "FT07.G.partial: finite RGB565 WORD-copy destinations only. Arbitrary raw CPU/BYTE/padding/mask writers, original driver/ABI and other operation families remain separate. Retained whole-player/viewport sources remain historical for six C++ files; fresh component controls do not renew those captures.",
+        "FT07.G.completion: preserve the other100pending acceptance rows, both final decisions and every earlier failure. No new full camera, firstWorld, natural victory/defeat or generic reliability/provider claim."
+      ]
+    },
+    {
+      "id": "NP.results-return-closeout",
+      "title": "Public Results to setup/Main return and focus",
+      "scope": "Two current fixed-player public Quick Escape directly to Results (or Mini Quit Battle), Results/setup/Main cases, explicit default/software profiles at800x600, skipped intros. Actual physical actions and original callbacks/ACKs, visibly painted/focused Main, subsequent native/original input and normal balanced World/graphics/process retirement. Native Qt semantic policy; no natural victory/defeat, World-pixel equivalence, whole camera, arbitrary provider/reliability or final decision claim.",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-functional-ten-closeout-20261107.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-functional-ten.py",
+        "tools/run-rendering-results-return.py"
+      ],
+      "tests": [
+        "tests/test-rendering-functional-ten.py"
+      ],
+      "validation_dependencies": [
+        "docs/native-rendering-closure.json",
+        "protocols/include/mnm/menu_v22.h",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-opaque-cropped-copy.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/native_copy_routes.py",
+        "tools/native_only_contract.py",
+        "tools/native_prefix_template.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_menu_accessibility.py",
+        "tools/rendering_pilot.py",
+        "tools/resident_capture.py",
+        "tools/run-native-owned.py",
+        "tools/run-rendering-menu-acceptance.py",
+        "tools/test-menu-observer.py"
+      ],
+      "evidence": [
+        "FT07.results-return-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "FT07.G.results: ordinary public Quick forfeit/Escape return at800x600 with skipped intros only. Natural victory/defeat, campaign/later-map outcomes, World pixel equality and the full gameplay/camera/HUD/input journey remain separate.",
+        "FT07.G.reliability: retain the zero-game preparation refusal and forced-stop collector failure, all native preparation/oracle negatives and prior failure/source phases. This finite positive return does not close arbitrary fault/restart/provider or known Save admission reliability gaps;100rows and both decisions remain pending."
+      ]
     }
   ],
   "evidence": [
@@ -379988,6 +380092,112 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "FT07.partial-write-closed01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-functional-ten-results-20261107/partial-write-binding-01.json",
+      "sha256": "03f380b693331b1975e347e1bd01c2385ca663424cb5895bbe05cc4d2956208e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Eight retained Quick/Campaign default/software640/800 domains: exact successful RGB565 copy source/before/complete destination and visible lineage prove changed interior and preserved exterior WORDs. New analysis/current component controls only; recorded whole-player source phases and historical refusals remain explicit. No generic CPU writer, arbitrary byte/mask/driver/ABI, current whole-GUI equivalence or final decision claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 56
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        },
+        {
+          "pointer": "/whole_parent_sources_current",
+          "equals": false
+        },
+        {
+          "pointer": "/retained_cases",
+          "equals": 8
+        },
+        {
+          "pointer": "/witnesses",
+          "equals": 24
+        },
+        {
+          "pointer": "/current_native_cases",
+          "equals": 15
+        }
+      ]
+    },
+    {
+      "id": "FT07.results-return-closed01",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-functional-ten-results-20261107/results-return-binding-01.json",
+      "sha256": "f4946fd444c2b295003c4776dab82e0144ec878eb98871ccb59cb7f2306ab2d0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Two current fixed-player public Quick Escape directly to Results (or Mini Quit Battle), Results/setup/Main cases, explicit default/software profiles at800x600, skipped intros. Actual physical actions and original callbacks/ACKs, visibly painted/focused Main, subsequent native/original input and normal balanced World/graphics/process retirement. Native Qt semantic policy; no natural victory/defeat, World-pixel equivalence, whole camera, arbitrary provider/reliability or final decision claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 56
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        },
+        {
+          "pointer": "/whole_parent_sources_current",
+          "equals": false
+        },
+        {
+          "pointer": "/current_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/successful_original_game_runs",
+          "equals": 2
+        },
+        {
+          "pointer": "/natural_victory_defeat_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/world_pixel_equivalence_proved",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_source_sha256"
+    },
+    {
+      "id": "FT07.guards01",
+      "kind": "static",
+      "record": "research/runtime/rendering-functional-ten-results-20261107/controls-final-01.json",
+      "sha256": "5f7a2a1bb489da8c11826ea05dd8628c8711e30f22a6537382e6b5c337cb90f5",
+      "sources_pointer": "/sources",
+      "scope": "Actual-data negative guards plus existing presentation suites; preserve sandbox socket refusal and every native/public/analyzer negative. No original live execution credit from guards alone. Registered as static guard accounting; embedded contract identities are context only, and the two dedicated execution bindings supply stage/scenario proof.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 58
+        },
+        {
+          "pointer": "/no_skips",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -411999,6 +412209,148 @@
       "evidence": [
         "SK06.movie-skip-closed01"
       ]
+    },
+    {
+      "id": "FT07.partial-write.player-default.normal-quick.800x600",
+      "level": "headless",
+      "scope": "Retained actual ['player-default', [800, 600]] normal-quick caller-bound RGB565 partial destination reconstruction: three generations, changed interiors and nonzero exterior WORD preservation; supplemented by current native prefix/error controls. Whole-player viewport remains historical.",
+      "behaviors": [
+        "NP.partial-write-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-functional-ten.py"
+      ],
+      "evidence": [
+        "FT07.partial-write-closed01"
+      ]
+    },
+    {
+      "id": "FT07.partial-write.player-software.normal-quick.800x600",
+      "level": "headless",
+      "scope": "Retained actual ['player-software', [800, 600]] normal-quick caller-bound RGB565 partial destination reconstruction: three generations, changed interiors and nonzero exterior WORD preservation; supplemented by current native prefix/error controls. Whole-player viewport remains historical.",
+      "behaviors": [
+        "NP.partial-write-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-functional-ten.py"
+      ],
+      "evidence": [
+        "FT07.partial-write-closed01"
+      ]
+    },
+    {
+      "id": "FT07.partial-write.player-default.normal-quick.640x480",
+      "level": "headless",
+      "scope": "Retained actual ['player-default', [640, 480]] normal-quick caller-bound RGB565 partial destination reconstruction: three generations, changed interiors and nonzero exterior WORD preservation; supplemented by current native prefix/error controls. Whole-player viewport remains historical.",
+      "behaviors": [
+        "NP.partial-write-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-functional-ten.py"
+      ],
+      "evidence": [
+        "FT07.partial-write-closed01"
+      ]
+    },
+    {
+      "id": "FT07.partial-write.player-software.normal-quick.640x480",
+      "level": "headless",
+      "scope": "Retained actual ['player-software', [640, 480]] normal-quick caller-bound RGB565 partial destination reconstruction: three generations, changed interiors and nonzero exterior WORD preservation; supplemented by current native prefix/error controls. Whole-player viewport remains historical.",
+      "behaviors": [
+        "NP.partial-write-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-functional-ten.py"
+      ],
+      "evidence": [
+        "FT07.partial-write-closed01"
+      ]
+    },
+    {
+      "id": "FT07.partial-write.player-default.normal-storage.800x600",
+      "level": "headless",
+      "scope": "Retained actual ['player-default', [800, 600]] normal-storage caller-bound RGB565 partial destination reconstruction: three generations, changed interiors and nonzero exterior WORD preservation; supplemented by current native prefix/error controls. Whole-player viewport remains historical.",
+      "behaviors": [
+        "NP.partial-write-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-functional-ten.py"
+      ],
+      "evidence": [
+        "FT07.partial-write-closed01"
+      ]
+    },
+    {
+      "id": "FT07.partial-write.player-software.normal-storage.800x600",
+      "level": "headless",
+      "scope": "Retained actual ['player-software', [800, 600]] normal-storage caller-bound RGB565 partial destination reconstruction: three generations, changed interiors and nonzero exterior WORD preservation; supplemented by current native prefix/error controls. Whole-player viewport remains historical.",
+      "behaviors": [
+        "NP.partial-write-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-functional-ten.py"
+      ],
+      "evidence": [
+        "FT07.partial-write-closed01"
+      ]
+    },
+    {
+      "id": "FT07.partial-write.player-default.normal-storage.640x480",
+      "level": "headless",
+      "scope": "Retained actual ['player-default', [640, 480]] normal-storage caller-bound RGB565 partial destination reconstruction: three generations, changed interiors and nonzero exterior WORD preservation; supplemented by current native prefix/error controls. Whole-player viewport remains historical.",
+      "behaviors": [
+        "NP.partial-write-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-functional-ten.py"
+      ],
+      "evidence": [
+        "FT07.partial-write-closed01"
+      ]
+    },
+    {
+      "id": "FT07.partial-write.player-software.normal-storage.640x480",
+      "level": "headless",
+      "scope": "Retained actual ['player-software', [640, 480]] normal-storage caller-bound RGB565 partial destination reconstruction: three generations, changed interiors and nonzero exterior WORD preservation; supplemented by current native prefix/error controls. Whole-player viewport remains historical.",
+      "behaviors": [
+        "NP.partial-write-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-functional-ten.py"
+      ],
+      "evidence": [
+        "FT07.partial-write-closed01"
+      ]
+    },
+    {
+      "id": "FT07.results-return.player-default",
+      "level": "live_observation",
+      "scope": "Current public player-default800x600 skipped-intro ordinary Quick Escape/Results/setup/Main, original callback/ACK, painted/focused Main and post-return physical input, normal balanced World/graphics Quit. No natural outcome or World-pixel comparison.",
+      "behaviors": [
+        "NP.results-return-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-functional-ten.py",
+        "tools/run-rendering-results-return.py"
+      ],
+      "evidence": [
+        "FT07.results-return-closed01"
+      ]
+    },
+    {
+      "id": "FT07.results-return.player-software",
+      "level": "live_observation",
+      "scope": "Current public player-software800x600 skipped-intro ordinary Quick Escape/Results/setup/Main, original callback/ACK, painted/focused Main and post-return physical input, normal balanced World/graphics Quit. No natural outcome or World-pixel comparison.",
+      "behaviors": [
+        "NP.results-return-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-functional-ten.py",
+        "tools/run-rendering-results-return.py"
+      ],
+      "evidence": [
+        "FT07.results-return-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -413816,8 +414168,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-f80d7d978ecf96fb0c79c9ea6d73d99c3439c4119d0fa13b36f2b15df8fc0c1a.json",
-    "sha256": "f80d7d978ecf96fb0c79c9ea6d73d99c3439c4119d0fa13b36f2b15df8fc0c1a"
+    "path": "research/runtime/coverage/source-index-4fe940e3b45b128b993f336a26049c6951649edac70ccbd00165d23d1b00ddac.json",
+    "sha256": "4fe940e3b45b128b993f336a26049c6951649edac70ccbd00165d23d1b00ddac"
   },
   "evidence_applicability": [
     {

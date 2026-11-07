@@ -26762,3 +26762,27 @@ and every functional/pixel/ownership/deadline/progress/resource gap remain intac
 Existing completion/acceptance guards execute; no new fixture, engine code,
 player run, status promotion or acceptance row. Preserve52accepted/104pending,
 raw native source drift and both pending decisions.
+
+
+## FT07 partial-write and public Results return — 2026-11-07
+
+Ten functional cases close four acceptance rows: eight retained Quick/Campaign
+default/software640/800 partial-write domains and two current fixed-player public
+Quick Results/setup/Main focus/input/normal Quit cases. Preserve52parent rows:
+56/156passed,100pending; both final decisions remain pending.24caller-bound
+partial-destination witnesses preserve8562576exterior WORDs;15current native
+copy/fill/key/clip/error controls plus the two existing compatibility executables
+pass. Actual Results callbacks/ACKs and painted/focused native Main accept further
+physical input;22default and19software World imports/completions/verified returns
+balance at normal zero-owner Quit. Current player405compiler sources and actual
+native DLL admission closures are bound separately. Retained copy viewports and
+the inherited52row pack remain historical for six C++files; no old hashes refresh.
+Three original games from four public requests include two positives, one retained
+forced collector stop after direct Results, and one zero-game staging refusal.
+Native prefix/compiler/lease/oracle negatives and exact repair/preimage evidence
+remain retained.19actual-data guards,30UI and9client controls pass without skips.
+No new game fixture or native/runtime implementation. Natural victory/defeat,
+current World-pixel equality, full camera/firstWorld/gameplay, arbitrary providers
+and fault/reliability and the known Save admission gap remain separate.
+See [bounded report](rendering-functional-ten-closeout-20261107.md) and immutable
+`rendering-functional-ten-results-20261107/closeout-analysis-01.json`.
