@@ -19926,7 +19926,8 @@
         "research/runtime/rendering-execution-plan-20261030.md",
         "docs/native-rendering-acceptance.md",
         "research/runtime/rendering-acceptance-record-20261030.md",
-        "research/runtime/rendering-scope-decisions-20261030.md"
+        "research/runtime/rendering-scope-decisions-20261030.md",
+        "research/runtime/rendering-fixed-barriers-closeout-20261107.md"
       ],
       "implementation": [],
       "tests": [
@@ -19963,7 +19964,8 @@
         "ACCEPT30.execution-commit-history",
         "SCOPE30.decisions-reviewed",
         "SCOPE30.acceptance-reviewed",
-        "SCOPE30.acceptance-commit-history"
+        "SCOPE30.acceptance-commit-history",
+        "FR07.barriers-reconciled01"
       ],
       "status": {
         "understanding": "partial",
@@ -19979,7 +19981,7 @@
         "RENDER-INT-04: Initiate Save/Load, display rebuild, changed World canvas and normal Quit pass. Later-map progression, broader results/movie/Preferences/cursor/picking composition and independent output/input acceptance remain incomplete.",
         "RENDER-INT-05: Actual-game controlled command-producer failure, terminal cleanup and public Hard restart now pass both GUI-resident and dedicated-worker owners after a confirmed post-cleanup null-access repair. Physical context/owner loss, arbitrary freezes, audio/media restart and concurrent lifecycle outcomes remain unproved; transparent in-place recovery is not promised.",
         "RENDER-INT-06: Shipped suite now has one complete323frame recorded_session adapter; zero generic action-bound session adapters for its14journey/21operation requirements. Complete independent action-bound presented-frame parity and sustained full-session hardware60FPS acceptance remain open; historical mismatch is not established as a current reproduced defect.",
-        "RENDER-INT-07 repaired: Owned emitter/private queue/mapped V3/stream decoder pass actual traffic beyond4GiB. Finite sequence/capacity/deadline policies remain; fresh original-game V3 Save/Load not yet validated. Enabled-intro history refusal and a no-start attempt are retained unclassified live limitations, not proved transport regressions.",
+        "RENDER-INT-07 repaired: Owned emitter/private queue/mapped V3/stream decoder pass actual traffic beyond4GiB. The old missing-positive V3 Save/Load barrier is resolved within the current RF06 explicit-software640 skipped-intro diagnostic: one original Save/two Loads, two display rebuilds,846balanced World deliveries and normal Quit. Finite sequence/capacity/deadline policies, historical enabled-intro refusal/no-start negatives, independent current World-pixel comparison and wider profile/domain acceptance remain separate. See FR07.barriers-reconciled01.",
         "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted.",
         "The2026-10-30 required_gap_register reconciles earlier phase-specific findings against immutable source648ce219 and the completion contract. All78mandatory leaf/gate assessments need adequate current complete acceptance; this is not78missing implementations. Eight conditional scope decisions and two retained negative observations remain explicit. Existing stage declarations and historical source hashes are preserved; final task ordering and acceptance/recovery decisions remain pending.",
         "Artifact4 execution_plan now orders all36closing briefs through input/applicability locking, requiredness triage, a current public-player acceptance pilot, normal/progression/operation work, scope/software/fault closure and final join. Every task remains planned. The current suite has no generic presented-frame session case; existing admission/backend and recorded-action evidence do not close that integration. Artifact5 executed acceptance and separate supported-player/original-recovery decisions remain pending; engine stages and historical hashes are unchanged.",
@@ -163479,7 +163481,8 @@
         }
       ],
       "documents": [
-        "research/runtime/rendering-camera-matrix-closeout-20261106.md"
+        "research/runtime/rendering-camera-matrix-closeout-20261106.md",
+        "research/runtime/rendering-fixed-barriers-closeout-20261107.md"
       ],
       "implementation": [
         "tools/run-rendering-camera-acceptance.py",
@@ -163511,7 +163514,8 @@
         "tools/coverage_evidence.py"
       ],
       "evidence": [
-        "CM06.retained-diagnostics01"
+        "CM06.retained-diagnostics01",
+        "FR07.barriers-reconciled01"
       ],
       "status": {
         "understanding": "scoped",
@@ -163522,8 +163526,8 @@
       },
       "remaining_gaps": [
         "CM06.G.matrix: all missing Integer profile/size camera acquisitions and successful strict positive comparison remain pending; only the earlier default800 OC06 domain is accepted. No full orientation row promoted.",
-        "CM06.G.input: two physical mouse actions published no host request despite ready original menus; precise delivery cause remains unisolated. Batch stopped after3actual games and2zero-game preparation refusals. Final guarded external driver and strict positive gate have no successful current-source run.",
-        "CM06.G.sharp:3819024negative viewport differences lie on exact rational texel boundaries and match an adjacent independent expected texel. Sharp display/reference compatibility remains unresolved; no oracle relaxation, native fix or universal hardware rounding claim.",
+        "CM06.G.input implementation/public-path barrier resolved within RF06: forced seqlock controls retain one intent and publish once, and actual software/low public mouse Quick Battle/Map OK reaches all9original ready states and normal zero-World Quit. The exact cause of each old miss and successful revised camera driver/output remain unproved; batch-stop-01 stays in force. See FR07.barriers-reconciled01.",
+        "CM06.G.sharp resolved within the RF06 Qt/Mesa implementation scope: exact integer pixel-centre sampling passes286complete framebuffer/34onscreen comparisons at DPR1/1.5 with unchanged independent expected pixels. The retained3819024mismatch comparison remains negative; no corrected replay of that complete camera capture or arbitrary-provider guarantee. See FR07.barriers-reconciled01. Missing camera matrix/output/picking proof remains in CM06.G.matrix/scope.",
         "CM06.G.scope: camera picking/HUD alignment, viewport limits, full periodic scalar identity, animation/combat, whole minimap/pause, both final decisions and known Save/historical failures remain open."
       ]
     },
@@ -163624,10 +163628,12 @@
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/rendering-defect-fixes-20261106.md"
+        "research/runtime/rendering-defect-fixes-20261106.md",
+        "research/runtime/rendering-fixed-barriers-closeout-20261107.md"
       ],
       "evidence": [
-        "RF06.native-regressions01"
+        "RF06.native-regressions01",
+        "FR07.barriers-reconciled01"
       ],
       "status": {
         "understanding": "scoped",
@@ -163637,7 +163643,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "RF06.G.live: current original-game failure repetition and exact attribution of each historical CM06/CS05 failure remain pending; no historical evidence or whole-player acceptance promotion."
+        "RF06.G.live: Sharp implementation/reference mismatch is resolved for the tested Qt/Mesa geometries by286framebuffer/34onscreen comparisons. Complete corrected camera-capture output, physical-provider coverage and gameplay/picking acceptance remain pending; historical negative bytes stay unchanged. FR07.barriers-reconciled01 checks all retained fix-source hashes against current master."
       ]
     },
     {
@@ -163674,12 +163680,14 @@
       "original": [],
       "documents": [
         "research/runtime/rendering-defect-fixes-20261106.md",
-        "research/runtime/rendering-defect-fixes-integration-20261106.md"
+        "research/runtime/rendering-defect-fixes-integration-20261106.md",
+        "research/runtime/rendering-fixed-barriers-closeout-20261107.md"
       ],
       "evidence": [
         "RF06.native-regressions01",
         "RF06.software640-storage-diagnostic01",
-        "RF06.public-main-map-input01"
+        "RF06.public-main-map-input01",
+        "FR07.barriers-reconciled01"
       ],
       "status": {
         "understanding": "scoped",
@@ -163689,7 +163697,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "RF06.G.live: one skipped-intro software640 original storage diagnostic and one actual public Main/Map physical-input diagnostic pass separately. Current original-game camera/other-domain repetitions, exact attribution of every historical CM06/CS05 miss, repeated-run reliability and full nominal acceptance remain pending."
+        "RF06.G.live: finite public Main/Map and software640 Save/Load execution barriers are resolved by RF06.public-main-map-input01 and RF06.software640-storage-diagnostic01 at unchanged tested sources. Camera/other-domain execution, exact attribution of every historical CM06/CS05 miss, repeated-run reliability and complete nominal acceptance remain pending. See FR07.barriers-reconciled01."
       ]
     },
     {
@@ -379890,6 +379898,32 @@
         {
           "pointer": "/movie_gpu_output_proved",
           "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "FR07.barriers-reconciled01",
+      "kind": "static",
+      "record": "research/runtime/rendering-fixed-barriers-results-20261107/reconciliation-01.json",
+      "sha256": "e6771abc65232e03a361750ab513995bd88b2522864fb243051eb018db182697",
+      "sources_pointer": "/sources",
+      "scope": "Static reconciliation of existing full-source-current RF06 implementation and finite execution evidence. Close only three named missing-positive/implementation barriers, preserve every original negative and whole-player limitation. No new run, acceptance row or engine-stage promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_original_game_runs",
+          "equals": 0
         },
         {
           "pointer": "/historical_failures_retired",

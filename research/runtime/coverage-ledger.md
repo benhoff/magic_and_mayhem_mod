@@ -26736,3 +26736,16 @@ See [bounded proof and controls](rendering-movie-skip-closeout-20261106.md).
 
 
 SK06 integration source boundary: concurrent master bed0d49cb959f596bd9b9b4f97488148fc4d5128 changes viewport/menu native sources. The four accepted movie-skip cases and55controls remain pinned to player94c70f6b and their recorded compiler closure; no current-code applicability is inferred for the newer C++ version. Keep52accepted rows and both decisions, retain raw staleness and require targeted revalidation before claiming current-source execution. Incoming RF06fixes and their tests/evidence remain unchanged. See rendering-movie-skip-results-20261106/concurrent-integration-review-01.json.
+
+
+## Repaired rendering barriers reconciled — 2026-11-07
+
+`FR07.barriers-reconciled01` closes three narrow stale barriers using unchanged
+merged RF06 execution: exact Sharp sampling (286framebuffer/34onscreen checks),
+public physical Main/Map actions (9original ready states), and software640 V3
+Save/Mini Load/display rebuild/Main Load/normal Quit (846balanced deliveries).
+All recorded positive source bindings still match; the existing native milestones
+remain applicable. See [review](rendering-fixed-barriers-closeout-20261107.md).
+No new execution, fixture, code change or stage promotion. Preserve52accepted/
+104pending rows, historical pack source limitations, every old failure, the camera
+batch stop, broader pixel/domain/reliability/attribution work and both decisions.

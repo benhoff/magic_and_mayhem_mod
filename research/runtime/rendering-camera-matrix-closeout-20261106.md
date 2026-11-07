@@ -73,3 +73,15 @@ The independent 38 accepted rows, full pan/picking/HUD and periodic scalar joins
 Sharp compatibility, successful missing-domain output, animation/combat, whole
 minimap/pause, final decisions and known Save admission/historical failures remain
 separate. No old evidence hash was refreshed to make this batch pass.
+
+
+## Current resolution — 2026-11-07
+
+The [fixed-barrier reconciliation](rendering-fixed-barriers-closeout-20261107.md)
+closes the later Sharp implementation/reference and public Main/Map execution
+barriers using current RF06 source-bound results. The earlier negative camera
+comparison, missed-action evidence and stopped collector remain unchanged.
+Complete corrected camera output and exact attribution of every old miss remain
+pending. This dated report retains its original 38-row source-phase statement;
+the latest acceptance pack has52accepted rows with explicit historical native
+source limitations.
