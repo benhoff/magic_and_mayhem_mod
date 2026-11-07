@@ -26842,3 +26842,28 @@ decisions at their recorded source phases; no old hash refresh, native waiver,
 status reset, new game or matrix rerun. The unchanged retained-data Python analysis
 remains current. See rendering-functional-ten-results-20261107/concurrent-integration-review-01.json
 and rendering-functional-ten-closeout-20261107.md.
+
+
+## KP07 keyed-copy and selected palette remapping — 2026-11-07
+
+Four acceptance rows close: `operation.copy-keyed` and `operation.palette-remap`
+for both explicit profiles. Preserve every one of the 56 accepted parent rows:
+60/156 passed, 96 pending; both final decisions remain pending. Eight retained
+Quick/Campaign default/software 640/800 contexts supply 24 caller-bound keyed
+destinations with skipped-key preservation and actual visible changed pixels,
+plus 72 same-frame/index samples remapped through three distinct selected shade
+tables into independently expected original WORDs and actual native viewports.
+Request/source/handle/import identities and complete prior composition proof
+remain bound. Native execution stays at its recorded historical source phases;
+only the new retained-data analysis and guards receive fresh execution support.
+The exact two known 640x480 keyed cursor INVALIDRECT/no-work requests remain
+failures and earn no success credit. Other failures cannot use their exclusion.
+Actual bytes from all 23 historical supplied GPU controls are freshly verified;
+no natural GPU-keyed reachability or current native-DLL equivalence is inferred.
+Upstream palette builders/platform/ordinals, cycling, arbitrary callers/providers,
+whole cursor/camera/gameplay, other 96 rows and final decisions remain separate.
+The initial zero-refusal analyzer assumption, failed report and exact source
+preimages are retained. No new game, original-reference run, capture, native
+implementation, game fixture or build. See
+[closeout](rendering-four-row-closeout-20261107.md) and immutable SQLite
+`rendering-four-row-results-20261107/closeout-analysis-02.json`.
