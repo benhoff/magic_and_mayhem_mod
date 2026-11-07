@@ -164199,6 +164199,98 @@
         "MU07.G.source: native engine, original comparison and viewport execution retain exact historical sources; eight inherited changes remain raw staleness. Only new retained-data analysis is current; no native full-hash waiver.",
         "MU07.G.scope: hidden auxiliary-background restoration, whole markers/borders/camera/picking/upstream simulation visibility, arbitrary maps/views/providers, current whole-player validation, remaining94rows and both final decisions remain separate. Preserve all historical failures."
       ]
+    },
+    {
+      "id": "NP.animation-output-closeout",
+      "title": "Source-bound animation frame delivery in native composition",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Retained-data delivery analysis of three distinct decoded creature SPR frames per actual normal Campaign/storage default/software640/800 case, stable captured map/camera and live source canvas incarnation. Bind immutable named creature assets, admitted source World generations, actual original entry/AX/order/owned input hashes, independent original final WORDs and every selected final-writer native viewport pixel. Close active-world.animation for both profiles and creature-animation for default only, under the five-row batch bound. Original ANI controller/timing recovery, per-actor pool identity/lifecycle, attachment/combat/visibility/selection, other maps/views/providers and current native-DLL execution remain separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/close-rendering-animation-auxiliary.py"
+      ],
+      "tests": [
+        "tests/test-rendering-animation-auxiliary.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "tools/evidence_objects.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/resident_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-destination-history.py",
+        "docs/native-rendering-closure.json",
+        "tools/rendering_capture.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-five-acceptance-closeout-20261107.md"
+      ],
+      "evidence": [
+        "AA07.animation-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "AA07.G.source: new Python retained-data analysis is current. Native implementation/original comparison/viewport execution retain exact recorded full source hashes and eight inherited source differences. No native full-hash waiver or new engine execution.",
+        "AA07.G.scope: original ANI/controller/timing recovery, actor-pool lifecycle, full attachment/combat/upstream visibility, unowned wave reads, arbitrary maps/views/providers, software creature-animation and remaining89rows/both decisions remain separate. Every historical failure remains retained."
+      ]
+    },
+    {
+      "id": "NP.auxiliary-output-closeout",
+      "title": "Source-bound auxiliary sprite output in native composition",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Retained-data analysis of actual queued projected-shadow and owned-phase wave sprite routes in normal Campaign/storage default/software640/800. Require three advancing source generations per route/domain, exact original entry/AX/order and captured frame/table identity, live source canvas/imports, independently reconstructed original final WORDs and complete selected visible native output. Owned interior wave reads only. This finite operation claim does not close whole actor attachments, unknown effect producers, unowned memory, arbitrary inputs/providers, current native execution or final decisions.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/close-rendering-animation-auxiliary.py"
+      ],
+      "tests": [
+        "tests/test-rendering-animation-auxiliary.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "tools/evidence_objects.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/resident_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-destination-history.py",
+        "docs/native-rendering-closure.json",
+        "tools/rendering_capture.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-five-acceptance-closeout-20261107.md"
+      ],
+      "evidence": [
+        "AA07.auxiliary-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "AA07.G.source: new Python retained-data analysis is current. Native implementation/original comparison/viewport execution retain exact recorded full source hashes and eight inherited source differences. No native full-hash waiver or new engine execution.",
+        "AA07.G.scope: original ANI/controller/timing recovery, actor-pool lifecycle, full attachment/combat/upstream visibility, unowned wave reads, arbitrary maps/views/providers, software creature-animation and remaining89rows/both decisions remain separate. Every historical failure remains retained."
+      ]
     }
   ],
   "evidence": [
@@ -380663,6 +380755,130 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "AA07.animation-closed01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-five-results-20261107/animation-binding-01.json",
+      "sha256": "6c3e54c997bb0048fb07cbeac1fe410547edaf354355e02b3c02a2628247cf5d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Retained-data delivery analysis of three distinct decoded creature SPR frames per actual normal Campaign/storage default/software640/800 case, stable captured map/camera and live source canvas incarnation. Bind immutable named creature assets, admitted source World generations, actual original entry/AX/order/owned input hashes, independent original final WORDs and every selected final-writer native viewport pixel. Close active-world.animation for both profiles and creature-animation for default only, under the five-row batch bound. Original ANI controller/timing recovery, per-actor pool identity/lifecycle, attachment/combat/visibility/selection, other maps/views/providers and current native-DLL execution remain separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_contexts",
+          "equals": 4
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 67
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 5
+        },
+        {
+          "pointer": "/frame_states",
+          "equals": 24
+        },
+        {
+          "pointer": "/auxiliary_outputs",
+          "equals": 24
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/original_ani_timing_recovery_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/software_creature_animation_promoted",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "AA07.auxiliary-closed01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-five-results-20261107/auxiliary-binding-01.json",
+      "sha256": "d5dc634b18a47c3fd76fb49529b8d5ed41053fc3a8f037084739e95b61c92bd9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Retained-data analysis of actual queued projected-shadow and owned-phase wave sprite routes in normal Campaign/storage default/software640/800. Require three advancing source generations per route/domain, exact original entry/AX/order and captured frame/table identity, live source canvas/imports, independently reconstructed original final WORDs and complete selected visible native output. Owned interior wave reads only. This finite operation claim does not close whole actor attachments, unknown effect producers, unowned memory, arbitrary inputs/providers, current native execution or final decisions.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_contexts",
+          "equals": 4
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 67
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 5
+        },
+        {
+          "pointer": "/frame_states",
+          "equals": 24
+        },
+        {
+          "pointer": "/auxiliary_outputs",
+          "equals": 24
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/original_ani_timing_recovery_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/software_creature_animation_promoted",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "AA07.guards01",
+      "kind": "static",
+      "record": "research/runtime/rendering-five-results-20261107/controls-final-01.json",
+      "sha256": "5265c4d36b317e8f2cb6d194ecece7af03b1b76dc78e8338a02b7b45f024bb7e",
+      "sources_pointer": "/sources",
+      "scope": "Actual retained-data adverse admission checks plus existing UI/client controls. These controls grant no native runtime execution or broader original ANI/actor/provider equivalence; the separate actual source/output joins carry their stated headless scope.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 71
+        },
+        {
+          "pointer": "/no_skips",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -413017,6 +413233,70 @@
       "evidence": [
         "MU07.minimap-update-closed01"
       ]
+    },
+    {
+      "id": "AA07.player-default.normal-storage.800x600",
+      "level": "headless",
+      "scope": "Fresh retained-data source/resource/temporal/visible-output analysis of actual ['player-default', [800, 600]] Campaign/storage: distinct RedCap/Wizard1 decoded frames, positive projected shadows and owned-phase waves, exact original entries/AX/order/canvas incarnations and every selected native viewport pixel. Rectangle outputs receive no new credit. Native execution remains historical; no ANI timing/actor lifecycle/whole-attachment/visibility/provider claim.",
+      "behaviors": [
+        "NP.animation-output-closeout",
+        "NP.auxiliary-output-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-animation-auxiliary.py"
+      ],
+      "evidence": [
+        "AA07.animation-closed01",
+        "AA07.auxiliary-closed01"
+      ]
+    },
+    {
+      "id": "AA07.player-software.normal-storage.800x600",
+      "level": "headless",
+      "scope": "Fresh retained-data source/resource/temporal/visible-output analysis of actual ['player-software', [800, 600]] Campaign/storage: distinct RedCap/Wizard1 decoded frames, positive projected shadows and owned-phase waves, exact original entries/AX/order/canvas incarnations and every selected native viewport pixel. Rectangle outputs receive no new credit. Native execution remains historical; no ANI timing/actor lifecycle/whole-attachment/visibility/provider claim.",
+      "behaviors": [
+        "NP.animation-output-closeout",
+        "NP.auxiliary-output-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-animation-auxiliary.py"
+      ],
+      "evidence": [
+        "AA07.animation-closed01",
+        "AA07.auxiliary-closed01"
+      ]
+    },
+    {
+      "id": "AA07.player-default.normal-storage.640x480",
+      "level": "headless",
+      "scope": "Fresh retained-data source/resource/temporal/visible-output analysis of actual ['player-default', [640, 480]] Campaign/storage: distinct RedCap/Wizard1 decoded frames, positive projected shadows and owned-phase waves, exact original entries/AX/order/canvas incarnations and every selected native viewport pixel. Rectangle outputs receive no new credit. Native execution remains historical; no ANI timing/actor lifecycle/whole-attachment/visibility/provider claim.",
+      "behaviors": [
+        "NP.animation-output-closeout",
+        "NP.auxiliary-output-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-animation-auxiliary.py"
+      ],
+      "evidence": [
+        "AA07.animation-closed01",
+        "AA07.auxiliary-closed01"
+      ]
+    },
+    {
+      "id": "AA07.player-software.normal-storage.640x480",
+      "level": "headless",
+      "scope": "Fresh retained-data source/resource/temporal/visible-output analysis of actual ['player-software', [640, 480]] Campaign/storage: distinct RedCap/Wizard1 decoded frames, positive projected shadows and owned-phase waves, exact original entries/AX/order/canvas incarnations and every selected native viewport pixel. Rectangle outputs receive no new credit. Native execution remains historical; no ANI timing/actor lifecycle/whole-attachment/visibility/provider claim.",
+      "behaviors": [
+        "NP.animation-output-closeout",
+        "NP.auxiliary-output-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-animation-auxiliary.py"
+      ],
+      "evidence": [
+        "AA07.animation-closed01",
+        "AA07.auxiliary-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -414834,8 +415114,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-7a51260bfe07195393bd38ddb6074295a03adf4eb09b55c1b38c39b68e2fd590.json",
-    "sha256": "7a51260bfe07195393bd38ddb6074295a03adf4eb09b55c1b38c39b68e2fd590"
+    "path": "research/runtime/coverage/source-index-01f594552ce38a3c569c474336f445d88555c7641082089455c7bee000a4d5bb.json",
+    "sha256": "01f594552ce38a3c569c474336f445d88555c7641082089455c7bee000a4d5bb"
   },
   "evidence_applicability": [
     {

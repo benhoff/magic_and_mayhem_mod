@@ -26890,3 +26890,26 @@ All known cursor/other failures and final decisions remain. No original game or
 reference run, capture, native code/build or new fixture. See
 [closeout](rendering-minimap-update-closeout-20261107.md) and immutable SQLite
 `rendering-next-two-results-20261107/closeout-analysis-04.json`.
+
+
+## AA07 five animation and auxiliary acceptance rows — 2026-11-07
+
+Close active-World animation and auxiliary sprite output for both profiles, plus
+default creature-animation:67/156passed,89pending. Preserve every62parent row
+and both pending decisions. Four retained Campaign/storage default/software
+640/800contexts supply24distinct decoded RedCap/Wizard1 SPR frame states and
+24positive projected-shadow/owned-wave outputs. Exact archived asset/frame bytes,
+source World clocks, stable camera/map/canvas incarnation, actual entry/low16AX/
+order/payload identity and independent original final WORDs join40372actual
+viewport pixels and11033changed visible WORDs. All selected source pixels reach
+the viewport; later RGB-add/colour rectangles exclude earlier sprite credit.
+71actual-data/UI/client checks pass without skips. Original simulation supplies
+frame decisions; ANI controller/timing, per-actor lifetime, whole attachments/
+combat/visibility, unowned reads, arbitrary maps/views/providers and the software
+creature-animation row remain separate. Initial extra-writer analysis and native
+applicability refusals, exact sources and every old failure remain retained.
+New Python analysis is current; native/original/viewport execution retains its
+historical full hashes and eight source differences. No game/reference run,
+capture, native code/build or new game fixture. See
+[closeout](rendering-five-acceptance-closeout-20261107.md) and immutable SQLite
+`rendering-five-results-20261107/closeout-analysis-03.json`.
