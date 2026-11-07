@@ -27018,3 +27018,30 @@ failure, missing journey/operation/transition and the other82rows remain separat
 No game, capture, native code/build or game fixture. See
 [closeout](rendering-identity-closeout-20261107.md) and immutable SQLite
 `rendering-identity-results-20261107/closeout-analysis-03.json`.
+
+## First composed native World entry closeout — 2026-11-07
+
+`FW07.first-world-closed01` closes the four Campaign/Quick
+`first-composed-world` rows for default/software at actual640/800. The frozen
+inventory advances74→78passed,82→78pending; all parent rows/attachments and both
+pending final decisions survive. Eight first swapped World1 viewports freshly
+reconstruct6,996,000pixels from independent original raster/owned history and
+complete native command/viewport geometry at zero differences.12,804first-queue
+rasters bind exact source, order, entries, effective clips/pitch and consumed AX0/1.
+Original consumer/table window5002a0..501330 and every observed continuation match
+the staged PE. Recorded native adapter and original AX/history executor sources,
+accepted identity and normal retirement bind the preservation argument. Original
+traversal/metadata/clip/lazy-table preparation remain permitted suppliers; raw row
+snapshots and whole original preparation recovery remain false. Quick map1 is
+Celtic Forest One(small),row0; Campaign uses the accepted default initial region.
+
+55actual-data/UI/client guards pass without skips. The incoming identity commit's
+35content transitions have exact receipts and no gaps. Failed first analysis,
+source preimages, superseded positives, intentionally interrupted writer-lock
+attempt and sandbox HTTP-listener refusal remain in SQLite. Final immutable-object
+reads avoid the writer lock. Only Python retained-data analysis is current;
+historical native/compiler/original/viewport hashes and raw drift remain. No game
+run, capture, native implementation/build or fixture. Unknown maps/providers,
+whole ABI/preparation, remaining journeys/operations/gates, historical watchdog
+and both final decisions stay separate. See
+[bounded proof and limits](rendering-first-world-closeout-20261107.md).
