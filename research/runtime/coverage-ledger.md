@@ -26996,3 +26996,25 @@ all old native/compiler/original/viewport and AA07source phases/raw drift remain
 No original game, capture, native code/build or game fixture. See
 [closeout](rendering-retained-closeout-20261107.md) and immutable SQLite
 `rendering-retained-results-20261107/closeout-analysis-04.json`.
+
+
+## IG07 retained identity gates — 2026-11-07
+
+Close gate.identity for default/software across the exact22-case accepted primary
+cohort:74/156passed82pending, all72parent rows and both decisions preserved.
+Fresh retained-byte checks bind4848-entry installation manifests, original NoCD
+40209ca7and every staged PE32 executable, all ten native DLLs per run, three
+ELF64player binaries with actual compiler banners and consistent405-file source
+closures, recorded native source phases, observed llvmpipeLLVM22.1.8 and exact
+launch/profile/native-only isolation. Only CFG/prefs.cfg may differ from baseline:
+verify complete retained bytes equal the sole IsHighRes TRUE-to-FALSE edit in ten
+Low inputs. Initial strict equality refusal and exact sources remain. Future
+primary executions require this identity admission and the existing lifetime
+admission.78actual-data/UI/client guards pass without skips; prior55committed
+file transitions have exact receipts and no unresolved gaps. Only new Python
+provenance analysis is current; no historical source hash refresh, native waiver,
+physical driver/GL ABI, new engine execution or final decision claim. Every old
+failure, missing journey/operation/transition and the other82rows remain separate.
+No game, capture, native code/build or game fixture. See
+[closeout](rendering-identity-closeout-20261107.md) and immutable SQLite
+`rendering-identity-results-20261107/closeout-analysis-03.json`.

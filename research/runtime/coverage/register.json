@@ -164629,6 +164629,60 @@
         "RC07.G.source: current Python retained-data analysis only. Native/compiler/original comparison/viewport executions preserve their exact source phases and historical drift; no full-hash waiver or new native run.",
         "RC07.G.scope: lifetime credit applies to this frozen accepted primary cohort; later primary executions require the same retirement admission. Fault/restart, unknown future journeys, every intermediate API owner, OS-wide handle census, ANI/controller/timing/actor lifecycle, arbitrary providers and both final decisions remain separate. Results lacks the optional close-caller diagnostic; no caller attribution is inferred. Every failure remains retained."
       ]
+    },
+    {
+      "id": "NP.accepted-identity-gate-closeout",
+      "title": "Retained accepted-cohort identity gates",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Bind both identity-gate rows to every unique primary acquisition in the frozen accepted inventory: original executable and full installation manifest/assets, actual staged native DLL and player bytes, recorded compiler/source closures, admitted native-only policy and isolation, observed provider and exact launch configuration. Current Python provenance analysis only; preserve historical native/compiler/execution hashes and all failures. Future accepted executions require the same identity admission. No missing journey, physical-driver ABI, broader provider, current native execution or final decision claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-identity-closeout-20261107.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-identity-gates.py"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "validation_dependencies": [
+        "docs/native-rendering-closure.json",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/world_continuous_v6.h",
+        "tools/close-rendering-animation-auxiliary.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-retained-rows.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_reviews.py",
+        "tools/evidence_objects.py",
+        "tools/native_cursor_journal.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/test-menu-observer.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "IG07.G.source: only current Python provenance analysis receives new execution support; all original/native/compiler/player/viewport proofs retain exact historical phases and raw source drift. No native full-hash waiver, driver ABI or current engine execution claim.",
+        "IG07.G.scope: identity credit binds the frozen22-case accepted primary cohort and observed isolated Xvfb/Mesa llvmpipe provider. Future primary cases require this admission and existing normal lifetime admission. Every old failure, unknown provider/caller, missing journey/operation/transition, other82rows and both final decisions remain separate."
+      ]
     }
   ],
   "evidence": [
@@ -381520,6 +381574,75 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "IG07.identity-closed01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-identity-results-20261107/identity-binding-01.json",
+      "sha256": "7c48004d5546e7cc304dcddfcf961aa67103d392c933f39e9b8e439853a9b18a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Bind both identity-gate rows to every unique primary acquisition in the frozen accepted inventory: original executable and full installation manifest/assets, actual staged native DLL and player bytes, recorded compiler/source closures, admitted native-only policy and isolation, observed provider and exact launch configuration. Current Python provenance analysis only; preserve historical native/compiler/execution hashes and all failures. Future accepted executions require the same identity admission. No missing journey, physical-driver ABI, broader provider, current native execution or final decision claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_primary_executions",
+          "equals": 22
+        },
+        {
+          "pointer": "/player_binary_versions",
+          "equals": 3
+        },
+        {
+          "pointer": "/native_dll_checks",
+          "equals": 220
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 74
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/arbitrary_physical_driver_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "IG07.guards01",
+      "kind": "static",
+      "record": "research/runtime/rendering-identity-results-20261107/controls-final-01.json",
+      "sha256": "f150bf8a42b368457ba1b1f7c36151c51a538b8bfe6630b29a81f20039fb503c",
+      "sources_pointer": "/sources",
+      "scope": "Actual retained-data provenance/refusal controls plus UI/client checks. Guard mutations earn no game/acceptance execution credit; no new native runtime/provider/driver ABI equivalence.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 78
+        },
+        {
+          "pointer": "/no_skips",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -414307,6 +414430,314 @@
       "evidence": [
         "RC07.normal-lifetime-closed01"
       ]
+    },
+    {
+      "id": "IG07.identity.01",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-movie-skip-results-20261106/default-high-acquisition-03.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.02",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-movie-skip-results-20261106/default-low-acquisition-01.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.03",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-main-setup-results-20261106/default-high-acquisition-07.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.04",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-main-setup-results-20261106/default-low-acquisition-01.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.05",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-normal-results-20261031/cleanup-storage-player-default-800-20261105-01-acquisition.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.06",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-normal-results-20261031/cleanup-storage-player-default-640-20261105-01-acquisition.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.07",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-normal-results-20261031/gameplay-default-800-acquisition-03.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.08",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-normal-results-20261031/sustained-player-default-640-20261105-01-acquisition.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.09",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-interaction-results-20261107/default-800-06-acquisition.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.10",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-interaction-results-20261107/default-640-02-acquisition.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.11",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-functional-ten-results-20261107/default-results-acquisition-03.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.12",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-movie-skip-results-20261106/software-high-acquisition-01.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.13",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-movie-skip-results-20261106/software-low-acquisition-01.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.14",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-main-setup-results-20261106/software-high-acquisition-01.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.15",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-main-setup-results-20261106/software-low-acquisition-01.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.16",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-normal-results-20261031/cleanup-storage-player-software-800-20261105-01-acquisition.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.17",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-normal-results-20261031/cleanup-storage-player-software-640-20261105-02-acquisition.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.18",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-normal-results-20261031/sustained-player-software-800-20261105-01-acquisition.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.19",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-normal-results-20261031/sustained-player-software-640-20261105-01-acquisition.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.20",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-interaction-results-20261107/software-800-01-acquisition.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.21",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-interaction-results-20261107/software-640-01-acquisition.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
+    },
+    {
+      "id": "IG07.identity.22",
+      "level": "headless",
+      "scope": "Retained raw installation/original/staged/native-DLL/player-byte identity, compiler/source closures, observed llvmpipe/provider and exact native-only policy/configuration for research/runtime/rendering-functional-ten-results-20261107/software-results-acquisition-01.json. Effective Low preferences require exact retained-byte delta. Original/native execution stays historical; no new semantic/current-native or arbitrary physical-driver claim.",
+      "behaviors": [
+        "NP.accepted-identity-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-identity-gates.py"
+      ],
+      "evidence": [
+        "IG07.identity-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -416124,8 +416555,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-e213dab246eda28cd3450c40a42134be12db2f4effe54e07dbae4641b06e798c.json",
-    "sha256": "e213dab246eda28cd3450c40a42134be12db2f4effe54e07dbae4641b06e798c"
+    "path": "research/runtime/coverage/source-index-5a2d2a06af5b5e89676c7540066bb3c961a27ecc9925a3b5fa0e7460a245af42.json",
+    "sha256": "5a2d2a06af5b5e89676c7540066bb3c961a27ecc9925a3b5fa0e7460a245af42"
   },
   "evidence_applicability": [
     {
