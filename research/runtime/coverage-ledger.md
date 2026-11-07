@@ -26653,3 +26653,38 @@ refusals. Exact-source/current preview proof remains separate from independent
 World-pixel equivalence, historical cause attribution and repeated-run reliability.
 `RF06.software640-storage-diagnostic01` retains that finite positive observation;
 no acceptance row or old evidence is promoted/refreshed.
+
+### BD06 natural direct sprites and blend pixels — 2026-11-06
+
+Native acceptance reaches 46/156 passed, 110 pending: direct sprites and the
+creature/effects blend leaf close for both explicit profiles in four retained
+Campaign/storage cases at actual 640/800 sizes. Three source generations per
+case provide 48 nonzero, non-overwritten source-to-original-to-native viewport
+samples, covering direct RGB565 and half/quarter blends. Blend results differ
+from opaque replacement. Exact queued packet/request identities and source
+coordinate lineage join unchanged continuous original history and complete
+native composition comparisons. All 42 parent rows and both pending decisions
+are preserved. Software Quick generation-2 calls with no qualifying blend result
+receive no positive credit. No game, native/runtime edit, build, fixture or new
+original reference execution. Original ABI, attachment/combat, palette builders,
+CPU callers, camera/Sharp, progression, provider/fault domains and known failures
+remain open. See [bounded evidence and controls](rendering-blend-direct-closeout-20261106.md).
+
+
+## Native defect fixes and concurrent closeout integration — 2026-11-06
+
+Native commit ac08de541 and concurrent direct/blend closeout661b4ea2d retain
+both parents, stable IDs, exact receipts and full ledger additions. The latter
+changes no native source; the tested native sources/regressions stay exact.
+`RF06.public-main-map-input01` additionally passes real public Main/Preferences/
+Quick/Setup/Map mouse OK/back/Main Quit with nine exact original ready ACKs,
+physical XTest delivery, zero World entry and normal native retirement. One
+preceding accessibility startup failure launches no game; its exact source,
+raw data and interrupted prefix recovery are retained. Private runtime/Mesa
+preflight precedes the repaired case. The stopped camera batch stays stopped.
+
+The incoming46-row pack remains at its original source phase. Native-source
+drift does not renew whole-player applicability or erase historical failures;
+both final decisions stay pending. Exact committed-history/artifact reviews
+retain source versions and identify accounting separately from execution. See
+[the integration](rendering-defect-fixes-integration-20261106.md).

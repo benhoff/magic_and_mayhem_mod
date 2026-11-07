@@ -163673,11 +163673,13 @@
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/rendering-defect-fixes-20261106.md"
+        "research/runtime/rendering-defect-fixes-20261106.md",
+        "research/runtime/rendering-defect-fixes-integration-20261106.md"
       ],
       "evidence": [
         "RF06.native-regressions01",
-        "RF06.software640-storage-diagnostic01"
+        "RF06.software640-storage-diagnostic01",
+        "RF06.public-main-map-input01"
       ],
       "status": {
         "understanding": "scoped",
@@ -163687,7 +163689,80 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "RF06.G.live: one skipped-intro software640 original storage diagnostic passes separately; current original-game camera repetition, exact attribution of every historical CM06/CS05 miss, repeated-run reliability and full nominal acceptance remain pending."
+        "RF06.G.live: one skipped-intro software640 original storage diagnostic and one actual public Main/Map physical-input diagnostic pass separately. Current original-game camera/other-domain repetitions, exact attribution of every historical CM06/CS05 miss, repeated-run reliability and full nominal acceptance remain pending."
+      ]
+    },
+    {
+      "id": "NP.blend-direct-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Natural blend/direct sprite source-to-output closeout",
+      "scope": "Finite natural Campaign/storage direct RGB565 sprite and half/quarter blend output at both explicit profiles and actual 640/800 sizes. Exact queued source/request bytes, last-writer coverage, independently reconstructed original result words and actual native viewport source-coordinate lineage. Complete prior composition comparisons and all 42 accepted rows are preserved. No whole original ABI, attachment/combat, upstream palette builder, raw CPU caller, new maps/faults/providers or final decision claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5861510,
+          "scope": "Existing selected direct/blend raster entry only, linked to captured effective inputs and bounded native output. No new whole-function or ABI recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5860536,
+          "scope": "Existing selected direct/blend raster entry only, linked to captured effective inputs and bounded native output. No new whole-function or ABI recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5762192,
+          "scope": "Existing selected direct/blend raster entry only, linked to captured effective inputs and bounded native output. No new whole-function or ABI recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5763312,
+          "scope": "Existing selected direct/blend raster entry only, linked to captured effective inputs and bounded native output. No new whole-function or ABI recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5764592,
+          "scope": "Existing selected direct/blend raster entry only, linked to captured effective inputs and bounded native output. No new whole-function or ABI recovery."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-blend-direct-closeout-20261106.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-blend-direct.py"
+      ],
+      "tests": [
+        "tests/test-rendering-blend-direct.py"
+      ],
+      "validation_dependencies": [
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/resident_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "tools/rendering_acceptance.py",
+        "tools/evidence-applicability.py",
+        "docs/native-rendering-closure.json"
+      ],
+      "evidence": [
+        "BD06.controls01",
+        "BD06.blend-direct-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "BD06.G.original: whole original ABI/registers/flags, physical ownership and upstream palette builders remain separate from these finite actual source/output samples.",
+        "BD06.G.other: attachment/combat, raw CPU-reader identities, arbitrary maps/durations/negative displacement, fonts/DC/providers/faults, first-World preparation, camera/Sharp/input, progression/results and both decisions remain open. All historical failures are preserved."
       ]
     }
   ],
@@ -379474,6 +379549,109 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "BD06.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-blend-direct-results-20261106/controls-final-01.json",
+      "sha256": "989a8b3cde73eadfc4740aba8b641976f00fc695c1b103972ee3fd809c2ec0b2",
+      "sources_pointer": "/native_sources",
+      "claims_pointer": "/claims",
+      "scope": "14 actual retained-source/native sample/domain negative guards, 30 UI and 9 client checks. Empty source and incomplete lazy-reference probe failures/preimages are retained. No new game/fixture/build/original execution; UI sources remain separate from native proof.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 53
+        },
+        {
+          "pointer": "/actual_case_controls_without_skips",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "BD06.blend-direct-closed01",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-blend-direct-results-20261106/current-closeout-binding-01.json",
+      "sha256": "4e7e14dd2c852fa6ade7c6878d59c1379ccfc51243ee2098c67f415a81eb3469",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_source_sha256",
+      "scope": "Finite natural Campaign/storage direct RGB565 sprite and half/quarter blend output at both explicit profiles and actual 640/800 sizes. Exact queued source/request bytes, last-writer coverage, independently reconstructed original result words and actual native viewport source-coordinate lineage. Complete prior composition comparisons and all 42 accepted rows are preserved. No whole original ABI, attachment/combat, upstream palette builder, raw CPU caller, new maps/faults/providers or final decision claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_original_reference_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 46
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 4
+        },
+        {
+          "pointer": "/actual_source_packets",
+          "equals": 12
+        },
+        {
+          "pointer": "/new_retained_pixel_samples",
+          "equals": 48
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RF06.public-main-map-input01",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/rendering-defect-fixes-integration-results-20261106/public-main-map-input-01.json",
+      "sha256": "35b8f23fc7ddf9c56af6717791a567cb0522ed1b9dbdf26b5f83b712d4a9c458",
+      "sources_pointer": "/sources",
+      "scope": "One current public Qt software/low skipped-intro Main/Preferences Cancel/physical Quick/Setup/Map mouse OK/back/Main Quit diagnostic. Nine exact original ready states/ACKs bind actual physical mouse actions to completed menu callbacks with zero World entry and normal native retirement. A preceding accessibility bus abort launched no original game; its prefix and failure are preserved. Unbound finite observation, not whole camera, output equivalence, repeated-run reliability or acceptance-row promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 1
+        },
+        {
+          "pointer": "/worlds",
+          "equals": 0
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/retirement/state",
+          "equals": "completed"
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -411443,6 +411621,20 @@
       "evidence": [
         "RF06.native-regressions01"
       ]
+    },
+    {
+      "id": "BD06.four-domain-natural-blend-direct",
+      "level": "live_observation",
+      "scope": "Finite natural Campaign/storage direct RGB565 sprite and half/quarter blend output at both explicit profiles and actual 640/800 sizes. Exact queued source/request bytes, last-writer coverage, independently reconstructed original result words and actual native viewport source-coordinate lineage. Complete prior composition comparisons and all 42 accepted rows are preserved. No whole original ABI, attachment/combat, upstream palette builder, raw CPU caller, new maps/faults/providers or final decision claim.",
+      "behaviors": [
+        "NP.blend-direct-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-blend-direct.py"
+      ],
+      "evidence": [
+        "BD06.blend-direct-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -413260,8 +413452,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-c36aac0fe8eca76d2a0c66d23e336d18c41fbed4e37638f3b7b9c9dcd2c37887.json",
-    "sha256": "c36aac0fe8eca76d2a0c66d23e336d18c41fbed4e37638f3b7b9c9dcd2c37887"
+    "path": "research/runtime/coverage/source-index-9c2faea6959ad834a3882944e05bd4f3390882ec2a70a3af725f160684d5905f.json",
+    "sha256": "9c2faea6959ad834a3882944e05bd4f3390882ec2a70a3af725f160684d5905f"
   },
   "evidence_applicability": [
     {
