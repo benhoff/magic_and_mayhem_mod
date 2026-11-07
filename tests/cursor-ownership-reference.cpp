@@ -92,6 +92,7 @@ static void reset(){
  outer=inner=statusResult=mutation=statusMutation=0;apiResult=1;originX=originY=0;px=100;py=120;
 }
 static void drain(bool model,Memory& m,Services& p){if(model){C::DeferredCopies q(m,p);q.drain();}else reinterpret_cast<void(*)()>(0x58d660)();}
+#ifndef CURSOR_REFERENCE_LIBRARY
 int main(int argc,char** argv)try{
  check(argc==2,"Expected pinned PE");mapImage(argv[1]);
  vtable.fill(nullptr);vtable[2]=reinterpret_cast<void*>(&ownedRef);vtable[5]=reinterpret_cast<void*>(&ownedBlt);vtable[7]=reinterpret_cast<void*>(&ownedFast);vtable[13]=reinterpret_cast<void*>(&ownedStatus);
@@ -177,3 +178,4 @@ int main(int argc,char** argv)try{
  for(auto& [at,bytes]:code)check(std::equal(bytes.begin(),bytes.end(),reinterpret_cast<unsigned char*>(at)),"Original instructions changed");
  std::cout<<"{\"success\":true,\"client_cases\":"<<clients<<",\"queue_cases\":"<<queues<<",\"dispose_cases\":"<<lifetime<<",\"retry_cases\":"<<retries<<",\"original_instructions_unchanged\":true}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
+#endif

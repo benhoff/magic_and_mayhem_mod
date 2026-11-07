@@ -3,13 +3,20 @@
  * retire/rebind a public wrapper without changing an in-flight copy's source.
  * No borrowed wrapper is read after the original copy starts. */
 struct NdCursorView {u32 origin,words[12],pin;};
-struct NdCursorScope {struct NdCursorView views[3];u32 count,failed;struct NdCursorScope* previous;};
+struct NdCursorScope {struct NdCursorView views[3];u32 count,failed,slot;struct NdCursorScope* previous;};
 struct NdCursorCopy {struct NdCursorView source,dest;struct NdCursorCopy* previous;};
 static struct NdCursorScope* nd_cursor_scope;
 static struct NdCursorCopy* nd_cursor_copy_active;
+static int nd_cursor_scope_failed(void){
+ return nd_cursor_scope && nd_cursor_scope->slot>=4 && nd_cursor_scope->slot<=7 && nd_cursor_scope->failed;
+}
+static int nd_cursor_scope_geometry(u32 geometry){
+ if(geometry!=2 || !nd_cursor_scope || nd_cursor_scope->slot<4 || nd_cursor_scope->slot>7)return 0;
+ nd_cursor_scope->failed=1;++nd_cursor_counts[14];return 1;
+}
 static void nd_cursor_view_drop(struct NdCursorView* v){if(v->pin){if(NativeDrawUnpinV1(v->pin))ExitProcess(123);v->pin=0;}}
 static int nd_cursor_scope_enter(struct NdCursorScope* s,u32 slot){
- s->count=s->failed=0;s->previous=nd_cursor_scope;
+ s->count=s->failed=0;s->slot=slot;s->previous=nd_cursor_scope;
  u32 target=slot==7||slot==5?0x6a4fe0:0x6a49e0;
  const u32 addresses[3]={0x641fc8,slot==4||slot==5?target:0x642000,target};
  u32 count=slot==4||slot==5?2:slot==6||slot==7?3:slot==8?1:0;
@@ -38,6 +45,7 @@ static void* nd_cursor_owned_operand(void* object,struct NdCursorView* temporary
 static void nd_cursor_copy_service(u32 index,void* source,void* dest,const u32* rectangle,u32 x,u32 y,u32 caller){
  struct NdCursorFx entry,exit;nd_cursor_save(&entry);
  struct NsLifeGuard guard __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
+ if(nd_cursor_scope_failed()){nd_cursor_restore(&entry);return;}
  struct NdCursorCopy copy;copy.source.pin=copy.dest.pin=0;copy.previous=nd_cursor_copy_active;
  void* s=nd_cursor_owned_operand(source,&copy.source),*d=nd_cursor_owned_operand(dest,&copy.dest);
  u32 primary_token=nd_cursor_primary?nd_cursor_primary->original:*(u32*)0x6f98c0;
@@ -46,6 +54,11 @@ static void nd_cursor_copy_service(u32 index,void* source,void* dest,const u32* 
  if(index!=13 && (!rectangle || !nd_cursor_readable(rectangle,16))){s=0;}
  if(!s || !d || ns_borrowed(ns_lifetime_find((void*)geometry.source[2])) || ns_borrowed(ns_lifetime_find((void*)geometry.dest[2]))){
   ++nd_cursor_counts[13];if(nd_cursor_scope)nd_cursor_scope->failed=1;
+  nd_cursor_view_drop(&copy.dest);nd_cursor_view_drop(&copy.source);nd_cursor_restore(&entry);return;
+ }
+ u32 q[11]={0};q[4]=index==13?1:2;
+ if(rectangle)for(u32 k=0;k<4;++k)q[k+5]=rectangle[k];q[9]=x;q[10]=y;
+ if(nd_cursor_scope_geometry(nd_cursor_geometry(&geometry,q))){
   nd_cursor_view_drop(&copy.dest);nd_cursor_view_drop(&copy.source);nd_cursor_restore(&entry);return;
  }
  struct NdCursorPrimary shadow={*(u32*)0x6f98c0,(u32)d,nd_cursor_primary};

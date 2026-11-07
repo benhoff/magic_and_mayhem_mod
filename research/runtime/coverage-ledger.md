@@ -26736,3 +26736,26 @@ See [bounded proof and controls](rendering-movie-skip-closeout-20261106.md).
 
 
 SK06 integration source boundary: concurrent master bed0d49cb959f596bd9b9b4f97488148fc4d5128 changes viewport/menu native sources. The four accepted movie-skip cases and55controls remain pinned to player94c70f6b and their recorded compiler closure; no current-code applicability is inferred for the newer C++ version. Keep52accepted rows and both decisions, retain raw staleness and require targeted revalidation before claiming current-source execution. Incoming RF06fixes and their tests/evidence remain unchanged. See rendering-movie-skip-results-20261106/concurrent-integration-review-01.json.
+
+
+### Cursor resolution and saved-background admission — 2026-11-07
+
+CR07 reproduces the exact CP06 off-screen save-under/sprite pair using unchanged
+original foreground code with nominal800/live640 state. The old native owner
+fails the independent admission regression. Native cursor-only entry and per-copy
+checks now reject incompatible backing or invalid cached geometry, abort the
+remaining paint transaction, release unpublished pins and force stationary repaint
+after settling. General invalid-copy HRESULTs/bounds remain strict.
+
+Current controls pass108complete provider planes across4startup/backing profiles,
+18changed-anchor refusals,24existing owning-client planes and optimized/sanitized
+10368client/1280queue/12disposal/6retry comparisons per configuration. Immediate,
+deferred, stale restore, post-admission mode flip, edges, resumed800output and
+zero-resource retirement are explicit. Every failure/preimage remains in SQLite;
+original manifests pass before/after. No original game entrypoint is run.
+
+The new NP.cursor-resolution-admission scope is implemented/headless only. Exact
+historical flag/cause attribution and current live transitions remain pending.
+52frozen rows and both final decisions retain their historical source phase; new
+native source bytes do not renew broad player/provider acceptance. See
+[cursor correction and controls](cursor-resolution-admission-20261107.md).

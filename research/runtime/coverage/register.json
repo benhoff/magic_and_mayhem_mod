@@ -72550,7 +72550,8 @@
         "DRAW02.draw02-cursor-clients-static-02-20261012",
         "DRAW02.draw02-cursor-clients-direction-static-01-20261013",
         "CUR25.unaligned-harness-failure",
-        "CUR25.clients-queue-disposal"
+        "CUR25.clients-queue-disposal",
+        "CR07.recovered-clients01"
       ],
       "status": {
         "understanding": "scoped",
@@ -152536,7 +152537,8 @@
         "research/runtime/cursor-live-ownership-20261025.md",
         "research/runtime/native-player-expanded-20261026.md",
         "research/runtime/native-player-master-acceptance-20261027.md",
-        "research/runtime/cursor-copy-callers-20261102.md"
+        "research/runtime/cursor-copy-callers-20261102.md",
+        "research/runtime/cursor-resolution-admission-20261107.md"
       ],
       "implementation": [
         "runtime/native-draw/cursor_owner.h",
@@ -152639,7 +152641,8 @@
         "NPL27.hardware02",
         "NPL27.hardware03",
         "PLAYEROPEN27.storage01",
-        "PLAYERMERGE27.storage01"
+        "PLAYERMERGE27.storage01",
+        "CR07.owner-controls01"
       ],
       "status": {
         "understanding": "scoped",
@@ -152651,7 +152654,8 @@
       "remaining_gaps": [
         "Scoped native lifetime/scheduling takeover;original copy/client/setup bodies retained. The installed native campaign selects immediate copies;separate production-installer original-code controls cover deferred generations. Unknown legacy-driver aliases,arbitrary abandoned-owner/SEH flows,full scene parity and hardware-driver loss are outside this policy.",
         "PLAYERMERGE27 public lifetime journey is retained at its exact source phase before the later palette/RGB555 integrations. Final supplied controls are freshly repeated, but there is no new actual-game lifetime claim on the later combined source.",
-        "Opt-in cursor caller diagnostics add exact observed thunks and a read-only active-scope query; default ownership, operands and lifetime policy remain as authored. Source hashes change: CURCALL01.quick01 is scoped diagnostic observation, not a refreshed execution of every original lifetime/concurrency case. Historical broad lifetime evidence remains immutable and current full-suite support is pending."
+        "Opt-in cursor caller diagnostics add exact observed thunks and a read-only active-scope query; default ownership, operands and lifetime policy remain as authored. Source hashes change: CURCALL01.quick01 is scoped diagnostic observation, not a refreshed execution of every original lifetime/concurrency case. Historical broad lifetime evidence remains immutable and current full-suite support is pending.",
+        "CR07 current four-profile headless owner controls preserve existing valid-client/queue semantics after cursor admission changes. Current original-game display-transition/lifetime equivalence and exact historical failure attribution remain pending; old live hashes/statuses are retained."
       ]
     },
     {
@@ -163867,6 +163871,58 @@
       "remaining_gaps": [
         "SK06.G.output: whole movie GPU/physical output and original DirectShow/codec/driver/audio-waveform/ABI equivalence remain separate. Partial skipped delivery is not both-intro completion.",
         "SK06.G.other: arbitrary faults/restarts/providers, firstWorld, camera/Sharp/cursor and progression/results failures remain open; preserve50parent rows and both pending decisions."
+      ]
+    },
+    {
+      "id": "NP.cursor-resolution-admission",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Cursor admission at resolution and saved-background boundaries",
+      "scope": "Pinned native-only NoCD cursor ownership checks that actual display backing can contain the nominal640/800 cursor clip before foreground/timer execution. Cursor-scoped invalid geometry aborts the remaining immediate/deferred copies and invalidates the saved background with a stationary repaint trigger. General copy HRESULT/bounds, original body instructions, wire format and valid settled cursor pixels remain unchanged. Controlled actual provider/original-body cases only; no historical cause attribution, original driver or whole-player acceptance.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/cursor-resolution-admission-20261107.md"
+      ],
+      "implementation": [
+        "runtime/native-draw/cursor_owner.h",
+        "runtime/native-draw/cursor_copy_leases.h"
+      ],
+      "tests": [
+        "tests/cursor-resolution-reference.cpp",
+        "tests/native-cursor-resolution-probe.c",
+        "tools/test-cursor-resolution.py"
+      ],
+      "validation_dependencies": [
+        "tests/cursor-ownership-reference.cpp",
+        "tests/native-cursor-owner-probe.c",
+        "tests/graphics-lifetime-common.h",
+        "tests/original-pe32-image.h",
+        "tests/surface-retry-reference.cpp",
+        "tools/build-native-draw.py",
+        "tools/test-native-cursor-lifetime.py",
+        "tools/experiment_environment.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/shadow/win32_min.h"
+      ],
+      "evidence": [
+        "CR07.diagnosis01",
+        "CR07.native-controls01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CR07.G.live: no current original-game resolution-transition execution or exact attribution of the historical CP06 failures.",
+        "CR07.G.providers: physical/legacy providers and arbitrary reentrant concurrency remain outside the controlled native policy."
       ]
     }
   ],
@@ -379896,6 +379952,107 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CR07.native-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/cursor-resolution-results-20261107/after-02.json",
+      "sha256": "c6b11d47df170c12a7fb72e7eeb4505afb6be0c7bb4fb90b94430d72f220c25f",
+      "scope": "Unchanged original foreground mismatch with scripted endpoints; real owning native installer/provider and original foreground/timer/background bodies at controlled mode and saved-coordinate boundaries. No game entrypoint, historical-capture attribution, physical driver or whole-player acceptance.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_before_after",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CR07.owner-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/cursor-resolution-results-20261107/owner-controls-01.json",
+      "sha256": "5734a37520b8bfabadaa23e73f196513d77e25449d63f9e0e271a086bc2ae29b",
+      "scope": "Pinned NoCD native-only lifetime envelopes for foreground,timer,back/front restoration,selection,invalidation,setup/disposal and atlas reload;provider-pinned48-byte wrapper snapshots for synchronous copies and128-slot deferred work. Guarded original constructors/destructors cannot redirect accepted jobs. Duplicate outer-mutex admission precedes provider/copy/tracker gates;busy writers retain queued jobs,cancellation and terminal stop retain in-flight work. Eighteen exact non-relative entry anchors and kernel import guards reject unsupported installation. Original helper/copy bodies remain services;native ownership/scheduling is intentional policy,not recovered DirectDraw lifetime semantics.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_before_after",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CR07.recovered-clients01",
+      "kind": "isolated_original",
+      "record": "research/runtime/cursor-resolution-results-20261107/original-client-controls-02.json",
+      "sha256": "3477a742393d22893b15dc892de32f0da68b1d2dc3ae0c50894ab4619ac2ed98",
+      "scope": "Serial valid-memory cursor client, deferred queue and disposal caller control/state comparison. Scripted OS/COM endpoints; unchanged original copy/destructor bodies are shared external dependencies. No physical pixels, real OS concurrency, allocation alias ownership or installed native cursor replacement.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CR07.diagnosis01",
+      "kind": "static",
+      "record": "research/runtime/cursor-resolution-results-20261107/closeout-01.json",
+      "sha256": "1cf5534c2f6c48f0f6c73cd6fa3bcfa59a24c29fa10cf0092913ff8f42f56070",
+      "scope": "Fresh controlled original/client/provider proof only. Historical artifacts and source hashes unchanged; no live-game renewal, physical-driver claim or frozen acceptance promotion.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_complete_planes",
+          "equals": 108
+        },
+        {
+          "pointer": "/existing_owner_complete_planes",
+          "equals": 24
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -408002,7 +408159,8 @@
         "tools/test-native-cursor-lifetime.py"
       ],
       "evidence": [
-        "CUR27.owner07"
+        "CUR27.owner07",
+        "CR07.owner-controls01"
       ]
     },
     {
@@ -411907,6 +412065,22 @@
       "evidence": [
         "SK06.movie-skip-closed01"
       ]
+    },
+    {
+      "id": "cursor.resolution-admission",
+      "level": "headless",
+      "scope": "Controlled nominal800/live640 mismatch and exact off-screen cursor pair, saved-background offsets and stationary retry, immediate/deferred settled cursor pixels, plain/protected backings and both mutex startup orders using original bodies and real native surfaces.",
+      "behaviors": [
+        "NP.cursor-resolution-admission"
+      ],
+      "tests": [
+        "tests/cursor-resolution-reference.cpp",
+        "tests/native-cursor-resolution-probe.c",
+        "tools/test-cursor-resolution.py"
+      ],
+      "evidence": [
+        "CR07.native-controls01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -413724,8 +413898,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-f80d7d978ecf96fb0c79c9ea6d73d99c3439c4119d0fa13b36f2b15df8fc0c1a.json",
-    "sha256": "f80d7d978ecf96fb0c79c9ea6d73d99c3439c4119d0fa13b36f2b15df8fc0c1a"
+    "path": "research/runtime/coverage/source-index-4d1bcb8b39120c4bdf9ab65e7016ce9c8be61a2c9a31d2c26dce8497c37d9b53.json",
+    "sha256": "4d1bcb8b39120c4bdf9ab65e7016ce9c8be61a2c9a31d2c26dce8497c37d9b53"
   },
   "evidence_applicability": [
     {
