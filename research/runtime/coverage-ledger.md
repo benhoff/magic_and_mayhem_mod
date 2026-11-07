@@ -26749,3 +26749,16 @@ remain applicable. See [review](rendering-fixed-barriers-closeout-20261107.md).
 No new execution, fixture, code change or stage promotion. Preserve52accepted/
 104pending rows, historical pack source limitations, every old failure, the camera
 batch stop, broader pixel/domain/reliability/attribution work and both decisions.
+
+
+## Ten fixed-FPS completion conditions reconciled — 2026-11-07
+
+`FPS07.scope-reconciled01` applies the already approved diagnostic-FPS completion
+policy to ten older native component gap entries: scene production/budget, owned
+snapshot delivery, prepared World/command replay, masked scratch reuse, colour
+cache, covered displacement, retained World image and owner-cost profiling.
+See [exact scopes](rendering-ten-fps-closeouts-20261107.md). Historical benchmarks
+and every functional/pixel/ownership/deadline/progress/resource gap remain intact.
+Existing completion/acceptance guards execute; no new fixture, engine code,
+player run, status promotion or acceptance row. Preserve52accepted/104pending,
+raw native source drift and both pending decisions.
