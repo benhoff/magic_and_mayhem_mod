@@ -164151,6 +164151,54 @@
         "KP07.G.source: native engine, original comparison and viewport execution remain at their exact recorded versions. The inherited eight source differences remain raw staleness; only the new retained-data analyzer is current. No native full-hash waiver or new original run.",
         "KP07.G.scope: unknown natural GPU-keyed callers outside the closed intervals, the two exact invalid cursor calls, upstream palette builders/platform/ordinals, palette cycling, arbitrary assets/providers, whole cursor/camera/gameplay, other96rows and both decisions remain separate."
       ]
+    },
+    {
+      "id": "NP.minimap-update-closeout",
+      "title": "Retained source-bound minimap updates in native composition",
+      "scope": "Fresh retained-data analysis of actual normal Campaign/storage minimap updates for default/software at640x480 and800x600, view zero on the captured map. Owned terrain/camera/cell/creature inputs and exact source generations bind independently computed directly determined final WORDs before scene overwrite, a unique successful live display copy between successive imports and every corresponding native viewport pixel. Three advancing input generations must change visible output. Hidden auxiliary-background restoration, whole marker/border/picking/camera/simulation-visibility, arbitrary map/provider, current native-DLL execution, original whole ABI and final decisions remain separate.",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-minimap-update-closeout-20261107.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-minimap-updates.py"
+      ],
+      "tests": [
+        "tests/test-rendering-minimap-updates.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/resident_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-source-camera.py",
+        "docs/native-rendering-closure.json",
+        "tools/close-rendering-opaque-cropped-copy.py",
+        "tools/native_copy_routes.py"
+      ],
+      "evidence": [
+        "MU07.minimap-update-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "MU07.G.source: native engine, original comparison and viewport execution retain exact historical sources; eight inherited changes remain raw staleness. Only new retained-data analysis is current; no native full-hash waiver.",
+        "MU07.G.scope: hidden auxiliary-background restoration, whole markers/borders/camera/picking/upstream simulation visibility, arbitrary maps/views/providers, current whole-player validation, remaining94rows and both final decisions remain separate. Preserve all historical failures."
+      ]
     }
   ],
   "evidence": [
@@ -380550,6 +380598,71 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "MU07.minimap-update-closed01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-next-two-results-20261107/minimap-update-binding-01.json",
+      "sha256": "ca0ca979d05d3ac5a3fc2b8dc499e5bcae9c9ffe5f0952f93e3e3c5476d64af4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh retained-data analysis of actual normal Campaign/storage minimap updates for default/software at640x480 and800x600, view zero on the captured map. Owned terrain/camera/cell/creature inputs and exact source generations bind independently computed directly determined final WORDs before scene overwrite, a unique successful live display copy between successive imports and every corresponding native viewport pixel. Three advancing input generations must change visible output. Hidden auxiliary-background restoration, whole marker/border/picking/camera/simulation-visibility, arbitrary map/provider, current native-DLL execution, original whole ABI and final decisions remain separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_contexts",
+          "equals": 4
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 62
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/source_updates",
+          "equals": 12
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/hidden_background_output_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "MU07.guards01",
+      "kind": "static",
+      "record": "research/runtime/rendering-next-two-results-20261107/controls-final-01.json",
+      "sha256": "c1503ab152ae5902398b1cb1b76377c21193bff9e33c1503b2c520dc3d5243a0",
+      "sources_pointer": "/sources",
+      "scope": "Actual-data adverse admission guards and existing UI/client checks; runtime execution remains the independently recorded historical phase. Guard passes do not replace actual source/update/visible-output checks.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 64
+        },
+        {
+          "pointer": "/no_skips",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -412848,6 +412961,62 @@
         "KP07.keyed-copy-closed01",
         "KP07.palette-remap-closed01"
       ]
+    },
+    {
+      "id": "MU07.player-default.normal-storage.800x600",
+      "level": "headless",
+      "scope": "Fresh retained-data analysis of actual ['player-default', [800, 600]] normal-storage minimap source state, all directly determined terrain/overlay WORDs, exact pre-scene display-copy interval and every corresponding native viewport pixel in three meaningfully changing generations. Native execution stays historical; hidden background/whole markers/camera/visibility and new game fixtures are excluded.",
+      "behaviors": [
+        "NP.minimap-update-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-minimap-updates.py"
+      ],
+      "evidence": [
+        "MU07.minimap-update-closed01"
+      ]
+    },
+    {
+      "id": "MU07.player-software.normal-storage.800x600",
+      "level": "headless",
+      "scope": "Fresh retained-data analysis of actual ['player-software', [800, 600]] normal-storage minimap source state, all directly determined terrain/overlay WORDs, exact pre-scene display-copy interval and every corresponding native viewport pixel in three meaningfully changing generations. Native execution stays historical; hidden background/whole markers/camera/visibility and new game fixtures are excluded.",
+      "behaviors": [
+        "NP.minimap-update-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-minimap-updates.py"
+      ],
+      "evidence": [
+        "MU07.minimap-update-closed01"
+      ]
+    },
+    {
+      "id": "MU07.player-default.normal-storage.640x480",
+      "level": "headless",
+      "scope": "Fresh retained-data analysis of actual ['player-default', [640, 480]] normal-storage minimap source state, all directly determined terrain/overlay WORDs, exact pre-scene display-copy interval and every corresponding native viewport pixel in three meaningfully changing generations. Native execution stays historical; hidden background/whole markers/camera/visibility and new game fixtures are excluded.",
+      "behaviors": [
+        "NP.minimap-update-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-minimap-updates.py"
+      ],
+      "evidence": [
+        "MU07.minimap-update-closed01"
+      ]
+    },
+    {
+      "id": "MU07.player-software.normal-storage.640x480",
+      "level": "headless",
+      "scope": "Fresh retained-data analysis of actual ['player-software', [640, 480]] normal-storage minimap source state, all directly determined terrain/overlay WORDs, exact pre-scene display-copy interval and every corresponding native viewport pixel in three meaningfully changing generations. Native execution stays historical; hidden background/whole markers/camera/visibility and new game fixtures are excluded.",
+      "behaviors": [
+        "NP.minimap-update-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-minimap-updates.py"
+      ],
+      "evidence": [
+        "MU07.minimap-update-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -414665,8 +414834,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-395910129786e135243b9298fb53cb62685f03c20c750c154e07d41b55c553a2.json",
-    "sha256": "395910129786e135243b9298fb53cb62685f03c20c750c154e07d41b55c553a2"
+    "path": "research/runtime/coverage/source-index-7a51260bfe07195393bd38ddb6074295a03adf4eb09b55c1b38c39b68e2fd590.json",
+    "sha256": "7a51260bfe07195393bd38ddb6074295a03adf4eb09b55c1b38c39b68e2fd590"
   },
   "evidence_applicability": [
     {

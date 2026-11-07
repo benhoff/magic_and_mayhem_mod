@@ -26867,3 +26867,26 @@ preimages are retained. No new game, original-reference run, capture, native
 implementation, game fixture or build. See
 [closeout](rendering-four-row-closeout-20261107.md) and immutable SQLite
 `rendering-four-row-results-20261107/closeout-analysis-02.json`.
+
+
+## MU07 minimap updates — 2026-11-07
+
+Two acceptance rows close: minimap-update for both explicit profiles at actual
+640x480 and800x600. Preserve all60parent rows:62/156passed,94pending; both
+final decisions remain pending. Four retained real Campaign/storage contexts
+supply12advancing source generations with meaningful changed inputs and visible
+output. Independently computed directly determined terrain/overlay WORDs bind
+the original finite calls/state, unique successful display copies between exact
+World imports, live source/destination incarnations and every corresponding
+native viewport pixel. Minimap display copies precede scene drawing: later
+original World planes overwrite that region and receive no minimap oracle credit.
+Hidden auxiliary-background restoration, whole markers/borders/camera/picking,
+upstream visibility and arbitrary maps/views/providers remain separate.64actual-
+data/UI/client guards pass without skips. Initial cardinality and post-scene
+oracle failures, the sandbox-refused archive write and exact source preimages
+remain retained. Only new Python retained-data analysis is current; native
+execution preserves historical full hashes and eight inherited source changes.
+All known cursor/other failures and final decisions remain. No original game or
+reference run, capture, native code/build or new fixture. See
+[closeout](rendering-minimap-update-closeout-20261107.md) and immutable SQLite
+`rendering-next-two-results-20261107/closeout-analysis-04.json`.
