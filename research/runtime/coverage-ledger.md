@@ -27095,3 +27095,28 @@ rendering-first-world-results-20261107/merged-acceptance-03.json.
 Earlier80-row candidates, zero-error audits, the wrong-leaf refusal, an
 intentionally interrupted hook when master advanced, exact authored source
 preimages, all accepted reviews and verified paired backups remain retained.
+
+## MK07: presented marker and camera-corner acceptance (2026-11-07)
+
+Only the two remaining `journey.hud-minimap-tooltips.markers` profile rows close.
+All82incoming rows, complete source phases and both pending decisions are
+preserved:84/156passed72pending. Four retained IP07Quick cases at640/800 and
+default/software supply80real post-selection intervals,240source generations,
+four stored orientations plus pan and Sharp/Integer. All21,046direct native
+marker pixels match independently computed camera/cell/creature WORDs;2,873
+complete interval viewport checks (2,512,438,500pixel checks, including repeated
+swaps) match the independent owned original-history oracle at zero differences.
+Original callback state, cell pointer offset, camera origin, creature grid
+refresh and owned CPU-input/COPY/PRESENT incarnation lineage are checked.
+
+The actual original caller disables its outer diamond border (+6207nonzero);
+its four camera corner borders are included. This does not validate an enabled
+outer border. Applicable unchanged original marker-kernel proofs remain at
+their recorded execution phase; only current retained-data Python analysis
+earns headless integration. No new game, native implementation/build, oracle
+execution, atomic post-tick HUD, full cursor background/selection restoration,
+visibility generation, watchdog or second-battle resize credit. Early row
+exploration, the duplicate minimap-row refusal and analysis/source-namespace
+refusals are retained without double credit or renderer-defect inference.
+See [scope/evidence](rendering-markers-20261107.md) and immutable SQLite
+`rendering-markers-results-20261107/closeout-01.json`.

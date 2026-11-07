@@ -167709,6 +167709,96 @@
         "FW07.G.source: fresh Python retained-data comparison only; original/native/compiler/viewport source phases remain historical with raw drift. No current native execution or native full-hash waiver.",
         "FW07.G.scope: eight selected entry contexts only. Original queue traversal/metadata/clip/lazy-table preparation remain permitted suppliers. No live raw-row snapshot or complete preparation recovery, arbitrary maps/providers, whole raster ABI, later transitions, watchdog retirement or final decision claim."
       ]
+    },
+    {
+      "id": "NP.marker-acceptance",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Presented cell/creature markers and camera corner borders",
+      "scope": "Eighty retained IP07 post-selection intervals: default/software at actual640/800, Sharp/Integer, four stored views plus view0 pan on Celtic Forest One (small), Xvfb/Mesa DPR1. Each interval requires three source generations with real original flag68 callback acknowledgement/state; independently compute ordered camera corner, cell square/ring and visible creature marker WORDs from owned original arguments and consumed cell offset/camera origin/creature dimension results. Check the marker WORDs in ordered owned CPU inputs, a unique opaque pre-import display COPY, live surface incarnations and every mapped actual native PRESENT pixel, plus complete interval viewport hashes against unchanged independent original history. Only the original selected caller with outer diamond border disabled (+6207 nonzero) is admitted; camera corner borders are drawn, outer-border rendering is not claimed. Qualify startup scene at generation2 while retaining loading-labelled generation1 and complete initial history. No new original/native/oracle execution, full cursor background/selection restoration, atomic post-tick HUD, simulation visibility generation, allocation lifetime, whole ABI, arbitrary maps/providers or second-battle resize acceptance.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-markers-20261107.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-markers.py",
+        "tools/join-rendering-markers.py"
+      ],
+      "tests": [
+        "tests/test-rendering-markers.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_interaction.py",
+        "tools/rendering_interaction_assessment.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/resident_capture.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-camera-matrix.py",
+        "tools/close-rendering-source-camera.py",
+        "tools/inspect-canvas-producers.py",
+        "runtime/scene/canvas_producers.c",
+        "compat/legacy/canvas_producers.cpp",
+        "renderer/minimap/overlays.cpp",
+        "docs/native-rendering-closure.json"
+      ],
+      "evidence": [
+        "MK07.markers01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "map": "Celtic Forest One (small)",
+        "software_flags": [
+          false,
+          true
+        ],
+        "actual_sizes": [
+          [
+            800,
+            600
+          ],
+          [
+            640,
+            480
+          ]
+        ],
+        "scaling": [
+          "sharp",
+          "integer"
+        ],
+        "stored_views": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "selection_states": [
+          0,
+          1
+        ],
+        "cell_forms": [
+          "square",
+          "ring"
+        ],
+        "outer_border": "disabled by admitted original caller; camera corners drawn",
+        "provider": "Xvfb/Mesa llvmpipe,DPR1",
+        "original_execution_phase": "IP07 unchanged retained matrix"
+      },
+      "remaining_gaps": [
+        "MK07.G.boundary: full cursor background/selection restoration, atomic post-tick HUD, outer-border-enabled original callers, unknown marker populations/maps/providers, simulation visibility generation, actor allocation generations, startup watchdog and second-battle resize remain open."
+      ]
     }
   ],
   "evidence": [
@@ -384968,6 +385058,73 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "MK07.markers01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-markers-results-20261107/closeout-01.json",
+      "sha256": "5e13fe53b5e31ea4f5eaaf549d6d5ca31a27a7268c445a1448f6c54f00182fbe",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Eighty retained IP07 post-selection intervals: default/software at actual640/800, Sharp/Integer, four stored views plus view0 pan on Celtic Forest One (small), Xvfb/Mesa DPR1. Each interval requires three source generations with real original flag68 callback acknowledgement/state; independently compute ordered camera corner, cell square/ring and visible creature marker WORDs from owned original arguments and consumed cell offset/camera origin/creature dimension results. Check the marker WORDs in ordered owned CPU inputs, a unique opaque pre-import display COPY, live surface incarnations and every mapped actual native PRESENT pixel, plus complete interval viewport hashes against unchanged independent original history. Only the original selected caller with outer diamond border disabled (+6207 nonzero) is admitted; camera corner borders are drawn, outer-border rendering is not claimed. Qualify startup scene at generation2 while retaining loading-labelled generation1 and complete initial history. No new original/native/oracle execution, full cursor background/selection restoration, atomic post-tick HUD, simulation visibility generation, allocation lifetime, whole ABI, arbitrary maps/providers or second-battle resize acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 84
+        },
+        {
+          "pointer": "/marker_intervals",
+          "equals": 80
+        },
+        {
+          "pointer": "/matched_marker_pixels",
+          "equals": 21046
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_native_executions",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_original_oracle_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_complete_viewport_oracle_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_marker_pixel_comparisons",
+          "equals": 21046
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        },
+        {
+          "pointer": "/second_battle_resize_closed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -418285,6 +418442,22 @@
       "evidence": [
         "FW07.first-world-closed01"
       ]
+    },
+    {
+      "id": "native.marker-acceptance",
+      "level": "headless",
+      "scope": "Fresh retained-data independent marker geometry, original consumed-result and live copy-to-PRESENT lineage/pixel checks in eighty bounded post-selection intervals. Original/native/compiler/oracle phases stay unchanged; no new engine execution.",
+      "behaviors": [
+        "NP.marker-acceptance"
+      ],
+      "tests": [
+        "tools/close-rendering-markers.py",
+        "tools/join-rendering-markers.py",
+        "tests/test-rendering-markers.py"
+      ],
+      "evidence": [
+        "MK07.markers01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -420102,8 +420275,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-658521a410a3aedd7886cbe23884ffabfbeba0ae8c0b3e020114c06296c4ed16.json",
-    "sha256": "658521a410a3aedd7886cbe23884ffabfbeba0ae8c0b3e020114c06296c4ed16"
+    "path": "research/runtime/coverage/source-index-6cb2b01017ba2358f27b14ae770bad82cc978ad1d9aa8ab80de5f3fb798146a1.json",
+    "sha256": "6cb2b01017ba2358f27b14ae770bad82cc978ad1d9aa8ab80de5f3fb798146a1"
   },
   "evidence_applicability": [
     {

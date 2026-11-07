@@ -2017,14 +2017,14 @@
   },
   "rendering_artifacts": {
     "closure": "docs/native-rendering-closure.json",
-    "progress_record": "research/runtime/rendering-first-world-results-20261107/merged-acceptance-03.json",
+    "progress_record": "research/runtime/rendering-markers-results-20261107/closeout-01.json",
     "documents": {
       "contract": "docs/native-rendering-closure.md",
       "gaps": "research/runtime/rendering-required-gaps-20261030.md",
       "plan": "docs/native-rendering-execution.md",
       "acceptance": "docs/native-rendering-acceptance.md"
     },
-    "next_action": "Preserve82accepted rows and74pending rows. Retain the four bounded FW07first-World composition rows and two PR07pan and two OP07CPU transport rows with all74common parent rows and exact evidence/source phases. Remaining camera/picking/HUD, operations, transitions, watchdog and both final decisions remain open. This integration adds no engine execution.",
+    "next_action": "Preserve84accepted rows and72pending rows. MK07adds only the two presented marker/camera-corner profile rows from80actual selection intervals,240source generations and21046independently computed native viewport marker pixels. Retain all82parent rows, source phases and both pending decisions. Full cursor restoration, atomic HUD, tooltip, outer-border-enabled caller, visibility, watchdog, resize, remaining operations/transitions and final gates stay open.",
     "task_updates": {
       "EP01": [
         {
@@ -2273,6 +2273,13 @@
           "date": "2026-11-07",
           "note": "PR07 picking/resize batch ends failed at hard6requests/3original startups. After acknowledged Low, second Spellbox Finish18 remains unacknowledged at17; native rendering stops.20high-size object/cell windows and zero completed rebuilds earn no picking credit. Root cause remains open; every failure is retained.",
           "document": "research/runtime/rendering-picking-resize-20261107.md"
+        }
+      ],
+      "RG.J.hud-minimap-tooltips": [
+        {
+          "date": "2026-11-07",
+          "note": "MK07 closes only both markers profile rows:80actual post-selection intervals at640/800Sharp/Integer across four orientations plus pan and both selection states.240source generations,21046direct marker pixels and2873complete viewport checks/2512438500pixel checks match independent expected output. Original cell offset/camera origin/creature grid results and owned COPY-to-PRESENT lineage are checked. Original outer diamond border is disabled; camera corners are drawn.82parent rows preserved:84/156passed72pending. No native code/build/new game execution.",
+          "document": "research/runtime/rendering-markers-20261107.md"
         }
       ]
     }
