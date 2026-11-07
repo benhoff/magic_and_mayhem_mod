@@ -27055,3 +27055,15 @@ admission/caller/lifecycle/output gaps. Failed early analyses/source preimages
 and known640cursor refusals remain. New Python analysis/accounting only; no game,
 capture, native code/build or fixture. See
 [operation closeout](rendering-operations-closeout-20261107.md).
+
+
+## Enabled native intro viewport output (2026-11-07)
+
+IN07 closes both complete-intro rows for default/software High/Low:76/156passed80pending, all74parent rows and both decisions preserved. Four new public original-game cases finish eight native intro requests/11124decoded frames and normal zero-World Quit. Every ordered submitted image matches pinned independent FFmpeg/YUV/BT.601 expected data; 11136actual movie swaps/9731436000whole viewport pixels compare with zero differences, including letterbox, alpha and nearest sampling. Each new case passes complete retained-byte identity and raw normal-lifetime admission. A separate opt-in version3movie capture policy adds2GiB stored/64GiBraw/131072rows with256MiB/4096jobs and128paint keys; old v1/v2limits remain. New captures stage in RAM and exact bytes survive in paired SQLite.108actual-data/compatibility/media/UI/client guards and optimized/sanitized native worker controls pass.
+
+Retain all three zero-game AT-SPI/unsupported-source/missing-music refusals, their sources and cleanup, and the first actual normal game whose old1GiB output capture explicitly refuses. Total original games5, with4accepted complete cases; total requests8. The first strict full analyzer misclassified post-intro native GUI frames. Exact preimages/failure and retained-data correction survive: only explicit GUI ownership, live leases/commands, mode0 and zero World/sealed tags after all2781movie images qualify; no GUI movie-pixel credit. No new game for that correction. Earlier native/compiler/original/viewport phases, every historical failure, whole GUI/World/operation/transition/provider/physical scanout/original DirectShow/device obligations and both final decisions remain. Current execution covers this finite movie output scope, not whole-player or rendering recovery completion. See [the closeout](rendering-enabled-intros-closeout-20261107.md) and its immutable analysis/binding. No gameplay balance or remote operation.
+
+
+### Enabled-intro integration preserves concurrent acceptance
+
+The exact join over `34ee1d2eee233d3c2d78f5f132158ce2d22c7c3c` preserves all78incoming pan/CPU-transport/earlier rows and adds only2enabled-intro rows:80/156passed,76pending,both decisions pending. The standalone intro76-row phase and every parent source hash/attachment/failure remain immutable; no current whole-player or original DirectShow/driver equivalence is inferred. Source checkpoint and recovery stash retain the pre-update owned tree; final exact reviews and normal current/staged gates apply to the combined source.

@@ -20,6 +20,26 @@ not been measured, so it is not a mathematically proven time-optimal schedule.
 
 ## Start here
 
+**Integrated acceptance record (2026-11-07):** the
+[exact source-phase join](../research/runtime/rendering-enabled-intros-results-20261107/integrated-acceptance-01.json)
+records **80/156 passed, 76 pending**. It preserves all 78 incoming
+pan/CPU-transport and earlier rows and adds only the two enabled-intro rows.
+Both final decisions remain pending. The intro-only pack below retains its
+original 74-parent/76-row phase; no historical hash or native execution is renewed.
+
+
+**Enabled intro output closeout (2026-11-07):** the
+[full viewport review](../research/runtime/rendering-enabled-intros-closeout-20261107.md)
+closes both complete-intro rows for default/software High/Low: **76/156 passed,
+80 pending**, preserving all 74 parent rows and both pending final decisions.
+Eight completed clips, 11,136 actual movie swaps and
+9,731,436,000 viewport pixels match independent expected output at zero
+differences. All four current identity/lifetime admissions and 108 guards pass.
+Post-movie GUI output earns no movie credit. The three zero-game refusals,
+old 1 GiB capture refusal, strict analyzer refusal, earlier native source phases,
+other requirements and original DirectShow/physical-driver scope remain explicit.
+
+
 **Source-camera closeout (2026-11-06):** the
 [retained source-generation review](../research/runtime/rendering-source-camera-closeout-20261106.md)
 closes the finite default800 orientation/minimap-center to native-output binding
