@@ -26616,3 +26616,19 @@ pending. CPU caller/whole ABI, upstream palette generation, other sprite/operati
 families, first-World preparation, camera/Sharp/input, natural progression/results,
 fault/provider and all known historical/Save/camera failures remain separate.
 See [the operation closeout](rendering-destination-closeout-20261106.md).
+
+### BD06 natural direct sprites and blend pixels — 2026-11-06
+
+Native acceptance reaches 46/156 passed, 110 pending: direct sprites and the
+creature/effects blend leaf close for both explicit profiles in four retained
+Campaign/storage cases at actual 640/800 sizes. Three source generations per
+case provide 48 nonzero, non-overwritten source-to-original-to-native viewport
+samples, covering direct RGB565 and half/quarter blends. Blend results differ
+from opaque replacement. Exact queued packet/request identities and source
+coordinate lineage join unchanged continuous original history and complete
+native composition comparisons. All 42 parent rows and both pending decisions
+are preserved. Software Quick generation-2 calls with no qualifying blend result
+receive no positive credit. No game, native/runtime edit, build, fixture or new
+original reference execution. Original ABI, attachment/combat, palette builders,
+CPU callers, camera/Sharp, progression, provider/fault domains and known failures
+remain open. See [bounded evidence and controls](rendering-blend-direct-closeout-20261106.md).
