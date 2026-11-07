@@ -21,6 +21,14 @@ not been measured, so it is not a mathematically proven time-optimal schedule.
 ## Start here
 
 **Integrated acceptance record (2026-11-07):** the
+[exact source-phase join](../research/runtime/rendering-enabled-intros-results-20261107/integrated-acceptance-03.json)
+records **88/156 passed, 68 pending**. It preserves all 86 incoming
+marker/full-fill/pan/CPU-transport and earlier rows and adds only the two enabled-intro rows.
+Both final decisions remain pending. The intro-only pack below retains its
+original 74-parent/76-row phase; no historical hash or native execution is renewed.
+
+
+**Integrated acceptance record (2026-11-07):** the
 [exact source-phase join](../research/runtime/rendering-enabled-intros-results-20261107/integrated-acceptance-02.json)
 records **84/156 passed, 72 pending**. It preserves all 82 incoming
 pan/CPU-transport and earlier rows and adds only the two enabled-intro rows.
