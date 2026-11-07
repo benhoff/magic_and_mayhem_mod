@@ -26968,3 +26968,76 @@ animation and feature committed-history hashes are retained in
 added retrospectively through SQLite in `incoming-master-history-05.json`.
 All payloads verified; preserve the failed first review and original commits.
 This accounting does not assert new engine execution or a historical gate pass.
+
+
+## RC07 three retained-evidence acceptance rows — 2026-11-07
+
+Close software creature-animation and normal-lifetime gates for both profiles:
+72/156passed,84pending, preserving all69parent rows and both pending decisions.
+Two retained software Campaign/storage640/800contexts freshly join actual
+selected viewport pixels and independent original WORDs to frozen AA07 distinct
+RedCap/Wizard1 frame/resource/source-clock evidence. ANI/controller timing and
+actor-pool lifecycle remain separate. The lifetime gate expands every accepted
+primary acquisition, including IP07matrix attachments:22unique normal executions
+with7964balanced imported/completed/returned World generations. Raw original
+Main Quit/process exit0, inactive input, drained command END/control Stop, closed
+cursor jobs and zero pre-reclamation graphics owners are required. Source nonce/
+slots and per-import live command incarnations where captured are checked.
+Results lacks optional close-caller diagnostics; its raw slots receive no caller
+attribution. Cancellation is not FINISHED. Future accepted primary executions
+require the same retirement admission. Fault/restart, every intermediate API/OS
+owner, arbitrary providers and final decisions remain separate.77actual-data/UI/
+client guards pass without skips. Missing-diagnostic failure, exact sources and
+source-capture correction, successful preliminary results and all old failures
+remain. Incoming committed-history review verifies8295file transitions;13final
+operator artifact gaps receive exact retrospective receipts without historical
+gate or validation claims. Only new Python retained-data analysis is current;
+all old native/compiler/original/viewport and AA07source phases/raw drift remain.
+No original game, capture, native code/build or game fixture. See
+[closeout](rendering-retained-closeout-20261107.md) and immutable SQLite
+`rendering-retained-results-20261107/closeout-analysis-04.json`.
+
+
+## IG07 retained identity gates — 2026-11-07
+
+Close gate.identity for default/software across the exact22-case accepted primary
+cohort:74/156passed82pending, all72parent rows and both decisions preserved.
+Fresh retained-byte checks bind4848-entry installation manifests, original NoCD
+40209ca7and every staged PE32 executable, all ten native DLLs per run, three
+ELF64player binaries with actual compiler banners and consistent405-file source
+closures, recorded native source phases, observed llvmpipeLLVM22.1.8 and exact
+launch/profile/native-only isolation. Only CFG/prefs.cfg may differ from baseline:
+verify complete retained bytes equal the sole IsHighRes TRUE-to-FALSE edit in ten
+Low inputs. Initial strict equality refusal and exact sources remain. Future
+primary executions require this identity admission and the existing lifetime
+admission.78actual-data/UI/client guards pass without skips; prior55committed
+file transitions have exact receipts and no unresolved gaps. Only new Python
+provenance analysis is current; no historical source hash refresh, native waiver,
+physical driver/GL ABI, new engine execution or final decision claim. Every old
+failure, missing journey/operation/transition and the other82rows remain separate.
+No game, capture, native code/build or game fixture. See
+[closeout](rendering-identity-closeout-20261107.md) and immutable SQLite
+`rendering-identity-results-20261107/closeout-analysis-03.json`.
+
+## PR07: physical pan/picking/HUD alignment and failed resize handoff (2026-11-07)
+
+The unchanged accepted IP07 four-domain cohort supplies eight actual Up pans at
+640/800 and Sharp/Integer for default/software. Fresh retained-data analysis
+binds changed original/frame-bound cameras, fixed minimap geometry, post-pan
+source-derived object targets, original motion/selection acknowledgements and
+all 2,411 interval swaps:2,108,419,500 complete viewport pixels, zero differences.
+Only the two `journey.camera-motion.pan` rows close. The final inventory joins
+the latest reviewed parent, preserving every other row, source phase and both
+pending decisions. No new game/oracle/native execution supports this admission.
+
+The separate picking/resize batch ends failed after its hard6requests/3original
+startups. Three zero-game preparation refusals, one no-graphics X authorization
+startup, the Quick-Escape/Mini driver error and the second-Spellbox timeout all
+remain retained. The last capture has20high-size object/cell windows, zero
+completed rebuilds and no normal Quit. After acknowledged Main Preferences Low,
+Finish18 remains unacknowledged at17 in the second Spellbox; native rendering
+stops on the existing menu timeout. This is a confirmed session failure with
+unisolated cause, not a fixed renderer bug or a leak inference. Both picking
+rows and same-World rebuild continuity remain pending. No further original run
+is authorized by this exhausted batch plan. See
+[PR07 scope/evidence](rendering-picking-resize-20261107.md).
