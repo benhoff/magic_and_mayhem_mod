@@ -167709,6 +167709,70 @@
         "IN07.G.scope: physical-driver/original DirectShow/device equivalence, exact EOF/first-paint simultaneity, other required rows and both final decisions remain separate.",
         "IN07.G.history: earlier accepted native execution remains at recorded historical full hashes; capture-only changes do not renew those executions."
       ]
+    },
+    {
+      "id": "NP.first-world-composition-closeout",
+      "title": "First composed Campaign and Quick World entry",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Fresh retained-data verification of the complete first presented native Campaign/default-region and Quick/map1 World at default/software640/800. Bind exact initial/intervening owned history, every first-queue raster descriptor, consumed low16 AX, effective clips and source order, actual native viewport bytes, retained original consumer/preparation supplier and accepted identity/normal retirement. Original consumer code/continuations remain original; this is preservation of required preparation, not native simulation or whole original preparation recovery. Historical native/compiler/viewport phases and failures remain. No current native execution, arbitrary map/provider, ABI or final decision claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Preserved original first-entry consumer/table byte window and admitted raster continuation client state; permitted original supplier, no whole preparation recovery."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-first-world-closeout-20261107.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-first-world.py"
+      ],
+      "tests": [
+        "tests/test-rendering-first-world.py"
+      ],
+      "validation_dependencies": [
+        "docs/native-rendering-closure.json",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/world_continuous_v6.h",
+        "tools/close-rendering-animation-auxiliary.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-retained-rows.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_reviews.py",
+        "tools/evidence_objects.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/native_cursor_journal.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/resident_capture.py",
+        "tools/test-menu-observer.py"
+      ],
+      "evidence": [
+        "FW07.first-world-closed01",
+        "FW07.guards01",
+        "FW07.integration-guards01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "FW07.G.source: fresh Python retained-data comparison only; original/native/compiler/viewport source phases remain historical with raw drift. No current native execution or native full-hash waiver.",
+        "FW07.G.scope: eight selected entry contexts only. Original queue traversal/metadata/clip/lazy-table preparation remain permitted suppliers. No live raw-row snapshot or complete preparation recovery, arbitrary maps/providers, whole raster ABI, later transitions, watchdog retirement or final decision claim."
+      ]
     }
   ],
   "evidence": [
@@ -385044,6 +385108,127 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "FW07.first-world-closed01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-first-world-results-20261107/first-world-binding-01.json",
+      "sha256": "013835d7e0a7c90ee0944ca19b548a001c97248dec58fd3b8a52235176740683",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh retained-data verification of the complete first presented native Campaign/default-region and Quick/map1 World at default/software640/800. Bind exact initial/intervening owned history, every first-queue raster descriptor, consumed low16 AX, effective clips and source order, actual native viewport bytes, retained original consumer/preparation supplier and accepted identity/normal retirement. Original consumer code/continuations remain original; this is preservation of required preparation, not native simulation or whole original preparation recovery. Historical native/compiler/viewport phases and failures remain. No current native execution, arbitrary map/provider, ABI or final decision claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 78
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 4
+        },
+        {
+          "pointer": "/first_world_presentations",
+          "equals": 8
+        },
+        {
+          "pointer": "/compared_pixels",
+          "equals": 6996000
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/whole_original_preparation_recovered",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "FW07.guards01",
+      "kind": "static",
+      "record": "research/runtime/rendering-first-world-results-20261107/controls-final-01.json",
+      "sha256": "aff942186e4b747f352f01a46cb8a908cf360261a18445017dab142a4da459f8",
+      "sources_pointer": "/sources",
+      "scope": "Actual-data adverse first World and existing UI/client controls; no native engine or original execution claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FW07.integration-guards01",
+      "kind": "static",
+      "record": "research/runtime/rendering-first-world-results-20261107/integration-controls-01.json",
+      "sha256": "040a77bd3bb3eeec906a985476d94ed760752160036a55ec5d51d04f3e1de2cc",
+      "sources_pointer": "/sources",
+      "scope": "Fifty-five actual-data/UI/client guards with immutable-original checks. All guard source bytes and the first-world rows remain identical after adding accepted OP07 transport metadata; final actual UI projection is independently checked. No new native/original run or scope promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "IN07.acceptance-join02",
+      "kind": "static",
+      "record": "research/runtime/rendering-enabled-intros-results-20261107/integrated-acceptance-02.json",
+      "sha256": "1d19f8793a1e4e471be472ce545d58c1a644659c8649d5937b8d6d05198b4bac",
+      "sources_pointer": "/sources",
+      "scope": "Add exactly both current enabled-intro output rows to all incoming recorded acceptance rows. Preserve both pending decisions, complete original evidence attachments and separate historical source phases. This bookkeeping join executes no game/pixel analysis and renews no other native/driver/original recovery claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 84
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/preserved_all_incoming_rows",
+          "equals": true
+        },
+        {
+          "pointer": "/new_original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_per_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_hashes_refreshed",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -418297,6 +418482,126 @@
       "evidence": [
         "IN07.enabled-intros-closed01"
       ]
+    },
+    {
+      "id": "FW07.first-world.01",
+      "title": "First World player-default normal-quick 640",
+      "scope": "Fresh retained-data first-queue/caller preservation and complete initial native viewport reconstruction for player-default/normal-quick/640. Historical native execution and original preparation remain separate.",
+      "level": "headless",
+      "behaviors": [
+        "NP.first-world-composition-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-first-world.py"
+      ],
+      "evidence": [
+        "FW07.first-world-closed01"
+      ]
+    },
+    {
+      "id": "FW07.first-world.02",
+      "title": "First World player-default normal-quick 800",
+      "scope": "Fresh retained-data first-queue/caller preservation and complete initial native viewport reconstruction for player-default/normal-quick/800. Historical native execution and original preparation remain separate.",
+      "level": "headless",
+      "behaviors": [
+        "NP.first-world-composition-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-first-world.py"
+      ],
+      "evidence": [
+        "FW07.first-world-closed01"
+      ]
+    },
+    {
+      "id": "FW07.first-world.03",
+      "title": "First World player-default normal-storage 640",
+      "scope": "Fresh retained-data first-queue/caller preservation and complete initial native viewport reconstruction for player-default/normal-storage/640. Historical native execution and original preparation remain separate.",
+      "level": "headless",
+      "behaviors": [
+        "NP.first-world-composition-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-first-world.py"
+      ],
+      "evidence": [
+        "FW07.first-world-closed01"
+      ]
+    },
+    {
+      "id": "FW07.first-world.04",
+      "title": "First World player-default normal-storage 800",
+      "scope": "Fresh retained-data first-queue/caller preservation and complete initial native viewport reconstruction for player-default/normal-storage/800. Historical native execution and original preparation remain separate.",
+      "level": "headless",
+      "behaviors": [
+        "NP.first-world-composition-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-first-world.py"
+      ],
+      "evidence": [
+        "FW07.first-world-closed01"
+      ]
+    },
+    {
+      "id": "FW07.first-world.05",
+      "title": "First World player-software normal-quick 640",
+      "scope": "Fresh retained-data first-queue/caller preservation and complete initial native viewport reconstruction for player-software/normal-quick/640. Historical native execution and original preparation remain separate.",
+      "level": "headless",
+      "behaviors": [
+        "NP.first-world-composition-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-first-world.py"
+      ],
+      "evidence": [
+        "FW07.first-world-closed01"
+      ]
+    },
+    {
+      "id": "FW07.first-world.06",
+      "title": "First World player-software normal-quick 800",
+      "scope": "Fresh retained-data first-queue/caller preservation and complete initial native viewport reconstruction for player-software/normal-quick/800. Historical native execution and original preparation remain separate.",
+      "level": "headless",
+      "behaviors": [
+        "NP.first-world-composition-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-first-world.py"
+      ],
+      "evidence": [
+        "FW07.first-world-closed01"
+      ]
+    },
+    {
+      "id": "FW07.first-world.07",
+      "title": "First World player-software normal-storage 640",
+      "scope": "Fresh retained-data first-queue/caller preservation and complete initial native viewport reconstruction for player-software/normal-storage/640. Historical native execution and original preparation remain separate.",
+      "level": "headless",
+      "behaviors": [
+        "NP.first-world-composition-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-first-world.py"
+      ],
+      "evidence": [
+        "FW07.first-world-closed01"
+      ]
+    },
+    {
+      "id": "FW07.first-world.08",
+      "title": "First World player-software normal-storage 800",
+      "scope": "Fresh retained-data first-queue/caller preservation and complete initial native viewport reconstruction for player-software/normal-storage/800. Historical native execution and original preparation remain separate.",
+      "level": "headless",
+      "behaviors": [
+        "NP.first-world-composition-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-first-world.py"
+      ],
+      "evidence": [
+        "FW07.first-world-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -420114,8 +420419,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-0620158a241076bc2c7033af72e977ba86120debddb8969db3cd480d66ffc560.json",
-    "sha256": "0620158a241076bc2c7033af72e977ba86120debddb8969db3cd480d66ffc560"
+    "path": "research/runtime/coverage/source-index-b0d24019029b207324ab6f388bd567e04c4252774486834f5f45e2e84dadb326.json",
+    "sha256": "b0d24019029b207324ab6f388bd567e04c4252774486834f5f45e2e84dadb326"
   },
   "evidence_applicability": [
     {

@@ -1,5 +1,12 @@
 # Enabled intro viewport output
 
+Integration with master `2b3559ffa393` preserves all 82 incoming rows,
+including concurrent pan and CPU transport closeouts, and adds only the two intro
+rows: **84/156 passed, 72 pending**, both decisions pending. See the
+[integrated record](rendering-enabled-intros-results-20261107/integrated-acceptance-02.json).
+The standalone intro evidence pack below preserves its original 76-row phase.
+
+
 Integration with master `34ee1d2eee23` preserves all 78 incoming rows,
 including concurrent pan and CPU transport closeouts, and adds only the two intro
 rows: **80/156 passed, 76 pending**, both decisions pending. See the

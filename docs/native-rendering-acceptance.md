@@ -1,6 +1,14 @@
 # Native rendering acceptance record
 
 **Integrated acceptance record (2026-11-07):** the
+[exact source-phase join](../research/runtime/rendering-enabled-intros-results-20261107/integrated-acceptance-02.json)
+records **84/156 passed, 72 pending**. It preserves all 82 incoming
+pan/CPU-transport and earlier rows and adds only the two enabled-intro rows.
+Both final decisions remain pending. The intro-only pack below retains its
+original 74-parent/76-row phase; no historical hash or native execution is renewed.
+
+
+**Integrated acceptance record (2026-11-07):** the
 [exact source-phase join](../research/runtime/rendering-enabled-intros-results-20261107/integrated-acceptance-01.json)
 records **80/156 passed, 76 pending**. It preserves all 78 incoming
 pan/CPU-transport and earlier rows and adds only the two enabled-intro rows.
@@ -19,6 +27,18 @@ Post-movie GUI output earns no movie credit. The three zero-game refusals,
 old 1 GiB capture refusal, strict analyzer refusal, earlier native source phases,
 other requirements and original DirectShow/physical-driver scope remain explicit.
 
+The local first-World integration retains both concurrent pan and CPU transport
+closeouts: **82 passed / 74 pending**. All 74 common parent rows and eight
+disjoint additions keep their exact attachments and historical source maps.
+This metadata join adds no engine execution; both final decisions remain pending.
+
+The 2026-11-07 [first World composition closeout](../research/runtime/rendering-first-world-closeout-20261107.md)
+advances the selected inventory to **78 passed / 78 pending**. Four Campaign/Quick
+first-composed-World rows close across default/software640/800 through complete
+retained viewport reconstruction and bounded preservation of the original caller
+supplier. Historical native source phases, all failures and both final decisions
+remain separate. The opening and earlier dated records below retain their own
+phases and counts.
 
 The [reviewed storage follow-up](../research/runtime/storage-main-stall-20261101.md)
 now records 8 passed finite storage/Cancel requirements and 148 pending requirements
