@@ -26968,3 +26968,31 @@ animation and feature committed-history hashes are retained in
 added retrospectively through SQLite in `incoming-master-history-05.json`.
 All payloads verified; preserve the failed first review and original commits.
 This accounting does not assert new engine execution or a historical gate pass.
+
+
+## RC07 three retained-evidence acceptance rows — 2026-11-07
+
+Close software creature-animation and normal-lifetime gates for both profiles:
+72/156passed,84pending, preserving all69parent rows and both pending decisions.
+Two retained software Campaign/storage640/800contexts freshly join actual
+selected viewport pixels and independent original WORDs to frozen AA07 distinct
+RedCap/Wizard1 frame/resource/source-clock evidence. ANI/controller timing and
+actor-pool lifecycle remain separate. The lifetime gate expands every accepted
+primary acquisition, including IP07matrix attachments:22unique normal executions
+with7964balanced imported/completed/returned World generations. Raw original
+Main Quit/process exit0, inactive input, drained command END/control Stop, closed
+cursor jobs and zero pre-reclamation graphics owners are required. Source nonce/
+slots and per-import live command incarnations where captured are checked.
+Results lacks optional close-caller diagnostics; its raw slots receive no caller
+attribution. Cancellation is not FINISHED. Future accepted primary executions
+require the same retirement admission. Fault/restart, every intermediate API/OS
+owner, arbitrary providers and final decisions remain separate.77actual-data/UI/
+client guards pass without skips. Missing-diagnostic failure, exact sources and
+source-capture correction, successful preliminary results and all old failures
+remain. Incoming committed-history review verifies8295file transitions;13final
+operator artifact gaps receive exact retrospective receipts without historical
+gate or validation claims. Only new Python retained-data analysis is current;
+all old native/compiler/original/viewport and AA07source phases/raw drift remain.
+No original game, capture, native code/build or game fixture. See
+[closeout](rendering-retained-closeout-20261107.md) and immutable SQLite
+`rendering-retained-results-20261107/closeout-analysis-04.json`.

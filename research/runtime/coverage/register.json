@@ -164525,6 +164525,110 @@
         "IP07.G.four-view-scope: only the two four-orientation configuration rows are admitted. Pan/HUD, viewport edges/rebuilds, whole cursor/picking/selection/hotspots, response deadlines and both decisions remain pending.",
         "IP07.G.parent-source: inherited rows retain their exact historical native/analyzer source phases and all raw drift; current native validation applies only to the named new four-view matrix. No native full-hash waiver."
       ]
+    },
+    {
+      "id": "NP.software-creature-closeout",
+      "title": "Software creature animation acceptance",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Admit the remaining software creature-animation row at actual640/800 from the unchanged AA07 retained-data execution: exact archived named creature resources, distinct decoded frames, source clocks/incarnations and actual changed visible native output. No native ANI controller/timing recovery, per-actor pool lifetime, new map/view/provider or current native execution claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-retained-closeout-20261107.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-retained-rows.py"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/native_cursor_journal.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/close-rendering-animation-auxiliary.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/test-menu-observer.py",
+        "docs/native-rendering-closure.json",
+        "tools/evidence_objects.py",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/world_continuous_v6.h"
+      ],
+      "evidence": [
+        "RC07.software-creature-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "RC07.G.source: current Python retained-data analysis only. Native/compiler/original comparison/viewport executions preserve their exact source phases and historical drift; no full-hash waiver or new native run.",
+        "RC07.G.scope: lifetime credit applies to this frozen accepted primary cohort; later primary executions require the same retirement admission. Fault/restart, unknown future journeys, every intermediate API owner, OS-wide handle census, ANI/controller/timing/actor lifecycle, arbitrary providers and both final decisions remain separate. Results lacks the optional close-caller diagnostic; no caller attribution is inferred. Every failure remains retained."
+      ]
+    },
+    {
+      "id": "NP.normal-lifetime-gate-closeout",
+      "title": "Normal lifetime acceptance gate",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Conjoin the already accepted World-exit/menu-exit/cleanup leaves for both profiles with fresh raw retirement analysis of every unique primary execution referenced by the selected accepted-row inventory. Require original normal Main Quit, actual process exit0, inactive input, ended drained command/control Stop, closed balanced cursor jobs, zero pre-reclamation graphics owners and balanced imported/completed/returned World work. Bind source nonce/terminal slots for World cases and imported surface incarnations wherever full capture exists. No force-stop, diagnostic fault, restart, future unexecuted journey, every intermediate external API object, OS-wide handles or final decision claim; later cohort additions require this admission check for their new executions. Native proofs retain recorded source phases.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-retained-closeout-20261107.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-retained-rows.py"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/native_cursor_journal.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/close-rendering-animation-auxiliary.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/test-menu-observer.py",
+        "docs/native-rendering-closure.json",
+        "tools/evidence_objects.py",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/world_continuous_v6.h"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "RC07.G.source: current Python retained-data analysis only. Native/compiler/original comparison/viewport executions preserve their exact source phases and historical drift; no full-hash waiver or new native run.",
+        "RC07.G.scope: lifetime credit applies to this frozen accepted primary cohort; later primary executions require the same retirement admission. Fault/restart, unknown future journeys, every intermediate API owner, OS-wide handle census, ANI/controller/timing/actor lifecycle, arbitrary providers and both final decisions remain separate. Results lacks the optional close-caller diagnostic; no caller attribution is inferred. Every failure remains retained."
+      ]
     }
   ],
   "evidence": [
@@ -381300,6 +381404,122 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "RC07.software-creature-closed01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-retained-results-20261107/software-creature-binding-01.json",
+      "sha256": "bbbadbb81d11b0a19306b98144a27a0a8a5287b3090d8a4bffa2db38fcadc690",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Admit the remaining software creature-animation row at actual640/800 from the unchanged AA07 retained-data execution: exact archived named creature resources, distinct decoded frames, source clocks/incarnations and actual changed visible native output. No native ANI controller/timing recovery, per-actor pool lifetime, new map/view/provider or current native execution claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_primary_executions",
+          "equals": 22
+        },
+        {
+          "pointer": "/source_imports",
+          "equals": 7964
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 72
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 3
+        },
+        {
+          "pointer": "/software_frame_states",
+          "equals": 12
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/original_ani_timing_recovery_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime-closed01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-retained-results-20261107/normal-lifetime-binding-01.json",
+      "sha256": "fc6bf47acfd3bc74bf590815d8df026149b048de815f3bcb3eda19a665dc572a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Conjoin the already accepted World-exit/menu-exit/cleanup leaves for both profiles with fresh raw retirement analysis of every unique primary execution referenced by the selected accepted-row inventory. Require original normal Main Quit, actual process exit0, inactive input, ended drained command/control Stop, closed balanced cursor jobs, zero pre-reclamation graphics owners and balanced imported/completed/returned World work. Bind source nonce/terminal slots for World cases and imported surface incarnations wherever full capture exists. No force-stop, diagnostic fault, restart, future unexecuted journey, every intermediate external API object, OS-wide handles or final decision claim; later cohort additions require this admission check for their new executions. Native proofs retain recorded source phases.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_primary_executions",
+          "equals": 22
+        },
+        {
+          "pointer": "/source_imports",
+          "equals": 7964
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 72
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 3
+        },
+        {
+          "pointer": "/software_frame_states",
+          "equals": 12
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/original_ani_timing_recovery_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RC07.guards01",
+      "kind": "static",
+      "record": "research/runtime/rendering-retained-results-20261107/controls-final-01.json",
+      "sha256": "0b2f815a3cbe32f18958bc3c51b8e51cf5ee4340606f2312e1c880c88278bbfc",
+      "sources_pointer": "/sources",
+      "scope": "Actual retained-data adverse terminal ownership/cohort/software-pixel admission guards plus UI/client controls. No current native runtime or broader ANI/actor/provider/fault/restart equivalence.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 77
+        },
+        {
+          "pointer": "/no_skips",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -413751,6 +413971,342 @@
         "IP07.fourviews01",
         "IP07.fourviews02"
       ]
+    },
+    {
+      "id": "RC07.software-creature.800x600",
+      "level": "headless",
+      "scope": "Fresh recheck of actual retained software creature viewport bytes at [800, 600] against frozen AA07 distinct-frame/resource/source-clock proof and independent original WORD planes. Original animation decisions and historical native execution remain separate.",
+      "behaviors": [
+        "NP.software-creature-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.software-creature-closed01"
+      ]
+    },
+    {
+      "id": "RC07.software-creature.640x480",
+      "level": "headless",
+      "scope": "Fresh recheck of actual retained software creature viewport bytes at [640, 480] against frozen AA07 distinct-frame/resource/source-clock proof and independent original WORD planes. Original animation decisions and historical native execution remain separate.",
+      "behaviors": [
+        "NP.software-creature-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.software-creature-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.01",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-movie-skip-results-20261106/default-high-acquisition-03.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.02",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-movie-skip-results-20261106/default-low-acquisition-01.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.03",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-main-setup-results-20261106/default-high-acquisition-07.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.04",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-main-setup-results-20261106/default-low-acquisition-01.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.05",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-normal-results-20261031/cleanup-storage-player-default-800-20261105-01-acquisition.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.06",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-normal-results-20261031/cleanup-storage-player-default-640-20261105-01-acquisition.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.07",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-normal-results-20261031/gameplay-default-800-acquisition-03.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.08",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-normal-results-20261031/sustained-player-default-640-20261105-01-acquisition.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.09",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-interaction-results-20261107/default-800-06-acquisition.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.10",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-interaction-results-20261107/default-640-02-acquisition.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.11",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-functional-ten-results-20261107/default-results-acquisition-03.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.12",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-movie-skip-results-20261106/software-high-acquisition-01.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.13",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-movie-skip-results-20261106/software-low-acquisition-01.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.14",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-main-setup-results-20261106/software-high-acquisition-01.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.15",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-main-setup-results-20261106/software-low-acquisition-01.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.16",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-normal-results-20261031/cleanup-storage-player-software-800-20261105-01-acquisition.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.17",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-normal-results-20261031/cleanup-storage-player-software-640-20261105-02-acquisition.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.18",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-normal-results-20261031/sustained-player-software-800-20261105-01-acquisition.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.19",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-normal-results-20261031/sustained-player-software-640-20261105-01-acquisition.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.20",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-interaction-results-20261107/software-800-01-acquisition.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.21",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-interaction-results-20261107/software-640-01-acquisition.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
+    },
+    {
+      "id": "RC07.normal-lifetime.22",
+      "level": "headless",
+      "scope": "Raw normal original Quit, process exit, input, command END/control Stop, cursor jobs, pre-reclamation graphics owners and source returns for research/runtime/rendering-functional-ten-results-20261107/software-results-acquisition-01.json. Per-import command incarnations where retained; Results uses raw source slots without close-caller attribution. Fixed historical source phase, no force/fault/restart or future execution claim.",
+      "behaviors": [
+        "NP.normal-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-retained-rows.py"
+      ],
+      "evidence": [
+        "RC07.normal-lifetime-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -415568,8 +416124,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-d31a7ff0d4bcc60898cc9ee7a829ba14c11ddff498d4d66c6ed510aeaa1507f9.json",
-    "sha256": "d31a7ff0d4bcc60898cc9ee7a829ba14c11ddff498d4d66c6ed510aeaa1507f9"
+    "path": "research/runtime/coverage/source-index-e213dab246eda28cd3450c40a42134be12db2f4effe54e07dbae4641b06e798c.json",
+    "sha256": "e213dab246eda28cd3450c40a42134be12db2f4effe54e07dbae4641b06e798c"
   },
   "evidence_applicability": [
     {
