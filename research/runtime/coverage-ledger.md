@@ -27138,3 +27138,30 @@ are inside their surfaces and earn no clipping credit. All84parent rows, includi
 only; historical native/original phases and every failure remain. No game,
 capture, native code/build or fixture. See
 [full-fill closeout](rendering-full-fill-closeout-20261107.md).
+
+
+## Shared rendering closeout and second Spellbox diagnosis — 2026-11-07
+
+BC07 adds a bounded shared retained-proof runner around unchanged CPU, full-fill,
+pan and marker admissions. One SQLite reader/result preserves all unrelated
+rows, source phases, failures and both decisions; eleven actual-data/adverse/UI
+checks pass. Its four-component replay reproduces eight existing admissions
+from the selected74-row parent to82; current master86/156is unchanged.
+Required census, exact receipts, audit/gates, paired backups and normal hook
+remain separate mandatory closeout steps. SH07 separately reviews the retained
+second Spellbox freeze and adds prospectively bounded public High->High/High->Low
+diagnostics with read-only SQLite/process waits. Both prior zero-game staging
+refusals, exhausted PR07six-request/three-game failure and unisolated cause are
+preserved. No native/runtime/Qt bytes, original artifacts, gameplay balance or
+final acceptance status is changed. See
+[the owned review](rendering-closeout-handoff-20261107.md) for current execution
+boundaries and immutable results.
+
+SH07 final reduced-route diagnostic:3requests,2zero-game refusals,1failed
+original startup;440retained lane samples reproduce second Finish18/ACK17without
+the picking workload. Host retirement's1.342176357supper bound identifies the
+2sstate-lease branch rather than10srequest timeout. Guest process/stack cause
+remains unproved. Ten current retained-data/parser controls validate decoding,
+namespace device/inode matching, old-frame rebuild waiting and timing; corrected observer has no new live
+validation. Original/native/compiler/player source phases and both full picking
+rows/final decisions remain separate. No rectangle/deadline policy is weakened.
