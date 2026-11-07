@@ -27120,3 +27120,21 @@ exploration, the duplicate minimap-row refusal and analysis/source-namespace
 refusals are retained without double credit or renderer-defect inference.
 See [scope/evidence](rendering-markers-20261107.md) and immutable SQLite
 `rendering-markers-results-20261107/closeout-01.json`.
+
+### FF07 natural full-fill operation rows — 2026-11-07
+
+Two full-fill rows close from four already admitted640/800default/software
+storage/menu cases:355natural source fill calls join the closed caller census,
+including328full fills, and12meaningful full UPDATE witnesses reach checked
+complete recorded actual GPU COPY source/prior/destination planes. Exact source
+argument colors, COPY fences and live handle incarnations agree. The same
+imported World surface/generation remains live through both UPDATE and GPU
+output; retired-World transition witnesses are excluded by fresh retained-data
+analysis02and five added guards. The initial admission refusal/source versions
+and interrupted uncommitted finishes remain. Exclude NIZ1
+policy initialization and eight unpaired terminal fills. Rectangular fills here
+are inside their surfaces and earn no clipping credit. All84parent rows, including both minimap-marker rows, remain:
+86/156passed70pending;14operation rows remain open. Python retained-data analysis
+only; historical native/original phases and every failure remain. No game,
+capture, native code/build or fixture. See
+[full-fill closeout](rendering-full-fill-closeout-20261107.md).

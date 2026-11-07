@@ -167799,6 +167799,59 @@
       "remaining_gaps": [
         "MK07.G.boundary: full cursor background/selection restoration, atomic post-tick HUD, outer-border-enabled original callers, unknown marker populations/maps/providers, simulation visibility generation, actor allocation generations, startup watchdog and second-battle resize remain open."
       ]
+    },
+    {
+      "id": "NP.full-fill-operation-closeout",
+      "title": "Bounded natural full-fill operation acceptance",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Close only full-fill for default/software at actual640/800 from four already admitted normal-storage cases after first World entry.355natural source fills join the closed single-owner caller census, including328full fills. Twelve meaningful complete argument-derived UPDATEs have unique COPY fences and live canonical-object/native-handle joins. The same imported World surface and generation remain live through both UPDATE and independently checked complete recorded actual GPU COPY source/prior/destination planes. Retired-World transition witnesses earn no row credit. Exclude policy NIZ1initialization and eight unpaired terminal fills. Rectangular calls are in bounds and earn no clipping/partial-prefix credit. Preserve all84incoming rows, historical native/original phases, failures and both decisions:86/156passed70pending. No game/capture/native/build/fixture or whole caller ABI/driver claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-full-fill-closeout-20261107.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-full-fill.py",
+        "tools/join-rendering-full-fill-acceptance.py"
+      ],
+      "tests": [
+        "tests/test-rendering-full-fill.py",
+        "tests/test-rendering-full-fill-join.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/resident_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/close-rendering-opaque-cropped-copy.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/evidence_objects.py",
+        "docs/native-rendering-closure.json",
+        "tools/coverage_rendering_artifacts.py"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "FF07.full-fill-closed01"
+      ],
+      "remaining_gaps": [
+        "FF07.G.operations: fourteen operation rows remain: clipped/stretched/alias COPY, clipped fill, font/DC lifetime, palette cycling and complete flags/returns. In-bounds rectangular fills and old clipped quick02subproof do not close required clipping or bypass missing primary admission.",
+        "FF07.G.scope: exact four admitted storage/menu contexts on isolated llvmpipe only.328full source/caller invocations are accounted for, while12specific meaningful UPDATE/GPU output witnesses earn finite credit. Two post-source tail fills per case remain unpaired; native policy initialization earns no natural invocation credit. Full overwrites have no exterior, and no terrain-clear-per-frame, arbitrary format/caller/reader/provider, clipped/partial-prefix/font/ABI or current native execution claim follows.",
+        "FF07.G.source: current Python retained-data analysis and pure acceptance join only. All original/native/compiler/player/viewport hashes and every known failure remain historical with explicit source phases. Both final rendering decisions stay pending."
+      ]
     }
   ],
   "evidence": [
@@ -385125,6 +385178,91 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "FF07.full-fill-closed01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-fill-operations-results-20261107/full-fill-binding-03.json",
+      "sha256": "27c08740f8060bb984b5a9ace2e365ca9d1ab1a99240fd97272d7dd888374664",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Close only full-fill for default/software at actual640/800 from four already admitted normal-storage cases after first World entry.355natural source fills join the closed single-owner caller census, including328full fills. Twelve meaningful complete argument-derived UPDATEs have unique COPY fences and live canonical-object/native-handle joins. The same imported World surface and generation remain live through both UPDATE and independently checked complete recorded actual GPU COPY source/prior/destination planes. Retired-World transition witnesses earn no row credit. Exclude policy NIZ1initialization and eight unpaired terminal fills. Rectangular calls are in bounds and earn no clipping/partial-prefix credit. Preserve all84incoming rows, historical native/original phases, failures and both decisions:86/156passed70pending. No game/capture/native/build/fixture or whole caller ABI/driver claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/natural_source_fill_calls",
+          "equals": 355
+        },
+        {
+          "pointer": "/full_source_fill_calls",
+          "equals": 328
+        },
+        {
+          "pointer": "/full_fill_witnesses",
+          "equals": 12
+        },
+        {
+          "pointer": "/live_world_witnesses",
+          "equals": 12
+        },
+        {
+          "pointer": "/unpaired_terminal_fills",
+          "equals": 8
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 86
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/clipped_fill_claim",
+          "equals": false
+        },
+        {
+          "pointer": "/whole_original_abi_claim",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "FF07.guards03",
+      "kind": "static",
+      "record": "research/runtime/rendering-fill-operations-results-20261107/controls-final-03.json",
+      "sha256": "96d4620bb58d214c00f975321ba62f743f5854c3018d1ae59a56e96321c8cecc",
+      "sources_pointer": "/sources",
+      "scope": "Actual retained argument/UPDATE/caller/fence/writer-and-World-lifetime/GPU output refusal and pure parent inventory join guards plus existing UI/client checks. Mutated controls earn no game/native execution credit.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 85
+        },
+        {
+          "pointer": "/no_skips",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -418458,6 +418596,66 @@
       "evidence": [
         "MK07.markers01"
       ]
+    },
+    {
+      "id": "FF07.full-fill.01",
+      "level": "headless",
+      "scope": "Three meaningful actual full-fill/UPDATE/GPU COPY witnesses for ['player-default', [800, 600]] after first World entry in admitted storage/menu session. Exact source argument color, single-owner caller chronology, COPY fences, canonical Surface/native live handle and complete recorded actual GPU source/prior/destination planes. No initialization markers, unpaired tails, clipping, font lifetime, whole caller ABI or new native execution.",
+      "behaviors": [
+        "NP.full-fill-operation-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-full-fill.py",
+        "tests/test-rendering-full-fill-join.py"
+      ],
+      "evidence": [
+        "FF07.full-fill-closed01"
+      ]
+    },
+    {
+      "id": "FF07.full-fill.02",
+      "level": "headless",
+      "scope": "Three meaningful actual full-fill/UPDATE/GPU COPY witnesses for ['player-software', [800, 600]] after first World entry in admitted storage/menu session. Exact source argument color, single-owner caller chronology, COPY fences, canonical Surface/native live handle and complete recorded actual GPU source/prior/destination planes. No initialization markers, unpaired tails, clipping, font lifetime, whole caller ABI or new native execution.",
+      "behaviors": [
+        "NP.full-fill-operation-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-full-fill.py",
+        "tests/test-rendering-full-fill-join.py"
+      ],
+      "evidence": [
+        "FF07.full-fill-closed01"
+      ]
+    },
+    {
+      "id": "FF07.full-fill.03",
+      "level": "headless",
+      "scope": "Three meaningful actual full-fill/UPDATE/GPU COPY witnesses for ['player-default', [640, 480]] after first World entry in admitted storage/menu session. Exact source argument color, single-owner caller chronology, COPY fences, canonical Surface/native live handle and complete recorded actual GPU source/prior/destination planes. No initialization markers, unpaired tails, clipping, font lifetime, whole caller ABI or new native execution.",
+      "behaviors": [
+        "NP.full-fill-operation-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-full-fill.py",
+        "tests/test-rendering-full-fill-join.py"
+      ],
+      "evidence": [
+        "FF07.full-fill-closed01"
+      ]
+    },
+    {
+      "id": "FF07.full-fill.04",
+      "level": "headless",
+      "scope": "Three meaningful actual full-fill/UPDATE/GPU COPY witnesses for ['player-software', [640, 480]] after first World entry in admitted storage/menu session. Exact source argument color, single-owner caller chronology, COPY fences, canonical Surface/native live handle and complete recorded actual GPU source/prior/destination planes. No initialization markers, unpaired tails, clipping, font lifetime, whole caller ABI or new native execution.",
+      "behaviors": [
+        "NP.full-fill-operation-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-full-fill.py",
+        "tests/test-rendering-full-fill-join.py"
+      ],
+      "evidence": [
+        "FF07.full-fill-closed01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -420275,8 +420473,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6cb2b01017ba2358f27b14ae770bad82cc978ad1d9aa8ab80de5f3fb798146a1.json",
-    "sha256": "6cb2b01017ba2358f27b14ae770bad82cc978ad1d9aa8ab80de5f3fb798146a1"
+    "path": "research/runtime/coverage/source-index-63537bb41ae655343160877c1f28580f62cef8bc06605f3d7989149d51d4f84e.json",
+    "sha256": "63537bb41ae655343160877c1f28580f62cef8bc06605f3d7989149d51d4f84e"
   },
   "evidence_applicability": [
     {
