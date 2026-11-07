@@ -26759,3 +26759,29 @@ historical flag/cause attribution and current live transitions remain pending.
 52frozen rows and both final decisions retain their historical source phase; new
 native source bytes do not renew broad player/provider acceptance. See
 [cursor correction and controls](cursor-resolution-admission-20261107.md).
+
+
+## Repaired rendering barriers reconciled — 2026-11-07
+
+`FR07.barriers-reconciled01` closes three narrow stale barriers using unchanged
+merged RF06 execution: exact Sharp sampling (286framebuffer/34onscreen checks),
+public physical Main/Map actions (9original ready states), and software640 V3
+Save/Mini Load/display rebuild/Main Load/normal Quit (846balanced deliveries).
+All recorded positive source bindings still match; the existing native milestones
+remain applicable. See [review](rendering-fixed-barriers-closeout-20261107.md).
+No new execution, fixture, code change or stage promotion. Preserve52accepted/
+104pending rows, historical pack source limitations, every old failure, the camera
+batch stop, broader pixel/domain/reliability/attribution work and both decisions.
+
+
+### Cursor fix and concurrent barrier accounting integration — 2026-11-07
+
+Native cursor fix f1b42ad8c and barrier reconciliation1575c7b43 retain both exact
+histories, stable register identities, review receipts and complete ledger
+additions. Every native source and test remains exactly the validated fix.
+CR07 implementation/headless proof stays current. FR07 keeps its original RF06
+source phase; cursor-header drift does not renew affected whole-game inputs or
+reset previously observed finite positives.52frozen rows and both final decisions
+remain unchanged. Both committed first-parent ranges have exact file receipts and
+no unresolved gaps. No additional build/test/game execution is claimed. See
+[cursor integration boundary](cursor-resolution-integration-20261107.md).
