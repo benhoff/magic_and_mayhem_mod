@@ -26632,3 +26632,21 @@ receive no positive credit. No game, native/runtime edit, build, fixture or new
 original reference execution. Original ABI, attachment/combat, palette builders,
 CPU callers, camera/Sharp, progression, provider/fault domains and known failures
 remain open. See [bounded evidence and controls](rendering-blend-direct-closeout-20261106.md).
+
+### CP06 caller-bound opaque/cropped native copies — 2026-11-06
+
+Native acceptance reaches 50/156 passed, 106 pending: opaque copies and image
+cropping close for both explicit profiles. Whole-source RGB565 output uses eight
+retained Quick/Campaign cases; cropped output uses the four Campaign/storage
+cases, at actual 640/800. Closed original caller/authority/result intervals bind
+every emitted copy. Selected source/before/complete native destination hashes
+match independent copy transforms; both CPU/GPU source routes have witnesses.
+Thirty-six source-coordinate-to-viewport witnesses span three distinct source
+generations per admitted kind/domain. Preserve all 46 parent rows and both pending
+decisions. No alias/clipper/GPU-keyed positives are manufactured; four low-resolution
+invalid-rectangle cursor calls remain failures without emitted COPY intervals.
+Software Quick crop inadequacy and exact analyzer preimages remain negative
+history. No game, native/runtime edit, build, fixture or original reference run.
+Original driver/ABI/CPU producer recovery, other copy families, known caller issues,
+camera/Sharp, progression/results and provider/fault boundaries remain open.
+See [bounded evidence and controls](rendering-copy-closeout-20261106.md).
