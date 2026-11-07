@@ -26616,3 +26616,40 @@ pending. CPU caller/whole ABI, upstream palette generation, other sprite/operati
 families, first-World preparation, camera/Sharp/input, natural progression/results,
 fault/provider and all known historical/Save/camera failures remain separate.
 See [the operation closeout](rendering-destination-closeout-20261106.md).
+
+
+## Native Sharp sampling and lost menu intents repaired — 2026-11-06
+
+`RF06.native-regressions01` validates native code corrections, separately from
+acceptance-row accounting. The exact retained Sharp geometry reproduces a
+floating-point nearest-texel boundary error in the old shader. Both OpenGL
+presentation paths now use physical pixel centres and integer source-coordinate
+division; the independent reference, tolerance and Smooth policy are unchanged.
+286complete framebuffer and34on-screen comparisons pass at DPR1/1.5.
+
+Main/Map and Save can lose a valid action when the bridge snapshot overlaps
+an original publication. The native session now retains one owned unpublished
+intent for at most500ms of active menu time, preserves its generation/screen/
+thread/ACK and arguments, and rechecks every bridge guard before dispatch. It
+never resends a published request.21forced publication cases,3real XTest button
+actions and8existing menu suites pass. Stable owner/readiness changes, retirement,
+expiry and overtaking input refuse; media pauses dispatch and stop/restart
+discards the intent. Save now records accepted/refused submissions rather than
+allowing a silent refusal to wait for the overall diagnostic deadline.
+
+The historical CM06/CS05 records prove their earlier failure boundaries, without
+identifying every exact cause. Their hashes/results and all prior milestones stay
+unchanged. These native-source changes require targeted current execution; the
+42-row retained pack is not renewed and neither final decision is promoted.
+See [native defect fixes](rendering-defect-fixes-20261106.md). New reports, failures,
+prospective claims and exact tested executables are retained through SQLite.
+
+The targeted skipped-intro software640 original diagnostic also passes Save,
+Mini Load, two display rebuilds, Main Load, restored gameplay and normal Quit.
+One original Save and two Load callbacks bind three accepted storage submissions;
+846imports/returns balance,12,254native calls forward0pixels and all graphics
+owners retire. One actual game follows four retained zero-game preparation
+refusals. Exact-source/current preview proof remains separate from independent
+World-pixel equivalence, historical cause attribution and repeated-run reliability.
+`RF06.software640-storage-diagnostic01` retains that finite positive observation;
+no acceptance row or old evidence is promoted/refreshed.

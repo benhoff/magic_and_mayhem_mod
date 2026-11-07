@@ -78,7 +78,7 @@ bool LiveMenuSession::start(){
     preferencesStore_.begin(preferencesStorePath,{});
     cpuRead_=0;cpuReadStarted_=cpuReadGrace_=0;
     resultsAction_=0;preferencesToSave_=false;preparation_.clear();root_.clear();sequence_=0;state_={};pending_=transition_=bypass_=exitRequested_=quitting_=inBattle_=normalQuitAccepted_=false;
-    mediaActive_=false;mediaStartedAt_=0;
+    mediaActive_=false;mediaStartedAt_=0;deferredMenuRequest_={};
     auto env=QProcessEnvironment::systemEnvironment();env.remove("MNM_MENU_CHANNEL");env.remove("MNM_RUNNER");env.remove("MNM_MENU_OBSERVE");env.remove("MNM_AUDIO_CHANNEL");env.remove("MNM_RENDER_MEDIA");
     if(!env.contains("MNM_MENU_DIRECTPLAY_DX6"))env.insert("MNM_MENU_DIRECTPLAY_DX6",hostLobbyEnabled?"1":"0");
     env.remove("MNM_MUSIC_CHANNEL");process_.setProcessEnvironment(env);process_.setWorkingDirectory(repo_);preparing_=true;
@@ -96,7 +96,7 @@ void LiveMenuSession::setMediaActive(bool active){
     if(mediaActive_==active)return;
     const auto now=clock_.isValid()?clock_.elapsed():0;
     if(active)mediaStartedAt_=now;
-    else{const auto paused=now-mediaStartedAt_;lastState_+=paused;requestedAt_+=paused;if(resultsAction_)resultsRequestedAt_+=paused;}
+    else{const auto paused=now-mediaStartedAt_;lastState_+=paused;requestedAt_+=paused;if(resultsAction_)resultsRequestedAt_+=paused;if(deferredMenuRequest_)deferredMenuRequestAt_+=paused;}
     mediaActive_=active;
 }
 bool LiveMenuSession::normalQuitAccepted(){
@@ -108,7 +108,7 @@ bool LiveMenuSession::normalQuitAccepted(){
 bool LiveMenuSession::running() const{return preparing_||process_.hardStopping()||process_.state()!=QProcess::NotRunning;}
 void LiveMenuSession::forceStop(std::function<void(bool,const QString&)> completed){
     const bool staged=preparing_;
-    timer_.stop();active_=false;preferencesToSave_=false;pending_=transition_=false;
+    timer_.stop();active_=false;preferencesToSave_=false;pending_=transition_=false;deferredMenuRequest_={};
     if(bridge_)retireBridge();
     process_.forceStop(staged?QString{}:winePrefix.isEmpty()?QDir(repo_).filePath(hostLobbyEnabled?"working/tests/menu-host-dx6-wine":"working/tests/menu-live-wine"):winePrefix,
         [this,completed=std::move(completed)](bool ok,const QString& error){
@@ -117,11 +117,17 @@ void LiveMenuSession::forceStop(std::function<void(bool,const QString&)> complet
 }
 bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<int,17>* rules){
     auto observe=[&](bool accepted,const QString& reason){if(!accepted)menuWitness(MNM_MTL_REQUEST_REFUSED,nullptr,action);if(requestObserved)requestObserved(action,accepted,reason,state_);return accepted;};
-    if(mediaActive_||!active_||inBattle_||pending_||transition_||resultsAction_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)
+    if(mediaActive_||!active_||inBattle_||pending_||transition_||deferredMenuRequest_||resultsAction_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)
         return observe(false,QString("Session unavailable: media=%1 active=%2 battle=%3 pending=%4 transition=%5 results=%6").arg(mediaActive_).arg(active_).arg(inBattle_).arg(pending_).arg(transition_).arg(resultsAction_));
-    const bool firstMain=state_.screen==3&&action==MNM_MENU_OPEN_QUICK&&!menuTimeline_.tracked();
-    if(firstMain)menuWitness(MNM_MTL_REQUEST_BEFORE,nullptr,action,bridge_->requestedSequence()+1);
-    if(!bridge_->request(action,state_,argument,rules))return observe(false,"Current wire ownership or request admission changed");
+    const bool firstMain=state_.screen==3&&action==MNM_MENU_OPEN_QUICK&&!menuTimeline_.resolved();
+    if(firstMain&&!menuTimeline_.tracked())menuWitness(MNM_MTL_REQUEST_BEFORE,nullptr,action,bridge_->requestedSequence()+1);
+    if(!bridge_->request(action,state_,argument,rules)){
+        if(bridge_->readUnstable()){
+            const auto ownedRules=rules?std::make_shared<const std::array<int,17>>(*rules):nullptr;
+            return deferMenuRequest([this,action,argument,ownedRules]{return request(action,argument,ownedRules.get());});
+        }
+        return observe(false,"Current wire ownership or request admission changed");
+    }
     quitting_=action==MNM_MENU_QUIT;pending_=true;requestedAt_=clock_.elapsed();action_=action;
     campaignEnterGeneration_=campaignEnterKind_=campaignEnterThread_=campaignEnterHandoff_=campaignEnterRegion_=0;
     if(progressedMenusEnabled&&action==MNM_MENU_REGION_ENTER){
@@ -153,7 +159,7 @@ bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<i
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 bool LiveMenuSession::requestPreferences(quint32 action,const std::array<int,7>& values,quint32 slider){
-    if(mediaActive_||!preferencesMenusEnabled||!active_||inBattle_||pending_||transition_||resultsAction_||state_.screen!=10||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->requestPreferences(action,state_,values,slider))return false;
+    if(mediaActive_||!preferencesMenusEnabled||!active_||inBattle_||pending_||transition_||deferredMenuRequest_||resultsAction_||state_.screen!=10||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->requestPreferences(action,state_,values,slider))return false;
     if(action==MNM_MENU_PREFERENCES_OK){preferencesToSave_=true;acceptedPreferences_=values;}
     pending_=true;requestedAt_=clock_.elapsed();action_=action;target_=action==MNM_MENU_PREFERENCES_PREVIEW?10:3;
     if(action!=MNM_MENU_PREFERENCES_PREVIEW&&stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
@@ -163,7 +169,7 @@ bool LiveMenuSession::requestDefeatContinue(){
     return request(MNM_MENU_DEFEAT_OK);
 }
 bool LiveMenuSession::beginOriginalRealmControls(){
-    if(!progressedMenusEnabled||!realmMenusEnabled||!active_||mediaActive_||inBattle_||pending_||transition_||resultsAction_||
+    if(!progressedMenusEnabled||!realmMenusEnabled||!active_||mediaActive_||inBattle_||pending_||transition_||deferredMenuRequest_||resultsAction_||
        !bridge_||!originalViewportRequested||state_.screen!=4||!state_.ready||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)return false;
     MenuBridge::State current;
     if(!bridge_->read(current)||current.screen!=4||!current.ready||current.handoff||current.status!=MNM_MENU_OK||current.realm.actions!=7||
@@ -183,7 +189,7 @@ bool LiveMenuSession::requestResults(quint32 action){
     if(mediaActive_||!active_||(action!=MNM_MENU_RESULT_CONTINUE&&action!=MNM_MENU_RESULT_QUIT))return false;
     if(resultsAction_)return resultsAction_==action; // Coalesce repeated input.
     const auto bit=action==MNM_MENU_RESULT_CONTINUE?1u:2u;
-    if(!active_||inBattle_||pending_||transition_||!bridge_||state_.screen!=MNM_MENU_RESULT_SCREEN||
+    if(!active_||inBattle_||pending_||transition_||deferredMenuRequest_||!bridge_||state_.screen!=MNM_MENU_RESULT_SCREEN||
        state_.results.context!=1||!state_.thread||!(state_.results.actions&bit)||
        clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)return false;
     resultsAction_=action;resultsThread_=state_.thread;resultsDepth_=state_.results.depth;
@@ -207,7 +213,7 @@ void LiveMenuSession::submitResults(){
 }
 bool LiveMenuSession::requestMini(quint32 action){
     QString refusal;
-    if(mediaActive_||!miniMenusEnabled()||!active_||inBattle_||pending_||transition_||state_.screen!=MNM_MENU_MINI_SCREEN)refusal="host ownership";
+    if(mediaActive_||!miniMenusEnabled()||!active_||inBattle_||pending_||transition_||deferredMenuRequest_||state_.screen!=MNM_MENU_MINI_SCREEN)refusal="host ownership";
     else if(clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)refusal="host lease expired";
     else if(!bridge_->request(action,state_))refusal="wire readiness or generation changed";
     if(!refusal.isEmpty()){if(miniRequestObserved)miniRequestObserved(action,false,refusal,state_);return false;}
@@ -218,17 +224,30 @@ bool LiveMenuSession::requestMini(quint32 action){
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 bool LiveMenuSession::requestMultiplayer(quint32 action,quint32 transport,const QString& gameName,const QString& userName){
-    if(!multiplayerMenusEnabled||!active_||inBattle_||pending_||transition_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->requestMultiplayer(action,state_,transport,gameName,userName))return false;
+    if(!multiplayerMenusEnabled||!active_||inBattle_||pending_||transition_||deferredMenuRequest_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->requestMultiplayer(action,state_,transport,gameName,userName))return false;
     pending_=true;requestedAt_=clock_.elapsed();action_=action;target_=22;
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 bool LiveMenuSession::requestStorage(quint32 action,quint32 row,const QString& name){
-    if(!storageMenusEnabled||!active_||inBattle_||pending_||transition_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->requestStorage(action,state_,row,name))return false;
+    auto observe=[&](bool accepted,const QString& reason){if(storageRequestObserved)storageRequestObserved(action,accepted,reason,state_);return accepted;};
+    if(mediaActive_||!storageMenusEnabled||!active_||inBattle_||pending_||transition_||deferredMenuRequest_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)
+        return observe(false,"Storage host ownership or lease unavailable");
+    if(!bridge_->requestStorage(action,state_,row,name)){
+        if(bridge_->readUnstable())return deferMenuRequest([this,action,row,name]{return requestStorage(action,row,name);});
+        return observe(false,"Storage wire ownership or request admission changed");
+    }
     pending_=true;requestedAt_=clock_.elapsed();action_=action;target_=state_.screen;
+    observe(true,{});
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
+bool LiveMenuSession::deferMenuRequest(std::function<bool()> retry){
+    deferredMenuRequest_=std::move(retry);deferredMenuRequestAt_=clock_.elapsed();
+    if(output)output("Menu publication in progress; retaining the action until a stable snapshot.\n");
+    if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}
+    return true;
+}
 bool LiveMenuSession::requestExit(){
-    if(mediaActive_||!active_||inBattle_||!sequence_||(!pending_&&!transition_&&state_.screen!=3&&state_.screen!=22&&state_.screen!=14&&state_.screen!=25&&state_.screen!=MNM_MENU_RESULT_SCREEN&&state_.screen!=10&&state_.screen!=18&&state_.screen!=MNM_MENU_DEFEAT_SCREEN&&state_.screen!=MNM_MENU_LOAD_SCREEN&&state_.screen!=13&&state_.screen!=MNM_MENU_GRIMOIRE_SCREEN&&state_.screen!=15&&state_.screen!=16&&state_.screen!=21&&state_.screen!=24))return false;
+    if(mediaActive_||deferredMenuRequest_||!active_||inBattle_||!sequence_||(!pending_&&!transition_&&state_.screen!=3&&state_.screen!=22&&state_.screen!=14&&state_.screen!=25&&state_.screen!=MNM_MENU_RESULT_SCREEN&&state_.screen!=10&&state_.screen!=18&&state_.screen!=MNM_MENU_DEFEAT_SCREEN&&state_.screen!=MNM_MENU_LOAD_SCREEN&&state_.screen!=13&&state_.screen!=MNM_MENU_GRIMOIRE_SCREEN&&state_.screen!=15&&state_.screen!=16&&state_.screen!=21&&state_.screen!=24))return false;
     exitRequested_=true;
     if(!pending_&&!transition_&&state_.ready){
         const bool accepted=state_.screen==24?request(MNM_MENU_LOBBY_CANCEL):state_.screen==21?request(MNM_MENU_SESSION_CANCEL):(state_.screen==15||state_.screen==16)?requestMultiplayer(MNM_MENU_MULTIPLAYER_CANCEL):state_.screen==MNM_MENU_GRIMOIRE_SCREEN?request(MNM_MENU_GRIMOIRE_CLOSE):state_.screen==MNM_MENU_DEFEAT_SCREEN?requestDefeatContinue():state_.screen==18?request(MNM_MENU_REGION_CANCEL):state_.screen==10?requestPreferences(MNM_MENU_PREFERENCES_CANCEL,state_.preferences.values):state_.screen==MNM_MENU_RESULT_SCREEN?requestResults(MNM_MENU_RESULT_QUIT):request(state_.screen==25?MNM_MENU_MAP_CANCEL:state_.screen==14?MNM_MENU_SETUP_CANCEL:state_.screen==22?MNM_MENU_BACK:MNM_MENU_QUIT);
@@ -237,11 +256,12 @@ bool LiveMenuSession::requestExit(){
     return true;
 }
 bool LiveMenuSession::finishSpells(const std::array<int,63>& assignments){
-    if(mediaActive_||!active_||inBattle_||pending_||transition_||resultsAction_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->finishSpells(state_,assignments))return false;
+    if(mediaActive_||!active_||inBattle_||pending_||transition_||deferredMenuRequest_||resultsAction_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->finishSpells(state_,assignments))return false;
     pending_=true;requestedAt_=clock_.elapsed();action_=MNM_MENU_SPELL_FINISH;
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 void LiveMenuSession::fallback(const QString& reason){
+    deferredMenuRequest_={};
     if(transitionFailureObserved){
         const auto now=clock_.isValid()?clock_.elapsed():0;
         TransitionDiagnostic d;d.request=bridge_?bridge_->requestedSequence():0;d.action=action_;d.target=target_;
@@ -311,6 +331,13 @@ void LiveMenuSession::poll(){
     // A movie owns presentation and input. Keep the lease alive while leaving
     // the latest engine state unread for delivery after playback completes.
     if(mediaActive_)return;
+    if(deferredMenuRequest_){
+        const auto started=deferredMenuRequestAt_;
+        if(clock_.elapsed()-started>500){fallback("Menu publication did not stabilize within 500 milliseconds.");return;}
+        auto retry=std::move(deferredMenuRequest_);
+        if(!retry()){fallback("Menu ownership changed while an action waited for publication.");return;}
+        if(deferredMenuRequest_){deferredMenuRequestAt_=started;return;}
+    }
     MenuBridge::State next;
     if(!menuTimeline_.suppressRead()&&bridge_->read(next)&&next.sequence!=sequence_){
         menuWitness(MNM_MTL_ENGINE_READ,&next);
