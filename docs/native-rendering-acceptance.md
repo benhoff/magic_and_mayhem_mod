@@ -1,5 +1,18 @@
 # Native rendering acceptance record
 
+The local first-World integration retains both concurrent pan and CPU transport
+closeouts: **82 passed / 74 pending**. All 74 common parent rows and eight
+disjoint additions keep their exact attachments and historical source maps.
+This metadata join adds no engine execution; both final decisions remain pending.
+
+The 2026-11-07 [first World composition closeout](../research/runtime/rendering-first-world-closeout-20261107.md)
+advances the selected inventory to **78 passed / 78 pending**. Four Campaign/Quick
+first-composed-World rows close across default/software640/800 through complete
+retained viewport reconstruction and bounded preservation of the original caller
+supplier. Historical native source phases, all failures and both final decisions
+remain separate. The opening and earlier dated records below retain their own
+phases and counts.
+
 The [reviewed storage follow-up](../research/runtime/storage-main-stall-20261101.md)
 now records 8 passed finite storage/Cancel requirements and 148 pending requirements
 in its selected current-source join. Four enabled-intro default/software cases
