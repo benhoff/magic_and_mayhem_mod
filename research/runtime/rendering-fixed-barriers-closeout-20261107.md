@@ -1,8 +1,8 @@
 # Repaired rendering barriers reconciled — 2026-11-07
 
-Three narrow barriers now close against the merged RF06 evidence. Every recorded
-source hash in the three positive reports still matches this checkout. This is
-accounting of existing execution, with no new game, fixture, build or test run.
+Three narrow barriers close against the RF06 evidence at `1575c7b43`. Every
+recorded source hash in the three positive reports matched that source phase.
+This is accounting of existing execution, with no new game, fixture, build or test run.
 It preserves the 52 accepted/104 pending rows and both pending final decisions.
 The broader acceptance pack remains historical for its six changed native files.
 
@@ -24,3 +24,11 @@ barriers from their remaining matrix, output and attribution work. Dated researc
 and failed reports keep their original source phases and hashes. The next camera
 batch still needs a separately reviewed bounded plan; this change neither lifts
 the old stop guard nor launches it.
+
+The later CR07 cursor correction changes two native-owner headers. This report
+and its original reconciliation retain the pre-CR07 execution/source phase;
+they do not renew affected whole-game inputs on the combined tree. The unchanged
+Sharp/menu C++ controls retain their bounded scope. Current cursor implementation
+and headless integration are supported separately by CR07; current live transition
+proof and broader player acceptance remain pending. See the
+[cursor integration boundary](cursor-resolution-integration-20261107.md).

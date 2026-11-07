@@ -119,3 +119,19 @@ Shared templates, original artifacts, source checkouts, pins and execution trees
 remain retained. Local exact review, census, audit, staged coverage gate and
 verified paired evidence backups are required for the commit. No remote push,
 publication or private transfer is part of this batch.
+
+
+## Concurrent cursor source boundary
+
+Integration preserves the independently committed cursor resolution/admission fix
+and all its tests, evidence and reviewed source bytes. Both FT07 native execution
+closures now differ in `runtime/native-draw/cursor_copy_leases.h` and
+`runtime/native-draw/cursor_owner.h`. These full native hashes remain pending
+for the integrated DLL; no applicability waiver or new execution is inferred.
+The ten cases, four accepted rows and original source fingerprints remain
+accepted at their recorded versions. The retained-data Python analysis is
+unchanged. The progress pack has eight historical source differences: the six
+earlier C++ files plus these two cursor headers.56accepted/100pending and both
+final decisions are preserved. No original run or full matrix is repeated.
+See `rendering-functional-ten-results-20261107/concurrent-integration-review-01.json`
+and the exact all-commit history review alongside it.

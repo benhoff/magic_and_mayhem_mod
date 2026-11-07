@@ -26738,6 +26738,29 @@ See [bounded proof and controls](rendering-movie-skip-closeout-20261106.md).
 SK06 integration source boundary: concurrent master bed0d49cb959f596bd9b9b4f97488148fc4d5128 changes viewport/menu native sources. The four accepted movie-skip cases and55controls remain pinned to player94c70f6b and their recorded compiler closure; no current-code applicability is inferred for the newer C++ version. Keep52accepted rows and both decisions, retain raw staleness and require targeted revalidation before claiming current-source execution. Incoming RF06fixes and their tests/evidence remain unchanged. See rendering-movie-skip-results-20261106/concurrent-integration-review-01.json.
 
 
+### Cursor resolution and saved-background admission — 2026-11-07
+
+CR07 reproduces the exact CP06 off-screen save-under/sprite pair using unchanged
+original foreground code with nominal800/live640 state. The old native owner
+fails the independent admission regression. Native cursor-only entry and per-copy
+checks now reject incompatible backing or invalid cached geometry, abort the
+remaining paint transaction, release unpublished pins and force stationary repaint
+after settling. General invalid-copy HRESULTs/bounds remain strict.
+
+Current controls pass108complete provider planes across4startup/backing profiles,
+18changed-anchor refusals,24existing owning-client planes and optimized/sanitized
+10368client/1280queue/12disposal/6retry comparisons per configuration. Immediate,
+deferred, stale restore, post-admission mode flip, edges, resumed800output and
+zero-resource retirement are explicit. Every failure/preimage remains in SQLite;
+original manifests pass before/after. No original game entrypoint is run.
+
+The new NP.cursor-resolution-admission scope is implemented/headless only. Exact
+historical flag/cause attribution and current live transitions remain pending.
+52frozen rows and both final decisions retain their historical source phase; new
+native source bytes do not renew broad player/provider acceptance. See
+[cursor correction and controls](cursor-resolution-admission-20261107.md).
+
+
 ## Repaired rendering barriers reconciled — 2026-11-07
 
 `FR07.barriers-reconciled01` closes three narrow stale barriers using unchanged
@@ -26751,6 +26774,18 @@ No new execution, fixture, code change or stage promotion. Preserve52accepted/
 batch stop, broader pixel/domain/reliability/attribution work and both decisions.
 
 
+### Cursor fix and concurrent barrier accounting integration — 2026-11-07
+
+Native cursor fix f1b42ad8c and barrier reconciliation1575c7b43 retain both exact
+histories, stable register identities, review receipts and complete ledger
+additions. Every native source and test remains exactly the validated fix.
+CR07 implementation/headless proof stays current. FR07 keeps its original RF06
+source phase; cursor-header drift does not renew affected whole-game inputs or
+reset previously observed finite positives.52frozen rows and both final decisions
+remain unchanged. Both committed first-parent ranges have exact file receipts and
+no unresolved gaps. No additional build/test/game execution is claimed. See
+[cursor integration boundary](cursor-resolution-integration-20261107.md).
+
 ## Ten fixed-FPS completion conditions reconciled — 2026-11-07
 
 `FPS07.scope-reconciled01` applies the already approved diagnostic-FPS completion
@@ -26762,6 +26797,17 @@ and every functional/pixel/ownership/deadline/progress/resource gap remain intac
 Existing completion/acceptance guards execute; no new fixture, engine code,
 player run, status promotion or acceptance row. Preserve52accepted/104pending,
 raw native source drift and both pending decisions.
+
+
+### Cursor correction and diagnostic-FPS accounting integration — 2026-11-07
+
+The tested cursor correction also preserves FPS-accounting70f85f66b and its exact
+receipts, unchanged contracts/milestones and complete ledger addition. Native
+sources and tests remain byte-identical to f1b42ad8c. The existing diagnostic-FPS
+policy does not waive output, progress, deadline or resource bounds. Both latest
+first-parent histories have no missing exact receipt. No new execution or frozen
+row promotion is claimed;52rows and both pending decisions retain their phases.
+See [integration](cursor-resolution-integration-20261107.md).
 
 
 ## FT07 partial-write and public Results return — 2026-11-07
@@ -26786,3 +26832,13 @@ current World-pixel equality, full camera/firstWorld/gameplay, arbitrary provide
 and fault/reliability and the known Save admission gap remain separate.
 See [bounded report](rendering-functional-ten-closeout-20261107.md) and immutable
 `rendering-functional-ten-results-20261107/closeout-analysis-01.json`.
+
+
+FT07 integration preserves concurrent cursor source/tests and all CR07 claims.
+Two shared cursor header hashes differ from the actual FT07 native/component DLL
+versions: current integrated execution is pending for those exact dependencies.
+Retain ten completed cases, four leaf rows, all56accepted/100pending and both
+decisions at their recorded source phases; no old hash refresh, native waiver,
+status reset, new game or matrix rerun. The unchanged retained-data Python analysis
+remains current. See rendering-functional-ten-results-20261107/concurrent-integration-review-01.json
+and rendering-functional-ten-closeout-20261107.md.
