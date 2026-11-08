@@ -15,6 +15,7 @@ static u32 continuous_written;
 static u32 continuous_generation_low = 1, continuous_generation_high,
            continuous_slot_index;
 #include "world_frame_observation.h"
+#include "scene_actor_observation.h"
 __declspec(dllexport) u32 WIN SceneWorldFrameObservationV1(u32 owner,u32* out,u32 bytes){
  if(owner!=GetCurrentThreadId())return 0;
  return frame_observation_read(owner,out,bytes);

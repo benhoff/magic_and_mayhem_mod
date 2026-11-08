@@ -1,4 +1,38 @@
+Current local master integration:108/156passed48pending.
+Scene attachment/combat adds four accepted rows to all104incoming master rows.
+See `research/runtime/scene-master-merge-results-20261108/acceptance-02.json`.
+Both parent native/runtime/oracle source phases remain exact, with raw combined
+source drift visible. No new game/oracle or whole combined-player validation;
+all ten attachment starts and both pending final decisions are preserved.
+
+Current owned AC07 admission05: all four requested attachment/combat profile rows qualify,
+94passed62pending in its preserved90-row parent source phase.
+Ten approved attachment starts are charged; collection stops. Every accepted
+case independently matches complete output and retires normally. Historical
+failures, other engine/gameplay domains and both final decisions remain explicit.
+See `research/runtime/attachment-combat-output-20261107.md`.
+
+Current owned AC07 admission:
+`research/runtime/attachment-combat-results-20261107/admission-04.json` qualifies
+three requested rows: both combat profiles and default attachment,93passed and
+63pending in its preserved90-row parent phase. Software attachment remains
+pending after the eighth charged start cancels before Escape. All failed starts
+remain retained; cap8is exhausted. Both final decisions and native gameplay
+reconstruction remain separate. A ninth-start proposal is explicitly unapproved.
+
+The current owned AC07 retained admission is
+`research/runtime/attachment-combat-results-20261107/admission-03.json`:92passed,
+64pending in its preserved90-row source phase. Both combat profile rows are
+complete. Both attachment rows remain pending after six charged starts; the
+saved-ready inventory correction has39offline controls, while its original640
+execution and the earlier Quick-return issue remain unaccepted. A higher start
+cap requires the pending explicit user decision. Earlier/native/compiler/
+viewport phases and both final decisions remain separate.
+
 # Native rendering acceptance record
+
+**Partial combat/attachment closeout (2026-11-08):** [AC07](../research/runtime/attachment-combat-output-20261107.md) closes both combat-output rows at actual default/software640/800 over the90-row SV07 source phase: **92/156passed64pending**. Actual original melee events, source health/engagement brackets, changed body frames and complete independent native comparisons pass. Both attachment rows remain pending:800cases pass four-view mode1placement/output, but640quota/setup and Results-return failures lack normal admission. The five-start attachment cap is exhausted; no further original game is authorized by this partial result. Both final decisions and all inherited source phases remain explicit.
+
 
 **Scene occlusion closeout (2026-11-07):** the [retained scene analysis](../research/runtime/scene-visibility-effects-20261107.md) closes the two visibility rows across default/software 640/800, preserving all 88 parent rows: **90/156 passed, 66 pending**. 412 changing scene points/824 native viewport pixels match independent original WORDs. Four attachment/combat rows and both final decisions remain pending; all native execution phases and failures retain their original scope.
 

@@ -84,3 +84,20 @@ negative evidence remain intact. No generic cleanup or new prefix/install
 snapshot is used. The 187 startup commit transitions have 161 retrospective opaque
 custody bindings; the 152 incoming selection transitions have no missing exact
 receipts. Both reviews remain separate from engine execution and past gate claims.
+
+## Actual master integration
+
+A concurrent scene attachment/combat merge occupies master at the first
+fast-forward attempt; its staged work is preserved. After it commits, the
+unchanged24-source RT09 analyzer and all shared analysis dependencies are
+reviewed against that parent. The native/guest changes belong to the scene
+parent and do not turn RT09 into current combined-guest execution.
+
+[The metadata-only union](rendering-recovery-four-results-20261108/master-admission-01.json)
+uses the completed RT09 case proof and unchanged strict four-row join over the
+actual master parent. It preserves every passed row from both parents and adds
+only the four RT09 rows to master: **112/156 passed, 44 pending**.
+No game, raw matrix, original oracle or pixel comparison is repeated merely
+for integration. The normal merged staged gate and paired backups remain
+required. Both final decisions and the six remaining operation requirements
+stay pending.

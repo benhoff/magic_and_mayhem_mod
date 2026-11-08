@@ -91,6 +91,11 @@ def main():
     report['original_menu_actions']=validate_storage(Path(acquired['session']),acquired['flow'],1,Path(acquired['temporary_root']))
     report['mini_inputs']=validate_mini_inputs(Path(acquired['temporary_root']),acquired['flow'])
     report['mini_dispatch']=validate_mini_dispatch(acquired['flow'])
+   elif acquired.get('scenario')=='normal-combat':
+    from scene_combat_acceptance import route
+    sources.update({n:digest(ROOT/n) for n in ['tools/scene_combat_acceptance.py','tools/campaign_gameplay.py']})
+    report['scene_combat_route']=route(acquired,session,Path(acquired['temporary_root']),bound,campaign)
+    require(report['world_domain']['extents']==[list(map(int,acquired['configuration']['requested_size'].split('x')))],'Actual combat World extent differs')
    else:
     from native_player_quick_acceptance import validate_quick
     report['original_menu_actions']=validate_quick(Path(acquired['session']),acquired['flow'],0)
