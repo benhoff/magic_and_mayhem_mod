@@ -27397,3 +27397,17 @@ with a verified Git-index restore; it claims no commit/hook pass. All406host and
 changed and two headers were added; combined guest1021-source execution stays
 pending. Original player/runtime/oracle hashes and both640gaps remain untouched.
 Zero new acceptance rows, no applicability waiver or engine execution in the merge.
+# RT08 recovery startup follow-up — 2026-11-08
+
+The four requested operation admissions remain pending; the selected parent stays
+100/156 passed, 56 pending, with both final decisions pending. Two new requests
+charge one original start. A zero-game private accessibility-bus activation
+failure is retained; explicit dbus-daemon controls pass. The subsequent default640
+original exits0 before observed menu callbacks or World progress and retires with
+incomplete-history GAP reason2. Its final summary/earlier terminal predicates
+remain distinct and earn no cleanup credit. Collection stops without software640.
+Startup polling avoids busy-thread accessibility RPCs and now reports an owned
+terminal error promptly; 24 current controls pass. No native raster or gameplay
+change, successful combined-guest claim or historical proof refresh. See
+[RT08](rendering-recovery-startup-20261108.md) and `RT08.startup-negative01`.
+

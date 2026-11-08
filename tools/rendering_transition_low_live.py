@@ -1,6 +1,7 @@
 """Wait for real Qt/input ownership after the original640Quit acknowledgment."""
-import struct,time
+import json,struct,time
 from rendering_transition_live import TransitionJourney as Base
+from rendering_pause_live import PauseJourney
 from rendering_pause import stable,input_state
 from rendering_pilot import require
 
@@ -11,6 +12,19 @@ def confirmation_ready(nodes,original,inp):
  return bool(view and view[0]['showing'] and view[0]['enabled'] and inp['active']==1 and not inp['held'] and inp['size']==[640,480])
 
 class TransitionJourney(Base):
+ def read(self):
+  # Launch can synchronously stage the original runner on the Qt thread. Do
+  # not make an AT-SPI RPC to that thread while awaiting its admission. The
+  # inherited readiness loop still checks child exit and its finite deadline;
+  # only the owned session journal and original seqlock admit Main readiness.
+  value=PauseJourney.read(self)
+  if self.session is not None:
+   path=self.session/'native-only-session.json'
+   if path.exists():
+    native=json.loads(path.read_bytes())
+    require(native.get('session')==str(self.session),'Native startup outcome belongs to another session')
+    require(native.get('state')!='failed','Native epoch failed before expected progress: '+native.get('error',''))
+  return value
  def normal_quit(self):
   require(self.size==[640,480],'Low confirmation controller requires actual640source')
   self.confirmation_focus_wait=True

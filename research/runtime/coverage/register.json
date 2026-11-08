@@ -168806,11 +168806,17 @@
         "tests/test-rendering-transition-confirmation.py",
         "tools/prepare-rendering-transition-final.py",
         "tools/close-rendering-transition-final.py",
-        "tools/bind-rendering-transition-partial.py"
+        "tools/bind-rendering-transition-partial.py",
+        "tools/run-rendering-recovery-closeout.py",
+        "tools/check-rendering-recovery-closeout.py",
+        "tools/prepare-rendering-recovery-closeout.py",
+        "tests/test-rendering-transition-startup.py",
+        "tools/assess-rendering-recovery-startup.py"
       ],
       "documents": [
         "research/runtime/rendering-transition-recovery-20261107.md",
-        "research/formats/rendering-epoch-observations.md"
+        "research/formats/rendering-epoch-observations.md",
+        "research/runtime/rendering-recovery-startup-20261108.md"
       ],
       "validation_dependencies": [
         "apps/qt-shell/native_only_session.hpp",
@@ -168856,7 +168862,8 @@
         "tools/rendering_transition_budget.py"
       ],
       "evidence": [
-        "RT07.transition-partial01"
+        "RT07.transition-partial01",
+        "RT08.startup-negative01"
       ],
       "status": {
         "understanding": "scoped",
@@ -168868,7 +168875,8 @@
       "remaining_gaps": [
         "Both800profiles have real terminal/restart, fresh input/normal cleanup and independently compared output; both640domains remain unaccepted. default640-01 stopped at the public Quit confirmation focus race before Yes input. default640-02 and04 timed out on accessibility while starting with zero World output; root cause unresolved. default640-03 is a retained zero-game NVIDIA Xvfb setup crash caused by omitted Mesa environment. Collection stopped with11requests/9actualstarts; no full-row credit.",
         "Physical context loss, pending CPU interruption, arbitrary faults/races/providers, in-place/save recovery, dedicated worker and whole renderer closure remain outside this scope.",
-        "Integration over master6763ec077 preserves its100accepted rows without RT07credit. Four existing guest sources and runner differ, two guest headers are added (1021runtime sources versus1019recorded); combined guest validation remains pending with no source waiver. Both640domains remain unaccepted."
+        "Integration over master6763ec077 preserves its100accepted rows without RT07credit. Four existing guest sources and runner differ, two guest headers are added (1021runtime sources versus1019recorded); combined guest validation remains pending with no source waiver. Both640domains remain unaccepted.",
+        "RT08: Two new requests charge one original start. First is a retained zero-game private AT-SPI dbus-broker activation failure; three dbus-daemon controls and a revised explicit backend repair pass. The subsequent Low original exits0 before any menu callback/World; incomplete command history retires as GAP reason2. Upstream launch cause unresolved, not a proven raster defect. Stop collection; no software640 attempt or acceptance credit. Startup polling avoids busy-thread AT-SPI and now promptly reports an owned terminal failure; four startup, three confirmation and seventeen existing guards pass. New terminal-read control has no successful original-game validation."
       ]
     }
   ],
@@ -387522,6 +387530,60 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "RT08.startup-negative01",
+      "kind": "static",
+      "record": "research/runtime/rendering-transition-recovery-results-20261107/closeout08-negative-review-03.json",
+      "sha256": "0de47b8a4395f33830ad8e740ccb0b2c478367532e83ca88f565c60b453022cb",
+      "sources_pointer": "/sources",
+      "scope": "Read-only failed-launch assessment and24current Python guards only. Two new requests/one original start, zero observed menu callbacks or completed Worlds; original exits0 and terminal GAP reason2. Preserve the conflicting final summary/terminal flags and all historical phases. No native engine validation, recovery/cleanup acceptance or status promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/controls_passed",
+          "equals": 24
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/acceptance_closed",
+          "equals": false
+        },
+        {
+          "pointer": "/collection_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/new_original_game_runs",
+          "equals": 1
+        },
+        {
+          "pointer": "/original_menu_callbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed_worlds",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_native_engine_validation",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -421272,7 +421334,8 @@
         "tools/bind-rendering-transition-partial.py"
       ],
       "evidence": [
-        "RT07.transition-partial01"
+        "RT07.transition-partial01",
+        "RT08.startup-negative01"
       ]
     },
     {
@@ -423111,8 +423174,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-b389d254b3ed40a0c94bdf80316f0753ddfd343f93a1ac8873fd53a7c0f71581.json",
-    "sha256": "b389d254b3ed40a0c94bdf80316f0753ddfd343f93a1ac8873fd53a7c0f71581"
+    "path": "research/runtime/coverage/source-index-1d060d699a07cf76410e045451d264915ecd09f45dbd5de7523e648e2043b7f0.json",
+    "sha256": "1d060d699a07cf76410e045451d264915ecd09f45dbd5de7523e648e2043b7f0"
   },
   "evidence_applicability": [
     {
