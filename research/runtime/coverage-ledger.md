@@ -27295,3 +27295,25 @@ within their original scope. The incoming opt-in capture-v4, COPY/clip diagnosti
 have different full hashes from UI07's recorded3712fff8 player/legacy reader.
 These are retained execution phases; this join supplies no new merged-build
 execution, broad all-simulation pause, resource-lifetime or whole-player claim.
+
+
+## Bounded clipped constant-fill operation closeout — 2026-11-08
+
+CF08 closes only both `operation.fill-clipped` rows over the98-row actual
+master6d0998cf65parent:100/156passed56pending, both final decisions pending.
+The same four CL07default/software actual640/800World domains supply eight real
+owner query/actual/caller fill pairs: four initial no-ops receive no meaningful
+credit, four later clipped zero fills bind unique recorded UPDATEs and live
+800×600primary identities. Independent argument/region transforms and four
+fresh exact-input existing native GPU replays match1920000complete destination
+WORDs, with684800exterior values preserved,375694nonzero. Two real Low paints
+also match1749000viewport pixels, with all800×600source pixels represented.
+High intermediate paints remain coalesced and are not invented by replay.
+Native prior replies and intervening recorded uploads are transform inputs,
+not a new independent original-history oracle. Historical player/compiler/
+original/capture sources and every failure remain unchanged. No game, original
+oracle, new game fixture or capture; only four bounded native command replays
+and current retained-data/control analysis. Remaining16operation rows include
+ten ordinary and six fault/recovery rows; full flags/ABI, partial-prefix failure,
+arbitrary formats/providers, physical stores/drivers and final decisions remain.
+See[the exact closeout](rendering-clipped-fill-closeout-20261108.md).
