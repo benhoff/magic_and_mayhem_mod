@@ -27851,3 +27851,51 @@ stretch/overlap COPY assessment and every incoming CR08finding. History02covers
 survive, including two additional per-commit journal custody pairs. Main is the
 owned active merge checkout; the former task checkout is inactive and preserved.
 All39control source fingerprints still match, with no test/game/cleanup rerun.
+
+
+## Shared retained-artifact and synthetic fixture support — 2026-11-08
+
+`TOOL.shared-fixture-support` extracts verified artifact reads and producer-local
+session scoping into `tools/retained_artifacts.py`, retaining the menu/scene
+entry points and their errors. Optional declared-size budgets reject before
+reading; actual bytes still require exact size/hash agreement. Observations
+excluded by scope remain retained. Test-only command/menu/owned-session builders
+in `tests/fixture_support.py` now serve transition, normal acceptance, menu and
+startup controls independently of production decoders. Negative mutations and
+acceptance assertions stay in their owning tests.
+
+`SF08.fixture-controls01` retains 275 passing focused controls and exact logs
+in SQLite, including actual retained scene/attachment, selection and defeat
+inputs. This support-only execution adds no original game/native oracle run,
+player acceptance row or engine validation promotion. Historical source hashes,
+accepted statuses, failures and source-applicability boundaries remain immutable;
+changed support/analyzer sources have explicit pending targeted revalidation.
+See `docs/test-fixtures.md`. The owned batch begins at master `fbcf880ba`;
+live prefix lifecycle and bulk collector retention extraction remain separate.
+
+The task branch then advances to actual master `b0eb1de5b`, retaining the incoming
+COPY-readiness behavior, reports, source and exact journal entries. The register
+and ledger are reconciled by stable identity/additive tails; all nine changed
+code/test files match recovery stash `7228cada4` byte-for-byte. That stash stays
+retained. Nine dependent player/storage controls also pass: 284 total checks.
+The earlier census/audit stays as its original source phase; final accounting
+uses the combined tree. The obsolete initial preparation was explicitly
+interrupted when master advanced; no old draft grants a pass.
+
+
+### Shared fixture support on the current master merge
+
+The checked fixture commit `67f6f9650` is joined to actual storage-cleanup master
+`5381d3ccb`. Only the register, active review journal and additive ledger tails
+conflict. Their stable-ID union preserves every master behavior status and
+evidence definition, both parents' receipts, storage tools and COPY-readiness
+findings. All nine fixture implementation/test source files match the checked
+commit exactly. The 284 source-bound controls are reused after verifying every
+recorded fingerprint; no tests, game, oracle or native pixel runs are repeated.
+
+`research/runtime/shared-fixture-master-results-20261108/` retains the exact
+resolution, incoming committed-history review and combined current audit through
+SQLite. The regenerated census and normal staged hook cover the actual merged
+tree. All historical engine validation/applicability limitations,112accepted
+player rows and both pending decisions remain unchanged. The older fixture
+checkout/branch and recovery stash `7228cada4` remain held as the tested phase.

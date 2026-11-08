@@ -6,6 +6,7 @@ from pathlib import Path
 import numpy as np
 
 from rendering_menu_acceptance import artifact
+import retained_artifacts
 from rendering_pilot import acquisition, require,History,commands
 from resident_capture import records
 from scene_actor_observation import decode, crc32c
@@ -245,27 +246,12 @@ def combat_pose_change(window,states):
 
 def recorded_scene_repository(acquired):
     """Recognize explicit --repo and the recorded repository-local launcher."""
-    command=acquired.get('command',[])
-    require(command and command.count('--repo')<=1,'Missing/ambiguous recorded scene repository')
-    if '--repo'in command:
-        index=command.index('--repo')+1
-        require(index<len(command),'Missing recorded scene repository value')
-        return Path(command[index])
-    launcher=Path(command[0])
-    require(launcher.is_absolute()and launcher.name=='run-native.sh'and
-            acquired.get('sources',{}).get('run-native.sh'),
-            'Missing recorded scene repository or pinned launcher')
-    return launcher.parent
+    return retained_artifacts.recorded_repository(acquired,label='scene')
 
 
 def session_artifact_root(acquired,name):
     """Use the retained producer's repository, independent of this reader."""
-    root=recorded_scene_repository(acquired);value=Path(acquired[name])
-    require(root.is_absolute()and value.is_absolute()and
-            '..'not in root.parts and '..'not in value.parts,'Invalid recorded scene root')
-    relative=value.relative_to(root)
-    require(relative.parts,'Scene artifact root cannot be the whole repository')
-    return relative.as_posix()
+    return retained_artifacts.session_artifact_root(acquired,name,label='scene')
 
 
 def scoped_artifacts(acquired):
@@ -274,15 +260,7 @@ def scoped_artifacts(acquired):
     Only the named public output, native owner and original session belong to
     this case. Keep the immutable acquisition and all excluded raw artifacts.
     """
-    roots=[]
-    for name in('temporary_root','session','owner'):
-        if acquired.get(name):roots.append(session_artifact_root(acquired,name)+'/')
-    require(roots,'No exact scene session/output roots')
-    keep=[];excluded=[]
-    for value in acquired['artifacts']:
-        (keep if any(value['path'].startswith(r)for r in roots)else excluded).append(value)
-    require(len({v['path']for v in keep})==len(keep),'Duplicate exact scene artifact path')
-    return dict(acquired,artifacts=keep),[v['path']for v in excluded]
+    return retained_artifacts.scoped_artifacts(acquired,label='scene')
 
 
 def analyze_case(reader,acquired,compared):
