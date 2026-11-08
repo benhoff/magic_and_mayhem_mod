@@ -1,3 +1,9 @@
+HS08 owned acceptance: **106/156 passed, 50 pending**, preserving all104parent rows.
+Four actual default/software640/800 Sharp/Integer domains validate nonzero
+cursor hotspots and background restoration. See
+[the hotspot record](../research/runtime/cursor-hotspot-acceptance-20261108.md).
+Original57e957/tag17 exit95 remains open; both final decisions stay pending.
+
 # Native rendering acceptance record
 
 **Scene occlusion closeout (2026-11-07):** the [retained scene analysis](../research/runtime/scene-visibility-effects-20261107.md) closes the two visibility rows across default/software 640/800, preserving all 88 parent rows: **90/156 passed, 66 pending**. 412 changing scene points/824 native viewport pixels match independent original WORDs. Four attachment/combat rows and both final decisions remain pending; all native execution phases and failures retain their original scope.

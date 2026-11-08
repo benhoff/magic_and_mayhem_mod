@@ -27500,3 +27500,46 @@ SL08 closes only both finite `journey.cursor-interaction.selection` rows from fo
 The analyzer now distinguishes other exact marker-bank frames sharing the caller, follows each original sub-cell/animation anchor, admits known opaque black without treating unknown zero as colour authority, and reconstructs bounded already recovered blend history beneath the off state. Every raw cursor refusal remains explicit: each complete bounded journal has one acknowledged-post-close slot3invalidation refusal and no drawing/copy success is inferred. CR07invalid save-under/keyed requests, initial guard failures, failed full analyses and source preflights remain negative evidence.54selection controls pass. No new original game, native engine or oracle is run, and no native raster/simulation repair is claimed.
 
 `NP.selection-highlight-closeout` has scoped implementation/headless integration only; original comparison/replacement remain none. Allocation generations, whole picking/hotspot, storage selection continuity, response deadlines, physical provider, current full player, other rows and both final decisions remain independent. See [selection closeout](rendering-selection-closeout-20261108.md) and `SL08.selection-highlight01`.
+
+
+## HS08 nonzero hotspot acceptance and newly observed producer refusal (2026-11-08)
+
+The new bounded task exercises actual classes6/7/9 with nonzero configured
+hotspots and configured zero-hotspot center returns in both Sharp/Integer,
+under explicit default/software640/800. Existing IP07 captures had no nonzero
+hotspot classes. Fresh execution and complete admission remain separate from
+original-driver/full-ABI, arbitrary cursor, corner/pan stability, storage/rebuild
+continuity, allocation lifetimes and both final rendering decisions.
+
+A confirmed new rejection remains open: request4 completes589Worlds, then
+World590's retained partial source ends in failure43/tag17/return57e957 inside
+57e8e0; Windows exit95 is retained. Rejected raster operands/register/stack
+bytes are missing. The observed callee profile is57de00; no whitelist admission
+or raster repair is made. Camera/corner movement preceded this event without
+establishing causality. See the owned hotspot record and pilot-diagnosis01.
+Both the failed full scout and its independent broad copy-output truncation
+remain negative; later finite cursor passes cannot retire this player failure.
+
+Three setup refusals start zero games; the copied already-patched EXE, its
+old pinned manifest and the existing /tmp isolation guard all refused before
+original execution. Exact inputs/preimages and relocation custody are retained.
+A further driver-only failure incorrectly required default16 over valid move1.
+The user approved nine requests while preserving six original starts; earlier
+charges and exhausted picking/recovery/attachment budgets remain untouched.
+The current smaller schedule uses center/top/right/left and center returns,
+with three stable displayed original states. Its broad observer can miss menu
+readbacks outside the required cursor interval; those losses remain explicit
+and do not close whole COPY/menu operation acceptance.
+
+HS08 admission02now closes only both finite hotspot rows:106/156passed,
+50pending in the preserved104-row parent phase. Four actual default/software
+640/800Sharp/Integer domains have832closed reconstructed Worlds,2164World
+swaps/2115415500complete viewport pixels,72nonzero source states and34842
+independent visible cursor-stencil checks, zero differences.6197cursor calls
+have complete original destination coverage/output in the contiguous physical
+scenario interval. All9requests/6starts are charged; four journals classify
+only one post-close invalidation each, without active geometry/queue failures.
+Raw broad-observer losses before/after the physical cursor interval, initial
+class16-only and future-paint joins, the malformed first admission and every
+source version remain retained. No native raster repair or broader COPY/player
+verdict follows.57e957/tag17/exit95 and both final decisions remain pending.
