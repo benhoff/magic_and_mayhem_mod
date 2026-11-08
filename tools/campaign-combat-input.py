@@ -81,6 +81,9 @@ def main():
     p.add_argument('--spell-cases', action='store_true')
     args=p.parse_args(); x0,y0,w,h=args.rect
     if w<320 or h<240:p.error('Native viewport is too small')
+    if os.environ.get('MNM_SCENE_EFFECTS_COMBAT')=='1':
+        from scene_combat_input import run
+        return run(args)
     out=args.output.parent; trace=args.experiment/'gameplay-events.bin'
     x=c.CDLL('libX11.so.6'); xt=c.CDLL('libXtst.so.6')
     x.XOpenDisplay.argtypes=[c.c_char_p];x.XOpenDisplay.restype=c.c_void_p
@@ -395,6 +398,8 @@ def main():
             if not xt.XTestFakeMotionEvent(display,-1,x0+int(w*px/800),y0+int(h*py/600),0):raise RuntimeError('Motion injection failed')
             x.XFlush(display);record('combat-terrain-hover',logical_x=px,logical_y=py);time.sleep(.5)
         record('casting-combat-complete')
+        from scene_effects_input import exercise_views
+        exercise_views(display,x,xt,record)
         if args.portrait_stress_seconds or args.spell_cases:
             # Use ordinary ground orders to survive later enemy
             # waves while exercising rendering; no health/position writes.
