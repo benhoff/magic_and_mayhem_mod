@@ -27473,3 +27473,21 @@ pending. Preserve failures01/02/03 and exact preimages (dead argument probe,
 wrong ECX expectation, strict compiler snapshot refusal). Generated results,
 tested binaries and sources use verified SQLite references. See
 [the recovery](rendering-contract-recovery-20261108.md) and CR08.callers-original04.
+
+# SX08 private-display startup repair — 2026-11-08
+
+The private namespace now explicitly read-only binds its verified Xauthority
+file, fixing RT08's hidden RAM-backed credential path. Existing no-game child
+controls reproduce disk-pass/RAM-fail before the fix and disk/RAM-pass plus
+wrong-cookie refusal afterward, with host isolation/pixels preserved.25Python
+guards pass. One bounded actual default640 run reaches original Main,1280native
+World completions and positive released Up/original-return progress; full pixel
+and source captures remain off. Its optional Quit/finalizer does not finish;
+the primary error is unavailable, raw observations/tested source are retained
+and prefix recovery is separately verified. Corrected capture-free pointer and
+failure recording have unit execution only. Current control evidence supports
+only the scoped/headless authority policy; full live collector/normal Quit,
+fault-operation rows and renderer acceptance receive no promotion. All102parent
+acceptance rows and both pending decisions remain. See
+[SX08](native-startup-display-20261108.md), `SX08.authority-controls01`,
+`SX08.startup-postmortem01` and `SX08.controller-units01`.

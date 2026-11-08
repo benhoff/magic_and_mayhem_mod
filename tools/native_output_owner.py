@@ -79,16 +79,21 @@ def command(root, prefix, metadata, environment, receipt):
         raise ValueError('Require separate disposable session and prefix paths')
     if not root.is_dir() or not prefix.is_dir() or root.is_relative_to('/tmp') or prefix.is_relative_to('/tmp'):
         raise ValueError('Create the owned session and prefix before isolation')
+    # The validated file may live beneath a masked /tmp (including a working/
+    # alias into RAM). Mount that file explicitly; its host pathname need not
+    # remain reachable after replacing the child's temporary directories.
+    child_authority = '/tmp/mnm-private-xauthority'
     args = ['bwrap', '--die-with-parent', '--new-session', '--unshare-user',
             '--unshare-pid', '--unshare-net', '--unshare-ipc', '--unshare-uts',
             '--cap-drop', 'ALL', '--ro-bind', '/', '/', '--dev', '/dev',
             '--proc', '/proc', '--tmpfs', '/tmp', '--tmpfs', '/var/tmp',
             '--dir', '/tmp/.X11-unix', '--ro-bind', str(socket), str(socket),
+            '--ro-bind', str(authority), child_authority,
             '--bind', str(root), str(root), '--bind', str(prefix), str(prefix)]
     runtime = Path('/run/user')
     if runtime.is_dir():
         args += ['--tmpfs', str(runtime)]
-    args += ['--setenv', 'DISPLAY', receipt['display'], '--setenv', 'XAUTHORITY', str(authority),
+    args += ['--setenv', 'DISPLAY', receipt['display'], '--setenv', 'XAUTHORITY', child_authority,
              '--setenv', 'TMPDIR', '/tmp', '--setenv', 'MNM_NATIVE_OWNERSHIP_REQUIRED', '1']
     for key in ('WAYLAND_DISPLAY', 'XDG_RUNTIME_DIR', 'DBUS_SESSION_BUS_ADDRESS',
                 'PULSE_SERVER', 'LD_PRELOAD', 'LD_AUDIT', 'LD_LIBRARY_PATH', 'MNM_LEGACY_XCOOKIE'):

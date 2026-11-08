@@ -125,5 +125,17 @@ class Ownership(unittest.TestCase):
             self.assertIn(['--unsetenv',key],[command[i:i+2] for i in range(len(command)-1)])
         self.assertEqual(command[-1],'--')
 
+    def test_verified_authority_is_explicitly_bound_after_masking_tmp(self):
+        session=self.root/'session';prefix=self.root/'prefix';session.mkdir();prefix.mkdir()
+        with patch.object(owner,'admit',return_value=(self.socket,self.authority)):
+            with patch.object(Path,'is_relative_to',return_value=False):
+                command=owner.command(session,prefix,self.metadata,self.environment,self.receipt)
+        mount=['--ro-bind',str(self.authority),'/tmp/mnm-private-xauthority']
+        triples=[command[i:i+3] for i in range(len(command)-2)]
+        self.assertEqual(triples.count(mount),1)
+        self.assertIn(['--setenv','XAUTHORITY','/tmp/mnm-private-xauthority'],triples)
+        self.assertLess(command.index('--tmpfs'),triples.index(mount))
+        self.assertNotIn(['--bind',str(self.authority),'/tmp/mnm-private-xauthority'],triples)
+
 
 if __name__=='__main__':unittest.main()
