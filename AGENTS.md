@@ -68,6 +68,34 @@ Apply any machine-specific storage budget and staging preferences from
 unique inputs, `.retain` pins and active consumers, and review dependencies
 before cleanup. Follow the SQLite evidence preservation rules below.
 
+### Proportionate retention for new work
+
+- Choose the smallest acquisition that answers the current question. Use bounded
+  semantic diagnostics first; request full lossless captures only for assertions
+  that need those bytes. Reuse applicable retained acquisitions for new analyses.
+- Retain the inputs and raw observations supporting a claim, exact tested
+  executables, source revision plus unique changes, configuration, result and
+  useful failure diagnostics. Keep unique negative evidence and reproduction
+  inputs. A setup refusal ordinarily needs its report, log and exact source state,
+  rather than a new complete installation or prefix snapshot.
+- Classify new compiler intermediates, resettable environments and reproducible
+  derived output as temporary at creation. Before their reviewed removal, check
+  consumers and pins and retain the reconstruction command, exact inputs and
+  tool versions. A tested binary or an irreplaceable capture is durable evidence.
+  Unknown/unclassified output remains held. Do not automatically archive every
+  rebuildable temporary byte into the permanent evidence pair.
+- Keep one owned active checkout per task and reuse shared immutable inputs.
+  Once a clean merged checkout is inactive, compact duplicate tracked research
+  and fixtures through the verified worktree workflow. Retain Git registration,
+  unique changes, working data and restore instructions. Existing pins and
+  historical evidence require their original reviewed handoff; this prospective
+  policy does not silently reclassify them.
+- Completed legacy catalogs may be consolidated with source-specific schema,
+  every logical record and original snapshot bytes retained in two verified
+  stores. Explicitly record retirement of physical SQLite page layouts and
+  restore commands; never present a logical reconstruction under an old
+  whole-container hash. See `docs/storage-consolidation.md`.
+
 ## Reverse-engineering coverage upkeep
 
 Use [binary-to-behavior accounting](research/runtime/coverage/README.md) alongside

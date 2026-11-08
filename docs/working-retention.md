@@ -1,5 +1,14 @@
 # Working storage retention
 
+For new output, use the proportionate-retention rules in `AGENTS.md` and
+[storage consolidation](storage-consolidation.md). Declare rebuildable temporary
+output before creating it, retain its exact reconstruction recipe and inputs,
+and review consumers and pins before removal. Keep tested executables and
+claim-supporting observations durable. Existing historical output remains under
+its original preservation rules until an explicit verified handoff. Completed
+clean merged checkouts can compact tracked research/fixtures through the new
+worktree command while retaining their working data and Git registration.
+
 The repository policy keeps at least **90 GiB of filesystem free space** on the
 main checkout's drive. There is no fixed size limit on `working/`, including
 nested worktree output. Before launching, the guard subtracts the estimated

@@ -27225,3 +27225,13 @@ All 67 scene/UI/client controls pass without skips. Both failed analyzer
 preparations and the wrong client-command refusal retain exact source phases
 and SQLite results. See [the six-row review](scene-visibility-effects-20261107.md)
 and `rendering-scene-effects-results-20261107/admission-03.json`.
+
+## Evidence consolidation and prospective retention — 2026-11-07
+
+`HOST.storage-retention` adds explicit verified tracked-directory compaction and
+source-specific legacy snapshot union/recovery. Thirteen new storage controls plus
+fifteen existing archive controls pass. Exact operational custody and boundaries
+are documented in `research/runtime/evidence-consolidation-20261107.md`. New
+rebuildable temporary output may expire after reconstruction/consumer/pin review;
+historical evidence keeps its original preservation rules. No original execution,
+engine equivalence, accepted requirement/status or historical hash is renewed.

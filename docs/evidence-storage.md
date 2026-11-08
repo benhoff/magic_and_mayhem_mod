@@ -2,6 +2,11 @@
 
 For lightweight campaign diagnostics, shared input provisioning and automatic
 comparison-output handoff, see [campaign check storage](check-storage.md).
+For proportionate collection, temporary-output retention, explicit tracked
+worktree compaction and legacy catalog unions, see
+[storage consolidation](storage-consolidation.md). New rebuildable intermediate
+output needs a reviewed reconstruction recipe, rather than permanent admission
+by default; existing evidence still requires its source-specific handoff.
 
 The storage unit for new local work is an immutable artifact or typed SQLite
 record, rather than a complete database file or execution directory. Exactly two
