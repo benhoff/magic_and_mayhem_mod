@@ -13,7 +13,11 @@ static void campaign_mini_record(void* object,u32 phase){
 }
 static u32 THIS campaign_mini_tick(void* object){
     u32 error=GetLastError();if(campaign_log||menu_version>=10)campaign_quit_observe(object);if(menu_version>=9)menu_poll(object,1);campaign_mini_record(object,0);SetLastError(error);
-    u32 result=((TickFn)0x5595d0)(object);error=GetLastError();if(menu_version>=9)menu_poll(object,0);campaign_mini_record(object,1);SetLastError(error);return result;
+    u32 result=((TickFn)0x5595d0)(object);error=GetLastError();if(menu_version>=9)menu_poll(object,0);campaign_mini_record(object,1);
+#ifdef MNM_UI_ACCEPTANCE_OBSERVATION
+    ui_acceptance_sample(4,0,0,result,error);
+#endif
+    SetLastError(error);return result;
 }
 static u32 THIS campaign_world_resume(void* object){
     u32 error=GetLastError();record(19,object,0,0);SetLastError(error);

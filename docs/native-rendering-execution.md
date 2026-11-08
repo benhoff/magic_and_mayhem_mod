@@ -385,3 +385,9 @@ before any supported-player verdict. Then complete remaining EP04 camera/picking
 HUD/resume cases, EP05 progression/results and EP06/EP08/EP09 residuals. EP10's
 complete per-requirement join and EP11's separate decisions remain required. No
 immediate user support-promise choice blocks this engineering work.
+
+UI07 records [HUD/tooltip/pause acceptance](../research/runtime/rendering-hud-tooltip-pause-20261107.md)
+for default/software at actual640/800, with complete independent output and
+normal retirement. Its standalone94/156 inventory adds exactly six rows over
+the88-row parent; both final decisions remain pending. Later integrations retain
+concurrent positive rows and each recorded compiler/runtime source phase.

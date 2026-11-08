@@ -27200,3 +27200,22 @@ skips on the merged source. Original source-phase failures/results remain immuta
 Incoming5commits/9821parent-file transitions have six missing unique metadata
 pairs recorded retrospectively in SQLite; no past gate claim. See the owned
 [closeout/integration review](rendering-closeout-handoff-20261107.md).
+
+## UI07 HUD, tooltip and Space/Mini pause acceptance — 2026-11-07
+
+The [four-domain closeout](rendering-hud-tooltip-pause-20261107.md) admits the six
+default/software HUD-update, tooltip-open-close and pause rows at actual640/800.
+The standalone inventory preserves88parent rows and adds6:94/156passed,62pending,
+with both decisions pending. All four complete actual outputs have zero pixel
+differences against independent original source/history replay. Actual original
+actor values/text/SFT glyphs, pause/counter transitions, Mini ownership/Cancel,
+full identity and normal original Quit remain independently checked.
+
+Thirteen charged requests retain eleven games, including seven failed games
+and two zero-game refusals; four accepted cases supply row credit. Production
+header stubs, actual-data adverse guards and source640 controls have distinct
+headless/static scope. No optional campaign API journal or original key-message
+handler is newly recovered. Full font/DC/ABI/actor lifetimes, all-simulation
+pause, arbitrary providers and both final verdicts remain open. Exact historical
+source phases are preserved; the concurrent PA07 command-capture build and its
+pause proof must be retained separately when the inventories are integrated.

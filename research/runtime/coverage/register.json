@@ -168025,6 +168025,148 @@
         "SH07.G.execution: new diagnostic preparation and execution remain separate from the exhausted six-request/three-game picking batch; no full picking/resize, normal lifetime or independent presented-pixel acceptance.",
         "SH07.G.observer: live440sample trace captured host waits only; private-prefix string did not match the namespaced original. Observer close masked the journey error. File device/inode mapping admission, bounded process scanning and causal-error preservation have parser/control validation only, with no new game run. The controller prematurely rejected its old displayed High frame; corrected waiting is headless-control validated only."
       ]
+    },
+    {
+      "id": "NP.hud-tooltip-pause-acceptance",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Original HUD, tooltip and pause acceptance observations",
+      "scope": "Optional bounded read-only original tooltip text and portrait health callback observations, same-owner sealed source generation and Mini dwell for six public default/software HUD/tooltip/pause acceptance rows. Native pixels remain independently compared; source addresses do not establish allocation generations. No final acceptance without complete semantics, output, ownership and lifetime proof.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5093984,
+          "scope": "Exact original observation boundary/field supplier; no whole-body recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5093344,
+          "scope": "Exact original observation boundary/field supplier; no whole-body recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5095696,
+          "scope": "Exact original observation boundary/field supplier; no whole-body recovery claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5061168,
+          "scope": "Exact original observation boundary/field supplier; no whole-body recovery claim."
+        }
+      ],
+      "documents": [
+        "research/runtime/rendering-hud-tooltip-pause-20261107.md",
+        "research/formats/drawing-ui-acceptance.md"
+      ],
+      "implementation": [
+        "runtime/menu/hud_acceptance.h",
+        "tools/rendering_ui_acceptance.py",
+        "tools/prepare-rendering-ui.py",
+        "tools/run-rendering-ui.py",
+        "runtime/render/ui_key_observation.h",
+        "tools/rendering_ui_proof.py",
+        "tools/check-rendering-ui.py",
+        "tools/close-rendering-ui.py"
+      ],
+      "tests": [
+        "tests/test-rendering-ui-acceptance.py",
+        "tests/hud-acceptance-observer.cpp",
+        "tests/test-rendering-ui-closeout.py",
+        "tools/test-hud-acceptance-observer.py",
+        "tools/test-rendering-ui-proof.py"
+      ],
+      "validation_dependencies": [
+        "runtime/menu/observer.c",
+        "runtime/menu/drawing_frame_input.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "tools/menu-game-runner.py",
+        "tools/build-menu-observer.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/run-rendering-interaction.py",
+        "tools/rendering_interaction.py",
+        "tools/rendering_build_binding.py",
+        "runtime/render/input_polling.h",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_closeout.py",
+        "tools/coverage_claims.py",
+        "tools/comparison_process.py",
+        "tools/resident_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/close-rendering-retained-rows.py",
+        "tools/close-rendering-identity-gates.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/native_cursor_journal.py",
+        "tools/test-menu-observer.py",
+        "tools/evidence_objects.py",
+        "docs/native-rendering-closure.json",
+        "tools/campaign_input_admission.py"
+      ],
+      "evidence": [
+        "UI07.matrix01",
+        "UI07.observer02",
+        "UI07.guards01",
+        "UI07.static01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "UI07.G.remaining: Six requested default/software HUD-update, tooltip-open-close and pause rows pass at actual640/800. Broader resource, arbitrary state/provider and final-player obligations remain independent.",
+        "UI07.G.boundaries: no whole font/DC/ABI/actor lifetime, arbitrary maps/providers, physical reset, all-simulation pause or final-player claim.",
+        "UI07.G.keys: optional Space/Escape API journal has fixture coverage only; absent campaign journal supplies no API-poll or recovered original key-message-handler credit. Physical delivery, original pause state/counters and exact Mini callbacks are separate evidence."
+      ]
+    },
+    {
+      "id": "NP.source640-ui-controls",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Source640 HUD acceptance input controls",
+      "scope": "Authored source640 complete-title screenshot hint, redundant Integer focus policy and Mini-to-confirmation GUI/focus/read-only input readiness before physical HUD/tooltip/pause controls. Preserve the accepted800 controller bytes; original callbacks decide the answer. No original message-handler, simulation write, native pixel input or whole renderer claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-hud-tooltip-pause-20261107.md"
+      ],
+      "implementation": [
+        "tools/rendering_ui_low.py",
+        "tools/run-rendering-ui-low.py",
+        "tools/prepare-rendering-ui-low.py"
+      ],
+      "tests": [
+        "tests/test-rendering-ui-low.py"
+      ],
+      "validation_dependencies": [
+        "tools/run-rendering-ui.py",
+        "tools/run-rendering-interaction.py",
+        "tools/run-rendering-camera-acceptance.py",
+        "tools/run-rendering-menu-acceptance.py",
+        "tools/campaign_input_admission.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "UI07.source640-controls01",
+        "UI07.source640-controls02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "UI07.L.scope: OCR supplies an ordinary-input hint only; actual original cast/state/tooltip/Mini and complete native output remain independently checked by the main acceptance behavior.",
+        "UI07.L.confirmation: Headless fixture02 and the independently compared Low default/software executions admit the authored focus/readiness policy. Original callbacks and normal retirement supply the live semantic proof; no original key-message-handler recovery."
+      ]
     }
   ],
   "evidence": [
@@ -385852,6 +385994,180 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "UI07.source640-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-ui-results-20261107/source640-controls-01.json",
+      "sha256": "9fcfd889bb9d3645e16f68da464917c5862f799a41fb1b8ce036a6b3d6fe445a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Actual retained failed640screenshot now recognizes the complete Hermes title; no-dialogue Main remains negative, incorrect frame/fit domains refuse, redundant integer focus avoids a sprite lookup, real scaling delegates and the800base stays unchanged. Headless control policy only; no new game, original message-handler or rendering credit.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 8
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/source800_controller_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_sources_changed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI07.source640-controls02",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-ui-results-20261107/source640-controls-02.json",
+      "sha256": "1ac557548569cf6480516cdc68675b5d7d52681224142c6fbd4397674fd6b0b8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Retained clipped-title and missed-confirmation regressions: complete Hermes OCR, no-dialogue negative, geometry refusals, redundant focus, GUI/active/sealed input hints, fresh-motion admission and ordinary pointer delegation. Preserved800 controller. Headless control policy only; no new game, original message-handler or rendering credit.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/checks",
+          "equals": 18
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/source800_controller_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/native_sources_changed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI07.matrix01",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-ui-results-20261107/closeout-01.json",
+      "sha256": "1062d162f8192994242421c1c634ba59f928a121ce54c0f548b0c3f674cc919a",
+      "sources_pointer": "/validation_sources",
+      "claims_pointer": "/claims",
+      "scope": "Exactly six HUD-update, portrait tooltip open/close and pause rows across default/software High/Low. Original state, SFT glyphs, full viewport, Space and campaign Mini ownership/Cancel plus normal retirement. No complete font/DC/actor lifetime, all-simulation pause or final-player/recovery decision.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 6
+        },
+        {
+          "pointer": "/accepted_original_game_runs",
+          "equals": 4
+        },
+        {
+          "pointer": "/new_per_pixel_comparisons",
+          "equals": 4
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 94
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 62
+        }
+      ]
+    },
+    {
+      "id": "UI07.observer02",
+      "kind": "static",
+      "record": "research/runtime/rendering-ui-results-20261107/observer-fixture-02.json",
+      "sha256": "30a024f596eb05db42ad8e1971f7989f80cd5aa673cc1df83af0b529befa9702",
+      "sources_pointer": "/sources",
+      "scope": "Private Linux32 pages and callback/API stubs execute the production observer headers: disabled/mismatched prologue refusals, exactly-once callback forwarding, return/LastError preservation, distinct pause/input/render fields, integer maximum/fixed-point current mana and owned key transitions. No original body, live game, DLL ABI or complete FP-register fixture claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_artifacts_consumed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI07.guards01",
+      "kind": "static",
+      "record": "research/runtime/rendering-ui-results-20261107/actual-guards-01.json",
+      "sha256": "f2d23e7068bc3a078074004225ce006ac32d3759cb3465ab144b1a44d0bccd85",
+      "sources_pointer": "/sources",
+      "scope": "Real retained case, exact baseline and semantic corruptions behind container hash admission; original files, raw captures and native pixels remain unchanged. No new game or raster execution.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/baseline_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/guard_count",
+          "equals": 18
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "UI07.static01",
+      "kind": "static",
+      "record": "research/runtime/rendering-ui-results-20261107/static-observations-binding-02.json",
+      "sha256": "5af419c06b177101806db8a30f68d0a56f188e3e9a98eccb6cff88f58018283e",
+      "scope": "Static registration review of the exact retained UI disassembly/decompiler artifacts and their recorded NoCD executable input. Artifact bytes supply the review provenance; no current decompiler execution, game, whole-body recovery or historical hash refresh.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_original_artifacts_consumed",
+          "equals": false
+        },
+        {
+          "pointer": "/whole_original_recovery",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources",
+      "recorded_inputs": [
+        "original/Arcane_Nocd/Chaos.exe"
+      ]
     }
   ],
   "classifications": [],
@@ -419332,6 +419648,39 @@
         "SH07.retained-controls02",
         "SH07.master-controls01"
       ]
+    },
+    {
+      "id": "UI07.public-ui",
+      "level": "live_observation",
+      "scope": "Four normal fresh public campaign cases: default/software High/Low, actual original health/current mana and selection, portrait tooltip SFT text and restoration, physical Space pause/resume bound to original state/counters, campaign Mini admission/Cancel suspended World/input/media and normal original Quit. Complete independent native output; no all-simulation pause or whole player claim.",
+      "behaviors": [
+        "NP.hud-tooltip-pause-acceptance"
+      ],
+      "tests": [
+        "tests/test-rendering-ui-acceptance.py",
+        "tests/hud-acceptance-observer.cpp",
+        "tests/test-rendering-ui-closeout.py",
+        "tools/test-hud-acceptance-observer.py",
+        "tools/test-rendering-ui-proof.py"
+      ],
+      "evidence": [
+        "UI07.matrix01"
+      ]
+    },
+    {
+      "id": "UI07.source640-controls",
+      "level": "headless",
+      "scope": "Retained source640 clipped-Hermes-title and missed Quit-confirmation input regressions; no-dialogue/geometry/seqlock/active/ownership negatives, public focus/fresh-motion admission and preserved800 base. Headless input policy, no game or pixel equivalence.",
+      "behaviors": [
+        "NP.source640-ui-controls"
+      ],
+      "tests": [
+        "tests/test-rendering-ui-low.py"
+      ],
+      "evidence": [
+        "UI07.source640-controls01",
+        "UI07.source640-controls02"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -421149,8 +421498,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-a8661f82930510da434828d78f4e131291dfaf583ad33b40dedc29900111fd3c.json",
-    "sha256": "a8661f82930510da434828d78f4e131291dfaf583ad33b40dedc29900111fd3c"
+    "path": "research/runtime/coverage/source-index-2936a84fb10418336208e4b6fc244548b4946790163a34a31670ed116b60dda8.json",
+    "sha256": "2936a84fb10418336208e4b6fc244548b4946790163a34a31670ed116b60dda8"
   },
   "evidence_applicability": [
     {
