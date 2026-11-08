@@ -27963,3 +27963,23 @@ No original game was started and no prior cap reset. Failed HS08World590 and its
 missing operands remain negative/unreplayed; other caller, full pan/ABI/player
 gaps and both decisions remain open. Frontier stays114/156passed42pending.
 See `producer-rejection-57e957-20261108.md` and PR08.original02.
+
+
+## Natural Grimoire stretch and NCS1 prefix — 2026-11-08
+
+Native public Grimoire calls reach NoCD58cbc0/return58cc63 unequal RGB565 keyed rectangles. Native CPU transforms already published full C3 UPDATEs; the source observer instead failed27/tag41 and cancelled the16384-record prefix drain. The additive fail-closed NCS1record and sampled-authority/frozen-source native replay repair that representation. NCR1rectangle refusal and old V1/V2 rejection remain distinct. Native integer-floor sampling is intentional policy, not original driver parity.
+
+`NCS1.two-stretch-rows01` admits only both stretch operation profile rows over the112-row owned parent:114/156passed42pending. Four actual640/800default/software public Grimoire sessions independently match all336complete destinations/132249600pixels, zero differences, and an immediately following whole GPU source or destination-before readback for each. Finite unrelated diagnostic omissions remain explicit. No captured destination seeds its own expected history. `NCS1.prefix-integration01` separately proves150actual NCS1records consumed across65536source-only records, with ordinary original/native retirement and no World work. `NCS1.controls01` retains41Python controls and the exact tested C++canvas/decoder binary.
+
+All14managed requests/11actual starts remain charged and retained:four positive, seven failed and three zero-game refusals; setup07is separately unadmitted. The High host-close crash lost in-memory external action receipts and receives no whole acquisition credit. Actual destroyed-window controls repair that collector race. The accepted Low phase is preserved with exact post-retirement-only AST review; no accepted matrix is recollected. Five stopped failed stages retain every file/pin in both immutable stores after real restores, reclaiming5389017088allocated bytes with pinned historical restore stubs. Keep all SQLite staging/review/budget catalogs, tested binaries, source phases and source checkouts.
+
+Both alias/overlap profile rows remain pending: no natural overlapping call is witnessed; supplied self-copy controls do not resolve reachability/traversal. Original driver sampling, hidden whole replay pixels, indexed/conversion/clipper or all-GPU stretch, World/gameplay, combined-current player and both final decisions remain separate. See research/runtime/rendering-copy-natural-20261108.md and its SQLite report references.
+
+
+### Natural stretch actual-master integration — 2026-11-08
+
+The pending exact union uses actual master9b0148db6as first parent and checked featuref2af4fc6aas second parent. It preserves all114incoming accepted rows, both hotspot rows and the primary opaque clipped fallback correction, then adds only both stretch rows:116/156passed40pending. The four original/native stretch executions stay in their recorded source phases. All1343native/compiler dependency paths are reviewed per case; the incoming world_raster_callers.hchange remains explicit full-hash drift. Shared artifact-reader/analyzer drift remains visible. No game/oracle/pixel rerun or whole combined-current execution is claimed by integration.
+
+The current progress snapshot supplies display bindings from the parents separate recorded phase maps and retains those maps unchanged; historical hashes are not refreshed. New stretch attachments correctly name actual_destination_extents; the owned snapshot used the legacy actual_world_extents key for these same destination sizes, despite entering zero Worlds. This metadata correction changes no value or engine proof. Merged controls pass41stretch Python cases, the shared artifact-reader tests and four dashboard guards, and the actual dashboard shows116/40with both alias rows/final decisions pending.
+
+Incoming committed-history review covers19123parent/current file versions fromb0eb1de5bthrough9b0148db6. A separate retrospective receipt pins2674unique opaque input transitions, including repeated additions across merge first parents and the source-specific black-guards archive. The closed review has no unresolved exact-transition gaps; it asserts neither a past gate pass nor new engine validation. Complete prior journals/archives, failures and source identities are preserved. See rendering-copy-natural-results-20261108/master-admission-01.json, master-checks-01.json and incoming-history-closed-01.json.

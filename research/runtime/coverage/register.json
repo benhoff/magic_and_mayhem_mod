@@ -171370,6 +171370,197 @@
         "PR08.G.live: Original failed World590 lacks rejected operands. Its run remains negative; no new original game starts or complete corner/pan/session replay are planned.",
         "PR08.G.scope: Secondary wrapper continuations, wider formats/palettes/ABI and other producer rejections remain outside this primary continuation fix."
       ]
+    },
+    {
+      "id": "NP.natural-copy-checkpoint-observation",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Natural Grimoire COPY and CPU checkpoint branch observation",
+      "scope": "Bounded native-only public Grimoire initialization/navigation through physical Qt controls and original menu acknowledgements in default/software actual640/800. Pin exact tested player/native source phases, original COPY arguments and source-only prefix consumption, complete retirement and every failed/zero-game attempt. Collector evidence alone does not promote an acceptance row, establish original driver equivalence or natural alias reachability.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/run-rendering-copy-branches.py",
+        "tools/prepare-rendering-natural-stretch.py",
+        "tools/prepare-rendering-stretch-host-repair.py",
+        "tools/prepare-rendering-stretch-final-domain.py"
+      ],
+      "tests": [
+        "tests/test-copy-branch-controller.py",
+        "tests/test-natural-copy-applicability.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/grimoire_widget.cpp",
+        "apps/qt-shell/live_grimoire_controller.cpp",
+        "runtime/menu/grimoire.h",
+        "runtime/menu/grimoire_campaign.h",
+        "runtime/render/copy_route_census.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/owned_session.h",
+        "tools/analyze-rendering-stretch-prefixes.py",
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/native_only_contract.py",
+        "tools/native_prefix_template.py",
+        "tools/natural_copy_applicability.py",
+        "tools/rendering_build_binding.py",
+        "tools/rendering_menu_accessibility.py",
+        "tools/resident_capture.py",
+        "tools/run-rendering-menu-acceptance.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-copy-natural-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NCS1.prefix-integration01"
+      ],
+      "remaining_gaps": [
+        "Four finite actual public domains are observed, with all14managed requests/11actual starts and separate setup07retained. Collector/source-prefix evidence does not assert complete hidden replay pixels, World/gameplay, original driver equivalence, natural alias reachability or final rendering completion."
+      ]
+    },
+    {
+      "id": "RE.grimoire-stretch-call-gates",
+      "kind": "recovered",
+      "subsystem": "rendering_surfaces",
+      "title": "Original Grimoire explicit-rectangle copy reachability gates",
+      "scope": "Selected static operand scaffolding around ten direct58cbc0calls in NoCD4c6030, and recorded original return PCs on actual native-owned stretch source-prefix records. Sources load owner fields26/2e/32 and pass6a49e0 as destination. Full control gates, object alias lifetime and indirect/all-game reachability remain unresolved; no complete function or original driver equivalence claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5005360,
+          "scope": "Selected direct-call operand scaffolding and source-prefix caller leads; complete4c6030 control flow remains pending."
+        }
+      ],
+      "implementation": [],
+      "tests": [],
+      "validation_dependencies": [],
+      "documents": [
+        "research/runtime/rendering-copy-natural-20261108.md"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NCS1.book-operand-leads01"
+      ],
+      "remaining_gaps": [
+        "Selected operands and naturally observed caller return PCs do not prove every branch/dispatch gate or global absence of shared backing. Original driver sampling remains separate."
+      ]
+    },
+    {
+      "id": "NP.native-stretch-copy-prefix",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Bounded native RGB565 stretch COPY prefix replay",
+      "scope": "Additive fail-closed NCS1 marker on V3+ COPY records for native-owned RGB565 original58cbc0 unequal rectangles. Retain independent source/destination geometry and key; exact integer-floor host CPU transform freezes alias history, validates sampled authority before any write and publishes owned dirty bytes to the existing GPU mirror. Native RECT refusals retain their existing NCR1 marker. No original driver equivalence, indexed/conversion/windowed/clipper stretching, all-GPU transform or natural alias admission.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "compat/legacy/canvas_producers.cpp",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "runtime/scene/canvas_producers.c",
+        "tools/analyze-rendering-stretch-prefixes.py",
+        "tools/inspect-canvas-producers.py"
+      ],
+      "tests": [
+        "tests/canvas-sequence-test.cpp",
+        "tests/test-native-copy-stretch-prefix.py"
+      ],
+      "validation_dependencies": [
+        "compat/legacy/canvas_producers.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "runtime/native-draw/pixel_conversion.h",
+        "runtime/native-draw/surfaces.h",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/natural_copy_applicability.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/resident_capture.py"
+      ],
+      "documents": [
+        "research/formats/canvas-producers-v1.md",
+        "research/formats/owned-initial-history-v1.md",
+        "research/runtime/rendering-copy-natural-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NCS1.prefix-integration01",
+        "NCS1.controls01"
+      ],
+      "remaining_gaps": [
+        "Native RGB565 floor-sampling is separate from original DirectDraw equivalence. Captured source-only NCS1 integration and visible C3 destination proof have separate denominators. No indexed/conversion/clipper stretch, complete hidden replay output, World/gameplay, GPU-only stretch or natural alias claim."
+      ]
+    },
+    {
+      "id": "NP.natural-stretch-operation-closeout",
+      "title": "Natural four-domain stretch operation admission",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Retained-data admission of only both operation.copy-stretched profile rows after four distinct native-only public Grimoire sessions in actual640/800 default/software. Recompute complete floor-sampled keyed RGB565 destination UPDATEs from prior source/history and bind every successful stretch to an actual complete GPU source or destination-before plane immediately afterward. Preserve finite unrelated diagnostic omissions, exact native/player phases, reviewed post-retirement collector drift, all failures, alias rows and both final decisions. No original driver, GPU-only stretch, whole current player, hidden replay or natural alias equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/close-rendering-natural-stretch.py",
+        "tools/natural_stretch_copy.py",
+        "tools/analyze-rendering-natural-stretch.py",
+        "tools/close-rendering-natural-stretch-final.py"
+      ],
+      "tests": [
+        "tests/test-natural-stretch-proof.py",
+        "tests/test-natural-stretch-admission.py",
+        "tests/test-natural-copy-applicability.py"
+      ],
+      "validation_dependencies": [
+        "docs/native-rendering-closure.json",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/natural_copy_applicability.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_copy_readiness.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-copy-natural-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NCS1.two-stretch-rows01"
+      ],
+      "remaining_gaps": [
+        "Both stretch profile rows are admitted over the112-row owned parent. Original driver sampling, natural alias/overlap, indexed/conversion/clipper stretch, GPU-only stretching, whole combined-current player and both final decisions remain separate."
+      ]
     }
   ],
   "evidence": [
@@ -391799,6 +391990,141 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NCS1.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-copy-natural-results-20261108/controls-01.json",
+      "sha256": "e01ee08e71124d5e8c7ca5ea1448ae05cd76653a04f013d48306d9c354df65bb",
+      "sources_pointer": "/sources",
+      "scope": "Current CPU sampled-history/atomic refusal/alias/key/exterior and decoder/metadata guards, independent NumPy complete-plane arithmetic and GPU identity/hash mutations, actual destroyed-private-X11-window recovery, physical-key plan, strict two-row admission and scoped source applicability. No game/original-driver or acceptance credit from controls alone.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/python_tests",
+          "equals": 41
+        },
+        {
+          "pointer": "/cpp_executables",
+          "equals": 1
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NCS1.prefix-integration01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-copy-natural-results-20261108/source-prefix-integration-01.json",
+      "sha256": "944f95711f6eff3fe1c5e22b58b911fd1cee6a65f09c0cfde2e8e25a98c58a7c",
+      "sources_pointer": "/sources",
+      "scope": "Actual native resident consumption of captured source-only NCS1 records in four distinct native-only public Grimoire domains and ordinary original/resource retirement. The selected physical case names are explicit operator inputs. Hidden complete replay pixels, original driver sampling, natural alias reachability and World/gameplay are separate; visible C3 output has its own336-call complete-plane comparison.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/stretch_records",
+          "equals": 150
+        },
+        {
+          "pointer": "/worlds",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NCS1.two-stretch-rows01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-copy-natural-results-20261108/acceptance-01.json",
+      "sha256": "ae72159392e0be96d3d6f8ac64d493872ee719bf45143f85da8991d05086fd68",
+      "sources_pointer": "/analysis_sources",
+      "scope": "Current focused CPU/wire, collector/admission and source-applicability controls; no game/row credit from controls alone.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/checked_pixels",
+          "equals": 132249600
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/alias_rows_closed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_driver_comparison",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "NCS1.book-operand-leads01",
+      "kind": "static",
+      "record": "research/runtime/rendering-copy-natural-results-20261108/static-operands-reviewed-01.json",
+      "sha256": "bae3f6319fb190ad1859da0a06cf8e4fae0ac74b915088e39ac4ff75b950d1a9",
+      "sources_pointer": "/sources",
+      "scope": "Selected retained static operand scaffolding: ten direct58cbc0sites in4c6030, owner source fields26/2e/32 and global target6a49e0. Recorded native-owned source-prefix return PCs map to those direct calls. Full control gates, alias values/lifetime, indirect/all-game reachability and original driver sampling remain unresolved.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/static_analysis_only",
+          "equals": true
+        },
+        {
+          "pointer": "/natural_alias_reachability",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -425981,6 +426307,45 @@
       "evidence": [
         "HS08.cursor-hotspot01"
       ]
+    },
+    {
+      "id": "native.natural-stretch-operation-closeout",
+      "title": "Four-domain natural stretch output and two-row admission",
+      "scope": "Retained-data admission of only both operation.copy-stretched profile rows after four distinct native-only public Grimoire sessions in actual640/800 default/software. Recompute complete floor-sampled keyed RGB565 destination UPDATEs from prior source/history and bind every successful stretch to an actual complete GPU source or destination-before plane immediately afterward. Preserve finite unrelated diagnostic omissions, exact native/player phases, reviewed post-retirement collector drift, all failures, alias rows and both final decisions. No original driver, GPU-only stretch, whole current player, hidden replay or natural alias equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "NP.natural-stretch-operation-closeout"
+      ],
+      "tests": [
+        "tools/close-rendering-natural-stretch.py",
+        "tests/test-natural-stretch-proof.py",
+        "tests/test-natural-stretch-admission.py",
+        "tests/test-natural-copy-applicability.py",
+        "tools/close-rendering-natural-stretch-final.py"
+      ],
+      "evidence": [
+        "NCS1.two-stretch-rows01"
+      ]
+    },
+    {
+      "id": "native.natural-copy-stretch-prefix",
+      "title": "Natural NCS1 source-only replay and original retirement",
+      "scope": "Four actual native-only public Grimoire default/software640/800 sessions. Native resident consumes retained source-only NCS1 records without World work or source failure; inspect exact marker/geometry/key/caller metadata and ordinary original/resource retirement. Visible C3 stretch pixels have separate complete-plane proof. No original driver, hidden whole replay, natural alias or all-game claim.",
+      "level": "headless",
+      "behaviors": [
+        "NP.native-stretch-copy-prefix",
+        "NP.natural-copy-checkpoint-observation"
+      ],
+      "tests": [
+        "tools/analyze-rendering-stretch-prefixes.py",
+        "tests/canvas-sequence-test.cpp",
+        "tests/test-native-copy-stretch-prefix.py",
+        "tests/test-copy-branch-controller.py",
+        "tests/test-natural-copy-applicability.py"
+      ],
+      "evidence": [
+        "NCS1.prefix-integration01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -427798,8 +428163,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-b19d25a13bef3b14aa218fa102b1e943de0b5dd6988a3b7283ec3c07121a2314.json",
-    "sha256": "b19d25a13bef3b14aa218fa102b1e943de0b5dd6988a3b7283ec3c07121a2314"
+    "path": "research/runtime/coverage/source-index-31b9963ab291c84da728b6716a23fc6cf52b7726b184089a3de4ec605f8ec949.json",
+    "sha256": "31b9963ab291c84da728b6716a23fc6cf52b7726b184089a3de4ec605f8ec949"
   },
   "evidence_applicability": [
     {
