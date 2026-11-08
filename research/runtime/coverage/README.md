@@ -5,6 +5,10 @@ the [coverage ledger](../coverage-ledger.md). It records what has not been mappe
 as well as what has. A function with one behavior link is not a fully recovered
 function; checklist counts never establish whole-engine completion.
 
+The [local integration workflow](../../../docs/integration-workflow.md) covers
+cooperative admission, conservative metadata/history helpers and invocation-local
+verified-read reuse. Each working, Git-base and staged check still runs afresh.
+
 ## Run the audit
 
 From the repository root:

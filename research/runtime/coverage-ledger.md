@@ -27899,3 +27899,8 @@ SQLite. The regenerated census and normal staged hook cover the actual merged
 tree. All historical engine validation/applicability limitations,112accepted
 player rows and both pending decisions remain unchanged. The older fixture
 checkout/branch and recovery stash `7228cada4` remain held as the tested phase.
+
+
+### FIN01 — Local integration throughput, 2026-11-08
+
+Host-only tooling adds cooperative admission before merge preparation, dry-first conservative metadata/history helpers, sealed SQLite restore-proof reuse, bulk replica catalog checks and invocation-local verified reads. `TOOL.integration-throughput` owns the bounded contract and `FIN01.controls` records source-stable synthetic execution. Normal current/staged checks and two-copy custody remain required. Historical evidence hashes and engine milestones are retained unchanged; affected old shared-source proofs may need targeted applicability review. Full-merge timing and the large legacy database reuse remain unmeasured. See `docs/integration-workflow.md`.

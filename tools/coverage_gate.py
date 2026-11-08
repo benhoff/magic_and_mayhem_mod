@@ -68,7 +68,7 @@ def gap_items(report):
 
 
 def snapshot(root, register=None):
-    with Reader(root) as reader:
+    with Reader(root, memoize=True) as reader:
         return _snapshot(root, register, reader)
 
 
@@ -76,7 +76,7 @@ def _snapshot(root, register, reader):
     root = Path(root).resolve()
     register = register if register is not None else load_json(root, REGISTER)
     recorded_sources = {}
-    report = audit(root, register, recorded_sources=recorded_sources)
+    report = audit(root, register, recorded_sources=recorded_sources, reader=reader)
     if report['errors']:
         raise ValueError('Coverage audit failed: ' + '; '.join(report['errors']))
     if 'code_index' not in register:

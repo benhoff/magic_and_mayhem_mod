@@ -135,11 +135,12 @@ class GateTests(unittest.TestCase):
         paths = []
 
         class ObservedReader(Reader):
-            def digest(self, path):
+            def _remember(self, path, stamp, sha, body=None):
                 paths.append(path)
-                return super().digest(path)
+                return super()._remember(path, stamp, sha, body)
 
-        # Observe the snapshot reader separately from its independent audit.
+        # Audit and snapshot share one verified-read epoch. Count actual reads,
+        # including the audit, rather than calls returning an already known hash.
         with patch('coverage_gate.Reader', ObservedReader):
             first, _ = snapshot(self.root)
         self.assertEqual(paths.count(self.root/'assets/model.cpp'), 1)
