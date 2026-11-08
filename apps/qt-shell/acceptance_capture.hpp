@@ -34,6 +34,8 @@ public:
         campaign_=movie_ || (role=="viewport" && qEnvironmentVariableIntValue("MNM_ACCEPTANCE_CAMPAIGN")==1);
         if(campaign_){storedLimit_=1024ll*1024*1024;rawLimit_=64ll*1024*1024*1024;rowLimit_=131072;}
         if(movie_){storedLimit_=2ll*1024*1024*1024;pendingRowLimit_=4096;}
+        commandHistory_=role=="commands" && qEnvironmentVariableIntValue("MNM_ACCEPTANCE_COMMAND_HISTORY")==1;
+        if(commandHistory_){storedLimit_=1024ll*1024*1024;rowLimit_=65536;}
         static std::atomic<unsigned> identity{0};
         const auto nonce=qEnvironmentVariable("MNM_ACCEPTANCE_CAPTURE_ID");
         if(nonce.isEmpty() || nonce.size()>128 || !QDir::isAbsolutePath(directory_)){
@@ -42,9 +44,10 @@ public:
         path_=QDir(directory_).filePath(role+"-"+QString::number(++identity)+".bin");
         try{worker_=std::thread([this]{writeLoop();});}
         catch(const std::exception&){error_="Cannot start acceptance capture worker";return;}
-        QJsonObject open{{"role",role},{"session",nonce},{"version",movie_?3:campaign_?2:1},{"stored_limit_bytes",double(storedLimit_)},
+        QJsonObject open{{"role",role},{"session",nonce},{"version",commandHistory_?4:movie_?3:campaign_?2:1},{"stored_limit_bytes",double(storedLimit_)},
             {"queue_limit_bytes",double(QueueLimit)},{"queue_limit_rows",int(pendingRowLimit_)}};
         if(campaign_){open["policy"]=movie_?"movie-lossless-viewport-v1":"campaign-lossless-viewport-v1";open["raw_limit_bytes"]=double(rawLimit_);open["row_limit"]=int(rowLimit_);open["keyframe_paints"]=128;}
+        if(commandHistory_){open["policy"]="command-history-lossless-v1";open["raw_limit_bytes"]=double(rawLimit_);open["row_limit"]=int(rowLimit_);}
         append("open",open,{});
     }
     ~AcceptanceCapture(){finish();}
@@ -153,7 +156,7 @@ private:
         }catch(const std::exception&){fail("Acceptance capture worker failed");}
     }
     QString directory_,path_,error_;
-    bool enabled_=false,closed_=false,campaign_=false,movie_=false;
+    bool enabled_=false,closed_=false,campaign_=false,movie_=false,commandHistory_=false;
     unsigned rows_=0,pendingRows_=0,rowLimit_=16384,pendingRowLimit_=256;
     qint64 raw_=0,queued_=0,storedLimit_=256ll*1024*1024,rawLimit_=8ll*1024*1024*1024;
     std::mutex mutex_;std::condition_variable wake_;std::deque<Job> jobs_;std::thread worker_;

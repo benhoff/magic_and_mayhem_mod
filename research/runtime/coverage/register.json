@@ -168077,6 +168077,170 @@
         "SV07.G.attachment: both player attachment rows remain pending. Need actual same-generation parent/child role and ANI point/offset/base, source anchors/ordering and independently compared complete native output across relevant orientations; synthetic recipe frames and proximity alone are insufficient.",
         "SV07.G.combat: both player combat rows remain pending. Need actual action/event/actor-target/effect and health transition identity joined to the exact accepted source generation and complete native output, with normal identity/lifetime admission. Old scalar combat events and unbound effect sprites cannot substitute."
       ]
+    },
+    {
+      "id": "NP.pause-mini-acceptance",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Real Campaign Mini pause ownership and fresh resume",
+      "scope": "Four public default/software High/Low cases, actual640/800 on original New Game/Adept Campaign entry. Two real Mini dwells per case, at least30ordered samples/2seconds each: original ready owner/ACK retained, original World returns frozen, no pending native World jobs, gameplay input inactive/released and physical Up excluded, live acknowledged media/music ownership. Native Cancel and Escape resume must ACK, advance actual original/source clocks, restore input and independently compared complete native output; physical Up must reach gameplay after resume. Source-only UI updates/redraw are separate from World ticks. Music playback need not freeze. Normal original Main Quit and zero unintended owners are required. No all-animation/simulation pause, original music timing/waveform, spontaneous defeat/victory, arbitrary provider/map, whole ABI, cursor restoration, watchdog or second-battle resize claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-pause-20261107.md"
+      ],
+      "implementation": [
+        "tools/run-rendering-pause.py",
+        "tools/rendering_pause_live.py",
+        "tools/rendering_pause.py",
+        "tools/check-rendering-pause.py",
+        "tools/rendering_pause_assessment.py",
+        "tools/prepare-rendering-pause.py",
+        "tools/close-rendering-pause.py",
+        "tools/pause-low-dialogue-input.py",
+        "tools/rendering_pause_low_live.py",
+        "tools/run-rendering-pause-low.py",
+        "tools/check-rendering-pause-low.py",
+        "tools/rendering_pause_low_assessment.py",
+        "tools/pause_low_ingress.py",
+        "tools/prepare-pause-command-player.py",
+        "tools/pause_focus.py"
+      ],
+      "tests": [
+        "tests/test-rendering-pause.py",
+        "tests/test-rendering-pause-low.py",
+        "tests/test-rendering-pause-focus.py"
+      ],
+      "validation_dependencies": [
+        "tools/run-rendering-interaction.py",
+        "tools/run-rendering-camera-acceptance.py",
+        "tools/run-rendering-menu-acceptance.py",
+        "tools/rendering_interaction.py",
+        "tools/rendering_interaction_live.py",
+        "tools/rendering_interaction_budget.py",
+        "tools/rendering_menu_accessibility.py",
+        "tools/rendering_pilot.py",
+        "tools/native_only_contract.py",
+        "tools/native_prefix_template.py",
+        "tools/rendering_build_binding.py",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/music_v1.h",
+        "protocols/include/mnm/world_continuous_v6.h",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/input_forwarder.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "tools/check-rendering-interaction.py",
+        "tools/comparison_process.py",
+        "tools/close-rendering-camera-matrix.py",
+        "tools/close-rendering-source-camera.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_gameplay_acceptance.py",
+        "tools/campaign_input_observation.py",
+        "tools/test-menu-observer.py",
+        "tools/rendering_acceptance.py",
+        "tools/coverage_claims.py",
+        "docs/native-rendering-closure.json",
+        "tools/check_inputs.py",
+        "tools/experiment_environment.py",
+        "tools/menu-storage-input.py",
+        "tools/campaign_storage.py",
+        "tools/input_wire.py",
+        "apps/qt-shell/acceptance_capture.hpp",
+        "tools/rendering_capture.py"
+      ],
+      "evidence": [
+        "PA07.pause-closed01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "software_flags": [
+          false,
+          true
+        ],
+        "actual_sizes": [
+          [
+            800,
+            600
+          ],
+          [
+            640,
+            480
+          ]
+        ],
+        "entry": "New Game/Adept",
+        "dwells_per_case": 2,
+        "dwell_seconds": 3,
+        "minimum_samples": 30,
+        "minimum_dwell_ns": 2000000000,
+        "provider": "Xvfb/Mesa llvmpipe,DPR1",
+        "source_of_control": "Physical XTest; public AT-SPI tree inspection and focus requests"
+      },
+      "remaining_gaps": [
+        "PA07.G.boundary: all-animation/simulation and original music timing remain separate; no second-battle resize, cursor restoration, arbitrary map/provider, whole ABI, physical waveform or final acceptance credit."
+      ]
+    },
+    {
+      "id": "NP.acceptance-command-history-capture",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Versioned bounded long command capture",
+      "scope": "Explicit MNM_ACCEPTANCE_COMMAND_HISTORY=1 selects only commands-role MNMACE01version4 command-history-lossless-v1:65536total rows,8GiBdecoded bytes,1GiBstored,unchanged256MiB/4096including-in-flight queue. Preserve v1/v2/v3 limits; complete ordered owned payloads pass, total-row/queue/compression refusals stay incomplete and are rejected by the reader. Capture policy only; no game rendering, simulation, old watchdog cause, whole player or physical provider claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-pause-20261107.md",
+        "research/formats/command-history-capture-v4.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/acceptance_capture.hpp",
+        "tools/rendering_capture.py",
+        "tools/bind-command-history-controls.py"
+      ],
+      "tests": [
+        "tests/acceptance-capture-test.cpp",
+        "tools/test-acceptance-capture.py",
+        "tests/test-rendering-command-capture.py",
+        "tests/test-rendering-capture.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/host_timing_trace.hpp",
+        "tools/rendering_pilot.py",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "PA07.command-policy01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "role": "commands",
+        "version": 4,
+        "policy": "command-history-lossless-v1",
+        "rows": 65536,
+        "raw_bytes": 8589934592,
+        "stored_bytes": 1073741824,
+        "queue_bytes": 268435456,
+        "queue_rows": 4096,
+        "producer": "Qt6Core optimized and ASAN/UBSAN standalone production writer",
+        "original_game_runs": 0
+      },
+      "remaining_gaps": [
+        "PA07.G.capture-boundary: diagnostic capture only; no game, renderer output, simulation, original behavior or whole provider verdict."
+      ]
     }
   ],
   "evidence": [
@@ -385943,6 +386107,84 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "PA07.command-policy01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-pause-results-20261107/command-history-controls-bound-01.json",
+      "sha256": "02ea655faa98c5bd9f86bce601fa423ceb98d372dd14f4849ea03d419a325faa",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Only opt-in command-history-lossless-v1/version4:65536total rows,8GiBraw,1GiBstored,unchanged256MiB/4096in-flight queue. Retained optimized/ASAN native producer controls plus fresh strict reader guards. No game, raster-output, simulation, watchdog, physical-provider or all-player validation credit.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_control_cases",
+          "equals": 10
+        },
+        {
+          "pointer": "/reader_guard_tests",
+          "equals": 9
+        },
+        {
+          "pointer": "/all_legacy_budgets_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "PA07.pause-closed01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-pause-results-20261107/pause-closed-01.json",
+      "sha256": "30af0f4abfcff69e4880ed6a98afbd6eb5efda412751b7da864bd221e7c6d9e6",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Only the pending Mini pause row per profile, actual800/640. Preserves the frozen156-row inventory, all other accepted/pending decisions, exact historical sources and failures. No all-animation/simulation clock or music-playback freeze claim, arbitrary map/provider, resize, fault recovery or final native-rendering signoff.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/pause_intervals",
+          "equals": 8
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/primary_acceptance_original_game_runs",
+          "equals": 4
+        },
+        {
+          "pointer": "/historical_successful_original_game_runs",
+          "equals": 2
+        },
+        {
+          "pointer": "/failed_control_original_game_runs",
+          "equals": 8
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -419443,6 +419685,55 @@
         "SV07.G.visibility-recovery",
         "SV07.G.source"
       ]
+    },
+    {
+      "id": "native.pause-mini-acceptance",
+      "level": "headless",
+      "scope": "Bounded external public Campaign Mini ownership capture and independent offline original-history comparison across four profile/actual-frame-size domains. Two actual pauses and both Cancel/Escape resumes; no compiled gameplay test driver or original memory writes.",
+      "behaviors": [
+        "NP.pause-mini-acceptance"
+      ],
+      "tests": [
+        "tools/run-rendering-pause.py",
+        "tools/rendering_pause_live.py",
+        "tools/rendering_pause.py",
+        "tools/check-rendering-pause.py",
+        "tools/rendering_pause_assessment.py",
+        "tools/prepare-rendering-pause.py",
+        "tools/close-rendering-pause.py",
+        "tools/pause-low-dialogue-input.py",
+        "tools/rendering_pause_low_live.py",
+        "tools/run-rendering-pause-low.py",
+        "tools/check-rendering-pause-low.py",
+        "tools/rendering_pause_low_assessment.py",
+        "tools/pause_low_ingress.py",
+        "tests/test-rendering-pause.py",
+        "tests/test-rendering-pause-low.py",
+        "tools/prepare-pause-command-player.py",
+        "tools/pause_focus.py",
+        "tests/test-rendering-pause-focus.py"
+      ],
+      "evidence": [
+        "PA07.pause-closed01"
+      ]
+    },
+    {
+      "id": "native.acceptance-command-history-capture",
+      "level": "headless",
+      "scope": "Bounded actual production-writer long/default/overflow/wrong-role/blocked-compressor outputs in optimized and sanitized builds, plus strict reader policy and legacy budget guards. No game or raster output.",
+      "behaviors": [
+        "NP.acceptance-command-history-capture"
+      ],
+      "tests": [
+        "tests/acceptance-capture-test.cpp",
+        "tools/test-acceptance-capture.py",
+        "tests/test-rendering-command-capture.py",
+        "tests/test-rendering-capture.py",
+        "tools/bind-command-history-controls.py"
+      ],
+      "evidence": [
+        "PA07.command-policy01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -421260,8 +421551,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-536ec49b9db44c22336dd9ac610ed24625c7bd8a19bde69562da48dc0d434338.json",
-    "sha256": "536ec49b9db44c22336dd9ac610ed24625c7bd8a19bde69562da48dc0d434338"
+    "path": "research/runtime/coverage/source-index-f6a66b53197cb7dd79b54b49e7b7a9db666b7f8d3ecfa7b36a3ff54681c77934.json",
+    "sha256": "f6a66b53197cb7dd79b54b49e7b7a9db666b7f8d3ecfa7b36a3ff54681c77934"
   },
   "evidence_applicability": [
     {

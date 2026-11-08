@@ -27225,3 +27225,29 @@ All 67 scene/UI/client controls pass without skips. Both failed analyzer
 preparations and the wrong client-command refusal retain exact source phases
 and SQLite results. See [the six-row review](scene-visibility-effects-20261107.md)
 and `rendering-scene-effects-results-20261107/admission-03.json`.
+
+
+### PA07: bounded Campaign Mini pause acceptance
+
+The public Campaign Mini pause leaf now passes for default/software profiles
+from four actual 800×600/640×480cases and eight nominal 3 second dwells. Raw
+original owner/ACK and frozen World returns, released/blocked gameplay input,
+live media/music ownership, both Cancel/Escape original callbacks, fresh
+independently compared resumed output/input and normal owner retirement agree.
+5,483,989,500 actual GPU pixel checks have zero differences. The two pause rows preserve
+all 90 parent rows and both pending final decisions: 92/156 passed, 64 pending.
+See [the phase-preserving acceptance review](rendering-pause-20261107.md) and
+`rendering-pause-results-20261107/pause-closed-01.json`.
+
+The bounded version 4 command-history diagnostic policy fixes an observed old
+recorder row-cap refusal; it changes no rendering/simulation behavior. Retained
+writer controls cover optimized/sanitized policy limits, legacy budgets, role
+isolation and nonblocking queue refusal. Sampling, source640 OCR geometry and
+physical Escape focus/keymap/ACK admission were repaired with failures retained.
+Four current cases and two historical successful phases remain separate; eight
+failed game runs receive no acceptance credit. Original manifest/oracle hashes
+remain pinned. Native-header full-hash drift makes earlier affected native
+evidence historical unless separately reviewed/revalidated; statuses and old
+hashes are preserved without asserting current-code equivalence. No rendering
+bug, all-simulation/music freeze, arbitrary-provider, font/DC/ABI, whole
+cursor/background, watchdog/second-battle resize or final-renderer closure claim.

@@ -7,7 +7,7 @@ from rendering_pilot import capture
 from rendering_capture import Plane
 ROOT=Path(__file__).resolve().parents[1]
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,required=True);p.add_argument('--report',required=True);p.add_argument('--baseline-header',type=Path);a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,required=True);p.add_argument('--report',required=True);p.add_argument('--baseline-header',type=Path);p.add_argument('--command-history',action='store_true');a=p.parse_args()
  out=a.output.resolve()
  if not out.is_relative_to(ROOT/'working') or out.exists() or (ROOT/a.report).exists():p.error('Fresh owned working output and immutable report required')
  out.mkdir(parents=True);(out/'.retain').write_text('Acceptance capture controls, including refused old source and wire bytes.\n')
@@ -26,7 +26,7 @@ def main():
   for mode,options in [('optimized',['-O2']),*([] if a.baseline_header else [('sanitized',['-O1','-g','-fsanitize=address,undefined','-fno-omit-frame-pointer'])])]:
    binary=out/mode
    r=run(['g++','-std=c++17','-Wall','-Wextra','-Werror','-fPIC','-pthread',*options,'-I',header.parent,ROOT/'tests/acceptance-capture-test.cpp',*flags,'-lz','-o',binary]);assert r.returncode==0,'Control build failed'
-   command=[binary,out/(mode+'-wire')]+(['--baseline'] if a.baseline_header else ['--campaign-long'] if mode=='optimized' else [])
+   command=[binary,out/(mode+'-wire')]+(['--command-history'] if a.command_history else ['--baseline'] if a.baseline_header else ['--campaign-long'] if mode=='optimized' else [])
    r=run(command,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1'))
    result=json.loads(r.stdout);report['checks'][-1]['result']=result
    if a.baseline_header:
@@ -47,7 +47,7 @@ def main():
      except ValueError as e:
       assert 'Capture incomplete or truncated' in str(e),str(e)
       rejected+=1
-    assert (accepted,rejected)==(4,5),'Production reader did not distinguish complete and refused proofs'
+    assert (accepted,rejected)==((2,3) if a.command_history else (4,5)),'Production reader did not distinguish complete and refused proofs'
     report['checks'][-1]['production_reader']=dict(complete_accepted=accepted,incomplete_rejected=rejected)
   report['success']=not bool(a.baseline_header)
  except Exception as e:report['error']=str(e)

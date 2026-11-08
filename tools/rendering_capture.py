@@ -9,6 +9,9 @@ from rendering_pilot import require, number, counter, inflate
 
 CAMPAIGN_POLICY = 'campaign-lossless-viewport-v1'
 MOVIE_POLICY = 'movie-lossless-viewport-v1'
+COMMAND_HISTORY_POLICY = 'command-history-lossless-v1'
+COMMAND_HISTORY_ROWS = 65536
+COMMAND_HISTORY_RAW = 8*1024**3
 CAMPAIGN_RAW = 64*1024**3
 CAMPAIGN_ROWS = 131072
 
@@ -97,7 +100,7 @@ def capture(raw):
                 and type(row['kind']) is str, 'Capture row identity')
         if not rows:
             require(row['kind'] == 'open' and type(row['version']) is int
-                    and row['version'] in (1, 2, 3), 'Capture open version')
+                    and row['version'] in (1, 2, 3, 4), 'Capture open version')
             if row['version'] == 2:
                 require(row['role'] == 'viewport' and row.get('policy') == CAMPAIGN_POLICY
                         and type(row.get('raw_limit_bytes')) is int and row['raw_limit_bytes'] == CAMPAIGN_RAW
@@ -116,6 +119,15 @@ def capture(raw):
                         and type(row.get('queue_limit_rows')) is int and row['queue_limit_rows'] == 4096,
                         'Unreviewed movie capture policy')
                 campaign, row_limit, raw_limit = True, CAMPAIGN_ROWS, CAMPAIGN_RAW
+            elif row['version'] == 4:
+                require(row['role'] == 'commands' and row.get('policy') == COMMAND_HISTORY_POLICY
+                        and type(row.get('raw_limit_bytes')) is int and row['raw_limit_bytes'] == COMMAND_HISTORY_RAW
+                        and type(row.get('row_limit')) is int and row['row_limit'] == COMMAND_HISTORY_ROWS
+                        and type(row.get('stored_limit_bytes')) is int and row['stored_limit_bytes'] == 1024**3
+                        and type(row.get('queue_limit_bytes')) is int and row['queue_limit_bytes'] == 256*1024**2
+                        and type(row.get('queue_limit_rows')) is int and row['queue_limit_rows'] == 4096,
+                        'Unreviewed command history capture policy')
+                row_limit, raw_limit = COMMAND_HISTORY_ROWS, COMMAND_HISTORY_RAW
         observed = counter(row['host_us'])
         require(observed >= last_time, 'Capture clock regressed'); last_time = observed
         if n and campaign:
