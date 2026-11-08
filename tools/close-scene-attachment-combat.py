@@ -45,24 +45,41 @@ READY_AFTER=b'''    def ready_spellbox_inventory(self):
 '''
 
 
-def budget_only_change(before,after):
+def budget_only_change(before,after,maximum=6):
     """Recognize exactly the two host charging checks, never a capture edit."""
-    for old,new in BUDGET_EDITS:
+    require(maximum in(6,8),'Unreviewed attachment start bound')
+    edits=list(BUDGET_EDITS)
+    if maximum==8:edits[0]=(edits[0][0],b"plan['maximum_actual_games'] in (5,6,8)")
+    for old,new in edits:
         require(before.count(old)==1,'Unknown five-start collector preimage')
         before=before.replace(old,new)
     require(before==after,'Collector changed outside its two prospective budget checks')
 
 
-def collector_phase(reader,name):
+def collector_phase(reader,name,*,require_current=True,seen=()):
     if name is None:return None
+    require(name not in seen,'Cyclic collector budget review')
     q=reader.json(name)
-    require(q['success']is True and q['path']==COLLECTOR and q['maximum_before']==5 and q['maximum_after']==6
+    require(q['success']is True and q['path']==COLLECTOR and q['maximum_before']==5 and q['maximum_after']in(6,8)
             and q['user_approved']is True,'Unapproved or different collector budget review')
-    for key in('before','after'):
+    for key in('before','after','authority'):
         require(reader.digest(q[key]['record'])==q[key]['sha256'],'Changed collector source preimage')
-    budget_only_change(reader.read_bytes(q['before']['record']),reader.read_bytes(q['after']['record']))
-    require(reader.digest(COLLECTOR)==q['after']['sha256'],'Current collector differs from the reviewed budget-only version')
-    return dict(record=name,sha256=reader.digest(name),**q)
+    authority=reader.json(q['authority']['record'])
+    require(authority['success']is True and authority['maximum_actual_games']==q['maximum_after'],
+            'Collector bound differs from the explicit user authority')
+    budget_only_change(reader.read_bytes(q['before']['record']),reader.read_bytes(q['after']['record']),q['maximum_after'])
+    accepted={q['before']['sha256']}
+    prior=q.get('prior_phases',[])
+    require(len(prior)==(1 if q['maximum_after']==8 else 0),'Missing or unexpected intermediate collector phase')
+    for ref in prior:
+        require(reader.digest(ref['record'])==ref['sha256'],'Changed intermediate collector review')
+        previous=collector_phase(reader,ref['record'],require_current=False,seen=(*seen,name))
+        require(previous['maximum_after']==6 and previous['before']==q['before'],
+                'Unrelated intermediate collector source phase')
+        accepted.add(previous['after']['sha256'])
+    if require_current:
+        require(reader.digest(COLLECTOR)==q['after']['sha256'],'Current collector differs from the reviewed budget-only version')
+    return dict(record=name,sha256=reader.digest(name),**q,accepted_before_sha256s=sorted(accepted))
 
 
 def ready_only_change(before,after):
@@ -116,7 +133,7 @@ def ready_input_phase(reader,name):
 def checked_sources(reader,sources,phase,ready=None):
     for n,h in sources.items():
         if reader.digest(n)==h:continue
-        if phase is not None and n==COLLECTOR and h==phase['before']['sha256']:continue
+        if phase is not None and n==COLLECTOR and h in phase.get('accepted_before_sha256s',[phase['before']['sha256']]):continue
         if ready is not None and n==DRIVER and h==ready['before']['sha256']:continue
         require(False,'Changed scene source outside the exact host control reviews: '+n)
 

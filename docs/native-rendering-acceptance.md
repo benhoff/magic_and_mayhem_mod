@@ -1,3 +1,11 @@
+Current owned AC07 admission:
+`research/runtime/attachment-combat-results-20261107/admission-04.json` qualifies
+three requested rows: both combat profiles and default attachment,93passed and
+63pending in its preserved90-row parent phase. Software attachment remains
+pending after the eighth charged start cancels before Escape. All failed starts
+remain retained; cap8is exhausted. Both final decisions and native gameplay
+reconstruction remain separate. A ninth-start proposal is explicitly unapproved.
+
 The current owned AC07 retained admission is
 `research/runtime/attachment-combat-results-20261107/admission-03.json`:92passed,
 64pending in its preserved90-row source phase. Both combat profile rows are

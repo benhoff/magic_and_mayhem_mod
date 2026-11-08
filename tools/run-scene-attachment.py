@@ -69,7 +69,7 @@ def main():
     try:
         with Reader(ROOT) as reader:
             plan = reader.json(args.plan)
-            require(plan['success'] is True and plan['maximum_actual_games'] in (5,6),
+            require(plan['success'] is True and plan['maximum_actual_games'] in (5,6,8),
                     'Prospective attachment plan missing')
             require(all(reader.digest(n) == h for n, h in plan['sources'].items()), 'Attachment plan sources changed')
             result['input_plan'] = dict(record=args.plan, sha256=reader.digest(args.plan))

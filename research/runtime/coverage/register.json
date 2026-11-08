@@ -168151,7 +168151,8 @@
         "AC07.encoder-controls04",
         "AC07.combat-observation01",
         "AC07.combat-observation02",
-        "AC07.combat-observation03"
+        "AC07.combat-observation03",
+        "AC07.scene-partial-observation04"
       ],
       "status": {
         "understanding": "scoped",
@@ -168198,7 +168199,8 @@
       "evidence": [
         "AC07.combat-observation01",
         "AC07.combat-observation02",
-        "AC07.combat-observation03"
+        "AC07.combat-observation03",
+        "AC07.scene-partial-observation04"
       ],
       "status": {
         "understanding": "scoped",
@@ -168267,7 +168269,8 @@
       "evidence": [
         "AC07.combat-admission01",
         "AC07.combat-admission02",
-        "AC07.combat-admission03"
+        "AC07.combat-admission03",
+        "AC07.scene-partial-admission04"
       ],
       "status": {
         "understanding": "scoped",
@@ -168331,7 +168334,8 @@
       "evidence": [
         "AC07.combat-admission01",
         "AC07.combat-admission02",
-        "AC07.combat-admission03"
+        "AC07.combat-admission03",
+        "AC07.scene-partial-admission04"
       ],
       "status": {
         "understanding": "scoped",
@@ -168391,7 +168395,10 @@
         "AC07.attachment-low-return-failure01",
         "AC07.attachment-inventory-race01",
         "AC07.ready-inventory-controls01",
-        "AC07.combat-observation03"
+        "AC07.combat-observation03",
+        "AC07.attachment-software-producer-failure01",
+        "AC07.ready-inventory-controls02",
+        "AC07.scene-partial-observation04"
       ],
       "status": {
         "understanding": "scoped",
@@ -168406,7 +168413,8 @@
         "AC07.G.ownership",
         "AC07.G.ram-quota-failure: actual default640setup stops before cast/World. Exact core preserves original Source chunk acknowledgement mode/cancellation and secondary uncaught QSaveFile error2 Disk quota exceeded. Filesystem free space alone does not establish user-quota headroom; first failing producer syscall remains unobserved. No normal failure-retirement, universal reliability, attachment output or quota recovery claim is supplied by this negative capture.",
         "AC07.G.low-results-return: actual640Excalibur run dispatches original Results26/callback2 but fails readyQuick22/ack7 before timeout. Final post-cleanup ack8/status5 is later evidence; exact first pending transition/cause remains unobserved. All capture/normal-retirement claims remain failed, cap5 exhausted in that historical run; six-total approval subsequently used. See attachment-runtime-diagnosis-05.json; no native menu/controller change or status promotion.",
-        "AC07.G.optional-inventory-read-runtime: sixth charged start fails before inventory/cast because an unchecked live read returnsNone after a valid saved Spellbox visit. Exact cached-ready correction and39 offline controls pass; its new None-read handling has no accepted original640execution. The earlier Results-return failure remains separate and unresolved. See attachment-runtime-diagnosis-06.json and ready-input-phase-01.json; cap6 is exhausted and a two-start increase is pending explicit user approval."
+        "AC07.G.optional-inventory-read-runtime: sixth charged start fails before inventory/cast because an unchecked live read returnsNone after a valid saved Spellbox visit. Exact cached-ready correction and39 offline controls pass; the corrected cached-ready source now has an accepted default640case, while the software640case fails before normal retirement; the historical rejected live bytes remain unretained. The earlier Results-return failure remains separate and unresolved. See attachment-runtime-diagnosis-06.json and ready-input-phase-01.json; the user later approved8total starts and all8are charged; no further start is authorized.",
+        "AC07.G.software640-producer-exit: eighth charged start observes original Excalibur child/four views but stops after253completed Worlds before Escape. A retained launch-specific module table binds the reason1source closure to MnmScene DLL detach atRVA1737; native reports producer cancelled. Initial original exit cause/code are missing. Failed native retirement and incomplete capture grant no software640row. See attachment-runtime-diagnosis-08.json; cap8exhausted."
       ]
     },
     {
@@ -168447,7 +168455,8 @@
       "evidence": [
         "AC07.combat-admission01",
         "AC07.combat-admission02",
-        "AC07.combat-admission03"
+        "AC07.combat-admission03",
+        "AC07.scene-partial-admission04"
       ],
       "status": {
         "understanding": "scoped",
@@ -168457,9 +168466,9 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "AC07.G.attachment640: both low-resolution attachment domains remain unaccepted after quota/setup and Results-return failures. Six actual attachment games are charged and exhausted; the user-approved cap6 has no remaining slot. The eighth-total proposal requests two further starts and remains nonlaunchable pending approval. The four-row task is incomplete.",
         "AC07.G.ownership",
-        "Other attachment/status/map/provider/caller/lifetime domains and native gameplay remain separate."
+        "Other attachment/status/map/provider/caller/lifetime domains and native gameplay remain separate.",
+        "AC07.G.attachment640: default640now passes original offered self-cast/four-view placement, complete independent native output and normal Quit. Software640remains unaccepted after producer cancellation before Escape. Both combat rows and default attachment row qualify; software attachment row and four-row task remain pending. All8authorized attachment starts remain charged; no new start is authorized."
       ]
     }
   ],
@@ -386726,6 +386735,140 @@
           "equals": 6
         }
       ]
+    },
+    {
+      "id": "AC07.attachment-software-producer-failure01",
+      "kind": "live_observation",
+      "scope": "Negative eighth actual attachment start: original self-cast/four-view child observations, then253completed Worlds and next-WRITING254close on launch-specific DLL detach, before Escape; native producer cancellation, no accepted complete output or normal-retirement row. Missing original exit cause/code remains explicit; quota guard never triggers.",
+      "record": "research/runtime/attachment-combat-results-20261107/attachment-software640-01.json",
+      "sha256": "1099ce9d485e81517ec02ec1d8ae9cbb38aaba63e298c63127b5cedd5197391a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 1
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/attachment_route/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AC07.ready-inventory-controls02",
+      "kind": "native_integration",
+      "scope": "43 current offline saved-ready/source/budget guards, with exact5/6/8transitions and refusal of a ninth unapproved bound. Current default640source execution is separately acquired; controls themselves supply no original run or missing software retirement.",
+      "record": "research/runtime/attachment-combat-results-20261107/eight-start-ready-phase-controls-01.json",
+      "sha256": "75a8af0a9b1c4fff84b98f06bf64e3fcb487cf9bc04dbef41dab71a2a8697074",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/passed",
+          "equals": 43
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "AC07.scene-partial-admission04",
+      "kind": "native_integration",
+      "scope": "Seven distinct accepted actual cases qualify three requested rows: both default/software combat profiles and default attachment. The new default640case supplies original Excalibur child/four-view placement, complete independent output comparison and normal Quit, giving93passed63pending in the preserved90-row parent phase. Software640producer cancellation before Escape is retained as a failed eighth charged start; software attachment and whole-task completion stay pending. Narrow approved5/6/8budget and saved-ready reviews preserve old positive source bytes. No native/runtime/oracle/pixel hash waiver or native gameplay reconstruction.",
+      "record": "research/runtime/attachment-combat-results-20261107/admission-04.json",
+      "sha256": "c744144c3dadd414aad9628b9bd6920379867a20775351c04cdc40450293bbed",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 3
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 1
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/collector_budget_phase/maximum_after",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "AC07.scene-partial-observation04",
+      "kind": "live_observation",
+      "scope": "Seven distinct accepted actual cases qualify three requested rows: both default/software combat profiles and default attachment. The new default640case supplies original Excalibur child/four-view placement, complete independent output comparison and normal Quit, giving93passed63pending in the preserved90-row parent phase. Software640producer cancellation before Escape is retained as a failed eighth charged start; software attachment and whole-task completion stay pending. Narrow approved5/6/8budget and saved-ready reviews preserve old positive source bytes. No native/runtime/oracle/pixel hash waiver or native gameplay reconstruction.",
+      "record": "research/runtime/attachment-combat-results-20261107/admission-04.json",
+      "sha256": "c744144c3dadd414aad9628b9bd6920379867a20775351c04cdc40450293bbed",
+      "sources_pointer": "/live_observation_sources",
+      "claims_pointer": "/live_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 3
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 1
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/collector_budget_phase/maximum_after",
+          "equals": 8
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -420264,7 +420407,8 @@
       "evidence": [
         "AC07.combat-observation01",
         "AC07.combat-observation02",
-        "AC07.combat-observation03"
+        "AC07.combat-observation03",
+        "AC07.scene-partial-observation04"
       ],
       "remaining_gaps": [
         "AC07.G.driver-live",
@@ -420287,14 +420431,15 @@
       "evidence": [
         "AC07.combat-admission01",
         "AC07.combat-admission02",
-        "AC07.combat-admission03"
+        "AC07.combat-admission03",
+        "AC07.scene-partial-admission04"
       ],
       "remaining_gaps": [
         "AC07.G.attachments",
         "AC07.G.combat",
         "AC07.G.ownership",
         "AC07.G.output",
-        "Combined eight-case scenario incomplete: combat complete, attachment640unaccepted. Only separate native.scene-combat-output is claimed by the partial admission."
+        "Combined eight-case scenario incomplete: combat complete, software640attachment unaccepted. Only separate native.scene-combat-output is claimed by the partial admission."
       ]
     },
     {
@@ -420311,13 +420456,14 @@
       "evidence": [
         "AC07.combat-observation01",
         "AC07.combat-observation02",
-        "AC07.combat-observation03"
+        "AC07.combat-observation03",
+        "AC07.scene-partial-observation04"
       ],
       "remaining_gaps": [
         "AC07.G.attachment-driver-live",
         "AC07.G.attachments",
         "AC07.G.ownership",
-        "AC07.G.attachment640: only two800normal cases have placement/output credit; both640domains remain unaccepted, cap5 exhausted. Evidence is partial and declares no attachment live claim."
+        "AC07.G.attachment640: default640and both800cases now pass; software640has no normal retirement after producer cancellation before Escape. Partial evidence declares no whole four-domain attachment live milestone. All8actual starts are charged."
       ]
     },
     {
@@ -420335,7 +420481,8 @@
       "evidence": [
         "AC07.combat-admission01",
         "AC07.combat-admission02",
-        "AC07.combat-admission03"
+        "AC07.combat-admission03",
+        "AC07.scene-partial-admission04"
       ],
       "remaining_gaps": [
         "AC07.G.admission",
@@ -420355,7 +420502,8 @@
       "evidence": [
         "AC07.combat-admission01",
         "AC07.combat-admission02",
-        "AC07.combat-admission03"
+        "AC07.combat-admission03",
+        "AC07.scene-partial-admission04"
       ],
       "remaining_gaps": [
         "AC07.G.ownership",
@@ -422178,8 +422326,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-4350714ad145a1b00baef3afa74ab69f85a35aec2ac282fa159de1b26433e7fe.json",
-    "sha256": "4350714ad145a1b00baef3afa74ab69f85a35aec2ac282fa159de1b26433e7fe"
+    "path": "research/runtime/coverage/source-index-bf5f7ac0420f2b07fb801e450ab75d8995076ef64d869d24fe08edf3864934e2.json",
+    "sha256": "bf5f7ac0420f2b07fb801e450ab75d8995076ef64d869d24fe08edf3864934e2"
   },
   "evidence_applicability": [
     {

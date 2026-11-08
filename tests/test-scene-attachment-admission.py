@@ -233,12 +233,28 @@ class BudgetPhaseControls(unittest.TestCase):
         before=(ROOT/close.COLLECTOR).read_bytes()
         # Tests remain usable after the reviewed numerical transition.
         for old,new in close.BUDGET_EDITS:
-            if old not in before:before=before.replace(new,old)
+            if old not in before:
+                before=before.replace(b"plan['maximum_actual_games'] in (5,6,8)",old)if old==close.BUDGET_EDITS[0][0]else before
+                before=before.replace(new,old)
         after=before
         for old,new in close.BUDGET_EDITS:after=after.replace(old,new)
         return before,after
 
     def test_exact_two_expression_budget_transition(self):close.budget_only_change(*self.versions())
+
+    def test_exact_eight_start_transition(self):
+        before,after=self.versions()
+        close.budget_only_change(before,after.replace(close.BUDGET_EDITS[0][1],b"plan['maximum_actual_games'] in (5,6,8)"),8)
+
+    def test_six_start_source_cannot_claim_eight(self):
+        with self.assertRaises(ValueError):close.budget_only_change(*self.versions(),maximum=8)
+
+    def test_eight_start_source_requires_explicit_eight_review(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.budget_only_change(before,after.replace(close.BUDGET_EDITS[0][1],b"plan['maximum_actual_games'] in (5,6,8)"))
+
+    def test_an_unreviewed_ninth_start_bound_is_rejected(self):
+        with self.assertRaises(ValueError):close.budget_only_change(*self.versions(),maximum=9)
 
     def test_native_or_input_change_cannot_hide_in_budget_review(self):
         before,after=self.versions()

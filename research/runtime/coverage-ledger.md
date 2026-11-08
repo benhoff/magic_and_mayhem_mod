@@ -27295,3 +27295,53 @@ attachment physical/output milestones remainnone. The sixth raw trees/pins
 and changed idle prefix have paired full manifests, real restores and canonical
 stubs. Private High preferences/launcher bytes are restored and2,927original
 files verify. See the AC07 research and `attachment-runtime-diagnosis-06.json`.
+
+
+### Three requested rows qualified; software attachment pending — 2026-11-08
+
+`attachment-combat-results-20261107/admission-04.json` qualifies both combat
+profile rows and the default attachment row:93passed63pending in the preserved
+90-row parent source phase. Seven distinct accepted actual cases contribute
+5481closed Worlds,14775World presentations and
+14692465760complete viewport pixel checks with zero differences.
+Default640case05 supplies one original offered Excalibur self-cast, four
+mode1/first-point parent-child views,64visible matched native sample points,
+474independently reconstructed Worlds,1,404World presentations and normal
+Results/Quick/Main/Quit with all graphics resources released. Both800attachment
+cases and four combat cases retain their original source/native/oracle phases.
+
+The user approved8total attachment starts. Eighth software640case01 observes
+one original self-cast and four active-child views, but cancels after253complete
+Worlds while next generation254is still WRITING. Its failed acquisition and
+`attachment-runtime-diagnosis-08.json` give no software attachment row or normal
+retirement credit. A launch-specific retained module table binds reason1closure
+to MnmScene DLL_PROCESS_DETACH atRVA1737. The menu alive0sample and screenshot
+show the failure before Escape. The native report says producer cancelled; the
+initial original exit cause/code remain unknown. The raster finite-displacement
+record is a normal detach-time counter with zero retained traffic, not a refusal.
+The RAM quota guard never triggers. The earlier fifth Results/Quick failure
+remains separate; successful default retirement does not diagnose either failure.
+All8actual starts stay charged. Both attachment behavior milestones remainnone
+until the whole four-domain attachment cohort passes; the default profile row
+has its narrower complete two-size proof. Both final decisions remain pending.
+
+After host reboot, exact tested binary/configuration and the admitted prefix were
+restored from paired evidence. A fresh405-source compiler closure reproduces the
+accepted player byte-for-byte; new build intermediates are temporary. A private
+AT-SPI broker setup refusal launches zero original games and adds zero budget
+rows. Selecting the private daemon before dbus-run-session passes a registry
+control and enables both subsequent starts without engine/collector/input
+changes.43current admission controls plus30Python/9client UI controls pass.
+The first admission join was interrupted before publication because it was
+started before the metadata preparation finished; admission04is a fresh rerun
+against settled files, not a reused partial result.
+
+Exact High private preferences and launcher bytes are restored and2,927original
+files verify. Source phase reviews preserve original old5/6hashes under the
+approved8bound and cached-ready correction; native/runtime, oracle and pixel
+source hashes stay strict. The final join is retained-data analysis, not another
+game. `attachment-plan-12-pending.json` is explicitly nonlaunchable: one further
+software640case with bounded external exit tracing would require9total-start
+authority. Two synthetic namespace exit-trace controls pass; they establish no
+original exit cause or future case success. No further game is authorized by
+this three-row checkpoint, and no concurrent main source/status is imported.
