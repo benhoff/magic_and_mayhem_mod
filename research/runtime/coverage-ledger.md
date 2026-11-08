@@ -27695,3 +27695,32 @@ their exact inputs. No extra original launch, native gameplay change, historical
 hash refresh, caller54a563admission, source-phase waiver or final-player claim.
 Fresh source-census/audit, exact committed-history review, actual-master normal
 staged hook and local paired backups are recorded separately at closeout.
+
+
+### PC08 finite World-entry palette refresh — 2026-11-08
+
+The owned palette branch closes exactly both `operation.palette-cycling` rows
+for default/software at actual640×480/800×600. The immutable
+[acceptance proof](palette-cycling-results-20261108/acceptance-01.json) preserves
+all108parent rows and both pending player decisions:110passed46pending in this
+source phase. No newer master count or combined-current-player claim is made.
+
+Actual RGB/globals/coefficient/FP/profile inputs independently reproduce675
+initial nodes /5,311,744 WORDs and32refreshes /1,568,768 WORDs. All935,676
+ordered selected versions join878Worlds;1,021,416,000viewport pixels over926
+World presentations have zero differences. Twelve actual changed-colour
+source/last-writer/native-lease witnesses and normal original/native retirement
+pass. The proof covers finite World-entry mutation, not arbitrary periodic
+cycling between displayed frames. Initial unpresented colours are baselines.
+Original palette builders/refreshes remain live suppliers; platform services,
+exceptional domains, other providers and native live replacement stay separate.
+
+Recovered x87 power now also serves mode0's dark wing. The affected isolated
+matrix passes3468palettes /63,416,320WORDs; the refresh matrix passes2816cases
+under two precision settings and both packed formats.31observer controls and
+28production assembly ABI cases pass; actual service text is a supplied input.
+Every earlier numerical mismatch, setup refusal, semantic-probe ordering error,
+unobserved v2 rewrite refusal, invisible first-v3 case and metadata/storage
+correction is retained. Nine attempts /seven actual games are stopped. Preserve
+older evidence/status source phases and raw staleness rather than renewing
+all palette or player milestones. See [the scoped research](palette-cycling-20261108.md).
