@@ -168025,6 +168025,58 @@
         "SH07.G.execution: new diagnostic preparation and execution remain separate from the exhausted six-request/three-game picking batch; no full picking/resize, normal lifetime or independent presented-pixel acceptance.",
         "SH07.G.observer: live440sample trace captured host waits only; private-prefix string did not match the namespaced original. Observer close masked the journey error. File device/inode mapping admission, bounded process scanning and causal-error preservation have parser/control validation only, with no new game run. The controller prematurely rejected its old displayed High frame; corrected waiting is headless-control validated only."
       ]
+    },
+    {
+      "id": "NP.scene-occlusion-output",
+      "title": "Actual opaque scene occlusion changes in retained native output",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Fresh retained-data analysis of adjacent actual normal-storage source generations at default/software640/800. Hold a uniquely resolved named creature bitmap, full effective palette, draw anchor, clip, source canvas incarnation and camera fixed while at least eight source pixels switch between its opaque body and later opaque sprites with different WORDs. Bind actual original entries, consumed AX, order and owned payload hashes; compare every selected ordered source/independent-original WORD and complete selected native viewport mapping through live imports. This proves finite scene occlusion delivery, not recovery of upstream fog, mask-grid activation, terrain-owner flags, actor identity/lifecycle, attachments, combat, arbitrary map/view/provider or current native execution.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/scene_effects.py",
+        "tools/check-scene-effects.py",
+        "tools/join-scene-effects.py"
+      ],
+      "tests": [
+        "tests/test-scene-effects.py"
+      ],
+      "validation_dependencies": [
+        "tools/close-rendering-animation-auxiliary.py",
+        "tools/close-rendering-first-world.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "tools/rendering_closeout.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/resident_capture.py",
+        "docs/native-rendering-closure.json"
+      ],
+      "documents": [
+        "research/runtime/scene-visibility-effects-20261107.md"
+      ],
+      "evidence": [
+        "SV07.occlusion03"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "SV07.G.source: only retained-data Python analysis and controls are current. All inherited native/original/compiler/viewport execution phases and failures remain historical; no full-hash waiver or new engine execution.",
+        "SV07.G.visibility-recovery: finite opaque raster occlusion delivery is separate from original fog changes, coverage-grid activation, pre/post hidden-kind mutations and terrain-owner flags; permitted original producers remain unchanged.",
+        "SV07.G.attachment: both player attachment rows remain pending. Need actual same-generation parent/child role and ANI point/offset/base, source anchors/ordering and independently compared complete native output across relevant orientations; synthetic recipe frames and proximity alone are insufficient.",
+        "SV07.G.combat: both player combat rows remain pending. Need actual action/event/actor-target/effect and health transition identity joined to the exact accepted source generation and complete native output, with normal identity/lifetime admission. Old scalar combat events and unbound effect sprites cannot substitute."
+      ]
     }
   ],
   "evidence": [
@@ -385852,6 +385904,45 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "SV07.occlusion03",
+      "record": "research/runtime/rendering-scene-effects-results-20261107/admission-03.json",
+      "sha256": "1fbb6926bbc30fbbb668812a43a4d754032b00286c4a0c8a6daf5ac7499dba3c",
+      "kind": "native_integration",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh retained-data source/opaque-original-WORD/native-viewport analysis in four ordinary Campaign/storage domains and current adverse/UI admission controls.412changed points/824native viewport pixels; two visibility rows, four attachment/combat rows remain pending. Historical original/native/compiler/viewport phases unchanged; no original recovery or new game/native execution.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 4
+        },
+        {
+          "pointer": "/changed_world_points",
+          "equals": 412
+        },
+        {
+          "pointer": "/matched_viewport_pixels",
+          "equals": 824
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -419332,6 +419423,26 @@
         "SH07.retained-controls02",
         "SH07.master-controls01"
       ]
+    },
+    {
+      "id": "native.scene-occlusion-retained",
+      "scope": "Four actual retained normal Campaign/storage profile/size domains; one adjacent unchanged-body opaque occlusion transition per domain with source and independent original WORDs, live imports and every selected actual viewport pixel. Exact six task-row boundary retains attachment and combat pending; no new original/native game.",
+      "level": "headless",
+      "behaviors": [
+        "NP.scene-occlusion-output"
+      ],
+      "tests": [
+        "tests/test-scene-effects.py"
+      ],
+      "evidence": [
+        "SV07.occlusion03"
+      ],
+      "remaining_gaps": [
+        "SV07.G.attachment",
+        "SV07.G.combat",
+        "SV07.G.visibility-recovery",
+        "SV07.G.source"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -421149,8 +421260,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-a8661f82930510da434828d78f4e131291dfaf583ad33b40dedc29900111fd3c.json",
-    "sha256": "a8661f82930510da434828d78f4e131291dfaf583ad33b40dedc29900111fd3c"
+    "path": "research/runtime/coverage/source-index-536ec49b9db44c22336dd9ac610ed24625c7bd8a19bde69562da48dc0d434338.json",
+    "sha256": "536ec49b9db44c22336dd9ac610ed24625c7bd8a19bde69562da48dc0d434338"
   },
   "evidence_applicability": [
     {

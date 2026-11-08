@@ -27200,3 +27200,28 @@ skips on the merged source. Original source-phase failures/results remain immuta
 Incoming5commits/9821parent-file transitions have six missing unique metadata
 pairs recorded retrospectively in SQLite; no past gate claim. See the owned
 [closeout/integration review](rendering-closeout-handoff-20261107.md).
+
+
+## SV07: scene occlusion output and remaining attachment/combat rows — 2026-11-07
+
+The owned scene-visibility-effects batch closes only both active-world.visibility
+rows from four retained ordinary Campaign/storage default/software 640/800 cases.
+412 scene points switch between an unchanged named creature bitmap/palette/anchor/
+clip/camera and later opaque rasters with different WORDs; 824 actual viewport
+pixels match independent original output. Exact original entries/consumed AX,
+source order, live source/import incarnations and complete selected viewport
+lineage are checked. New current work is Python retained-data analysis and
+controls; original/native/compiler/viewport hashes remain historical. No fog/
+coverage-grid/terrain-owner recovery, actor identity, native code/build, game,
+fixture, replacement or gameplay balance change.
+
+SV07.occlusion03 preserves all 88 parent rows: 90/156 passed, 66 pending. Of the six
+requested scene/effects rows, four remain pending: actual parent/child ANI/base/
+anchor placement across views and actual combat action/effect/health identity
+joined to accepted source generations and complete output. Offline attachment
+recipes, old combat events and downstream effect sprites do not close them.
+Both final decisions, original reliability failures and source phases survive.
+All 67 scene/UI/client controls pass without skips. Both failed analyzer
+preparations and the wrong client-command refusal retain exact source phases
+and SQLite results. See [the six-row review](scene-visibility-effects-20261107.md)
+and `rendering-scene-effects-results-20261107/admission-03.json`.

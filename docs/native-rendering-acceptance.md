@@ -1,5 +1,7 @@
 # Native rendering acceptance record
 
+**Scene occlusion closeout (2026-11-07):** the [retained scene analysis](../research/runtime/scene-visibility-effects-20261107.md) closes the two visibility rows across default/software 640/800, preserving all 88 parent rows: **90/156 passed, 66 pending**. 412 changing scene points/824 native viewport pixels match independent original WORDs. Four attachment/combat rows and both final decisions remain pending; all native execution phases and failures retain their original scope.
+
 **Integrated acceptance record (2026-11-07):** the
 [exact source-phase join](../research/runtime/rendering-enabled-intros-results-20261107/integrated-acceptance-03.json)
 records **88/156 passed, 68 pending**. It preserves all 86 incoming
