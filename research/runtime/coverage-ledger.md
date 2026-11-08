@@ -27773,3 +27773,22 @@ is performed here. The font/DC installed lifecycle and whole caller ABI
 remain pending. Latest history covers25717committed file versions with three
 new retrospective metadata bindings, separate from all earlier reviews. See
 rendering-contract-master-final-results-20261108 for the exact SQLite reports.
+
+
+### COPY stretch/overlap retained-evidence boundary — 2026-11-08
+
+Current analysis of eight retained CP06 Quick/Campaign default/software
+actual640/800 cases verifies37337closed active application calls and exact
+GPU census bindings. There are36866prepared one-to-one COPY geometries,
+467source-less calls, zero tracked aliases and four refused unknown geometries.
+No positive natural stretch/overlap output witness is present; supplied backend
+controls and eleven static explicit-RECT callers do not supply those witnesses.
+Ordinary COPY planning refuses stretch and CPU self-copy; successful native
+CPU transforms can still publish CREATE/UPDATE through the checkpoint path.
+Plan refusal alone is not a rendering-support failure; independent
+caller-bound checkpoint-transform output remains unproved. Both requirements/four
+profile rows stay pending;112/156passed44pending and both final decisions remain.
+Nine new classifier guards and ten unchanged route controls pass; no game, new
+game fixture, native-source change, historical hash refresh or accepted rerun.
+See [the exact blockers and bounded next step](rendering-two-copy-readiness-20261108.md)
+and SQLite`rendering-two-copy-results-20261108/assessment-03.json`.

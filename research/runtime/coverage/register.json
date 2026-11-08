@@ -171016,6 +171016,55 @@
       "remaining_gaps": [
         "Accepted scope is only the four named operation rows across recorded High and newly observed Low phases. Current whole-player/High combined guest execution, physical context loss/Restore, pending CPU interruption, arbitrary races/providers, in-place/save recovery and both final rendering decisions remain separate."
       ]
+    },
+    {
+      "id": "NP.copy-required-branch-readiness",
+      "title": "Retained required stretch and overlap COPY readiness",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Metadata-only reanalysis of the eight retained CP06 Quick/Campaign acquisitions across default/software actual640/800. Validate closed original route/GPU census bindings, count only prepared geometry, preserve unknown refused geometry and tracked identity boundaries, and retain eleven original explicit-RECT static leads. No row promotion, new game execution, original driver/output equivalence or global absence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/rendering_copy_readiness.py",
+        "tools/assess-rendering-two-copy-rows.py"
+      ],
+      "tests": [
+        "tests/test-rendering-copy-readiness.py"
+      ],
+      "validation_dependencies": [
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "runtime/render/lock_surfaces.h",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "runtime/native-draw/surfaces.h",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/coverage_claims.py",
+        "runtime/render/owned_session.h",
+        "research/runtime/grimoire-engine-contract.md"
+      ],
+      "documents": [
+        "research/runtime/rendering-two-copy-readiness-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "COPYREADY.retained01",
+        "COPYREADY.controls01",
+        "COPYREADY.retained02",
+        "COPYREADY.retained03"
+      ],
+      "remaining_gaps": [
+        "Actual required stretched and alias/overlap callers and caller-bound complete independent transform output remain pending, including successful CPU CREATE/UPDATE checkpoint routes. COPY-plan refusal alone is not a rendering-support failure. No acceptance rows or existing behavior milestones change; refused geometry and untracked physical aliases remain unknown."
+      ]
     }
   ],
   "evidence": [
@@ -391075,6 +391124,94 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "COPYREADY.retained01",
+      "kind": "static",
+      "record": "research/runtime/rendering-two-copy-results-20261108/assessment-01.json",
+      "sha256": "8c45d7763bcac784019aee870c3ff4ec1e91318e128737891773b50481436f0d",
+      "sources_pointer": "/analysis_sources",
+      "scope": "Current retained-data/metadata analysis only; both COPY requirements and all four profile rows remain pending.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "COPYREADY.controls01",
+      "kind": "static",
+      "record": "research/runtime/rendering-two-copy-results-20261108/controls-01.json",
+      "sha256": "4a55b766b9fe87eeda6c054bdc23005636f48ef81845d605fce93ee9c3d0bc84",
+      "sources_pointer": "/sources",
+      "scope": "Current retained-data/metadata analysis only; both COPY requirements and all four profile rows remain pending.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "COPYREADY.retained02",
+      "kind": "static",
+      "record": "research/runtime/rendering-two-copy-results-20261108/assessment-02.json",
+      "sha256": "ee6aa211e579a93800d17f4e1e0ca91a98e4d867fdcfbbdfe75dd36fa8e3b85d",
+      "sources_pointer": "/analysis_sources",
+      "scope": "Current retained-data/metadata analysis only; both COPY requirements and all four profile rows remain pending.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "COPYREADY.retained03",
+      "kind": "static",
+      "record": "research/runtime/rendering-two-copy-results-20261108/assessment-03.json",
+      "sha256": "d0ca8f144fe87d69b2c9fa3c7e4569e066562b791309cdbfb30383e2eb66b9af",
+      "sources_pointer": "/analysis_sources",
+      "scope": "Current retained-data/metadata analysis only; both COPY requirements and all four profile rows remain pending.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -427029,8 +427166,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-1d905ce062632b20ba9828ccbfe2d27bf90f1d8eb133b02c196f497fcdae9934.json",
-    "sha256": "1d905ce062632b20ba9828ccbfe2d27bf90f1d8eb133b02c196f497fcdae9934"
+    "path": "research/runtime/coverage/source-index-92b247049e85227b5a48796aa76910a6fcde03607551cdf29dc199762e83881f.json",
+    "sha256": "92b247049e85227b5a48796aa76910a6fcde03607551cdf29dc199762e83881f"
   },
   "evidence_applicability": [
     {
