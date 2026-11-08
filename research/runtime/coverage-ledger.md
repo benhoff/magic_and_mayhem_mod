@@ -27491,3 +27491,12 @@ fault-operation rows and renderer acceptance receive no promotion. All102parent
 acceptance rows and both pending decisions remain. See
 [SX08](native-startup-display-20261108.md), `SX08.authority-controls01`,
 `SX08.startup-postmortem01` and `SX08.controller-units01`.
+
+
+## Selection state and visible highlight acceptance — 2026-11-08
+
+SL08 closes only both finite `journey.cursor-interaction.selection` rows from four retained IP07 actual default/software640/800 domains:104/156passed,52pending.80original selection callbacks bind living numeric wizard role and flag68on/off with flag70clear to three displayed pointer-away source generations per state, Sharp/Integer, four views plus pan. Exact original four-corner Sprites/markers.spr resources/caller/request checks, actor containment, source-derived RGB565 history and conservative actual command-coordinate provenance match70359new viewport pixels with zero differences. All12077World-associated leased swaps and10561336500previously compared pixels remain independently bound; historical native/compiler/runtime/oracle source phases are retained.
+
+The analyzer now distinguishes other exact marker-bank frames sharing the caller, follows each original sub-cell/animation anchor, admits known opaque black without treating unknown zero as colour authority, and reconstructs bounded already recovered blend history beneath the off state. Every raw cursor refusal remains explicit: each complete bounded journal has one acknowledged-post-close slot3invalidation refusal and no drawing/copy success is inferred. CR07invalid save-under/keyed requests, initial guard failures, failed full analyses and source preflights remain negative evidence.54selection controls pass. No new original game, native engine or oracle is run, and no native raster/simulation repair is claimed.
+
+`NP.selection-highlight-closeout` has scoped implementation/headless integration only; original comparison/replacement remain none. Allocation generations, whole picking/hotspot, storage selection continuity, response deadlines, physical provider, current full player, other rows and both final decisions remain independent. See [selection closeout](rendering-selection-closeout-20261108.md) and `SL08.selection-highlight01`.

@@ -170482,6 +170482,63 @@
         "One bounded original run reached raw original Main, World generation1280 and positive Up input. Its optional Quit check/finalization did not complete; normal Quit and current corrected capture-free pointer driver have no successful live validation. The source/preimage, raw observations and held-prefix recovery are retained; no retry or acceptance-row promotion.",
         "Four operation rows remain separate; no fault/restart interval or independent pixel comparison in this semantic-only run."
       ]
+    },
+    {
+      "id": "NP.selection-highlight-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Original selection state to visible four-corner highlight",
+      "scope": "Retained actual default/software640/800 Quick selection: four views plus pan in both Sharp/Integer. Bind80original Shift selection callbacks, living numeric wizard role, flag68on/off with flag70clear and three displayed pointer-away source generations per state. Four exact Sprites/markers.spr corner resources, actual direct-WORD caller/entry/AX/source requests, later-writer-safe contrasting source WORDs, conservative native command provenance and complete independently matched actual viewports. Raw cursor/refusal/retirement observations and historical invalid requests remain explicit. No new game/native/oracle execution, allocation generations, whole selection/picking/hotspot, physical provider, current whole-player or final decision claim.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "tools/rendering_selection.py",
+        "tools/close-rendering-selection.py"
+      ],
+      "tests": [
+        "tests/test-rendering-selection.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-selection-closeout-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_interaction.py",
+        "tools/rendering_interaction_assessment.py",
+        "tools/rendering_interaction_live.py",
+        "tools/campaign_input_observation.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/resident_capture.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-animation-auxiliary.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/native_cursor_journal.py",
+        "tools/rendering_acceptance.py",
+        "tools/coverage_claims.py",
+        "reconstruction/rendering/world_cell_producer.hpp",
+        "docs/native-rendering-closure.json",
+        "runtime/native-draw/cursor_owner.h",
+        "reconstruction/rendering/raster_pixels.c",
+        "reconstruction/rendering/raster_pixels.h"
+      ],
+      "evidence": [
+        "SL08.selection-highlight01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "SL08.G.scope: Finite recorded selected wizard only. Numeric pool/slot is not an allocation generation; multi-actor selection and whole picking/hotspot/cursor policy remain separate. Historical invalid cursor requests and their source phases are not renewed or hidden.",
+        "SL08.G.phase: Retained original/native/compiler/oracle phases remain pinned. Current full player/provider, response deadlines, live frame-size changes, other acceptance rows and both final decisions remain pending."
+      ]
     }
   ],
   "evidence": [
@@ -389504,6 +389561,73 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "SL08.selection-highlight01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-selection-results-20261108/analysis-03.json",
+      "sha256": "bdf006becc4d480d655f75d8cf06c2cabf76b203ec71e581876fc0defa004133",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Retained actual default/software640/800 Quick selection: four views plus pan in both Sharp/Integer. Bind80original Shift selection callbacks, living numeric wizard role, flag68on/off with flag70clear and three displayed pointer-away source generations per state. Four exact Sprites/markers.spr corner resources, actual direct-WORD caller/entry/AX/source requests, later-writer-safe contrasting source WORDs, conservative native command provenance and complete independently matched actual viewports. Raw cursor/refusal/retirement observations and historical invalid requests remain explicit. No new game/native/oracle execution, allocation generations, whole selection/picking/hotspot, physical provider, current whole-player or final decision claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/required_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/original_selection_callbacks",
+          "equals": 80
+        },
+        {
+          "pointer": "/settled_source_generations",
+          "equals": 240
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 104
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 52
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_native_engine_executions",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_original_oracle_executions",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -423407,6 +423531,70 @@
       "evidence": [
         "SX08.startup-postmortem01"
       ]
+    },
+    {
+      "id": "SL08.selection.01",
+      "level": "headless",
+      "scope": "Retained actual default/software640/800 Quick selection: four views plus pan in both Sharp/Integer. Bind80original Shift selection callbacks, living numeric wizard role, flag68on/off with flag70clear and three displayed pointer-away source generations per state. Four exact Sprites/markers.spr corner resources, actual direct-WORD caller/entry/AX/source requests, later-writer-safe contrasting source WORDs, conservative native command provenance and complete independently matched actual viewports. Raw cursor/refusal/retirement observations and historical invalid requests remain explicit. No new game/native/oracle execution, allocation generations, whole selection/picking/hotspot, physical provider, current whole-player or final decision claim. Domain player-default [640, 480]",
+      "behaviors": [
+        "NP.selection-highlight-closeout"
+      ],
+      "tests": [
+        "tools/rendering_selection.py",
+        "tools/close-rendering-selection.py",
+        "tests/test-rendering-selection.py"
+      ],
+      "evidence": [
+        "SL08.selection-highlight01"
+      ]
+    },
+    {
+      "id": "SL08.selection.02",
+      "level": "headless",
+      "scope": "Retained actual default/software640/800 Quick selection: four views plus pan in both Sharp/Integer. Bind80original Shift selection callbacks, living numeric wizard role, flag68on/off with flag70clear and three displayed pointer-away source generations per state. Four exact Sprites/markers.spr corner resources, actual direct-WORD caller/entry/AX/source requests, later-writer-safe contrasting source WORDs, conservative native command provenance and complete independently matched actual viewports. Raw cursor/refusal/retirement observations and historical invalid requests remain explicit. No new game/native/oracle execution, allocation generations, whole selection/picking/hotspot, physical provider, current whole-player or final decision claim. Domain player-default [800, 600]",
+      "behaviors": [
+        "NP.selection-highlight-closeout"
+      ],
+      "tests": [
+        "tools/rendering_selection.py",
+        "tools/close-rendering-selection.py",
+        "tests/test-rendering-selection.py"
+      ],
+      "evidence": [
+        "SL08.selection-highlight01"
+      ]
+    },
+    {
+      "id": "SL08.selection.03",
+      "level": "headless",
+      "scope": "Retained actual default/software640/800 Quick selection: four views plus pan in both Sharp/Integer. Bind80original Shift selection callbacks, living numeric wizard role, flag68on/off with flag70clear and three displayed pointer-away source generations per state. Four exact Sprites/markers.spr corner resources, actual direct-WORD caller/entry/AX/source requests, later-writer-safe contrasting source WORDs, conservative native command provenance and complete independently matched actual viewports. Raw cursor/refusal/retirement observations and historical invalid requests remain explicit. No new game/native/oracle execution, allocation generations, whole selection/picking/hotspot, physical provider, current whole-player or final decision claim. Domain player-software [640, 480]",
+      "behaviors": [
+        "NP.selection-highlight-closeout"
+      ],
+      "tests": [
+        "tools/rendering_selection.py",
+        "tools/close-rendering-selection.py",
+        "tests/test-rendering-selection.py"
+      ],
+      "evidence": [
+        "SL08.selection-highlight01"
+      ]
+    },
+    {
+      "id": "SL08.selection.04",
+      "level": "headless",
+      "scope": "Retained actual default/software640/800 Quick selection: four views plus pan in both Sharp/Integer. Bind80original Shift selection callbacks, living numeric wizard role, flag68on/off with flag70clear and three displayed pointer-away source generations per state. Four exact Sprites/markers.spr corner resources, actual direct-WORD caller/entry/AX/source requests, later-writer-safe contrasting source WORDs, conservative native command provenance and complete independently matched actual viewports. Raw cursor/refusal/retirement observations and historical invalid requests remain explicit. No new game/native/oracle execution, allocation generations, whole selection/picking/hotspot, physical provider, current whole-player or final decision claim. Domain player-software [800, 600]",
+      "behaviors": [
+        "NP.selection-highlight-closeout"
+      ],
+      "tests": [
+        "tools/rendering_selection.py",
+        "tools/close-rendering-selection.py",
+        "tests/test-rendering-selection.py"
+      ],
+      "evidence": [
+        "SL08.selection-highlight01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -425224,8 +425412,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-305087731dcb661ec8e95c16a91e19cc3281262c9365d0caf16e7bfae39c7327.json",
-    "sha256": "305087731dcb661ec8e95c16a91e19cc3281262c9365d0caf16e7bfae39c7327"
+    "path": "research/runtime/coverage/source-index-8e1edaf9dccc2d6a4aeafc66b29b103eed4c3ce193f0c784d703721e086f9c69.json",
+    "sha256": "8e1edaf9dccc2d6a4aeafc66b29b103eed4c3ce193f0c784d703721e086f9c69"
   },
   "evidence_applicability": [
     {
