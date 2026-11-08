@@ -27721,3 +27721,40 @@ unchanged four-row proof: 112/156passed44pending.
 Metadata-only strict row joining repeats no engine/oracle/pixel execution; all
 native source phases and both final decisions remain unchanged. See
 `rendering-recovery-four-results-20261108/master-admission-01.json`.
+
+
+## Dry-first working cleanup coordinator — 2026-11-08
+
+HOST.storage-retention adds tools/cleanup-working.py and storage_cleanup.py.
+Default inventory and apply-without-execute are non-destructive. Explicit reviewed
+completed execution selections bind exact member hashes/metadata, source/policy
+fingerprints and two independent review reasons in immutable SQLite plans.
+Execution requires the reviewed plan hash, --execute and explicit restore scratch.
+Existing paired workspace sealing and real replica restore precede removal;
+external retention/consumer checks run again after that restore. Originals, source
+checkouts, pins, recent/newest runs, databases, aliases, hardlinks, fixture inputs
+and tracked/referenced payloads stay held. No existing engine or storage milestone
+is promoted; no real project payload is retired by this development batch.
+Synthetic controls and a bounded actual-host dry inventory are recorded separately
+from engine execution. Literal metadata/process checks retain their documented
+historical/dynamic-consumer limits. See docs/working-retention.md.
+
+STORAGE08.cleanup-controls03 records38passing controls (18new cleanup,20existing
+retention). The complete synthetic cycle preserves exact capture, failure result
+and configuration bytes through both stores and a real restore. Initial fixture
+and inventory-performance failures remain documented in immutable earlier reports;
+/tmp inode exhaustion led only to task-owned /dev/shm accounting scratch.
+
+The bounded actual-host dry inventory covers4748units:4724held and24review
+requests, with10952151040allocated candidate bytes before review/compression/
+replication costs. No scan errors; host process view admitted. Held units are
+partially measured and receive no reclaimable-space credit. This is a review
+queue, not safe deletions, promised net savings or rendering-acceptance closure.
+Full linked-checkout mode remains available; this operational pilot covers main
+working data only. Both interrupted inventory attempts and inode/source-census
+preparation refusals remain diagnostic history, not successful runs.
+
+Final STORAGE08.cleanup-controls04 adds the parent-selection/newest-run refusal:
+39controls pass (19new,20existing) on final sources. The earlier38-control and
+4748-unit host dry inventory keep their exact source phase; no old hash is renewed.
+No project cleanup, engine execution or historical milestone promotion follows.
