@@ -234,6 +234,8 @@ class BudgetPhaseControls(unittest.TestCase):
         # Tests remain usable after the reviewed numerical transition.
         for old,new in close.BUDGET_EDITS:
             if old not in before:
+                before=before.replace(b"plan['maximum_actual_games'] in (5,6,8,9,10)",old)if old==close.BUDGET_EDITS[0][0]else before
+                before=before.replace(b"plan['maximum_actual_games'] in (5,6,8,9)",old)if old==close.BUDGET_EDITS[0][0]else before
                 before=before.replace(b"plan['maximum_actual_games'] in (5,6,8)",old)if old==close.BUDGET_EDITS[0][0]else before
                 before=before.replace(new,old)
         after=before
@@ -253,8 +255,32 @@ class BudgetPhaseControls(unittest.TestCase):
         before,after=self.versions()
         with self.assertRaises(ValueError):close.budget_only_change(before,after.replace(close.BUDGET_EDITS[0][1],b"plan['maximum_actual_games'] in (5,6,8)"))
 
-    def test_an_unreviewed_ninth_start_bound_is_rejected(self):
-        with self.assertRaises(ValueError):close.budget_only_change(*self.versions(),maximum=9)
+    def test_exact_ninth_start_transition(self):
+        before,after=self.versions()
+        close.budget_only_change(before,after.replace(close.BUDGET_EDITS[0][1],b"plan['maximum_actual_games'] in (5,6,8,9)"),9)
+
+    def test_eight_start_source_cannot_claim_nine(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.budget_only_change(before,after.replace(close.BUDGET_EDITS[0][1],b"plan['maximum_actual_games'] in (5,6,8)"),9)
+
+    def test_ninth_start_source_requires_explicit_ninth_review(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.budget_only_change(before,after.replace(close.BUDGET_EDITS[0][1],b"plan['maximum_actual_games'] in (5,6,8,9)"),8)
+
+    def test_an_unreviewed_eleventh_start_bound_is_rejected(self):
+        with self.assertRaises(ValueError):close.budget_only_change(*self.versions(),maximum=11)
+
+    def test_exact_tenth_start_transition(self):
+        before,after=self.versions()
+        close.budget_only_change(before,after.replace(close.BUDGET_EDITS[0][1],b"plan['maximum_actual_games'] in (5,6,8,9,10)"),10)
+
+    def test_ninth_source_cannot_claim_ten(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.budget_only_change(before,after.replace(close.BUDGET_EDITS[0][1],b"plan['maximum_actual_games'] in (5,6,8,9)"),10)
+
+    def test_tenth_source_requires_explicit_tenth_review(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.budget_only_change(before,after.replace(close.BUDGET_EDITS[0][1],b"plan['maximum_actual_games'] in (5,6,8,9,10)"),9)
 
     def test_native_or_input_change_cannot_hide_in_budget_review(self):
         before,after=self.versions()
@@ -283,6 +309,71 @@ class BudgetPhaseControls(unittest.TestCase):
     def test_wrong_collector_preimage_hash_rejected(self):
         reader=type('Reader',(),{'digest':lambda self,n:'current'})()
         with self.assertRaises(ValueError):close.checked_sources(reader,{close.COLLECTOR:'foreign'},{'before':{'sha256':'old'}})
+
+
+class PostProofControls(unittest.TestCase):
+    def versions(self):
+        after=(ROOT/close.DRIVER).read_bytes()
+        before=after.replace(close.POSTPROOF_AFTER,close.POSTPROOF_BEFORE)
+        return before,after
+
+    def test_exact_postproof_turn_removal(self):close.postproof_only_change(*self.versions())
+
+    def test_three_observations_cannot_replace_four(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.postproof_only_change(before,after.replace(b'range(4)',b'range(3)'))
+
+    def test_recipe_change_is_not_postproof_review(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.postproof_only_change(before,after.replace(b'== 83',b'== 84'))
+
+    def test_exit_timing_change_is_not_postproof_review(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.postproof_only_change(before,after.replace(b"0xff1b,.6",b"0xff1b,.1"))
+
+    def test_extra_edit_is_not_postproof_review(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.postproof_only_change(before,after+b'\n# unrelated edit\n')
+
+    def test_postproof_review_never_waives_runtime_hash(self):
+        reader=type('Reader',(),{'digest':lambda self,n:'current'})()
+        with self.assertRaises(ValueError):close.checked_sources(reader,{'runtime/scene/world_raster_callers.h':'old'},None,postproof={'before':{'sha256':'old'}})
+
+    def test_reviewed_inventory_source_is_separate(self):
+        reader=type('Reader',(),{'digest':lambda self,n:'current'})()
+        close.checked_sources(reader,{close.DRIVER:'old'},None,postproof={'before':{'sha256':'old'}})
+        with self.assertRaises(ValueError):close.checked_sources(reader,{close.DRIVER:'foreign'},None,postproof={'before':{'sha256':'old'}})
+
+    def test_four_views_finish_at_the_fourth_view_with_three_turns(self):
+        import tempfile
+        from pathlib import Path
+        journey=attachment.AttachmentJourney.__new__(attachment.AttachmentJourney)
+        journey.size=(640,480);journey.proof={'cast_requests':0};journey.out=Path('unused');journey.view=0;journey.active=False
+        keys=[];captures=[]
+        def frame():
+            a=[0]*200;a[4]=100;a[12]=3 if journey.active else 1;a[14]=int(journey.active);a[185]=int(journey.active)
+            return dict(generation=20+len(keys),view=journey.view,extent=(640,480),actors=[tuple(a)],draws=[(0,0,0,0,0,20,20,0),(0,1,0,0,0,20,20,0)])
+        def until(predicate,seconds):
+            value=frame();self.assertTrue(predicate(value));return value
+        def click(point,button=1):
+            if button==3:journey.active=True
+        def key(label,symbol,hold=.2):keys.append((label,symbol));journey.view=(journey.view-1)%4
+        journey.until_frame=until;journey.frame_click=click;journey.game_key=key;journey.key=lambda *args:None
+        journey.capture=lambda label:captures.append((label,journey.view))
+        class Sources:
+            def __init__(self,*args):pass
+            def target(self,*args):return {'point':[10,10]}
+            def close(self):pass
+        with tempfile.TemporaryDirectory()as directory:
+            journey.session=Path(directory)
+            (journey.session/'input-admission.bin').write_bytes(b'MNMCAI01'+struct.pack('<II',3,144))
+            selected=dict(flags=1,spell_count=1,receiver_slot_plus_one=1,selected_slot=0,mode=2)
+            with patch.object(attachment,'LiveSources',Sources),patch.object(attachment,'input_observations',lambda raw:{'rows':[selected]}),patch.object(attachment.time,'sleep'):
+                journey.cast_and_observe()
+        self.assertEqual([v['view']for v in journey.proof['views']],[0,3,2,1])
+        self.assertEqual([v[1]for v in keys],[ord('.')]*3)
+        self.assertEqual(captures[-1],('world-active-attachment',1))
+        self.assertTrue(journey.proof['success'])
 
 
 if __name__=='__main__':unittest.main()

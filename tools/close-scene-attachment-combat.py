@@ -47,9 +47,11 @@ READY_AFTER=b'''    def ready_spellbox_inventory(self):
 
 def budget_only_change(before,after,maximum=6):
     """Recognize exactly the two host charging checks, never a capture edit."""
-    require(maximum in(6,8),'Unreviewed attachment start bound')
+    require(maximum in(6,8,9,10),'Unreviewed attachment start bound')
     edits=list(BUDGET_EDITS)
     if maximum==8:edits[0]=(edits[0][0],b"plan['maximum_actual_games'] in (5,6,8)")
+    if maximum==9:edits[0]=(edits[0][0],b"plan['maximum_actual_games'] in (5,6,8,9)")
+    if maximum==10:edits[0]=(edits[0][0],b"plan['maximum_actual_games'] in (5,6,8,9,10)")
     for old,new in edits:
         require(before.count(old)==1,'Unknown five-start collector preimage')
         before=before.replace(old,new)
@@ -60,7 +62,7 @@ def collector_phase(reader,name,*,require_current=True,seen=()):
     if name is None:return None
     require(name not in seen,'Cyclic collector budget review')
     q=reader.json(name)
-    require(q['success']is True and q['path']==COLLECTOR and q['maximum_before']==5 and q['maximum_after']in(6,8)
+    require(q['success']is True and q['path']==COLLECTOR and q['maximum_before']==5 and q['maximum_after']in(6,8,9,10)
             and q['user_approved']is True,'Unapproved or different collector budget review')
     for key in('before','after','authority'):
         require(reader.digest(q[key]['record'])==q[key]['sha256'],'Changed collector source preimage')
@@ -70,12 +72,13 @@ def collector_phase(reader,name,*,require_current=True,seen=()):
     budget_only_change(reader.read_bytes(q['before']['record']),reader.read_bytes(q['after']['record']),q['maximum_after'])
     accepted={q['before']['sha256']}
     prior=q.get('prior_phases',[])
-    require(len(prior)==(1 if q['maximum_after']==8 else 0),'Missing or unexpected intermediate collector phase')
+    require(len(prior)==(1 if q['maximum_after']>=8 else 0),'Missing or unexpected intermediate collector phase')
     for ref in prior:
         require(reader.digest(ref['record'])==ref['sha256'],'Changed intermediate collector review')
         previous=collector_phase(reader,ref['record'],require_current=False,seen=(*seen,name))
-        require(previous['maximum_after']==6 and previous['before']==q['before'],
+        require(previous['maximum_after']=={8:6,9:8,10:9}[q['maximum_after']] and previous['before']==q['before'],
                 'Unrelated intermediate collector source phase')
+        accepted.update(previous['accepted_before_sha256s'])
         accepted.add(previous['after']['sha256'])
     if require_current:
         require(reader.digest(COLLECTOR)==q['after']['sha256'],'Current collector differs from the reviewed budget-only version')
@@ -89,7 +92,62 @@ def ready_only_change(before,after):
             'Driver changed outside the exact saved-ready-inventory correction')
 
 
-def ready_input_phase(reader,name):
+POSTPROOF_BEFORE=b'''            self.game_key('attachment-view-'+str(ordinal+1), ord('.'))
+            time.sleep(1)
+'''
+POSTPROOF_AFTER=b'''            if ordinal < 3:
+                self.game_key('attachment-view-'+str(ordinal+1), ord('.'))
+                time.sleep(1)
+'''
+
+
+def postproof_only_change(before,after):
+    require(before.count(POSTPROOF_BEFORE)==1 and POSTPROOF_AFTER not in before,
+            'Unknown four-rotation source preimage')
+    require(before.replace(POSTPROOF_BEFORE,POSTPROOF_AFTER)==after,
+            'Input changed outside the redundant post-proof rotation')
+
+
+def postproof_phase(reader,name,budget):
+    if name is None:return None
+    q=reader.json(name)
+    require(q['success']is True and q['path']==DRIVER and q['original_game_runs']==0 and
+            q['new_route_live_validated']is False and len(q['retained_inputs'])==3,
+            'Unaccepted post-proof control review')
+    for key in('before','after','inventory_preimage','controls'):
+        require(reader.digest(q[key]['record'])==q[key]['sha256'],'Changed post-proof source review')
+    ready_only_change(reader.read_bytes(q['inventory_preimage']['record']),reader.read_bytes(q['before']['record']))
+    postproof_only_change(reader.read_bytes(q['before']['record']),reader.read_bytes(q['after']['record']))
+    require(reader.digest(DRIVER)==q['after']['sha256'],'Current driver differs from reviewed post-proof source')
+    controls=reader.json(q['controls']['record'])
+    require(controls['success']is True and controls['passed']>=46 and
+            {DRIVER,'tools/close-scene-attachment-combat.py','tests/test-scene-attachment-admission.py'}<=set(controls['sources'])and
+            all(reader.digest(n)==h for n,h in controls['sources'].items()),'Post-proof controls missing or changed')
+    domains=set()
+    for item in q['retained_inputs']:
+        for ref in item.values():require(reader.digest(ref['record'])==ref['sha256'],'Changed retained post-proof input')
+        acquired=reader.json(item['acquisition']['record']);compared=reader.json(item['comparison']['record'])
+        output=reader.json(item['analysis']['record'])
+        require(acquired['success']is compared['success']is output['success']is True and
+                acquired['retirement']['state']=='completed'and compared['acquisition']==item['acquisition']and
+                len(output['cases'])==1 and output['cases'][0]['pair']=={k:item[k]for k in('acquisition','comparison')},
+                'Unaccepted original post-proof input')
+        case=output['cases'][0];proof=case['attachment']
+        require(case['purpose']=='attachment'and proof['role']==1 and
+                {s['view']for s in proof['states']}==set(range(4))and
+                all(v['actual_rgba']==v['original_rgba']for v in proof['native'])and
+                {s['view']for s in acquired['attachment_route']['views']}==set(range(4))and
+                len([a for a in acquired['actions']if a.get('action','').startswith('attachment-view-')])==4,
+                'Old positive input lacks its original four-view proof')
+        for sources in(acquired['sources'],compared['sources'],output['analysis_sources']):
+            checked_sources(reader,sources,budget,dict(before=q['inventory_preimage']),q)
+        domains.add((case['software'],tuple(case['actual_extent'])))
+    require(domains=={(False,(800,600)),(True,(800,600)),(False,(640,480))},
+            'Post-proof review requires all three accepted attachment domains')
+    return dict(record=name,sha256=reader.digest(name),**q)
+
+
+def ready_input_phase(reader,name,postproof=None):
     if name is None:return None
     q=reader.json(name)
     require(q['success']is True and q['path']==DRIVER and q['original_game_runs']==0,
@@ -97,7 +155,8 @@ def ready_input_phase(reader,name):
     for key in('before','after','diagnosis','controls'):
         require(reader.digest(q[key]['record'])==q[key]['sha256'],'Changed ready-input review artifact')
     ready_only_change(reader.read_bytes(q['before']['record']),reader.read_bytes(q['after']['record']))
-    require(reader.digest(DRIVER)==q['after']['sha256'],'Current driver differs from the ready-input correction')
+    require((postproof is not None and q['before']==postproof['inventory_preimage']and q['after']==postproof['before'])or
+            reader.digest(DRIVER)==q['after']['sha256'],'Current driver differs from the ready-input correction')
     diagnosis=reader.json(q['diagnosis']['record']);controls=reader.json(q['controls']['record'])
     require(diagnosis['kind']=='attachment_live_inventory_snapshot_race'and diagnosis['driver_preimage']==q['before'],
             'Unrelated failed-input diagnosis')
@@ -130,15 +189,16 @@ def ready_input_phase(reader,name):
     return dict(record=name,sha256=reader.digest(name),**q)
 
 
-def checked_sources(reader,sources,phase,ready=None):
+def checked_sources(reader,sources,phase,ready=None,postproof=None):
     for n,h in sources.items():
         if reader.digest(n)==h:continue
         if phase is not None and n==COLLECTOR and h in phase.get('accepted_before_sha256s',[phase['before']['sha256']]):continue
         if ready is not None and n==DRIVER and h==ready['before']['sha256']:continue
+        if postproof is not None and n==DRIVER and h==postproof['before']['sha256']:continue
         require(False,'Changed scene source outside the exact host control reviews: '+n)
 
 
-def retained_cases(reader,names,phase,partial=False,ready=None):
+def retained_cases(reader,names,phase,partial=False,ready=None,postproof=None):
     """Reuse unchanged pixel analysis; review the charging policy separately."""
     register=reader.json('research/runtime/coverage/register.json');builds={b['id']:b for b in register['builds']}
     behaviors=[b for b in register['behaviors']if b['id']in('NP.scene-attachment-output','NP.scene-combat-output')]
@@ -152,7 +212,7 @@ def retained_cases(reader,names,phase,partial=False,ready=None):
                 and q['analysis_contracts']==contracts and q['analysis_scenario']==scenario_hash,
                 'Unaccepted or differently scoped retained scene analysis')
         require(required<=set(q['analysis_sources']),'Incomplete retained pixel analyzer source closure')
-        checked_sources(reader,q['analysis_sources'],phase,ready)
+        checked_sources(reader,q['analysis_sources'],phase,ready,postproof)
         cases.extend(deepcopy(q['cases']));refs.append(dict(record=name,sha256=reader.digest(name)))
     expected={(p,s,(w,h))for p in('attachment','combat')for s in(False,True)for w,h in((640,480),(800,600))}
     domains={(c['purpose'],c['software'],tuple(c['actual_extent']))for c in cases}
@@ -234,11 +294,12 @@ def attachment_transition(reader,acquired,compared):
                 scope='Finite exact original self-cast/observed mode transition and active child.30seconds is a driver observation bound, not recovered spell timing, admission/refund formula or complete lifecycle equivalence.')
 
 
-def join(reader,analysis_name,parent_name,case_names=None,phase_name=None,partial=False,ready_name=None):
+def join(reader,analysis_name,parent_name,case_names=None,phase_name=None,partial=False,ready_name=None,postproof_name=None):
     phase=collector_phase(reader,phase_name)
-    ready=ready_input_phase(reader,ready_name)
+    postproof=postproof_phase(reader,postproof_name,phase)
+    ready=ready_input_phase(reader,ready_name,postproof)
     if case_names:
-        analysis,refs=retained_cases(reader,case_names,phase,partial,ready);analysis_ref=dict(retained_case_analyses=refs)
+        analysis,refs=retained_cases(reader,case_names,phase,partial,ready,postproof);analysis_ref=dict(retained_case_analyses=refs)
     else:
         analysis=reader.json(analysis_name);analysis_ref=dict(record=analysis_name,sha256=reader.digest(analysis_name))
     parent=reader.json(parent_name);plan=reader.json('docs/native-rendering-closure.json')
@@ -263,7 +324,7 @@ def join(reader,analysis_name,parent_name,case_names=None,phase_name=None,partia
             require(pair['acquisition']in[item['acquisition']for item in ready['retained_inputs']],
                     'Unreviewed original acquisition under the old optional inventory reader')
         for source_phase in(acquired['sources'],compared['sources']):
-            checked_sources(reader,source_phase,phase,ready)
+            checked_sources(reader,source_phase,phase,ready,postproof)
             for n,h in source_phase.items():
                 current=reader.digest(n)
                 require(n not in live_sources or live_sources[n]==current,'Scene execution source phase changed')
@@ -289,7 +350,7 @@ def join(reader,analysis_name,parent_name,case_names=None,phase_name=None,partia
     for n in names:live_sources[n]=reader.digest(n)
     result=dict(schema=1,kind='scene_attachment_combat_admission',success=True,
         parent=dict(record=parent_name,sha256=reader.digest(parent_name)),
-        analysis=analysis_ref,cases=cases,collector_budget_phase=phase,ready_inventory_input_phase=ready,
+        analysis=analysis_ref,cases=cases,collector_budget_phase=phase,ready_inventory_input_phase=ready,post_four_view_control_phase=postproof,
         requirements=rows,dossier_identity=parent['dossier_identity'],decisions=deepcopy(parent['decisions']),
         sources=deepcopy(parent['sources']),analysis_sources=dict(analysis['analysis_sources']),
         live_observation_sources=live_sources,closed_leaf_ids=sorted(set(parent['closed_leaf_ids'])|{leaf for leaf in LEAVES if all(r['state']=='passed'for r in rows if r['id']==leaf)}),
@@ -299,7 +360,7 @@ def join(reader,analysis_name,parent_name,case_names=None,phase_name=None,partia
         original_game_runs=0,current_native_engine_execution=False,current_scene_captures_referenced=True,
         historical_failures_retired=False,attachment_cast_transitions=transitions,
         source_phase_review=dict(parent_sources_preserved=True,new_scene_sources_current=True,
-            reason='Inherited accepted rows and their original source/native/compiler/oracle phases remain exact. Actual scene cases independently bind the unchanged passive observer, physical route, original source/history comparison, live import/paint ownership and complete native output. Exact host budget checks and the saved-ready inventory correction may receive separate narrow reviews. The latter verifies identical used inputs from both accepted800 ready wires and current controls; it grants no original execution of the new None-read domain. Neither review waives a native/runtime, pixel-analyzer, oracle or protocol hash, changes physical input, or erases a failed start. This retained-data join launches no game and refreshes no historical source hashes.'),
+            reason='Inherited accepted rows and their original source/native/compiler/oracle phases remain exact. Actual scene cases independently bind the unchanged passive observer, physical route, original source/history comparison, live import/paint ownership and complete native output. Exact host budget checks and the saved-ready inventory correction may receive separate narrow reviews. The latter verifies identical used inputs from both accepted800 ready wires and current controls; it grants no original execution of the new None-read domain. A separate exact post-four-view control review preserves all three accepted attachment inputs and their historical four camera turns, while current controls verify four observations with three turns. That new route has no live validation from this review. These reviews waive no native/runtime, pixel-analyzer, oracle or protocol hash, unrelated physical input change, or failed start. This retained-data join launches no game and refreshes no historical source hashes.'),
         scope='Admit only scene profile rows with both actual640/800cases. Explicit partial reports preserve every incomplete row pending; default final admission requires all eight domains. Excalibur mode1 parent/child placement spans four stored views and eight visible points per sprite per paint. Actual wizard/Redcap melee binds original event/health/engagement, changed body and eight visible points per participant. Complete comparisons and normal native-only Quit/resource checks remain required. Other status/attachment/caller/map/provider/input/timing/lifetime domains, native gameplay reconstruction and both final decisions remain pending.')
     result['analysis_sources'].update({n:reader.digest(n)for n in required_sources(behaviors[BID])})
     result['claims']=deepcopy(analysis['claims'])+[dict(behavior=BID,contract_sha256=behavior_contract(behaviors[BID],builds),scenarios={SID:scenario_contract(scenarios[SID])})]
@@ -316,13 +377,14 @@ def main():
     inputs.add_argument('--analysis');inputs.add_argument('--case-analysis',action='append',default=[])
     p.add_argument('--collector-phase');p.add_argument('--parent',default=PARENT)
     p.add_argument('--ready-input-phase')
+    p.add_argument('--postproof-phase')
     p.add_argument('--partial',action='store_true',help='Preserve incomplete profile rows pending; grants no incomplete size-domain credit')
     p.add_argument('--report',required=True);a=p.parse_args()
     require(a.report.startswith(PREFIX)and '..'not in Path(a.report).parts and not(ROOT/a.report).exists(),'Fresh owned scene admission required')
     controls=[];q={}
     with Reader(ROOT)as reader:
         try:
-            q=join(reader,a.analysis,a.parent,a.case_analysis,a.collector_phase,a.partial,a.ready_input_phase)
+            q=join(reader,a.analysis,a.parent,a.case_analysis,a.collector_phase,a.partial,a.ready_input_phase,a.postproof_phase)
             for name in('tests/test-scene-attachment-admission.py','tests/test-coverage-ui.py','tests/test-coverage-ui-client.js'):
                 command=['node',name]if name.endswith('.js')else[sys.executable,'-B',name]
                 r=subprocess.run(command,cwd=ROOT,capture_output=True,text=True,timeout=120)

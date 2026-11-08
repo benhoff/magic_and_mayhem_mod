@@ -27345,3 +27345,41 @@ software640case with bounded external exit tracing would require9total-start
 authority. Two synthetic namespace exit-trace controls pass; they establish no
 original exit cause or future case success. No further game is authorized by
 this three-row checkpoint, and no concurrent main source/status is imported.
+
+
+### All four requested rows qualified — 2026-11-08
+
+Current `attachment-combat-results-20261107/admission-05.json` records that
+all four requested attachment/combat profile rows qualify: 94passed62pending in this owned90-row parent phase.
+8distinct accepted actual cases contribute5943closed Worlds,
+16077World presentations and16390087600viewport pixel
+checks, with zero differences against the independent original-history oracle.
+Every accepted case has normal Quit/resource retirement. No concurrent main
+source/status is imported; both final decisions and native gameplay remain open.
+
+The user approved ten total attachment starts, all ten are charged, and collection
+stops. The tenth software640case has success=True, error=None.
+The exact current host route observes views0/3/2/1 with three camera turns and
+omits the redundant turn after the fourth required observation.57offline controls
+pass. Historical accepted four-turn cases retain exact source bytes and all
+original input facts through `post-four-view-control-phase-02.json`; the current
+route never relaxes the native caller guard or changes the recipe/exit sequence.
+
+A retained-data correction retracts the earlier assertion that the eighth run's
+Windows exit code was missing. Existing `original-process-exit.txt` contains95;
+next WRITING generation254ends inFAILURE43/tag14/caller0x54a563 after669records.
+The strict caller policy rejects this site; pinned original disassembly confirms
+its indexed-copy continuation and AX==1clipped fallback, but the rejected raster
+input/register/stack bytes are absent. No caller admission or native repair is
+claimed. See `attachment-retained-failure-correction-02.json`. The temporal
+relationship to the extra camera turn does not establish prevention or causality.
+All superseded diagnoses and failures remain immutable.
+
+The ninth actual run instead times out before ready Spellbox/self-cast/any closed
+World. Its whole-process lifecycle trace slows staging; timeout causality is
+unresolved and no Windows exit-status artifact is retained. It remains charged,
+failed and distinct from the eighth refusal. The tenth case omits ptrace and uses
+the existing low-overhead exit recorder plus bounded passive menu/quota observers.
+The earlier Results/Quick return, quota and optional-read failures remain retained
+and are not retroactively explained by later successful cases. Other effect,
+caller, map, provider, lifetime and gameplay domains remain pending.

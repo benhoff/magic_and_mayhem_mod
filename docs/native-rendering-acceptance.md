@@ -1,3 +1,10 @@
+Current owned AC07 admission05: all four requested attachment/combat profile rows qualify,
+94passed62pending in its preserved90-row parent source phase.
+Ten approved attachment starts are charged; collection stops. Every accepted
+case independently matches complete output and retires normally. Historical
+failures, other engine/gameplay domains and both final decisions remain explicit.
+See `research/runtime/attachment-combat-output-20261107.md`.
+
 Current owned AC07 admission:
 `research/runtime/attachment-combat-results-20261107/admission-04.json` qualifies
 three requested rows: both combat profiles and default attachment,93passed and

@@ -207,8 +207,9 @@ class AttachmentJourney(menus.Journey):
         for ordinal in range(4):
             current = self.until_frame(active, 3)
             views.append(dict(generation=current['generation'], view=current['view']))
-            self.game_key('attachment-view-'+str(ordinal+1), ord('.'))
-            time.sleep(1)
+            if ordinal < 3:
+                self.game_key('attachment-view-'+str(ordinal+1), ord('.'))
+                time.sleep(1)
         require({v['view'] for v in views} == set(range(4)), 'Actual attachment four-view state incomplete')
         self.proof.update(first_attachment_generation=first['generation'], views=views,
                           actual_extent=list(first['extent']), success=True)
