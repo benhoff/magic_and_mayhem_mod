@@ -1,5 +1,6 @@
 #include "native_frame_cadence.hpp"
 #include "resident_world_session.hpp"
+#include "resident_capture_path.hpp"
 #include "resident_profile_capture.hpp"
 #include "gl_viewport.hpp"
 #include <QJsonDocument>
@@ -23,7 +24,8 @@ struct WorldGpuJob {
     double nativeMs=0,producerMs=0;
     std::uint64_t readbacks=0,captures=0;
 };
-QString create(const QString& path,bool owned){auto nonce=QRandomGenerator::system()->generate64();if(!nonce)nonce=1;WorldContinuousChannel::create(path,nonce,0,true,owned,!owned && (qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE").isEmpty() || qEnvironmentVariableIntValue("MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS")==1));return path;}
+QString capturePath(const QString& channel){return residentCapturePath(channel,qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE"),qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE_DIRECTORY"));}
+QString create(const QString& path,bool owned){const auto capture=capturePath(path);auto nonce=QRandomGenerator::system()->generate64();if(!nonce)nonce=1;WorldContinuousChannel::create(path,nonce,0,true,owned,!owned && (capture.isEmpty() || qEnvironmentVariableIntValue("MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS")==1));return path;}
 CanvasProducer close(const std::array<std::uint8_t,192>& bytes,unsigned offset){
     CanvasProducer result{};for(unsigned i=0;i<24;++i){const auto* p=bytes.data()+offset+i*4;result.fields[i]=p[0]|unsigned(p[1])<<8|unsigned(p[2])<<16|unsigned(p[3])<<24;}
     if(result.fields[0]!=96 || result.fields[18] || result.fields[23])throw std::runtime_error("Resident World closing record");
@@ -33,7 +35,7 @@ CanvasProducer close(const std::array<std::uint8_t,192>& bytes,unsigned offset){
 ResidentWorldSession::ResidentWorldSession(GlViewport& viewport,const QString& path,const QString& game,bool independent):ResidentWorldSession(viewportRenderTarget(viewport),path,game,independent){}
 ResidentWorldSession::ResidentWorldSession(NativeRenderTarget target,const QString& path,const QString& game,bool independent):target_(std::move(target)),channel_(create(path,independent)),game_(game),independent_(independent){
     stageProfile_=qEnvironmentVariableIsSet("MNM_RESIDENT_STAGE_PROFILE");profileClock_.start();
-    const auto capture=qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE");
+    const auto capture=capturePath(path);
     if(!capture.isEmpty()){
         if(!stageProfile_)throw std::runtime_error("Resident capture requires stage profiling");
         capture_=std::make_unique<ResidentProfileCapture>(capture,256ull*1024*1024,!independent_ && qEnvironmentVariableIntValue("MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS")==1);

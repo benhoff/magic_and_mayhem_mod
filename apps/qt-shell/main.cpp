@@ -81,6 +81,7 @@
 #include <QWindow>
 #include <cstdio>
 #include <exception>
+#include <chrono>
 #include "campaign_smoke_test.hpp"
 #include "resident_world_session.hpp"
 #include "native_render_worker.hpp"
@@ -537,6 +538,17 @@ private:
         try{pendingCpuFault_->finish(renderWorker_->result(),renderWorker_->pendingCpuRead());}
         catch(const std::exception& e){residentWorldError_=QString::fromUtf8(e.what());log_->appendPlainText("Pending CPU test refused: "+residentWorldError_);}
     }
+    void recordAcceptanceTerminal(){
+        if(qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE_DIRECTORY").isEmpty()||!liveMenus_||liveMenus_->evidenceDirectory().isEmpty())return;
+        const QJsonObject record{{"schema",1},{"session",liveMenus_->evidenceDirectory()},
+            {"host_us",QString::number(qint64(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now().time_since_epoch()).count()))},{"state",residentFailureState()},
+            {"error",residentWorldError_},{"native_command_frames",QString::number(nativeCommandFrames_)},
+            {"native_painted_frames",QString::number(nativePaintedFrames_)}};
+        QFile file(QDir(liveMenus_->evidenceDirectory()).filePath("native-terminal-state.json"));
+        const auto bytes=QJsonDocument(record).toJson();
+        if(!file.open(QIODevice::WriteOnly|QIODevice::NewOnly)||file.write(bytes)!=bytes.size()||!file.flush())
+            log_->appendPlainText("Cannot retain terminal capture observation.");
+    }
     void residentFailed(const QString& message){
         if(nativeOnly_){
             nativeOnlySession_.fail(message);
@@ -563,9 +575,9 @@ private:
             QTimer::singleShot(0,this,[this]{
                 if(liveMenus_&&liveMenus_->running())liveMenus_->forceStop([this](bool ok,const QString& error){
                     if(!ok)nativeOnlySession_.fail(error);
-                    finished();restart_->setEnabled(ok);
+                    finished();restart_->setEnabled(ok);recordAcceptanceTerminal();
                 });
-                else{finished();restart_->setEnabled(true);}
+                else{finished();restart_->setEnabled(true);recordAcceptanceTerminal();}
             });
         }
     }

@@ -27263,3 +27263,33 @@ All six zero-game refusals, eight conservatively counted original starts, failed
 ### CL07 preserves incoming pause and capture-policy work
 
 The final merge starts from actual master `2d559b55b`: all92incoming accepted scene/pause/earlier rows and both decisions remain; the same four clipping domains add only2rows for94/156passed,62pending. The earlier uncommitted92-row merge has a lossless pinned Git source-tree checkpoint, not a gate/commit claim. Current capture-header changes are opt-in metadata policy only; four retained cases pass current-reader analysis and the applicable PA07native capture controls retain exact source bytes. Nine strict reader guards cover the new/legacy reader. New CL07*02evidence preserves old*01hashes/staleness and declares no new game/native engine execution or current full-player producer. Rendering/guest copy math remains byte-exact; data/control changes do not reopen completed milestones. The committed pause range adds5412exactly reviewed transitions with zero unresolved gaps.
+
+
+### RT07: partial terminal/restart recovery; acceptance remains pending
+
+Both actual800 default/software public Campaign Mini terminal-fault cases pass:
+real drained-ring INVALID, nine native owner/frame/timer/input retirement
+predicates, stable terminal samples, physical public Hard Restart, different
+runner/channel/World identities, fresh positive input and ordinary Campaign/Main
+Quit. Independent original/command replay checks5,182,287,000pixel values with
+zero differences. One unpresented failed software World earns no output credit;
+failed generations receive no nominal acceptance.
+
+Both640domains remain pending. Default640-01 reaches recovery but refuses focus
+before any original Quit Yes input. A bounded640-only visibility/input wait has
+three passing controls. Later640-02/04 time out on accessibility during initial
+Launch with native state starting and zero World output; cause unresolved. The
+zero-game640-03 NVIDIA Xvfb crash follows an omitted Mesa environment and remains
+retained. Eleven requests/nine actual starts include every failure; collection
+stops with no new acceptance rows. The owned94-row parent and both pending final
+decisions remain unchanged; later master rows retain their separate admissions.
+
+Opt-in per-channel World capture, actual command producer bindings and terminal
+state observations enable two-generation evidence without changing rendering or
+simulation.28native writer cases,9reader guards,18native fault cases,17Python
+terminal/epoch/budget tests,3confirmation tests and2archive controls pass. Exact
+source phases, negative admissions, raw capture flags and uncredited tails stay
+visible. See [the partial recovery review](rendering-transition-recovery-20261107.md)
+and `rendering-transition-recovery-results-20261107/transition-partial-01.json`.
+No whole renderer, arbitrary provider, pending-CPU, physical-reset or replacement
+claim; no new rendering defect is established by the launch timeout.

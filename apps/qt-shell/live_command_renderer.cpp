@@ -18,7 +18,7 @@ LiveCommandRenderer::LiveCommandRenderer(NativeRenderTarget target,bool verify):
     },this);
 }
 LiveCommandRenderer::~LiveCommandRenderer(){if(target_.releaseAcceptance)target_.releaseAcceptance(this);abort();}
-bool LiveCommandRenderer::create(const QString& path,quint32 session,quint32 version){if(!channel_.create(path,session,version)){error_=channel_.error();closed_=true;return false;}cpuReplyPath_=path+".cpu-reply";cpuReplySession_=session;decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()>=2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
+bool LiveCommandRenderer::create(const QString& path,quint32 session,quint32 version){if(!channel_.create(path,session,version)){error_=channel_.error();closed_=true;return false;}acceptance_.bindProducer(path,session,channel_.version());cpuReplyPath_=path+".cpu-reply";cpuReplySession_=session;decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()>=2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
 bool LiveCommandRenderer::open(const QString& path){if(!channel_.open(path)){error_=channel_.error();closed_=true;return false;}decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()>=2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
 void LiveCommandRenderer::fail(const QString& reason){error_=reason;abort();target_.present({});}
 void LiveCommandRenderer::abort(){
