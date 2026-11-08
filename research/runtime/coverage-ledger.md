@@ -27721,3 +27721,20 @@ unchanged four-row proof: 112/156passed44pending.
 Metadata-only strict row joining repeats no engine/oracle/pixel execution; all
 native source phases and both final decisions remain unchanged. See
 `rendering-recovery-four-results-20261108/master-admission-01.json`.
+
+
+### COPY stretch/overlap retained-evidence boundary — 2026-11-08
+
+Current analysis of eight retained CP06 Quick/Campaign default/software
+actual640/800 cases verifies37337closed active application calls and exact
+GPU census bindings. There are36866prepared one-to-one COPY geometries,
+467source-less calls, zero tracked aliases and four refused unknown geometries.
+No positive natural stretch/overlap output witness is present; supplied backend
+controls and eleven static explicit-RECT callers do not supply those witnesses.
+The production command bridge still refuses stretch and CPU self-copy even
+though the CPU facade has bounded transform support. Both requirements/four
+profile rows stay pending;112/156passed44pending and both final decisions remain.
+Nine new classifier guards and ten unchanged route controls pass; no game, new
+game fixture, native-source change, historical hash refresh or accepted rerun.
+See [the exact blockers and bounded next step](rendering-two-copy-readiness-20261108.md)
+and SQLite`rendering-two-copy-results-20261108/assessment-02.json`.

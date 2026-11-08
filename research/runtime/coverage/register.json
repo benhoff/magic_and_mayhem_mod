@@ -171011,6 +171011,52 @@
         "AC07.G.attachment640: All four requested rows qualify: both attachment and both combat profiles,94passed62pending in the preserved90-row parent phase. All10actual attachment starts remain charged, all failures retained and no further start authorized. Native gameplay, other caller/effect/lifetime domains and both final decisions remain pending.",
         "AC07.G.merged-source-phase: master integration preserves every accepted original source/native/compiler/oracle phase and both parent milestones. The combined guest includes incoming font/DC, epoch/recovery and display work plus the opt-in actor sidecar. No new original/native/oracle execution or whole combined-player equivalence is asserted; raw full-source drift stays visible. Ten attachment starts are charged, with no further launch authority."
       ]
+    },
+    {
+      "id": "NP.copy-required-branch-readiness",
+      "title": "Retained required stretch and overlap COPY readiness",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Metadata-only reanalysis of the eight retained CP06 Quick/Campaign acquisitions across default/software actual640/800. Validate closed original route/GPU census bindings, count only prepared geometry, preserve unknown refused geometry and tracked identity boundaries, and retain eleven original explicit-RECT static leads. No row promotion, new game execution, original driver/output equivalence or global absence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/rendering_copy_readiness.py",
+        "tools/assess-rendering-two-copy-rows.py"
+      ],
+      "tests": [
+        "tests/test-rendering-copy-readiness.py"
+      ],
+      "validation_dependencies": [
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "runtime/render/lock_surfaces.h",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "runtime/native-draw/surfaces.h",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/coverage_claims.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-two-copy-readiness-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "COPYREADY.retained01",
+        "COPYREADY.controls01",
+        "COPYREADY.retained02"
+      ],
+      "remaining_gaps": [
+        "Actual required stretched and alias/overlap callers, caller-bound complete independent output and appropriate production bridge support remain pending. No acceptance rows or existing behavior milestones change. Refused geometry and untracked physical aliases remain unknown."
+      ]
     }
   ],
   "evidence": [
@@ -390892,6 +390938,72 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "COPYREADY.retained01",
+      "kind": "static",
+      "record": "research/runtime/rendering-two-copy-results-20261108/assessment-01.json",
+      "sha256": "8c45d7763bcac784019aee870c3ff4ec1e91318e128737891773b50481436f0d",
+      "sources_pointer": "/analysis_sources",
+      "scope": "Current retained-data/metadata analysis only; both COPY requirements and all four profile rows remain pending.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "COPYREADY.controls01",
+      "kind": "static",
+      "record": "research/runtime/rendering-two-copy-results-20261108/controls-01.json",
+      "sha256": "4a55b766b9fe87eeda6c054bdc23005636f48ef81845d605fce93ee9c3d0bc84",
+      "sources_pointer": "/sources",
+      "scope": "Current retained-data/metadata analysis only; both COPY requirements and all four profile rows remain pending.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "COPYREADY.retained02",
+      "kind": "static",
+      "record": "research/runtime/rendering-two-copy-results-20261108/assessment-02.json",
+      "sha256": "ee6aa211e579a93800d17f4e1e0ca91a98e4d867fdcfbbdfe75dd36fa8e3b85d",
+      "sources_pointer": "/analysis_sources",
+      "scope": "Current retained-data/metadata analysis only; both COPY requirements and all four profile rows remain pending.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -426836,8 +426948,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-aac27989707823ab81f786bb56cd6becccf985d64ee4bb26e91705ff0e0a9ece.json",
-    "sha256": "aac27989707823ab81f786bb56cd6becccf985d64ee4bb26e91705ff0e0a9ece"
+    "path": "research/runtime/coverage/source-index-358d40f4ff29defd9ea2ed122c85b7d12d3aba141fba8523b89db0500f2844f6.json",
+    "sha256": "358d40f4ff29defd9ea2ed122c85b7d12d3aba141fba8523b89db0500f2844f6"
   },
   "evidence_applicability": [
     {
