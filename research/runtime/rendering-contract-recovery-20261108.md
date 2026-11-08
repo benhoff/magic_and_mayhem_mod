@@ -186,3 +186,17 @@ python3 tools/working-retention.py run --reserve-gib 1 -- \
 Use a lowercase unique acquisition name. The runner records exact source changes
 against its Git base before compiling, verifies declared compiler inputs, retains
 both success and failure results, and does not launch the game or set player rows.
+
+The final integration joins corrected recovery commit `1e41f22aa` with master
+`a04895c2b`, including its selection and finite scene/attachment acceptance.
+All nine comparison05 source fingerprints and all 186 sources of the retained
+218-control scene result match the combined tree. The comparison remains a
+1,536-case isolated proof; the merge adds no execution or player acceptance.
+Master's 108 passed and 48 pending requirements remain unchanged, including both
+font/DC lifetime and production caller-state requirements in both configurations.
+The merge review preserves every parent receipt and records all 24,172 incoming
+committed file transitions with exact hashes, including 22 retrospective metadata
+custody bindings. See the SQLite reports under
+`research/runtime/rendering-contract-master-merge-results-20261108/` for conflict
+preimages, history, applicability and the current combined audit. Historical
+scope/freshness gaps remain explicit; no broad source-hash refresh is asserted.

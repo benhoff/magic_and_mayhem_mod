@@ -6644,7 +6644,8 @@
         }
       ],
       "documents": [
-        "research/runtime/quick-battle-results-engine-bridge.md"
+        "research/runtime/quick-battle-results-engine-bridge.md",
+        "research/runtime/attachment-combat-output-20261107.md"
       ],
       "implementation": [
         "runtime/menu/observer.c",
@@ -6658,7 +6659,8 @@
         "tests/menu-result-controller-test.cpp"
       ],
       "evidence": [
-        "REVIEW.BR.result"
+        "REVIEW.BR.result",
+        "AC07.attachment-low-return-failure01"
       ],
       "status": {
         "understanding": "partial",
@@ -6670,6 +6672,9 @@
       "validation_dependencies": [
         "runtime/menu/drawing_actor_latches.h",
         "runtime/menu/campaign_input_admission_observe.h"
+      ],
+      "remaining_gaps": [
+        "AC07.G.low-results-return: actual640Excalibur run dispatches original Results26/callback2 but fails readyQuick22/ack7 before timeout. Final post-cleanup ack8/status5 is later evidence; exact first pending transition/cause remains unobserved. All capture/normal-retirement claims remain failed, cap5 exhausted. See attachment-runtime-diagnosis-05.json; no native menu/controller change or status promotion."
       ]
     },
     {
@@ -24516,7 +24521,8 @@
         "RS.world-raster-queue.prefix16-boundary-replacement-20261008",
         "RS.world-raster-queue.prefix16-live-20261008",
         "RS.world-raster-queue.prefix16-comparison-20261008",
-        "RS.world-raster-queue.prefix16-replacement-20261008"
+        "RS.world-raster-queue.prefix16-replacement-20261008",
+        "AC07.eighth-raster-refusal-correction01"
       ],
       "status": {
         "understanding": "partial",
@@ -24527,7 +24533,8 @@
       },
       "remaining_gaps": [
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
-        "Expanded Quick206 records an unsupported original black continuation5004d4/tag12 before its first completed World. Four exact direct black/fallback continuations are added under NP.world-black-caller-continuations with independent AX/cleanup/signature controls. Earlier World evidence retains its fingerprints; arbitrary caller coverage and universal session reliability remain pending."
+        "Expanded Quick206 records an unsupported original black continuation5004d4/tag12 before its first completed World. Four exact direct black/fallback continuations are added under NP.world-black-caller-continuations with independent AX/cleanup/signature controls. Earlier World evidence retains its fingerprints; arbitrary caller coverage and universal session reliability remain pending.",
+        "AC07.G.caller54a563: retained software640generation254ends inFAILURE43/tag14at original return0x54a563, followed by Windows exit95. Pinned static disassembly establishes the indirect indexed-copy continuation and AX==1fallback only; rejected input/stack/register capture and native caller admission remain absent. Existing strict guard and historical scoped milestones are unchanged. See attachment-retained-failure-correction-02.json."
       ]
     },
     {
@@ -53085,7 +53092,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/scene-draw-budget.md"
+        "research/runtime/scene-draw-budget.md",
+        "research/runtime/attachment-combat-output-20261107.md"
       ],
       "implementation": [
         "apps/qt-shell/resident_world_session.cpp",
@@ -53126,10 +53134,12 @@
         "HOST.native-render-latest-master.full-performance-negative-20261012",
         "NR.native-colour-rectangle-cache.full-displacement-negative-20261012",
         "NR.native-colour-rectangle-cache.fixed-player-death-negative-20261012",
-        "NR.native-colour-rectangle-cache.fixed-full-performance-negative-20261012"
+        "NR.native-colour-rectangle-cache.fixed-full-performance-negative-20261012",
+        "AC07.attachment-low-quota-failure01"
       ],
       "remaining_gaps": [
-        "Coalescing/current final/error controls and full current TITAN shutdown pass; final/error synchronous IO remains outside gameplay, durable-storage latency and GPU/driver60FPS guarantees remain pending."
+        "Coalescing/current final/error controls and full current TITAN shutdown pass; final/error synchronous IO remains outside gameplay, durable-storage latency and GPU/driver60FPS guarantees remain pending.",
+        "AC07.G.ram-quota-failure: actual default640setup stops before cast/World. Exact core preserves original Source chunk acknowledgement mode/cancellation and secondary uncaught QSaveFile error2 Disk quota exceeded. Filesystem free space alone does not establish user-quota headroom; first failing producer syscall remains unobserved. No normal failure-retirement, universal reliability, attachment output or quota recovery claim is supplied by this negative capture."
       ]
     },
     {
@@ -75443,7 +75453,8 @@
       "original": [],
       "documents": [
         "research/runtime/draw02-results-action-readiness.md",
-        "research/runtime/draw02-master-integration-20261015.md"
+        "research/runtime/draw02-master-integration-20261015.md",
+        "research/runtime/attachment-combat-output-20261107.md"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -76465,7 +76476,8 @@
         "DRAW02.master-merged-app-03-20261015",
         "DRAW02.master-merged-app-04-20261015",
         "DRAW02.master-results-synthetic-01-20261015",
-        "DRAW02.master-results-synthetic-02-20261015"
+        "DRAW02.master-results-synthetic-02-20261015",
+        "AC07.attachment-low-return-failure01"
       ],
       "status": {
         "understanding": "scoped",
@@ -76473,7 +76485,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "AC07.G.low-results-return: actual640Excalibur run dispatches original Results26/callback2 but fails readyQuick22/ack7 before timeout. Final post-cleanup ack8/status5 is later evidence; exact first pending transition/cause remains unobserved. All capture/normal-retirement claims remain failed, cap5 exhausted. See attachment-runtime-diagnosis-05.json; no native menu/controller change or status promotion."
+      ]
     },
     {
       "id": "AI.object-action",
@@ -124776,7 +124791,8 @@
         "research/runtime/critical-top20-rendering-fixes-20261019.md",
         "research/runtime/rendering-seventeenth-five-20261023.md",
         "research/runtime/rendering-required-dependencies-20261024.md",
-        "docs/native-rendering-dependencies.json"
+        "docs/native-rendering-dependencies.json",
+        "research/runtime/attachment-combat-output-20261107.md"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -125537,7 +125553,8 @@
         "TLQF26.native-reload",
         "TLQF26.native-only-controls",
         "TLQF26.native-stress",
-        "TLQF26.worker-loss"
+        "TLQF26.worker-loss",
+        "AC07.attachment-low-quota-failure01"
       ],
       "status": {
         "understanding": "scoped",
@@ -125556,7 +125573,8 @@
         "P1 records required caller/provider candidates and retained-original preparation boundaries. Existing native tracked-surface/current-Lock admission is not global alternate exclusion. Original ownership,actual screen/vtable lifetimes,natural caller and full acceptance frontiers remain explicit; no existing engine milestone is promoted.",
         "RFL20261025 adds a separate functional FPS policy and local callback-after-readiness recheck. Shared helper/harness source changes do not refresh historical benchmark, broader camera-body/original-pixel or launch-policy stage evidence. The new source-bound functional behavior has independent current execution; historical fingerprints remain unchanged.",
         "TLQF26 closes the observed Save geometry refusal, avoidable per-request worker setup and orphan-worker boundary within the named controls. Historical TLQT26 failures remain immutable. Maximum tested live native stress is two120-second phases/2434updates; host scheduling has no real-time guarantee. Different maps, hour-long sessions, hardware/FPS and default rollout remain pending. SIGKILL can prevent the supervisor outcome row; kernel parent-death termination still stops its worker.",
-        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation."
+        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation.",
+        "AC07.G.ram-quota-failure: actual default640setup stops before cast/World. Exact core preserves original Source chunk acknowledgement mode/cancellation and secondary uncaught QSaveFile error2 Disk quota exceeded. Filesystem free space alone does not establish user-quota headroom; first failing producer syscall remains unobserved. No normal failure-retirement, universal reliability, attachment output or quota recovery claim is supplied by this negative capture."
       ],
       "implementation_review": {
         "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
@@ -157354,7 +157372,8 @@
       "documents": [
         "research/runtime/windowed-input-gpu-callers-20261026.md",
         "research/runtime/cpu-copy-master-integration-20261026.md",
-        "research/runtime/native-player-expanded-20261026.md"
+        "research/runtime/native-player-expanded-20261026.md",
+        "research/runtime/attachment-combat-output-20261107.md"
       ],
       "evidence": [
         "WINDOWINPUT.controls03-20261026",
@@ -157383,7 +157402,8 @@
         "NPL27.windowed-controls07",
         "NPL27.windowed-live01",
         "NPL27.windowed-live02",
-        "NPL27.windowed-controls08"
+        "NPL27.windowed-controls08",
+        "AC07.attachment-low-return-failure01"
       ],
       "status": {
         "understanding": "partial",
@@ -157397,7 +157417,8 @@
         "Previous current-tree GAP and prior stage8 deadline remain immutable negative observations;no deterministic shutdown,arbitrary menu or driver equivalence claim.",
         "Merged with master8c0c4ea4: fresh combined Python/Qt controls and current builds are separate from prior GPU/native and original-game executions. Parent execution fingerprints remain immutable; new live combined-tree observation and original-driver comparison remain pending. See research/runtime/cpu-copy-master-integration-20261026.md.",
         "Current master8a6fcd1a lighting/default history is preserved in final integration. Controls01-04 have zero complete declared-source/claim drift on this combined tree; this read-only continuity is not a new execution. All natural-branch, driver and broader ownership limitations remain separate.",
-        "PA04 separately repairs campaign DEFEAT_OK already-ready Main acknowledgement. This Results Quit scope remains separate; shared-source changes retain prior hashes and pending broader applicability."
+        "PA04 separately repairs campaign DEFEAT_OK already-ready Main acknowledgement. This Results Quit scope remains separate; shared-source changes retain prior hashes and pending broader applicability.",
+        "AC07.G.low-results-return: actual640Excalibur run dispatches original Results26/callback2 but fails readyQuick22/ack7 before timeout. Final post-cleanup ack8/status5 is later evidence; exact first pending transition/cause remains unobserved. All capture/normal-retirement claims remain failed, cap5 exhausted. See attachment-runtime-diagnosis-05.json; no native menu/controller change or status promotion."
       ]
     },
     {
@@ -170486,6 +170507,455 @@
       "remaining_gaps": [
         "One bounded original run reached raw original Main, World generation1280 and positive Up input. Its optional Quit check/finalization did not complete; normal Quit and current corrected capture-free pointer driver have no successful live validation. The source/preimage, raw observations and held-prefix recovery are retained; no retry or acceptance-row promotion.",
         "Four operation rows remain separate; no fault/restart interval or independent pixel comparison in this semantic-only run."
+      ]
+    },
+    {
+      "id": "NP.selection-highlight-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Original selection state to visible four-corner highlight",
+      "scope": "Retained actual default/software640/800 Quick selection: four views plus pan in both Sharp/Integer. Bind80original Shift selection callbacks, living numeric wizard role, flag68on/off with flag70clear and three displayed pointer-away source generations per state. Four exact Sprites/markers.spr corner resources, actual direct-WORD caller/entry/AX/source requests, later-writer-safe contrasting source WORDs, conservative native command provenance and complete independently matched actual viewports. Raw cursor/refusal/retirement observations and historical invalid requests remain explicit. No new game/native/oracle execution, allocation generations, whole selection/picking/hotspot, physical provider, current whole-player or final decision claim.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "tools/rendering_selection.py",
+        "tools/close-rendering-selection.py"
+      ],
+      "tests": [
+        "tests/test-rendering-selection.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-selection-closeout-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_interaction.py",
+        "tools/rendering_interaction_assessment.py",
+        "tools/rendering_interaction_live.py",
+        "tools/campaign_input_observation.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/resident_capture.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-animation-auxiliary.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/native_cursor_journal.py",
+        "tools/rendering_acceptance.py",
+        "tools/coverage_claims.py",
+        "reconstruction/rendering/world_cell_producer.hpp",
+        "docs/native-rendering-closure.json",
+        "runtime/native-draw/cursor_owner.h",
+        "reconstruction/rendering/raster_pixels.c",
+        "reconstruction/rendering/raster_pixels.h"
+      ],
+      "evidence": [
+        "SL08.selection-highlight01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "SL08.G.scope: Finite recorded selected wizard only. Numeric pool/slot is not an allocation generation; multi-actor selection and whole picking/hotspot/cursor policy remain separate. Historical invalid cursor requests and their source phases are not renewed or hidden.",
+        "SL08.G.phase: Retained original/native/compiler/oracle phases remain pinned. Current full player/provider, response deadlines, live frame-size changes, other acceptance rows and both final decisions remain pending."
+      ]
+    },
+    {
+      "id": "NP.scene-actor-generation-observation",
+      "title": "Passive actor, attachment and combat journal identities at scene entry",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Opt-in bounded sidecar with frame-local role tokens and two opaque raw queue auxiliary words at the actual original sorted-queue entry, naming the exact continuous generation/nonce/source entry and actor raw ANI/SPR roles, matched queue rows, health/action state and same-thread original gameplay journal ordinal. It does not mutate simulation or shared render wire, call extra game helpers, infer actor allocation generations or grant attachment/combat output acceptance by itself. Version 2 retains twelve numeric local/shared producer-role candidates and raw gate values, resolves SPR-relative frame offsets with a checked frame-data base addition and keeps historical v1 decoding separate. Candidate matches do not establish actor ownership or confer placement/output credit.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Existing original queue entry observation only; no full scene recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5271952,
+          "scope": "Selected passive SPR relative-frame lookup and body/attachment raw descriptor observations; no original helper is called by the observer."
+        }
+      ],
+      "documents": [
+        "research/runtime/attachment-combat-output-20261107.md",
+        "research/formats/scene-actor-observation-v1.md",
+        "research/formats/scene-actor-observation-v2.md"
+      ],
+      "implementation": [
+        "runtime/scene/scene_actor_observation.h",
+        "runtime/menu/campaign_gameplay_observe.h"
+      ],
+      "tests": [
+        "tests/test-scene-actor-observation.py",
+        "tests/scene-actor-observation-fixture.c"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/scene_actor_observation_v1.h",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/world_continuous.c",
+        "tools/scene_actor_observation.py",
+        "tools/build-scene-observer.py",
+        "tools/build-menu-observer.py",
+        "tools/check-scene-actor-observation.py",
+        "tools/run-rendering-acceptance-pilot.py",
+        "tools/scene_effects_input.py",
+        "tools/menu-storage-input.py",
+        "tools/campaign-combat-input.py",
+        "protocols/include/mnm/scene_actor_observation_v2.h",
+        "tools/scene_combat_input.py",
+        "tools/check-scene-actor-capture.py"
+      ],
+      "evidence": [
+        "AC07.encoder-controls01",
+        "AC07.encoder-controls03",
+        "AC07.encoder-controls04",
+        "AC07.combat-observation01",
+        "AC07.combat-observation02",
+        "AC07.combat-observation03",
+        "AC07.scene-partial-observation04",
+        "AC07.scene-observation05"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "AC07.G.ownership: slot/pool observations are not complete allocation-generation, resource-lifetime or original gameplay recovery.",
+        "AC07.G.raw-queue-aux: generation words20/21 preserve original queue+16/+4 values as opaque raw32-bit metadata. They may be address-valued and never supply native pointers, persistent identity or dereferences. The v2 header comment overstates pointer-free scope; docs and this reviewed contract explicitly limit that claim to role tokens and normalized frame identities. A later wire/comment cleanup must preserve existing source phases.",
+        "Four current campaign-contact domains bind exact source/journal/actor/frame/native output. Attachment800cases pass placement/output, but both640attachment domains lack admitted normal captures. Broad original lifecycle/actor allocation and native gameplay remain pending.",
+        "AC07.G.merged-source-phase: master integration preserves every accepted original source/native/compiler/oracle phase and both parent milestones. The combined guest includes incoming font/DC, epoch/recovery and display work plus the opt-in actor sidecar. No new original/native/oracle execution or whole combined-player equivalence is asserted; raw full-source drift stays visible. Ten attachment starts are charged, with no further launch authority."
+      ]
+    },
+    {
+      "id": "NP.scene-combat-physical-observation",
+      "title": "Bounded physical wizard combat observation",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Explicit scene-only route through the existing public campaign harness: verify the actual 640/800 source extent, ordinary wizard portrait selection and fresh-position ground approach, require an actual original melee damage event involving that same living player wizard, optionally request one ordinary Fireball without credit for a successful spell, request four viewport rotations and leave through the normal campaign Quit route. The original owns input admission, AI, health, effects and state. Quiet-state Return is an authored input hint, not a dialogue API. No party lethal, spell equivalence, throughput, actor allocation identity or rendering-row acceptance follows from this driver alone.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/attachment-combat-output-20261107.md"
+      ],
+      "implementation": [
+        "tools/scene_combat_input.py",
+        "tools/scene_effects_input.py"
+      ],
+      "tests": [
+        "tools/check-rendering-acceptance-pilot.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign-combat-input.py",
+        "tools/run-rendering-acceptance-pilot.py",
+        "tools/campaign_dialogue.py",
+        "tools/campaign_gameplay.py",
+        "tools/campaign_route.py",
+        "tools/campaign_input_admission.py",
+        "tools/scene_actor_observation.py",
+        "tools/scene_combat_acceptance.py",
+        "tools/check-rendering-acceptance-pilot.py"
+      ],
+      "evidence": [
+        "AC07.combat-observation01",
+        "AC07.combat-observation02",
+        "AC07.combat-observation03",
+        "AC07.scene-partial-observation04",
+        "AC07.scene-observation05"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Other campaign/contact/provider/input routes and native AI/combat semantics remain pending.",
+        "AC07.G.ownership",
+        "AC07.G.merged-source-phase: master integration preserves every accepted original source/native/compiler/oracle phase and both parent milestones. The combined guest includes incoming font/DC, epoch/recovery and display work plus the opt-in actor sidecar. No new original/native/oracle execution or whole combined-player equivalence is asserted; raw full-source drift stays visible. Ten attachment starts are charged, with no further launch authority."
+      ]
+    },
+    {
+      "id": "NP.scene-attachment-output",
+      "title": "Actual attachment placement in scene output",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Finite current player/default and software source-generation actor/ANI/SPR roles, gated parent-child queue composition across relevant stored views and actual 640/800 outputs. Numeric local/shared roles remain distinct; unambiguous source bindings, original full-plane comparison, current-import/native-handle lineage and visible original/native points are required. A role candidate or synthetic preview grants no scene row. The selected proof covers all four stored views with eight visible source/original/native points each for parent and child in one current-import paint per generation; original mode1/Excalibur is the ordinary scenario, not an all-status/weapon/caller claim.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Selected actual queue/source observation only; no full dispatch or original scene recovery."
+        }
+      ],
+      "documents": [
+        "research/runtime/attachment-combat-output-20261107.md"
+      ],
+      "implementation": [
+        "tools/scene_actor_output.py",
+        "tools/check-scene-actor-output.py",
+        "tools/check-scene-attachment.py",
+        "tools/scene_attachment_acceptance.py"
+      ],
+      "tests": [
+        "tests/test-scene-actor-output.py"
+      ],
+      "validation_dependencies": [
+        "tools/scene_actor_observation.py",
+        "tools/scene_combat_acceptance.py",
+        "tools/campaign_gameplay.py",
+        "tools/resident_capture.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/close-rendering-animation-auxiliary.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/scene_effects.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "docs/native-rendering-closure.json",
+        "runtime/scene/scene_actor_observation.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "protocols/include/mnm/scene_actor_observation_v2.h",
+        "tools/scene_attachment_journey.py",
+        "tools/run-scene-attachment.py",
+        "tools/campaign_spell.py",
+        "tools/campaign_input_observation.py",
+        "tools/rendering_interaction_live.py"
+      ],
+      "evidence": [
+        "AC07.combat-admission01",
+        "AC07.combat-admission02",
+        "AC07.combat-admission03",
+        "AC07.scene-partial-admission04",
+        "AC07.scene-admission05"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "AC07.G.attachments",
+        "AC07.G.combat",
+        "AC07.G.ownership",
+        "Finite Excalibur role1/first-point composition passes all four stored views in640/800default/software. Other roles/shared-local attachments/statuses/weapons/callers/lifetimes remain open.",
+        "AC07.G.merged-source-phase: master integration preserves every accepted original source/native/compiler/oracle phase and both parent milestones. The combined guest includes incoming font/DC, epoch/recovery and display work plus the opt-in actor sidecar. No new original/native/oracle execution or whole combined-player equivalence is asserted; raw full-source drift stays visible. Ten attachment starts are charged, with no further launch authority."
+      ]
+    },
+    {
+      "id": "NP.scene-combat-output",
+      "title": "Original combat transitions in actual scene output",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Finite current default/software 640/800 player routes with actual original wizard melee events, same-thread ordinal/health-state source-generation brackets, uniquely owned body draw candidates and complete independently compared native output. Ordinary optional spell requests are not spell proof. Native gameplay reconstruction, complete AI/combat semantics, actor allocation identity and later scenarios remain separate. A selected impact additionally requires original attacker behavior3/action10 and the same target slot on both sides, a changed normalized rendered body-frame identity for at least one participant, and eight visible source/original/native points per body in one current-import paint per generation. Actual recorded Sharp/Integer viewport geometry controls pixel-center mapping.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Selected actual queue/source observation only; no full dispatch or original scene recovery."
+        }
+      ],
+      "documents": [
+        "research/runtime/attachment-combat-output-20261107.md"
+      ],
+      "implementation": [
+        "tools/scene_actor_output.py",
+        "tools/check-scene-actor-output.py"
+      ],
+      "tests": [
+        "tests/test-scene-actor-output.py"
+      ],
+      "validation_dependencies": [
+        "tools/scene_actor_observation.py",
+        "tools/scene_combat_acceptance.py",
+        "tools/campaign_gameplay.py",
+        "tools/resident_capture.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/close-rendering-animation-auxiliary.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/scene_effects.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "docs/native-rendering-closure.json",
+        "runtime/scene/scene_actor_observation.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "protocols/include/mnm/scene_actor_observation_v2.h"
+      ],
+      "evidence": [
+        "AC07.combat-admission01",
+        "AC07.combat-admission02",
+        "AC07.combat-admission03",
+        "AC07.scene-partial-admission04",
+        "AC07.scene-admission05"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "AC07.G.ownership: finite source/actor tuples do not establish actor allocation generations or full lifecycle.",
+        "Other combat/action/caller/map/provider/input domains and native gameplay reconstruction remain pending.",
+        "AC07.G.merged-source-phase: master integration preserves every accepted original source/native/compiler/oracle phase and both parent milestones. The combined guest includes incoming font/DC, epoch/recovery and display work plus the opt-in actor sidecar. No new original/native/oracle execution or whole combined-player equivalence is asserted; raw full-source drift stays visible. Ten attachment starts are charged, with no further launch authority."
+      ]
+    },
+    {
+      "id": "NP.scene-attachment-physical-observation",
+      "title": "Ordinary pre-battle attachment scenario",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Existing public Quick Battle setup and original offered Spellbox recipe83 selected through physical native controls; one source-directed opaque player-wizard self-target request, require actual mode1 child queue and four stored views, then ordinary Results/Quick/Main/Quit. Existing original setup sliders define the scenario; no balance implementation, memory/channel writes, feedback search, invented recipe, repeat cast or successful-spell rule equivalence. Separate missing-branch scenario from the bounded six-start campaign contact plan. Initial inventory reuses and validates the exact persisted ready Spellbox visit; offline optional-read guards do not establish original execution of the corrected None-read domain. Exact host control phases preserve the accepted historical four-turn route; the current driver observes the same four views with three turns and finishes at the fourth view. These finite variants do not widen the native caller policy.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4776543,
+          "scope": "Selected numeric effect83 branch reaches attachment mode1; finite original offered-recipe self-cast/active-child route. Other callers and full original spell semantics remain unrecovered."
+        }
+      ],
+      "documents": [
+        "research/runtime/attachment-combat-output-20261107.md",
+        "research/runtime/spell-selection-menu-bridge.md",
+        "research/runtime/spell-dispatch-inventory.md"
+      ],
+      "implementation": [
+        "tools/scene_attachment_journey.py",
+        "tools/run-scene-attachment.py"
+      ],
+      "tests": [
+        "tools/check-scene-attachment.py",
+        "tests/test-scene-attachment-admission.py"
+      ],
+      "validation_dependencies": [
+        "tools/run-rendering-menu-acceptance.py",
+        "tools/rendering_menu_accessibility.py",
+        "tools/rendering_interaction_live.py",
+        "tools/scene_actor_observation.py",
+        "tools/campaign_route.py",
+        "tools/native_only_contract.py",
+        "tools/rendering_build_binding.py",
+        "tools/scene_attachment_acceptance.py",
+        "tools/campaign_input_observation.py",
+        "tools/campaign_spell.py"
+      ],
+      "evidence": [
+        "AC07.attachment-low-quota-failure01",
+        "AC07.combat-observation01",
+        "AC07.combat-observation02",
+        "AC07.attachment-low-return-failure01",
+        "AC07.attachment-inventory-race01",
+        "AC07.ready-inventory-controls01",
+        "AC07.combat-observation03",
+        "AC07.attachment-software-producer-failure01",
+        "AC07.ready-inventory-controls02",
+        "AC07.scene-partial-observation04",
+        "AC07.tenth-current-controls01",
+        "AC07.eighth-raster-refusal-correction01",
+        "AC07.ninth-menu-failure-review01",
+        "AC07.scene-observation05"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "AC07.G.attachments",
+        "AC07.G.ownership",
+        "AC07.G.ram-quota-failure: actual default640setup stops before cast/World. Exact core preserves original Source chunk acknowledgement mode/cancellation and secondary uncaught QSaveFile error2 Disk quota exceeded. Filesystem free space alone does not establish user-quota headroom; first failing producer syscall remains unobserved. No normal failure-retirement, universal reliability, attachment output or quota recovery claim is supplied by this negative capture.",
+        "AC07.G.low-results-return: actual640Excalibur run dispatches original Results26/callback2 but fails readyQuick22/ack7 before timeout. Final post-cleanup ack8/status5 is later evidence; exact first pending transition/cause remains unobserved. All capture/normal-retirement claims remain failed, cap5 exhausted in that historical run; six-total approval subsequently used. See attachment-runtime-diagnosis-05.json; no native menu/controller change or status promotion.",
+        "AC07.G.optional-inventory-read-runtime: cached-ready inventory preserves both accepted800input facts and the accepted default640case. The historical rejected live bytes remain unretained; the separate earlier Quick-return failure remains unresolved.",
+        "AC07.G.software640-producer-exit: corrected retained analysis establishes original Windows exit95 and last WRITING254record FAILURE43/tag14/caller0x54a563. Prior missing-exit-code claims are retracted, with superseded reports retained. The caller remains rejected; its exact raster input/register/stack bytes are missing. See attachment-retained-failure-correction-02.json.",
+        "AC07.G.ninth-menu-timeout: ninth charged actual start times out before ready Spellbox, self-cast or any closed World. Whole-process tracing slows staging; timeout causality is unresolved. No exit-code artifact or normal-retirement/output credit. See attachment-ninth-failure-review-02.json.",
+        "All10approved actual attachment starts remain charged and collection stops. All four requested rows qualify: both attachment and both combat profiles,94passed62pending in the preserved90-row parent phase. Successful later cases do not diagnose historical Quick-return failures or establish universal reliability.",
+        "AC07.G.merged-source-phase: master integration preserves every accepted original source/native/compiler/oracle phase and both parent milestones. The combined guest includes incoming font/DC, epoch/recovery and display work plus the opt-in actor sidecar. No new original/native/oracle execution or whole combined-player equivalence is asserted; raw full-source drift stays visible. Ten attachment starts are charged, with no further launch authority."
+      ]
+    },
+    {
+      "id": "NP.scene-attachment-combat-admission",
+      "title": "Evidence-bound attachment and combat row admission",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Admit only attachment/combat profile rows with both actual640/800 retained case proofs, unique sessions, original semantic/source/paint ownership and complete independent native output comparisons. Preserve every inherited row and source phase. Default final admission requires all eight domains; explicit partial reports leave each incomplete row pending. Exact host budget checks and the cached-ready Spellbox inventory read may receive separate source reviews with current controls and identical originally used inputs from both accepted800 snapshots. These preserve only accepted old positive scopes; new optional-None runtime handling remains pending. No other physical-action/timing/target change or native/runtime, protocol, original-oracle or pixel-analyzer hash is waived. No native gameplay reconstruction, arbitrary attachment lifecycle or final player/original-recovery decision.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/attachment-combat-output-20261107.md"
+      ],
+      "implementation": [
+        "tools/close-scene-attachment-combat.py"
+      ],
+      "tests": [
+        "tests/test-scene-attachment-admission.py",
+        "tests/test-coverage-ui.py",
+        "tests/test-coverage-ui-client.js"
+      ],
+      "validation_dependencies": [
+        "tools/scene_actor_output.py",
+        "tools/check-scene-actor-output.py",
+        "tools/scene_actor_observation.py",
+        "tools/rendering_closeout.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_ui.py",
+        "tools/coverage_rendering_artifacts.py",
+        "apps/coverage-ui/app.js",
+        "apps/coverage-ui/tracks.json",
+        "apps/coverage-ui/importance.json",
+        "docs/native-rendering-closure.json"
+      ],
+      "evidence": [
+        "AC07.combat-admission01",
+        "AC07.combat-admission02",
+        "AC07.combat-admission03",
+        "AC07.scene-partial-admission04",
+        "AC07.scene-admission05",
+        "AC07.master-phase-join01",
+        "AC07.master-merge-controls01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "AC07.G.ownership",
+        "Other attachment/status/map/provider/caller/lifetime domains and native gameplay remain separate.",
+        "AC07.G.attachment640: All four requested rows qualify: both attachment and both combat profiles,94passed62pending in the preserved90-row parent phase. All10actual attachment starts remain charged, all failures retained and no further start authorized. Native gameplay, other caller/effect/lifetime domains and both final decisions remain pending.",
+        "AC07.G.merged-source-phase: master integration preserves every accepted original source/native/compiler/oracle phase and both parent milestones. The combined guest includes incoming font/DC, epoch/recovery and display work plus the opt-in actor sidecar. No new original/native/oracle execution or whole combined-player equivalence is asserted; raw full-source drift stays visible. Ten attachment starts are charged, with no further launch authority."
       ]
     }
   ],
@@ -389511,6 +389981,806 @@
       ]
     },
     {
+      "id": "SL08.selection-highlight01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-selection-results-20261108/analysis-03.json",
+      "sha256": "bdf006becc4d480d655f75d8cf06c2cabf76b203ec71e581876fc0defa004133",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Retained actual default/software640/800 Quick selection: four views plus pan in both Sharp/Integer. Bind80original Shift selection callbacks, living numeric wizard role, flag68on/off with flag70clear and three displayed pointer-away source generations per state. Four exact Sprites/markers.spr corner resources, actual direct-WORD caller/entry/AX/source requests, later-writer-safe contrasting source WORDs, conservative native command provenance and complete independently matched actual viewports. Raw cursor/refusal/retirement observations and historical invalid requests remain explicit. No new game/native/oracle execution, allocation generations, whole selection/picking/hotspot, physical provider, current whole-player or final decision claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/required_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/original_selection_callbacks",
+          "equals": 80
+        },
+        {
+          "pointer": "/settled_source_generations",
+          "equals": 240
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 104
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 52
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_native_engine_executions",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_original_oracle_executions",
+          "equals": 0
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "AC07.encoder-controls01",
+      "kind": "native_integration",
+      "scope": "20 owned-memory production-encoder and strict decoder controls; no original execution, attachment or combat-output validation.",
+      "record": "research/runtime/attachment-combat-results-20261107/controls-01.json",
+      "sha256": "469e5c48d76cd30bd3ebf56051064fa0f4bb25f42b65071b8ac8182d7696ceca",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AC07.encoder-controls03",
+      "kind": "native_integration",
+      "scope": "25 current owned-memory production encoder, strict wire and producer-to-input boundary controls, including corrected relative SPR frame-data base, role gates, overflow refusal and partial-frame deferral. No original game, placement or combat output credit.",
+      "record": "research/runtime/attachment-combat-results-20261107/controls-03.json",
+      "sha256": "7a3f4d96c05ee21ecb8bf464db9f0f56027558d4a5d50a9522c55d8b2ade6b91",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "AC07.attachment-low-quota-failure01",
+      "kind": "live_observation",
+      "scope": "Negative actual default640Quick setup before spell selection/World. Exact core confirms QSaveFile disk-quota failure masking earlier source acknowledgement cancellation; first failed producer syscall remains unobserved. Original game remains charged, no cast/output/normal-retirement or supported reliability claim. Parent source hashes are preserved.",
+      "record": "research/runtime/attachment-combat-results-20261107/attachment-default640-01.json",
+      "sha256": "69ba7b56646f97d5dc55865a3e58a5690b5050ff7e58dbc411b2004de82570d1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 1
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AC07.encoder-controls04",
+      "kind": "native_integration",
+      "scope": "25 unchanged production encoder/decoder/input-boundary controls under the corrected narrow observation scope: frame-local role tokens and opaque original queue auxiliary words. No original game, placement or combat output credit; earlier contracts remain unchanged and historical.",
+      "record": "research/runtime/attachment-combat-results-20261107/controls-04.json",
+      "sha256": "76b4ff5fdd66077ca5f8ecc64ea6cab370954bc0358e09751437a22a2a8d7c8d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "AC07.combat-admission01",
+      "kind": "native_integration",
+      "scope": "Four actual default/software640/800melee cases and their unchanged retained analyses admit exactly both combat rows. Two800mode1attachment cases are diagnostic only; both attachment rows, two640domains, actor allocation/lifetime and final decisions remain pending. The join launches no game and retains all original source phases.",
+      "record": "research/runtime/attachment-combat-results-20261107/admission-01.json",
+      "sha256": "401479adbb9da83914b0991010d4f0112ce46b5e7d6a771e031216cd564e7771",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 2
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "AC07.combat-observation01",
+      "kind": "live_observation",
+      "scope": "Four actual default/software640/800melee cases and their unchanged retained analyses admit exactly both combat rows. Two800mode1attachment cases are diagnostic only; both attachment rows, two640domains, actor allocation/lifetime and final decisions remain pending. The join launches no game and retains all original source phases.",
+      "record": "research/runtime/attachment-combat-results-20261107/admission-01.json",
+      "sha256": "401479adbb9da83914b0991010d4f0112ce46b5e7d6a771e031216cd564e7771",
+      "sources_pointer": "/live_observation_sources",
+      "claims_pointer": "/live_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 2
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "AC07.combat-admission02",
+      "kind": "native_integration",
+      "scope": "Four actual default/software640/800melee cases and their unchanged retained analyses admit exactly both combat rows. Two800mode1attachment cases are diagnostic only; both attachment rows, two640domains, actor allocation/lifetime and final decisions remain pending. The join launches no game and retains all original source phases. Fresh retained admission binds the explicit executed physical-route checker link; earlier01contract/source phases remain immutable.",
+      "record": "research/runtime/attachment-combat-results-20261107/admission-02.json",
+      "sha256": "64ecc887d489f0c7e55a1faf3b40c11bc2bb42b8007b4467faebc0ca0d9683ef",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 2
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "AC07.combat-observation02",
+      "kind": "live_observation",
+      "scope": "Four actual default/software640/800melee cases and their unchanged retained analyses admit exactly both combat rows. Two800mode1attachment cases are diagnostic only; both attachment rows, two640domains, actor allocation/lifetime and final decisions remain pending. The join launches no game and retains all original source phases. Fresh retained admission binds the explicit executed physical-route checker link; earlier01contract/source phases remain immutable.",
+      "record": "research/runtime/attachment-combat-results-20261107/admission-02.json",
+      "sha256": "64ecc887d489f0c7e55a1faf3b40c11bc2bb42b8007b4467faebc0ca0d9683ef",
+      "sources_pointer": "/live_observation_sources",
+      "claims_pointer": "/live_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 2
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "AC07.attachment-low-return-failure01",
+      "kind": "live_observation",
+      "scope": "Negative fifth actual attachment start: effect83self-cast/child/four views at640observed, but no readyQuick ack7 or normal retirement admission. RAM quota guard never triggered. First pre-cleanup pending transition state is absent; final later request8/retired wire cannot establish its initial cause. Post-report idle-prefix verification is separate.",
+      "record": "research/runtime/attachment-combat-results-20261107/attachment-default640-02.json",
+      "sha256": "5a4e5446a3d1b3219048bb04d3f07b039a22db1b4b7b95c09f9c36b095cd25a6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 1
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AC07.attachment-inventory-race01",
+      "kind": "live_observation",
+      "scope": "Negative sixth actual attachment start. After a ready Spellbox7/ack5 wire is saved, an unchecked optional live read fails before inventory selection or cast. No World/attachment/normal-retirement credit; guard never triggers. Source hashes remain at the failed pre-fix collector phase; the later cached-ready correction and idle-prefix proof are separate.",
+      "record": "research/runtime/attachment-combat-results-20261107/attachment-default640-03.json",
+      "sha256": "2a7289fba8768e4a1682e65f9ff2358937d191f36dc817bf6c0f4d7c7f044cc6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 1
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/attachment_route/cast_requests",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "AC07.ready-inventory-controls01",
+      "kind": "native_integration",
+      "scope": "39 current offline host input/row/source-review controls. Both real accepted800 ready inventories match all originally used fields under cached-ready reading; transientNone, foreign/torn/missing visits and unrelated physical/native edits are rejected. No original execution of the corrected optionalNone domain or640attachment acceptance.",
+      "record": "research/runtime/attachment-combat-results-20261107/ready-snapshot-phase-controls-01.json",
+      "sha256": "1f9c353dd7812735dfd29bf249eee9f8bdec7009b5dc3896ae2f9ef5dda06a10",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/passed",
+          "equals": 39
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "AC07.combat-admission03",
+      "kind": "native_integration",
+      "scope": "Retained current-source admission of the four independently proven default/software640/800 combat cases, preserving exactly both combat rows and all90parent rows/decisions. Exact approved five-to-six budget and saved-ready inventory reviews preserve original source hashes and identical old positive800 inventory inputs under39 current controls. Two800attachment cases remain diagnostic, both640domains and both attachment rows stay pending. No fresh original/native execution or live validation of corrected optionalNone handling; six charged starts exhaust the approved cap.",
+      "record": "research/runtime/attachment-combat-results-20261107/admission-03.json",
+      "sha256": "fa275b1f17fd91db424404bd798854d65aceb61f4be32ba736b57bb94c6235d0",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 2
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/ready_inventory_input_phase/new_optional_none_domain_live_validated",
+          "equals": false
+        },
+        {
+          "pointer": "/collector_budget_phase/maximum_after",
+          "equals": 6
+        }
+      ]
+    },
+    {
+      "id": "AC07.combat-observation03",
+      "kind": "live_observation",
+      "scope": "Retained current-source admission of the four independently proven default/software640/800 combat cases, preserving exactly both combat rows and all90parent rows/decisions. Exact approved five-to-six budget and saved-ready inventory reviews preserve original source hashes and identical old positive800 inventory inputs under39 current controls. Two800attachment cases remain diagnostic, both640domains and both attachment rows stay pending. No fresh original/native execution or live validation of corrected optionalNone handling; six charged starts exhaust the approved cap.",
+      "record": "research/runtime/attachment-combat-results-20261107/admission-03.json",
+      "sha256": "fa275b1f17fd91db424404bd798854d65aceb61f4be32ba736b57bb94c6235d0",
+      "sources_pointer": "/live_observation_sources",
+      "claims_pointer": "/live_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 2
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/ready_inventory_input_phase/new_optional_none_domain_live_validated",
+          "equals": false
+        },
+        {
+          "pointer": "/collector_budget_phase/maximum_after",
+          "equals": 6
+        }
+      ]
+    },
+    {
+      "id": "AC07.attachment-software-producer-failure01",
+      "kind": "live_observation",
+      "scope": "Negative eighth actual attachment start: original self-cast/four-view child observations, then253completed Worlds and next-WRITING254close on launch-specific DLL detach, before Escape; native producer cancellation, no accepted complete output or normal-retirement row. Missing original exit cause/code remains explicit; quota guard never triggers.",
+      "record": "research/runtime/attachment-combat-results-20261107/attachment-software640-01.json",
+      "sha256": "1099ce9d485e81517ec02ec1d8ae9cbb38aaba63e298c63127b5cedd5197391a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 1
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/attachment_route/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AC07.ready-inventory-controls02",
+      "kind": "native_integration",
+      "scope": "43 current offline saved-ready/source/budget guards, with exact5/6/8transitions and refusal of a ninth unapproved bound. Current default640source execution is separately acquired; controls themselves supply no original run or missing software retirement.",
+      "record": "research/runtime/attachment-combat-results-20261107/eight-start-ready-phase-controls-01.json",
+      "sha256": "75a8af0a9b1c4fff84b98f06bf64e3fcb487cf9bc04dbef41dab71a2a8697074",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/passed",
+          "equals": 43
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "AC07.scene-partial-admission04",
+      "kind": "native_integration",
+      "scope": "Seven distinct accepted actual cases qualify three requested rows: both default/software combat profiles and default attachment. The new default640case supplies original Excalibur child/four-view placement, complete independent output comparison and normal Quit, giving93passed63pending in the preserved90-row parent phase. Software640producer cancellation before Escape is retained as a failed eighth charged start; software attachment and whole-task completion stay pending. Narrow approved5/6/8budget and saved-ready reviews preserve old positive source bytes. No native/runtime/oracle/pixel hash waiver or native gameplay reconstruction.",
+      "record": "research/runtime/attachment-combat-results-20261107/admission-04.json",
+      "sha256": "c744144c3dadd414aad9628b9bd6920379867a20775351c04cdc40450293bbed",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 3
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 1
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/collector_budget_phase/maximum_after",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "AC07.scene-partial-observation04",
+      "kind": "live_observation",
+      "scope": "Seven distinct accepted actual cases qualify three requested rows: both default/software combat profiles and default attachment. The new default640case supplies original Excalibur child/four-view placement, complete independent output comparison and normal Quit, giving93passed63pending in the preserved90-row parent phase. Software640producer cancellation before Escape is retained as a failed eighth charged start; software attachment and whole-task completion stay pending. Narrow approved5/6/8budget and saved-ready reviews preserve old positive source bytes. No native/runtime/oracle/pixel hash waiver or native gameplay reconstruction.",
+      "record": "research/runtime/attachment-combat-results-20261107/admission-04.json",
+      "sha256": "c744144c3dadd414aad9628b9bd6920379867a20775351c04cdc40450293bbed",
+      "sources_pointer": "/live_observation_sources",
+      "claims_pointer": "/live_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 3
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 1
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/collector_budget_phase/maximum_after",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "AC07.tenth-current-controls01",
+      "kind": "native_integration",
+      "scope": "57current offline budget/ready/four-view controls; no original game execution.",
+      "record": "research/runtime/attachment-combat-results-20261107/tenth-current-controls-01.json",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/passed",
+          "equals": 57
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ],
+      "sha256": "3623a83dc3960ff84a35a6cad90d1c5f32d7cb2507dd996b45f1cdba7f05ba67"
+    },
+    {
+      "id": "AC07.eighth-raster-refusal-correction01",
+      "kind": "static",
+      "scope": "Retained actual negative/static analysis: Windows exit95and FAILURE43/tag14/caller0x54a563. Corrects the missing-code claim; no new game or admitted native caller.",
+      "record": "research/runtime/attachment-combat-results-20261107/attachment-retained-failure-correction-03.json",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_windows_exit_code",
+          "equals": 95
+        },
+        {
+          "pointer": "/actual_games_charged",
+          "equals": 1
+        }
+      ],
+      "sha256": "30df24971ceae27e795bc5d816e22c4d662bf16d746620fd9059ff90fc314707",
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "AC07.ninth-menu-failure-review01",
+      "kind": "static",
+      "scope": "Retained ninth actual negative review, zero closed Worlds and pre-Spellbox timeout; no new execution, retirement, output credit or refund.",
+      "record": "research/runtime/attachment-combat-results-20261107/attachment-ninth-failure-review-03.json",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/closed_worlds",
+          "equals": 0
+        },
+        {
+          "pointer": "/actual_games_charged",
+          "equals": 1
+        }
+      ],
+      "sha256": "6a540a2c7054d0139ca4c2c535f62140b3ab3251ee5800fc523b8df885abf258",
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "AC07.scene-admission05",
+      "kind": "native_integration",
+      "scope": "Current owned finite scene admission05: all four requested attachment/combat profile rows qualify, 94passed62pending in the preserved90-row parent source phase. Every accepted actual640/800case independently matches complete native output against original history and retires normally. Exact approved5/6/8/9/10budget, saved-ready and post-four-view reviews preserve old input/source bytes. All10actual attachment starts remain charged and collection stops. Retained eighth exit95/raster caller54a563refusal and ninth pre-Spellbox timeout stay failed; no universal caller/lifetime/native gameplay or combined-main-source claim.",
+      "record": "research/runtime/attachment-combat-results-20261107/admission-05.json",
+      "sha256": "aa5e9377b5dd695415f6fe103af4a28e7978248625d58677065bde4d9efc7d79",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 4
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 0
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/collector_budget_phase/maximum_after",
+          "equals": 10
+        }
+      ]
+    },
+    {
+      "id": "AC07.scene-observation05",
+      "kind": "live_observation",
+      "scope": "Current owned finite scene admission05: all four requested attachment/combat profile rows qualify, 94passed62pending in the preserved90-row parent source phase. Every accepted actual640/800case independently matches complete native output against original history and retires normally. Exact approved5/6/8/9/10budget, saved-ready and post-four-view reviews preserve old input/source bytes. All10actual attachment starts remain charged and collection stops. Retained eighth exit95/raster caller54a563refusal and ninth pre-Spellbox timeout stay failed; no universal caller/lifetime/native gameplay or combined-main-source claim.",
+      "record": "research/runtime/attachment-combat-results-20261107/admission-05.json",
+      "sha256": "aa5e9377b5dd695415f6fe103af4a28e7978248625d58677065bde4d9efc7d79",
+      "sources_pointer": "/live_observation_sources",
+      "claims_pointer": "/live_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 4
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 0
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/collector_budget_phase/maximum_after",
+          "equals": 10
+        }
+      ]
+    },
+    {
+      "id": "AC07.master-phase-join01",
+      "kind": "static",
+      "record": "research/runtime/scene-master-merge-results-20261108/acceptance-02.json",
+      "sha256": "2a7f4d883fc7beb78a74501354f4ae05fcf1a911987be107af8e2cbf810cbe23",
+      "sources_pointer": "/analysis_sources",
+      "scope": "Phase-preserving local master merge: all104incoming accepted requirements remain byte-identical; add only four already-qualified AC07attachment/combat profile rows using eight exact accepted case pairs. Every old source hash, native binary, runtime/oracle phase, failure and pending final decision remains. Source drift in the actual combined tree is recorded, never waived or presented as fresh execution. No game/native/oracle rerun, new caller admission, whole-player or native gameplay claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 108
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 4
+        },
+        {
+          "pointer": "/current_combined_player_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "AC07.master-merge-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/scene-master-merge-results-20261108/controls-02.json",
+      "sha256": "86785a8699e8090fb3414e47ce246ae60bb7c65297ee2894676d457752b792b0",
+      "sources_pointer": "/sources",
+      "scope": "218current relevant controls, two compiled PE32observers and eight retained acquisition scope projections. Re-execute only the two failing scripts after the checkout-independent lookup fix. Four unaffected passing control results retain their exact original inputs and transcripts. Same exact recorded producer artifact sets and all four original cast transitions are verified; no foreign session or ambiguous root is accepted. No original game, oracle rerun, full pixel reanalysis or merged native-player live proof. llvm-dlltool version refusal is retained with actual executable hash; it grants no silent test success.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/passed",
+          "equals": 218
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_combined_player_proved",
+          "equals": false
+        }
+      ]
+    },
+    {
       "id": "CR08.callers-original05",
       "kind": "isolated_original",
       "record": "research/runtime/rendering-contract-recovery-results-20261108/comparison-05.json",
@@ -423600,6 +424870,214 @@
       "evidence": [
         "SX08.startup-postmortem01"
       ]
+    },
+    {
+      "id": "SL08.selection.01",
+      "level": "headless",
+      "scope": "Retained actual default/software640/800 Quick selection: four views plus pan in both Sharp/Integer. Bind80original Shift selection callbacks, living numeric wizard role, flag68on/off with flag70clear and three displayed pointer-away source generations per state. Four exact Sprites/markers.spr corner resources, actual direct-WORD caller/entry/AX/source requests, later-writer-safe contrasting source WORDs, conservative native command provenance and complete independently matched actual viewports. Raw cursor/refusal/retirement observations and historical invalid requests remain explicit. No new game/native/oracle execution, allocation generations, whole selection/picking/hotspot, physical provider, current whole-player or final decision claim. Domain player-default [640, 480]",
+      "behaviors": [
+        "NP.selection-highlight-closeout"
+      ],
+      "tests": [
+        "tools/rendering_selection.py",
+        "tools/close-rendering-selection.py",
+        "tests/test-rendering-selection.py"
+      ],
+      "evidence": [
+        "SL08.selection-highlight01"
+      ]
+    },
+    {
+      "id": "SL08.selection.02",
+      "level": "headless",
+      "scope": "Retained actual default/software640/800 Quick selection: four views plus pan in both Sharp/Integer. Bind80original Shift selection callbacks, living numeric wizard role, flag68on/off with flag70clear and three displayed pointer-away source generations per state. Four exact Sprites/markers.spr corner resources, actual direct-WORD caller/entry/AX/source requests, later-writer-safe contrasting source WORDs, conservative native command provenance and complete independently matched actual viewports. Raw cursor/refusal/retirement observations and historical invalid requests remain explicit. No new game/native/oracle execution, allocation generations, whole selection/picking/hotspot, physical provider, current whole-player or final decision claim. Domain player-default [800, 600]",
+      "behaviors": [
+        "NP.selection-highlight-closeout"
+      ],
+      "tests": [
+        "tools/rendering_selection.py",
+        "tools/close-rendering-selection.py",
+        "tests/test-rendering-selection.py"
+      ],
+      "evidence": [
+        "SL08.selection-highlight01"
+      ]
+    },
+    {
+      "id": "SL08.selection.03",
+      "level": "headless",
+      "scope": "Retained actual default/software640/800 Quick selection: four views plus pan in both Sharp/Integer. Bind80original Shift selection callbacks, living numeric wizard role, flag68on/off with flag70clear and three displayed pointer-away source generations per state. Four exact Sprites/markers.spr corner resources, actual direct-WORD caller/entry/AX/source requests, later-writer-safe contrasting source WORDs, conservative native command provenance and complete independently matched actual viewports. Raw cursor/refusal/retirement observations and historical invalid requests remain explicit. No new game/native/oracle execution, allocation generations, whole selection/picking/hotspot, physical provider, current whole-player or final decision claim. Domain player-software [640, 480]",
+      "behaviors": [
+        "NP.selection-highlight-closeout"
+      ],
+      "tests": [
+        "tools/rendering_selection.py",
+        "tools/close-rendering-selection.py",
+        "tests/test-rendering-selection.py"
+      ],
+      "evidence": [
+        "SL08.selection-highlight01"
+      ]
+    },
+    {
+      "id": "SL08.selection.04",
+      "level": "headless",
+      "scope": "Retained actual default/software640/800 Quick selection: four views plus pan in both Sharp/Integer. Bind80original Shift selection callbacks, living numeric wizard role, flag68on/off with flag70clear and three displayed pointer-away source generations per state. Four exact Sprites/markers.spr corner resources, actual direct-WORD caller/entry/AX/source requests, later-writer-safe contrasting source WORDs, conservative native command provenance and complete independently matched actual viewports. Raw cursor/refusal/retirement observations and historical invalid requests remain explicit. No new game/native/oracle execution, allocation generations, whole selection/picking/hotspot, physical provider, current whole-player or final decision claim. Domain player-software [800, 600]",
+      "behaviors": [
+        "NP.selection-highlight-closeout"
+      ],
+      "tests": [
+        "tools/rendering_selection.py",
+        "tools/close-rendering-selection.py",
+        "tests/test-rendering-selection.py"
+      ],
+      "evidence": [
+        "SL08.selection-highlight01"
+      ]
+    },
+    {
+      "id": "native.scene-actor-observation-controls",
+      "scope": "Production passive encoder on owned 32-bit memory plus strict wire/refusal controls; no original artifacts or live scene/output claim.",
+      "level": "headless",
+      "behaviors": [
+        "NP.scene-actor-generation-observation"
+      ],
+      "tests": [
+        "tests/test-scene-actor-observation.py",
+        "tests/scene-actor-observation-fixture.c"
+      ],
+      "evidence": [
+        "AC07.encoder-controls01",
+        "AC07.encoder-controls03",
+        "AC07.encoder-controls04"
+      ],
+      "remaining_gaps": [
+        "AC07.G.live",
+        "AC07.G.attachments",
+        "AC07.G.combat",
+        "AC07.G.ownership"
+      ]
+    },
+    {
+      "id": "native.scene-combat-first-contact",
+      "scope": "Prospective actual default/software 640x480/800x600 physical wizard-contact routes, original same-thread melee/health observation, exact source-generation sidecar and normal Quit. Driver success alone grants no viewport or scene requirement credit.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.scene-actor-generation-observation",
+        "NP.scene-combat-physical-observation"
+      ],
+      "tests": [
+        "tools/check-scene-actor-capture.py"
+      ],
+      "evidence": [
+        "AC07.combat-observation01",
+        "AC07.combat-observation02",
+        "AC07.combat-observation03",
+        "AC07.scene-partial-observation04",
+        "AC07.scene-observation05"
+      ],
+      "remaining_gaps": [
+        "AC07.G.driver-live",
+        "AC07.G.attachments",
+        "AC07.G.combat",
+        "AC07.G.ownership"
+      ]
+    },
+    {
+      "id": "native.scene-attachment-combat-output",
+      "scope": "Separate actual ordinary campaign-melee and pre-battle Excalibur attachment default/software 640/800 cases with closed source/actor/journal histories, required four-view attachment composition, actual melee/health state brackets and independently matched complete GPU viewports. No synthetic scene or original-destination seed is accepted.",
+      "level": "headless",
+      "behaviors": [
+        "NP.scene-attachment-output",
+        "NP.scene-combat-output"
+      ],
+      "tests": [
+        "tests/test-scene-actor-output.py"
+      ],
+      "evidence": [
+        "AC07.combat-admission01",
+        "AC07.combat-admission02",
+        "AC07.combat-admission03",
+        "AC07.scene-partial-admission04",
+        "AC07.scene-admission05"
+      ],
+      "remaining_gaps": [
+        "AC07.G.attachments",
+        "AC07.G.combat",
+        "AC07.G.ownership",
+        "AC07.G.output",
+        "Finite eight-case matrix complete; other effect/lifetime/caller/map/native gameplay domains remain pending."
+      ]
+    },
+    {
+      "id": "native.scene-attachment-public-selection",
+      "scope": "Prospective four actual default/software640/800 ordinary single-spell Quick Battle cases; original offered recipe83, mode1 child queue, four stored views and normal Results/Quick/Main/Quit. Driver success alone grants no source/native output credit.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.scene-actor-generation-observation",
+        "NP.scene-attachment-physical-observation"
+      ],
+      "tests": [
+        "tools/check-scene-attachment.py"
+      ],
+      "evidence": [
+        "AC07.combat-observation01",
+        "AC07.combat-observation02",
+        "AC07.combat-observation03",
+        "AC07.scene-partial-observation04",
+        "AC07.scene-observation05"
+      ],
+      "remaining_gaps": [
+        "AC07.G.attachments",
+        "AC07.G.ownership",
+        "AC07.G.attachment640: All four requested rows qualify: both attachment and both combat profiles,94passed62pending in the preserved90-row parent phase. All10starts stay charged. Retained eighth refusal95/caller54a563and ninth pre-Spellbox menu timeout stay failed; three-turn source applicability is reviewed separately from old accepted four-turn inputs."
+      ]
+    },
+    {
+      "id": "native.scene-attachment-combat-admission",
+      "scope": "Exact qualified scene-row accounting from retained actual case analyses and original self-cast/active-child transitions. Each profile row needs both actual sizes; explicit partial reports preserve incomplete rows and every inherited row/source phase/decision. Default final admission requires all eight domains.",
+      "level": "headless",
+      "behaviors": [
+        "NP.scene-attachment-combat-admission"
+      ],
+      "tests": [
+        "tests/test-scene-attachment-admission.py",
+        "tests/test-coverage-ui.py",
+        "tests/test-coverage-ui-client.js"
+      ],
+      "evidence": [
+        "AC07.combat-admission01",
+        "AC07.combat-admission02",
+        "AC07.combat-admission03",
+        "AC07.scene-partial-admission04",
+        "AC07.scene-admission05"
+      ],
+      "remaining_gaps": [
+        "AC07.G.admission",
+        "AC07.G.ownership"
+      ]
+    },
+    {
+      "id": "native.scene-combat-output",
+      "scope": "Four actual default/software640/800 ordinary campaign melee cases: exact original event/health/engagement brackets, changed rendered participant frame, uniquely owned source/body samples and eight visible points per participant in one current-import paint per selected generation, complete independently matched native viewports and normal Quit. No native AI/combat implementation or full action/lifetime/provider recovery.",
+      "level": "headless",
+      "behaviors": [
+        "NP.scene-combat-output"
+      ],
+      "tests": [
+        "tests/test-scene-actor-output.py"
+      ],
+      "evidence": [
+        "AC07.combat-admission01",
+        "AC07.combat-admission02",
+        "AC07.combat-admission03",
+        "AC07.scene-partial-admission04",
+        "AC07.scene-admission05"
+      ],
+      "remaining_gaps": [
+        "AC07.G.ownership",
+        "Other combat/action/caller/map/provider/lifetime domains remain separate."
+      ]
     }
   ],
   "recovered_ranges": [
@@ -425417,8 +426895,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-46d251b077155ac732882eab0888531cdfb117db6ec84dc4d200897f58849307.json",
-    "sha256": "46d251b077155ac732882eab0888531cdfb117db6ec84dc4d200897f58849307"
+    "path": "research/runtime/coverage/source-index-3186feea8fa4d56c09f8ffae0f7a8fcd0c543214ed0c04b046aaa30e79898728.json",
+    "sha256": "3186feea8fa4d56c09f8ffae0f7a8fcd0c543214ed0c04b046aaa30e79898728"
   },
   "evidence_applicability": [
     {
