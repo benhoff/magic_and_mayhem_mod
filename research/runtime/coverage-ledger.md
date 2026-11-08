@@ -27160,3 +27160,43 @@ capture, native code/build or fixture. See
 ### Enabled-intro integration preserves concurrent acceptance
 
 The exact join over `aa4139b13ed4a7ae258133b3ae20f5d78ebb78bb` preserves all86incoming marker/full-fill/pan/CPU-transport/earlier rows and adds only2enabled-intro rows:88/156passed,68pending,both decisions pending. The standalone intro76-row phase and every parent source hash/attachment/failure remain immutable; no current whole-player or original DirectShow/driver equivalence is inferred. Source checkpoint and recovery stash retain the pre-update owned tree; final exact reviews and normal current/staged gates apply to the combined source.
+
+## Shared rendering closeout and second Spellbox diagnosis — 2026-11-07
+
+BC07 adds a bounded shared retained-proof runner around unchanged CPU, full-fill,
+pan and marker admissions. One SQLite reader/result preserves all unrelated
+rows, source phases, failures and both decisions; eleven actual-data/adverse/UI
+checks pass. Its four-component replay reproduces eight existing admissions
+from the selected74-row parent to82; current master86/156is unchanged.
+Required census, exact receipts, audit/gates, paired backups and normal hook
+remain separate mandatory closeout steps. SH07 separately reviews the retained
+second Spellbox freeze and adds prospectively bounded public High->High/High->Low
+diagnostics with read-only SQLite/process waits. Both prior zero-game staging
+refusals, exhausted PR07six-request/three-game failure and unisolated cause are
+preserved. No native/runtime/Qt bytes, original artifacts, gameplay balance or
+final acceptance status is changed. See
+[the owned review](rendering-closeout-handoff-20261107.md) for current execution
+boundaries and immutable results.
+
+SH07 final reduced-route diagnostic:3requests,2zero-game refusals,1failed
+original startup;440retained lane samples reproduce second Finish18/ACK17without
+the picking workload. Host retirement's1.342176357supper bound identifies the
+2sstate-lease branch rather than10srequest timeout. Guest process/stack cause
+remains unproved. Ten current retained-data/parser controls validate decoding,
+namespace device/inode matching, old-frame rebuild waiting and timing; corrected observer has no new live
+validation. Original/native/compiler/player source phases and both full picking
+rows/final decisions remain separate. No rectangle/deadline policy is weakened.
+
+
+### BC07/SH07 requested master integration
+
+The requested merge is based on ed5b85b1d and preserves all88intro/earlier
+acceptance rows,68pending rows and both final decisions. Current retained-input
+reanalysis compares exact old/current V1/V2 reader metadata and decoded bodies,
+then unchanged case/row guards, with native/compiler/original execution hashes
+kept historical. No game/native build, fresh renderer output or new acceptance
+row is supplied. All14batch,10handoff and43enabled-intro controls pass without
+skips on the merged source. Original source-phase failures/results remain immutable.
+Incoming5commits/9821parent-file transitions have six missing unique metadata
+pairs recorded retrospectively in SQLite; no past gate claim. See the owned
+[closeout/integration review](rendering-closeout-handoff-20261107.md).

@@ -164705,7 +164705,8 @@
         }
       ],
       "documents": [
-        "research/runtime/rendering-picking-resize-20261107.md"
+        "research/runtime/rendering-picking-resize-20261107.md",
+        "research/runtime/rendering-closeout-handoff-20261107.md"
       ],
       "implementation": [
         "tools/prepare-rendering-picking-resize.py",
@@ -166086,7 +166087,8 @@
         "tools/terrain_light_session.py"
       ],
       "evidence": [
-        "PR07.resize-failed06"
+        "PR07.resize-failed06",
+        "SH07.low-failed01"
       ],
       "status": {
         "understanding": "partial",
@@ -166130,7 +166132,7 @@
         "same_world_continuity": false
       },
       "remaining_gaps": [
-        "PR07.G.execution: exhausted6requests/3original startups; second Spellbox Finish18 unacknowledged at17 after original Low acknowledgement, no new640World and no normal Quit. Root cause unisolated; both picking rows remain pending.",
+        "PR07.G.execution: exhausted6requests/3original startups; second Spellbox Finish18 unacknowledged at17 after original Low acknowledgement, no new640World and no normal Quit. Root cause unisolated; both picking rows remain pending. SH07 independently reproduces the reduced High->Low route without the picking schedule; host2second state-lease retirement is identified, but the initiating guest stall remains unisolated.",
         "PR07.G.foot: last capture has20high-size source-only object/cell windows but no completed rebuild; partial evidence cannot supply full-row credit.",
         "PR07.G.scope: software, same-World Mini rebuilds, broader cells/maps/rays, allocation generations, selection/highlights/hotspots, known cursor-copy refusals, atomic HUD and response-deadline/capture timing attribution remain separate."
       ]
@@ -167915,6 +167917,113 @@
         "FF07.G.operations: fourteen operation rows remain: clipped/stretched/alias COPY, clipped fill, font/DC lifetime, palette cycling and complete flags/returns. In-bounds rectangular fills and old clipped quick02subproof do not close required clipping or bypass missing primary admission.",
         "FF07.G.scope: exact four admitted storage/menu contexts on isolated llvmpipe only.328full source/caller invocations are accounted for, while12specific meaningful UPDATE/GPU output witnesses earn finite credit. Two post-source tail fills per case remain unpaired; native policy initialization earns no natural invocation credit. Full overwrites have no exterior, and no terrain-clear-per-frame, arbitrary format/caller/reader/provider, clipped/partial-prefix/font/ABI or current native execution claim follows.",
         "FF07.G.source: current Python retained-data analysis and pure acceptance join only. All original/native/compiler/player/viewport hashes and every known failure remain historical with explicit source phases. Both final rendering decisions stay pending."
+      ]
+    },
+    {
+      "id": "NP.rendering-closeout-batch",
+      "title": "Shared retained rendering closeout admissions",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Bounded one-Reader batch of existing CPU, full-fill, pan and marker proof validators. Exact complete inventory definitions and counts, unchanged historical source phases, immutable component/adapter/source bindings before and after admission, exactly two pending configuration rows per adapter, independent prior positive execution admission, unchanged other rows and both decisions. Optional actual-data/adverse/UI-reader guards. No game, pixel replay, engine milestone, cached gate, bookkeeping waiver or acceptance-domain widening. Current retained-input reanalysis may compare complete metadata/decoded-body digests under exact old/current readers and re-execute unchanged case/row guards. Python analysis sources and historical native execution sources remain separate; original hashes and facts are immutable.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/rendering_closeout.py",
+        "tools/close-rendering-batch.py",
+        "tools/review-rendering-closeout-inputs.py"
+      ],
+      "tests": [
+        "tests/test-rendering-closeout-batch.py"
+      ],
+      "validation_dependencies": [
+        "tools/join-rendering-operations-acceptance.py",
+        "tools/join-rendering-full-fill-acceptance.py",
+        "tools/join-rendering-pan-acceptance.py",
+        "tools/join-rendering-markers.py",
+        "tools/close-rendering-operations.py",
+        "tools/close-rendering-full-fill.py",
+        "tools/close-rendering-pan-acceptance.py",
+        "tools/close-rendering-markers.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_completion.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_rendering_artifacts.py",
+        "docs/native-rendering-closure.json",
+        "apps/coverage-ui/tracks.json",
+        "tools/rendering_capture.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-closeout-handoff-20261107.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "BC07.batch-controls01",
+        "BC07.master-controls01"
+      ],
+      "remaining_gaps": [
+        "BC07.G.adapters: only four explicitly reviewed proof families; other admissions still use their existing validators. No automatic domain or scope resolution.",
+        "BC07.G.finish: final source census, exact receipts, required audit/gates, dual verified backups and normal commit hook remain mandatory once per stable owned batch; no cached pass.",
+        "BC07.G.engine: batching reuses existing finite component proofs; neither game/provider validation nor final supported-player/original-recovery decisions are supplied.",
+        "BC07.G.source-phases: V3 reader compatibility and finite retained-case guards supply only current Python input/admission proof. Original native/compiler/viewport phases, including changed intro capture sources, remain explicitly historical; no native replay or new row credit."
+      ]
+    },
+    {
+      "id": "NP.second-spellbox-diagnostic",
+      "title": "Bounded second Spellbox handoff diagnosis",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Retained failure analysis and a separately prospectively bounded High->High versus High->Low recreated Quick diagnostic on the unchanged accepted native/compiler/runtime phase. Physical public inputs, read-only 20Hz menu/ring/callback lengths and exact private-prefix process waits in bounded SQLite. Preserve old six-request/three-game picking failure, all preparation refusals and no row credit. Missing callback rows, terminal cancellation and invalid source rectangles alone do not establish initiating cause. No IPC writes, deadline extension, generic retrial, pixel oracle or engine recovery claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/rendering_handoff.py",
+        "tools/prepare-rendering-handoff.py",
+        "tools/run-rendering-handoff.py",
+        "tools/check-rendering-handoff.py"
+      ],
+      "tests": [
+        "tests/test-rendering-handoff.py"
+      ],
+      "validation_dependencies": [
+        "tools/run-rendering-interaction.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/run-rendering-menu-acceptance.py",
+        "tools/run-rendering-camera-acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py",
+        "tools/rendering_capture.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-closeout-handoff-20261107.md",
+        "research/runtime/rendering-picking-resize-20261107.md"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "PR07.resize-failed06",
+        "SH07.retained-controls01",
+        "SH07.low-failed01",
+        "SH07.retained-controls02",
+        "SH07.master-controls01"
+      ],
+      "remaining_gaps": [
+        "SH07.G.cause: the reduced High->Low route reproduces18/17with no picking/rotation schedule. Host retirement occurs under2seconds after request publication, identifying the2second state lease rather than the10second request deadline. Initiating guest retry/lock location remains unproved; invalid source rectangles alone are noncausal.",
+        "SH07.G.execution: new diagnostic preparation and execution remain separate from the exhausted six-request/three-game picking batch; no full picking/resize, normal lifetime or independent presented-pixel acceptance.",
+        "SH07.G.observer: live440sample trace captured host waits only; private-prefix string did not match the namespaced original. Observer close masked the journey error. File device/inode mapping admission, bounded process scanning and causal-error preservation have parser/control validation only, with no new game run. The controller prematurely rejected its old displayed High frame; corrected waiting is headless-control validated only."
       ]
     }
   ],
@@ -385566,6 +385675,183 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "BC07.batch-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-closeout-batch-results-20261107/four-components-02.json",
+      "sha256": "db92ee8f99b5f5d04f2bcec0875dcb6d1de8ca2377ee1bd2e70fa47f1532008f",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh retained-data orchestration and11actual-data/adverse/UI-reader guards. Four existing validators reproduce eight previously accepted rows from74->82in one invocation. Current master86is unchanged; no new rendering row/domain, pixel replay or game/native execution. Source phases remain independent.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/guards/exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 8
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/case_execution_repeated",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SH07.low-failed01",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-handoff-results-20261107/low-01-acquisition.json",
+      "sha256": "61c198b32c8b0c6580ec48174fd4414a5cc91c33880c34b0918e8763638e611b",
+      "sources_pointer": "/sources",
+      "scope": "Fresh reduced-route default High->Low public diagnostic, one original startup: first World and Low acknowledgement, second Spellbox18/17failure without camera/picking matrix.440read-only lane samples survive; guest process waits missing and observer close masks error. Failed force-stop, no normal retirement or row credit. Captured source phase remains historical.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 1
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/configuration/diagnostic_only",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "SH07.retained-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-handoff-results-20261107/retained-controls-04.json",
+      "sha256": "df4779720d989da4094aae9cc7b2e5b64a48b8d38e47a5ae864dfb972c30e8f5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh nine actual retained-data/parser controls and analysis of old/fresh failed second-Spellbox captures. Proves1.342176357s request-to-host-retirement upper bound, identifying existing2sstate lease rather than10srequest timeout. No guest wait/location or corrected-observer live validation; original/native/compiler hashes keep their captured phases.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/guards/exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/nominal_acceptance",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SH07.retained-controls02",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-handoff-results-20261107/retained-controls-05.json",
+      "sha256": "3f8f434df5757aa5ab0c323560713f53c12ee5cff0b1d74f5fb0fe225e967a66",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh ten actual retained-data/parser controls and old/fresh failed capture analysis. Includes old-frame rebuild waiting, namespace mapping parser and1.342176357sretirement upper bound. No new corrected-observer game, guest wait/location, pixel acceptance or full picking result. Earlier nine-control report/source phase retained.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/guards/exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/nominal_acceptance",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "BC07.master-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-closeout-batch-results-20261107/master-batch-01.json",
+      "sha256": "d6d30d0d9504a4540297258646dc0effd13d009d75fb8f838d4694d2e7d5cd3c",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh merged-master retained-data admission and14actual-data/adverse/UI-reader controls. Four legacy components have complete old/current V1/V2 decoded-body and metadata equality plus unchanged case/row reanalysis. Reproduces eight existing rows74->82; selected master88/68 stays identical. Current Python only; native/original/compiler execution remains historical. No game/build/new row or final decision.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/guards/exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 8
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/case_execution_repeated",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "SH07.master-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-handoff-results-20261107/master-retained-controls-01.json",
+      "sha256": "fdeff1963fb795f125b6866945662a6d945e7249a82791767d9dabc7ac13b9fa",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh ten retained failure/parser controls against merged V3-capable reader. Earlier failed original traces and source phases unchanged; no live corrected observer, guest causal location, game/build/pixel/row acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/guards/exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/nominal_acceptance",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -419015,6 +419301,37 @@
       "evidence": [
         "FF07.full-fill-closed01"
       ]
+    },
+    {
+      "id": "native.rendering-closeout-batch",
+      "level": "headless",
+      "scope": "Actual retained CPU/full-fill admissions equal existing sequential validators; disjoint pan/marker batch, source/identity/unrelated-row/duplicate/failed-proof refusals and production UI projection. Guard tests supply orchestration proof only.",
+      "behaviors": [
+        "NP.rendering-closeout-batch"
+      ],
+      "tests": [
+        "tests/test-rendering-closeout-batch.py"
+      ],
+      "evidence": [
+        "BC07.batch-controls01",
+        "BC07.master-controls01"
+      ]
+    },
+    {
+      "id": "native.second-spellbox-diagnostic-controls",
+      "level": "headless",
+      "scope": "Actual historical/fresh failed capture decoding, valid/torn wire guards, pending/ACK/heartbeat/publication refusal logic, exact device/inode namespace parser and fresh request-retirement upper bound. Diagnostic parser controls only; missing original wait/location and no live validation of corrected observer.",
+      "behaviors": [
+        "NP.second-spellbox-diagnostic"
+      ],
+      "tests": [
+        "tests/test-rendering-handoff.py"
+      ],
+      "evidence": [
+        "SH07.retained-controls01",
+        "SH07.retained-controls02",
+        "SH07.master-controls01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -420832,8 +421149,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-223d9a8b3a6785503ba057974148d5d209b9f800d1ca547716510909d0539ab1.json",
-    "sha256": "223d9a8b3a6785503ba057974148d5d209b9f800d1ca547716510909d0539ab1"
+    "path": "research/runtime/coverage/source-index-a8661f82930510da434828d78f4e131291dfaf583ad33b40dedc29900111fd3c.json",
+    "sha256": "a8661f82930510da434828d78f4e131291dfaf583ad33b40dedc29900111fd3c"
   },
   "evidence_applicability": [
     {
