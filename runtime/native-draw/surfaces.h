@@ -26,6 +26,7 @@ static struct NsState* ns_owned;
 static struct NsState* ns_lifetime_dead;
 static struct NsState* ns_lifetime_all;
 static u32 ns_lifetime_reserved_bytes;
+#include "clip_region_census.h"
 static void* ns_tables[5][45];
 static u32 ns_bytes,ns_creates,ns_locks,ns_copies,ns_flips;
 static u32 ns_lock_serial;
@@ -148,6 +149,7 @@ static i32 WIN ns_get_key(struct NsObject* o,u32 flags,u32* key){
 #include "blit_effects.h"
 static i32 ns_draw_route(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx,u32 gpu){
  struct NsState *d=dst->state,*s=src?src->state:0;i32 rd[4],rs[4];
+ u32 observed_fill=0,fill_observation=0;const u32 observe_fill=nd_clip_view!=0 && (flags&0x400)!=0;
  for(u32 i=0;i<4;++i){rd[i]=dr?dr[i]:(i<2?0:(i==2?(i32)d->width:(i32)d->height));
   rs[i]=sr?sr[i]:(i<2?0:(s?(i==2?(i32)s->width:(i32)s->height):0));}
  long long width=(long long)rd[2]-rd[0],height=(long long)rd[3]-rd[1];
@@ -222,6 +224,7 @@ static i32 ns_draw_route(struct NsObject* dst,const i32* dr,struct NsObject* src
    const u32 source_y=s?(u32)((long long)rs[1]+ns_sample((u32)((long long)y-rd[1]),sh,(u32)height)):0;
    for(i32 x=left;x<right;++x){
     u32 value=s?ns_read(s,(u32)((long long)rs[0]+sample_x.value),source_y):fx[20];
+    if(observe_fill && !s){if(!fill_observation){observed_fill=value;fill_observation=1;}else if(observed_fill!=value)fill_observation|=2;}
     if(!(flags&0x8000) || value<s->key_low || value>s->key_high)ns_write(d,x,y,s?ns_convert(d,s,value):value);
     if(s)ns_sample_next(&sample_x);
    }
@@ -230,7 +233,8 @@ static i32 ns_draw_route(struct NsObject* dst,const i32* dr,struct NsObject* src
  if(frozen)HeapFree(GetProcessHeap(),0,frozen);
  if(!(flags&0x8000) && !d->clipper && rd[0]==0 && rd[1]==0 && rd[2]==(i32)d->width && rd[3]==(i32)d->height)d->history_stale=0;
  if(!(++ns_copies&255))nd_status();
-done:ns_guard_refresh(d);if(clips)HeapFree(GetProcessHeap(),0,clips);return result;
+done:nd_clip_observe((flags&0x400)?5u:gpu?6u:4u,dst,src,rd,rs,flags,clips,(u32)result,0xffffffffu,observed_fill,fill_observation);
+ ns_guard_refresh(d);if(clips)HeapFree(GetProcessHeap(),0,clips);return result;
 }
 static i32 ns_draw(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx){
  return ns_draw_route(dst,dr,src,sr,flags,fx,0);

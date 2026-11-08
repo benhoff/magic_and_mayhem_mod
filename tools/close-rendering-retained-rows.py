@@ -26,7 +26,7 @@ ROWS = {('player-software', 'journey.creatures-effects.creature-animation'),
         ('player-default', 'gate.normal-lifetime'), ('player-software', 'gate.normal-lifetime')}
 KINDS = {'public_native_normal_acquisition', 'native_public_main_setup_menu_acquisition',
          'native_public_movie_skip_acquisition', 'public_results_return_acquisition',
-         'public_native_interaction_acquisition'}
+         'public_native_interaction_acquisition', 'public_native_clipping_acquisition'}
 
 
 def module(name):
@@ -120,9 +120,12 @@ def terminal_state(a, shell, admission, process, input_raw, ring_raw, control_ra
             'Wrong original process/prefix retirement')
     require(callbacks and callbacks[-1] == [3, 4] and callbacks.count([3, 4]) == 1,
             'Missing unique original Main Quit callback')
-    require(len(input_raw) == 1088 and input_raw[:8] == b'MNMINK01', 'Wrong terminal input')
+    clipping = a['kind'] == 'public_native_clipping_acquisition'
+    require(len(input_raw) == 1088 and input_raw[:8] == (b'MNMINK02' if clipping else b'MNMINK01'), 'Wrong terminal input')
     keys = struct.unpack('<272I', input_raw)
-    require(keys[2:4] == (1, 1088) and keys[4] > 0 and keys[4] % 2 == 0 and keys[5] == 0
+    require(keys[2:4] == (2 if clipping else 1, 1088)
+            and (not clipping or keys[10:16] == (1, 0, 0, 0, 0, 0))
+            and keys[4] > 0 and keys[4] % 2 == 0 and keys[5] == 0
             and not any(v & 0x80000000 for v in keys[16:]), 'Active/held/unstable terminal input')
     require(len(ring_raw) == 1048640 and ring_raw[:8] == b'MNMRDC03', 'Wrong terminal command channel')
     ring = struct.unpack_from('<16I', ring_raw)
@@ -168,7 +171,7 @@ def full_command_history(reader, a, compared):
     streams = [v for v in a['artifacts'] if '/capture/' in v['path']
                and Path(v['path']).name.startswith('commands') and v['path'].endswith('.bin')]
     if not streams:
-        require(a['kind'] not in ('public_native_normal_acquisition', 'public_native_interaction_acquisition'),
+        require(a['kind'] not in ('public_native_normal_acquisition', 'public_native_interaction_acquisition', 'public_native_clipping_acquisition'),
                 'Complete recorded command history missing')
         return None
     require(len(streams) == 1, 'Ambiguous command capture')
@@ -273,7 +276,7 @@ def check_retirement(case):
         else:
             require(s['original_thread'] == p['original_thread'], 'Wrong diagnostic source thread')
         life = p.get('command_lifetimes')
-        require(case['kind'] not in ('public_native_normal_acquisition', 'public_native_interaction_acquisition')
+        require(case['kind'] not in ('public_native_normal_acquisition', 'public_native_interaction_acquisition', 'public_native_clipping_acquisition')
                 or life is not None, 'Recorded command lifetimes were omitted')
         if life:
             require(life['imports'] == life['deleted_import_incarnations'] == p['source_imports']
