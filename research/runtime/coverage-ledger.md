@@ -27721,3 +27721,55 @@ unchanged four-row proof: 112/156passed44pending.
 Metadata-only strict row joining repeats no engine/oracle/pixel execution; all
 native source phases and both final decisions remain unchanged. See
 `rendering-recovery-four-results-20261108/master-admission-01.json`.
+
+
+## CR08 imported-time identity correction — 2026-11-08
+
+The pinned NoCD import table identifies557802's IAT5c52e8 as WINMM.timeGetTime.
+The initial thread temporary/supplier label was incorrect; its tested address,
+DWORD forwarding and original body comparisons remain preserved in comparison04.
+The native temporary is now stamp, the scope names imported time, an explicit
+API binding preserves its unknown timing/consumer boundary, and the producer
+refuses a different DLL/symbol. Fresh comparison05 passes512font and1024DC cases
+against unchanged original bodies with native64/ASan/UBSan results matching.
+Both original manifests pass; the actual time API is supplied, not executed.
+No prior hash, execution observation or historical claim is rewritten.
+
+Actual incoming master85dcfea26's private X11 staging fix remains separate from
+this isolated proof; its new source paths are outside the comparison dependency
+closure. The integration preserves both incoming histories and all102accepted
+player rows,54pending rows and both decisions. Font/DC installed lifetimes and
+whole production bypass ABI remain pending for both configurations. No game or
+new rendering acceptance is claimed. See rendering-contract-recovery-20261108.md
+and comparison-05.json under its SQLite result directory.
+
+
+## CR08 final master integration — 2026-11-08
+
+The corrected caller recovery joins master a04895c2b after selection and finite
+scene/attachment acceptance. Every comparison05 dependency (nine source files)
+and retained218-control scene dependency (186 source files) matches the merged
+tree. No new original/native-player execution or player row closes:108passed,
+48pending, both final decisions and both font/DC and production-ABI operation
+requirements remain as recorded by master. The two bounded recovered contracts
+retain their current isolated comparison; installed lifecycle and broad live
+equivalence remain separate. All24172incoming committed file transitions have
+exact receipts;22missing metadata versions receive per-commit retrospective
+custody without a past gate claim. Both parent histories, all prior receipts
+and raw failures survive. See rendering-contract-recovery-20261108.md and the
+SQLite rendering-contract-master-merge-results-20261108 reports.
+
+
+## CR08 latest master integration — 2026-11-08
+
+Master e1f2f4709 adds RT09's four finite recovery rows to the previously joined
+scene and selection rows:112passed44pending. The CR08 integration preserves
+every one of those rows and both pending decisions. The earlier108/48 phase
+is retained as history, not the latest total. All9caller comparison05 sources,
+186scene-control sources and24RT09analyzer sources match this combined tree.
+Historical RT09native/runtime drift remains visible and is not renewed by
+metadata integration. No new game, native player, oracle or pixel execution
+is performed here. The font/DC installed lifecycle and whole caller ABI
+remain pending. Latest history covers25717committed file versions with three
+new retrospective metadata bindings, separate from all earlier reviews. See
+rendering-contract-master-final-results-20261108 for the exact SQLite reports.

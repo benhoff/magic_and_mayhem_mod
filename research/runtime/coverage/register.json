@@ -168960,7 +168960,7 @@
       "subsystem": "native_rendering",
       "kind": "recovered",
       "title": "Screen font/resource installation coordinator",
-      "scope": "Pinned NoCD5575b0 normal-return coordinator over independently seeded private memory and named font/sprite/format/error/widget/cursor/thread suppliers. Recover all local branches, four font tracking writes, repeated resolution reads, six load/error policies, camera-table selection, widget/font associations, mode-specific rectangle/default-string publication and caller callee-register/stack/normal SEH conservation. Error suppliers are authored to return; original fatal/SEH behavior, actual loaders/platform/heap, previous-font retirement, installed transitions, pixels and live replacement remain separate.",
+      "scope": "Pinned NoCD5575b0 normal-return coordinator over independently seeded private memory and named font/sprite/format/error/widget/cursor/imported-time suppliers. Recover all local branches, four font tracking writes, repeated resolution reads, six load/error policies, camera-table selection, widget/font associations, mode-specific rectangle/default-string publication and caller callee-register/stack/normal SEH conservation. Error suppliers are authored to return; original fatal/SEH behavior, actual loaders/platform/heap, previous-font retirement, installed transitions, pixels and live replacement remain separate.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -168995,10 +168995,13 @@
       },
       "evidence": [
         "CR08.callers-original04",
-        "CR08.callers-native04"
+        "CR08.callers-native04",
+        "CR08.callers-original05",
+        "CR08.callers-native05"
       ],
       "remaining_gaps": [
-        "CR08.G.installed: Both text-font-dc-lifetime and flags-and-return-values player requirements remain pending; isolated caller fixtures do not establish required installed font/DC transitions or all native bypass ABI effects."
+        "CR08.G.installed: Both text-font-dc-lifetime and flags-and-return-values player requirements remain pending; isolated caller fixtures do not establish required installed font/DC transitions or all native bypass ABI effects.",
+        "CR08.G.time-provider: WINMM.timeGetTime import identity is confirmed; the fixture supplies its DWORD return. Actual clock/wrap/scheduling semantics and the54e170 consumer body remain separate."
       ]
     },
     {
@@ -169056,7 +169059,9 @@
       },
       "evidence": [
         "CR08.callers-original04",
-        "CR08.callers-native04"
+        "CR08.callers-native04",
+        "CR08.callers-original05",
+        "CR08.callers-native05"
       ],
       "remaining_gaps": [
         "CR08.G.installed: Both text-font-dc-lifetime and flags-and-return-values player requirements remain pending; isolated caller fixtures do not establish required installed font/DC transitions or all native bypass ABI effects."
@@ -170566,61 +170571,6 @@
       ]
     },
     {
-      "id": "NP.four-recovery-operation-closeout",
-      "title": "Bounded transition failure and fresh-generation operation admission",
-      "kind": "native_policy",
-      "subsystem": "native_rendering",
-      "scope": "Retained-data admission of transition-recovery and failure-cleanup in public default/software actual640/800. Re-assess raw High terminal/restart/output/cleanup within its unchanged recorded1019-path source phase; collect only missing Low under the current1023-path conservative catalog and exact406-input player. Require expected drained INVALID, all native terminal predicates and stability, distinct runner/channel/World identities after physical restart, fresh positive input, independent per-epoch presented output and normal fresh Quit. Only the four named rows; no current whole-player/guest equivalence, physical reset, pending CPU interruption, arbitrary races/providers, in-place/save recovery or final decisions.",
-      "confidence": "high_within_scope",
-      "original": [],
-      "implementation": [
-        "tools/close-rendering-four-recovery.py"
-      ],
-      "tests": [
-        "tests/test-rendering-four-recovery.py"
-      ],
-      "validation_dependencies": [
-        "tools/rendering_transition_assessment.py",
-        "tools/rendering_transition.py",
-        "tools/rendering_pause_assessment.py",
-        "tools/rendering_pause.py",
-        "tools/rendering_interaction.py",
-        "tools/rendering_menu_acceptance.py",
-        "tools/rendering_pilot.py",
-        "tools/rendering_capture.py",
-        "tools/campaign_storage.py",
-        "tools/pause_low_ingress.py",
-        "tools/join-rendering-normal-acceptance.py",
-        "tools/coverage_claims.py",
-        "tools/coverage_evidence.py",
-        "tools/rendering_normal_acceptance.py",
-        "tools/cpu_reader_journal.py",
-        "tools/rendering_acceptance.py",
-        "docs/native-rendering-closure.json",
-        "tools/pause_focus.py",
-        "tools/native_cursor_journal.py",
-        "protocols/include/mnm/input_v1.h",
-        "protocols/include/mnm/render_commands_v3.h",
-        "protocols/include/mnm/render_control_v1.h"
-      ],
-      "documents": [
-        "research/runtime/rendering-four-recovery-20261108.md"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "scoped",
-        "comparison": "none",
-        "integration": "headless",
-        "replacement": "none"
-      },
-      "evidence": [
-        "RT09.four-operation-rows01"
-      ],
-      "remaining_gaps": [
-        "Accepted scope is only the four named operation rows across recorded High and newly observed Low phases. Current whole-player/High combined guest execution, physical context loss/Restore, pending CPU interruption, arbitrary races/providers, in-place/save recovery and both final rendering decisions remain separate."
-      ]
-    },
-    {
       "id": "NP.scene-actor-generation-observation",
       "title": "Passive actor, attachment and combat journal identities at scene entry",
       "kind": "native_policy",
@@ -171010,6 +170960,61 @@
         "Other attachment/status/map/provider/caller/lifetime domains and native gameplay remain separate.",
         "AC07.G.attachment640: All four requested rows qualify: both attachment and both combat profiles,94passed62pending in the preserved90-row parent phase. All10actual attachment starts remain charged, all failures retained and no further start authorized. Native gameplay, other caller/effect/lifetime domains and both final decisions remain pending.",
         "AC07.G.merged-source-phase: master integration preserves every accepted original source/native/compiler/oracle phase and both parent milestones. The combined guest includes incoming font/DC, epoch/recovery and display work plus the opt-in actor sidecar. No new original/native/oracle execution or whole combined-player equivalence is asserted; raw full-source drift stays visible. Ten attachment starts are charged, with no further launch authority."
+      ]
+    },
+    {
+      "id": "NP.four-recovery-operation-closeout",
+      "title": "Bounded transition failure and fresh-generation operation admission",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Retained-data admission of transition-recovery and failure-cleanup in public default/software actual640/800. Re-assess raw High terminal/restart/output/cleanup within its unchanged recorded1019-path source phase; collect only missing Low under the current1023-path conservative catalog and exact406-input player. Require expected drained INVALID, all native terminal predicates and stability, distinct runner/channel/World identities after physical restart, fresh positive input, independent per-epoch presented output and normal fresh Quit. Only the four named rows; no current whole-player/guest equivalence, physical reset, pending CPU interruption, arbitrary races/providers, in-place/save recovery or final decisions.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/close-rendering-four-recovery.py"
+      ],
+      "tests": [
+        "tests/test-rendering-four-recovery.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_transition_assessment.py",
+        "tools/rendering_transition.py",
+        "tools/rendering_pause_assessment.py",
+        "tools/rendering_pause.py",
+        "tools/rendering_interaction.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/campaign_storage.py",
+        "tools/pause_low_ingress.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/cpu_reader_journal.py",
+        "tools/rendering_acceptance.py",
+        "docs/native-rendering-closure.json",
+        "tools/pause_focus.py",
+        "tools/native_cursor_journal.py",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/include/mnm/render_control_v1.h"
+      ],
+      "documents": [
+        "research/runtime/rendering-four-recovery-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "RT09.four-operation-rows01"
+      ],
+      "remaining_gaps": [
+        "Accepted scope is only the four named operation rows across recorded High and newly observed Low phases. Current whole-player/High combined guest execution, physical context loss/Restore, pending CPU interruption, arbitrary races/providers, in-place/save recovery and both final rendering decisions remain separate."
       ]
     }
   ],
@@ -390102,65 +390107,6 @@
       ]
     },
     {
-      "id": "RT09.four-operation-rows01",
-      "kind": "native_integration",
-      "record": "research/runtime/rendering-recovery-four-results-20261108/acceptance-01.json",
-      "sha256": "f67445f24dd4e08dd071de7947f26b7ec8fa37bb691565c8b2623d32d8228cb3",
-      "sources_pointer": "/analysis_sources",
-      "claims_pointer": "/claims",
-      "scope": "Retained-data admission of transition-recovery and failure-cleanup in public default/software actual640/800. Re-assess raw High terminal/restart/output/cleanup within its unchanged recorded1019-path source phase; collect only missing Low under the current1023-path conservative catalog and exact406-input player. Require expected drained INVALID, all native terminal predicates and stability, distinct runner/channel/World identities after physical restart, fresh positive input, independent per-epoch presented output and normal fresh Quit. Only the four named rows; no current whole-player/guest equivalence, physical reset, pending CPU interruption, arbitrary races/providers, in-place/save recovery or final decisions.",
-      "assertions": [
-        {
-          "pointer": "/success",
-          "equals": true
-        },
-        {
-          "pointer": "/sources_stable",
-          "equals": true
-        },
-        {
-          "pointer": "/verified_domains",
-          "equals": 4
-        },
-        {
-          "pointer": "/required_domains",
-          "equals": 4
-        },
-        {
-          "pointer": "/newly_passed_requirements",
-          "equals": 4
-        },
-        {
-          "pointer": "/passed_requirements",
-          "equals": 108
-        },
-        {
-          "pointer": "/pending_requirements",
-          "equals": 48
-        },
-        {
-          "pointer": "/mismatching_pixels",
-          "equals": 0
-        },
-        {
-          "pointer": "/original_game_runs",
-          "equals": 4
-        },
-        {
-          "pointer": "/current_whole_native_execution",
-          "equals": false
-        },
-        {
-          "pointer": "/historical_high_execution_current",
-          "equals": false
-        },
-        {
-          "pointer": "/historical_failures_retired",
-          "equals": false
-        }
-      ]
-    },
-    {
       "id": "AC07.encoder-controls01",
       "kind": "native_integration",
       "scope": "20 owned-memory production-encoder and strict decoder controls; no original execution, attachment or combat-output validation.",
@@ -390892,6 +390838,243 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CR08.callers-original05",
+      "kind": "isolated_original",
+      "record": "research/runtime/rendering-contract-recovery-results-20261108/comparison-05.json",
+      "sha256": "944fc9d00c072476222bffce2ebf8caa91fa1bccac4a9034503aa3dbaa4b9a2c",
+      "scope": "Private unchanged-original/native caller comparison:512font installation and1024DC wrapper cases with named supplied endpoints. Original/native full owned/global bytes and callback vectors, selected EAX/ECX/argument/flags/callee/stack/normal SEH effects; native64/sanitized diagnostic transcripts agree. No real GDI pixels, installed font/DC transition, whole ABI, live execution, player row or final-decision promotion. Fresh comparison05 names the confirmed WINMM.timeGetTime IAT provider correctly and verifies its pinned inventory identity; the actual API and54e170 consumer remain supplied. Earlier comparison04 bytes and its semantic mislabel remain historical.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/font_cases",
+          "equals": 512
+        },
+        {
+          "pointer": "/dc_cases",
+          "equals": 1024
+        },
+        {
+          "pointer": "/original_native_sanitized_match",
+          "equals": true
+        },
+        {
+          "pointer": "/compared_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_outputs_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_callee_registers_stack_seh_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/dc_eax_ecx_defined_flags_and_argument_slot_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/supplier_pixels_gdi_or_win32_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/installed_font_transition_observed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/time_provider_import/dll",
+          "equals": "WINMM.dll"
+        },
+        {
+          "pointer": "/time_provider_import/name",
+          "equals": "timeGetTime"
+        },
+        {
+          "pointer": "/time_provider_import/iat_va",
+          "equals": 6050536
+        },
+        {
+          "pointer": "/actual_time_api_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CR08.callers-native05",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-contract-recovery-results-20261108/comparison-05.json",
+      "sha256": "944fc9d00c072476222bffce2ebf8caa91fa1bccac4a9034503aa3dbaa4b9a2c",
+      "scope": "The same immutable comparison04 also executes the portable native caller models and their actual owned-memory/supplier composition in native64 and ASan/UBSan fixtures. Headless fixture evidence only, separate from its original comparison; no installed engine or player integration promotion. Fresh comparison05 names the confirmed WINMM.timeGetTime IAT provider correctly and verifies its pinned inventory identity; the actual API and54e170 consumer remain supplied. Earlier comparison04 bytes and its semantic mislabel remain historical.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/font_cases",
+          "equals": 512
+        },
+        {
+          "pointer": "/dc_cases",
+          "equals": 1024
+        },
+        {
+          "pointer": "/original_native_sanitized_match",
+          "equals": true
+        },
+        {
+          "pointer": "/compared_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_outputs_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_callee_registers_stack_seh_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/dc_eax_ecx_defined_flags_and_argument_slot_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/supplier_pixels_gdi_or_win32_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/installed_font_transition_observed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/time_provider_import/dll",
+          "equals": "WINMM.dll"
+        },
+        {
+          "pointer": "/time_provider_import/name",
+          "equals": "timeGetTime"
+        },
+        {
+          "pointer": "/time_provider_import/iat_va",
+          "equals": 6050536
+        },
+        {
+          "pointer": "/actual_time_api_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RT09.four-operation-rows01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-recovery-four-results-20261108/acceptance-01.json",
+      "sha256": "f67445f24dd4e08dd071de7947f26b7ec8fa37bb691565c8b2623d32d8228cb3",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Retained-data admission of transition-recovery and failure-cleanup in public default/software actual640/800. Re-assess raw High terminal/restart/output/cleanup within its unchanged recorded1019-path source phase; collect only missing Low under the current1023-path conservative catalog and exact406-input player. Require expected drained INVALID, all native terminal predicates and stability, distinct runner/channel/World identities after physical restart, fresh positive input, independent per-epoch presented output and normal fresh Quit. Only the four named rows; no current whole-player/guest equivalence, physical reset, pending CPU interruption, arbitrary races/providers, in-place/save recovery or final decisions.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/required_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 4
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 108
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 48
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 4
+        },
+        {
+          "pointer": "/current_whole_native_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_high_execution_current",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -390959,6 +391142,14 @@
         "RS.screen-bitmap-resource-providers"
       ],
       "scope": "Selected local screen provider invokes this named platform API. The comparison supplies the endpoint; Windows platform semantics are not inferred."
+    },
+    {
+      "build": "nocd-40209ca7",
+      "iat_va": 6050536,
+      "behaviors": [
+        "RS.screen-font-installation"
+      ],
+      "scope": "NoCD557802 invokes the confirmed WINMM.timeGetTime IAT slot and forwards its DWORD to54e170. The fixture supplies the API and consumer; clock/wrap/scheduling and Windows timing semantics are not inferred."
     }
   ],
   "dispatch_tables": [
@@ -424733,7 +424924,7 @@
     {
       "id": "RS.screen-font-installation.original-20261108",
       "level": "headless",
-      "scope": "Pinned NoCD5575b0 normal-return coordinator over independently seeded private memory and named font/sprite/format/error/widget/cursor/thread suppliers. Recover all local branches, four font tracking writes, repeated resolution reads, six load/error policies, camera-table selection, widget/font associations, mode-specific rectangle/default-string publication and caller callee-register/stack/normal SEH conservation. Error suppliers are authored to return; original fatal/SEH behavior, actual loaders/platform/heap, previous-font retirement, installed transitions, pixels and live replacement remain separate.",
+      "scope": "Pinned NoCD5575b0 normal-return coordinator over independently seeded private memory and named font/sprite/format/error/widget/cursor/imported-time suppliers. Recover all local branches, four font tracking writes, repeated resolution reads, six load/error policies, camera-table selection, widget/font associations, mode-specific rectangle/default-string publication and caller callee-register/stack/normal SEH conservation. Error suppliers are authored to return; original fatal/SEH behavior, actual loaders/platform/heap, previous-font retirement, installed transitions, pixels and live replacement remain separate.",
       "behaviors": [
         "RS.screen-font-installation"
       ],
@@ -424743,7 +424934,8 @@
         "tools/test-render-contract-recovery.py"
       ],
       "evidence": [
-        "CR08.callers-native04"
+        "CR08.callers-native04",
+        "CR08.callers-native05"
       ]
     },
     {
@@ -424759,7 +424951,8 @@
         "tools/test-render-contract-recovery.py"
       ],
       "evidence": [
-        "CR08.callers-native04"
+        "CR08.callers-native04",
+        "CR08.callers-native05"
       ]
     },
     {
@@ -424858,22 +425051,6 @@
       ],
       "evidence": [
         "SL08.selection-highlight01"
-      ]
-    },
-    {
-      "id": "native.four-recovery-operation-closeout",
-      "title": "Four-domain declared failure and fresh generation admission",
-      "scope": "Retained-data admission of transition-recovery and failure-cleanup in public default/software actual640/800. Re-assess raw High terminal/restart/output/cleanup within its unchanged recorded1019-path source phase; collect only missing Low under the current1023-path conservative catalog and exact406-input player. Require expected drained INVALID, all native terminal predicates and stability, distinct runner/channel/World identities after physical restart, fresh positive input, independent per-epoch presented output and normal fresh Quit. Only the four named rows; no current whole-player/guest equivalence, physical reset, pending CPU interruption, arbitrary races/providers, in-place/save recovery or final decisions.",
-      "level": "headless",
-      "behaviors": [
-        "NP.four-recovery-operation-closeout"
-      ],
-      "tests": [
-        "tools/close-rendering-four-recovery.py",
-        "tests/test-rendering-four-recovery.py"
-      ],
-      "evidence": [
-        "RT09.four-operation-rows01"
       ]
     },
     {
@@ -425018,6 +425195,22 @@
       "remaining_gaps": [
         "AC07.G.ownership",
         "Other combat/action/caller/map/provider/lifetime domains remain separate."
+      ]
+    },
+    {
+      "id": "native.four-recovery-operation-closeout",
+      "title": "Four-domain declared failure and fresh generation admission",
+      "scope": "Retained-data admission of transition-recovery and failure-cleanup in public default/software actual640/800. Re-assess raw High terminal/restart/output/cleanup within its unchanged recorded1019-path source phase; collect only missing Low under the current1023-path conservative catalog and exact406-input player. Require expected drained INVALID, all native terminal predicates and stability, distinct runner/channel/World identities after physical restart, fresh positive input, independent per-epoch presented output and normal fresh Quit. Only the four named rows; no current whole-player/guest equivalence, physical reset, pending CPU interruption, arbitrary races/providers, in-place/save recovery or final decisions.",
+      "level": "headless",
+      "behaviors": [
+        "NP.four-recovery-operation-closeout"
+      ],
+      "tests": [
+        "tools/close-rendering-four-recovery.py",
+        "tests/test-rendering-four-recovery.py"
+      ],
+      "evidence": [
+        "RT09.four-operation-rows01"
       ]
     }
   ],
@@ -426836,8 +427029,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-aac27989707823ab81f786bb56cd6becccf985d64ee4bb26e91705ff0e0a9ece.json",
-    "sha256": "aac27989707823ab81f786bb56cd6becccf985d64ee4bb26e91705ff0e0a9ece"
+    "path": "research/runtime/coverage/source-index-1d905ce062632b20ba9828ccbfe2d27bf90f1d8eb133b02c196f497fcdae9934.json",
+    "sha256": "1d905ce062632b20ba9828ccbfe2d27bf90f1d8eb133b02c196f497fcdae9934"
   },
   "evidence_applicability": [
     {
