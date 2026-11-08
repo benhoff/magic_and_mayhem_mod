@@ -168417,7 +168417,8 @@
         "tools/coverage_claims.py"
       ],
       "evidence": [
-        "PA07.command-policy01"
+        "PA07.command-policy01",
+        "RT07.command-policy01"
       ],
       "status": {
         "understanding": "scoped",
@@ -168725,6 +168726,149 @@
       "remaining_gaps": [
         "CF08.G.scope: Preserve historical High paint coalescing and absence of positive intermediate High presentation. New GPU observations are exact-input native replay, not recovered historical frames or current whole-player execution. Native prior state is a transform input, not independently recovered original history.",
         "CF08.G.operations: Other ten ordinary-operation rows, six fault-operation rows, all remaining journeys/gates and both final decisions remain. Only successful single-region constant RGB565 primary clears; arbitrary formats, disjoint/partial-prefix failures, other threads and physical store traces remain separate."
+      ]
+    },
+    {
+      "id": "NP.capture-epoch-bindings",
+      "kind": "native_policy",
+      "subsystem": "runtime_rendering",
+      "title": "Separate resident capture epochs and actual command producer bindings",
+      "scope": "Opt-in resident capture directory maps each absolute launch-owned World channel to a distinct SHA256-named NewOnly corpus. Legacy file/disabled modes and recorder limits remain unchanged. Epoch-mode command captures emit one NewOnly schema1 sideband identifying their actual created channel/session/transport. Invalid paths, conflicting modes, invalid identities and duplicate bindings refuse evidence without overwriting prior data. Native writer/control scope only; no rendering, wire or gameplay semantics claim.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "apps/qt-shell/resident_capture_path.hpp",
+        "apps/qt-shell/acceptance_capture.hpp"
+      ],
+      "tests": [
+        "tests/resident-epoch-capture-test.cpp",
+        "tools/test-rendering-epoch-capture.py",
+        "tools/bind-rendering-epoch-controls.py",
+        "tests/test-rendering-command-capture.py",
+        "tests/test-rendering-capture.py",
+        "tools/test-acceptance-capture.py",
+        "tests/acceptance-capture-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/rendering-transition-recovery-20261107.md",
+        "research/formats/rendering-epoch-observations.md"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/profile_capture_codec.hpp",
+        "apps/qt-shell/host_timing_trace.hpp",
+        "tools/rendering_capture.py",
+        "tools/rendering_pilot.py"
+      ],
+      "evidence": [
+        "RT07.epoch-controls01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Scoped native writer/reader control validation only. Actual public failed/fresh generation integration and pixels are accounted independently by NP.transition-recovery-acceptance; no standalone game or renderer claim."
+      ]
+    },
+    {
+      "id": "NP.transition-recovery-acceptance",
+      "kind": "native_policy",
+      "subsystem": "runtime_rendering",
+      "title": "Real Campaign Mini terminal failure and fresh-generation rendering recovery",
+      "scope": "Four public default/software actual640/800 cases. Enter real Campaign/Adept World and acknowledged Mini with frozen original World returns/released input and acknowledged live media/music ownership. Set only a verified active producer ring terminal INVALID state through the existing failure helper; do not claim/advance writer cursors or payload. Require bounded terminal owner/input/visible-World retirement and stable no-new-World interval, then physical public Hard Restart, distinct original runner/channel/World identities and no old runner. Fresh actual World/source and complete independently compared GPU output plus positive gameplay input must resume, then normal Campaign/Main Quit balances resources. All captured pre-fault and fresh native World swaps bind their own exact source/caller/command epoch. Failed old generation earns no normal-completion credit. No pending-CPU interruption, arbitrary failure races, physical reset, in-place/saved recovery, all faults or full renderer/ABI/provider claim.",
+      "original": [],
+      "confidence": "provisional",
+      "implementation": [
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/main.cpp",
+        "tools/rendering-transition-fault.cpp",
+        "tools/rendering_transition.py",
+        "tools/rendering_transition_live.py",
+        "tools/rendering_transition_assessment.py",
+        "tools/rendering_transition_low_live.py"
+      ],
+      "tests": [
+        "tools/test-rendering-transition-fault.py",
+        "tests/test-rendering-transition.py",
+        "tools/run-rendering-transition.py",
+        "tools/check-rendering-transition.py",
+        "tools/prepare-rendering-transition.py",
+        "tools/close-rendering-transition.py",
+        "tools/run-rendering-transition-low.py",
+        "tools/prepare-rendering-transition-low.py",
+        "tools/close-rendering-transition-low.py",
+        "tests/test-rendering-transition-confirmation.py",
+        "tools/prepare-rendering-transition-final.py",
+        "tools/close-rendering-transition-final.py",
+        "tools/bind-rendering-transition-partial.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-transition-recovery-20261107.md",
+        "research/formats/rendering-epoch-observations.md"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/native_only_session.hpp",
+        "apps/qt-shell/game_restart_action.hpp",
+        "protocols/include/mnm/render_command_ring.h",
+        "tools/native_only_contract.py",
+        "tools/rendering_pause.py",
+        "tools/rendering_pause_live.py",
+        "tools/rendering_pause_low_live.py",
+        "tools/pause-low-dialogue-input.py",
+        "tools/pause_low_ingress.py",
+        "tools/pause_focus.py",
+        "tools/rendering_pause_assessment.py",
+        "tools/rendering_interaction.py",
+        "tools/rendering_interaction_live.py",
+        "tools/run-rendering-interaction.py",
+        "tools/run-rendering-camera-acceptance.py",
+        "tools/run-rendering-menu-acceptance.py",
+        "tools/rendering_menu_accessibility.py",
+        "tools/rendering_interaction_budget.py",
+        "tools/native_prefix_template.py",
+        "tools/run-native-owned.py",
+        "tools/rendering_build_binding.py",
+        "tools/menu-game-runner.py",
+        "tools/menu-storage-input.py",
+        "tools/campaign_storage.py",
+        "tools/input_wire.py",
+        "tools/resident_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/comparison_process.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/native_cursor_journal.py",
+        "tools/test-menu-observer.py",
+        "tools/campaign_input_observation.py",
+        "tools/close-rendering-camera-matrix.py",
+        "tools/close-rendering-source-camera.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/rendering_gameplay_acceptance.py",
+        "tools/rendering_transition_budget.py"
+      ],
+      "evidence": [
+        "RT07.transition-partial01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Both800profiles have real terminal/restart, fresh input/normal cleanup and independently compared output; both640domains remain unaccepted. default640-01 stopped at the public Quit confirmation focus race before Yes input. default640-02 and04 timed out on accessibility while starting with zero World output; root cause unresolved. default640-03 is a retained zero-game NVIDIA Xvfb setup crash caused by omitted Mesa environment. Collection stopped with11requests/9actualstarts; no full-row credit.",
+        "Physical context loss, pending CPU interruption, arbitrary faults/races/providers, in-place/save recovery, dedicated worker and whole renderer closure remain outside this scope.",
+        "Integration over master6763ec077 preserves its100accepted rows without RT07credit. Four existing guest sources and runner differ, two guest headers are added (1021runtime sources versus1019recorded); combined guest validation remains pending with no source waiver. Both640domains remain unaccepted."
       ]
     }
   ],
@@ -387269,6 +387413,115 @@
           "equals": 2
         }
       ]
+    },
+    {
+      "id": "RT07.epoch-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-transition-recovery-results-20261107/epoch-controls-bound-01.json",
+      "sha256": "fe1fe0daf18d788dbe1ad702d3d71f44bc8a781bd1384246651db07eece65305",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Opt-in resident capture directory maps each absolute launch-owned World channel to a distinct SHA256-named NewOnly corpus. Legacy file/disabled modes and recorder limits remain unchanged. Epoch-mode command captures emit one NewOnly schema1 sideband identifying their actual created channel/session/transport. Invalid paths, conflicting modes, invalid identities and duplicate bindings refuse evidence without overwriting prior data. Native writer/control scope only; no rendering, wire or gameplay semantics claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_epoch_cases",
+          "equals": 18
+        },
+        {
+          "pointer": "/native_legacy_cases",
+          "equals": 10
+        },
+        {
+          "pointer": "/reader_guard_tests",
+          "equals": 9
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "RT07.command-policy01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-pause-results-20261107/command-history-controls-epoch-refresh-01.json",
+      "sha256": "3eebb2c28491f29aff1d9c8b435346604c18d9b5d05af4dfd055f838184a30da",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Only opt-in command-history-lossless-v1/version4:65536total rows,8GiBraw,1GiBstored,unchanged256MiB/4096in-flight queue. Retained optimized/ASAN native producer controls plus fresh strict reader guards. No game, raster-output, simulation, watchdog, physical-provider or all-player validation credit.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_control_cases",
+          "equals": 10
+        },
+        {
+          "pointer": "/reader_guard_tests",
+          "equals": 9
+        },
+        {
+          "pointer": "/all_legacy_budgets_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "RT07.transition-partial01",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-transition-recovery-results-20261107/transition-partial-01.json",
+      "sha256": "06d490fd2efaafa4074589785028b1edd46d715652454d4b44fe4cd95a759572",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Two actual800profiles only: real drained-Mini INVALID, terminal native owner/input/frame/timer retirement, stable interval, physical public Hard Restart, distinct runner/channel/World identities, fresh positive gameplay input and ordinary Quit; every actual native World swap independently compared. Four-domain acceptance remains pending. Default640-01 reached recovery but stopped before Quit confirmation input; subsequent640-02/04 timed out on accessibility during starting with no World output, and640-03 crashed Xvfb before a game. Startup cause remains unresolved; no proven raster defect, no engine repair or all-clock/provider/context-loss/pending-CPU/final renderer claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_domains",
+          "equals": 2
+        },
+        {
+          "pointer": "/required_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/acceptance_closed",
+          "equals": false
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 9
+        },
+        {
+          "pointer": "/collection_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -420903,7 +421156,8 @@
         "tools/bind-command-history-controls.py"
       ],
       "evidence": [
-        "PA07.command-policy01"
+        "PA07.command-policy01",
+        "RT07.command-policy01"
       ]
     },
     {
@@ -420993,6 +421247,52 @@
       ],
       "evidence": [
         "CF08.clipped-fill-native01"
+      ]
+    },
+    {
+      "id": "native.transition-recovery-acceptance",
+      "level": "live_observation",
+      "scope": "Four public default/software actual640/800 cases. Enter real Campaign/Adept World and acknowledged Mini with frozen original World returns/released input and acknowledged live media/music ownership. Set only a verified active producer ring terminal INVALID state through the existing failure helper; do not claim/advance writer cursors or payload. Require bounded terminal owner/input/visible-World retirement and stable no-new-World interval, then physical public Hard Restart, distinct original runner/channel/World identities and no old runner. Fresh actual World/source and complete independently compared GPU output plus positive gameplay input must resume, then normal Campaign/Main Quit balances resources. All captured pre-fault and fresh native World swaps bind their own exact source/caller/command epoch. Failed old generation earns no normal-completion credit. No pending-CPU interruption, arbitrary failure races, physical reset, in-place/saved recovery, all faults or full renderer/ABI/provider claim.",
+      "behaviors": [
+        "NP.transition-recovery-acceptance"
+      ],
+      "tests": [
+        "tools/test-rendering-transition-fault.py",
+        "tests/test-rendering-transition.py",
+        "tools/run-rendering-transition.py",
+        "tools/check-rendering-transition.py",
+        "tools/prepare-rendering-transition.py",
+        "tools/close-rendering-transition.py",
+        "tools/run-rendering-transition-low.py",
+        "tools/prepare-rendering-transition-low.py",
+        "tools/close-rendering-transition-low.py",
+        "tests/test-rendering-transition-confirmation.py",
+        "tools/prepare-rendering-transition-final.py",
+        "tools/close-rendering-transition-final.py",
+        "tools/bind-rendering-transition-partial.py"
+      ],
+      "evidence": [
+        "RT07.transition-partial01"
+      ]
+    },
+    {
+      "id": "native.capture-epoch-bindings",
+      "level": "headless",
+      "scope": "Opt-in resident capture directory maps each absolute launch-owned World channel to a distinct SHA256-named NewOnly corpus. Legacy file/disabled modes and recorder limits remain unchanged. Epoch-mode command captures emit one NewOnly schema1 sideband identifying their actual created channel/session/transport. Invalid paths, conflicting modes, invalid identities and duplicate bindings refuse evidence without overwriting prior data. Native writer/control scope only; no rendering, wire or gameplay semantics claim.",
+      "behaviors": [
+        "NP.capture-epoch-bindings"
+      ],
+      "tests": [
+        "tests/resident-epoch-capture-test.cpp",
+        "tools/test-rendering-epoch-capture.py",
+        "tools/bind-rendering-epoch-controls.py",
+        "tests/test-rendering-command-capture.py",
+        "tests/test-rendering-capture.py",
+        "tools/test-acceptance-capture.py",
+        "tests/acceptance-capture-test.cpp"
+      ],
+      "evidence": [
+        "RT07.epoch-controls01"
       ]
     }
   ],
@@ -422811,8 +423111,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6c8653cad926706642c293c6d8ed5548f1c46e5c4b68dae4bf82707ebd3622d2.json",
-    "sha256": "6c8653cad926706642c293c6d8ed5548f1c46e5c4b68dae4bf82707ebd3622d2"
+    "path": "research/runtime/coverage/source-index-b389d254b3ed40a0c94bdf80316f0753ddfd343f93a1ac8873fd53a7c0f71581.json",
+    "sha256": "b389d254b3ed40a0c94bdf80316f0753ddfd343f93a1ac8873fd53a7c0f71581"
   },
   "evidence_applicability": [
     {

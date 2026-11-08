@@ -1,5 +1,6 @@
 #pragma once
 #include <QFile>
+#include <QFileInfo>
 #include <QDir>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -24,6 +25,7 @@ public:
         directory_=qEnvironmentVariable("MNM_ACCEPTANCE_CAPTURE_DIRECTORY");
         if(directory_.isEmpty())return;
         enabled_=true;
+        commandRole_=role=="commands";
         // Command polls can emit many tiny fragments while a prior payload is
         // compressing. Normal viewport capture also emits many body-free
         // intro paint/swap records. Bound both streams by4096jobs while keeping
@@ -52,6 +54,19 @@ public:
     }
     ~AcceptanceCapture(){finish();}
     bool enabled() const{return enabled_;}
+    void bindProducer(const QString& channel,quint32 identity,quint32 version){
+        // Startup-only sideband; existing capture record streams stay unchanged.
+        if(!enabled_||!commandRole_||qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE_DIRECTORY").isEmpty())return;
+        if(!QDir::isAbsolutePath(channel)||!identity||(version!=2&&version!=3)){
+            fail("Invalid acceptance producer binding");return;
+        }
+        const QJsonObject value{{"schema",1},{"kind","command-producer-binding"},{"producer",qint64(identity)},
+            {"transport_version",int(version)},{"channel",QFileInfo(channel).absoluteFilePath()},
+            {"capture",path_},{"host_us",stamp()}};
+        QFile file(path_+".producer.json");const auto bytes=QJsonDocument(value).toJson(QJsonDocument::Compact);
+        if(!QDir().mkpath(directory_)||!file.open(QIODevice::WriteOnly|QIODevice::NewOnly)||file.write(bytes)!=bytes.size()||!file.flush())
+            fail("Cannot record acceptance producer binding");
+    }
     void append(const QString& kind,QJsonObject metadata,const QByteArray& bytes={}){
         if(!enabled_)return;
         HostTimingTrace trace("acceptance-append");
@@ -156,7 +171,7 @@ private:
         }catch(const std::exception&){fail("Acceptance capture worker failed");}
     }
     QString directory_,path_,error_;
-    bool enabled_=false,closed_=false,campaign_=false,movie_=false,commandHistory_=false;
+    bool enabled_=false,closed_=false,campaign_=false,movie_=false,commandHistory_=false,commandRole_=false;
     unsigned rows_=0,pendingRows_=0,rowLimit_=16384,pendingRowLimit_=256;
     qint64 raw_=0,queued_=0,storedLimit_=256ll*1024*1024,rawLimit_=8ll*1024*1024*1024;
     std::mutex mutex_;std::condition_variable wake_;std::deque<Job> jobs_;std::thread worker_;

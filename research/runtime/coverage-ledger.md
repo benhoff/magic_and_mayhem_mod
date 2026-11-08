@@ -27357,3 +27357,43 @@ The merged audit has zero errors/current CF08support. Only metadata/source
 accounting and the staged gate are current at integration; four GPU replays,
 58guards, two Low paints and all historical engine phases keep their original
 identities. No native/original run or control test is repeated for this merge.
+
+
+### RT07: partial terminal/restart recovery; acceptance remains pending
+
+Both actual800 default/software public Campaign Mini terminal-fault cases pass:
+real drained-ring INVALID, nine native owner/frame/timer/input retirement
+predicates, stable terminal samples, physical public Hard Restart, different
+runner/channel/World identities, fresh positive input and ordinary Campaign/Main
+Quit. Independent original/command replay checks5,182,287,000pixel values with
+zero differences. One unpresented failed software World earns no output credit;
+failed generations receive no nominal acceptance.
+
+Both640domains remain pending. Default640-01 reaches recovery but refuses focus
+before any original Quit Yes input. A bounded640-only visibility/input wait has
+three passing controls. Later640-02/04 time out on accessibility during initial
+Launch with native state starting and zero World output; cause unresolved. The
+zero-game640-03 NVIDIA Xvfb crash follows an omitted Mesa environment and remains
+retained. Eleven requests/nine actual starts include every failure; collection
+stops with no new acceptance rows. The owned94-row parent and both pending final
+decisions remain unchanged; later master rows retain their separate admissions.
+
+Opt-in per-channel World capture, actual command producer bindings and terminal
+state observations enable two-generation evidence without changing rendering or
+simulation.28native writer cases,9reader guards,18native fault cases,17Python
+terminal/epoch/budget tests,3confirmation tests and2archive controls pass. Exact
+source phases, negative admissions, raw capture flags and uncredited tails stay
+visible. See [the partial recovery review](rendering-transition-recovery-20261107.md)
+and `rendering-transition-recovery-results-20261107/transition-partial-01.json`.
+No whole renderer, arbitrary provider, pending-CPU, physical-reset or replacement
+claim; no new rendering defect is established by the launch timeout.
+
+
+RT07integration preserves current master6763ec077and its exact100/156passed,
+56pending admission, both decisions and all source phases. The interrupted
+83f9candidate has a pinned source tree and a two-store exact reconstruction patch
+with a verified Git-index restore; it claims no commit/hook pass. All406host and
+19oracle sources still match recorded RT07inputs. Four guest sources and runner
+changed and two headers were added; combined guest1021-source execution stays
+pending. Original player/runtime/oracle hashes and both640gaps remain untouched.
+Zero new acceptance rows, no applicability waiver or engine execution in the merge.
