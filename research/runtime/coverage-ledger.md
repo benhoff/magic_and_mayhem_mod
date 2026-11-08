@@ -27948,3 +27948,18 @@ HS08 actual-master integration preserves every incoming acceptance row and adds 
 
 
 HS08 actual-master integration preserves every incoming acceptance row and adds only both finite hotspot/background rows: **114/156 passed, 42 pending**. See `cursor-hotspot-results-20261108/master-admission-02.json` and `cursor-hotspot-acceptance-20261108.md`. This is a static source-phase union; raw source drift, historical failures, unresolved57e957 and both final decisions remain visible. No combined-player execution is claimed.
+
+
+## PR08 primary opaque fallback producer fix — 2026-11-08
+
+The missing57e957/tag17caller guard is repaired and pinned in the generator.
+Pre-fix21384original-wrapper cases reproduce5184refusals; current positive02
+accepts all5184fallbacks and matches6500736WORDs, low16AX and stack/nonvolatile
+state across the complete cohort.3766signature/tag/PCrefusals,393216black AX
+cases and both4922/4884sprite suites (628protected spans each) pass. Exact
+tested ELF/DLL/EXE/source bytes are retained in SQLite. NP.world-opaque-fallback-caller
+records isolated original comparison only; integration/replacement remain none.
+No original game was started and no prior cap reset. Failed HS08World590 and its
+missing operands remain negative/unreplayed; other caller, full pan/ABI/player
+gaps and both decisions remain open. Frontier stays114/156passed42pending.
+See `producer-rejection-57e957-20261108.md` and PR08.original02.

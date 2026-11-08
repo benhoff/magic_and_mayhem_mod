@@ -206,3 +206,14 @@ the direct callees and full normalization/store branches. Other caller/context
 guards remain. The bounded continuation proof and retained failure are documented
 in [expanded player acceptance](native-player-expanded-20261026.md). This adds
 no original raster pixel, arbitrary caller or all-map acceptance claim.
+
+
+## Primary opaque fallback correction (2026-11-08)
+
+PR08 repairs the omitted57e957/tag17 continuation to57de00. Exact original
+argument forwarding,20-byte cleanup and low16AX masking,21384original/native
+wrapper cases and all affected signature/context controls pass. The generator
+retains the pinned primary entry without a successful observed row. See
+[the bounded producer fix](producer-rejection-57e957-20261108.md). Historical
+World590 remains failed/unreplayed; no full player/secondary/ABI claim or extra
+acceptance row follows. All older source hashes and bounded milestones remain.

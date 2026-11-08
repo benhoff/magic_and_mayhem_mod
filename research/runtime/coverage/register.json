@@ -24535,7 +24535,7 @@
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
         "Expanded Quick206 records an unsupported original black continuation5004d4/tag12 before its first completed World. Four exact direct black/fallback continuations are added under NP.world-black-caller-continuations with independent AX/cleanup/signature controls. Earlier World evidence retains its fingerprints; arbitrary caller coverage and universal session reliability remain pending.",
         "AC07.G.caller54a563: retained software640generation254ends inFAILURE43/tag14at original return0x54a563, followed by Windows exit95. Pinned static disassembly establishes the indirect indexed-copy continuation and AX==1fallback only; rejected input/stack/register capture and native caller admission remain absent. Existing strict guard and historical scoped milestones are unchanged. See attachment-retained-failure-correction-02.json.",
-        "HS08.G.rejected-caller57e957: Actual original World590 fails43/tag17 at return57e957 (57e8e0 wrapper,57de00 backend) and exits95. Rejected operands/register/stack bytes are absent; no caller admission, raster repair or broad full-corner/pan acceptance follows. Retain research/runtime/cursor-hotspot-results-20261108/pilot-diagnosis-01.json and every superseded capture; finite hotspot passing cases do not retire it."
+        "HS08.G.rejected-caller57e957: The historical World590 failure43/tag17/exit95 and missing operands remain negative. PR08.original02 independently repairs the missing primary57e957/tag17 guard through21384 complete original/native wrapper cases; no original World590 replay, full corner/pan reliability or whole-player validation follows. Other unknown callers and source-phase boundaries remain pending."
       ]
     },
     {
@@ -171303,9 +171303,72 @@
       },
       "remaining_gaps": [
         "HS08.G.scope: Historical invalid requests remain negative; broader rebuild/storage/driver/ABI and final decisions remain separate.",
-        "HS08.G.rejected-caller57e957: Actual World590 failure43/tag17 exits95 at original57e957; rejected raster operands/register/stack bytes are missing. Retain exact partial source and all-copy FIFO truncation. Smaller hotspot acceptance cannot retire this full-corner/pan/player failure; no caller admission or raster repair is made.",
+        "HS08.G.rejected-caller57e957: The historical World590 failure43/tag17/exit95 and missing operands remain negative. PR08.original02 independently repairs the missing primary57e957/tag17 guard through21384 complete original/native wrapper cases; no original World590 replay, full corner/pan reliability or whole-player validation follows. Other unknown callers and source-phase boundaries remain pending.",
         "HS08.G.outside-interval: Broad COPY readback truncation before the first planned cursor action and after World exit stays negative; no whole COPY/menu operation credit. The exact contiguous physical cursor interval and every recorded stencil state are complete.",
         "HS08.G.combined-source: The actual master union preserves the separate successful hotspot source phase and exact incoming changes. Raw drift remains visible; no combined-current player/oracle execution or historical source-hash refresh is asserted. This exhausted nine-request/six-start batch authorizes no further original launch."
+      ]
+    },
+    {
+      "id": "NP.world-opaque-fallback-caller",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Primary opaque-wrapper clipped fallback continuation",
+      "scope": "Pinned nocd40209ca7 primary wrapper57e8e0 fallback call57e952 to57de00 and return57e957/tag17. Retain exact cdecl five-argument forwarding, twenty-byte cleanup and low16AX mask before the original auxiliary tail. Bounded RGB565 indexed RLE frames, two existing indexed entries, shade/table ordinal, origins, clips and hidden/edge placements compare unchanged original wrapper output with the production native pixel kernel through the exact caller guard. No secondary continuation, full volatile ABI, original World590 operands, original-game replay, whole corner/pan reliability or acceptance-row promotion.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5761248,
+          "scope": "Primary fallback argument forwarding, AX branch/mask and original wrapper tail only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5758464,
+          "scope": "Existing clipped fallback called by57e952; bounded indexed RGB565 output comparison."
+        }
+      ],
+      "implementation": [
+        "runtime/scene/world_raster_callers.h",
+        "tools/inspect-world-raster-callers.py"
+      ],
+      "tests": [
+        "tests/world-opaque-fallback-test.cpp",
+        "tools/test-world-opaque-fallback.py",
+        "tests/world-raster-callers-test.cpp",
+        "tools/test-world-raster-callers.py"
+      ],
+      "documents": [
+        "research/runtime/producer-rejection-57e957-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/rendering/raster_pixels.c",
+        "reconstruction/rendering/raster_pixels.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/canvas_producers.c",
+        "tools/build-scene-observer.py",
+        "tests/kind8-sprite-admission-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/test-world-black-callers.py",
+        "tools/test-kind8-sprite-admission.py"
+      ],
+      "evidence": [
+        "PR08.original02",
+        "PR08.guards01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "PR08.G.live: Original failed World590 lacks rejected operands. Its run remains negative; no new original game starts or complete corner/pan/session replay are planned.",
+        "PR08.G.scope: Secondary wrapper continuations, wider formats/palettes/ABI and other producer rejections remain outside this primary continuation fix."
       ]
     }
   ],
@@ -391669,6 +391732,73 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "PR08.original02",
+      "kind": "isolated_original",
+      "scope": "Pinned nocd40209ca7 primary wrapper57e8e0 fallback call57e952 to57de00 and return57e957/tag17. Retain exact cdecl five-argument forwarding, twenty-byte cleanup and low16AX mask before the original auxiliary tail. Bounded RGB565 indexed RLE frames, two existing indexed entries, shade/table ordinal, origins, clips and hidden/edge placements compare unchanged original wrapper output with the production native pixel kernel through the exact caller guard. No secondary continuation, full volatile ABI, original World590 operands, original-game replay, whole corner/pan reliability or acceptance-row promotion.",
+      "record": "research/runtime/producer-rejection-57e957-results-20261108/positive-02.json",
+      "sha256": "8665a56743e8732ec96e525ecfbd1a5c7982732e36fb3cc0979e9fa24cd69aab",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_equivalence",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_starts",
+          "equals": 0
+        },
+        {
+          "pointer": "/wrapper/cases",
+          "equals": 21384
+        },
+        {
+          "pointer": "/wrapper/guard_rejected_cases",
+          "equals": 0
+        },
+        {
+          "pointer": "/wrapper/native_fallback_cases",
+          "equals": 5184
+        },
+        {
+          "pointer": "/wrapper/compared_words_including_canaries",
+          "equals": 6500736
+        },
+        {
+          "pointer": "/wrapper/wrapper_bytes_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "PR08.guards01",
+      "kind": "static",
+      "scope": "Affected existing black normalization and production/regenerated caller, sprite-context and protected-span controls; no new player execution or broader ABI credit.",
+      "record": "research/runtime/producer-rejection-57e957-results-20261108/black-guards-01.json",
+      "sha256": "9569ecbcfbad3dad2f6b7aaaeaf7c617b99d6949f2f52499076488c6355c3fe1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -402398,7 +402528,7 @@
         "scope": "Observed rejected continuation only; no complete wrapper or raster contract recovery."
       },
       "document": "research/runtime/cursor-hotspot-acceptance-20261108.md",
-      "scope": "Actual strict-guard refusal links original return57e957 to producer tag17/57de00. Missing call inputs and other modes stay unknown; this is not a native admission table.",
+      "scope": "Historical HS08 rejected57e957/tag17 remains retained with absent operands. PR08 independently fixes only the exact primary guard continuation and pins argument/AX handling through original/native controls. No original failed-World replay, secondary continuation or whole wrapper/session closure.",
       "complete": false,
       "entries": [
         {
@@ -402406,6 +402536,12 @@
           "behaviors": [
             "NP.cursor-hotspot-closeout",
             "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x57e957/tag17/exact-primary-admission/PR08.original02",
+          "behaviors": [
+            "NP.world-opaque-fallback-caller"
           ]
         },
         {
@@ -427662,8 +427798,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-a938d0297bc2546a0b3987845a3e5d1ed55dbf25da53aa7a0b69402c3c81e670.json",
-    "sha256": "a938d0297bc2546a0b3987845a3e5d1ed55dbf25da53aa7a0b69402c3c81e670"
+    "path": "research/runtime/coverage/source-index-b19d25a13bef3b14aa218fa102b1e943de0b5dd6988a3b7283ec3c07121a2314.json",
+    "sha256": "b19d25a13bef3b14aa218fa102b1e943de0b5dd6988a3b7283ec3c07121a2314"
   },
   "evidence_applicability": [
     {

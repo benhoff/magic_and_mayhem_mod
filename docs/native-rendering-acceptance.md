@@ -1,3 +1,5 @@
+PR08 fixes the exact57e957/tag17producer guard under [isolated original/native controls](../research/runtime/producer-rejection-57e957-20261108.md). Acceptance remains114/156passed42pending; the historical failed live run and broader player validation remain separate.
+
 HS08 integrated acceptance: **114/156 passed, 42 pending**. The [exact source-phase union](../research/runtime/cursor-hotspot-results-20261108/master-admission-02.json) preserves all incoming rows and adds both finite cursor hotspot/background rows. Four actual default/software640/800 Sharp/Integer domains passed in the owned phase; this union adds no execution. Original57e957/tag17 exit95 and both final decisions remain pending. See [the hotspot record](../research/runtime/cursor-hotspot-acceptance-20261108.md).
 
 Current local master integration:108/156passed48pending.

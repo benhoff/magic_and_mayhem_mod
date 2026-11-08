@@ -1,6 +1,8 @@
 # Actual cursor hotspot and background restoration acceptance
 
-Current integrated acceptance: **114/156 passed, 42 pending**. [The current source-phase union](cursor-hotspot-results-20261108/master-admission-02.json) preserves the112incoming rows and adds only both finite hotspot/background rows. Actual hotspot execution retains its tested source phase; seven changed dependencies remain raw drift and combined-current player validation is pending. Original57e957/tag17 exit95 remains unfixed.
+Current correction: [PR08](producer-rejection-57e957-20261108.md) repairs the primary producer guard with21384original/native wrapper cases and zero new game starts. The HS08observations below retain their original source-phase findings and negative outcomes.
+
+Current integrated acceptance: **114/156 passed, 42 pending**. [The current source-phase union](cursor-hotspot-results-20261108/master-admission-02.json) preserves the112incoming rows and adds only both finite hotspot/background rows. Actual hotspot execution retains its tested source phase; seven changed dependencies remain raw drift and combined-current player validation is pending. PR08 independently fixes the missing57e957/tag17guard; the original failed run and full corner/pan reliability remain unreplayed.
 
 HS08 targets only `journey.cursor-interaction.hotspot`. The actual IP07 cohort
 observed cursor classes0/1/16 (all zero hotspot), so it cannot by itself establish
