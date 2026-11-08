@@ -171011,6 +171011,63 @@
         "AC07.G.attachment640: All four requested rows qualify: both attachment and both combat profiles,94passed62pending in the preserved90-row parent phase. All10actual attachment starts remain charged, all failures retained and no further start authorized. Native gameplay, other caller/effect/lifetime domains and both final decisions remain pending.",
         "AC07.G.merged-source-phase: master integration preserves every accepted original source/native/compiler/oracle phase and both parent milestones. The combined guest includes incoming font/DC, epoch/recovery and display work plus the opt-in actor sidecar. No new original/native/oracle execution or whole combined-player equivalence is asserted; raw full-source drift stays visible. Ten attachment starts are charged, with no further launch authority."
       ]
+    },
+    {
+      "id": "NP.campaign-transition-retained-review",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Compact retained campaign map-exit and loading review",
+      "scope": "Retained-data review of natural Celtic region1 exit and region2 loading, original report/World-pop/next-World callback ordering, fresh bridge ACKs, native World surface incarnation retirement/recreation and referenced independent presented-output comparisons. Nominal software640 and separate diagnostic default800 source phases only. No new game, pixel/oracle execution, current native runtime equivalence, complete external-object lifetime or acceptance-row promotion.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4632512,
+          "scope": "Existing passive World Tick pre/post and inactive owner-stack pop observation only; finite retained callback-file ordering, no whole-function recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5608912,
+          "scope": "Existing Region Entry tick/screen18 observation boundary; recorded travel/entry callback pairs and bridge identities, no loader or allocator reconstruction.",
+          "recovered_range": "campaign-mini-entry-5595d0"
+        }
+      ],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "tools/campaign_transition_review.py",
+        "tools/review-campaign-map-transitions.py"
+      ],
+      "tests": [
+        "tests/test-campaign-transition-review.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-transition-lean-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_capture.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_progression.py",
+        "tools/campaign_report.py",
+        "tools/campaign_realm_exit.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "CT08.retained-transition01",
+        "CT08.controls01",
+        "CT08.retained-transition02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CT08.G.domains: Both target acceptance rows remain pending in each player configuration; nominal default640/default800/software800 and their current applicability/output/ownership admission remain missing.",
+        "CT08.G.original-lifetimes: Native World-surface retirement does not recover original populated entity/vptr/generation acquire/release.",
+        "CT08.G.source-phase: Retained nominal software640 and diagnostic default800 are historical native/compiler/oracle source phases; diagnostic success does not become nominal acceptance."
+      ]
     }
   ],
   "evidence": [
@@ -390892,6 +390949,122 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CT08.retained-transition01",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-transition-lean-results-20261108/review-03.json",
+      "sha256": "35f377f9acfed671c248a7a6fe8031d0eb9bba5fa33aead767fa4e8f34862024",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Retained-data review of natural Celtic region1 exit and region2 loading, original report/World-pop/next-World callback ordering, fresh bridge ACKs, native World surface incarnation retirement/recreation and referenced independent presented-output comparisons. Nominal software640 and separate diagnostic default800 source phases only. No new game, pixel/oracle execution, current native runtime equivalence, complete external-object lifetime or acceptance-row promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/capture_copies_created",
+          "equals": 0
+        },
+        {
+          "pointer": "/storage/retained_capture_bytes_added",
+          "equals": 0
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 112
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 44
+        }
+      ]
+    },
+    {
+      "id": "CT08.controls01",
+      "kind": "static",
+      "record": "research/runtime/campaign-transition-lean-results-20261108/controls-binding-01.json",
+      "sha256": "13cbff15e35551e34c9d4af1b7aa167d0f63e2a2e3e195123daad666fff78ad9",
+      "sources_pointer": "/sources",
+      "scope": "81 current focused transition/progression/capture/report/Realm-exit controls, including33 new bounded retained-data and adverse ownership/domain/storage controls. No original execution or acceptance closure.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CT08.retained-transition02",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-transition-lean-results-20261108/review-04.json",
+      "sha256": "11d3f4e9d4972aa633ee5666be1520d3f8af86e20ed0f105875a2aedbbe3454f",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Retained-data review of natural Celtic region1 exit and region2 loading, original report/World-pop/next-World callback ordering, fresh bridge ACKs, native World surface incarnation retirement/recreation and referenced independent presented-output comparisons. Nominal software640 and separate diagnostic default800 source phases only. No new game, pixel/oracle execution, current native runtime equivalence, complete external-object lifetime or acceptance-row promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/capture_copies_created",
+          "equals": 0
+        },
+        {
+          "pointer": "/storage/retained_capture_bytes_added",
+          "equals": 0
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 112
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 44
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -425019,6 +425192,23 @@
         "AC07.G.ownership",
         "Other combat/action/caller/map/provider/lifetime domains remain separate."
       ]
+    },
+    {
+      "id": "native.campaign-transition-retained-review",
+      "level": "headless",
+      "scope": "Retained-data review of natural Celtic region1 exit and region2 loading, original report/World-pop/next-World callback ordering, fresh bridge ACKs, native World surface incarnation retirement/recreation and referenced independent presented-output comparisons. Nominal software640 and separate diagnostic default800 source phases only. No new game, pixel/oracle execution, current native runtime equivalence, complete external-object lifetime or acceptance-row promotion.",
+      "behaviors": [
+        "NP.campaign-transition-retained-review"
+      ],
+      "tests": [
+        "tools/campaign_transition_review.py",
+        "tools/review-campaign-map-transitions.py",
+        "tests/test-campaign-transition-review.py"
+      ],
+      "evidence": [
+        "CT08.retained-transition01",
+        "CT08.retained-transition02"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -426836,8 +427026,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-aac27989707823ab81f786bb56cd6becccf985d64ee4bb26e91705ff0e0a9ece.json",
-    "sha256": "aac27989707823ab81f786bb56cd6becccf985d64ee4bb26e91705ff0e0a9ece"
+    "path": "research/runtime/coverage/source-index-22767946eec26d98727be82ef9f5f8fafdc694b2f586d9eb4a3d6f8ccd4da3e6.json",
+    "sha256": "22767946eec26d98727be82ef9f5f8fafdc694b2f586d9eb4a3d6f8ccd4da3e6"
   },
   "evidence_applicability": [
     {

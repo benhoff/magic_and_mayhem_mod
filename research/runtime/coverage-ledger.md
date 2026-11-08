@@ -27721,3 +27721,32 @@ unchanged four-row proof: 112/156passed44pending.
 Metadata-only strict row joining repeats no engine/oracle/pixel execution; all
 native source phases and both final decisions remain unchanged. See
 `rendering-recovery-four-results-20261108/master-admission-01.json`.
+
+## CT08: compact map-exit and next-map-loading review — 2026-11-08
+
+`NP.campaign-transition-retained-review` targets only
+`journey.map-transitions.leave-map` and `journey.map-transitions.loading`.
+[Retained analysis](campaign-transition-lean-results-20261108/review-04.json)
+checks original owner-thread World pop/entry callback ordering and fresh
+Realm/travel/Region2 bridge states, then independently rederives native command
+surface retirement/recreation from existing command captures. Nominal software640
+retires surface94 before creating surface242 for generation3034; diagnostic
+default800 retires surface88 before creating surface238 for generation3662.
+These are launch-specific native handle/incarnation identities, not stable
+addresses or complete original object/vptr/generation lifetime recovery.
+
+Both retained comparisons remain exact:9,227,724,000 and13,420,951,500 historical
+pixel checks, with zero differences. This review references those comparisons;
+it runs no new pixel/original oracle, native player or game. The diagnostic case
+remains diagnostic, with absent historical comparison-process retirement recorded
+as unknown. Only software640 supplies a nominal candidate; default640/default800/
+software800 and current per-domain applicability/output/ownership admission remain
+missing. All112accepted parent rows,44pending rows and both pending decisions stay
+unchanged. No historical failure or source hash is refreshed.
+
+81focused controls pass, including33new adverse/bounded-read controls. Existing
+SQLite inputs are read directly:184,401,464compressed raw bytes, decoded only in
+RAM. The final report is17,770bytes, capped at64KiB; no capture, installation,
+prefix or build snapshot is added. Initial setup/schema refusals and exact tested
+source preimages are retained through SQLite. [Scope and reproduction](campaign-transition-lean-20261108.md)
+describe the remaining domains and original lifetime boundary.
