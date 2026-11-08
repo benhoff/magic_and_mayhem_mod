@@ -38,7 +38,8 @@ static void bypass_fixture(void){
  generic_bypass_fixture=1;
  struct Surface* s=surfaces;s->object=0x700100;s->id=99;s->width=s->height=s->stride=4;s->pixels=0x700000;
  put((void*)0x658174,s->pixels);put((void*)0x6e0008,0);put((void*)0x6cbb6c,0);put((void*)0x6a49b8,4);put((void*)0x656618,4);
- u32 frame=0x700200,node=0x710000;zero((void*)frame,64);put((void*)frame,44);put((void*)(frame+4),1);put((void*)(frame+8),1);put((void*)(frame+28),node);put((void*)node,node);put((void*)(node+4),0);put((void*)(node+8),0);
+ u32 frame=0x700200,node=0x710000;zero((void*)frame,64);put((void*)frame,51);put((void*)(frame+4),1);put((void*)(frame+8),1);put((void*)(frame+28),node);put((void*)node,node);put((void*)(node+4),0);put((void*)(node+8),0);
+ put((void*)(frame+40),48);put((void*)(frame+44),50);*(u8*)(frame+48)=0;*(u8*)(frame+49)=1;
  put((void*)(frame+12),5);put((void*)(frame+16),6);
  zero((void*)(node+12),4096);queue=1;depth=0;
  char caller_mode[8]={0};GetEnvironmentVariableA("MNM_GENERIC_CALLER_FIXTURE",caller_mode,sizeof(caller_mode));
@@ -74,7 +75,7 @@ static void bypass_fixture(void){
  bypass_limit=0;generic_bypass_fixture=0;put((void*)(frame+12),0);put((void*)(frame+16),0);
 }
 static void raster_fixture(void){
- struct Surface* surface=surfaces;put((void*)(0x710000+4),7);put((void*)0x5f14d0,0);queue=0;depth=0;limit=2;raster_first=raster_last=1;
+ struct Surface* surface=surfaces;put((void*)(0x710000+4),7);put((void*)0x5f14d0,0);put((void*)0x6a2dc8,surface->stride);queue=0;depth=0;limit=2;raster_first=raster_last=1;
  u32 return_registers[16]={0};return_registers[9]=0x700900;canvas_producers_queue(return_registers);canvas_producers_protect();
  const u32 tags[]={12,13,14,15,16,17,18,19,20,21,23,24,25};
  for(u32 k=0;k<sizeof(tags)/sizeof(tags[0]);++k){
@@ -88,7 +89,8 @@ static void raster_fixture(void){
   copy(header,MNM_WORLD_RASTER_REPLY,8);header[2]=2;header[3]=64;header[4]=k+1;header[5]=1;header[6]=sequence+1;header[7]=99;header[8]=header[9]=header[10]=4;header[11]=32;header[12]=bypass_hash((u8*)pixels,32);header[13]=1;header[14]=hooks[tag].address;header[15]=tag==12||tag==23||tag==24?1:0;
   raster_first=raster_last=1;char name[260];bypass_path(name,k+1,".reply");HANDLE file=CreateFileA(name,0x40000000,0,0,2,0x80,0);if(file==(HANDLE)-1||!write(file,header,64)||!write(file,pixels,32)||!CloseHandle(file))ExitProcess(86);
   SetLastError(1234);world_bypass_test_call(hooks[tag].address,ecx,4,hooks[tag].pop,after,0x700200);
-  if(get((void*)0x700804)!=counter||GetLastError()!=1234||bypass_completed!=k+1||*(u32*)(after+28)!=header[15]||*(u32*)(after+32)!=0x247)ExitProcess(87);
+  const u32 expected_flags=tag==12||tag==23||tag==24?0x202:tag>=13&&tag<=16?0x246:0x247;
+  if(get((void*)0x700804)!=counter||GetLastError()!=1234||bypass_completed!=k+1||*(u32*)(after+28)!=header[15]||*(u32*)(after+32)!=expected_flags)ExitProcess(87);
   for(u32 j=0;j<560;++j)if((j<28||j>=36)&&bypass_before[j]!=after[j])ExitProcess(88);
   for(u32 j=0;j<16;++j)if(((u16*)surface->pixels)[j]!=pixels[j])ExitProcess(89);
  }
@@ -117,7 +119,8 @@ static void batch_fixture(void){
  for(u32 k=0;k<13;++k){const u32 tag=tags[k],fast=(tag>=18&&tag<=21)||tag==25,counter=get((void*)0x700804);
   SetLastError(1234);world_bypass_test_call(hooks[tag].address,fast?0x700200:0x700100,4,hooks[tag].pop,after,0x700200);
   if(get((void*)0x700804)!=counter||GetLastError()!=1234||bypass_completed!=k+1||batch_count!=k+1||batch_transfers||!batch_guard_open||*(u32*)(after+28)!=(tag==12||tag==23||tag==24?1u:0u))ExitProcess(103);
-  if(*(u32*)(after+32)!=0x247)ExitProcess(113);for(u32 j=0;j<560;++j)if((j<28||j>=36)&&after[j]!=raster_before[k][j])ExitProcess(114);
+  const u32 expected_flags=tag==12||tag==23||tag==24?0x202:tag>=13&&tag<=16?0x246:0x247;
+  if(*(u32*)(after+32)!=expected_flags)ExitProcess(113);for(u32 j=0;j<560;++j)if((j<28||j>=36)&&after[j]!=raster_before[k][j])ExitProcess(114);
  }
  u32 request[16];batch_header(request,s);if(!batch_restore()||*(u16*)p!=0x4321)ExitProcess(104);
  u16* pixels=HeapAlloc(GetProcessHeap(),0,960000);if(!pixels)ExitProcess(105);for(u32 i=0;i<480000;++i)pixels[i]=0x5678;
@@ -277,6 +280,7 @@ static void extent640_fixture(void){
  put((void*)0x658174,saved.pixels);put((void*)0x6a49b8,saved.width);put((void*)0x656618,saved.height);
 }
 #include "kind8-sprite-hook-fixture.h"
+#include "world-rectangle-hook-fixture.h"
 void start(void){
  oracle_config_fixture();
  reserve[sizeof(reserve)-1]=1;u32 old;
@@ -304,7 +308,17 @@ void start(void){
  source_point_fixture();
  effect_hook_fixture();
  extent640_fixture();
+ if(!caller_state_create())ExitProcess(209);
  sprite_hook_fixture();
+ /* Exercise a real shared return observer as well as all15 saved native
+  * completions. The supplied original tail is synthetic and draws no pixels. */
+ const u32 state_args[6]={0x700200,1,1,0,0,0};SetLastError(1234);
+ world_effect_test_call((u32)hooks[12].entry,0,0,0,after,state_args);
+ if(GetLastError()!=1234||caller_state_starts!=16||caller_state_completed!=16||caller_state_active||caller_state_rows!=16)ExitProcess(210);
+ rectangle_hook_fixture();
+ if(caller_state_starts!=18||caller_state_completed!=18||caller_state_active||caller_state_rows!=18)ExitProcess(220);
+ caller_state_close();
+ caller_bindings_fixture();
  canvas_producers_close();
  for(u32 i=0;i<HOOKS;++i)canvas_test_call(hooks[i].address,i==3?0x700000:0x700100,4,hooks[i].pop,after);
  char name[260];path(name,"producer-fixture-pass-",0,".bin");
