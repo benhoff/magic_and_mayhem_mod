@@ -27326,3 +27326,34 @@ Actual master 6d0998cf6 and
 storage 0b465721e are reviewed as separate native/host source parents. The existing
 29-control proof remains exact; this custody/accounting supplies no new engine
 execution, source-fingerprint refresh or milestone promotion.
+
+
+## Bounded clipped constant-fill operation closeout — 2026-11-08
+
+CF08 closes only both `operation.fill-clipped` rows over the98-row actual
+master6d0998cf65parent:100/156passed56pending, both final decisions pending.
+The same four CL07default/software actual640/800World domains supply eight real
+owner query/actual/caller fill pairs: four initial no-ops receive no meaningful
+credit, four later clipped zero fills bind unique recorded UPDATEs and live
+800×600primary identities. Independent argument/region transforms and four
+fresh exact-input existing native GPU replays match1920000complete destination
+WORDs, with684800exterior values preserved,375694nonzero. Two real Low paints
+also match1749000viewport pixels, with all800×600source pixels represented.
+High intermediate paints remain coalesced and are not invented by replay.
+Native prior replies and intervening recorded uploads are transform inputs,
+not a new independent original-history oracle. Historical player/compiler/
+original/capture sources and every failure remain unchanged. No game, original
+oracle, new game fixture or capture; only four bounded native command replays
+and current retained-data/control analysis. Remaining16operation rows include
+ten ordinary and six fault/recovery rows; full flags/ABI, partial-prefix failure,
+arbitrary formats/providers, physical stores/drivers and final decisions remain.
+See[the exact closeout](rendering-clipped-fill-closeout-20261108.md).
+
+CF08actual-master integration preserves storage-consolidation master83f9ba350
+as first parent and feature6cf09d508as second. Its98-row parent projection and
+all108proof dependencies are unchanged;100/156passed56pending and both decisions
+persist. Exact incoming5502and owned46file transitions have zero receipt gaps.
+The merged audit has zero errors/current CF08support. Only metadata/source
+accounting and the staged gate are current at integration; four GPU replays,
+58guards, two Low paints and all historical engine phases keep their original
+identities. No native/original run or control test is repeated for this merge.

@@ -168584,6 +168584,148 @@
         "UI07.L.scope: OCR supplies an ordinary-input hint only; actual original cast/state/tooltip/Mini and complete native output remain independently checked by the main acceptance behavior.",
         "UI07.L.confirmation: Headless fixture02 and the independently compared Low default/software executions admit the authored focus/readiness policy. Original callbacks and normal retirement supply the live semantic proof; no original key-message-handler recovery."
       ]
+    },
+    {
+      "id": "NP.clipped-fill-operation-closeout",
+      "title": "Bounded clipped constant-fill inputs and GPU output",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Four admitted default/software actual640/800 World contexts with800x600 primary storage. Bind original owner-thread caller/result, actual existing clip query/execution RGNDATA, observed constant argument and unique actual UPDATE/live canonical primary. Independent transform uses complete native prior reply plus intervening owned command inputs; no new original-history oracle. Four fresh exact-input existing native command replays check every GPU destination/exterior WORD; two Low historical complete presentations additionally match. High intermediate paints remain coalesced and receive no invented historical output. No current full player, physical store trace, partial-prefix failure, arbitrary format/provider, complete original ABI/driver or final-decision claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-clipped-fill-closeout-20261108.md",
+        "research/runtime/coverage/summary-clipped-fill-20261108.md",
+        "research/runtime/coverage/summary-clipped-fill-master-20261108.md"
+      ],
+      "implementation": [
+        "tools/check-rendering-clipped-fill.py",
+        "tools/close-rendering-clipped-fill.py"
+      ],
+      "tests": [
+        "tests/test-rendering-clipped-fill.py"
+      ],
+      "validation_dependencies": [
+        "docs/native-rendering-closure.json",
+        "protocols/include/mnm/copy_caller_handoff_v1.h",
+        "protocols/include/mnm/cursor_copy_caller_v1.h",
+        "protocols/include/mnm/native_copy_clip_regions_v1.h",
+        "protocols/include/mnm/native_gpu_copy_plan_v1.h",
+        "protocols/include/mnm/native_pixel_guard_v1.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/render_stream_v4.h",
+        "protocols/include/mnm/render_stream_v5.h",
+        "protocols/include/mnm/resident_frame_budget.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/cursor_compositor.cpp",
+        "renderer/cursor_compositor.hpp",
+        "renderer/diagnostic_worker.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_dispatch.inc",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/native-draw/blit_effects.h",
+        "runtime/native-draw/clip_region_census.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/cpu_copy_boundary.h",
+        "runtime/native-draw/cpu_direct_store.h",
+        "runtime/native-draw/cpu_guard.h",
+        "runtime/native-draw/cpu_store.h",
+        "runtime/native-draw/cpu_store_profile.h",
+        "runtime/native-draw/cursor_copy_caller_thunks.h",
+        "runtime/native-draw/cursor_copy_callers.h",
+        "runtime/native-draw/cursor_copy_leases.h",
+        "runtime/native-draw/cursor_owner.h",
+        "runtime/native-draw/cursor_pins.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/dirty_bytes.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/history_lookup.h",
+        "runtime/native-draw/image_copy_original.h",
+        "runtime/native-draw/lifetime_dispatch.h",
+        "runtime/native-draw/lifetime_lock.h",
+        "runtime/native-draw/native_only.h",
+        "runtime/native-draw/ownership_admission.h",
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/pixel_conversion.h",
+        "runtime/native-draw/producer_guard.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/retirement.h",
+        "runtime/native-draw/row_words.h",
+        "runtime/native-draw/startup_retirement.h",
+        "runtime/native-draw/status.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-native-draw.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-opaque-cropped-copy.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_rendering_artifacts.py",
+        "tools/evidence_objects.py",
+        "tools/experiment_environment.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/native_copy_clip_regions.py",
+        "tools/native_copy_clip_regions_scoped.py",
+        "tools/native_copy_routes.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/native_prefix_template.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/resident_capture.py",
+        "tools/run-native-owned.py",
+        "tools/storage_cpu_read_binding.py",
+        "tools/test-native-copy-clip-regions.py"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CF08.clipped-fill-native01"
+      ],
+      "remaining_gaps": [
+        "CF08.G.scope: Preserve historical High paint coalescing and absence of positive intermediate High presentation. New GPU observations are exact-input native replay, not recovered historical frames or current whole-player execution. Native prior state is a transform input, not independently recovered original history.",
+        "CF08.G.operations: Other ten ordinary-operation rows, six fault-operation rows, all remaining journeys/gates and both final decisions remain. Only successful single-region constant RGB565 primary clears; arbitrary formats, disjoint/partial-prefix failures, other threads and physical store traces remain separate."
+      ]
     }
   ],
   "evidence": [
@@ -387096,6 +387238,37 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "CF08.clipped-fill-native01",
+      "kind": "native_integration",
+      "scope": "Four actual owner-thread clipped constant-fill caller/query/output inputs. Fresh existing native command replay validates complete GPU planes; only two Low historical meaningful paints are witnessed. High intermediate paints remain coalesced. Prior native GPU reply and intervening recorded uploads are transform inputs, not independent original prior-history proof. No physical memory-store, partial-prefix failure, arbitrary format, full original ABI/driver or whole-player claim.",
+      "record": "research/runtime/rendering-clipped-fill-results-20261108/analysis-01.json",
+      "sha256": "4a3705abfd53b4551993332e114dd0c63a23ca7c1ba9538260307a30f46bf122",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/current_native_replay_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_positive_presentations",
+          "equals": 2
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -420765,6 +420938,62 @@
         "UI07.source640-controls01",
         "UI07.source640-controls02"
       ]
+    },
+    {
+      "id": "CF08.clipped-fill.01",
+      "level": "headless",
+      "scope": "Retained natural clipped-fill argument/region/caller/native UPDATE and current complete native GPU replay in default-800-07; historical Low presentation if captured, no fabricated High historical paint.",
+      "behaviors": [
+        "NP.clipped-fill-operation-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-clipped-fill.py"
+      ],
+      "evidence": [
+        "CF08.clipped-fill-native01"
+      ]
+    },
+    {
+      "id": "CF08.clipped-fill.02",
+      "level": "headless",
+      "scope": "Retained natural clipped-fill argument/region/caller/native UPDATE and current complete native GPU replay in default-640-11; historical Low presentation if captured, no fabricated High historical paint.",
+      "behaviors": [
+        "NP.clipped-fill-operation-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-clipped-fill.py"
+      ],
+      "evidence": [
+        "CF08.clipped-fill-native01"
+      ]
+    },
+    {
+      "id": "CF08.clipped-fill.03",
+      "level": "headless",
+      "scope": "Retained natural clipped-fill argument/region/caller/native UPDATE and current complete native GPU replay in software-800-12; historical Low presentation if captured, no fabricated High historical paint.",
+      "behaviors": [
+        "NP.clipped-fill-operation-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-clipped-fill.py"
+      ],
+      "evidence": [
+        "CF08.clipped-fill-native01"
+      ]
+    },
+    {
+      "id": "CF08.clipped-fill.04",
+      "level": "headless",
+      "scope": "Retained natural clipped-fill argument/region/caller/native UPDATE and current complete native GPU replay in software-640-14; historical Low presentation if captured, no fabricated High historical paint.",
+      "behaviors": [
+        "NP.clipped-fill-operation-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-clipped-fill.py"
+      ],
+      "evidence": [
+        "CF08.clipped-fill-native01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -422582,8 +422811,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-e00226c06adcd5ed39090c3941bb0bc1117899bf7cf3485616102917bb48c79f.json",
-    "sha256": "e00226c06adcd5ed39090c3941bb0bc1117899bf7cf3485616102917bb48c79f"
+    "path": "research/runtime/coverage/source-index-6c8653cad926706642c293c6d8ed5548f1c46e5c4b68dae4bf82707ebd3622d2.json",
+    "sha256": "6c8653cad926706642c293c6d8ed5548f1c46e5c4b68dae4bf82707ebd3622d2"
   },
   "evidence_applicability": [
     {
