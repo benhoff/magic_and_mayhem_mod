@@ -1,0 +1,160 @@
+#!/usr/bin/env python3
+"""Actual retained cast boundary guards and exact four-row accounting controls."""
+from copy import deepcopy
+import importlib.util
+from pathlib import Path
+import sys
+import unittest
+
+ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT/'tools'))
+spec=importlib.util.spec_from_file_location('scene_close',ROOT/'tools/close-scene-attachment-combat.py')
+close=importlib.util.module_from_spec(spec);spec.loader.exec_module(close)
+
+
+class ActualCastControls(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.reader=close.Reader(ROOT);cls.reader.__enter__()
+        cls.acquired=cls.reader.json(close.PREFIX+'attachment-default800-04.json')
+        cls.compared=cls.reader.json(close.PREFIX+'attachment-default800-comparison-01.json')
+
+    @classmethod
+    def tearDownClass(cls):cls.reader.__exit__(None,None,None)
+
+    def rejected(self,change):
+        a,c=deepcopy(self.acquired),deepcopy(self.compared);change(a,c)
+        with self.assertRaises((RuntimeError,AssertionError,ValueError)):
+            close.attachment_transition(self.reader,a,c)
+
+    def test_actual_original_self_cast_reaches_mode1_child(self):
+        q=close.attachment_transition(self.reader,self.acquired,self.compared)
+        self.assertEqual([q['source_mode_changes'][i]['mode']for i in(0,-1)],[0,1])
+        self.assertFalse(q['actor_allocation_identity_proved'])
+
+    def test_foreign_spell_rejected(self):
+        self.rejected(lambda a,c:c['scene_attachment_route']['original_cast'].__setitem__(4,84))
+
+    def test_foreign_self_target_rejected(self):
+        self.rejected(lambda a,c:c['scene_attachment_route']['original_cast'].__setitem__(10,1))
+
+    def test_no_original_mana_debit_rejected(self):
+        self.rejected(lambda a,c:c['scene_attachment_route']['original_cast'].__setitem__(9,c['scene_attachment_route']['original_cast'][8]))
+
+    def test_missing_source_identity_rejected(self):
+        self.rejected(lambda a,c:c['scene_attachment_route']['original_cast'].__setitem__(15,0))
+
+    def test_invented_original_event_rejected(self):
+        self.rejected(lambda a,c:c['scene_attachment_route']['original_cast'].__setitem__(0,999999))
+
+    def test_reversed_source_interval_rejected(self):
+        self.rejected(lambda a,c:a['attachment_route'].__setitem__('first_attachment_generation',a['attachment_route']['target']['source_generation']))
+
+    def test_active_only_interval_does_not_prove_transition(self):
+        self.rejected(lambda a,c:a['attachment_route']['target'].__setitem__('source_generation',a['attachment_route']['first_attachment_generation']-1))
+
+
+class RowAccountingControls(unittest.TestCase):
+    """Synthetic metadata exercises accounting only; actual case joins earn credit."""
+    @classmethod
+    def setUpClass(cls):
+        with close.Reader(ROOT)as r:cls.parent=r.json(close.PARENT)
+
+    def cases(self):
+        return [dict(purpose=p,software=s,actual_extent=[w,h],identity=str((p,s,w,h)),
+                     success=True,attachment=p=='attachment',combat=p=='combat',pair={},provider='test metadata')
+                for p in('attachment','combat')for s in(False,True)for w,h in((640,480),(800,600))]
+
+    def test_exact_four_pending_rows_and_all_parent_rows_preserved(self):
+        rows=close.close_rows(self.parent,self.cases())
+        self.assertEqual(sum(r['state']=='passed'for r in rows),self.parent['passed_requirements']+4)
+        for before,after in zip(self.parent['requirements'],rows):
+            if before['id']not in close.LEAVES:self.assertEqual(before,after)
+        self.assertEqual(self.parent['decisions'],{'supported-player':'pending','original-recovery':'pending'})
+
+    def test_missing_actual_size_rejected(self):
+        with self.assertRaises(ValueError):close.close_rows(self.parent,self.cases()[:-1])
+
+    def test_duplicate_session_rejected(self):
+        cases=self.cases();cases[-1]['identity']=cases[0]['identity']
+        with self.assertRaises(ValueError):close.close_rows(self.parent,cases)
+
+    def test_relabelled_domain_rejected(self):
+        cases=self.cases();cases[-1]['actual_extent']=[640,480]
+        with self.assertRaises(ValueError):close.close_rows(self.parent,cases)
+
+    def test_unproved_output_rejected(self):
+        cases=self.cases();cases[-1]['combat']=False
+        with self.assertRaises(ValueError):close.close_rows(self.parent,cases)
+
+    def test_already_closed_task_row_rejected(self):
+        parent=deepcopy(self.parent)
+        next(r for r in parent['requirements']if r['id']in close.LEAVES)['state']='passed'
+        with self.assertRaises(ValueError):close.close_rows(parent,self.cases())
+
+    def test_partial_report_leaves_incomplete_profile_pending(self):
+        rows=close.close_rows(self.parent,self.cases()[:-1],partial=True)
+        self.assertEqual(sum(r['state']=='passed'for r in rows),self.parent['passed_requirements']+3)
+        pending=[r for r in rows if r['id']in close.LEAVES and r['state']=='pending']
+        self.assertEqual([(r['configuration'],r['id'])for r in pending],[('player-software','journey.creatures-effects.combat')])
+
+    def test_one_size_cannot_close_an_attachment_profile(self):
+        cases=[c for c in self.cases()if not(c['purpose']=='attachment'and c['software']and c['actual_extent']==[640,480])]
+        rows=close.close_rows(self.parent,cases,partial=True)
+        self.assertEqual(sum(r['state']=='passed'for r in rows),self.parent['passed_requirements']+3)
+        pending=next(r for r in rows if r['id']=='journey.creatures-effects.attachment'and r['configuration']=='player-software')
+        self.assertEqual(pending['state'],'pending')
+
+    def test_later_complete_case_preserves_every_earlier_partial_row(self):
+        cases=self.cases();parent=deepcopy(self.parent)
+        parent['requirements']=close.close_rows(parent,cases[:-1],partial=True)
+        parent['passed_requirements']+=3;parent['pending_requirements']-=3
+        rows=close.close_rows(parent,cases,partial=True)
+        self.assertEqual(sum(r['state']=='passed'for r in rows),parent['passed_requirements']+1)
+        for old,new in zip(parent['requirements'],rows):
+            if old['state']=='passed':self.assertEqual(old,new)
+
+
+class BudgetPhaseControls(unittest.TestCase):
+    """Only two numerical host admission expressions may change source phase."""
+    def versions(self):
+        before=(ROOT/close.COLLECTOR).read_bytes()
+        # Tests remain usable after the reviewed numerical transition.
+        for old,new in close.BUDGET_EDITS:
+            if old not in before:before=before.replace(new,old)
+        after=before
+        for old,new in close.BUDGET_EDITS:after=after.replace(old,new)
+        return before,after
+
+    def test_exact_two_expression_budget_transition(self):close.budget_only_change(*self.versions())
+
+    def test_native_or_input_change_cannot_hide_in_budget_review(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.budget_only_change(before,after.replace(b'journey.run()',b'journey.other_route()'))
+
+    def test_unreviewed_extra_collector_edit_rejected(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.budget_only_change(before,after+b'\n# another edit\n')
+
+    def test_missing_original_preimage_rejected(self):
+        with self.assertRaises(ValueError):close.budget_only_change(b'',self.versions()[1])
+
+    def test_only_one_budget_expression_changed_rejected(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.budget_only_change(before,before.replace(*close.BUDGET_EDITS[0]))
+
+    def test_review_does_not_waive_native_hash(self):
+        reader=type('Reader',(),{'digest':lambda self,n:'current'})()
+        phase={'before':{'sha256':'old'}}
+        with self.assertRaises(ValueError):close.checked_sources(reader,{'runtime/scene/canvas_producers.c':'old'},phase)
+
+    def test_review_does_not_waive_pixel_analyzer_hash(self):
+        reader=type('Reader',(),{'digest':lambda self,n:'current'})()
+        with self.assertRaises(ValueError):close.checked_sources(reader,{'tools/scene_actor_output.py':'old'},{'before':{'sha256':'old'}})
+
+    def test_wrong_collector_preimage_hash_rejected(self):
+        reader=type('Reader',(),{'digest':lambda self,n:'current'})()
+        with self.assertRaises(ValueError):close.checked_sources(reader,{close.COLLECTOR:'foreign'},{'before':{'sha256':'old'}})
+
+
+if __name__=='__main__':unittest.main()

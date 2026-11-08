@@ -1,5 +1,8 @@
 # Native rendering acceptance record
 
+**Partial combat/attachment closeout (2026-11-08):** [AC07](../research/runtime/attachment-combat-output-20261107.md) closes both combat-output rows at actual default/software640/800 over the90-row SV07 source phase: **92/156passed64pending**. Actual original melee events, source health/engagement brackets, changed body frames and complete independent native comparisons pass. Both attachment rows remain pending:800cases pass four-view mode1placement/output, but640quota/setup and Results-return failures lack normal admission. The five-start attachment cap is exhausted; no further original game is authorized by this partial result. Both final decisions and all inherited source phases remain explicit.
+
+
 **Scene occlusion closeout (2026-11-07):** the [retained scene analysis](../research/runtime/scene-visibility-effects-20261107.md) closes the two visibility rows across default/software 640/800, preserving all 88 parent rows: **90/156 passed, 66 pending**. 412 changing scene points/824 native viewport pixels match independent original WORDs. Four attachment/combat rows and both final decisions remain pending; all native execution phases and failures retain their original scope.
 
 **Integrated acceptance record (2026-11-07):** the

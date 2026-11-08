@@ -101,6 +101,11 @@ def main():
         # A dialogue/tutorial click and Escape are separate observed actions.
         # Let a new presented World confirm dismissal before opening Mini.
         send_escape=a.mode=='mini' and not action and (not a.complete_opening or len(progress)==4)
+        views_path=a.output.parent/'scene-effects-views.done'
+        if send_escape and os.environ.get('MNM_SCENE_EFFECTS_VIEWS')=='1' and not views_path.exists():
+            from scene_effects_input import exercise_views
+            exercise_views(d,x,xt,event)
+            views_path.write_text('Four physical rotation requests; actual views require source observation.\n')
         if send_escape:
             key=x.XKeysymToKeycode(d,0xff1b)
             for down in (1,0):xt.XTestFakeKeyEvent(d,key,down,0);key_down=bool(down);x.XFlush(d);event('escape',down=bool(down));time.sleep(.25)

@@ -27225,3 +27225,46 @@ All 67 scene/UI/client controls pass without skips. Both failed analyzer
 preparations and the wrong client-command refusal retain exact source phases
 and SQLite results. See [the six-row review](scene-visibility-effects-20261107.md)
 and `rendering-scene-effects-results-20261107/admission-03.json`.
+
+
+### AC07 actor sidecar and partial combat/attachment output — 2026-11-08
+
+The owned `scene-attachment-combat-20261107` batch admits exactly both combat
+rows over the SV07 baseline:92/156passed64pending, all90parent rows and both
+pending decisions preserved. `attachment-combat-results-20261107/admission-02.json`
+is explicit partial admission with two requested rows still pending. Four actual
+campaign default/software640/800 executions bind original Wizard/Redcap melee
+journal events to adjacent same-thread source generations, exact health and
+engagement tuples, a changed normalized rendered participant frame, uniquely
+owned source draws, eight visible original/native points per body per selected
+paint, full independent viewport comparisons and normal native-only Quit.
+Original comparison/replacement and native gameplay reconstruction remain none.
+
+The new opt-in v2 private actor sidecar has25production encoder/wire/input guards;
+37retained-data actor/event/clip/visibility/session guards and25actual-cast/row/
+host-budget-source guards pass. The partial admission also passes30Python UI and
+9client controls. Frame-local role tokens do not establish actor allocation
+identity. Two raw queue auxiliary words remain opaque/address-like; the initial
+pointer-free header comment is overbroad. Corrected scope and fresh controls04
+preserve every earlier native byte hash and control contract.
+
+Both800attachment cases pass independent complete output and mode1 Excalibur
+parent/child placement in all four views. Both640attachment domains remain
+unaccepted. One low setup run confirms QSaveFile disk quota exceeded in its exact
+core. A second low run observes the single self-cast, child and four views, but
+fails Results-to-readyQuick admission and normal retirement. Its quota guard
+retains more than46GiB headroom with no trigger. The original Results callback
+is recorded; the first pre-cleanup pending transition state/timing is missing,
+so a lease/renderer/driver cause remains unresolved. A later post-report prefix
+return cannot supply past normal Quit. Five actual attachment games are charged
+and exhausted; two certified zero-game requests in the separate budgets retain
+their original rows. The contact plan independently uses its six-start bound.
+No additional original start is authorized by this partial closeout.
+
+All failures, unique source versions, raw captures and original pins remain
+retained. Stopped old RAM executions move only through paired complete manifests
+and real verified restores, with canonical historical-path stubs. New low data
+uses a separate private RAM filesystem and remains pinned through handoff.
+Broader attachment/status/caller/map/provider/input/lifecycle domains, both
+attachment rows, the four-row task and both final decisions remain pending.
+See [the AC07 research](attachment-combat-output-20261107.md).

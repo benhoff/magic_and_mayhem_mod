@@ -31,7 +31,7 @@ def build(root=None,selftest=False,experimental_mini=False,fixture=True):
     user_definition=root/'user32.def'
     user_definition.write_text('LIBRARY USER32.dll\nEXPORTS\nGetClientRect@8\n')
     subprocess.run(['llvm-dlltool','-m','i386','-D','USER32.dll','-d',str(user_definition),'-l',str(root/'user32.lib'),'--kill-at'],check=True)
-    exports=['/export:MenuAnchor']
+    exports=['/export:MenuAnchor','/export:MenuGameplayPointV1=_MenuGameplayPointV1@12']
     if selftest:exports+=['/export:MenuInstallForTest=_MenuInstallForTest@0','/export:MenuCampaignInstallForTest=_MenuCampaignInstallForTest@0','/export:MenuCampaignNavigationForTest=_MenuCampaignNavigationForTest@0','/export:MenuCampaignWorldForTest=_MenuCampaignWorldForTest@0','/export:MenuCampaignMiniForTest=_MenuCampaignMiniForTest@0']
     dll=root/'MnmMenu.dll'
     subprocess.run(['lld-link','/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/timestamp:0',
