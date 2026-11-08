@@ -312,7 +312,13 @@ static u8* request(const struct Frame* f){
  else if(tag==5||tag==6){r[2]=MNM_PRODUCER_FILL;struct Surface* s=object(f->ecx);if(!s){fail(2,f->caller);return 0;}extent(r,s);r[14]=f->args[tag==5?0:1]&0xffff;if(tag==5){r[12]=s->width;r[13]=s->height;}else{if(!readable(f->args[0],16)){fail(3,tag);return 0;}for(u32 i=0;i<4;++i)r[10+i]=get((void*)(f->args[0]+i*4));}}
  else if(tag==7||tag==8){r[2]=MNM_PRODUCER_COPY;struct Surface* src=object(f->ecx),*dst=object(f->args[0]);if(!src||!dst){fail(4,f->caller);return 0;}extent(r,dst);r[4]=src->id;r[8]=f->args[1];r[9]=f->args[2];r[12]=src->width;r[13]=src->height;r[14]=tag==8?get((void*)(f->ecx+44))&0xffff:0xffffffff;checkpoint(src,1);}
  else if(tag==41){
-  struct Surface* src=object(f->ecx),*dst=object(f->args[0]);if(!src||!dst||!readable(f->args[1],16)||!readable(f->args[2],16)){fail(26,tag);return 0;}r[2]=MNM_PRODUCER_COPY;extent(r,dst);r[4]=src->id;for(u32 i=0;i<4;++i)r[10+i]=get((void*)(f->args[1]+i*4));r[8]=get((void*)f->args[2]);r[9]=get((void*)(f->args[2]+4));if(get((void*)(f->args[2]+8))-r[8]!=r[12]-r[10]||get((void*)(f->args[2]+12))-r[9]!=r[13]-r[11]){fail(27,tag);return 0;}r[14]=get((void*)(f->ecx+44))&0xffff;checkpoint(src,1);
+  struct Surface* src=object(f->ecx),*dst=object(f->args[0]);if(!src||!dst||!readable(f->args[1],16)||!readable(f->args[2],16)){fail(26,tag);return 0;}r[2]=MNM_PRODUCER_COPY;extent(r,dst);r[4]=src->id;for(u32 i=0;i<4;++i)r[10+i]=get((void*)(f->args[1]+i*4));r[8]=get((void*)f->args[2]);r[9]=get((void*)(f->args[2]+4));
+  u32 dw=get((void*)(f->args[2]+8))-r[8],dh=get((void*)(f->args[2]+12))-r[9];
+  if(dw!=r[12]-r[10]||dh!=r[13]-r[11]){
+   if(!continuous_map||!continuous_resident||get((void*)0x6e1f88)||!GetModuleHandleA("MnmDraw.dll")){fail(27,tag);return 0;}
+   r[15]=dw;r[16]=dh;r[23]=MNM_PRODUCER_NATIVE_COPY_STRETCH;
+  }
+  r[14]=get((void*)(f->ecx+44))&0xffff;checkpoint(src,1);
  }
  else if(tag==45){
   if(!readable(f->ecx,0x61cd)){fail(29,tag);return 0;}u32 cells=get((void*)(f->ecx+0x29));if(!cells)return 0;

@@ -27792,3 +27792,14 @@ Nine new classifier guards and ten unchanged route controls pass; no game, new
 game fixture, native-source change, historical hash refresh or accepted rerun.
 See [the exact blockers and bounded next step](rendering-two-copy-readiness-20261108.md)
 and SQLite`rendering-two-copy-results-20261108/assessment-03.json`.
+
+
+## Natural Grimoire stretch and NCS1 prefix — 2026-11-08
+
+Native public Grimoire calls reach NoCD58cbc0/return58cc63 unequal RGB565 keyed rectangles. Native CPU transforms already published full C3 UPDATEs; the source observer instead failed27/tag41 and cancelled the16384-record prefix drain. The additive fail-closed NCS1record and sampled-authority/frozen-source native replay repair that representation. NCR1rectangle refusal and old V1/V2 rejection remain distinct. Native integer-floor sampling is intentional policy, not original driver parity.
+
+`NCS1.two-stretch-rows01` admits only both stretch operation profile rows over the112-row owned parent:114/156passed42pending. Four actual640/800default/software public Grimoire sessions independently match all336complete destinations/132249600pixels, zero differences, and an immediately following whole GPU source or destination-before readback for each. Finite unrelated diagnostic omissions remain explicit. No captured destination seeds its own expected history. `NCS1.prefix-integration01` separately proves150actual NCS1records consumed across65536source-only records, with ordinary original/native retirement and no World work. `NCS1.controls01` retains41Python controls and the exact tested C++canvas/decoder binary.
+
+All14managed requests/11actual starts remain charged and retained:four positive, seven failed and three zero-game refusals; setup07is separately unadmitted. The High host-close crash lost in-memory external action receipts and receives no whole acquisition credit. Actual destroyed-window controls repair that collector race. The accepted Low phase is preserved with exact post-retirement-only AST review; no accepted matrix is recollected. Five stopped failed stages retain every file/pin in both immutable stores after real restores, reclaiming5389017088allocated bytes with pinned historical restore stubs. Keep all SQLite staging/review/budget catalogs, tested binaries, source phases and source checkouts.
+
+Both alias/overlap profile rows remain pending: no natural overlapping call is witnessed; supplied self-copy controls do not resolve reachability/traversal. Original driver sampling, hidden whole replay pixels, indexed/conversion/clipper or all-GPU stretch, World/gameplay, combined-current player and both final decisions remain separate. See research/runtime/rendering-copy-natural-20261108.md and its SQLite report references.

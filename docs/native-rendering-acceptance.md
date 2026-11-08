@@ -1,4 +1,6 @@
-Current local master integration:108/156passed48pending.
+Current owned native stretch admission:114/156passed42pending over the112-row parent. Only both stretch profile rows close. Four actual640/800default/software Grimoire sessions match336complete native CPU destinations and immediately following full GPU planes:132249600pixels, zero differences. Native source-prefix replay separately consumes150NCS1records across65536source records. Alias/overlap and both final decisions remain pending; whole combined-current player and original driver equivalence are not claimed. See `research/runtime/rendering-copy-natural-results-20261108/acceptance-01.json` and `research/runtime/rendering-copy-natural-20261108.md`.
+
+Prior scene integration:108/156passed48pending.
 Scene attachment/combat adds four accepted rows to all104incoming master rows.
 See `research/runtime/scene-master-merge-results-20261108/acceptance-02.json`.
 Both parent native/runtime/oracle source phases remain exact, with raw combined

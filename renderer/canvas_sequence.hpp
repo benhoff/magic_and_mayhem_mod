@@ -27,6 +27,10 @@ public:
   void fill(std::uint32_t, Rect, std::uint16_t);
   void copy(std::uint32_t source, std::uint32_t destination, Rect, int x, int y,
             std::optional<std::uint16_t> key = {});
+  // Bounded native CPU-transform policy; exact integer floor sampling and a
+  // frozen whole source for aliases. Original-driver parity is separate.
+  void stretchCopy(std::uint32_t source, std::uint32_t destination, Rect sourceRect,
+                   Rect destinationRect, std::optional<std::uint16_t> key = {});
   void update(std::uint32_t, int x, int y, const Image &);
   void glyph(std::uint32_t, const assets::SpriteFrame &, int x, int y, Rect,
              std::array<unsigned, 3> tint, const std::array<float, 64> &);
