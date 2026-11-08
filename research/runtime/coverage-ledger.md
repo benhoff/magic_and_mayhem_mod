@@ -27411,3 +27411,41 @@ terminal error promptly; 24 current controls pass. No native raster or gameplay
 change, successful combined-guest claim or historical proof refresh. See
 [RT08](rendering-recovery-startup-20261108.md) and `RT08.startup-negative01`.
 
+
+
+## Natural defeat report and retirement — 2026-11-08
+
+DF08 closes only default/software `journey.battle-results.defeat` across retained
+actual640/800 runs.102/156passed54pending; all100parent rows and both pending
+final decisions are unchanged. Original actor health/death bytes corroborate
+the physical helper. Original report OK, single World pop, fresh Main ACK and
+normal Quit bind complete source returns, cancelled next original-owned write,
+STOP/ack and zero input/jobs/graphics owners. Every captured native leased swap
+joins its historical independent original-history comparison and actual GPU
+plane hash:22966119000pixels,zero differences. No new game, current native
+player/oracle execution, raster repair or simulation/balance change.
+
+Historical exact binaries/compiler/runtime/oracle phases and broader populated
+object/vptr/generation lifetime gaps stay pinned. Compiled visible public-button
+menu automation is separate from physical menu accessibility and widget glyphs.
+Victory/later-map, font/DC, other54rows and both decisions remain pending.
+Thirty new adverse guards,34progression guards,14explicitly reviewed retirement
+controls,30UI and9client tests pass. Preserve the initial omitted-input skips,
+historical expected-field failure and independent raw-slot wrapper; no old
+report/hash was refreshed. The6987committed file transitions6763ec077→39f76b228
+have exact receipts after retrospective custody accounting for3393opaque RT07
+attachments; this is separate from engine validation and past gate claims.
+See[the closeout](rendering-defeat-closeout-20261108.md),
+[acceptance](rendering-defeat-results-20261108/acceptance-01.json) and
+[controls](rendering-defeat-results-20261108/controls-01.json).
+
+
+DF08 actual-master integration starts at recovery-diagnostics2a3c8705d with
+checked feature6014e815c. Preserve all incoming behavior/evidence/scenario and
+ledger histories; only the two defeat rows add acceptance credit. Exact102/54
+projection and both decisions stay unchanged. No changed defeat proof source
+or contract; require-applicable passes without execution. Fresh merged audit
+has zero errors/current scoped headless DF08support. The443new committed file
+transitions have zero receipt gaps after376opaque incoming attachment custody
+receipts. Preserve both negative history scans, both review caches/checkpoints
+and all original phases; no new game/native/oracle validation or source waiver.
