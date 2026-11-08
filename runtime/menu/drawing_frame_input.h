@@ -40,6 +40,9 @@ static void frame_input_sample(u32 kind,u32 call,void* object,u32 mask,const u32
  if(frame_input_count>=8192)r[7]|=0x80000000u;
  u32 wrote=0;
  if(!WriteFile(frame_input_file,r,sizeof(r),&wrote,0)||wrote!=sizeof(r)||r[7]&0x80000000u){CloseHandle(frame_input_file);frame_input_file=0;}
+#ifdef MNM_UI_ACCEPTANCE_OBSERVATION
+ if(kind==1)ui_acceptance_sample(1,0,0,result,error);
+#endif
  region_input_fp_restore(fp);SetLastError(error);
 }
 static void frame_input_close(void){if(frame_input_file){CloseHandle(frame_input_file);frame_input_file=0;}}

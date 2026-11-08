@@ -205,3 +205,13 @@ The opening record is the fifth artifact in place, with a pending acceptance
 decision. Runtime completion still requires execution of the plan and the
 appropriate proof. The [review note](../research/runtime/rendering-acceptance-record-20261030.md)
 records guards, source/history accounting and local evidence preservation.
+
+UI07 records [HUD/tooltip/pause acceptance](../research/runtime/rendering-hud-tooltip-pause-20261107.md)
+for default/software at actual640/800, with complete independent output and
+normal retirement. Its standalone94/156 inventory adds exactly six rows over
+the88-row parent; both final decisions remain pending. Later integrations retain
+concurrent positive rows and each recorded compiler/runtime source phase.
+
+The integrated UI07/PA07 inventory has98of156rows passed,
+58pending, all six requested HUD/tooltip/pause targets passed and both
+final decisions pending. Each accepted execution retains its exact build phase.

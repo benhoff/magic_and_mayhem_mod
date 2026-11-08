@@ -22,7 +22,9 @@ static int input_supported_key(i32 code){
 static char input_acceptance_path[512];
 static u32 input_acceptance_data[16+8*12],input_acceptance_count,input_acceptance_down;
 static volatile i32 input_acceptance_busy;
+#include "ui_key_observation.h"
 static void input_acceptance(i32 code,u32 value,u32 sequence,u32 owned,u32 caller){
+    input_ui_acceptance(code,value,sequence,owned,caller);
     if(!input_acceptance_path[0] || code!=39 || __sync_lock_test_and_set(&input_acceptance_busy,1))return;
     u32 down=(value&0x8000)!=0;
     if(input_acceptance_count<8 && (input_acceptance_count?down!=input_acceptance_down:down)){
@@ -82,6 +84,7 @@ static void input_init(void){
     if(desktop)for(u32 i=MNM_INPUT_V2_RESERVED_OFFSET/4;i<MNM_INPUT_V2_HEADER_SIZE/4;++i)if(words[i])return;
     input_desktop_coordinates=desktop;
     input_words=words;
+    input_ui_configure();
     char flag[4];if(length+12<sizeof(input_acceptance_path) && GetEnvironmentVariableA("MNM_ACCEPTANCE_PILOT",flag,4)==1 && flag[0]=='1'){
         copy(input_acceptance_path,path,length);copy(input_acceptance_path+length,".acceptance",12);
     }

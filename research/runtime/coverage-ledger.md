@@ -27263,3 +27263,35 @@ All six zero-game refusals, eight conservatively counted original starts, failed
 ### CL07 preserves incoming pause and capture-policy work
 
 The final merge starts from actual master `2d559b55b`: all92incoming accepted scene/pause/earlier rows and both decisions remain; the same four clipping domains add only2rows for94/156passed,62pending. The earlier uncommitted92-row merge has a lossless pinned Git source-tree checkpoint, not a gate/commit claim. Current capture-header changes are opt-in metadata policy only; four retained cases pass current-reader analysis and the applicable PA07native capture controls retain exact source bytes. Nine strict reader guards cover the new/legacy reader. New CL07*02evidence preserves old*01hashes/staleness and declares no new game/native engine execution or current full-player producer. Rendering/guest copy math remains byte-exact; data/control changes do not reopen completed milestones. The committed pause range adds5412exactly reviewed transitions with zero unresolved gaps.
+
+## UI07 HUD, tooltip and Space/Mini pause acceptance — 2026-11-07
+
+The [four-domain closeout](rendering-hud-tooltip-pause-20261107.md) admits the six
+default/software HUD-update, tooltip-open-close and pause rows at actual640/800.
+The standalone inventory preserves88parent rows and adds6:94/156passed,62pending,
+with both decisions pending. All four complete actual outputs have zero pixel
+differences against independent original source/history replay. Actual original
+actor values/text/SFT glyphs, pause/counter transitions, Mini ownership/Cancel,
+full identity and normal original Quit remain independently checked.
+
+Thirteen charged requests retain eleven games, including seven failed games
+and two zero-game refusals; four accepted cases supply row credit. Production
+header stubs, actual-data adverse guards and source640 controls have distinct
+headless/static scope. No optional campaign API journal or original key-message
+handler is newly recovered. Full font/DC/ABI/actor lifetimes, all-simulation
+pause, arbitrary providers and both final verdicts remain open. Exact historical
+source phases are preserved; the concurrent PA07 command-capture build and its
+pause proof must be retained separately when the inventories are integrated.
+
+## UI07 integration with concurrent pause acceptance — 2026-11-07
+
+The exact join over `110c33ae26fba3e4c38f714b1a1c55e81df6bded` preserves all94incoming
+passed rows and adds only4pending HUD/tooltip targets: 98/156passed,
+58pending. All six requested HUD-update/tooltip-open-close/pause rows
+pass. The already accepted PA07 pause rows and their attachments stay unchanged;
+UI07 also retains its separately proved Space/Mini observations. Both final
+decisions and every earlier failure/source phase remain pending or preserved
+within their original scope. The incoming opt-in capture-v4, COPY/clip diagnostics and helper changes
+have different full hashes from UI07's recorded3712fff8 player/legacy reader.
+These are retained execution phases; this join supplies no new merged-build
+execution, broad all-simulation pause, resource-lifetime or whole-player claim.
