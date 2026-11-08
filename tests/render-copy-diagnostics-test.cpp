@@ -20,7 +20,7 @@ SurfaceCommand create(unsigned id,unsigned seq,const Image& image){auto c=comman
 int main(int argc,char** argv){
  QSurfaceFormat f;f.setVersion(3,3);f.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(f);QGuiApplication app(argc,argv);
  try{
-  QTemporaryDir dir;require(dir.isValid(),"No temporary output");GlBlitter renderer;Image image{800,600,std::vector<std::uint32_t>(800*600)};
+  QTemporaryDir dir;require(dir.isValid(),"No temporary output");GlBlitter renderer;QJsonObject distinctResult;Image image{800,600,std::vector<std::uint32_t>(800*600)};
   for(std::size_t i=0;i<image.pixels.size();++i)image.pixels[i]=(i+1)&65535;
   const auto world=renderer.create(image,{16,{0xf800,0x7e0,31}});auto frame=renderer.presentGpu(world);
   auto diagnostics=std::make_shared<CommandCopyDiagnostics>(dir.path());CommandConsumerOptions options;options.copyDiagnostics=diagnostics;
@@ -86,8 +86,59 @@ int main(int argc,char** argv){
    bool mismatch=false;try{badCpu.after(keyed,renderer,dst);badCpu.finish();}catch(const std::runtime_error&){mismatch=true;}
    require(mismatch,"Missing CPU-keyed draw passed independent output proof");renderer.destroy(src);renderer.destroy(dst);
   }
+  {
+   const auto path=dir.filePath("distinct-inputs");
+   auto distinct=std::make_shared<CommandCopyDiagnostics>(path,CommandCopyDiagnostics::Selection::DistinctInputs);
+   Image small=image,blank{800,600,std::vector<std::uint32_t>(800*600,100)};
+   const auto resident=renderer.create(small,{16,{0xf800,0x7e0,31}});auto residentFrame=renderer.presentGpu(resident);
+   CommandConsumerOptions selected;selected.copyDiagnostics=distinct;selected.exportImages=true;
+   selected.residentWorld=[&](auto,auto){return residentFrame;};CommandConsumer copies(renderer,{},selected);unsigned seq=1;
+   auto submit=[&](SurfaceCommand c){c.sequence=seq++;copies.submit(c);};
+   submit(create(1,0,small));submit(create(2,0,blank));
+   const auto full=command(3,0,{1,2,0,0,800,600,0,0,0,0});submit(full);
+   auto changed=small;changed.pixels[0]=0x7bef;auto update=command(2,0,{1,0,0,800,600});update.image=changed;submit(update);
+   submit(full);submit(command(6,0,{2}));
+   require(qFromLittleEndian<quint16>(copies.result().native.constData())==0x7bef,"Skipped duplicate did not execute its changed actual input");
+   submit(command(7,0,{1}));changed.pixels[0]=31;submit(create(3,0,changed));const auto replacement=command(3,0,{3,2,0,0,800,600,0,0,0,0});submit(replacement);submit(command(6,0,{2}));
+   require(qFromLittleEndian<quint16>(copies.result().native.constData())==31,"Replacement handle lifetime did not execute");
+   submit(command(19,0,{3,1,0,1,0}));submit(replacement);submit(replacement);
+   for(unsigned i=0;i<9;++i)submit(command(3,0,{3,2,i%4,i/4,i%4+1,i/4+1,i%4,i/4,0,0}));
+   submit(command(3,0,{3,2,0,0,1,1,0,0,0,0}));
+   submit(command(3,0,{3,2,0,2,1,3,0,2,0,0}));
+   submit(command(3,0,{3,2,0,0,800,600,0,0,1,50000}));submit(command(6,0,{2}));
+   const auto actual=copies.result().native;
+   require(actual.size()==800*600*2,"Distinct final native plane extent");
+   for(unsigned i=0;i<image.pixels.size();++i)require(qFromLittleEndian<quint16>(actual.constData()+2*i)==image.pixels[i],"Selection altered actual World/key/budget output");
+   submit(command(7,0,{3}));submit(command(7,0,{2}));submit(command(8,0,{}));copies.finish();distinct->finish();
+   QFile summary(path+"/report.json");require(summary.open(QIODevice::ReadOnly),"Missing distinct input summary");distinctResult=QJsonDocument::fromJson(summary.readAll()).object();
+   require(distinctResult["success"].toBool() && distinctResult["selection"]=="distinct-copy-inputs"
+    && distinctResult["copies_seen"].toInt()==17 && distinctResult["copies_checked"].toInt()==11
+    && distinctResult["copies_skipped_duplicate"].toInt()==3 && distinctResult["copies_skipped_class_budget"].toInt()==3
+    && distinctResult["copies_skipped_byte_budget"].toInt()==0 && distinctResult["diagnostic_native_readbacks"].toInt()==33
+    && distinctResult["retained_pixel_cases"].toInt()==11 && distinctResult["selected_plane_bytes"].toInt()==84480000,
+    "Distinct input selector/readback/retention denominator differs");
+   QFile evidence(path+"/copies.jsonl");require(evidence.open(QIODevice::ReadOnly),"Missing distinct input rows");
+   const auto rows=evidence.readAll().trimmed().split('\n');require(rows.size()==11,"Selected plane lost");
+   const auto first=QJsonDocument::fromJson(rows[0]).object(),reuse=QJsonDocument::fromJson(rows[1]).object(),ancestry=QJsonDocument::fromJson(rows[2]).object();
+   require(first["source_create_sequence"].toInt()==1 && reuse["source_create_sequence"].toInt()==8
+    && reuse["words"]==ancestry["words"] && !reuse["source_world_ancestry"].toBool() && ancestry["source_world_ancestry"].toBool(),
+    "Replacement lifetime or ancestry transition was deduplicated as old input");
+   for(const auto& encoded:rows){const auto row=QJsonDocument::fromJson(encoded).object();
+    for(const auto* role:{"source","before","actual","expected"}){QFile pixels(path+"/"+row["files"].toObject()[role].toString());
+     require(pixels.open(QIODevice::ReadOnly) && QString::fromLatin1(QCryptographicHash::hash(pixels.readAll(),QCryptographicHash::Sha256).toHex())==row[QString(role)+"_sha256"].toString(),"Distinct complete plane is missing/corrupt");}}
+   renderer.destroy(resident);
+  }
+  {
+   CommandCopyDiagnostics bad(dir.filePath("wrong-distinct"),CommandCopyDiagnostics::Selection::DistinctInputs);
+   Image srcImage{4,3,{1,2,3,4,5,6,7,8,9,10,11,12}},dstImage{4,3,std::vector<std::uint32_t>(12,100)};
+   const auto src=renderer.create(srcImage,{16,{0xf800,0x7e0,31}}),dst=renderer.create(dstImage,{16,{0xf800,0x7e0,31}});
+   bad.committed(create(1,1,srcImage));bad.committed(create(2,2,dstImage));const auto copy=command(3,3,{1,2,0,0,3,2,1,1,0,0});
+   require(bad.before(copy,renderer,src,dst),"First distinct input skipped");bool mismatch=false;
+   try{bad.after(copy,renderer,dst);bad.finish();}catch(const std::runtime_error&){mismatch=true;}
+   require(mismatch,"Distinct selector hid an omitted actual GPU copy");renderer.destroy(src);renderer.destroy(dst);
+  }
   renderer.destroy(world);require(renderer.stats().surfaces==0,"Diagnostic resource leak");
   const auto driver=renderer.driver();
-  std::puts(QJsonDocument(QJsonObject{{"success",true},{"copies_checked",2},{"non_world_readbacks",0},{"diagnostic_readbacks",6},{"overwrites_refused",true},{"cpu_keyed_all_copy_checks",2},{"renderer",QString::fromStdString(driver.renderer)},{"worker_peak_bytes",report["worker_peak_bytes"]}}).toJson(QJsonDocument::Compact).constData());return 0;
+  std::puts(QJsonDocument(QJsonObject{{"success",true},{"copies_checked",2},{"non_world_readbacks",0},{"diagnostic_readbacks",6},{"overwrites_refused",true},{"cpu_keyed_all_copy_checks",2},{"renderer",QString::fromStdString(driver.renderer)},{"worker_peak_bytes",report["worker_peak_bytes"]},{"distinct_inputs",distinctResult}}).toJson(QJsonDocument::Compact).constData());return 0;
  }catch(const std::exception& e){std::fprintf(stderr,"%s\n",e.what());return 1;}
 }

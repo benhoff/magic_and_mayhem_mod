@@ -12,6 +12,8 @@
 #include <QElapsedTimer>
 #include <QtEndian>
 #include <set>
+#include <map>
+#include <algorithm>
 #include <stdexcept>
 namespace mnm::render {
 namespace {
@@ -29,10 +31,18 @@ QByteArray bytes(const Image& image){
 QString hash(const QByteArray& b){return QString::fromLatin1(QCryptographicHash::hash(b,QCryptographicHash::Sha256).toHex());}
 }
 struct CommandCopyDiagnostics::Impl {
+    using Input=std::array<std::uint32_t,16>;
     QDir directory;QFile records;
     std::set<unsigned> ancestry;
     Selection selection;std::array<unsigned,4> retainedClasses{};
     std::set<std::array<std::uint32_t,13>> retained;
+    std::set<Input> inputs;
+    std::map<unsigned,unsigned> births;
+    std::array<unsigned,4> inputClasses{};
+    Input pendingInput{};
+    std::uint64_t duplicateSkipped=0,classSkipped=0,byteSkipped=0,inputBytes=0;
+    static constexpr unsigned InputsPerClass=8;
+    static constexpr std::uint64_t InputByteLimit=256ull*1024*1024;
     Image source,before;
     unsigned pending=0,seen=0,enqueued=0,checked=0,ended=0,truncated=0,saved=0;
     std::size_t pendingCharge=0;bool finalized=false;
@@ -41,7 +51,7 @@ struct CommandCopyDiagnostics::Impl {
     QString error;
     static constexpr std::size_t QueueLimit=512ull*1024*1024;
     detail::DiagnosticWorker worker{QueueLimit,256};
-    void process(unsigned,const std::array<std::uint32_t,13>&,bool,Image,Image,Image);
+    void process(unsigned,const std::array<std::uint32_t,13>&,bool,Input,Image,Image,Image);
     void checkError(){const auto failure=worker.error();if(!failure.empty())throw std::runtime_error(failure);}
     explicit Impl(const QString& path,Selection choose):directory(path),records(directory.filePath("copies.jsonl")),selection(choose){
         require(!path.isEmpty() && QDir().mkpath(path),"Cannot create copy diagnostics directory");
@@ -50,7 +60,7 @@ struct CommandCopyDiagnostics::Impl {
     void report(){
         records.flush();QSaveFile file(directory.filePath("report.json"));
         require(file.open(QIODevice::WriteOnly),"Cannot open copy diagnostic report");
-        const QJsonObject out{{"schema",1},{"selection",selection==Selection::AllCopies?"all-copies":"world-ancestry"},{"success",bool(ended && checked && enqueued==checked && !pending && !truncated && error.isEmpty() && !worker.outstanding())},
+        QJsonObject out{{"schema",1},{"selection",selection==Selection::DistinctInputs?"distinct-copy-inputs":selection==Selection::AllCopies?"all-copies":"world-ancestry"},{"success",bool(ended && checked && enqueued==checked && !pending && !truncated && error.isEmpty() && !worker.outstanding())},
           {"ended",bool(ended)},{"truncated",bool(truncated)},{"error",error},{"copies_seen",qint64(seen)},{"copies_checked",qint64(checked)},{"copies_enqueued",qint64(enqueued)},
           {"proof_processing","bounded-fifo-worker"},{"worker_queue_limit_bytes",qint64(QueueLimit)},{"worker_peak_bytes",qint64(worker.peak())},
           {"retained_pixel_cases",qint64(saved)},{"pixels_compared",qint64(pixels)},{"diagnostic_native_readbacks",qint64(readbacks)},
@@ -58,6 +68,13 @@ struct CommandCopyDiagnostics::Impl {
           {"cpu_readback_ms",readbackMs},{"cpu_reference_compare_ms",referenceMs},
           {"cpu_encoding_hash_ms",encodingHashMs},{"cpu_witness_write_ms",writeMs},{"timing_scope","Readbacks on GL owner; independent comparison, hashing and witness writes on one worker. Host elapsed includes waits; no GPU busy-time or scanout claim"},
           {"scope","Selected native COPY commands until8192copies/32GiB diagnostic readbacks. Selection is explicit; independent CPU transform and complete destination comparison. No original World or presented-session equivalence."}};
+        if(selection==Selection::DistinctInputs){
+            out["copies_skipped_duplicate"]=qint64(duplicateSkipped);out["copies_skipped_class_budget"]=qint64(classSkipped);
+            out["copies_skipped_byte_budget"]=qint64(byteSkipped);out["selected_input_signatures"]=qint64(inputs.size());
+            out["input_limit_per_class"]=int(InputsPerClass);out["retained_plane_byte_limit"]=qint64(InputByteLimit);
+            out["selected_plane_bytes"]=qint64(inputBytes);
+            out["scope"]="At most8distinct COPY word/source-lifetime/target-lifetime/ancestry signatures per ancestry/key class and256MiB full retained planes. Every selected source/prior/actual/expected plane is compared and retained. Duplicates and budget exclusions still draw normally and receive no output credit; no whole-run or repeated-value proof.";
+        }
         require(file.write(QJsonDocument(out).toJson())>0 && file.commit(),"Cannot commit copy diagnostic report");
     }
 };
@@ -71,12 +88,23 @@ void CommandCopyDiagnostics::finish(){
 bool CommandCopyDiagnostics::before(const SurfaceCommand& c,GlBlitter& renderer,SurfaceId source,SurfaceId target){
     auto& p=*impl_;require(!p.finalized,"Copy diagnostics already finalized");p.checkError();++p.seen;
     if(p.selection==Selection::WorldAncestry && !p.ancestry.count(c.words[0]))return false;
+    Impl::Input input{};const bool distinct=p.selection==Selection::DistinctInputs;
+    const bool ancestry=p.ancestry.count(c.words[0]);const unsigned bucket=(ancestry?2u:0u)+(c.words[8]?1u:0u);
+    if(distinct){
+        std::copy(c.words.begin(),c.words.end(),input.begin());
+        input[13]=p.births.at(c.words[0]);input[14]=p.births.at(c.words[1]);input[15]=ancestry;
+        if(p.inputs.count(input)){++p.duplicateSkipped;return false;}
+        if(p.inputClasses[bucket]>=Impl::InputsPerClass){++p.classSkipped;return false;}
+    }
     require(!p.pending,"Overlapping copy diagnostics");
     const auto s=renderer.dimensions(source),d=renderer.dimensions(target);
     const auto cost=(std::uint64_t(s.width())*s.height()+2ull*std::uint64_t(d.width())*d.height())*4;
+    const auto planeBytes=cost+std::uint64_t(d.width())*d.height()*4;
+    if(distinct && planeBytes>Impl::InputByteLimit-p.inputBytes){++p.byteSkipped;return false;}
     if(p.enqueued>=8192 || cost>32ull*1024*1024*1024-p.readbackBytes){p.truncated=1;return false;}
     p.pendingCharge=std::size_t(cost+std::uint64_t(d.width())*d.height()*4+65536);
     if(!p.worker.reserve(p.pendingCharge)){p.checkError();p.truncated=1;return false;}
+    if(distinct){p.inputs.insert(input);++p.inputClasses[bucket];p.inputBytes+=planeBytes;p.pendingInput=input;}
     QElapsedTimer timing;timing.start();
     p.source=renderer.read(source);p.before=renderer.read(target);p.readbacks+=2;
     p.readbackMs+=timing.nsecsElapsed()/1000000.;
@@ -89,12 +117,12 @@ void CommandCopyDiagnostics::after(const SurfaceCommand& c,GlBlitter& renderer,S
     p.readbackMs+=timing.nsecsElapsed()/1000000.;timing.restart();
 
     const bool ancestry=p.ancestry.count(c.words[0]);
-    p.worker.post(p.pendingCharge,[&p,sequence=c.sequence,words=c.words,ancestry,source=std::move(p.source),before=std::move(p.before),actual=std::move(actual)]()mutable{
-        p.process(sequence,words,ancestry,std::move(source),std::move(before),std::move(actual));
+    p.worker.post(p.pendingCharge,[&p,sequence=c.sequence,words=c.words,ancestry,input=p.pendingInput,source=std::move(p.source),before=std::move(p.before),actual=std::move(actual)]()mutable{
+        p.process(sequence,words,ancestry,input,std::move(source),std::move(before),std::move(actual));
     });
     ++p.enqueued;p.pending=0;p.pendingCharge=0;
 }
-void CommandCopyDiagnostics::Impl::process(unsigned sequence,const std::array<std::uint32_t,13>& words,bool ancestry,Image source,Image before,Image actual){
+void CommandCopyDiagnostics::Impl::process(unsigned sequence,const std::array<std::uint32_t,13>& words,bool ancestry,Input input,Image source,Image before,Image actual){
     auto& p=*this;QElapsedTimer timing;timing.start();
     // Only after GPU execution and its output capture, compute an independent
     // CPU expectation. No expected image can influence that execution.
@@ -119,10 +147,14 @@ void CommandCopyDiagnostics::Impl::process(unsigned sequence,const std::array<st
       {"target_width",actual.width},{"target_height",actual.height},{"pixels",qint64(actual.pixels.size())},
       {"mismatches",qint64(mismatches)},{"source_sha256",sourceHash},{"before_sha256",beforeHash},{"actual_sha256",actualHash},{"expected_sha256",expectedHash}};
     const unsigned bucket=(ancestry?2u:0u)+(words[8]?1u:0u);
-    const bool retain=mismatches || (p.selection==Selection::AllCopies?
+    const bool retain=mismatches || p.selection==Selection::DistinctInputs || (p.selection==Selection::AllCopies?
         (p.retainedClasses[bucket]<4 && p.retained.insert(words).second):
         (p.retained.size()<16 && p.retained.insert(words).second));
     if(retain && !mismatches)++p.retainedClasses[bucket];
+    if(p.selection==Selection::DistinctInputs){
+        row["source_create_sequence"]=qint64(input[13]);row["target_create_sequence"]=qint64(input[14]);
+        require(bool(input[15])==ancestry,"Diagnostic selection ancestry changed");
+    }
     if(retain){
         const auto base=QString("copy-%1").arg(sequence,8,16,QChar('0'));QJsonObject files;
         for(const auto& item:std::array<std::pair<const char*,QByteArray>,4>{{{"source",s},{"before",b},{"actual",a},{"expected",e}}}){
@@ -139,6 +171,7 @@ void CommandCopyDiagnostics::Impl::process(unsigned sequence,const std::array<st
 }
 void CommandCopyDiagnostics::committed(const SurfaceCommand& c){
     auto& p=*impl_;require(!p.finalized,"Copy diagnostics already finalized");p.checkError();const auto& w=c.words;
+    if(p.selection==Selection::DistinctInputs){if(c.operation==1)p.births[w[0]]=c.sequence;else if(c.operation==7)p.births.erase(w[0]);}
     if(c.operation==MNM_RENDER_STREAM_V4_OPERATION_WORLD)p.ancestry.insert(w[0]);
     else if(c.operation==3 && p.ancestry.count(w[0]))p.ancestry.insert(w[1]);
     else if(c.operation==7)p.ancestry.erase(w[0]);

@@ -39,6 +39,7 @@ __declspec(dllexport) i32 WIN NativeDrawGpuCopyPlanV1(void* dst,const i32* dr,vo
  if((flags&0x8000) && !s->key_set){result=ND_INVALID;goto done;}
  if(!s->history_stale || ((flags&0x8000) && s->key_low!=s->key_high)){result=NS_UNSUPPORTED;goto done;}
  ns_gpu_plan(out,d,s,rd,rs,clips,(flags&0x8000)!=0);
+ nd_clip_observe(2,(struct NsObject*)dst,(struct NsObject*)src,rd,rs,flags,clips,out->result,out->count,0,0);
  if(out->count){d->history_stale=1;for(u32 i=0;i<2;++i){d->history_generation[i]=s->history_generation[i];d->history_nonce[i]=s->history_nonce[i];}++ns_copies;}
  done:ns_guard_refresh(d);if(clips)HeapFree(GetProcessHeap(),0,clips);return result;
 }
@@ -64,5 +65,6 @@ __declspec(dllexport) i32 WIN NativeDrawCpuCopyPlanV1(void* dst,const i32* dr,vo
  u32* clips=0;i32 result=d->clipper?nc_snapshot(d->clipper,&clips):0;if(result)return result;
  ns_gpu_plan(out,d,s?s:d,rd,rs,clips,(flags&0x8000)!=0);
  if(fill)out->self=0;
+ nd_clip_observe(fill?3u:1u,(struct NsObject*)dst,(struct NsObject*)src,rd,rs,flags,clips,out->result,out->count,0,0);
  if(clips)HeapFree(GetProcessHeap(),0,clips);return 0;
 }

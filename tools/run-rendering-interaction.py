@@ -248,7 +248,7 @@ class InteractionJourney(camera.CameraJourney):
         return dict(preferences=preferences, map=selected['setup'], camera_actions=self.camera_actions)
 
 
-def main():
+def main(*, source_capture_path=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--report', required=True)
     p.add_argument('--software', action='store_true')
@@ -312,7 +312,7 @@ def main():
             MNM_MENU_DIRECTPLAY_DX6='1', MNM_CACHE_ADAPTERS='1', MNM_VERIFY_ORIGINALS='0', MNM_VERIFY_ASSETS='0',
             MNM_TERRAIN_LIGHTING='native', QT_QPA_PLATFORM='xcb', QT_LINUX_ACCESSIBILITY_ALWAYS_ON='1', QT_ACCESSIBILITY='1',
             LP_NUM_THREADS='4', QT_SCALE_FACTOR='1', WINEDEBUG='-all', XDG_CONFIG_HOME=str(out / 'config'),
-            MNM_RESIDENT_STAGE_PROFILE='1', MNM_RESIDENT_PROFILE_CAPTURE=str(out / 'worlds.bin'), MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS='1',
+            MNM_RESIDENT_STAGE_PROFILE='1', MNM_RESIDENT_PROFILE_CAPTURE=str(source_capture_path if source_capture_path is not None else out / 'worlds.bin'), MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS='1',
             MNM_ACCEPTANCE_CAPTURE_DIRECTORY=str(out / 'capture'), MNM_ACCEPTANCE_CAPTURE_ID=result['session_identity'],
             MNM_ACCEPTANCE_NORMAL='1', MNM_ACCEPTANCE_CAMPAIGN='1', MNM_ACCEPTANCE_GAMEPLAY='1', MNM_ACCEPTANCE_FRAME_INPUT='1',
             XDG_RUNTIME_DIR=os.environ['XDG_RUNTIME_DIR'], XDG_CACHE_HOME=str(out/'cache'),
@@ -378,6 +378,13 @@ def main():
             except Exception as capture_error: result['failure_capture_error'] = str(capture_error)
     finally:
         if journey:
+            # Failure may precede the controller's next poll even though the
+            # launcher has already admitted and started the original session.
+            # Discover from the existing owner journal before counting or
+            # retaining artifacts; no accessibility or game interaction here.
+            try:journey.discover()
+            except Exception as error:
+                result.update(success=False,session_discovery_error=str(error))
             result.update(states=journey.states, actions=journey.actions, camera_actions=journey.camera_actions,
                           screenshots=journey.screenshots, session=str(journey.session) if journey.session else None)
             journey.input.close()

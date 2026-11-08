@@ -47,8 +47,10 @@ bool LiveCommandRenderer::poll(quint32 budget){
             if(!diagnosticPath.isEmpty()){
                 const auto scope=qEnvironmentVariable("MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE");
                 if(!scope.isEmpty() && scope!="world" && scope!="all")throw std::runtime_error("Unknown copy diagnostic scope");
+                const auto distinct=qEnvironmentVariable("MNM_NATIVE_COPY_DISTINCT_INPUTS");
+                if((!distinct.isEmpty() && distinct!="0" && distinct!="1") || (distinct=="1" && scope!="all"))throw std::runtime_error("Invalid distinct COPY diagnostic selection");
                 copyDiagnostics=std::make_shared<mnm::render::CommandCopyDiagnostics>(diagnosticPath,
-                    scope=="all"?mnm::render::CommandCopyDiagnostics::Selection::AllCopies:mnm::render::CommandCopyDiagnostics::Selection::WorldAncestry);
+                    distinct=="1"?mnm::render::CommandCopyDiagnostics::Selection::DistinctInputs:scope=="all"?mnm::render::CommandCopyDiagnostics::Selection::AllCopies:mnm::render::CommandCopyDiagnostics::Selection::WorldAncestry);
             }
             consumer_=std::make_unique<mnm::render::CommandConsumer>(*renderer_,[this](auto frame){
                 if(presentationSuspended_){deferredPresentation_=std::move(frame);return;}
