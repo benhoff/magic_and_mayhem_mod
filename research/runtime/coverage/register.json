@@ -168870,6 +168870,55 @@
         "Physical context loss, pending CPU interruption, arbitrary faults/races/providers, in-place/save recovery, dedicated worker and whole renderer closure remain outside this scope.",
         "Integration over master6763ec077 preserves its100accepted rows without RT07credit. Four existing guest sources and runner differ, two guest headers are added (1021runtime sources versus1019recorded); combined guest validation remains pending with no source waiver. Both640domains remain unaccepted."
       ]
+    },
+    {
+      "id": "NP.natural-defeat-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Natural defeat report, return and terminal retirement",
+      "scope": "Retained-data acceptance of one natural Campaign defeat and original report OK/Main return in default/software actual640/800. Bind original player death observations, original owner-thread report callback and World pop, fresh Main ACK, complete independent original-history native viewport comparisons and normal source/input/graphics retirement. Compiled public-button menu driver plus physical World input; no simulation writes. New analysis only, historical player/compiler/runtime/oracle phases stay pinned; no current whole-player validation, widget glyph/font/DC, every external object acquire/release, victory/later-map, physical scanout or final decision claim.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "tools/rendering_defeat.py",
+        "tools/close-rendering-defeat.py"
+      ],
+      "tests": [
+        "tests/test-rendering-defeat.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-defeat-closeout-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_progression.py",
+        "tools/campaign_report.py",
+        "tools/campaign_gameplay.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_player_acceptance.py",
+        "tools/coverage_claims.py",
+        "tools/native_cursor_journal.py",
+        "docs/native-rendering-closure.json"
+      ],
+      "evidence": [
+        "DF08.natural-defeat01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "DF08.G.scope: Historical full captures and comparisons support bounded defeat only. Current full native player/runtime, all populated object/vptr/generation acquire/release, widget glyph/font/DC and physical menu/scanout remain separate.",
+        "DF08.G.other: Victory, later-map progression, other acceptance rows, fault/recovery and both final decisions remain pending independently."
+      ]
     }
   ],
   "evidence": [
@@ -387522,6 +387571,65 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DF08.natural-defeat01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-defeat-results-20261108/acceptance-01.json",
+      "sha256": "b0d449fe3a7084563863653a3bebd278edb7978ba7d810e3b893d7b6bacad4a4",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Retained-data acceptance of one natural Campaign defeat and original report OK/Main return in default/software actual640/800. Bind original player death observations, original owner-thread report callback and World pop, fresh Main ACK, complete independent original-history native viewport comparisons and normal source/input/graphics retirement. Compiled public-button menu driver plus physical World input; no simulation writes. New analysis only, historical player/compiler/runtime/oracle phases stay pinned; no current whole-player validation, widget glyph/font/DC, every external object acquire/release, victory/later-map, physical scanout or final decision claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/required_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 102
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 22966119000
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -421294,6 +421402,70 @@
       "evidence": [
         "RT07.epoch-controls01"
       ]
+    },
+    {
+      "id": "DF08.defeat.01",
+      "level": "headless",
+      "scope": "Retained-data acceptance of one natural Campaign defeat and original report OK/Main return in default/software actual640/800. Bind original player death observations, original owner-thread report callback and World pop, fresh Main ACK, complete independent original-history native viewport comparisons and normal source/input/graphics retirement. Compiled public-button menu driver plus physical World input; no simulation writes. New analysis only, historical player/compiler/runtime/oracle phases stay pinned; no current whole-player validation, widget glyph/font/DC, every external object acquire/release, victory/later-map, physical scanout or final decision claim. Domain player-default [640, 480]",
+      "behaviors": [
+        "NP.natural-defeat-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-defeat.py",
+        "tools/rendering_defeat.py",
+        "tools/close-rendering-defeat.py"
+      ],
+      "evidence": [
+        "DF08.natural-defeat01"
+      ]
+    },
+    {
+      "id": "DF08.defeat.02",
+      "level": "headless",
+      "scope": "Retained-data acceptance of one natural Campaign defeat and original report OK/Main return in default/software actual640/800. Bind original player death observations, original owner-thread report callback and World pop, fresh Main ACK, complete independent original-history native viewport comparisons and normal source/input/graphics retirement. Compiled public-button menu driver plus physical World input; no simulation writes. New analysis only, historical player/compiler/runtime/oracle phases stay pinned; no current whole-player validation, widget glyph/font/DC, every external object acquire/release, victory/later-map, physical scanout or final decision claim. Domain player-default [800, 600]",
+      "behaviors": [
+        "NP.natural-defeat-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-defeat.py",
+        "tools/rendering_defeat.py",
+        "tools/close-rendering-defeat.py"
+      ],
+      "evidence": [
+        "DF08.natural-defeat01"
+      ]
+    },
+    {
+      "id": "DF08.defeat.03",
+      "level": "headless",
+      "scope": "Retained-data acceptance of one natural Campaign defeat and original report OK/Main return in default/software actual640/800. Bind original player death observations, original owner-thread report callback and World pop, fresh Main ACK, complete independent original-history native viewport comparisons and normal source/input/graphics retirement. Compiled public-button menu driver plus physical World input; no simulation writes. New analysis only, historical player/compiler/runtime/oracle phases stay pinned; no current whole-player validation, widget glyph/font/DC, every external object acquire/release, victory/later-map, physical scanout or final decision claim. Domain player-software [640, 480]",
+      "behaviors": [
+        "NP.natural-defeat-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-defeat.py",
+        "tools/rendering_defeat.py",
+        "tools/close-rendering-defeat.py"
+      ],
+      "evidence": [
+        "DF08.natural-defeat01"
+      ]
+    },
+    {
+      "id": "DF08.defeat.04",
+      "level": "headless",
+      "scope": "Retained-data acceptance of one natural Campaign defeat and original report OK/Main return in default/software actual640/800. Bind original player death observations, original owner-thread report callback and World pop, fresh Main ACK, complete independent original-history native viewport comparisons and normal source/input/graphics retirement. Compiled public-button menu driver plus physical World input; no simulation writes. New analysis only, historical player/compiler/runtime/oracle phases stay pinned; no current whole-player validation, widget glyph/font/DC, every external object acquire/release, victory/later-map, physical scanout or final decision claim. Domain player-software [800, 600]",
+      "behaviors": [
+        "NP.natural-defeat-closeout"
+      ],
+      "tests": [
+        "tests/test-rendering-defeat.py",
+        "tools/rendering_defeat.py",
+        "tools/close-rendering-defeat.py"
+      ],
+      "evidence": [
+        "DF08.natural-defeat01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -423111,8 +423283,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-b389d254b3ed40a0c94bdf80316f0753ddfd343f93a1ac8873fd53a7c0f71581.json",
-    "sha256": "b389d254b3ed40a0c94bdf80316f0753ddfd343f93a1ac8873fd53a7c0f71581"
+    "path": "research/runtime/coverage/source-index-b0df0c2b075fe88fec8c94ae08864aad59bdb6dbbdb294ce7274c105c2a73824.json",
+    "sha256": "b0df0c2b075fe88fec8c94ae08864aad59bdb6dbbdb294ce7274c105c2a73824"
   },
   "evidence_applicability": [
     {
