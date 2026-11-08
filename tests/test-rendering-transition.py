@@ -10,11 +10,11 @@ from rendering_pilot import commands
 from rendering_acceptance import requirements
 from coverage_claims import fingerprint
 from rendering_transition_budget import admit
+from fixture_support import command_stream,u32 as word
 
-def word(*v):return struct.pack('<'+'I'*len(v),*v)
 def fixture():
  fields=[(1,word(1,2,2,16,0xf800,0x7e0,31)+bytes(8)),(19,word(1,1,0,0,0)),(6,word(1))]
- raw=b'MNMCMD05'+word(5,16)+b''.join(word(op,i+1,len(b))+b for i,(op,b) in enumerate(fields))
+ raw=command_stream(fields)
  row=dict(commands=3,mode=0,surface=1,world='1',sealed_world='1',width=2,height=2,frame_width=2,frame_height=2,left=0,top=0,image_width=2,image_height=2,scaling=2,reference_binding=7)
  pixels=bytes([0,0,8,255,0,0,16,255,0,0,24,255,0,0,33,255])
  observed=dict(failed=True,commands=raw+b'uncredited terminal suffix',paints={7:(row,pixels)},swaps=[7],exports={7:dict(row,lease='7')},command_rows=[])

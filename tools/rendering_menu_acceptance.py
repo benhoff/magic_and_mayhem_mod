@@ -1,6 +1,7 @@
 """Finite public Main/setup acceptance; native UI policy and original semantics."""
 import hashlib,json,struct
 from pathlib import Path
+from retained_artifacts import read_artifact
 from rendering_pilot import require,counter
 from rendering_acceptance import requirements,validate
 from coverage_claims import fingerprint
@@ -10,10 +11,7 @@ CALLBACKS=[[3,3],[10,1],[3,2],[22,2],[14,0],[22,2],[14,2],[25,1],[14,2],[25,0],[
 
 
 def artifact(reader,acquired,path):
-    candidates=[v for v in acquired['artifacts'] if v['path']==path or v['path'].endswith('/'+path)]
-    require(len(candidates)==1,'Missing/ambiguous public-menu artifact: '+path);v=candidates[0];raw=reader.read_bytes(v['record'])
-    require(len(raw)==v['bytes'] and hashlib.sha256(raw).hexdigest()==v['sha256'],'Changed public-menu artifact: '+path)
-    return raw
+    return read_artifact(reader,acquired,path,label='public-menu')
 
 
 def semantic_setup(raw):

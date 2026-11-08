@@ -27792,3 +27792,33 @@ Nine new classifier guards and ten unchanged route controls pass; no game, new
 game fixture, native-source change, historical hash refresh or accepted rerun.
 See [the exact blockers and bounded next step](rendering-two-copy-readiness-20261108.md)
 and SQLite`rendering-two-copy-results-20261108/assessment-03.json`.
+
+
+## Shared retained-artifact and synthetic fixture support — 2026-11-08
+
+`TOOL.shared-fixture-support` extracts verified artifact reads and producer-local
+session scoping into `tools/retained_artifacts.py`, retaining the menu/scene
+entry points and their errors. Optional declared-size budgets reject before
+reading; actual bytes still require exact size/hash agreement. Observations
+excluded by scope remain retained. Test-only command/menu/owned-session builders
+in `tests/fixture_support.py` now serve transition, normal acceptance, menu and
+startup controls independently of production decoders. Negative mutations and
+acceptance assertions stay in their owning tests.
+
+`SF08.fixture-controls01` retains 275 passing focused controls and exact logs
+in SQLite, including actual retained scene/attachment, selection and defeat
+inputs. This support-only execution adds no original game/native oracle run,
+player acceptance row or engine validation promotion. Historical source hashes,
+accepted statuses, failures and source-applicability boundaries remain immutable;
+changed support/analyzer sources have explicit pending targeted revalidation.
+See `docs/test-fixtures.md`. The owned batch begins at master `fbcf880ba`;
+live prefix lifecycle and bulk collector retention extraction remain separate.
+
+The task branch then advances to actual master `b0eb1de5b`, retaining the incoming
+COPY-readiness behavior, reports, source and exact journal entries. The register
+and ledger are reconciled by stable identity/additive tails; all nine changed
+code/test files match recovery stash `7228cada4` byte-for-byte. That stash stays
+retained. Nine dependent player/storage controls also pass: 284 total checks.
+The earlier census/audit stays as its original source phase; final accounting
+uses the combined tree. The obsolete initial preparation was explicitly
+interrupted when master advanced; no old draft grants a pass.
