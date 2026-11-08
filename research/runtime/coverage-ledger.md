@@ -27263,3 +27263,26 @@ All six zero-game refusals, eight conservatively counted original starts, failed
 ### CL07 preserves incoming pause and capture-policy work
 
 The final merge starts from actual master `2d559b55b`: all92incoming accepted scene/pause/earlier rows and both decisions remain; the same four clipping domains add only2rows for94/156passed,62pending. The earlier uncommitted92-row merge has a lossless pinned Git source-tree checkpoint, not a gate/commit claim. Current capture-header changes are opt-in metadata policy only; four retained cases pass current-reader analysis and the applicable PA07native capture controls retain exact source bytes. Nine strict reader guards cover the new/legacy reader. New CL07*02evidence preserves old*01hashes/staleness and declares no new game/native engine execution or current full-player producer. Rendering/guest copy math remains byte-exact; data/control changes do not reopen completed milestones. The committed pause range adds5412exactly reviewed transitions with zero unresolved gaps.
+
+## Evidence consolidation and prospective retention — 2026-11-07
+
+`HOST.storage-retention` adds explicit verified tracked-directory compaction and
+source-specific legacy snapshot union/recovery. Fourteen current storage controls plus
+fifteen existing archive controls pass. Exact operational custody and boundaries
+are documented in `research/runtime/evidence-consolidation-20261107.md`. New
+rebuildable temporary output may expire after reconstruction/consumer/pin review;
+historical evidence keeps its original preservation rules. No original execution,
+engine equivalence, accepted requirement/status or historical hash is renewed.
+
+The completed pass retains 41 verified source handoffs (42.719 GiB selected
+file allocation removed) and all 251 raw snapshots in two read-only union
+catalogs (8.375 GiB net catalog reduction). One physical/Git-mismatched
+checkout stays intact. Both distinct old catalogs and the historical snapshot
+helper passed real restores; maintenance databases have dual verified logical
+checkpoints. `STORAGE07.compaction-controls04` binds the current 29 controls;
+older phases remain unchanged. See `STORAGE07.custody01` for exact boundaries.
+
+Later integration preserves native parent `110c33ae26fb` and exact
+accounting for 6899 additional committed file transitions. The host
+storage contract and current29-control proof remain unchanged. This source
+join grants no new engine execution or status promotion by the storage task.
