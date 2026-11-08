@@ -156164,7 +156164,9 @@
         "tools/restore-worktree-source.py",
         "tools/worktree_compaction.py",
         "tools/snapshot_consolidation.py",
-        "tools/compact-evidence-storage.py"
+        "tools/compact-evidence-storage.py",
+        "tools/storage_cleanup.py",
+        "tools/cleanup-working.py"
       ],
       "tests": [
         "tests/test-working-archive.py",
@@ -156176,7 +156178,8 @@
         "tests/test-local-evidence-workflow.py",
         "tests/test-private-evidence-backup.py",
         "tests/test-coverage-evidence-imports.py",
-        "tests/test-storage-compaction.py"
+        "tests/test-storage-compaction.py",
+        "tests/test-storage-cleanup.py"
       ],
       "validation_dependencies": [
         "tools/working-retention.py",
@@ -156193,7 +156196,10 @@
         "STORAGE07.compaction-controls03",
         "STORAGE07.compaction-controls04",
         "STORAGE07.custody01",
-        "STORAGE08.custody01"
+        "STORAGE08.custody01",
+        "STORAGE08.cleanup-controls03",
+        "STORAGE08.cleanup-dry04",
+        "STORAGE08.cleanup-controls04"
       ],
       "status": {
         "understanding": "partial",
@@ -156208,7 +156214,8 @@
         "Storage provenance and host controls do not refresh historical engine validation.",
         "2026-11-01: Shared immutable execution manifests add explicit stopped source-specific handoff and historical-path restoration. Historical generic retention/archive evidence is retained and not renewed by the new storage controls.",
         "2026-11-01: Shared encoding and queue throughput changes are reviewed under TOOL.shared-evidence-lifecycle. Historical source/evidence hashes stay unchanged; these storage controls do not renew unrelated engine or prior workflow validation.",
-        "2026-11-07: Explicit research/tests worktree compaction and source-specific legacy snapshot union have separate controls and operational custody. Unknown, active, recent, modified or pinned data remains held; prospective temporary-output policy does not expire historical evidence or renew engine validation."
+        "2026-11-07: Explicit research/tests worktree compaction and source-specific legacy snapshot union have separate controls and operational custody. Unknown, active, recent, modified or pinned data remains held; prospective temporary-output policy does not expire historical evidence or renew engine validation.",
+        "2026-11-08: Dry-first cleanup coordinator adds explicit completed-directory review, immutable SQLite plans and guarded paired workspace handoff. Synthetic controls cover archive/restore and refusals; comprehensive host inventory is diagnostic only. No real project payload retirement, exhaustive historical/dynamic consumer discovery, generic pin transfer, database pruning or original/engine validation is claimed."
       ]
     },
     {
@@ -391212,6 +391219,80 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "STORAGE08.cleanup-controls03",
+      "kind": "native_integration",
+      "record": "research/runtime/storage-cleanup-results-20261108/controls-03.json",
+      "sha256": "9e5ecb0486b2e3a41e90a844a653ab1097de227a4db1b55ac9045be2371236d2",
+      "sources_pointer": "/sources",
+      "scope": "38 synthetic filesystem/SQLite cleanup and existing retention controls. Exact archive plus real replica restore, dry defaults, reviewed digest admission and pinned/recent/tracked/active/private-namespace refusals. Current source phase only; earlier controls retained historically. No real project payload retirement or engine equivalence.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 38
+        },
+        {
+          "pointer": "/real_project_payloads_retired",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "STORAGE08.cleanup-dry04",
+      "kind": "static",
+      "record": "research/runtime/storage-cleanup-results-20261108/host-inventory-04.json",
+      "sha256": "192f64869b69013dea296f3a8c90e5ac21d84e13695ec578b99c417461755fc8",
+      "sources_pointer": "/sources",
+      "scope": "Bounded actual-host main working-data inventory,4748units with4724held and24review requests. Stat-only partial held measurements and explicit literal-reference/dynamic/historical consumer limits. No selected retirement, guaranteed net savings, full linked-worktree scan, engine execution or acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/host_process_view",
+          "equals": true
+        },
+        {
+          "pointer": "/real_project_payloads_retired",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "STORAGE08.cleanup-controls04",
+      "kind": "native_integration",
+      "record": "research/runtime/storage-cleanup-results-20261108/controls-04.json",
+      "sha256": "f844091335701e229930b285b06493f13eccb677df489eae9f2f53ca0beabb69",
+      "sources_pointer": "/sources",
+      "scope": "Synthetic exact two-store archive/real restore, dry defaults, indexed reference/bulk Git ownership and changed/pinned/recent/tracked/active/private-namespace refusals. A parent selection must not bypass newest-two retention of nested runs. Fixture stores share tmpfs only under test override; production stores require independent filesystems. No real project cleanup or engine validation.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 39
+        },
+        {
+          "pointer": "/real_project_payloads_retired",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -427166,8 +427247,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-92b247049e85227b5a48796aa76910a6fcde03607551cdf29dc199762e83881f.json",
-    "sha256": "92b247049e85227b5a48796aa76910a6fcde03607551cdf29dc199762e83881f"
+    "path": "research/runtime/coverage/source-index-f8ab9ae46bd27900a7b4153810df0dcb95e01381124ef1bb99e5afa83720a9ff.json",
+    "sha256": "f8ab9ae46bd27900a7b4153810df0dcb95e01381124ef1bb99e5afa83720a9ff"
   },
   "evidence_applicability": [
     {
