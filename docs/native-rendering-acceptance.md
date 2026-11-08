@@ -1,3 +1,5 @@
+HS08 integrated acceptance: **114/156 passed, 42 pending**. The [exact source-phase union](../research/runtime/cursor-hotspot-results-20261108/master-admission-02.json) preserves all incoming rows and adds both finite cursor hotspot/background rows. Four actual default/software640/800 Sharp/Integer domains passed in the owned phase; this union adds no execution. Original57e957/tag17 exit95 and both final decisions remain pending. See [the hotspot record](../research/runtime/cursor-hotspot-acceptance-20261108.md).
+
 Current local master integration:108/156passed48pending.
 Scene attachment/combat adds four accepted rows to all104incoming master rows.
 See `research/runtime/scene-master-merge-results-20261108/acceptance-02.json`.
