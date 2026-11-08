@@ -19,7 +19,7 @@ sys.path.insert(0, str(ROOT / 'tools'))
 from evidence_objects import Pair
 from worktree_compaction import compact, inspect, restore
 from snapshot_consolidation import consolidate, restore_catalog
-from sqlite_snapshot_store import Store, CHUNK
+from sqlite_snapshot_store import Store, CHUNK, Sink
 import zlib
 
 
@@ -75,6 +75,10 @@ class Compaction(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Pinned'):
             inspect(tree, main, recent_hours=0)
         (tree / 'research/.retain').unlink()
+        (tree / '.retain').symlink_to('missing-retention-target')
+        with self.assertRaisesRegex(ValueError, 'pinned'):
+            inspect(tree, main, recent_hours=0)
+        (tree / '.retain').unlink()
         with patch('worktree_compaction.idle', side_effect=ValueError('active')):
             with self.assertRaisesRegex(ValueError, 'active'):
                 inspect(tree, main, recent_hours=0)
@@ -218,6 +222,25 @@ class Compaction(unittest.TestCase):
         with closing(sqlite3.connect(target)) as db:
             self.assertEqual(db.execute('SELECT * FROM unique_data').fetchall(), [('preserve',)])
         self.assertFalse(a.is_symlink())
+
+    def test_resume_refuses_corrupt_primary_source_map_with_valid_snapshots(self):
+        a, b, common, unique = self.catalogs()
+        self.run_union([a, b])
+        with closing(sqlite3.connect(self.path / 'union.sqlite3')) as db:
+            db.execute('UPDATE source_parts SET chunk=? WHERE source=? AND snapshot=? AND ordinal=0',
+                       ('0' * 64, str(a), common))
+            db.commit()
+        for path in (self.path / 'union.sqlite3', self.other / 'union.sqlite3'):
+            store = Store(path, readonly=True)
+            try:
+                for sha in (common, unique):
+                    self.assertGreater(store.copy(sha, Sink()), 0)
+            finally:
+                store.close()
+        with self.assertRaisesRegex(ValueError, 'Original source records differ'):
+            self.run_union([a, b], retire=True, resume=True)
+        self.assertFalse(a.is_symlink())
+        self.assertFalse(b.is_symlink())
 
     def test_cli_constructs_private_union_while_shared_writer_is_leased(self):
         a, b, common, unique = self.catalogs()

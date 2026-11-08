@@ -32,9 +32,9 @@ reviewed reconstruction inputs and commands. Diagnostics precede full capture;
 full captures answer named comparisons. Historical evidence and pins retain
 their existing custody requirements. No generic evidence expiry is introduced.
 
-Thirteen new controls cover exact tracked recovery, retained execution/pins and Git
+Fourteen current controls cover exact tracked recovery, retained execution/pins and Git
 registration, recent/modified/active/pinned refusals, failed restores, research-only
-selection, unique snapshot preservation, unknown schema, corrupt chunks, source-restore capacity and private union progress while another shared writer holds its lease, verified-prefix resume with refusal of unrelated existing output, and a running source script whose imported file is already closed.
+selection, unique snapshot preservation, unknown schema, corrupt chunks, source-restore capacity and private union progress while another shared writer holds its lease, verified-prefix resume with refusal of unrelated existing output, a running source script whose imported file is already closed, and damaged primary source maps whose raw snapshots still verify.
 Fifteen existing source/snapshot archive controls also pass. These are filesystem
 and synthetic storage controls, separate from original-game validation.
 
@@ -56,7 +56,7 @@ resumed verification. Completion requires its final hashes and restores; no inte
 Operational producer phases remain separate from the latest controls. The first
 five-case worker loaded the retained preimage before the final recovery-marker
 link refusal; the first additional worker predates the command-argument consumer
-guard. The resumed worker pins the final tested sources and reuses completed
+guard. The resumed worktree worker pins its final tested compaction sources and reuses completed
 custody roots. One completed root was reconciled into the local event journal
 after a safe unlocked restart. No earlier operation is relabeled as execution
 of a later guard. Every source preimage and interrupted attempt remains retained.
@@ -69,10 +69,68 @@ validation. `incoming-history-d10ce44cf0d2-03.json` links the original verified
 parent payload hash; it retains the earlier physical-reference-link metadata
 mistake and its correction as separate immutable records.
 
-The source audit has zero errors and no unindexed new sources. `controls01`
-retains its earlier producer fingerprints; `controls02` records the current 28
-controls. The added retention text changes the full `AGENTS.md` dependency of
+The initial source audit has zero errors and no unindexed new sources. `controls01`
+through `controls03` retain their earlier producer fingerprints; `controls04` records
+the current 29 controls, including dangling source-root pins. The added retention text changes the full `AGENTS.md` dependency of
 historical `EA05.scoped-applicability-controls02/03`. Their original hashes and
 accepted stages remain retained, with current implementation/integration
 freshness explicitly pending. No applicability implementation changed, and this
 storage work does not rerun or renew that earlier proof.
+
+A synthetic primary-only source-map corruption left every raw snapshot valid
+but the earlier union accepted retirement; reconstructing that primary source
+catalog then failed. The negative observation and exact earlier source bytes
+remain in the maintenance database. The final guard compares all original
+catalog data and schemas across both copies before retirement. Its new refusal
+case passes alongside the existing controls. Original receipt bytes live inside
+the preserved source records; a union's own interrupted publication receipts
+are separate operational history.
+
+The real union verifier was checkpointed without a shared writer lease while all
+three original catalogs remained physical. A separate complete-copy check found
+both new containers byte-identical at that pre-receipt checkpoint, including all
+source maps and encoded chunks. The dual durable receipt is
+`2685e4d923993bb052f0bf89e158ba93b2b61cca79d55739b7442229d60b021d`
+(1820 bytes). The long-running verifier then continued its original hash/restore
+phase. That checkpoint does not relabel it as execution of the later guard or
+promise restoration of its temporary SQLite page encoding after receipt appends.
+
+The additional committed range `d10ce44cf0d2..2d559b55b06a` has 5412 reviewed
+payload transitions and 1554 independently verified SQLite payload identities,
+with no missing exact receipts. The pending merge preserves every parent
+evidence record and imports six exact receipt bodies without any new pause-row
+execution or engine claim from this task.
+
+## Completed operational custody
+
+The approved pass completed 41 of 42 tracked-directory handoffs: the pilot,
+five fixed campaign checkouts and 35 of the additional 36 fixed plans. Every
+completed case has two verified object copies, a real replica restore and its
+retained Git registration. Selected tracked-file allocation removed is
+42.719 GiB before recovery markers and shared-object growth. Working data,
+originals, pins and untracked files remain physical.
+
+`actor-downstream-cases-20261026` remains intact: its physical
+`research/runtime/coverage/summary-actor-dependencies-20261026.md` differs from
+its Git blob. The exact frozen plan and failed admission remain retained; no
+bytes or historical hashes were replaced to make that source eligible.
+
+All 251 original raw snapshots remain in the independent read-only NVMe/SATA
+union pair. Both full hash sets, three actual snapshot restores and complete
+logical reconstruction/comparison of both distinct old catalogs passed. The
+historical restore helper also restored and hash-verified an original raw
+snapshot through its former path. Three old physical containers became explicit
+logical-handoff aliases. Their aggregate allocation fell from
+61.650 to
+53.275 GiB, a net 8.375 GiB reduction. Original
+container page encodings are retired; every original snapshot/report hash stays
+unchanged.
+
+The three maintenance databases passed independent real logical restores and
+two verified copies; operator scripts and every source preimage remain retained
+under checkpoint `454d4d5bee3259f2876ce8e0523efac4990fa7b1726be70f83308f33c9e7c78a`.
+The immutable `custody01.json` report and `STORAGE07.custody01` record link the
+full per-source receipts. Observed main-drive free space at that custody
+checkpoint was 98.42 GiB, above its 90 GiB reserve and below the 180 GiB
+normal target. Concurrent writers and shared-store growth prevent attributing
+filesystem free-space changes directly to the gross file-removal total.

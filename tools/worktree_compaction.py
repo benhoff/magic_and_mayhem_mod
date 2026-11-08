@@ -45,7 +45,7 @@ def inspect(root, main, prefixes=('research', 'tests'), recent_hours=24):
     root, main = Path(root).absolute(), Path(main).absolute()
     if root == main or not (root / '.git').is_file() or (root / '.git').is_symlink():
         raise ValueError('Select a linked worktree, excluding the main checkout')
-    if any(p.is_symlink() for p in (root, *root.parents)) or (root / '.retain').exists():
+    if any(p.is_symlink() for p in (root, *root.parents)) or (root / '.retain').exists() or (root / '.retain').is_symlink():
         raise ValueError('Aliased or source-pinned worktree')
     gitdir = Path(os.fsdecode(git(root, 'rev-parse', '--absolute-git-dir')).strip())
     if any((gitdir / name).exists() for name in ('locked', 'index.lock', 'MERGE_HEAD', 'CHERRY_PICK_HEAD', 'REVERT_HEAD', 'rebase-apply', 'rebase-merge', 'sequencer')):

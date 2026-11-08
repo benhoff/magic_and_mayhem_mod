@@ -12,6 +12,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <vector>
+#include <algorithm>
 
 namespace {
 std::mutex gateMutex;
@@ -114,6 +115,35 @@ QJsonObject commandBurst(const QString& root,bool pressure,bool normalViewport=f
         {"append_returned_while_compression_blocked",returned},{"full_ordered_commands_or_refusal",ordered&&valid},
         {"directory",directory},{"fragments",fragments}};
 }
+QJsonObject commandHistory(const QString& root,bool extended,int count,const QString& role="commands"){
+    const auto directory=temporary(root);qputenv("MNM_ACCEPTANCE_CAPTURE_DIRECTORY",directory.toUtf8());
+    qputenv("MNM_ACCEPTANCE_NORMAL","1");
+    if(extended)qputenv("MNM_ACCEPTANCE_COMMAND_HISTORY","1");else qunsetenv("MNM_ACCEPTANCE_COMMAND_HISTORY");
+    {std::lock_guard<std::mutex> lock(gateMutex);blocked=false;compressionFailure=false;}
+    const bool selected=extended && role=="commands";const int limit=selected?65536:16384;
+    const int accepted=std::min(count,limit-2);const auto begin=compressions.load();
+    {AcceptanceCapture capture(role);
+        for(int i=0;i<count;++i){
+            capture.append("fragment",{{"ordinal",i}},"a");
+            if((i+1)%100==0 || i==count-1){
+                const auto target=begin+unsigned(std::min(i+1,accepted));
+                const auto deadline=std::chrono::steady_clock::now()+std::chrono::seconds(10);
+                while(compressions.load()<target){require(std::chrono::steady_clock::now()<deadline,"Command history compression progress");std::this_thread::yield();}
+            }
+        }
+        capture.finish();
+    }
+    qunsetenv("MNM_ACCEPTANCE_COMMAND_HISTORY");qunsetenv("MNM_ACCEPTANCE_NORMAL");
+    const auto rows=read(directory);const auto open=rows.front().metadata,close=rows.back().metadata;
+    const bool refused=count>accepted;bool ordered=true;
+    for(int i=0;i<accepted;++i)ordered &= rows.at(std::size_t(i+1)).metadata["ordinal"].toInt()==i && rows.at(std::size_t(i+1)).body=="a";
+    const bool policy=open["version"].toInt()==(selected?4:1) && open["stored_limit_bytes"].toDouble()==1024ll*1024*1024
+        && (selected?(open["policy"]=="command-history-lossless-v1" && open["row_limit"].toInt()==65536 && open["raw_limit_bytes"].toDouble()==8ll*1024*1024*1024):!open.contains("policy"));
+    const bool terminal=refused?(!close["complete"].toBool() && close["error"]=="Acceptance capture raw/row budget exceeded"):
+        (close["complete"].toBool() && close["error"].toString().isEmpty());
+    return {{"success",policy&&terminal&&ordered&&rows.size()==std::size_t(accepted+2)},
+        {"directory",directory},{"command_history",selected},{"role",role},{"requested",count},{"accepted",accepted},{"overflow_expected",refused},{"ordered",ordered}};
+}
 QJsonObject campaign(const QString& root,bool longRun){
     const auto directory=temporary(root);qputenv("MNM_ACCEPTANCE_CAPTURE_DIRECTORY",directory.toUtf8());
     qputenv("MNM_ACCEPTANCE_CAMPAIGN","1");
@@ -180,10 +210,16 @@ QByteArray qCompress(const uchar* source,qsizetype length,int level){
 
 int main(int argc,char** argv)try{
     require(argc==2 || argc==3,"Expected owned output directory and optional --baseline");
-    qputenv("MNM_ACCEPTANCE_CAPTURE_ID","capture-control");qunsetenv("MNM_ACCEPTANCE_NORMAL");qunsetenv("MNM_ACCEPTANCE_CAMPAIGN");
+    qputenv("MNM_ACCEPTANCE_CAPTURE_ID","capture-control");qunsetenv("MNM_ACCEPTANCE_NORMAL");qunsetenv("MNM_ACCEPTANCE_CAMPAIGN");qunsetenv("MNM_ACCEPTANCE_COMMAND_HISTORY");qunsetenv("MNM_ACCEPTANCE_IMAGES");
     const bool baseline=argc==3 && QByteArray(argv[2])=="--baseline";
     const bool longRun=argc==3 && QByteArray(argv[2])=="--campaign-long";
     const QString root=QString::fromLocal8Bit(argv[1]);QDir().mkpath(root);
+    if(argc==3 && QByteArray(argv[2])=="--command-history"){
+        QJsonArray cases{commandHistory(root,false,17000),commandHistory(root,true,17000),commandHistory(root,true,66000),commandHistory(root,true,100,"viewport")};
+        qputenv("MNM_ACCEPTANCE_COMMAND_HISTORY","1");cases.append(commandBurst(root,true));qunsetenv("MNM_ACCEPTANCE_COMMAND_HISTORY");
+        bool success=true;for(const auto& value:cases)success&=value.toObject()["success"].toBool();
+        std::cout<<QJsonDocument(QJsonObject{{"success",success},{"cases",cases}}).toJson(QJsonDocument::Compact).constData()<<'\n';return success?0:1;
+    }
     QJsonArray cases;cases.append(gated(root,false));
     if(!baseline){
         cases.append(gated(root,true));

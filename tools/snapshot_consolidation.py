@@ -74,6 +74,32 @@ def restore_catalog(union, source, output):
     return output
 
 
+def verify_catalog_pair(stores):
+    """Compare original catalog data, including maps outside snapshot hashes."""
+    if len(stores) != 2:
+        raise ValueError('Two union stores required')
+    schema = lambda store: store.db.execute("SELECT type,name,tbl_name,sql FROM sqlite_master WHERE sql IS NOT NULL ORDER BY type,name").fetchall()
+    if schema(stores[0]) != schema(stores[1]):
+        raise ValueError('Union schemas differ between copies')
+    counts = {}
+    # Original receipt bytes are inside source_catalogs. The union's own receipt
+    # journal can retain different interrupted publication prefixes.
+    for table, order in [('chunks', 'sha256'), ('snapshots', 'sha256'), ('parts', 'snapshot,ordinal'),
+                         ('source_catalogs', 'source'), ('source_chunks', 'source,chunk'),
+                         ('source_parts', 'source,snapshot,ordinal')]:
+        cursors = [store.db.execute('SELECT * FROM ' + table + ' ORDER BY ' + order) for store in stores]
+        count = 0
+        while True:
+            left, right = [cursor.fetchmany(256) for cursor in cursors]
+            if left != right:
+                raise ValueError('Original source records differ between union copies: ' + table)
+            if not left:
+                break
+            count += len(left)
+        counts[table] = count
+    return counts
+
+
 def consolidate(sources, destinations, pair, scratch, *, floors=(100 * 2**30, 90 * 2**30), retire=False, resume=False):
     sources = [Path(p).absolute() for p in sources]
     destinations = [Path(p).absolute() for p in destinations]
@@ -165,6 +191,7 @@ def consolidate(sources, destinations, pair, scratch, *, floors=(100 * 2**30, 90
                 raise ValueError('Union integrity failure')
             for sha, in store.db.execute('SELECT sha256 FROM snapshots ORDER BY sha256'):
                 store.copy(sha, Sink())
+        verified_records = verify_catalog_pair(stores)
         # Actually restore the largest snapshot and every snapshot unique to a source.
         counts = {}
         for plan in plans:
@@ -206,6 +233,7 @@ def consolidate(sources, destinations, pair, scratch, *, floors=(100 * 2**30, 90
         result = dict(schema=1, kind='snapshot_catalog_union', sources=plans, resumed=resume,
                       destinations=list(map(str, destinations)), snapshots=stores[0].db.execute('SELECT count(*) FROM snapshots').fetchone()[0],
                       all_snapshot_hashes_verified_in_both_copies=True, actual_restores=restored,
+                      all_original_catalog_records_verified_in_both_copies=True, verified_union_record_counts=verified_records,
                       all_distinct_source_catalogs_restored_and_compared=True,
                       original_container_encodings='retired only after explicit source-specific logical handoff',
                       reclaimed_allocated_bytes=0, retired=[])

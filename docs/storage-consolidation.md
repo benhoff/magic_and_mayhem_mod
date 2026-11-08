@@ -101,6 +101,11 @@ After inspecting an interrupted attempt, `--resume` reuses only a recognized
 owned idle union whose retained source identities still match. It rechecks full
 snapshot hashes and real catalog restores before retirement; unrelated output
 or changed sources refuse rather than being overwritten.
+Both copies also compare their schemas and every original catalog record,
+including encoded chunks and source membership maps. Valid raw snapshot hashes
+alone do not establish that a historical source catalog can be reconstructed
+from either copy. Each union's own interrupted verification-receipt prefixes
+stay separate; original receipt bytes remain inside the preserved source records.
 
 ## Retain the proof and bound temporary output
 

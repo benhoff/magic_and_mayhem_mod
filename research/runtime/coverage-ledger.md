@@ -27226,12 +27226,46 @@ preparations and the wrong client-command refusal retain exact source phases
 and SQLite results. See [the six-row review](scene-visibility-effects-20261107.md)
 and `rendering-scene-effects-results-20261107/admission-03.json`.
 
+
+### PA07: bounded Campaign Mini pause acceptance
+
+The public Campaign Mini pause leaf now passes for default/software profiles
+from four actual 800×600/640×480cases and eight nominal 3 second dwells. Raw
+original owner/ACK and frozen World returns, released/blocked gameplay input,
+live media/music ownership, both Cancel/Escape original callbacks, fresh
+independently compared resumed output/input and normal owner retirement agree.
+5,483,989,500 actual GPU pixel checks have zero differences. The two pause rows preserve
+all 90 parent rows and both pending final decisions: 92/156 passed, 64 pending.
+See [the phase-preserving acceptance review](rendering-pause-20261107.md) and
+`rendering-pause-results-20261107/pause-closed-01.json`.
+
+The bounded version 4 command-history diagnostic policy fixes an observed old
+recorder row-cap refusal; it changes no rendering/simulation behavior. Retained
+writer controls cover optimized/sanitized policy limits, legacy budgets, role
+isolation and nonblocking queue refusal. Sampling, source640 OCR geometry and
+physical Escape focus/keymap/ACK admission were repaired with failures retained.
+Four current cases and two historical successful phases remain separate; eight
+failed game runs receive no acceptance credit. Original manifest/oracle hashes
+remain pinned. Native-header full-hash drift makes earlier affected native
+evidence historical unless separately reviewed/revalidated; statuses and old
+hashes are preserved without asserting current-code equivalence. No rendering
+bug, all-simulation/music freeze, arbitrary-provider, font/DC/ABI, whole
+cursor/background, watchdog/second-battle resize or final-renderer closure claim.
+
 ## Evidence consolidation and prospective retention — 2026-11-07
 
 `HOST.storage-retention` adds explicit verified tracked-directory compaction and
-source-specific legacy snapshot union/recovery. Thirteen new storage controls plus
+source-specific legacy snapshot union/recovery. Fourteen current storage controls plus
 fifteen existing archive controls pass. Exact operational custody and boundaries
 are documented in `research/runtime/evidence-consolidation-20261107.md`. New
 rebuildable temporary output may expire after reconstruction/consumer/pin review;
 historical evidence keeps its original preservation rules. No original execution,
 engine equivalence, accepted requirement/status or historical hash is renewed.
+
+The completed pass retains 41 verified source handoffs (42.719 GiB selected
+file allocation removed) and all 251 raw snapshots in two read-only union
+catalogs (8.375 GiB net catalog reduction). One physical/Git-mismatched
+checkout stays intact. Both distinct old catalogs and the historical snapshot
+helper passed real restores; maintenance databases have dual verified logical
+checkpoints. `STORAGE07.compaction-controls04` binds the current 29 controls;
+older phases remain unchanged. See `STORAGE07.custody01` for exact boundaries.
