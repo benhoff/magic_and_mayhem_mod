@@ -27295,3 +27295,34 @@ within their original scope. The incoming opt-in capture-v4, COPY/clip diagnosti
 have different full hashes from UI07's recorded3712fff8 player/legacy reader.
 These are retained execution phases; this join supplies no new merged-build
 execution, broad all-simulation pause, resource-lifetime or whole-player claim.
+
+## Evidence consolidation and prospective retention — 2026-11-07
+
+`HOST.storage-retention` adds explicit verified tracked-directory compaction and
+source-specific legacy snapshot union/recovery. Fourteen current storage controls plus
+fifteen existing archive controls pass. Exact operational custody and boundaries
+are documented in `research/runtime/evidence-consolidation-20261107.md`. New
+rebuildable temporary output may expire after reconstruction/consumer/pin review;
+historical evidence keeps its original preservation rules. No original execution,
+engine equivalence, accepted requirement/status or historical hash is renewed.
+
+The completed pass retains 41 verified source handoffs (42.719 GiB selected
+file allocation removed) and all 251 raw snapshots in two read-only union
+catalogs (8.375 GiB net catalog reduction). One physical/Git-mismatched
+checkout stays intact. Both distinct old catalogs and the historical snapshot
+helper passed real restores; maintenance databases have dual verified logical
+checkpoints. `STORAGE07.compaction-controls04` binds the current 29 controls;
+older phases remain unchanged. See `STORAGE07.custody01` for exact boundaries.
+
+Later integration preserves native parent `110c33ae26fb` and exact
+accounting for 6899 additional committed file transitions. The host
+storage contract and current29-control proof remain unchanged. This source
+join grants no new engine execution or status promotion by the storage task.
+
+2026-11-08 host storage follow-up: `STORAGE08.custody01` records 14 additional verified
+tracked-directory handoffs and 11.466 GiB gross selected allocation removed,
+with 8 sources held for physical/Git mismatches or active consumers.
+Actual master 6d0998cf6 and
+storage 0b465721e are reviewed as separate native/host source parents. The existing
+29-control proof remains exact; this custody/accounting supplies no new engine
+execution, source-fingerprint refresh or milestone promotion.

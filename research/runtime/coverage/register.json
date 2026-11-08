@@ -156121,7 +156121,10 @@
       "original": [],
       "documents": [
         "docs/storage-consolidation.md",
-        "research/runtime/storage-consolidation-20261026.md"
+        "research/runtime/storage-consolidation-20261026.md",
+        "research/runtime/evidence-consolidation-20261107.md",
+        "docs/evidence-storage.md",
+        "docs/working-retention.md"
       ],
       "implementation": [
         "tools/compact-storage-catalog.py",
@@ -156140,7 +156143,10 @@
         "tools/evidence_consolidation.py",
         "tools/consolidate-evidence.py",
         "tools/source_archive.py",
-        "tools/restore-worktree-source.py"
+        "tools/restore-worktree-source.py",
+        "tools/worktree_compaction.py",
+        "tools/snapshot_consolidation.py",
+        "tools/compact-evidence-storage.py"
       ],
       "tests": [
         "tests/test-working-archive.py",
@@ -156151,15 +156157,25 @@
         "tests/test-evidence-store.py",
         "tests/test-local-evidence-workflow.py",
         "tests/test-private-evidence-backup.py",
-        "tests/test-coverage-evidence-imports.py"
+        "tests/test-coverage-evidence-imports.py",
+        "tests/test-storage-compaction.py"
       ],
       "validation_dependencies": [
         "tools/working-retention.py",
         "tools/working-retention.json",
-        "tools/coverage_reviews.py"
+        "tools/coverage_reviews.py",
+        "tools/evidence_objects.py",
+        "tools/evidence_workspace.py",
+        "tools/evidence_blocks.py"
       ],
       "evidence": [
-        "STORAGE26.controls"
+        "STORAGE26.controls",
+        "STORAGE07.compaction-controls01",
+        "STORAGE07.compaction-controls02",
+        "STORAGE07.compaction-controls03",
+        "STORAGE07.compaction-controls04",
+        "STORAGE07.custody01",
+        "STORAGE08.custody01"
       ],
       "status": {
         "understanding": "partial",
@@ -156173,7 +156189,8 @@
         "Hardlinked mutable stores require full alias/activity review; no claim that every old runner adopts new defaults.",
         "Storage provenance and host controls do not refresh historical engine validation.",
         "2026-11-01: Shared immutable execution manifests add explicit stopped source-specific handoff and historical-path restoration. Historical generic retention/archive evidence is retained and not renewed by the new storage controls.",
-        "2026-11-01: Shared encoding and queue throughput changes are reviewed under TOOL.shared-evidence-lifecycle. Historical source/evidence hashes stay unchanged; these storage controls do not renew unrelated engine or prior workflow validation."
+        "2026-11-01: Shared encoding and queue throughput changes are reviewed under TOOL.shared-evidence-lifecycle. Historical source/evidence hashes stay unchanged; these storage controls do not renew unrelated engine or prior workflow validation.",
+        "2026-11-07: Explicit research/tests worktree compaction and source-specific legacy snapshot union have separate controls and operational custody. Unknown, active, recent, modified or pinned data remains held; prospective temporary-output policy does not expire historical evidence or renew engine validation."
       ]
     },
     {
@@ -163100,7 +163117,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "EA05.G.scope: callable roots and phase ownership require explicit review; arbitrary C/C++ or Python runtime changes are not declared equivalent. No original behavior milestone is promoted by a compatibility certificate."
+        "EA05.G.scope: callable roots and phase ownership require explicit review; arbitrary C/C++ or Python runtime changes are not declared equivalent. No original behavior milestone is promoted by a compatibility certificate.",
+        "2026-11-07: The prospective retention documentation in AGENTS.md changes the full-file source fingerprint for historical EA05.scoped-applicability-controls02/03. Their original source hashes and accepted stages remain retained; current implementation/integration freshness for those proofs is pending. No applicability implementation changed or new execution equivalence is asserted."
       ]
     },
     {
@@ -386942,6 +386960,142 @@
       "recorded_inputs": [
         "original/Arcane_Nocd/Chaos.exe"
       ]
+    },
+    {
+      "id": "STORAGE07.compaction-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/evidence-consolidation-results-20261107/controls01.json",
+      "sha256": "20ea0ae0855b2afd52f152603f0ba009ac7bfa544bbd60c0c3ba2d3c50206a50",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Eight current filesystem/synthetic worktree and snapshot-union controls plus fifteen unchanged source/snapshot archive controls. Exact custody operations retain their actual producer phases separately. No engine execution, fresh game equivalence, full host workflow rerun or historical hash refresh.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 23
+        }
+      ]
+    },
+    {
+      "id": "STORAGE07.compaction-controls02",
+      "kind": "native_integration",
+      "record": "research/runtime/evidence-consolidation-results-20261107/controls02.json",
+      "sha256": "8853de4b05afe7ad50f0defd59fdc10ef76682ed7839010bc74ba832f3f421f5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Thirteen current filesystem/synthetic worktree and snapshot-union controls plus fifteen unchanged source/snapshot archive controls. Exact custody operations retain their actual producer phases separately. No engine execution, fresh game equivalence, full host workflow rerun or historical hash refresh.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 28
+        }
+      ]
+    },
+    {
+      "id": "STORAGE07.compaction-controls03",
+      "kind": "native_integration",
+      "record": "research/runtime/evidence-consolidation-results-20261107/controls03.json",
+      "sha256": "a455aaad528c7c4855e0aa0e72d07fcaf64b3f8c7b40587f004c5bbaf7ff4d02",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fourteen current filesystem/synthetic compaction and union controls plus fifteen source/snapshot archive controls. The new negative case preserves valid raw snapshots while corrupting only the primary source map, and now refuses retirement. Complete original-catalog rows, encoded chunks and schemas must match both copies; their own interrupted publication receipts are retained separately. Actual legacy operations and pre-retirement independent copy verification retain their own earlier producer phases. No original execution, engine equivalence, status promotion or full-host workflow rerun.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 29
+        }
+      ]
+    },
+    {
+      "id": "STORAGE07.compaction-controls04",
+      "kind": "native_integration",
+      "record": "research/runtime/evidence-consolidation-results-20261107/controls04.json",
+      "sha256": "cc208261c6eb78a5cfd2f3fb5d7badeb2a12dd0df22d03a8749b98423254708b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fourteen current filesystem/synthetic compaction and union controls plus fifteen source/snapshot archive controls. Retain dangling source-root pins as pins; refuse primary-only source-map corruption even when all raw snapshots verify. Complete original catalog records, encoded chunks and schemas must agree in both copies. Actual legacy operations and their independently verified pre-retirement copy checkpoint retain earlier producer phases. No original execution, engine equivalence, status promotion or full-host workflow rerun.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 29
+        }
+      ]
+    },
+    {
+      "id": "STORAGE07.custody01",
+      "kind": "static",
+      "record": "research/runtime/evidence-consolidation-results-20261107/custody01.json",
+      "sha256": "d3bfd6be5c2c90f33b78d3491dc1973954941bac4dd770b67c197c9d51d9b98f",
+      "sources_pointer": "/sources",
+      "scope": "Source-specific host storage custody only. All original raw snapshot bytes, source logical catalog rows, pins, working data and registered source checkouts remain recoverable. Old physical SQLite catalog encodings are explicitly retired. Operational producer versions and subsequent guard tightening remain separate from the current28control pass; no current whole-host or engine validation is asserted.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/snapshots",
+          "equals": 251
+        },
+        {
+          "pointer": "/all_completed_cases_have_real_restore_proof",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "STORAGE08.custody01",
+      "kind": "static",
+      "record": "research/runtime/evidence-consolidation-results-20261108/custody01.json",
+      "sha256": "26c2f96c95e9e9c726e0450b2b01e81ebe52ef08abaf65d8df914667f6e54fa8",
+      "sources_pointer": "/sources",
+      "scope": "Source-specific host storage custody for the requested extra 10 GiB cleanup. Every completed selected tracked-file set has two verified copies and a real restore. Held physical/Git mismatches remain intact. Exact immutable operational plans, source phases and failures remain in the restored maintenance checkpoint; no current engine execution or status promotion is supplied.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/minimum_goal_met",
+          "equals": true
+        },
+        {
+          "pointer": "/all_completed_cases_have_two_copies_and_real_restore",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -422428,8 +422582,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-daceb3ea276b59f8a6bd79d8330098c389149753cd8d4f676a6ee8f9c9728fb9.json",
-    "sha256": "daceb3ea276b59f8a6bd79d8330098c389149753cd8d4f676a6ee8f9c9728fb9"
+    "path": "research/runtime/coverage/source-index-e00226c06adcd5ed39090c3941bb0bc1117899bf7cf3485616102917bb48c79f.json",
+    "sha256": "e00226c06adcd5ed39090c3941bb0bc1117899bf7cf3485616102917bb48c79f"
   },
   "evidence_applicability": [
     {
