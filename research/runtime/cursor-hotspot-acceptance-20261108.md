@@ -141,3 +141,8 @@ The reviewed source census contains5107files. Existing global historical
 staleness and incomplete original recovery remain visible in the SQLite audit;
 they are not renewed or discarded by this result. All newly generated research
 reports verify as SQLite references with their original payload hashes.
+
+
+Local master integration statically joins the actual 112-row master parent and this separately executed106-row owned phase: **114/156 passed, 42 pending**. [The union](cursor-hotspot-results-20261108/master-admission-01.json) preserves every parent row, attachment and original source hash, plus exact combined-source drift. No new combined player execution or unresolved failure repair is asserted. Both final decisions remain pending.
+
+The combined tree passes68hotspot controls,30coverage UI tests and9client tests, with zero coverage-audit errors. The generated evidence readback verifies2571payloads before completion-log retention. [Static verification](cursor-hotspot-results-20261108/master-verification-01.json) preserves those outputs. Six changed analysis dependencies remain raw drift against the original hotspot phase, so current combined-player execution remains pending. Neither an old hash nor an execution claim is refreshed.

@@ -10,7 +10,9 @@ def sha(path):
 def module(name):
  spec=importlib.util.spec_from_file_location(name,ROOT/'tools'/name);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--gameplay-witness',action='store_true',help='Bounded 800x600 public Quick camera, hover, latch and pause witness');p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--operation-census',action='store_true',help='Closed COPY observations on an otherwise unchanged nominal normal route');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--sample-storage-main',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage'],default='pilot');p.add_argument('--copy-callers',action='store_true',help='Diagnostic-only upstream COPY caller observation');p.add_argument('--cursor-copy-callers',action='store_true',help='Read-only cursor protected-view caller handoff');p.add_argument('--cpu-reader-journal',action='store_true',help='One enabled-intro software storage reader/DC diagnostic per owned worktree');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--gameplay-witness',action='store_true',help='Bounded 800x600 public Quick camera, hover, latch and pause witness');p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--operation-census',action='store_true',help='Closed COPY observations on an otherwise unchanged nominal normal route');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--sample-storage-main',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage','normal-combat'],default='pilot');p.add_argument('--copy-callers',action='store_true',help='Diagnostic-only upstream COPY caller observation');p.add_argument('--cursor-copy-callers',action='store_true',help='Read-only cursor protected-view caller handoff');p.add_argument('--cpu-reader-journal',action='store_true',help='One enabled-intro software storage reader/DC diagnostic per owned worktree');p.add_argument('--scene-effects',action='store_true',help='Passive actor/ANI and combat journal joined to source generations');p.add_argument('--size',choices=['640x480','800x600'],default='800x600');a=p.parse_args()
+ if a.scene_effects and a.scenario not in ('normal-storage','normal-combat'):p.error('Scene observation requires storage or combat route')
+ if a.scenario=='normal-combat' and not a.scene_effects:p.error('Combat route requires its bounded scene plan')
  if a.gameplay_witness and (a.scenario!='normal-quick' or a.skip_intros or a.diagnostic_only or a.copy_callers or a.cpu_reader_journal or a.sample_stalls or a.operations_provenance or a.stall_intro_host or a.stall_world_host):p.error('Gameplay witness requires enabled-intro nominal normal-quick')
  if a.cursor_copy_callers and not a.copy_callers:p.error('Cursor copy caller handoff requires COPY caller diagnostic')
  if a.cpu_reader_journal:
@@ -62,9 +64,12 @@ def main():
  names=set(compiled)
  names.update(['run-native.sh','tools/run-native-game.py','tools/run-native-owned.py','tools/run-qt-shell.sh','tools/native_only_contract.py','tools/native_prefix_template.py','tools/experiment_environment.py','tools/directplay_dx6_launch.py','tools/working-retention.py','tools/run-rendering-acceptance-pilot.py','tools/test-native-campaign.py'])
  if normal:names.update(['tools/menu-storage-input.py','tools/campaign_storage.py'])
+ if a.scene_effects:
+  names.update(['tools/scene_actor_observation.py','tools/scene_effects_input.py','tools/scene_combat_input.py','tools/campaign-combat-input.py','tools/campaign_gameplay.py'])
+  names.update(v.relative_to(ROOT).as_posix() for v in (ROOT/'tools').glob('campaign_*.py'))
  if a.sample_stalls:names.update(['tools/sample-rendering-stall.py','tools/rendering_stall_sampler.py'])
  names.add('tools/rendering_progression.py')
- if a.gameplay_witness:
+ if a.gameplay_witness or a.scene_effects:
   from rendering_build_binding import native_runtime_source_paths
   names.update(native_runtime_source_paths(ROOT))
   names.update(['tools/menu-game-runner.py','tools/drawing_hud_state.py','tools/drawing_semantic_state.py','tools/drawing_actor_latches.py','tools/drawing_region_input.py','tools/campaign_input_observation.py','tools/rendering_build_binding.py'])
@@ -87,6 +92,14 @@ def main():
   report['configuration']['source_chunks']=True
   report['configuration'].update(viewport_capture_stored_limit_bytes=1024**3,world_capture_retained_limit_bytes=2*1024**3)
   report['configuration']['configuration_home']=str(out/'config')
+ if a.scene_effects:
+  env.update(MNM_SCENE_ACTORS='1',MNM_CAMPAIGN_CASTING_COMBAT='1',MNM_SCENE_EFFECTS_VIEWS='1',MNM_CAMPAIGN_PROGRESSION_SIZE=a.size)
+  report['configuration'].update(scene_actor_observation=1,requested_size=a.size,scene_effects_plan='AC07-six-starts')
+ if a.scenario=='normal-combat':
+  deadline_ms=650000
+  env.pop('MNM_LIVE_MENU_TEST_QT_JOURNEY')
+  env.update(MNM_CAMPAIGN_SMOKE_TEST='1',MNM_CAMPAIGN_DIFFICULTY='1',MNM_CAMPAIGN_STRESS_SECONDS='10',MNM_CAMPAIGN_NORMAL_QUIT='1',MNM_CAMPAIGN_TIMEOUT_MS=str(deadline_ms),MNM_ACCEPTANCE_CAMPAIGN='1',MNM_SCENE_EFFECTS_COMBAT='1')
+  report['configuration'].update(deadline_ms=deadline_ms,viewport_capture_policy='campaign-lossless-viewport-v1')
  if a.gameplay_witness:
   env.update(MNM_ACCEPTANCE_GAMEPLAY='1',MNM_ACCEPTANCE_CAMPAIGN='1')
   report['configuration']['gameplay_witness']=True
@@ -164,6 +177,15 @@ def main():
   if a.software:command.append('--software-rendering')
   if a.skip_intros:command.append('--skip-movies')
   report['command']=command
+  if a.scene_effects:
+   budget_path=ROOT/'working/scene-effects/attempt-budget.sqlite3';budget_path.parent.mkdir(parents=True,exist_ok=True)
+   with sqlite3.connect(budget_path) as budget:
+    budget.execute('CREATE TABLE IF NOT EXISTS attempts(id INTEGER PRIMARY KEY,report TEXT UNIQUE,started_ns INTEGER)')
+    budget.execute('CREATE TABLE IF NOT EXISTS pre_game_refusals(report TEXT PRIMARY KEY,evidence_record TEXT,evidence_sha256 TEXT,reason TEXT)')
+    budget.execute('BEGIN IMMEDIATE')
+    if budget.execute('SELECT COUNT(*) FROM attempts WHERE report NOT IN (SELECT report FROM pre_game_refusals)').fetchone()[0]>=6:raise ValueError('Six-start scene effects budget exhausted')
+    budget.execute('INSERT INTO attempts(report,started_ns) VALUES(?,?)',(a.report,time.monotonic_ns()));budget.commit()
+   report['scene_effects_attempt_charged']=True
   if a.cpu_reader_journal:
    budget_path=ROOT/'working/cpu-reader-journal/attempt-budget.sqlite3';budget_path.parent.mkdir(parents=True,exist_ok=True)
    with sqlite3.connect(budget_path) as budget:
@@ -174,7 +196,25 @@ def main():
    report['cpu_reader_attempt_charged']=True
   with (out/'public-launch.log').open('xb') as log:
    child=subprocess.Popen(command,cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
-   child.wait(timeout=deadline_ms/1000+40 if a.scenario=='normal-storage' else 430 if a.gameplay_witness else 390)
+   if a.scenario=='normal-combat':
+    end=time.monotonic()+deadline_ms/1000+40;ready=False
+    while child.poll() is None:
+     flow_path=out/'flow.json'
+     if flow_path.exists():
+      current_flow=json.loads(flow_path.read_text())
+      if current_flow.get('success') is False:
+       report['flow']=current_flow
+       raise ValueError('Scene combat flow refused: '+str(current_flow.get('error')))
+     if not ready:
+      roots=set((ROOT/'working/experiments/menu-observer').glob('run-*'))-before_experiments
+      if len(roots)==1:
+       actual=next(iter(roots))
+       if campaign.world_ready(actual):
+        (out/'flow.json.world-ready').touch(exist_ok=False);ready=True
+        report['world_readiness']=dict(policy='three-original-same-thread-World-observations',experiment=str(actual))
+     if time.monotonic()>end:raise TimeoutError('Bounded scene combat route exceeded deadline')
+     time.sleep(.2)
+   else:child.wait(timeout=deadline_ms/1000+40 if a.scenario=='normal-storage' else 430 if a.gameplay_witness else 390)
   report['exit_code']=child.returncode
   subprocess.run(['wineserver','-w'],env=dict(env,WINEPREFIX=str(out/'wineprefix')),check=True,timeout=10)
   report['private_wine_stopped']=True
@@ -183,6 +223,8 @@ def main():
   if a.scenario=='normal-storage':
    from campaign_storage import validate_storage_flow
    validate_storage_flow(flow)
+  elif a.scenario=='normal-combat':
+   if flow.get('success') is not True or flow.get('normal_quit') is not True or flow.get('native_command_fallback') is not False:raise ValueError('Combat route did not complete with normal Quit')
   elif flow.get('success') is not True or flow.get('world_visits')!=2 or flow.get('input_via_qt_viewport') is not True or flow.get('native_fallback') is not False:raise ValueError('Actual Quick Battle action route incomplete')
   owners=set((ROOT/'working/tests/native-output-owner').glob('run-*'))-before
   if len(owners)!=1:raise ValueError('Ambiguous public launch owner')
@@ -205,7 +247,15 @@ def main():
   if server is not None:server.terminate();server.wait(timeout=10)
   if prefix_lease is not None:
    try:
+    from experiment_environment import _idle
+    stop_deadline=time.monotonic()+10
+    while True:
+     try:_idle(out/'wineprefix','wineprefix');break
+     except (ValueError,subprocess.TimeoutExpired):
+      if time.monotonic()>stop_deadline:raise
+      time.sleep(.2)
     prefix_lease.close()
+    report['private_wine_stopped']=True
     report['prefix_pool']['returned']=True
     report['prefix_pool']['receipt']=str(prefix_lease.receipt)
    except Exception as e:report.update(success=False,prefix_pool_return_error=str(e))

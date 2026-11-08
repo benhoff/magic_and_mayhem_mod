@@ -2,12 +2,13 @@
  * Never issues orders, changes health/mana, or replaces simulation. */
 static HANDLE gameplay_file;
 static volatile u32 gameplay_busy;
-static u32 gameplay_sequence,gameplay_next_sample;
+static u32 gameplay_sequence,gameplay_next_sample,gameplay_point_owner;
 static u8 gameplay_was_active[256];
 static TickFn gameplay_original_melee;
 static void gameplay_write(u32* words){
     if(!gameplay_file||gameplay_sequence>=65536||!__sync_bool_compare_and_swap(&gameplay_busy,0,1))return;
     words[0]=++gameplay_sequence;words[2]=GetCurrentThreadId();words[3]=GetTickCount();
+    __sync_bool_compare_and_swap(&gameplay_point_owner,0,words[2]);
     u8 data[64];for(u32 i=0;i<16;++i)put(data+4*i,words[i]);u32 wrote;
     if(!WriteFile(gameplay_file,data,64,&wrote,0)||wrote!=64){CloseHandle(gameplay_file);gameplay_file=0;}
     __sync_lock_release(&gameplay_busy);
@@ -68,4 +69,11 @@ static int install_gameplay_observe(void){
     if(!gameplay_follow_open()||!install_spell_observe()){CloseHandle(gameplay_file);gameplay_file=0;VirtualProtect((void*)0x50c0d0,6,old,&restore);return 0;}
     jump(0x50c0d0,(u32)&gameplay_melee,6);VirtualProtect((void*)0x50c0d0,6,old,&restore);
     FlushInstructionCache(GetCurrentProcess(),(void*)0x50c0d0,6);return 1;
+}
+
+/* Read-only observation cursor on the actual caller/engine thread. */
+__declspec(dllexport) u32 WIN MenuGameplayPointV1(u32 owner,u32* out,u32 bytes){
+ u32 error=GetLastError();
+ if(!gameplay_file||!gameplay_sequence||owner!=gameplay_point_owner||owner!=GetCurrentThreadId()||!out||bytes!=16||__atomic_load_n(&gameplay_busy,__ATOMIC_ACQUIRE)){SetLastError(error);return 0;}
+ out[0]=1;out[1]=16;out[2]=0x40209ca7;out[3]=gameplay_sequence;SetLastError(error);return 1;
 }

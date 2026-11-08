@@ -95,6 +95,8 @@ static int continuous_defer(u32*,const void*,u32);
 static int continuous_return(void);
 static void continuous_mark_entry(void);
 static void continuous_mark_screen(int);
+static void sao_capture(u32);
+static void sao_close(void);
 /* Batch observation owns a separate heap; canvas guard pages include the
  * original allocation metadata and must never be relaxed for observer buffers. */
 static HANDLE producer_record_heap;
@@ -156,7 +158,7 @@ static void storage_transitions_close(void);
 static void producer_initial_history_close(void);
 static void copy_order_close(void);
 static void primitive_lifetimes_close(void);
-void canvas_producers_close(void){PRODUCER_TRACE_SCOPE;producer_initial_history_close();primitive_lifetimes_close();copy_order_close();storage_transitions_close();drawing_update_points_close();continuous_failure(1,(u32)__builtin_return_address(0));publication_close();continuous_cancel();glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
+void canvas_producers_close(void){PRODUCER_TRACE_SCOPE;sao_close();producer_initial_history_close();primitive_lifetimes_close();copy_order_close();storage_transitions_close();drawing_update_points_close();continuous_failure(1,(u32)__builtin_return_address(0));publication_close();continuous_cancel();glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
 static void emit_raw(u32* r,const void* payload,u32 n){if((!file&&!continuous_map)||stopped)return;if(continuous_map){int deferred=continuous_defer(r,payload,n);if(deferred){if(deferred<0)canvas_producers_close();return;}}if(continuous_map && r[2]==MNM_PRODUCER_CHECKPOINT)r[14]=++oracle;if(sequence>=producer_record_budget()||bytes>producer_byte_budget()-96||n>producer_byte_budget()-bytes-96){canvas_producers_close();return;}r[0]=96+n;r[1]=++sequence;r[18]=n;if(!journal_write(r,96)||(n&&!journal_write(payload,n))){continuous_failure(2,r[2]);canvas_producers_close();return;}bytes+=96+n;}
 /* V3 source snapshots live on the private producer heap. No original pointers
  * or destination pixels enter this cache; equality includes every state byte. */
@@ -564,7 +566,7 @@ int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  }
  SetLastError(error);return 0;
 }
-void canvas_producers_queue(u32* registers){u32 error=GetLastError();PRODUCER_TRACE_SCOPE;if(enabled&&!stopped){if(session_producers&&queue>=limit){fail(98,queue);canvas_producers_close();ExitProcess(95);}continuous_mark_entry();raster_world_open=1;++queue;drawing_update_point(1,registers[6],registers[9]);struct Surface* s=bound();checkpoint(s,2);u32 r[24]={0};r[2]=MNM_PRODUCER_QUEUE_ENTRY;extent(r,s);r[14]=queue;emit(r,0,0);if(!journal_flush()){canvas_producers_close();ExitProcess(95);}frame_enter(registers,100);}SetLastError(error);}
+void canvas_producers_queue(u32* registers){u32 error=GetLastError();PRODUCER_TRACE_SCOPE;if(enabled&&!stopped){if(session_producers&&queue>=limit){fail(98,queue);canvas_producers_close();ExitProcess(95);}continuous_mark_entry();raster_world_open=1;++queue;drawing_update_point(1,registers[6],registers[9]);struct Surface* s=bound();checkpoint(s,2);u32 r[24]={0};r[2]=MNM_PRODUCER_QUEUE_ENTRY;extent(r,s);r[14]=queue;emit(r,0,0);if(!journal_flush()){canvas_producers_close();ExitProcess(95);}sao_capture(registers[6]);frame_enter(registers,100);}SetLastError(error);}
 /* Activate only after all entry observers have finished their snapshots and
  * freed temporary process-heap buffers, immediately before original traversal. */
 void canvas_producers_protect(void){u32 error=GetLastError();if(enabled&&!stopped&&batch_enabled&&raster_active()&&!batch_start(bound())){fail(46,batch_reject);ExitProcess(95);}SetLastError(error);}

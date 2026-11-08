@@ -27502,6 +27502,298 @@ The analyzer now distinguishes other exact marker-bank frames sharing the caller
 `NP.selection-highlight-closeout` has scoped implementation/headless integration only; original comparison/replacement remain none. Allocation generations, whole picking/hotspot, storage selection continuity, response deadlines, physical provider, current full player, other rows and both final decisions remain independent. See [selection closeout](rendering-selection-closeout-20261108.md) and `SL08.selection-highlight01`.
 
 
+# RT09 four recovery operation rows — 2026-11-08
+
+Default/software `operation.transition-recovery` and `operation.failure-cleanup`
+close across actual640/800:108/156passed48pending, preserving the104-row SL08
+selection parent. Thirty of42operation rows are accepted; both final decisions
+remain pending. Two new Low cases use four original starts, no retry, and pass
+independent original-history/native output, exact declared INVALID retirement,
+terminal stability, physical public restart, fresh identity/input and normal
+Campaign/Main Quit. Both High cases are re-assessed from retained raw evidence
+within their recorded native/runtime phases. No source waiver or current whole-
+player/High guest, physical reset, pending-CPU/arbitrary failure, in-place/save
+continuation or gameplay change is claimed. Aggregate independently compared
+pixel values:8469532500,zero differences.34focused controls pass.
+Only the new retained-data admission receives scoped/headless current support.
+Four stopped private game trees have paired full-file retention, real restores
+and historical-path pins. SQLite references preserve every negative observation,
+source phase and old budget. See [RT09](rendering-four-recovery-20261108.md),
+`RT09.four-operation-rows01`.
+
+
+
+
+### AC07 actor sidecar and partial combat/attachment output — 2026-11-08
+
+The owned `scene-attachment-combat-20261107` batch admits exactly both combat
+rows over the SV07 baseline:92/156passed64pending, all90parent rows and both
+pending decisions preserved. `attachment-combat-results-20261107/admission-02.json`
+is explicit partial admission with two requested rows still pending. Four actual
+campaign default/software640/800 executions bind original Wizard/Redcap melee
+journal events to adjacent same-thread source generations, exact health and
+engagement tuples, a changed normalized rendered participant frame, uniquely
+owned source draws, eight visible original/native points per body per selected
+paint, full independent viewport comparisons and normal native-only Quit.
+Original comparison/replacement and native gameplay reconstruction remain none.
+
+The new opt-in v2 private actor sidecar has25production encoder/wire/input guards;
+37retained-data actor/event/clip/visibility/session guards and25actual-cast/row/
+host-budget-source guards pass. The partial admission also passes30Python UI and
+9client controls. Frame-local role tokens do not establish actor allocation
+identity. Two raw queue auxiliary words remain opaque/address-like; the initial
+pointer-free header comment is overbroad. Corrected scope and fresh controls04
+preserve every earlier native byte hash and control contract.
+
+Both800attachment cases pass independent complete output and mode1 Excalibur
+parent/child placement in all four views. Both640attachment domains remain
+unaccepted. One low setup run confirms QSaveFile disk quota exceeded in its exact
+core. A second low run observes the single self-cast, child and four views, but
+fails Results-to-readyQuick admission and normal retirement. Its quota guard
+retains more than46GiB headroom with no trigger. The original Results callback
+is recorded; the first pre-cleanup pending transition state/timing is missing,
+so a lease/renderer/driver cause remains unresolved. A later post-report prefix
+return cannot supply past normal Quit. Five actual attachment games are charged
+and exhausted; two certified zero-game requests in the separate budgets retain
+their original rows. The contact plan independently uses its six-start bound.
+No additional original start is authorized by this partial closeout.
+
+All failures, unique source versions, raw captures and original pins remain
+retained. Stopped old RAM executions move only through paired complete manifests
+and real verified restores, with canonical historical-path stubs. New low data
+uses a separate private RAM filesystem and remains pinned through handoff.
+Broader attachment/status/caller/map/provider/input/lifecycle domains, both
+attachment rows, the four-row task and both final decisions remain pending.
+See [the AC07 research](attachment-combat-output-20261107.md).
+
+
+### AC07 saved-ready inventory correction and preserved combat admission — 2026-11-08
+
+Owned checkpoint `a2f2be6946ef3b27b24ed0799db59027c240e6da` retains both combat
+rows with its normal staged gate and verified local backups. Its9,086real
+parent/current file transitions have exact receipts, including the retrospective
+journal self-export; no concurrent main source/status was imported.
+
+The approved sixth attachment start fails before inventory/cast at an unchecked
+optional live Spellbox read. Its failed acquisition, pre-cleanup read-only trace,
+quota report and late idle-prefix verification remain separate. The exact saved
+ready-wire correction passes39offline controls and preserves every used input
+from both accepted800snapshots. New optionalNone runtime handling remains
+unvalidated; the fifth Results/Quick-return failure also remains unresolved.
+
+`attachment-combat-results-20261107/admission-03.json` revalidates only the
+retained finite combat proof and exact row accounting under the narrow host
+budget/ready-input source reviews:92passed64pending, two requested rows still
+pending. Native/runtime, original oracle and pixel-analyzer hashes are strict;
+all historical source maps and failed starts remain. No new game or pixel-matrix
+comparison is credited by this join. Six actual attachment starts exhaust the
+user-approved cap; the two-start increase remains pending approval. Both
+attachment physical/output milestones remainnone. The sixth raw trees/pins
+and changed idle prefix have paired full manifests, real restores and canonical
+stubs. Private High preferences/launcher bytes are restored and2,927original
+files verify. See the AC07 research and `attachment-runtime-diagnosis-06.json`.
+
+
+### Three requested rows qualified; software attachment pending — 2026-11-08
+
+`attachment-combat-results-20261107/admission-04.json` qualifies both combat
+profile rows and the default attachment row:93passed63pending in the preserved
+90-row parent source phase. Seven distinct accepted actual cases contribute
+5481closed Worlds,14775World presentations and
+14692465760complete viewport pixel checks with zero differences.
+Default640case05 supplies one original offered Excalibur self-cast, four
+mode1/first-point parent-child views,64visible matched native sample points,
+474independently reconstructed Worlds,1,404World presentations and normal
+Results/Quick/Main/Quit with all graphics resources released. Both800attachment
+cases and four combat cases retain their original source/native/oracle phases.
+
+The user approved8total attachment starts. Eighth software640case01 observes
+one original self-cast and four active-child views, but cancels after253complete
+Worlds while next generation254is still WRITING. Its failed acquisition and
+`attachment-runtime-diagnosis-08.json` give no software attachment row or normal
+retirement credit. A launch-specific retained module table binds reason1closure
+to MnmScene DLL_PROCESS_DETACH atRVA1737. The menu alive0sample and screenshot
+show the failure before Escape. The native report says producer cancelled; the
+initial original exit cause/code remain unknown. The raster finite-displacement
+record is a normal detach-time counter with zero retained traffic, not a refusal.
+The RAM quota guard never triggers. The earlier fifth Results/Quick failure
+remains separate; successful default retirement does not diagnose either failure.
+All8actual starts stay charged. Both attachment behavior milestones remainnone
+until the whole four-domain attachment cohort passes; the default profile row
+has its narrower complete two-size proof. Both final decisions remain pending.
+
+After host reboot, exact tested binary/configuration and the admitted prefix were
+restored from paired evidence. A fresh405-source compiler closure reproduces the
+accepted player byte-for-byte; new build intermediates are temporary. A private
+AT-SPI broker setup refusal launches zero original games and adds zero budget
+rows. Selecting the private daemon before dbus-run-session passes a registry
+control and enables both subsequent starts without engine/collector/input
+changes.43current admission controls plus30Python/9client UI controls pass.
+The first admission join was interrupted before publication because it was
+started before the metadata preparation finished; admission04is a fresh rerun
+against settled files, not a reused partial result.
+
+Exact High private preferences and launcher bytes are restored and2,927original
+files verify. Source phase reviews preserve original old5/6hashes under the
+approved8bound and cached-ready correction; native/runtime, oracle and pixel
+source hashes stay strict. The final join is retained-data analysis, not another
+game. `attachment-plan-12-pending.json` is explicitly nonlaunchable: one further
+software640case with bounded external exit tracing would require9total-start
+authority. Two synthetic namespace exit-trace controls pass; they establish no
+original exit cause or future case success. No further game is authorized by
+this three-row checkpoint, and no concurrent main source/status is imported.
+
+
+### All four requested rows qualified — 2026-11-08
+
+Current `attachment-combat-results-20261107/admission-05.json` records that
+all four requested attachment/combat profile rows qualify: 94passed62pending in this owned90-row parent phase.
+8distinct accepted actual cases contribute5943closed Worlds,
+16077World presentations and16390087600viewport pixel
+checks, with zero differences against the independent original-history oracle.
+Every accepted case has normal Quit/resource retirement. No concurrent main
+source/status is imported; both final decisions and native gameplay remain open.
+
+The user approved ten total attachment starts, all ten are charged, and collection
+stops. The tenth software640case has success=True, error=None.
+The exact current host route observes views0/3/2/1 with three camera turns and
+omits the redundant turn after the fourth required observation.57offline controls
+pass. Historical accepted four-turn cases retain exact source bytes and all
+original input facts through `post-four-view-control-phase-02.json`; the current
+route never relaxes the native caller guard or changes the recipe/exit sequence.
+
+A retained-data correction retracts the earlier assertion that the eighth run's
+Windows exit code was missing. Existing `original-process-exit.txt` contains95;
+next WRITING generation254ends inFAILURE43/tag14/caller0x54a563 after669records.
+The strict caller policy rejects this site; pinned original disassembly confirms
+its indexed-copy continuation and AX==1clipped fallback, but the rejected raster
+input/register/stack bytes are absent. No caller admission or native repair is
+claimed. See `attachment-retained-failure-correction-02.json`. The temporal
+relationship to the extra camera turn does not establish prevention or causality.
+All superseded diagnoses and failures remain immutable.
+
+The ninth actual run instead times out before ready Spellbox/self-cast/any closed
+World. Its whole-process lifecycle trace slows staging; timeout causality is
+unresolved and no Windows exit-status artifact is retained. It remains charged,
+failed and distinct from the eighth refusal. The tenth case omits ptrace and uses
+the existing low-overhead exit recorder plus bounded passive menu/quota observers.
+The earlier Results/Quick return, quota and optional-read failures remain retained
+and are not retroactively explained by later successful cases. Other effect,
+caller, map, provider, lifetime and gameplay domains remain pending.
+
+
+### AC07 master merge preserves all incoming rows — 2026-11-08
+
+The actual merge of master32f9eb80f and scene2afa7eed9 preserves all104incoming
+accepted rows, including selection and natural defeat, and adds exactly four
+already-qualified attachment/combat profile rows:108/156passed48pending.
+`scene-master-merge-results-20261108/acceptance-02.json` retains both immutable
+parent reports, every prior row/source/native/compiler/oracle phase, all ten
+charged attachment starts and both pending final decisions. The eight scene
+cases still supply5943Worlds/16077World presentations/16390087600zero-difference
+World viewport pixel checks. The join is accounting, with zero game, native
+player or original-oracle execution. Raw merged-source drift remains explicit;
+this does not prove current whole combined-player equivalence.
+
+Four metadata conflicts preserve both ledger tails, keyed register entries and
+exact append-only SQLite review receipts. Runtime sources merge cleanly and the
+merged PE32MnmScene/MnmMenu observers compile with their expected exports. A
+real checkout-relocation bug in retained scene artifact lookup is corrected:
+use the producer repository explicitly recorded by --repo or its pinned
+repository-local run-native.sh command, independent of the consuming checkout.
+Do not infer roots from artifact suffixes or accept foreign/ambiguous launchers.
+All eight retained artifact sets remain identical to the original producer
+selection, and all four original self-cast transitions revalidate. The scene
+pixel/raster/math/oracle algorithms and runtime caller guard are unchanged.
+
+218current relevant controls pass, including production encoder fixtures, actor
+output/scope guards, attachment accounting, selection and UI controls. Exact
+tested ELF/DLL bytes, initial failed tests, first narrow scope-replay refusal,
+corrected positive-test assertion and unsupported version-flag diagnostics are
+retained. Only affected failed scripts rerun; unaffected passing controls keep
+their exact inputs. No extra original launch, native gameplay change, historical
+hash refresh, caller54a563admission, source-phase waiver or final-player claim.
+Fresh source-census/audit, exact committed-history review, actual-master normal
+staged hook and local paired backups are recorded separately at closeout.
+
+RT09 actual-master union preserves both completed parent admissions and the
+unchanged four-row proof: 112/156passed44pending.
+Metadata-only strict row joining repeats no engine/oracle/pixel execution; all
+native source phases and both final decisions remain unchanged. See
+`rendering-recovery-four-results-20261108/master-admission-01.json`.
+
+
+## CR08 imported-time identity correction — 2026-11-08
+
+The pinned NoCD import table identifies557802's IAT5c52e8 as WINMM.timeGetTime.
+The initial thread temporary/supplier label was incorrect; its tested address,
+DWORD forwarding and original body comparisons remain preserved in comparison04.
+The native temporary is now stamp, the scope names imported time, an explicit
+API binding preserves its unknown timing/consumer boundary, and the producer
+refuses a different DLL/symbol. Fresh comparison05 passes512font and1024DC cases
+against unchanged original bodies with native64/ASan/UBSan results matching.
+Both original manifests pass; the actual time API is supplied, not executed.
+No prior hash, execution observation or historical claim is rewritten.
+
+Actual incoming master85dcfea26's private X11 staging fix remains separate from
+this isolated proof; its new source paths are outside the comparison dependency
+closure. The integration preserves both incoming histories and all102accepted
+player rows,54pending rows and both decisions. Font/DC installed lifetimes and
+whole production bypass ABI remain pending for both configurations. No game or
+new rendering acceptance is claimed. See rendering-contract-recovery-20261108.md
+and comparison-05.json under its SQLite result directory.
+
+
+## CR08 final master integration — 2026-11-08
+
+The corrected caller recovery joins master a04895c2b after selection and finite
+scene/attachment acceptance. Every comparison05 dependency (nine source files)
+and retained218-control scene dependency (186 source files) matches the merged
+tree. No new original/native-player execution or player row closes:108passed,
+48pending, both final decisions and both font/DC and production-ABI operation
+requirements remain as recorded by master. The two bounded recovered contracts
+retain their current isolated comparison; installed lifecycle and broad live
+equivalence remain separate. All24172incoming committed file transitions have
+exact receipts;22missing metadata versions receive per-commit retrospective
+custody without a past gate claim. Both parent histories, all prior receipts
+and raw failures survive. See rendering-contract-recovery-20261108.md and the
+SQLite rendering-contract-master-merge-results-20261108 reports.
+
+
+## CR08 latest master integration — 2026-11-08
+
+Master e1f2f4709 adds RT09's four finite recovery rows to the previously joined
+scene and selection rows:112passed44pending. The CR08 integration preserves
+every one of those rows and both pending decisions. The earlier108/48 phase
+is retained as history, not the latest total. All9caller comparison05 sources,
+186scene-control sources and24RT09analyzer sources match this combined tree.
+Historical RT09native/runtime drift remains visible and is not renewed by
+metadata integration. No new game, native player, oracle or pixel execution
+is performed here. The font/DC installed lifecycle and whole caller ABI
+remain pending. Latest history covers25717committed file versions with three
+new retrospective metadata bindings, separate from all earlier reviews. See
+rendering-contract-master-final-results-20261108 for the exact SQLite reports.
+
+
+### COPY stretch/overlap retained-evidence boundary — 2026-11-08
+
+Current analysis of eight retained CP06 Quick/Campaign default/software
+actual640/800 cases verifies37337closed active application calls and exact
+GPU census bindings. There are36866prepared one-to-one COPY geometries,
+467source-less calls, zero tracked aliases and four refused unknown geometries.
+No positive natural stretch/overlap output witness is present; supplied backend
+controls and eleven static explicit-RECT callers do not supply those witnesses.
+Ordinary COPY planning refuses stretch and CPU self-copy; successful native
+CPU transforms can still publish CREATE/UPDATE through the checkpoint path.
+Plan refusal alone is not a rendering-support failure; independent
+caller-bound checkpoint-transform output remains unproved. Both requirements/four
+profile rows stay pending;112/156passed44pending and both final decisions remain.
+Nine new classifier guards and ten unchanged route controls pass; no game, new
+game fixture, native-source change, historical hash refresh or accepted rerun.
+See [the exact blockers and bounded next step](rendering-two-copy-readiness-20261108.md)
+and SQLite`rendering-two-copy-results-20261108/assessment-03.json`.
+
+
 ## HS08 nonzero hotspot acceptance and newly observed producer refusal (2026-11-08)
 
 The new bounded task exercises actual classes6/7/9 with nonzero configured
@@ -27543,3 +27835,6 @@ Raw broad-observer losses before/after the physical cursor interval, initial
 class16-only and future-paint joins, the malformed first admission and every
 source version remain retained. No native raster repair or broader COPY/player
 verdict follows.57e957/tag17/exit95 and both final decisions remain pending.
+
+
+HS08 actual-master integration preserves every incoming acceptance row and adds only both finite hotspot/background rows: **114/156 passed, 42 pending**. See `cursor-hotspot-results-20261108/master-admission-01.json` and `cursor-hotspot-acceptance-20261108.md`. This is a static source-phase union; raw source drift, historical failures, unresolved57e957 and both final decisions remain visible. No combined-player execution is claimed.
