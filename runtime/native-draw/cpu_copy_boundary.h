@@ -1,6 +1,7 @@
 /* Native No-CD40209ca7 image-row body, including its caller-visible registers
  * and defined flags. The original twenty-byte CPU copy body is never entered. */
 API i32 WIN FlushInstructionCache(HANDLE,const void*,u32);
+API i32 WIN IntersectRect(i32*,const i32*,const i32*);
 #include "image_copy_original.h"
 static u32 ns_image_copy_installed;
 __attribute__((used,noinline)) static void ns_image_copy_prepare(u32* r){
@@ -53,17 +54,35 @@ __attribute__((naked)) static void ns_image_copy_entry(void){
  * unused third argument, x, y and clip. Horizontal clipping is in bytes.
  * Preserve the original non-WORD preparation quirk (initial source stride=x),
  * rather than silently changing an unobserved branch to a different policy. */
-static i32 __attribute__((thiscall)) ns_image_copy_full(const u32* image,u8* destination,i32 pitch,
- u32 unused,i32 x,i32 y,const i32* clip){
- (void)unused;u32 error=GetLastError();
+__attribute__((used,noinline)) static void ns_image_copy_full_prepare(u32* saved,u8* outgoing_fx){
+ const u32* image=(const u32*)saved[6];u32* arguments=saved+10;
+ u8* destination=(u8*)arguments[0];i32 pitch=(i32)arguments[1];
+ i32 x=(i32)arguments[3],y=(i32)arguments[4];const i32* clip=(const i32*)arguments[5];
+ u32 error=GetLastError();
+ if(saved[8]&0x400u)ExitProcess(124); /* Existing forward-copy direction policy. */
+ /* The original last flag-writing instruction is ADD ESP,38h, after its
+  * four callee-register pops. Derive its exact arithmetic flags from the
+  * original entry ESP, independent of this helper's compiler stack frame.
+  * PUSHAL saved ESP points at the preceding PUSHFL word. */
+ u32 original_stack=saved[3]+4u-0x38u,return_flags;
+ __asm__ volatile("addl $0x38,%0;pushfl;popl %1":"+r"(original_stack),"=r"(return_flags)::"cc");
+ saved[8]=(saved[8]&~0x8d5u)|(return_flags&0x8d5u);
  i32 word=image[4]!=0,width=(i32)image[2],height=(i32)image[3];
  if(!clip || width<0 || height<0 || width>8*1024*1024 || height>1024*1024)ExitProcess(124);
- long long origin=word?(long long)x*2:x;
- long long left=origin,top=y,right=origin+(long long)width*2,bottom=(long long)y+height;
- long long cLeft=(long long)clip[0]*(word?2:1),cRight=(long long)clip[2]*(word?2:1);
- if(left<cLeft)left=cLeft;if(right>cRight)right=cRight;
- if(top<clip[1])top=clip[1];if(bottom>clip[3])bottom=clip[3];
- if(right<=left || bottom<=top){SetLastError(error);return 0;}
+ const u32 scale=word?2u:1u;
+ i32 origin=(i32)((u32)x*scale);
+ i32 bounds[4]={origin,y,(i32)((u32)origin+(u32)width*2u),(i32)((u32)y+(u32)height)};
+ i32 clip_bounds[4]={(i32)((u32)clip[0]*scale),clip[1],(i32)((u32)clip[2]*scale),clip[3]},intersection[4];
+ /* The original calls USER32.IntersectRect. Its provider may modify volatile
+  * SIMD state (the real Wine empty case clears XMM0). Execute the same service
+  * with the incoming FP state and retain its outgoing image through native
+  * ownership/history work. Integer preparation/copying itself changes no FX. */
+ __asm__ volatile("fxrstor (%0)"::"r"(outgoing_fx):"memory");
+ IntersectRect(intersection,bounds,clip_bounds);
+ __asm__ volatile("fxsave (%0)"::"r"(outgoing_fx):"memory");
+ error=GetLastError();
+ long long left=intersection[0],top=intersection[1],right=intersection[2],bottom=intersection[3];
+ if(right<=left || bottom<=top){saved[7]=0;saved[6]=0;saved[5]=0;SetLastError(error);return;}
  const i32 stride=word?width*2:width;
  long long source=(long long)image[0]+(top-y)*(word?width*2:x)-origin+left;
  long long target=(u32)destination+top*pitch+left;
@@ -73,7 +92,16 @@ static i32 __attribute__((thiscall)) ns_image_copy_full(const u32* image,u8* des
   u32 r[9]={0};r[7]=(u32)source;r[5]=(u32)target;r[2]=(u32)(right-left);
   ns_image_copy_prepare(r);source+=stride;target+=pitch;
  }
- SetLastError(error);return (i32)source;
+ saved[7]=(u32)source;saved[6]=0;saved[5]=(u32)target;
+ /* Original533b0b reuses the incoming X argument as its row countdown. */
+ arguments[3]=0;
+ SetLastError(error);
+}
+__attribute__((naked)) static void ns_image_copy_full_entry(void){
+ __asm__ volatile(
+  "pushfl\n\tpushal\n\tcld\n\tmovl %esp,%eax\n\tsubl $528,%esp\n\tandl $-16,%esp\n\tfxsave (%esp)\n\t"
+  "movl %esp,%edx\n\tpushl %eax\n\tpushl %edx\n\tpushl %eax\n\tcalll _ns_image_copy_full_prepare\n\taddl $8,%esp\n\tpopl %eax\n\t"
+  "fxrstor (%esp)\n\tmovl %eax,%esp\n\tpopal\n\tpopfl\n\tretl $24\n\t");
 }
 static void ns_image_copy_install(void){
  if(!ns_ownership_required || ns_image_copy_installed)return;
@@ -84,7 +112,7 @@ static void ns_image_copy_install(void){
  for(u32 i=0;i<sizeof(expected);++i)if(site[i]!=expected[i])ExitProcess(124);
  for(u32 i=0;i<sizeof(ns_image_copy_original);++i)if(entry[i]!=ns_image_copy_original[i])ExitProcess(124);
  if(!VirtualProtect(entry,8,0x40,&old))ExitProcess(124);
- entry[0]=0xe9;*(u32*)(entry+1)=(u32)ns_image_copy_full-(u32)entry-5;
+ entry[0]=0xe9;*(u32*)(entry+1)=(u32)ns_image_copy_full_entry-(u32)entry-5;
  entry[5]=entry[6]=entry[7]=0x90;
  if(!VirtualProtect(entry,8,old,&ignored) || !FlushInstructionCache((HANDLE)-1,entry,8))ExitProcess(124);
  if(!VirtualProtect(site,8,0x40,&old))ExitProcess(124);

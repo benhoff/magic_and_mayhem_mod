@@ -129539,7 +129539,11 @@
       "tests": [
         "tests/native-extended-draw-probe.c",
         "tests/native-owned-backing-probe.c",
-        "tools/test-native-extended-draw.py"
+        "tools/test-native-extended-draw.py",
+        "tests/native-image-caller-state.c",
+        "tests/native-image-caller-state-probe.S",
+        "tests/test-native-image-caller-state.py",
+        "tools/test-native-image-caller-state.py"
       ],
       "evidence": [
         "NATIVE.native-extended-draw-20261018",
@@ -129562,7 +129566,8 @@
       "remaining_gaps": [
         "Current source-bound isolated controls pass. Live application use of the new extensions/recovery, original driver equivalence and hardware fault/performance acceptance remain separate.",
         "20261026 adapter-cost work: write-only destination admission is an intentional native policy extension. Fresh bounded source-read/overlap/dirty-mask controls and strict diagnostic live latency runs are recorded; broader all-caller and original-driver validation remains pending; historical source hashes and independent stage statuses remain unchanged.",
-        "20261026 adapter-cost batch: bounded allocator/cache/lifetime/copy controls and strict mixed-context diagnostic runs are recorded separately. All-current application integration, trace-disabled sustained timing, original-driver whole-session pixel equivalence and complete replacement remain pending; historical validation fingerprints and independent stage statuses are preserved."
+        "20261026 adapter-cost batch: bounded allocator/cache/lifetime/copy controls and strict mixed-context diagnostic runs are recorded separately. All-current application integration, trace-disabled sustained timing, original-driver whole-session pixel equivalence and complete replacement remain pending; historical validation fingerprints and independent stage statuses are preserved.",
+        "CS09: Full native entry caller-state differences in EDX, arithmetic flags and retired X slot are corrected and checked separately under RS.image-copy-caller-state. Broader existing milestones keep historical fingerprints; finite fixture evidence does not renew installed/profile-wide equivalence or close the caller-state operation."
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -171015,6 +171020,65 @@
       ],
       "remaining_gaps": [
         "Accepted scope is only the four named operation rows across recorded High and newly observed Low phases. Current whole-player/High combined guest execution, physical context loss/Restore, pending CPU interruption, arbitrary races/providers, in-place/save recovery and both final rendering decisions remain separate."
+      ]
+    },
+    {
+      "id": "RS.image-copy-caller-state",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Whole image-copy normal-return caller state",
+      "scope": "Pinned NoCD533a00 complete local normal-return image-copy state and actual production native entry over the finite two-format, varied width/anchor, clipped/disjoint/empty/negative-pitch, twelve masked x87-mode corpus. Real Wine IntersectRect and typed facade controls. Compare full destination/source guards, EAX/ECX/EDX, callee GPRs/ESP, final ADD ESP,38h arithmetic flags, six retired RET24 argument slots, LastError and selected FX bytes with four stack alignments. Original instruction/data floating history, malformed/unbounded inputs, unmasked exceptions, arbitrary provider/thread interleavings, complete natural caller inventory and installed player acceptance remain separate. Clear-DF refusal is intentional native admission.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5454336,
+          "scope": "Complete selected routine normal-return state for the finite valid corpus; real Wine rectangle supplier, no installed all-caller/exception claim."
+        }
+      ],
+      "implementation": [
+        "runtime/native-draw/cpu_copy_boundary.h",
+        "runtime/native-draw/image_copy_original.h"
+      ],
+      "tests": [
+        "tests/native-image-caller-state.c",
+        "tests/native-image-caller-state-probe.S",
+        "tests/test-native-image-caller-state.py",
+        "tools/test-native-image-caller-state.py",
+        "tests/native-extended-draw-probe.c",
+        "tests/native-owned-backing-probe.c"
+      ],
+      "validation_dependencies": [
+        "tools/build-native-draw.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/experiment_environment.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "runtime/shadow/win32_min.h",
+        "tests/native-continuation-state.h",
+        "tests/native-copy-transform-probe.c",
+        "tests/native-draw-resource-probe.c",
+        "tools/test-native-extended-draw.py"
+      ],
+      "documents": [
+        "research/runtime/native-image-caller-state-20261108.md",
+        "research/formats/native-image-caller-state-v1.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS09.image-original09",
+        "CS09.image-native09"
+      ],
+      "remaining_gaps": [
+        "CS09.G.installed: The complete flags-and-return-values row remains pending in both profiles. Surface/World/sprite/screen production caller inventory and actual state/output joins are missing. This finite routine correction closes no player row.",
+        "CS09.G.outside: Original floating instruction/data history, unmasked exceptions, malformed pointers/overflow and arbitrary provider/thread behavior remain outside the comparison."
       ]
     }
   ],
@@ -391075,6 +391139,144 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CS09.image-original09",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/image-abi-09.json",
+      "sha256": "094d7aa09d52275dd67ff6bb2404b4deeacc93de032e11c7264425b6d1232e7a",
+      "scope": "Private actual PE32 full image-copy entry:19008unchanged-original/native complete destination/source/GPR/stack/defined-flags/LastError/selected-FX matches; twelve masked precision/rounding modes, four stack paddings, nine clipping/shape/pitch modes. Real USER32.IntersectRect outgoing FX effects are retained.8fail-closed reader guards and real extended/backing plus three expected direction/span/prefix refusals pass. No original game, all-bypass caller inventory, provider/exception generalization or acceptance-row closure.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/experiment_completed",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/equivalent",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/counts/complete_state_matches",
+          "equals": 19008
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/collector_controls_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_reference_body_verified_after_install_and_execution",
+          "equals": true
+        },
+        {
+          "pointer": "/retired_native_entry_poisoned_after_eight_bytes",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/rectangle_provider_import/name",
+          "equals": "IntersectRect"
+        },
+        {
+          "pointer": "/rectangle_provider_import/iat_va",
+          "equals": 6050452
+        }
+      ]
+    },
+    {
+      "id": "CS09.image-native09",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/image-abi-09.json",
+      "sha256": "094d7aa09d52275dd67ff6bb2404b4deeacc93de032e11c7264425b6d1232e7a",
+      "scope": "Private actual PE32 full image-copy entry:19008unchanged-original/native complete destination/source/GPR/stack/defined-flags/LastError/selected-FX matches; twelve masked precision/rounding modes, four stack paddings, nine clipping/shape/pitch modes. Real USER32.IntersectRect outgoing FX effects are retained.8fail-closed reader guards and real extended/backing plus three expected direction/span/prefix refusals pass. No original game, all-bypass caller inventory, provider/exception generalization or acceptance-row closure.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/experiment_completed",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/equivalent",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/counts/complete_state_matches",
+          "equals": 19008
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/collector_controls_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_reference_body_verified_after_install_and_execution",
+          "equals": true
+        },
+        {
+          "pointer": "/retired_native_entry_poisoned_after_eight_bytes",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/rectangle_provider_import/name",
+          "equals": "IntersectRect"
+        },
+        {
+          "pointer": "/rectangle_provider_import/iat_va",
+          "equals": 6050452
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -391150,6 +391352,14 @@
         "RS.screen-font-installation"
       ],
       "scope": "NoCD557802 invokes the confirmed WINMM.timeGetTime IAT slot and forwards its DWORD to54e170. The fixture supplies the API and consumer; clock/wrap/scheduling and Windows timing semantics are not inferred."
+    },
+    {
+      "build": "nocd-40209ca7",
+      "iat_va": 6050452,
+      "behaviors": [
+        "RS.image-copy-caller-state"
+      ],
+      "scope": "Confirmed USER32.IntersectRect import used by533a00. Original and native private fixtures call the same real Wine provider, including its outgoing SIMD state on empty intersections. Other providers and installed caller coverage remain separate."
     }
   ],
   "dispatch_tables": [
@@ -425212,6 +425422,25 @@
       "evidence": [
         "RT09.four-operation-rows01"
       ]
+    },
+    {
+      "id": "RS.image-copy-caller-state.private-pe32",
+      "level": "headless",
+      "scope": "Pinned NoCD533a00 complete local normal-return image-copy state and actual production native entry over the finite two-format, varied width/anchor, clipped/disjoint/empty/negative-pitch, twelve masked x87-mode corpus. Real Wine IntersectRect and typed facade controls. Compare full destination/source guards, EAX/ECX/EDX, callee GPRs/ESP, final ADD ESP,38h arithmetic flags, six retired RET24 argument slots, LastError and selected FX bytes with four stack alignments. Original instruction/data floating history, malformed/unbounded inputs, unmasked exceptions, arbitrary provider/thread interleavings, complete natural caller inventory and installed player acceptance remain separate. Clear-DF refusal is intentional native admission.",
+      "behaviors": [
+        "RS.image-copy-caller-state"
+      ],
+      "tests": [
+        "tests/native-image-caller-state.c",
+        "tests/native-image-caller-state-probe.S",
+        "tests/test-native-image-caller-state.py",
+        "tools/test-native-image-caller-state.py",
+        "tests/native-extended-draw-probe.c",
+        "tests/native-owned-backing-probe.c"
+      ],
+      "evidence": [
+        "CS09.image-native09"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -427029,8 +427258,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-1d905ce062632b20ba9828ccbfe2d27bf90f1d8eb133b02c196f497fcdae9934.json",
-    "sha256": "1d905ce062632b20ba9828ccbfe2d27bf90f1d8eb133b02c196f497fcdae9934"
+    "path": "research/runtime/coverage/source-index-6f330188e209f5f0828f6b93c91eea42dd61cff27f6f5053b4accfbe87c172dd.json",
+    "sha256": "6f330188e209f5f0828f6b93c91eea42dd61cff27f6f5053b4accfbe87c172dd"
   },
   "evidence_applicability": [
     {

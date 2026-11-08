@@ -27773,3 +27773,26 @@ is performed here. The font/DC installed lifecycle and whole caller ABI
 remain pending. Latest history covers25717committed file versions with three
 new retrospective metadata bindings, separate from all earlier reviews. See
 rendering-contract-master-final-results-20261108 for the exact SQLite reports.
+
+
+## CS09 image-copy caller-state correction — 2026-11-08
+
+The actual full native533a00 entry had equal pixels but different EDX, defined
+arithmetic flags and retired-X slot in2112original comparisons. A saved-state
+entry now returns the original EAX/ECX/EDX, row-counter argument and final
+ADD ESP,38h flags. Nonzero deterministic SIMD inputs additionally exposed
+USER32.IntersectRect clearing XMM0 on empty intersections. The confirmed
+5c5294 import is now called with the incoming FX state; its outgoing state and
+LastError survive native ownership/copy work. Native pixel copying stays native.
+
+Fresh image-abi-09 passes19008complete original/native state-and-pixel cases,
+8reader refusal guards, existing actual PE32 extended/protected-backing controls
+and expected span/prefix/direction refusals. Exact tested executables, all
+observed wires, source preimages, setup failures and the runner03retention
+failure remain explicit SQLite records. No original image instruction executes
+through the poisoned native entry; the separate original reference stays intact.
+No game is launched or acceptance row promoted. Both flags-and-return-values
+rows and both final decisions remain pending; the112/44parent inventory is
+unchanged. Surface/World/sprite/screen installed caller-state and independent
+pixel joins remain required. See native-image-caller-state-20261108.md and
+RS.image-copy-caller-state; all broader historical fingerprints stay historical.
