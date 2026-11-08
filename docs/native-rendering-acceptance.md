@@ -1,3 +1,12 @@
+The current owned AC07 retained admission is
+`research/runtime/attachment-combat-results-20261107/admission-03.json`:92passed,
+64pending in its preserved90-row source phase. Both combat profile rows are
+complete. Both attachment rows remain pending after six charged starts; the
+saved-ready inventory correction has39offline controls, while its original640
+execution and the earlier Quick-return issue remain unaccepted. A higher start
+cap requires the pending explicit user decision. Earlier/native/compiler/
+viewport phases and both final decisions remain separate.
+
 # Native rendering acceptance record
 
 **Partial combat/attachment closeout (2026-11-08):** [AC07](../research/runtime/attachment-combat-output-20261107.md) closes both combat-output rows at actual default/software640/800 over the90-row SV07 source phase: **92/156passed64pending**. Actual original melee events, source health/engagement brackets, changed body frames and complete independent native comparisons pass. Both attachment rows remain pending:800cases pass four-view mode1placement/output, but640quota/setup and Results-return failures lack normal admission. The five-start attachment cap is exhausted; no further original game is authorized by this partial result. Both final decisions and all inherited source phases remain explicit.

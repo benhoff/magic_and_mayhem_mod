@@ -235,3 +235,40 @@ presentations. All9,316,048,500retained viewport pixel checks have zero mismatch
 native paints. The full original comparison uses4,085,042reconstructed draws.
 These are rendering/observation results; no original damage, AI, spell timing
 or gameplay simulation is replaced.
+
+
+The user explicitly approved six total attachment starts after the fifth had
+already failed. The sixth (`attachment-default640-03.json`) saves a valid ready
+Spellbox7/ack5 wire, then fails before inventory selection or any cast with an
+unchecked optional live read in `select_spell`. The reader is allowed to return
+None during publication; indexing it is a collector bug. The precise rejected
+live bytes were not retained. The new read-only boundary trace has5,038stable
+samples and10full transition wires; later lease retirement is not assigned as
+the initial cause. Quota headroom remains above47,218,524,160bytes, with no guard
+trigger. The earlier fifth-case Results/Quick failure remains separate.
+
+The correction validates and reuses the exact persisted ready Spellbox visit.
+39offline controls pass, including both real accepted800snapshots with an
+unavailable live read, foreign/torn/missing visit rejection and strict exclusion
+of unrelated target/timing/native changes. `ready-input-phase-01.json` pins the
+exact before/after source bytes and identical originally used inventory fields;
+it does not assert original execution of the new optionalNone domain.
+`collector-budget-phase-01.json` separately preserves the explicit six-total
+authority and every earlier charge. Neither review changes native/runtime,
+protocol, oracle or pixel-analysis bytes, and no old source hash is refreshed.
+
+`admission-03.json` is a fresh retained-data/accounting result under those exact
+reviews:92passed64pending, two requested combat rows complete and both attachment
+rows still pending. All six successful comparison inputs, four combat domains,
+90inherited rows and both decisions remain. The original native/pixel execution
+phases stay exact; this join is no new game or full pixel-matrix execution.
+Current39admission plus30Python/9client UI controls pass.
+
+All six actual attachment starts remain charged. The prospective eight-total
+proposal is nonlaunchable pending explicit user approval; the unresolved earlier
+return issue may recur. Both stopped sixth-run trees, original pins and changed
+idle prefix state have two verified immutable copies and real restores, with
+canonical historical-path stubs. Fresh post-report idle/lease checks supply only
+private-input restoration authority. Exact High preference and launcher bytes
+are restored; all2,927original files verify. Failed acquisitions, prior source
+reviews and superseded positive reports remain immutable.

@@ -69,7 +69,7 @@ def main():
     try:
         with Reader(ROOT) as reader:
             plan = reader.json(args.plan)
-            require(plan['success'] is True and plan['maximum_actual_games'] == 5,
+            require(plan['success'] is True and plan['maximum_actual_games'] in (5,6),
                     'Prospective attachment plan missing')
             require(all(reader.digest(n) == h for n, h in plan['sources'].items()), 'Attachment plan sources changed')
             result['input_plan'] = dict(record=args.plan, sha256=reader.digest(args.plan))
@@ -142,7 +142,7 @@ def main():
                         require(reason and reader.digest(record)==h and reader.json(record)['original_game_runs']==0,
                                 'Invalid retained zero-game certificate')
                 previous=list(db.execute('SELECT report,domain FROM attempts WHERE report NOT IN(SELECT report FROM pre_game_refusals)'))
-                require(len(previous)<5,'Five-game attachment scenario budget exhausted')
+                require(len(previous)<plan['maximum_actual_games'],'Attachment scenario budget exhausted')
                 with Reader(ROOT)as reader:
                     successes=[]
                     for n,domain in previous:

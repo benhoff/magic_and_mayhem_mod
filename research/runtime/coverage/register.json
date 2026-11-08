@@ -168150,7 +168150,8 @@
         "AC07.encoder-controls03",
         "AC07.encoder-controls04",
         "AC07.combat-observation01",
-        "AC07.combat-observation02"
+        "AC07.combat-observation02",
+        "AC07.combat-observation03"
       ],
       "status": {
         "understanding": "scoped",
@@ -168196,7 +168197,8 @@
       ],
       "evidence": [
         "AC07.combat-observation01",
-        "AC07.combat-observation02"
+        "AC07.combat-observation02",
+        "AC07.combat-observation03"
       ],
       "status": {
         "understanding": "scoped",
@@ -168264,7 +168266,8 @@
       ],
       "evidence": [
         "AC07.combat-admission01",
-        "AC07.combat-admission02"
+        "AC07.combat-admission02",
+        "AC07.combat-admission03"
       ],
       "status": {
         "understanding": "scoped",
@@ -168327,7 +168330,8 @@
       ],
       "evidence": [
         "AC07.combat-admission01",
-        "AC07.combat-admission02"
+        "AC07.combat-admission02",
+        "AC07.combat-admission03"
       ],
       "status": {
         "understanding": "scoped",
@@ -168346,7 +168350,7 @@
       "title": "Ordinary pre-battle attachment scenario",
       "kind": "native_policy",
       "subsystem": "native_rendering",
-      "scope": "Existing public Quick Battle setup and original offered Spellbox recipe83 selected through physical native controls; one source-directed opaque player-wizard self-target request, require actual mode1 child queue and four stored views, then ordinary Results/Quick/Main/Quit. Existing original setup sliders define the scenario; no balance implementation, memory/channel writes, feedback search, invented recipe, repeat cast or successful-spell rule equivalence. Separate missing-branch scenario from the bounded six-start campaign contact plan.",
+      "scope": "Existing public Quick Battle setup and original offered Spellbox recipe83 selected through physical native controls; one source-directed opaque player-wizard self-target request, require actual mode1 child queue and four stored views, then ordinary Results/Quick/Main/Quit. Existing original setup sliders define the scenario; no balance implementation, memory/channel writes, feedback search, invented recipe, repeat cast or successful-spell rule equivalence. Separate missing-branch scenario from the bounded six-start campaign contact plan. Initial inventory reuses and validates the exact persisted ready Spellbox visit; offline optional-read guards do not establish original execution of the corrected None-read domain.",
       "confidence": "provisional",
       "original": [
         {
@@ -168365,7 +168369,8 @@
         "tools/run-scene-attachment.py"
       ],
       "tests": [
-        "tools/check-scene-attachment.py"
+        "tools/check-scene-attachment.py",
+        "tests/test-scene-attachment-admission.py"
       ],
       "validation_dependencies": [
         "tools/run-rendering-menu-acceptance.py",
@@ -168383,7 +168388,10 @@
         "AC07.attachment-low-quota-failure01",
         "AC07.combat-observation01",
         "AC07.combat-observation02",
-        "AC07.attachment-low-return-failure01"
+        "AC07.attachment-low-return-failure01",
+        "AC07.attachment-inventory-race01",
+        "AC07.ready-inventory-controls01",
+        "AC07.combat-observation03"
       ],
       "status": {
         "understanding": "scoped",
@@ -168397,7 +168405,8 @@
         "AC07.G.attachments",
         "AC07.G.ownership",
         "AC07.G.ram-quota-failure: actual default640setup stops before cast/World. Exact core preserves original Source chunk acknowledgement mode/cancellation and secondary uncaught QSaveFile error2 Disk quota exceeded. Filesystem free space alone does not establish user-quota headroom; first failing producer syscall remains unobserved. No normal failure-retirement, universal reliability, attachment output or quota recovery claim is supplied by this negative capture.",
-        "AC07.G.low-results-return: actual640Excalibur run dispatches original Results26/callback2 but fails readyQuick22/ack7 before timeout. Final post-cleanup ack8/status5 is later evidence; exact first pending transition/cause remains unobserved. All capture/normal-retirement claims remain failed, cap5 exhausted. See attachment-runtime-diagnosis-05.json; no native menu/controller change or status promotion."
+        "AC07.G.low-results-return: actual640Excalibur run dispatches original Results26/callback2 but fails readyQuick22/ack7 before timeout. Final post-cleanup ack8/status5 is later evidence; exact first pending transition/cause remains unobserved. All capture/normal-retirement claims remain failed, cap5 exhausted in that historical run; six-total approval subsequently used. See attachment-runtime-diagnosis-05.json; no native menu/controller change or status promotion.",
+        "AC07.G.optional-inventory-read-runtime: sixth charged start fails before inventory/cast because an unchecked live read returnsNone after a valid saved Spellbox visit. Exact cached-ready correction and39 offline controls pass; its new None-read handling has no accepted original640execution. The earlier Results-return failure remains separate and unresolved. See attachment-runtime-diagnosis-06.json and ready-input-phase-01.json; cap6 is exhausted and a two-start increase is pending explicit user approval."
       ]
     },
     {
@@ -168405,7 +168414,7 @@
       "title": "Evidence-bound attachment and combat row admission",
       "kind": "native_policy",
       "subsystem": "native_rendering",
-      "scope": "Admit only attachment/combat profile rows with both actual640/800 retained case proofs, unique sessions, original semantic/source/paint ownership and complete independent native output comparisons. Preserve every inherited row and source phase. Default final admission requires all eight domains; explicit partial reports leave each incomplete row pending. No native gameplay reconstruction, arbitrary attachment lifecycle or final supported-player/original-recovery decision. An optional exact two-expression host charging-budget review may not waive native/runtime, physical-input, protocol, original-oracle or pixel-analyzer hashes.",
+      "scope": "Admit only attachment/combat profile rows with both actual640/800 retained case proofs, unique sessions, original semantic/source/paint ownership and complete independent native output comparisons. Preserve every inherited row and source phase. Default final admission requires all eight domains; explicit partial reports leave each incomplete row pending. Exact host budget checks and the cached-ready Spellbox inventory read may receive separate source reviews with current controls and identical originally used inputs from both accepted800 snapshots. These preserve only accepted old positive scopes; new optional-None runtime handling remains pending. No other physical-action/timing/target change or native/runtime, protocol, original-oracle or pixel-analyzer hash is waived. No native gameplay reconstruction, arbitrary attachment lifecycle or final player/original-recovery decision.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -168437,7 +168446,8 @@
       ],
       "evidence": [
         "AC07.combat-admission01",
-        "AC07.combat-admission02"
+        "AC07.combat-admission02",
+        "AC07.combat-admission03"
       ],
       "status": {
         "understanding": "scoped",
@@ -168447,7 +168457,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "AC07.G.attachment640: both low-resolution attachment domains remain unaccepted after quota/setup and Results-return failures. Five actual attachment games are charged and exhausted. The four-row task is incomplete.",
+        "AC07.G.attachment640: both low-resolution attachment domains remain unaccepted after quota/setup and Results-return failures. Six actual attachment games are charged and exhausted; the user-approved cap6 has no remaining slot. The eighth-total proposal requests two further starts and remains nonlaunchable pending approval. The four-row task is incomplete.",
         "AC07.G.ownership",
         "Other attachment/status/map/provider/caller/lifetime domains and native gameplay remain separate."
       ]
@@ -386578,6 +386588,144 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "AC07.attachment-inventory-race01",
+      "kind": "live_observation",
+      "scope": "Negative sixth actual attachment start. After a ready Spellbox7/ack5 wire is saved, an unchecked optional live read fails before inventory selection or cast. No World/attachment/normal-retirement credit; guard never triggers. Source hashes remain at the failed pre-fix collector phase; the later cached-ready correction and idle-prefix proof are separate.",
+      "record": "research/runtime/attachment-combat-results-20261107/attachment-default640-03.json",
+      "sha256": "2a7289fba8768e4a1682e65f9ff2358937d191f36dc817bf6c0f4d7c7f044cc6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 1
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/attachment_route/cast_requests",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "AC07.ready-inventory-controls01",
+      "kind": "native_integration",
+      "scope": "39 current offline host input/row/source-review controls. Both real accepted800 ready inventories match all originally used fields under cached-ready reading; transientNone, foreign/torn/missing visits and unrelated physical/native edits are rejected. No original execution of the corrected optionalNone domain or640attachment acceptance.",
+      "record": "research/runtime/attachment-combat-results-20261107/ready-snapshot-phase-controls-01.json",
+      "sha256": "1f9c353dd7812735dfd29bf249eee9f8bdec7009b5dc3896ae2f9ef5dda06a10",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/passed",
+          "equals": 39
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "AC07.combat-admission03",
+      "kind": "native_integration",
+      "scope": "Retained current-source admission of the four independently proven default/software640/800 combat cases, preserving exactly both combat rows and all90parent rows/decisions. Exact approved five-to-six budget and saved-ready inventory reviews preserve original source hashes and identical old positive800 inventory inputs under39 current controls. Two800attachment cases remain diagnostic, both640domains and both attachment rows stay pending. No fresh original/native execution or live validation of corrected optionalNone handling; six charged starts exhaust the approved cap.",
+      "record": "research/runtime/attachment-combat-results-20261107/admission-03.json",
+      "sha256": "fa275b1f17fd91db424404bd798854d65aceb61f4be32ba736b57bb94c6235d0",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 2
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/ready_inventory_input_phase/new_optional_none_domain_live_validated",
+          "equals": false
+        },
+        {
+          "pointer": "/collector_budget_phase/maximum_after",
+          "equals": 6
+        }
+      ]
+    },
+    {
+      "id": "AC07.combat-observation03",
+      "kind": "live_observation",
+      "scope": "Retained current-source admission of the four independently proven default/software640/800 combat cases, preserving exactly both combat rows and all90parent rows/decisions. Exact approved five-to-six budget and saved-ready inventory reviews preserve original source hashes and identical old positive800 inventory inputs under39 current controls. Two800attachment cases remain diagnostic, both640domains and both attachment rows stay pending. No fresh original/native execution or live validation of corrected optionalNone handling; six charged starts exhaust the approved cap.",
+      "record": "research/runtime/attachment-combat-results-20261107/admission-03.json",
+      "sha256": "fa275b1f17fd91db424404bd798854d65aceb61f4be32ba736b57bb94c6235d0",
+      "sources_pointer": "/live_observation_sources",
+      "claims_pointer": "/live_claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/remaining_task_rows",
+          "equals": 2
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/ready_inventory_input_phase/new_optional_none_domain_live_validated",
+          "equals": false
+        },
+        {
+          "pointer": "/collector_budget_phase/maximum_after",
+          "equals": 6
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -420115,7 +420263,8 @@
       ],
       "evidence": [
         "AC07.combat-observation01",
-        "AC07.combat-observation02"
+        "AC07.combat-observation02",
+        "AC07.combat-observation03"
       ],
       "remaining_gaps": [
         "AC07.G.driver-live",
@@ -420137,7 +420286,8 @@
       ],
       "evidence": [
         "AC07.combat-admission01",
-        "AC07.combat-admission02"
+        "AC07.combat-admission02",
+        "AC07.combat-admission03"
       ],
       "remaining_gaps": [
         "AC07.G.attachments",
@@ -420160,7 +420310,8 @@
       ],
       "evidence": [
         "AC07.combat-observation01",
-        "AC07.combat-observation02"
+        "AC07.combat-observation02",
+        "AC07.combat-observation03"
       ],
       "remaining_gaps": [
         "AC07.G.attachment-driver-live",
@@ -420183,7 +420334,8 @@
       ],
       "evidence": [
         "AC07.combat-admission01",
-        "AC07.combat-admission02"
+        "AC07.combat-admission02",
+        "AC07.combat-admission03"
       ],
       "remaining_gaps": [
         "AC07.G.admission",
@@ -420202,7 +420354,8 @@
       ],
       "evidence": [
         "AC07.combat-admission01",
-        "AC07.combat-admission02"
+        "AC07.combat-admission02",
+        "AC07.combat-admission03"
       ],
       "remaining_gaps": [
         "AC07.G.ownership",
@@ -422025,8 +422178,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-79f9f47b742915d87268c65e231d32c2f6a4897afcd516aa2e00cfd56fa6209f.json",
-    "sha256": "79f9f47b742915d87268c65e231d32c2f6a4897afcd516aa2e00cfd56fa6209f"
+    "path": "research/runtime/coverage/source-index-4350714ad145a1b00baef3afa74ab69f85a35aec2ac282fa159de1b26433e7fe.json",
+    "sha256": "4350714ad145a1b00baef3afa74ab69f85a35aec2ac282fa159de1b26433e7fe"
   },
   "evidence_applicability": [
     {

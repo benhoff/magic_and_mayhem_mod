@@ -2,14 +2,126 @@
 """Actual retained cast boundary guards and exact four-row accounting controls."""
 from copy import deepcopy
 import importlib.util
+import hashlib
 from pathlib import Path
+import struct
 import sys
+import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
 spec=importlib.util.spec_from_file_location('scene_close',ROOT/'tools/close-scene-attachment-combat.py')
 close=importlib.util.module_from_spec(spec);spec.loader.exec_module(close)
+import scene_attachment_journey as attachment
+
+
+class ReadyInventoryControls(unittest.TestCase):
+    """Replay real saved visits with an unavailable optional live publication."""
+    @classmethod
+    def setUpClass(cls):
+        cls.reader=close.Reader(ROOT);cls.reader.__enter__();cls.cases=[]
+        for name in('attachment-default800-04.json','attachment-software800-01.json'):
+            acquired=cls.reader.json(close.PREFIX+name);ready=acquired['states'][5]
+            artifact=next(a for a in acquired['artifacts']if a['path']==ready['wire_path'])
+            raw=cls.reader.read_bytes(artifact['record'])
+            assert hashlib.sha256(raw).hexdigest()==artifact['sha256']
+            cls.cases.append((ready,raw,acquired['attachment_route']['inventory']))
+
+    @classmethod
+    def tearDownClass(cls):cls.reader.__exit__(None,None,None)
+
+    def setUp(self):
+        self.scratch=tempfile.TemporaryDirectory(prefix='scene-ready-inventory-')
+        self.addCleanup(self.scratch.cleanup)
+        self.directory=Path(self.scratch.name)
+        self.root_patch=patch.object(attachment.menus,'ROOT',self.directory)
+        self.root_patch.start();self.addCleanup(self.root_patch.stop)
+
+    def journey(self,index=0):
+        ready,raw,inventory=self.cases[index]
+        path=self.directory/(str(index)+'.bin');path.write_bytes(raw)
+        journey=attachment.AttachmentJourney.__new__(attachment.AttachmentJourney)
+        journey.last=deepcopy(ready);journey.last['wire_path']=path.name
+        journey.proof={};journey.read=lambda:None
+        journey.node=lambda name:(None,{'name':'original slot — empty'})
+        def stop_before_physical_input(name):raise StopIteration(name)
+        journey.press=stop_before_physical_input
+        return journey,path,inventory
+
+    def test_select_spell_survives_a_transient_none_live_read(self):
+        journey,path,inventory=self.journey()
+        with self.assertRaises(StopIteration):journey.select_spell()
+        for key in('owner','offered','counts','assignments','recipes','ingredients','spells'):
+            self.assertEqual(journey.proof['inventory'][key],inventory[key])
+
+    def test_saved_inventory_matches_both_actual_accepted_profiles(self):
+        for index in range(2):
+            with self.subTest(profile=index):
+                journey,path,inventory=self.journey(index)
+                actual=journey.ready_spellbox_inventory()
+                for key in('owner','offered','counts','assignments','recipes','ingredients','spells'):
+                    self.assertEqual(actual[key],inventory[key])
+
+    def test_foreign_ready_visit_identity_is_rejected(self):
+        for key in('sequence','generation','ack','status','thread','handoff'):
+            with self.subTest(key=key):
+                journey,path,inventory=self.journey();journey.last[key]+=2
+                with self.assertRaises(ValueError):journey.ready_spellbox_inventory()
+
+    def test_a_non_spellbox_visit_cannot_supply_inventory(self):
+        journey,path,inventory=self.journey();journey.last['screen']=22
+        with self.assertRaises(ValueError):journey.ready_spellbox_inventory()
+
+    def test_unready_or_missing_visit_cannot_supply_inventory(self):
+        journey,path,inventory=self.journey();journey.last['ready']=False
+        with self.assertRaises(ValueError):journey.ready_spellbox_inventory()
+        journey.last=None
+        with self.assertRaises(ValueError):journey.ready_spellbox_inventory()
+
+    def test_missing_saved_wire_cannot_fall_back_to_optional_live_data(self):
+        journey,path,inventory=self.journey();path.unlink()
+        with self.assertRaises(ValueError):journey.ready_spellbox_inventory()
+
+    def test_busy_saved_publication_is_rejected(self):
+        journey,path,inventory=self.journey();raw=bytearray(path.read_bytes())
+        struct.pack_into('<I',raw,128,struct.unpack_from('<I',raw,128)[0]|1);path.write_bytes(raw)
+        with self.assertRaises(ValueError):journey.ready_spellbox_inventory()
+
+    def test_foreign_saved_wire_signature_is_rejected(self):
+        journey,path,inventory=self.journey();raw=bytearray(path.read_bytes());raw[0]^=1;path.write_bytes(raw)
+        with self.assertRaises(ValueError):journey.ready_spellbox_inventory()
+
+
+class ReadyPhaseControls(unittest.TestCase):
+    def versions(self):
+        after=(ROOT/close.DRIVER).read_bytes()
+        self.assertEqual(after.count(close.READY_AFTER),1)
+        return after.replace(close.READY_AFTER,close.READY_BEFORE),after
+
+    def test_only_the_exact_saved_inventory_correction_is_accepted(self):
+        close.ready_only_change(*self.versions())
+
+    def test_a_changed_target_cannot_hide_in_the_inventory_review(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.ready_only_change(before,after.replace(b'(575, 575)',b'(477, 575)'))
+
+    def test_a_changed_physical_hold_cannot_hide_in_the_inventory_review(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.ready_only_change(before,after.replace(b'0xff1b,.6',b'0xff1b,.2'))
+
+    def test_a_missing_ready_visit_guard_is_rejected(self):
+        before,after=self.versions()
+        with self.assertRaises(ValueError):close.ready_only_change(before,after.replace(b"self.last['screen'] == 7",b'True'))
+
+    def test_ready_review_never_waives_native_code(self):
+        reader=type('Reader',(),{'digest':lambda self,n:'current'})()
+        with self.assertRaises(ValueError):close.checked_sources(reader,{'runtime/scene/canvas_producers.c':'old'},None,{'before':{'sha256':'old'}})
+
+    def test_an_unrelated_driver_preimage_is_rejected(self):
+        reader=type('Reader',(),{'digest':lambda self,n:'current'})()
+        with self.assertRaises(ValueError):close.checked_sources(reader,{close.DRIVER:'foreign'},None,{'before':{'sha256':'old'}})
 
 
 class ActualCastControls(unittest.TestCase):

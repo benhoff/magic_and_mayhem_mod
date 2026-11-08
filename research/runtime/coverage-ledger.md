@@ -27268,3 +27268,30 @@ uses a separate private RAM filesystem and remains pinned through handoff.
 Broader attachment/status/caller/map/provider/input/lifecycle domains, both
 attachment rows, the four-row task and both final decisions remain pending.
 See [the AC07 research](attachment-combat-output-20261107.md).
+
+
+### AC07 saved-ready inventory correction and preserved combat admission — 2026-11-08
+
+Owned checkpoint `a2f2be6946ef3b27b24ed0799db59027c240e6da` retains both combat
+rows with its normal staged gate and verified local backups. Its9,086real
+parent/current file transitions have exact receipts, including the retrospective
+journal self-export; no concurrent main source/status was imported.
+
+The approved sixth attachment start fails before inventory/cast at an unchecked
+optional live Spellbox read. Its failed acquisition, pre-cleanup read-only trace,
+quota report and late idle-prefix verification remain separate. The exact saved
+ready-wire correction passes39offline controls and preserves every used input
+from both accepted800snapshots. New optionalNone runtime handling remains
+unvalidated; the fifth Results/Quick-return failure also remains unresolved.
+
+`attachment-combat-results-20261107/admission-03.json` revalidates only the
+retained finite combat proof and exact row accounting under the narrow host
+budget/ready-input source reviews:92passed64pending, two requested rows still
+pending. Native/runtime, original oracle and pixel-analyzer hashes are strict;
+all historical source maps and failed starts remain. No new game or pixel-matrix
+comparison is credited by this join. Six actual attachment starts exhaust the
+user-approved cap; the two-start increase remains pending approval. Both
+attachment physical/output milestones remainnone. The sixth raw trees/pins
+and changed idle prefix have paired full manifests, real restores and canonical
+stubs. Private High preferences/launcher bytes are restored and2,927original
+files verify. See the AC07 research and `attachment-runtime-diagnosis-06.json`.

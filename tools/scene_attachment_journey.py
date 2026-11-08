@@ -114,8 +114,17 @@ class AttachmentJourney(menus.Journey):
         self.actions.append(dict(action=label,symbol=symbol,held_ms=round(hold*1000),down_up=True,
                                  host_ns=time.monotonic_ns(),host_focus=self.input.focus()))
 
+    def ready_spellbox_inventory(self):
+        require(self.last and self.last['screen'] == 7 and self.last['ready'],
+                'A saved ready Spellbox visit is required')
+        captured = menus.state(menus.ROOT/self.last['wire_path'])
+        require(captured and all(captured[0][key] == self.last[key] for key in
+                ('sequence', 'generation', 'screen', 'ready', 'ack', 'status', 'thread', 'handoff')),
+                'Saved Spellbox wire differs from the ready visit')
+        return spell_inventory(captured[1])
+
     def select_spell(self):
-        initial = spell_inventory(self.read()[1]); self.proof['inventory'] = initial
+        initial = self.ready_spellbox_inventory(); self.proof['inventory'] = initial
         offered = [i for i in range(21) if initial['offered'] & (1 << i)]
         candidates = [(i, a) for i in offered for a in range(3)
                       if initial['counts'][a] and initial['recipes'][i*3+a] == 83]
