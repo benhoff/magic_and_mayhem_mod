@@ -168811,13 +168811,16 @@
         "tools/check-rendering-recovery-closeout.py",
         "tools/prepare-rendering-recovery-closeout.py",
         "tests/test-rendering-transition-startup.py",
-        "tools/assess-rendering-recovery-startup.py"
+        "tools/assess-rendering-recovery-startup.py",
+        "tests/test-rendering-recovery-collection.py",
+        "tools/prepare-rendering-four-recovery.py"
       ],
       "documents": [
         "research/runtime/rendering-transition-recovery-20261107.md",
         "research/formats/rendering-epoch-observations.md",
         "research/runtime/rendering-recovery-startup-20261108.md",
-        "research/runtime/native-startup-display-20261108.md"
+        "research/runtime/native-startup-display-20261108.md",
+        "research/runtime/rendering-four-recovery-20261108.md"
       ],
       "validation_dependencies": [
         "apps/qt-shell/native_only_session.hpp",
@@ -168878,7 +168881,8 @@
         "Physical context loss, pending CPU interruption, arbitrary faults/races/providers, in-place/save recovery, dedicated worker and whole renderer closure remain outside this scope.",
         "Integration over master6763ec077 preserves its100accepted rows without RT07credit. Four existing guest sources and runner differ, two guest headers are added (1021runtime sources versus1019recorded); combined guest validation remains pending with no source waiver. Both640domains remain unaccepted.",
         "RT08: Two new requests charge one original start. First is a retained zero-game private AT-SPI dbus-broker activation failure; three dbus-daemon controls and a revised explicit backend repair pass. The subsequent Low original exits0 before any menu callback/World; incomplete command history retires as GAP reason2. Upstream launch cause unresolved, not a proven raster defect. Stop collection; no software640 attempt or acceptance credit. Startup polling avoids busy-thread AT-SPI and now promptly reports an owned terminal failure; four startup, three confirmation and seventeen existing guards pass. New terminal-read control has no successful original-game validation.",
-        "SX08 identifies the RT08 RAM-authority failure in the private X11 namespace: its verified cookie file was hidden by tmpfs /tmp and not explicitly bound. A read-only private mount passes disk/RAM/wrong-cookie controls. One current Low run reaches Main,1280native World completions and positive input, with no full pixel/source capture. Optional ordinary-Quit diagnostic and finalization fail; no fault/restart or row credit. Earlier RT07 accessibility failures are not retroactively reclassified."
+        "SX08 identifies the RT08 RAM-authority failure in the private X11 namespace: its verified cookie file was hidden by tmpfs /tmp and not explicitly bound. A read-only private mount passes disk/RAM/wrong-cookie controls. One current Low run reaches Main,1280native World completions and positive input, with no full pixel/source capture. Optional ordinary-Quit diagnostic and finalization fail; no fault/restart or row credit. Earlier RT07 accessibility failures are not retroactively reclassified.",
+        "RT09 now admits only transition-recovery/failure-cleanup for both profiles under NP.four-recovery-operation-closeout: raw recorded-phase High proof plus new current-source Low captures, independent per-epoch output and fresh normal Quit. Historical failed attempts remain failures. This does not promote this older broad collector to current complete High guest execution, physical loss/Restore, pending CPU, arbitrary failure or whole-renderer validation."
       ]
     },
     {
@@ -170538,6 +170542,61 @@
       "remaining_gaps": [
         "SL08.G.scope: Finite recorded selected wizard only. Numeric pool/slot is not an allocation generation; multi-actor selection and whole picking/hotspot/cursor policy remain separate. Historical invalid cursor requests and their source phases are not renewed or hidden.",
         "SL08.G.phase: Retained original/native/compiler/oracle phases remain pinned. Current full player/provider, response deadlines, live frame-size changes, other acceptance rows and both final decisions remain pending."
+      ]
+    },
+    {
+      "id": "NP.four-recovery-operation-closeout",
+      "title": "Bounded transition failure and fresh-generation operation admission",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Retained-data admission of transition-recovery and failure-cleanup in public default/software actual640/800. Re-assess raw High terminal/restart/output/cleanup within its unchanged recorded1019-path source phase; collect only missing Low under the current1023-path conservative catalog and exact406-input player. Require expected drained INVALID, all native terminal predicates and stability, distinct runner/channel/World identities after physical restart, fresh positive input, independent per-epoch presented output and normal fresh Quit. Only the four named rows; no current whole-player/guest equivalence, physical reset, pending CPU interruption, arbitrary races/providers, in-place/save recovery or final decisions.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/close-rendering-four-recovery.py"
+      ],
+      "tests": [
+        "tests/test-rendering-four-recovery.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_transition_assessment.py",
+        "tools/rendering_transition.py",
+        "tools/rendering_pause_assessment.py",
+        "tools/rendering_pause.py",
+        "tools/rendering_interaction.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/campaign_storage.py",
+        "tools/pause_low_ingress.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/cpu_reader_journal.py",
+        "tools/rendering_acceptance.py",
+        "docs/native-rendering-closure.json",
+        "tools/pause_focus.py",
+        "tools/native_cursor_journal.py",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/include/mnm/render_control_v1.h"
+      ],
+      "documents": [
+        "research/runtime/rendering-four-recovery-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "RT09.four-operation-rows01"
+      ],
+      "remaining_gaps": [
+        "Accepted scope is only the four named operation rows across recorded High and newly observed Low phases. Current whole-player/High combined guest execution, physical context loss/Restore, pending CPU interruption, arbitrary races/providers, in-place/save recovery and both final rendering decisions remain separate."
       ]
     }
   ],
@@ -389628,6 +389687,65 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "RT09.four-operation-rows01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-recovery-four-results-20261108/acceptance-01.json",
+      "sha256": "f67445f24dd4e08dd071de7947f26b7ec8fa37bb691565c8b2623d32d8228cb3",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Retained-data admission of transition-recovery and failure-cleanup in public default/software actual640/800. Re-assess raw High terminal/restart/output/cleanup within its unchanged recorded1019-path source phase; collect only missing Low under the current1023-path conservative catalog and exact406-input player. Require expected drained INVALID, all native terminal predicates and stability, distinct runner/channel/World identities after physical restart, fresh positive input, independent per-epoch presented output and normal fresh Quit. Only the four named rows; no current whole-player/guest equivalence, physical reset, pending CPU interruption, arbitrary races/providers, in-place/save recovery or final decisions.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/required_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 4
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 108
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 48
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 4
+        },
+        {
+          "pointer": "/current_whole_native_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_high_execution_current",
+          "equals": false
+        },
+        {
+          "pointer": "/historical_failures_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -423595,6 +423713,22 @@
       "evidence": [
         "SL08.selection-highlight01"
       ]
+    },
+    {
+      "id": "native.four-recovery-operation-closeout",
+      "title": "Four-domain declared failure and fresh generation admission",
+      "scope": "Retained-data admission of transition-recovery and failure-cleanup in public default/software actual640/800. Re-assess raw High terminal/restart/output/cleanup within its unchanged recorded1019-path source phase; collect only missing Low under the current1023-path conservative catalog and exact406-input player. Require expected drained INVALID, all native terminal predicates and stability, distinct runner/channel/World identities after physical restart, fresh positive input, independent per-epoch presented output and normal fresh Quit. Only the four named rows; no current whole-player/guest equivalence, physical reset, pending CPU interruption, arbitrary races/providers, in-place/save recovery or final decisions.",
+      "level": "headless",
+      "behaviors": [
+        "NP.four-recovery-operation-closeout"
+      ],
+      "tests": [
+        "tools/close-rendering-four-recovery.py",
+        "tests/test-rendering-four-recovery.py"
+      ],
+      "evidence": [
+        "RT09.four-operation-rows01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -425412,8 +425546,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-8e1edaf9dccc2d6a4aeafc66b29b103eed4c3ce193f0c784d703721e086f9c69.json",
-    "sha256": "8e1edaf9dccc2d6a4aeafc66b29b103eed4c3ce193f0c784d703721e086f9c69"
+    "path": "research/runtime/coverage/source-index-b5c0b327449a17ebc1d4271e5a45642f7d7554cc06540ee967ba46f0e5b0167a.json",
+    "sha256": "b5c0b327449a17ebc1d4271e5a45642f7d7554cc06540ee967ba46f0e5b0167a"
   },
   "evidence_applicability": [
     {

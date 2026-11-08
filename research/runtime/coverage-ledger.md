@@ -27500,3 +27500,23 @@ SL08 closes only both finite `journey.cursor-interaction.selection` rows from fo
 The analyzer now distinguishes other exact marker-bank frames sharing the caller, follows each original sub-cell/animation anchor, admits known opaque black without treating unknown zero as colour authority, and reconstructs bounded already recovered blend history beneath the off state. Every raw cursor refusal remains explicit: each complete bounded journal has one acknowledged-post-close slot3invalidation refusal and no drawing/copy success is inferred. CR07invalid save-under/keyed requests, initial guard failures, failed full analyses and source preflights remain negative evidence.54selection controls pass. No new original game, native engine or oracle is run, and no native raster/simulation repair is claimed.
 
 `NP.selection-highlight-closeout` has scoped implementation/headless integration only; original comparison/replacement remain none. Allocation generations, whole picking/hotspot, storage selection continuity, response deadlines, physical provider, current full player, other rows and both final decisions remain independent. See [selection closeout](rendering-selection-closeout-20261108.md) and `SL08.selection-highlight01`.
+
+
+# RT09 four recovery operation rows — 2026-11-08
+
+Default/software `operation.transition-recovery` and `operation.failure-cleanup`
+close across actual640/800:108/156passed48pending, preserving the104-row SL08
+selection parent. Thirty of42operation rows are accepted; both final decisions
+remain pending. Two new Low cases use four original starts, no retry, and pass
+independent original-history/native output, exact declared INVALID retirement,
+terminal stability, physical public restart, fresh identity/input and normal
+Campaign/Main Quit. Both High cases are re-assessed from retained raw evidence
+within their recorded native/runtime phases. No source waiver or current whole-
+player/High guest, physical reset, pending-CPU/arbitrary failure, in-place/save
+continuation or gameplay change is claimed. Aggregate independently compared
+pixel values:8469532500,zero differences.34focused controls pass.
+Only the new retained-data admission receives scoped/headless current support.
+Four stopped private game trees have paired full-file retention, real restores
+and historical-path pins. SQLite references preserve every negative observation,
+source phase and old budget. See [RT09](rendering-four-recovery-20261108.md),
+`RT09.four-operation-rows01`.

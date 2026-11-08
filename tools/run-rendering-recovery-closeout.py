@@ -17,6 +17,28 @@ def module(name):
 menus=module('run-rendering-menu-acceptance')
 sha=menus.sha
 
+
+def collection_paths(plan, report, software):
+    """A new frozen collection owns separate state; stopped budgets stay intact."""
+    paths = plan.get('execution_paths')
+    if paths is None:
+        return (ROOT / 'working/recovery-closeout08/acceptance' / Path(report).stem,
+                ROOT / 'working/transition-closeout08-attempts.sqlite3')
+    require(paths.get('schema') == 1, 'Unknown collection path schema')
+    require(paths.get('reports', {}).get(report) == dict(software=software, size=[640, 480]),
+            'Report/configuration outside frozen collection')
+    owned = []
+    for key in ('output_root', 'budget'):
+        value = Path(paths[key])
+        require(not value.is_absolute() and '..' not in value.parts
+                and len(value.parts) > 1 and value.parts[0] == 'working',
+                'Collection state must stay in owned working storage')
+        owned.append(ROOT / value)
+    require(owned[1] != ROOT / 'working/transition-closeout08-attempts.sqlite3'
+            and owned[1] != ROOT / 'working/transition-attempts.sqlite3',
+            'Stopped collection budgets cannot be reopened')
+    return owned[0] / Path(report).stem, owned[1]
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--report', required=True)
@@ -35,7 +57,9 @@ def main():
         os.execvpe('dbus-run-session',['dbus-run-session','--',sys.executable,__file__,*sys.argv[1:]],isolated)
     require(args.report.startswith(PREFIX) and '..' not in Path(args.report).parts and not (ROOT / args.report).exists(), 'Fresh owned report required')
     require(bool(args.repair_of) == bool(args.repair_reason), 'Repair needs retained failure and concrete reason')
-    out = ROOT / 'working/recovery-closeout08/acceptance' / Path(args.report).stem
+    with Reader(ROOT) as reader:
+        paths_plan = reader.json(args.plan)
+    out, budget_path = collection_paths(paths_plan, args.report, args.software)
     out.mkdir(parents=True, exist_ok=False)
     (out / '.retain').touch()
     require(args.report.endswith('-acquisition.json'),'Acquisition report suffix required')
@@ -66,7 +90,7 @@ def main():
     def deadline(signum,frame):raise TimeoutError('Frozen600second recovery case deadline')
     signal.signal(signal.SIGALRM,deadline);signal.alarm(600)
     try:
-        with sqlite3.connect(ROOT/'working/transition-closeout08-attempts.sqlite3') as budget:
+        with sqlite3.connect(budget_path) as budget:
             budget.execute('CREATE TABLE IF NOT EXISTS attempts(report TEXT PRIMARY KEY,repair_of TEXT,charged_games INTEGER)')
             budget.execute('BEGIN IMMEDIATE')
             with Reader(ROOT) as r:
