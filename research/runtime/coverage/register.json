@@ -168927,6 +168927,113 @@
         "DF08.G.scope: Historical full captures and comparisons support bounded defeat only. Current full native player/runtime, all populated object/vptr/generation acquire/release, widget glyph/font/DC and physical menu/scanout remain separate.",
         "DF08.G.other: Victory, later-map progression, other acceptance rows, fault/recovery and both final decisions remain pending independently."
       ]
+    },
+    {
+      "id": "RS.screen-font-installation",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Screen font/resource installation coordinator",
+      "scope": "Pinned NoCD5575b0 normal-return coordinator over independently seeded private memory and named font/sprite/format/error/widget/cursor/thread suppliers. Recover all local branches, four font tracking writes, repeated resolution reads, six load/error policies, camera-table selection, widget/font associations, mode-specific rectangle/default-string publication and caller callee-register/stack/normal SEH conservation. Error suppliers are authored to return; original fatal/SEH behavior, actual loaders/platform/heap, previous-font retirement, installed transitions, pixels and live replacement remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5600688,
+          "scope": "Complete selected function normal-return control flow; named callees remain supplied; no exceptional or live claim."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/font_screen_installation.hpp"
+      ],
+      "tests": [
+        "tests/render-contract-recovery.cpp",
+        "tests/render-contract-call.S",
+        "tools/test-render-contract-recovery.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-contract-recovery-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tests/original-linux-seh.hpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CR08.callers-original04",
+        "CR08.callers-native04"
+      ],
+      "remaining_gaps": [
+        "CR08.G.installed: Both text-font-dc-lifetime and flags-and-return-values player requirements remain pending; isolated caller fixtures do not establish required installed font/DC transitions or all native bypass ABI effects."
+      ]
+    },
+    {
+      "id": "RS.dc-image-wrapper-callers",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "DC image wrapper ordering and caller return contracts",
+      "scope": "Pinned NoCD58d1a0/58d240/58d280/58d370 normal-return image/DC wrappers over supplied image and COM endpoints. Recover local image construct/load/destroy, guarded versus required nonnull surfaces, ignored GetDC/image/ReleaseDC failures, reused path/saved-ECX HDC slot and supplier mutation, reloaded surface before release, EAX/ECX, callee registers, stack/argument mutation, defined final flags and normal SEH conservation. Endpoints are supplied with declared flags/returns; no GDI pixel/font/DC selection implementation, physical driver/Win32 error/exception equivalence, installed lifetimes or full caller ABI/player claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5820832,
+          "scope": "Complete selected function normal-return control flow; named callees remain supplied; no exceptional or live claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5820992,
+          "scope": "Complete selected function normal-return control flow; named callees remain supplied; no exceptional or live claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821056,
+          "scope": "Complete selected function normal-return control flow; named callees remain supplied; no exceptional or live claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821296,
+          "scope": "Complete selected function normal-return control flow; named callees remain supplied; no exceptional or live claim."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/dc_image_wrappers.hpp"
+      ],
+      "tests": [
+        "tests/render-contract-recovery.cpp",
+        "tests/render-contract-call.S",
+        "tools/test-render-contract-recovery.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-contract-recovery-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tests/original-linux-seh.hpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CR08.callers-original04",
+        "CR08.callers-native04"
+      ],
+      "remaining_gaps": [
+        "CR08.G.installed: Both text-font-dc-lifetime and flags-and-return-values player requirements remain pending; isolated caller fixtures do not establish required installed font/DC transitions or all native bypass ABI effects."
+      ]
     }
   ],
   "evidence": [
@@ -387692,6 +387799,152 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CR08.callers-original04",
+      "kind": "isolated_original",
+      "record": "research/runtime/rendering-contract-recovery-results-20261108/comparison-04.json",
+      "sha256": "23c77e66ae968a977d0f3decd1bfe3853ffae2c0af9286d1f8a5c9e06ef12318",
+      "scope": "Private unchanged-original/native caller comparison:512font installation and1024DC wrapper cases with named supplied endpoints. Original/native full owned/global bytes and callback vectors, selected EAX/ECX/argument/flags/callee/stack/normal SEH effects; native64/sanitized diagnostic transcripts agree. No real GDI pixels, installed font/DC transition, whole ABI, live execution, player row or final-decision promotion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/font_cases",
+          "equals": 512
+        },
+        {
+          "pointer": "/dc_cases",
+          "equals": 1024
+        },
+        {
+          "pointer": "/original_native_sanitized_match",
+          "equals": true
+        },
+        {
+          "pointer": "/compared_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_outputs_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_callee_registers_stack_seh_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/dc_eax_ecx_defined_flags_and_argument_slot_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/supplier_pixels_gdi_or_win32_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/installed_font_transition_observed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CR08.callers-native04",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-contract-recovery-results-20261108/comparison-04.json",
+      "sha256": "23c77e66ae968a977d0f3decd1bfe3853ffae2c0af9286d1f8a5c9e06ef12318",
+      "scope": "The same immutable comparison04 also executes the portable native caller models and their actual owned-memory/supplier composition in native64 and ASan/UBSan fixtures. Headless fixture evidence only, separate from its original comparison; no installed engine or player integration promotion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/font_cases",
+          "equals": 512
+        },
+        {
+          "pointer": "/dc_cases",
+          "equals": 1024
+        },
+        {
+          "pointer": "/original_native_sanitized_match",
+          "equals": true
+        },
+        {
+          "pointer": "/compared_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_outputs_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_callee_registers_stack_seh_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/dc_eax_ecx_defined_flags_and_argument_slot_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/supplier_pixels_gdi_or_win32_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/installed_font_transition_observed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -421529,6 +421782,38 @@
       "evidence": [
         "DF08.natural-defeat01"
       ]
+    },
+    {
+      "id": "RS.screen-font-installation.original-20261108",
+      "level": "headless",
+      "scope": "Pinned NoCD5575b0 normal-return coordinator over independently seeded private memory and named font/sprite/format/error/widget/cursor/thread suppliers. Recover all local branches, four font tracking writes, repeated resolution reads, six load/error policies, camera-table selection, widget/font associations, mode-specific rectangle/default-string publication and caller callee-register/stack/normal SEH conservation. Error suppliers are authored to return; original fatal/SEH behavior, actual loaders/platform/heap, previous-font retirement, installed transitions, pixels and live replacement remain separate.",
+      "behaviors": [
+        "RS.screen-font-installation"
+      ],
+      "tests": [
+        "tests/render-contract-recovery.cpp",
+        "tests/render-contract-call.S",
+        "tools/test-render-contract-recovery.py"
+      ],
+      "evidence": [
+        "CR08.callers-native04"
+      ]
+    },
+    {
+      "id": "RS.dc-image-wrapper-callers.original-20261108",
+      "level": "headless",
+      "scope": "Pinned NoCD58d1a0/58d240/58d280/58d370 normal-return image/DC wrappers over supplied image and COM endpoints. Recover local image construct/load/destroy, guarded versus required nonnull surfaces, ignored GetDC/image/ReleaseDC failures, reused path/saved-ECX HDC slot and supplier mutation, reloaded surface before release, EAX/ECX, callee registers, stack/argument mutation, defined final flags and normal SEH conservation. Endpoints are supplied with declared flags/returns; no GDI pixel/font/DC selection implementation, physical driver/Win32 error/exception equivalence, installed lifetimes or full caller ABI/player claim.",
+      "behaviors": [
+        "RS.dc-image-wrapper-callers"
+      ],
+      "tests": [
+        "tests/render-contract-recovery.cpp",
+        "tests/render-contract-call.S",
+        "tools/test-render-contract-recovery.py"
+      ],
+      "evidence": [
+        "CR08.callers-native04"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -423346,8 +423631,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-bde325ee46ef418f9898c3ab4446f445b11197c00b9a3774141f3e4640ce117a.json",
-    "sha256": "bde325ee46ef418f9898c3ab4446f445b11197c00b9a3774141f3e4640ce117a"
+    "path": "research/runtime/coverage/source-index-a93c040d2ad6d54d036f0dd4c90423e8f90bb08c3c3c72b68350938ee8e592fd.json",
+    "sha256": "a93c040d2ad6d54d036f0dd4c90423e8f90bb08c3c3c72b68350938ee8e592fd"
   },
   "evidence_applicability": [
     {

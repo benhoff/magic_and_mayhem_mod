@@ -27449,3 +27449,27 @@ has zero errors/current scoped headless DF08support. The443new committed file
 transitions have zero receipt gaps after376opaque incoming attachment custody
 receipts. Preserve both negative history scans, both review caches/checkpoints
 and all original phases; no new game/native/oracle validation or source waiver.
+
+
+## Font installation and DC caller recovery — 2026-11-08
+
+CR08 adds scoped original contracts RS.screen-font-installation (5575b0) and
+RS.dc-image-wrapper-callers (58d1a0/58d240/58d280/58d370). Comparison04 passes
+512font coordinator and1024DC wrapper cases against unchanged original bodies,
+with independently reset inputs, direct full owned/global byte and callback-vector
+comparisons, selected EAX/ECX/argument/flags/callee/stack/normal SEH checks, and
+matching native64/ASan/UBSan diagnostic transcripts. Draw-wrapper ECX is the
+reused HDC output, not necessarily its incoming receiver; errors are ignored
+as documented and release rereads the surface. Installation preserves repeated
+resolution reads, four tracking writes, differing resource failure policies and
+all local normal branches, without retiring prior fonts.
+
+Named image/COM/font/file/widget/thread/error bodies remain supplied. No actual
+GDI pixels, Windows exception/driver/LastError equivalence, installed font/DC
+selection/reload/teardown trace, production bypass ABI or new player run is
+claimed. Both text-font-dc-lifetime and flags-and-return-values configuration
+pairs remain pending; DF08 stays102/156passed54pending and both decisions
+pending. Preserve failures01/02/03 and exact preimages (dead argument probe,
+wrong ECX expectation, strict compiler snapshot refusal). Generated results,
+tested binaries and sources use verified SQLite references. See
+[the recovery](rendering-contract-recovery-20261108.md) and CR08.callers-original04.
