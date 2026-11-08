@@ -36,11 +36,18 @@ load failures, an error reporter returning, first-load resolution mutation,
 palette-request failure and the original unchecked sixth result.
 
 This is a coordinator model, not another SFT loader. The actual file/heap/font,
-sprite, widget, cursor, thread and error bodies remain named supplied boundaries.
+sprite, widget, cursor, imported-time and error bodies remain named supplied boundaries.
 It does not retire earlier font allocations. The independently recovered
 `4a5ae0` reload retention in [font provider recovery](actor-font-providers-20261022.md)
 therefore remains relevant; calling installation does not establish leak-free
 replacement or observed destructor/atexit execution in a real session.
+
+The pinned import table identifies IAT `5c52e8` as `WINMM.timeGetTime`. The
+coordinator forwards its DWORD to supplied consumer `54e170`. The initial model
+used the incorrect local name `thread`; its address and value flow were tested,
+but the name was not supported by an import-table check. The corrected model
+uses `stamp`, and the producer now refuses a different DLL/symbol identity.
+Actual API timing, wrap behavior and consumer semantics remain supplied.
 
 ## DC image wrapper caller contracts
 
@@ -77,7 +84,7 @@ equivalence follows from this fixture.
 ## Comparison and retained failures
 
 [Comparison 04](rendering-contract-recovery-results-20261108/comparison-04.json)
-passes all 1,536 cases. The 32-bit harness independently resets inputs before
+recorded 1,536 passing cases. The 32-bit harness independently resets inputs before
 each native-model and unchanged-original execution and compares the complete
 selected image-data/owned-memory byte arrays and ordered callback vectors
 directly, in addition to original ABI assertions. The 64-bit release and
@@ -87,6 +94,13 @@ byte equivalence is established by the in-process full comparisons, not an
 unproven collision-free FNV property. Report and artifact custody uses SHA-256.
 Native inputs never contain original output bytes.
 
+[Comparison 05](rendering-contract-recovery-results-20261108/comparison-05.json)
+freshly reruns those 1,536 cases with the corrected imported-time scope, renamed
+native temporary and explicit pinned import-table identity check. All original,
+native and sanitizer results match. It does not execute the actual time API.
+The old execution and hashes remain intact; its incorrect semantic name is not
+used as a new thread-provider claim.
+
 The initial coverage audit rejects attaching only `isolated_original` evidence
 to the headless scenarios. Its full result, summary, log and exact register are
 retained as `audit-refused-01` artifacts. The corrected registration names the
@@ -95,13 +109,36 @@ from `CR08.callers-original04`. Both resolve the same immutable comparison bytes
 no model, scenario contract, historical result or engine/player status is changed
 to correct this evidence-kind mismatch. Native integration status remains none.
 
-The [corrected audit](rendering-contract-recovery-results-20261108/audit-02.json)
-has zero errors and zero validation gaps for the two new behaviors. Both scoped
-implementations and original comparisons have current complete-source support;
-integration and replacement remain none. Existing unrelated historical
-staleness remains. The [closeout](rendering-contract-recovery-results-20261108/closeout-01.json)
+The earlier [corrected audit](rendering-contract-recovery-results-20261108/audit-02.json)
+has zero errors and zero validation gaps at its original comparison04 source
+phase. Integration and replacement remain none. Existing unrelated historical
+staleness remains. The earlier [closeout](rendering-contract-recovery-results-20261108/closeout-01.json)
 verifies all 76 preceding new artifact payloads (150,230,960 logical bytes) and
 the exact unchanged four pending player rows. It makes no commit-hook claim.
+
+The current [audit03](rendering-contract-recovery-results-20261108/audit-03.json)
+has zero errors and zero scoped validation gaps for comparison05. Both scoped
+implementations and original comparisons have current complete-source support;
+integration/replacement remain none. [Closeout02](rendering-contract-recovery-results-20261108/closeout-02.json)
+verifies 104 preceding payloads and preserves the 102/54 player inventory.
+The two incoming heads `85dcfea26` and `d76127603` have 278 exactly reviewed
+committed file versions. The original combined 163-version receipt in
+[history04](rendering-contract-recovery-results-20261108/committed-history-04.json)
+passes the hash lookup but is rejected by the normal finish because it repeats
+the journal path for distinct commits. It was never committed or accepted by
+the gate. Its exact proposed journal and complete old SQLite cache, including
+drafts and auxiliary data, remain preserved with a verified logical restore.
+The [rejected attempt](rendering-contract-recovery-results-20261108/committed-history-05.json)
+is retained separately from the corrected active journal. Fresh per-commit
+receipts in a separate review database leave zero gaps in
+[history06](rendering-contract-recovery-results-20261108/committed-history-06.json).
+No old database row or historical report is rewritten. The
+[current closeout](rendering-contract-recovery-results-20261108/closeout-03.json)
+also checks every current/archived receipt's shape; it does not claim the final
+commit gate has passed.
+The concurrent X11 staging source changes do not intersect this comparison's
+dependencies. These are separate source/metadata phases, not a renewed public
+player execution or an assertion of a past gate result.
 
 Three earlier failures remain immutable, with every exact source preimage,
 compiler log and tested binary retained through SQLite:

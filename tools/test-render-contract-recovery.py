@@ -54,9 +54,13 @@ def main():
         bodies = [f for f in inventory['functions'] if f['entry'] in entries]
         if {f['entry'] for f in bodies} != entries:
             raise ValueError('Missing original function boundaries')
+        provider = [i for i in inventory['imports'] if i['iat_va'] == 0x5c52e8]
+        if len(provider) != 1 or (provider[0]['dll'], provider[0]['name']) != ('WINMM.dll', 'timeGetTime'):
+            raise ValueError('Coordinator imported-time supplier identity differs')
         report.update(sources=sources, claims=claims,
                       inventory=dict(record=inventory_name, sha256=reader.digest(inventory_name)),
-                      bodies=bodies, scope=[b['scope'] for b in behaviors])
+                      bodies=bodies, scope=[b['scope'] for b in behaviors],
+                      time_provider_import=provider[0], actual_time_api_executed=False)
     # Git revision plus unique source bytes, before compilation or execution.
     revision = subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     unique = {}

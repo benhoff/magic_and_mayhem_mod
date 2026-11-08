@@ -168935,7 +168935,7 @@
       "subsystem": "native_rendering",
       "kind": "recovered",
       "title": "Screen font/resource installation coordinator",
-      "scope": "Pinned NoCD5575b0 normal-return coordinator over independently seeded private memory and named font/sprite/format/error/widget/cursor/thread suppliers. Recover all local branches, four font tracking writes, repeated resolution reads, six load/error policies, camera-table selection, widget/font associations, mode-specific rectangle/default-string publication and caller callee-register/stack/normal SEH conservation. Error suppliers are authored to return; original fatal/SEH behavior, actual loaders/platform/heap, previous-font retirement, installed transitions, pixels and live replacement remain separate.",
+      "scope": "Pinned NoCD5575b0 normal-return coordinator over independently seeded private memory and named font/sprite/format/error/widget/cursor/imported-time suppliers. Recover all local branches, four font tracking writes, repeated resolution reads, six load/error policies, camera-table selection, widget/font associations, mode-specific rectangle/default-string publication and caller callee-register/stack/normal SEH conservation. Error suppliers are authored to return; original fatal/SEH behavior, actual loaders/platform/heap, previous-font retirement, installed transitions, pixels and live replacement remain separate.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -168970,10 +168970,13 @@
       },
       "evidence": [
         "CR08.callers-original04",
-        "CR08.callers-native04"
+        "CR08.callers-native04",
+        "CR08.callers-original05",
+        "CR08.callers-native05"
       ],
       "remaining_gaps": [
-        "CR08.G.installed: Both text-font-dc-lifetime and flags-and-return-values player requirements remain pending; isolated caller fixtures do not establish required installed font/DC transitions or all native bypass ABI effects."
+        "CR08.G.installed: Both text-font-dc-lifetime and flags-and-return-values player requirements remain pending; isolated caller fixtures do not establish required installed font/DC transitions or all native bypass ABI effects.",
+        "CR08.G.time-provider: WINMM.timeGetTime import identity is confirmed; the fixture supplies its DWORD return. Actual clock/wrap/scheduling semantics and the54e170 consumer body remain separate."
       ]
     },
     {
@@ -169031,7 +169034,9 @@
       },
       "evidence": [
         "CR08.callers-original04",
-        "CR08.callers-native04"
+        "CR08.callers-native04",
+        "CR08.callers-original05",
+        "CR08.callers-native05"
       ],
       "remaining_gaps": [
         "CR08.G.installed: Both text-font-dc-lifetime and flags-and-return-values player requirements remain pending; isolated caller fixtures do not establish required installed font/DC transitions or all native bypass ABI effects."
@@ -389504,6 +389509,184 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "CR08.callers-original05",
+      "kind": "isolated_original",
+      "record": "research/runtime/rendering-contract-recovery-results-20261108/comparison-05.json",
+      "sha256": "944fc9d00c072476222bffce2ebf8caa91fa1bccac4a9034503aa3dbaa4b9a2c",
+      "scope": "Private unchanged-original/native caller comparison:512font installation and1024DC wrapper cases with named supplied endpoints. Original/native full owned/global bytes and callback vectors, selected EAX/ECX/argument/flags/callee/stack/normal SEH effects; native64/sanitized diagnostic transcripts agree. No real GDI pixels, installed font/DC transition, whole ABI, live execution, player row or final-decision promotion. Fresh comparison05 names the confirmed WINMM.timeGetTime IAT provider correctly and verifies its pinned inventory identity; the actual API and54e170 consumer remain supplied. Earlier comparison04 bytes and its semantic mislabel remain historical.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/font_cases",
+          "equals": 512
+        },
+        {
+          "pointer": "/dc_cases",
+          "equals": 1024
+        },
+        {
+          "pointer": "/original_native_sanitized_match",
+          "equals": true
+        },
+        {
+          "pointer": "/compared_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_outputs_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_callee_registers_stack_seh_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/dc_eax_ecx_defined_flags_and_argument_slot_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/supplier_pixels_gdi_or_win32_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/installed_font_transition_observed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/time_provider_import/dll",
+          "equals": "WINMM.dll"
+        },
+        {
+          "pointer": "/time_provider_import/name",
+          "equals": "timeGetTime"
+        },
+        {
+          "pointer": "/time_provider_import/iat_va",
+          "equals": 6050536
+        },
+        {
+          "pointer": "/actual_time_api_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CR08.callers-native05",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-contract-recovery-results-20261108/comparison-05.json",
+      "sha256": "944fc9d00c072476222bffce2ebf8caa91fa1bccac4a9034503aa3dbaa4b9a2c",
+      "scope": "The same immutable comparison04 also executes the portable native caller models and their actual owned-memory/supplier composition in native64 and ASan/UBSan fixtures. Headless fixture evidence only, separate from its original comparison; no installed engine or player integration promotion. Fresh comparison05 names the confirmed WINMM.timeGetTime IAT provider correctly and verifies its pinned inventory identity; the actual API and54e170 consumer remain supplied. Earlier comparison04 bytes and its semantic mislabel remain historical.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/font_cases",
+          "equals": 512
+        },
+        {
+          "pointer": "/dc_cases",
+          "equals": 1024
+        },
+        {
+          "pointer": "/original_native_sanitized_match",
+          "equals": true
+        },
+        {
+          "pointer": "/compared_bodies_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_outputs_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_callee_registers_stack_seh_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/dc_eax_ecx_defined_flags_and_argument_slot_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/supplier_pixels_gdi_or_win32_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/installed_font_transition_observed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/time_provider_import/dll",
+          "equals": "WINMM.dll"
+        },
+        {
+          "pointer": "/time_provider_import/name",
+          "equals": "timeGetTime"
+        },
+        {
+          "pointer": "/time_provider_import/iat_va",
+          "equals": 6050536
+        },
+        {
+          "pointer": "/actual_time_api_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -389571,6 +389754,14 @@
         "RS.screen-bitmap-resource-providers"
       ],
       "scope": "Selected local screen provider invokes this named platform API. The comparison supplies the endpoint; Windows platform semantics are not inferred."
+    },
+    {
+      "build": "nocd-40209ca7",
+      "iat_va": 6050536,
+      "behaviors": [
+        "RS.screen-font-installation"
+      ],
+      "scope": "NoCD557802 invokes the confirmed WINMM.timeGetTime IAT slot and forwards its DWORD to54e170. The fixture supplies the API and consumer; clock/wrap/scheduling and Windows timing semantics are not inferred."
     }
   ],
   "dispatch_tables": [
@@ -423345,7 +423536,7 @@
     {
       "id": "RS.screen-font-installation.original-20261108",
       "level": "headless",
-      "scope": "Pinned NoCD5575b0 normal-return coordinator over independently seeded private memory and named font/sprite/format/error/widget/cursor/thread suppliers. Recover all local branches, four font tracking writes, repeated resolution reads, six load/error policies, camera-table selection, widget/font associations, mode-specific rectangle/default-string publication and caller callee-register/stack/normal SEH conservation. Error suppliers are authored to return; original fatal/SEH behavior, actual loaders/platform/heap, previous-font retirement, installed transitions, pixels and live replacement remain separate.",
+      "scope": "Pinned NoCD5575b0 normal-return coordinator over independently seeded private memory and named font/sprite/format/error/widget/cursor/imported-time suppliers. Recover all local branches, four font tracking writes, repeated resolution reads, six load/error policies, camera-table selection, widget/font associations, mode-specific rectangle/default-string publication and caller callee-register/stack/normal SEH conservation. Error suppliers are authored to return; original fatal/SEH behavior, actual loaders/platform/heap, previous-font retirement, installed transitions, pixels and live replacement remain separate.",
       "behaviors": [
         "RS.screen-font-installation"
       ],
@@ -423355,7 +423546,8 @@
         "tools/test-render-contract-recovery.py"
       ],
       "evidence": [
-        "CR08.callers-native04"
+        "CR08.callers-native04",
+        "CR08.callers-native05"
       ]
     },
     {
@@ -423371,7 +423563,8 @@
         "tools/test-render-contract-recovery.py"
       ],
       "evidence": [
-        "CR08.callers-native04"
+        "CR08.callers-native04",
+        "CR08.callers-native05"
       ]
     },
     {
@@ -425224,8 +425417,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-305087731dcb661ec8e95c16a91e19cc3281262c9365d0caf16e7bfae39c7327.json",
-    "sha256": "305087731dcb661ec8e95c16a91e19cc3281262c9365d0caf16e7bfae39c7327"
+    "path": "research/runtime/coverage/source-index-46d251b077155ac732882eab0888531cdfb117db6ec84dc4d200897f58849307.json",
+    "sha256": "46d251b077155ac732882eab0888531cdfb117db6ec84dc4d200897f58849307"
   },
   "evidence_applicability": [
     {

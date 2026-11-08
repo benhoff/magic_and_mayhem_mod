@@ -27491,3 +27491,24 @@ fault-operation rows and renderer acceptance receive no promotion. All102parent
 acceptance rows and both pending decisions remain. See
 [SX08](native-startup-display-20261108.md), `SX08.authority-controls01`,
 `SX08.startup-postmortem01` and `SX08.controller-units01`.
+
+
+## CR08 imported-time identity correction — 2026-11-08
+
+The pinned NoCD import table identifies557802's IAT5c52e8 as WINMM.timeGetTime.
+The initial thread temporary/supplier label was incorrect; its tested address,
+DWORD forwarding and original body comparisons remain preserved in comparison04.
+The native temporary is now stamp, the scope names imported time, an explicit
+API binding preserves its unknown timing/consumer boundary, and the producer
+refuses a different DLL/symbol. Fresh comparison05 passes512font and1024DC cases
+against unchanged original bodies with native64/ASan/UBSan results matching.
+Both original manifests pass; the actual time API is supplied, not executed.
+No prior hash, execution observation or historical claim is rewritten.
+
+Actual incoming master85dcfea26's private X11 staging fix remains separate from
+this isolated proof; its new source paths are outside the comparison dependency
+closure. The integration preserves both incoming histories and all102accepted
+player rows,54pending rows and both decisions. Font/DC installed lifetimes and
+whole production bypass ABI remain pending for both configurations. No game or
+new rendering acceptance is claimed. See rendering-contract-recovery-20261108.md
+and comparison-05.json under its SQLite result directory.

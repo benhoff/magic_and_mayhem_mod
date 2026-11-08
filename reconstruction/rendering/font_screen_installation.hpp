@@ -60,8 +60,8 @@ template <class Memory> void installScreenFonts(Memory &m, std::uint32_t self) {
   call(0x4d3690, 0x6c4e61);
   call(0x4da200, 0x6a26c8);
   call(0x4dc830, 0x6c4630);
-  U thread = call(0x5c52e8, 0);
-  call(0x54e170, 0x6574c8, {thread});
+  U stamp = call(0x5c52e8, 0); // WINMM.timeGetTime; actual API stays supplied.
+  call(0x54e170, 0x6574c8, {stamp});
   m.set32(self + 0x26, 0);
   if (!m.get8(0x6de6c5)) {
     m.set32(self + 0x22, 0x657ce0);
