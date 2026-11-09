@@ -175333,6 +175333,64 @@
         "Malformed isolated CREATE/ALLOCATE/CLONE identities are checked after temporary allocation/extraction; invalid-creation cleanup requires separate lifetime review. This safety review does not promote that resource-retirement behavior.",
         "CR09 source review: copySharedKeyed reuses its one-pixel texture while copyTexture may queue keyed draws at nonzero batchDepth; deletion flushes before freeing, so storage stays separate, but per-pixel sampling/write order needs separate batched-keyed execution review. No original/output equivalence promotion follows from the memory-safety proof."
       ]
+    },
+    {
+      "id": "NP.fault-lifetime-gate-closeout",
+      "title": "Retained fault and lifetime acceptance gate",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Finite retained default/software fault-lifetime gate: exact expected producer INVALID and native target-loss at actual640/800; terminal ownership/input/output stability; physical public fresh-generation restart with distinct process/channel/World identities; fresh positive input and normal Quit. Current bounded Python raw-wire/evidence analysis; independent pixel proofs and native/compiler/original execution phases retain exact original hashes and drift. No physical reset, old-generation continuation, isolated continuation, arbitrary faults/providers or final-decision promotion.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/fault_lifetime_gate.py",
+        "tools/check-rendering-fault-lifetime-gates.py"
+      ],
+      "tests": [
+        "tests/test-fault-lifetime-gates.py"
+      ],
+      "documents": [
+        "research/runtime/fault-lifetime-gate-closeout-20261109.md"
+      ],
+      "validation_dependencies": [
+        "docs/native-rendering-closure.json",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_transition.py",
+        "tools/rendering_pause.py",
+        "tools/rendering_pause_assessment.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/retained_artifacts.py",
+        "tools/rendering_interaction.py",
+        "tools/pause_focus.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/native_cursor_journal.py",
+        "tools/cpu_reader_journal.py",
+        "research/runtime/fault-lifetime-gate-results-20261109/basis-01.json",
+        "tools/rendering_surface_loss.py",
+        "tools/rendering_normal_acceptance.py",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/include/mnm/render_control_v1.h"
+      ],
+      "evidence": [
+        "FL09.controls04",
+        "FL09.fault-lifetime01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "FL09.G.cohort: Both gate.fault-lifetime cells pass for exactly eight retained expected-negative/fresh-generation pairs. New fault/provider/scenario cohorts require the same raw failure, retirement, identity and independent presentation checks. All native/original/compiler phases remain historical.",
+        "FL09.G.scope: Exact expected-negative/fresh-generation policy only; current combined-player, physical resets, arbitrary providers/faults and final rendering decisions remain separate."
+      ]
     }
   ],
   "evidence": [
@@ -401830,6 +401888,83 @@
           "equals": 6
         }
       ]
+    },
+    {
+      "id": "FL09.controls04",
+      "kind": "native_integration",
+      "scope": "Exactly eight retained expected-negative/fresh-generation pairs for default/software at actual640/800. Raw failure, terminal input/output stability, complete retirement, distinct identities and fresh positive work/normal Quit are rechecked. Independent presented pixel proofs stay in their original execution phases. No physical reset, transparent old-generation or isolated continuation, arbitrary fault/provider, current combined-player or final-decision claim.",
+      "record": "research/runtime/fault-lifetime-gate-results-20261109/controls-04.json",
+      "sha256": "872d3bbbf8996a91806d09a690f6a50a21b358b3d631d24654d2c4d85e120073",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 32
+        },
+        {
+          "pointer": "/failures",
+          "equals": 0
+        },
+        {
+          "pointer": "/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/skipped",
+          "equals": 0
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/development_fixture_overlay",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "FL09.fault-lifetime01",
+      "kind": "native_integration",
+      "scope": "Exactly eight retained expected-negative/fresh-generation pairs for default/software at actual640/800. Raw failure, terminal input/output stability, complete retirement, distinct identities and fresh positive work/normal Quit are rechecked. Independent presented pixel proofs stay in their original execution phases. No physical reset, transparent old-generation or isolated continuation, arbitrary fault/provider, current combined-player or final-decision claim.",
+      "record": "research/runtime/fault-lifetime-gate-results-20261109/admission-01.json",
+      "sha256": "1d7877ab83110de565ae0ee467f7fc051eda2db1a3a88ab07cb3a832ac630c46",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_whole_player_proved",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_hardware_reset",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -436989,6 +437124,21 @@
         "CR09.routing02",
         "CR09.routing03"
       ]
+    },
+    {
+      "id": "native.fault-lifetime-gate-closeout",
+      "level": "headless",
+      "scope": "Finite retained default/software fault-lifetime gate: exact expected producer INVALID and native target-loss at actual640/800; terminal ownership/input/output stability; physical public fresh-generation restart with distinct process/channel/World identities; fresh positive input and normal Quit. Current bounded Python raw-wire/evidence analysis; independent pixel proofs and native/compiler/original execution phases retain exact original hashes and drift. No physical reset, old-generation continuation, isolated continuation, arbitrary faults/providers or final-decision promotion.",
+      "behaviors": [
+        "NP.fault-lifetime-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-fault-lifetime-gates.py"
+      ],
+      "evidence": [
+        "FL09.controls04",
+        "FL09.fault-lifetime01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -438816,8 +438966,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6beac169b1433137c7676faa8afd0ed9eee7553501c676ec27d5e8ab49028923.json",
-    "sha256": "6beac169b1433137c7676faa8afd0ed9eee7553501c676ec27d5e8ab49028923"
+    "path": "research/runtime/coverage/source-index-43a592ef19ef03bc9cd88ebb56c25affe3e15c4adbb4ee38aa3d9d5e2551258d.json",
+    "sha256": "43a592ef19ef03bc9cd88ebb56c25affe3e15c4adbb4ee38aa3d9d5e2551258d"
   },
   "evidence_applicability": [
     {

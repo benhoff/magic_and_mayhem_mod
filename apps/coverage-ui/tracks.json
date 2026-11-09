@@ -2017,14 +2017,14 @@
   },
   "rendering_artifacts": {
     "closure": "docs/native-rendering-closure.json",
-    "progress_record": "research/runtime/campaign-master-retry-results-20261109/admission-01.json",
+    "progress_record": "research/runtime/fault-lifetime-gate-results-20261109/admission-01.json",
     "documents": {
       "contract": "docs/native-rendering-closure.md",
       "gaps": "research/runtime/rendering-required-gaps-20261030.md",
       "plan": "docs/native-rendering-execution.md",
       "acceptance": "docs/native-rendering-acceptance.md"
     },
-    "next_action": "142/156 rendering rows pass; 14 profile checks / 7 distinct tasks remain. All campaign journey leaves are accepted. Preserve every independent master closure and exact execution source phase; remaining recovery and completion gates, including transition rollup and both final decisions, remain separate.",
+    "next_action": "144/156 rendering rows pass; 12 remain pending. Both fault/lifetime gates and every accepted parent row retain their exact scope and original execution phases. Continue remaining completion work; both final decisions remain pending.",
     "task_updates": {
       "EP01": [
         {

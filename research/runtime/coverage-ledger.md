@@ -28700,3 +28700,20 @@ Remaining IDs: `gate.fault-lifetime`, `gate.journeys`, `gate.operations`, `gate.
 ### CR09 — owned copy routing safety, 2026-11-09
 
 `NP.owned-copy-routing-safety` closes unsafe GPU feedback within17reviewed owned-copy entry families: canonical storage identity, distinct direct copies, existing shared-source snapshot/ordered routes or refusal, and unknown-identity refusal under stated guards. Geometric rectangle-overlap detection and a natural overlap witness are unnecessary for this safety property. A missing coordinate pixel-input/destination alias guard is repaired before drawing;8local/worker refusals preserve full inputs,8positive paths retain semantics, and128GPU emitter identity combinations produce12safe routes/116refusals. Existing192surface cases, prepared-frame controls,354command frame comparisons and408clipping operations pass. Native provider/bridge coverage here is source review under enabled ownership guards; no fresh PE32/game, global absence, original traversal equivalence or current combined-player/hardware claim. All accepted matrices retain their source phases and no acceptance row is promoted. See [the ownership contract and exact inventory](copy-routing-safety-20261109.md).
+
+
+### FL09 — fault/lifetime gates, 2026-11-09
+
+`fault-lifetime-gate-results-20261109/admission-01.json` closes exactly both
+`gate.fault-lifetime` cells: 144/156 passed, 12 pending. All other
+154 rows and both final decisions remain unchanged. Eight retained producer
+INVALID/native-target-loss pairs cover default/software and actual 640/800.
+Current raw checks bind exact negative results, parked Mini, terminal owners and
+input/output, 64 stable terminal samples, 16 distinct original runner/World
+identities, physical public fresh restart, positive input and normal retirement.
+Existing independent 18,266 swaps / 17,332 World presentations / 15,973,617,000 pixels retain
+zero differences and their historical native/compiler/original/oracle phases.
+All 32 actual-data guards pass; prototypes and exact source phases remain.
+No game/capture/build/new pixel comparison, renderer repair, physical reset,
+old-generation continuation or combined-current player claim.
+See `fault-lifetime-gate-closeout-20261109.md`.
