@@ -19,6 +19,8 @@ public:
     void setPresentationSuspended(bool suspended);
     void checkpointGraphics(){if(renderer_ && !renderer_->hasRecoveryCheckpoint())renderer_->checkpointRecovery();}
     void recoverGraphics(){if(renderer_)renderer_->recoverContext(target_.context(),target_.offscreen);}
+    std::array<bool,2> loseGraphicsTargetForTest(){if(!renderer_)throw std::runtime_error("No active graphics target");return renderer_->losePlatformTargetForTest();}
+    bool restoreGraphicsTargetForDeletion(){return renderer_&&renderer_->restorePlatformTargetForDeletion();}
     std::function<void()> framePresented;
     std::function<void(std::uint64_t)> cpuReadPending;
     // Optional observation of the first decoded CPU_READ in a queued batch,

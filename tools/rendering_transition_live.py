@@ -95,6 +95,12 @@ class TransitionJourney(PauseJourney):
         for down in (1,0):
             require(self.input.xt.XTestFakeButtonEvent(self.input.display,1,down,0),'Fresh original Quit Yes refused');self.input.x.XFlush(self.input.display);time.sleep(.15)
         self.actions.append(dict(action='fresh-original-quit-yes',point=point,host_ns=time.monotonic_ns()));self.wait(6,6);self.click_id('battleResultContinue');self.wait(3,7);self.capture('fresh-main-returned','Quick Battle');self.click('Quit')
+    def inject_fault(self,channel,header):
+        with (self.out/'fault-injection.stderr').open('xb') as err:
+            run=subprocess.run([self.fault_binary,str(ROOT),str(channel),str(header[4])],cwd=ROOT,capture_output=False,stdout=subprocess.PIPE,stderr=err,check=True,timeout=5)
+        fault=json.loads(run.stdout);(self.out/'fault-injection.json').write_bytes(run.stdout)
+        self.actions.append(dict(action='declared-terminal-fault',host_ns=time.monotonic_ns(),producer=header[4],record='fault-injection.json'))
+        return fault
     def run(self):
         self.input.activate();self.click('Launch game');self.enter_world('old')
         self.mini(1,5);self.capture('old-mini-before-fault');self.epochs[0]['mini']=self.dwells[0]
@@ -108,9 +114,7 @@ class TransitionJourney(PauseJourney):
             if h[6]==1 and h[5]==h[9] and not h[7] and not h[8]:break
             time.sleep(.02)
         else:raise ValueError('Mini command transport did not drain')
-        with (self.out/'fault-injection.stderr').open('xb') as err:
-            run=subprocess.run([self.fault_binary,str(ROOT),str(channel),str(h[4])],cwd=ROOT,capture_output=False,stdout=subprocess.PIPE,stderr=err,check=True,timeout=5)
-        fault=json.loads(run.stdout);(self.out/'fault-injection.json').write_bytes(run.stdout);self.epochs[0]['fault']=fault;self.actions.append(dict(action='declared-terminal-fault',host_ns=time.monotonic_ns(),producer=h[4],record='fault-injection.json'))
+        self.epochs[0]['fault']=self.inject_fault(channel,h)
         self.samples.close();self.samples=None;self.terminal();self.epoch_roots.append(self.session)
         self.current_epoch=1;self.epoch_lower_ns=time.monotonic_ns();self.restart_key();self.session=None;self.last=None;self.viewport.last=None;self.viewport.paint=None;self.viewport_geometry=None
         self.enter_world('fresh');require(self.session!=self.epoch_roots[0],'Hard Restart reused the original namespace')

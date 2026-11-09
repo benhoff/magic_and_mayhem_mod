@@ -28403,3 +28403,48 @@ combined PE32 observer build. Historical installed observations retain their
 original source hashes; this merge adds no original game or combined-player
 execution. Font/DC and overlapping-copy acceptance remain pending; current
 master viewport/cursor and caller-state admissions remain unchanged.
+
+
+## SL09 native surface loss and fresh-generation restoration — 2026-11-09
+
+`SL09.acceptance01` closes only both finite `operation.surface-loss-restore`
+cells over the124-row caller-state parent:126/156passed,30pending. All154other
+rows and both final decisions remain literal. Concurrent font/DC, approved
+overlap and picking admissions require their separate actual-master union;
+this feature record does not erase them or claim a combined-current player.
+
+Four actual primary GUI default/software640/800pairs independently compare
+7504084500displayed pixels across8122World presentations with zero differences;
+original routines reconstruct7711Worlds. Each destroys its actual Qt offscreen
+target at a completed turn, observes typed `GraphicsFailure`, supplies a target
+for GL deletion, retires all command/storage/frame/World owners, remains terminal
+with blocked input, and uses physical public Hard restart to new original
+runner/channel/World identities. Fresh positive input and ordinary Quit are
+required. Old generations receive no normal credit; unpresented tails remain
+uncredited. The GUI diagnostic owner supplies its deletion target through the
+renderer API; worker join supplies its own after failure. This establishes that
+bounded target lifetime, not general automatic GUI hardware/display recovery,
+physical GPU reset, legacy DirectDraw equivalence, arbitrary loss/races or old
+game/surface continuation. Isolated checkpoint continuation remains separate.
+
+Native changes reject invalid targets before the current-context shortcut,
+retain frame texture/fence deletion debts and avoid throwing from frame-recipe
+teardown on graphics loss. Six actual native GL/GUI/worker/restart/context
+fixtures,70strict receipt/header/extent/source-phase/admission/budget tests and
+24existing transition controls pass. Both640proofs retain exact old control
+phases; the reviewed800continuation changes five Python files while preserving
+the compiled player, runtime and oracle. Exact AST/preimage custody and retained
+raw-proof reassessment preserve the low scope without claiming a new low CLI run.
+
+The initial GUI pilot missed a worker-only probe: one start observed, full2-start
+reservation retained. Its sole actual game repair passes. A software reader
+refused terminal `INTERRUPTED4`; corrected retained-data analysis admits only
+active/cancelled/interrupted terminal states with cancellation, exact geometry,
+zero reserved words and bounded queued tail. A zero-game800preflight found a
+low-only Quit guard before expansion. All failures/source hashes remain exact.
+Five acquisition requests exhaust10charged starts;9are observed and the initial
+failed count remains incomplete. Each accepted pair has exactly two starts.
+No budget refund, second game repair, balance change or original-file change.
+All2927original files verify before/after the consuming experiments. Reports,
+tested binaries, unique source phases and raw captures use paired SQLite custody.
+See [the scoped research](surface-loss-restore-20261109.md).

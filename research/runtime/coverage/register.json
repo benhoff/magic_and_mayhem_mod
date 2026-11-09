@@ -173407,6 +173407,99 @@
         "FL08.G.observer: One owner and normal returns only; exceptional unwinds, arbitrary allocation frees and overwritten-allocation retirement are not established.",
         "FL08.G.remaining-font-domains: Original layouts call581ec0 directly at returns4a6133/4a65c7 in the recorded default trace; no general byte caller, arbitrary resource lifetime, whole ABI or hidden old-allocation retirement claim."
       ]
+    },
+    {
+      "id": "NP.surface-loss-restore-acceptance",
+      "title": "Native platform-target loss and terminal fresh-generation restoration",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "confidence": "provisional",
+      "original": [],
+      "scope": "Explicit bounded diagnostic destroys the actual Qt offscreen target at a completed turn of its actual GUI or dedicated render owner. The primary default/software640/800 operation proof must use the ordinary GUI-resident provider, typed native context-acquisition GraphicsFailure, complete terminal retirement and public fresh-generation restart. Target restoration for GL deletion is not old game/surface continuation. Independent original replay of presented failed prefix and fresh output remains required. Alternate-worker controls are separate. No physical hardware reset, arbitrary loss/race, legacy-driver equivalence, opt-in isolated continuation or final rendering decision.",
+      "documents": [
+        "research/runtime/surface-loss-restore-20261109.md",
+        "research/formats/native-surface-loss-v1.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/native_frame_recipe.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "apps/qt-shell/surface_loss_probe.hpp",
+        "tools/rendering_surface_loss.py",
+        "tools/rendering_surface_loss_live.py",
+        "tools/run-rendering-surface-loss.py",
+        "tools/check-rendering-surface-loss.py",
+        "tools/close-rendering-surface-loss.py",
+        "apps/qt-shell/gui_surface_loss_probe.hpp"
+      ],
+      "tests": [
+        "tests/render-surface-loss-test.cpp",
+        "tests/native-surface-loss-worker-test.cpp",
+        "tests/test-rendering-surface-loss.py",
+        "tools/check-native-surface-loss.py",
+        "tests/native-gui-surface-loss-test.cpp"
+      ],
+      "validation_dependencies": [
+        "renderer/blit.hpp",
+        "renderer/command_consumer.cpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_only_session.hpp",
+        "tools/prepare-rendering-surface-loss.py",
+        "tools/review-rendering-surface-loss-repair.py",
+        "tools/rendering_transition.py",
+        "tools/rendering_transition_live.py",
+        "tools/rendering_transition_low_live.py",
+        "tools/rendering_transition_assessment.py",
+        "tools/native_only_contract.py",
+        "tools/rendering_build_binding.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "docs/native-rendering-closure.json",
+        "renderer/isolated_renderer.hpp",
+        "renderer/CMakeLists.txt",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/run-rendering-recovery-closeout.py",
+        "tools/check-rendering-recovery-closeout.py",
+        "tools/rendering_transition_budget.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_pause.py",
+        "tools/rendering_pause_assessment.py",
+        "tools/rendering_pause_low_live.py",
+        "tools/rendering_pause_live.py",
+        "tools/rendering_interaction.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/pause_low_ingress.py",
+        "tools/campaign_storage.py",
+        "tools/retained_artifacts.py",
+        "tools/continue-rendering-surface-loss.py"
+      ],
+      "evidence": [
+        "SL09.native-controls04",
+        "SL09.native-controls05",
+        "SL09.primary-pilot01-failed",
+        "SL09.software640-reader01-failed",
+        "SL09.native-controls06",
+        "SL09.acceptance01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "SL09.G.live: Four finite actual default/software640/800 loss/restart domains pass under their exact retained controller phases and one unchanged compiled player. A current whole-player/combined-master run and execution of the new low CLI wrapper are not inferred; the primary GUI diagnostic owner supplies a valid deletion target.",
+        "SL09.G.boundary: General automatic GUI hardware/display recovery, physical GPU reset, legacy DirectDraw driver/allocator equivalence, arbitrary concurrent loss and isolated-service continuation remain separate claims."
+      ]
     }
   ],
   "evidence": [
@@ -397180,6 +397273,190 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "SL09.native-controls04",
+      "kind": "native_integration",
+      "scope": "Current-source actual GL target destruction, four typed unavailable-target refusals, surviving-sharing-group texture deletion, real worker target loss/retirement/fresh pixels, four existing terminal/restart cases,172 ordinary presentations and two context rebuilds;47reader/admission/cap controls. Synthetic producers, no original game or physical reset.",
+      "record": "research/runtime/surface-loss-restore-results-20261109/controls-04.json",
+      "sha256": "c11c876f3f923ba61ebca4b85d3bcb00039bcbf726b2b3bfd57b85b6c90e743e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/commands/1/result/actual_target_destructions",
+          "equals": 1
+        },
+        {
+          "pointer": "/reader_control/returncode",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "SL09.native-controls05",
+      "kind": "native_integration",
+      "scope": "Actual primary GUI and optional worker target loss/retirement/fresh pixels, four typed GL refusals and surviving-sharing-group deletion; existing terminal/restart, ordinary-worker and context rebuild controls;49reader/admission/cap controls. Synthetic producers only, no game or hardware reset.",
+      "record": "research/runtime/surface-loss-restore-results-20261109/controls-05.json",
+      "sha256": "1b7d9555cbfd7924f187caf2d2ffe6e2ea8117ecf8219c3a6fbe31b8d8ad9b8d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/commands/2/result/primary_gui_provider",
+          "equals": true
+        },
+        {
+          "pointer": "/reader_control/returncode",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "SL09.primary-pilot01-failed",
+      "kind": "live_observation",
+      "scope": "Negative actual primary GUI640 pilot:1295healthy Worlds, diagnostic bound only to optional worker and no loss/restart. One start observed; conservative2-start charge retained, actual count incomplete. No operation acceptance or recovery equivalence.",
+      "record": "research/runtime/surface-loss-restore-results-20261109/default640-01-acquisition.json",
+      "sha256": "367f7a46d901f80e3778c8ad1506e72b5dbc71b2a932cf8dc59b8e60fc71e431",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/error",
+          "equals": "Native provider target-loss observation deadline"
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 1
+        },
+        {
+          "pointer": "/charged_original_starts",
+          "equals": 2
+        }
+      ]
+    },
+    {
+      "id": "SL09.software640-reader01-failed",
+      "kind": "live_observation",
+      "scope": "Retained software640capture reader refusal: terminal producer INTERRUPTED4was outside the initial active/CANCELLED allowlist. No original replay or new game execution; exact failed source/result retained before analyzer correction. No acceptance credit.",
+      "record": "research/runtime/surface-loss-restore-results-20261109/software640-01-comparison-01.json",
+      "sha256": "2af5005f6ee5bc2ec2691a66fe9f24f9cd5998600e730b6c1c9bb83dd5b60361",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/error",
+          "equals": "Wrong provider-loss stopped epoch"
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "SL09.native-controls06",
+      "kind": "native_integration",
+      "scope": "Current actual primary GUI/optional worker loss, target deletion and fresh pixel controls; terminal/restart, ordinary-worker, context rebuild and70receipt/header/size-dispatch/source-phase/admission/cap tests. Exact unchanged C++ executables retained. Synthetic producers,0games; no hardware reset.",
+      "record": "research/runtime/surface-loss-restore-results-20261109/controls-06.json",
+      "sha256": "2cc5c826c6ac26d0c6c8429771369db045a1158d01612222b503633a5cac414a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/commands/2/result/primary_gui_provider",
+          "equals": true
+        },
+        {
+          "pointer": "/reader_control/returncode",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "SL09.acceptance01",
+      "kind": "live_observation",
+      "record": "research/runtime/surface-loss-restore-results-20261109/admission-01.json",
+      "sha256": "7adcba6a2c7060ff7d5ee4f947276877aed9431d9c75a1b64927f9b4d4d9f81b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Four actual primary GUI default/software640/800 target destructions and typed native failures; owner-supplied target recreation for deletion, complete terminal retirement, physical public fresh-generation restart, distinct original/channel/World identities, fresh input and normal Quit. Complete presented failed prefixes/fresh output independently compare7504084500pixels with0differences. Eight accepted starts; initial missed-provider pilot retains its full2-start charge and incomplete observed count. No physical/legacy-driver, old-game continuation or combined-current whole-player claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/charged_original_starts",
+          "equals": 10
+        },
+        {
+          "pointer": "/actual_start_count_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/current_whole_native_execution",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -431970,6 +432247,51 @@
         "FL08.G.dc",
         "FL08.G.remaining-font-domains"
       ]
+    },
+    {
+      "id": "native.surface-loss-controls",
+      "level": "headless",
+      "behaviors": [
+        "NP.surface-loss-restore-acceptance"
+      ],
+      "tests": [
+        "tests/render-surface-loss-test.cpp",
+        "tests/native-surface-loss-worker-test.cpp",
+        "tests/test-rendering-surface-loss.py",
+        "tools/check-native-surface-loss.py",
+        "tests/native-gui-surface-loss-test.cpp"
+      ],
+      "evidence": [
+        "SL09.native-controls04",
+        "SL09.native-controls05",
+        "SL09.native-controls06"
+      ],
+      "scope": "Actual GL offscreen target destruction, native-worker parking/failure/terminal deletion and fresh independent constant pixels; strict source/lifetime/cap controls. Synthetic producers, no original game or physical reset.",
+      "remaining_gaps": [
+        "SL09.G.live",
+        "SL09.G.boundary"
+      ]
+    },
+    {
+      "id": "native.surface-loss-public-restart",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.surface-loss-restore-acceptance"
+      ],
+      "tests": [
+        "tools/run-rendering-surface-loss.py",
+        "tools/check-rendering-surface-loss.py",
+        "tools/close-rendering-surface-loss.py"
+      ],
+      "evidence": [
+        "SL09.primary-pilot01-failed",
+        "SL09.acceptance01"
+      ],
+      "scope": "Actual public default/software640/800 game target loss, typed native failure, target restoration for deletion, all owners retired and public fresh-generation input/normal Quit with independent original presented output. No physical reset, legacy driver, transparent continuation or final-decision claim.",
+      "remaining_gaps": [
+        "SL09.G.live",
+        "SL09.G.boundary"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -433797,8 +434119,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-5857f6c34fda97efceeab6786e8e2ee4a7ddbbc6135f5b701d28b0fc36a97d65.json",
-    "sha256": "5857f6c34fda97efceeab6786e8e2ee4a7ddbbc6135f5b701d28b0fc36a97d65"
+    "path": "research/runtime/coverage/source-index-34695d3f52c8413e71892da9cf42ed4dcd74c6f709c227ea34f1f06500b9f2b9.json",
+    "sha256": "34695d3f52c8413e71892da9cf42ed4dcd74c6f709c227ea34f1f06500b9f2b9"
   },
   "evidence_applicability": [
     {

@@ -21,7 +21,15 @@ def artifact(reader,a,path):
 def module(name):
  spec=importlib.util.spec_from_file_location('transition_'+name,ROOT/'tools'/(name+'.py'));m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 
-def observed_epochs(reader,a):
+def provider_stopped_header(h,ring):
+    # A terminal cancellation may leave an active writer, a cancelled writer,
+    # or an interrupted close/deadline writer. Never admit normal END or an
+    # overflow/gap/invalid failure; queued tail bytes receive no visible credit.
+    return (len(h)==16 and len(ring)==1048640 and ring[:8]==b'MNMRDC03' and
+        h[2]==3 and h[3]==1048640 and h[4]>0 and h[8]==1 and not any(h[10:]) and
+        (h[6],h[7]) in ((1,0),(3,3),(3,4)) and ((h[5]-h[9])&0xffffffff)<=1048576)
+
+def observed_epochs(reader,a,*,provider_loss=False):
  files=[v for v in a['artifacts'] if '/capture/' in v['path'] and v['path'].endswith('.bin')]
  streams=[(v,artifact(reader,a,v['path'])) for v in files]
  views=[raw for v,raw in streams if capture(raw)[0][0]['role']=='viewport']
@@ -30,7 +38,9 @@ def observed_epochs(reader,a):
  epochs=[]
  for i,e in enumerate(a['proof']['epochs']):
   root=e['root'];ring=artifact(reader,a,str(Path(root)/'render-commands.bin'));h=struct.unpack_from('<16I',ring)
-  require(h[2]==3 and ring[:8]==b'MNMRDC03' and h[4]>0 and h[6]==(3 if i==0 else 2) and h[7]==(5 if i==0 else 0) and h[8]==1,'Wrong stopped producer epoch')
+  if provider_loss and i==0:
+   require(provider_stopped_header(h,ring),'Wrong provider-loss stopped epoch')
+  else:require(h[2]==3 and ring[:8]==b'MNMRDC03' and h[4]>0 and h[6]==(3 if i==0 else 2) and h[7]==(5 if i==0 else 0) and h[8]==1,'Wrong stopped producer epoch')
   matches=[]
   for v,raw in commands:
    binding=json.loads(artifact(reader,a,v['path']+'.producer.json'))
@@ -39,10 +49,12 @@ def observed_epochs(reader,a):
   epochs.append(epoch_admission(raw,binding,view,a['session_identity'],root,h[4],failed=i==0,capture_file=str(ROOT/v['path'])))
  return view,epochs,assert_epoch_partition(view,epochs)
 
-def assess(reader,a,c,epochs):
+def assess(reader,a,c,epochs,*,provider_loss=False):
  cfg=a['configuration'];size=cfg['actual_size'];proof=a['proof'];declared=proof['epochs']
  require(a['success'] and a['sources_stable'] and a['player_binary_stable'] and a['exit_code']==0 and a['original_game_runs']==2 and a['private_wine_stopped'] and a['prefix_pool']['returned'] and not a.get('forced_private_prefix_stop',False),'Incomplete public recovery execution')
- require(size==([800,600] if cfg['high_resolution'] else [640,480]) and type(cfg['software_flag']) is bool and ('--software-rendering' in a['command']) is cfg['software_flag'] and cfg['skip_intros'] is False and cfg['terrain_lighting']=='native' and cfg['compiled_test_driver_invoked'] is False and cfg['declared_fault']=='drained-Mini-producer-invalid','Wrong recovery domain')
+ expected_fault='quiescent-native-offscreen-target-loss' if provider_loss else 'drained-Mini-producer-invalid'
+ if provider_loss:require(a['actual_start_count_complete'] is True and a['charged_original_starts']==2 and cfg['render_owner']=='gui-resident','Unknown/refunded starts or changed primary provider cannot supply surface-loss acceptance')
+ require(size==([800,600] if cfg['high_resolution'] else [640,480]) and type(cfg['software_flag']) is bool and ('--software-rendering' in a['command']) is cfg['software_flag'] and cfg['skip_intros'] is False and cfg['terrain_lighting']=='native' and cfg['compiled_test_driver_invoked'] is False and cfg['declared_fault']==expected_fault,'Wrong recovery domain')
  require(len(declared)==2 and declared[0]['root']!=declared[1]['root'] and proof['controlled_faults']==1 and proof['physical_restart'] is True and proof['no_compiled_test_driver'] is True and proof['failed_epoch_normal_credit'] is False,'Wrong recovery class')
  roots=[e['root'] for e in declared];rows=[];frames=[];nonces=[];callbacks=[]
  for i,e in enumerate(declared):
@@ -75,10 +87,16 @@ def assess(reader,a,c,epochs):
  require(all(v['menu']==dict(screen=17,ready=True,ack=5,thread=frames[0]['owner'],mini=[0,0,5,2,31,5,2,0]) for v in selected),'Wrong actual Campaign Mini')
  blocked=[v for v in a['actions'] if v['action']=='mini-blocked-gameplay-up-1'];require(len(blocked)==1 and selected[0]['host_ns']<blocked[0]['host_ns']<selected[-1]['host_ns'] and blocked[0]['held_ms']>=200,'No physical blocked Mini input')
  boundary=next(v for v in rows[0] if v['phase']=='mini-fault-boundary');require(boundary['menu']==selected[-1]['menu'] and boundary['host_ns']>selected[-1]['host_ns'] and boundary['original_world_return']==selected[-1]['original_world_return'] and not boundary['input']['active'] and not boundary['input']['held'] and boundary['world']['pending_world_jobs']==0,'No raw quiescent Mini fault boundary')
- fault=fault_receipt(declared[0]['fault'],epochs[0]['binding']['producer']);require(json.loads(artifact(reader,a,'fault-injection.json'))==declared[0]['fault'] and counter(fault['begin_host_ns'])>selected[-1]['host_ns'],'Fault outside admitted Mini')
+ if provider_loss:
+  from rendering_surface_loss import retained_loss
+  fault=retained_loss(reader,a,roots[0],epochs[0]['binding']['producer'])
+  require(fault['provider_owner']=='gui-resident','An alternate worker cannot substitute for the actual primary provider')
+ else:fault=fault_receipt(declared[0]['fault'],epochs[0]['binding']['producer'])
+ require(json.loads(artifact(reader,a,'fault-injection.json'))==declared[0]['fault'] and counter(fault['begin_host_ns'])>selected[-1]['host_ns'],'Fault outside admitted Mini')
  require(counter(fault['begin_host_ns'])>boundary['host_ns'],'Fault predates final Mini boundary')
  terminal=json.loads(artifact(reader,a,str(Path(roots[0])/'native-terminal-state.json')))
  require(terminal==declared[0]['terminal'] and terminal['session']==roots[0] and set(terminal['state'])==TERMINAL_KEYS and all(v is True for v in terminal['state'].values()) and terminal['error'] and counter(terminal['host_us'])*1000>=counter(fault['begin_host_ns']),'Native terminal ownership receipt mismatch')
+ if provider_loss:require(terminal['error']=='OpenGL offscreen target is unavailable' and counter(terminal['host_us'])*1000>=counter(fault['retirement_host_ns']),'Native terminal predates provider retirement')
  db=sqlite3.connect(':memory:');db.deserialize(artifact(reader,a,'terminal-samples.sqlite3'));require(db.execute('PRAGMA integrity_check').fetchone()==('ok',),'Damaged terminal SQLite samples');stored=list(db.execute('SELECT * FROM terminal ORDER BY ordinal'));db.close();require(len(stored)>=8 and stored[-1][1]-stored[0][1]>=600_000_000,'Insufficient terminal stability')
  for i,(ordinal,at,inp,native,paint) in enumerate(stored):
   state=json.loads(native);input=input_state(inp);shown=json.loads(paint)
@@ -110,4 +128,7 @@ def assess(reader,a,c,epochs):
   from pause_low_ingress import validate_inputs
   ingress=validate_inputs(dest,validate_mini_inputs) if size==[640,480] else validate_mini_inputs(dest)
  require(ingress['verified'],'Unverified actual Mini ingress')
- return dict(verified=True,domain=dict(software=cfg['software_flag'],size=size),dwell=dwell,terminal_samples=len(stored),terminal_stability_ns=stored[-1][1]-stored[0][1],distinct_world_nonces=nonces,distinct_runner_identities=identities,physical_public_restart=True,old_rendering_accepted=False,fresh_positive_input=True,cleanup=cleanup,callbacks=callbacks,ingress=ingress,terminal_owner_authority='native-terminal-state/schema1',failed_source_report_complete=declared[0]['resident']['stage_profile']['capture']['complete'],failed_summary_renderer_retired=json.loads(stored[0][3])['renderer_retired'],failed_epoch_normal_completion_claimed=False,failed_uncredited_source_worlds=int(declared[0]['resident']['completed'])-len(c['epochs'][0]['world_domain']['worlds']))
+ result=dict(verified=True,domain=dict(software=cfg['software_flag'],size=size),dwell=dwell,terminal_samples=len(stored),terminal_stability_ns=stored[-1][1]-stored[0][1],distinct_world_nonces=nonces,distinct_runner_identities=identities,physical_public_restart=True,old_rendering_accepted=False,fresh_positive_input=True,cleanup=cleanup,callbacks=callbacks,ingress=ingress,terminal_owner_authority='native-terminal-state/schema1',failed_source_report_complete=declared[0]['resident']['stage_profile']['capture']['complete'],failed_summary_renderer_retired=json.loads(stored[0][3])['renderer_retired'],failed_epoch_normal_completion_claimed=False,failed_uncredited_source_worlds=int(declared[0]['resident']['completed'])-len(c['epochs'][0]['world_domain']['worlds']))
+
+ if provider_loss:result['provider_loss']=fault
+ return result

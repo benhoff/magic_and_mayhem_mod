@@ -3,7 +3,6 @@
 #include <QThread>
 #include <sys/types.h>
 namespace mnm::render {
-class GraphicsFailure:public std::runtime_error {public:using std::runtime_error::runtime_error;};
 // Host-owned committed state; no GL calls or pointers on this side of the pipe.
 class IsolatedRenderer final {
 public:

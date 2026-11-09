@@ -20,6 +20,8 @@ public:
     void abort();
     void checkpointGraphics(){if(renderer_)renderer_->checkpointGraphics();}
     void recoverGraphics(){if(renderer_)renderer_->recoverGraphics();}
+    std::array<bool,2> loseGraphicsTargetForTest(){if(!renderer_)throw std::runtime_error("No active command renderer");return renderer_->loseGraphicsTargetForTest();}
+    bool restoreGraphicsTargetForDeletion(){return renderer_&&renderer_->restoreGraphicsTargetForDeletion();}
     bool ended() const{return state_==State::Ended;}
     bool hasPendingCommands() const{return renderer_ && state_!=State::Recovering && state_!=State::Fallback && state_!=State::Ended && renderer_->hasPendingCommands();}
     QString error() const{return error_;}
