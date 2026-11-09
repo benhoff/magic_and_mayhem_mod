@@ -173781,7 +173781,8 @@
       },
       "remaining_gaps": [
         "Natural overlapping player call, actual profile output and live COM alias discovery remain under SC.natural-callers and both required-boundaries cells.",
-        "General backend per-piece opaque policy is distinct from production facade whole-call freeze. Keyed/masked/other formats, physical providers, whole-player and original-recovery completion remain open."
+        "General backend per-piece opaque policy is distinct from production facade whole-call freeze. Keyed/masked/other formats, physical providers, whole-player and original-recovery completion remain open.",
+        "NAT09 resolves overlap requiredness only for54290successful active COPYs in16recorded owned-provider cases. Actual overlapping invocation/output and contexts outside that precise boundary remain unproved; this does not reopen either approved bounded mechanism row."
       ]
     },
     {
@@ -173969,6 +173970,72 @@
         ],
         "media": "enabled natural EOF and physical Escape; acknowledged native audio/music; no physical waveform claim"
       }
+    },
+    {
+      "id": "NP.native-player-overlap-boundary",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Recorded native-player overlap requiredness boundary",
+      "scope": "Requiredness exclusion only for successful active COPY in16exact retained native-only player sessions: eight Quick/Campaign, four Grimoire and four clipped cases across default/software640/800. Source-bound PE32 interface layout, guarded provider allocation/lifetime rules and54290successful raw pairs exclude shared owned NsState. Four failed source calls, terminal callbacks, unobserved contexts, foreign/original driver layouts, current combined-player execution and positive natural overlap/output remain outside. All accepted rows and both decisions stay unchanged.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-player-overlap-boundary-20261109.md",
+        "research/runtime/rendering-alias-reachability-20261108.md"
+      ],
+      "implementation": [
+        "tools/check-natural-player-overlap.py",
+        "tools/native_player_overlap.py"
+      ],
+      "tests": [
+        "tests/test-native-player-overlap.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/native_copy_routes.py",
+        "tools/native_cursor_journal.py",
+        "tools/native_draw_retirement.py",
+        "tools/retained_artifacts.py",
+        "tools/native_copy_clip_regions.py",
+        "tools/native_copy_clip_regions_scoped.py",
+        "tools/rendering_pilot.py",
+        "tools/native_gpu_copy_diagnostics.py"
+      ],
+      "validation_domain": {
+        "scope_decision": "SC.natural-callers",
+        "resolution": "not_required_in_recorded_successful_active_COPY",
+        "contract": {
+          "record": "research/runtime/rendering-natural-overlap-results-20261109/provider-contract-02.json",
+          "sha256": "6ba7185aa391ef01774fba151e234a4be7d6ad1bef7278e941759991df4b50ac"
+        },
+        "layout": {
+          "pointer_bits": 32,
+          "interface_bytes": 12,
+          "interface_count": 5,
+          "state_bytes": 284,
+          "alias_span": 48,
+          "minimum_distinct_interface_distance": 236
+        },
+        "recorded_sessions": 16,
+        "successful_source_calls": 54290,
+        "global_unreachability": false
+      },
+      "evidence": [
+        "NAT09.controls01",
+        "NAT09.requiredness01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "No positive naturally overlapping call/output is claimed. Four failed source calls and post-RenderStop callbacks remain excluded.",
+        "Other player contexts, foreign/physical drivers, arbitrary GPU storage aliasing, current combined execution and the broader SC.natural-callers decision remain open."
+      ]
     }
   ],
   "evidence": [
@@ -398780,6 +398847,76 @@
           "equals": 132
         }
       ]
+    },
+    {
+      "id": "NAT09.controls01",
+      "kind": "native_integration",
+      "scope": "Requiredness exclusion only for successful active COPY in16exact retained native-only player sessions: eight Quick/Campaign, four Grimoire and four clipped cases across default/software640/800. Source-bound PE32 interface layout, guarded provider allocation/lifetime rules and54290successful raw pairs exclude shared owned NsState. Four failed source calls, terminal callbacks, unobserved contexts, foreign/original driver layouts, current combined-player execution and positive natural overlap/output remain outside. All accepted rows and both decisions stay unchanged.",
+      "record": "research/runtime/rendering-natural-overlap-results-20261109/controls-01.json",
+      "sha256": "ab5f695b374610dc4d142f545b71831bafff4e533c679ef5e362f9be8bec4484",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 27
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NAT09.requiredness01",
+      "kind": "native_integration",
+      "scope": "Requiredness exclusion only for successful active COPY in16exact retained native-only player sessions: eight Quick/Campaign, four Grimoire and four clipped cases across default/software640/800. Source-bound PE32 interface layout, guarded provider allocation/lifetime rules and54290successful raw pairs exclude shared owned NsState. Four failed source calls, terminal callbacks, unobserved contexts, foreign/original driver layouts, current combined-player execution and positive natural overlap/output remain outside. All accepted rows and both decisions stay unchanged.",
+      "record": "research/runtime/rendering-natural-overlap-results-20261109/requiredness-01.json",
+      "sha256": "0d37ff5a2292fe6e26c5d16ac6dbcb35fb78b3c3ed2275af34d9213805abe273",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/preserved_parent_rows",
+          "equals": 156
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/natural_overlap_boundary/bounded_requiredness_resolved",
+          "equals": true
+        },
+        {
+          "pointer": "/natural_overlap_boundary/counts/successful_source_copies",
+          "equals": 54290
+        },
+        {
+          "pointer": "/natural_overlap_boundary/counts/shared_state_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/natural_overlap_boundary/counts/failed_source_copies",
+          "equals": 4
+        },
+        {
+          "pointer": "/natural_overlap_boundary/natural_overlap_witness",
+          "equals": false
+        },
+        {
+          "pointer": "/natural_overlap_boundary/global_unreachability_proved",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -433721,6 +433858,23 @@
         "IM09.controls04",
         "IM09.input-media02"
       ]
+    },
+    {
+      "id": "NP.native-player-overlap-boundary.retained-domains",
+      "level": "headless",
+      "scope": "Requiredness exclusion only for successful active COPY in16exact retained native-only player sessions: eight Quick/Campaign, four Grimoire and four clipped cases across default/software640/800. Source-bound PE32 interface layout, guarded provider allocation/lifetime rules and54290successful raw pairs exclude shared owned NsState. Four failed source calls, terminal callbacks, unobserved contexts, foreign/original driver layouts, current combined-player execution and positive natural overlap/output remain outside. All accepted rows and both decisions stay unchanged.",
+      "behaviors": [
+        "NP.native-player-overlap-boundary"
+      ],
+      "tests": [
+        "tools/check-natural-player-overlap.py",
+        "tools/native_player_overlap.py",
+        "tests/test-native-player-overlap.py"
+      ],
+      "evidence": [
+        "NAT09.controls01",
+        "NAT09.requiredness01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -435548,8 +435702,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-df0deea043c46252edaa9a4a9e72c3396638e8233f2a235dc7a4b16d70adef97.json",
-    "sha256": "df0deea043c46252edaa9a4a9e72c3396638e8233f2a235dc7a4b16d70adef97"
+    "path": "research/runtime/coverage/source-index-c04d0b7abd7b4057bb1a56a66e9941d29e4f44536864cfc5e4f8ad1132ecd721.json",
+    "sha256": "c04d0b7abd7b4057bb1a56a66e9941d29e4f44536864cfc5e4f8ad1132ecd721"
   },
   "evidence_applicability": [
     {

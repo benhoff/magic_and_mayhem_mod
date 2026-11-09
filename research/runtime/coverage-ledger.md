@@ -28532,3 +28532,9 @@ inputs: compare verified payload hashes, not physical reference bytes. A real
 SQLite regression preserves actual drift; production132/24 and both pending
 decisions now display with current analysis sources. Native execution hashes,
 rendering arithmetic and original behavior are unchanged.
+
+### NAT09 — native-player overlap requiredness boundary, 2026-11-09
+
+NAT09 records a source-backed requiredness exclusion for54,290successful active COPYs across16retained native-only Quick/Campaign,Grimoire and clipped cases. No shared owned backing is possible in those recorded calls. Four failed calls and terminal/unobserved contexts remain outside; no natural overlap witness or global absence is claimed. All156rows and both decisions are preserved: 132/156 passed, 24 pending.
+
+`NP.native-player-overlap-boundary` owns host analysis only: captured DLL/source/lifetime provenance, fresh PE32 layout compilation and27current classifier/provider-phase guards. Four canonical-provider captures corroborate the interface rule. No engine implementation, actual overlapping invocation/output, global absence or new accepted row is asserted. See [the exact boundary](native-player-overlap-boundary-20261109.md).

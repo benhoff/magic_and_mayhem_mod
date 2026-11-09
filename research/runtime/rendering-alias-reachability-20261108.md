@@ -1,8 +1,10 @@
 # Natural alias/overlap COPY investigation — 2026-11-08
 
+**2026-11-09 NAT09 follow-up:** a [source-backed bounded exclusion](native-player-overlap-boundary-20261109.md) resolves overlap requiredness for54,290successful active COPYs in16retained native-only cases. No positive natural overlap or all-game absence is claimed.
+
 **2026-11-09 approved amendment:** both controlled opaque-overlap mechanism cells are closed. Natural player reachability stays open. See the [amended admission](rendering-alias-bounded-results-20261109/admission-01.json).
 
-Both `operation.copy-alias-overlap` profile rows remain pending. The accepted
+**Historical 2026-11-08 investigation:** both `operation.copy-alias-overlap` profile rows were pending at that phase. The accepted
 stretch rows and the 116/156 accepted parent requirements stay closed under their
 recorded source phases. This investigation changes no renderer, runtime hook,
 game input, acceptance requirement or original instruction.
