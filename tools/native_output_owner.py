@@ -70,15 +70,27 @@ def admit(metadata, environment, receipt):
     return socket, authority
 
 
-def command(root, prefix, metadata, environment, receipt):
+def command(root, prefix, metadata, environment, receipt, *, repository=None):
     """Build the child boundary, with no host display/socket/device descriptors."""
     socket, authority = admit(metadata, environment, receipt)
     root, prefix = Path(root).resolve(), Path(prefix).resolve()
     if ('original' in root.parts or 'original' in prefix.parts
             or root.is_relative_to(prefix) or prefix.is_relative_to(root)):
         raise ValueError('Require separate disposable session and prefix paths')
-    if not root.is_dir() or not prefix.is_dir() or root.is_relative_to('/tmp') or prefix.is_relative_to('/tmp'):
+    if not root.is_dir() or not prefix.is_dir():
         raise ValueError('Create the owned session and prefix before isolation')
+    masked=('/tmp','/var/tmp','/dev','/run/user')
+    hidden=any(p.is_relative_to(base) for p in (root,prefix) for base in masked)
+    source=None
+    if hidden:
+        if repository is None:raise ValueError('Create the owned session and prefix before isolation')
+        source=Path(repository).resolve()
+        if (str(source) in ('/','/tmp','/var/tmp','/dev','/dev/shm','/run/user')
+                or source.stat().st_uid!=os.getuid()
+                or not (source/'.git').exists() or not (source/'AGENTS.md').is_file()
+                or not (source/'tools/menu-game-runner.py').is_file()
+                or not all(p.is_relative_to((source/'working').resolve()) for p in (root,prefix))):
+            raise ValueError('Masked paths require the exact owned repository and its working targets')
     # The validated file may live beneath a masked /tmp (including a working/
     # alias into RAM). Mount that file explicitly; its host pathname need not
     # remain reachable after replacing the child's temporary directories.
@@ -88,8 +100,11 @@ def command(root, prefix, metadata, environment, receipt):
             '--cap-drop', 'ALL', '--ro-bind', '/', '/', '--dev', '/dev',
             '--proc', '/proc', '--tmpfs', '/tmp', '--tmpfs', '/var/tmp',
             '--dir', '/tmp/.X11-unix', '--ro-bind', str(socket), str(socket),
-            '--ro-bind', str(authority), child_authority,
-            '--bind', str(root), str(root), '--bind', str(prefix), str(prefix)]
+            '--ro-bind', str(authority), child_authority]
+    # Re-expose only this validated source checkout after masking temporary
+    # directories; it stays read-only. Mutable session/prefix mounts follow.
+    if source is not None:args += ['--ro-bind',str(source),str(source)]
+    args += ['--bind', str(root), str(root), '--bind', str(prefix), str(prefix)]
     runtime = Path('/run/user')
     if runtime.is_dir():
         args += ['--tmpfs', str(runtime)]

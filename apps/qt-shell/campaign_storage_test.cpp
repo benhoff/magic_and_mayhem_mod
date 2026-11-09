@@ -34,6 +34,7 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
  const bool checkpointDiagnostic=!qEnvironmentVariable("MNM_CAMPAIGN_CHECKPOINT").isEmpty();
  const bool checkpoint=qEnvironmentVariable("MNM_CAMPAIGN_CHECKPOINT")=="capture";
  const auto checkpointSeed=qEnvironmentVariable("MNM_CAMPAIGN_CHECKPOINT_SEED");
+ const bool transitionCheckpoint=checkpoint&&qEnvironmentVariable("MNM_CAMPAIGN_CHECKPOINT_ROUTE")=="transition-ready";
  const bool restart=qEnvironmentVariableIntValue("MNM_CAMPAIGN_STORAGE_RESTART")==1||!checkpointSeed.isEmpty();
  const bool resident=qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")=="1";
  const int difficulty=qEnvironmentVariableIntValue("MNM_CAMPAIGN_DIFFICULTY");
@@ -72,7 +73,7 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
   if(mode=="mini"&&difficulty==0&&r->stage==3)args<<"--complete-opening";
   p->start("python3",args);
  };
- auto prepareCheckpoint=[r,fail,&session,&window,path]{
+ auto prepareCheckpoint=[r,fail,&session,&window,path,transitionCheckpoint]{
   auto* viewport=window.findChild<GlViewport*>("nativeGameViewport");
   if(!viewport||!viewport->isVisible()){fail("Checkpoint requires native viewport");return;}
   const auto rect=viewport->imageRect();const auto origin=viewport->mapToGlobal(rect.topLeft().toPoint());
@@ -88,7 +89,7 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
    }else{r->checkpointReady=true;r->dwell.restart();r->states.append(QJsonObject{{"event","checkpoint-ready"}});}
    process->deleteLater();
   });
-  process->start("python3",{QDir::current().filePath("tools/campaign-outcome-input.py"),"--case","victory","--stop-at-rearm","--experiment",session.evidenceDirectory(),"--seconds","540","--rect",QString::number(origin.x()),QString::number(origin.y()),QString::number(qRound(rect.width())),QString::number(qRound(rect.height())),"--frame-size",QString::number(viewport->frameSize().width()),QString::number(viewport->frameSize().height()),"--output",output});
+  process->start("python3",{QDir::current().filePath(transitionCheckpoint?"tools/campaign-save-ready-input.py":"tools/campaign-outcome-input.py"),"--case","victory","--stop-at-rearm","--experiment",session.evidenceDirectory(),"--seconds","540","--rect",QString::number(origin.x()),QString::number(origin.y()),QString::number(qRound(rect.width())),QString::number(qRound(rect.height())),"--frame-size",QString::number(viewport->frameSize().width()),QString::number(viewport->frameSize().height()),"--output",output});
  };
  auto probeOrders=[r,fail,input,&session,&window,path]{
   auto* viewport=window.findChild<GlViewport*>("nativeGameViewport");
@@ -191,7 +192,7 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
  };
  auto battle=session.battleStarted;session.battleStarted=[r,battle,probe,fail](quint32 destination){if(battle)battle(destination);if(destination!=3||r->stage!=2){fail("Unexpected campaign handoff");return;}r->stage=3;r->frames=probe().frames;r->source=probe().sourceGeneration;r->dwell.restart();};
  auto viewport=session.originalViewportRequested;session.originalViewportRequested=[r,viewport,input,&window]{if(viewport)viewport();if(r->stage==10)QTimer::singleShot(800,&window,[input]{input("yes");});};
- auto* timer=new QTimer(&window);timer->setInterval(1500);QObject::connect(timer,&QTimer::timeout,&window,[r,probe,fail,input,resident,difficulty,checkpoint,prepareCheckpoint,probeOrders,&session]{
+ auto* timer=new QTimer(&window);timer->setInterval(1500);QObject::connect(timer,&QTimer::timeout,&window,[r,probe,fail,input,resident,difficulty,checkpoint,prepareCheckpoint,probeOrders,&session,transitionCheckpoint]{
   if(r->failed||r->helper){return;}const auto p=probe();
   if(!p.renderer.isEmpty()&&p.renderer!=r->renderer){r->renderer=p.renderer;r->renderers.append(p.renderer);}
   QFile events(QDir(session.evidenceDirectory()).filePath("events.bin"));bool originalWorld=false,returned=false;
@@ -201,7 +202,7 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
    QFile saved(QDir(session.evidenceDirectory()).filePath("game/Save/"+r->name+".sav"));if(!saved.open(QIODevice::ReadOnly)||saved.size()==0){fail("Original writer produced no nonempty save");return;}const auto bytes=saved.readAll();const auto hash=QString::fromLatin1(QCryptographicHash::hash(bytes,QCryptographicHash::Sha256).toHex());if(r->hash.isEmpty())r->hash=hash;else if(r->hash!=hash){fail("Load changed saved bytes");return;}if(checkpoint&&!qEnvironmentVariable("MNM_CAMPAIGN_CHECKPOINT_SEED").isEmpty()&&!r->checkpointSeedLoaded&&r->stage==8){
     if(hash!=qEnvironmentVariable("MNM_CAMPAIGN_CHECKPOINT_SEED_SHA256")){fail("Original seed Load hash changed");return;}
     r->states.append(QJsonObject{{"event","checkpoint-seed-loaded"},{"name",r->name},{"sha256",hash}});
-    r->checkpointSeedLoaded=true;r->checkpointReady=true;r->name=r->checkpointName;r->hash.clear();
+    r->checkpointSeedLoaded=true;r->checkpointReady=!transitionCheckpoint;r->name=r->checkpointName;r->hash.clear();
     r->stage=3;r->frames=p.frames;r->source=p.sourceGeneration;r->dwell.restart();
    }else r->stage=r->stage==5?6:9;
    r->attempts=0;
@@ -214,7 +215,7 @@ void installCampaignStorageTest(QApplication& app,QMainWindow& window,LiveMenuSe
    probeOrders();return;
   }
   if(checkpoint&&r->stage==3&&presenting&&!r->checkpointReady){prepareCheckpoint();return;}
-  if((r->stage==3||r->stage==6||r->stage==9||r->stage==21||r->stage==23)&&presenting&&(!resident||p.sourceGeneration>r->inputSource)&&r->dwell.elapsed()>=6000){if(++r->attempts>(difficulty==0&&r->stage==3?24:8)){fail("Original Mini ingress timed out");return;}if(r->attempts==1&&r->stage!=21&&r->stage!=23)r->checkpoints.append(QJsonObject{{"phase",r->stage==3?"before-save":r->stage==6?"after-save":r->reloaded?"after-recreate-load":"after-load"},{"frames",qint64(p.frames)},{"source_generation",QString::number(p.sourceGeneration)},{"source_base",QString::number(r->source)},{"frame_base",qint64(r->frames)},{"native_active",p.active},{"renderer",p.renderer},{"fallback",p.fallback},{"error",p.error}});input("mini");}
+  if((r->stage==3||r->stage==6||r->stage==9||r->stage==21||r->stage==23)&&presenting&&(!resident||p.sourceGeneration>r->inputSource)&&r->dwell.elapsed()>=(transitionCheckpoint?0:6000)){if(++r->attempts>(difficulty==0&&r->stage==3?24:8)){fail("Original Mini ingress timed out");return;}if(r->attempts==1&&r->stage!=21&&r->stage!=23)r->checkpoints.append(QJsonObject{{"phase",r->stage==3?"before-save":r->stage==6?"after-save":r->reloaded?"after-recreate-load":"after-load"},{"frames",qint64(p.frames)},{"source_generation",QString::number(p.sourceGeneration)},{"source_base",QString::number(r->source)},{"frame_base",qint64(r->frames)},{"native_active",p.active},{"renderer",p.renderer},{"fallback",p.fallback},{"error",p.error}});input("mini");}
  });timer->start();
  auto finished=session.finished;session.finished=[r,finished,write,&app]{if(finished)finished();const bool success=!r->failed&&r->stage==12&&!r->hash.isEmpty();app.exit(success&&write(success)?0:1);};
  if(session.winePrefix.isEmpty())session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");

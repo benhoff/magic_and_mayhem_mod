@@ -12,6 +12,46 @@ def empty_candidate_after_hover(rows,ready,after_sequence):
     return _candidate_match(rows,ready,0,after_sequence)
 
 
+def portal_candidate_after_hover(rows,ready,hero,portal,after_sequence,follower=None):
+    """Actual goal ground under empty space, self, or the known nearby follower.
+
+    This is an authored physical attempt. Original opcode5 acknowledgement and
+    eventual natural outcome remain separate and mandatory.
+    """
+    empty=empty_candidate_after_hover(rows,ready,after_sequence)
+    if empty is not None:return empty
+    if (ready is None or hero.get('type')!=0 or hero.get('owner')!=0
+            or not hero.get('active') or hero.get('health',0)<=0
+            or type(hero.get('slot')) is not int or not 0<=hero['slot']<256
+            or list(ready.get('ground',[]))!=[portal[k] for k in ('x','y','z')]
+            or primary_selection_after(rows,hero['slot'],after_sequence) is None):return None
+    if (sum((hero[k]-portal[k])**2 for k in ('x','y'))<=25
+            and abs(hero['z']-portal['z'])<=1):
+        candidate=candidate_after_hover(rows,ready,hero['slot'],after_sequence)
+        if candidate is not None:return candidate
+    if (follower is None or follower.get('type')!=14 or follower.get('owner')!=0
+            or not follower.get('active') or follower.get('health',0)<=0
+            or type(follower.get('slot')) is not int or not 0<=follower['slot']<256
+            or follower['slot']==hero['slot']
+            or sum((follower[k]-portal[k])**2 for k in ('x','y'))>2
+            or abs(follower['z']-portal['z'])>1):return None
+    return candidate_after_hover(rows,ready,follower['slot'],after_sequence)
+
+
+def portal_staging_ground(rows,ready,hero,portal,after_sequence):
+    """Bounded empty original ground that brings an offscreen goal closer."""
+    if (ready is None or empty_candidate_after_hover(rows,ready,after_sequence) is None
+            or primary_selection_after(rows,hero['slot'],after_sequence) is None):return None
+    point=ready.get('ground',[])
+    if (len(point)!=3 or any(type(v) is not int for v in point)
+            or abs(point[2]-hero['z'])>2):return None
+    distance=sum((point[i]-hero[k])**2 for i,k in enumerate(('x','y')))
+    before=sum((hero[k]-portal[k])**2 for k in ('x','y'))
+    after=sum((point[i]-portal[k])**2 for i,k in enumerate(('x','y')))
+    if not 1<=distance<=64 or after>=before:return None
+    return dict(zip(('x','y','z'),point))
+
+
 def _candidate_match(rows,ready,expected,after_sequence):
     if ready is None:return None
     worlds=[r for r in rows if r['kind']==1]

@@ -28598,3 +28598,101 @@ SL09.merged-controls01 validates the merged native components and 70 guards with
 original games. Native/compiler/protocol/oracle source drift remains recorded
 under the original execution hashes; no combined-current game, physical driver
 or original-replacement claim is added. The ten charged starts remain exhausted.
+
+
+## CT08: compact map-exit and next-map-loading review — 2026-11-08
+
+`NP.campaign-transition-retained-review` targets only
+`journey.map-transitions.leave-map` and `journey.map-transitions.loading`.
+[Retained analysis](campaign-transition-lean-results-20261108/review-04.json)
+checks original owner-thread World pop/entry callback ordering and fresh
+Realm/travel/Region2 bridge states, then independently rederives native command
+surface retirement/recreation from existing command captures. Nominal software640
+retires surface94 before creating surface242 for generation3034; diagnostic
+default800 retires surface88 before creating surface238 for generation3662.
+These are launch-specific native handle/incarnation identities, not stable
+addresses or complete original object/vptr/generation lifetime recovery.
+
+Both retained comparisons remain exact:9,227,724,000 and13,420,951,500 historical
+pixel checks, with zero differences. This review references those comparisons;
+it runs no new pixel/original oracle, native player or game. The diagnostic case
+remains diagnostic, with absent historical comparison-process retirement recorded
+as unknown. Only software640 supplies a nominal candidate; default640/default800/
+software800 and current per-domain applicability/output/ownership admission remain
+missing. All112accepted parent rows,44pending rows and both pending decisions stay
+unchanged. No historical failure or source hash is refreshed.
+
+81focused controls pass, including33new adverse/bounded-read controls. Existing
+SQLite inputs are read directly:184,401,464compressed raw bytes, decoded only in
+RAM. The final report is17,770bytes, capped at64KiB; no capture, installation,
+prefix or build snapshot is added. Initial setup/schema refusals and exact tested
+source preimages are retained through SQLite. [Scope and reproduction](campaign-transition-lean-20261108.md)
+describe the remaining domains and original lifetime boundary.
+
+
+
+
+### Campaign map exit and loading — 2026-11-08
+
+[Four-domain acceptance](campaign-progression-closeout-results-20261108/acceptance-01.json)
+closes only `journey.map-transitions.leave-map` and
+`journey.map-transitions.loading` for default/software actual640×480 and800×600.
+Current-source full executions43–46 retain enabled intros, original Load, natural
+Victory/Realm/travel/region2 and normal Quit. Complete independent comparisons
+match3,286,371,000pixels. Paired original populated resource epochs bind actual
+World callbacks; first-map storage retires before later acquisition. Persistent
+display identities span maps, native prior surface incarnations retire and final
+ownership drains. `NP.campaign-map-transition-closeout` records scoped native
+headless integration; `NP.campaign-map-resource-boundaries` independently records
+original live observation. Original comparison/replacement and external supplier
+recovery are not promoted.
+
+The exact116-row parent becomes120/156passed,36pending in this owned source
+phase. Later master admissions require an explicit union. Both final decisions
+and all unrelated rows stay unchanged. A357,718byte immutable original Save
+replaces repeated combat setup; input41separately verifies original Save/Load
+active actor fields, while each full run independently proves natural map
+progression. Historical36pixels/controller review predate the C++Save change
+and supply no current closure credit. See
+[campaign closeout notes](campaign-progression-closeout-20261108.md) for bounded
+resource observation, quota-aware RAM guards, exact output ownership, temporary
+oracle retention, preserved negative evidence and SQLite durability boundaries.
+
+
+### CP09 natural victory and next-map output — 2026-11-09
+
+[Retained four-domain admission](campaign-victory-next-map-results-20261109/acceptance-02.json)
+closes only `journey.battle-results.victory` and
+`journey.map-transitions.next-map`. Existing full captures 43–46 provide original
+natural victory, native visible result-control acknowledgement, fresh Realm
+return/travel and actual Celtic region 2 entry. Exact compiled projection
+sources prove functional result display and withdrawal; persistent QWidget
+destruction and original glyph/font/DC pixels are not asserted. Complete native
+swap multisets and captured plane hashes recheck 3,286,371,000 independently
+compared pixels, including first and resumed later-map output. Paired original
+resource epochs, native incarnation retirement and normal final drain pass.
+
+`NP.campaign-victory-next-map-closeout` records scoped implementation and
+headless retained-data integration; original comparison/replacement remain none.
+No new game, reference execution or pixel comparison occurs, and no historical
+source hash is refreshed. Exact candidate map inputs remain distinct from
+unrecovered section/layout/RNG choices. Twenty focused guards pass. The owned
+120-cell parent becomes 124/156 passed, 32 pending; newer master admissions
+remain separate source phases. See
+[campaign result scope](campaign-victory-next-map-20261109.md).
+
+The [current CP09 coverage snapshot](coverage/summary-campaign-results-20261109.md) records the zero-error audit, unchanged historical drift and independently pending boundaries.
+
+
+## Campaign progression master union — 2026-11-09
+
+The reviewed acceptance union preserves all 134 actual-master accepted rows and closes eight campaign profile cells: leave-map, loading, victory/results and next-map output for default/software at actual 640×480 and 800×600. The resulting tracker records **142/156 passed, 14 pending**, representing **7 distinct tasks**. Both final decisions remain pending.
+
+Actual master parent: `e3d87becea2fb17c91f315f8b56618391b933841`. Campaign feature: `23e676abca41ac966744d3733012672a984c72d9`. [Merged admission](campaign-master-results-20261109/admission-01.json) binds both exact parent records. The complete master tracker, approved controlled overlap scope amendment and every noncampaign row remain intact. Campaign captures43–46 retain 3,286,371,000 compared pixels with zero differences; this merge adds no original run, capture, oracle execution or pixel comparison. Historical application/runtime/compiler/oracle/analysis phases remain explicit; no combined-current player execution or original-recovery promotion follows.
+
+Metadata conflicts are resolved by the conservative keyed register/journal union. Complete actual-master ledger/document bytes are preserved and campaign-only insertions appended. Native/code files merge without conflict. Campaign test fixtures reconstruct the exact frozen definition by restoring only the recorded candidate evidence leads in an in-memory copy; the authored master dossier, acceptance conditions, owners and approved scope amendment are unchanged. Changed conditions still refuse. Both strict production analyzers remain unchanged. The first failed candidate, all source bytes and failed controls are retained in `campaign-master-results-20261109/failed-candidate-source-01.json`. Fixture subprocesses now omit the unrelated inherited integration descriptor; the real finish/commit keeps its full-command lease. The historical font integration analyzer correctly refuses current full-source credit after changes to the two campaign driver files. Its immutable control hash and historical status remain; current native menu-font regression is checked independently without renewing that old gate.
+
+The existing owned checkout/build is reused. Before rebuilding, exact old tested binaries are retained in both immutable stores. New compiler intermediates are temporary; built binaries, controls, unique failures, exact source states and review/history databases are durable. Reports go directly to SQLite. No publication or private transfer is part of this merge.
+
+Remaining IDs: `gate.fault-lifetime`, `gate.journeys`, `gate.operations`, `gate.pixels-history`, `gate.required-boundaries`, `gate.separate-decisions`, `gate.transitions`.
+

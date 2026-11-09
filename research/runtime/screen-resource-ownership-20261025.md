@@ -93,7 +93,16 @@ callers now have independent models and unchanged-original comparisons.
 the shared5595d0 census. The model includes the one-shot shutdown flag,
 conditional service/registry retirement, bounded iterator traversal, both
 bitmap stores, the segmented pointer queue and its block/map frees, two canvas
-detach calls, final World owner clear and conditional clock snapshot.
+zero-fill requests, final World owner clear and conditional clock snapshot.
+
+The earlier description called the two `0x58bc10` calls “detach”. That label
+was incorrect: they request full fills with word zero on persistent display
+wrappers `0x6a49e0` and `0x6a4fe0`; they do not release those interfaces.
+See [the startup contract](native-world-canvas-startup.md). The existing model
+and original-body fixture already retain the exact call address and zero
+argument; their executed bytes and historical hashes are unchanged. Actual map
+boundary interface observations are a separate
+[2026-11-08 investigation](campaign-progression-closeout-20261108.md).
 
 The registry counts are reread around callbacks. The pointer queue advances one
 DWORD per removed element, retires an exhausted block at its boundary or when

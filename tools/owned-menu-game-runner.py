@@ -32,7 +32,7 @@ def main():
     with (prefix/'.native-output-owner.lock').open('a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         subprocess.run(['wineserver', '-w'], env=dict(os.environ), check=True, timeout=5)
-        args = command(root, prefix, metadata, os.environ, receipt)
+        args = command(root, prefix, metadata, os.environ, receipt,repository=ROOT)
         admission = dict(schema=1, session=str(root), prefix=str(prefix), private_display=receipt['display'],
             native_build_sha256=hashlib.sha256((root/'native-draw-build.json').read_bytes()).hexdigest(),
             namespace_network=True, namespace_pid=True, namespace_ipc=True,

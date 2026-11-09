@@ -16,6 +16,8 @@ spec.loader.exec_module(retention)
 
 class Storage(unittest.TestCase):
     def setUp(self):
+        self.quota_patch=patch.object(retention,'quota_status',return_value={'state':'unsupported'})
+        self.quota_patch.start();self.addCleanup(self.quota_patch.stop)
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
@@ -28,6 +30,31 @@ class Storage(unittest.TestCase):
         p.mkdir(parents=True)
         (p / 'payload').write_bytes(b'x' * 4096)
         return p
+
+    def test_user_quota_limits_available_space_despite_free_filesystem(self):
+        g=retention.GIB
+        with patch.object(retention.shutil,'disk_usage',return_value=SimpleNamespace(free=20*g)),patch.object(retention,'quota_status',return_value=dict(state='available',available_bytes=g,inode_available=None)):
+            free,details=retention.available_space(self.root,dict(require_user_quota=True))
+        self.assertEqual(free,g);self.assertEqual(details['filesystem_free_bytes'],20*g)
+        self.assertTrue(retention.pressure(0,free,dict(minimum_free_gib=8),4*g))
+
+    def test_filesystem_remains_limiting_when_quota_has_more_room(self):
+        with patch.object(retention.shutil,'disk_usage',return_value=SimpleNamespace(free=100)),patch.object(retention,'quota_status',return_value=dict(state='available',available_bytes=200)):
+            self.assertEqual(retention.available_space(self.root,{})[0],100)
+
+    def test_unlimited_quota_and_disabled_filesystem_preserve_free_space(self):
+        for value in (dict(state='available',available_bytes=None),dict(state='unsupported')):
+            with patch.object(retention.shutil,'disk_usage',return_value=SimpleNamespace(free=100)),patch.object(retention,'quota_status',return_value=value):
+                self.assertEqual(retention.available_space(self.root,{})[0],100)
+
+    def test_required_unknown_quota_refuses_without_claiming_headroom(self):
+        for state in ('unsupported','error'):
+            with patch.object(retention.shutil,'disk_usage',return_value=SimpleNamespace(free=100)),patch.object(retention,'quota_status',return_value=dict(state=state)):
+                with self.assertRaises(OSError):retention.available_space(self.root,dict(require_user_quota=True))
+
+    def test_exhausted_quota_inodes_refuse_even_with_free_bytes(self):
+        with patch.object(retention.shutil,'disk_usage',return_value=SimpleNamespace(free=100)),patch.object(retention,'quota_status',return_value=dict(state='available',available_bytes=100,inode_available=0)):
+            self.assertEqual(retention.available_space(self.root,{})[0],0)
 
     def test_exact_budget_and_reservation(self):
         g = retention.GIB

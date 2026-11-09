@@ -53154,7 +53154,8 @@
       ],
       "remaining_gaps": [
         "Coalescing/current final/error controls and full current TITAN shutdown pass; final/error synchronous IO remains outside gameplay, durable-storage latency and GPU/driver60FPS guarantees remain pending.",
-        "AC07.G.ram-quota-failure: actual default640setup stops before cast/World. Exact core preserves original Source chunk acknowledgement mode/cancellation and secondary uncaught QSaveFile error2 Disk quota exceeded. Filesystem free space alone does not establish user-quota headroom; first failing producer syscall remains unobserved. No normal failure-retirement, universal reliability, attachment output or quota recovery claim is supplied by this negative capture."
+        "AC07.G.ram-quota-failure: actual default640setup stops before cast/World. Exact core preserves original Source chunk acknowledgement mode/cancellation and secondary uncaught QSaveFile error2 Disk quota exceeded. Filesystem free space alone does not establish user-quota headroom; first failing producer syscall remains unobserved. No normal failure-retirement, universal reliability, attachment output or quota recovery claim is supplied by this negative capture.",
+        "CP08.G.user-quota: Full32/33 abort with generic resident report publication errors. The retained later quota-guard01 actual preflight measures 5.52GiB user headroom despite 18.07GiB filesystem free and refuses an 8GiB floor plus 4GiB reservation, consistent with the older AC07 quota failure. Earlier exploratory headroom was lower; exact first failing syscalls/errno in32/33 remain unobserved. Quota-aware guards and reviewed paired handoffs address measured headroom without claiming universal report reliability."
       ]
     },
     {
@@ -154556,7 +154557,7 @@
       "kind": "recovered",
       "subsystem": "rendering_reconstruction",
       "title": "Complete World screen exit and local resource retirement",
-      "scope": "Complete unchanged46ab30..46ae8c local World exit orchestration:one-shot shutdown guard,registry/iterator traversal,bitmap retirement,segmented pointer-queue block release,canvas detach,owner reset and conditional tick snapshot. Independent wire-memory model and original-body execution with authored simulation/provider/allocator/OS endpoints and bounded valid owned registry/queue storage. Transitive simulation/asset/allocator/provider semantics,World construction/entry,SEH faults,arbitrary reentrancy,async aliases and live takeover remain separate.",
+      "scope": "Complete unchanged46ab30..46ae8c local World exit orchestration:one-shot shutdown guard,registry/iterator traversal,bitmap retirement,segmented pointer-queue block release,canvas zero-fill requests,owner reset and conditional tick snapshot. Independent wire-memory model and original-body execution with authored simulation/provider/allocator/OS endpoints and bounded valid owned registry/queue storage. Transitive simulation/asset/allocator/provider semantics,World construction/entry,SEH faults,arbitrary reentrancy,async aliases and live takeover remain separate.",
       "confidence": "high_within_scope",
       "status": {
         "understanding": "scoped",
@@ -154588,13 +154589,15 @@
         "tools/original-manifest.sh"
       ],
       "documents": [
-        "research/runtime/screen-resource-ownership-20261025.md"
+        "research/runtime/screen-resource-ownership-20261025.md",
+        "research/runtime/campaign-progression-closeout-20261108.md"
       ],
       "evidence": [
         "RSO25.world-original"
       ],
       "remaining_gaps": [
-        "Other classes\u2019 complete construction/enclosing destruction,resource prepare/provider semantics,World entry and transitive services,complete dynamic registration/computed aliases,real heap/fault reachability,asynchronous retirement and installed/live-session acceptance remain separate."
+        "Other classes\u2019 complete construction/enclosing destruction,resource prepare/provider semantics,World entry and transitive services,complete dynamic registration/computed aliases,real heap/fault reachability,asynchronous retirement and installed/live-session acceptance remain separate.",
+        "CP08.G.exit-label: Correct the historical detach label for58bc10to zero-fill requests. Exact model/original-body test bytes and old fingerprints/statuses are retained; old scope-bound claims have an explicit metadata applicability limitation. This adds no provider/driver semantic recovery or fresh original comparison. Actual map boundary observations are separately scoped."
       ]
     },
     {
@@ -174129,6 +174132,948 @@
       "remaining_gaps": [
         "SL09.G.live: Preserve the four accepted feature execution phases. Incoming font/protocol/oracle/metadata source drift remains explicit; current merged headless controls do not assert a combined-current game or new low CLI execution. Primary GUI target restoration is supplied by its diagnostic owner for deletion.",
         "SL09.G.boundary: General automatic GUI hardware/display recovery, physical GPU reset, legacy DirectDraw driver/allocator equivalence, arbitrary concurrent loss and isolated-service continuation remain separate claims."
+      ]
+    },
+    {
+      "id": "NP.campaign-transition-retained-review",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Compact retained campaign map-exit and loading review",
+      "scope": "Retained-data review of natural Celtic region1 exit and region2 loading, original report/World-pop/next-World callback ordering, fresh bridge ACKs, native World surface incarnation retirement/recreation and referenced independent presented-output comparisons. Nominal software640 and separate diagnostic default800 source phases only. No new game, pixel/oracle execution, current native runtime equivalence, complete external-object lifetime or acceptance-row promotion.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4632512,
+          "scope": "Existing passive World Tick pre/post and inactive owner-stack pop observation only; finite retained callback-file ordering, no whole-function recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5608912,
+          "scope": "Existing Region Entry tick/screen18 observation boundary; recorded travel/entry callback pairs and bridge identities, no loader or allocator reconstruction.",
+          "recovered_range": "campaign-mini-entry-5595d0"
+        }
+      ],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "tools/campaign_transition_review.py",
+        "tools/review-campaign-map-transitions.py"
+      ],
+      "tests": [
+        "tests/test-campaign-transition-review.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-transition-lean-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_capture.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_progression.py",
+        "tools/campaign_report.py",
+        "tools/campaign_realm_exit.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_claims.py"
+      ],
+      "evidence": [
+        "CT08.retained-transition01",
+        "CT08.controls01",
+        "CT08.retained-transition02",
+        "CP08.retained-loaded-review02",
+        "CP08.retained-loaded-review03"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CT08.G.domains: Both target acceptance rows remain pending in each player configuration; nominal default640/default800/software800 and their current applicability/output/ownership admission remain missing.",
+        "CT08.G.original-lifetimes: Native World-surface retirement does not recover original populated entity/vptr/generation acquire/release.",
+        "CT08.G.source-phase: Retained nominal software640 and diagnostic default800 are historical native/compiler/oracle source phases; diagnostic success does not become nominal acceptance."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-portal-self-goal",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Bounded portal ground approach and known sprite cover",
+      "scope": "Native physical input policy admits empty goal ground, or exactly observed portal ground covered by the selected live sole Wizard within five cells/one height step, or the known previously observed friendly Zombie follower within one adjacent cell/one height step of that goal. Other picked actors remain refused. Offscreen approach accepts only actual empty original ground within eight cells/two height steps that reduces horizontal goal distance; it is staging, never portal delivery. Every approach/goal move requires a fresh original sole-Wizard opcode5 acknowledgement; unmatched returns are retained without move credit. All attempts share30seconds/24attempts. Original natural outcome and map transition remain independent. No simulation writes, recovered hitbox/path/exit-trigger claim, or attack substitution.",
+      "original": [],
+      "confidence": "provisional",
+      "implementation": [
+        "tools/campaign_target_admission.py",
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_portal_stage.py"
+      ],
+      "tests": [
+        "tests/test-campaign-target-admission.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-progression-closeout-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_order_observation.py",
+        "tools/campaign_input_admission.py",
+        "tools/campaign_input_observation.py"
+      ],
+      "evidence": [
+        "CP08.controls01",
+        "CP08.controls03",
+        "CP08.controls06",
+        "CP08.controls07",
+        "CP08.controls08",
+        "CP08.controls09",
+        "CP08.controls10",
+        "CP08.controls11",
+        "CP08.controls12",
+        "CP08.controls13",
+        "CP08.controls14",
+        "CP08.controls15",
+        "CP08.controls16",
+        "CP08.controls17",
+        "CP08.controls18",
+        "CP08.controls19",
+        "CP08.controls20",
+        "CP08.controls21",
+        "CP08.controls22",
+        "CP08.controls23",
+        "CP08.controls24",
+        "CP08.controls25",
+        "CP08.controls26",
+        "CP08.controls27",
+        "CP08.controls28",
+        "CP08.controls29",
+        "CP08.controls30"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP08.G.self-goal: Fresh diagnostic19 reached boss retirement but failed an unacknowledged proactive follower-clear detour before any Wizard portal attempt. The detour is removed. Current known-follower cover and offscreen staging need original command and natural outcome proof; four-domain output/resource admission remains pending."
+      ]
+    },
+    {
+      "id": "NP.campaign-map-resource-boundaries",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Bounded original map resource boundary observations",
+      "scope": "Opt-in passive original owner-thread snapshots at the first World tick and before/after exit-flagged original Tick calls. Record recovered World bitmap, segmented queue, selection/temporary resource fields and persistent display-provider interfaces. Require paired inactive retirement before the later active populated epoch; no added COM/allocator calls or simulation writes. This connects the complete recovered local World-exit caller to actual map progression without claiming all simulation or external allocator internals recovered.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4632512,
+          "scope": "Original World Tick ingress/return bracket only; no whole Tick recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4631344,
+          "scope": "Existing recovered local World-exit body interprets bounded observed storage fields; no added original calls or recovery of external providers.",
+          "recovered_range": "world-screen-exit-complete-46ab30"
+        }
+      ],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "runtime/menu/map_resource_boundaries.h",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/campaign_map_resources.py"
+      ],
+      "tests": [
+        "tests/test-campaign-map-resources.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-progression-closeout-20261108.md"
+      ],
+      "validation_dependencies": [
+        "runtime/menu/observer.c",
+        "tools/menu-game-runner.py",
+        "tools/run-rendering-progression.py",
+        "reconstruction/rendering/world_screen_retirement.hpp"
+      ],
+      "evidence": [
+        "CP08.controls01",
+        "CP08.controls03",
+        "CP08.controls06",
+        "CP08.controls07",
+        "CP08.controls08",
+        "CP08.controls09",
+        "CP08.controls10",
+        "CP08.controls11",
+        "CP08.controls12",
+        "CP08.controls13",
+        "CP08.controls14",
+        "CP08.controls15",
+        "CP08.controls16",
+        "CP08.controls17",
+        "CP08.controls18",
+        "CP08.controls19",
+        "CP08.controls20",
+        "CP08.controls21",
+        "CP08.controls22",
+        "CP08.controls23",
+        "CP08.controls24",
+        "CP08.controls25",
+        "CP08.controls26",
+        "CP08.controls27",
+        "CP08.controls28",
+        "CP08.controls29",
+        "CP08.controls30",
+        "CP08.map-resource-boundaries01"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP08.G.provider: Persistent display providers intentionally span maps; all transitive simulation/destructor/allocator semantics remain separate."
+      ]
+    },
+    {
+      "id": "TOOL.ram-owned-output-boundary",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Read-only source binding for RAM-owned output isolation",
+      "scope": "Explicit caller-supplied owned repository binding permits session/prefix paths beneath the private temporary-directory masks. Require the exact owned working descendants and project markers; bind only the checkout read-only before the two writable session/prefix mounts. Preserve private display/socket/authority admission and PID/net/IPC isolation. No implicit path exception, original execution or graphics correctness claim.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "tools/native_output_owner.py",
+        "tools/owned-menu-game-runner.py"
+      ],
+      "tests": [
+        "tests/test-native-output-owner.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-progression-closeout-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/run-native-owned.py"
+      ],
+      "evidence": [
+        "CP08.ram-isolation01",
+        "CP08.controls01",
+        "CP08.controls03",
+        "CP08.controls06",
+        "CP08.controls07",
+        "CP08.controls08",
+        "CP08.controls09",
+        "CP08.controls10",
+        "CP08.controls11",
+        "CP08.controls12",
+        "CP08.controls13",
+        "CP08.controls14",
+        "CP08.controls15",
+        "CP08.controls16",
+        "CP08.controls17",
+        "CP08.ram-isolation05",
+        "CP08.controls18",
+        "CP08.controls19",
+        "CP08.controls20",
+        "CP08.controls21",
+        "CP08.controls22",
+        "CP08.controls23",
+        "CP08.controls24",
+        "CP08.controls25",
+        "CP08.controls26",
+        "CP08.controls27",
+        "CP08.controls28",
+        "CP08.controls29",
+        "CP08.controls30"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP08.G.ram-isolation: Actual native game execution and rendering acceptance remain separate from the no-game kernel/read-only namespace probe."
+      ]
+    },
+    {
+      "id": "NP.campaign-map-transition-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Four-domain campaign map exit and loading admission",
+      "scope": "Admit only natural Celtic region1 map exit and region2 loading for default/software at actual640x480 and800x600. Four distinct nominal original executions require paired populated original World resource retirement/acquisition, persistent display identities, native surface incarnation retirement, fresh original callback/ACK ordering, complete independent continuous original-history output and normal final ownership drain. Preserve all other acceptance rows and both final pending decisions; no full simulation, external allocator or supported-player recovery claim. A separately hash-bound original Load may supply only the initial World; its callbacks and active-actor fields are verified independently and cannot substitute for the later natural map exit/loading. An explicit hash-bound controller-only review may preserve an already complete native map execution after changes limited to the seven named Python acquisition/input controls. Fresh current controls and unchanged full native/runtime/oracle/capture hashes are mandatory. Its old actual input policy remains a separate execution phase; no current-policy execution is inferred and no historical hash is rewritten.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "tools/close-campaign-map-transitions.py"
+      ],
+      "tests": [
+        "tests/test-campaign-map-closeout.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-progression-closeout-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_map_resources.py",
+        "tools/campaign_transition_review.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_progression.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/check-rendering-progression.py",
+        "tools/oracle_frame_retention.py",
+        "tools/campaign_progression_entry.py"
+      ],
+      "evidence": [
+        "CP08.controls01",
+        "CP08.controls03",
+        "CP08.controls06",
+        "CP08.controls07",
+        "CP08.controls08",
+        "CP08.controls09",
+        "CP08.controls10",
+        "CP08.controls11",
+        "CP08.controls12",
+        "CP08.controls13",
+        "CP08.controls14",
+        "CP08.controls15",
+        "CP08.controls16",
+        "CP08.controls17",
+        "CP08.controls18",
+        "CP08.controls19",
+        "CP08.controls20",
+        "CP08.controls21",
+        "CP08.controls22",
+        "CP08.controls23",
+        "CP08.controls24",
+        "CP08.controls25",
+        "CP08.controls26",
+        "CP08.controls27",
+        "CP08.controls28",
+        "CP08.controls29",
+        "CP08.controls30",
+        "CP08.map-transition-closeout01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP08.G.map-domain: Only the two named leaves in actual640/800 default/software Celtic region1-to-region2 are accepted. Later campaign domains, broader next-map/victory leaves, complete original recovery and both final player decisions remain separate."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-boss-resupply",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Conserve original mana across staged boss volleys",
+      "scope": "Authored physical-input test policy uses the original50mana resupply, at most four original six-mana casts during the existing twelve-second ordinary Space pause and at most two per resumed volley. One additional ordinary finishing pause of at most twelve seconds permits at most three casts, only after the first released1..4cast boss volley and the same closed support order with the current wounded target. A second finishing pause is refused; both pauses must release before any outcome is accepted. A visible boss candidate within6.8cells with no observed friendly in the firing line permits the pause. Enemy positions are diagnostic rather than an inferred interception veto; original actor candidate, cast/debit and actual damage remain mandatory. Before each release, a fresh sole-Wizard original opcode5submission acknowledges a move within one adjacent cell of the observed current pose, limiting the old approach carrying the Wizard out of view; delivery and safety remain unproved. A living boss with1..100HPexcept20 within12cells retains finishing priority only through the actual closed sole-Zombie opcode7submission to that same target, including a later10HPsupport hit or observed health recovery. At most two bounded original power-point revisits restore50mana after intervening route combat leaves less than42mana for the planned four-plus-three cast budget. The existing three-second post-volley wait polls at most sixty times for the original20HPdamage-bound one-Return hint. After that hint, withdraw rather than cast again at20HPor select unrelated guards. Require actual original cast/debit, damage, dialogue/exit and natural outcomes separately. No inferred immunity/projectile/cooldown rule, simulation write, spell cost/damage or gameplay balance change. The finishing pause can begin inside the existing three-second post-volley observation interval before a new outer-loop centre/stability delay. Twenty HP alone cannot start it; a previously admitted finishing pause may see health change and still attempts its bounded volley. One separate ordinary Return hint may follow observed original boss retirement (type24/owner1/inactive/nonpositive health), before portal-clear input, following retained script event17after portal event16. It is not a dialogue, portal or outcome assertion.",
+      "original": [],
+      "confidence": "provisional",
+      "implementation": [
+        "tools/campaign-outcome-input.py",
+        "tools/campaign_boss_finisher.py"
+      ],
+      "tests": [
+        "tests/test-rendering-progression.py",
+        "tests/test-campaign-boss-finisher.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-progression-closeout-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_spell.py",
+        "tools/campaign_gameplay.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_order_observation.py",
+        "tools/campaign_dialogue.py",
+        "tools/campaign_route.py",
+        "tools/campaign_input_admission.py"
+      ],
+      "evidence": [
+        "CP08.controls01",
+        "CP08.controls03",
+        "CP08.controls06",
+        "CP08.controls07",
+        "CP08.controls08",
+        "CP08.controls09",
+        "CP08.controls10",
+        "CP08.controls11",
+        "CP08.controls12",
+        "CP08.controls13",
+        "CP08.controls14",
+        "CP08.controls15",
+        "CP08.controls16",
+        "CP08.controls17",
+        "CP08.controls18",
+        "CP08.controls19",
+        "CP08.controls20",
+        "CP08.controls21",
+        "CP08.controls22",
+        "CP08.controls23",
+        "CP08.controls24",
+        "CP08.controls25",
+        "CP08.controls26",
+        "CP08.controls27",
+        "CP08.controls28",
+        "CP08.controls29",
+        "CP08.controls30"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP08.G.volley: Diagnostic12prompted at85HPbut ended in defeat. Diagnostic13acknowledged the paused retreat and survived the initial volley; the Zombie reduced the boss20to10HP, then the old finishing bound selected a guard and the Wizard died. The1..40HPexcept20/12cell input-priority correction needs current original execution. No protected-threshold, cooldown or full combat rule is recovered.",
+        "CP08.G.blocker: Diagnostic14lost the sole Zombie before any boss volley after repeated enemy-position flanking. The fuller trace records the Zombie dead while the Wizard still had88HP; the considered lower-health reserve candidate was not executed and was withdrawn. The current bounded candidate attempts enemy-obstructed boss volleys without inferring collision rules. Original candidate matching, friendly-line guard, actual damage and all natural outcomes remain mandatory; checkpoint15is diagnostic only.",
+        "CP08.G.finish-pause: Checkpoint15reached the first volley with a living Zombie and127HPWizard, recorded four100to20boss hits, then observed boss health30/40and later100while the Wizard kept moving. The stable-pose wait missed the finishing casts. No original healing mechanism is recovered. Checkpoint16tests one additional current-target-bound pause before that wait; no original execution/comparison or acceptance result is yet claimed.",
+        "CP08.G.third-hit: Checkpoint16releases both pauses at124WizardHP. Its second two casts record actual boss50to30to10, then health rises again and the driver misses the finishing window. The current candidate allows three finishing casts, retains the same committed target through observed recovery up to100HPand restores the ordinary50mana/revisit budget. Current original execution and all four nominal domain comparisons remain pending.",
+        "CP08.G.hold-window: Checkpoint17recorded the first four100to20hits but the Wizard kept withdrawing, the boss recovered100HPand the eventual finishing pause accepted zero casts after a hover refusal. Current source requires an original near-current-pose move acknowledgement before each release and can arm the sole finishing pause inside the prior observation window. Checkpoint18and one bounded passive native frame observation are pending; no outcome or pointer/path delivery is inferred.",
+        "CP08.G.retired-conversation: Checkpoint18acknowledges both near-pose holds and all three finishing casts, leaving Wizard127HPand Zombie29HP. The boss has6HPat the240second helper bound, then records inactive/zero after that bound. No portal acknowledgement or natural victory is admitted. A fresh full-route diagnostic retains the nominal540second helper bound and one source-script-grounded post-retirement Return hint; actual progression remains pending."
+      ]
+    },
+    {
+      "id": "TOOL.campaign-oracle-frame-retention",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Prospective temporary oracle image history",
+      "scope": "Opt-in full campaign comparison retains every original acquisition input, independent result, oracle index, exact encoded/raw frame hashes, reconstruction command, tool versions and tested executable identities. Successful reproducible qz frames remain in a separate pinned RAM directory and are excluded from the durable artifact handoff; no original observation or old evidence is reclassified. Failed or partial oracle output moves into normal complete diagnostic retention. No automatic deletion, weaker pixel comparison or engine validation follows from classification.",
+      "original": [],
+      "confidence": "provisional",
+      "implementation": [
+        "tools/oracle_frame_retention.py",
+        "tools/check-rendering-progression.py"
+      ],
+      "tests": [
+        "tests/test-oracle-frame-retention.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-progression-closeout-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_evidence.py",
+        "tools/comparison_process.py",
+        "tools/rendering_pilot.py",
+        "tests/acceptance-world-history.cpp"
+      ],
+      "evidence": [
+        "CP08.controls09",
+        "CP08.controls10",
+        "CP08.controls11",
+        "CP08.controls12",
+        "CP08.controls13",
+        "CP08.controls14",
+        "CP08.controls15",
+        "CP08.controls16",
+        "CP08.controls17",
+        "CP08.controls18",
+        "CP08.controls19",
+        "CP08.controls20",
+        "CP08.controls21",
+        "CP08.controls22",
+        "CP08.controls23",
+        "CP08.controls24",
+        "CP08.controls25",
+        "CP08.controls26",
+        "CP08.controls27",
+        "CP08.controls28",
+        "CP08.controls29",
+        "CP08.controls30"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP08.G.oracle-temp: Actual successful full comparison, durable exact tested binaries/input handoff and consumer review remain pending. Temporary files stay pinned in RAM; final evidence must be replicated and restored before closeout."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-wizard-melee-finish",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Observed low-mana Wizard melee finishing attempt",
+      "scope": "Authored physical input policy for a live sole owned Wizard: initial80HP, under6mana, one original Boss type24owner1at1..19HP within6cells and same-thread positive Wizard melee damage within10seconds. One actually acknowledged sole-Wizard opcode7length14attack permits30seconds of continuation with at least40HP and within12cells, without repeating/restarting the attack input. Unknown actors, foreign damage,20HP dialogue hints, malformed/unclosed commands and expired orders are refused. Subsequent original damage, retirement, portal delivery and natural outcome remain independent; no native combat arithmetic, general safety or gameplay balance claim.",
+      "original": [],
+      "confidence": "provisional",
+      "implementation": [
+        "tools/campaign_boss_finisher.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "tests": [
+        "tests/test-campaign-boss-finisher.py",
+        "tests/test-rendering-progression.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-progression-closeout-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_gameplay.py",
+        "tools/campaign_order_observation.py",
+        "tools/campaign_target_admission.py"
+      ],
+      "evidence": [
+        "CP08.controls14",
+        "CP08.controls15",
+        "CP08.controls16",
+        "CP08.controls17",
+        "CP08.controls18",
+        "CP08.controls19",
+        "CP08.controls20",
+        "CP08.controls21",
+        "CP08.controls22",
+        "CP08.controls23",
+        "CP08.controls24",
+        "CP08.controls25",
+        "CP08.controls26",
+        "CP08.controls27",
+        "CP08.controls28",
+        "CP08.controls29",
+        "CP08.controls30"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP08.G.wizard-melee-finish: Nominal21retains original Wizard damage100to96,36to31and11to9, but the former low-mana retreat prevented completion before540seconds. Current ordinary attack acknowledgement/continuation and natural outcome still need execution proof."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-retained-route-policy",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Explicit hash-pinned retained ordinary campaign route",
+      "scope": "Test-only selector explicitly chooses current, retained-v34 or retained-v22 ordinary physical input. The two retained executable fixtures match the exact controller SHA256 from a successful nominal software640run and a successful diagnostic default800run. Verify the physical nonredirected source hash before exec, preserve argv and process ownership, bind both policy files in preparation and execution sources, and name the selected policy/provenance in the acquisition configuration. Retained outcomes are not new evidence: every new case still independently requires original natural report/Realm/travel/region2, complete output comparison and normal final retirement. No source snapshot, installation, simulation write, balance edit, automatic fallback or outcome substitution. An explicitly named observed-v34-portal derivative verifies the immutable v34 base and adapts only its portal decision; its authored adapter/source dependencies are separately pinned and its configuration labels the changed stage. It is not represented as byte-identical historical behavior.",
+      "original": [],
+      "confidence": "provisional",
+      "implementation": [
+        "tools/campaign_retained_policies.py",
+        "tools/campaign-outcome-input.py",
+        "tools/run-rendering-progression.py"
+      ],
+      "tests": [
+        "tests/test-campaign-retained-policies.py",
+        "tests/test-rendering-progression.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-progression-closeout-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/campaign-outcome-input-v34.py",
+        "tools/campaign-outcome-input-v22.py",
+        "tools/prepare-rendering-progression.py",
+        "tools/campaign_portal_stage.py",
+        "tools/campaign-portal-outcome-input.py"
+      ],
+      "evidence": [
+        "CP08.controls15",
+        "CP08.controls16",
+        "CP08.controls17",
+        "CP08.controls18",
+        "CP08.controls19",
+        "CP08.controls20",
+        "CP08.controls21",
+        "CP08.controls22",
+        "CP08.controls23",
+        "CP08.controls24",
+        "CP08.controls25",
+        "CP08.controls26",
+        "CP08.controls27",
+        "CP08.controls28",
+        "CP08.controls29",
+        "CP08.controls30"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP08.G.retained-policy: Exact successful source bodies are recovered and dispatched under guard controls. Fresh current-source native execution, actual per-domain natural outcome and rendering/resource admission remain pending."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-observed-portal-stage",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Retained combat with actual-ground portal input stage",
+      "scope": "Explicit observed-v34-portal test policy preserves the hash-pinned v34 combat function and adapts only its retired-Boss portal decision. A bounded ordinary Return hint and Space pair protect picking; one original pause is bounded to8seconds and the whole approach to30seconds/96probes. An unrotated point then opposite-view probes are authored geometry only, never asserted original view/picking recovery. Require fresh original hover ground in the observed Character goal neighborhood, a null/self or originally referenced known live follower candidate, current sole-Wizard selection and an actual original opcode5move acknowledgement. Offscreen staging is empty, closer actual ground and never portal delivery. Retain unmatched returns, let the one original path run, and release held input/pause on refusal. Later damage, physical delivery, original natural outcome and map transition remain independently mandatory. No simulation write, original path/portal-trigger recovery, balance edit or reuse of past outcome. The separately explicit observed-current-portal option uses current combat and its verified original team recall; its own earlier actual-ground portal branch remains authoritative. The wrapper does not intercept that earlier branch and no wrapper portal execution is inferred. Current policy early portal handling explicitly delegates to the same guarded stage; the legacy combat-choice hook remains for the immutable retained policy. Input adapters restore both hooks and release owned input on refusal.",
+      "original": [],
+      "confidence": "provisional",
+      "implementation": [
+        "tools/campaign_portal_stage.py",
+        "tools/campaign-portal-outcome-input.py"
+      ],
+      "tests": [
+        "tests/test-campaign-portal-stage.py",
+        "tests/test-campaign-retained-policies.py",
+        "tests/test-campaign-target-admission.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-progression-closeout-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_retained_policies.py",
+        "tools/campaign-outcome-input-v34.py",
+        "tools/campaign_gameplay.py",
+        "tools/campaign_input_observation.py",
+        "tools/campaign_input_admission.py",
+        "tools/campaign_order_observation.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_route.py",
+        "tools/campaign_report.py"
+      ],
+      "evidence": [
+        "CP08.controls16",
+        "CP08.controls17",
+        "CP08.controls18",
+        "CP08.controls19",
+        "CP08.controls20",
+        "CP08.controls21",
+        "CP08.controls22",
+        "CP08.controls23",
+        "CP08.controls24",
+        "CP08.controls25",
+        "CP08.controls26",
+        "CP08.controls27",
+        "CP08.controls28",
+        "CP08.controls29",
+        "CP08.controls30"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP08.G.actual-portal-ground: In23the original retired Boss goal46,25,4was approached with34opcode5moves, repeatedly ending48,27,8at a self-picked hover. The current portal-only adapter must prove its new actual-ground/command handling and natural transition under fresh execution; four-domain rendering/resource admission remains pending."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-loaded-entry-progression",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Original checkpoint as initial input for natural campaign progression",
+      "scope": "One hash-pinned unchanged original serialization may supply the initial World. Require a unique original Load list and same-owner begin/return/success callbacks, exact retained input bytes, fresh native World presentation and synchronous original active-actor/HP/position/mana comparison. Whole-world, RNG and AI equivalence are not inferred. The initial Load is never a map-transition milestone: natural victory, original OK, Realm travel, region2 admission, independent pixels and paired resource retirement remain mandatory. No original simulation, difficulty or script changes. After the same original report return and World pop, an explicit loaded entry may dismiss the observed screen0/ready0/handoff0 Realm help panels with at most12 ordinary clicks; same-owner/status/ACK and settled Realm guards remain mandatory. A separately tagged transition-ready input can omit the unrelated bridge/combat route only after an original capture verifies seed Load, new Save/Load actor fields and the exact original retired Boss pose. Original active actor comparison and a fresh natural map exit/loading remain mandatory; the pose is not movement or outcome proof.",
+      "original": [],
+      "confidence": "provisional",
+      "implementation": [
+        "tools/campaign_progression_entry.py",
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "tools/run-rendering-progression.py"
+      ],
+      "tests": [
+        "tests/test-campaign-progression-entry.py",
+        "tests/test-rendering-progression.py",
+        "tests/test-campaign-transition-review.py",
+        "tests/test-campaign-return.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-progression-closeout-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_progression.py",
+        "tools/campaign_checkpoint.py",
+        "tools/menu_save_store.py",
+        "tools/stage-campaign-checkpoint.py",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "tools/campaign-portal-outcome-input.py",
+        "tools/campaign_retained_policies.py",
+        "tools/campaign_transition_review.py",
+        "tools/campaign_return.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "evidence": [
+        "CP08.controls17",
+        "CP08.controls18",
+        "CP08.controls19",
+        "CP08.controls20",
+        "CP08.controls21",
+        "CP08.controls22",
+        "CP08.controls23",
+        "CP08.controls24",
+        "CP08.controls25",
+        "CP08.controls26",
+        "CP08.controls27",
+        "CP08.controls28",
+        "CP08.controls29",
+        "CP08.controls30"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP08.G.loaded-entry: Original Load and later natural transition require current original execution; reload alone cannot close a campaign progression leaf."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-paused-wizard-target",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Loaded-start paused Wizard target preparation",
+      "scope": "Explicit original-loaded-entry test route keeps the Wizard selected instead of switching to an optional follower attack. At most20 authored unrotated screen probes within4.5seconds of each ordinary pause require a fresh original motion return, later World hover, same actual Boss candidate and sole-Wizard selection before arming Fireball. Original cursor5 readiness, cast-return mana debit and actual damage stay independent. One additional pause requires a released accepted first volley, current healthy/mana-bearing Wizard, unique wounded same Boss and fresh same-thread/same-caster original Fireball damage. Preserve the prepared paused view; release held input/pause on refusal. No original picking/casting/AI recovery, simulation writes, difficulty/script changes, inferred hit or manufactured natural outcome. CP30retained original damage records show four Boss-targeted casts intercepted by enemy5. Require the existing all-actor line guard for this loaded policy and at most12ordinary perpendicular staging attempts/20seconds in each first/finishing window. This conservative geometric veto does not assert recovered collision behavior. Phase57reorders at most20fresh original-hover proposals toward the upper body and can try the previous actually picked Boss point first. One released zero-cast finishing window may retry once; an accepted finishing volley never rearms. The same-Wizard positive Fireball observation must be within20seconds; role, health, mana, distance, all-actor line, original cursor/cast-return and bounded pause guards remain mandatory. This is ordinary test input policy, not recovered geometry, damage or gameplay balance.",
+      "original": [],
+      "confidence": "provisional",
+      "implementation": [
+        "tools/campaign_wizard_cast.py",
+        "tools/campaign-outcome-input.py"
+      ],
+      "tests": [
+        "tests/test-campaign-wizard-cast.py",
+        "tests/test-rendering-progression.py",
+        "tests/test-campaign-retained-policies.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-progression-closeout-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_input_admission.py",
+        "tools/campaign_target_admission.py",
+        "tools/campaign_order_observation.py",
+        "tools/campaign_gameplay.py",
+        "tools/campaign_spell.py",
+        "tools/campaign_route.py",
+        "tools/campaign_outcome_record.py",
+        "tools/campaign_return.py"
+      ],
+      "evidence": [
+        "CP08.controls23",
+        "CP08.controls24",
+        "CP08.controls25",
+        "CP08.controls26",
+        "CP08.controls27",
+        "CP08.controls28",
+        "CP08.controls29",
+        "CP08.controls30"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP08.G.wizard-target-route: Fresh original execution must prove actual cast/damage and natural map exit. Controls do not imply the input policy succeeds; full four-domain renderer/resource admission remains separate."
+      ]
+    },
+    {
+      "id": "TOOL.user-quota-headroom-guard",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Read-only user-quota headroom for storage guards",
+      "scope": "Linux quota-aware launch and monitoring use the lower of filesystem free bytes and this uid\u2019s reported block headroom, conservatively honoring soft/hard limits in1024-byte units. Zero remaining quota inodes refuses. libc quotactl_fd or the explicit Linux x86_64 syscall443fallback only reads quotas; never changes limits. An authored require_user_quota policy refuses unsupported/error queries. Existing working-size reservations, filesystem floors, group stop/reap and optional unconfigured-filesystem fallback remain. No cross-process reservation or immunity to external writers is claimed.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "tools/working-retention.py"
+      ],
+      "tests": [
+        "tests/test-working-retention.py"
+      ],
+      "documents": [
+        "docs/working-retention.md",
+        "research/runtime/campaign-progression-closeout-20261108.md"
+      ],
+      "validation_dependencies": [],
+      "evidence": [
+        "CP08.quota-guard01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP08.G.quota-concurrency: Two-second monitoring cannot prevent an unrelated writer exhausting headroom between samples; non-x86_64 fallback without libc support remains explicitly unavailable. No runtime/report reliability guarantee is inferred."
+      ]
+    },
+    {
+      "id": "TOOL.campaign-acquisition-ownership",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Explicit campaign acquisition ownership",
+      "scope": "A public campaign collector forwards a new explicit owner directory through the public native launcher into the existing private owner boundary. It reads only that owner\u2019s SHA-named admitted sessions, verifies exact owned prefix and non-aliased session identities, and requires one player generation for nominal acquisition. Retention selects only this pilot and its admitted sessions; directory creation time never identifies ownership. Foreign concurrent runs, wrong prefixes, aliases, escaped sessions, excessive/repeated generations and pre-existing owner output are refused. Unadmitted partial setup directories remain held for separate review. This is acquisition bookkeeping, not simulation or pixel equivalence.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "tools/campaign_acquisition_owner.py",
+        "tools/run-rendering-progression.py",
+        "tools/run-native-game.py"
+      ],
+      "tests": [
+        "tests/test-campaign-acquisition-owner.py",
+        "tests/test-native-player-launcher.py"
+      ],
+      "validation_dependencies": [
+        "tools/run-native-owned.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-progression-closeout-20261108.md"
+      ],
+      "evidence": [
+        "CP08.controls26",
+        "CP08.controls27",
+        "CP08.controls28",
+        "CP08.controls29",
+        "CP08.controls30"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP08.G.unadmitted-setup: A setup tree created before an admission journal exists is not assigned by a global directory scan; keep it held until explicit review. Actual concurrent nominal campaign proofs remain separate."
+      ]
+    },
+    {
+      "id": "INPUT.campaign-transition-ready-checkpoint",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Original transition-ready checkpoint input",
+      "scope": "An opt-in seeded original Save/Load diagnostic runs the byte-pinned retained successful800input fixture with the current bounded actual-hover proposal order and stops on a fresh original inactive/nonpositive-health Camulos observation before any primary outcome. It hands ordinary input to the original Save UI. Require seed Load, a new original Save and new Load with synchronous active actor fields equal, a living Wizard near the exact raw original retired pose and no living Camulos. Save bytes stay opaque and unmodified. The captured retirement pose is only an initial portal input proposal; every fresh nominal run must independently prove its Load, actual original picking/command, natural victory, Realm travel and later World. Original scripts, statistics, spells and simulation remain unchanged. Pause/mode semantics and whole world/RNG/AI/projectile serialization are not recovered.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "tools/campaign_transition_checkpoint.py",
+        "tools/campaign-save-ready-input.py"
+      ],
+      "tests": [
+        "tests/test-campaign-transition-checkpoint.py",
+        "tests/test-campaign-checkpoint.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_checkpoint.py",
+        "tools/campaign_gameplay.py",
+        "tools/run-rendering-progression.py",
+        "tools/campaign_progression_entry.py",
+        "tools/campaign-outcome-input.py",
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "tools/campaign-outcome-input-v56.py",
+        "tools/campaign_wizard_cast_v56.py",
+        "tools/campaign_wizard_cast.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-progression-closeout-20261108.md"
+      ],
+      "evidence": [
+        "CP08.controls28",
+        "CP08.controls29",
+        "CP08.controls30",
+        "CP08.transition-input41"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP08.G.transition-input-serialization: The immutable original Save supplies only an initial World. Four separate full executions now prove the requested natural exit/loading. Pause/mode and full world/RNG/AI/projectile serialization remain outside scope."
+      ]
+    },
+    {
+      "id": "NP.campaign-victory-next-map-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Retained four-domain victory result and next-map output admission",
+      "scope": "Admit only natural victory result acknowledgement/native result projection retirement and actual Celtic region2 first/resumed World output in default/software actual640/800. Reanalyze the four immutable full campaign executions43\u201346 with their exact original callbacks, input/map identities, native command ownership and complete independent comparisons. Initial original Load supplies only the starting input. Preserve original player/compiler/runtime/oracle hashes and their historical phases; new retained-data analysis does not execute or renew the native engine. QWidget glyph/font/DC pixels, assembled section/RNG recovery, external allocator/simulation internals, later campaign domains and both final decisions remain separate.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "tools/campaign_results_review.py",
+        "tools/close-campaign-results.py"
+      ],
+      "tests": [
+        "tests/test-campaign-results-review.py"
+      ],
+      "documents": [
+        "research/runtime/campaign-victory-next-map-20261109.md"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/battle_result_widget.cpp",
+        "apps/qt-shell/battle_result_widget.hpp",
+        "apps/qt-shell/campaign_progression_test.cpp",
+        "apps/qt-shell/live_campaign_defeat_controller.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/menu_assets.cpp",
+        "apps/qt-shell/menu_assets.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v20.h",
+        "reconstruction/rendering/world_screen_retirement.hpp",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/map_resource_boundaries.h",
+        "runtime/menu/observer.c",
+        "tools/campaign_map_resources.py",
+        "tools/campaign_progression_entry.py",
+        "tools/campaign_report.py",
+        "tools/campaign_transition_review.py",
+        "tools/check-rendering-progression.py",
+        "tools/close-campaign-map-transitions.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/menu-game-runner.py",
+        "tools/oracle_frame_retention.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_defeat.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_progression.py",
+        "tools/run-rendering-progression.py"
+      ],
+      "evidence": [
+        "CP09.victory-next-map02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "CP09.G.scope: Exact retained Celtic region1-to-region2 domains only. Full section/layout/RNG recovery, current combined-master native execution, QWidget original glyph/font/DC pixels, external simulation/allocator internals and both final decisions remain separate."
       ]
     }
   ],
@@ -399222,6 +400167,1190 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "CT08.retained-transition01",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-transition-lean-results-20261108/review-03.json",
+      "sha256": "35f377f9acfed671c248a7a6fe8031d0eb9bba5fa33aead767fa4e8f34862024",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Retained-data review of natural Celtic region1 exit and region2 loading, original report/World-pop/next-World callback ordering, fresh bridge ACKs, native World surface incarnation retirement/recreation and referenced independent presented-output comparisons. Nominal software640 and separate diagnostic default800 source phases only. No new game, pixel/oracle execution, current native runtime equivalence, complete external-object lifetime or acceptance-row promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/capture_copies_created",
+          "equals": 0
+        },
+        {
+          "pointer": "/storage/retained_capture_bytes_added",
+          "equals": 0
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 112
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 44
+        }
+      ]
+    },
+    {
+      "id": "CT08.controls01",
+      "kind": "static",
+      "record": "research/runtime/campaign-transition-lean-results-20261108/controls-binding-01.json",
+      "sha256": "13cbff15e35551e34c9d4af1b7aa167d0f63e2a2e3e195123daad666fff78ad9",
+      "sources_pointer": "/sources",
+      "scope": "81 current focused transition/progression/capture/report/Realm-exit controls, including33 new bounded retained-data and adverse ownership/domain/storage controls. No original execution or acceptance closure.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CT08.retained-transition02",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-transition-lean-results-20261108/review-04.json",
+      "sha256": "11d3f4e9d4972aa633ee5666be1520d3f8af86e20ed0f105875a2aedbbe3454f",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Retained-data review of natural Celtic region1 exit and region2 loading, original report/World-pop/next-World callback ordering, fresh bridge ACKs, native World surface incarnation retirement/recreation and referenced independent presented-output comparisons. Nominal software640 and separate diagnostic default800 source phases only. No new game, pixel/oracle execution, current native runtime equivalence, complete external-object lifetime or acceptance-row promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/capture_copies_created",
+          "equals": 0
+        },
+        {
+          "pointer": "/storage/retained_capture_bytes_added",
+          "equals": 0
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 112
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 44
+        }
+      ]
+    },
+    {
+      "id": "CP08.ram-isolation01",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/ram-isolation-review-01.json",
+      "sha256": "e0e2e524f63affd5ee96f82fdbd66cb508c6abd9c28e5bbc9f34a4d6ad161464",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Explicit caller-supplied owned repository binding permits session/prefix paths beneath the private temporary-directory masks. Require the exact owned working descendants and project markers; bind only the checkout read-only before the two writable session/prefix mounts. Preserve private display/socket/authority admission and PID/net/IPC isolation. No implicit path exception, original execution or graphics correctness claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-01.json",
+      "sha256": "1823dda3cccf056d47898fe5d888975eab13bede29952a14c89568f422e99249",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Component and adverse controls only; no nominal progression or live rendering acceptance. Original observations remain separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls03",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-03.json",
+      "sha256": "67de890f626f6b70462f444270ff4acfd00b839e1d7e8522fdf293e902404cec",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "65fresh affected-suite controls and82retained test cases with verified unchanged named source bindings. Component guards only; no nominal/live progression admission. Interim controls02is retained; this result repairs its missing explicit CT08test source binding and uses a before/after source phase check.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls06",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-06.json",
+      "sha256": "67cc750f912ee8b4b485e3c04bc1800c248921a22c217c23ca23cec9f282c0fc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "47fresh driver/finisher guards, including the retained ten-HP boss case, plus108unchanged resource/closeout/target/isolation/transition guards from05. Every named test/analysis source is bound and before/after checked. Only the finisher module/test changed; retained suites do not import that module. No natural outcome or live rendering acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls07",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-07.json",
+      "sha256": "b58d8713e738f67d1c163de58e0eeac03cbf01f6c4d48d493a8d2ec55a2c6348",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "40fresh driver controls cover enemy-position attempts while preserving friendly-line and actual original candidate/damage guards;115unchanged resource/closeout/target/isolation/transition/finisher controls from06. All named test/analysis sources are bound and before/after checked. Only the driver and its test changed; retained suites do not import that driver. The unexecuted positive-health reserve candidate was restored exactly. No natural outcome or live rendering acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls08",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-08.json",
+      "sha256": "cde9263682e5e51a320261b2300279f2103ee61f3dd823c374a7a13bc42edbb4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "50fresh driver/finisher controls, including the one additional pause bound, released same-boss prerequisite, current role/order negatives and two-cast finishing limit;108verified unchanged resource/closeout/target/isolation/transition controls from07. Exact named source bytes and before/after checks are retained. Only the driver/finisher modules and tests changed; retained suites do not import them. No natural outcome or live rendering acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls09",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-09.json",
+      "sha256": "852533bf1e54932c91680f0b9179de5cec804a6044f372df1ac590401b59d104",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh three-cast finishing/resupply and prospective oracle-frame retention controls plus108verified unchanged resource/closeout/target/isolation/transition guards. Exact source bytes and before/after checks are retained. Full independent pixel comparison is unchanged; actual original progression and successful temporary oracle classification remain pending.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls10",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-10.json",
+      "sha256": "acbd39273f29a92fe7ea7bf32ae9ea0f49819a98d188781031297d5580896509",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh driver and actual near-pose opcode5/refused-attack guards plus96verified unchanged finisher/oracle/resource/closeout/isolation/transition controls. All named source bytes and before/after checks are retained. Only the driver and target test changed. No original outcome, path delivery or actual full-comparison temporary retention claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls11",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-11.json",
+      "sha256": "83a1ff2e38055145870967d8128b48ada39c1af8c7d1bcfd97aae4741a5a124c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh current driver/retired-role hint controls plus129verified unchanged component cases. Exact source bytes and current behavior contract bodies are retained; only the driver and its test changed. Ordinary Return remains a hint, never an outcome assertion. No original progression or actual full comparison is admitted.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls12",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-12.json",
+      "sha256": "b3690cb2b1543f3e7f586958f7a5080a9529ea36d3f16fd44cb0b5fbd299271f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh current portal driver/candidate controls plus96verified unchanged component cases. Exact source bytes and current behavior contract bodies are retained; The driver, candidate helper and candidate tests changed. Follower-cover and offscreen moves require original acknowledgement; no physical attempt alone proves outcome. No original progression or actual full comparison is admitted.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls13",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-13.json",
+      "sha256": "cf8294809921ea3a64f6901f716a3ba35a38c5fb8d86cda02cf4c68862e77c5c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh current driver controls plus131verified unchanged component cases. Exact source bytes and current behavior contract bodies are retained; Only the driver changed; its existing focused controls rerun. An optional paused hold refusal is retained without move credit and resumes the bounded ordinary pause. Portal acknowledgement and natural-outcome requirements remain unchanged. No original progression or actual full comparison is admitted.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls14",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-14.json",
+      "sha256": "df53a329d30dabb3f0e226297fdddccb5c6894e87db65718f9fb987cff941fa1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh focused controls after the actual master merge, bounded Wizard melee policy,600second helper and116row parent update. Exact current source bytes and complete contract bodies retained. No original execution, pixel comparison or natural transition is admitted by controls.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls15",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-15.json",
+      "sha256": "f7fd5f11990c4b097f1de39b1b6232a726b22dfd53b63398470abdf822b07251",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh49policy/dispatch and progression controls plus137verified unchanged current component cases. The two explicit retained ordinary-input executables are byte-pinned to their original successful source bodies. Exact current source bytes and complete contract bodies retained. No original execution, pixel comparison or natural transition is admitted by controls.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls16",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-16.json",
+      "sha256": "dcdede95ce0ad1f78d3c76eeb3b2be0e6426c923fba4948f4ea8b067b8e22c8e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh58portal isolation/refusal/dispatch and progression controls plus137verified unchanged component cases. Exact retained combat and the explicit actual-ground portal-only adapter are separate source policies; no natural outcome is inferred. Exact current source bytes and complete contract bodies retained. No original execution, pixel comparison or natural transition is admitted by controls.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls17",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-17.json",
+      "sha256": "59581bdcf8c8792a232213eedb509fbdb554e7d98a462e410d48c7f8ebc44591",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "199 fresh component cases including explicit loaded-entry original-callback guards; no original execution or natural transition acceptance.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.ram-isolation05",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/ram-isolation-review-05.json",
+      "sha256": "b93bb82cb81a682b134d5a9e49cef9db274ed572af7aa0a0273eaecfc5f3d72f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Explicit caller-supplied owned repository binding permits session/prefix paths beneath the private temporary-directory masks. Require the exact owned working descendants and project markers; bind only the checkout read-only before the two writable session/prefix mounts. Preserve private display/socket/authority admission and PID/net/IPC isolation. No implicit path exception, original execution or graphics correctness claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls18",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-18.json",
+      "sha256": "5b0fac9040ea98ba3ef38c8fab2995d55d8adbd4d88125ca75bc9ea18de1a908",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "62 fresh loaded-entry/portal dispatch/progression cases with137 verified unchanged controls; no original outcome or transition accepted.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.retained-loaded-review02",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-transition-lean-results-20261108/loaded-entry-retained-review-02.json",
+      "sha256": "96b7db234646550cbf6ed0780a5d7763f90c0cd664f2663812190f6adc20a4dd",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Retained-data review of natural Celtic region1 exit and region2 loading, original report/World-pop/next-World callback ordering, fresh bridge ACKs, native World surface incarnation retirement/recreation and referenced independent presented-output comparisons. Nominal software640 and separate diagnostic default800 source phases only. No new game, pixel/oracle execution, current native runtime equivalence, complete external-object lifetime or acceptance-row promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/capture_copies_created",
+          "equals": 0
+        },
+        {
+          "pointer": "/storage/retained_capture_bytes_added",
+          "equals": 0
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 112
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 44
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls19",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-19.json",
+      "sha256": "ab53711d97ae23c8d5e04aae41fcf8729b8ebc4f110e99d1693a47661c1521e1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "96 fresh callback/entry/portal/progression controls and104 verified unchanged cases; current Wizard reselection input correction requires actual execution.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls20",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-20.json",
+      "sha256": "89300527640bd0e0d1cf7cf9e83d726b585805de22a5a5b6ad9c1465c6b1080c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "103 fresh loaded-Realm/Load-state/portal/progression controls plus104 verified unchanged cases; no original outcome or acceptance promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls21",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-21.json",
+      "sha256": "6b53d4c2b4a20663e9bba7fdc2fe2486fb0effece8561f82e0ca16f48ca79f11",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "46fresh sampled-presentation/native-baseline and closeout controls,163verified unchanged cases.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls22",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-22.json",
+      "sha256": "770e37b6b016d58f4dbecfd9885f2b41959c1d8a4694d9c022239644ff880fd7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "49fresh selection/help/progression controls,160verified unchanged cases. Single Wizard selection preserves the prior actual Boss point; runtime validation remains pending.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls23",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-23.json",
+      "sha256": "a9a3b50777d92c44b53b2f794c7b4d09c44c241eb233b1b5ab1b661ad60243a1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "57fresh direct-Wizard target/role/damage/dispatch/progression controls plus160verified unchanged cases; no original execution or acceptance inferred.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.retained-loaded-review03",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-transition-lean-results-20261108/loaded-entry-retained-review-03.json",
+      "sha256": "b7770c07116709a3c0cd68635c1fa4c327ae21ef72f488d127990b8a05b246a4",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Retained-data review of natural Celtic region1 exit and region2 loading, original report/World-pop/next-World callback ordering, fresh bridge ACKs, native World surface incarnation retirement/recreation and referenced independent presented-output comparisons. Nominal software640 and separate diagnostic default800 source phases only. No new game, pixel/oracle execution, current native runtime equivalence, complete external-object lifetime or acceptance-row promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_native_engine_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/capture_copies_created",
+          "equals": 0
+        },
+        {
+          "pointer": "/storage/retained_capture_bytes_added",
+          "equals": 0
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 112
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 44
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls24",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-24.json",
+      "sha256": "70b9a9423447cbed4595968e8df74a466e709073f217960a4c0c44e77bb7baf7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "50fresh CP30 enemy-interception/staging, driver dispatch and progression cases plus168verified unchanged cases. Actual original casts/damage and natural exit remain mandatory.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls25",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-25.json",
+      "sha256": "8fe67d2e99c16f4fa88773ee947d840978c3d995b5f8981c5bbf6ce8eb3e654e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "50fresh current driver/progression cases plus168verified unchanged controls. Only the post31finishing-pause report wording changed; no new game was collected just to refresh that metadata hash.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.quota-guard01",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/quota-guard-controls-01.json",
+      "sha256": "e9e5f2f2ff28dd276714401a9e84285bdc1a9ef0032450b62137c73614f98d7b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current own-uid Linux quota query and actual guarded preflight refuse an8GiBplus4GiB reservation when /dev/shm user headroom is insufficient despite filesystem free space; synthetic controls cover unknown required quotas, exhausted quota inodes and ordinary filesystem limits. No original game executes.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/exit_code",
+          "equals": 2
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls26",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-26.json",
+      "sha256": "df469009be67930873d1dfd7e5de0a277a4eb0100bd00567c936f0c6bb465553",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh complete focused controls after explicit owner binding, actual640finishing proposal ordering and a single zero-cast retry, and current early portal delegation. Exact new source bodies and behavior contracts; no original run or nominal row promotion. The accepted retained36native pixel phase remains immutable and requires an explicit controller-only impact review before any reuse.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls27",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-27.json",
+      "sha256": "cfbf394ee46d031576d367f66c49775c5fddc0087e24a0170e6ac0f7963f0450",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh complete focused controls, including strict native/runtime/oracle/capture refusal for controller-only applicability. Fix the host-receipt/owner-directory variable collision exposed by zero-game38. Source preimages and current contracts remain exact; no original run, old-input-policy renewal or nominal row promotion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls28",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-28.json",
+      "sha256": "ca8a5a7c81a509810b17dc33e2300c0941e6ff71ca6e27184a146f4d4e05b710",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh complete focused controls plus original transition-input validator and bridge compatibility. No original run or nominal row promotion. The new opt-in C++checkpoint orchestration changes the compiled application fingerprint: retained36remains its exact historical successful native phase and cannot use controller-only review for this C++drift. Four fresh current-source nominal cases will be required after a valid smaller original input is acquired.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls29",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-29.json",
+      "sha256": "ebfa545e08755cf80c1a53d5bf696e55fa7d8d6bb89d31ff63f933db994d7c82",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh complete focused controls, exact source preimages and current scoped contracts. Input-domain and controller guards do not provide original execution, nominal pixel or map-acceptance credit. Actual original Save/Load and four current-source complete domains remain separate requirements.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.controls30",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/component-controls-30.json",
+      "sha256": "4c1cff5b1746eb54933f33af5341f56f6c697dd7346f3c3d8449321e3689b3fe",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh complete focused controls, exact source preimages and current scoped contracts. Input-domain and controller guards do not provide original execution, nominal pixel or map-acceptance credit. Actual original Save/Load and four current-source complete domains remain separate requirements.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CP08.transition-input41",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/transition-input41-review-01.json",
+      "sha256": "66dcee88be580da32bcb190e52361e9451e0876eee45709fad2c8e1670d5fd7c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "One actual original seeded Load, observed Boss retirement before a primary outcome, new original Save and Load, exact active actor field restoration and normally retired private native session. Save bytes are opaque and immutable; the retired pose is only an input proposal. No natural victory, later map, native pixel or whole serialization equivalence follows.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/acceptance_rows_added",
+          "equals": 0
+        },
+        {
+          "pointer": "/checkpoint/verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CP08.map-transition-closeout01",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/acceptance-01.json",
+      "sha256": "7de6075743f538cd757e0d3c4833966568174df2b221d7fa9f07645445dfabb4",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Admit only natural Celtic region1 map exit and region2 loading for default/software at actual640x480 and800x600. Four distinct nominal original executions require paired populated original World resource retirement/acquisition, persistent display identities, native surface incarnation retirement, fresh original callback/ACK ordering, complete independent continuous original-history output and normal final ownership drain. Preserve all other acceptance rows and both final pending decisions; no full simulation, external allocator or supported-player recovery claim. A separately hash-bound original Load may supply only the initial World; its callbacks and active-actor fields are verified independently and cannot substitute for the later natural map exit/loading. An explicit hash-bound controller-only review may preserve an already complete native map execution after changes limited to the seven named Python acquisition/input controls. Fresh current controls and unchanged full native/runtime/oracle/capture hashes are mandatory. Its old actual input policy remains a separate execution phase; no current-policy execution is inferred and no historical hash is rewritten.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 4
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 120
+        },
+        {
+          "pointer": "/cases/0/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/1/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/2/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/3/verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CP08.map-resource-boundaries01",
+      "kind": "live_observation",
+      "record": "research/runtime/campaign-progression-closeout-results-20261108/acceptance-01.json",
+      "sha256": "7de6075743f538cd757e0d3c4833966568174df2b221d7fa9f07645445dfabb4",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Opt-in passive original owner-thread snapshots at the first World tick and before/after exit-flagged original Tick calls. Record recovered World bitmap, segmented queue, selection/temporary resource fields and persistent display-provider interfaces. Require paired inactive retirement before the later active populated epoch; no added COM/allocator calls or simulation writes. This connects the complete recovered local World-exit caller to actual map progression without claiming all simulation or external allocator internals recovered.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 4
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 120
+        },
+        {
+          "pointer": "/cases/0/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/1/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/2/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/3/verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CP09.victory-next-map02",
+      "kind": "native_integration",
+      "record": "research/runtime/campaign-victory-next-map-results-20261109/acceptance-02.json",
+      "sha256": "3a8603254f9cd269be73a1bbe6a3712e76be2d01205d09d4ca1eb6bbf37b3dd0",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "scope": "Admit only natural victory result acknowledgement/native result projection retirement and actual Celtic region2 first/resumed World output in default/software actual640/800. Reanalyze the four immutable full campaign executions43\u201346 with their exact original callbacks, input/map identities, native command ownership and complete independent comparisons. Initial original Load supplies only the starting input. Preserve original player/compiler/runtime/oracle hashes and their historical phases; new retained-data analysis does not execute or renew the native engine. QWidget glyph/font/DC pixels, assembled section/RNG recovery, external allocator/simulation internals, later campaign domains and both final decisions remain separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/verified_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 4
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_original_oracle_executions",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/retained_compared_pixels",
+          "equals": 3286371000
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -434226,6 +436355,141 @@
         "SL09.G.live",
         "SL09.G.boundary"
       ]
+    },
+    {
+      "id": "native.campaign-transition-retained-review",
+      "level": "headless",
+      "scope": "Retained-data review of natural Celtic region1 exit and region2 loading, original report/World-pop/next-World callback ordering, fresh bridge ACKs, native World surface incarnation retirement/recreation and referenced independent presented-output comparisons. Nominal software640 and separate diagnostic default800 source phases only. No new game, pixel/oracle execution, current native runtime equivalence, complete external-object lifetime or acceptance-row promotion.",
+      "behaviors": [
+        "NP.campaign-transition-retained-review"
+      ],
+      "tests": [
+        "tools/campaign_transition_review.py",
+        "tools/review-campaign-map-transitions.py",
+        "tests/test-campaign-transition-review.py"
+      ],
+      "evidence": [
+        "CT08.retained-transition01",
+        "CT08.retained-transition02",
+        "CP08.retained-loaded-review02",
+        "CP08.retained-loaded-review03"
+      ]
+    },
+    {
+      "id": "native.ram-owned-output-boundary",
+      "level": "headless",
+      "scope": "Explicit caller-supplied owned repository binding permits session/prefix paths beneath the private temporary-directory masks. Require the exact owned working descendants and project markers; bind only the checkout read-only before the two writable session/prefix mounts. Preserve private display/socket/authority admission and PID/net/IPC isolation. No implicit path exception, original execution or graphics correctness claim.",
+      "behaviors": [
+        "TOOL.ram-owned-output-boundary"
+      ],
+      "tests": [
+        "tools/native_output_owner.py",
+        "tools/owned-menu-game-runner.py",
+        "tests/test-native-output-owner.py"
+      ],
+      "evidence": [
+        "CP08.ram-isolation01",
+        "CP08.ram-isolation05"
+      ]
+    },
+    {
+      "id": "native.user-quota-headroom-guard",
+      "level": "headless",
+      "scope": "Current own-uid Linux quota query and actual guarded preflight refuse an8GiBplus4GiB reservation when /dev/shm user headroom is insufficient despite filesystem free space; synthetic controls cover unknown required quotas, exhausted quota inodes and ordinary filesystem limits. No original game executes.",
+      "behaviors": [
+        "TOOL.user-quota-headroom-guard"
+      ],
+      "tests": [
+        "tools/working-retention.py",
+        "tests/test-working-retention.py"
+      ],
+      "evidence": [
+        "CP08.quota-guard01"
+      ]
+    },
+    {
+      "id": "native.campaign-acquisition-ownership",
+      "level": "headless",
+      "scope": "Synthetic exact-owner journals amid concurrent foreign directories, prefix and session identity adversaries, bounded generation count, and mocked public launcher explicit-owner forwarding/refusal. No original game, runtime namespace or pixel acceptance is inferred.",
+      "behaviors": [
+        "TOOL.campaign-acquisition-ownership"
+      ],
+      "tests": [
+        "tests/test-campaign-acquisition-owner.py",
+        "tests/test-native-player-launcher.py"
+      ],
+      "evidence": [
+        "CP08.controls26",
+        "CP08.controls27",
+        "CP08.controls28",
+        "CP08.controls29",
+        "CP08.controls30"
+      ]
+    },
+    {
+      "id": "native.campaign-transition-ready-checkpoint",
+      "level": "live_observation",
+      "scope": "One actual original seeded Load, observed Boss retirement before a primary outcome, new original Save and Load, exact active actor field restoration and normally retired private native session. Save bytes are opaque and immutable; the retired pose is only an input proposal. No natural victory, later map, native pixel or whole serialization equivalence follows.",
+      "behaviors": [
+        "INPUT.campaign-transition-ready-checkpoint"
+      ],
+      "tests": [
+        "tools/campaign_transition_checkpoint.py",
+        "tools/campaign-save-ready-input.py",
+        "apps/qt-shell/campaign_storage_test.cpp",
+        "tests/test-campaign-transition-checkpoint.py"
+      ],
+      "evidence": [
+        "CP08.transition-input41"
+      ]
+    },
+    {
+      "id": "native.campaign-map-transition-closeout",
+      "level": "headless",
+      "scope": "Admit only natural Celtic region1 map exit and region2 loading for default/software at actual640x480 and800x600. Four distinct nominal original executions require paired populated original World resource retirement/acquisition, persistent display identities, native surface incarnation retirement, fresh original callback/ACK ordering, complete independent continuous original-history output and normal final ownership drain. Preserve all other acceptance rows and both final pending decisions; no full simulation, external allocator or supported-player recovery claim.",
+      "behaviors": [
+        "NP.campaign-map-transition-closeout"
+      ],
+      "tests": [
+        "tools/close-campaign-map-transitions.py",
+        "tests/test-campaign-map-closeout.py"
+      ],
+      "evidence": [
+        "CP08.map-transition-closeout01"
+      ]
+    },
+    {
+      "id": "native.campaign-map-resource-boundaries",
+      "level": "live_observation",
+      "scope": "Opt-in passive original owner-thread snapshots at the first World tick and before/after exit-flagged original Tick calls. Record recovered World bitmap, segmented queue, selection/temporary resource fields and persistent display-provider interfaces. Require paired inactive retirement before the later active populated epoch; no added COM/allocator calls or simulation writes. This connects the complete recovered local World-exit caller to actual map progression without claiming all simulation or external allocator internals recovered.",
+      "behaviors": [
+        "NP.campaign-map-resource-boundaries"
+      ],
+      "tests": [
+        "runtime/menu/map_resource_boundaries.h",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/campaign_map_resources.py",
+        "tests/test-campaign-map-resources.py"
+      ],
+      "evidence": [
+        "CP08.map-resource-boundaries01"
+      ]
+    },
+    {
+      "id": "native.campaign-victory-next-map-closeout",
+      "level": "headless",
+      "scope": "Admit only natural victory result acknowledgement/native result projection retirement and actual Celtic region2 first/resumed World output in default/software actual640/800. Reanalyze the four immutable full campaign executions43\u201346 with their exact original callbacks, input/map identities, native command ownership and complete independent comparisons. Initial original Load supplies only the starting input. Preserve original player/compiler/runtime/oracle hashes and their historical phases; new retained-data analysis does not execute or renew the native engine. QWidget glyph/font/DC pixels, assembled section/RNG recovery, external allocator/simulation internals, later campaign domains and both final decisions remain separate.",
+      "behaviors": [
+        "NP.campaign-victory-next-map-closeout"
+      ],
+      "tests": [
+        "tools/campaign_results_review.py",
+        "tools/close-campaign-results.py",
+        "tests/test-campaign-results-review.py"
+      ],
+      "evidence": [
+        "CP09.victory-next-map02"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -436053,8 +438317,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-e09422e2db6da4b79ea90680a64820d293e336f4cfb872072d952c5e02127c48.json",
-    "sha256": "e09422e2db6da4b79ea90680a64820d293e336f4cfb872072d952c5e02127c48"
+    "path": "research/runtime/coverage/source-index-63a035aedbd856f920bac05e9d065049026b412d684fc23772e504bb73681fd0.json",
+    "sha256": "63a035aedbd856f920bac05e9d065049026b412d684fc23772e504bb73681fd0"
   },
   "evidence_applicability": [
     {

@@ -6,7 +6,7 @@ Original settled Realm guards remain authoritative and unchanged.
 import struct
 
 
-def realm_return_state(data, events, report):
+def realm_return_state(data, events, report, *, loaded_entry=False):
     if len(data)!=524288 or data[:16]!=b'MNMMCM22'+struct.pack('<II',22,524288):
         raise ValueError('Unexpected campaign return channel')
     if report.get('return_sequence') is None:return 'wait'
@@ -21,13 +21,13 @@ def realm_return_state(data, events, report):
     popped=any(r[0]>report['return_sequence'] and r[1]==28 and r[2]==thread and r[3]==2 and r[11]==0x659408 and r[12]==3 for r in events)
     if not popped:return 'wait'
     if screen==4 and ready and handoff==0:return 'ready'
-    if screen==0 and ready==0 and handoff==3:return 'dismiss'
+    if screen==0 and ready==0 and (handoff==3 or loaded_entry is True and handoff==0):return 'dismiss'
     return 'wait'
 
 
-def read_realm_return_state(path, events, report):
+def read_realm_return_state(path, events, report, *, loaded_entry=False):
     data=path.read_bytes()
     with path.open('rb') as stream:
         stream.seek(128);sequence=stream.read(4)
     if len(data)<132 or data[128:132]!=sequence:return 'wait'
-    return realm_return_state(data,events,report)
+    return realm_return_state(data,events,report,loaded_entry=loaded_entry)

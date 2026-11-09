@@ -26,6 +26,20 @@ class ReturnTests(unittest.TestCase):
             old=struct.unpack_from('<I',self.data,offset)[0];struct.pack_into('<I',self.data,offset,value)
             self.assertEqual(self.state(),'wait');struct.pack_into('<I',self.data,offset,old)
         self.events[0][11]=0x657ce0;self.assertEqual(self.state(),'wait')
+    def test_loaded_entry_can_dismiss_zero_handoff_only_after_the_same_report_pop(self):
+        struct.pack_into('<I',self.data,156,0)
+        self.assertEqual(self.state(),'wait')
+        self.assertEqual(realm_return_state(self.data,self.events,self.report,loaded_entry=True),'dismiss')
+        self.events=[]
+        self.assertEqual(realm_return_state(self.data,self.events,self.report,loaded_entry=True),'wait')
+
+    def test_loaded_entry_does_not_exempt_owner_ack_or_original_readiness(self):
+        struct.pack_into('<I',self.data,156,0)
+        struct.pack_into('<I',self.data,144,5)
+        self.assertEqual(realm_return_state(self.data,self.events,self.report,loaded_entry=True),'wait')
+        struct.pack_into('<I',self.data,144,6);struct.pack_into('<I',self.data,140,1)
+        self.assertEqual(realm_return_state(self.data,self.events,self.report,loaded_entry=True),'wait')
+
     def test_wire_owner_status_and_readiness_refuse(self):
         with self.assertRaises(ValueError):realm_return_state(self.data[:-1],self.events,self.report)
         for offset,value in ((152,317),(148,5),(140,2)):

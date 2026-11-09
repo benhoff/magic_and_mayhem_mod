@@ -204,7 +204,10 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     from directplay_dx6_launch import stage as stage_directplay
     metadata['directplay_dx6']=stage_directplay(root)
     from menu_save_store import stage as stage_saves
-    metadata['save_store']=stage_saves(game,REPO/'working/user-saves/native-menu') if actions else None
+    save_store=Path(os.environ.get('MNM_MENU_SAVE_STORE',str(REPO/'working/user-saves/native-menu')))
+    if os.environ.get('MNM_MENU_SAVE_STORE') and (save_store.is_symlink() or not save_store.resolve().is_relative_to(REPO/'working')):
+        raise ValueError('Explicit save input store must be owned under working/')
+    metadata['save_store']=stage_saves(game,save_store) if actions else None
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     metadata['full_asset_verification']=full_asset_verification()
     if native_draw and metadata['full_asset_verification']:

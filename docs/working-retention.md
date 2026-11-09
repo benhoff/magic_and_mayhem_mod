@@ -298,3 +298,20 @@ hashes; it does not rerun engine validation. The archive is on a second drive in
 the same machine, so an independent off-machine backup remains a separate task.
 
 The inventory tolerates files removed by active captures during a `du` scan only when every diagnostic is a disappeared descendant and the final root total is present. Permission, I/O, missing-root and other measurement failures still refuse the launch. Measurements remain non-atomic; the existing reservation and live free-space monitor remain required. The native-render integration exposed this race; twelve guard tests include disappearing replies and fail-closed measurement cases.
+
+
+### User quota headroom
+
+The launch preflight and running monitor use the smaller of filesystem free
+space and the current user's remaining block quota. Linux quota limits use
+1024-byte units; a configured soft limit is honored conservatively even during
+its grace period. Exhausted quota inodes also refuse a launch. The query is
+read-only and never raises a quota. Linux x86_64 can use the explicitly scoped
+`quotactl_fd` syscall fallback when libc does not expose that function.
+
+Set `require_user_quota: true` in an authored policy when quota availability is
+required: unsupported or failed queries then refuse the launch. Otherwise an
+unavailable quota query keeps the existing filesystem-space fallback. The
+printed preflight includes the measured filesystem free bytes, user quota and
+effective headroom. Reservations and the two-second monitor cannot prevent an
+unrelated writer exhausting space between samples.
