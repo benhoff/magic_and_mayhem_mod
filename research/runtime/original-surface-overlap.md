@@ -74,3 +74,11 @@ Native support is scoped to these captured opaque RGB565 operations. Keyed/maske
 other formats, COM pointer tracking in a live adapter, lost surfaces, Restore and
 retry wrappers remain outstanding. Native logical IDs will represent verified
 shared backing; COM pointers are not part of the offline wire contract.
+
+The [2026-11-08 current-code comparison](rendering-alias-closeout-results-20261108/opaque-native-02.json)
+reuses this unchanged original corpus. All 1,536 backend and 1,536 v3 results and
+their complete planes match, with 20 policy checks, six rejected streams and nine
+oracle controls passing. It retains exact tested binaries and compiler inputs;
+the original capture and collector source phases remain historical. This result
+does not establish a natural player overlap caller or the production facade's
+separate whole-call snapshot policy. Both player acceptance rows stay pending.

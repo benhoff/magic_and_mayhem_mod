@@ -101,3 +101,50 @@ claim is made. The exact committed-history review retains retrospective opaque
 artifact custody separately from validation, with zero remaining receipt gaps.
 See rendering-alias-reachability-results-20261108/final2-preserved-scope-01.json
 and final2-history-01.json.
+
+### Source publication follow-up and current overlap mechanism
+
+[Assessment03](rendering-alias-reachability-results-20261108/assessment-03.json)
+retains eight exact publication anchors and their surrounding original bytes.
+For the selected Grimoire `~D` path, `0x4c5110` allocates a 0x32-byte surface
+wrapper, publishes it at book `+0x1a3a`, creates its surface through `0x58ad90`
+at `0x4c51e1`, and populates it through `0x58d240`. The creation descriptor has
+flags 7 (caps/height/width) and caps 0x840. This is a source-surface allocation
+path, rather than evidence that the field is a font identity.
+
+The book passes this wrapper through text-helper `+0x850` at `0x4c3f69`; parser
+`0x4c8950` copies it into bar `+4` at `0x4c89aa`. The drawing target is separately
+published at text-helper `+0x84c` at `0x4c59b1`. These selected assignments resolve
+the source-publication lead in the earlier report. They do not establish every
+subsequent writer, the target's allocation history or global nonaliasing.
+
+The generic image initialization creates its embedded source wrapper through
+`0x58ad90` at `0x573323`, using owner `+0x0c`. An additional direct destination
+publication at `0x57478d` writes `0x6a49e0` into owner `+8`, without calling the
+previously enumerated setter. Thus its three direct setter callers were never a
+complete destination-writer inventory. These creation and publication paths do
+not supply a naturally invoked overlapping copy.
+
+[Current native execution](rendering-alias-closeout-results-20261108/opaque-native-02.json)
+passes all 1,536 retained opaque overlap cases through the backend and v3 replay:
+1,536 HRESULT checks per path, 3,072 complete source/destination planes at the
+backend and 1,536 shared planes at replay, including 16 partial-error outcomes.
+Twenty policy controls and six rejected streams pass; nine oracle controls and
+[eight argument/timing controls](rendering-alias-closeout-results-20261108/publisher-controls-01.json)
+also pass. The exact tested binaries, project-local compiler dependencies,
+execution artifacts and reconstruction commands are retained in SQLite. Build
+intermediates are temporary RAM output. One display setup refusal and one
+retention path-normalization refusal remain separate negative records.
+
+This compares current native code against immutable original observations; it
+does not rerun or renew the original collectors. The general backend's ordered
+piece snapshots remain distinct from the production facade's intentional
+whole-call frozen-source policy. Neither this execution nor the static follow-up
+adds player-profile acceptance. Both alias rows remain pending and the frontier
+stays 118 passed / 38 pending. No accepted journey is reopened.
+
+A narrower requirement could accept controlled original-wrapper/native overlap
+proof while keeping natural player reachability as a separate explicit gap.
+That is a proposed contract amendment, not an adopted interpretation of the
+existing rows. The current requirement and all prior acceptance identities are
+unchanged pending the user's scope decision.

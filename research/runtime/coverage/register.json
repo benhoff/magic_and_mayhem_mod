@@ -19166,7 +19166,8 @@
         "NR.surface-backend.formats-pitch.ownership-20261006",
         "ORIGINAL.surface-retry.formats-pitch-replay-20261006",
         "NR.surface-backend.formats-pitch.regressions-20261006",
-        "NR.native-campaign.directcopy-backend-20261009"
+        "NR.native-campaign.directcopy-backend-20261009",
+        "ALIAS08.opaque-native02"
       ],
       "status": {
         "understanding": "partial",
@@ -171974,7 +171975,9 @@
       },
       "evidence": [
         "ALIAS08.caller-leads01",
-        "ALIAS08.controls01"
+        "ALIAS08.controls01",
+        "ALIAS08.publications01",
+        "ALIAS08.publisher-controls01"
       ],
       "remaining_gaps": [
         "All predecessor/indirect flow and wrapper publication/backing lifetimes remain unresolved. Separate fields or constants do not prove disjoint physical storage. Both natural alias/overlap acceptance rows remain pending; no independent output or current native execution is added."
@@ -393336,6 +393339,94 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "ALIAS08.publications01",
+      "kind": "static",
+      "scope": "Selected original Grimoire bar and generic image source-creation/publication windows, including an additional direct destination store. Static data-flow leads only; all unresolved relationships and natural overlap requirements remain pending.",
+      "record": "research/runtime/rendering-alias-reachability-results-20261108/assessment-03.json",
+      "sha256": "006e79f620feeae398f70f9f173d4619b8dbfdc0751d82df61040db9bbe051c8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_publication_anchors/0x4c89aa/bytes",
+          "equals": "894704"
+        },
+        {
+          "pointer": "/selected_publication_anchors/0x57478d/bytes",
+          "equals": "c74008e0496a00"
+        }
+      ]
+    },
+    {
+      "id": "ALIAS08.publisher-controls01",
+      "kind": "native_integration",
+      "scope": "Eight existing host analyzer/timing corruption controls pass for the current inspector source phase. No original game/native drawing or acceptance credit.",
+      "record": "research/runtime/rendering-alias-closeout-results-20261108/publisher-controls-01.json",
+      "sha256": "9ddd6211469a61056b59bbf053cef32ae7974d270db1de0818ea710191c74543",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "ALIAS08.opaque-native02",
+      "kind": "isolated_original",
+      "scope": "Current backend and v3 replay independently compare all1536 retained original opaque RGB565 overlap results/full planes,20 policy checks and6 rejected streams. Nine retained-oracle controls pass. Real alias identity is retained original input; no current original recollection, live COM tracking, production-facade or natural player-call acceptance.",
+      "record": "research/runtime/rendering-alias-closeout-results-20261108/opaque-native-02.json",
+      "sha256": "1e8c49b041344976d24df9bc804bdcdfd110f070c97bae8e9f0afc8fa1d5ead6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/backend_hresult_checks",
+          "equals": 1536
+        },
+        {
+          "pointer": "/stream_hresult_checks",
+          "equals": 1536
+        },
+        {
+          "pointer": "/partial_error_cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/profile_acceptance",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -429468,8 +429559,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-ef22fede2b8c2b59f64fab3d2cf4446e0628a091e00cd6d6feabe2c369c1ebf8.json",
-    "sha256": "ef22fede2b8c2b59f64fab3d2cf4446e0628a091e00cd6d6feabe2c369c1ebf8"
+    "path": "research/runtime/coverage/source-index-e43d321fe809a78cc49d748c04e971dc2530805a5869a1e5d799097f15a5eebc.json",
+    "sha256": "e43d321fe809a78cc49d748c04e971dc2530805a5869a1e5d799097f15a5eebc"
   },
   "evidence_applicability": [
     {

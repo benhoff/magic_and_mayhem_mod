@@ -28142,3 +28142,19 @@ The integration now combines actual master2875ee929 with tooling e18cf4117, reta
 ### Final tooling integration after alias reservation
 
 This integration combines actual alias master e8389da21 with checked tooling merge9e555033a, preserving all parent records, existing accepted rows and pending native/alias boundaries. The SNAP01host inputs remain byte-identical to their322-control phase. The earlier staged-tree refusal, master advance and checked intermediate candidate remain retained independently. No game, native/oracle comparison, source-hash refresh or acceptance promotion is added. See tooling-master-merge-results-20261108/applicability03.json.
+
+### ALIAS08 — source publication and current opaque overlap, 2026-11-08
+
+Assessment03 binds the Grimoire bar source through book+0x1a3a/helper+0x850/bar+4
+to its selected surface creation, and records generic embedded-source creation
+plus the direct destination store missed by a setter-only inventory. These are
+static publication findings, not global backing disjointness or natural overlap.
+`ALIAS08.publications01` and eight current argument/timing controls retain the
+exact source phase. `ALIAS08.opaque-native02` freshly compares all1536 retained
+original opaque overlap cases with current backend/v3 outputs, including16partial
+errors,20policy controls and6rejected streams;9oracle controls pass. No game or
+original collector runs. Exact binaries, inputs, failures and reconstruction
+commands are SQLite-backed; compiler intermediates remain temporary RAM output.
+No acceptance contract is amended:118passed/38pending, both alias rows pending.
+Natural player reachability and the production facade's separate frozen-source
+policy are not promoted. See `rendering-alias-reachability-20261108.md`.
