@@ -27983,3 +27983,26 @@ The pending exact union uses actual master9b0148db6as first parent and checked f
 The current progress snapshot supplies display bindings from the parents separate recorded phase maps and retains those maps unchanged; historical hashes are not refreshed. New stretch attachments correctly name actual_destination_extents; the owned snapshot used the legacy actual_world_extents key for these same destination sizes, despite entering zero Worlds. This metadata correction changes no value or engine proof. Merged controls pass41stretch Python cases, the shared artifact-reader tests and four dashboard guards, and the actual dashboard shows116/40with both alias rows/final decisions pending.
 
 Incoming committed-history review covers19123parent/current file versions fromb0eb1de5bthrough9b0148db6. A separate retrospective receipt pins2674unique opaque input transitions, including repeated additions across merge first parents and the source-specific black-guards archive. The closed review has no unresolved exact-transition gaps; it asserts neither a past gate pass nor new engine validation. Complete prior journals/archives, failures and source identities are preserved. See rendering-copy-natural-results-20261108/master-admission-01.json, master-checks-01.json and incoming-history-closed-01.json.
+
+
+## Natural alias COPY caller investigation — 2026-11-08
+
+`ALIAS08.caller-leads01` retains all156direct COPY caller candidates with exact
+straight-line source/destination expressions:29distinct constant-wrapper pairs,
+127unresolved pairs and no same-expression candidate. Distinct wrappers never
+prove disjoint backing. Selected original deferred-queue storage/drain and
+generic-image/bar publication scaffolding narrow the remaining leads. All three
+generic destination setter callers pass6a49e0; two bar draw callers and67queue
+publishers remain static contexts, not naturally executed overlap witnesses.
+
+Two retained original-active journals supply3812source-copy calls, zero identical
+generations and zero prior successful QueryInterface alias pairs at copy entry;
+every unlinked backing relationship remains unknown. Exact small metadata bytes
+are read directly from verified cold objects and retained through SQLite, without
+restoring full captures.33focused current Python controls pass; the malformed
+timeline and later build-map bookkeeping refusal retain exact negative phases.
+No native/runtime edit, game run, pixel comparison, new game fixture or original
+driver reexecution is added. Both alias rows remain pending, all116accepted
+rows and both pending final decisions remain unchanged. Whole predecessor/
+indirect flow, actual source publication/allocation, natural overlap traversal
+and complete output remain open. See rendering-alias-reachability-20261108.md.
