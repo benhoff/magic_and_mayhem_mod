@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 import shutil
 import sqlite3
+import stat
 import subprocess
 import tempfile
 
@@ -354,7 +355,12 @@ def logical_checkpoint(root, source):
     """Back up each schema/row/value object once, including committed WAL data."""
     source=Path(source).resolve()
     if any(p in source.parts for p in ('original','.git')):raise ValueError('Unsafe logical checkpoint')
+    sealed = _sealed_source(source)
     with configured(root) as pair:
+        if sealed is not None:
+            reused = _reuse_logical(pair, source, sealed)
+            if reused is not None:
+                return reused
         with pair.batch():
             with closing(sqlite3.connect(source.as_uri()+'?mode=ro',uri=True)) as db:
                 db.execute('BEGIN')
@@ -364,8 +370,107 @@ def logical_checkpoint(root, source):
             manifest=pair.root('sqlite_logical',source,value)
         with tempfile.TemporaryDirectory(prefix='mm-logical-restore-') as tmp:
             restore_logical(pair,manifest,Path(tmp)/'restored.sqlite3')
+        if sealed is not None and _sealed_identity(source) == sealed['identity']:
+            pair.root('sqlite_logical_verified', source, dict(
+                schema=1, kind='verified_sealed_sqlite_checkpoint',
+                source=str(source), source_sha256=sealed['sha256'],
+                source_size=sealed['size'], codec_sha256=_checkpoint_codec(),
+                manifest=manifest, logical_restore_verified=True, replicas_verified=2))
     return dict(success=True,source=str(source),manifest=manifest,logical_restore_verified=True,
-                replicas_verified=2,byte_exact_container=False)
+                replicas_verified=2,byte_exact_container=False,
+                checkpoint_reused=False,real_restore_performed=True)
+
+
+def _sealed_identity(source):
+    """Only quiescent, mode-read-only files can reuse a restore proof. Never chmod."""
+    s = source.stat()
+    if not stat.S_ISREG(s.st_mode) or s.st_mode & 0o222:
+        return None
+    if any(p.exists() or p.is_symlink() for p in
+           (Path(str(source)+suffix) for suffix in ('-wal', '-shm', '-journal'))):
+        return None
+    return (s.st_dev, s.st_ino, s.st_size, s.st_mtime_ns, s.st_ctime_ns,
+            stat.S_IMODE(s.st_mode), s.st_uid, s.st_gid)
+
+
+def _sealed_source(source):
+    before = _sealed_identity(source)
+    if before is None:
+        return None
+    with source.open('rb') as stream:
+        sha = hashlib.file_digest(stream, 'sha256').hexdigest()
+    if _sealed_identity(source) != before:
+        raise ValueError('Sealed SQLite source changed during checksum')
+    return dict(identity=before, sha256=sha, size=before[2])
+
+
+def _checkpoint_codec():
+    # Backup reuse is bound to the exact serializer/reader implementation, not
+    # to a cached gate pass or to timestamps alone.
+    files = {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
+             for name in ('evidence_objects.py', 'coverage_evidence.py', 'evidence_blocks.py')}
+    return hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()
+
+
+def _verify_logical_closure(pair, manifest):
+    """Freshly hash every referenced row/BLOB/text object in BOTH stores."""
+    data = json.loads(pair.read(manifest['sha256'], manifest['size']))
+    pair.read(manifest['sha256'], manifest['size'], 1)
+    if data.get('kind') != 'sqlite_logical_checkpoint':
+        raise ValueError('Wrong retained SQLite checkpoint kind')
+    leaves = {}
+    for table in data['catalog']['tables']:
+        for ref in table['rows']:
+            raw = pair.read(ref['sha256'], ref['size'])
+            pair.read(ref['sha256'], ref['size'], 1)
+            for value in json.loads(raw):
+                if isinstance(value, dict) and ('blob' in value or 'text' in value):
+                    leaf = value.get('blob', value.get('text'))
+                    previous = leaves.setdefault(leaf['sha256'], leaf['size'])
+                    if previous != leaf['size']:
+                        raise ValueError('Conflicting checkpoint object sizes')
+    for sha, size in leaves.items():
+        for store in pair.stores:
+            store.copy(sha, size, Sink())
+    return data
+
+
+def _reuse_logical(pair, source, sealed):
+    if not pair.stores[0].db.execute(
+            "SELECT 1 FROM sqlite_master WHERE name='retention_roots'").fetchone():
+        return None
+    codec = _checkpoint_codec()
+    candidates = pair.stores[0].db.execute(
+        "SELECT sha256,size FROM retention_roots WHERE kind='sqlite_logical_verified' AND source=?",
+        (str(source),)).fetchall()
+    for sha, size in candidates:
+        value = json.loads(pair.read(sha, size))
+        if (value.get('kind') != 'verified_sealed_sqlite_checkpoint'
+                or value.get('schema') != 1 or value.get('source') != str(source)
+                or value.get('source_sha256') != sealed['sha256']
+                or value.get('source_size') != sealed['size']
+                or value.get('codec_sha256') != codec):
+            continue
+        if value.get('logical_restore_verified') is not True or value.get('replicas_verified') != 2:
+            raise ValueError('Invalid retained SQLite restore proof')
+        pair.read(sha, size, 1)
+        if not pair.stores[1].db.execute(
+                "SELECT 1 FROM sqlite_master WHERE name='retention_roots'").fetchone():
+            raise ValueError('Replica is missing the retained SQLite restore proof')
+        row = pair.stores[1].db.execute(
+            "SELECT size FROM retention_roots WHERE kind='sqlite_logical_verified' AND source=? AND sha256=?",
+            (str(source), sha)).fetchone()
+        if row != (size,):
+            raise ValueError('Replica is missing the retained SQLite restore proof')
+        data = _verify_logical_closure(pair, value['manifest'])
+        if data['source'] != str(source) or _sealed_identity(source) != sealed['identity']:
+            raise ValueError('Sealed SQLite source changed during checkpoint verification')
+        return dict(success=True, source=str(source), manifest=value['manifest'],
+            logical_restore_verified=True, replicas_verified=2, byte_exact_container=False,
+            checkpoint_reused=True, real_restore_performed=False,
+            source_sha256=sealed['sha256'],
+            verification='Fresh source checksum and two-copy object closure; retained real-restore proof')
+    return None
 
 
 def _roots(store):
@@ -392,27 +497,64 @@ def checkpoint_objects(root):
     Interrupted transfers preserve primary roots and immutable retry identities.
     """
     with configured(root) as pair:
-        objects=list(pair.stores[0].db.execute('SELECT sha256,size,git_blob FROM objects ORDER BY sha256'))
-        transferred=0
+        return _checkpoint_objects(pair)
+
+
+def _checkpoint_objects(pair):
+    target = pair.stores[1].db
+    # Store connections do not enable URI filenames. This canonical path was
+    # validated by Pair; the attached schema is used only on SELECT sides.
+    target.execute('ATTACH DATABASE ? AS checkpoint_source',
+                   (str(pair.paths[0]),))
+    try:
+        if target.execute('''SELECT 1 FROM checkpoint_source.objects p JOIN main.objects r
+                USING(sha256) WHERE p.size!=r.size LIMIT 1''').fetchone():
+            raise ValueError('Replica object size collision')
+        if target.execute('''SELECT 1 FROM checkpoint_source.versions p JOIN main.versions r
+                USING(git_blob,path) WHERE p.sha256!=r.sha256 LIMIT 1''').fetchone():
+            raise ValueError('Replica historical Git binding conflict')
+        target.execute('''CREATE TEMP TABLE checkpoint_missing_objects AS
+            SELECT p.sha256,p.size,p.git_blob FROM checkpoint_source.objects p
+            LEFT JOIN main.objects r USING(sha256) WHERE r.sha256 IS NULL''')
+        count = target.execute('SELECT COUNT(*) FROM checkpoint_source.objects').fetchone()[0]
+        transferred = 0
         with pair.batch():
-            for sha,size,blob in objects:
-                if pair.stores[1].has(sha,size):continue
-                with tempfile.TemporaryFile() as f:
-                    pair.stores[0].copy(sha,size,f);f.seek(0);pair.put(f,size,blob)
-                transferred+=1
-            target=pair.stores[1].db
-            for blob,path,sha in pair.stores[0].db.execute('SELECT git_blob,path,sha256 FROM versions'):
-                previous=target.execute('SELECT sha256 FROM versions WHERE git_blob=? AND path=?',(blob,path)).fetchone()
-                if previous is not None and previous!=(sha,):raise ValueError('Replica historical Git binding conflict')
-                target.execute('INSERT OR IGNORE INTO versions VALUES(?,?,?)',(blob,path,sha))
-            for kind,source,sha,size in _roots(pair.stores[0]):
-                if pair.root(kind,source,json.loads(pair.read(sha,size)))!=dict(sha256=sha,size=size):
+            for sha, size, blob in target.execute('SELECT * FROM checkpoint_missing_objects'):
+                with tempfile.TemporaryFile() as stream:
+                    pair.stores[0].copy(sha, size, stream)
+                    stream.seek(0)
+                    pair.put(stream, size, blob)
+                transferred += 1
+            target.execute('''INSERT OR IGNORE INTO main.versions
+                SELECT p.git_blob,p.path,p.sha256 FROM checkpoint_source.versions p
+                WHERE NOT EXISTS (SELECT 1 FROM main.versions r
+                                  WHERE r.git_blob=p.git_blob AND r.path=p.path)''')
+            # Existing root payloads still receive fresh two-copy integrity and
+            # canonical-JSON checks. Only missing root metadata needs an insert.
+            roots_exist = target.execute("SELECT 1 FROM sqlite_master WHERE name='retention_roots'").fetchone()
+            for kind, source, sha, size in _roots(pair.stores[0]):
+                body = pair.read(sha, size)
+                pair.read(sha, size, 1)
+                value = json.loads(body)
+                canonical = (json.dumps(value, sort_keys=True, separators=(',', ':'))+'\n').encode()
+                if canonical != body:
                     raise ValueError('Noncanonical retention root requires review')
-        for sql in ('SELECT sha256,size FROM objects ORDER BY sha256',
-                    'SELECT git_blob,path,sha256 FROM versions ORDER BY git_blob,path'):
-            if list(pair.stores[0].db.execute(sql))!=list(pair.stores[1].db.execute(sql)):
-                raise ValueError('Replica has divergent immutable identities; retain and review')
-        if _roots(pair.stores[0])!=_roots(pair.stores[1]):raise ValueError('Replica retention roots diverge')
-        return dict(success=True,objects=len(objects),transferred_objects=transferred,
-                    missing_objects_replicated_and_verified=True,catalogs_match=True,
-                    backup_unit='immutable_object',physical_database_snapshot=False)
+                present = roots_exist and target.execute('''SELECT 1 FROM retention_roots
+                    WHERE kind=? AND source=? AND sha256=? AND size=?''', (kind, source, sha, size)).fetchone()
+                if not present:
+                    if pair.root(kind, source, value) != dict(sha256=sha, size=size):
+                        raise ValueError('Noncanonical retention root requires review')
+                    roots_exist = True
+        for columns, table in (('sha256,size', 'objects'), ('git_blob,path,sha256', 'versions')):
+            for left, right in (('main', 'checkpoint_source'), ('checkpoint_source', 'main')):
+                if target.execute(f'SELECT 1 FROM (SELECT {columns} FROM {left}.{table} EXCEPT SELECT {columns} FROM {right}.{table}) LIMIT 1').fetchone():
+                    raise ValueError('Replica has divergent immutable identities; retain and review')
+        if _roots(pair.stores[0]) != _roots(pair.stores[1]):
+            raise ValueError('Replica retention roots diverge')
+        return dict(success=True, objects=count, transferred_objects=transferred,
+            missing_objects_replicated_and_verified=True, catalogs_match=True,
+            backup_unit='immutable_object', physical_database_snapshot=False,
+            catalog_comparison='bulk-sql', existing_objects_scrubbed=False)
+    finally:
+        target.execute('DROP TABLE IF EXISTS temp.checkpoint_missing_objects')
+        target.execute('DETACH DATABASE checkpoint_source')

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Synthetic change accounting, immutable history, rename and real Git-base checks."""
 import copy
-from contextlib import contextmanager, redirect_stdout
+from contextlib import closing, contextmanager, redirect_stdout
 import io
 import hashlib
 import importlib.util
@@ -131,15 +131,34 @@ class GateTests(unittest.TestCase):
         self.assertEqual(self.result(), self.result())
         self.assertEqual(snapshot(self.root)[0], snapshot(self.root)[0])
 
+    def test_parallel_snapshot_matches_sequential_and_refuses_unregistered_corruption(self):
+        from coverage_evidence import Store, pointer
+        path=self.root/'research/runtime/unregistered.json';path.parent.mkdir(parents=True,exist_ok=True)
+        payload=b'{"retained":"negative observation"}'
+        store=Store(self.root/'working/coverage/evidence-pending.sqlite3')
+        with store.db:sha=store.put(io.BytesIO(payload),len(payload))
+        store.close();path.write_bytes(pointer(sha,len(payload)))
+        with patch.object(Reader,'prefetch_digests',return_value=None):
+            sequential=snapshot(self.root)
+        self.assertEqual(snapshot(self.root),sequential)
+        import sqlite3
+        with closing(sqlite3.connect(self.root/'working/coverage/evidence-pending.sqlite3')) as db,db:
+            for name, in db.execute("SELECT name FROM sqlite_master WHERE type='trigger' AND tbl_name='chunks'").fetchall():
+                db.execute('DROP TRIGGER "'+name+'"')
+            db.execute('DELETE FROM chunks WHERE sha256=?',(sha,))
+        with self.assertRaisesRegex(ValueError,'hash mismatch'):
+            snapshot(self.root)
+
     def test_snapshot_fingerprints_shared_paths_once_without_cross_call_reuse(self):
         paths = []
 
         class ObservedReader(Reader):
-            def digest(self, path):
+            def _remember(self, path, stamp, sha, body=None):
                 paths.append(path)
-                return super().digest(path)
+                return super()._remember(path, stamp, sha, body)
 
-        # Observe the snapshot reader separately from its independent audit.
+        # Audit and snapshot share one verified-read epoch. Count actual reads,
+        # including the audit, rather than calls returning an already known hash.
         with patch('coverage_gate.Reader', ObservedReader):
             first, _ = snapshot(self.root)
         self.assertEqual(paths.count(self.root/'assets/model.cpp'), 1)

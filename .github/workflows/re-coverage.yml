@@ -24,6 +24,8 @@ jobs:
           persist-credentials: false
       - name: Test accounting and evidence tooling with isolated fixtures
         run: |
+          python3 -B tests/test-integration-tools.py
+          TMPDIR=/dev/shm python3 -B tests/test-finish-performance.py
           python3 -B tests/test-evidence-applicability.py
           python3 -B tests/test-re-coverage.py
           python3 -B tests/test-coverage-gate.py
@@ -48,6 +50,8 @@ jobs:
         run: python3 tools/evidence-store.py fetch --verify
       - name: Test audit and gate guards
         run: |
+          python3 -B tests/test-integration-tools.py
+          TMPDIR=/dev/shm python3 -B tests/test-finish-performance.py
           python3 -B tests/test-evidence-applicability.py
           python3 -B tests/test-re-coverage.py
           python3 -B tests/test-coverage-gate.py

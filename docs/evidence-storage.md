@@ -65,6 +65,11 @@ review cache; `--keep-review-cache` keeps it materialized. An explicitly selecte
 alternate review DB is retained. No transfer, publication or engine rerun is
 attached to the hook. Publication and private SSH backup remain separate commands.
 
+See [local integration](integration-workflow.md) for cooperative admission,
+dry-first metadata/history review, immutable checkpoint reuse and bounded
+snapshot-local read reuse. These reduce repeated work while retaining fresh
+current/staged gates and historical evidence hashes.
+
 ## Execution and review-cache restoration
 
 The acceptance pilot borrows a stopped admitted prefix for the entire child

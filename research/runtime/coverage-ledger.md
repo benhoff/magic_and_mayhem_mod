@@ -28069,3 +28069,20 @@ versions including binary artifacts. One append-only retrospective receipt pins
 receipts and retains the negative finding. This is independent of fresh merged
 OS08execution and asserts no historical gate pass. See
 `opaque-secondary-results-20261108/merged-history-02.json`.
+
+
+
+
+### FIN01 — Local integration throughput, 2026-11-08
+
+Host-only tooling adds cooperative admission before merge preparation, dry-first conservative metadata/history helpers, sealed SQLite restore-proof reuse, bulk replica catalog checks and invocation-local verified reads. `TOOL.integration-throughput` owns the bounded contract and `FIN01.controls` records source-stable synthetic execution. Normal current/staged checks and two-copy custody remain required. Historical evidence hashes and engine milestones are retained unchanged; affected old shared-source proofs may need targeted applicability review. Full-merge timing and the large legacy database reuse remain unmeasured. See `docs/integration-workflow.md`.
+
+
+### SNAP01 — Fresh snapshot verification throughput, 2026-11-08
+
+`TOOL.snapshot-throughput` owns four-worker, bounded, read-only verification of remaining research payloads after the registered audit. Each payload still receives complete size/SHA-256 verification; path policies, mutation checks and fresh working/base/staged readers remain. A retained a68af15c2 tree snapshot improves from205.52s to106.31s with identical complete snapshot-section and audit hashes, preserving4937stale records and2489validation gaps. SNAP01.controls records current host controls and comparison. Historical engine hashes/statuses are retained unchanged; no semantic coverage or whole-merge timing claim. See `docs/snapshot-performance.md`.
+
+
+### Tooling integration against current master — 2026-11-08
+
+The integration now combines actual master2875ee929 with tooling e18cf4117, retaining every opaque-caller/palette/stretch/cursor parent record. All SNAP01host inputs match the tested322-case phase exactly. The earlier A1review/backups and failed staged materialization remain at refs/mm/checkpoints/tooling-staged-before-master-advance-20261108, with every prior report/receipt preserved. Updated committed-history accounting covers47230transitions with zero remaining receipt gaps;112new entries concern opaque/journal custody only. No original/native execution or acceptance milestone is renewed. See tooling-master-merge-results-20261108/applicability02.json.
