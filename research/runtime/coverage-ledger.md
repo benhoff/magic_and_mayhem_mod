@@ -276,6 +276,23 @@ See [integration,final evidence and retained failures](alternate-canvas-live-int
 
 # Engine modernization coverage ledger
 
+## Native single player completion planning — 2026-11-09
+
+The [native simulation plan](../../docs/native-simulation-plan.md) assesses the
+current ownership, command-session, encounter, scene and campaign foundations
+against a complete native single-player target. It records provider/content,
+time/RNG, lifecycle, lab-policy, continuation, campaign, integration and acceptance
+gaps, with staged deliverables S0–S8. Multiplayer and existing original saves
+retain the legacy backend; native simulation, supported-player acceptance and
+Wine-free deployment have separate verdicts. The final target includes original
+single-player campaign and Quick Battle; bounded encounters remain intermediate.
+
+This is documentation/accounting only. Existing GP, AI, NP, RS and campaign
+behavior scopes, evidence hashes and milestone statuses remain unchanged.
+No original execution, new equivalence, native gameplay replacement or rendering
+acceptance is established. S0 must enumerate the supported content and actual
+provider closure before a fixed acceptance denominator is claimed.
+
 ## Windowed diagnostics merged with current master — 2026-10-26
 
 The original-windowed launch argument now composes with terrain-light session
