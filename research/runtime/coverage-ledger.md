@@ -28483,3 +28483,31 @@ policy are not promoted. See `rendering-alias-reachability-20261108.md`.
 ALIAS09 closes exactly two owner-amended controlled opaque RGB565 overlap cells: 128/156 passed, 28 pending. Retained 1,536-case original/backend/v3 output is rechecked with 23 current admission guards. This is shared controlled mechanism scope, not natural player overlap. SC.natural-callers, required boundaries and both final decisions remain pending; all 154 unrelated cells and historical source phases are preserved.
 
 `NP.alias-overlap-bounded-closeout` owns only this admission/accounting policy. Current 23 host guards and raw retained 1,536-case comparison support `ALIAS09.controls02`/`ALIAS09.admission01`; no recovered native-engine status, original collector or whole-player execution is renewed. The old ALIAS08 feature and its source/evidence custody are integrated without modifying historical hashes.
+
+
+
+
+## PK09 finite picking: qualified default and repaired software acquisition —2026-11-09
+
+`NP.picking-closeout` owns only both `journey.cursor-interaction.picking` rows. The frozen124-row caller-state parent and both final decisions remain unchanged at this checkpoint. Default02qualifies48physical source-derived object/cell windows, all four views/Up pan/Sharp/Integer at actual800/640and returned800,144displayed original input/World-return joins, full independent6004317000viewport pixels at zero differences, and normal retirement. The full pixel producer reconstructs2001original Worlds; current interaction reanalysis reuses that exact proof without another game or original raster execution.
+
+Retain both prototype analysis refusals: legal source camera metadata in a chunk and actor pose movement between windows. Opt-in checks now forbid chunk World/failure boundaries and require each current actor XY/source target/original picked XY to agree within its fixed window; full ground triples remain stable within windows. Old strict defaults/historical hashes remain. Software01fails after23windows with a source target whose anchor changes before original delivery. Software02uses public focus without scene clicks and three quiet source poses, completing48windows, two rebuilds and normal Quit. Its independent output/input comparison remains pending; no software row or final decision is promoted by acquisition.
+
+All4requests/3actual starts are charged, including the zero-game `/tmp`isolation refusal and failed software start. The existing isolation guard is unchanged; sessions/prefixes use the cold owned worktree and captures/reference output use RAM. The failed RAM checkout, exact source preimages, binaries, raw observations, negative reports, local staging SQLite and every pin stay held. Prior PR07/HS08/VC08caps remain exhausted and unchanged. User-approved89GiBmain reserve is batch-only; actual guards retain90GiBso far. No original modification, gameplay balance change, source push, publication, private transfer or cleanup. See `picking-closeout-20261109.md`.
+
+
+## PK09 both finite picking rows qualify — 2026-11-09
+
+`PK09.player01` preserves all 124 caller-state parent rows and adds both finite picking rows: **126/156 passed, 30 pending**. Both final decisions remain pending. Default and explicit software profiles complete 96 object/cell windows, 288 displayed source/return witnesses, four views and Up pan, Sharp/Integer at both sizes, actual 800→640→800 recreation and normal retirement. All 14,724 World presentations / 12,979,329,000 complete viewport pixels match the independent original-history reference. The default pixel proof is reused unchanged through fresh interaction analysis; software has its own reference execution.
+
+All four requests / three actual starts remain charged: two qualified games, one failed software game and one zero-game path refusal. Both failed prototype analyses, source phases, exact hashes and negative evidence remain. Thirty-one current controls check admission, legal camera chunks, actor/target/picked-cell joins, source readiness and scaling focus. Native/runtime/compiler/oracle bytes remain unchanged full-hash dependencies. General ray/Z, allocation generations, hardware, same-World continuity and combined-current master/default-controller execution remain pending. See [the picking closeout](picking-closeout-20261109.md).
+
+
+## Picking integrated with current master — 2026-11-09
+
+The reviewed static union adds exactly two picking rows to actual master font/DC acceptance: **130/156 passed, 26 pending**. Every other master row is preserved exactly, including font/DC closures and the owner-approved controlled opaque-overlap amendment. The latter retains its controlled 8×6 RGB565 mechanism scope and pending natural-player obligation. The common 124-row dossier, candidate-only annotation review and both pending final decisions remain unchanged; the actual master scope-amendment overlay is retained exactly. `picking-closeout-results-20261109/master-progress-01.json` binds all three parents and records raw source drift; the production UI check reads all 156 rows.
+
+This union starts no game or original reference and compares no new pixels. Owned picking execution remains bound to its distinct default/software controller phases; incoming font/runtime changes do not establish combined-current execution. Exact committed-history accounting, current/staged gates and paired review/evidence backups are required separately. All failures, source preimages, attempt limits and earlier parent histories remain retained.
+
+
+Merged verification records 54 passing admission/controller/row-union/overlap controls. The incoming-history review covers 16,134 committed parent/current transitions; 2,591 previously unreceipted transitions now have exact retrospective custody receipts, with zero unresolved receipt gaps. These receipts assert no past gate pass or additional engine execution. The normal current/staged integration gate and paired backups remain required.

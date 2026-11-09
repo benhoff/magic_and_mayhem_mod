@@ -166280,7 +166280,8 @@
         "PR07.G.execution: exhausted6requests/3original startups; second Spellbox Finish18 unacknowledged at17 after original Low acknowledgement, no new640World and no normal Quit. Root cause unisolated; both picking rows remain pending. SH07 independently reproduces the reduced High->Low route without the picking schedule; host2second state-lease retirement is identified, but the initiating guest stall remains unisolated.",
         "PR07.G.foot: last capture has20high-size source-only object/cell windows but no completed rebuild; partial evidence cannot supply full-row credit.",
         "PR07.G.scope: software, same-World Mini rebuilds, broader cells/maps/rays, allocation generations, selection/highlights/hotspots, known cursor-copy refusals, atomic HUD and response-deadline/capture timing attribution remain separate.",
-        "SF08.G.source-applicability: Shared artifact loading/session scoping or synthetic fixture construction was extracted on 2026-11-08. Historical source hashes and accepted milestones stay unchanged. The 275 focused controls validate this support refactor only; current equivalence of historical engine/analyzer proofs remains pending targeted applicability review or retained-data reanalysis. No original-game execution or acceptance promotion."
+        "SF08.G.source-applicability: Shared artifact loading/session scoping or synthetic fixture construction was extracted on 2026-11-08. Historical source hashes and accepted milestones stay unchanged. The 275 focused controls validate this support refactor only; current equivalence of historical engine/analyzer proofs remains pending targeted applicability review or retained-data reanalysis. No original-game execution or acceptance promotion.",
+        "PR07.P.assessment-optins: PK09 adds opt-in legal camera-metadata chunks and current-pose/window-local cell checks to the shared analyzer. The historical six-request failed batch, original hashes and legacy strict defaults remain. New finite picking evidence belongs to NP.picking-closeout; current execution of the legacy nominal CLI and broader ray/allocation scope are not asserted."
       ]
     },
     {
@@ -173777,6 +173778,112 @@
       "remaining_gaps": [
         "Natural overlapping player call, actual profile output and live COM alias discovery remain under SC.natural-callers and both required-boundaries cells.",
         "General backend per-piece opaque policy is distinct from production facade whole-call freeze. Keyed/masked/other formats, physical providers, whole-player and original-recovery completion remain open."
+      ]
+    },
+    {
+      "id": "NP.picking-closeout",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Finite original object/cell picking across display recreation",
+      "scope": "Finite public Quick Celtic Forest One (small), default/software Sharp/Integer at actual800/640/800 in one original process with recreated Worlds.48source-derived object/cell windows per profile cover four views and pan at both sizes, original input/World-return identity, three displayed generations per action, independently compared complete viewport history and normal owner retirement. Original picking/ray, scene production and simulation remain admitted suppliers; no allocation-generation, same-World continuity, arbitrary map/provider, response-deadline, gameplay replacement or final rendering decision claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056532,
+          "relation": "data",
+          "scope": "Checked original Region vtable cell identifies callback4fdad0; read-only entry/return witness around the forwarded callback. Callback function inventory and whole-body recovery remain unresolved. Uses the existing witness only; this acceptance analysis adds no original function recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4632512,
+          "scope": "Existing observed World return; no added simulation tick. Uses the existing witness only; this acceptance analysis adds no original function recovery."
+        }
+      ],
+      "implementation": [
+        "tools/picking_closeout.py",
+        "tools/prepare-rendering-picking-closeout.py",
+        "tools/run-rendering-picking-closeout.py",
+        "tools/check-rendering-picking-closeout.py",
+        "tools/close-rendering-picking-closeout.py"
+      ],
+      "tests": [
+        "tests/test-picking-closeout.py",
+        "tests/test-rendering-picking-resize.py"
+      ],
+      "documents": [
+        "research/runtime/picking-closeout-20261109.md"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_picking_resize.py",
+        "tools/rendering_picking_resize_assessment.py",
+        "tools/run-rendering-interaction.py",
+        "tools/rendering_interaction.py",
+        "tools/rendering_interaction_live.py",
+        "tools/rendering_interaction_budget.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/close-rendering-camera-matrix.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/close-rendering-retained-rows.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/campaign_input_observation.py",
+        "tools/comparison_process.py",
+        "tools/resident_capture.py"
+      ],
+      "evidence": [
+        "PK09.controls03",
+        "PK09.player01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "map": "Celtic Forest One (small)",
+        "software_flags": [
+          false,
+          true
+        ],
+        "actual_sizes": [
+          [
+            800,
+            600
+          ],
+          [
+            640,
+            480
+          ],
+          [
+            800,
+            600
+          ]
+        ],
+        "scaling": [
+          "sharp",
+          "integer"
+        ],
+        "views": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "provider": "Xvfb/Mesa, DPR1",
+        "actor": {
+          "slot": 0,
+          "type": 0,
+          "owner": 0
+        }
+      },
+      "remaining_gaps": [
+        "PK09.G.execution: Both finite picking rows qualify in acceptance01:96physical object/cell windows,288actual displayed source/return witnesses, four views and Up pan at both sizes/scalings, actual800/640/800recreation and normal retirement. General original ray/Z, allocation generations, current combined-master/default-controller execution and both final decisions remain independent.",
+        "PK09.G.scope: Prior PR07/HS08/VC08 failures and exhausted caps remain historical; no same-World, allocation-generation, broad original-ray or final-renderer closure."
       ]
     }
   ],
@@ -398440,6 +398547,68 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "PK09.controls03",
+      "kind": "native_integration",
+      "record": "research/runtime/picking-closeout-results-20261109/controls-03.json",
+      "sha256": "2ff12878a7a3c0ee9a9d104e27cbf2e7903217b665c4ecca1c27695e7e8f1566",
+      "scope": "Current admission/controller/raw-input controls only; no actual game or player-row credit.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/method_tests",
+          "equals": 31
+        }
+      ]
+    },
+    {
+      "id": "PK09.player01",
+      "kind": "native_integration",
+      "record": "research/runtime/picking-closeout-results-20261109/acceptance-01.json",
+      "sha256": "129bb8e3232b0fbe55e2f8b00a97b61af568be11d90c60b437129694ac7468e1",
+      "scope": "Finite public Quick Celtic Forest One (small), default/software Sharp/Integer at actual800/640/800 in one original process with recreated Worlds.48source-derived object/cell windows per profile cover four views and pan at both sizes, original input/World-return identity, three displayed generations per action, independently compared complete viewport history and normal owner retirement. Original picking/ray, scene production and simulation remain admitted suppliers; no allocation-generation, same-World continuity, arbitrary map/provider, response-deadline, gameplay replacement or final rendering decision claim.",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/analysis_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 126
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 30
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -433344,6 +433513,28 @@
         "ALIAS09.controls02",
         "ALIAS09.admission01"
       ]
+    },
+    {
+      "id": "native.picking-closeout",
+      "title": "Physical object/cell picks across real display recreation",
+      "level": "headless",
+      "scope": "Finite public Quick Celtic Forest One (small), default/software Sharp/Integer at actual800/640/800 in one original process with recreated Worlds.48source-derived object/cell windows per profile cover four views and pan at both sizes, original input/World-return identity, three displayed generations per action, independently compared complete viewport history and normal owner retirement. Original picking/ray, scene production and simulation remain admitted suppliers; no allocation-generation, same-World continuity, arbitrary map/provider, response-deadline, gameplay replacement or final rendering decision claim.",
+      "behaviors": [
+        "NP.picking-closeout"
+      ],
+      "tests": [
+        "tools/picking_closeout.py",
+        "tools/prepare-rendering-picking-closeout.py",
+        "tools/run-rendering-picking-closeout.py",
+        "tools/check-rendering-picking-closeout.py",
+        "tools/close-rendering-picking-closeout.py",
+        "tests/test-picking-closeout.py",
+        "tests/test-rendering-picking-resize.py"
+      ],
+      "evidence": [
+        "PK09.controls03",
+        "PK09.player01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -435171,8 +435362,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-34bcac525cd8d9a3c5d282a708ed4e3ebce6a9e0e15ae1e24480e42adfb08e70.json",
-    "sha256": "34bcac525cd8d9a3c5d282a708ed4e3ebce6a9e0e15ae1e24480e42adfb08e70"
+    "path": "research/runtime/coverage/source-index-b44e7a7f593ebf8c5d2b2f0d5e343f69fb87025311b26865f4837b9fb7a4134d.json",
+    "sha256": "b44e7a7f593ebf8c5d2b2f0d5e343f69fb87025311b26865f4837b9fb7a4134d"
   },
   "evidence_applicability": [
     {
