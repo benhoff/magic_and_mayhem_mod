@@ -31836,7 +31836,8 @@
       ],
       "evidence": [
         "RS.font-glyph-raster.comparison-20261010",
-        "NR.font-glyph-admission.synthetic-20261010"
+        "NR.font-glyph-admission.synthetic-20261010",
+        "FDC08.all-installed-glyphs01"
       ],
       "status": {
         "understanding": "scoped",
@@ -171874,6 +171875,283 @@
         "PC08.G.profile-provider: actual query arguments/results and RET24 ABI are observed/controlled; no Wine/Win32 service implementation equivalence.",
         "PC08.G.observer-scope: current passive observation plus four finite application cases; no native palette-builder live replacement or arbitrary periodic/displayed temporal cycling claim.",
         "PC08.G.master-source-phase: merged NCS/fallback/canvas/retained-reader sources differ from recorded four-case execution. Preserve full native/runtime hashes and inherited milestones; current merged codec/ABI/build controls are separate from whole combined-player execution."
+      ]
+    },
+    {
+      "id": "NP.font-lifetime-observer",
+      "kind": "native_policy",
+      "subsystem": "rendering_reconstruction",
+      "title": "Installed SFT font generation and glyph custody observation",
+      "scope": "Opt-in NoCD40209ca7 passive font reader and four global teardown observations, normalized immutable SFT source snapshots and exact committed CPS glyph/font-generation joins. Preserve original execution, registers/flags/floating state and LastError. Observe original reload retention explicitly; no source pointer crosses the evidence protocol, no original pixels seed native input and no acceptance or full font-lifetime milestone follows from controls alone. Version2 glyph records additionally pin the actual continuous World generation and source-prefix ordinal, separating consumed commands from a final unpublished hidden-menu tail.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4872928,
+          "scope": "Existing recovered loader/teardown entry; passive lifecycle observation only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4974784,
+          "scope": "Existing recovered loader/teardown entry; passive lifecycle observation only.",
+          "recovered_range": "font-global-4be8c0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4974944,
+          "scope": "Existing recovered loader/teardown entry; passive lifecycle observation only.",
+          "recovered_range": "font-global-4be960"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4975104,
+          "scope": "Existing recovered loader/teardown entry; passive lifecycle observation only.",
+          "recovered_range": "font-global-4bea00"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4975264,
+          "scope": "Existing recovered loader/teardown entry; passive lifecycle observation only.",
+          "recovered_range": "font-global-4beaa0"
+        }
+      ],
+      "implementation": [
+        "runtime/scene/font_observation.h",
+        "runtime/scene/font_observation.S",
+        "runtime/scene/canvas_producers.c",
+        "tools/build-scene-observer.py",
+        "runtime/scene/world_continuous.c"
+      ],
+      "tests": [
+        "tests/test-font-lifetime-observation.py",
+        "tools/check-font-lifetime-observation.py"
+      ],
+      "documents": [
+        "research/runtime/font-dc-lifetime-20261108.md",
+        "research/formats/font-lifetime-observation.md"
+      ],
+      "validation_dependencies": [
+        "tools/font_lifetime_observation.py",
+        "tools/scene_actor_observation.py",
+        "runtime/shadow/win32_min.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "tests/font-lifetime-fixture.c",
+        "tests/font-lifetime-abi.S"
+      ],
+      "evidence": [
+        "FDC08.observer-controls01",
+        "FDC08.observer-controls02",
+        "FDC08.observer-controls03"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "FDC08.G.live: Actual public font load/use/reload/teardown, associated independent output and DC image custody across both profiles/sizes remain pending.",
+        "FDC08.G.baseline: Original reload retains replaced allocations. This observer must preserve and name that behavior without claiming leak-free original replacement."
+      ]
+    },
+    {
+      "id": "NP.installed-font-dc-acceptance",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Installed font reload, glyph output and DC custody acceptance",
+      "scope": "Finite default/software640/800 public Quick Worlds separated by Main resolution changes: independently matched original installed SFT generations and committed hidden-menu glyphs; actual native Qt SFT registration, heading/body/tooltip caption Paint events joined to source-matched screenshots before/after reload, content-cache reuse and normal release; full native/original-history World viewport comparison; separate DC image borrow/return chains and normal retirement. Original reload allocations remain explicitly retained. Native outline/AA is intentional policy, no original UI pixel equivalence, World-SFT text, GDI text or leak-free original claim. A valid DC borrow may require zero CPU-read tickets. Unused final hidden-menu emissions are separately bounded and grant no output credit.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/prepare-font-lifetime.py",
+        "tools/run-font-lifetime.py",
+        "tools/font_lifetime_journey.py",
+        "tools/font_lifetime_acceptance.py",
+        "tools/check-font-lifetime.py",
+        "tools/check-installed-glyph-kernels.py",
+        "tools/font_native_lifetime.py",
+        "tools/close-font-lifetime.py"
+      ],
+      "tests": [
+        "tests/test-font-lifetime-observation.py",
+        "tests/test-font-native-lifetime.py",
+        "tests/menu-font-test.cpp"
+      ],
+      "validation_dependencies": [
+        "tools/font_lifetime_observation.py",
+        "tools/resident_capture.py",
+        "tools/cpu_reader_journal.py",
+        "tools/rendering_pilot.py",
+        "tools/scene_actor_observation.py",
+        "tests/glyph-raster-reference.cpp",
+        "tests/glyph-raster-native.cpp",
+        "tests/glyph-raster-test.cpp",
+        "tests/acceptance-world-history.cpp",
+        "apps/qt-shell/menu_fonts.cpp",
+        "apps/qt-shell/font_lifetime_trace.hpp",
+        "tools/check-font-native-lifetime.py",
+        "tests/world-raster-reference.hpp"
+      ],
+      "documents": [
+        "research/runtime/font-dc-lifetime-20261108.md"
+      ],
+      "evidence": [
+        "FDC08.default64007",
+        "FDC08.default80001",
+        "FDC08.software64001",
+        "FDC08.font-dc-closeout01",
+        "FDC08.default64008",
+        "FDC08.default80002",
+        "FDC08.software64002",
+        "FDC08.software80002"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "FDC08.G.broader: Finite four profile/size load-use-reload-Quit cases only. No arbitrary platform/exceptional lifecycle, original UI pixel identity, World SFT text or Qt internal font-engine allocator claim. Native outlines/AA and original retained replacements stay explicit."
+      ]
+    },
+    {
+      "id": "NP.font-dc-passive-journal",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Opt-in nominal font/DC metadata journal",
+      "scope": "Permit only an explicitly enabled journal with normal acceptance, font-lifetime observation and pilot flags to map passive DC/CPU custody metadata. Preserve the prior diagnostic gate and every renderer operation, result and LastError. Mode29 names nominal font metadata; it injects no reader, fault or simulation action and cannot by itself close lifetime/output acceptance.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "runtime/render/cpu_reader_journal.h",
+        "protocols/include/mnm/native_cpu_reader_journal_v1.h"
+      ],
+      "tests": [
+        "tests/native-cpu-reader-journal-test.c",
+        "tests/test-cpu-reader-journal.py",
+        "tools/test-native-cpu-reader-journal.py",
+        "tests/cpu-reader-journal-win32.c"
+      ],
+      "validation_dependencies": [
+        "tools/cpu_reader_journal.py",
+        "tools/build-render-bridge.py",
+        "runtime/shadow/win32_min.h"
+      ],
+      "documents": [
+        "research/runtime/font-dc-lifetime-20261108.md"
+      ],
+      "evidence": [
+        "FDC08.passive-dc-controls02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "FDC08.G.passive-live: Actual nominal DC acquire/return/output retirement remains pending; synthetic mapped controls grant no acceptance."
+      ]
+    },
+    {
+      "id": "NP.font-hidden-spellbox-admission",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Wholly hidden original Spellbox redraw after a Low rebuild",
+      "scope": "Intentional native policy only at the exact original5770f5 E8/return5770fa to58c4a0: an opaque40x40 rectangle at identical source/destination coordinates, wholly outside both live640x48016-bit canvases, has no pixel operation. Visible/partial copies, other callers/wrappers/formats/sizes and strict direct COM INVALIDRECT remain unchanged. This avoids the original void wrapper retry on the observed stale hidden UI redraw; no original caller/flags or driver equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817504,
+          "scope": "Existing recovered void rectangle/restore wrapper; exact imported guard5770f5/return5770fa is a bounded native policy, not recovery of its enclosing caller."
+        }
+      ],
+      "implementation": [
+        "runtime/native-draw/hidden_spellbox_copy.h",
+        "runtime/native-draw/cursor_copy_leases.h"
+      ],
+      "tests": [
+        "tests/hidden-spellbox-copy-policy.cpp",
+        "tests/native-hidden-spellbox-copy-probe.c",
+        "tools/test-font-hidden-spellbox-copy.py"
+      ],
+      "documents": [
+        "research/runtime/font-dc-lifetime-20261108.md",
+        "research/formats/hidden-spellbox-copy-v1.md"
+      ],
+      "validation_dependencies": [
+        "runtime/native-draw/cursor_owner.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/native-draw/lifetime_lock.h",
+        "runtime/native-draw/factory.c",
+        "runtime/shadow/win32_min.h",
+        "tools/build-native-draw.py",
+        "tests/native-cursor-owner-probe.c",
+        "tests/graphics-lifetime-common.h",
+        "tests/original-pe32-image.h",
+        "tools/test-native-cursor-lifetime.py",
+        "tools/test-hidden-spellbox-copy.py"
+      ],
+      "evidence": [
+        "FDC08.hidden-copy-controls02",
+        "FDC08.hidden-copy-controls03",
+        "FDC08.hidden-copy-controls04"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "FDC08.G.hidden-import: Four actual installed font/DC cases remain pending. Retain the parent native policy caller/flags and platform limits."
+      ]
+    },
+    {
+      "id": "NP.native-menu-font-lifetime-observation",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Native Qt SFT registration, caption paint and release observation",
+      "scope": "Opt-in bounded metadata for the actual native Qt menu-font path: content-derived SFT outline registrations, shared generation/cache/owner identity, visible caption Paint events with selected/resolved family and actual glyph map, and successful unregister at owner retirement. Preserve font conversion, selection, rendering and ownership behavior; no original UI pixel equivalence or World-SFT text claim. Events use native host monotonic nanoseconds, ordered and joined within the current screenshot interval; root Show resets bounded paint deduplication. The log has no font, rendering or owner decision consumer.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "apps/qt-shell/menu_fonts.cpp",
+        "apps/qt-shell/font_lifetime_trace.hpp"
+      ],
+      "tests": [
+        "tests/menu-font-test.cpp",
+        "tests/test-font-native-lifetime.py",
+        "tools/check-font-native-lifetime.py"
+      ],
+      "validation_dependencies": [
+        "tools/font_native_lifetime.py",
+        "apps/qt-shell/menu_fonts.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp"
+      ],
+      "documents": [
+        "research/runtime/font-dc-lifetime-20261108.md",
+        "research/formats/native-menu-font-lifetime-v1.md"
+      ],
+      "evidence": [
+        "FDC08.native-menu-font-controls03"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "FDC08.G.native-ui: Four actual installed profile/size cases, screenshot joins and normal player retirement remain pending. Current controls establish only the bounded observer/native font component milestone."
       ]
     }
   ],
@@ -392979,6 +393257,475 @@
           "equals": 628
         }
       ]
+    },
+    {
+      "id": "FDC08.observer-controls01",
+      "kind": "native_integration",
+      "scope": "Sixteen authored controls and24production i386 hook ABI calls; production/selftest builds. No actual game or acceptance promotion.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/controls-01.json",
+      "sha256": "fc76f5dd464a1e1c6c100a44c6ddec5ed14e6bff403b7a01243bfb44882bcdd8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/control_cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/production_hook_abi_cases",
+          "equals": 24
+        }
+      ]
+    },
+    {
+      "id": "FDC08.passive-dc-controls02",
+      "kind": "native_integration",
+      "scope": "Optimized/sanitized record contention,81nominal gate combinations,18reader tests and nine synthetic Wine mapping cases; original diagnostic gate retained, nominal mode29explicit. No original game or player acceptance.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/dc-controls-02.json",
+      "sha256": "e156cad2c628c48712443d3df2f3d5143ff27e8649504e9c3c2485f428759e6e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/6/gate_mode",
+          "equals": 29
+        }
+      ]
+    },
+    {
+      "id": "FDC08.observer-controls02",
+      "kind": "native_integration",
+      "scope": "Version2 source-context custody:17reader/ABI controls and24production i386 entry/return cases; both actual production/selftest builds. No original game or acceptance.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/controls-02.json",
+      "sha256": "04cd2faae631fb702f6ba8f33bd8fe024bd4f11e1a51f3ad9e9cf52f43d1b20a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/control_cases",
+          "equals": 17
+        },
+        {
+          "pointer": "/production_hook_abi_cases",
+          "equals": 24
+        }
+      ]
+    },
+    {
+      "id": "FDC08.all-installed-glyphs01",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/all-installed-glyphs-01.json",
+      "sha256": "b88b0d459271543a8a2c6e134f402ed943f76f445126f4531520a6a08a3af607",
+      "scope": "Selected RGB565 initialized-table glyph pixels; isolated original code, synthetic and installed sources. No text layout, Win32 ABI, live admission or bypass. Current all-six-installed-font component comparison only. No extra game start or acceptance row follows from this isolated result.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 4335
+        },
+        {
+          "pointer": "/equal",
+          "equals": 4335
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FDC08.native-menu-font-controls03",
+      "kind": "native_integration",
+      "scope": "Twelve strict reader/screenshot time controls; existing authored outline glyph mask/origin/metrics/fallback tests and22installed menu variants at three sizes.960caption paints,23generations with every registration retired, peakfour fonts. No original game, original UI pixel equivalence or installed acceptance.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/native-font-controls-03.json",
+      "sha256": "8db9136208cb82d6a480114e5547497e1415d27a3bbea9b3cc5a26b80a1ea1f8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/reader_controls",
+          "equals": 12
+        },
+        {
+          "pointer": "/painted_captions",
+          "equals": 960
+        },
+        {
+          "pointer": "/retired_generations",
+          "equals": 23
+        },
+        {
+          "pointer": "/registered_fonts_retired",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FDC08.hidden-copy-controls02",
+      "kind": "native_integration",
+      "scope": "Exact imported f369afac0offscreen copy policy with20retained complete planes,93classifications,18changed anchor refusals and four fresh synthetic Wine provider profiles. No new original game or general COM/caller equivalence.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/hidden-copy-controls-02.json",
+      "sha256": "fcb0639192078788d70cdc996a9ddbc505847631577759a91a0addf57f6456a1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FDC08.observer-controls03",
+      "kind": "native_integration",
+      "scope": "Current version2production observer controls with existing recovered-range links for four original teardown entries:17reader cases,24actual i386 hook ABI calls and production/selftest builds. No new original game or acceptance promotion.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/controls-03.json",
+      "sha256": "d86c56b7c9f30cddefc9ceef20daafb9dc38cf568418705a97dc162601b3c44a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/control_cases",
+          "equals": 17
+        },
+        {
+          "pointer": "/production_hook_abi_cases",
+          "equals": 24
+        }
+      ]
+    },
+    {
+      "id": "FDC08.default64007",
+      "kind": "native_integration",
+      "scope": "Exactly one source-bound default640-07 case: actual native font caption/catalog/release, original hidden-font reload/retirement, DC custody and independent whole-World/native viewport comparison. Four-case admission and both font rows remain pending.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/default640-07-comparison.json",
+      "sha256": "210bb0b0ae9fbae72ecadb2244324bafaef99e4eb80e2cb5c1f55bff5128c6d6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/font_lifetimes_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_output_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_menu_fonts/normal_retirement",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FDC08.default80001",
+      "kind": "native_integration",
+      "scope": "Exactly one source-bound default800-01 case: actual native font caption/catalog/release, original hidden-font reload/retirement, DC custody and independent whole-World/native viewport comparison. Four-case admission and both font rows remain pending.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/default800-01-comparison.json",
+      "sha256": "7687609cd172016f1f069b33afa2cb2b7f53000f7115e29cb20e870e8a4be6e0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/font_lifetimes_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_output_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_menu_fonts/normal_retirement",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FDC08.software64001",
+      "kind": "native_integration",
+      "scope": "Exactly one source-bound software640 case: actual native caption/catalog/release, original hidden-font reload/retirement, DC custody and independent whole-World/native viewport comparison. Four-case admission and both font rows remain pending.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/software640-01-comparison.json",
+      "sha256": "815d4511325f4461cf07475095e785b6e26bf8d32e43c989ee59080e2fb6d96a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/font_lifetimes_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_output_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_menu_fonts/normal_retirement",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FDC08.hidden-copy-controls03",
+      "kind": "native_integration",
+      "scope": "Current owned font control namespace:93policy cases,20complete planes,18changed-anchor refusals and four synthetic provider profiles with1536053assertions each. No game or native policy change.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/hidden-copy-controls-03.json",
+      "sha256": "35b62e37e7e43cde6fef0f4325eaa69376545a10e527b8af81e16aed553a644d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FDC08.font-dc-closeout01",
+      "kind": "native_integration",
+      "scope": "Exactly two finite default/software font/DC operation rows at actual640/800. Native Qt SFT outlines/AA remain intentional policy; no original UI pixel identity, presented World SFT text, original reload leak-free behavior, arbitrary platform/caller/exceptional ownership or final rendering decision. Every historical source phase and failed request remains retained.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/acceptance-01.json",
+      "sha256": "3aa57f185563eb512558b2bca9ff84cdfb0c906fb604a324dbf22baf06568c1d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 126
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 30
+        }
+      ]
+    },
+    {
+      "id": "FDC08.default64008",
+      "kind": "native_integration",
+      "scope": "Current corrected original580a90/backend13oracle and complete native font/DC/output proof for this one retained actual case; no extra game start.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/default640-08-comparison.json",
+      "sha256": "d371b104e24cb97452a6ac1dc8470c64ed86c4c6d179ae1b4f78f2dfeb45672d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/font_lifetimes_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_output_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FDC08.default80002",
+      "kind": "native_integration",
+      "scope": "Current corrected original580a90/backend13oracle and complete native font/DC/output proof for this one retained actual case; no extra game start.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/default800-02-comparison.json",
+      "sha256": "65fb0ad8883044d8f7a9e723d817b7993ddce82d5c4b3a6c1d1cd626ea1bb4f4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/font_lifetimes_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_output_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FDC08.software64002",
+      "kind": "native_integration",
+      "scope": "Current corrected original580a90/backend13oracle and complete native font/DC/output proof for this one retained actual case; no extra game start.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/software640-02-comparison.json",
+      "sha256": "5e2f491276d20f85688612ca4fe53c4c893532916a4c7aa0b1316eaba47cb2a5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/font_lifetimes_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_output_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FDC08.software80002",
+      "kind": "native_integration",
+      "scope": "Current corrected original580a90/backend13oracle and complete native font/DC/output proof for this one retained actual case; no extra game start.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/software800-02-comparison.json",
+      "sha256": "efff4ff3ae716f1ad455d9aa1bceea64135599ad753cf2ab2c99ec9b402963d3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/font_lifetimes_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_output_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "FDC08.hidden-copy-controls04",
+      "kind": "native_integration",
+      "scope": "Separate current font producer with the preserved viewport driver included conservatively in source provenance.93policy cases,20whole planes,18anchor refusals and1536053assertions per four synthetic profiles. No viewport CLI execution or game start.",
+      "record": "research/runtime/font-dc-lifetime-results-20261108/hidden-copy-controls-04.json",
+      "sha256": "c520ab677f77cf183020876e99c8211a5bf6ff723c1aa3ec30cb83eb8d03d692",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -427244,6 +427991,92 @@
       "remaining_gaps": [
         "PC08.G.production-observer-application"
       ]
+    },
+    {
+      "id": "native.font-lifetime-observer-controls",
+      "title": "Production font custody controls",
+      "scope": "Native authored-input encoder/decoder and actual i386 observer entry/return assembly only; no real player or acceptance claim.",
+      "level": "headless",
+      "behaviors": [
+        "NP.font-lifetime-observer"
+      ],
+      "tests": [
+        "tests/test-font-lifetime-observation.py",
+        "tools/check-font-lifetime-observation.py"
+      ],
+      "evidence": [
+        "FDC08.observer-controls01",
+        "FDC08.observer-controls02",
+        "FDC08.observer-controls03"
+      ]
+    },
+    {
+      "id": "native.installed-font-dc-acceptance",
+      "scope": "Four bounded public load/use/reload/teardown cases with current native output and independent original history.",
+      "level": "headless",
+      "behaviors": [
+        "NP.installed-font-dc-acceptance"
+      ],
+      "tests": [
+        "tools/check-font-lifetime.py"
+      ],
+      "evidence": [
+        "FDC08.default64007",
+        "FDC08.default80001",
+        "FDC08.software64001",
+        "FDC08.font-dc-closeout01",
+        "FDC08.default64008",
+        "FDC08.default80002",
+        "FDC08.software64002",
+        "FDC08.software80002"
+      ]
+    },
+    {
+      "id": "native.font-dc-passive-journal-controls",
+      "scope": "Authored gate/record contention and synthetic Wine journal mapping with LastError preservation; no original game.",
+      "level": "headless",
+      "behaviors": [
+        "NP.font-dc-passive-journal"
+      ],
+      "tests": [
+        "tools/test-native-cpu-reader-journal.py"
+      ],
+      "evidence": [
+        "FDC08.passive-dc-controls02"
+      ]
+    },
+    {
+      "id": "native.font-hidden-spellbox-controls",
+      "level": "headless",
+      "scope": "Intentional native policy only at the exact original5770f5 E8/return5770fa to58c4a0: an opaque40x40 rectangle at identical source/destination coordinates, wholly outside both live640x48016-bit canvases, has no pixel operation. Visible/partial copies, other callers/wrappers/formats/sizes and strict direct COM INVALIDRECT remain unchanged. This avoids the original void wrapper retry on the observed stale hidden UI redraw; no original caller/flags or driver equivalence.",
+      "behaviors": [
+        "NP.font-hidden-spellbox-admission"
+      ],
+      "tests": [
+        "tools/test-font-hidden-spellbox-copy.py",
+        "tests/hidden-spellbox-copy-policy.cpp",
+        "tests/native-hidden-spellbox-copy-probe.c"
+      ],
+      "evidence": [
+        "FDC08.hidden-copy-controls02",
+        "FDC08.hidden-copy-controls03",
+        "FDC08.hidden-copy-controls04"
+      ]
+    },
+    {
+      "id": "native.menu-font-lifetime-controls",
+      "scope": "Actual native SFT outline family, visible-caption paint and shared owner cleanup controls; no original game.",
+      "level": "headless",
+      "behaviors": [
+        "NP.native-menu-font-lifetime-observation"
+      ],
+      "tests": [
+        "tests/menu-font-test.cpp",
+        "tests/test-font-native-lifetime.py"
+      ],
+      "evidence": [
+        "FDC08.native-menu-font-controls03"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -429061,8 +429894,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-e14dac8ade1ef18e8903d8375a47d207d071259917a80f0a588047b621ade914.json",
-    "sha256": "e14dac8ade1ef18e8903d8375a47d207d071259917a80f0a588047b621ade914"
+    "path": "research/runtime/coverage/source-index-2decd9df7c704de17ea38488bed8906e24ee59fcdea0dada82fef33116fbbbc2.json",
+    "sha256": "2decd9df7c704de17ea38488bed8906e24ee59fcdea0dada82fef33116fbbbc2"
   },
   "evidence_applicability": [
     {

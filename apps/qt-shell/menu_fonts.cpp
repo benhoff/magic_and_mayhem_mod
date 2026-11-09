@@ -14,6 +14,7 @@
 #include <cmath>
 #include <stdexcept>
 #include <vector>
+#include "font_lifetime_trace.hpp"
 
 namespace mnm::ui {
 namespace {
@@ -106,15 +107,26 @@ public:
     std::array<QString,4> families{};
     std::array<int,4> sizes{32,22,15,14};
     std::vector<int> registrations;
-    ~MenuFonts(){if(QGuiApplication::instance())for(auto id:registrations)QFontDatabase::removeApplicationFont(id);}
+    quint64 traceGeneration=0;
+    ~MenuFonts(){
+        if(QGuiApplication::instance())for(auto id:registrations){const bool removed=QFontDatabase::removeApplicationFont(id);if(traceGeneration)font_trace::record("unregister",{{"generation",QString::number(traceGeneration)},{"id",id},{"success",removed}});}
+        if(traceGeneration)font_trace::record("destroy",{{"generation",QString::number(traceGeneration)},{"app_alive",QGuiApplication::instance()!=nullptr}});
+    }
 };
 namespace {
 class FontOwner final:public QObject {
 public:
     FontOwner(QWidget* parent,MenuFontSet value):QObject(parent),fonts(std::move(value)){
         setObjectName("mnmMenuFonts");qApp->installEventFilter(this);
+        traceOwner=font_trace::owner();if(traceOwner)font_trace::record("attach",{{"generation",QString::number(fonts->traceGeneration)},{"owner",QString::number(traceOwner)},{"widget",parent->objectName()},{"class",parent->metaObject()->className()}});
     }
+    ~FontOwner() override {if(traceOwner)font_trace::record("detach",{{"generation",QString::number(fonts->traceGeneration)},{"owner",QString::number(traceOwner)}});}
     bool eventFilter(QObject* object,QEvent* event) override {
+        if(font_trace::enabled()&&object==parent()&&event->type()==QEvent::Show)painted.clear();
+        if(font_trace::enabled()&&event->type()==QEvent::Paint){
+            auto* widget=qobject_cast<QWidget*>(object);auto* menu=static_cast<QWidget*>(parent());
+            if(widget&&(widget==menu||menu->isAncestorOf(widget)))font_trace::paint(fonts->traceGeneration,traceOwner,widget,fonts->families,painted);
+        }
         if(event->type()==QEvent::ToolTip){
             auto* widget=qobject_cast<QWidget*>(object);
             auto* menu=static_cast<QWidget*>(parent());
@@ -124,6 +136,7 @@ public:
         return false;
     }
     MenuFontSet fonts;
+    quint64 traceOwner=0;QSet<QString> painted;
 };
 const MenuFonts* fontsFor(const QWidget* widget){
     for(auto* w=widget;w;w=w->parentWidget())for(auto* child:w->children())if(auto* owner=dynamic_cast<FontOwner*>(child))return owner->fonts.get();
@@ -148,14 +161,15 @@ MenuFontSet loadMenuFonts(const QString& root){
         const auto digest=QCryptographicHash::hash(bytes[i],QCryptographicHash::Sha256).toHex().left(16);
         bytes[i]=menuFontData(font,QString("MNM%1%2").arg(i).arg(QString::fromLatin1(digest)));
     }
-    if(absent==4)return std::make_shared<MenuFonts>();
+    if(absent==4){font_trace::record("fallback",{{"root",root}});return std::make_shared<MenuFonts>();}
     if(absent)throw std::runtime_error("Incomplete menu SFT font catalog");
     QByteArray key;for(const auto& b:bytes)key+=QCryptographicHash::hash(b,QCryptographicHash::Sha256);
     static QMap<QByteArray,std::weak_ptr<const MenuFonts>> cache;
-    if(auto existing=cache.value(key).lock())return existing;
+    if(auto existing=cache.value(key).lock()){if(existing->traceGeneration)font_trace::record("reuse",{{"generation",QString::number(existing->traceGeneration)},{"root",root}});return existing;}
     for(auto it=cache.begin();it!=cache.end();)if(it.value().expired())it=cache.erase(it);else ++it;
-    auto fonts=std::make_shared<MenuFonts>();fonts->sizes=sizes;
-    for(int i=0;i<4;++i){const int id=QFontDatabase::addApplicationFontFromData(bytes[i]);if(id<0)throw std::runtime_error("Qt rejected converted menu font");fonts->registrations.push_back(id);const auto families=QFontDatabase::applicationFontFamilies(id);if(families.size()!=1)throw std::runtime_error("Invalid converted menu font family");fonts->families[i]=families[0];}
+    auto fonts=std::make_shared<MenuFonts>();fonts->sizes=sizes;fonts->traceGeneration=font_trace::generation();
+    if(fonts->traceGeneration)font_trace::record("create",{{"generation",QString::number(fonts->traceGeneration)},{"root",root},{"key_sha256",QString::fromLatin1(QCryptographicHash::hash(key,QCryptographicHash::Sha256).toHex())}});
+    for(int i=0;i<4;++i){const int id=QFontDatabase::addApplicationFontFromData(bytes[i]);if(id<0)throw std::runtime_error("Qt rejected converted menu font");fonts->registrations.push_back(id);const auto families=QFontDatabase::applicationFontFamilies(id);if(families.size()!=1)throw std::runtime_error("Invalid converted menu font family");fonts->families[i]=families[0];if(fonts->traceGeneration)font_trace::record("register",{{"generation",QString::number(fonts->traceGeneration)},{"role",i},{"id",id},{"source",QString::fromStdString(paths[i])},{"family",families[0]},{"ttf_sha256",QString::fromLatin1(QCryptographicHash::hash(bytes[i],QCryptographicHash::Sha256).toHex())}});}
     cache[key]=fonts;return fonts;
 }
 void installMenuFonts(QWidget* widget,MenuFontSet fonts){

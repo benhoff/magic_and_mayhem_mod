@@ -4,7 +4,7 @@ static unsigned originalRaster(const Bytes& record,std::uintptr_t entry,std::vec
  if(record.size()<136||u32(record,8)!=9||u32(record,0)!=record.size())throw std::runtime_error("Closed raster envelope");
  const auto width=u32(record,20),height=u32(record,24),size=u32(record,76),payload=u32(record,80),backend=u32(record,60),mode=u32(record,56),indexed=u32(record,68);
  if(!width||!height||width>2048||height>2048||pixels.size()!=std::size_t(width)*height||size<40||record.size()!=96+size+payload||u32(record,96)!=size||u32(record,124)||indexed>1||payload!=(mode==3?64u:indexed?512u:0u))throw std::runtime_error("Closed source/extent");
- const std::pair<std::uintptr_t,unsigned> entries[]={{0x595677,0},{0x5947b2,1},{0x59521a,1},{0x595b47,2},{0x59603e,2},{0x57de00,3},{0x57ec90,4},{0x57f0f0,5},{0x57f5f0,6},{0x5806f0,7},{0x596490,9},{0x5968a4,9},{0x57e540,10}};
+ const std::pair<std::uintptr_t,unsigned> entries[]={{0x595677,0},{0x5947b2,1},{0x59521a,1},{0x595b47,2},{0x59603e,2},{0x57de00,3},{0x57ec90,4},{0x57f0f0,5},{0x57f5f0,6},{0x5806f0,7},{0x596490,9},{0x5968a4,9},{0x57e540,10},{0x580a90,13}};
  bool allowed=false;for(auto [address,kind]:entries)if(entry==address&&backend==kind)allowed=true;
  if(!allowed)throw std::runtime_error("Precise raster entry/backend");
  const unsigned char generic[]={0x55,0x8b,0xec};const unsigned char wrapper[]={0x83,0xec};
@@ -15,6 +15,21 @@ static unsigned originalRaster(const Bytes& record,std::uintptr_t entry,std::vec
  global(0x658174,reinterpret_cast<std::uintptr_t>(pixels.data()));global(0x6a2dc8,width);global(0x6e1f68,0);global(0x6e1f88,0);
  for(unsigned i=0;i<4;++i)global(i==0?0x6e0008:i==1?0x6cbb6c:i==2?0x6a49b8:0x656618,u32(record,40+i*4));
  const int x=std::int32_t(u32(record,32)),y=std::int32_t(u32(record,36));
+ if(backend==13){
+  // The stream owns the effective WORD table. Recreate the already recovered
+  // original linked-node/shade view, using node0 for those selected colours.
+  const auto shade=std::int32_t(u32(record,64));
+  if(mode!=8||indexed!=1||payload!=512||shade< -127||shade>127)throw std::runtime_error("Additive sprite effective table");
+  palette.assign(3+128*128,0xdeadbeef);palette[0]=0;palette[1]=2;palette[2]=64;
+  int shifted=shade>>2;if(shifted<0)++shifted;
+  std::memcpy(palette.data()+3+(64+shifted)*128,record.data()+96+size,512);
+  const auto pointer=std::uint32_t(reinterpret_cast<std::uintptr_t>(palette.data()));std::memcpy(frame.data()+28,&pointer,4);
+  *reinterpret_cast<std::uint16_t*>(0x6e1f7c)=0xf800;
+  *reinterpret_cast<std::uint16_t*>(0x6e1f7e)=0x07e0;
+  *reinterpret_cast<std::uint16_t*>(0x6e1f80)=0x001f;
+  using Additive=unsigned (__attribute__((fastcall)) *)(void*,int,int,int,int);
+  return reinterpret_cast<Additive>(entry)(frame.data(),x,y,shade,0);
+ }
  if(backend==9){
   // Capture already normalized the table to absolute destination rows,
   // including the original's skipped top rows. Undo that clipping adjustment

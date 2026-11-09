@@ -66,7 +66,7 @@ def decode(raw, *, closed=True):
     h=struct.unpack_from('<32I',raw)
     require(raw[:8]==b'MNMCRJ01' and h[2:6]==(1,128,128,CAPACITY), 'Reader journal version/layout')
     require(h[6]==h[7] and h[6]<=CAPACITY and not h[8] and not h[9], 'Reader journal lost, contended or uncommitted rows')
-    require(h[11] and h[12] and h[13] and h[14] and h[15] and h[25]==7 and not any(h[26:]), 'Reader journal identity/gate')
+    require(h[11] and h[12] and h[13] and h[14] and h[15] and h[25] in (7,29) and not any(h[26:]), 'Reader journal identity/gate')
     if closed:
         require(h[10]==h[18]==1 and h[19]==h[22] and not h[23] and not h[24], 'Reader journal incomplete ownership/closure')
         elapsed=(h[17]-h[16])&0xffffffff;require(elapsed<0x80000000, 'Reader journal tick ambiguity')

@@ -42,6 +42,19 @@ static void* nd_cursor_owned_operand(void* object,struct NdCursorView* temporary
  return temporary->words;
 }
 #include "cursor_copy_callers.h"
+#include "hidden_spellbox_copy.h"
+static u32 nd_hidden_spellbox_recorded;
+static void nd_hidden_spellbox_record(const struct NsState* s,const struct NsState* d,
+ const u32* r,u32 x,u32 y){
+ /* One first-hit diagnostic, no input/host pointer and no shared wire. Failure
+  * to retain it gives no branch-observation credit; rendering policy is fixed. */
+ if(nd_hidden_spellbox_recorded)return;nd_hidden_spellbox_recorded=1;
+ u32 row[32]={0x484d4e4d,0x31305043,1,128,0x40209ca7,0x5770fa,
+  s->width,s->height,d->width,d->height,r[0],r[1],r[2],r[3],x,y,15,1,
+  s->bits,d->bits,s->lifetime_identity,d->lifetime_identity};
+ HANDLE f=CreateFileA("native-hidden-spellbox-copy.bin",0x40000000,1,0,1,0x80,0);
+ if(f!=(HANDLE)-1){u32 wrote=0;WriteFile(f,row,sizeof(row),&wrote,0);CloseHandle(f);}
+}
 static void nd_cursor_copy_service(u32 index,void* source,void* dest,const u32* rectangle,u32 x,u32 y,u32 caller){
  struct NdCursorFx entry,exit;nd_cursor_save(&entry);
  struct NsLifeGuard guard __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
@@ -58,7 +71,16 @@ static void nd_cursor_copy_service(u32 index,void* source,void* dest,const u32* 
  }
  u32 q[11]={0};q[4]=index==13?1:2;
  if(rectangle)for(u32 k=0;k<4;++k)q[k+5]=rectangle[k];q[9]=x;q[10]=y;
- if(nd_cursor_scope_geometry(nd_cursor_geometry(&geometry,q))){
+ u32 invalid=nd_cursor_geometry(&geometry,q);
+ if(invalid==2 && index==15 && caller==0x5770fa && nd_cursor_readable((void*)0x5770f5,5)){
+  struct NsState *a=ns_lifetime_find((void*)geometry.source[2]),*b=ns_lifetime_find((void*)geometry.dest[2]);
+  if(nd_hidden_spellbox_copy(index,caller,(const u8*)0x5770f5,a->width,a->height,a->bits,
+       b->width,b->height,b->bits,rectangle,x,y)){
+   ++nd_cursor_counts[14];nd_hidden_spellbox_record(a,b,rectangle,x,y);
+   nd_cursor_view_drop(&copy.dest);nd_cursor_view_drop(&copy.source);nd_cursor_restore(&entry);return;
+  }
+ }
+ if(nd_cursor_scope_geometry(invalid)){
   nd_cursor_view_drop(&copy.dest);nd_cursor_view_drop(&copy.source);nd_cursor_restore(&entry);return;
  }
  struct NdCursorPrimary shadow={*(u32*)0x6f98c0,(u32)d,nd_cursor_primary};

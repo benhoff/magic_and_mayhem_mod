@@ -28069,3 +28069,40 @@ versions including binary artifacts. One append-only retrospective receipt pins
 receipts and retains the negative finding. This is independent of fresh merged
 OS08execution and asserts no historical gate pass. See
 `opaque-secondary-results-20261108/merged-history-02.json`.
+
+### Font/DC acceptance investigation — 2026-11-08, incomplete
+
+`font-dc-lifetime-20261108.md` retains production i386 font observer ABI/reader
+controls, all-six-installed-font kernel comparison (4335cases/3420849WORDs),
+explicit passive nominal DC journal controls and the imported narrow hidden
+Spellbox copy guard. A successful two-World/reload/Quit pilot has145zero-difference
+World planes,8original SFT loads and complete DC custody. Oracle-only removal of
+67268original font commands changed no presented World: hidden original menu
+text is separate from the actual native Qt menu-font path. No font row closes.
+
+Current native Qt controls pass12reader/time/screenshot controls,960caption
+paints and23fully retired font generations across22menu variants/three sizes.
+This is a bounded headless observation/component milestone only. Actual visible
+native captions before/after reload in default/software640/800 and normal live
+registration release remain pending. Original retained reload allocations,
+undrawn yellow font and native outline/AA policy remain explicit. Preserve every
+negative report and source phase; neither final rendering decision changes.
+
+### Font/DC finite rows closed —2026-11-09
+
+`font-dc-lifetime-results-20261108/acceptance-01.json` admits exactly the two
+`operation.text-font-dc-lifetime` profile rows at actual640/800. Four successful
+normal sessions and fresh independent comparisons prove711World images and
+1108866000viewport pixels with zero differences,32original SFT generations,
+44real DC borrows (zero required CPU-read tickets),264fresh native caption joins
+and16native registrations retired. User-approved final10request/8reserved-start
+caps retain one unknown prior start conservatively and every old failure.
+
+The last retained capture exposed an independent oracle table omission for the
+already recovered580a90/backend13additive sprite. A guarded reference-only repair,
+three malformed-input refusals and four fresh retained comparisons close that
+comparison gap without changing the native renderer or starting another game.
+Original hidden-menu text remains separate from visible native Qt SFT outlines;
+native AA policy, undrawn yellow, original retained reload allocations and Qt
+internal allocator limits stay explicit. The124-row caller-state master parent
+is preserved:126/156passed,30pending; both final decisions remain pending.

@@ -66,6 +66,12 @@ class JournalTests(unittest.TestCase):
         with self.assertRaises(ValueError):wire_reads(f.cap(rows),'wrong',count,body)
         with self.assertRaises(ValueError):wire_reads(f.cap(rows),'fixture',count,body[:-1]+b'\1')
 
+    def test_nominal_font_metadata_mode_is_explicit(self):
+        h,r,w=fixture();h[25]=29;self.assertTrue(chains(*decode(raw(h,r)),w)["complete_observed_chain"])
+        for mode in (0,1,5,13,21,28,31):
+            h[25]=mode
+            with self.subTest(mode=mode),self.assertRaises(ValueError):decode(raw(h,r))
+
     def test_complete_chain_and_zero_epoch(self):
         h,r,w=fixture();a,b=decode(raw(h,r));result=chains(a,b,w)
         self.assertTrue(result['complete_observed_chain']);self.assertEqual(result['dc_borrows'],1)

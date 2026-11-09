@@ -22,6 +22,8 @@
 #define MNM_CRJ_TRACKED 1024u
 struct MnmCpuReaderJournal {uint32_t header[32];uint32_t rows[MNM_CRJ_CAPACITY][32];};
 static inline int mnm_crj_gate(uint32_t enabled,uint32_t diagnostic,uint32_t pilot){return enabled==1 && diagnostic==1 && pilot==1;}
+/* Explicit passive nominal font/DC observation; no diagnostic reader/fault. */
+static inline int mnm_crj_font_gate(uint32_t enabled,uint32_t normal,uint32_t font,uint32_t pilot){return enabled==1 && normal==1 && font==1 && pilot==1;}
 /* Exactly one reservation attempt. Contention/overflow refuses evidence, never
  * waits, overwrites a row, changes a game result or extends a deadline. */
 static inline int mnm_crj_record(struct MnmCpuReaderJournal* j,const uint32_t* row){

@@ -50,7 +50,9 @@ static void cpu_journal_plain(u32 event,void* object,void* dc,i32 result){
 }
 static void cpu_journal_init(void){
  u32 error=GetLastError();
- if(!mnm_crj_gate(cpu_journal_env("MNM_NATIVE_CPU_READER_JOURNAL"),cpu_journal_env("MNM_ACCEPTANCE_DIAGNOSTIC"),cpu_journal_env("MNM_ACCEPTANCE_PILOT")) || !lock_capture_path_length){SetLastError(error);return;}
+ const u32 enabled=cpu_journal_env("MNM_NATIVE_CPU_READER_JOURNAL"),pilot=cpu_journal_env("MNM_ACCEPTANCE_PILOT");
+ const u32 font=mnm_crj_font_gate(enabled,cpu_journal_env("MNM_ACCEPTANCE_NORMAL"),cpu_journal_env("MNM_FONT_LIFETIME"),pilot);
+ if((!font&&!mnm_crj_gate(enabled,cpu_journal_env("MNM_ACCEPTANCE_DIAGNOSTIC"),pilot)) || !lock_capture_path_length){SetLastError(error);return;}
  char path[544];static const char suffix[]="\\cpu-reader-journal-v1.bin";
  if(lock_capture_path_length>sizeof(path)-sizeof(suffix)){SetLastError(error);return;}
  copy(path,lock_capture_path,lock_capture_path_length);copy(path+lock_capture_path_length,suffix,sizeof(suffix));
@@ -58,7 +60,7 @@ static void cpu_journal_init(void){
  if(file!=(HANDLE)-1){HANDLE map=CreateFileMappingA(file,0,4,0,MNM_CRJ_BYTES,0);CloseHandle(file);
   if(map){cpu_journal=MapViewOfFile(map,2,0,0,MNM_CRJ_BYTES);CloseHandle(map);}}
  if(cpu_journal){zero(cpu_journal,MNM_CRJ_BYTES);u32* h=cpu_journal->header;copy(h,"MNMCRJ01",8);
-  h[2]=1;h[3]=128;h[4]=128;h[5]=MNM_CRJ_CAPACITY;h[11]=command_channel_session;h[16]=GetTickCount();h[25]=7;
+  h[2]=1;h[3]=128;h[4]=128;h[5]=MNM_CRJ_CAPACITY;h[11]=command_channel_session;h[16]=GetTickCount();h[25]=font?29:7;
   u32 module[32];zero(module,sizeof(module));cpu_journal_module((u32)GetModuleHandleA(0),module);h[12]=module[8];h[13]=module[10];
   cpu_journal_module((u32)GetModuleHandleA("MnmRender.dll"),module);h[14]=module[8];h[15]=module[10];
  }

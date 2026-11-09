@@ -49,23 +49,30 @@ def main():
         (run/'driver.exe').write_bytes(driver);shutil.copyfile(dll,run/dll.name)
         lease,report['prefix_pool']=borrow(ROOT/'working/fixtures/prefix-seed',run/'wineprefix',env)
         env['WINEPREFIX']=str(run/'wineprefix')
-        for name,flags in [('missing-diagnostic',(1,0,1)),('missing-pilot',(1,1,0)),('missing-enable',(0,1,1)),('enabled',(1,1,1))]:
+        cases=[('missing-diagnostic',(1,0,1),0,0,False),('missing-pilot',(1,1,0),0,0,False),('missing-enable',(0,1,1),0,0,False),('enabled',(1,1,1),0,0,True),('nominal-font',(1,0,1),1,1,True),('nominal-missing-enable',(0,0,1),1,1,False),('nominal-missing-normal',(1,0,1),0,1,False),('nominal-missing-font',(1,0,1),1,0,False),('nominal-missing-pilot',(1,0,0),1,1,False)]
+        for name,flags,normal,font,expected in cases:
             case=run/name;case.mkdir();capture=case/'capture';capture.mkdir();channel=case/'commands.bin';frame=case/'frame.bin'
             h=bytearray(live.protocol.initial_header());struct.pack_into('<I',h,16,123)
             live.create(channel,h,live.protocol.SIZE);live.create(frame,live.frame_v1.initial_header(),live.frame_v1.SIZE)
             win=lambda f:'Z:'+str(f).replace('/','\\')
-            child=dict(env,MNM_RENDER_OWNED_SESSION='1',MNM_RENDER_STREAM=win(frame),MNM_RENDER_COMMAND_CHANNEL=win(channel),MNM_RENDER_LOCK_CAPTURE_DIR=win(capture),MNM_JOURNAL_CONTROL_EXPECT=str(int(all(flags))))
+            child=dict(env,MNM_RENDER_OWNED_SESSION='1',MNM_RENDER_STREAM=win(frame),MNM_RENDER_COMMAND_CHANNEL=win(channel),MNM_RENDER_LOCK_CAPTURE_DIR=win(capture),MNM_JOURNAL_CONTROL_EXPECT=str(int(expected)))
+            child.update(MNM_ACCEPTANCE_NORMAL=str(normal),MNM_FONT_LIFETIME=str(font))
             for key,value in zip(('MNM_NATIVE_CPU_READER_JOURNAL','MNM_ACCEPTANCE_DIAGNOSTIC','MNM_ACCEPTANCE_PILOT'),flags):child[key]=str(value)
             with (case/'wine.log').open('w') as log:
                 result=subprocess.run(['wine',str(run/'driver.exe')],cwd=case,env=child,stdout=log,stderr=subprocess.STDOUT,timeout=45)
             assert result.returncode==0,(name,result.returncode)
             journal=capture/'cpu-reader-journal-v1.bin';item=dict(name=name,exit_code=result.returncode,journal_created=journal.exists(),last_error_and_result_preserved=True)
-            assert journal.exists()==all(flags)
-            if all(flags):
+            assert journal.exists()==expected
+            if expected:
                 header,rows=decode(journal.read_bytes());observed=chains(header,rows,{})
                 assert observed['context_count']==1 and observed['request_count']==0 and len(rows)==2
-                item.update(rows=len(rows),contexts=observed['context_count'])
+                assert header[25]==(29 if normal and font else 7)
+                item.update(rows=len(rows),contexts=observed['context_count'],gate_mode=header[25])
             report['cases'].append(item)
+        registry=json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
+        from coverage_claims import behavior_contract,scenario_contract
+        behavior=next(b for b in registry['behaviors']if b['id']=='NP.font-dc-passive-journal');scenario=next(s for s in registry['scenarios']if s['id']=='native.font-dc-passive-journal-controls')
+        report['claims']=[dict(behavior=behavior['id'],contract_sha256=behavior_contract(behavior,{b['id']:b for b in registry['builds']}),scenarios={scenario['id']:scenario_contract(scenario)})]
         report['success']=True
     except Exception as e:
         report['error']=repr(e)
@@ -76,10 +83,10 @@ def main():
             lease.close();report['prefix_pool']['returned']=True
         report['sources_stable']=all(hashlib.sha256((ROOT/s).read_bytes()).hexdigest()==h for s,h in hashes.items());report['success'] &= report['sources_stable']
         report['artifacts']=[]
-        for f in sorted(run.rglob('*')):
-            if not f.is_file() or 'wineprefix' in f.relative_to(run).parts or f.is_symlink():continue
-            raw=f.read_bytes();record=str(Path(a.report).with_suffix(''))+'-raw-'+hashlib.sha256(str(f.relative_to(run)).encode()).hexdigest()[:20]+'.bin'
-            digest=write_report(ROOT,record,raw);report['artifacts'].append(dict(path=str(f.relative_to(run)),record=record,sha256=digest,bytes=len(raw)))
+        for f in [*sorted(run.rglob('*')),*[ROOT/n for n in hashes],*a.build.glob('journal-*')]:
+            if not f.is_file() or (f.is_relative_to(run)and 'wineprefix' in f.relative_to(run).parts) or f.is_symlink():continue
+            raw=f.read_bytes();record=str(Path(a.report).with_suffix(''))+'-raw-'+hashlib.sha256((str(f.relative_to(run))if f.is_relative_to(run)else str(f.relative_to(ROOT))if f.is_relative_to(ROOT)else str(f)).encode()).hexdigest()[:20]+'.bin'
+            digest=write_report(ROOT,record,raw);report['artifacts'].append(dict(path=str(f.relative_to(run))if f.is_relative_to(run)else str(f.relative_to(ROOT))if f.is_relative_to(ROOT)else str(f),record=record,sha256=digest,bytes=len(raw)))
         report['build_manifest']=json.loads((a.build/'selftest/manifest.json').read_text()) if (a.build/'selftest/manifest.json').exists() else None
         digest=write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode());print(json.dumps(dict(success=report['success'],error=report.get('error'),record=a.report,sha256=digest)),flush=True)
     return 0 if report['success'] else 1

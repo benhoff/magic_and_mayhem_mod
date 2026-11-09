@@ -1,6 +1,6 @@
 # CPU-reader journal v1
 
-Authored diagnostic wire contract, not a recovered original file format. All
+Authored passive-observation wire contract, not a recovered original file format. All
 words are little-endian uint32. Extent is 8,388,736 bytes: 128-byte header and
 65,536 immutable 128-byte slots. Original addresses are process-local tokens.
 
@@ -13,7 +13,7 @@ words are little-endian uint32. Extent is 8,388,736 bytes: 128-byte header and
 | 12–15 | Executable base/extent, render adapter base/extent |
 | 16–18 | Start/end TickCount32, normal completion flag |
 | 19–22 | Ended contexts, requests, completions, created contexts |
-| 23–25 | Active DC borrows, active contexts, exact gate bits 7 |
+| 23–25 | Active DC borrows, active contexts, exact gate bits 7 (diagnostic) or29 (nominal font) |
 | 26–31 | Zero |
 
 Error bits: 1 capacity, 2 reservation contention, 4 write after closure,
@@ -47,3 +47,17 @@ are ordered only within this journal; no Qt/Wine cross-clock latency is inferred
 Unclosed prefixes, ambiguous identities and missing acquisition/checkpoint links
 remain explicit failures or limitations. Synthetic validation and the single
 diagnostic journey are recorded separately in the runtime research and register.
+
+## Explicit nominal font mode, 2026-11-08
+
+Historical mode7still requires enable+diagnostic+pilot. Mode29requires
+`MNM_NATIVE_CPU_READER_JOURNAL=1`, `MNM_ACCEPTANCE_NORMAL=1`,
+`MNM_FONT_LIFETIME=1` and `MNM_ACCEPTANCE_PILOT=1`. These are separate explicit
+gates; missing, malformed or partial combinations cannot enable the nominal
+mode. Header bits1/4/8/16name enable/pilot/normal/font observation. The existing
+record layout, counts, closure and ambiguity refusals remain identical.
+
+The nominal mode maps the same passive sideband; it injects no reader or fault.
+No journal byte supplies pixels, commands, leases or admission decisions. Its
+synthetic gate/mapping controls remain separate from real caller/font/DC output
+and normal retirement acceptance. Old mode7reports and hashes are unchanged.
