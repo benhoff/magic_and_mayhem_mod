@@ -28069,3 +28069,47 @@ versions including binary artifacts. One append-only retrospective receipt pins
 receipts and retains the negative finding. This is independent of fresh merged
 OS08execution and asserts no historical gate pass. See
 `opaque-secondary-results-20261108/merged-history-02.json`.
+
+
+## FL08 installed font lifetime trace — 2026-11-08
+
+The bounded default native-only High-to-Low Main/Grimoire scout now binds
+24084original glyph entries to6font generations,2heading/body replacements
+and4current destructor completions. All158complete first normalized glyph
+sources match independent installed SFT tables/bytes. Original layout return
+PCs4a6133/4a65c7bypass the byte caller4a59e0. Heading/body/tooltip uses are
+observed; yellow is loaded without drawn-glyph credit. Both actual games quit
+normally. The first V1 trace retains14756unparented glyphs and earns no
+resource binding. V2 adds unique live-raw-range binding and first full source
+snapshots; neither stage changes raster math or gameplay.
+
+Production entry/return assembly passes11anchored authored callees, direct/byte
+source custody, reload and current-destructor controls;22strict reader guards
+pass. `FL08.observer-controls04` and `FL08.installed-default01` preserve their
+exact independent scopes. One shared-store lock delayed full retention of the
+first already stopped collector; its active process/action receipts and charge
+stay intact. A pinned minimal review independently retains its exact scene
+DLL, original manifest, journal,17menu snapshots and normal stop before the sole
+remaining missing-data scout. No request/start refund or earlier cap reset.
+
+Both font/DC player rows remain pending: current-font source custody is separate
+from actual DC image lifetime, yellow drawing, Software execution and complete
+presented glyph pixels. Replaced old raw allocations are not observed freed.
+All118accepted parent rows and both final decisions remain unchanged byFL08;
+concurrent viewport/alias work retains its own source phase. See
+[the scoped evidence](font-lifecycle-20261108.md). Two new actual original starts
+exhaust the independent2-start/4-request ceiling; no more font starts are
+authorized. Exact artifacts and new reports use SQLite; paired import, real
+restoration and final source accounting remain required before local commit.
+
+
+FL08's original first full collector now finishes normally: its original V1
+source map, all action receipts and every raw artifact are preserved under
+`font-default01-acquisition.json`; the final missing-binding review agrees
+with the earlier pinned minimal handoff. Both actual starts remain charged;
+no process or font run remains active and there is no remaining font start.
+The710MiBtemporary local SQLite snapshot imports410unique objects into both
+immutable stores with a real logical restore; manifest
+68432ed299217f368d8ea3b021955149d26a611b5cfb7ae2aa110e411339ffbf
+preserves original payload hashes. Later accounting/closeout metadata still
+uses the normal verified finish backup; no raw tree or pin is removed.

@@ -1,6 +1,7 @@
 /* Bounded closed producer inputs. Original destination bytes are oracle files. */
 #include "../shadow/win32_min.h"
 #include "glyph_live.h"
+extern void font_trace_glyph(u32,u32,u32,u32,u32,u32);
 #include "../../protocols/include/mnm/canvas_producers_v2.h"
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
 #include "../../protocols/include/mnm/canvas_producers_v5.h"
@@ -509,6 +510,7 @@ static void producer_source_region_end(void){
 #include "owned_initial_history.h"
 int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  u32 error=GetLastError();
+ if(tag==10)font_trace_glyph(registers[6],registers[5],registers[10],registers[9],queue,sequence);
  if(tag==10 && glyph_live_active()){
   if(enabled && !stopped && !batch_guard_open){
    /* The normal observer return hook still publishes this glyph request and
