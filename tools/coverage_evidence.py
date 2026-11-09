@@ -7,6 +7,7 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from functools import lru_cache
 from collections import OrderedDict
+from concurrent.futures import ThreadPoolExecutor
 import gzip
 import hashlib
 import io
@@ -549,6 +550,63 @@ class Reader:
         self.resolver.copy(*ident, output)
         self._remember(target, stamp, ident[0], output.getvalue() if isinstance(output, io.BytesIO) else None)
         return ident[0]
+
+    def prefetch_digests(self, paths, *, workers=4):
+        """Verify uncached report payloads in bounded, independent read workers.
+
+        Each worker owns its SQLite connections and decodes one chunk at a time.
+        Only fingerprints return to this reader; large report bodies are never
+        buffered. This invocation's file stamps still guard every alias.
+        """
+        if type(workers) is not int or not 1 <= workers <= 4:
+            raise ValueError('Evidence verification requires one to four workers')
+        if not self._memoize:
+            return
+        jobs = {}
+        for path in paths:
+            target = self.path(path)
+            stamp, known = self._observed(target)
+            if known is not None:
+                continue
+            with target.open('rb') as stream:
+                head = stream.read(161)
+            if len(head) > 160 or not head.startswith(MAGIC):
+                continue  # Ordinary source/document hashing keeps its normal path.
+            ident = identity(head)
+            relative = target.relative_to(self.root).as_posix()
+            if not artifact(relative):
+                raise ValueError('Evidence pointer outside report storage policy: ' + relative)
+            safe_path(self.root, relative)
+            jobs.setdefault(ident, []).append((target, stamp))
+        if not jobs:
+            return
+        groups = [[] for _ in range(min(workers, len(jobs)))]
+        sizes = [0] * len(groups)
+        for ident in sorted(jobs, key=lambda key: key[1], reverse=True):
+            index = min(range(len(groups)), key=sizes.__getitem__)
+            groups[index].append(ident)
+            sizes[index] += ident[1]
+
+        class Sink:
+            def write(self, chunk):
+                pass
+
+        def verify(group):
+            # sqlite3 connections must be created and closed on their owner
+            # thread. Readers never write objects or create evidence pointers.
+            resolver = Resolver(self.root)
+            try:
+                for ident in group:
+                    resolver.copy(*ident, Sink())
+                return group
+            finally:
+                resolver.close()
+
+        with ThreadPoolExecutor(max_workers=len(groups)) as pool:
+            for verified in pool.map(verify, groups):
+                for sha, size in verified:
+                    for target, stamp in jobs[(sha, size)]:
+                        self._remember(target, stamp, sha)
 
 
 def _reader_root(path, root=None):

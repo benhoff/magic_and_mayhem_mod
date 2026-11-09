@@ -67,6 +67,9 @@ Audit and snapshot share a bounded verified-byte cache within one invocation.
 File identity, size, modification and change times invalidate edited inputs; JSON
 values are parsed afresh. Working, Git-base and staged snapshots each open a fresh
 reader. There is no persistent pass cache and the normal staged hook still runs.
+Remaining research report payloads now receive bounded parallel verification with
+at most four independent readers. See [snapshot throughput](snapshot-performance.md)
+for integrity boundaries and the retained full-corpus comparison.
 
 Run the bounded benchmark using owned RAM scratch and the storage guard:
 

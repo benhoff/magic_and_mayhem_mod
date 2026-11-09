@@ -8,6 +8,8 @@ function; checklist counts never establish whole-engine completion.
 The [local integration workflow](../../../docs/integration-workflow.md) covers
 cooperative admission, conservative metadata/history helpers and invocation-local
 verified-read reuse. Each working, Git-base and staged check still runs afresh.
+The [snapshot throughput review](../../../docs/snapshot-performance.md) records
+bounded parallel payload verification and exact full-corpus output equivalence.
 
 ## Run the audit
 

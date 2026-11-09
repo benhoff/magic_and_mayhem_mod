@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Synthetic change accounting, immutable history, rename and real Git-base checks."""
 import copy
-from contextlib import contextmanager, redirect_stdout
+from contextlib import closing, contextmanager, redirect_stdout
 import io
 import hashlib
 import importlib.util
@@ -130,6 +130,24 @@ class GateTests(unittest.TestCase):
     def test_output_is_deterministic(self):
         self.assertEqual(self.result(), self.result())
         self.assertEqual(snapshot(self.root)[0], snapshot(self.root)[0])
+
+    def test_parallel_snapshot_matches_sequential_and_refuses_unregistered_corruption(self):
+        from coverage_evidence import Store, pointer
+        path=self.root/'research/runtime/unregistered.json';path.parent.mkdir(parents=True,exist_ok=True)
+        payload=b'{"retained":"negative observation"}'
+        store=Store(self.root/'working/coverage/evidence-pending.sqlite3')
+        with store.db:sha=store.put(io.BytesIO(payload),len(payload))
+        store.close();path.write_bytes(pointer(sha,len(payload)))
+        with patch.object(Reader,'prefetch_digests',return_value=None):
+            sequential=snapshot(self.root)
+        self.assertEqual(snapshot(self.root),sequential)
+        import sqlite3
+        with closing(sqlite3.connect(self.root/'working/coverage/evidence-pending.sqlite3')) as db,db:
+            for name, in db.execute("SELECT name FROM sqlite_master WHERE type='trigger' AND tbl_name='chunks'").fetchall():
+                db.execute('DROP TRIGGER "'+name+'"')
+            db.execute('DELETE FROM chunks WHERE sha256=?',(sha,))
+        with self.assertRaisesRegex(ValueError,'hash mismatch'):
+            snapshot(self.root)
 
     def test_snapshot_fingerprints_shared_paths_once_without_cross_call_reuse(self):
         paths = []

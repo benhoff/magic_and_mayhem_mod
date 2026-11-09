@@ -27904,3 +27904,8 @@ checkout/branch and recovery stash `7228cada4` remain held as the tested phase.
 ### FIN01 — Local integration throughput, 2026-11-08
 
 Host-only tooling adds cooperative admission before merge preparation, dry-first conservative metadata/history helpers, sealed SQLite restore-proof reuse, bulk replica catalog checks and invocation-local verified reads. `TOOL.integration-throughput` owns the bounded contract and `FIN01.controls` records source-stable synthetic execution. Normal current/staged checks and two-copy custody remain required. Historical evidence hashes and engine milestones are retained unchanged; affected old shared-source proofs may need targeted applicability review. Full-merge timing and the large legacy database reuse remain unmeasured. See `docs/integration-workflow.md`.
+
+
+### SNAP01 — Fresh snapshot verification throughput, 2026-11-08
+
+`TOOL.snapshot-throughput` owns four-worker, bounded, read-only verification of remaining research payloads after the registered audit. Each payload still receives complete size/SHA-256 verification; path policies, mutation checks and fresh working/base/staged readers remain. A retained a68af15c2 tree snapshot improves from205.52s to106.31s with identical complete snapshot-section and audit hashes, preserving4937stale records and2489validation gaps. SNAP01.controls records current host controls and comparison. Historical engine hashes/statuses are retained unchanged; no semantic coverage or whole-merge timing claim. See `docs/snapshot-performance.md`.

@@ -93,11 +93,15 @@ def _snapshot(root, register, reader):
     # snapshots must independently fingerprint their actual bytes.
     fingerprint = cache(reader.digest)
     sources = {item['path']: item for item in source_index.index(root, register)['files']}
-    for name in ('research', 'docs'):
-        for path in sorted((root/name).rglob('*')):
-            relative = path.relative_to(root).as_posix()
-            if path.is_file() and path.suffix in {'.md', '.json'} and relative not in {BASELINE} | review_paths:
-                sources[relative] = {'path': relative, 'sha256': fingerprint(path), 'role': 'research', 'references': []}
+    documents = [p for name in ('research', 'docs') for p in sorted((root/name).rglob('*'))
+                 if p.is_file() and p.suffix in {'.md', '.json'}
+                 and p.relative_to(root).as_posix() not in {BASELINE} | review_paths]
+    # The audit already verified registered inputs. Freshly verify the remaining
+    # immutable report payloads concurrently, with a bounded chunk per worker.
+    reader.prefetch_digests(documents)
+    for path in documents:
+        relative = path.relative_to(root).as_posix()
+        sources[relative] = {'path': relative, 'sha256': fingerprint(path), 'role': 'research', 'references': []}
     for path in CONTROL_FILES:
         if (root/path).is_file():
             sources[path] = {'path': path, 'sha256': fingerprint(root/path), 'role': 'control', 'references': []}

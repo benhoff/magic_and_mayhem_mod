@@ -10,13 +10,14 @@ import sqlite3
 import subprocess
 import sys
 import tempfile
+import threading
 import unittest
 from unittest.mock import patch
 import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
-from coverage_evidence import MAGIC, Reader, Store
+from coverage_evidence import MAGIC, Reader, Resolver, Store
 from integration_queue import integration_lock, finish_lock, lock_path, status
 from integration_review import reconcile, review_history, merge_json
 
@@ -251,6 +252,94 @@ class Reads(unittest.TestCase):
         reader.close()
         self.assertFalse(reader._fingerprints)
         self.assertFalse(reader._bodies)
+
+    def report(self, name, body):
+        store=Store(self.db)
+        try:
+            with store.db:sha=store.put(io.BytesIO(body),len(body))
+        finally:store.close()
+        path=self.path.with_name(name)
+        path.write_bytes(MAGIC+sha.encode()+b' '+str(len(body)).encode()+b'\n')
+        return path,sha
+
+    def test_prefetch_deduplicates_aliases_without_buffering_payloads(self):
+        alias=self.path.with_name('alias.json');alias.write_bytes(self.path.read_bytes())
+        calls=[];original=Resolver.copy
+        def observed(resolver,sha,size,out):
+            calls.append((sha,threading.get_ident()));return original(resolver,sha,size,out)
+        with Reader(self.root,memoize=True) as reader,patch.object(Resolver,'copy',observed):
+            reader.prefetch_digests([self.path,alias])
+            self.assertEqual(reader.digest(self.path),self.sha)
+            self.assertEqual(reader.digest(alias),self.sha)
+            self.assertEqual(len(calls),1)
+            self.assertNotEqual(calls[0][1],threading.get_ident())
+            self.assertEqual(reader._body_bytes,0)
+            self.assertEqual(reader.json(alias)['value'],'retained')
+            self.assertEqual(len(calls),2)  # Body consumers still read verified bytes.
+
+    def test_prefetch_workers_overlap_and_close_owned_connections(self):
+        second,sha=self.report('second.json',b'an independent payload')
+        barrier=threading.Barrier(2);threads=set();original=Resolver.copy
+        def observed(resolver,*args):
+            threads.add(threading.get_ident());barrier.wait(timeout=10)
+            return original(resolver,*args)
+        with Reader(self.root,memoize=True) as reader,patch.object(Resolver,'copy',observed):
+            reader.prefetch_digests([self.path,second],workers=2)
+            self.assertEqual(reader.digest(second),sha)
+        self.assertEqual(len(threads),2)
+
+    def test_prefetch_rejects_corruption_missing_payload_and_wrong_size(self):
+        with closing(sqlite3.connect(self.db)) as db,db:
+            for name, in db.execute("SELECT name FROM sqlite_master WHERE type='trigger' AND tbl_name='chunks'").fetchall():
+                db.execute('DROP TRIGGER "'+name+'"')
+            db.execute('UPDATE chunks SET payload=? WHERE sha256=?',(b'bad',self.sha))
+        with Reader(self.root,memoize=True) as reader,self.assertRaises((ValueError,zlib.error)):
+            reader.prefetch_digests([self.path])
+        for sha,size in [('f'*64,len(self.body)),(self.sha,len(self.body)+1)]:
+            self.path.write_bytes(MAGIC+sha.encode()+b' '+str(size).encode()+b'\n')
+            with Reader(self.root,memoize=True) as reader,self.assertRaises(ValueError):
+                reader.prefetch_digests([self.path])
+
+    def test_prefetch_does_not_accept_pointer_changed_during_worker_read(self):
+        original=Resolver.copy
+        def changed(resolver,*args):
+            result=original(resolver,*args)
+            self.path.write_bytes(b'changed pointer')
+            return result
+        with Reader(self.root,memoize=True) as reader,patch.object(Resolver,'copy',changed):
+            with self.assertRaisesRegex(ValueError,'Input changed'):
+                reader.prefetch_digests([self.path])
+            self.assertNotIn(self.path,reader._fingerprints)
+
+    def test_prefetch_refuses_escaping_and_unauthorized_pointer_paths(self):
+        outside=self.root.parent/(self.root.name+'-outside.json')
+        outside.write_bytes(self.path.read_bytes());self.addCleanup(outside.unlink)
+        escape=self.path.with_name('escape.json');escape.symlink_to(outside)
+        forbidden=self.root/'code.py';forbidden.write_bytes(self.path.read_bytes())
+        for target in (escape,forbidden):
+            with Reader(self.root,memoize=True) as reader,self.assertRaises(ValueError):
+                reader.prefetch_digests([target])
+
+    def test_prefetch_verifies_again_in_each_epoch_and_detects_later_edits(self):
+        copies=[];original=Resolver.copy
+        def observed(resolver,sha,*args):
+            copies.append(sha);return original(resolver,sha,*args)
+        with patch.object(Resolver,'copy',observed):
+            for _ in range(2):
+                with Reader(self.root,memoize=True) as reader:
+                    reader.prefetch_digests([self.path]);reader.digest(self.path)
+        self.assertEqual(copies,[self.sha,self.sha])
+        with Reader(self.root,memoize=True) as reader:
+            reader.prefetch_digests([self.path])
+            self.path.write_bytes(b'edited after prefetch')
+            self.assertEqual(reader.digest(self.path),hashlib.sha256(self.path.read_bytes()).hexdigest())
+
+    def test_prefetch_bounds_parallelism_and_preserves_default_reader_semantics(self):
+        with Reader(self.root,memoize=True) as reader:
+            for invalid in (0,5,True,1.5):
+                with self.assertRaises(ValueError):reader.prefetch_digests([self.path],workers=invalid)
+        with Reader(self.root) as reader,patch.object(Resolver,'copy',side_effect=AssertionError('Unexpected prefetch')):
+            reader.prefetch_digests([self.path]);self.assertFalse(reader._fingerprints)
 
 
 if __name__=='__main__':unittest.main()
