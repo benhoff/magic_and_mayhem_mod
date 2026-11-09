@@ -28038,3 +28038,28 @@ and supply no current closure credit. See
 [campaign closeout notes](campaign-progression-closeout-20261108.md) for bounded
 resource observation, quota-aware RAM guards, exact output ownership, temporary
 oracle retention, preserved negative evidence and SQLite durability boundaries.
+
+
+### CP09 natural victory and next-map output — 2026-11-09
+
+[Retained four-domain admission](campaign-victory-next-map-results-20261109/acceptance-02.json)
+closes only `journey.battle-results.victory` and
+`journey.map-transitions.next-map`. Existing full captures 43–46 provide original
+natural victory, native visible result-control acknowledgement, fresh Realm
+return/travel and actual Celtic region 2 entry. Exact compiled projection
+sources prove functional result display and withdrawal; persistent QWidget
+destruction and original glyph/font/DC pixels are not asserted. Complete native
+swap multisets and captured plane hashes recheck 3,286,371,000 independently
+compared pixels, including first and resumed later-map output. Paired original
+resource epochs, native incarnation retirement and normal final drain pass.
+
+`NP.campaign-victory-next-map-closeout` records scoped implementation and
+headless retained-data integration; original comparison/replacement remain none.
+No new game, reference execution or pixel comparison occurs, and no historical
+source hash is refreshed. Exact candidate map inputs remain distinct from
+unrecovered section/layout/RNG choices. Twenty focused guards pass. The owned
+120-cell parent becomes 124/156 passed, 32 pending; newer master admissions
+remain separate source phases. See
+[campaign result scope](campaign-victory-next-map-20261109.md).
+
+The [current CP09 coverage snapshot](coverage/summary-campaign-results-20261109.md) records the zero-error audit, unchanged historical drift and independently pending boundaries.
