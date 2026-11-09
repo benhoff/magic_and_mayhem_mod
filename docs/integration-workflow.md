@@ -1,8 +1,12 @@
 # Faster local integration
 
-Prepare each change in its own worktree. Acquire admission **before** preparing
-a merge against master, and keep it through combined review, backups, the normal
-staged hook and final promotion. The installed reference-transaction hook requires
+Prepare every change, including documentation and tooling, in an exclusively
+owned task worktree and branch. Reuse that checkout for the bounded task; do not
+develop in the main/master checkout or another task's worktree. Complete the
+readiness checklist below **before requesting admission**. Acquire admission
+before preparing the authoritative merge against master, and keep it through
+combined review, backups, the normal staged hook and final promotion.
+The installed reference-transaction hook requires
 admission for every local master update, including fast-forwards and plumbing
 updates. Install current hooks from a durable checkout with
 `python3 tools/install-coverage-hook.py`; its absolute hook path applies the same
@@ -21,6 +25,48 @@ several commands should use `integration_queue.integration_lock` and
 `lease.run(...)` for children. The inherited descriptor must survive every child
 hop (`pass_fds`); an environment variable alone is refused. Never remove a busy
 lock file.
+
+## Readiness before admission
+
+Complete these steps outside the integration slot:
+
+1. Finish the task's implementation and focused tests, update source/coverage
+   accounting and record applicable validation limitations. Resolve task blockers
+   and required user decisions. Recorded limitations may remain when the existing
+   acceptance rules permit them; required checks and evidence may not be skipped.
+2. Run the applicable feature-branch checks and normal finish/hook workflow,
+   retaining required verified evidence and backups. Pin the resulting ready
+   commit; the candidate worktree must be clean with no pending merge.
+3. Review the relevant committed history, known receipt gaps, dependencies and
+   likely conflicts against the observed master using read-only inspection.
+   Prepare concrete review reasons, behavior IDs and accessible local inputs.
+   Check the master checkout for unrelated work and preserve it if present.
+   These preflight observations must be rechecked after admission.
+
+Do not acquire or queue for admission while any of that preparation remains.
+Admission is not a reservation for future work. Combine already ready compatible
+tips when it saves a combined review; do not wait inside the slot for another
+branch to become ready. Independent ready work should proceed while a blocked
+task is repaired outside the slot. The lock serializes master updates; the
+current tools do not certify this semantic readiness checklist or guarantee FIFO
+scheduling. Agents and custom operators must enforce the checklist.
+
+Once admitted, recheck actual master and candidate readiness. Keep the protected
+attempt to merge preparation, required combined-tree accounting/checks/backups,
+the normal staged hook and promotion. Those combined checks still run under the
+lease; a feature-branch pass cannot replace them. Release promptly after success
+or refusal, with no unrelated work or post-promotion housekeeping in the slot.
+
+If a conflict, failed check, missing evidence or user decision requires debugging,
+new acquisition or repair, preserve the candidate and failure diagnostics and exit
+the admitted operation promptly. Do that work outside admission, then reacquire
+and recheck actual master before preparing a new attempt. Never keep a wrapper
+alive across an interactive debugging session, sleep or user wait. Do not promote
+a preserved candidate against an unchecked newer master or disable the guard to
+resume. The standard integration command releases its lease when it exits;
+custom operators must likewise unwind the lease and finish their admitted child
+processes. Preserve failed work rather than resetting it merely to pass the clean
+worktree preflight.
 
 ## Four to six parallel agents
 
