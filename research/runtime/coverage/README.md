@@ -468,6 +468,9 @@ for the implementation while preserving an unchanged historical live milestone
 as independently pending. It grants no comparison, integration or replacement
 promotion credit. Each promoted dimension must have its own matching recorded
 stage credit; listing an inactive dimension or malformed/duplicate stages refuses.
+A `pending` review may retain an explicit empty `stages` list as historical
+zero-credit bookkeeping. A recorded validation review still requires a nonempty
+list when `stages` is present; no empty pending list supplies promotion credit.
 Omitting `stages` retains the original requirement to validate every currently
 declared milestone. File hashes, evidence freshness/kinds, behavior contracts,
 scenario requirements for selected stages, and explicit pending-gap accounting
