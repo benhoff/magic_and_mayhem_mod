@@ -19182,6 +19182,9 @@
       },
       "validation_dependencies": [
         "protocols/include/mnm/world_raster_batch_v3.h"
+      ],
+      "remaining_gaps": [
+        "CR09 source review: copySharedKeyed reuses its one-pixel texture while copyTexture may queue keyed draws at nonzero batchDepth; deletion flushes before freeing, so storage stays separate, but per-pixel sampling/write order needs separate batched-keyed execution review. No original/output equivalence promotion follows from the memory-safety proof."
       ]
     },
     {
@@ -131153,7 +131156,8 @@
       },
       "remaining_gaps": [
         "Physical hardware reset, live-game fault continuation and sustained recovery/IPC/readback performance acceptance remain unexecuted; synthetic continuation is not hardware or original-driver equivalence.",
-        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation."
+        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation.",
+        "CR09 source review: dispatch CREATE/ALLOCATE/CLONE validates the requested identity after temporary allocation/extraction. Rejected zero/duplicate/maximum identities may orphan GL allocation/counter state; invalid-creation cleanup remains unexecuted and pending. Owned-copy feedback safety does not establish that lifetime behavior."
       ],
       "validation_dependencies": [
         "apps/drawing-session/CMakeLists.txt",
@@ -173785,7 +173789,8 @@
       "remaining_gaps": [
         "Natural overlapping player call, actual profile output and live COM alias discovery remain under SC.natural-callers and both required-boundaries cells.",
         "General backend per-piece opaque policy is distinct from production facade whole-call freeze. Keyed/masked/other formats, physical providers, whole-player and original-recovery completion remain open.",
-        "NAT09 resolves overlap requiredness only for54290successful active COPYs in16recorded owned-provider cases. Actual overlapping invocation/output and contexts outside that precise boundary remain unproved; this does not reopen either approved bounded mechanism row."
+        "NAT09 resolves overlap requiredness only for54290successful active COPYs in16recorded owned-provider cases. Actual overlapping invocation/output and contexts outside that precise boundary remain unproved; this does not reopen either approved bounded mechanism row.",
+        "CR09 resolves owned-copy unsafe-feedback routing through canonical identity and existing self-copy/refusal paths. A natural overlap witness is not required for that safety property; original output/traversal and broader SC.natural-callers remain separate."
       ]
     },
     {
@@ -174037,7 +174042,8 @@
       },
       "remaining_gaps": [
         "No positive naturally overlapping call/output is claimed. Four failed source calls and post-RenderStop callbacks remain excluded.",
-        "Other player contexts, foreign/physical drivers, arbitrary GPU storage aliasing, current combined execution and the broader SC.natural-callers decision remain open."
+        "Other player contexts, foreign/physical drivers, arbitrary GPU storage aliasing, current combined execution and the broader SC.natural-callers decision remain open.",
+        "CR09 resolves owned-copy unsafe-feedback routing through canonical identity and existing self-copy/refusal paths. A natural overlap witness is not required for that safety property; original output/traversal and broader SC.natural-callers remain separate."
       ]
     },
     {
@@ -175074,6 +175080,258 @@
       },
       "remaining_gaps": [
         "CP09.G.scope: Exact retained Celtic region1-to-region2 domains only. Full section/layout/RNG recovery, current combined-master native execution, QWidget original glyph/font/DC pixels, external simulation/allocator internals and both final decisions remain separate."
+      ]
+    },
+    {
+      "id": "NP.owned-copy-routing-safety",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Owned copy routing excludes unsafe overlap",
+      "scope": "Owned 2D copy memory safety under canonical per-owner storage identity and private allocation: distinct storage takes the direct route; same storage takes the established snapshot/ordered route or refuses; unknown identities refuse. No rectangle-intersection detector is required for safety. Include the reviewed renderer, isolated dispatch, canonical backend, command/mirror/recipe, guarded native-provider and GPU bridge entry families. This is not global absence of game overlap, original traversal/output equivalence, arbitrary external aliases, lifetime-mode0 native-provider admission, raw GL mutation or current combined-player/hardware validation.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/copy-routing-safety-20261109.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/command_consumer.cpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/isolated_dispatch.inc",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/surface_backend.cpp",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "runtime/native-draw/lifetime_dispatch.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/render/gpu_copy_commands.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/owned_session.h"
+      ],
+      "tests": [
+        "tests/render-surfaces-test.cpp",
+        "tests/native-frame-recipe-test.cpp",
+        "tests/render-command-consumer-test.cpp",
+        "tests/render-clipping-stream-test.cpp",
+        "tests/native-gpu-copy-commands-test.c"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/acceptance_capture.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/host_timing_trace.hpp",
+        "apps/qt-shell/native_render_target.hpp",
+        "apps/qt-shell/watchdog_host_fault.hpp",
+        "protocols/include/mnm/copy_caller_handoff_v1.h",
+        "protocols/include/mnm/cursor_copy_caller_v1.h",
+        "protocols/include/mnm/native_copy_clip_regions_v1.h",
+        "protocols/include/mnm/native_gpu_copy_plan_v1.h",
+        "protocols/include/mnm/native_pixel_guard_v1.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/render_stream_v4.h",
+        "protocols/include/mnm/render_stream_v5.h",
+        "protocols/include/mnm/resident_frame_budget.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "reconstruction/rendering/owned_surface_wrappers.cpp",
+        "reconstruction/rendering/owned_surface_wrappers.hpp",
+        "reconstruction/rendering/pixel_kernel.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/cursor_compositor.cpp",
+        "renderer/cursor_compositor.hpp",
+        "renderer/diagnostic_worker.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/render_service_main.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/native-draw/blit_effects.h",
+        "runtime/native-draw/clip_region_census.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/cpu_copy_boundary.h",
+        "runtime/native-draw/cpu_direct_store.h",
+        "runtime/native-draw/cpu_guard.h",
+        "runtime/native-draw/cpu_store.h",
+        "runtime/native-draw/cpu_store_profile.h",
+        "runtime/native-draw/cursor_copy_caller_thunks.h",
+        "runtime/native-draw/cursor_copy_callers.h",
+        "runtime/native-draw/cursor_copy_leases.h",
+        "runtime/native-draw/cursor_owner.h",
+        "runtime/native-draw/cursor_pins.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/dirty_bytes.h",
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/hidden_spellbox_copy.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/history_lookup.h",
+        "runtime/native-draw/image_copy_original.h",
+        "runtime/native-draw/lifetime_lock.h",
+        "runtime/native-draw/native_only.h",
+        "runtime/native-draw/ownership_admission.h",
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/pixel_conversion.h",
+        "runtime/native-draw/producer_guard.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/retirement.h",
+        "runtime/native-draw/row_words.h",
+        "runtime/native-draw/startup_retirement.h",
+        "runtime/native-draw/status.h",
+        "runtime/render/bridge.c",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/shadow/win32_min.h",
+        "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
+        "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz",
+        "tools/check-native-clipping-stream.py"
+      ],
+      "validation_domain": {
+        "ownership": "Private storage per canonical identity within one live owner/session; aliases preserve identity, admitted guards enabled; no external native texture adoption.",
+        "routing_families": [
+          {
+            "family": "Allocation and aliases",
+            "path": "renderer/blit.cpp",
+            "entry": "create/allocate/cloneSurface/restoreSurface/recoverContext/swapContents",
+            "policy": "Allocate private textures, refuse identity restore/swap, recreate private storage, or permute unique backing; never create two live native IDs for one texture."
+          },
+          {
+            "family": "Canonical backend and recovered wrappers",
+            "path": "renderer/surface_backend.cpp",
+            "entry": "alias/entry/copy",
+            "policy": "Aliases retain the same ID; unknown/foreign IDs refuse; wrappers delegate to canonical backend.copy."
+          },
+          {
+            "family": "Direct and masked copies",
+            "path": "renderer/blit.cpp",
+            "entry": "GlBlitter::copy/composite/Impl::copyTexture",
+            "policy": "Reject source==destination and mask==destination before drawing; dependent composition samples a separate frozen destination."
+          },
+          {
+            "family": "Surface copies",
+            "path": "renderer/blit.cpp",
+            "entry": "GlBlitter::surfaceCopy/Impl::copyShared/Impl::copySharedKeyed",
+            "policy": "Distinct IDs use copy; same IDs use per-piece or ordered-pixel temporary textures within established flags/budgets, or refuse."
+          },
+          {
+            "family": "Coordinate copies",
+            "path": "renderer/blit.cpp",
+            "entry": "GlBlitter::copyCoordinates",
+            "policy": "Opaque coordinate self-copy routes to surfaceCopy; keyed coordinate self-copy refuses; every remaining pixel-input/destination alias refuses before shader submission."
+          },
+          {
+            "family": "Prepared frame callers",
+            "path": "renderer/native_frame_recipe.cpp",
+            "entry": "ensure/copy/record/seal/renderSealed",
+            "policy": "Coordinate planes are fresh owned allocations, distinct from original pixel handles; calls converge on guarded helpers."
+          },
+          {
+            "family": "Upload and local image helpers",
+            "path": "renderer/blit.cpp",
+            "entry": "update/updateRows/updateRegionRows/updateMasked/updateCoveredWords/reloadDib/colourRect/draw/additiveRect",
+            "policy": "CPU uploads do not sample the GPU target. Image helpers allocate private sources; destination-dependent effects sample separate scratch."
+          },
+          {
+            "family": "Presentation and imports",
+            "path": "renderer/blit.cpp",
+            "entry": "present/presentGpu/importGpu565/assembleMappedWorld/GpuFrame::snapshot",
+            "policy": "Presentation/frame RGBA textures are separate allocations from native words; mapped assembly rejects native target/input aliases; reusable frame snapshots require exclusive immutable ownership."
+          },
+          {
+            "family": "Versioned command entry",
+            "path": "renderer/command_consumer.cpp",
+            "entry": "CommandState::accept/CommandConsumer::Impl::apply",
+            "policy": "Live canonical handles only; COPY requires distinct IDs, surface-copy uses its validated opaque same-ID route; ownership/identity checks precede dispatch."
+          },
+          {
+            "family": "Isolated process entry",
+            "path": "renderer/isolated_dispatch.inc",
+            "entry": "GlBlitter::dispatchIsolated",
+            "policy": "Wire values converge on the same renderer functions. Restore imports allocate private storage; no raw texture or host pointer is adopted."
+          },
+          {
+            "family": "GPU canvas mirror",
+            "path": "renderer/gpu_canvas_mirror.cpp",
+            "entry": "create/surface/copy",
+            "policy": "Wire IDs map to fresh renderer allocations; unknown IDs throw; copy delegates to surfaceCopy, whose unsupported self/key combinations refuse."
+          },
+          {
+            "family": "Guarded native CPU calls",
+            "path": "runtime/native-draw/lifetime_dispatch.h",
+            "entry": "live_ns_blt/live_ns_fast/ns_lifetime_find",
+            "policy": "With lifetime guard enabled, both interfaces resolve to owned states under the guard; unknown interfaces refuse. Unguarded lifetime-mode0 calls are excluded."
+          },
+          {
+            "family": "Native provider storage and CPU drawing",
+            "path": "runtime/native-draw/surfaces.h",
+            "entry": "ns_allocate/ns_query/ns_flip/ns_draw_route",
+            "policy": "Each state has private backing, aliases share that state, Flip permutes backing under guard. CPU self-copy freezes its source; legacy GPU service rejects self-copy."
+          },
+          {
+            "family": "Native GPU/CPU plans",
+            "path": "runtime/native-draw/gpu_copy_plan.h",
+            "entry": "NativeDrawGpuCopyPlanV1/NativeDrawCpuCopyPlanV1",
+            "policy": "Resolve registered interfaces and derive self from state identity. CPU plan only prepares; GPU drawing requires bridge admission."
+          },
+          {
+            "family": "CPU bridge copies",
+            "path": "runtime/render/lock_surfaces.h",
+            "entry": "game_blit_prepare/game_blit_apply/game_blit_after",
+            "policy": "Ordinary CPU self-copy refuses fast admission; retained snapshots/checkpoints preserve separate owned transfer storage instead of unsafe direct GPU feedback."
+          },
+          {
+            "family": "GPU bridge copies",
+            "path": "runtime/render/owned_session.h",
+            "entry": "game_gpu_blit",
+            "policy": "Cross-check provider self against canonical tracker identity, validate plan before publication, allocate distinct scratch for nonempty self and fail closed on disagreement."
+          },
+          {
+            "family": "GPU command emission",
+            "path": "runtime/render/gpu_copy_commands.h",
+            "entry": "mnm_gpu_copy_plan_valid/mnm_gpu_copy_commands",
+            "policy": "Validate self iff source==target; require distinct scratch for self. Every emitted COPY has different source and target identities, regardless of rectangle intersection."
+          }
+        ],
+        "completed_obligation": "no_unsafe_overlap_in_owned_copy_routing",
+        "rectangle_overlap_detection_required": false,
+        "global_game_overlap_absence": false,
+        "natural_overlap_witness_required_for_memory_safety": false
+      },
+      "evidence": [
+        "CR09.routing01",
+        "CR09.routing02",
+        "CR09.routing03"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Original caller traversal/keyed/partial-result equivalence and the broader SC.natural-callers obligations remain separate.",
+        "Foreign/physical drivers, external texture/memory aliases, unguarded lifetime-mode0 provider calls and a current combined-player run are outside this ownership contract.",
+        "Malformed isolated CREATE/ALLOCATE/CLONE identities are checked after temporary allocation/extraction; invalid-creation cleanup requires separate lifetime review. This safety review does not promote that resource-retirement behavior.",
+        "CR09 source review: copySharedKeyed reuses its one-pixel texture while copyTexture may queue keyed draws at nonzero batchDepth; deletion flushes before freeing, so storage stays separate, but per-pixel sampling/write order needs separate batched-keyed execution review. No original/output equivalence promotion follows from the memory-safety proof."
       ]
     }
   ],
@@ -401351,6 +401609,227 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "CR09.routing01",
+      "kind": "native_integration",
+      "scope": "Owned 2D copy memory safety under canonical per-owner storage identity and private allocation: distinct storage takes the direct route; same storage takes the established snapshot/ordered route or refuses; unknown identities refuse. No rectangle-intersection detector is required for safety. Include the reviewed renderer, isolated dispatch, canonical backend, command/mirror/recipe, guarded native-provider and GPU bridge entry families. This is not global absence of game overlap, original traversal/output equivalence, arbitrary external aliases, lifetime-mode0 native-provider admission, raw GL mutation or current combined-player/hardware validation.",
+      "record": "research/runtime/copy-routing-safety-results-20261109/routing-01.json",
+      "sha256": "97ed61a0c15f62fce4c27e2cf29418a5b8e7e510d664d6c098b72c7a857c1e89",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/coordinate_alias_refusals",
+          "equals": 8
+        },
+        {
+          "pointer": "/coordinate_safe_paths",
+          "equals": 8
+        },
+        {
+          "pointer": "/coordinate_destination_and_input_unchanged_on_refusal",
+          "equals": true
+        },
+        {
+          "pointer": "/emitter/identity_combinations",
+          "equals": 128
+        },
+        {
+          "pointer": "/emitter/disjoint_routes",
+          "equals": 12
+        },
+        {
+          "pointer": "/emitter/identity_refusals",
+          "equals": 116
+        },
+        {
+          "pointer": "/rectangle_overlap_detection_required",
+          "equals": false
+        },
+        {
+          "pointer": "/global_game_overlap_absence",
+          "equals": false
+        },
+        {
+          "pointer": "/natural_overlap_witness",
+          "equals": false
+        },
+        {
+          "pointer": "/current_combined_player_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_fixture",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_promoted",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CR09.routing02",
+      "kind": "native_integration",
+      "scope": "Owned 2D copy memory safety under canonical per-owner storage identity and private allocation: distinct storage takes the direct route; same storage takes the established snapshot/ordered route or refuses; unknown identities refuse. No rectangle-intersection detector is required for safety. Include the reviewed renderer, isolated dispatch, canonical backend, command/mirror/recipe, guarded native-provider and GPU bridge entry families. This is not global absence of game overlap, original traversal/output equivalence, arbitrary external aliases, lifetime-mode0 native-provider admission, raw GL mutation or current combined-player/hardware validation.",
+      "record": "research/runtime/copy-routing-safety-results-20261109/routing-02.json",
+      "sha256": "b74554f3e31ca0ae6900f74557ea9927dd79ef18420ed9c1b470c15865f8550f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/coordinate_alias_refusals",
+          "equals": 8
+        },
+        {
+          "pointer": "/coordinate_safe_paths",
+          "equals": 8
+        },
+        {
+          "pointer": "/coordinate_destination_and_input_unchanged_on_refusal",
+          "equals": true
+        },
+        {
+          "pointer": "/emitter/identity_combinations",
+          "equals": 128
+        },
+        {
+          "pointer": "/emitter/disjoint_routes",
+          "equals": 12
+        },
+        {
+          "pointer": "/emitter/identity_refusals",
+          "equals": 116
+        },
+        {
+          "pointer": "/rectangle_overlap_detection_required",
+          "equals": false
+        },
+        {
+          "pointer": "/global_game_overlap_absence",
+          "equals": false
+        },
+        {
+          "pointer": "/natural_overlap_witness",
+          "equals": false
+        },
+        {
+          "pointer": "/current_combined_player_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_fixture",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_promoted",
+          "equals": 0
+        },
+        {
+          "pointer": "/coordinate_origin_refusals",
+          "equals": 6
+        }
+      ]
+    },
+    {
+      "id": "CR09.routing03",
+      "kind": "native_integration",
+      "scope": "Owned 2D copy memory safety under canonical per-owner storage identity and private allocation: distinct storage takes the direct route; same storage takes the established snapshot/ordered route or refuses; unknown identities refuse. No rectangle-intersection detector is required for safety. Include the reviewed renderer, isolated dispatch, canonical backend, command/mirror/recipe, guarded native-provider and GPU bridge entry families. This is not global absence of game overlap, original traversal/output equivalence, arbitrary external aliases, lifetime-mode0 native-provider admission, raw GL mutation or current combined-player/hardware validation.",
+      "record": "research/runtime/copy-routing-safety-results-20261109/routing-03.json",
+      "sha256": "5fe968668ba50145beec27aaeedf2534b7cceff0628d85dae6a877dd8ec4a99f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/coordinate_alias_refusals",
+          "equals": 8
+        },
+        {
+          "pointer": "/coordinate_safe_paths",
+          "equals": 8
+        },
+        {
+          "pointer": "/coordinate_destination_and_input_unchanged_on_refusal",
+          "equals": true
+        },
+        {
+          "pointer": "/emitter/identity_combinations",
+          "equals": 128
+        },
+        {
+          "pointer": "/emitter/disjoint_routes",
+          "equals": 12
+        },
+        {
+          "pointer": "/emitter/identity_refusals",
+          "equals": 116
+        },
+        {
+          "pointer": "/rectangle_overlap_detection_required",
+          "equals": false
+        },
+        {
+          "pointer": "/global_game_overlap_absence",
+          "equals": false
+        },
+        {
+          "pointer": "/natural_overlap_witness",
+          "equals": false
+        },
+        {
+          "pointer": "/current_combined_player_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_fixture",
+          "equals": false
+        },
+        {
+          "pointer": "/acceptance_rows_promoted",
+          "equals": 0
+        },
+        {
+          "pointer": "/coordinate_origin_refusals",
+          "equals": 6
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -436490,6 +436969,26 @@
       "evidence": [
         "CP09.victory-next-map02"
       ]
+    },
+    {
+      "id": "NP.owned-copy-routing-safety.identity-routing",
+      "level": "headless",
+      "scope": "Owned 2D copy memory safety under canonical per-owner storage identity and private allocation: distinct storage takes the direct route; same storage takes the established snapshot/ordered route or refuses; unknown identities refuse. No rectangle-intersection detector is required for safety. Include the reviewed renderer, isolated dispatch, canonical backend, command/mirror/recipe, guarded native-provider and GPU bridge entry families. This is not global absence of game overlap, original traversal/output equivalence, arbitrary external aliases, lifetime-mode0 native-provider admission, raw GL mutation or current combined-player/hardware validation.",
+      "behaviors": [
+        "NP.owned-copy-routing-safety"
+      ],
+      "tests": [
+        "tests/render-surfaces-test.cpp",
+        "tests/native-frame-recipe-test.cpp",
+        "tests/render-command-consumer-test.cpp",
+        "tests/render-clipping-stream-test.cpp",
+        "tests/native-gpu-copy-commands-test.c"
+      ],
+      "evidence": [
+        "CR09.routing01",
+        "CR09.routing02",
+        "CR09.routing03"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -438317,8 +438816,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-63a035aedbd856f920bac05e9d065049026b412d684fc23772e504bb73681fd0.json",
-    "sha256": "63a035aedbd856f920bac05e9d065049026b412d684fc23772e504bb73681fd0"
+    "path": "research/runtime/coverage/source-index-6beac169b1433137c7676faa8afd0ed9eee7553501c676ec27d5e8ab49028923.json",
+    "sha256": "6beac169b1433137c7676faa8afd0ed9eee7553501c676ec27d5e8ab49028923"
   },
   "evidence_applicability": [
     {

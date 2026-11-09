@@ -1,4 +1,6 @@
 #include "blit.hpp"
+#include "surface_copy.hpp"
+#include "isolated_renderer.hpp"
 #include <QGuiApplication>
 #include <QColor>
 #include <iostream>
@@ -35,6 +37,64 @@ int main(int argc,char** argv){
     QGuiApplication app(argc,argv);
     try {
         GlBlitter renderer;std::mt19937 rng(0x50414c);unsigned operations=0;
+        for(bool remote:{false,true}){
+            // The coordinate helper is private; exercise its real service
+            // dispatch locally and through the production worker transport.
+            auto process=remote?std::make_unique<IsolatedRenderer>():nullptr;
+            const auto call=[&](const QByteArray& request,bool mutation=false){
+                return process?process->call(request,mutation):renderer.dispatchIsolated(request);
+            };
+            const auto read=[&](SurfaceId id){return wire::decode<Image>(call(wire::message(wire::Op::read,id)));};
+            const auto stats=[&]{return wire::decode<RenderStats>(call(wire::message(wire::Op::stats)));};
+            const auto copyCoordinates=[&](SurfaceId pixels,std::optional<SurfaceId> source,SurfaceId destination,
+                    Rect rect,int x,int y,std::optional<std::uint32_t> key){
+                call(wire::message(wire::Op::coordinates,pixels,source,destination,rect,x,y,key),true);
+            };
+            const PixelFormat tags{32,{0xff0000,0xff00,0xff}};
+            const SurfaceId target=1000001,coordinates=1000002;
+            call(wire::message(wire::Op::create,target,Image{4,1,{10,20,30,40}},tags),true);
+            call(wire::message(wire::Op::create,coordinates,Image{4,1,{0,1,2,3}},tags),true);
+            unsigned refusals=0;
+            for(bool mapped:{false,true})for(bool keyed:{false,true}){
+                const auto before=stats();bool refused=false;
+                try{copyCoordinates(target,mapped?std::optional(coordinates):std::nullopt,
+                        target,{0,0,3,1},1,0,keyed?std::optional<std::uint32_t>(20):std::nullopt);}
+                catch(const std::exception& error){refused=std::string(error.what()).find("Coordinate pixel input aliases destination")!=std::string::npos;}
+                require(refused,"Coordinate pixel/destination alias accepted");++refusals;
+                require(stats().copies==before.copies,"Rejected coordinate alias issued a copy");
+                require(read(target).pixels==std::vector<std::uint32_t>{10,20,30,40} &&
+                        read(coordinates).pixels==std::vector<std::uint32_t>{0,1,2,3},
+                        "Rejected coordinate alias changed source or target");
+            }
+            for(unsigned axis=0;axis<3;++axis){
+                const auto before=stats();bool refused=false;
+                try{copyCoordinates(coordinates,coordinates,target,{0,0,3,1},
+                        axis==1?0:2147483647,axis==0?0:2147483647,std::nullopt);}
+                catch(const std::exception& error){refused=std::string(error.what()).find("Coordinate copy bounds/format")!=std::string::npos;}
+                require(refused && stats().copies==before.copies,"Overflowing coordinate origin reached drawing");
+                require(read(target).pixels==std::vector<std::uint32_t>{10,20,30,40} &&
+                        read(coordinates).pixels==std::vector<std::uint32_t>{0,1,2,3},
+                        "Rejected coordinate origin changed source or target");
+            }
+            // Canonical coordinate self-copies take the existing ordered
+            // surfaceCopy route before the pixel-sampler alias refusal.
+            copyCoordinates(target,target,target,{0,0,3,1},1,0,std::nullopt);
+            require(read(target).pixels==std::vector<std::uint32_t>{10,10,20,30},
+                    "Coordinate self-copy lost frozen source samples");
+            // A distinct pixel input and coordinate source still execute.
+            copyCoordinates(target,coordinates,coordinates,{0,0,3,1},1,0,std::nullopt);
+            require(read(coordinates).pixels==std::vector<std::uint32_t>{0,0,1,2},
+                    "Distinct pixel input coordinate self-copy changed ordering");
+            copyCoordinates(coordinates,coordinates,target,{0,0,3,1},1,0,0u);
+            require(read(target).pixels==std::vector<std::uint32_t>{10,10,20,1},
+                    "Distinct coordinate copy lost keyed destination history");
+            copyCoordinates(coordinates,std::nullopt,target,{0,0,1,1},0,0,std::nullopt);
+            require(read(target).pixels==std::vector<std::uint32_t>{UINT32_MAX,10,20,1},
+                    "Unmapped coordinate copy lost its sentinel");
+            require(refusals==4,"Coordinate alias guard coverage");
+            call(wire::message(wire::Op::destroy,target),true);call(wire::message(wire::Op::destroy,coordinates),true);
+            require(stats().surfaces==0,"Coordinate routing controls leaked surfaces");
+        }
         for(unsigned bits:{8u,16u,24u,32u}){
             PixelFormat f{bits,bits==8?std::array<std::uint32_t,3>{}:bits==16?
                 std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f}:std::array<std::uint32_t,3>{0xff0000,0xff00,0xff}};

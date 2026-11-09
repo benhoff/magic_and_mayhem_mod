@@ -1,5 +1,7 @@
 # Native-player overlap requiredness — 2026-11-09
 
+**CR09 follow-up:** the [owned-copy routing audit](copy-routing-safety-20261109.md) closes unsafe-feedback routing under the canonical private-storage contract. Natural overlap is not a required witness for that memory-safety property. Original caller output/traversal, external storage and the broader scope decision remain independent.
+
 The natural overlap obligation has a precise **not-required boundary for the successful active COPY calls in these 16 recorded native-player cases**. This is permitted by `SC.natural-callers.close_when`; it is not a positive overlap witness or an all-game exclusion. Both approved ALIAS09 mechanism rows remain closed. All 156 acceptance rows and both final decisions are unchanged: 132/156 passed, 24 pending.
 
 The [source-bound analysis](rendering-natural-overlap-results-20261109/requiredness-01.json) checks 54,906 recorded calls: 612 source-less calls, 54,290 successful source copies and four failed source copies. Eight Quick/Campaign, four Grimoire and four clipped cases cover default/software and actual 640×480/800×600. All original hashes, source phases, failures and inputs remain immutable. No new game, renderer change or scene fixture was needed.

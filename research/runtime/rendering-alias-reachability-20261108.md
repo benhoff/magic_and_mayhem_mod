@@ -1,5 +1,7 @@
 # Natural alias/overlap COPY investigation — 2026-11-08
 
+**CR09 follow-up:** the [owned-copy routing audit](copy-routing-safety-20261109.md) closes unsafe-feedback routing under the canonical private-storage contract. Natural overlap is not a required witness for that memory-safety property. Original caller output/traversal, external storage and the broader scope decision remain independent.
+
 **2026-11-09 NAT09 follow-up:** a [source-backed bounded exclusion](native-player-overlap-boundary-20261109.md) resolves overlap requiredness for54,290successful active COPYs in16retained native-only cases. No positive natural overlap or all-game absence is claimed.
 
 **2026-11-09 approved amendment:** both controlled opaque-overlap mechanism cells are closed. Natural player reachability stays open. See the [amended admission](rendering-alias-bounded-results-20261109/admission-01.json).

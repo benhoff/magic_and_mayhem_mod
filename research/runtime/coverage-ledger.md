@@ -28696,3 +28696,7 @@ The existing owned checkout/build is reused. Before rebuilding, exact old tested
 
 Remaining IDs: `gate.fault-lifetime`, `gate.journeys`, `gate.operations`, `gate.pixels-history`, `gate.required-boundaries`, `gate.separate-decisions`, `gate.transitions`.
 
+
+### CR09 — owned copy routing safety, 2026-11-09
+
+`NP.owned-copy-routing-safety` closes unsafe GPU feedback within17reviewed owned-copy entry families: canonical storage identity, distinct direct copies, existing shared-source snapshot/ordered routes or refusal, and unknown-identity refusal under stated guards. Geometric rectangle-overlap detection and a natural overlap witness are unnecessary for this safety property. A missing coordinate pixel-input/destination alias guard is repaired before drawing;8local/worker refusals preserve full inputs,8positive paths retain semantics, and128GPU emitter identity combinations produce12safe routes/116refusals. Existing192surface cases, prepared-frame controls,354command frame comparisons and408clipping operations pass. Native provider/bridge coverage here is source review under enabled ownership guards; no fresh PE32/game, global absence, original traversal equivalence or current combined-player/hardware claim. All accepted matrices retain their source phases and no acceptance row is promoted. See [the ownership contract and exact inventory](copy-routing-safety-20261109.md).

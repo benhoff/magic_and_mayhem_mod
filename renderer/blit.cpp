@@ -1242,11 +1242,14 @@ ClipperState GlBlitter::surfaceClipper(SurfaceId id) const{
 void GlBlitter::copyCoordinates(SurfaceId pixels,std::optional<SurfaceId> source,SurfaceId destination,Rect r,int x,int y,std::optional<std::uint32_t> key){
     if(isolated_){isolated_->call(wire::message(wire::Op::coordinates,pixels,source,destination,r,x,y,key),true);return;}
  auto& p=*impl_;p.thread();p.flushCopies();auto& a=p.get(pixels);auto& d=p.get(destination);
- if(d.format.bits!=32 || r.left<0 || r.top<0 || r.right> a.width || r.bottom>a.height || r.right<=r.left || r.bottom<=r.top || x<0 || y<0 || x+r.right-r.left>d.width || y+r.bottom-r.top>d.height)throw std::invalid_argument("Coordinate copy bounds/format");
+ if(d.format.bits!=32 || r.left<0 || r.top<0 || r.right> a.width || r.bottom>a.height || r.right<=r.left || r.bottom<=r.top || x<0 || y<0 || x>d.width-(r.right-r.left) || y>d.height-(r.bottom-r.top))throw std::invalid_argument("Coordinate copy bounds/format");
  if(source && *source==destination){
   if(key)throw std::invalid_argument("Keyed coordinate self copy requires ordered pixel semantics");
   surfaceCopy(*source,destination,{SurfaceCopyApi::BltFast,r,{x,y,x+r.right-r.left,y+r.bottom-r.top},0});return;
  }
+ // The pixel input is a sampler too, even when coordinates come from a
+ // separate surface. Only the self-copy route above may reuse the target.
+ if(pixels==destination)throw std::invalid_argument("Coordinate pixel input aliases destination");
  a.validity.require(r);
  GLuint coordinates=0;if(source){auto& c=p.get(*source);if(c.format.bits!=32 || c.width!=a.width || c.height!=a.height)throw std::invalid_argument("Coordinate source extent/format");c.validity.require(r);coordinates=c.native;}
  Current current(p.context,p.surface);auto& g=p.gl;p.attach(d.native,d.width,d.height);p.setScissor(true);g.glScissor(x,y,r.right-r.left,r.bottom-r.top);p.useProgram(p.coordinateProgram->programId());
