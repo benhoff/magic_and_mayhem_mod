@@ -32,7 +32,7 @@ def main():
         result['claims']=[dict(behavior=behavior['id'],contract_sha256=behavior_contract(behavior,{b['id']:b for b in register['builds']}),scenarios={s['id']:scenario_contract(s) for s in register['scenarios'] if behavior['id'] in s['behaviors']})]
     result['base_commit']=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     result['unique_sources']={n:put('source-'+hashlib.sha256(n.encode()).hexdigest()[:20]+'.bin',(ROOT/n).read_bytes()) for n in sorted(names)}
-    with tempfile.TemporaryDirectory(prefix='mnm-font-controls-',dir='/tmp') as directory:
+    with tempfile.TemporaryDirectory(prefix='mnm-font-controls-',dir=os.environ.get('TMPDIR','/tmp')) as directory:
         scratch=Path(directory)
         def run(label,args):
             command=[str(x) for x in args]
@@ -44,6 +44,7 @@ def main():
             run('compile',['g++','-m32','-fno-pie','-no-pie','-std=c++17','-O2','-Wall','-Wextra','-Werror',
                            'tests/font-lifetime-observer.cpp','runtime/scene/font_lifetime.S','tests/render-contract-call.S','-o',scratch/'controls'])
             result['native']=json.loads(run('abi-controls',[scratch/'controls',scratch/'journal.bin']))
+            run('activation-conflict',[scratch/'controls',scratch/'conflict.bin','conflicting-observers']);assert not(scratch/'conflict.bin').exists();result['conflicting_activation_refused']=True
             result['binary']=put('controls.bin',(scratch/'controls').read_bytes())
             raw=(scratch/'journal.bin').read_bytes();result['transcript']=put('journal.bin',raw)
             observed=decode(raw);result['decoded']=dict(records=len(observed['rows']),loads=len(observed['loads']),uses=len(observed['uses']),retired=len(observed['retired']),live_at_detach=observed['live_at_detach'])

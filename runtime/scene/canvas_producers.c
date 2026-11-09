@@ -167,7 +167,8 @@ static void emit_raw(u32* r,const void* payload,u32 n){if((!file&&!continuous_ma
 static struct SourcePacket {u32 sequence,kind,tag,size,hash,original_frame,next;u8* data;} source_packets[MNM_PRODUCER_V4_SOURCES];
 #include "../../protocols/include/mnm/world_continuous_checksum.h"
 #include "palette_observation.h"
-void canvas_palette_close(void){pal_close();}
+#include "font_observation.h"
+void canvas_palette_close(void){pal_close();fdc_close();}
 static u32 source_packet_count,source_packet_bytes;
 static u32 continuous_source_heads[1024];
 static void emit_unlocked(u32* r,const void* payload,u32 n){
@@ -204,10 +205,12 @@ static void emit_unlocked(u32* r,const void* payload,u32 n){
 static u32 continuous_emit_lock;
 static int continuous_drain_prefix(void);
 static void emit(u32* r,const void* payload,u32 n){
+ u32 font_frame=fdc_file&&continuous_map&&r[2]==8&&n?get((u8*)r+96+n):0;
  if(!continuous_map){emit_unlocked(r,payload,n);return;}
  while(__sync_lock_test_and_set(&continuous_emit_lock,1)){}
  if(!continuous_drain_prefix()){canvas_producers_close();__sync_lock_release(&continuous_emit_lock);return;}
  emit_unlocked(r,payload,n);
+ fdc_glyph(r,payload,n,font_frame);
  __sync_lock_release(&continuous_emit_lock);
 }
 static void fail(u32 why,u32 detail){continuous_failure(100+why,detail);++failures;u32 r[24]={0};r[2]=MNM_PRODUCER_FAILURE;r[14]=why;r[15]=detail;emit(r,0,0);}
@@ -731,7 +734,7 @@ int canvas_producers_install(void){
  char name[260];u32 i=0;while(directory[i]){name[i]=directory[i];++i;}const char* suffix="\\canvas-producers.bin";while(*suffix)name[i++]=*suffix++;name[i]=0;if(!continuous_map){file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(file==(HANDLE)-1){file=0;return 0;}}
  u32 header[16]={0};copy(header,session_producers?MNM_PRODUCER_V5_MAGIC:whole_update_capture?MNM_PRODUCER_V4_MAGIC:limit>16?MNM_PRODUCER_V3_MAGIC:minimap_owned?"MNMPRO02":MNM_PRODUCER_MAGIC,8);header[2]=session_producers?5:whole_update_capture?4:limit>16?3:minimap_owned?2:1;header[3]=64;header[4]=MNM_PRODUCER_BUILD;header[5]=producer_record_budget();header[6]=limit;if(session_producers||whole_update_capture){header[7]=session_producers?MNM_PRODUCER_V5_SESSION:MNM_PRODUCER_V4_WHOLE_UPDATE;header[8]=MNM_PRODUCER_V4_MAX_BYTES;}if(!continuous_map&&!write(file,header,64))return 0;bytes=64;
  for(u32 j=0;j<HOOKS;++j){if((j>=53&&j<=56&&!producer_trace_mode)||(j>=57&&!extended_stream()))continue;struct Hook* h=hooks+j;u32 old,unused;if(!VirtualProtect((void*)h->address,h->length,0x40,&old))return 0;u8 patch[10]={0xe9};put(patch+1,(u32)h->entry-h->address-5);for(u32 k=5;k<h->length;++k)patch[k]=0x90;copy((void*)h->address,patch,h->length);FlushInstructionCache(GetCurrentProcess(),(void*)h->address,h->length);VirtualProtect((void*)h->address,h->length,old,&unused);}
- if(!publication_install()||!pal_install())return 0;enabled=1;if(glyph)glyph_live_installed();return 1;
+ if(!publication_install()||!pal_install()||!fdc_install())return 0;enabled=1;if(glyph)glyph_live_installed();return 1;
 }
 #include "copy_caller_handoff.h"
 /* Private PE32 hook handoff to the owning native cursor adapter. Only the seven

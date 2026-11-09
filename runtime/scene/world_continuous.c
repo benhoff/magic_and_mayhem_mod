@@ -14,6 +14,7 @@ static ResidentWorldBind continuous_public_bind;
 static u32 continuous_written;
 static u32 continuous_generation_low = 1, continuous_generation_high,
            continuous_slot_index;
+static void fdc_source_context(u32* h){h[24]=continuous_generation_low;h[25]=continuous_generation_high;h[26]=continuous_source_low;h[27]=continuous_source_high;}
 #include "world_frame_observation.h"
 #include "scene_actor_observation.h"
 __declspec(dllexport) u32 WIN SceneWorldFrameObservationV1(u32 owner,u32* out,u32 bytes){

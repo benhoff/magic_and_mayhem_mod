@@ -16,13 +16,14 @@ void contract_original_call(unsigned,unsigned,unsigned,const unsigned*);
 }
 static std::vector<unsigned char> output;
 static unsigned last_error=123,thread_id=17,clock_ticks;
+static bool conflict_requested;
 extern "C" {
 u32 WIN GetCurrentThreadId(){return thread_id;}
 u32 WIN GetTickCount(){return ++clock_ticks;}
 u32 WIN GetLastError(){return last_error;}
 void WIN SetLastError(u32 n){last_error=n;}
 u32 WIN GetEnvironmentVariableA(const char* name,char* out,u32 length){
- const char* value=!std::strcmp(name,"MNM_FONT_LIFETIME")?"1":!std::strcmp(name,"MNM_SCENE_DIR")?"owned":nullptr;
+ const char* value=!std::strcmp(name,"MNM_FONT_DC_LIFETIME")&&conflict_requested?"1":!std::strcmp(name,"MNM_FONT_LIFETIME")?"1":!std::strcmp(name,"MNM_SCENE_DIR")?"owned":nullptr;
  if(!value){last_error=203;return 0;}auto n=std::strlen(value);if(n>=length)return n+1;std::memcpy(out,value,n+1);return n;
 }
 void* WIN GetModuleHandleA(const char*){return reinterpret_cast<void*>(0x400000);}
@@ -58,7 +59,7 @@ static Result invoke(unsigned entry,unsigned self,unsigned argc){
  Result r{};std::memcpy(r.gpr.data(),contract_gpr,32);r.gpr[4]=0;r.flags=contract_flags&0xcd5;return r;
 }
 int main(int argc,char** argv)try{
- require(argc==2,"Output transcript required");
+ require(argc==2||(argc==3&&!std::strcmp(argv[2],"conflicting-observers")),"Output transcript required");conflict_requested=argc==3;
  require(mmap(reinterpret_cast<void*>(0x400000),0x400000,PROT_READ|PROT_WRITE|PROT_EXEC,MAP_PRIVATE|MAP_ANONYMOUS|MAP_FIXED_NOREPLACE,-1,0)!=MAP_FAILED,"Private image mapping failed");
  const unsigned entries[11]={0x4be870,0x4be8c0,0x4be910,0x4be960,0x4be9b0,0x4bea00,0x4bea50,0x4beaa0,0x4a5ae0,0x4a59e0,0x5575b0};
  for(unsigned i=0;i<11;++i){
@@ -77,6 +78,7 @@ int main(int argc,char** argv)try{
  put(reinterpret_cast<void*>(0x700004),256);put(reinterpret_cast<void*>(0x700080),40);
  std::array<Result,11> before;
  reset_font();for(unsigned i=0;i<11;++i){if(i==9)put(reinterpret_cast<void*>(objects[0]),0x700000);before[i]=invoke(entries[i],objects[0],i==8?2:i==9?4:0);}
+ reset_font();if(conflict_requested){std::array<std::array<unsigned char,7>,11> prior;for(unsigned i=0;i<11;++i)std::memcpy(prior[i].data(),reinterpret_cast<void*>(entries[i]),7);require(!font_trace_install()&&!file&&output.empty(),"Both observers admitted");for(unsigned i=0;i<11;++i)require(!std::memcmp(prior[i].data(),reinterpret_cast<void*>(entries[i]),7),"Conflict patched a font entry");std::cout<<"Conflicting observer activation refused before patch\n";return 0;}
  reset_font();require(font_trace_install(),"Production hook installation failed");
  for(unsigned i=0;i<11;++i){auto after=invoke(entries[i],objects[0],i==8?2:i==9?4:0);require(before[i].gpr==after.gpr&&before[i].flags==after.flags,"Entry/return ABI changed");}
  require(!loss&&resources==1&&count==23,"Incomplete production lifecycle events");

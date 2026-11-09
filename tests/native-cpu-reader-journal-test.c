@@ -11,6 +11,8 @@ static void* write_rows(void* pointer){
 int main(void){
  for(unsigned a=0;a<3;++a)for(unsigned b=0;b<3;++b)for(unsigned c=0;c<3;++c)
   assert(mnm_crj_gate(a,b,c)==(a==1 && b==1 && c==1));
+ for(unsigned a=0;a<3;++a)for(unsigned b=0;b<3;++b)for(unsigned c=0;c<3;++c)for(unsigned d=0;d<3;++d)
+  assert(mnm_crj_font_gate(a,b,c,d)==(a==1 && b==1 && c==1 && d==1));
  struct MnmCpuReaderJournal* j=calloc(1,sizeof(*j));assert(j);
  uint32_t r[32];for(unsigned n=0;n<32;++n)r[n]=100+n;
  assert(!mnm_crj_record(0,r));assert(mnm_crj_record(j,r));
