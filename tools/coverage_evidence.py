@@ -6,6 +6,8 @@ and validation claims remain unchanged. Archives are pinned by SHA-256 in Git.
 from contextlib import contextmanager
 from contextvars import ContextVar
 from functools import lru_cache
+from collections import OrderedDict
+from concurrent.futures import ThreadPoolExecutor
 import gzip
 import hashlib
 import io
@@ -420,10 +422,17 @@ class Reader:
     Connections belong to one invocation. A later audit always observes the
     current pointer or edited file, and every resolved payload is hash checked.
     """
-    def __init__(self, root):
+    def __init__(self, root, *, memoize=False, cache_bytes=16*1024**2):
         self.root = Path(root).resolve()
         self.resolver = Resolver(self.root)
         self._token = None
+        self._memoize = memoize
+        if type(cache_bytes) is not int or cache_bytes < 0:
+            raise ValueError('Invalid invocation evidence-cache bound')
+        self._cache_limit = cache_bytes
+        self._fingerprints = {}
+        self._bodies = OrderedDict()
+        self._body_bytes = 0
 
     def __enter__(self):
         self._token = _active_reader.set(self)
@@ -437,7 +446,43 @@ class Reader:
             self.close()
 
     def close(self):
+        self._fingerprints.clear()
+        self._bodies.clear()
+        self._body_bytes = 0
         self.resolver.close()
+
+    def _stamp(self, target):
+        s = target.stat()
+        return (s.st_dev, s.st_ino, s.st_size, s.st_mtime_ns, s.st_ctime_ns)
+
+    def _observed(self, target):
+        if not self._memoize:
+            return None, None
+        stamp = self._stamp(target)
+        previous = self._fingerprints.get(target)
+        if previous is not None and previous[0] != stamp:
+            self._fingerprints.pop(target)
+            old = self._bodies.pop(target, None)
+            if old is not None:
+                self._body_bytes -= len(old)
+            previous = None
+        return stamp, previous[1] if previous is not None else None
+
+    def _remember(self, target, stamp, sha, body=None):
+        if not self._memoize:
+            return
+        if self._stamp(target) != stamp:
+            raise ValueError('Input changed during evidence read: ' + str(target))
+        self._fingerprints[target] = (stamp, sha)
+        if body is not None and len(body) <= self._cache_limit:
+            old = self._bodies.pop(target, None)
+            if old is not None:
+                self._body_bytes -= len(old)
+            while self._bodies and self._body_bytes + len(body) > self._cache_limit:
+                _, evicted = self._bodies.popitem(last=False)
+                self._body_bytes -= len(evicted)
+            self._bodies[target] = body
+            self._body_bytes += len(body)
 
     def path(self, path):
         path = Path(path)
@@ -448,8 +493,14 @@ class Reader:
 
     def read_bytes(self, path):
         target = self.path(path)
+        stamp, known = self._observed(target)
+        if known is not None and target in self._bodies:
+            self._bodies.move_to_end(target)
+            return self._bodies[target]
         data = target.read_bytes()
         if len(data) > 160 or not data.startswith(MAGIC):
+            if self._memoize:
+                self._remember(target, stamp, hashlib.sha256(data).hexdigest(), data)
             return data
         ident = identity(data)
         relative = target.relative_to(self.root).as_posix()
@@ -458,7 +509,9 @@ class Reader:
         safe_path(self.root, relative)
         output = io.BytesIO()
         self.resolver.copy(*ident, output)
-        return output.getvalue()
+        body = output.getvalue()
+        self._remember(target, stamp, ident[0], body)
+        return body
 
     def read_text(self, path, encoding=None, errors=None, newline=None):
         with io.TextIOWrapper(io.BytesIO(self.read_bytes(path)), encoding=encoding,
@@ -470,10 +523,20 @@ class Reader:
 
     def digest(self, path):
         target = self.path(path)
+        stamp, known = self._observed(target)
+        if known is not None:
+            return known
         with target.open('rb') as stream:
             head = stream.read(161)
         if len(head) > 160 or not head.startswith(MAGIC):
-            return digest_file(target)
+            if self._memoize and target.stat().st_size <= self._cache_limit:
+                body = target.read_bytes()
+                sha = hashlib.sha256(body).hexdigest()
+                self._remember(target, stamp, sha, body)
+            else:
+                sha = digest_file(target)
+                self._remember(target, stamp, sha)
+            return sha
         ident = identity(head)
         relative = target.relative_to(self.root).as_posix()
         if not artifact(relative):
@@ -483,8 +546,67 @@ class Reader:
             def write(self, chunk):
                 pass
         # Store.copy checks the original SHA-256, size and chunk boundaries.
-        self.resolver.copy(*ident, DigestSink())
+        output = io.BytesIO() if self._memoize and ident[1] <= self._cache_limit else DigestSink()
+        self.resolver.copy(*ident, output)
+        self._remember(target, stamp, ident[0], output.getvalue() if isinstance(output, io.BytesIO) else None)
         return ident[0]
+
+    def prefetch_digests(self, paths, *, workers=4):
+        """Verify uncached report payloads in bounded, independent read workers.
+
+        Each worker owns its SQLite connections and decodes one chunk at a time.
+        Only fingerprints return to this reader; large report bodies are never
+        buffered. This invocation's file stamps still guard every alias.
+        """
+        if type(workers) is not int or not 1 <= workers <= 4:
+            raise ValueError('Evidence verification requires one to four workers')
+        if not self._memoize:
+            return
+        jobs = {}
+        for path in paths:
+            target = self.path(path)
+            stamp, known = self._observed(target)
+            if known is not None:
+                continue
+            with target.open('rb') as stream:
+                head = stream.read(161)
+            if len(head) > 160 or not head.startswith(MAGIC):
+                continue  # Ordinary source/document hashing keeps its normal path.
+            ident = identity(head)
+            relative = target.relative_to(self.root).as_posix()
+            if not artifact(relative):
+                raise ValueError('Evidence pointer outside report storage policy: ' + relative)
+            safe_path(self.root, relative)
+            jobs.setdefault(ident, []).append((target, stamp))
+        if not jobs:
+            return
+        groups = [[] for _ in range(min(workers, len(jobs)))]
+        sizes = [0] * len(groups)
+        for ident in sorted(jobs, key=lambda key: key[1], reverse=True):
+            index = min(range(len(groups)), key=sizes.__getitem__)
+            groups[index].append(ident)
+            sizes[index] += ident[1]
+
+        class Sink:
+            def write(self, chunk):
+                pass
+
+        def verify(group):
+            # sqlite3 connections must be created and closed on their owner
+            # thread. Readers never write objects or create evidence pointers.
+            resolver = Resolver(self.root)
+            try:
+                for ident in group:
+                    resolver.copy(*ident, Sink())
+                return group
+            finally:
+                resolver.close()
+
+        with ThreadPoolExecutor(max_workers=len(groups)) as pool:
+            for verified in pool.map(verify, groups):
+                for sha, size in verified:
+                    for target, stamp in jobs[(sha, size)]:
+                        self._remember(target, stamp, sha)
 
 
 def _reader_root(path, root=None):

@@ -7,6 +7,7 @@ import subprocess
 import sys
 
 from coverage_bookkeeping import Workspace, finish
+from integration_queue import finish_lock
 
 
 def main():
@@ -23,6 +24,11 @@ def main():
     parser.add_argument('--timings', action='store_true', help='Print finish phase durations and return timings_seconds')
     parser.add_argument('--keep-review-cache',action='store_true',help='Keep a materialized cache after shared-store completion')
     args = parser.parse_args()
+    with finish_lock(args.root):
+        return run(args)
+
+
+def run(args):
     from evidence_objects import settings
     handoffs=[]
     if settings(args.root):

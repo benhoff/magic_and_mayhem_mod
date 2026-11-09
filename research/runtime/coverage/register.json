@@ -171979,6 +171979,140 @@
       "remaining_gaps": [
         "All predecessor/indirect flow and wrapper publication/backing lifetimes remain unresolved. Separate fields or constants do not prove disjoint physical storage. Both natural alias/overlap acceptance rows remain pending; no independent output or current native execution is added."
       ]
+    },
+    {
+      "id": "TOOL.integration-throughput",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Conservative local integration throughput",
+      "scope": "Host tooling only: cooperative Git-common-directory admission through child lifetime and expected-master refusal; dry-first union of disjoint whole metadata records and append-only ledger tails; exact retrospective file custody with explicit affected IDs and pending semantic validation; fresh-source-checksummed sealed SQLite restore-proof reuse with both-copy object closure and codec binding; bulk incremental object/version catalog comparison; bounded verified reads shared within one fresh audit/snapshot only. Synthetic two-filesystem Git/SQLite controls and bounded performance measurements. No automatic semantic reconciliation, gate-pass caching, full repository timing guarantee, engine validation or physical SQLite page-image claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/integration-workflow.md",
+        "docs/evidence-storage.md",
+        "research/runtime/coverage-ledger.md",
+        "AGENTS.md",
+        "research/runtime/coverage/README.md",
+        "research/runtime/coverage/summary-finish-performance-20261108.md"
+      ],
+      "implementation": [
+        "tools/evidence_objects.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_audit.py",
+        "tools/coverage_gate.py",
+        "tools/finish-work.py",
+        "tools/integration_queue.py",
+        "tools/integration_review.py",
+        "tools/with-integration-lock.py",
+        "tools/review-integration.py"
+      ],
+      "tests": [
+        "tests/test-finish-performance.py",
+        "tests/test-integration-tools.py",
+        "tests/test-evidence-objects.py",
+        "tests/test-evidence-store.py",
+        "tests/test-coverage-gate.py",
+        "tests/test-coverage-bookkeeping.py",
+        "tests/test-local-evidence-workflow.py",
+        "tests/test-re-coverage.py",
+        "tests/test-coverage-merge-history.py",
+        "tests/test-coverage-evidence-imports.py",
+        "tests/test-evidence-blocks.py",
+        "tests/test-coverage-review-shards.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_bookkeeping.py",
+        "tools/coverage_reviews.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_merge_history.py",
+        "tools/evidence_local.py",
+        "tools/evidence_blocks.py",
+        "tools/evidence_cache.py",
+        "tools/evidence_workspace.py",
+        "tools/index-coverage-sources.py",
+        "tools/check-re-coverage.py",
+        "tools/working-retention.py",
+        "tests/fixture_support.py"
+      ],
+      "evidence": [
+        "FIN01.controls"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Admission is cooperative; nonparticipating writers may still move master. Operators must acquire before merge preparation and preserve the descriptor through child hops.",
+        "Only disjoint metadata changes and append-only ledger tails are reconciled. Overlapping records, evidence-ID collisions and semantic coverage need review. Retrospective affected IDs grant no behavior-contract or validation credit.",
+        "Benchmarks use bounded RAM-primary/disk-replica fixtures. End-to-end integration timing and reuse on the large machine legacy database remain unmeasured.",
+        "Earlier evidence/statuses for consumers of changed shared source retain their original hashes; broad historical current-code validation is not renewed."
+      ]
+    },
+    {
+      "id": "TOOL.snapshot-throughput",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Bounded fresh snapshot payload verification",
+      "scope": "Host accounting only: after the registered audit, verify uncached SQLite research payloads with at most four read-only worker connections, chunk-bounded decoding and complete original SHA-256/size checks; deduplicate equal payload identities only within the batch, preserve path-policy/containment checks and recheck file stamps before remembering results. Ordinary/default-reader paths remain unchanged. Fresh readers for working/Git-base/staged checks. Synthetic corruption, drift, alias, concurrency and refusal controls, compatible accounting/storage regressions and exact full snapshot/audit equivalence on retained Git tree a68af15c2. No cached gate pass, changed evidence hashes, semantic accounting exemption, whole-merge timing guarantee or engine-validation renewal.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/snapshot-performance.md",
+        "docs/integration-workflow.md",
+        "research/runtime/coverage/README.md",
+        "research/runtime/coverage-ledger.md",
+        "research/runtime/coverage/summary-snapshot-performance-20261108.md"
+      ],
+      "implementation": [
+        "tools/coverage_gate.py",
+        "tools/coverage_evidence.py"
+      ],
+      "tests": [
+        "tests/test-finish-performance.py",
+        "tests/test-integration-tools.py",
+        "tests/test-evidence-objects.py",
+        "tests/test-evidence-store.py",
+        "tests/test-coverage-gate.py",
+        "tests/test-coverage-bookkeeping.py",
+        "tests/test-local-evidence-workflow.py",
+        "tests/test-re-coverage.py",
+        "tests/test-coverage-merge-history.py",
+        "tests/test-coverage-evidence-imports.py",
+        "tests/test-evidence-blocks.py",
+        "tests/test-coverage-review-shards.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_audit.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_reviews.py",
+        "tools/coverage_merge_history.py",
+        "tools/coverage_bookkeeping.py",
+        "tools/evidence_local.py",
+        "tools/evidence_objects.py",
+        "tools/evidence_blocks.py",
+        "tools/check-re-coverage.py",
+        "tools/index-coverage-sources.py",
+        "tests/fixture_support.py"
+      ],
+      "evidence": [
+        "SNAP01.controls"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Timing is one before/after snapshot pair on the retained Git tree and a shared warm machine. Full integration time and future hardware/corpus rates remain workload-dependent.",
+        "Worker verification is invocation-local and read-only. It does not scrub every unrelated stored object or grant new original/native execution credit.",
+        "Historical evidence for changed shared tooling retains its original hashes and statuses; prior broad current-code validation may require targeted review."
+      ]
     }
   ],
   "evidence": [
@@ -393156,6 +393290,52 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "FIN01.controls",
+      "kind": "native_integration",
+      "scope": "Fresh source-stable host tooling controls, compatible existing workflow regressions and bounded synthetic benchmark. No new original/game execution or historical engine milestone renewal.",
+      "record": "research/runtime/finish-performance-results-20261108/controls03.json",
+      "sha256": "f2979fd54362a9ff80ab2141bd0800948a8716d9bad0fd9fc44adffd4d4b72ab",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "SNAP01.controls",
+      "kind": "native_integration",
+      "scope": "Source-stable synthetic host controls and compatible regressions plus complete retained-tree snapshot/audit equality and before/after profile. No new original or game execution.",
+      "record": "research/runtime/snapshot-performance-results-20261108/controls01.json",
+      "sha256": "2fda36017d286802ee8082c9ca764ef05f7bc6e2179e95a21c272e2a45b3db11",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/snapshot_identical",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/audit_identical",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -427421,6 +427601,56 @@
       "remaining_gaps": [
         "PC08.G.production-observer-application"
       ]
+    },
+    {
+      "id": "SC.tooling.integration-throughput",
+      "scope": "Bounded real Git/SQLite controls for fresh integrity, corruption/interruption, sealed-source drift, inherited admission and independent contention, dry metadata refusal/union, exact history payload custody and per-invocation reads; no original/game execution.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.integration-throughput"
+      ],
+      "tests": [
+        "tests/test-finish-performance.py",
+        "tests/test-integration-tools.py",
+        "tests/test-evidence-objects.py",
+        "tests/test-evidence-store.py",
+        "tests/test-coverage-gate.py",
+        "tests/test-coverage-bookkeeping.py",
+        "tests/test-local-evidence-workflow.py",
+        "tests/test-re-coverage.py",
+        "tests/test-coverage-merge-history.py",
+        "tests/test-coverage-evidence-imports.py",
+        "tests/test-evidence-blocks.py",
+        "tests/test-coverage-review-shards.py"
+      ],
+      "evidence": [
+        "FIN01.controls"
+      ]
+    },
+    {
+      "id": "SC.tooling.snapshot-throughput",
+      "scope": "Parallel and sequential synthetic snapshot equality, exact fixed-tree snapshot/audit hashes, independent concurrent SQLite readers, aliases, body-memory bounds, pointer mutation, policy escapes, corruption/missing/size refusal and fresh epochs; host tooling only.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.snapshot-throughput"
+      ],
+      "tests": [
+        "tests/test-finish-performance.py",
+        "tests/test-integration-tools.py",
+        "tests/test-evidence-objects.py",
+        "tests/test-evidence-store.py",
+        "tests/test-coverage-gate.py",
+        "tests/test-coverage-bookkeeping.py",
+        "tests/test-local-evidence-workflow.py",
+        "tests/test-re-coverage.py",
+        "tests/test-coverage-merge-history.py",
+        "tests/test-coverage-evidence-imports.py",
+        "tests/test-evidence-blocks.py",
+        "tests/test-coverage-review-shards.py"
+      ],
+      "evidence": [
+        "SNAP01.controls"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -429238,8 +429468,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-01d0b3ae66d62a995e1d9d172e6bc65f05ffa0bfff9d9fbec7cb8b28e9391911.json",
-    "sha256": "01d0b3ae66d62a995e1d9d172e6bc65f05ffa0bfff9d9fbec7cb8b28e9391911"
+    "path": "research/runtime/coverage/source-index-ef22fede2b8c2b59f64fab3d2cf4446e0628a091e00cd6d6feabe2c369c1ebf8.json",
+    "sha256": "ef22fede2b8c2b59f64fab3d2cf4446e0628a091e00cd6d6feabe2c369c1ebf8"
   },
   "evidence_applicability": [
     {

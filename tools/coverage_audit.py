@@ -86,8 +86,12 @@ class FunctionRangeIndex:
         return [entry for _, entry in sorted(found)]
 
 
-def audit(root, register, *, recorded_sources=None):
-    with Reader(root) as reader:
+def audit(root, register, *, recorded_sources=None, reader=None):
+    if reader is not None:
+        if reader.root != Path(root).resolve():
+            raise ValueError('Audit reader belongs to another snapshot')
+        return _audit(root, register, reader, recorded_sources=recorded_sources)
+    with Reader(root, memoize=True) as reader:
         return _audit(root, register, reader, recorded_sources=recorded_sources)
 
 
