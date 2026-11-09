@@ -27983,3 +27983,40 @@ The pending exact union uses actual master9b0148db6as first parent and checked f
 The current progress snapshot supplies display bindings from the parents separate recorded phase maps and retains those maps unchanged; historical hashes are not refreshed. New stretch attachments correctly name actual_destination_extents; the owned snapshot used the legacy actual_world_extents key for these same destination sizes, despite entering zero Worlds. This metadata correction changes no value or engine proof. Merged controls pass41stretch Python cases, the shared artifact-reader tests and four dashboard guards, and the actual dashboard shows116/40with both alias rows/final decisions pending.
 
 Incoming committed-history review covers19123parent/current file versions fromb0eb1de5bthrough9b0148db6. A separate retrospective receipt pins2674unique opaque input transitions, including repeated additions across merge first parents and the source-specific black-guards archive. The closed review has no unresolved exact-transition gaps; it asserts neither a past gate pass nor new engine validation. Complete prior journals/archives, failures and source identities are preserved. See rendering-copy-natural-results-20261108/master-admission-01.json, master-checks-01.json and incoming-history-closed-01.json.
+
+
+## VC08 viewport boundaries and cursor motion — 2026-11-08
+
+The user-requested viewport-boundaries/cursor-motion pack closes exactly four
+finite default/software rows over the116-row owned parent: **120/156 passed,
+36pending**, with both final decisions pending. `VC08.player01` retains the
+original frozen execution contracts; `VC08.inventory-links01` accounts only for
+explicit recovered-range annotations, with no semantic/source/test/scenario
+change or new execution. Actual-master admission remains a separate source-phase
+union and must preserve every incoming acceptance row.
+
+Both nominal original-process800/640/800 journeys complete54edge/scaling windows
+per profile, three fresh displayed original cursor polls per window, eight
+bounded camera direction samples and normal original Quit. All6,669displayed
+World frames/5,933,482,500pixels independently match original-code history;
+2,696source Worlds and25chunks are retained. Normal source returns balance,
+input/cursor/graphics/renderer owners retire. Same-World continuity, arbitrary
+clamp saturation, picking, physical driver parity and whole combined-current
+execution remain outside this result.
+
+The required High-to-Low repair is intentional native policy: only the pinned
+5770f5 E8/return5770fa, opaque40x40copy at identical coordinates wholly outside
+both640x48016-bit buffers becomes a no-op. Both actual runs observe that branch
+and load the bit-identical controlled DLL. `VC08.hidden-controls01` preserves
+the pre-fix bounded retry,20complete native planes,93policy cases and18changed
+anchor refusals; `VC08.cursor-regression01` adds108complete existing cursor
+planes with no original-game start. Direct COM INVALIDRECT remains strict.
+`VC08.original-call01` links only the actual unchanged five-byte original call
+instruction with authored endpoints; no whole original Spellbox ABI is claimed.
+
+All six public requests/five actual starts, the initial accessibility refusal,
+Map-picker timeout and both failed rebuild acquisitions are retained. The
+prospective extra start bought a genuinely missing exact caller diagnostic;
+no HS08/PR07 cap was reset. Main/cold/SATA90/100/10GiB floors and all pins/raw
+inputs remain held. See `viewport-cursor-continuity-20261108.md`, its SQLite
+results, and the exact first-hit format in `research/formats/hidden-spellbox-copy-v1.md`.
