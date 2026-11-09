@@ -28142,3 +28142,67 @@ The integration now combines actual master2875ee929 with tooling e18cf4117, reta
 ### Final tooling integration after alias reservation
 
 This integration combines actual alias master e8389da21 with checked tooling merge9e555033a, preserving all parent records, existing accepted rows and pending native/alias boundaries. The SNAP01host inputs remain byte-identical to their322-control phase. The earlier staged-tree refusal, master advance and checked intermediate candidate remain retained independently. No game, native/oracle comparison, source-hash refresh or acceptance promotion is added. See tooling-master-merge-results-20261108/applicability03.json.
+
+
+
+
+## VC08 viewport boundaries and cursor motion — 2026-11-08
+
+The user-requested viewport-boundaries/cursor-motion pack closes exactly four
+finite default/software rows over the116-row owned parent: **120/156 passed,
+36pending**, with both final decisions pending. `VC08.player01` retains the
+original frozen execution contracts; `VC08.inventory-links01` accounts only for
+explicit recovered-range annotations, with no semantic/source/test/scenario
+change or new execution. Actual-master admission remains a separate source-phase
+union and must preserve every incoming acceptance row.
+
+Both nominal original-process800/640/800 journeys complete54edge/scaling windows
+per profile, three fresh displayed original cursor polls per window, eight
+bounded camera direction samples and normal original Quit. All6,669displayed
+World frames/5,933,482,500pixels independently match original-code history;
+2,696source Worlds and25chunks are retained. Normal source returns balance,
+input/cursor/graphics/renderer owners retire. Same-World continuity, arbitrary
+clamp saturation, picking, physical driver parity and whole combined-current
+execution remain outside this result.
+
+The required High-to-Low repair is intentional native policy: only the pinned
+5770f5 E8/return5770fa, opaque40x40copy at identical coordinates wholly outside
+both640x48016-bit buffers becomes a no-op. Both actual runs observe that branch
+and load the bit-identical controlled DLL. `VC08.hidden-controls01` preserves
+the pre-fix bounded retry,20complete native planes,93policy cases and18changed
+anchor refusals; `VC08.cursor-regression01` adds108complete existing cursor
+planes with no original-game start. Direct COM INVALIDRECT remains strict.
+`VC08.original-call01` links only the actual unchanged five-byte original call
+instruction with authored endpoints; no whole original Spellbox ABI is claimed.
+
+All six public requests/five actual starts, the initial accessibility refusal,
+Map-picker timeout and both failed rebuild acquisitions are retained. The
+prospective extra start bought a genuinely missing exact caller diagnostic;
+no HS08/PR07 cap was reset. Main/cold/SATA90/100/10GiB floors and all pins/raw
+inputs remain held. See `viewport-cursor-continuity-20261108.md`, its SQLite
+results, and the exact first-hit format in `research/formats/hidden-spellbox-copy-v1.md`.
+
+### VC08 actual-master source-phase union
+
+`viewport-cursor-results-20261108/master-admission-01.json` preserves all118
+incoming accepted rows and adds exactly four finite viewport/cursor profile
+rows: **122/156passed,34pending**. Both final decisions remain pending. All
+original attachments, source hashes and failures remain; ten changed owned
+observer/palette/host dependencies are explicit raw drift. The rebuilt direct
+native provider is byte-identical to the controlled DLL; no original game or
+fixture is recollected for integration freshness.
+
+The incoming alias change added only research leads and left an authored binding
+stale. The strict union refused it; `master-binding-review-01` proves that only
+the two added lead lists differ, corrects only the active binding and validates
+all156unchanged conditions/owners/IDs/policies. Old opening/evidence/dossier
+hashes remain unchanged; annotation identity is separate. Eight static union
+adverse cases pass. Incoming history22,479transitions receive2,201missing exact
+custody receipts, without asserting an earlier gate pass or new execution.
+
+The combined-tree audit has zero errors;34current host guards and the actual
+dashboard122/34/historical-source checks pass. A second committed-history review
+finds zero remaining receipt gaps across22,479transitions. These are host/static
+checks only; accepted engine execution keeps its exact owned phase. No additional
+original start, original reference replay, pixel comparison or final decision is
+claimed by integration.

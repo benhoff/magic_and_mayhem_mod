@@ -164052,7 +164052,8 @@
       ],
       "evidence": [
         "CR07.diagnosis01",
-        "CR07.native-controls01"
+        "CR07.native-controls01",
+        "VC08.cursor-regression01"
       ],
       "status": {
         "understanding": "scoped",
@@ -172112,6 +172113,132 @@
         "Timing is one before/after snapshot pair on the retained Git tree and a shared warm machine. Full integration time and future hardware/corpus rates remain workload-dependent.",
         "Worker verification is invocation-local and read-only. It does not scrub every unrelated stored object or grant new original/native execution credit.",
         "Historical evidence for changed shared tooling retains its original hashes and statuses; prior broad current-code validation may require targeted review."
+      ]
+    },
+    {
+      "id": "NP.viewport-cursor-continuity",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Finite viewport edges and cursor continuity across display rebuilds",
+      "scope": "Prospective user-requested full-frame edge/corner and cursor-source delivery checks under default/software Sharp/Integer, actual800/640/800 recreation in one original process. Complete independent viewport output and normal ownership required. Recovered camera providers remain original suppliers. No same-World continuity, general picking, arbitrary saturation/driver/platform or final-decision claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5208496,
+          "scope": "Existing recovered camera clamp; live reachability and exact finite direction boundary remain to establish.",
+          "recovered_range": "REMAIN.camera-4f79b0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5209184,
+          "scope": "Existing original direction-to-map scroll supplier; finite actual source/input/output binding is pending."
+        }
+      ],
+      "implementation": [
+        "tools/viewport_cursor.py",
+        "tools/run-rendering-viewport-cursor.py",
+        "tools/prepare-rendering-viewport-cursor.py",
+        "tools/check-rendering-viewport-cursor.py",
+        "tools/close-rendering-viewport-cursor.py"
+      ],
+      "tests": [
+        "tests/test-viewport-cursor.py",
+        "tests/test-viewport-cursor-admission.py"
+      ],
+      "documents": [
+        "research/runtime/viewport-cursor-continuity-20261108.md"
+      ],
+      "evidence": [
+        "VC08.player01",
+        "VC08.inventory-links01",
+        "VC08.master-admission01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "VC08.G.execution: The four requested finite profile rows pass in admission01: all54edge/scaling windows per profile, two actual800/640/800 rebuilds, completed original cursor polls, full independently compared output and normal retirement. This preserves accepted source phases; whole combined-current player and both final decisions remain pending.",
+        "VC08.G.history: Prior hotspot and picking/handoff caps, failures, exact source phases and all existing accepted rows remain preserved.",
+        "VC08.G.limits: Periodic motion alone cannot prove saturation or screen-edge clipping. Bound actual source geometry and independent output; do not infer a clamp from a stable image.",
+        "VC08.G.combined-source: Actual-master observer/palette/host changes remain raw source drift against the accepted owned execution phase. Static union preserves milestone acceptance, not a new combined-current player run or final rendering decision."
+      ],
+      "validation_dependencies": [
+        "runtime/native-draw/cursor_copy_leases.h",
+        "runtime/native-draw/hidden_spellbox_copy.h",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_interaction.py",
+        "tools/resident_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/comparison_process.py"
+      ]
+    },
+    {
+      "id": "NP.hidden-spellbox-copy-admission",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "title": "Wholly hidden original Spellbox redraw after a Low rebuild",
+      "scope": "Intentional native policy only at the exact original5770f5 E8/return5770fa to58c4a0: an opaque40x40 rectangle at identical source/destination coordinates, wholly outside both live640x48016-bit canvases, has no pixel operation. Visible/partial copies, other callers/wrappers/formats/sizes and strict direct COM INVALIDRECT remain unchanged. This avoids the original void wrapper retry on the observed stale hidden UI redraw; no original caller/flags or driver equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5730549,
+          "scope": "Exact five-byte E8 A6 53 01 00 calls58c4a0; V3 direct caller5770fa binds the failed40x40copy during the second Spellbox.",
+          "recovered_range": "VC08.original-5770f5-call"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817504,
+          "scope": "Existing original void rectangle/restore wrapper; native safety admission precedes this body only for the declared invisible Spellbox case."
+        }
+      ],
+      "implementation": [
+        "runtime/native-draw/hidden_spellbox_copy.h",
+        "runtime/native-draw/cursor_copy_leases.h"
+      ],
+      "tests": [
+        "tests/hidden-spellbox-copy-policy.cpp",
+        "tests/native-hidden-spellbox-copy-probe.c",
+        "tools/test-hidden-spellbox-copy.py"
+      ],
+      "documents": [
+        "research/runtime/viewport-cursor-continuity-20261108.md",
+        "research/formats/hidden-spellbox-copy-v1.md"
+      ],
+      "validation_dependencies": [
+        "runtime/native-draw/cursor_owner.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/native-draw/lifetime_lock.h",
+        "runtime/native-draw/factory.c",
+        "runtime/shadow/win32_min.h",
+        "tools/build-native-draw.py",
+        "tests/native-cursor-owner-probe.c",
+        "tests/graphics-lifetime-common.h",
+        "tests/original-pe32-image.h",
+        "tools/test-native-cursor-lifetime.py"
+      ],
+      "evidence": [
+        "VC08.hidden-controls01",
+        "VC08.inventory-links01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "VC08.G.hidden-copy-controls: Twenty complete native planes, 93 classifier cases, 18 changed-anchor refusals and the exact retained pre-fix retry control pass. Controlled original E8/callee with authored caller endpoints does not recover the whole Spellbox caller or flags.",
+        "VC08.G.hidden-copy-player: Both nominal profiles observe the exact guarded hidden redraw, complete800/640/800 recreation and zero-difference viewport histories with normal retirement, using the bit-identical controlled DLL. Whole original Spellbox caller/flags, arbitrary providers and combined-current player remain separate."
       ]
     }
   ],
@@ -393336,6 +393463,184 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "VC08.hidden-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/viewport-cursor-results-20261108/hidden-copy-controls-01.json",
+      "sha256": "f1d47432a856e8d62e6d6baaefe4dc5894dfd9718756d3696b3005155cc94e48",
+      "scope": "Exact original5770f5 E8 and unchanged58c4a0 wrapper with authored caller endpoints, native ownership, independently checked whole planes and strict direct COM refusal. Pre-fix DLL is retained from the failed original-game diagnostic. No whole Spellbox caller/flags or driver equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "VC08.cursor-regression01",
+      "kind": "native_integration",
+      "record": "research/runtime/cursor-resolution-results-20261107/viewport-cursor-regression-20261108-01.json",
+      "sha256": "79364cb86e422dbf747e4b28e7419e7288bf6a5f82ffa1418158e89f5240afc4",
+      "scope": "Unchanged original foreground mismatch with scripted endpoints; real owning native installer/provider and original foreground/timer/background bodies at controlled mode and saved-coordinate boundaries. No game entrypoint, historical-capture attribution, physical driver or whole-player acceptance.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "VC08.original-call01",
+      "kind": "isolated_original",
+      "scope": "Only the unchanged five-byte original5770f5 E8 executed by the retained source-bound PE32 fixture in four normal profiles. Original bytes and target are freshly read/hash checked against the immutable NoCD image; completed stage3 and whole-plane results bind the retained actual E8 execution. Authored caller endpoints replace the continuation outside this five-byte range; the native detour/lower services are controlled. No whole original function, UI caller, flags or driver equivalence. The surrounding unassigned inventory is retained.",
+      "record": "research/runtime/viewport-cursor-results-20261108/original-call-analysis-01.json",
+      "sha256": "76c3b646730cbd62ea917bc43cf1272766eb4174da79dfa51cff64a329307a24",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_source_sha256",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/retained_call_execution_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "VC08.player01",
+      "kind": "native_integration",
+      "scope": "Only the user-requested four finite viewport-boundary/cursor-motion profile rows. Preserve every accepted parent row, exact prior source phases, failures, exhausted budgets and both pending final decisions. No whole picking, arbitrary clamp saturation, driver/platform or gameplay reconstruction claim.",
+      "record": "research/runtime/viewport-cursor-results-20261108/admission-01.json",
+      "sha256": "cc6c5da97ea2874cac07c47ccceece14fdd3479deaf2b8da07af29b50302db04",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 4
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 120
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 36
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/verified_profiles",
+          "equals": 2
+        }
+      ]
+    },
+    {
+      "id": "VC08.inventory-links01",
+      "kind": "native_integration",
+      "scope": "Accounting-only correction of two missing recovered_range annotations. Mechanically remove only these annotations and recover the exact pre-execution behavior contract fingerprints; scope, build/address, implementation, tests/dependencies, scenario domain and every engine/runtime source byte are unchanged. Preserve original reports, hashes and claims. Bind the already fresh full-profile/control execution to the annotated inventory links without claiming a new run, comparison, widened original range or status beyond that actual execution.",
+      "record": "research/runtime/viewport-cursor-results-20261108/inventory-links-01.json",
+      "sha256": "d1c1d8ae702db6803a074dfd3f4eaf710b58ebf2722c7ce6ab3d6b79bcbcf41d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/retained_execution_sources_exact",
+          "equals": true
+        },
+        {
+          "pointer": "/semantic_contract_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "VC08.master-admission01",
+      "kind": "static",
+      "scope": "Actual two-parent static source-phase union only: preserve all118accepted incoming rows and add exactly the four requested finite viewport-boundary/cursor-motion rows. Preserve original frozen dossier identities and record the alias candidate-lead-only annotation boundary without changing acceptance conditions, prior attachments or evidence hashes. Retain raw observer/palette/host-source drift; current native provider bytes match the controlled DLL, but no combined-current player execution, whole driver equivalence or final decision is claimed.",
+      "record": "research/runtime/viewport-cursor-results-20261108/master-admission-01.json",
+      "sha256": "ae214f7b872313d3996690142e52583358aad1f4e2229e37bdaff681efe47b3b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 4
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 122
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 34
+        },
+        {
+          "pointer": "/current_whole_native_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/both_final_decisions_pending",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -425400,7 +425705,8 @@
         "tools/test-cursor-resolution.py"
       ],
       "evidence": [
-        "CR07.native-controls01"
+        "CR07.native-controls01",
+        "VC08.cursor-regression01"
       ]
     },
     {
@@ -427651,6 +427957,45 @@
       "evidence": [
         "SNAP01.controls"
       ]
+    },
+    {
+      "id": "native.hidden-spellbox-copy-controls",
+      "level": "headless",
+      "scope": "Intentional native policy only at the exact original5770f5 E8/return5770fa to58c4a0: an opaque40x40 rectangle at identical source/destination coordinates, wholly outside both live640x48016-bit canvases, has no pixel operation. Visible/partial copies, other callers/wrappers/formats/sizes and strict direct COM INVALIDRECT remain unchanged. This avoids the original void wrapper retry on the observed stale hidden UI redraw; no original caller/flags or driver equivalence.",
+      "behaviors": [
+        "NP.hidden-spellbox-copy-admission"
+      ],
+      "tests": [
+        "tools/test-hidden-spellbox-copy.py",
+        "tests/hidden-spellbox-copy-policy.cpp",
+        "tests/native-hidden-spellbox-copy-probe.c"
+      ],
+      "evidence": [
+        "VC08.hidden-controls01",
+        "VC08.inventory-links01"
+      ]
+    },
+    {
+      "id": "native.viewport-cursor-continuity",
+      "title": "Physical viewport boundaries and cursor continuity through resolution recreation",
+      "level": "headless",
+      "scope": "Prospective user-requested full-frame edge/corner and cursor-source delivery checks under default/software Sharp/Integer, actual800/640/800 recreation in one original process. Complete independent viewport output and normal ownership required. Recovered camera providers remain original suppliers. No same-World continuity, general picking, arbitrary saturation/driver/platform or final-decision claim.",
+      "behaviors": [
+        "NP.viewport-cursor-continuity"
+      ],
+      "tests": [
+        "tools/viewport_cursor.py",
+        "tools/run-rendering-viewport-cursor.py",
+        "tools/prepare-rendering-viewport-cursor.py",
+        "tools/check-rendering-viewport-cursor.py",
+        "tools/close-rendering-viewport-cursor.py",
+        "tests/test-viewport-cursor.py",
+        "tests/test-viewport-cursor-admission.py"
+      ],
+      "evidence": [
+        "VC08.player01",
+        "VC08.inventory-links01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -429096,6 +429441,16 @@
       "evidence": "RRG26.initializer-original",
       "anchors_pointer": "/original_entry_anchors",
       "scope": "Pinned original shape initializer instructions through ret20,absent from the existing function inventory;selected original execution only. Preserve the inventory gap and unknown upstream providers/lifetimes."
+    },
+    {
+      "id": "VC08.original-5770f5-call",
+      "build": "nocd-40209ca7",
+      "start": 5730549,
+      "end": 5730554,
+      "document": "research/runtime/viewport-cursor-continuity-20261108.md",
+      "evidence": "VC08.original-call01",
+      "anchors_pointer": "/original_entry_anchors",
+      "scope": "Only the unchanged five-byte original5770f5 E8 executed by the retained source-bound PE32 fixture in four normal profiles. Original bytes and target are freshly read/hash checked against the immutable NoCD image; completed stage3 and whole-plane results bind the retained actual E8 execution. Authored caller endpoints replace the continuation outside this five-byte range; the native detour/lower services are controlled. No whole original function, UI caller, flags or driver equivalence. The surrounding unassigned inventory is retained."
     }
   ],
   "register_imports": [
@@ -429468,8 +429823,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-ef22fede2b8c2b59f64fab3d2cf4446e0628a091e00cd6d6feabe2c369c1ebf8.json",
-    "sha256": "ef22fede2b8c2b59f64fab3d2cf4446e0628a091e00cd6d6feabe2c369c1ebf8"
+    "path": "research/runtime/coverage/source-index-ebc92d84c08b18e0c2b01e5b4e5d2f9fd8c07b5bcd2086703cee86e15bc09935.json",
+    "sha256": "ebc92d84c08b18e0c2b01e5b4e5d2f9fd8c07b5bcd2086703cee86e15bc09935"
   },
   "evidence_applicability": [
     {
