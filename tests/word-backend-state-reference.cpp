@@ -63,7 +63,13 @@ static void seed(std::uint32_t variant){
     const double a=1.25,b=-2.0,c=3.141592653589793;
     __asm__ volatile("fxsave %0\n\tfninit\n\tfldl %1\n\tfldl %2\n\tfldl %3\n\tfxsave %4\n\tfxrstor %0"
                      :"=m"(host):"m"(a),"m"(b),"m"(c),"m"(mnm_probe_seed_fx):"memory");
+#ifdef MNM_WORD_STATE_PRECISION_TEST
+    const unsigned precision[]={0,2,3};
+    if(variant>=12)throw std::runtime_error("FP seed outside precision/rounding domain");
+    const std::uint16_t control=std::uint16_t(0x007f|(precision[variant/4]<<8)|((variant&3)<<10));
+#else
     const std::uint16_t control=std::uint16_t(0x037f|((variant&3)<<10));
+#endif
     std::memcpy(mnm_probe_seed_fx,&control,2);
     auto status=half(mnm_probe_seed_fx+2);
     if(variant&1)status|=0x0221; // masked sticky exceptions plus incoming C1

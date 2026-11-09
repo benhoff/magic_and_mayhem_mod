@@ -530,6 +530,9 @@ endif()
 add_executable(mnm-acceptance-world-history EXCLUDE_FROM_ALL ../../tests/acceptance-world-history.cpp)
 target_link_libraries(mnm-acceptance-world-history PRIVATE mnm-world-rolling Qt6::Core)
 target_compile_options(mnm-acceptance-world-history PRIVATE -Wall -Wextra -Werror -pedantic)
+add_executable(mnm-caller-state-history EXCLUDE_FROM_ALL ../../tests/caller-state-history.cpp)
+target_link_libraries(mnm-caller-state-history PRIVATE mnm-world-rolling Qt6::Core)
+target_compile_options(mnm-caller-state-history PRIVATE -Wall -Wextra -Werror -pedantic)
 
 # Presentation readiness must not depend on optional pixel evidence recording.
 add_executable(viewport-world-readiness-test EXCLUDE_FROM_ALL ../../tests/viewport-world-readiness-test.cpp gl_viewport.cpp)

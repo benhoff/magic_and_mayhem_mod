@@ -27775,6 +27775,94 @@ new retrospective metadata bindings, separate from all earlier reviews. See
 rendering-contract-master-final-results-20261108 for the exact SQLite reports.
 
 
+## CS09 image-copy caller-state correction — 2026-11-08
+
+The actual full native533a00 entry had equal pixels but different EDX, defined
+arithmetic flags and retired-X slot in2112original comparisons. A saved-state
+entry now returns the original EAX/ECX/EDX, row-counter argument and final
+ADD ESP,38h flags. Nonzero deterministic SIMD inputs additionally exposed
+USER32.IntersectRect clearing XMM0 on empty intersections. The confirmed
+5c5294 import is now called with the incoming FX state; its outgoing state and
+LastError survive native ownership/copy work. Native pixel copying stays native.
+
+Fresh image-abi-09 passes19008complete original/native state-and-pixel cases,
+8reader refusal guards, existing actual PE32 extended/protected-backing controls
+and expected span/prefix/direction refusals. Exact tested executables, all
+observed wires, source preimages, setup failures and the runner03retention
+failure remain explicit SQLite records. No original image instruction executes
+through the poisoned native entry; the separate original reference stays intact.
+No game is launched or acceptance row promoted. Both flags-and-return-values
+rows and both final decisions remain pending; the112/44parent inventory is
+unchanged. Surface/World/sprite/screen installed caller-state and independent
+pixel joins remain required. See native-image-caller-state-20261108.md and
+RS.image-copy-caller-state; all broader historical fingerprints stay historical.
+
+### Caller-visible state continuation (2026-11-08; CS10, in progress)
+
+The full `operation.flags-and-return-values` requirement remains the requested
+work target in both player profiles. CS10 adds current five-family interior
+splice comparisons and fixes the protected World direct-WORD whole-entry state
+publication. The latter passes12,744unchanged-original/native cases through the
+shared production entry assembly, including workspace, arguments, full GPR/ESP,
+defined flags, selected floating state and independent complete pixels. The
+pixel-only negative policy control matches every pixel but zero complete state
+results. Four atomic admission refusals and positive/empty state commits pass
+ASan/UBSan; the complete current scene DLL links. These are private component
+milestones, with supplied CPU-plane/providers, not installed batch/player proof.
+
+See [the ongoing full-row work record](rendering-caller-state-closure-20261108.md).
+Generic/black/displacement/other World state effects, lazy preparation effects,
+actual caller requirements and installed default/software output-state joins
+remain explicit. The new runtime source phase does not renew old World/live
+hashes or promote their statuses. Whole acceptance and both final decisions
+remain pending; no original game launch has been added by CS10 so far.
+
+### Caller-state whole-row continuation: generic, initializer and passive state (CS11, 2026-11-08)
+
+The caller-visible state row remains open for both player configurations. The
+owned continuation retains35,280unchanged-original generic/black/displacement
+state-and-pixel comparisons and6,144unchanged-original lazy initializer table/FX
+comparisons. Generic state publication and the retained initializer's actual
+incoming/outgoing floating boundary are integrated into the producer callback.
+Both are bounded normal-return contracts, with unsupported floating controls
+kept as native refusal policy. Neither proof launches the original game.
+
+The default-off versioned caller-state diagnostic now has2,048sanitized TOP/tag
+codec cases,24reader guards, and actual PE32 callback/shared entry/return controls:
+15saved native completions plus one retained normal-return completion retire with
+all SP/arity/FX/LastError checks. Existing61forwards,13batch bypasses,15native
+sprite draws and708sprite guards pass. Failed compile/link/fixture phases and
+exact source preimages remain retained. All new generated research payloads use
+SQLite references. Generic, initializer and observation behavior IDs and scenarios
+are seeded independently of pending installed/profile acceptance.
+
+The additive whole-entry model is being compared before production wiring.
+Colour rectangles and other required caller/provider boundaries, final source
+bindings, installed640/800default/software state/pixel/history joins and normal
+retirement remain outstanding. This continuation does not close either operation
+row or either player decision. See rendering-caller-state-closure-20261108.md and
+caller-state-results-20261108/generic-state-02.json, effect-preparation-01.json,
+observer-codec-01.json and producer-controls-05.json. Earlier CS10 source phases,
+raw historical drift and acceptance totals are not rewritten.
+
+Caller-state CS12 continuation (2026-11-08): current complete-source private
+WORD12,744/generic35,280/additive18,432/effect-initializer12,288 comparisons pass;
+additive publication is wired, and version3 passive state diagnostics carry exact
+World/source identities. Current actual PE32 callback controls pass17native+1
+retained completions and12enclosing parents; two separate supplied frames cover
+known/unknown indirect-selector custody and epoch reset. Sanitized2,048codec and
+51reader controls pass. Current59-site static analysis retains raw unknowns and
+separate conditional callee facts; the repaired primary opaque fallback passes
+21,384targeted cases on this source phase. Provider-local Wine DirectDraw
+comparison establishes typed outputs and complete unchanged planes for five
+invalid-copy boundaries, including both retained shapes. Native LastError and
+other explicit policies remain separate. Exact reports/failures/raw captures and
+tested binaries are SQLite-retained. No original game or installed acceptance
+session was launched. C01/C03/C07/C09 installed caller/state/source/pixel/history
+joins remain pending; neither flags-and-return-values profile row is promoted.
+See rendering-caller-state-closure-20261108.md and caller-state-results-20261108/.
+
+
 ### COPY stretch/overlap retained-evidence boundary — 2026-11-08
 
 Current analysis of eight retained CP06 Quick/Campaign default/software
@@ -28069,6 +28157,40 @@ versions including binary artifacts. One append-only retrospective receipt pins
 receipts and retains the negative finding. This is independent of fresh merged
 OS08execution and asserts no historical gate pass. See
 `opaque-secondary-results-20261108/merged-history-02.json`.
+### CS13 caller-state publication checkpoint — 2026-11-08
+
+The caller-visible-state operation remains open in both profiles. The owned
+caller-state branch records current bounded Word/generic/additive and initializer
+state proofs, V5 saved/normal-return source publication, a quiescent final source
+prefix, strict native/retained source accounting and independently decoded model
+outputs. Current producer controls include four supplied auxiliary/primary
+stack-slot canaries; codec controls cover 2,048 TOP/tag combinations and 72 wire
+guards. Publication controls replay 64 retained original additive snapshots,
+reject six actual output corruptions and pass 36 source/state/accounting guards.
+
+Four requests have used two actual game starts. The two staging refusals started
+zero games; a capture-path refusal and a normally retired pilot remain retained.
+The pilot has 150,426 source/root observations, 43,274 retained original roots,
+138 independently replayed Worlds and 421,509,000 compared pixels with zero
+differences. Its offline diagnostic also matches 107,152 native state
+publications, but supplies unresolved fast-tail parent PCs and is ineligible for
+acceptance. The diagnostic stack-slot bug is corrected; final nominal captures
+and current master integration remain pending. Original model semantics,
+publication, pixels, typed providers, both operation rows and both final
+rendering decisions retain separate statuses. See
+`research/runtime/rendering-caller-state-closure-20261108.md` and the CS13 SQLite
+references. No original files were modified; no push or evidence publication.
+
+
+## Caller-visible rendering state — CS14 complete supported rows (2026-11-08)
+
+Both default/software `operation.flags-and-return-values` rows pass `caller-state-installed-results-20261108/admission-01.json`:4actual640/800normal public sessions, 523,173independently checked required native state publications and 1,362,471,000complete viewport pixels, zero differences. Exact V5 nonce/World/source/queue/sequence joins and original retained/nested roots account for every primitive; final tails, normal Quit, returned prefixes and zero native owners are mandatory. Fourteen separate original/control components cover Word/generic/Add/glyph, lazy preparation, image/kernel/provider contracts, atomic refusals and publication/codec guards.63sites/76site-tag entries/42fast entries and8supplied stack controls retain their explicit scopes.
+
+The unchanged262144-row observer refused the first800default attempt at262143records with actual exit99; it remains failed, with no normal footer or tail. Plan05shortens only host focus/waits and explicitly extends cumulative8/6to9/7to complete the two missing high domains. Exact native/player/oracle inputs are identical across the two controller phases. Old640proofs retain raw two-controller drift and exact snapshots; source-phase guards reject any native/player/oracle/analysis change or unaccepted parent. Final9requests/7starts include4positive,3failed/ineligible actual starts and2zero-game refusals. Every stopped installation is dual-backed and fully restore-verified before pinned-stub retirement. No old hash/status is refreshed into new execution.
+
+Only these two rows change over the118-row palette parent:120/156passed36pending. Both final decisions, original driver, alias/overlap, arbitrary hidden/exceptional FP and gameplay equivalence remain separate. See `rendering-caller-state-closure-20261108.md`.
+
+
 
 
 ## Natural alias COPY caller investigation — 2026-11-08
@@ -28219,3 +28341,8 @@ Fresh isolated controls include six competing processes, worker termination/nest
 Final source-stable host batch: current controls pass across15suites; the full accounting audit has zero errors. Prior mock-refusal diagnostics remain retained separately and grant no earlier source-validation claim. Current/base/staged checks and paired backups remain required for the actual commit.
 
 Final source-stable host batch:394controls pass across16suites; the full accounting audit has zero errors. Prior mock-refusal diagnostics remain retained separately and grant no earlier source-validation claim. Current/base/staged checks and paired backups remain required for the actual commit.
+
+
+## Caller-visible state with actual master —2026-11-08
+
+`caller-state-master-results-20261108/admission-01.json` preserves all122accepted actual-master cells and every unrelated row object, adding only both caller-state cells from the523173state/1362471000pixel4domain proof. Final view124/156passed,32pending; both final decisions remain pending.12parent-union guards pass. All old/native/controller phases, raw drift, rejected attempts and9/7charges remain; no current combined-game, new original reference, driver or alias equivalence is claimed.

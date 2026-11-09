@@ -40,7 +40,7 @@ void* WIN GetProcAddress(void* module,const char* name){
 #ifdef MNM_PIXEL_TEST_GETPROC
  return MNM_PIXEL_TEST_GETPROC(module,name);
 #else
- (void)module;if(!std::strcmp(name,"NativeDrawCpuHistoryV1"))return reinterpret_cast<void*>(pixelCurrentHistory);if(!std::strcmp(name,"NativeDrawProducerCountV1"))return reinterpret_cast<void*>(pixelCountProducer);return reinterpret_cast<void*>(nativeDib);
+ (void)module;if(!std::strcmp(name,"NativeDrawCpuStoreV1"))return nullptr;if(!std::strcmp(name,"NativeDrawCpuHistoryV1"))return reinterpret_cast<void*>(pixelCurrentHistory);if(!std::strcmp(name,"NativeDrawProducerCountV1"))return reinterpret_cast<void*>(pixelCountProducer);return reinterpret_cast<void*>(nativeDib);
 #endif
 }
 u32 WIN GetEnvironmentVariableA(const char*,char* out,u32 size){if(size<2)return 2;out[0]='1';out[1]=0;return 1;}

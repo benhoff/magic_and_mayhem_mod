@@ -32999,7 +32999,9 @@
         "RS.glyph-backend.initial-host-integrated-20261010",
         "RS.glyph-backend.original-live-entry-integrated-20261010",
         "RS.glyph-backend.host-live-entry-integrated-20261010",
-        "TLQF26.glyph-original"
+        "TLQF26.glyph-original",
+        "CS14.glyph-original",
+        "CS14.glyph-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -129546,7 +129548,11 @@
       "tests": [
         "tests/native-extended-draw-probe.c",
         "tests/native-owned-backing-probe.c",
-        "tools/test-native-extended-draw.py"
+        "tools/test-native-extended-draw.py",
+        "tests/native-image-caller-state.c",
+        "tests/native-image-caller-state-probe.S",
+        "tests/test-native-image-caller-state.py",
+        "tools/test-native-image-caller-state.py"
       ],
       "evidence": [
         "NATIVE.native-extended-draw-20261018",
@@ -129569,7 +129575,8 @@
       "remaining_gaps": [
         "Current source-bound isolated controls pass. Live application use of the new extensions/recovery, original driver equivalence and hardware fault/performance acceptance remain separate.",
         "20261026 adapter-cost work: write-only destination admission is an intentional native policy extension. Fresh bounded source-read/overlap/dirty-mask controls and strict diagnostic live latency runs are recorded; broader all-caller and original-driver validation remains pending; historical source hashes and independent stage statuses remain unchanged.",
-        "20261026 adapter-cost batch: bounded allocator/cache/lifetime/copy controls and strict mixed-context diagnostic runs are recorded separately. All-current application integration, trace-disabled sustained timing, original-driver whole-session pixel equivalence and complete replacement remain pending; historical validation fingerprints and independent stage statuses are preserved."
+        "20261026 adapter-cost batch: bounded allocator/cache/lifetime/copy controls and strict mixed-context diagnostic runs are recorded separately. All-current application integration, trace-disabled sustained timing, original-driver whole-session pixel equivalence and complete replacement remain pending; historical validation fingerprints and independent stage statuses are preserved.",
+        "CS09: Full native entry caller-state differences in EDX, arithmetic flags and retired X slot are corrected and checked separately under RS.image-copy-caller-state. Broader existing milestones keep historical fingerprints; finite fixture evidence does not renew installed/profile-wide equivalence or close the caller-state operation."
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -171382,6 +171389,7 @@
       "evidence": [
         "PR08.original02",
         "PR08.guards01",
+        "CS12.opaque-original",
         "OS08.primary01",
         "OS08.merged-primary01"
       ],
@@ -171394,7 +171402,8 @@
       },
       "remaining_gaps": [
         "PR08.G.live: Original failed World590 lacks rejected operands. Its run remains negative; no new original game starts or complete corner/pan/session replay are planned.",
-        "PR08.G.scope: Secondary wrapper continuations, wider formats/palettes/ABI and other producer rejections remain outside this primary continuation fix."
+        "PR08.G.scope: Secondary wrapper continuations, wider formats/palettes/ABI and other producer rejections remain outside this primary continuation fix.",
+        "CS11.G.primary-source: Imported committed PR08 guard/proofs from9b0148db6 into the caller-state fork. Preserve exact historical sources; this fork changes the full callback/build closure and needs targeted current controls before installed caller-state acceptance."
       ]
     },
     {
@@ -172330,6 +172339,949 @@
         "Multi-tip overlapping behavior/evidence records, deletions, multiple merge bases and unresolved code conflicts require manual review or separate integrations; no synthetic record merge is accepted.",
         "Scratch capacity is checked at acquisition but other writers can change availability; outer machine storage guards and reserves remain required.",
         "Worker admission bounds concurrency without FIFO fairness or a full multi-agent throughput guarantee. No engine/current-code historical equivalence is inferred."
+      ]
+    },
+    {
+      "id": "RS.image-copy-caller-state",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Whole image-copy normal-return caller state",
+      "scope": "Pinned NoCD533a00 complete local normal-return image-copy state and actual production native entry over the finite two-format, varied width/anchor, clipped/disjoint/empty/negative-pitch, twelve masked x87-mode corpus. Real Wine IntersectRect and typed facade controls. Compare full destination/source guards, EAX/ECX/EDX, callee GPRs/ESP, final ADD ESP,38h arithmetic flags, six retired RET24 argument slots, LastError and selected FX bytes with four stack alignments. Original instruction/data floating history, malformed/unbounded inputs, unmasked exceptions, arbitrary provider/thread interleavings, complete natural caller inventory and installed player acceptance remain separate. Clear-DF refusal is intentional native admission.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5454336,
+          "scope": "Complete selected routine normal-return state for the finite valid corpus; real Wine rectangle supplier, no installed all-caller/exception claim."
+        }
+      ],
+      "implementation": [
+        "runtime/native-draw/cpu_copy_boundary.h",
+        "runtime/native-draw/image_copy_original.h"
+      ],
+      "tests": [
+        "tests/native-image-caller-state.c",
+        "tests/native-image-caller-state-probe.S",
+        "tests/test-native-image-caller-state.py",
+        "tools/test-native-image-caller-state.py",
+        "tests/native-extended-draw-probe.c",
+        "tests/native-owned-backing-probe.c"
+      ],
+      "validation_dependencies": [
+        "tools/build-native-draw.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/experiment_environment.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "runtime/shadow/win32_min.h",
+        "tests/native-continuation-state.h",
+        "tests/native-copy-transform-probe.c",
+        "tests/native-draw-resource-probe.c",
+        "tools/test-native-extended-draw.py"
+      ],
+      "documents": [
+        "research/runtime/native-image-caller-state-20261108.md",
+        "research/formats/native-image-caller-state-v1.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS09.image-original09",
+        "CS09.image-native09"
+      ],
+      "remaining_gaps": [
+        "CS09.G.installed: The complete flags-and-return-values row remains pending in both profiles. Surface/World/sprite/screen production caller inventory and actual state/output joins are missing. This finite routine correction closes no player row.",
+        "CS09.G.outside: Original floating instruction/data history, unmasked exceptions, malformed pointers/overflow and arbitrary provider/thread behavior remain outside the comparison."
+      ]
+    },
+    {
+      "id": "RS.rendering-kernel-caller-state",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Current native kernel splice caller-state comparisons",
+      "scope": "Finite two-format original/native panel, pixel/fade, minimap, colour-rectangle and raster interior-splice reference corpus. Actual production installer, resolver, assembly and kernels in a private Linux i386 process with supplied Win32/owned-plane/Lock/Unlock providers; complete guarded destination and reference-defined register/flags/FP/side-effect equality. Raster fast-body volatile ECX/EDX/upper EAX and scratch arguments retain their documented exclusions. World whole-entry bypass, actual driver, installed game/player and whole flags-and-return-values acceptance remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815312,
+          "scope": "Selected local original entry/continuation only; complete parent/provider recovery is not asserted."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5550800,
+          "scope": "Selected local original entry/continuation only; complete parent/provider recovery is not asserted."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5585472,
+          "scope": "Selected local original entry/continuation only; complete parent/provider recovery is not asserted."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5537152,
+          "scope": "Selected local original entry/continuation only; complete parent/provider recovery is not asserted."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5762192,
+          "scope": "Selected local original entry/continuation only; complete parent/provider recovery is not asserted."
+        }
+      ],
+      "implementation": [
+        "reconstruction/rendering/colour_rect.c",
+        "reconstruction/rendering/fade_kernel.c",
+        "reconstruction/rendering/minimap_pixels.c",
+        "reconstruction/rendering/panel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/raster_pixels.c",
+        "runtime/canvas-writers/colour_rect_bridge.c",
+        "runtime/canvas-writers/colour_rect_entry.S",
+        "runtime/canvas-writers/fade_entry.S",
+        "runtime/canvas-writers/fade_route.c",
+        "runtime/canvas-writers/minimap_bridge.c",
+        "runtime/canvas-writers/minimap_entry.S",
+        "runtime/canvas-writers/minimap_route.c",
+        "runtime/canvas-writers/panel_bridge.c",
+        "runtime/canvas-writers/panel_entry.S",
+        "runtime/canvas-writers/panel_route.c",
+        "runtime/canvas-writers/pixel_bridge.c",
+        "runtime/canvas-writers/pixel_entry.S",
+        "runtime/canvas-writers/pixel_route.c",
+        "runtime/canvas-writers/raster_bridge.c",
+        "runtime/canvas-writers/raster_entry.S"
+      ],
+      "tests": [
+        "tests/colour-rect-splice-reference.cpp",
+        "tests/minimap-splice-reference.cpp",
+        "tests/panel-splice-reference.cpp",
+        "tests/panel-splice-state-probe.S",
+        "tests/pixel-splice-reference.cpp",
+        "tests/pixel-splice-state-probe.S",
+        "tests/raster-splice-reference.cpp",
+        "tests/raster-splice-state-probe.S",
+        "tools/test-rendering-kernel-caller-state.py"
+      ],
+      "validation_dependencies": [
+        "tools/original-manifest.sh",
+        "tools/coverage_evidence.py",
+        "tests/sprite-binary-reference.cpp",
+        "tests/pixel-route-coverage.hpp"
+      ],
+      "documents": [
+        "research/runtime/rendering-caller-state-closure-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS10.kernels-original",
+        "CS10.kernels-native"
+      ],
+      "remaining_gaps": [
+        "CS10.G.installed: Whole operation needs required caller inventory, World whole-entry state and installed output joins in both profiles.",
+        "CS10.G.raster: Existing fast-body volatile ECX/EDX/upper EAX and scratch argument exclusions need caller analysis; a splice pass cannot close whole-entry bypass."
+      ]
+    },
+    {
+      "id": "RS.world-caller-state-requirements",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "World caller read-before-overwrite requirements",
+      "scope": "Static pinned original continuation analysis for every explicit production World raster, trail and sprite whitelist site, including conservative direct-callee and explicitly guarded enclosing-return contexts. Per-register bit requirements, unknown transfers and return escapes remain visible. This is a requirements inventory, not state/pixel equality, natural reachability, floating/stack-memory equivalence or player acceptance.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243833,
+          "scope": "Selected local original entry/continuation only; complete parent/provider recovery is not asserted."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5244997,
+          "scope": "Selected local original entry/continuation only; complete parent/provider recovery is not asserted."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5548722,
+          "scope": "Selected local original entry/continuation only; complete parent/provider recovery is not asserted."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5109939,
+          "scope": "Selected local original entry/continuation only; complete parent/provider recovery is not asserted."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5542707,
+          "scope": "Selected local original entry/continuation only; complete parent/provider recovery is not asserted."
+        }
+      ],
+      "implementation": [
+        "tools/caller_state_liveness.py",
+        "tools/check-world-caller-state.py",
+        "tools/retain-world-caller-contexts.py"
+      ],
+      "tests": [
+        "tests/test-caller-state-liveness.py"
+      ],
+      "validation_dependencies": [
+        "tools/original_x86.py",
+        "tools/original-manifest.sh",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/kind8_sprite_admission.h",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_producers.S"
+      ],
+      "documents": [
+        "research/runtime/rendering-caller-state-closure-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS10.world-requirements-static",
+        "CS12.world-requirements-static",
+        "CS13.world-requirements-static",
+        "CS14.world-requirements-static"
+      ],
+      "remaining_gaps": [
+        "CS10.G.requirements: Resolve state reaching outer returns or unknown transfers; a calling convention alone cannot discard surviving state.",
+        "CS10.G.effects: Required outputs need original/native comparisons alongside pixels; stack and FP effects need separate proof.",
+        "CS11.G.outer-source: Added outer wrapper recovery input tool; preserve earlier static phases and rerun affected requirements after the caller/context inventory stabilizes."
+      ]
+    },
+    {
+      "id": "RS.world-word-caller-state",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Whole World WORD entry caller state",
+      "scope": "Finite direct-WORD whole-entry World state for NoCD597086/596cb8 tags22/36. Native state preflight and atomic publication mirror the16-word workspace, X/Y argument rewrites, EAX0/final XOR flags and positive-preparation x87 C1 clear. Actual shared production entry assembly is compared with unchanged original code and an independent clipped pixel oracle in a private Linux i386 process, using an explicitly supplied owned CPU-plane provider. Twelve masked precision/rounding controls, three active finite x87 values, sticky/C1 seeds, nonzero XMM/MXCSR, hidden/edge/clipped/empty frames and padding. Full canvas_producers callback, actual World batch transport, process-memory/owner concurrency, unmasked exceptions, complete producer families and installed player acceptance remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5861510,
+          "scope": "Complete local normal-return WORD state over the finite corpus; no installed all-producer or arbitrary exception claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5860536,
+          "scope": "Complete local normal-return WORD state over the finite corpus; no installed all-producer or arbitrary exception claim."
+        }
+      ],
+      "implementation": [
+        "runtime/scene/world_word_state.h",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_producers.S",
+        "reconstruction/rendering/word_backend_state.c",
+        "reconstruction/rendering/word_backend_state.h"
+      ],
+      "tests": [
+        "tests/world-word-caller-state-reference.cpp",
+        "tests/word-backend-state-reference.cpp",
+        "tests/word-backend-probe.S",
+        "tools/test-world-word-caller-state.py",
+        "tools/test-world-producer-caller-controls.py",
+        "tools/test-canvas-producers.py",
+        "tests/canvas-producers-test.c",
+        "tests/kind8-sprite-hook-fixture.h"
+      ],
+      "validation_dependencies": [
+        "renderer/sprites/word_raster.c",
+        "renderer/sprites/word_raster.h",
+        "renderer/sprites/word_clipped.c",
+        "renderer/sprites/word_clipped.h",
+        "runtime/scene/word_workspace.h",
+        "tools/build-scene-observer.py",
+        "tools/test-word-sprites.py",
+        "tools/test-word-backend-state.py",
+        "tools/original-manifest.sh",
+        "tools/coverage_evidence.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-caller-state-closure-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS10.world-word-original",
+        "CS10.world-word-native",
+        "CS10.producer-callback-controls",
+        "CS11.producer-callback-controls",
+        "CS12.word-original",
+        "CS12.word-native",
+        "CS12.producer-callback-controls",
+        "CS13.word-original",
+        "CS13.word-native",
+        "CS13.producer-callback-controls",
+        "CS14.word-original",
+        "CS14.word-native",
+        "CS14.producer-callback-controls"
+      ],
+      "remaining_gaps": [
+        "CS10.G.word-installed: Actual installed World production callback/batch state-output join and both acceptance profiles remain to be executed.",
+        "CS10.G.word-policy: Unsupported unmasked/reserved x87 controls and occupied push slots refuse; original exception equivalence is not claimed.",
+        "CS10.G.whole: This WORD state correction alone cannot close the whole caller-state operation.",
+        "CS10.G.final-source: Added callback controls and continuing World recovery change source/claim bindings. Preserve all earlier successful phases; current complete-source promotion needs final affected comparisons after the batch stabilizes.",
+        "CS12.G.installed: Current complete-source bounded comparison/control proof is recorded; installed caller/source/history/pixel joins remain pending. Preserve all earlier phases and their raw source drift."
+      ]
+    },
+    {
+      "id": "NP.world-word-state-policy",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "World WORD state admission and atomic publication",
+      "scope": "Native policy for atomic prepared WORD state in the protected World bypass: positive requests require masked x87 exceptions, legal precision and an empty next push slot; empty dimensions preserve floating state. Unsupported or invalid state leaves the prepared output unchanged. Sanitized local controls verify four refusal domains and positive/empty commits. No original exception/provider equivalence, installed batch transport or player acceptance claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "runtime/scene/world_word_state.h"
+      ],
+      "tests": [
+        "tests/world-word-state-test.c",
+        "tools/test-world-word-state-policy.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/word_backend_state.c",
+        "reconstruction/rendering/word_backend_state.h",
+        "tools/coverage_evidence.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-caller-state-closure-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS10.word-policy-native",
+        "CS12.word-policy-native"
+      ],
+      "remaining_gaps": [
+        "CS10.G.word-policy-live: Installed callback/batch admission and unsupported floating-state terminal handling need current production evidence."
+      ]
+    },
+    {
+      "id": "RS.world-generic-caller-state",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Whole World generic, black and displacement state",
+      "scope": "Recovery in progress for original generic indexed/paired, black silhouette and displacement whole-entry state. Mirror scratch workspace, X/Y argument rewrites, EAX and defined arithmetic flags, and exact integer-preparation x87 C1 effects. Keep black/displacement horizontal refusal and empty-dimension state separate. Original/native execution, producer integration and both player acceptance rows remain pending until their proofs are recorded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5851058,
+          "scope": "Selected normal-return producer state; bounds, branch ordering and remaining domains require original comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5853722,
+          "scope": "Selected normal-return producer state; bounds, branch ordering and remaining domains require original comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5856071,
+          "scope": "Selected normal-return producer state; bounds, branch ordering and remaining domains require original comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5857342,
+          "scope": "Selected normal-return producer state; bounds, branch ordering and remaining domains require original comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5854839,
+          "scope": "Selected normal-return producer state; bounds, branch ordering and remaining domains require original comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5858448,
+          "scope": "Selected normal-return producer state; bounds, branch ordering and remaining domains require original comparison."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5859492,
+          "scope": "Selected normal-return producer state; bounds, branch ordering and remaining domains require original comparison."
+        }
+      ],
+      "implementation": [
+        "runtime/scene/world_generic_state.h",
+        "runtime/canvas-writers/raster_workspace.h",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_producers.S"
+      ],
+      "tests": [
+        "tests/world-generic-caller-state-reference.cpp",
+        "tests/world-generic-caller-state-probe.S",
+        "tools/test-world-generic-caller-state.py",
+        "tools/test-world-producer-caller-controls.py",
+        "tools/test-canvas-producers.py",
+        "tests/canvas-producers-test.c",
+        "tests/kind8-sprite-hook-fixture.h",
+        "tests/world-rectangle-hook-fixture.h"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/raster_pixels.h",
+        "reconstruction/rendering/pixel_kernel.h",
+        "reconstruction/rendering/raster_pixels.c",
+        "reconstruction/rendering/pixel_kernel.c",
+        "tests/pixel-splice-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/rendering-caller-state-closure-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS11.generic-state-original",
+        "CS11.generic-state-native",
+        "CS11.producer-callback-controls",
+        "CS12.generic-original",
+        "CS12.generic-native",
+        "CS12.producer-callback-controls",
+        "CS13.generic-original",
+        "CS13.generic-native",
+        "CS13.producer-callback-controls",
+        "CS14.generic-original",
+        "CS14.generic-native",
+        "CS14.producer-callback-controls"
+      ],
+      "remaining_gaps": [
+        "CS11.G.production: Private unchanged-original finite state comparison passed; actual full callback and installed current-source state/source/pixel/history joins remain to be validated.",
+        "CS11.G.live: Whole callback, final source, providers and installed default/software state/pixel joins remain open.",
+        "CS11.G.final-source: Broader production callback/test ownership is now linked explicitly. Preserve earlier successful private source phases; final current original/native and callback source bindings remain pending until the batch stabilizes.",
+        "CS12.G.installed: Current complete-source bounded comparison/control proof is recorded; installed caller/source/history/pixel joins remain pending. Preserve all earlier phases and their raw source drift."
+      ]
+    },
+    {
+      "id": "RS.world-effect-initializer-state",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Retained World effect initializer floating state",
+      "scope": "Recovery in progress for retained wave5806f0 and source-row580260 non-drawing lazy table initialization. Check actual incoming engine floating state and outgoing state publication against unchanged original code and conversion helper, with table bytes, empty and positive-hidden geometry. Native raster pixels, whole callbacks and installed player joins remain separate.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5768944,
+          "scope": "Non-drawing initialization before dimension checks; original conversion helper retained."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5767776,
+          "scope": "Non-drawing initialization before dimension checks; original conversion helper retained."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5881568,
+          "scope": "Non-drawing initialization before dimension checks; original conversion helper retained."
+        }
+      ],
+      "implementation": [
+        "runtime/scene/world_effect_prepare.h",
+        "runtime/scene/canvas_producers.c"
+      ],
+      "tests": [
+        "tests/world-effect-prepare-reference.cpp",
+        "tools/test-world-effect-preparation.py",
+        "tests/world-generic-caller-state-probe.S"
+      ],
+      "validation_dependencies": [
+        "tests/pixel-splice-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/original-manifest.sh",
+        "tools/coverage_evidence.py",
+        "tools/build-scene-observer.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-caller-state-closure-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS11.effect-initializer-original",
+        "CS11.effect-initializer-native",
+        "CS12.initializer-original",
+        "CS12.initializer-native",
+        "CS13.initializer-original",
+        "CS13.initializer-native",
+        "CS14.initializer-original",
+        "CS14.initializer-native"
+      ],
+      "remaining_gaps": [
+        "CS11.G.production: Private unchanged-original finite state comparison passed; actual full callback and installed current-source state/source/pixel/history joins remain to be validated.",
+        "CS11.G.effect-live: Whole callback, first-call lifetime and installed state/pixel joins remain pending.",
+        "CS11.G.effect-source: Production callback/build ownership is explicit; final affected comparisons need their final full source declaration. Preserve the6144successful earlier initializer cases unchanged.",
+        "CS12.G.installed: Current complete-source bounded comparison/control proof is recorded; installed caller/source/history/pixel joins remain pending. Preserve all earlier phases and their raw source drift."
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-observation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded passive producer caller-state observation",
+      "scope": "Optional default-off bounded producer state diagnostic. Record incoming and saved native outgoing registers/defined state or retained normal-return observations, formal live arguments, workspace, normalized semantic FX, LastError, exact caller/thread/SP and queue/sequence identity. Empty x87 payloads and instruction/data history are excluded. Every started record must complete and the footer must retire without active entries, failures or overflow. Records supply observations, never an expected-state oracle or acceptance on their own.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "protocols/include/mnm/drawing_caller_state_v1.h",
+        "runtime/scene/drawing_caller_state.h",
+        "runtime/scene/drawing_caller_state_codec.h",
+        "runtime/scene/canvas_producers.c",
+        "protocols/include/mnm/drawing_caller_state_v2.h",
+        "protocols/include/mnm/drawing_caller_bindings_v1.h",
+        "protocols/include/mnm/drawing_caller_state_v3.h",
+        "protocols/include/mnm/drawing_caller_state_v4.h",
+        "protocols/include/mnm/drawing_caller_state_v5.h",
+        "protocols/include/mnm/drawing_caller_tail_v1.h"
+      ],
+      "tests": [
+        "tests/drawing-caller-state-codec-test.c",
+        "tests/test-drawing-caller-state.py",
+        "tools/test-rendering-caller-state-observer.py",
+        "tools/test-world-producer-caller-controls.py",
+        "tools/test-canvas-producers.py",
+        "tests/canvas-producers-test.c",
+        "tests/kind8-sprite-hook-fixture.h",
+        "tests/world-rectangle-hook-fixture.h",
+        "tools/kind8_sprite_fixture.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_caller_state.py",
+        "runtime/scene/canvas_producers.S",
+        "tools/build-scene-observer.py",
+        "tools/coverage_evidence.py",
+        "tools/inspect-canvas-producers.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-caller-state-closure-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS11.producer-callback-controls",
+        "CS12.codec-native",
+        "CS12.producer-callback-controls",
+        "CS13.codec-native",
+        "CS13.producer-callback-controls",
+        "CS14.codec-native",
+        "CS14.producer-callback-controls"
+      ],
+      "remaining_gaps": [
+        "CS11.G.observer-source: All2048sanitized TOP/tag codec combinations and24reader controls passed in observer-codec-01; preserve its earlier broad source phase. Current complete callback/source/schema control proof is producer-controls-05; whole installed equivalence remains pending.",
+        "CS11.G.observer-live: Installed current-source state/source/pixel/history/lifetime joins for both profiles at640/800 remain pending; a normal trace alone proves no equivalence.",
+        "CS11.G.v2-context: Version2 adds passive enclosing-parent observations from pinned wrapper stack layouts. Earlier version1 phases remain readable; current version2 controls and live caller/mask joins remain pending.",
+        "CS11.G.bindings: Sparse version1 companion retains entry-time raw Word/generic targets for opaque context2 rows, including unknown targets. Current whole-row conditional summaries need exact pairing and separately proved callee facts; no target is admitted by observation.",
+        "CS11.G.epochs: Version3 adds exact continuous session nonce, World and source-chunk identities before/after a primitive. Previous phases remain historical. Current source controls and installed state/source/pixel joins remain pending.",
+        "CS12.G.installed: Current complete-source bounded comparison/control proof is recorded; installed caller/source/history/pixel joins remain pending. Preserve all earlier phases and their raw source drift.",
+        "CS13.G.inputs: V4 records raw entry-time initializer guards, phase/amplitude/format/stride. Preserve V1/V2/V3 phases. New current controls and installed state/source/pixel joins are pending.",
+        "CS13.G.publication: V5 captures native glyph state at its actual normal return and publishes completion identities after source emission. A bounded final source-only prefix is retained at quiescent normal shutdown. Earlier V4 controls remain historical; current controls and installed joins remain pending."
+      ]
+    },
+    {
+      "id": "RS.world-add-caller-state",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Whole World additive rectangle caller state",
+      "scope": "Recovery in progress for original545c10 complete normal-return caller state: branch-specific full EAX/ECX/EDX, final ADD ESP arithmetic flags, preserved nonvolatile/FX/workspace, alongside independent native pixels. Empty vertical and horizontal extents, signed clipping and native bounded admission remain explicit. Full callback installation, parent consumers and both player rows remain pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5528592,
+          "scope": "Complete bounded normal-return additive state and pixels; no external driver or installed all-caller claim."
+        }
+      ],
+      "implementation": [
+        "runtime/scene/world_rectangle_state.h",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_producers.S"
+      ],
+      "tests": [
+        "tests/world-add-caller-state-reference.cpp",
+        "tests/world-rectangle-caller-state-probe.S",
+        "tools/test-world-add-caller-state.py",
+        "tools/test-world-producer-caller-controls.py",
+        "tools/test-canvas-producers.py",
+        "tests/canvas-producers-test.c",
+        "tests/kind8-sprite-hook-fixture.h",
+        "tests/world-rectangle-hook-fixture.h"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/canvas_producers.S",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "tests/pixel-splice-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/original-manifest.sh",
+        "tools/coverage_evidence.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-caller-state-closure-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS12.add-original",
+        "CS12.add-native",
+        "CS12.producer-callback-controls",
+        "CS13.add-original",
+        "CS13.add-native",
+        "CS13.producer-callback-controls",
+        "CS14.add-original",
+        "CS14.add-native",
+        "CS14.producer-callback-controls"
+      ],
+      "remaining_gaps": [
+        "CS11.G.add-oracle: Compare complete proposed state with unchanged original before production wiring.",
+        "CS11.G.add-live: Full callback and required leaf/outer caller/provider and installed state/pixel joins remain pending.",
+        "CS11.G.final-source: Broader production callback/test ownership is now linked explicitly. Preserve earlier successful private source phases; final current original/native and callback source bindings remain pending until the batch stabilizes.",
+        "CS12.G.installed: Current complete-source bounded comparison/control proof is recorded; installed caller/source/history/pixel joins remain pending. Preserve all earlier phases and their raw source drift."
+      ]
+    },
+    {
+      "id": "NP.surface-caller-state-provider",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Surface caller outputs against the Wine provider",
+      "scope": "Actual current PE32 native facade versus Wine builtin DirectDraw: factory HRESULT/interface identity/refcounts, RGB565 surface copy/fill/key/overlap outputs, clipper/DC/primary startup outputs, and five invalid BltFast boundary requests with complete source/destination pixels. Native LastError preservation and mode/capacity/placement policies remain separate. No original game callers, full GPR/FX comparison, hardware driver, installed GPU history or whole-row acceptance.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "runtime/native-draw/factory.c",
+        "reconstruction/rendering/pixel_kernel.c"
+      ],
+      "tests": [
+        "tools/test-rendering-surface-caller-state.py",
+        "tests/native-draw-factory-probe.c",
+        "tests/native-draw-surface-probe.c",
+        "tests/native-draw-services-probe.c",
+        "tests/native-draw-invalid-copy-reference.c"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/copy_caller_handoff_v1.h",
+        "protocols/include/mnm/cursor_copy_caller_v1.h",
+        "protocols/include/mnm/native_copy_clip_regions_v1.h",
+        "protocols/include/mnm/native_gpu_copy_plan_v1.h",
+        "protocols/include/mnm/native_pixel_guard_v1.h",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/native-draw/blit_effects.h",
+        "runtime/native-draw/clip_region_census.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/cpu_copy_boundary.h",
+        "runtime/native-draw/cpu_direct_store.h",
+        "runtime/native-draw/cpu_guard.h",
+        "runtime/native-draw/cpu_store.h",
+        "runtime/native-draw/cpu_store_profile.h",
+        "runtime/native-draw/cursor_copy_caller_thunks.h",
+        "runtime/native-draw/cursor_copy_callers.h",
+        "runtime/native-draw/cursor_copy_leases.h",
+        "runtime/native-draw/cursor_owner.h",
+        "runtime/native-draw/cursor_pins.h",
+        "runtime/native-draw/dc.h",
+        "runtime/native-draw/dirty_bytes.h",
+        "runtime/native-draw/gpu_copy_plan.h",
+        "runtime/native-draw/history.h",
+        "runtime/native-draw/history_lookup.h",
+        "runtime/native-draw/image_copy_original.h",
+        "runtime/native-draw/lifetime_dispatch.h",
+        "runtime/native-draw/lifetime_lock.h",
+        "runtime/native-draw/native_only.h",
+        "runtime/native-draw/ownership_admission.h",
+        "runtime/native-draw/palette.h",
+        "runtime/native-draw/pixel_conversion.h",
+        "runtime/native-draw/producer_guard.h",
+        "runtime/native-draw/producer_status.h",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/retirement.h",
+        "runtime/native-draw/row_words.h",
+        "runtime/native-draw/startup_retirement.h",
+        "runtime/native-draw/status.h",
+        "runtime/native-draw/surfaces.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-native-draw.py",
+        "tools/drawing_fixture_prefix.py",
+        "tools/experiment_environment.py",
+        "tools/original-manifest.sh"
+      ],
+      "documents": [
+        "research/runtime/rendering-caller-state-closure-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS12.surface-provider"
+      ],
+      "remaining_gaps": [
+        "CS12.G.surface-live: Provider-local typed outputs and complete pixels do not establish all original caller liveness or installed configuration joins."
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-publication",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Exact installed rendering state publication joins",
+      "scope": "Replay recorded native saved/normal-return state against separately original-compared WORD/generic/additive/glyph state models, exact lazy initializer inputs, explicit consumed volatile masks and independent owned source history. Bind actual nonce/World/source-prefix/queue/sequence/caller/semantic inputs, including the quiescent final prefix. Model publication agreement is separate from model semantics, original pixel history, provider equivalence, retained nested calls and whole-row acceptance; those require their own joined proof.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/rendering_caller_state_join.py",
+        "tests/caller-state-model-replay.cpp",
+        "tests/caller-state-history.cpp"
+      ],
+      "tests": [
+        "tests/test-rendering-caller-state-join.py",
+        "tools/build-caller-state-model-replay.py",
+        "tools/test-caller-state-publication.py"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/world_word_state.h",
+        "runtime/scene/world_generic_state.h",
+        "runtime/scene/world_rectangle_state.h",
+        "runtime/scene/world_effect_prepare.h",
+        "runtime/scene/drawing_caller_state_codec.h",
+        "reconstruction/rendering/word_backend_state.c",
+        "reconstruction/rendering/word_backend_state.h",
+        "reconstruction/rendering/glyph_backend.c",
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "reconstruction/rendering/glyph_backend_x87.S",
+        "tools/drawing_caller_state.py",
+        "tools/resident_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "compat/legacy/canvas_producers.cpp",
+        "renderer/canvas_sequence.cpp",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "documents": [
+        "research/runtime/rendering-caller-state-closure-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS13.publication-controls",
+        "CS14.nominal-default640",
+        "CS14.nominal-software640",
+        "CS14.nominal-default800",
+        "CS14.nominal-software800"
+      ],
+      "remaining_gaps": [
+        "CS13.G.installed: Complete required native/retained boundary accounting, actual state/source/history/pixel joins and normal retirement in both profiles at640/800 remain pending."
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-installed-accounting",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Complete installed rendering caller-state accounting",
+      "scope": "Four bounded normal public Quick Battle sessions: default/software at640x480 and800x600, sharp/integer presentation, actual V5 primitive saved/normal-return state, exact nonce/World/source-prefix/queue/sequence/caller/input joins, all retained original roots/nested calls, independent original World and complete presented viewport history, and normal owner retirement. State publication, original model semantics and typed provider contracts remain separate conjunctive proofs. Unsupported domains, final rendering decisions and gameplay equivalence are not promoted by session success.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/prepare-rendering-caller-state.py",
+        "tools/run-rendering-caller-state.py",
+        "tools/check-rendering-caller-state.py"
+      ],
+      "tests": [
+        "tests/test-rendering-caller-state-join.py",
+        "tools/test-world-producer-caller-controls.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_caller_state_join.py",
+        "tools/drawing_caller_state.py",
+        "tools/native_only_contract.py",
+        "tools/rendering_build_binding.py",
+        "tools/run-rendering-interaction.py",
+        "tools/rendering_interaction_budget.py",
+        "tools/rendering_interaction.py",
+        "tools/rendering_interaction_live.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/retained_artifacts.py",
+        "tools/resident_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/comparison_process.py",
+        "tools/check-world-caller-state.py",
+        "tools/caller_state_liveness.py",
+        "tests/caller-state-history.cpp",
+        "tests/caller-state-model-replay.cpp",
+        "tests/acceptance-world-history.cpp",
+        "tests/acceptance-world-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tests/world-raster-reference.hpp",
+        "runtime/scene/drawing_caller_state.h",
+        "protocols/include/mnm/drawing_caller_state_v5.h",
+        "protocols/include/mnm/drawing_caller_tail_v1.h",
+        "protocols/include/mnm/drawing_caller_bindings_v1.h"
+      ],
+      "documents": [
+        "research/runtime/rendering-caller-state-closure-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS13.pilot-diagnostic",
+        "CS14.nominal-default640",
+        "CS14.nominal-software640",
+        "CS14.nominal-default800",
+        "CS14.nominal-software800"
+      ],
+      "remaining_gaps": [
+        "Four nominal cases prove actual observations in the frozen phase. Original/model/kernel/provider semantics are separate conjunctions; final driver, alias, whole-engine and unsupported domains remain separate. The old supplied-context diagnostic stays ineligible."
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-closeout",
+      "title": "Caller-visible state row admission",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Admit only both operation.flags-and-return-values profile rows from four normal default/software640/800 sessions. Recompute actual V5 native/source identity, retained original composition and expected state bytes; require fresh bounded original Word/generic/Add/glyph, private kernel/typed provider/control proofs alongside independently compared complete viewport pixels and normal retirement. Preserve all parent rows/source phases/failures and both final decisions. No arbitrary hidden caller, driver, alias, exceptional or gameplay equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/close-rendering-caller-state.py"
+      ],
+      "tests": [
+        "tests/test-caller-state-admission.py",
+        "tests/test-caller-state-source-phase.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_caller_state_join.py",
+        "tools/drawing_caller_state.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/resident_capture.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_capture.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "docs/native-rendering-closure.json",
+        "tools/test-rendering-glyph-caller-state.py",
+        "tools/caller_state_source_phase.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-caller-state-closure-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS14.admission-controls",
+        "CS14.admission-controls02",
+        "CS14.admission-controls03",
+        "CS14.caller-state-rows"
+      ],
+      "remaining_gaps": [
+        "Only both caller-visible-state supported-profile rows are admitted. All original-driver, alias, exceptional/unmasked FP, hidden-input, whole-engine and final-decision boundaries remain separate. Retain the exact original/native/player/controller phases and every rejected acquisition."
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-master-union",
+      "title": "Caller-state admission with actual master",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Exact actual-master acceptance union: preserve all incoming cells, source phases, failures and decisions; add only both caller-visible-state cells from the complete4domain owned conjunction. New combined engine/driver/alias execution is not asserted.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/merge-rendering-caller-state-acceptance.py"
+      ],
+      "tests": [
+        "tests/test-caller-state-parent-union.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "docs/native-rendering-closure.json"
+      ],
+      "documents": [
+        "research/runtime/rendering-caller-state-closure-20261108.md"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "CS14.master-union-controls02",
+        "CS14.master-union01"
+      ],
+      "remaining_gaps": [
+        "Only the exact acceptance union is current. Preserve all original/native/player/controller phases and raw source drift; both final decisions and current combined-player/driver/alias equivalence remain separate."
       ]
     }
   ],
@@ -393789,6 +394741,2183 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "CS09.image-original09",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/image-abi-09.json",
+      "sha256": "094d7aa09d52275dd67ff6bb2404b4deeacc93de032e11c7264425b6d1232e7a",
+      "scope": "Private actual PE32 full image-copy entry:19008unchanged-original/native complete destination/source/GPR/stack/defined-flags/LastError/selected-FX matches; twelve masked precision/rounding modes, four stack paddings, nine clipping/shape/pitch modes. Real USER32.IntersectRect outgoing FX effects are retained.8fail-closed reader guards and real extended/backing plus three expected direction/span/prefix refusals pass. No original game, all-bypass caller inventory, provider/exception generalization or acceptance-row closure.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/experiment_completed",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/equivalent",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/counts/complete_state_matches",
+          "equals": 19008
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/collector_controls_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_reference_body_verified_after_install_and_execution",
+          "equals": true
+        },
+        {
+          "pointer": "/retired_native_entry_poisoned_after_eight_bytes",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/rectangle_provider_import/name",
+          "equals": "IntersectRect"
+        },
+        {
+          "pointer": "/rectangle_provider_import/iat_va",
+          "equals": 6050452
+        }
+      ]
+    },
+    {
+      "id": "CS09.image-native09",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/image-abi-09.json",
+      "sha256": "094d7aa09d52275dd67ff6bb2404b4deeacc93de032e11c7264425b6d1232e7a",
+      "scope": "Private actual PE32 full image-copy entry:19008unchanged-original/native complete destination/source/GPR/stack/defined-flags/LastError/selected-FX matches; twelve masked precision/rounding modes, four stack paddings, nine clipping/shape/pitch modes. Real USER32.IntersectRect outgoing FX effects are retained.8fail-closed reader guards and real extended/backing plus three expected direction/span/prefix refusals pass. No original game, all-bypass caller inventory, provider/exception generalization or acceptance-row closure.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/experiment_completed",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/equivalent",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/counts/complete_state_matches",
+          "equals": 19008
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/collector_controls_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_reference_body_verified_after_install_and_execution",
+          "equals": true
+        },
+        {
+          "pointer": "/retired_native_entry_poisoned_after_eight_bytes",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/rectangle_provider_import/name",
+          "equals": "IntersectRect"
+        },
+        {
+          "pointer": "/rectangle_provider_import/iat_va",
+          "equals": 6050452
+        }
+      ]
+    },
+    {
+      "id": "CS10.kernels-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/kernel-matrix-02.json",
+      "sha256": "60566d7ca843a7c90652834fcc2338f25824eef418adba09d74ec6fff905d648",
+      "scope": "Finite two-format original/native panel, pixel/fade, minimap, colour-rectangle and raster interior-splice reference corpus. Actual production installer, resolver, assembly and kernels in a private Linux i386 process with supplied Win32/owned-plane/Lock/Unlock providers; complete guarded destination and reference-defined register/flags/FP/side-effect equality. Raster fast-body volatile ECX/EDX/upper EAX and scratch arguments retain their documented exclusions. World whole-entry bypass, actual driver, installed game/player and whole flags-and-return-values acceptance remain separate.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS10.kernels-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/kernel-matrix-02.json",
+      "sha256": "60566d7ca843a7c90652834fcc2338f25824eef418adba09d74ec6fff905d648",
+      "scope": "Finite two-format original/native panel, pixel/fade, minimap, colour-rectangle and raster interior-splice reference corpus. Actual production installer, resolver, assembly and kernels in a private Linux i386 process with supplied Win32/owned-plane/Lock/Unlock providers; complete guarded destination and reference-defined register/flags/FP/side-effect equality. Raster fast-body volatile ECX/EDX/upper EAX and scratch arguments retain their documented exclusions. World whole-entry bypass, actual driver, installed game/player and whole flags-and-return-values acceptance remain separate.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS10.world-word-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/world-word-01.json",
+      "sha256": "1ed7f4d02532643f2214220e39a3db182032012b50c16067536f3c72c4f49483",
+      "scope": "Finite direct-WORD whole-entry World state for NoCD597086/596cb8 tags22/36. Native state preflight and atomic publication mirror the16-word workspace, X/Y argument rewrites, EAX0/final XOR flags and positive-preparation x87 C1 clear. Actual shared production entry assembly is compared with unchanged original code and an independent clipped pixel oracle in a private Linux i386 process, using an explicitly supplied owned CPU-plane provider. Twelve masked precision/rounding controls, three active finite x87 values, sticky/C1 seeds, nonzero XMM/MXCSR, hidden/edge/clipped/empty frames and padding. Full canvas_producers callback, actual World batch transport, process-memory/owner concurrency, unmasked exceptions, complete producer families and installed player acceptance remain separate.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/equivalent",
+          "equals": true
+        },
+        {
+          "pointer": "/native/counts/complete_native_matches",
+          "equals": 12744
+        },
+        {
+          "pointer": "/baseline/counts/complete_native_matches",
+          "equals": 0
+        },
+        {
+          "pointer": "/baseline/counts/pixels_guards_source_matches",
+          "equals": 12744
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS10.world-word-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/world-word-01.json",
+      "sha256": "1ed7f4d02532643f2214220e39a3db182032012b50c16067536f3c72c4f49483",
+      "scope": "Finite direct-WORD whole-entry World state for NoCD597086/596cb8 tags22/36. Native state preflight and atomic publication mirror the16-word workspace, X/Y argument rewrites, EAX0/final XOR flags and positive-preparation x87 C1 clear. Actual shared production entry assembly is compared with unchanged original code and an independent clipped pixel oracle in a private Linux i386 process, using an explicitly supplied owned CPU-plane provider. Twelve masked precision/rounding controls, three active finite x87 values, sticky/C1 seeds, nonzero XMM/MXCSR, hidden/edge/clipped/empty frames and padding. Full canvas_producers callback, actual World batch transport, process-memory/owner concurrency, unmasked exceptions, complete producer families and installed player acceptance remain separate.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/equivalent",
+          "equals": true
+        },
+        {
+          "pointer": "/native/counts/complete_native_matches",
+          "equals": 12744
+        },
+        {
+          "pointer": "/baseline/counts/complete_native_matches",
+          "equals": 0
+        },
+        {
+          "pointer": "/baseline/counts/pixels_guards_source_matches",
+          "equals": 12744
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS10.word-policy-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/word-policy-01.json",
+      "sha256": "a59b1d7b20369d672e25847ccf3906b138da133c5c3d0bf0dbbf74f9b4e9a256",
+      "scope": "Native policy for atomic prepared WORD state in the protected World bypass: positive requests require masked x87 exceptions, legal precision and an empty next push slot; empty dimensions preserve floating state. Unsupported or invalid state leaves the prepared output unchanged. Sanitized local controls verify four refusal domains and positive/empty commits. No original exception/provider equivalence, installed batch transport or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 4
+        },
+        {
+          "pointer": "/positive_and_empty_commits",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CS10.world-requirements-static",
+      "kind": "static",
+      "record": "research/runtime/caller-state-results-20261108/world-requirements-03.json",
+      "sha256": "0ac061763f031cc8c50b40764651139cd3f04f40db28e1a9d78b33ea42a72e04",
+      "scope": "Static explicit production whitelist continuations under normal direct-call returns. Reads, unknown calls/returns and surviving bits remain required proof. Stack return-address mutation, exception unwinding, pixel, floating-state, stack-memory, natural reachability and whole-operation equivalence are not established.",
+      "sources_pointer": "/sources",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/guarded_context_bytes_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/sites",
+          "equals": 58
+        },
+        {
+          "pointer": "/complete_caller_state_equivalence",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "CS10.producer-callback-controls",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/producer-controls-02.json",
+      "sha256": "eb3e8c1fdaa4f070a1481d9ad46e4b9dc50fbd10f8e8ca99561fcfeb802a18f5",
+      "scope": "Actual production producer callback and PE32 entries on supplied process globals/prologues, protected destination and controlled original sprite methods. Shared WORD routes check recovered XOR-zero flags. No original pixel raster, installed game/driver or whole-operation equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/forwarded_entries",
+          "equals": 61
+        },
+        {
+          "pointer": "/complete_raster_bypass_entries",
+          "equals": 13
+        },
+        {
+          "pointer": "/sprite_native_draws",
+          "equals": 15
+        },
+        {
+          "pointer": "/word_flag_controls",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_pixel_rasters_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS11.generic-state-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/caller-state-results-20261108/generic-state-02.json",
+      "sha256": "8b3b36e2e7821010914b4ceb6c1a0225bd0fb573c315f9da0ae81c249bc5bbe0",
+      "scope": "Private unchanged original generic indexed/paired, black and displacement routines versus proposed prepared state and existing native CPU pixels. Seven entries, clipped/hidden/empty/refused geometry, padding, twelve masked precision/rounding modes and sixteen incoming x87 condition patterns. Full GPR, five arguments, scratch workspace, defined flags/DF, selected semantic FX and complete guarded pixels. No production callback installation, batch transport, driver or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/equivalent",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/counts/cases",
+          "equals": 35280
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS11.generic-state-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/caller-state-results-20261108/generic-state-02.json",
+      "sha256": "8b3b36e2e7821010914b4ceb6c1a0225bd0fb573c315f9da0ae81c249bc5bbe0",
+      "scope": "Private unchanged original generic indexed/paired, black and displacement routines versus proposed prepared state and existing native CPU pixels. Seven entries, clipped/hidden/empty/refused geometry, padding, twelve masked precision/rounding modes and sixteen incoming x87 condition patterns. Full GPR, five arguments, scratch workspace, defined flags/DF, selected semantic FX and complete guarded pixels. No production callback installation, batch transport, driver or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/equivalent",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/counts/cases",
+          "equals": 35280
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS11.effect-initializer-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/caller-state-results-20261108/effect-preparation-01.json",
+      "sha256": "bb5f03f8e79a6a217402d95b6ad6d168599128ced9056530eb5ee2897286bd58",
+      "scope": "Private unchanged original wave5806f0/source-row580260 routines and unchanged conversion helper versus retained zero-frame initializer executed with incoming engine FX. Exact initialized table bytes and semantic CW/SW/tag/active values/XMM/MXCSR across eight amplitudes, twelve precision/rounding modes, sixteen condition patterns and empty/positive hidden geometry. No native raster pixel comparison, production callback installation or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/equivalent",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/counts/cases",
+          "equals": 6144
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS11.effect-initializer-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/caller-state-results-20261108/effect-preparation-01.json",
+      "sha256": "bb5f03f8e79a6a217402d95b6ad6d168599128ced9056530eb5ee2897286bd58",
+      "scope": "Private unchanged original wave5806f0/source-row580260 routines and unchanged conversion helper versus retained zero-frame initializer executed with incoming engine FX. Exact initialized table bytes and semantic CW/SW/tag/active values/XMM/MXCSR across eight amplitudes, twelve precision/rounding modes, sixteen condition patterns and empty/positive hidden geometry. No native raster pixel comparison, production callback installation or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/equivalent",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/counts/cases",
+          "equals": 6144
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS11.producer-callback-controls",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/producer-controls-05.json",
+      "sha256": "2249323ccadc61ec53e83587bc06d740a3377aabcec089daf3aec9e41f568302",
+      "scope": "Actual production producer callback and PE32 entries on supplied process globals/prologues, protected destination and controlled original sprite methods. Generic/WORD zero-return and black/displacement horizontal-refusal flags use recovered state. Fifteen saved native and one retained-return passive diagnostic completions must retire with complete arity, stack, semantic FX and LastError checks. No original pixel raster, installed game/driver or whole-operation equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_state_native_completions",
+          "equals": 15
+        },
+        {
+          "pointer": "/caller_state_retained_completions",
+          "equals": 1
+        },
+        {
+          "pointer": "/caller_state_normal_retirement",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixel_rasters_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS12.word-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/world-word-02.json",
+      "sha256": "8a4f95d9fab90a211b03e75a3f72bc6cdfe3ed6cca9ae985f72e3b35b954883d",
+      "scope": "Actual shared production tags22/36 entry assembly and common prepared state transaction; supplied owned CPU-plane pixel provider. Unchanged original597086/596cb8 versus independent Python pixels, state model, all GPR/ESP, argument mutation, workspace, defined integer flags, selected x87/FX and guards. Twelve masked precision/rounding modes; no whole canvas_producers callback, World batch transport, installed provider/game/profile or all-operation claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS12.word-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/world-word-02.json",
+      "sha256": "8a4f95d9fab90a211b03e75a3f72bc6cdfe3ed6cca9ae985f72e3b35b954883d",
+      "scope": "Actual shared production tags22/36 entry assembly and common prepared state transaction; supplied owned CPU-plane pixel provider. Unchanged original597086/596cb8 versus independent Python pixels, state model, all GPR/ESP, argument mutation, workspace, defined integer flags, selected x87/FX and guards. Twelve masked precision/rounding modes; no whole canvas_producers callback, World batch transport, installed provider/game/profile or all-operation claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS12.generic-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/generic-state-03.json",
+      "sha256": "d84230f7aca744aeeda05258a33eac2f1f45a5e349875bef419c3584edffecd8",
+      "scope": "Private unchanged original generic indexed/paired, black and displacement routines versus proposed prepared state and existing native CPU pixels. Seven entries, clipped/hidden/empty/refused geometry, padding, twelve masked precision/rounding modes and sixteen incoming x87 condition patterns. Full GPR, five arguments, scratch workspace, defined flags/DF, selected semantic FX and complete guarded pixels. No production callback installation, batch transport, driver or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS12.generic-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/generic-state-03.json",
+      "sha256": "d84230f7aca744aeeda05258a33eac2f1f45a5e349875bef419c3584edffecd8",
+      "scope": "Private unchanged original generic indexed/paired, black and displacement routines versus proposed prepared state and existing native CPU pixels. Seven entries, clipped/hidden/empty/refused geometry, padding, twelve masked precision/rounding modes and sixteen incoming x87 condition patterns. Full GPR, five arguments, scratch workspace, defined flags/DF, selected semantic FX and complete guarded pixels. No production callback installation, batch transport, driver or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS12.add-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/add-state-02.json",
+      "sha256": "070c32fcc00042bbdb5b49d4c5e980864893d0f651f47e575faedc4169d5bb36",
+      "scope": "Private unchanged original545c10 versus actual shared production tag26 entry with prepared full EAX/ECX/EDX/final ADD-ESP flags and independent native CPU pixels. Supplied owned-plane callback adapter; complete GPR/ESP, defined flags/DF, FX, scratch/source/physical guards, empty/hidden/clipped geometry, both formats and twelve masked precision/rounding modes. No full canvas_producers callback, installed driver/game or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS12.add-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/add-state-02.json",
+      "sha256": "070c32fcc00042bbdb5b49d4c5e980864893d0f651f47e575faedc4169d5bb36",
+      "scope": "Private unchanged original545c10 versus actual shared production tag26 entry with prepared full EAX/ECX/EDX/final ADD-ESP flags and independent native CPU pixels. Supplied owned-plane callback adapter; complete GPR/ESP, defined flags/DF, FX, scratch/source/physical guards, empty/hidden/clipped geometry, both formats and twelve masked precision/rounding modes. No full canvas_producers callback, installed driver/game or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS12.initializer-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/effect-preparation-02.json",
+      "sha256": "c8f70b43eb50bff1eed74fa5a8c789cee240381c44e43f75dc785c82a9c95723",
+      "scope": "Private unchanged original wave5806f0/source-row580260 routines and unchanged conversion helper versus retained zero-frame initializer executed with incoming engine FX. Exact initialized table bytes and semantic CW/SW/tag/active values/XMM/MXCSR across sixteen amplitudes, twelve precision/rounding modes, sixteen condition patterns and empty/positive hidden geometry. No native raster pixel comparison, production callback installation or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS12.initializer-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/effect-preparation-02.json",
+      "sha256": "c8f70b43eb50bff1eed74fa5a8c789cee240381c44e43f75dc785c82a9c95723",
+      "scope": "Private unchanged original wave5806f0/source-row580260 routines and unchanged conversion helper versus retained zero-frame initializer executed with incoming engine FX. Exact initialized table bytes and semantic CW/SW/tag/active values/XMM/MXCSR across sixteen amplitudes, twelve precision/rounding modes, sixteen condition patterns and empty/positive hidden geometry. No native raster pixel comparison, production callback installation or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS12.codec-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/observer-codec-04.json",
+      "sha256": "aa4b9761e31d6d6ef609b3480b5a304fb3f02b9c7a58680fdb50867c2cc8d7f0",
+      "scope": "ASan/UBSan semantic FX codec over all2048TOP/tag combinations and fail-closed Python wire reader controls. No original executable, game, state equivalence or installed acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS12.producer-callback-controls",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/producer-controls-08.json",
+      "sha256": "c5522a65db0ab50af8cad042640b33ad080369d0ec08cb0a90b705e32571021a",
+      "scope": "Actual production producer callback and PE32 entries on supplied globals/prologues, protected destination and retained original sprite/rectangle wrappers. Generic/WORD/black/displacement/additive prepared state is active. Seventeen saved native and one retained-return version3 diagnostic completions must retire, including twelve actual enclosing-parent observations, arity/SP/semantic FX/LastError checks. No original raster pixels, host compositor, installed game/driver or whole-operation equivalence.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_state_native_completions",
+          "equals": 17
+        },
+        {
+          "pointer": "/caller_state_retained_completions",
+          "equals": 1
+        },
+        {
+          "pointer": "/caller_state_contexts",
+          "equals": 12
+        },
+        {
+          "pointer": "/caller_state_version",
+          "equals": 3
+        },
+        {
+          "pointer": "/caller_bindings_supplied_controls",
+          "equals": 2
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CS12.world-requirements-static",
+      "kind": "static",
+      "record": "research/runtime/caller-state-results-20261108/world-requirements-06.json",
+      "sha256": "fcb47d83406b0e8a8eabaeb1d5d6563653c0a993f66297d66decb38035b44b7b",
+      "scope": "Static explicit production whitelist continuations under normal direct-call returns. Reads, unknown calls/returns and surviving bits remain required proof. Stack return-address mutation, exception unwinding, pixel, floating-state, stack-memory, natural reachability and whole-operation equivalence are not established.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/sites",
+          "equals": 59
+        },
+        {
+          "pointer": "/controls/passed",
+          "equals": 26
+        },
+        {
+          "pointer": "/complete_caller_state_equivalence",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS12.opaque-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/opaque-current-01.json",
+      "sha256": "bf3cefa8a1d31bd768c299ac92b580af5d7f65b4775cd788a0c47da7bcfc3737",
+      "scope": "Pinned nocd40209ca7 primary wrapper57e8e0 fallback call57e952 to57de00 and return57e957/tag17. Retain exact cdecl five-argument forwarding, twenty-byte cleanup and low16AX mask before the original auxiliary tail. Bounded RGB565 indexed RLE frames, two existing indexed entries, shade/table ordinal, origins, clips and hidden/edge placements compare unchanged original wrapper output with the production native pixel kernel through the exact caller guard. No secondary continuation, full volatile ABI, original World590 operands, original-game replay, whole corner/pan reliability or acceptance-row promotion.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/wrapper/cases",
+          "equals": 21384
+        },
+        {
+          "pointer": "/wrapper/native_fallback_cases",
+          "equals": 5184
+        },
+        {
+          "pointer": "/wrapper/guard_rejected_cases",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_equivalence",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS12.surface-provider",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/surface-provider-03.json",
+      "sha256": "b0690354df51c20f0bfd61d9acc6616671ac9bd65a3c8f822043a7308658d07c",
+      "scope": "Actual current PE32 native facade versus Wine builtin DirectDraw: factory HRESULT/interface identity/refcounts, RGB565 surface copy/fill/key/overlap outputs, clipper/DC/primary startup outputs, and five invalid BltFast boundary requests with complete source/destination pixels. Native LastError preservation and mode/capacity/placement policies remain separate. No original game callers, full GPR/FX comparison, hardware driver, installed GPU history or whole-row acceptance.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/startup_compared_words",
+          "equals": 256
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CS12.word-policy-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/word-policy-02.json",
+      "sha256": "2cd7ebb6fbc50702f666f27047a0db5db72e5ef271522376b38000249ebc8b8e",
+      "scope": "ASan/UBSan atomic admission/refusal and positive/empty commit controls for native World WORD state. No original executable, game, driver or whole-operation execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 4
+        },
+        {
+          "pointer": "/positive_and_empty_commits",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CS13.word-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/world-word-04.json",
+      "sha256": "6dac5e8d8c03d870d5c8557795571772096327eded6705aa724f2f1aec392278",
+      "scope": "Actual shared production tags22/36 entry assembly and common prepared state transaction; supplied owned CPU-plane pixel provider. Unchanged original597086/596cb8 versus independent Python pixels, state model, all GPR/ESP, argument mutation, workspace, defined integer flags, selected x87/FX and guards. Twelve masked precision/rounding modes; no whole canvas_producers callback, World batch transport, installed provider/game/profile or all-operation claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS13.word-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/world-word-04.json",
+      "sha256": "6dac5e8d8c03d870d5c8557795571772096327eded6705aa724f2f1aec392278",
+      "scope": "Actual shared production tags22/36 entry assembly and common prepared state transaction; supplied owned CPU-plane pixel provider. Unchanged original597086/596cb8 versus independent Python pixels, state model, all GPR/ESP, argument mutation, workspace, defined integer flags, selected x87/FX and guards. Twelve masked precision/rounding modes; no whole canvas_producers callback, World batch transport, installed provider/game/profile or all-operation claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS13.generic-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/generic-state-05.json",
+      "sha256": "642269d2b754ab77e379bd4f546f6e3b972e84f1a404a6df1c9a7b3fff5c9031",
+      "scope": "Private unchanged original generic indexed/paired, black and displacement routines versus proposed prepared state and existing native CPU pixels. Seven entries, clipped/hidden/empty/refused geometry, padding, twelve masked precision/rounding modes and sixteen incoming x87 condition patterns. Full GPR, five arguments, scratch workspace, defined flags/DF, selected semantic FX and complete guarded pixels. No production callback installation, batch transport, driver or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS13.generic-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/generic-state-05.json",
+      "sha256": "642269d2b754ab77e379bd4f546f6e3b972e84f1a404a6df1c9a7b3fff5c9031",
+      "scope": "Private unchanged original generic indexed/paired, black and displacement routines versus proposed prepared state and existing native CPU pixels. Seven entries, clipped/hidden/empty/refused geometry, padding, twelve masked precision/rounding modes and sixteen incoming x87 condition patterns. Full GPR, five arguments, scratch workspace, defined flags/DF, selected semantic FX and complete guarded pixels. No production callback installation, batch transport, driver or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS13.add-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/add-state-04.json",
+      "sha256": "a72c37b5d3de4801d34ce2113a287156f1fa437b63a7d8d03e79309c7fda6ed6",
+      "scope": "Private unchanged original545c10 versus actual shared production tag26 entry with prepared full EAX/ECX/EDX/final ADD-ESP flags and independent native CPU pixels. Supplied owned-plane callback adapter; complete GPR/ESP, defined flags/DF, FX, scratch/source/physical guards, empty/hidden/clipped geometry, both formats and twelve masked precision/rounding modes. No full canvas_producers callback, installed driver/game or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS13.add-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/add-state-04.json",
+      "sha256": "a72c37b5d3de4801d34ce2113a287156f1fa437b63a7d8d03e79309c7fda6ed6",
+      "scope": "Private unchanged original545c10 versus actual shared production tag26 entry with prepared full EAX/ECX/EDX/final ADD-ESP flags and independent native CPU pixels. Supplied owned-plane callback adapter; complete GPR/ESP, defined flags/DF, FX, scratch/source/physical guards, empty/hidden/clipped geometry, both formats and twelve masked precision/rounding modes. No full canvas_producers callback, installed driver/game or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS13.initializer-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/effect-preparation-03.json",
+      "sha256": "96bb8056c5150770bece68c8b2a6df13f7627e4b1d1c33e17e9c0ed9fda81fff",
+      "scope": "Private unchanged original wave5806f0/source-row580260 routines and unchanged conversion helper versus retained zero-frame initializer executed with incoming engine FX. Exact initialized table bytes and semantic CW/SW/tag/active values/XMM/MXCSR across sixteen amplitudes, twelve precision/rounding modes, sixteen condition patterns and empty/positive hidden geometry. No native raster pixel comparison, production callback installation or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS13.initializer-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/effect-preparation-03.json",
+      "sha256": "96bb8056c5150770bece68c8b2a6df13f7627e4b1d1c33e17e9c0ed9fda81fff",
+      "scope": "Private unchanged original wave5806f0/source-row580260 routines and unchanged conversion helper versus retained zero-frame initializer executed with incoming engine FX. Exact initialized table bytes and semantic CW/SW/tag/active values/XMM/MXCSR across sixteen amplitudes, twelve precision/rounding modes, sixteen condition patterns and empty/positive hidden geometry. No native raster pixel comparison, production callback installation or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS13.codec-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/observer-codec-08.json",
+      "sha256": "3dafe8d533d111d46fd8ad31fac89814b7775d4202acff6179e13048e969b19d",
+      "scope": "ASan/UBSan semantic FX codec over all2048TOP/tag combinations and fail-closed Python wire reader controls. No original executable, game, state equivalence or installed acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS13.producer-callback-controls",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/producer-controls-12.json",
+      "sha256": "b504a999ebb6e471ec7713450e1c035ba11bc1d3b717a09d5dc4d89d4f436d2c",
+      "scope": "Actual production producer callback and PE32 entries on supplied globals/prologues, protected destination and retained original sprite/rectangle wrappers. Generic/WORD/black/displacement/additive prepared state is active. Seventeen saved native and one retained-return version5 diagnostic completions must retire, including twelve actual enclosing-parent observations, arity/SP/semantic FX/LastError checks. No original raster pixels, host compositor, installed game/driver or whole-operation equivalence.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_state_native_completions",
+          "equals": 17
+        },
+        {
+          "pointer": "/caller_state_retained_completions",
+          "equals": 1
+        },
+        {
+          "pointer": "/caller_state_contexts",
+          "equals": 12
+        },
+        {
+          "pointer": "/caller_state_version",
+          "equals": 5
+        },
+        {
+          "pointer": "/caller_bindings_supplied_controls",
+          "equals": 2
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/caller_native_return_supplied_controls",
+          "equals": 1
+        },
+        {
+          "pointer": "/caller_tail_supplied_controls",
+          "equals": 1
+        },
+        {
+          "pointer": "/caller_opaque_context_supplied_controls",
+          "equals": 4
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CS13.world-requirements-static",
+      "kind": "static",
+      "record": "research/runtime/caller-state-results-20261108/world-requirements-08.json",
+      "sha256": "c73661225a7637faccbb69c2ab569156dfffb253e37a84e86c3376de54a5e71d",
+      "scope": "Static explicit production whitelist continuations under normal direct-call returns. Reads, unknown calls/returns and surviving bits remain required proof. Stack return-address mutation, exception unwinding, pixel, floating-state, stack-memory, natural reachability and whole-operation equivalence are not established.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/sites",
+          "equals": 59
+        },
+        {
+          "pointer": "/controls/passed",
+          "equals": 26
+        },
+        {
+          "pointer": "/complete_caller_state_equivalence",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS13.publication-controls",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/publication-controls-04.json",
+      "sha256": "748421e69a0f62c791ce9c150d261febc9525c02eb17095b77ab61dd4d0f2a78",
+      "scope": "Replay64retained original additive return-state observations across formats/clips/geometry/FP seeds, plus actual byte-corruption controls and36source-identity/conditional-liveness/retained-call/cleanup/expected-byte guards. No new original raster/game, glyph history, installed or whole-row equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/source_join_controls",
+          "equals": 36
+        },
+        {
+          "pointer": "/retained_original_cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS13.pilot-diagnostic",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-installed-results-20261108/default640-04-comparison-diagnostic-03.json",
+      "sha256": "7be3d2f42b9ec7fc3b12821d00b3a4ac1ed0b72c0367e00e1a4fda9e518dd145",
+      "scope": "Unaccepted old observer phase: normal Quit,150426source/root completions,107152model publication cases and independent138World/421509000pixel comparison; fast-tail parents are explicitly supplied. No caller-state row or current combined-player acceptance.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/caller_state/cases",
+          "equals": 107152
+        }
+      ]
+    },
+    {
+      "id": "CS14.word-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/world-word-05.json",
+      "sha256": "ed6fe0866aeaa50b64cc526183c1b5c6a7caa0d5f3ff7d58cf966351a99db347",
+      "scope": "Actual shared production tags22/36 entry assembly and common prepared state transaction; supplied owned CPU-plane pixel provider. Unchanged original597086/596cb8 versus independent Python pixels, state model, all GPR/ESP, argument mutation, workspace, defined integer flags, selected x87/FX and guards. Twelve masked precision/rounding modes; no whole canvas_producers callback, World batch transport, installed provider/game/profile or all-operation claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS14.word-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/world-word-05.json",
+      "sha256": "ed6fe0866aeaa50b64cc526183c1b5c6a7caa0d5f3ff7d58cf966351a99db347",
+      "scope": "Actual shared production tags22/36 entry assembly and common prepared state transaction; supplied owned CPU-plane pixel provider. Unchanged original597086/596cb8 versus independent Python pixels, state model, all GPR/ESP, argument mutation, workspace, defined integer flags, selected x87/FX and guards. Twelve masked precision/rounding modes; no whole canvas_producers callback, World batch transport, installed provider/game/profile or all-operation claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS14.generic-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/generic-state-06.json",
+      "sha256": "3028ba0c2bb199d79e632fa7ac972c1f933164925075be0a3a6d1055d19a534d",
+      "scope": "Private unchanged original generic indexed/paired, black and displacement routines versus proposed prepared state and existing native CPU pixels. Seven entries, clipped/hidden/empty/refused geometry, padding, twelve masked precision/rounding modes and sixteen incoming x87 condition patterns. Full GPR, five arguments, scratch workspace, defined flags/DF, selected semantic FX and complete guarded pixels. No production callback installation, batch transport, driver or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS14.generic-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/generic-state-06.json",
+      "sha256": "3028ba0c2bb199d79e632fa7ac972c1f933164925075be0a3a6d1055d19a534d",
+      "scope": "Private unchanged original generic indexed/paired, black and displacement routines versus proposed prepared state and existing native CPU pixels. Seven entries, clipped/hidden/empty/refused geometry, padding, twelve masked precision/rounding modes and sixteen incoming x87 condition patterns. Full GPR, five arguments, scratch workspace, defined flags/DF, selected semantic FX and complete guarded pixels. No production callback installation, batch transport, driver or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS14.add-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/add-state-05.json",
+      "sha256": "d11a0706f93dcfe68fd90357fc395eedf2efff70ba4554da4d2ce99416e190bb",
+      "scope": "Private unchanged original545c10 versus actual shared production tag26 entry with prepared full EAX/ECX/EDX/final ADD-ESP flags and independent native CPU pixels. Supplied owned-plane callback adapter; complete GPR/ESP, defined flags/DF, FX, scratch/source/physical guards, empty/hidden/clipped geometry, both formats and twelve masked precision/rounding modes. No full canvas_producers callback, installed driver/game or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS14.add-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/add-state-05.json",
+      "sha256": "d11a0706f93dcfe68fd90357fc395eedf2efff70ba4554da4d2ce99416e190bb",
+      "scope": "Private unchanged original545c10 versus actual shared production tag26 entry with prepared full EAX/ECX/EDX/final ADD-ESP flags and independent native CPU pixels. Supplied owned-plane callback adapter; complete GPR/ESP, defined flags/DF, FX, scratch/source/physical guards, empty/hidden/clipped geometry, both formats and twelve masked precision/rounding modes. No full canvas_producers callback, installed driver/game or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS14.initializer-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/effect-preparation-04.json",
+      "sha256": "e085fac0fddc47bde6c448bf0b745a2175098b0dfcc2b20589ee1fe9f300e1d8",
+      "scope": "Private unchanged original wave5806f0/source-row580260 routines and unchanged conversion helper versus retained zero-frame initializer executed with incoming engine FX. Exact initialized table bytes and semantic CW/SW/tag/active values/XMM/MXCSR across sixteen amplitudes, twelve precision/rounding modes, sixteen condition patterns and empty/positive hidden geometry. No native raster pixel comparison, production callback installation or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS14.initializer-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/effect-preparation-04.json",
+      "sha256": "e085fac0fddc47bde6c448bf0b745a2175098b0dfcc2b20589ee1fe9f300e1d8",
+      "scope": "Private unchanged original wave5806f0/source-row580260 routines and unchanged conversion helper versus retained zero-frame initializer executed with incoming engine FX. Exact initialized table bytes and semantic CW/SW/tag/active values/XMM/MXCSR across sixteen amplitudes, twelve precision/rounding modes, sixteen condition patterns and empty/positive hidden geometry. No native raster pixel comparison, production callback installation or player acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS14.codec-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/observer-codec-09.json",
+      "sha256": "565ed8663b52b595283c26d3e4aa69410fc00f17bdfb247ba938f20aac5423af",
+      "scope": "ASan/UBSan semantic FX codec over all2048TOP/tag combinations and fail-closed Python wire reader controls. No original executable, game, state equivalence or installed acceptance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "CS14.producer-callback-controls",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/producer-controls-13.json",
+      "sha256": "ffce00c5da419aea7c544b722dd1a4f2ba1a6ff0feab8a2aad659a769919290e",
+      "scope": "Actual production producer callback and PE32 entries on supplied globals/prologues, protected destination and retained original sprite/rectangle wrappers. Generic/WORD/black/displacement/additive prepared state is active. Seventeen saved native and one retained-return version5 diagnostic completions must retire, including twelve actual enclosing-parent observations, arity/SP/semantic FX/LastError checks. No original raster pixels, host compositor, installed game/driver or whole-operation equivalence.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_state_native_completions",
+          "equals": 17
+        },
+        {
+          "pointer": "/caller_state_retained_completions",
+          "equals": 1
+        },
+        {
+          "pointer": "/caller_state_contexts",
+          "equals": 12
+        },
+        {
+          "pointer": "/caller_state_version",
+          "equals": 5
+        },
+        {
+          "pointer": "/caller_bindings_supplied_controls",
+          "equals": 2
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/caller_native_return_supplied_controls",
+          "equals": 1
+        },
+        {
+          "pointer": "/caller_tail_supplied_controls",
+          "equals": 1
+        },
+        {
+          "pointer": "/caller_opaque_context_supplied_controls",
+          "equals": 8
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "CS14.world-requirements-static",
+      "kind": "static",
+      "record": "research/runtime/caller-state-results-20261108/world-requirements-09.json",
+      "sha256": "4044be1d227ae3d12d91439462ed9e5341bcf8334e34ee0caad1195dc44911ff",
+      "scope": "Static explicit production whitelist continuations under normal direct-call returns. Reads, unknown calls/returns and surviving bits remain required proof. Stack return-address mutation, exception unwinding, pixel, floating-state, stack-memory, natural reachability and whole-operation equivalence are not established.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/sites",
+          "equals": 63
+        },
+        {
+          "pointer": "/controls/passed",
+          "equals": 26
+        },
+        {
+          "pointer": "/complete_caller_state_equivalence",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS14.glyph-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/caller-state-results-20261108/glyph-full-state-01.json",
+      "sha256": "bc5b37704493af0728b6a7f97a0f3b3fc1c55d0b4054ae30dcfedd1f554b7df0",
+      "scope": "Fresh actual isolated and production shared entry comparison:28142 matches, selected caller/FX contract and safe original-once guard forwards. Process admission is registered separately.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/execution_count",
+          "equals": 28142
+        },
+        {
+          "pointer": "/shared_producer_entry_exact",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 25
+        },
+        {
+          "pointer": "/counts/complete_matches",
+          "equals": 28142
+        },
+        {
+          "pointer": "/counts/native_handled",
+          "equals": 27966
+        },
+        {
+          "pointer": "/counts/original_body_calls",
+          "equals": 176
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS14.glyph-native",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/glyph-full-state-01.json",
+      "sha256": "bc5b37704493af0728b6a7f97a0f3b3fc1c55d0b4054ae30dcfedd1f554b7df0",
+      "scope": "Fresh actual isolated and production shared entry comparison:28142 matches, selected caller/FX contract and safe original-once guard forwards. Process admission is registered separately.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/execution_count",
+          "equals": 28142
+        },
+        {
+          "pointer": "/shared_producer_entry_exact",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 25
+        },
+        {
+          "pointer": "/counts/complete_matches",
+          "equals": 28142
+        },
+        {
+          "pointer": "/counts/native_handled",
+          "equals": 27966
+        },
+        {
+          "pointer": "/counts/original_body_calls",
+          "equals": 176
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "CS14.admission-controls",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/admission-controls-01.json",
+      "sha256": "83485f0a7c41fadb0af85ea87792f2f46b070db543972272288b1e05604a9b0a",
+      "scope": "Nine meaningful admission guards; this proves neither execution state nor operation rows.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/controls",
+          "equals": 9
+        }
+      ]
+    },
+    {
+      "id": "CS14.nominal-default640",
+      "kind": "live_observation",
+      "record": "research/runtime/caller-state-installed-results-20261108/default640-05-comparison-01.json",
+      "sha256": "aa6ff5b178fffc8c5cb812a930319d312f270e4c433eefaedf6bc6d2535635e7",
+      "scope": "Actual normal public Quick Battle default640 caller/source/full viewport history and normal retirement; no supplied diagnostic contexts or faults. Original semantic components are separate required conjunctions, not promoted by these actual observations.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_state/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_state/independent_expected_byte_comparison",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/comparison_processes_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CS14.nominal-software640",
+      "kind": "live_observation",
+      "record": "research/runtime/caller-state-installed-results-20261108/software640-01-comparison-01.json",
+      "sha256": "f6c261ec6a1362e92ac6c06868a5250d66ccb867a8dcbf88fc81c95037787fd0",
+      "scope": "Actual normal public Quick Battle software640 caller/source/full viewport history and normal retirement; no supplied diagnostic contexts or faults. Original semantic components are separate required conjunctions, not promoted by these actual observations.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_state/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_state/independent_expected_byte_comparison",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/comparison_processes_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CS14.admission-controls02",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/admission-controls-02.json",
+      "sha256": "1d2eafc03e4c897837e723b54fb73a727ffe3e37876286f16afae89d7dc23846",
+      "scope": "Nine two-row/domain guards and nine exact retired-host-controller/native/player/oracle/source-custody guards. These controls alone admit no rendering row.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/controls",
+          "equals": 18
+        }
+      ]
+    },
+    {
+      "id": "CS14.admission-controls03",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-results-20261108/admission-controls-03.json",
+      "sha256": "c2dc4a26b6af89732398d885002810de0b46011a7f38507397b8a6e56a802257",
+      "scope": "Nine two-row/domain guards and nine exact retired-host-controller/native/player/oracle/source-custody guards. These controls alone admit no rendering row.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/controls",
+          "equals": 18
+        }
+      ]
+    },
+    {
+      "id": "CS14.nominal-default800",
+      "kind": "live_observation",
+      "record": "research/runtime/caller-state-installed-results-20261108/default800-02-comparison-01.json",
+      "sha256": "d911f126de8edda59d9b6f975d40aa7a9fb959edd1c635361820472cf2774a63",
+      "scope": "Actual normal public Quick Battle default800 caller/source/full viewport history and normal retirement; no supplied diagnostic contexts or faults. Original semantic components are separate required conjunctions, not promoted by these actual observations.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_state/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_state/independent_expected_byte_comparison",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/comparison_processes_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CS14.nominal-software800",
+      "kind": "live_observation",
+      "record": "research/runtime/caller-state-installed-results-20261108/software800-01-comparison-01.json",
+      "sha256": "15bdbeb0ce9a456ca8b1fac3e52891f2600a389f327ed0b183ebfa8715d3a687",
+      "scope": "Actual normal public Quick Battle software800 caller/source/full viewport history and normal retirement; no supplied diagnostic contexts or faults. Original semantic components are separate required conjunctions, not promoted by these actual observations.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_state/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_state/independent_expected_byte_comparison",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/comparison_processes_stopped",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "CS14.caller-state-rows",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-installed-results-20261108/admission-01.json",
+      "sha256": "e48c3d033a3120789f8bf3be9648d8f515bf8f2e020f92f0c9bbc6b53dad0b3b",
+      "scope": "Supported default/software caller-visible state obligations alongside complete original-history viewport pixels. Conjunction of bounded original/private proofs and actual public publications. No claim of arbitrary hidden caller/FP/driver/alias/gameplay equivalence; original fallback remains accounted original work.",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/verified_domains",
+          "equals": 4
+        },
+        {
+          "pointer": "/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/caller_state_mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 120
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 36
+        }
+      ]
+    },
+    {
+      "id": "CS14.master-union-controls02",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-master-results-20261108/union-current-controls-02.json",
+      "sha256": "9e0df46a0147024047b8c227651641fe2f44903ddafd84ed869e12c9667d64ab",
+      "scope": "Twelve focused current guards run outside integration admission. Reconstruct the frozen156cell identity by undoing only both exact additiveALIAS08candidate hints; require unchanged conditions/owners, every prior accepted row/attachment, both decisions and exact two-cell changes. Initial sandbox reader refusal and earlier strict annotation refusal stay retained; neither admitted rows.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/controls",
+          "equals": 12
+        }
+      ]
+    },
+    {
+      "id": "CS14.master-union01",
+      "kind": "native_integration",
+      "record": "research/runtime/caller-state-master-results-20261108/admission-01.json",
+      "sha256": "b7572f71c322f44b919707173f37f4737bab24f1221cc1fd1c483ffde82cd7ce",
+      "scope": "Exact actual-master row union only: preserve every incoming accepted cell/source phase and add only both caller-visible-state cells from the verified owned conjunction. Reviewed incoming changes add an exact invisible High-to-Low Spellbox native policy and host/accounting analysis tools; native Word/generic/Add/glyph state implementations and private row proofs remain their frozen phases. No new combined-player, driver, alias, exceptional or final-decision equivalence is asserted.",
+      "sources_pointer": "/analysis_sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/preserved_unrelated_parent_rows",
+          "equals": 154
+        },
+        {
+          "pointer": "/current_whole_native_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/raw_source_drift_preserved",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -393864,6 +396993,14 @@
         "RS.screen-font-installation"
       ],
       "scope": "NoCD557802 invokes the confirmed WINMM.timeGetTime IAT slot and forwards its DWORD to54e170. The fixture supplies the API and consumer; clock/wrap/scheduling and Windows timing semantics are not inferred."
+    },
+    {
+      "build": "nocd-40209ca7",
+      "iat_va": 6050452,
+      "behaviors": [
+        "RS.image-copy-caller-state"
+      ],
+      "scope": "Confirmed USER32.IntersectRect import used by533a00. Original and native private fixtures call the same real Wine provider, including its outgoing SIMD state on empty intersections. Other providers and installed caller coverage remain separate."
     }
   ],
   "dispatch_tables": [
@@ -409497,7 +412634,9 @@
         "RS.glyph-backend.initial-host-integrated-20261010",
         "RS.glyph-backend.original-live-entry-integrated-20261010",
         "RS.glyph-backend.host-live-entry-integrated-20261010",
-        "NR.glyph-backend-admission.host-live-entry-integrated-20261010"
+        "NR.glyph-backend-admission.host-live-entry-integrated-20261010",
+        "CS14.glyph-original",
+        "CS14.glyph-native"
       ],
       "tests": [
         "tools/test-glyph-backend.py"
@@ -428181,6 +431320,351 @@
         "PAR02.controls",
         "PAR03.controls"
       ]
+    },
+    {
+      "id": "RS.image-copy-caller-state.private-pe32",
+      "level": "headless",
+      "scope": "Pinned NoCD533a00 complete local normal-return image-copy state and actual production native entry over the finite two-format, varied width/anchor, clipped/disjoint/empty/negative-pitch, twelve masked x87-mode corpus. Real Wine IntersectRect and typed facade controls. Compare full destination/source guards, EAX/ECX/EDX, callee GPRs/ESP, final ADD ESP,38h arithmetic flags, six retired RET24 argument slots, LastError and selected FX bytes with four stack alignments. Original instruction/data floating history, malformed/unbounded inputs, unmasked exceptions, arbitrary provider/thread interleavings, complete natural caller inventory and installed player acceptance remain separate. Clear-DF refusal is intentional native admission.",
+      "behaviors": [
+        "RS.image-copy-caller-state"
+      ],
+      "tests": [
+        "tests/native-image-caller-state.c",
+        "tests/native-image-caller-state-probe.S",
+        "tests/test-native-image-caller-state.py",
+        "tools/test-native-image-caller-state.py",
+        "tests/native-extended-draw-probe.c",
+        "tests/native-owned-backing-probe.c"
+      ],
+      "evidence": [
+        "CS09.image-native09"
+      ]
+    },
+    {
+      "id": "RS.rendering-kernel-caller-state.private-i386",
+      "level": "headless",
+      "scope": "Finite two-format original/native panel, pixel/fade, minimap, colour-rectangle and raster interior-splice reference corpus. Actual production installer, resolver, assembly and kernels in a private Linux i386 process with supplied Win32/owned-plane/Lock/Unlock providers; complete guarded destination and reference-defined register/flags/FP/side-effect equality. Raster fast-body volatile ECX/EDX/upper EAX and scratch arguments retain their documented exclusions. World whole-entry bypass, actual driver, installed game/player and whole flags-and-return-values acceptance remain separate.",
+      "behaviors": [
+        "RS.rendering-kernel-caller-state"
+      ],
+      "tests": [
+        "tests/colour-rect-splice-reference.cpp",
+        "tests/minimap-splice-reference.cpp",
+        "tests/panel-splice-reference.cpp",
+        "tests/panel-splice-state-probe.S",
+        "tests/pixel-splice-reference.cpp",
+        "tests/pixel-splice-state-probe.S",
+        "tests/raster-splice-reference.cpp",
+        "tests/raster-splice-state-probe.S",
+        "tools/test-rendering-kernel-caller-state.py"
+      ],
+      "evidence": [
+        "CS10.kernels-native"
+      ]
+    },
+    {
+      "id": "RS.world-word-caller-state.private-i386",
+      "level": "headless",
+      "scope": "Finite direct-WORD whole-entry World state for NoCD597086/596cb8 tags22/36. Native state preflight and atomic publication mirror the16-word workspace, X/Y argument rewrites, EAX0/final XOR flags and positive-preparation x87 C1 clear. Actual shared production entry assembly is compared with unchanged original code and an independent clipped pixel oracle in a private Linux i386 process, using an explicitly supplied owned CPU-plane provider. Twelve masked precision/rounding controls, three active finite x87 values, sticky/C1 seeds, nonzero XMM/MXCSR, hidden/edge/clipped/empty frames and padding. Full canvas_producers callback, actual World batch transport, process-memory/owner concurrency, unmasked exceptions, complete producer families and installed player acceptance remain separate.",
+      "behaviors": [
+        "RS.world-word-caller-state"
+      ],
+      "tests": [
+        "tests/world-word-caller-state-reference.cpp",
+        "tests/word-backend-state-reference.cpp",
+        "tests/word-backend-probe.S",
+        "tools/test-world-word-caller-state.py"
+      ],
+      "evidence": [
+        "CS10.world-word-native",
+        "CS12.word-native",
+        "CS13.word-native",
+        "CS14.word-native"
+      ]
+    },
+    {
+      "id": "NP.world-word-state-policy.sanitized",
+      "level": "headless",
+      "scope": "Native policy for atomic prepared WORD state in the protected World bypass: positive requests require masked x87 exceptions, legal precision and an empty next push slot; empty dimensions preserve floating state. Unsupported or invalid state leaves the prepared output unchanged. Sanitized local controls verify four refusal domains and positive/empty commits. No original exception/provider equivalence, installed batch transport or player acceptance claim.",
+      "behaviors": [
+        "NP.world-word-state-policy"
+      ],
+      "tests": [
+        "tests/world-word-state-test.c",
+        "tools/test-world-word-state-policy.py"
+      ],
+      "evidence": [
+        "CS10.word-policy-native",
+        "CS12.word-policy-native"
+      ]
+    },
+    {
+      "id": "RS.world-word-caller-state.callback-pe32-controls",
+      "level": "headless",
+      "scope": "Actual PE32 producer callback/shared entries and protected batch on supplied globals/prologues; real sprite control fragments with synthetic pixel tails. Two direct-WORD routes require recovered XOR-zero return flags. Existing forwarding, caller, extent, malformed batch and guarded source controls remain. No original WORD pixel raster or installed game/profile comparison.",
+      "behaviors": [
+        "RS.world-word-caller-state"
+      ],
+      "tests": [
+        "tools/test-world-producer-caller-controls.py",
+        "tools/test-canvas-producers.py",
+        "tests/canvas-producers-test.c",
+        "tests/kind8-sprite-hook-fixture.h",
+        "tests/world-effect-entry-call.S",
+        "tests/kind8-sprite-primary-call.S",
+        "tools/kind8_sprite_fixture.py",
+        "tools/drawing_fixture_prefix.py"
+      ],
+      "evidence": [
+        "CS10.producer-callback-controls"
+      ]
+    },
+    {
+      "id": "RS.world-generic-caller-state.private-i386",
+      "level": "headless",
+      "scope": "Recovery in progress for original generic indexed/paired, black silhouette and displacement whole-entry state. Mirror scratch workspace, X/Y argument rewrites, EAX and defined arithmetic flags, and exact integer-preparation x87 C1 effects. Keep black/displacement horizontal refusal and empty-dimension state separate. Original/native execution, producer integration and both player acceptance rows remain pending until their proofs are recorded.",
+      "behaviors": [
+        "RS.world-generic-caller-state"
+      ],
+      "tests": [
+        "tests/world-generic-caller-state-reference.cpp",
+        "tests/world-generic-caller-state-probe.S",
+        "tools/test-world-generic-caller-state.py"
+      ],
+      "evidence": [
+        "CS11.generic-state-native",
+        "CS12.generic-native",
+        "CS13.generic-native",
+        "CS14.generic-native"
+      ]
+    },
+    {
+      "id": "RS.world-effect-initializer-state.private-i386",
+      "level": "headless",
+      "scope": "Recovery in progress for retained wave5806f0 and source-row580260 non-drawing lazy table initialization. Check actual incoming engine floating state and outgoing state publication against unchanged original code and conversion helper, with table bytes, empty and positive-hidden geometry. Native raster pixels, whole callbacks and installed player joins remain separate.",
+      "behaviors": [
+        "RS.world-effect-initializer-state"
+      ],
+      "tests": [
+        "tests/world-effect-prepare-reference.cpp",
+        "tools/test-world-effect-preparation.py",
+        "tests/world-generic-caller-state-probe.S"
+      ],
+      "evidence": [
+        "CS11.effect-initializer-native",
+        "CS12.initializer-native",
+        "CS13.initializer-native",
+        "CS14.initializer-native"
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-observation.codec",
+      "level": "headless",
+      "scope": "All2048x87TOP/tag codec combinations under sanitizers and strict wire-reader corruption/retirement controls. Version3 epoch guards retain independently readable V1/V2. V4 input metadata is raw observation with strict version/extent guards; earlier formats remain independently readable. V5 source-publication layout and source-only tail envelope guards are included.",
+      "behaviors": [
+        "NP.rendering-caller-state-observation"
+      ],
+      "tests": [
+        "tests/drawing-caller-state-codec-test.c",
+        "tests/test-drawing-caller-state.py",
+        "tools/test-rendering-caller-state-observer.py"
+      ],
+      "evidence": [
+        "CS12.codec-native",
+        "CS13.codec-native",
+        "CS14.codec-native"
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-observation.pe32-callbacks",
+      "level": "headless",
+      "scope": "Actual full producer callback/shared PE32 entries with supplied owned plane and synthetic raster tails. Seventeen native and one retained normal-return version3 diagnostic completions, twelve actual enclosing-parent observations, including additive/colour original wrappers into the actual primary continuation. Exact LastError, stack, arity, normalized FX and closed footer. No original raster pixels, host compositor or installed player claim. Two separate supplied observer frames exercise opaque stack offsets and known/unknown binding custody; they are not counted as callback/raster executions. Version3 carries World/source identities, with noncontinuous zero controls and two supplied epoch frames separate from actual callbacks. V4 retains raw known/unknown entry-time global inputs, separately from admission. V5 has a separate supplied native-return snapshot/publication control and quiescent source-tail snapshot; neither is counted as an actual glyph/drawing execution.",
+      "behaviors": [
+        "NP.rendering-caller-state-observation",
+        "RS.world-word-caller-state",
+        "RS.world-generic-caller-state",
+        "RS.world-add-caller-state"
+      ],
+      "tests": [
+        "tools/test-world-producer-caller-controls.py",
+        "tools/test-canvas-producers.py",
+        "tests/canvas-producers-test.c",
+        "tests/kind8-sprite-hook-fixture.h",
+        "tools/drawing_caller_state.py",
+        "tests/world-rectangle-hook-fixture.h",
+        "tools/kind8_sprite_fixture.py"
+      ],
+      "evidence": [
+        "CS11.producer-callback-controls",
+        "CS12.producer-callback-controls",
+        "CS13.producer-callback-controls",
+        "CS14.producer-callback-controls"
+      ]
+    },
+    {
+      "id": "RS.world-add-caller-state.private-i386",
+      "level": "headless",
+      "scope": "Recovery in progress for original545c10 complete normal-return caller state: branch-specific full EAX/ECX/EDX, final ADD ESP arithmetic flags, preserved nonvolatile/FX/workspace, alongside independent native pixels. Empty vertical and horizontal extents, signed clipping and native bounded admission remain explicit. Full callback installation, parent consumers and both player rows remain pending.",
+      "behaviors": [
+        "RS.world-add-caller-state"
+      ],
+      "tests": [
+        "tests/world-add-caller-state-reference.cpp",
+        "tests/world-rectangle-caller-state-probe.S",
+        "tools/test-world-add-caller-state.py"
+      ],
+      "evidence": [
+        "CS12.add-native",
+        "CS13.add-native",
+        "CS14.add-native"
+      ]
+    },
+    {
+      "id": "NP.surface-caller-state-provider.wine-private",
+      "level": "headless",
+      "scope": "Actual current PE32 native facade versus Wine builtin DirectDraw: factory HRESULT/interface identity/refcounts, RGB565 surface copy/fill/key/overlap outputs, clipper/DC/primary startup outputs, and five invalid BltFast boundary requests with complete source/destination pixels. Native LastError preservation and mode/capacity/placement policies remain separate. No original game callers, full GPR/FX comparison, hardware driver, installed GPU history or whole-row acceptance.",
+      "behaviors": [
+        "NP.surface-caller-state-provider"
+      ],
+      "tests": [
+        "tools/test-rendering-surface-caller-state.py",
+        "tests/native-draw-factory-probe.c",
+        "tests/native-draw-surface-probe.c",
+        "tests/native-draw-services-probe.c",
+        "tests/native-draw-invalid-copy-reference.c"
+      ],
+      "evidence": [
+        "CS12.surface-provider"
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-publication.retained-controls",
+      "level": "headless",
+      "scope": "Publication replay controls on64retained original additive return snapshots, six actual output-byte mutants and36strict source/conditional-liveness/retained-call/expected-byte controls. This verifies the publication checker, not new original semantics, installed glyph history or whole-row closure.",
+      "behaviors": [
+        "NP.rendering-caller-state-publication"
+      ],
+      "tests": [
+        "tools/test-caller-state-publication.py",
+        "tests/test-rendering-caller-state-join.py"
+      ],
+      "evidence": [
+        "CS13.publication-controls"
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-installed-accounting.unaccepted-pilot",
+      "level": "headless",
+      "scope": "Retained normally retired default640pilot through offline state/source/pixel analysis with explicitly supplied unresolved parents. This is an ineligible diagnostic, not a nominal matrix case or whole-row admission.",
+      "behaviors": [
+        "NP.rendering-caller-state-installed-accounting"
+      ],
+      "tests": [
+        "tools/check-rendering-caller-state.py",
+        "tests/caller-state-history.cpp"
+      ],
+      "evidence": [
+        "CS13.pilot-diagnostic"
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-closeout.conjunction",
+      "level": "headless",
+      "scope": "Retained-data two-row admission from four distinct actual domains, original contracts, actual state/source and independent pixels; negative domain/state/identity guards. Parent rows and both decisions preserved.",
+      "behaviors": [
+        "NP.rendering-caller-state-closeout"
+      ],
+      "tests": [
+        "tools/close-rendering-caller-state.py",
+        "tests/test-caller-state-admission.py",
+        "tests/test-caller-state-source-phase.py"
+      ],
+      "evidence": [
+        "CS14.admission-controls",
+        "CS14.admission-controls02",
+        "CS14.admission-controls03",
+        "CS14.caller-state-rows"
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-installed-accounting.default640",
+      "level": "live_observation",
+      "scope": "Actual normal public Quick Battle default640 caller/source/full viewport history and normal retirement; no supplied diagnostic contexts or faults.",
+      "behaviors": [
+        "NP.rendering-caller-state-installed-accounting",
+        "NP.rendering-caller-state-publication"
+      ],
+      "tests": [
+        "tools/run-rendering-caller-state.py",
+        "tools/check-rendering-caller-state.py"
+      ],
+      "evidence": [
+        "CS14.nominal-default640"
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-installed-accounting.software640",
+      "level": "live_observation",
+      "scope": "Actual normal public Quick Battle software640 caller/source/full viewport history and normal retirement; no supplied diagnostic contexts or faults.",
+      "behaviors": [
+        "NP.rendering-caller-state-installed-accounting",
+        "NP.rendering-caller-state-publication"
+      ],
+      "tests": [
+        "tools/run-rendering-caller-state.py",
+        "tools/check-rendering-caller-state.py"
+      ],
+      "evidence": [
+        "CS14.nominal-software640"
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-installed-accounting.default800",
+      "level": "live_observation",
+      "scope": "Actual normal public Quick Battle default800 caller/source/full viewport history and normal retirement; no supplied diagnostic contexts or faults.",
+      "behaviors": [
+        "NP.rendering-caller-state-installed-accounting",
+        "NP.rendering-caller-state-publication"
+      ],
+      "tests": [
+        "tools/run-rendering-caller-state.py",
+        "tools/check-rendering-caller-state.py"
+      ],
+      "evidence": [
+        "CS14.nominal-default800"
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-installed-accounting.software800",
+      "level": "live_observation",
+      "scope": "Actual normal public Quick Battle software800 caller/source/full viewport history and normal retirement; no supplied diagnostic contexts or faults.",
+      "behaviors": [
+        "NP.rendering-caller-state-installed-accounting",
+        "NP.rendering-caller-state-publication"
+      ],
+      "tests": [
+        "tools/run-rendering-caller-state.py",
+        "tools/check-rendering-caller-state.py"
+      ],
+      "evidence": [
+        "CS14.nominal-software800"
+      ]
+    },
+    {
+      "id": "NP.rendering-caller-state-master-union.checked-parents",
+      "level": "headless",
+      "scope": "Actual committed parents and frozen156cell identity, exact two-cell union, twelve adverse/parent-preservation controls; no new original game or reference execution.",
+      "behaviors": [
+        "NP.rendering-caller-state-master-union"
+      ],
+      "tests": [
+        "tools/merge-rendering-caller-state-acceptance.py",
+        "tests/test-caller-state-parent-union.py"
+      ],
+      "evidence": [
+        "CS14.master-union-controls02",
+        "CS14.master-union01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -430008,8 +433492,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-976f4989c983c8dfe60b4e598e49ac7710d2dde0758ca8c6d39ae047c876e6e5.json",
-    "sha256": "976f4989c983c8dfe60b4e598e49ac7710d2dde0758ca8c6d39ae047c876e6e5"
+    "path": "research/runtime/coverage/source-index-c206653acd031a93705a88ea36c1218593ee7dcdc672f2cdebd43f58fca789c7.json",
+    "sha256": "c206653acd031a93705a88ea36c1218593ee7dcdc672f2cdebd43f58fca789c7"
   },
   "evidence_applicability": [
     {

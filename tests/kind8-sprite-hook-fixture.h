@@ -29,7 +29,8 @@ static void sprite_hook_fixture(void){
   u8* tail_at=(u8*)(hooks[tag].address+hooks[tag].length);u8 old_tail[32];copy(old_tail,tail_at,32);tail_at[0]=0x9c;tail_at[1]=0xff;tail_at[2]=5;put(tail_at+3,0x700804);tail_at[7]=0x9d;copy(tail_at+8,old_tail,32);
   enabled=0;SetLastError(1234);world_effect_test_call((u32)hooks[tag].entry,0x1234,0x5678,0,bypass_before,args);const u32 counter=get((void*)0x700804);
   enabled=1;SetLastError(1234);world_effect_test_call((u32)hooks[tag].entry,0x1234,0x5678,0,after,args);
-  sprite_fixture_require(get((void*)0x700804)==counter&&GetLastError()==1234&&bypass_completed==i+1&&batch_count==i+1&&!get(after+28)&&get(after+32)==0x247,195);
+  const u32 expected_flags=tag==13||tag==14||tag==22||tag==36?0x246u:0x247u;
+  sprite_fixture_require(get((void*)0x700804)==counter&&GetLastError()==1234&&bypass_completed==i+1&&batch_count==i+1&&!get(after+28)&&get(after+32)==expected_flags,195);
   for(u32 j=0;j<560;++j)if((j<28||j>=36)&&after[j]!=bypass_before[j])ExitProcess(196);
   copy(tail_at,old_tail,32);
  }
