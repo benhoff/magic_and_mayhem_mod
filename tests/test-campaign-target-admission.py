@@ -3,10 +3,54 @@ from pathlib import Path
 import sys
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from campaign_target_admission import candidate_after_hover,empty_candidate_after_hover,hover_nudge,support_attack_submission,support_selection_after,primary_selection_after,reserved_boss_target,portal_destination,portal_move_submission
+from campaign_target_admission import candidate_after_hover,empty_candidate_after_hover,portal_candidate_after_hover,portal_staging_ground,hover_nudge,support_attack_submission,support_selection_after,primary_selection_after,reserved_boss_target,portal_destination,portal_move_submission
 
 
 class Candidate(unittest.TestCase):
+    def test_portal_self_pick_requires_goal_ground_and_bounded_live_sole_wizard(self):
+        hero=dict(slot=0,type=0,owner=0,active=1,health=43,x=43,y=27,z=5)
+        goal=dict(x=43,y=27,z=5)
+        ready=dict(world_counter=42,world_return_ordinal=100,ground=[43,27,5])
+        row=self.row(candidate_slot_plus_one=1,world_return_ordinal=100,flags=1,primary=[0])
+        self.assertEqual(portal_candidate_after_hover([row],ready,hero,goal,10),row)
+        for change in (dict(type=14),dict(owner=1),dict(active=0),dict(health=0),dict(x=49),dict(z=7),dict(slot=True)):
+            self.assertIsNone(portal_candidate_after_hover([row],ready,dict(hero,**change),goal,10))
+        for change in (dict(candidate_slot_plus_one=4),dict(candidate_valid=False),dict(primary=[0,3]),dict(world_return_ordinal=99)):
+            self.assertIsNone(portal_candidate_after_hover([dict(row,**change)],ready,hero,goal,10))
+        self.assertIsNone(portal_candidate_after_hover([row],dict(ready,ground=[43,28,5]),hero,goal,10))
+
+    def test_retained_nearby_self_pick_can_attempt_the_actual_portal_ground(self):
+        goal=dict(x=44,y=27,z=4);ready=dict(world_counter=42,world_return_ordinal=100,ground=[44,27,4])
+        row=self.row(candidate_slot_plus_one=1,world_return_ordinal=100,flags=1,primary=[0])
+        for point in ((45,30,4),(48,30,5),(44,26,4)):
+            hero=dict(slot=0,type=0,owner=0,active=1,health=20,**dict(zip(('x','y','z'),point)))
+            self.assertEqual(portal_candidate_after_hover([row],ready,hero,goal,10),row)
+        hero.update(x=49,y=30)
+        self.assertIsNone(portal_candidate_after_hover([row],ready,hero,goal,10))
+
+    def test_known_follower_cover_requires_exact_ground_role_and_selection(self):
+        hero=dict(slot=0,type=0,owner=0,active=1,health=8,x=42,y=43,z=4)
+        goal=dict(x=42,y=28,z=4)
+        follower=dict(slot=3,type=14,owner=0,active=1,health=70,x=43,y=28,z=4)
+        ready=dict(world_counter=42,world_return_ordinal=100,ground=[42,28,4])
+        row=self.row(candidate_slot_plus_one=4,world_return_ordinal=100,flags=1,primary=[0])
+        self.assertEqual(portal_candidate_after_hover([row],ready,hero,goal,10,follower),row)
+        self.assertIsNone(portal_candidate_after_hover([row],ready,hero,goal,10))
+        for change in (dict(slot=4),dict(slot=True),dict(type=24),dict(owner=1),dict(active=0),dict(health=0),dict(x=44),dict(z=6)):
+            self.assertIsNone(portal_candidate_after_hover([row],ready,hero,goal,10,dict(follower,**change)))
+        self.assertIsNone(portal_candidate_after_hover([dict(row,primary=[3])],ready,hero,goal,10,follower))
+        self.assertIsNone(portal_candidate_after_hover([row],dict(ready,ground=[43,28,4]),hero,goal,10,follower))
+
+    def test_offscreen_staging_requires_empty_closer_bounded_original_ground(self):
+        hero=dict(slot=0,x=42,y=43,z=4);goal=dict(x=42,y=28,z=4)
+        ready=dict(world_counter=42,world_return_ordinal=100,ground=[42,38,4])
+        row=self.row(candidate_slot_plus_one=0,world_return_ordinal=100,flags=1,primary=[0])
+        self.assertEqual(portal_staging_ground([row],ready,hero,goal,10),dict(x=42,y=38,z=4))
+        for ground in ([42,43,4],[42,44,4],[42,28,4],[42,38,7],[42,True,4],[]):
+            self.assertIsNone(portal_staging_ground([row],dict(ready,ground=ground),hero,goal,10))
+        for change in (dict(candidate_slot_plus_one=4),dict(primary=[3]),dict(world_return_ordinal=99)):
+            self.assertIsNone(portal_staging_ground([dict(row,**change)],ready,hero,goal,10))
+
     def portal(self,opcode=5):
         hero=dict(slot=0,type=0,owner=0,active=1,health=143,x=43,y=28,z=4)
         goal=dict(x=43,y=26,z=4)
@@ -15,6 +59,15 @@ class Candidate(unittest.TestCase):
         returned=dict(entry,kind=3,sequence=12,flags=39,records=[cmd])
         world=dict(kind=1,sequence=13,flags=1,primary=[0])
         return hero,goal,[entry,returned,world]
+
+    def test_near_pose_hold_needs_an_original_move_and_never_claims_delivery(self):
+        hero,_,rows=self.portal();rows[1]['records'][0]['destination']=[hero[k] for k in ('x','y','z')]
+        proof=portal_move_submission(rows,hero,hero,10)
+        self.assertIsNotNone(proof);self.assertFalse(proof['command_delivery_proved'])
+        rows[1]['records'][0]['destination'][0]+=2
+        self.assertIsNone(portal_move_submission(rows,hero,hero,10))
+        rows[1]['records'][0].update(opcode=7,length=14,target_slot=4)
+        self.assertIsNone(portal_move_submission(rows,hero,hero,10))
 
     def test_portal_requires_nearby_goal_and_actual_original_move(self):
         for opcode in (5,):

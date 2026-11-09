@@ -443,6 +443,17 @@ class GateTests(unittest.TestCase):
                 receipt['reviews'][0]['validation']['stages'] = stages
                 self.assert_error(self.result(receipt), 'stages requires a nonempty unique list')
 
+    def test_pending_empty_stages_accounts_content_without_validation_credit(self):
+        receipt=self.receipt()
+        receipt['reviews'][0]['validation']['stages']=[]
+        self.assertEqual(self.result(receipt)['errors'],[])
+        self.register['behaviors'][0]['status']['implementation']='scoped'
+        self.assert_error(self.result(self.receipt_with_empty_pending_stages()),'Status promotion requires fresh recorded validation')
+
+    def receipt_with_empty_pending_stages(self):
+        receipt=self.receipt();receipt['reviews'][0]['validation']['stages']=[]
+        return receipt
+
     def test_pending_receipt_cannot_claim_stage_credit(self):
         receipt = self.receipt()
         receipt['reviews'][0]['validation']['stages'] = ['implementation']

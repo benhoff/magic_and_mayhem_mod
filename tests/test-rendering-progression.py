@@ -91,6 +91,23 @@ class ProgressionTests(unittest.TestCase):
         spell[8]=1
         self.assertIsNone(module.bridge_clearance({},2,[],[spell]))
 
+    def test_actual_boss_retirement_permits_one_conversation_hint_only(self):
+        module,_,_,_=self.threat_fixture();boss=dict(type=24,owner=1,active=0,health=0)
+        self.assertTrue(module.retired_boss_return_candidate(boss))
+        self.assertFalse(module.retired_boss_return_candidate(boss,already=True))
+
+    def test_living_foreign_or_wrong_actor_never_supplies_the_retired_hint(self):
+        module,_,_,_=self.threat_fixture();boss=dict(type=24,owner=1,active=0,health=0)
+        for change in (dict(type=14),dict(owner=0),dict(active=1),dict(health=1)):
+            self.assertFalse(module.retired_boss_return_candidate(dict(boss,**change)))
+
+    def test_actual_intervening_cast_budget_requires_an_original_resupply_revisit(self):
+        module,hero,_,_=self.threat_fixture()
+        for mana in (0,33*256,42*256-1):self.assertTrue(module.needs_boss_resupply('bridge',True,mana))
+        for mana in (42*256,50*256):self.assertFalse(module.needs_boss_resupply('bridge',True,mana))
+        self.assertFalse(module.needs_boss_resupply('resupply',True,0))
+        self.assertFalse(module.needs_boss_resupply('bridge',False,0))
+
     def test_initial_combat_never_falls_through_to_the_boss_before_refill(self):
         module,hero,follower,escort=self.threat_fixture()
         boss=dict(escort,slot=4,type=24,health=100,x=42,y=26)
@@ -373,6 +390,17 @@ class ProgressionTests(unittest.TestCase):
         enemy['health']=0
         self.assertEqual(choose('victory',hero,enemy,0,6,10),'portal')
 
+    def test_loaded_wizard_stages_around_the_retained_cp30_enemy_interception(self):
+        spec=importlib.util.spec_from_file_location('cp30_staging',ROOT/'tools/campaign-outcome-input.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        hero=dict(slot=0,owner=0,active=1,health=186,x=42,y=30,z=4)
+        boss=dict(slot=4,owner=1,active=1,health=100,x=43,y=25,z=4)
+        guard=dict(slot=5,owner=1,active=1,health=90,x=43,y=27,z=5)
+        actors={0:hero,4:boss,5:guard}
+        self.assertEqual(module.cast_staging_blockers(hero,boss,actors),[])
+        self.assertEqual(module.cast_staging_blockers(hero,boss,actors,True),[5])
+        guard['active']=0;self.assertEqual(module.cast_staging_blockers(hero,boss,actors,True),[])
+
     def test_firing_line_refuses_living_allies_between_caster_and_target(self):
         spec=importlib.util.spec_from_file_location('line_policy',ROOT/'tools/campaign-outcome-input.py')
         module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
@@ -388,7 +416,7 @@ class ProgressionTests(unittest.TestCase):
         target.update(x=0)
         self.assertEqual(module.firing_line_allies(hero,target,{2:ally}),[])
 
-    def test_boss_volley_also_refuses_living_enemy_interceptors(self):
+    def test_enemy_positions_do_not_infer_projectile_interception(self):
         spec=importlib.util.spec_from_file_location('blocker_policy',ROOT/'tools/campaign-outcome-input.py')
         module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
         hero=dict(slot=0,owner=0,x=40,y=30,z=4,active=1,health=141)
@@ -397,7 +425,7 @@ class ProgressionTests(unittest.TestCase):
         actors={0:hero,4:target,5:guard}
         self.assertEqual(module.firing_line_allies(hero,target,actors),[])
         self.assertEqual(module.firing_line_blockers(hero,target,actors),[5])
-        self.assertIsNone(module.camulos_pause_point(hero,target,actors,(640,480)))
+        self.assertIsNotNone(module.camulos_pause_point(hero,target,actors,(640,480)))
         for changes in (dict(health=0),dict(active=0),dict(x=43)):
             self.assertEqual(module.firing_line_blockers(hero,target,{0:hero,4:target,5:dict(guard,**changes)}),[])
 
@@ -434,9 +462,13 @@ class ProgressionTests(unittest.TestCase):
                 limit=module.fireball_burst_limit(dict(mana=mana),dict(type=24),paused)
                 self.assertGreaterEqual(limit,0)
                 self.assertLessEqual(limit*6*256,mana)
-                self.assertLessEqual(limit,6 if paused else 2)
-                if paused and mana>=36*256:self.assertEqual(limit,6)
-        self.assertEqual(module.fireball_burst_limit(dict(mana=36*256),dict(type=24),True),6)
+                self.assertLessEqual(limit,4 if paused else 2)
+                if paused and mana>=24*256:self.assertEqual(limit,4)
+        self.assertEqual(module.fireball_burst_limit(dict(mana=36*256),dict(type=24),True),4)
+        self.assertEqual(module.fireball_burst_limit(dict(mana=50*256),dict(type=24),True),4)
+        self.assertEqual(module.fireball_burst_limit(dict(mana=50*256),dict(type=24),False),2)
+        self.assertEqual(module.fireball_burst_limit(dict(mana=50*256),dict(type=24),True,finishing=True),3)
+        self.assertEqual(module.fireball_burst_limit(dict(mana=5*256),dict(type=24),True,finishing=True),0)
         self.assertEqual(module.fireball_burst_limit(dict(mana=36*256),dict(type=10),True),7)
 
     def test_support_attack_requires_one_living_owned_zombie_and_current_enemy(self):
@@ -514,6 +546,52 @@ class ProgressionTests(unittest.TestCase):
             self.assertFalse(record['success'])
             self.assertFalse(record['simulation_writes'])
             self.assertEqual(record['actions'],[])
+
+
+class BurstObservation(unittest.TestCase):
+    def module(self):
+        spec=importlib.util.spec_from_file_location('burst_observation',ROOT/'tools/campaign-outcome-input.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
+
+    def test_prompt_is_observed_before_the_old_three_second_sleep(self):
+        now=[0.0];samples=iter((None,'not-ready','ready'));seen=[]
+        def trigger(value):
+            if value=='ready':seen.append(now[0]);return True
+            return False
+        accepted=self.module().observe_burst_hint(lambda:next(samples),trigger,
+            clock=lambda:now[0],sleep=lambda dt:now.__setitem__(0,now[0]+dt))
+        self.assertTrue(accepted);self.assertEqual(len(seen),1);self.assertLess(seen[0],.2)
+
+    def test_admitted_twenty_hp_hint_prevents_more_boss_casts(self):
+        hero=dict(x=43,y=30,health=130,mana=14*256)
+        boss=dict(type=24,owner=1,x=44,y=28,health=20)
+        self.assertEqual(self.module().combat_choice('victory',hero,boss,1,1,5,terminal_hint_sent=True),'retreat')
+        self.assertEqual(self.module().combat_choice('victory',hero,boss,1,1,5,terminal_hint_sent=False),'fireball')
+        far=dict(hero,x=30)
+        self.assertEqual(self.module().combat_choice('victory',far,boss,1,1,5,terminal_hint_sent=True),'idle')
+
+    def test_missing_sample_never_triggers_input(self):
+        now=[0.0];seen=[]
+        result=self.module().observe_burst_hint(lambda:None,lambda v:seen.append(v),
+            clock=lambda:now[0],sleep=lambda dt:now.__setitem__(0,now[0]+dt))
+        self.assertFalse(result);self.assertFalse(seen);self.assertLessEqual(now[0],3.01)
+
+    def test_state_without_an_admitted_hint_does_not_become_success(self):
+        now=[0.0];seen=[]
+        def trigger(value):seen.append(value);return False
+        result=self.module().observe_burst_hint(lambda:'state',trigger,
+            clock=lambda:now[0],sleep=lambda dt:now.__setitem__(0,now[0]+dt))
+        self.assertFalse(result);self.assertGreater(len(seen),0);self.assertLessEqual(len(seen),60)
+
+    def test_frozen_clock_still_has_a_finite_poll_budget(self):
+        seen=[]
+        result=self.module().observe_burst_hint(lambda:seen.append(1),lambda v:True,
+            clock=lambda:0,sleep=lambda dt:None)
+        self.assertFalse(result);self.assertEqual(len(seen),60)
+
+    def test_bad_source_observation_is_not_swallowed(self):
+        def refused():raise ValueError('Invalid original observation')
+        with self.assertRaises(ValueError):self.module().observe_burst_hint(refused,lambda v:True)
 
 
 if __name__=='__main__':unittest.main()

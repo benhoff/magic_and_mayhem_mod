@@ -70,6 +70,7 @@ def main(argv=None, root=ROOT):
         'Use ./run-x86.sh --original-renderer for the original game renderer.'))
     parser.add_argument('--prefix', type=Path, default=Path('working/native-player/wineprefix'),
                         help='Dedicated owned prefix, initialized once and reused (default: %(default)s)')
+    parser.add_argument('--output-owner', type=Path, help='New explicitly assigned ownership directory under working/')
     parser.add_argument('--prefix-template', type=Path,
                         help='Optional stopped, admitted prefix to clone on first launch')
     parser.add_argument('arguments', nargs=argparse.REMAINDER,
@@ -83,6 +84,9 @@ def main(argv=None, root=ROOT):
         if environment.get('MNM_MENU_DIRECTPLAY_DX6', '1') != '1':
             raise ValueError('Native player launch requires MNM_MENU_DIRECTPLAY_DX6=1')
         environment['MNM_MENU_DIRECTPLAY_DX6'] = '1'
+        owner_output=args.output_owner.resolve() if args.output_owner is not None else None
+        if owner_output is not None and (not owner_output.is_relative_to(root/'working') or args.output_owner.is_symlink() or owner_output.exists()):
+            raise ValueError('Require a new explicit ownership directory under working/')
         prefix = prefix_path(root, args.prefix)
         if prefix.exists():
             if args.prefix_template is not None:
@@ -127,7 +131,8 @@ def main(argv=None, root=ROOT):
                   'Terrain lighting: ' + lighting + '.\n'
                   'Wine runs the original simulation. Prefix: ' + str(prefix), flush=True)
             return subprocess.run([sys.executable, '-B', str(root / 'tools/run-native-owned.py'),
-                                   '--native-only', '--prefix', str(prefix), '--', *extra],
+                                   '--native-only', '--prefix', str(prefix),
+                                   *(['--output',str(owner_output)] if owner_output is not None else []), '--', *extra],
                                   env=environment).returncode
     except (ValueError, OSError, subprocess.SubprocessError) as error:
         print('Native launch refused: ' + str(error), file=sys.stderr)

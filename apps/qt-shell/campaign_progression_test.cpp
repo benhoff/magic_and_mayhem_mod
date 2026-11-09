@@ -8,6 +8,10 @@
 #include <QTimer>
 #include <QProcess>
 #include <QFileInfo>
+#include <QFile>
+#include <QCryptographicHash>
+#include <QtEndian>
+#include <QListWidget>
 #include <QDir>
 #include <QSaveFile>
 #include <QJsonDocument>
@@ -24,13 +28,15 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
     const auto mode=qEnvironmentVariable("MNM_CAMPAIGN_PROGRESSION_CASE");
     const auto size=qEnvironmentVariable("MNM_CAMPAIGN_PROGRESSION_SIZE","800x600");
     const bool low=size=="640x480";
+    const auto entrySave=qEnvironmentVariable("MNM_CAMPAIGN_ENTRY_SAVE");
+    const auto entryHash=qEnvironmentVariable("MNM_CAMPAIGN_ENTRY_SAVE_SHA256");
     const int requestedDeadline=qEnvironmentVariableIntValue("MNM_CAMPAIGN_TIMEOUT_MS");
     const int deadlineMs=requestedDeadline>0?qBound(15000,requestedDeadline,900000):900000;
     bool dwellValid=true;
     const auto dwellText=qEnvironmentVariable("MNM_CAMPAIGN_STARTUP_DWELL_MS");
     const int startupDwell=dwellText.isEmpty()?0:dwellText.toInt(&dwellValid);
-    struct Run {int stage=0,region=1,visits=0,input=0,realmIndex=-1,travels=0;quint32 thread=0;quint64 frames=0,paints=0,worldBaseline=0;bool done=false,helper=false,natural=false;QJsonArray states,worlds,observations;QJsonObject failure;QElapsedTimer clock;QProcess* process=nullptr;};
-    auto r=std::make_shared<Run>();r->clock.start();
+    struct Run {int stage=0,region=1,visits=0,input=0,realmIndex=-1,travels=0;quint32 thread=0;quint64 frames=0,paints=0,worldBaseline=0;bool done=false,helper=false,natural=false,entryLoaded=false;QString entrySave,entryHash;QJsonArray states,worlds,observations;QJsonObject failure;QElapsedTimer clock;QProcess* process=nullptr;};
+    auto r=std::make_shared<Run>();r->entrySave=entrySave;r->entryHash=entryHash;r->clock.start();
     auto finish=[r,path,probe,&app,mode,size,startupDwell](bool success,const QString& error){
         if(r->done)return;
         r->done=true;
@@ -39,7 +45,7 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
         const QJsonObject result{{"schema",2},{"world_observation_policy","fresh-generation-after-handoff-v1"},{"size",size},{"case",mode},{"success",success},{"error",success?QString{}:error},
             {"normal_quit",success&&r->stage==12},{"stage",r->stage},{"states",r->states},{"worlds",r->worlds},
             {"native_command_fallback",p.fallback},{"native_error",p.error},{"elapsed_ms",r->clock.elapsed()},
-            {"startup_main_dwell_ms",startupDwell},
+            {"startup_main_dwell_ms",startupDwell},{"entry_mode",r->entrySave.isEmpty()?"new-game":"original-checkpoint"},{"entry_checkpoint_name",r->entrySave},{"entry_checkpoint_sha256",r->entryHash},{"entry_load_verified",r->entryLoaded},
             {"pixel_history_accepted",false},{"ownership_retirement_accepted",false},{"session_observations",r->observations},{"session_failure",r->failure}};
         const auto bytes=QJsonDocument(result).toJson();
         const bool saved=file.open(QIODevice::WriteOnly)&&file.write(bytes)==bytes.size()&&file.commit();
@@ -47,6 +53,9 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
     };
     if((mode!="progression"&&mode!="victory"&&mode!="defeat")||(size!="640x480"&&size!="800x600")){
         QTimer::singleShot(0,&window,[finish]{finish(false,"Unknown progression case");});return;
+    }
+    if(!entrySave.isEmpty()&&(mode=="defeat"||!entrySave.startsWith("checkpoint-")||entrySave.contains('/')||entrySave.contains('\\')||entryHash.size()!=64||QByteArray::fromHex(entryHash.toLatin1()).size()!=32)){
+        QTimer::singleShot(0,&window,[finish]{finish(false,"Invalid original checkpoint entry input");});return;
     }
     if(!dwellValid||startupDwell<0||startupDwell>30000||
        (startupDwell&&qEnvironmentVariableIntValue("MNM_RESIDENT_POLL_TIMING")!=1)){
@@ -84,9 +93,10 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
         QStringList args{QDir::current().filePath(purpose=="outcome"?"tools/campaign-outcome-input.py":purpose=="realm-exit"?"tools/campaign-realm-exit-input.py":"tools/menu-storage-input.py"),
             "--rect",QString::number(origin.x()),QString::number(origin.y()),QString::number(qRound(rect.width())),QString::number(qRound(rect.height())),
             "--output",QFileInfo(path).dir().filePath(QString("progression-input-%1.json").arg(r->input++))};
-        if(purpose=="outcome")args<<"--case"<<mode<<"--experiment"<<session.evidenceDirectory()<<"--seconds"<<"540"<<"--frame-size"<<QString::number(viewport->frameSize().width())<<QString::number(viewport->frameSize().height());
-        else if(purpose=="realm-exit")args<<"--experiment"<<session.evidenceDirectory()<<"--thread"<<QString::number(r->thread)<<"--frame-size"<<QString::number(viewport->frameSize().width())<<QString::number(viewport->frameSize().height());
-        else args<<"--mode"<<purpose<<"--input-channel"<<QDir(session.evidenceDirectory()).filePath("render-input.bin");
+        if(purpose=="outcome")args<<"--case"<<mode<<"--experiment"<<session.evidenceDirectory()<<"--seconds"<<"600"<<"--frame-size"<<QString::number(viewport->frameSize().width())<<QString::number(viewport->frameSize().height());
+        if(purpose=="outcome"&&!r->entrySave.isEmpty())args<<"--resume-checkpoint";
+        if(purpose=="realm-exit")args<<"--experiment"<<session.evidenceDirectory()<<"--thread"<<QString::number(r->thread)<<"--frame-size"<<QString::number(viewport->frameSize().width())<<QString::number(viewport->frameSize().height());
+        else if(purpose!="outcome")args<<"--mode"<<purpose<<"--input-channel"<<QDir(session.evidenceDirectory()).filePath("render-input.bin");
         QObject::connect(process,&QProcess::errorOccurred,&window,[finish](QProcess::ProcessError error){if(error==QProcess::FailedToStart)finish(false,"Input helper did not start");});
         QObject::connect(process,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),&window,[r,process,finish](int code,QProcess::ExitStatus status){
             r->helper=false;r->process=nullptr;
@@ -96,7 +106,7 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
         process->start("python3",args);
     };
     auto previous=session.stateChanged;
-    session.stateChanged=[r,previous,record,click,finish,mode,probe,low,startupAction](const MenuBridge::State& s){
+    session.stateChanged=[r,previous,record,click,finish,mode,probe,low,startupAction,&window](const MenuBridge::State& s){
         r->observations.append(QJsonObject{{"ms",r->clock.elapsed()},{"stage",r->stage},{"screen",int(s.screen)},{"ready",int(s.ready)},{"ack",int(s.ack)},{"generation",int(s.generation)},{"sequence",int(s.sequence)},{"handoff",int(s.handoff)}});
         if(r->observations.size()>256)r->observations.removeAt(0);
         if(previous)previous(s);
@@ -104,7 +114,14 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
         if(r->thread&&r->thread!=s.thread){finish(false,"Engine owner thread changed");return;}r->thread=s.thread;
         if(r->stage==0&&s.screen==3){record(s,"main");startupAction(99,100,"mainMenuAction3");}
         else if(r->stage==100&&s.screen==10){record(s,"display-configuration");r->stage=101;click(low?"preferencesRadio2":"preferencesRadio1");click("preferencesOk");}
-        else if(r->stage==101&&s.screen==3){record(s,"configured-main");startupAction(102,1,"mainMenuAction0");}
+        else if(r->stage==101&&s.screen==3){record(s,"configured-main");startupAction(102,r->entrySave.isEmpty()?1:104,r->entrySave.isEmpty()?"mainMenuAction0":"mainMenuAction1");}
+        else if(r->stage==104&&s.screen==12){
+            if(s.storage.names.size()!=1||s.storage.names[0]!=r->entrySave||s.storage.parent!=3||s.storage.depth!=3){finish(false,"Original entry Load list/parent differs");return;}
+            auto* list=window.findChild<QListWidget*>("loadGameList");if(!list){finish(false,"Original entry Load control missing");return;}
+            list->setCurrentRow(0);record(s,"checkpoint-entry");
+            auto row=r->states.takeAt(r->states.size()-1).toObject();row["save_name"]=s.storage.names[0];row["save_count"]=s.storage.names.size();row["parent"]=int(s.storage.parent);row["depth"]=int(s.storage.depth);r->states.append(row);
+            const auto p=probe();auto* viewport=window.findChild<GlViewport*>("nativeGameViewport");r->worldBaseline=viewport?viewport->swappedWorldGeneration():0;r->frames=p.frames;r->paints=p.paints;r->stage=103;click("loadGameLoad");
+        }
         else if((r->stage==1||r->stage==7)&&s.screen==18){
             if(s.region.realm.compare("Celtic",Qt::CaseInsensitive)||s.region.region!=quint32(r->region)){finish(false,"Unexpected original region identity");return;}
             record(s,r->region==2&&s.region.enterHandoff==4?"region-travel-entry":"region-entry");r->stage=2;click("regionEntryDifficulty1");
@@ -145,6 +162,7 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
         auto* before=window.findChild<GlViewport*>("nativeGameViewport");const auto baseline=before?before->swappedWorldGeneration():0;
         if(battle)battle(destination);
         if(r->done)return;
+        if(r->stage==103)return; // Initial Load has its own original return proof.
         if(destination!=3||r->stage!=3){finish(false,"Unexpected campaign World handoff");return;}
         const auto p=probe();r->frames=p.frames;r->paints=p.paints;
         r->worldBaseline=baseline;
@@ -180,13 +198,18 @@ void installCampaignProgressionTest(QApplication& app,QMainWindow& window,LiveMe
         if(r->stage==21&&!r->helper){r->stage=22;if(!session.beginOriginalRealmControls()){finish(false,"Original Realm controls handoff refused");return;}}
         if(r->stage==22&&!r->helper){auto* viewport=window.findChild<GlViewport*>("nativeGameViewport");if(viewport&&viewport->isVisible()){r->stage=23;input("realm-exit");}}
         if(p.fallback||!p.error.isEmpty()){finish(false,"Native rendering refused: "+p.error);return;}
+        if(r->stage==103&&p.active&&p.frames>=r->frames+3&&p.paints>=r->paints+3){
+            QFile events(QDir(session.evidenceDirectory()).filePath("events.bin"));bool returned=false;
+            if(events.open(QIODevice::ReadOnly)&&events.size()<=1024*1024){const auto bytes=events.readAll();for(int at=16;at+64<=bytes.size();at+=64){auto word=[&](int i){return qFromLittleEndian<quint32>(reinterpret_cast<const uchar*>(bytes.constData()+at+4*i));};if(word(1)==4&&word(3)==12&&word(8)==1&&word(2)==r->thread)returned=true;}}
+            if(returned){QFile saved(QDir(session.evidenceDirectory()).filePath("game/Save/"+r->entrySave+".sav"));if(!saved.open(QIODevice::ReadOnly)||QString::fromLatin1(QCryptographicHash::hash(saved.readAll(),QCryptographicHash::Sha256).toHex())!=r->entryHash){finish(false,"Original entry Load input hash differs");return;}r->entryLoaded=true;r->stage=14;}
+        }
         if(r->stage==14&&p.active&&p.frames>=r->frames+3&&p.paints>=r->paints+3){
             if(r->visits>0&&r->helper)return;
             auto* viewport=window.findChild<GlViewport*>("nativeGameViewport");
             if(!viewport||viewport->swappedWorldGeneration()<=r->worldBaseline)return;
             if(viewport->frameSize()!=(low?QSize(640,480):QSize(800,600))){finish(false,"Actual World extent differs from requested mode");return;}
             r->worlds.append(QJsonObject{{"realm","Celtic"},{"region",r->region},{"world",qint64(viewport->swappedWorldGeneration())},
-                {"after_world",qint64(r->worldBaseline)},{"width",viewport->frameSize().width()},{"height",viewport->frameSize().height()},{"paint",qint64(viewport->swappedPaint())},{"frames",qint64(p.frames)}});
+                {"after_world",qint64(r->worldBaseline)},{"entry_mode",r->visits==0?(r->entrySave.isEmpty()?"new-game":"original-checkpoint"):"campaign-travel"},{"width",viewport->frameSize().width()},{"height",viewport->frameSize().height()},{"paint",qint64(viewport->swappedPaint())},{"frames",qint64(p.frames)}});
             ++r->visits;
             if(r->visits==1){r->stage=4;input("outcome");}
             else if(!r->helper){r->stage=9;input("mini");}

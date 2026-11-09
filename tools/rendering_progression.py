@@ -76,7 +76,12 @@ def validate_flow(flow, case):
         require(returned[0]['screen'] == 4 and len(worlds) == 2, 'Victory must return to Realm and enter the later map')
         require(worlds[1]['region'] == 2 and worlds[1]['realm'] == 'Celtic' and worlds[1]['world'] > worlds[0]['world'], 'Reload/same-map re-entry is not progression')
         entries = [r for r in rows if r['event'] == 'region-entry']
-        require([r['region'] for r in entries] == [1, 2], 'Missing original later-region admission')
+        loaded=flow.get('entry_mode','new-game')=='original-checkpoint'
+        if loaded:
+            from campaign_progression_entry import validate_entry_flow
+            validate_entry_flow(flow)
+        else:require(flow.get('entry_mode','new-game')=='new-game','Unknown initial campaign entry')
+        require([r['region'] for r in entries] == ([2] if loaded else [1, 2]), 'Missing original later-region admission')
     require(not any(r['event'] == 'load' for r in rows), 'Save reload is a different scenario')
     realm_cleanup=[r for r in rows if r['event']=='cleanup-realm']
     if realm_cleanup:
@@ -117,6 +122,19 @@ def validate_callbacks(data, flow):
         require(len(ticks)==6 and [(r[1],r[9]) for r in ticks]==[(event,i) for i in range(3) for event in (11,12)],'Missing independent original World tick epoch')
         require(all(r[2]==natural['thread'] and r[3]==2 and r[4]==r[11]==0x6cbb78 and r[5]==0x5c5dd8 and r[6]==1 and r[12]==4 for r in ticks),'Wrong original World owner/type/thread/stack')
         epochs.append(dict(first_sequence=ticks[0][0],last_sequence=ticks[-1][0],post_report=later))
+    initial_load=None
+    if flow.get('entry_mode','new-game')=='original-checkpoint':
+        from campaign_progression_entry import validate_entry_flow
+        binding=validate_entry_flow(flow)
+        begins=[r for r in rows if r[1]==2 and r[3]==12 and r[9]==0]
+        returns=[r for r in rows if r[1]==3 and r[3]==12 and r[9]==0]
+        successful=[r for r in rows if r[1]==4 and r[3]==12 and r[8]==1]
+        require(len(begins)==len(returns)==1 and 1<=len(successful)<=8
+            and begins[0][0]<epochs[0]['first_sequence'] and begins[0][0]<successful[0][0]<oks[0][0]
+            and begins[0][0]<returns[0][0]<oks[0][0]
+            and all(r[2]==natural['thread'] for r in begins+returns+successful)
+            and all(returns[0][0]<r[0]<oks[0][0] for r in successful),'Initial original Load callback/return/World order missing')
+        initial_load=dict(binding=binding,begin=list(begins[0]),returned=list(returns[0]),successful=list(successful[0]),success_snapshots=[list(r) for r in successful])
     realm_exit=None
     if any(r['event']=='cleanup-realm' for r in flow['states']):
         from campaign_realm_exit import mode4_state,fresh_main
@@ -131,7 +149,7 @@ def validate_callbacks(data, flow):
         main=fresh_main(rows,modal['sequence']);require(main is not None and main['thread']==natural['thread'] and main['sequence']<callbacks[-1][0],
             'Original Realm exit did not precede Main Quit')
         realm_exit=dict(mini=mini,confirmation=modal,main=main,scope='Original controls only; no native mode4 dispatch or save-equivalence claim')
-    return dict(original_report_dispatch=dispatch, original_result_ok_sequence=oks[0][0], original_main_quit_sequence=callbacks[-1][0], original_world_epochs=epochs,original_realm_exit=realm_exit,verified=True)
+    return dict(original_report_dispatch=dispatch, original_result_ok_sequence=oks[0][0], original_main_quit_sequence=callbacks[-1][0], original_world_epochs=epochs,original_realm_exit=realm_exit,initial_original_load=initial_load,verified=True)
 
 
 def prepare_launch_manifest(game, manifest):

@@ -3,12 +3,12 @@
 import copy,importlib.util,json,os,struct,sys,tempfile,unittest
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'tools'))
+from fixture_support import menu_publication
 spec=importlib.util.spec_from_file_location('public_menu_driver',ROOT/'tools/run-rendering-menu-acceptance.py');driver=importlib.util.module_from_spec(spec);spec.loader.exec_module(driver)
 
 class OriginalMenuReadTests(unittest.TestCase):
     def wire(self,version=22,size=524288,screen=14):
-        raw=bytearray(size);raw[:8]=(('MNMMCMD' if version<10 else 'MNMMCM')+str(version)).encode()
-        struct.pack_into('<II',raw,8,version,size);struct.pack_into('<8I',raw,128,2,1,screen,1,0,0,123,0)
+        raw=menu_publication(version=version,size=size,screen=screen,thread=123)
         struct.pack_into('<II',raw,160,1,2);struct.pack_into('<13I',raw,168,*range(13))
         for i in range(4):struct.pack_into('<4I',raw,220+i*48,1,0,i,10)
         raw[412:416]=b'One\0';raw[540:544]=b'One\0';raw[668:672]=b'Two\0';return raw

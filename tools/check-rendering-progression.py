@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Compare a real public-player acquisition with an independent original/history oracle."""
-import argparse,hashlib,importlib.util,json,os,shlex,subprocess
+import argparse,hashlib,importlib.util,json,os,shlex,subprocess,tempfile
 from pathlib import Path
 import numpy as np
 from coverage_evidence import Reader,write_report
@@ -10,14 +10,15 @@ from rendering_progression import PREFIX,validate_flow,validate_callbacks
 def digest(path):
  with Path(path).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--acquisition',required=True);p.add_argument('--report',required=True);a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--acquisition',required=True);p.add_argument('--report',required=True);p.add_argument('--temporary-reference-frames',action='store_true',help='Classify successful reproducible oracle qz planes as temporary; retain hashes, index, commands and tested executables. Failures retain the full diagnostic outputs.');a=p.parse_args()
  normal=True
  if not a.report.startswith(PREFIX) or '..' in Path(a.report).parts or (ROOT/a.report).exists():p.error('New immutable owned report required')
  output=ROOT/'working/pilot'/(Path(a.report).stem+'-verification');output.mkdir(parents=True,exist_ok=False)
  report=dict(schema=1,kind='public_native_progression_comparison',success=False,player_accepted=False,original_pixels_used_as_native_inputs=False,original_history_deadline_seconds=900,scope=__doc__)
  from comparison_process import Processes
  processes=Processes()
- before=False
+ before=False;reference=None;index=None;reconstruction=None
+ report['temporary_output_policy']=dict(reference_frames_requested=a.temporary_reference_frames,classification='Successful reproducible oracle qz planes only; raw acquired observations and all failure outputs remain durable',removal='Separate reviewed handoff required; this producer deletes nothing')
  def execute(label,command,timeout=300):
   with (output/(label+'.log')).open('xb') as log:processes.run([str(v) for v in command],cwd=ROOT,stdout=log,timeout=timeout)
  with Reader(ROOT) as reader:
@@ -26,7 +27,7 @@ def main():
    report['kind']='public_native_progression_diagnostic_comparison'
    report['scope']+=' Injected/diagnostic execution only; ineligible for nominal acceptance.'
   sources=dict(acquired['sources']);sources.update(acquired.get('native_admission',{}).get('native_only',{}).get('sources',{}))
-  sources.update({n:digest(ROOT/n) for n in ['tools/rendering_progression.py','tools/rendering_pilot.py','tools/rendering_capture.py','tools/check-rendering-progression.py','tests/acceptance-world-history.cpp','tests/acceptance-world-reference.cpp','tests/sprite-binary-reference.cpp','tests/world-raster-reference.hpp','tests/clipped-word-grayscale-cases.hpp','tools/native_player_quick_acceptance.py','tools/test-menu-observer.py']});report['sources']=sources
+  sources.update({n:digest(ROOT/n) for n in ['tools/rendering_progression.py','tools/rendering_pilot.py','tools/rendering_capture.py','tools/check-rendering-progression.py','tests/acceptance-world-history.cpp','tests/acceptance-world-reference.cpp','tests/sprite-binary-reference.cpp','tests/world-raster-reference.hpp','tests/clipped-word-grayscale-cases.hpp','tools/native_player_quick_acceptance.py','tools/test-menu-observer.py','tools/oracle_frame_retention.py']});report['sources']=sources
   try:
    from check_capture_policy import require_full
    require_full(acquired)
@@ -98,7 +99,13 @@ def main():
    require(all(n in acquired['installation_inputs'] and h==acquired['installation_inputs'][n]['sha256'] for n,h in asset_hashes.items()),'Reference asset differs from the named installation')
    report['asset_inputs']=asset_hashes
    reference=output/'reference'
-   execute('original-history',[history,source,Path(acquired['session'])/'game',original,pe,reference],timeout=900)
+   if a.temporary_reference_frames:
+    temporary_parent=ROOT/'working/oracle-temporary';temporary_parent.mkdir(parents=True,exist_ok=True)
+    temporary_root=Path(tempfile.mkdtemp(prefix=Path(a.report).stem+'-',dir=temporary_parent))
+    (temporary_root/'.retain').write_text('Prospectively temporary reproducible oracle planes. Hold through reviewed durable input/result/tested-executable handoff; preserve this pin. These planes are not a second durable evidence store. No automatic deletion.\n')
+    reference=temporary_root/'reference';report['temporary_oracle_directory']=str(reference)
+   reconstruction=[history,source,Path(acquired['session'])/'game',original,pe,reference]
+   execute('original-history',reconstruction,timeout=900)
    index=json.loads((reference/'worlds.json').read_text());require(index['success'] is True and index['native_player_pixels_read'] is False and index['original_destination_capture_read'] is False,'Oracle history provenance')
    worlds={}
    for row in index['worlds']:
@@ -113,11 +120,33 @@ def main():
     try:execute('original-after',[ROOT/'tools/original-manifest.sh','verify']);report['original_manifest_verified_before_after']=True
     except Exception as e:report.update(success=False,original_verification_error=str(e))
    report['sources_stable']=all(digest(ROOT/n)==h for n,h in sources.items());report['success'] &= report['sources_stable']
+   if a.temporary_reference_frames and report['success'] and report.get('original_manifest_verified_before_after') is True and processes.stopped():
+    try:
+     from oracle_frame_retention import frame_manifest
+     import platform,zlib
+     frames=frame_manifest(reference,index)
+     qt=subprocess.run(['pkg-config','--modversion','Qt6Core'],capture_output=True,text=True,check=True).stdout.strip()
+     report['temporary_reference_frames']=dict(policy='successful-oracle-qz-temporary-v1',frames=frames,
+        reconstruction_command=[str(v) for v in reconstruction],source_capture=artifacts[str(source.relative_to(ROOT))],
+        tested_binaries=report['binaries'],tool_versions=dict(python=platform.python_version(),numpy=np.__version__,qt6_core=qt,zlib=zlib.ZLIB_RUNTIME_VERSION),
+        retained_index='reference/worlds.json',directory=str(reference),physical_frames_still_held=True,reconstruction_output_policy='Use a new empty directory for the last argument, then verify every encoded and raw frame hash.',
+        scope='Every generated plane was independently compared before classification. Only reproducible derived qz files are temporary; encoded/raw hashes, all original input captures, index, result and tested executables stay durable. Separate current-consumer/pin/hash review and verified durable input handoff are required before removal. No old output is reclassified.')
+     retained_reference=output/'reference';retained_reference.mkdir(exist_ok=False)
+     (retained_reference/'worlds.json').write_bytes((reference/'worlds.json').read_bytes())
+    except Exception as error:
+     report.update(success=False,error='Temporary oracle classification failed: '+str(error),temporary_classification_error=str(error));report.pop('temporary_reference_frames',None)
+   if a.temporary_reference_frames and reference is not None and reference.exists() and not report.get('temporary_reference_frames'):
+    # A failed/partial oracle remains durable negative evidence. Move its exact
+    # files into the normal retained output; no source file is removed.
+    retained_reference=output/'reference'
+    if retained_reference.exists():retained_reference=output/'reference-failed'
+    require(not retained_reference.exists(),'Failure reference destination already exists')
+    reference.rename(retained_reference)
    report['artifacts']=[]
    for f in sorted(output.rglob('*')):
     if f.is_file():
      name=str(Path(a.report).with_suffix(''))+'-'+hashlib.sha256(str(f.relative_to(output)).encode()).hexdigest()[:20]+'.bin';data=f.read_bytes();h=write_report(ROOT,name,data);report['artifacts'].append(dict(path=str(f.relative_to(output)),record=name,sha256=h,bytes=len(data)))
-   report.update(output_directory=str(output),comparison_processes_stopped=processes.stopped(),artifact_retention_complete=True)
+   report.update(output_directory=str(output),comparison_processes_stopped=processes.stopped(),artifact_retention_complete=True,artifact_retention_scope='All durable observations/results; prospectively classified successful oracle qz files are held temporary and named separately')
    h=write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode());print(json.dumps({k:report.get(k) for k in ['success','error','observations','original_reference']}|{'record':a.report,'sha256':h}),flush=True)
  from evidence_objects import settings
  if settings(ROOT) and report['comparison_processes_stopped']:

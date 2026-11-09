@@ -259,5 +259,5 @@ int WIN DllMain(void* dll,u32 reason,void* reserved){
 #ifndef MNM_MENU_SELFTEST
     if(reason==1){u32 error=GetLastError();install();SetLastError(error);}
 #endif
-    if(reason==0){ui_acceptance_close();if(checkpoint_file)CloseHandle(checkpoint_file);frame_input_close();semantic_state_close();hud_state_close();region_input_close();admission_close();order_close();latch_close();if(gameplay_follow_file)CloseHandle(gameplay_follow_file);if(grimoire_log)CloseHandle(grimoire_log);if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_admission_trace)CloseHandle(menu_admission_trace);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
+    if(reason==0){map_resource_close();ui_acceptance_close();if(checkpoint_file)CloseHandle(checkpoint_file);frame_input_close();semantic_state_close();hud_state_close();region_input_close();admission_close();order_close();latch_close();if(gameplay_follow_file)CloseHandle(gameplay_follow_file);if(grimoire_log)CloseHandle(grimoire_log);if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_admission_trace)CloseHandle(menu_admission_trace);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
 }

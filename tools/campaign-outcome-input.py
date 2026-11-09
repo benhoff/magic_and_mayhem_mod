@@ -25,8 +25,13 @@ from campaign_input_observation import decode as input_observations
 from campaign_input_admission import fresh_hover
 from campaign_follow import read_rows as read_follow_rows, followed_wizard
 from campaign_order_observation import decode as order_observations
-from campaign_target_admission import candidate_after_hover,empty_candidate_after_hover,hover_nudge,support_attack_submission,support_selection_after,primary_selection_after,reserved_boss_target,portal_destination,portal_move_submission
+from campaign_target_admission import candidate_after_hover,empty_candidate_after_hover,portal_candidate_after_hover,portal_staging_ground,hover_nudge,support_attack_submission,support_selection_after,primary_selection_after,reserved_boss_target,portal_destination,portal_move_submission
+from campaign_wizard_cast import probe_points as wizard_probe_points,finishing_target as wizard_finishing_target,retry_finishing as wizard_retry_finishing
+from campaign_boss_finisher import boss_finisher,finishing_pause_target,wizard_melee_finisher,wizard_melee_submission
 from campaign_outcome_record import AtomicSnapshotWriter
+
+
+portal_approach_adapter = None
 
 
 def target_point(hero, target, body=False):
@@ -36,13 +41,15 @@ def target_point(hero, target, body=False):
     return round(400+sx/scale), round(300+sy/scale-(22 if body else 0))
 
 
-def combat_choice(case, hero, target, nearby_support, casts, since_spell, support_ordered=False):
+def combat_choice(case, hero, target, nearby_support, casts, since_spell, support_ordered=False,terminal_hint_sent=False):
     """Ordinary-play test policy, not recovered AI or spell admission rules."""
     distance=math.hypot(target['x']-hero['x'],target['y']-hero['y'])
     if case=='defeat':
         return 'idle' if distance<2 else 'move'
     if target['health']<=0:
         return 'portal'
+    if terminal_hint_sent and target.get('type')==24 and target.get('owner')==1 and target['health']==20:
+        return 'retreat' if distance<8 else 'idle'
     if support_ordered and target.get('type')==24 and hero['mana']<6*256:
         return 'retreat' if distance<8 else 'idle'
     if distance<7:
@@ -50,6 +57,16 @@ def combat_choice(case, hero, target, nearby_support, casts, since_spell, suppor
             return 'fireball'
         return 'retreat' if hero['mana']<6*256 or hero['health']<80 else 'idle'
     return 'move'
+
+
+def retired_boss_return_candidate(actor,already=False):
+    """One ordinary conversation hint after observed original retirement.
+
+    The retained script places a Camulos conversation after the portal event.
+    This is an input candidate, not a portal, dialogue or outcome assertion.
+    """
+    return (not already and actor.get('type')==24 and actor.get('owner')==1
+            and actor.get('active')==0 and actor.get('health',1)<=0)
 
 
 def recent_melee_attackers(rows, hero, actors, follow_slot):
@@ -81,6 +98,11 @@ def engaged_threats(hero, actors, follow_slot, radius=10, recent=()):
             and (v['target'] in protected or (v['slot'],v['type'],v['owner']) in recent)
             and not (v['type']==24 and v['owner']==1)
             and math.hypot(v['x']-hero['x'],v['y']-hero['y'])<=radius]
+
+
+def needs_boss_resupply(resumed_phase,rearmed,mana):
+    """Revisit the original power point if intervening combat spent the reserve."""
+    return resumed_phase=='bridge' and rearmed and mana<42*256
 
 
 def route_combat_needed(phase, rearmed, hero, actors, follow_slot, recent=()):
@@ -130,6 +152,12 @@ def firing_line_blockers(hero, target, actors, radius=.8, friendly_only=False):
     return blocked
 
 
+def cast_staging_blockers(hero,target,actors,loaded_entry=False):
+    # CP30's four accepted Boss-targeted shots all hit intervening enemy5.
+    # This is a conservative input policy, not a recovered collision formula.
+    return firing_line_blockers(hero,target,actors) if loaded_entry else firing_line_allies(hero,target,actors)
+
+
 def fireball_point(hero, target, size):
     point=aim_point(hero,target,size,body=True)
     if point is not None and target.get('type')==24:
@@ -141,8 +169,8 @@ def camulos_pause_point(hero, target, actors, size):
     """Authored visible staging; not a recovered collision/range rule."""
     if not hero.get('active') or hero.get('health',0)<=0 or hero.get('owner')!=0:return None
     if not target.get('active') or target.get('health',0)<=0 or target.get('type')!=24 or target.get('owner')!=1:return None
-    if math.hypot(target['x']-hero['x'],target['y']-hero['y'])>5.5:return None
-    if firing_line_blockers(hero,target,actors):return None
+    if math.hypot(target['x']-hero['x'],target['y']-hero['y'])>6.8:return None
+    if firing_line_allies(hero,target,actors):return None
     return fireball_point(hero,target,size)
 
 
@@ -154,17 +182,38 @@ def support_for_attack(hero,target,actors):
     return friendly[0] if len(friendly)==1 and friendly[0]['type']==14 else None
 
 
-def fireball_burst_limit(hero, target, paused):
+def fireball_burst_limit(hero, target, paused, finishing=False):
     if target.get('type')==11 and target.get('owner')==1:
         # The retained escort takes two hits while a third cast is admitted.
         # Observe damage after two; surviving targets can get another burst.
         return min(2,max(0,hero['mana']//(6*256)))
     if target.get('type')!=24:return 7
     available=max(0,hero['mana']//(6*256))
-    return min(6,available) if paused else min(2,available)
+    # Six and eight accepted paused casts both supplied four initial hits.
+    # Observe delivery after four, retaining mana for a fresh resumed aim.
+    return min(3 if finishing else 4,available) if paused else min(2,available)
+
+
+def observe_burst_hint(poll,trigger,clock=time.monotonic,sleep=time.sleep):
+    """Use the existing three-second delivery wait to observe a Return hint.
+
+    Never spend that whole window asleep before inspecting the original state.
+    Sixty polls also bound a faulty/stalled clock supplied by a control test.
+    """
+    began=clock()
+    for _ in range(60):
+        if clock()-began>=3:return False
+        sample=poll()
+        if sample is not None and trigger(sample):return True
+        sleep(.05)
+    return False
 
 
 def main():
+    from campaign_retained_policies import policy_script
+    retained=policy_script(Path(__file__).resolve().parents[1],os.environ.get('MNM_CAMPAIGN_OUTCOME_POLICY','current'))
+    if retained is not None:
+        os.execv(sys.executable,[sys.executable,str(retained),*sys.argv[1:]])
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--rect', nargs=4, type=int, required=True)
     p.add_argument('--case', choices=CASES, required=True)
@@ -177,6 +226,11 @@ def main():
     p.add_argument('--stop-after-support-attack',action='store_true',help='Diagnostic only: stop after original opcode7 submission, before the boss volley')
     p.add_argument('--stop-after-portal-order',action='store_true',help='Diagnostic only: stop after a verified original portal-approach command; no outcome claim')
     a = p.parse_args()
+    transition_goal=None
+    if os.environ.get('MNM_CAMPAIGN_ENTRY_PORTAL'):
+        from campaign_transition_checkpoint import retired_goal
+        require(a.resume_checkpoint and bool(os.environ.get('MNM_CAMPAIGN_ENTRY_SAVE')),'Transition goal requires its exact original loaded input')
+        transition_goal=retired_goal(json.loads(os.environ['MNM_CAMPAIGN_ENTRY_PORTAL']))
     require(not a.stop_after_support_attack or a.resume_checkpoint,'Support stop requires checkpoint diagnostic')
     require(not a.stop_after_portal_order or a.resume_checkpoint and not a.stop_after_support_attack,'Portal stop requires a separate checkpoint diagnostic')
     require(not a.resume_checkpoint or a.case=='victory' and os.environ.get('MNM_CAMPAIGN_CHECKPOINT')=='restore' and os.environ.get('MNM_CAMPAIGN_CHECKPOINT_PROBE') in ('combat','portal') and os.environ.get('MNM_CAMPAIGN_ORDER_ADMISSION')=='1','Verified checkpoint combat diagnostic required')
@@ -185,7 +239,7 @@ def main():
     require(30 <= a.seconds <= 600 and a.rect[2] >= 320 and a.rect[3] >= 240, 'Invalid bounded viewport/deadline')
     result = dict(success=False, completed=False,resume_checkpoint=a.resume_checkpoint, case=a.case, frame_size=a.frame_size, actions=[], health_observations=[],
                   scope=__doc__, simulation_writes=False, semantic_outcome_accepted=False)
-    display = None;combat_paused=False;combat_pause_since=0
+    display = None;combat_paused=False;combat_pause_since=0;active_pause=None
     x = c.CDLL('libX11.so.6'); xt = c.CDLL('libXtst.so.6')
     x.XOpenDisplay.argtypes = [c.c_char_p]; x.XOpenDisplay.restype = c.c_void_p
     x.XFlush.argtypes = x.XCloseDisplay.argtypes = [c.c_void_p]
@@ -205,10 +259,11 @@ def main():
     try:
         display = x.XOpenDisplay(os.environ['DISPLAY'].encode())
         require(display, 'Missing owned native display')
-        def click(px, py, button=1, cast=False,target_actor=None,ground_portal=None,ground_hero=None):
+        def click(px, py, button=1, cast=False,target_actor=None,ground_portal=None,ground_hero=None,ground_approach=None,hover_budget=None):
+            require(hover_budget is None or button is None and not cast and target_actor is not None and 0<hover_budget<=1.2,'Only read-only actor probes may use a smaller hover budget')
             require(0 <= px < width and 0 <= py < height, 'Projection outside actual viewport')
             observe=(button in (3,None) or target_actor is not None) and os.environ.get('MNM_CAMPAIGN_INPUT_ADMISSION')=='1'
-            require(ground_portal is None or observe and button==3 and not cast and ground_hero is not None,'Portal ground order requires passive admission')
+            require(ground_portal is None and ground_approach is None or observe and button==3 and not cast and ground_hero is not None,'Portal ground order requires passive admission')
             path=a.experiment/'input-admission.bin'
             prior=input_observations(path.read_bytes())['rows'] if observe else []
             after=prior[-1]['sequence'] if prior else 0
@@ -217,8 +272,8 @@ def main():
             require(xt.XTestFakeMotionEvent(display, -1, x0+round(px*w/width), y0+round(py*h/height), 0), 'Motion failed')
             x.XFlush(display); time.sleep(.1)
             if observe:
-                deadline=time.monotonic()+(1.2 if target_actor is not None or ground_portal is not None else 5); admitted=None;nudged=False;motion_started=time.monotonic()
-                if ground_portal is not None:deadline=min(deadline,portal_since+30)
+                deadline=time.monotonic()+(hover_budget if hover_budget is not None else 1.2 if target_actor is not None or ground_portal is not None or ground_approach is not None else 5); admitted=None;nudged=False;motion_started=time.monotonic()
+                if ground_portal is not None or ground_approach is not None:deadline=min(deadline,portal_since+30)
                 while time.monotonic()<deadline:
                     admitted=fresh_hover(input_observations(path.read_bytes())['rows'],(px,py),after,already,cast)
                     if admitted is not None and target_actor is not None:
@@ -226,7 +281,7 @@ def main():
                         if candidate is None:admitted=None
                     if admitted is not None and ground_portal is not None:
                         current=order_observations((a.experiment/'order-admission.bin').read_bytes())['rows']
-                        candidate=empty_candidate_after_hover(current,admitted,0)
+                        candidate=portal_candidate_after_hover(current,admitted,ground_hero,ground_portal,0,state().get(follow_slot))
                         if not portal_destination(ground_hero,ground_portal,admitted['ground']):
                             result['portal_navigation']['attempts'][-1]['rejected_ground']=admitted['ground'];save();return False
                         if candidate is None:
@@ -235,6 +290,11 @@ def main():
                             if slot>=0 and candidate_after_hover(current,admitted,slot,0) is not None:
                                 result['portal_navigation']['attempts'][-1]['rejected_actor']=slot;save();return False
                             admitted=None
+                    if admitted is not None and ground_approach is not None:
+                        current=order_observations((a.experiment/'order-admission.bin').read_bytes())['rows']
+                        goal=portal_staging_ground(current,admitted,ground_hero,ground_approach,0)
+                        result['portal_navigation']['attempts'][-1]['observed_ground']=goal
+                        if goal is None:save();return False
                     if admitted is not None:break
                     if not nudged and time.monotonic()-motion_started>.3:
                         nx,ny=hover_nudge((px,py),a.frame_size)
@@ -245,8 +305,8 @@ def main():
                     time.sleep(.05)
                 if admitted is None or not cast and admitted['mode'] not in (0,1):
                     refusals=result.setdefault('hover_refusals',[])
-                    refusals.append(dict(after=after,point=[px,py],cast=cast,target_actor=target_actor,button_sent=False,mode=admitted['mode'] if admitted else None))
-                    save();require(len(refusals)<=24,'Bounded original-hover refusal budget exhausted')
+                    refusals.append(dict(after=after,point=[px,py],cast=cast,target_actor=target_actor,read_only_probe=hover_budget is not None,button_sent=False,mode=admitted['mode'] if admitted else None))
+                    save();require(len(refusals)<=96 if hover_budget is not None else sum(v.get('read_only_probe') is not True for v in refusals)<=24,'Bounded original-hover refusal budget exhausted')
                     return False
                 result.setdefault('hover_admissions',[]).append(dict(after=after,ready=admitted['sequence'],point=[px,py],cast=cast,mode=admitted['mode'],ground=admitted['ground'],hit_class=admitted['hit_class'],hit_index=admitted['hit_index']))
             if button is None:
@@ -283,6 +343,60 @@ def main():
         def center():
             # Publisher manual p15: W selects the wizard; a second W centers it.
             key(ord('w'));key(ord('w'));time.sleep(.4)
+        def try_terminal_hint(sample):
+            wizard,boss,damage,tick=sample
+            hint=terminal_return_hint(wizard,boss,damage,tick,already='terminal_return_hint' in result)
+            if hint is None:return False
+            result['terminal_return_hint']=dict(wizard=dict(wizard),target=dict(boss),damage=list(hint),
+                seconds=time.monotonic()-start,scope='One ordinary Return input hint only; original dialogue, terminal state, outcome and portal remain independently asserted')
+            save();key(0xff0d);time.sleep(.3);return True
+        def prepare_wizard_target(wizard,boss,record):
+            require(combat_paused and bool(os.environ.get('MNM_CAMPAIGN_ENTRY_SAVE')),'Loaded paused Wizard policy required')
+            after=order_rows()[-1]['sequence'];selected=primary_selection_after(order_rows(),wizard['slot'],0)
+            require(selected is not None,'Paused casting requires the original sole Wizard selection')
+            record['wizard_only']=True;record['selection']=selected;record['probes']=[];save()
+            previous=result.get('combat_pause',{}).get('actual_boss_point') if record is result.get('finishing_pause') else None
+            record['prior_actual_boss_point_proposal']=previous;save()
+            for point in wizard_probe_points(wizard,boss,a.frame_size,previous):
+                if time.monotonic()-combat_pause_since>4.5:break
+                admitted=click(*point,None,target_actor=boss['slot'],hover_budget=.25)
+                record['probes'].append(dict(point=list(point),admitted=admitted,button_sent=False));save()
+                if admitted:
+                    record['actual_boss_point']=list(point);return tuple(point)
+            return None
+
+        def record_empty_finishing_window():
+            record=result['finishing_pause'];prior=result.setdefault('finishing_pause_attempts',[])
+            retry=wizard_retry_finishing(record,len(prior));prior.append(dict(record))
+            if retry:
+                result.pop('finishing_pause');result['finishing_retry_pending']=True
+            save()
+
+        def begin_finishing_pause(wizard,boss):
+            nonlocal combat_paused,combat_pause_since,active_pause,firing_position,firing_since
+            if combat_paused:return False
+            current=state();wizard=current.get(wizard['slot']);candidate=current.get(boss['slot'])
+            if wizard is None or candidate is None:return False
+            if os.environ.get('MNM_CAMPAIGN_ENTRY_SAVE') and cast_staging_blockers(wizard,candidate,current,True):return False
+            finishing=finishing_pause_target(wizard,current,result.get('support_attack',{}).get('submission'),
+                result.get('combat_pause'),'finishing_pause' in result)
+            if os.environ.get('MNM_CAMPAIGN_ENTRY_SAVE'):
+                observed=read_rows(a.experiment/'gameplay-events.bin')
+                finishing=wizard_finishing_target(wizard,current,result.get('combat_pause'),
+                    player_fireball_damage(read_spell_rows(a.experiment/'spell-events.bin'),0,wizard['slot']),observed[-1][3],observed[-1][2],'finishing_pause' in result or len(result.get('finishing_pause_attempts',[]))>=2)
+            if finishing is None or finishing['slot']!=candidate['slot'] or fireball_point(wizard,finishing,a.frame_size) is None:return False
+            result['finishing_pause']=dict(before=dict(wizard),target=dict(finishing),released=False,
+                casts_before=len(result['casts']),scope='One additional bounded ordinary pause; current original target and prior closed support order only')
+            active_pause='finishing_pause';key(0x20);combat_paused=True;combat_pause_since=time.monotonic()
+            if os.environ.get('MNM_CAMPAIGN_ENTRY_SAVE'):
+                result['finishing_pause']['scope']='One bounded finishing volley after observed same-Wizard Fireball damage within20seconds; at most one released zero-cast window may retry, never an extra accepted volley. Fresh original picking, line, cast and damage observations remain required'
+                if prepare_wizard_target(wizard,finishing,result['finishing_pause']) is None:
+                    key(0x20);combat_paused=False
+                    result['finishing_pause'].update(released=True,accepted_in_burst=0,probe_refused=True,seconds=time.monotonic()-combat_pause_since)
+                    record_empty_finishing_window();return False
+            firing_position=tuple(wizard[k] for k in ('x','y','z'));firing_since=time.monotonic()-1;save()
+            return True
+
         def wait_primary(slot,after):
             began=time.monotonic();until=began+2;selected=None
             witness=dict(slot=slot,after=after,budget_seconds=2,samples=[])
@@ -340,9 +454,8 @@ def main():
         follow_stage_target=None;follow_quiet_position=None;follow_quiet_since=0
         firing_position=None;firing_since=0;bridge_attacker=None;rearm_since=0;rearm_onpoint_since=0;rearmed=a.resume_checkpoint
         interrupted_phase=None
-        portal_clear_since=0;portal_clear_goal=None;portal_clear_sent=False;portal_cleared=False
         camulos_approach_since=0;bridge_arrival_since=0;portal_since=0
-        result.update(casts=[],combat_policy='observed-moving-boss-hover-v49' if a.case!='defeat' else 'ordinary-defeat-v1',route_stage=phase)
+        result.update(casts=[],combat_policy='observed-owned-wizard-portal-v57' if a.case!='defeat' else 'ordinary-defeat-v1',route_stage=phase)
         save()
         while time.monotonic()-start < a.seconds:
             require(not combat_paused or time.monotonic()-combat_pause_since<12,'Bounded ordinary combat pause exceeded12seconds')
@@ -358,7 +471,7 @@ def main():
                 result['original_report_dispatch_observed']=dispatch
                 if a.case=='defeat':
                     result.update(success=True);break
-                returned=read_realm_return_state(a.experiment/'channel.bin',events,dispatch)
+                returned=read_realm_return_state(a.experiment/'channel.bin',events,dispatch,loaded_entry=bool(os.environ.get('MNM_CAMPAIGN_ENTRY_SAVE')))
                 result['realm_return_state']=returned
                 if returned=='ready':
                     result.update(success=True);break
@@ -398,6 +511,13 @@ def main():
             if not combat_paused and quiet.observe(actors,time.monotonic()):
                 result.setdefault('quiet_actor_dialogue_candidates',[]).append(dict(sequence=rows[-1][0],hero=hero,seconds=time.monotonic()-start))
                 key(0xff0d);time.sleep(.4);continue
+            if transition_goal is not None:
+                require(not any(v['active'] and v['type']==24 and v['owner']==1 for v in actors.values()),'Transition input still has a living Camulos')
+                require(portal_approach_adapter is not None,'Transition input requires the observed ground adapter')
+                after=order_rows()[-1]['sequence'];center()
+                require(wait_primary(hero['slot'],after) is not None,'Transition input lacks fresh sole-Wizard selection')
+                result['transition_ready_input']=dict(goal=transition_goal,scope='Exact original Save capture retirement pose as an input proposal only; fresh original picking, command, natural outcome and later map remain required')
+                save();portal_approach_adapter(hero,transition_goal);continue
             if pending:
                 spells=read_spell_rows(a.experiment/'spell-events.bin')
                 accepted=[r for r in spells if r[0]>pending['spell_sequence'] and r[1]==1
@@ -455,7 +575,7 @@ def main():
                         if onpoint:
                             rearm_onpoint_since=time.monotonic();result['rearm']['arrival']=hero
                             result['rearm']['arrival_seconds']=time.monotonic()-start;save()
-                    if onpoint and hero['mana']>=36*256:
+                    if onpoint and hero['mana']>=50*256:
                         rearmed=True;follow_wait_since=0;phase='bridge';result['route_stage']=phase
                         result['rearm']['complete']=hero;save()
                         if a.stop_at_rearm:
@@ -464,7 +584,7 @@ def main():
                                 checkpoint_scope='Ordinary route through bridge clearing and full-mana resupply; no outcome or progression acceptance')
                             save();break
                     else:
-                        if rearm_onpoint_since:require(time.monotonic()-rearm_onpoint_since<210,'Bounded on-point rearm did not reach36mana')
+                        if rearm_onpoint_since:require(time.monotonic()-rearm_onpoint_since<210,'Bounded on-point rearm did not reach50mana')
                         click(*approach_point(hero,power,a.frame_size),3);time.sleep(1);continue
                 if phase=='power-approach':
                     if math.hypot(hero['x']-power['x'],hero['y']-power['y'])>2.25:
@@ -561,11 +681,9 @@ def main():
                 phase='combat';result['route_stage']=phase;save()
             enemies = [v for v in actors.values() if v['active'] and v['owner'] not in (0,0xffffffff) and v['health'] > 0]
             camulos = [v for v in actors.values() if v['owner']==1 and v['type']==24]
-            if a.case!='defeat' and len(camulos)==1 and not result.get('terminal_return_hint'):
-                hint=terminal_return_hint(hero,camulos[0],player_fireball_damage(read_spell_rows(a.experiment/'spell-events.bin'),0,hero['slot']),rows[-1][3])
-                if hint:
-                    result['terminal_return_hint']=dict(wizard=dict(hero),target=dict(camulos[0]),damage=list(hint),seconds=time.monotonic()-start,scope='One ordinary Return input hint only; original dialogue, terminal state, outcome and portal remain independently asserted')
-                    save();key(0xff0d);time.sleep(.3);continue
+            if a.case!='defeat' and len(camulos)==1 and try_terminal_hint((hero,camulos[0],
+                    player_fireball_damage(read_spell_rows(a.experiment/'spell-events.bin'),0,hero['slot']),rows[-1][3])):
+                continue
             threats=engaged_threats(hero,actors,follow_slot,recent=recent)
             if camulos and camulos[0]['health'] <= 0:portal=camulos[0]
             if camulos and portal is None:
@@ -576,34 +694,31 @@ def main():
                 # Resume the same required waypoint/follower checks. Existing
                 # stage clocks keep running; combat grants no extra deadline.
                 phase=interrupted_phase;interrupted_phase=None;firing_position=None
+                if needs_boss_resupply(phase,rearmed,hero['mana']):
+                    revisits=result.setdefault('rearm_revisits',[])
+                    require(len(revisits)<2,'Bounded post-combat resupply revisits exhausted')
+                    revisits.append(dict(before=dict(hero),previous_rearm=result.get('rearm'),seconds=time.monotonic()-start))
+                    result['rearm']=dict(attacker=bridge_attacker,before=dict(hero),reason='Original route combat consumed the planned spell reserve')
+                    phase='resupply';rearmed=False;rearm_since=time.monotonic();rearm_onpoint_since=0
                 result['route_stage']=phase
                 result.setdefault('route_combat_resumptions',[]).append(dict(phase=phase,wizard=dict(hero),seconds=time.monotonic()-start))
                 save();continue
-            if a.case!='defeat' and portal is not None and not portal_cleared:
-                follower=actors.get(follow_slot)
-                blocked=follower and follower['active'] and follower['health']>0 and math.hypot(follower['x']-portal['x'],follower['y']-portal['y'])<2
-                if blocked:
-                    if not portal_clear_since:
-                        candidates=[hero]+[c['hero'] for c in reversed(result['casts']) if c.get('id')==71 and c.get('target',{}).get('type')==24]
-                        portal_clear_goal=next((p for p in candidates if math.hypot(p['x']-portal['x'],p['y']-portal['y'])>=3),None)
-                        require(portal_clear_goal is not None,'No observed walkable portal-clear destination')
-                        portal_clear_since=time.monotonic();result['portal_clear']=dict(portal=portal,before=follower,goal=portal_clear_goal)
-                    require(time.monotonic()-portal_clear_since<15,'Observed follower did not clear the portal within15seconds')
-                    if math.hypot(hero['x']-portal['x'],hero['y']-portal['y'])<3 and not portal_clear_sent:
-                        center();actors=state();hero=actors[hero['slot']]
-                        click(*approach_point(hero,portal_clear_goal,a.frame_size),3);save();time.sleep(.3);continue
-                    if not portal_clear_sent:
-                        friendly=[v for v in actors.values() if v['slot']!=hero['slot'] and v['owner']==0 and v['active'] and v['health']>0]
-                        require(len(friendly)==1 and friendly[0]['slot']==follow_slot and friendly[0]['type']==14,'Ambiguous living portal-clear follower')
-                        key(ord('x'));key(ord('v'));time.sleep(.4);follower=state()[follow_slot]
-                        point=approach_point(follower,portal_clear_goal,a.frame_size)
-                        result['portal_clear']['point']=list(point);require(click(*point,3),'Portal-clear ground order was not sent')
-                        portal_clear_sent=True;save()
-                    time.sleep(.2);continue
-                portal_cleared=True
-                if portal_clear_since:result['portal_clear']['after']=follower;save()
+            if a.case!='defeat' and portal is not None and retired_boss_return_candidate(portal,'retired_boss_return_hint' in result):
+                result['retired_boss_return_hint']=dict(actor=dict(portal),seconds=time.monotonic()-start,
+                    scope='One ordinary Return hint after observed boss retirement; retained script event17follows portal event16. Dialogue, portal delivery and natural outcome stay separate')
+                save();key(0xff0d);time.sleep(.3);continue
             reserved=reserved_boss_target(hero,actors,rearmed,interrupted_phase is not None) if a.case!='defeat' and portal is None else None
+            finish=boss_finisher(hero,actors,result.get('support_attack',{}).get('submission')) if a.case!='defeat' and portal is None else None
+            melee=wizard_melee_finisher(hero,actors,rows,result.get('wizard_melee_finish',{}).get('submission')) if a.case!='defeat' and portal is None else None
             if a.case != 'defeat' and portal is not None:target=portal
+            elif a.case!='defeat' and 'terminal_return_hint' in result and len(camulos)==1 and camulos[0]['active'] and camulos[0]['health']==20:
+                target=camulos[0]
+            elif melee is not None:
+                target=melee
+            elif finish is not None:
+                target=finish
+                result.setdefault('boss_finishing_priority',[]).append(dict(wizard=dict(hero),target=dict(target),
+                    scope='Physical input target only; fresh original cast/debit, damage and natural outcome remain required'))
             elif a.case!='defeat' and not rearmed and interrupted_phase is None:
                 target=pre_refill_target(hero,actors,bridge_attacker,threats)
                 if target is None:time.sleep(.2);continue
@@ -628,20 +743,39 @@ def main():
             # basis from obstacle-limited movement or walk an unsupported wizard
             # into a hostile army without using its ordinary starting spells.
             center_after=order_rows()[-1]['sequence'] if a.case!='defeat' and portal is not None else 0
-            center();actors=state();hero=actors[hero['slot']]
+            if not (combat_paused and result.get(active_pause,{}).get('wizard_only')):center()
+            actors=state();hero=actors[hero['slot']]
             if not hero['active'] or hero['health']<=0:
                 save();time.sleep(.2);continue
             target=actors.get(target['slot'],target) if portal is None else portal
             if a.case!='defeat' and portal is not None:
                 selected=wait_primary(hero['slot'],center_after)
                 require(selected is not None,'Portal approach lacks fresh sole-Wizard selection')
+                if portal_approach_adapter is not None:
+                    result['last_decision']=dict(choice='portal',hero=dict(hero),target=dict(portal),adapter='observed-original-ground')
+                    save();portal_approach_adapter(hero,portal);continue
                 if not portal_since:
                     portal_since=time.monotonic();result['portal_navigation']=dict(goal=portal,before=dict(hero),attempts=[],scope='Verified original command submission only; terminal Boss, path delivery and natural outcome remain separate')
                 nav=result['portal_navigation'];nav['latest']=dict(hero)
                 result['last_decision']=dict(choice='portal',hero=dict(hero),target=dict(portal))
                 require(time.monotonic()-portal_since<30,'Bounded portal approach exceeded30seconds')
                 submitted=None
-                for point in portal_points(hero,portal,a.frame_size):
+                points=portal_points(hero,portal,a.frame_size)
+                if not points:
+                    require(len(nav['attempts'])<24,'Bounded portal candidate attempts exhausted')
+                    point=approach_point(hero,portal,a.frame_size)
+                    attempt=dict(point=list(point),wizard=dict(hero),selection=selected,button_sent=False,
+                        purpose='offscreen portal staging; never portal delivery')
+                    nav['attempts'].append(attempt);save();after=order_rows()[-1]['sequence']
+                    if click(*point,3,ground_approach=portal,ground_hero=hero):
+                        attempt['button_sent']=True;until=min(time.monotonic()+1,portal_since+30)
+                        while time.monotonic()<until:
+                            submitted=portal_move_submission(order_rows(),hero,attempt['observed_ground'],after)
+                            if submitted:break
+                            time.sleep(.05)
+                        attempt['submission']=submitted;save()
+                    time.sleep(.5);continue
+                for point in points:
                     require(time.monotonic()-portal_since<30,'Bounded portal approach exceeded30seconds')
                     require(len(nav['attempts'])<24,'Bounded portal candidate attempts exhausted')
                     attempt=dict(point=list(point),wizard=dict(hero),selection=selected,button_sent=False)
@@ -655,22 +789,58 @@ def main():
                         if submitted:break
                         time.sleep(.05)
                     attempt['submission']=submitted;save()
-                    require(submitted is not None,'Portal right press lacks original Wizard opcode5 move acknowledgement')
+                    if submitted is None:
+                        # An enemy can enter an admitted empty hover before
+                        # the original consumes the press (diagnostic07).
+                        # Retain the unmatched return, then refresh the live
+                        # scene; this does not acknowledge a move or extend
+                        # the existing thirty-second/24-attempt limits.
+                        attempt['unmatched_returns']=[r for r in order_rows()
+                            if r['sequence']>after and r['kind']==3 and r['mask']==4][-2:]
+                        attempt['refused']='No original Wizard opcode5 move acknowledgement; refresh scene'
+                        save();break
                     if a.stop_after_portal_order:
                         result.update(success=True,checkpoint_portal_order=True,semantic_outcome_accepted=False);save();break
                     break
                 if a.stop_after_portal_order and result['success']:break
                 time.sleep(.3);continue
-            if portal is None and (not target['active'] or target['health']<=0):continue
+            if portal is None and (not target['active'] or target['health']<=0):
+                if combat_paused and active_pause=='finishing_pause':
+                    key(0x20);combat_paused=False
+                    result[active_pause].update(released=True,seconds=time.monotonic()-combat_pause_since,accepted_in_burst=0,terminal_before_cast=True);save()
+                continue
             if a.case!='defeat' and target['type']==24 and portal is None:
                 require(rearmed and interrupted_phase is None,'Boss combat requires completed bridge clearing and refill')
             support=[v for v in actors.values() if v['type']==14 and v['owner']==0 and v['active'] and v['health']>0]
             nearby=sum(math.hypot(v['x']-hero['x'],v['y']-hero['y'])<10 for v in support)
             choice=combat_choice(a.case,hero,target,nearby,summons,time.monotonic()-last_spell,
-                support_ordered=result.get('support_attack',{}).get('submitted',False))
+                support_ordered=result.get('support_attack',{}).get('submitted',False),
+                terminal_hint_sent='terminal_return_hint' in result)
+            if melee is not None and target['slot']==melee['slot']:choice='melee'
+            if combat_paused and active_pause=='finishing_pause' and target['type']==24:choice='fireball'
             result['last_decision']=dict(choice=choice,hero=hero,target=target,nearby_support=nearby)
             if choice!='fireball':firing_position=None
             if choice=='fireball':
+                if target['type']==24 and os.environ.get('MNM_CAMPAIGN_ENTRY_SAVE') and not combat_paused:
+                    blocked=cast_staging_blockers(hero,target,actors,True)
+                    if blocked:
+                        phase_name='finishing' if 'combat_pause' in result else 'first'
+                        staging=result.setdefault('wizard_firing_staging',{}).setdefault(phase_name,dict(started=time.monotonic(),attempts=[]))
+                        require(time.monotonic()-staging['started']<20 and len(staging['attempts'])<12,'Bounded Wizard firing staging exhausted')
+                        dx,dy=target['x']-hero['x'],target['y']-hero['y'];length=max(1,math.hypot(dx,dy))
+                        goal=dict(x=hero['x']-3*dy/length,y=hero['y']+3*dx/length,z=hero['z'])
+                        point=approach_point(hero,goal,a.frame_size)
+                        staging['attempts'].append(dict(wizard=dict(hero),target=dict(target),blockers=blocked,point=list(point),button_sent=False));save()
+                        staging['attempts'][-1]['button_sent']=click(*point,3);save();time.sleep(.3);continue
+                retry_pending=result.pop('finishing_retry_pending',False)
+                if target['type']==24:
+                    armed=begin_finishing_pause(hero,target)
+                    if armed:
+                        if not os.environ.get('MNM_CAMPAIGN_ENTRY_SAVE'):center()
+                        actors=state();hero=actors[hero['slot']];target=actors[target['slot']]
+                        firing_position=tuple(hero[k] for k in ('x','y','z'));firing_since=time.monotonic()-1;save()
+                    elif retry_pending or result.pop('finishing_retry_pending',False):
+                        save();time.sleep(.1);continue
                 if target['type']==24 and 'combat_pause' not in result:
                     if not camulos_approach_since:camulos_approach_since=time.monotonic()
                     require(time.monotonic()-camulos_approach_since<25,'Bounded Boss preparation exceeded25seconds')
@@ -686,92 +856,106 @@ def main():
                         move=approach_point(hero,goal,a.frame_size)
                         result.setdefault('camulos_approach',[]).append(dict(hero=hero,target=target,allies=firing_line_allies(hero,target,actors),blockers=blocked,point=list(move)))
                         click(*move,3);save();time.sleep(.3);continue
-                    source=support_for_attack(hero,target,actors)
-                    require(source is not None,'No unambiguous living owned Zombie for the bounded attack order')
-                    selected=None;admitted_boss_point=None;camera_wizard=dict(hero)
-                    if a.resume_checkpoint or aim_point(hero,source,a.frame_size,body=True) is None:
-                        require(result.get('support_team',{}).get('verified'),'Offscreen selection lacks a verified private team')
-                        selection_after=order_rows()[-1]['sequence'];key(ord('9'))
-                        selected=wait_primary(source['slot'],selection_after)
-                        result['support_team']['boss_recall']=dict(after=selection_after,selected=selected,diagnostic_forced=a.resume_checkpoint)
-                        save();require(selected is not None,'Original team recall did not select the sole support')
-                        candidates=[];scene_point=None
-                        result['support_team']['boss_recall']['candidate_attempts']=candidates
-                        for probe in range(4):
-                            require(time.monotonic()-camulos_approach_since<25,'Bounded Boss preparation exceeded25seconds')
-                            witness=moving_boss_hover(camera_wizard,state(),target['slot'],source['slot'],probe,a.frame_size)
-                            if witness is None:
-                                candidates.append(dict(attempt=probe,admitted=False,witness=None,button_sent=False));save();continue
-                            physical=witness['point']
-                            admitted=click(*physical,None,target_actor=target['slot'])
-                            candidates.append(dict(attempt=probe,point=list(physical),admitted=admitted,witness=witness,button_sent=False));save()
-                            if admitted:scene_point=physical;break
-                        require(scene_point is not None,'Original boss candidate was not ready after bounded team-recall hover probes')
-                        # The wizard may move while an unpaused recall is
-                        # acknowledged. A new actor pose is not a new camera
-                        # origin. Recheck this admitted physical point below.
-                        admitted_boss_point=scene_point
-                        result['support_team']['boss_recall']['admitted_boss_point']=list(scene_point)
-                        actors=state();hero=actors[hero['slot']];target=actors[target['slot']]
-                        refreshed=support_for_attack(hero,target,actors)
-                        require(refreshed is not None and refreshed['slot']==source['slot'],'Support role changed during team recall')
-                        source=refreshed;point=camulos_pause_point(hero,target,actors,a.frame_size)
-                        if point is None:
-                            retries=result.setdefault('boss_recall_revalidations',[])
-                            require(len(retries)<2,'Bounded Boss recall revalidations exhausted')
-                            retries.append(dict(wizard=dict(hero),target=dict(target),source=dict(source),admitted_point=list(admitted_boss_point),seconds=time.monotonic()-start))
-                            save();continue
-                    # Publisher manual p14/15 permits single-player orders and
-                    # casting during Space pause. Use one bounded pair; the
-                    # original owns pause,cast admission and resumed simulation.
-                    require(time.monotonic()-camulos_approach_since<25,'Bounded Boss preparation exceeded25seconds')
-                    result['combat_pause']=dict(before=hero,target=target,ready_point=list(point),casts_before=len(result['casts']),released=False)
-                    key(0x20);combat_paused=True;combat_pause_since=time.monotonic()
-                    result['support_attack']=dict(before=source,target=target,camera_wizard=camera_wizard,pause_wizard=hero,admitted_boss_point=list(admitted_boss_point) if admitted_boss_point else None,observed=False,submitted=False)
-                    # Select through an actual scene candidate before arming a
-                    # spell. Re-clicking the Fireball icon leaves mode2 active
-                    # in the original; it is not a cancellation acknowledgement.
-                    selection_after=order_rows()[-1]['sequence'];selection_attempts=[]
-                    result['support_attack']['selection_method']='verified-team-recall' if selected else 'scene-candidate-mouse'
-                    for body_offset in (() if selected else (22,40,54)):
-                        projected=aim_point(hero,source,a.frame_size,body=True)
-                        if projected is None:break
-                        select_point=(projected[0],projected[1]+22-body_offset)
-                        if not (48<=select_point[0]<width-40 and 64<=select_point[1]<height-90):continue
-                        sent=click(*select_point,1,target_actor=source['slot'])
-                        selection_attempts.append(dict(point=list(select_point),body_offset=body_offset,button_sent=sent))
-                        if not sent:continue
-                        until=time.monotonic()+.7
-                        while time.monotonic()<until:
-                            selected=support_selection_after(order_rows(),source,selection_after)
+                    if os.environ.get('MNM_CAMPAIGN_ENTRY_SAVE'):
+                        result['combat_pause']=dict(before=dict(hero),target=dict(target),casts_before=len(result['casts']),released=False,wizard_only=True)
+                        active_pause='combat_pause';key(0x20);combat_paused=True;combat_pause_since=time.monotonic()
+                        require(prepare_wizard_target(hero,target,result['combat_pause']) is not None,'No original Boss candidate within the paused Wizard probe budget')
+                        firing_position=tuple(hero[k] for k in ('x','y','z'));firing_since=time.monotonic()-1;save()
+                    else:
+                        source=support_for_attack(hero,target,actors)
+                        require(source is not None,'No unambiguous living owned Zombie for the bounded attack order')
+                        selected=None;admitted_boss_point=None;camera_wizard=dict(hero)
+                        if a.resume_checkpoint or aim_point(hero,source,a.frame_size,body=True) is None:
+                            require(result.get('support_team',{}).get('verified'),'Offscreen selection lacks a verified private team')
+                            selection_after=order_rows()[-1]['sequence'];key(ord('9'))
+                            selected=wait_primary(source['slot'],selection_after)
+                            result['support_team']['boss_recall']=dict(after=selection_after,selected=selected,diagnostic_forced=a.resume_checkpoint)
+                            save();require(selected is not None,'Original team recall did not select the sole support')
+                            candidates=[];scene_point=None
+                            result['support_team']['boss_recall']['candidate_attempts']=candidates
+                            for probe in range(4):
+                                require(time.monotonic()-camulos_approach_since<25,'Bounded Boss preparation exceeded25seconds')
+                                witness=moving_boss_hover(camera_wizard,state(),target['slot'],source['slot'],probe,a.frame_size)
+                                if witness is None:
+                                    candidates.append(dict(attempt=probe,admitted=False,witness=None,button_sent=False));save();continue
+                                physical=witness['point']
+                                admitted=click(*physical,None,target_actor=target['slot'])
+                                candidates.append(dict(attempt=probe,point=list(physical),admitted=admitted,witness=witness,button_sent=False));save()
+                                if admitted:scene_point=physical;break
+                            require(scene_point is not None,'Original boss candidate was not ready after bounded team-recall hover probes')
+                            # The wizard may move while an unpaused recall is
+                            # acknowledged. A new actor pose is not a new camera
+                            # origin. Recheck this admitted physical point below.
+                            admitted_boss_point=scene_point
+                            result['support_team']['boss_recall']['admitted_boss_point']=list(scene_point)
+                            actors=state();hero=actors[hero['slot']];target=actors[target['slot']]
+                            refreshed=support_for_attack(hero,target,actors)
+                            require(refreshed is not None and refreshed['slot']==source['slot'],'Support role changed during team recall')
+                            source=refreshed;point=camulos_pause_point(hero,target,actors,a.frame_size)
+                            if point is None:
+                                retries=result.setdefault('boss_recall_revalidations',[])
+                                require(len(retries)<2,'Bounded Boss recall revalidations exhausted')
+                                retries.append(dict(wizard=dict(hero),target=dict(target),source=dict(source),admitted_point=list(admitted_boss_point),seconds=time.monotonic()-start))
+                                save();continue
+                        # Publisher manual p14/15 permits single-player orders and
+                        # casting during Space pause. Use one bounded pair; the
+                        # original owns pause,cast admission and resumed simulation.
+                        require(time.monotonic()-camulos_approach_since<25,'Bounded Boss preparation exceeded25seconds')
+                        result['combat_pause']=dict(before=hero,target=target,ready_point=list(point),casts_before=len(result['casts']),released=False)
+                        active_pause='combat_pause';key(0x20);combat_paused=True;combat_pause_since=time.monotonic()
+                        result['support_attack']=dict(before=source,target=target,camera_wizard=camera_wizard,pause_wizard=hero,admitted_boss_point=list(admitted_boss_point) if admitted_boss_point else None,observed=False,submitted=False)
+                        # Select through an actual scene candidate before arming a
+                        # spell. Re-clicking the Fireball icon leaves mode2 active
+                        # in the original; it is not a cancellation acknowledgement.
+                        selection_after=order_rows()[-1]['sequence'];selection_attempts=[]
+                        result['support_attack']['selection_method']='verified-team-recall' if selected else 'scene-candidate-mouse'
+                        for body_offset in (() if selected else (22,40,54)):
+                            projected=aim_point(hero,source,a.frame_size,body=True)
+                            if projected is None:break
+                            select_point=(projected[0],projected[1]+22-body_offset)
+                            if not (48<=select_point[0]<width-40 and 64<=select_point[1]<height-90):continue
+                            sent=click(*select_point,1,target_actor=source['slot'])
+                            selection_attempts.append(dict(point=list(select_point),body_offset=body_offset,button_sent=sent))
+                            if not sent:continue
+                            until=time.monotonic()+.7
+                            while time.monotonic()<until:
+                                selected=support_selection_after(order_rows(),source,selection_after)
+                                if selected:break
+                                time.sleep(.05)
                             if selected:break
-                            time.sleep(.05)
-                        if selected:break
-                    result['support_attack']['selection_attempts']=selection_attempts
-                    require(selected is not None,'Original paused selection did not identify the sole owned Zombie')
-                    result['support_attack']['selection']=selected
-                    submitted=None;attempts=[]
-                    for body_offset in (22,40,54):
-                        projected=admitted_boss_point or aim_point(hero,target,a.frame_size,body=True)
-                        if projected is None:break
-                        attack_point=(projected[0],projected[1]+22-body_offset)
-                        if not (48<=attack_point[0]<width-40 and 64<=attack_point[1]<height-90):continue
-                        after=order_rows()[-1]['sequence']
-                        sent=click(*attack_point,3,target_actor=target['slot'])
-                        attempts.append(dict(point=list(attack_point),body_offset=body_offset,after=after,button_sent=sent))
-                        if not sent:continue
-                        until=time.monotonic()+1
-                        while time.monotonic()<until:
-                            submitted=support_attack_submission(order_rows(),source,target,after)
+                        result['support_attack']['selection_attempts']=selection_attempts
+                        require(selected is not None,'Original paused selection did not identify the sole owned Zombie')
+                        result['support_attack']['selection']=selected
+                        submitted=None;attempts=[]
+                        for body_offset in (22,40,54):
+                            projected=admitted_boss_point or aim_point(hero,target,a.frame_size,body=True)
+                            if projected is None:break
+                            attack_point=(projected[0],projected[1]+22-body_offset)
+                            if not (48<=attack_point[0]<width-40 and 64<=attack_point[1]<height-90):continue
+                            after=order_rows()[-1]['sequence']
+                            sent=click(*attack_point,3,target_actor=target['slot'])
+                            attempts.append(dict(point=list(attack_point),body_offset=body_offset,after=after,button_sent=sent))
+                            if not sent:continue
+                            until=time.monotonic()+1
+                            while time.monotonic()<until:
+                                submitted=support_attack_submission(order_rows(),source,target,after)
+                                if submitted:break
+                                time.sleep(.05)
                             if submitted:break
-                            time.sleep(.05)
-                        if submitted:break
-                    result['support_attack'].update(attempts=attempts,submission=submitted,submitted=submitted is not None)
-                    save();require(submitted,'Original opcode7 Zombie-to-Camulos submission was not observed')
-                    if a.stop_after_support_attack:
-                        result.update(success=True,checkpoint_support_order=True)
-                        save();break
-                    firing_position=tuple(hero[k] for k in ('x','y','z'));firing_since=time.monotonic()-1;save()
+                        result['support_attack'].update(attempts=attempts,submission=submitted,submitted=submitted is not None)
+                        save();require(submitted,'Original opcode7 Zombie-to-Camulos submission was not observed')
+                        if a.stop_after_support_attack:
+                            result.update(success=True,checkpoint_support_order=True)
+                            save();break
+                        # The original still selects the Zombie after its attack.
+                        # Reselect the Wizard without moving the verified target view;
+                        # require the actual original sole-Wizard observation.
+                        selection_after=order_rows()[-1]['sequence'];key(ord('w'))
+                        selected=wait_primary(hero['slot'],selection_after)
+                        result['support_attack']['wizard_reselection']=selected;save()
+                        require(selected is not None,'Original Wizard reselection after support attack was not observed')
+                        actors=state();hero=actors[hero['slot']];target=actors[target['slot']]
+                        firing_position=tuple(hero[k] for k in ('x','y','z'));firing_since=time.monotonic()-1;save()
                 position=tuple(hero[k] for k in ('x','y','z'))
                 if position!=firing_position:
                     firing_position=position;firing_since=time.monotonic()
@@ -781,21 +965,27 @@ def main():
                 origin=dict(hero);burst=0;target_before=dict(target)
                 damage_before=read_spell_rows(a.experiment/'spell-events.bin')
                 damage_sequence=damage_before[-1][0] if damage_before else 0
-                burst_limit=fireball_burst_limit(hero,target,combat_paused)
+                burst_limit=fireball_burst_limit(hero,target,combat_paused,active_pause=='finishing_pause')
                 for _ in range(burst_limit):
-                    if combat_paused and burst and time.monotonic()-combat_pause_since>9:break
+                    if combat_paused and burst and time.monotonic()-combat_pause_since>10:break
                     require(not combat_paused or time.monotonic()-combat_pause_since<12,'Bounded ordinary combat pause exceeded12seconds')
                     actors=state();hero=actors[hero['slot']];target=actors.get(target['slot'],target)
                     if not hero['active'] or hero['health']<=0 or not target['active'] or target['health']<=0 or hero['mana']<6*256:break
                     if any(hero[k]!=origin[k] for k in ('x','y','z')):break
-                    blocked=firing_line_blockers(hero,target,actors) if target['type']==24 else firing_line_allies(hero,target,actors)
+                    blocked=cast_staging_blockers(hero,target,actors,combat_paused and result.get(active_pause,{}).get('wizard_only') is True)
                     if blocked:
                         result.setdefault('firing_line_refusals',[]).append(dict(hero=hero,target=target,allies=firing_line_allies(hero,target,actors),blockers=blocked))
                         dx,dy=target['x']-hero['x'],target['y']-hero['y'];length=max(1,math.hypot(dx,dy))
                         flank=dict(x=hero['x']-3*dy/length,y=hero['y']+3*dx/length,z=hero['z'])
                         click(*approach_point(hero,flank,a.frame_size),3);break
                     point=fireball_point(origin,target,a.frame_size)
-                    if combat_paused and target['type']==24 and result.get('support_attack',{}).get('submitted'):
+                    if combat_paused and result.get(active_pause,{}).get('wizard_only'):
+                        point=tuple(result[active_pause]['actual_boss_point'])
+                    if active_pause=='combat_pause' and combat_paused and result.get('support_attack',{}).get('wizard_reselection'):
+                        # One W selects the Wizard; a second would centre and
+                        # invalidate the actual Boss point just used for its
+                        # original opcode7 support attack. The cast still needs
+                        # fresh original cursor5 readiness and actual acceptance.
                         point=tuple(result['support_attack']['attempts'][-1]['point'])
                     if point is None:break
                     require(fireballs<24 and len(result['casts'])<40,'Bounded physical cast budget exhausted')
@@ -817,17 +1007,90 @@ def main():
                     pending=None;result['pending_cast']=None;fireballs+=1;burst+=1;save();time.sleep(.05)
                     if not matched:break
                 if combat_paused:
+                    # Queue a move near the current observed pose to stop the
+                    # old approach/withdrawal carrying the Wizard out of view.
+                    # This is an original opcode5 acknowledgement, not a stop
+                    # key, movement delivery or a natural outcome claim.
+                    center();current=state();wizard=current.get(hero['slot'])
+                    boss=current.get(target['slot'])
+                    require(wizard and wizard['active'] and wizard['health']>0 and boss,
+                            'Paused hold lacks the living Wizard and boss')
+                    after=order_rows()[-1]['sequence']
+                    point=approach_point(wizard,wizard,a.frame_size)
+                    sent=click(*point,3);submission=None
+                    ground=result['hover_admissions'][-1]['ground'] if sent else None
+                    if ground is not None:
+                        until=time.monotonic()+.7
+                        while time.monotonic()<until:
+                            submission=portal_move_submission(order_rows(),wizard,wizard,after)
+                            if submission:break
+                            time.sleep(.05)
+                    result['paused_hold' if active_pause=='combat_pause' else 'finishing_hold']=dict(before=wizard,boss=boss,point=list(point),
+                        ground=ground,button_sent=sent,submission=submission,
+                        scope='Ordinary sole-Wizard move submission; no delivery or safety claim')
+                    if submission is None:
+                        result['paused_hold' if active_pause=='combat_pause' else 'finishing_hold']['refused']='No original near-pose opcode5 acknowledgement; resume without hold credit'
+                    save()
                     require(time.monotonic()-combat_pause_since<12,'Bounded ordinary combat pause exceeded12seconds')
                     key(0x20);combat_paused=False
-                    result['combat_pause'].update(released=True,seconds=time.monotonic()-combat_pause_since,accepted_in_burst=burst,after=state()[hero['slot']]);save()
+                    result[active_pause].update(released=True,seconds=time.monotonic()-combat_pause_since,accepted_in_burst=burst,after=state()[hero['slot']]);save()
+                    if active_pause=='finishing_pause' and not burst and os.environ.get('MNM_CAMPAIGN_ENTRY_SAVE'):
+                        record_empty_finishing_window()
                 if burst:
-                    save();time.sleep(3)
+                    save()
+                    if target_before.get('type')==24 and a.case!='defeat':
+                        def terminal_sample():
+                            observed=read_rows(a.experiment/'gameplay-events.bin')
+                            if not observed:return None
+                            current=creatures(observed);wizard=current.get(hero['slot']);boss=current.get(target['slot'])
+                            if wizard is None or boss is None:return None
+                            return wizard,boss,player_fireball_damage(read_spell_rows(a.experiment/'spell-events.bin'),0,wizard['slot']),observed[-1][3]
+                        began=time.monotonic();hinted=observe_burst_hint(terminal_sample,try_terminal_hint)
+                        armed=False
+                        # Stay inside the same delivery window. Freeze a fresh
+                        # visible finishing candidate before centering or the
+                        # next outer-loop delay lets it leave the viewport.
+                        while time.monotonic()-began<3 and 'finishing_pause' not in result:
+                            sample=terminal_sample()
+                            if sample is not None:
+                                wizard,boss,_,_=sample
+                                if not wizard['active'] or wizard['health']<=0 or not boss['active'] or boss['health']<=0:break
+                                if begin_finishing_pause(wizard,boss):armed=True;break
+                            time.sleep(.05)
+                        result.setdefault('burst_observation_windows',[]).append(dict(seconds=time.monotonic()-began,
+                            budget_seconds=3,return_hint=hinted,finishing_pause_started=armed,scope='Original actor/damage observation and one current-target-bound finishing volley, with one zero-cast pause retry at most; no outcome inference'))
+                    else:time.sleep(3)
                     # A time window can include earlier projectiles. Cast counts
                     # and this observation never grant semantic victory.
                     damage=player_fireball_damage(read_spell_rows(a.experiment/'spell-events.bin'),0,hero['slot'])
                     result.setdefault('fireball_bursts',[]).append(dict(accepted=burst,limit=burst_limit,origin=origin,
                         target_before=target_before,target_after=state().get(target['slot']),
                         observed_damage_window=[list(r) for r in damage if r[0]>damage_sequence and r[4]==target['slot']]))
+            elif choice=='melee':
+                proof=result.get('wizard_melee_finish',{}).get('submission')
+                current_rows=read_rows(trace);current=creatures(current_rows);wizard=current.get(hero['slot'])
+                boss=wizard_melee_finisher(wizard,current,current_rows,proof)
+                if boss is None:time.sleep(.1);continue
+                if proof is None:
+                    attempts=result.setdefault('wizard_melee_attempts',[])
+                    require(len(attempts)<3,'Bounded Wizard melee command attempts exhausted')
+                    point=aim_point(wizard,boss,a.frame_size,body=True)
+                    require(point is not None,'Observed wounded boss is outside the melee hover viewport')
+                    selection=wait_primary(wizard['slot'],0)
+                    require(selection is not None,'Wizard melee lacks current sole-Wizard selection')
+                    after=order_rows()[-1]['sequence'];attempt=dict(before=wizard,target=boss,point=list(point),after=after,selection=selection,button_sent=False)
+                    attempts.append(attempt);save()
+                    if click(*point,3,target_actor=boss['slot']):
+                        attempt['button_sent']=True;until=time.monotonic()+1
+                        while time.monotonic()<until:
+                            proof=wizard_melee_submission(order_rows(),wizard,boss,after)
+                            if proof:break
+                            time.sleep(.05)
+                    attempt['submission']=proof;save()
+                    if proof is not None:
+                        result['wizard_melee_finish']=dict(before=wizard,target=boss,submission=proof,
+                            scope='One actual original Wizard attack submission after observed Wizard damage; no delivery, hit, retirement or outcome inference')
+                        save()
             elif choice=='retreat':
                 point=approach_point(hero,dict(x=2*hero['x']-target['x'],y=2*hero['y']-target['y'],z=hero['z']),a.frame_size)
                 click(*point,3)
@@ -843,7 +1106,7 @@ def main():
             if combat_paused:
                 try:
                     key(0x20,persist=False);combat_paused=False
-                    result['combat_pause'].update(released=True,released_on_failure=True,seconds=time.monotonic()-combat_pause_since)
+                    result[active_pause].update(released=True,released_on_failure=True,seconds=time.monotonic()-combat_pause_since)
                 except Exception as error:
                     result.update(success=False,error=str(error))
             for button in held:xt.XTestFakeButtonEvent(display,button,0,0)

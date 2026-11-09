@@ -312,6 +312,27 @@ void CanvasSequence::copy(std::uint32_t source, std::uint32_t destination,
     else for(int col=0;col<width;++col){const auto word=src.image.pixels[from+col];if(src.defined[from+col]!=1){dst.defined[to+col]=src.defined[from+col]&&dst.defined[to+col]?2:0;}else if(word!=*key){dst.image.pixels[to+col]=word;dst.defined[to+col]=1;}}
   }
 }
+void CanvasSequence::stretchCopy(std::uint32_t source, std::uint32_t destination,
+                                Rect r, Rect d, std::optional<std::uint16_t> key) {
+  auto& original=surface(source);auto& dst=surface(destination);
+  const auto sw=std::int64_t(r.right)-r.left,sh=std::int64_t(r.bottom)-r.top;
+  const auto dw=std::int64_t(d.right)-d.left,dh=std::int64_t(d.bottom)-d.top;
+  if(r.left<0||r.top<0||sw<=0||sh<=0||r.right>original.image.width||r.bottom>original.image.height||
+     d.left<0||d.top<0||dw<=0||dh<=0||d.right>dst.image.width||d.bottom>dst.image.height)
+    throw std::invalid_argument("Invalid native stretch rectangles");
+  // Validate/materialize every sampled source before publishing any write.
+  // A GPU snapshot may restore known history; it must not define unknown input.
+  for(std::int64_t y=0;y<dh;++y)for(std::int64_t x=0;x<dw;++x)
+    requireCpu(source,original,slot(original.image,int(r.left+x*sw/dw),int(r.top+y*sh/dh)));
+  std::optional<Surface> frozen;if(source==destination)frozen.emplace(original);
+  const auto& src=frozen?*frozen:original;
+  for(std::int64_t y=0;y<dh;++y)for(std::int64_t x=0;x<dw;++x){
+    const auto from=slot(src.image,int(r.left+x*sw/dw),int(r.top+y*sh/dh));
+    const auto value=src.image.pixels[from];
+    if(key&&value==*key)continue;
+    const auto to=slot(dst.image,d.left+int(x),d.top+int(y));write(dst,to,value);dst.defined[to]=1;
+  }
+}
 void CanvasSequence::update(std::uint32_t id, int x, int y,
                             const Image &image) {
   auto &s = surface(id);

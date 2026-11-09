@@ -4,6 +4,7 @@ import copy,hashlib,json,sys,unittest,sqlite3,tempfile,struct
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'tools'))
 from rendering_normal_acceptance import admit,progress,PREFIX,lighting,fullscreen,world_domain,preferences_boundary,reviewed_driver_sources,DRIVER_SOURCES
+from fixture_support import command_stream
 
 class Reader:
     def __init__(self):self.data={};self.sources={'apps/qt-shell/main.cpp':'a'*64}
@@ -95,8 +96,7 @@ class AdmissionTests(unittest.TestCase):
         self.assertTrue(all(row['state']=='pending' for row in r['requirements'] if row['id'].startswith('journey.save-load.')))
     def test_world_format_is_bound_to_actual_imports_not_a_configuration_label(self):
         def stream(red):
-            def command(op,seq,body):return struct.pack('<III',op,seq,len(body))+body
-            return b'MNMCMD05'+struct.pack('<II',5,16)+command(1,1,struct.pack('<7I',7,640,480,16,red,0x7e0,31))+command(19,2,struct.pack('<5I',7,1,0,0,0))+command(7,3,struct.pack('<I',7))+command(8,4,b'')
+            return command_stream([(1,struct.pack('<7I',7,640,480,16,red,0x7e0,31)),(19,struct.pack('<5I',7,1,0,0,0)),(7,struct.pack('<I',7)),(8,b'')])
         self.assertEqual(world_domain(dict(commands=stream(0xf800)))['extents'],[[640,480]])
         with self.assertRaises(ValueError):world_domain(dict(commands=stream(0x7c00)))
     def test_execution_and_configuration_failures_refuse(self):
@@ -172,7 +172,7 @@ class SustainedCloseoutTests(unittest.TestCase):
         cls.join=importlib.util.module_from_spec(spec);spec.loader.exec_module(cls.join)
 
     def command_bytes(self,rows):
-        return b'MNMCMD05'+struct.pack('<II',5,16)+b''.join(struct.pack('<III',op,i,len(body))+body for i,(op,body) in enumerate(rows,1))
+        return command_stream(rows)
 
     def resource_rows(self):
         create=(1,struct.pack('<7I',1,640,480,16,0xf800,0x7e0,31)+bytes(640*480*2))

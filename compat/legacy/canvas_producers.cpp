@@ -13,6 +13,12 @@
 #include <stdexcept>
 namespace mnm::legacy {
 namespace {
+bool nativeCopyMetadata(const std::array<std::uint32_t,24>& r,bool extended) {
+  if(!r[23])return true;
+  if(!extended||r[2]!=MNM_PRODUCER_COPY||r[18])return false;
+  if(r[23]==MNM_PRODUCER_NATIVE_COPY_RECT_REFUSED)return r[21]==MNM_PRODUCER_NATIVE_COPY_RECT_HRESULT;
+  return r[23]==MNM_PRODUCER_NATIVE_COPY_STRETCH&&r[15]&&r[16]&&r[15]<=2048&&r[16]<=2048&&!(r[21]&0x80000000u);
+}
 std::uint32_t word(const std::vector<std::uint8_t> &b, std::size_t p) {
   if (p > b.size() || b.size() - p < 4)
     throw std::invalid_argument("Truncated producer input");
@@ -137,7 +143,7 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
         r[18] > byteBudget - 96 || r[0] != 96 + r[18] ||
         r[0] > b.size() - at || r[1] != result.operations.size() + 1 ||
         r[2] < 1 || r[2] > (wholeUpdate?27u:extendedWorld ? 26u : ownedMinimap ? 24u : 23u) || (r[2]==24 && !ownedMinimap && !extendedWorld) ||
-        (r[23]&&!(extendedWorld&&r[2]==MNM_PRODUCER_COPY&&r[23]==MNM_PRODUCER_NATIVE_COPY_RECT_REFUSED&&r[21]==MNM_PRODUCER_NATIVE_COPY_RECT_HRESULT&&!r[18])))
+        !nativeCopyMetadata(r,extendedWorld))
       throw std::invalid_argument("Invalid producer record");
     c.payload.assign(b.begin() + at + 96, b.begin() + at + r[0]);
     const auto wireSize = r[0];
@@ -215,8 +221,7 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
       if(!wholeUpdate||entered!=returned||returned!=result.queues||r[14]!=result.queues||r[17]!=r[15]+1u||!r[19]||r[20]>255||!r[21]||r[22]!=3||r[18]||reserve)throw std::invalid_argument("Invalid whole-update closure");
       ++ended;
     }
-    if(r[2]==MNM_PRODUCER_COPY&&r[23]&&(!extendedWorld||
-       r[23]!=MNM_PRODUCER_NATIVE_COPY_RECT_REFUSED||r[21]!=MNM_PRODUCER_NATIVE_COPY_RECT_HRESULT))
+    if(!nativeCopyMetadata(r,extendedWorld))
       throw std::invalid_argument("Unproven native COPY refusal");
     result.operations.push_back(std::move(c));
     at += wireSize;
@@ -252,6 +257,13 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
     canvases_.fill(id, rect(c), r[14]);
     break;
   case 6:
+    if(r[23]==MNM_PRODUCER_NATIVE_COPY_STRETCH){
+      if(!nativeCopyMetadata(r,true)||r[8]>2048||r[9]>2048)
+        throw std::invalid_argument("Invalid native stretch metadata");
+      canvases_.stretchCopy(r[4],id,rect(c),{int(r[8]),int(r[9]),int(r[8]+r[15]),int(r[9]+r[16])},
+                           r[14]==0xffffffffu?std::nullopt:std::optional<std::uint16_t>(r[14]));
+      break;
+    }
     if(r[23]){
       if(r[23]!=MNM_PRODUCER_NATIVE_COPY_RECT_REFUSED||r[21]!=MNM_PRODUCER_NATIVE_COPY_RECT_HRESULT||r[18]||!c.bytes().empty()||
          copyRectRefusals_==std::numeric_limits<std::uint64_t>::max())

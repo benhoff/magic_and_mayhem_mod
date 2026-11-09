@@ -83,6 +83,9 @@ def semantic_handoff(flow, events):
     expected = ['main', 'display-configuration', 'configured-main', 'region-entry',
                 'natural-report', 'result-return', 'region-travel-entry', 'campaign-travel',
                 'region-entry', 'cleanup-mini', 'cleanup-report', 'cleanup-realm', 'cleanup-main']
+    if flow.get('entry_mode','new-game')=='original-checkpoint':
+        expected[3]='checkpoint-entry'
+        require(callbacks.get('initial_original_load') is not None,'Initial original Load provenance missing')
     require([s['event'] for s in states] == expected, 'Unexpected progression route or reload')
     report, returned, travel_entry, travel, entry = states[4:9]
     require(report['outcome'] == 1 and 'victory' in report['title'].lower(), 'No natural original victory')
@@ -96,7 +99,7 @@ def semantic_handoff(flow, events):
             and travel_entry['enter_handoff'] == 4 and entry['enter_handoff'] == 3,
             'Missing actual original campaign travel/loading handoff')
     old, new = flow['worlds']
-    require(new['world'] == new['after_world'] + 1 > old['world'], 'Stale or ambiguous first later World')
+    require(new['world'] > new['after_world'] > old['world'], 'Stale later World or handoff baseline')
     rows = list(struct.iter_unpack('<16I', events[16:]))
     first, later = callbacks['original_world_epochs']
     ok = callbacks['original_result_ok_sequence']
@@ -121,7 +124,7 @@ def semantic_handoff(flow, events):
                       'Build/session addresses do not establish cross-launch pointer stability.')
 
 
-def native_handoff(raw, first_new_generation, extent):
+def native_handoff(raw, first_new_generation, extent, *, prior_generation=None):
     live, retired, imports = {}, {}, []
     end = None
     nonce = None
@@ -152,7 +155,9 @@ def native_handoff(raw, first_new_generation, extent):
             require(not live and not payload, 'Native owners survive END')
             end = sequence
     require(end is not None and 1 < first_new_generation <= len(imports), 'Missing later World or command END')
-    old, new = imports[first_new_generation-2:first_new_generation]
+    baseline=first_new_generation-1 if prior_generation is None else prior_generation
+    require(type(baseline) is int and 0<baseline<first_new_generation,'Stale native handoff baseline')
+    old,new=imports[baseline-1],imports[first_new_generation-1]
     for record in imports:
         deletion = retired.get((record['surface'], record['created']))
         require(deletion is not None and record['imported'] < deletion < end,
@@ -164,8 +169,9 @@ def native_handoff(raw, first_new_generation, extent):
     return dict(verified=True, previous_world=old | dict(deleted=old_deleted),
                 first_later_world=new | dict(deleted=retired[(new['surface'], new['created'])]),
                 imports=len(imports), source_nonce=nonce, command_end=end,
+                prior_generation=baseline,observed_later_generation=first_new_generation,
                 surviving_command_surfaces=0,
-                scope='Native command-surface incarnations and source generation continuity only; '
+                scope='Native baseline and observed later presented command-surface incarnations and source generation continuity only; the100ms presentation probe may skip intervening source generations. '
                       'all original entity/vptr/allocator lifetimes remain outside this proof.')
 
 
@@ -222,6 +228,15 @@ def coverage_frontier(cases):
             for leaf in LEAVES]
 
 
+def callbacks_match(current,historical,flow):
+    current=dict(current)
+    # Older fresh-New-Game comparisons predate the optional initial-Load field.
+    # Only its absent/null value is equivalent; all callback rows stay exact.
+    if flow.get('entry_mode','new-game')=='new-game' and 'initial_original_load' not in historical and current.get('initial_original_load') is None:
+        current.pop('initial_original_load',None)
+    return current==historical
+
+
 def review_case(reader, acquisition_name, comparison_name):
     refs = {k: dict(record=INPUT+n+'.json', sha256=reader.digest(INPUT+n+'.json'))
             for k, n in (('acquisition', acquisition_name), ('comparison', comparison_name))}
@@ -233,7 +248,7 @@ def review_case(reader, acquisition_name, comparison_name):
             'Incomplete retained progression acquisition')
     events, event_ref = bound_artifact(reader, acquired, 'events.bin', 4*1024**2)
     semantic = semantic_handoff(acquired['flow'], events)
-    require(validate_callbacks(events, acquired['flow']) == comparison['original_menu_actions'],
+    require(callbacks_match(validate_callbacks(events, acquired['flow']),comparison['original_menu_actions'],acquired['flow']),
             'Current callback analysis differs from historical comparison')
     command_refs = [v for v in acquired['artifacts'] if '/capture/commands-' in v['path']]
     require(len(command_refs) == 1, 'Missing or ambiguous command capture')

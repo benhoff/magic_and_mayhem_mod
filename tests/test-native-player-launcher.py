@@ -21,7 +21,7 @@ class PlayerLaunch(unittest.TestCase):
     @contextlib.contextmanager
     def launch(self, existing=False, environment=None):
         with contextlib.ExitStack() as stack:
-            stack.enter_context(patch.dict(os.environ, environment or {}, clear=True))
+            stack.enter_context(patch.dict(os.environ, dict(MNM_MENU_GAME_SOURCE=str(ROOT/'working/player-launch-fixture-game'), **(environment or {})), clear=True))
             stack.enter_context(patch.object(Path, 'exists', return_value=existing))
             stack.enter_context(patch.object(Path, 'is_file', return_value=True))
             stack.enter_context(patch.object(Path, 'is_symlink', return_value=False))
@@ -52,6 +52,20 @@ class PlayerLaunch(unittest.TestCase):
             self.assertNotIn('MNM_TERRAIN_LIGHTING', os.environ)
             prepare.assert_called_once()
             self.assertEqual(run.call_count, 1)  # No wineserver wait before fresh initialization.
+
+    def test_explicit_owner_directory_is_forwarded_before_qt_arguments(self):
+        owner=ROOT/'working/pilot/owned-case/owner'
+        with self.launch() as (prepare, _, run):
+            self.assertEqual(player.main(['--output-owner',str(owner),'--','--skip-movies']),0)
+            command=run.call_args.args[0];index=command.index('--output')
+            self.assertEqual(command[index:index+4],['--output',str(owner),'--','--skip-movies'])
+            prepare.assert_called_once()
+
+    def test_foreign_or_existing_owner_refuses_before_preparation(self):
+        for owner,existing in ((Path('/tmp/foreign-owner'),False),(ROOT/'working/pilot/existing-owner',True)):
+            with self.subTest(owner=owner),self.launch(existing=existing) as (prepare, _, run):
+                self.assertEqual(player.main(['--output-owner',str(owner)]),1)
+                prepare.assert_not_called();run.assert_not_called()
 
     def test_explicit_lighting_modes_reach_preparation_and_owner(self):
         for mode in ('original', 'observe', 'native'):

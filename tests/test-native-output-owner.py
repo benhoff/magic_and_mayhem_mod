@@ -137,5 +137,25 @@ class Ownership(unittest.TestCase):
         self.assertLess(command.index('--tmpfs'),triples.index(mount))
         self.assertNotIn(['--bind',str(self.authority),'/tmp/mnm-private-xauthority'],triples)
 
+    def test_ram_checkout_is_explicitly_read_only_with_only_private_writable_children(self):
+        repo=self.root/'repo';repo.mkdir();(repo/'.git').write_text('gitdir: retained')
+        (repo/'AGENTS.md').write_text('owned');(repo/'tools').mkdir();(repo/'tools/menu-game-runner.py').write_text('pass')
+        session=repo/'working/session';prefix=repo/'working/prefix';session.mkdir(parents=True);prefix.mkdir()
+        with patch.object(owner,'admit',return_value=(self.socket,self.authority)):
+            args=owner.command(session,prefix,self.metadata,self.environment,self.receipt,repository=repo)
+        triples=[args[i:i+3] for i in range(len(args)-2)]
+        self.assertIn(['--ro-bind',str(repo),str(repo)],triples)
+        self.assertNotIn(['--bind',str(repo),str(repo)],triples)
+        self.assertEqual([v for v in triples if v[0]=='--bind'],[['--bind',str(session),str(session)],['--bind',str(prefix),str(prefix)]])
+        self.assertLess(triples.index(['--ro-bind',str(repo),str(repo)]),triples.index(['--bind',str(session),str(session)]))
+        self.assertIn(['--tmpfs','/tmp'],[args[i:i+2] for i in range(len(args)-1)])
+
+    def test_masked_targets_still_refuse_an_unbound_or_foreign_repository(self):
+        session=self.root/'session';prefix=self.root/'prefix';session.mkdir();prefix.mkdir()
+        with patch.object(owner,'admit',return_value=(self.socket,self.authority)):
+            for repo in (None,self.root/'absent',Path('/tmp')):
+                with self.subTest(repo=repo),self.assertRaises((ValueError,OSError)):
+                    owner.command(session,prefix,self.metadata,self.environment,self.receipt,repository=repo)
+
 
 if __name__=='__main__':unittest.main()

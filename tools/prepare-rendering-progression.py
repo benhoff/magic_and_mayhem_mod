@@ -70,7 +70,7 @@ def main():
         report['cases'] = [dict(id=case, entry='fresh campaign', difficulty=1,
             expected_outcome=0 if case == 'defeat' else 1,
             expected_regions=[1] if case == 'defeat' else [1, 2],
-            deadline_seconds=900, world_driver_seconds=540,
+            deadline_seconds=900, world_driver_seconds=600,
             configurations=['player-default', 'player-software'],
             frame_modes=[[640,480], [800,600]],
             command=['python3', 'tools/run-rendering-progression.py', '--case', case, '--evidence-mode', 'full', '--preparation', a.report,
@@ -86,6 +86,7 @@ def main():
                  'tools/campaign-order-input.py','tools/campaign_order_observation.py','tools/campaign_target_admission.py','tools/campaign_outcome_record.py','tools/campaign_route.py','tools/campaign_dialogue.py','tools/campaign_return.py','tools/campaign_follow.py','tools/campaign_realm_exit.py','tools/campaign-realm-exit-input.py','tools/campaign_input_observation.py','tools/campaign_report.py','tools/rendering_capture.py', 'tools/rendering_pilot.py', 'tools/campaign_gameplay.py', 'tools/campaign_spell.py', 'tools/campaign_input_admission.py',
                  'apps/qt-shell/profile_capture_codec.hpp','apps/qt-shell/resident_profile_capture.cpp','apps/qt-shell/resident_profile_capture.hpp','tools/resident_capture.py','tests/acceptance-world-history.cpp','apps/qt-shell/acceptance_capture.hpp','apps/qt-shell/host_timing_trace.hpp','apps/qt-shell/campaign_progression_test.cpp', 'apps/qt-shell/campaign_smoke_test.cpp',
                  'apps/qt-shell/campaign_smoke_test.hpp', 'apps/qt-shell/CMakeLists.txt']
+        names.extend(['tools/campaign_transition_checkpoint.py','tools/campaign-save-ready-input.py','tools/campaign-outcome-input-v56.py','tools/campaign_wizard_cast_v56.py','tools/campaign_acquisition_owner.py','tools/campaign_wizard_cast.py','tools/campaign_boss_finisher.py','tools/oracle_frame_retention.py','tools/campaign_retained_policies.py','tools/campaign-outcome-input-v34.py','tools/campaign-outcome-input-v22.py','tools/campaign_portal_stage.py','tools/campaign-portal-outcome-input.py','tools/campaign_progression_entry.py','tools/stage-campaign-checkpoint.py','tools/menu_save_store.py'])
         report['sources'] = {n: sha(ROOT/n) for n in names}
         report['success'] = True
     except Exception as error:

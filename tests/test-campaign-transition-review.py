@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
 from campaign_transition_review import (INPUT, CASES, COMPRESSED_LIMIT, DECODED_LIMIT,
     bound_artifact, command_bytes, coverage_frontier, native_handoff, read_reference,
-    referenced_output, semantic_handoff, nominal_candidate)
+    referenced_output, semantic_handoff, nominal_candidate,callbacks_match)
 from coverage_evidence import Reader
 from rendering_menu_acceptance import artifact
 from rendering_pilot import sha
@@ -24,6 +24,13 @@ class Transition(unittest.TestCase):
             cls.a = reader.json(INPUT+CASES[0][0]+'.json')
             cls.c = reader.json(INPUT+CASES[0][1]+'.json')
             cls.events = artifact(reader, cls.a, 'events.bin')
+
+    def test_historical_new_game_only_allows_absent_null_load_metadata(self):
+        old={'verified':True,'callback':[1,2,3]};current=dict(old,initial_original_load=None)
+        self.assertTrue(callbacks_match(current,old,{}))
+        self.assertFalse(callbacks_match(dict(current,callback=[1,2,4]),old,{}))
+        self.assertFalse(callbacks_match(dict(current,initial_original_load={'verified':True}),old,{}))
+        self.assertFalse(callbacks_match(current,old,{'entry_mode':'original-checkpoint'}))
 
     def test_actual_original_exit_and_next_region(self):
         result = semantic_handoff(self.a['flow'], self.events)
@@ -59,6 +66,12 @@ class Transition(unittest.TestCase):
 
     def test_stale_next_world(self):
         self.flow_refusal(lambda f: f['worlds'][1].update(after_world=1))
+
+    def test_later_presentation_probe_can_skip_a_generated_frame(self):
+        flow=copy.deepcopy(self.a['flow']);flow['worlds'][1]['world']+=1
+        self.assertTrue(semantic_handoff(flow,self.events)['verified'])
+        flow['worlds'][1]['after_world']=flow['worlds'][1]['world']
+        with self.assertRaises(ValueError):semantic_handoff(flow,self.events)
 
     def test_wrong_frame_mode(self):
         self.flow_refusal(lambda f: f['worlds'][1].update(width=800))
@@ -99,6 +112,17 @@ class Transition(unittest.TestCase):
         p = native_handoff(self.wire(self.operations()), 2, [640, 480])
         self.assertLess(p['previous_world']['deleted'], p['first_later_world']['created'])
         self.assertEqual(p['surviving_command_surfaces'], 0)
+
+    def test_native_sampled_baseline_retires_before_observed_later_frame(self):
+        ops=self.operations()[:-1]
+        ops.extend([(1,struct.pack('<7I',3,640,480,16,0xf800,0x7e0,31)),(19,struct.pack('<5I',3,3,0,10,0)),(7,struct.pack('<I',3)),(8,b'')])
+        proof=native_handoff(self.wire(ops),3,[640,480],prior_generation=1)
+        self.assertEqual(proof['previous_world']['generation'],1)
+        self.assertEqual(proof['observed_later_generation'],3)
+        for baseline in (0,3,True):
+            with self.assertRaises(ValueError):native_handoff(self.wire(ops),3,[640,480],prior_generation=baseline)
+        held=ops.pop(2);ops.insert(7,held)
+        with self.assertRaises(ValueError):native_handoff(self.wire(ops),3,[640,480],prior_generation=1)
 
     def test_old_surface_survives_next_map(self):
         ops = self.operations(); old_delete = ops.pop(2); ops.insert(4, old_delete)

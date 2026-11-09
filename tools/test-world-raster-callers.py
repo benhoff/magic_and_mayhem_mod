@@ -77,13 +77,16 @@ def main():
                           '--stream',out/'authored-empty-queue.bin','--header',out/'generated.h',
                           '--report',out/'generated.json'])
         generated = json.loads((out/'generated.json').read_text())
-        if generated['caller_count'] != 16 or sum(c['origin']=='checked_inherited_wrapper' for c in generated['callers']) != 1 or sum(c['origin']=='checked_effect_return' for c in generated['callers']) != 11 or sum(c['origin']=='checked_black_return' for c in generated['callers']) != 4:
+        if generated['caller_count'] != 17 or sum(c['origin']=='checked_inherited_wrapper' for c in generated['callers']) != 1 or sum(c['origin']=='checked_effect_return' for c in generated['callers']) != 11 or sum(c['origin']=='checked_black_return' for c in generated['callers']) != 4 or sum(c['origin']=='checked_opaque_fallback_return' for c in generated['callers']) != 1:
             raise ValueError('Generator dropped or mislabeled the static inherited extension')
         (out/'generated-test.cpp').write_text(
             'using u32=unsigned;using u8=unsigned char;\n#include "generated.h"\n'
             'int main(){u8 b[]={0xc2,8,0,0x90,0x90,0x90,0x90,0x90,0x90,0x90};'
             'if(!mnm_world_raster_caller(0x54aab2,26,b)||mnm_world_raster_caller(0x54aab2,52,b))return 1;'
-            'b[0]^=1;return mnm_world_raster_caller(0x54aab2,26,b);}\n')
+            'b[0]^=1;if(mnm_world_raster_caller(0x54aab2,26,b))return 2;'
+            'u8 f[]={0x83,0xc4,0x14,0x8b,0x75,0,0x25,0xff,0xff,0};'
+            'if(!mnm_world_raster_caller(0x57e957,17,f)||mnm_world_raster_caller(0x57e957,14,f))return 3;'
+            'f[9]^=1;return mnm_world_raster_caller(0x57e957,17,f);}\n')
         run('generated-build', ['g++','-std=c++17','-O2','-Wall','-Wextra','-Werror',
                                 out/'generated-test.cpp','-o',out/'generated-test'])
         run('generated-native', [out/'generated-test'])
