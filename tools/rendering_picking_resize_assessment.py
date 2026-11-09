@@ -2,7 +2,22 @@
 from rendering_picking_resize import targets, ready, physical_point
 from rendering_pilot import require
 
-def assess(reader, acquired, compared, observed):
+def source_chunk(rows, context, allow_camera_chunks=False):
+    require(all(f[2] not in (11,12,13,27) for f,_ in rows),
+            'Source chunk carries a World boundary or failure')
+    if not allow_camera_chunks:
+        require(context is None,'Source chunk carries a World camera')
+
+
+def picked_cell(row, target, fact):
+    from rendering_interaction import signed
+    current = [signed(v) for v in row['position'][:2]]
+    require(current == target['expected_cell_xy'] == fact['ground'][:2],
+            'Picked cell differs from its independently observed current actor pose')
+
+
+def assess(reader, acquired, compared, observed, *, allow_camera_chunks=False,
+           window_local_cells=False):
     from pathlib import Path
     import importlib.util
     from campaign_input_observation import decode as admission_decode
@@ -52,7 +67,7 @@ def assess(reader, acquired, compared, observed):
         context=camera.context_many_cells(source_rows)
         if chunk:
             chunks+=1
-            require(context is None,'Source chunk carries a World camera')
+            source_chunk(source_rows, context, allow_camera_chunks)
             continue
         contexts[generation]=context
         for w in targets_by_generation.get(generation,[]):
@@ -98,8 +113,15 @@ def assess(reader, acquired, compared, observed):
                     'Original picking orientation does not match displayed source')
             if w['kind']=='cell':
                 phase=next(s for s in ('high-initial','low','high-returned') if w['name'].startswith(s+'-'))
-                grounds.setdefault(phase,fact['ground'])
-                require(fact['ground']==grounds[phase],'Stationary source-derived foot changed picked cell within its World')
+                if window_local_cells:
+                    picked_cell(rows[fact['frame_row']-1], w['target'], fact)
+                    require(fact['ground']==w['witnesses'][0]['ground'],
+                            'Picked cell changed during its fixed physical window')
+                    values=grounds.setdefault(phase,[])
+                    if fact['ground'] not in values:values.append(fact['ground'])
+                else:
+                    grounds.setdefault(phase,fact['ground'])
+                    require(fact['ground']==grounds[phase],'Stationary source-derived foot changed picked cell within its World')
         facts.append(dict(name=w['name'],size=w['size'],scaling=w['scaling'],kind=w['kind'],witnesses=w['witnesses']))
     rebuilds=acquired['proof']['display_rebuilds']
     require(len(rebuilds)==2 and [(r['before'],r['after']) for r in rebuilds]
@@ -131,7 +153,8 @@ def assess(reader, acquired, compared, observed):
                     'Picking pan did not change the source camera in its existing orientation')
     return dict(verified=True,windows=len(facts),object_windows=24,cell_windows=24,
                 displayed_source_witnesses=sum(len(x['witnesses']) for x in facts),
-                stable_picked_cells_by_world=grounds,live_display_rebuilds=2,
+                stable_picked_cells_by_world=grounds if not window_local_cells else None,
+                observed_picked_cells_by_world=grounds,window_local_actor_pose_verified=window_local_cells,live_display_rebuilds=2,
                 rebuild_route='Quick Results -> Main Preferences -> same-map new Quick World',same_world_continuity=False,
                 source_generations=len(contexts),source_chunks=chunks,windows_verified=facts,
                 allocation_generations_proved=False,selection_hotspot_or_response_deadlines_proved=False)
