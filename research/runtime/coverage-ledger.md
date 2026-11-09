@@ -28717,3 +28717,27 @@ All 32 actual-data guards pass; prototypes and exact source phases remain.
 No game/capture/build/new pixel comparison, renderer repair, physical reset,
 old-generation continuation or combined-current player claim.
 See `fault-lifetime-gate-closeout-20261109.md`.
+
+
+
+## 2026-11-09 — Original mask/ground-Z/classification recovery
+
+Recovered and implemented `RE.sprite-point-mask`, `RE.world-ground-picking`,
+`RE.world-hit-classification` and focused `RE.world-ground-picking-upper-layer`.
+Unchanged original/native isolated execution matches 4,067,638 point decisions,
+23,177 terrain scenarios (including four Z31 worlds) and 1,000 class cases;
+ASan/UBSan controls and standalone CMake/CTest pass. Ground XYZ is last admitted
+traversal annotation, independently of maximum terrain depth (504 original
+counterexamples); hit class uses strict signed candidate precedence and ties.
+Opaque zero-color masks and suppressed child hits are confirmed. No geometric
+ray intersection is used in this selected path. See
+[scope, addresses, evidence and reproduction](ray-z-recovery-20261109.md).
+
+Understanding/implementation are scoped, comparison recorded, integration
+headless, replacement none. Full Region/World callback, resource lifetime and
+runtime binding remain outstanding; the original provider and native presented-
+pixel application policy are unchanged. Retained 288 live witnesses do not contain
+a complete ground-model input sequence and supply no new native-world prediction.
+All rendering acceptance rows, older source phases, failures and final decisions
+remain unchanged. Four bounded acquisition attempts are exhausted, with two
+isolated original processes and zero game launches; manifest bookends pass.

@@ -318,7 +318,7 @@ python3 tools/audit-re-coverage.py \
 
 For a durable result, store the report bytes with `write_report` as described in
 the SQLite workflow below; do not copy the expanded export into `research/`.
-The [generated summary](summary.md) is a snapshot. The audit checks current
+The [generated summary](summary-ray-z-20261109.md) is a snapshot. The audit checks current
 evidence freshness. Full findings in an explicit export include addresses,
 flows, candidate callbacks, imports and behavior/scenario links. The register
 now includes pathfinding, motion, audio, asset readers, rendering, animation,

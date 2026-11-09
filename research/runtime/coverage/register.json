@@ -175391,6 +175391,293 @@
         "FL09.G.cohort: Both gate.fault-lifetime cells pass for exactly eight retained expected-negative/fresh-generation pairs. New fault/provider/scenario cohorts require the same raw failure, retirement, identity and independent presentation checks. All native/original/compiler phases remain historical.",
         "FL09.G.scope: Exact expected-negative/fresh-generation policy only; current combined-player, physical resets, arbitrary providers/faults and final rendering decisions remain separate."
       ]
+    },
+    {
+      "id": "RE.sprite-point-mask",
+      "kind": "recovered",
+      "subsystem": "native_rendering",
+      "title": "Original sprite point-mask membership",
+      "scope": "Unchanged NoCD57dcf0 point membership on valid owned version4 SPR masks: signed half-open bounds after DWORD-wrapped anchor/origin arithmetic, top-down row mask parity including zero-length runs and opaque colour/index zero. Native owned mask validation is a separate safety policy; corrupt original RLE and live resource lifetimes are excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5758192,
+          "scope": "Complete bounded point-mask leaf57dcf0..57dd58; original reads encoded opacity runs independently of pixel colour."
+        }
+      ],
+      "documents": [
+        "research/runtime/ray-z-recovery-20261109.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/ground_picking.hpp",
+        "reconstruction/rendering/ground_picking.cpp",
+        "reconstruction/rendering/ground-picking/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/ground-picking-reference.cpp",
+        "tests/ground-picking-classify.S",
+        "tests/ground-picking-test.cpp",
+        "tools/test-ground-picking.py"
+      ],
+      "validation_dependencies": [
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.hpp",
+        "reconstruction/rendering/terrain_traversal.hpp",
+        "reconstruction/rendering/terrain_traversal.cpp",
+        "reconstruction/rendering/terrain_submission.hpp",
+        "reconstruction/rendering/terrain_submission.cpp",
+        "reconstruction/rendering/sprite_queue.hpp",
+        "reconstruction/rendering/sprite_queue.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "assets/path_resolver.hpp"
+      ],
+      "evidence": [
+        "RZ09.original02",
+        "RZ09.native02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "RZ09.G.live: Runtime cell-provider hit callbacks and presented-pixel application picking are unchanged; no installed World/Region callback, live replacement, resource-generation or current combined-player claim.",
+        "RZ09.G.domain: Valid owned inputs only. Corrupt original RLE, unchecked pointer/one-past collection behavior, excluded unsafe traversals and arbitrary caller geometry remain outside comparison; native validation is an intentional safety policy."
+      ]
+    },
+    {
+      "id": "RE.world-ground-picking",
+      "kind": "recovered",
+      "subsystem": "native_rendering",
+      "title": "Original terrain picking publication and layer Z",
+      "scope": "Original ordinary terrain4f8960 picking with real sprite-mask membership and four-view traversal4f83f0/4fbe00/4fc3f0/4fc930 over owned valid grids and terrain definitions. Body/first/second hit probes precede draw-layer suppression; each admitted hit publishes annotated column,row,layer and later hits overwrite XYZ independently of depth maxima. Z is the selected traversal layer, not a geometric intersection or actor height. Empty/hidden/cut/player boundaries, physical-cell/annotation carries, repeated frames and frame-zero fallback are included; gameplay object service providers, allocation lifetime and live replacement remain independent.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5212512,
+          "scope": "Terrain hit-mask dispatch8ac9..8b6b, XYZ stores8c3e..8c5e and queue-depth pick stores8d30..8d49 within discovered cell producer."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5211120,
+          "scope": "Existing four-view traversal composition; view0 entry."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5225984,
+          "scope": "Existing view1 traversal composition."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5227504,
+          "scope": "Existing view2 traversal composition."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5228848,
+          "scope": "Existing view3 traversal composition."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5230416,
+          "scope": "Ground sentinel reset4fcfa2..4fcfb4 and source mouse point4fcff7..4fd018 only; no whole scene-builder claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5231381,
+          "scope": "Static original scene-outer seed of actor/artifact/terrain depths to -64*map width at4fd315..4fd33c. The isolated fixtures supply that documented precondition, not a whole scene-outer execution."
+        }
+      ],
+      "documents": [
+        "research/runtime/ray-z-recovery-20261109.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/ground_picking.hpp",
+        "reconstruction/rendering/ground_picking.cpp",
+        "reconstruction/rendering/ground-picking/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/ground-picking-reference.cpp",
+        "tests/ground-picking-classify.S",
+        "tests/ground-picking-test.cpp",
+        "tools/test-ground-picking.py"
+      ],
+      "validation_dependencies": [
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.hpp",
+        "reconstruction/rendering/terrain_traversal.hpp",
+        "reconstruction/rendering/terrain_traversal.cpp",
+        "reconstruction/rendering/terrain_submission.hpp",
+        "reconstruction/rendering/terrain_submission.cpp",
+        "reconstruction/rendering/sprite_queue.hpp",
+        "reconstruction/rendering/sprite_queue.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "assets/path_resolver.hpp"
+      ],
+      "evidence": [
+        "RZ09.original02",
+        "RZ09.native02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "RZ09.G.live: Runtime cell-provider hit callbacks and presented-pixel application picking are unchanged; no installed World/Region callback, live replacement, resource-generation or current combined-player claim.",
+        "RZ09.G.domain: Valid owned inputs only. Corrupt original RLE, unchecked pointer/one-past collection behavior, excluded unsafe traversals and arbitrary caller geometry remain outside comparison; native validation is an intentional safety policy."
+      ]
+    },
+    {
+      "id": "RE.world-hit-classification",
+      "kind": "recovered",
+      "subsystem": "native_rendering",
+      "title": "Original ground/actor/artifact hit-class precedence",
+      "scope": "Bounded original4fd160..4fd1c0 classification block within4fcf50: signed strict actor/artifact/terrain depth comparisons, candidate-presence checks, ground-X sentinel and tie fallback. Native classification consumes owned values; isolated copied unchanged block plus test return scaffold establishes this scope only, not complete Region callback, actor selection, distance suppliers, original resource generations or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5230944,
+          "scope": "Exact contiguous hit-class block4fd160..4fd1c0 inside discovered4fcf50; independent original block execution must qualify before comparison promotion."
+        }
+      ],
+      "documents": [
+        "research/runtime/ray-z-recovery-20261109.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/ground_picking.hpp",
+        "reconstruction/rendering/ground_picking.cpp",
+        "reconstruction/rendering/ground-picking/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/ground-picking-reference.cpp",
+        "tests/ground-picking-classify.S",
+        "tests/ground-picking-test.cpp",
+        "tools/test-ground-picking.py"
+      ],
+      "validation_dependencies": [
+        "assets/sprite_loader.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/asset_file.hpp",
+        "reconstruction/rendering/terrain_traversal.hpp",
+        "reconstruction/rendering/terrain_traversal.cpp",
+        "reconstruction/rendering/terrain_submission.hpp",
+        "reconstruction/rendering/terrain_submission.cpp",
+        "reconstruction/rendering/sprite_queue.hpp",
+        "reconstruction/rendering/sprite_queue.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh",
+        "assets/path_resolver.hpp"
+      ],
+      "evidence": [
+        "RZ09.original02",
+        "RZ09.native02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "RZ09.G.live: Runtime cell-provider hit callbacks and presented-pixel application picking are unchanged; no installed World/Region callback, live replacement, resource-generation or current combined-player claim.",
+        "RZ09.G.domain: Valid owned inputs only. Corrupt original RLE, unchecked pointer/one-past collection behavior, excluded unsafe traversals and arbitrary caller geometry remain outside comparison; native validation is an intentional safety policy."
+      ]
+    },
+    {
+      "id": "RE.world-ground-picking-upper-layer",
+      "kind": "recovered",
+      "subsystem": "native_rendering",
+      "title": "Original picking at the maximum admitted terrain layer",
+      "scope": "Four unchanged original traversal/cell/mask compositions on an owned128x128x32 grid: one opaque zero-colour one-pixel tile at logical64,64,31, source point400,64 and four views. Verify raw ground Z31, one body row, selected depth/index and unchanged suppressed-role flags. Height496 remains below the original queue high-height500 branch. Native original-image access is denied; no other caller, layer32, corrupt geometry, full World service providers or live replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5212512,
+          "scope": "Selected maximum-layer composition only; full function and other external caller contexts remain independent."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5758192,
+          "scope": "Selected maximum-layer composition only; full function and other external caller contexts remain independent."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5211120,
+          "scope": "Selected maximum-layer composition only; full function and other external caller contexts remain independent."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5225984,
+          "scope": "Selected maximum-layer composition only; full function and other external caller contexts remain independent."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5227504,
+          "scope": "Selected maximum-layer composition only; full function and other external caller contexts remain independent."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5228848,
+          "scope": "Selected maximum-layer composition only; full function and other external caller contexts remain independent."
+        }
+      ],
+      "documents": [
+        "research/runtime/ray-z-recovery-20261109.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/ground_picking.hpp",
+        "reconstruction/rendering/ground_picking.cpp"
+      ],
+      "tests": [
+        "tests/ground-z-boundary-reference.cpp",
+        "tools/test-ground-z-boundary.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/terrain_traversal.hpp",
+        "reconstruction/rendering/terrain_traversal.cpp",
+        "reconstruction/rendering/terrain_submission.hpp",
+        "reconstruction/rendering/terrain_submission.cpp",
+        "reconstruction/rendering/sprite_queue.hpp",
+        "reconstruction/rendering/sprite_queue.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RZ09.upper04-original",
+        "RZ09.upper04-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "RZ09.G.live: Runtime cell-provider hit callbacks and presented-pixel application picking are unchanged; no installed World/Region callback, live replacement, resource-generation or current combined-player claim.",
+        "RZ09.G.domain: Valid owned inputs only. Corrupt original RLE, unchecked pointer/one-past collection behavior, excluded unsafe traversals and arbitrary caller geometry remain outside comparison; native validation is an intentional safety policy."
+      ]
     }
   ],
   "evidence": [
@@ -401965,6 +402252,210 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "RZ09.original02",
+      "kind": "isolated_original",
+      "record": "research/runtime/ray-z-recovery-results-20261109/comparison-02.json",
+      "sha256": "859bb684d0e345e672991465b982bb501a163bfed5b8c4dbb17cdecbcaddff69",
+      "scope": "Unchanged original mask/traversal/cell composition plus exact copied hit-class block, bounded valid inputs only. No game or whole Region callback.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/isolated_original_processes",
+          "equals": 1
+        },
+        {
+          "pointer": "/comparison/complete_semantic_trace_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original/point_cases",
+          "equals": 4067638
+        },
+        {
+          "pointer": "/original/world_cases",
+          "equals": 23173
+        },
+        {
+          "pointer": "/original/class_cases",
+          "equals": 1000
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RZ09.native02",
+      "kind": "native_integration",
+      "record": "research/runtime/ray-z-recovery-results-20261109/comparison-02.json",
+      "sha256": "859bb684d0e345e672991465b982bb501a163bfed5b8c4dbb17cdecbcaddff69",
+      "scope": "Owned mask/terrain/class model with original image PROT_NONE; byte-exact semantic trace comparison and sanitized malformed-input controls. Headless only.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/isolated_original_processes",
+          "equals": 1
+        },
+        {
+          "pointer": "/comparison/complete_semantic_trace_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/native/native_pe_unreadable",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizers_passed",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "RZ09.upper04-original",
+      "kind": "isolated_original",
+      "record": "research/runtime/ray-z-recovery-results-20261109/upper-04.json",
+      "sha256": "1ce6916be47bd70feaf7ebce655c5881764bc33a4f89069c7f639b19e155f3e4",
+      "scope": "Four new original Z31 worlds at128x128x32, four views. Lower original matrix is retained unchanged, not reexecuted.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/isolated_original_processes",
+          "equals": 1
+        },
+        {
+          "pointer": "/comparison/upper_semantic_trace_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/new_original_worlds",
+          "equals": 4
+        },
+        {
+          "pointer": "/comparison/retained_original_matrix_replayed",
+          "equals": false
+        },
+        {
+          "pointer": "/original/ground_z",
+          "equals": 31
+        }
+      ],
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RZ09.upper04-native",
+      "kind": "native_integration",
+      "record": "research/runtime/ray-z-recovery-results-20261109/upper-04.json",
+      "sha256": "1ce6916be47bd70feaf7ebce655c5881764bc33a4f89069c7f639b19e155f3e4",
+      "scope": "Four current native Z31 worlds with PE PROT_NONE, plus exact unchanged native helper replay against the retained original lower matrix. Headless only.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/isolated_original_processes",
+          "equals": 1
+        },
+        {
+          "pointer": "/comparison/current_native_matrix_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/native/native_pe_unreadable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/worlds_compared",
+          "equals": 23177
+        },
+        {
+          "pointer": "/comparison/hit_class_results_compared",
+          "equals": 1000
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -437139,6 +437630,42 @@
         "FL09.controls04",
         "FL09.fault-lifetime01"
       ]
+    },
+    {
+      "id": "rendering.ray-z-isolated",
+      "level": "headless",
+      "scope": "Owned real-mask point leaf, ordinary terrain/traversal XYZ and hit-class-block original/native comparison; deterministic synthetic and retained installed inputs, no game sessions or live replacement.",
+      "behaviors": [
+        "RE.sprite-point-mask",
+        "RE.world-ground-picking",
+        "RE.world-hit-classification"
+      ],
+      "evidence": [
+        "RZ09.original02",
+        "RZ09.native02"
+      ],
+      "tests": [
+        "tests/ground-picking-reference.cpp",
+        "tests/ground-picking-classify.S",
+        "tests/ground-picking-test.cpp",
+        "tools/test-ground-picking.py"
+      ]
+    },
+    {
+      "id": "rendering.ground-z-upper-boundary",
+      "level": "headless",
+      "scope": "Four-view original/native selected Z31 composition at native grid/layer caps, with unchanged existing source-phase matrix retained separately; no game or live replacement.",
+      "behaviors": [
+        "RE.world-ground-picking-upper-layer"
+      ],
+      "evidence": [
+        "RZ09.upper04-original",
+        "RZ09.upper04-native"
+      ],
+      "tests": [
+        "tests/ground-z-boundary-reference.cpp",
+        "tools/test-ground-z-boundary.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -438966,8 +439493,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-43a592ef19ef03bc9cd88ebb56c25affe3e15c4adbb4ee38aa3d9d5e2551258d.json",
-    "sha256": "43a592ef19ef03bc9cd88ebb56c25affe3e15c4adbb4ee38aa3d9d5e2551258d"
+    "path": "research/runtime/coverage/source-index-709f932e33c0da763941d0e756a6dd1f51358838616a86a9fffd8720e1677b99.json",
+    "sha256": "709f932e33c0da763941d0e756a6dd1f51358838616a86a9fffd8720e1677b99"
   },
   "evidence_applicability": [
     {
