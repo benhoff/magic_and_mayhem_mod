@@ -252,7 +252,9 @@ def review_errors(review, delta, before, after, audit_report, historical=False):
     if status not in {'pending', 'recorded', 'not_required'} or not isinstance(validation.get('reason'), str) or not validation['reason'].strip():
         errors.append(f'{label}: explicit validation status/reason required')
     selected = validation.get('stages')
-    if selected is not None and (status != 'recorded' or not isinstance(selected, list)
+    # A pending empty list explicitly asserts no validation dimensions.
+    # Preserve such immutable custody receipts without granting stage credit.
+    if selected is not None and not (status == 'pending' and selected == []) and (status != 'recorded' or not isinstance(selected, list)
                                 or not selected or any(stage not in VALIDATION_STAGES for stage in selected)
                                 or len(set(selected)) != len(selected)):
         errors.append(f'{label}: stages requires a nonempty unique list of recorded validation dimensions')
