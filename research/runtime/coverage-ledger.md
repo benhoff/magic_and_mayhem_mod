@@ -27983,3 +27983,43 @@ The pending exact union uses actual master9b0148db6as first parent and checked f
 The current progress snapshot supplies display bindings from the parents separate recorded phase maps and retains those maps unchanged; historical hashes are not refreshed. New stretch attachments correctly name actual_destination_extents; the owned snapshot used the legacy actual_world_extents key for these same destination sizes, despite entering zero Worlds. This metadata correction changes no value or engine proof. Merged controls pass41stretch Python cases, the shared artifact-reader tests and four dashboard guards, and the actual dashboard shows116/40with both alias rows/final decisions pending.
 
 Incoming committed-history review covers19123parent/current file versions fromb0eb1de5bthrough9b0148db6. A separate retrospective receipt pins2674unique opaque input transitions, including repeated additions across merge first parents and the source-specific black-guards archive. The closed review has no unresolved exact-transition gaps; it asserts neither a past gate pass nor new engine validation. Complete prior journals/archives, failures and source identities are preserved. See rendering-copy-natural-results-20261108/master-admission-01.json, master-checks-01.json and incoming-history-closed-01.json.
+
+
+### PC08 finite World-entry palette refresh — 2026-11-08
+
+The owned palette branch closes exactly both `operation.palette-cycling` rows
+for default/software at actual640×480/800×600. The immutable
+[acceptance proof](palette-cycling-results-20261108/acceptance-01.json) preserves
+all108parent rows and both pending player decisions:110passed46pending in this
+source phase. No newer master count or combined-current-player claim is made.
+
+Actual RGB/globals/coefficient/FP/profile inputs independently reproduce675
+initial nodes /5,311,744 WORDs and32refreshes /1,568,768 WORDs. All935,676
+ordered selected versions join878Worlds;1,021,416,000viewport pixels over926
+World presentations have zero differences. Twelve actual changed-colour
+source/last-writer/native-lease witnesses and normal original/native retirement
+pass. The proof covers finite World-entry mutation, not arbitrary periodic
+cycling between displayed frames. Initial unpresented colours are baselines.
+Original palette builders/refreshes remain live suppliers; platform services,
+exceptional domains, other providers and native live replacement stay separate.
+
+Recovered x87 power now also serves mode0's dark wing. The affected isolated
+matrix passes3468palettes /63,416,320WORDs; the refresh matrix passes2816cases
+under two precision settings and both packed formats.31observer controls and
+28production assembly ABI cases pass; actual service text is a supplied input.
+Every earlier numerical mismatch, setup refusal, semantic-probe ordering error,
+unobserved v2 rewrite refusal, invisible first-v3 case and metadata/storage
+correction is retained. Nine attempts /seven actual games are stopped. Preserve
+older evidence/status source phases and raw staleness rather than renewing
+all palette or player milestones. See [the scoped research](palette-cycling-20261108.md).
+
+
+## Palette refresh integrated into current master — 2026-11-08
+
+The exact parent union preserves all116accepted master rows, including current
+stretch/cursor/scene/recovery work, and adds exactly both finite palette-refresh
+rows:118/156passed38pending. Both final decisions and all old failures/budgets
+remain unchanged. See `palette-master-merge-results-20261108/acceptance-01.json`.
+Every recorded source map and raw native/runtime drift remains explicit.
+Merged source controls/builds and fresh staged accounting do not assert a new
+combined-native execution or repeat a game/original-oracle/pixel run.

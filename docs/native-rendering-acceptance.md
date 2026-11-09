@@ -259,3 +259,21 @@ concurrent positive rows and each recorded compiler/runtime source phase.
 The integrated UI07/PA07 inventory has98of156rows passed,
 58pending, all six requested HUD/tooltip/pause targets passed and both
 final decisions pending. Each accepted execution retains its exact build phase.
+
+
+PC08 (2026-11-08) closes only the two finite palette-cycling operation rows.
+Four actual default/software640/800contexts bind real World-entry WORD/DWORD
+refresh inputs and independent numerical results, complete selected-version
+ordering, twelve changed production colours in native output and normal
+retirement. All1,021,416,000compared viewport pixels match. The owned108-row
+parent becomes110passed46pending; newer master phases remain independent.
+Unpresented constructor colours are numerical baselines, not prior native
+frames; arbitrary periodic animation and live palette-builder replacement
+remain separate. Both final player decisions stay pending. See
+[PC08 research](../research/runtime/palette-cycling-20261108.md).
+
+
+The 2026-11-08 palette/master union retains all116current accepted rows and adds
+only both finite palette-refresh rows:118passed38pending. Exact recorded
+execution/source phases and both pending final decisions remain separate from
+merged source controls. No original-game/oracle/pixel recollection is included.
