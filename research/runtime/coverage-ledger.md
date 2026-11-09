@@ -28023,3 +28023,39 @@ remain unchanged. See `palette-master-merge-results-20261108/acceptance-01.json`
 Every recorded source map and raw native/runtime drift remains explicit.
 Merged source controls/builds and fresh staged accounting do not assert a new
 combined-native execution or repeat a game/original-oracle/pixel run.
+
+
+## Natural alias COPY caller investigation — 2026-11-08
+
+`ALIAS08.caller-leads01` retains all156direct COPY caller candidates with exact
+straight-line source/destination expressions:29distinct constant-wrapper pairs,
+127unresolved pairs and no same-expression candidate. Distinct wrappers never
+prove disjoint backing. Selected original deferred-queue storage/drain and
+generic-image/bar publication scaffolding narrow the remaining leads. All three
+generic destination setter callers pass6a49e0; two bar draw callers and67queue
+publishers remain static contexts, not naturally executed overlap witnesses.
+
+Two retained original-active journals supply3812source-copy calls, zero identical
+generations and zero prior successful QueryInterface alias pairs at copy entry;
+every unlinked backing relationship remains unknown. Exact small metadata bytes
+are read directly from verified cold objects and retained through SQLite, without
+restoring full captures.33focused current Python controls pass; the malformed
+timeline and later build-map bookkeeping refusal retain exact negative phases.
+No native/runtime edit, game run, pixel comparison, new game fixture or original
+driver reexecution is added. Both alias rows remain pending, all116accepted
+rows and both pending final decisions remain unchanged. Whole predecessor/
+indirect flow, actual source publication/allocation, natural overlap traversal
+and complete output remain open. See rendering-alias-reachability-20261108.md.
+
+
+### Alias investigation integration into current master
+
+The integration preserves the incoming palette work and its118accepted/38pending
+frontier, adds zero acceptance rows, and keeps both alias rows pending. All11
+analysis/control source files remain byte-identical to the33-control phase; no
+control, original game, oracle or pixel matrix is rerun. Incoming native palette/
+observer changes retain their own tested phases; no combined native execution
+claim is made. The exact committed-history review retains retrospective opaque
+artifact custody separately from validation, with zero remaining receipt gaps.
+See rendering-alias-reachability-results-20261108/master-preserved-scope-01.json
+and master-history-01.json.
