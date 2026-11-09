@@ -67,3 +67,29 @@ remains scoped separately as `NP.world-opaque-fallback-caller`; the new scope is
 9b0148db6 to 9da49daa7 checks 152 logical parent/current file transitions against
 exact receipts with zero missing transitions; this is accounting, not a past
 gate-pass or fresh engine-execution claim.
+
+## Integration with palette master
+
+While the fix's normal hook ran, palette master `a1b830044` landed. The pending
+merge uses actual first parent `bb5f0aabf` and second parent `a1b830044`. Keyed
+register records, complete append-only journals/archives and both ledger tails
+are preserved. The palette and acceptance metadata are inherited without a new
+acceptance promotion from this fix.
+
+The merged runtime sources are checked independently by
+[merged original/native comparison](opaque-secondary-results-20261108/merged-positive-01.json),
+[merged primary regression](opaque-secondary-results-20261108/merged-primary-control-01.json)
+and [merged black/sprite controls](opaque-secondary-results-20261108/merged-black-guards-01.json).
+They retain the same case/WORD/control counts and zero refusals or differences;
+both production/selftest observers compile from the combined source. The earlier
+source-phase reports and hashes remain unchanged. New evidence IDs
+`OS08.merged-original01`, `OS08.merged-primary01`, `OS08.merged-callers01` and
+`OS08.merged-black01` supply current source support only for their finite scopes.
+Broader historical runtime proofs remain separate.
+
+[The complete merged history review](opaque-secondary-results-20261108/merged-history-02.json)
+checks 21,533 actual committed parent/current file versions, including binary
+artifacts. It retains the negative finding and adds 266 exact retrospective
+custody transitions in one append-only receipt, leaving zero missing receipts.
+This extends the earlier 152-transition managed-file review; it asserts no past
+gate pass, new semantic recovery, current execution or acceptance promotion.

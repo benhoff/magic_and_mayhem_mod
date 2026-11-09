@@ -1,4 +1,5 @@
 #include "palette_shading.hpp"
+#include "palette_power.hpp"
 #include <algorithm>
 #include <cmath>
 #include <stdexcept>
@@ -44,7 +45,7 @@ ShadedPalette buildShadedPalette(const PaletteRgb& rgb,PaletteShadingConfig c,bo
   return std::uint16_t(rgb555?((r&248)<<7)|((g&248)<<2)|(b>>3):((r&248)<<8)|((g&252)<<3)|(b>>3));};
  const auto half=result.neutral;
  for(unsigned t=0;t<result.tables.size();++t){
-  const auto factor=t<half?std::pow((long double)((127*half-127*t)/half),(long double)c.intensityPower):0.L;
+  const auto factor=t<half?paletteDarkPower(double((127*half-127*t)/half),c.intensityPower):0.L;
   if(!std::isfinite(factor))throw std::invalid_argument("Nonfinite dark shading power");
   for(unsigned i=0;i<256;++i){const auto& p=rgb[i];std::array<int,3> colour{};
    // The x87 routine stores the weighted sum to double before channel math.

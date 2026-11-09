@@ -27984,6 +27984,46 @@ The current progress snapshot supplies display bindings from the parents separat
 
 Incoming committed-history review covers19123parent/current file versions fromb0eb1de5bthrough9b0148db6. A separate retrospective receipt pins2674unique opaque input transitions, including repeated additions across merge first parents and the source-specific black-guards archive. The closed review has no unresolved exact-transition gaps; it asserts neither a past gate pass nor new engine validation. Complete prior journals/archives, failures and source identities are preserved. See rendering-copy-natural-results-20261108/master-admission-01.json, master-checks-01.json and incoming-history-closed-01.json.
 
+
+### PC08 finite World-entry palette refresh — 2026-11-08
+
+The owned palette branch closes exactly both `operation.palette-cycling` rows
+for default/software at actual640×480/800×600. The immutable
+[acceptance proof](palette-cycling-results-20261108/acceptance-01.json) preserves
+all108parent rows and both pending player decisions:110passed46pending in this
+source phase. No newer master count or combined-current-player claim is made.
+
+Actual RGB/globals/coefficient/FP/profile inputs independently reproduce675
+initial nodes /5,311,744 WORDs and32refreshes /1,568,768 WORDs. All935,676
+ordered selected versions join878Worlds;1,021,416,000viewport pixels over926
+World presentations have zero differences. Twelve actual changed-colour
+source/last-writer/native-lease witnesses and normal original/native retirement
+pass. The proof covers finite World-entry mutation, not arbitrary periodic
+cycling between displayed frames. Initial unpresented colours are baselines.
+Original palette builders/refreshes remain live suppliers; platform services,
+exceptional domains, other providers and native live replacement stay separate.
+
+Recovered x87 power now also serves mode0's dark wing. The affected isolated
+matrix passes3468palettes /63,416,320WORDs; the refresh matrix passes2816cases
+under two precision settings and both packed formats.31observer controls and
+28production assembly ABI cases pass; actual service text is a supplied input.
+Every earlier numerical mismatch, setup refusal, semantic-probe ordering error,
+unobserved v2 rewrite refusal, invisible first-v3 case and metadata/storage
+correction is retained. Nine attempts /seven actual games are stopped. Preserve
+older evidence/status source phases and raw staleness rather than renewing
+all palette or player milestones. See [the scoped research](palette-cycling-20261108.md).
+
+
+## Palette refresh integrated into current master — 2026-11-08
+
+The exact parent union preserves all116accepted master rows, including current
+stretch/cursor/scene/recovery work, and adds exactly both finite palette-refresh
+rows:118/156passed38pending. Both final decisions and all old failures/budgets
+remain unchanged. See `palette-master-merge-results-20261108/acceptance-01.json`.
+Every recorded source map and raw native/runtime drift remains explicit.
+Merged source controls/builds and fresh staged accounting do not assert a new
+combined-native execution or repeat a game/original-oracle/pixel run.
+
 ## OS08 opaque second-frame caller fixes — 2026-11-08
 
 The four remaining second-copy continuations of NoCD40209ca7 wrapper57e8e0 are
@@ -28009,3 +28049,23 @@ whole-player completion follows. Existing historical hashes and failed attempts
 are preserved. Intervening committed history9b0148db6..9da49daa7has152reviewed
 logical file transitions and zero missing exact receipts; this is separate from
 current changes and validation.
+
+### OS08 actual palette-master integration — 2026-11-08
+
+The pending merge preserves actual first parentbb5f0aabfand mastera1b830044,
+including every keyed behavior/evidence record, prior journal/archive and both
+ledger additions. OS08.merged-original01 repeats108864two-frame original/native
+cases/33094656WORDs and524288AX/model cases over the combined runtime sources;
+zero refusals or differences. Merged primary21384cases/5184fallbacks,
+black393216cases, production/regenerated caller and sprite protected-span
+controls, and both observer builds pass. Old hashes and source-phase reports
+remain immutable; inherited palette/acceptance statuses gain no new validation
+from this fix. No original-game start, live second-copy witness, whole-player
+claim or acceptance-row promotion follows.
+
+The complete merged committed-history review covers21533parent/current file
+versions including binary artifacts. One append-only retrospective receipt pins
+266missing custody transitions; the verified closed report has zero missing
+receipts and retains the negative finding. This is independent of fresh merged
+OS08execution and asserts no historical gate pass. See
+`opaque-secondary-results-20261108/merged-history-02.json`.

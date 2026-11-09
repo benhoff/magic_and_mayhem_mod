@@ -1,4 +1,5 @@
 #include "palette_effects.hpp"
+#include "palette_power.hpp"
 #include "terrain_selection.hpp"
 #include <algorithm>
 #include <cmath>
@@ -7,19 +8,7 @@
 namespace mnm::reconstruction {
 namespace {
 long double effectPower(double base,double power){
-#if defined(__i386__) || defined(__x86_64__)
- // Positive finite branch of59bcc0/5a05e0: binary64 operands, x87
- // logarithm/exponential reduction, extended result until the caller spills.
- // libm powl can round an integer power exactly where this sequence does not.
- long double result;
- asm volatile("fldl %2; fldl %1; fyl2x; fld %%st(0); frndint; fxch; "
-              "fsub %%st(1), %%st(0); f2xm1; fld1; faddp; fscale; fstp %%st(1); fstpt %0"
-              : "=m"(result) : "m"(base), "m"(power)
-              : "st", "st(1)", "st(2)");
- return result;
-#else
- return std::pow(static_cast<long double>(base),static_cast<long double>(power));
-#endif
+ return paletteDarkPower(base,power);
 }
 int integer(long double v){
  // The original __ftol returns integer-indefinite for unordered/out-of-range.
