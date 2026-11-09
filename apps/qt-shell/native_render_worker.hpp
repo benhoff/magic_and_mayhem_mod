@@ -4,6 +4,7 @@
 #include "render_deadline_probe.hpp"
 #include "native_frame_trace.hpp"
 #include "native_worker_status_gate.hpp"
+#include "surface_loss_probe.hpp"
 #include <QThread>
 #include "acceptance_capture.hpp"
 #include <QOffscreenSurface>
@@ -36,6 +37,10 @@ private:
     std::atomic<std::uint64_t> pendingCpuRead_{0};
     void run() override;
     void join(bool producerExited);
+    void testSurfaceLoss();
+    std::unique_ptr<SurfaceLossProbe> surfaceLossProbe_;
+    bool surfaceLossParked_=false,surfaceLossDestroyed_=false,surfaceLossGuiThread_=false,surfaceLossTargetRestored_=false;
+    qint64 surfaceLossDestroyBegin_=0,surfaceLossDestroyEnd_=0;
     struct Status {
         LiveCommandSession::State state=LiveCommandSession::State::WaitingFrame;
         unsigned recoveries=0;

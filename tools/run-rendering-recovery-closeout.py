@@ -18,14 +18,14 @@ menus=module('run-rendering-menu-acceptance')
 sha=menus.sha
 
 
-def collection_paths(plan, report, software):
+def collection_paths(plan, report, software, size=None):
     """A new frozen collection owns separate state; stopped budgets stay intact."""
     paths = plan.get('execution_paths')
     if paths is None:
         return (ROOT / 'working/recovery-closeout08/acceptance' / Path(report).stem,
                 ROOT / 'working/transition-closeout08-attempts.sqlite3')
     require(paths.get('schema') == 1, 'Unknown collection path schema')
-    require(paths.get('reports', {}).get(report) == dict(software=software, size=[640, 480]),
+    require(paths.get('reports', {}).get(report) == dict(software=software, size=size or [640, 480]),
             'Report/configuration outside frozen collection')
     owned = []
     for key in ('output_root', 'budget'):
@@ -39,27 +39,31 @@ def collection_paths(plan, report, software):
             'Stopped collection budgets cannot be reopened')
     return owned[0] / Path(report).stem, owned[1]
 
-def main():
+def main(*,surface_loss=False):
+    global PREFIX
+    if surface_loss:PREFIX='research/runtime/surface-loss-restore-results-20261109/'
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--report', required=True)
     p.add_argument('--software', action='store_true')
     p.add_argument('--low', action='store_true')
-    p.add_argument('--plan',default=PLAN)
+    p.add_argument('--plan',default=PREFIX+'input-plan-01.json' if surface_loss else PLAN)
     p.add_argument('--repair-of')
     p.add_argument('--repair-reason')
     args = p.parse_args()
-    require(args.low,"Low confirmation controller requires --low")
+    require(args.low or surface_loss,"Low confirmation controller requires --low")
     if os.environ.get('MNM_TRANSITION_BUS_OWNED')!='1':
         runtime=ROOT/'working/transition-runtime'/Path(args.report).stem
         runtime.mkdir(parents=True,mode=0o700,exist_ok=False)
         isolated=dict(os.environ,XDG_RUNTIME_DIR=str(runtime),MNM_TRANSITION_BUS_OWNED='1',ATSPI_DBUS_IMPLEMENTATION='dbus-daemon')
         isolated.pop('AT_SPI_BUS_ADDRESS',None)
-        os.execvpe('dbus-run-session',['dbus-run-session','--',sys.executable,__file__,*sys.argv[1:]],isolated)
+        entry=ROOT/'tools/run-rendering-surface-loss.py' if surface_loss else Path(__file__)
+        os.execvpe('dbus-run-session',['dbus-run-session','--',sys.executable,str(entry),*sys.argv[1:]],isolated)
     require(args.report.startswith(PREFIX) and '..' not in Path(args.report).parts and not (ROOT / args.report).exists(), 'Fresh owned report required')
     require(bool(args.repair_of) == bool(args.repair_reason), 'Repair needs retained failure and concrete reason')
     with Reader(ROOT) as reader:
         paths_plan = reader.json(args.plan)
-    out, budget_path = collection_paths(paths_plan, args.report, args.software)
+    size=[640,480] if args.low else [800,600]
+    out, budget_path = collection_paths(paths_plan, args.report, args.software,size)
     out.mkdir(parents=True, exist_ok=False)
     (out / '.retain').touch()
     require(args.report.endswith('-acquisition.json'),'Acquisition report suffix required')
@@ -68,13 +72,16 @@ def main():
         'tools/run-rendering-menu-acceptance.py', 'tools/rendering_menu_accessibility.py', 'tools/rendering_interaction_live.py', 'tools/rendering_interaction_budget.py', 'tools/resident_capture.py', 'tools/inspect-canvas-producers.py',
         'tools/native_only_contract.py', 'tools/native_prefix_template.py', 'tools/run-native-owned.py',
         'tools/rendering_build_binding.py', 'tools/menu-game-runner.py', 'tools/menu-storage-input.py', 'tools/campaign_storage.py', 'tools/input_wire.py'}
+    if surface_loss:names.update({'tools/run-rendering-surface-loss.py','tools/rendering_surface_loss_live.py','tools/rendering_surface_loss.py'})
     with Reader(ROOT) as reader:
         plan = reader.json(args.plan)
         require(plan['success'] and all(reader.digest(n) == h for n, h in plan['compiler_sources'].items()), 'Accepted player source drift')
         require(all(reader.digest(n)==h for n,h in plan['runtime_sources'].items()) and all(reader.digest(n)==h for n,h in plan['sources'].items()),'Frozen runtime/controller source drift')
         names.update(plan['compiler_sources'])
         binary = ROOT / plan['player_binary']['path']
-        require(sha(binary) == plan['player_binary']['sha256'] and sha(ROOT/plan['fault_binary']['path'])==plan['fault_binary']['sha256'], 'Accepted player/fault binary differs')
+        require(sha(binary) == plan['player_binary']['sha256'], 'Accepted player binary differs')
+        if not surface_loss:require(sha(ROOT/plan['fault_binary']['path'])==plan['fault_binary']['sha256'], 'Accepted fault binary differs')
+        else:require(plan['kind']=='native_surface_loss_prospective_plan' and plan['fault_policy']=='quiescent-native-offscreen-target-loss','Wrong native loss plan')
     sources = {n: sha(ROOT / n) for n in sorted(names)}
     result = dict(schema=1, kind='public_native_transition_recovery_acquisition', success=False, sources=sources,
         session_identity=secrets.token_hex(16), configuration=dict(software_flag=args.software, high_resolution=not args.low,
@@ -82,6 +89,10 @@ def main():
         original_state_samplers=True, viewport_scaling='sharp', physical_intro_skip=True, accessibility_bus='private-dbus-daemon', viewport_capture_policy='campaign-lossless-viewport-v1',command_capture_policy='command-history-lossless-v1'),
         original_game_runs=0, original_pixels_used_as_native_inputs=False, player_binary=plan['player_binary'],
         compiler_sources=plan['compiler_sources'], temporary_root=str(out), scope=__doc__)
+    if surface_loss:
+        result['kind']='public_native_surface_loss_acquisition'
+        result['configuration']['declared_fault']='quiescent-native-offscreen-target-loss'
+        result['configuration']['render_owner']='gui-resident'
     with Reader(ROOT) as r:result['prospective_plan']=dict(record=args.plan,sha256=r.digest(args.plan))
     result.update(repair_of=args.repair_of, repair_reason=args.repair_reason)
     hs = ls = child = journey = lease = None
@@ -101,8 +112,11 @@ def main():
                 for n,repair,charge in budget.execute('SELECT report,repair_of,charged_games FROM attempts'):
                     data=r.json(n);matches=[r.json(f.relative_to(ROOT)) for f in sorted((ROOT/PREFIX).glob(Path(n).name.replace('-acquisition.json','-comparison')+'*.json'))]
                     valid=[v for v in matches if v.get('acquisition')==dict(record=n,sha256=r.digest(n))]
-                    cases.append(dict(report=n,repair_of=repair,result=data,proved=any(v.get('success') is True and v.get('sources_stable') is True and v.get('proof',{}).get('verified') is True for v in valid),comparison_failed=any(v.get('success') is False for v in valid)))
-                result['attempt_admission']=admit(cases,args.repair_of,plan['bounds']['maximum_requests'],plan['bounds']['maximum_original_games'])
+                    cases.append(dict(report=n,repair_of=repair,result=data,charged_games=charge,proved=any(v.get('success') is True and v.get('sources_stable') is True and v.get('proof',{}).get('verified') is True for v in valid),comparison_failed=any(v.get('success') is False for v in valid)))
+                if surface_loss:
+                    from rendering_surface_loss import admit_requests
+                    result['attempt_admission']=admit_requests(cases,args.repair_of,plan['bounds']['maximum_requests'],plan['bounds']['maximum_original_games'])
+                else:result['attempt_admission']=admit(cases,args.repair_of,plan['bounds']['maximum_requests'],plan['bounds']['maximum_original_games'])
             budget.execute('INSERT INTO attempts VALUES(?,?,?)',(args.report,args.repair_of,2))
         subprocess.run([ROOT / 'tools/original-manifest.sh', 'verify'], check=True)
         before = True
@@ -129,6 +143,7 @@ def main():
             MNM_ACCEPTANCE_COMMAND_HISTORY='1', MNM_ACCEPTANCE_NORMAL='1', MNM_ACCEPTANCE_CAMPAIGN='1', MNM_ACCEPTANCE_GAMEPLAY='1', MNM_ACCEPTANCE_FRAME_INPUT='1',
             XDG_RUNTIME_DIR=os.environ['XDG_RUNTIME_DIR'], XDG_CACHE_HOME=str(out/'cache'),
             LIBGL_ALWAYS_SOFTWARE='1', __EGL_VENDOR_LIBRARY_FILENAMES='/usr/share/glvnd/egl_vendor.d/50_mesa.json')
+        if surface_loss:env['MNM_SURFACE_LOSS_TEST']='1'
         prefix=ROOT/'working/transition-prefixes'/('wineprefix-'+Path(args.report).stem);prefix.parent.mkdir(parents=True,exist_ok=True)
         lease, result['prefix_pool'] = borrow(ROOT / 'working/fixtures/prefix-seed', prefix, env)
         env['MNM_OWNED_WINE_PREFIX'] = str(prefix)
@@ -143,7 +158,10 @@ def main():
             # disposable client before constructing the controller or Launch.
             with (out/'accessibility-preflight.log').open('xb') as preflight:
                 subprocess.run([sys.executable,'-c',"import gi;gi.require_version('Atspi','2.0');from gi.repository import Atspi;Atspi.init();assert Atspi.get_desktop(0) is not None;print('private accessibility bus ready')"],env=env,stdout=preflight,stderr=subprocess.STDOUT,check=True,timeout=20)
-            journey = TransitionJourney(child, out, env, size, str(ROOT/plan['fault_binary']['path']))
+            if surface_loss:
+                from rendering_surface_loss_live import SurfaceLossJourney
+                journey=SurfaceLossJourney(child,out,env,size,None)
+            else:journey = TransitionJourney(child, out, env, size, str(ROOT/plan['fault_binary']['path']))
             deadline = time.monotonic() + 20
             while time.monotonic() < deadline:
                 require(child.poll() is None, 'Qt host failed to open')
@@ -215,6 +233,14 @@ def main():
                 result.update(success=False, original_verification_error=str(error))
         admissions=list((out/'owner/sessions').glob('*.json'))
         result['original_game_runs']=len(admissions)
+        if surface_loss:
+            # An unretired launcher without a session receipt is not a proven
+            # zero-start setup failure. Keep its reservation conservatively.
+            charge=len(admissions) if result['success'] or child is None else 2
+            result['charged_original_starts']=charge
+            result['actual_start_count_complete']=result['success'] or child is None or len(admissions)==2
+            with sqlite3.connect(budget_path) as budget:
+                budget.execute('UPDATE attempts SET charged_games=? WHERE report=?',(charge,args.report))
         result['observed_session_roots']=[json.loads(f.read_bytes())['session'] for f in admissions]
         if journey:result['epochs_observed']=journey.epochs
         result['sources_stable'] = all(sha(ROOT / n) == h for n, h in sources.items())

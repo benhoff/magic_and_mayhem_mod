@@ -46,13 +46,16 @@ def archive_outputs(out,bundle):
     return members,dict(logical_files=len(members),unique_contents=len(contents),hardlinked_members=links,logical_bytes=sum(v['bytes'] for v in members),duplicate_bytes=saved,all_member_bytes_verified=True,physical_producer_files_modified=False)
 
 
-def main():
+def main(*,surface_loss=False):
+    global PREFIX
+    if surface_loss:PREFIX='research/runtime/surface-loss-restore-results-20261109/'
     p = argparse.ArgumentParser(description=__doc__); p.add_argument('--acquisition', required=True); p.add_argument('--report', required=True)
     p.add_argument('--reuse-pixels');p.add_argument('--analysis-review')
     args = p.parse_args()
     require(bool(args.reuse_pixels)==bool(args.analysis_review),'Retained pixels require exact analysis review')
     require(args.report.startswith(PREFIX) and '..' not in Path(args.report).parts and not (ROOT / args.report).exists(), 'Fresh immutable comparison required')
-    out = ROOT / 'working/recovery-closeout08/comparisons' / Path(args.report).stem; out.mkdir(parents=True, exist_ok=False); (out / '.retain').touch()
+    output_root=ROOT/('working/surface-loss/comparisons' if surface_loss else 'working/recovery-closeout08/comparisons')
+    out = output_root / Path(args.report).stem; out.mkdir(parents=True, exist_ok=False); (out / '.retain').touch()
     result = dict(schema=1, kind='public_native_transition_recovery_comparison', success=False, original_pixels_used_as_native_inputs=False)
     processes, before = Processes(), False
     with Reader(ROOT) as reader:
@@ -67,6 +70,7 @@ def main():
             'tools/close-rendering-world-exit.py', 'tools/join-rendering-normal-acceptance.py', 'tools/rendering_normal_acceptance.py',
             'tools/rendering_menu_acceptance.py', 'tools/resident_capture.py', 'tools/inspect-canvas-producers.py',
             'tools/rendering_gameplay_acceptance.py', 'tools/campaign_input_observation.py', 'tools/test-menu-observer.py')})
+        if surface_loss:sources.update({n:reader.digest(n) for n in ('tools/check-rendering-surface-loss.py','tools/rendering_surface_loss.py')})
         result['sources'] = sources
         def execute(label, command):
             with (out / (label + '.log')).open('xb') as log: processes.run([str(v) for v in command], cwd=ROOT, stdout=log, timeout=300)
@@ -87,7 +91,7 @@ def main():
                 for n,change in review['changes'].items():
                     require(parent['sources'][n]==change['before']==reader.digest(change['before_record']) and sources[n]==change['after'],'Analyzer source preimage/current pair differs')
                 result['retained_pixel_comparison']=dict(record=args.reuse_pixels,sha256=reader.digest(args.reuse_pixels),analysis_review=dict(record=args.analysis_review,sha256=reader.digest(args.analysis_review)),new_original_reference_execution=False,new_pixel_comparison=False)
-            view,epochs,result['partition']=observed_epochs(reader,a)
+            view,epochs,result['partition']=observed_epochs(reader,a,provider_loss=surface_loss)
             if parent:require(parent['partition']==result['partition'],'Retained epoch partition differs')
             result['epochs']=[]
             execute('original-before',[ROOT/'tools/original-manifest.sh','verify']);before=True
@@ -126,7 +130,7 @@ def main():
                 fresh=dict(a,session=epoch['root'],resident=epoch['resident'],artifacts=[v for v in a['artifacts'] if v['path'].startswith(str(Path(epoch['root']).relative_to(ROOT))+'/')])
                 if i==1:item['lighting']=lighting(ROOT,fresh,{v['path']:v for v in fresh['artifacts']})
                 result['epochs'].append(item)
-            result['proof']=assess(reader,a,result,epochs)
+            result['proof']=assess(reader,a,result,epochs,provider_loss=surface_loss)
             result['comparison']=dict(success=all(v['comparison']['success'] for v in result['epochs']),pixels_compared=sum(v['comparison']['pixels_compared'] for v in result['epochs']),mismatching_pixels=sum(v['comparison']['mismatching_pixels'] for v in result['epochs']),world_presentations=sum(v['comparison']['world_presentations'] for v in result['epochs']))
             result['success']=result['comparison']['success'] and result['proof']['verified']
         except Exception as error:

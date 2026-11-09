@@ -1,4 +1,5 @@
 #include "pending_cpu_fault_test.hpp"
+#include "gui_surface_loss_probe.hpp"
 #include "watchdog_host_fault.hpp"
 #include "host_event_trace.hpp"
 #include "live_realm_controller.hpp"
@@ -335,6 +336,12 @@ public:
                     catch(const std::exception& e){residentFailed(QString::fromUtf8(e.what()));return;}
                 }
                 if(liveMenus_)liveMenus_->renderingProgress();
+                if(guiSurfaceLoss_ && residentWorld_ && commands_){
+                    try{
+                        const auto error=guiSurfaceLoss_->poll(*commands_,residentWorld_->nativeFrames(),residentWorld_->displayState().pending);
+                        if(!error.isEmpty()){residentFailed(error);return;}
+                    }catch(const std::exception& error){residentFailed(QString::fromUtf8(error.what()));return;}
+                }
                 const double totalMs=workClock.nsecsElapsed()/1000000.0;
                 if(residentWorld_&&nativePollTiming_&&nativePollTimingRows_<256&&(totalMs>=50||gap>=100)){
                     ++nativePollTimingRows_;
@@ -439,6 +446,7 @@ private:
                 const auto presented=[this]{++nativeCommandFrames_;input_->suspend(residentTerminal_ || (media_ && media_->movieActive()) || (menuStack_&&menuStack_->currentWidget()!=viewport_));placeholder_->hide();gl_->show();statusBar()->showMessage((residentWorld_||renderWorker_)?"Native World presentation active.":"Native command presentation active. Original rendering retained.");};
                 const auto stateChanged=[this](LiveCommandSession::State state){if(state==LiveCommandSession::State::Stopping){input_->suspend(true);return;}if(state==LiveCommandSession::State::Recovering || state==LiveCommandSession::State::WaitingFrame){input_->suspend(true);gl_->hide();placeholder_->setText("Recovering native presentation. Original game window remains available.");placeholder_->show();statusBar()->showMessage("Recovering native presentation.");}};
                 const auto session=(QRandomGenerator::global()->generate()&0x7fffffffu)|1u;
+                guiSurfaceLoss_.reset();
                 const bool resident=liveMenus_ && qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")=="1";
                 if(resident && !continuous){statusBar()->showMessage("Resident World requires continuous commands.");return false;}
                 const auto directory=QFileInfo(commandPath).dir();
@@ -457,6 +465,12 @@ private:
                     frames_.setInterval(1);
                 }else{
                     commands_=std::make_unique<LiveCommandSession>(*gl_);
+                    if(qEnvironmentVariableIntValue("MNM_SURFACE_LOSS_TEST")==1){
+                        if(qEnvironmentVariableIntValue("MNM_ACCEPTANCE_NORMAL")!=1 || qEnvironmentVariableIntValue("MNM_NATIVE_DEVICE_RECOVERY")==1){
+                            statusBar()->showMessage("Surface-loss diagnostic requires ordinary acceptance rendering");return false;
+                        }
+                        guiSurfaceLoss_=std::make_unique<GuiSurfaceLossProbe>(commandPath,session,wireVersion);
+                    }
                     guiGraphicsRecoveries_=0;
                     if(qEnvironmentVariableIntValue("MNM_NATIVE_DEVICE_RECOVERY")==1)gl_->recoverGraphics=[this]{
                         if(!commands_ || !commands_->error().isEmpty() || guiGraphicsRecoveries_>=3)return false;
@@ -563,8 +577,9 @@ private:
         if(input_){input_->suspend(true);input_->setTarget(0);}
         if(gl_){gl_->setGpuFrame({});gl_->setFrame({});gl_->hide();}
         if(renderWorker_){renderWorker_->abort();finishPendingCpuFault();renderWorker_.reset();}
-        if(commands_){commands_->abort();commands_.reset();}
+        if(commands_){commands_->abort();if(guiSurfaceLoss_)guiSurfaceLoss_->commandCleanup(commands_->result());commands_.reset();}
         if(residentWorld_){residentWorld_->abort(message);residentWorld_->saveReport(residentWorldReport_);residentWorld_.reset();}
+        if(guiSurfaceLoss_)guiSurfaceLoss_->retired(bool(commands_),bool(residentWorld_),gl_&&!gl_->frameSize().isEmpty());
         retry_->setEnabled(false);fallback_->setEnabled(false);
         restart_->setEnabled(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running()));
         if(menuStack_)menuStack_->setCurrentWidget(viewport_);
@@ -581,6 +596,7 @@ private:
             });
         }
     }
+    std::unique_ptr<GuiSurfaceLossProbe> guiSurfaceLoss_;
     bool residentTerminal_=false;
     void hardRestart(){
         if(restarting_||checking_||!(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running())||(nativeOnly_&&residentTerminal_)))return;

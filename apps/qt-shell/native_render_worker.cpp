@@ -52,6 +52,12 @@ NativeRenderWorker::~NativeRenderWorker(){if(durableGraphics_)viewport_.recoverG
 bool NativeRenderWorker::create(const QString& path,quint32 session,quint32 version,int timeout){
     if(version!=2 && version!=3){status_.error="Render worker requires streaming owned World commands";return false;}
     if(!commands_->create(path,session,version,timeout)){status_.error=commands_->error();return false;}
+    if(qEnvironmentVariableIntValue("MNM_SURFACE_LOSS_TEST")==1){
+        if(qEnvironmentVariableIntValue("MNM_ACCEPTANCE_NORMAL")!=1 || durableGraphics_ || mnm::render::GlBlitter::isolatedRecoveryEnabled()){
+            status_.error="Surface-loss diagnostic requires ordinary acceptance rendering";return false;
+        }
+        surfaceLossProbe_=std::make_unique<SurfaceLossProbe>(path,session,version);
+    }
     return true;
 }
 bool NativeRenderWorker::poll(bool normalQuit,bool drawAllowed,bool paused){
@@ -104,10 +110,59 @@ void NativeRenderWorker::join(bool producerExited){
     // Return the GUI lease before joining. The worker retains every exported
     // texture until its last consumer lease is gone, and destroys it itself.
     viewport_.setGpuFrame({});
+    // On failure the worker parks before cleanup. Recreate a destroyed GUI
+    // platform target solely for GL deletion; the old session remains failed.
+    // No old drawing, checkpoint loading or command replay is permitted here.
+    bool failed=false;{std::lock_guard<std::mutex> lock(mutex_);failed=!published_.error.isEmpty();}
+    if(started_ && failed && !surface_.isValid()){
+        surface_.create();
+        std::lock_guard<std::mutex> lock(mutex_);surfaceLossTargetRestored_=surface_.isValid();
+    }
     {std::lock_guard<std::mutex> lock(mutex_);stop_=true;producerExited_=producerExited;readyFrame_={};}
     wake_.notify_one();
     if(started_){wait();std::lock_guard<std::mutex> lock(mutex_);status_=published_;}
     else{commands_.reset();world_.reset();}
+}
+void NativeRenderWorker::testSurfaceLoss(){
+    if(!surfaceLossProbe_ || !surfaceLossProbe_->requested())return;
+    const auto* result=commands_->result();
+    if(!result || !result->liveSurfaces || !exports_ || pendingCpuRead() || world_->displayState().pending)
+        throw std::runtime_error("Surface-loss diagnostic requires a completed unborrowed World turn");
+    auto& observation=surfaceLossProbe_->observation;
+    observation["provider_owner"]="dedicated-thread";
+    observation["worker_thread"]=QThread::currentThread()!=QCoreApplication::instance()->thread();
+    observation["worlds_before"]=QString::number(world_->nativeFrames());
+    observation["live_surfaces_before"]=qint64(result->liveSurfaces);
+    observation["pending_cpu_read"]=QString::number(pendingCpuRead());
+    observation["surface_valid_before"]=surface_.isValid();
+    observation["turn"]=QString::number(turns_);
+    {
+        std::unique_lock<std::mutex> lock(mutex_);surfaceLossParked_=true;
+        QMetaObject::invokeMethod(this,[this]{
+            std::lock_guard<std::mutex> lock(mutex_);
+            if(!surfaceLossParked_ || stop_)return;
+            surfaceLossGuiThread_=QThread::currentThread()==surface_.thread();
+            surfaceLossDestroyBegin_=SurfaceLossProbe::now();
+            if(surfaceLossGuiThread_)surface_.destroy();
+            surfaceLossDestroyEnd_=SurfaceLossProbe::now();
+            surfaceLossDestroyed_=!surface_.isValid();surfaceLossParked_=false;wake_.notify_one();
+        },Qt::QueuedConnection);
+        const bool ready=wake_.wait_for(lock,std::chrono::seconds(2),[this]{return stop_ || !surfaceLossParked_;});
+        if(!ready || stop_ || !surfaceLossGuiThread_ || !surfaceLossDestroyed_){
+            surfaceLossParked_=false;throw std::runtime_error("Surface-loss target destruction refused or cancelled");
+        }
+        observation["gui_destroyed_target"]=surfaceLossGuiThread_;
+        observation["destroy_begin_host_us"]=QString::number(surfaceLossDestroyBegin_);
+        observation["destroy_end_host_us"]=QString::number(surfaceLossDestroyEnd_);
+        observation["surface_valid_after"]=!surfaceLossDestroyed_;
+    }
+    // Existing native checkpoint context acquisition probes the actual provider.
+    // A lost target must fail before a readback/checkpoint can be committed.
+    try{commands_->checkpointGraphics();}
+    catch(const mnm::render::GraphicsFailure& error){surfaceLossProbe_->loss(QString::fromUtf8(error.what()),true);throw;}
+    catch(const std::exception& error){surfaceLossProbe_->loss(QString::fromUtf8(error.what()),false);throw;}
+    surfaceLossProbe_->loss("Native provider accepted a destroyed target",false);
+    throw std::runtime_error("Native provider accepted a destroyed target");
 }
 void NativeRenderWorker::run(){
     std::vector<mnm::render::GpuFrame> leases;
@@ -261,6 +316,7 @@ void NativeRenderWorker::run(){
             const auto totalMs=turnClock.nsecsElapsed()/1000000.;turnTiming_.add(totalMs);
             if(totalMs>33.334 && slowTurns_.size()<256)slowTurns_.append(QJsonObject{{"turn",QString::number(turns_)},{"source_generation",QString::number(world_->displayState().generation)},{"prepared_generation",QString::number(generation)},{"command_presents",int(presents)},{"reason",reason},{"world_ms",worldMs},{"command_ms",commandMs},{"extra_ms",extraMs},{"export_ms",exportMs},{"total_ms",totalMs}});
             ++turns_;
+            testSurfaceLoss();
             const bool immediate=request || commands_->state()!=reportedState || commands_->recoveries()!=reportedRecoveries || pause!=reportedPaused || quit!=reportedQuit || bool(commands_->result())!=reportedHasResult;
             if(statusGate.due(NativeFrameTrace::now(),immediate)){
                 updateStatus();reportedState=commands_->state();reportedRecoveries=commands_->recoveries();reportedPaused=pause;reportedQuit=quit;reportedHasResult=bool(commands_->result());
@@ -270,13 +326,22 @@ void NativeRenderWorker::run(){
             trace.waitEnd=frameTrace_.stamp();frameTrace_.record(trace);
         }
     }catch(const std::exception& e){
-        world_->abort(QString::fromUtf8(e.what()));commands_->abort();updateStatus();
-        {std::lock_guard<std::mutex> lock(mutex_);published_.error=QString::fromUtf8(e.what());}
+        const auto failure=QString::fromUtf8(e.what());
+        world_->abort(failure);updateStatus();
+        {std::lock_guard<std::mutex> lock(mutex_);published_.error=failure;}
         try{save();}catch(const std::exception&){}
         // Keep resource ownership alive until the GUI returns its last frame.
-        std::unique_lock<std::mutex> lock(mutex_);wake_.wait(lock,[this]{return stop_;});
+        {std::unique_lock<std::mutex> lock(mutex_);wake_.wait(lock,[this]{return stop_;});}
+        // The GUI has returned its frame and, when possible, supplied a valid
+        // platform target for deletion. Cleanup cannot certify normal success.
+        try{commands_->abort();updateStatus();}
+        catch(const std::exception& cleanup){std::lock_guard<std::mutex> lock(mutex_);published_.error=failure+"; cleanup: "+QString::fromUtf8(cleanup.what());}
+        {std::lock_guard<std::mutex> lock(mutex_);if(published_.error.isEmpty())published_.error=failure;}
     }
     {std::lock_guard<std::mutex> lock(mutex_);readyFrame_={};}
+    const auto* result=commands_->result();
+    const auto commandSurfaces=result?result->liveSurfaces:0,rendererSurfaces=result?result->stats.surfaces:0;
     rendered_={};leases.clear();commands_.reset();world_.reset();
+    if(surfaceLossProbe_)surfaceLossProbe_->retired(surfaceLossTargetRestored_,commandSurfaces,rendererSurfaces,bool(commands_),bool(world_),rendered_.valid()||readyFrame_.valid()||!leases.empty());
     acceptance_.append("retired",QJsonObject{{"export_leases",0},{"command_owner",false},{"world_owner",false}});acceptance_.finish();
 }

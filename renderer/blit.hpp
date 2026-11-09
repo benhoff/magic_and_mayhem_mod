@@ -3,6 +3,7 @@
 #include <memory>
 #include <optional>
 #include <string>
+#include <stdexcept>
 #include <vector>
 #include <array>
 #include <functional>
@@ -14,6 +15,7 @@ class QOpenGLContext;
 class QOffscreenSurface;
 
 namespace mnm::render {
+class GraphicsFailure:public std::runtime_error {public:using std::runtime_error::runtime_error;};
 struct Image {
     int width=0, height=0;
     // One unsigned native pixel per word, including palette indices/unused bits.
@@ -185,6 +187,9 @@ public:
     // Internal process service entry. The protocol has no host pointers.
     QByteArray dispatchIsolated(const QByteArray&);
     void injectGraphicsFault(unsigned mode);
+    // Explicit owner-thread diagnostic: real GUI-owned target destruction.
+    std::array<bool,2> losePlatformTargetForTest();
+    bool restorePlatformTargetForDeletion();
     static bool isolatedRecoveryEnabled();
 private:
     QByteArray saveIsolatedState();

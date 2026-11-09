@@ -47,7 +47,9 @@ struct Current {
     QOpenGLContext* previous=QOpenGLContext::currentContext();
     QSurface* surface=previous?previous->surface():nullptr;
     bool switched=false;
-    Current(QOpenGLContext& context,QSurface* target):context(context){
+    Current(QOpenGLContext& context,QOffscreenSurface* target):context(context){
+        if(!context.isValid() || !target || !target->isValid())
+            throw GraphicsFailure("OpenGL offscreen target is unavailable");
         if(previous==&context && surface==target)return;
         if(!context.makeCurrent(target))throw GraphicsFailure("Cannot make the OpenGL context current");
         switched=true;
@@ -290,6 +292,8 @@ struct GlBlitter::Impl {
     RenderStats counters;
     std::unordered_map<SurfaceId,Surface> surfaces;
     std::vector<std::weak_ptr<GpuFrame::Data>> frames;
+    struct DeferredFrame {GLuint texture;GLsync produced,consumed;};
+    std::vector<DeferredFrame> deferredFrames;
     std::uint64_t revision=0;
     void trackFrame(const std::shared_ptr<GpuFrame::Data>& frame){
         if(frames.size()>64)frames.erase(std::remove_if(frames.begin(),frames.end(),[](const auto& f){return f.expired();}),frames.end());
@@ -567,7 +571,14 @@ struct GlBlitter::Impl {
     }
     ~Impl(){
         if(context.isValid() && surface->isValid()){
-            try {Current current(context,surface);for(auto& pair:surfaces)release(pair.second);
+            try {Current current(context,surface);
+                for(const auto& frame:deferredFrames){
+                    if(frame.produced)gl.glDeleteSync(frame.produced);
+                    if(frame.consumed){gl.glWaitSync(frame.consumed,0,GL_TIMEOUT_IGNORED);gl.glDeleteSync(frame.consumed);}
+                    gl.glDeleteTextures(1,&frame.texture);
+                }
+                deferredFrames.clear();
+                for(auto& pair:surfaces)release(pair.second);
                 for(const auto& timing:gpuTimings)gl.glDeleteQueries(2,timing.queries.data());
                 deleteTextures(1,&scratch);deleteTextures(1,&maskedColour);deleteTextures(1,&maskedSelection);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);copying.reset();importing.reset();coordinateProgram.reset();mappedWorldProgram.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
             catch(const std::exception&){}
@@ -578,10 +589,15 @@ GpuFrame::Data::~Data(){
     if(!owner)return;
     owner->thread();
     try{Current current(owner->context,owner->surface);
-        if(produced)owner->gl.glDeleteSync(produced);
-        if(consumed){owner->gl.glWaitSync(consumed,0,GL_TIMEOUT_IGNORED);owner->gl.glDeleteSync(consumed);}
+        if(produced){owner->gl.glDeleteSync(produced);produced=nullptr;}
+        if(consumed){owner->gl.glWaitSync(consumed,0,GL_TIMEOUT_IGNORED);owner->gl.glDeleteSync(consumed);consumed=nullptr;}
         owner->deleteTextures(1,&texture);
-    }catch(const std::exception&){} // Lost context storage retires with its owner.
+    }catch(const GraphicsFailure&){
+        // The shared GL context can outlive a destroyed platform target. Keep
+        // exact deletion debts until terminal retirement supplies a target;
+        // dropping the names here leaks them into the surviving sharing group.
+        owner->deferredFrames.push_back({texture,produced,consumed});
+    }catch(const std::exception&){} // Preserve existing terminal semantic-refusal handling.
 }
 QSize GpuFrame::size() const{return data_?data_->dimensions:QSize{};}
 bool GpuFrame::hasRaster() const{return data_ && !data_->owner;}
@@ -651,6 +667,23 @@ GlBlitter::GlBlitter(QOpenGLContext* shareContext,QOffscreenSurface* externalSur
     else impl_=std::make_shared<Impl>(shareContext,externalSurface);
 }
 void GlBlitter::injectGraphicsFault(unsigned mode){if(!isolated_ || mode<1 || mode>3)throw std::runtime_error("Fault injection requires isolated renderer and mode1..3");isolated_->faultNext(mode);}
+std::array<bool,2> GlBlitter::losePlatformTargetForTest(){
+    if(isolated_)throw std::runtime_error("Platform-target loss requires an ordinary renderer");
+    auto& p=*impl_;p.thread();
+    if(!p.ownedSurface || p.surface->thread()!=QThread::currentThread() || !p.surface->isValid() || p.batchDepth)
+        throw std::runtime_error("Platform-target loss requires a quiescent GUI-owned target");
+    p.flushCopies();
+    if(QOpenGLContext::currentContext()==&p.context)throw std::runtime_error("Platform-target loss while context is current");
+    const bool before=p.surface->isValid();p.surface->destroy();return {before,p.surface->isValid()};
+}
+bool GlBlitter::restorePlatformTargetForDeletion(){
+    if(isolated_)throw std::runtime_error("Platform-target deletion restore requires an ordinary renderer");
+    auto& p=*impl_;p.thread();
+    if(!p.ownedSurface || p.surface->thread()!=QThread::currentThread() || p.batchDepth)
+        throw std::runtime_error("Platform-target deletion restore requires its GUI owner");
+    if(!p.surface->isValid())p.surface->create();
+    return p.surface->isValid();
+}
 bool GlBlitter::hasRecoveryCheckpoint() const{if(isolated_)return true;return recovery_ && recovery_->revision==impl_->revision;}
 void GlBlitter::checkpointRecovery(){
     if(isolated_){isolated_->checkpoint();return;}
