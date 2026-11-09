@@ -53,8 +53,8 @@ def main():
             stdout=run('controls',[binary],dict(os.environ,ASAN_OPTIONS='detect_leaks=0'))
             if not stdout.startswith(b'2048 TOP/tag combinations;'):raise ValueError('Incomplete codec controls')
             reader_output=run('reader-controls',['python3',ROOT/'tests/test-drawing-caller-state.py'])
-            if b'Ran 51 tests'not in reader_output:raise ValueError('Incomplete versioned reader controls')
-            report.update(codec_combinations=2048,reader_controls=51,success=True)
+            if b'Ran 72 tests'not in reader_output:raise ValueError('Incomplete versioned reader controls')
+            report.update(codec_combinations=2048,reader_controls=72,success=True)
 
         except (OSError,ValueError,RuntimeError,subprocess.SubprocessError)as error:
             report.update(success=False,error=str(error))

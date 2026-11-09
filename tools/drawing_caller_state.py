@@ -22,11 +22,11 @@ def fx_state(raw):
 
 
 def records(raw):
-    versions={b'MNMCSA01':1,b'MNMCSA02':2,b'MNMCSA03':3}
+    versions={b'MNMCSA01':1,b'MNMCSA02':2,b'MNMCSA03':3,b'MNMCSA04':4,b'MNMCSA05':5}
     magic=bytes(raw[:8])
     if magic not in versions:raise ValueError('Unknown caller-state magic')
     version=versions[magic]
-    width=832 if version==3 else ROW
+    width=848 if version>=4 else 832 if version==3 else ROW
     if len(raw)<HEADER+width or (len(raw)-HEADER)%width:
         raise ValueError('Truncated caller-state stream')
     h=struct.unpack_from('<14I',raw,8)
@@ -49,12 +49,12 @@ def records(raw):
         if meta[6]!=meta[5]+4+POPS.get(tag,0)or row[19]!=meta[5]or row[28]!=meta[6]:
             raise ValueError('Inconsistent saved-entry/return stack contract')
         epoch=None
-        if version==3:
+        if version>=3:
             e=struct.unpack_from('<16I',raw,at+768)
-            if any(e[13:])or any(v not in(0,1)for v in e[10:13]):
+            if(version==3 and any(e[13:]))or any(v not in(0,1)for v in e[10:13]):
                 raise ValueError('Unknown caller-state epoch contract')
             if not e[10]:
-                if any(e):raise ValueError('Inactive continuous channel has epoch data')
+                if any(e[:13]):raise ValueError('Inactive continuous channel has epoch data')
             else:
                 pairs=[e[i]|e[i+1]<<32 for i in range(0,10,2)]
                 if not all(pairs)or pairs[2]<pairs[0]or pairs[3]<pairs[1]:
@@ -62,6 +62,10 @@ def records(raw):
                 if (e[11]or e[12])and(pairs[0]!=pairs[2]or pairs[1]!=pairs[3]or e[11]!=e[12]):
                     raise ValueError('World identity changed within primitive')
                 epoch=dict(generation_before=pairs[0],source_before=pairs[1],generation_after=pairs[2],source_after=pairs[3],nonce=pairs[4],world_before=bool(e[11]),world_after=bool(e[12]))
+        environment=None
+        if version>=4:
+            values=struct.unpack_from('<7I',raw,at+820)
+            environment=dict(zip(('wave_guard','source_rows_guard','glyph_sentinel','phase','amplitude','format','stride'),values))
         reset=epoch is not None and (epoch['generation_before'],epoch['source_before'])!=(epoch['generation_after'],epoch['source_after'])
         if meta[7]!=meta[9]or(meta[10]<meta[8]and not reset)or not row[24]&2 or not row[33]&2:
             raise ValueError('Invalid queue/sequence or processor flags')
@@ -77,14 +81,14 @@ def records(raw):
             before_registers=row[16:25],after_registers=row[25:34],before_arguments=row[34:34+count],
             after_arguments=row[40:40+count]if meta[14]&1 else None,
             before_workspace=row[46:62],after_workspace=row[62:78],before_fx=before,after_fx=after,
-            context_kind=context_kind,enclosing_caller=parent,epoch=epoch)
+            context_kind=context_kind,enclosing_caller=parent,epoch=epoch,environment=environment)
     if len(seen)!=total-1:raise ValueError('Missing caller-state completion IDs')
 
 
 def decode(raw):
     rows=list(records(raw))
     return dict(version=struct.unpack_from('<I',raw,8)[0],rows=rows,completed=len(rows),normal_retirement=True,
-                scope='Saved native output before shared POP/RET, or retained normal return; no state equivalence asserted.')
+                scope='Native saved output or actual native glyph normal return, and retained normal return. V5 source identities complete after observer emission; no state equivalence asserted.')
 
 
 def decode_bindings(raw,state):
@@ -110,3 +114,17 @@ def decode_bindings(raw,state):
     if seen!=set(expected):raise ValueError('Missing opaque caller binding')
     return dict(version=1,rows=result,normal_retirement=True,
                 scope='Raw selected targets paired with state entries; unknown targets are retained, not admitted.')
+
+
+def decode_tail(raw,decoder):
+    if len(raw)<128 or raw[:8]!=b'MNMCST01':raise ValueError('Missing final caller source prefix')
+    h=struct.unpack_from('<14I',raw,8)
+    if h[:2]!=(1,64)or not 64<=h[2]<=16777216 or len(raw)!=64+h[2]or h[9:11]!=(0,0)or h[12:]!=(1,1):
+        raise ValueError('Incomplete final caller source prefix')
+    generation=h[3]|h[4]<<32;source=h[5]|h[6]<<32;nonce=h[7]|h[8]<<32
+    if not generation or not source or not nonce:raise ValueError('Missing final source identity')
+    body=bytes(raw[64:]);header,rows=decoder(body,complete=False)
+    if body[:8]!=b'MNMPRO03'or len(rows)!=h[11]or any(r[2]in(11,12,13,27)for r,p in rows):
+        raise ValueError('World/failure or sequence mismatch in final source prefix')
+    return dict(generation=generation,source=source,nonce=nonce,stream=body,records=len(rows),
+                scope='Quiescent final owned source inputs, not a World, publication or destination capture.')

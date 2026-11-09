@@ -33,7 +33,7 @@ def main():
         if path not in frozen:frozen[path]=(ROOT/path).read_bytes()
     if any(digest(frozen[p])!=h for p,h in declaration['sources'].items()):raise ValueError('Prospective sources changed')
     report=dict(schema=1,kind='producer_callback_caller_state_controls',success=False,claims=declaration['claims'],
-        scope='Actual production producer callback and PE32 entries on supplied globals/prologues, protected destination and retained original sprite/rectangle wrappers. Generic/WORD/black/displacement/additive prepared state is active. Seventeen saved native and one retained-return version3 diagnostic completions must retire, including twelve actual enclosing-parent observations, arity/SP/semantic FX/LastError checks. No original raster pixels, host compositor, installed game/driver or whole-operation equivalence.',
+        scope='Actual production producer callback and PE32 entries on supplied globals/prologues, protected destination and retained original sprite/rectangle wrappers. Generic/WORD/black/displacement/additive prepared state is active. Seventeen saved native and one retained-return version5 diagnostic completions must retire, including twelve actual enclosing-parent observations, arity/SP/semantic FX/LastError checks. No original raster pixels, host compositor, installed game/driver or whole-operation equivalence.',
         original_game_runs=0,newly_passed_requirements=0,commands=[])
     ram=Path(tempfile.mkdtemp(prefix='mnm-producer-state-controls-',dir='/tmp'))
     report['temporary_directory']=str(ram)
@@ -70,10 +70,16 @@ def main():
             legacy=reader.json(inner);report['inner']=dict(path=str(inner.relative_to(ROOT)),sha256=reader.digest(inner))
         if not legacy['success']or legacy['forwarded_entries']!=61 or legacy['sprite_native_draws']!=15:
             raise ValueError('Incomplete production callback controls')
-        if legacy.get('caller_state_native_completions')!=17 or legacy.get('caller_state_retained_completions')!=1 or not legacy.get('caller_state_normal_retirement')or legacy.get('caller_state_contexts')!=12 or legacy.get('caller_state_version')!=3:
+        if legacy.get('caller_state_native_completions')!=17 or legacy.get('caller_state_retained_completions')!=1 or not legacy.get('caller_state_normal_retirement')or legacy.get('caller_state_contexts')!=12 or legacy.get('caller_state_version')!=5:
             raise ValueError('Incomplete passive caller-state entry/return controls')
         if legacy.get('caller_bindings_supplied_controls')!=2 or not legacy.get('caller_bindings_unknown_targets_retained'):
             raise ValueError('Incomplete known/unknown binding custody controls')
+        if legacy.get('caller_native_return_supplied_controls')!=1:raise ValueError('Missing deferred native-return custody control')
+        report['caller_native_return_supplied_controls']=1
+        if legacy.get('caller_tail_supplied_controls')!=1:raise ValueError('Missing quiescent owned-source tail custody control')
+        report['caller_tail_supplied_controls']=1
+        if legacy.get('caller_opaque_context_supplied_controls')!=8:raise ValueError('Missing primary/auxiliary/secondary supplied stack-offset controls')
+        report['caller_opaque_context_supplied_controls']=8
         used.update(legacy['sources'])
         build=json.loads((ROOT/'working/build/scene-observer-selftest/manifest.json').read_text())
         used.update(build['sources'])
@@ -82,7 +88,7 @@ def main():
         report.update(forwarded_entries=61,complete_raster_bypass_entries=13,sprite_native_draws=15,
             sprite_direct_abi_entries=legacy['sprite_direct_abi_entries'],
             word_flag_controls=2,caller_state_native_completions=17,caller_state_retained_completions=1,
-            caller_state_contexts=12,caller_state_version=3,caller_state_normal_retirement=True,
+            caller_state_contexts=12,caller_state_version=5,caller_state_normal_retirement=True,
             caller_bindings_supplied_controls=2,caller_bindings_unknown_targets_retained=True,original_pixel_rasters_executed=False,success=True)
     except (ValueError,OSError,RuntimeError,subprocess.SubprocessError)as error:
         report['error']=str(error)

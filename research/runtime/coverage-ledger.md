@@ -27861,3 +27861,331 @@ tested binaries are SQLite-retained. No original game or installed acceptance
 session was launched. C01/C03/C07/C09 installed caller/state/source/pixel/history
 joins remain pending; neither flags-and-return-values profile row is promoted.
 See rendering-caller-state-closure-20261108.md and caller-state-results-20261108/.
+
+
+### COPY stretch/overlap retained-evidence boundary — 2026-11-08
+
+Current analysis of eight retained CP06 Quick/Campaign default/software
+actual640/800 cases verifies37337closed active application calls and exact
+GPU census bindings. There are36866prepared one-to-one COPY geometries,
+467source-less calls, zero tracked aliases and four refused unknown geometries.
+No positive natural stretch/overlap output witness is present; supplied backend
+controls and eleven static explicit-RECT callers do not supply those witnesses.
+Ordinary COPY planning refuses stretch and CPU self-copy; successful native
+CPU transforms can still publish CREATE/UPDATE through the checkpoint path.
+Plan refusal alone is not a rendering-support failure; independent
+caller-bound checkpoint-transform output remains unproved. Both requirements/four
+profile rows stay pending;112/156passed44pending and both final decisions remain.
+Nine new classifier guards and ten unchanged route controls pass; no game, new
+game fixture, native-source change, historical hash refresh or accepted rerun.
+See [the exact blockers and bounded next step](rendering-two-copy-readiness-20261108.md)
+and SQLite`rendering-two-copy-results-20261108/assessment-03.json`.
+
+
+## Dry-first working cleanup coordinator — 2026-11-08
+
+HOST.storage-retention adds tools/cleanup-working.py and storage_cleanup.py.
+Default inventory and apply-without-execute are non-destructive. Explicit reviewed
+completed execution selections bind exact member hashes/metadata, source/policy
+fingerprints and two independent review reasons in immutable SQLite plans.
+Execution requires the reviewed plan hash, --execute and explicit restore scratch.
+Existing paired workspace sealing and real replica restore precede removal;
+external retention/consumer checks run again after that restore. Originals, source
+checkouts, pins, recent/newest runs, databases, aliases, hardlinks, fixture inputs
+and tracked/referenced payloads stay held. No existing engine or storage milestone
+is promoted; no real project payload is retired by this development batch.
+Synthetic controls and a bounded actual-host dry inventory are recorded separately
+from engine execution. Literal metadata/process checks retain their documented
+historical/dynamic-consumer limits. See docs/working-retention.md.
+
+STORAGE08.cleanup-controls03 records38passing controls (18new cleanup,20existing
+retention). The complete synthetic cycle preserves exact capture, failure result
+and configuration bytes through both stores and a real restore. Initial fixture
+and inventory-performance failures remain documented in immutable earlier reports;
+/tmp inode exhaustion led only to task-owned /dev/shm accounting scratch.
+
+The bounded actual-host dry inventory covers4748units:4724held and24review
+requests, with10952151040allocated candidate bytes before review/compression/
+replication costs. No scan errors; host process view admitted. Held units are
+partially measured and receive no reclaimable-space credit. This is a review
+queue, not safe deletions, promised net savings or rendering-acceptance closure.
+Full linked-checkout mode remains available; this operational pilot covers main
+working data only. Both interrupted inventory attempts and inode/source-census
+preparation refusals remain diagnostic history, not successful runs.
+
+Final STORAGE08.cleanup-controls04 adds the parent-selection/newest-run refusal:
+39controls pass (19new,20existing) on final sources. The earlier38-control and
+4748-unit host dry inventory keep their exact source phase; no old hash is renewed.
+No project cleanup, engine execution or historical milestone promotion follows.
+
+
+## Cleanup coordinator merged with caller recovery — 2026-11-08
+
+The master integration preserves every incoming CR08 caller finding and its
+comparison05 source phase, all112accepted rendering rows/44pending requirements,
+and both pending final decisions. Cleanup implementation and all39control source
+fingerprints remain byte-identical to6ba396a6e; no test/game/oracle/pixel rerun or
+cleanup execution is added. Resolve only the keyed register, append-only journal
+and ledger-tail union, then regenerate the combined census and run the exact
+master-base staged gate with verified local backups. The earlier bounded dry
+inventory remains its recorded source phase and review leads only.
+
+The first candidate againstfbcf880ba was interrupted when master advanced to
+b0eb1de5b; its review/backups and exact staged tree remain retained at
+refs/mm/checkpoints/cleanup-before-master-b0eb-20261108. Its interrupted hook
+receives no pass claim. The actual master pending merge now preserves the newer
+stretch/overlap COPY assessment and every incoming CR08finding. History02covers
+12458committed transitions with zero unresolved gaps; all earlier exact receipts
+survive, including two additional per-commit journal custody pairs. Main is the
+owned active merge checkout; the former task checkout is inactive and preserved.
+All39control source fingerprints still match, with no test/game/cleanup rerun.
+
+
+## Shared retained-artifact and synthetic fixture support — 2026-11-08
+
+`TOOL.shared-fixture-support` extracts verified artifact reads and producer-local
+session scoping into `tools/retained_artifacts.py`, retaining the menu/scene
+entry points and their errors. Optional declared-size budgets reject before
+reading; actual bytes still require exact size/hash agreement. Observations
+excluded by scope remain retained. Test-only command/menu/owned-session builders
+in `tests/fixture_support.py` now serve transition, normal acceptance, menu and
+startup controls independently of production decoders. Negative mutations and
+acceptance assertions stay in their owning tests.
+
+`SF08.fixture-controls01` retains 275 passing focused controls and exact logs
+in SQLite, including actual retained scene/attachment, selection and defeat
+inputs. This support-only execution adds no original game/native oracle run,
+player acceptance row or engine validation promotion. Historical source hashes,
+accepted statuses, failures and source-applicability boundaries remain immutable;
+changed support/analyzer sources have explicit pending targeted revalidation.
+See `docs/test-fixtures.md`. The owned batch begins at master `fbcf880ba`;
+live prefix lifecycle and bulk collector retention extraction remain separate.
+
+The task branch then advances to actual master `b0eb1de5b`, retaining the incoming
+COPY-readiness behavior, reports, source and exact journal entries. The register
+and ledger are reconciled by stable identity/additive tails; all nine changed
+code/test files match recovery stash `7228cada4` byte-for-byte. That stash stays
+retained. Nine dependent player/storage controls also pass: 284 total checks.
+The earlier census/audit stays as its original source phase; final accounting
+uses the combined tree. The obsolete initial preparation was explicitly
+interrupted when master advanced; no old draft grants a pass.
+
+
+### Shared fixture support on the current master merge
+
+The checked fixture commit `67f6f9650` is joined to actual storage-cleanup master
+`5381d3ccb`. Only the register, active review journal and additive ledger tails
+conflict. Their stable-ID union preserves every master behavior status and
+evidence definition, both parents' receipts, storage tools and COPY-readiness
+findings. All nine fixture implementation/test source files match the checked
+commit exactly. The 284 source-bound controls are reused after verifying every
+recorded fingerprint; no tests, game, oracle or native pixel runs are repeated.
+
+`research/runtime/shared-fixture-master-results-20261108/` retains the exact
+resolution, incoming committed-history review and combined current audit through
+SQLite. The regenerated census and normal staged hook cover the actual merged
+tree. All historical engine validation/applicability limitations,112accepted
+player rows and both pending decisions remain unchanged. The older fixture
+checkout/branch and recovery stash `7228cada4` remain held as the tested phase.
+
+
+## HS08 nonzero hotspot acceptance and newly observed producer refusal (2026-11-08)
+
+The new bounded task exercises actual classes6/7/9 with nonzero configured
+hotspots and configured zero-hotspot center returns in both Sharp/Integer,
+under explicit default/software640/800. Existing IP07 captures had no nonzero
+hotspot classes. Fresh execution and complete admission remain separate from
+original-driver/full-ABI, arbitrary cursor, corner/pan stability, storage/rebuild
+continuity, allocation lifetimes and both final rendering decisions.
+
+A confirmed new rejection remains open: request4 completes589Worlds, then
+World590's retained partial source ends in failure43/tag17/return57e957 inside
+57e8e0; Windows exit95 is retained. Rejected raster operands/register/stack
+bytes are missing. The observed callee profile is57de00; no whitelist admission
+or raster repair is made. Camera/corner movement preceded this event without
+establishing causality. See the owned hotspot record and pilot-diagnosis01.
+Both the failed full scout and its independent broad copy-output truncation
+remain negative; later finite cursor passes cannot retire this player failure.
+
+Three setup refusals start zero games; the copied already-patched EXE, its
+old pinned manifest and the existing /tmp isolation guard all refused before
+original execution. Exact inputs/preimages and relocation custody are retained.
+A further driver-only failure incorrectly required default16 over valid move1.
+The user approved nine requests while preserving six original starts; earlier
+charges and exhausted picking/recovery/attachment budgets remain untouched.
+The current smaller schedule uses center/top/right/left and center returns,
+with three stable displayed original states. Its broad observer can miss menu
+readbacks outside the required cursor interval; those losses remain explicit
+and do not close whole COPY/menu operation acceptance.
+
+HS08 admission02now closes only both finite hotspot rows:106/156passed,
+50pending in the preserved104-row parent phase. Four actual default/software
+640/800Sharp/Integer domains have832closed reconstructed Worlds,2164World
+swaps/2115415500complete viewport pixels,72nonzero source states and34842
+independent visible cursor-stencil checks, zero differences.6197cursor calls
+have complete original destination coverage/output in the contiguous physical
+scenario interval. All9requests/6starts are charged; four journals classify
+only one post-close invalidation each, without active geometry/queue failures.
+Raw broad-observer losses before/after the physical cursor interval, initial
+class16-only and future-paint joins, the malformed first admission and every
+source version remain retained. No native raster repair or broader COPY/player
+verdict follows.57e957/tag17/exit95 and both final decisions remain pending.
+
+
+HS08 actual-master integration preserves every incoming acceptance row and adds only both finite hotspot/background rows: **114/156 passed, 42 pending**. See `cursor-hotspot-results-20261108/master-admission-01.json` and `cursor-hotspot-acceptance-20261108.md`. This is a static source-phase union; raw source drift, historical failures, unresolved57e957 and both final decisions remain visible. No combined-player execution is claimed.
+
+
+HS08 actual-master integration preserves every incoming acceptance row and adds only both finite hotspot/background rows: **114/156 passed, 42 pending**. See `cursor-hotspot-results-20261108/master-admission-02.json` and `cursor-hotspot-acceptance-20261108.md`. This is a static source-phase union; raw source drift, historical failures, unresolved57e957 and both final decisions remain visible. No combined-player execution is claimed.
+
+
+## PR08 primary opaque fallback producer fix — 2026-11-08
+
+The missing57e957/tag17caller guard is repaired and pinned in the generator.
+Pre-fix21384original-wrapper cases reproduce5184refusals; current positive02
+accepts all5184fallbacks and matches6500736WORDs, low16AX and stack/nonvolatile
+state across the complete cohort.3766signature/tag/PCrefusals,393216black AX
+cases and both4922/4884sprite suites (628protected spans each) pass. Exact
+tested ELF/DLL/EXE/source bytes are retained in SQLite. NP.world-opaque-fallback-caller
+records isolated original comparison only; integration/replacement remain none.
+No original game was started and no prior cap reset. Failed HS08World590 and its
+missing operands remain negative/unreplayed; other caller, full pan/ABI/player
+gaps and both decisions remain open. Frontier stays114/156passed42pending.
+See `producer-rejection-57e957-20261108.md` and PR08.original02.
+
+
+## Natural Grimoire stretch and NCS1 prefix — 2026-11-08
+
+Native public Grimoire calls reach NoCD58cbc0/return58cc63 unequal RGB565 keyed rectangles. Native CPU transforms already published full C3 UPDATEs; the source observer instead failed27/tag41 and cancelled the16384-record prefix drain. The additive fail-closed NCS1record and sampled-authority/frozen-source native replay repair that representation. NCR1rectangle refusal and old V1/V2 rejection remain distinct. Native integer-floor sampling is intentional policy, not original driver parity.
+
+`NCS1.two-stretch-rows01` admits only both stretch operation profile rows over the112-row owned parent:114/156passed42pending. Four actual640/800default/software public Grimoire sessions independently match all336complete destinations/132249600pixels, zero differences, and an immediately following whole GPU source or destination-before readback for each. Finite unrelated diagnostic omissions remain explicit. No captured destination seeds its own expected history. `NCS1.prefix-integration01` separately proves150actual NCS1records consumed across65536source-only records, with ordinary original/native retirement and no World work. `NCS1.controls01` retains41Python controls and the exact tested C++canvas/decoder binary.
+
+All14managed requests/11actual starts remain charged and retained:four positive, seven failed and three zero-game refusals; setup07is separately unadmitted. The High host-close crash lost in-memory external action receipts and receives no whole acquisition credit. Actual destroyed-window controls repair that collector race. The accepted Low phase is preserved with exact post-retirement-only AST review; no accepted matrix is recollected. Five stopped failed stages retain every file/pin in both immutable stores after real restores, reclaiming5389017088allocated bytes with pinned historical restore stubs. Keep all SQLite staging/review/budget catalogs, tested binaries, source phases and source checkouts.
+
+Both alias/overlap profile rows remain pending: no natural overlapping call is witnessed; supplied self-copy controls do not resolve reachability/traversal. Original driver sampling, hidden whole replay pixels, indexed/conversion/clipper or all-GPU stretch, World/gameplay, combined-current player and both final decisions remain separate. See research/runtime/rendering-copy-natural-20261108.md and its SQLite report references.
+
+
+### Natural stretch actual-master integration — 2026-11-08
+
+The pending exact union uses actual master9b0148db6as first parent and checked featuref2af4fc6aas second parent. It preserves all114incoming accepted rows, both hotspot rows and the primary opaque clipped fallback correction, then adds only both stretch rows:116/156passed40pending. The four original/native stretch executions stay in their recorded source phases. All1343native/compiler dependency paths are reviewed per case; the incoming world_raster_callers.hchange remains explicit full-hash drift. Shared artifact-reader/analyzer drift remains visible. No game/oracle/pixel rerun or whole combined-current execution is claimed by integration.
+
+The current progress snapshot supplies display bindings from the parents separate recorded phase maps and retains those maps unchanged; historical hashes are not refreshed. New stretch attachments correctly name actual_destination_extents; the owned snapshot used the legacy actual_world_extents key for these same destination sizes, despite entering zero Worlds. This metadata correction changes no value or engine proof. Merged controls pass41stretch Python cases, the shared artifact-reader tests and four dashboard guards, and the actual dashboard shows116/40with both alias rows/final decisions pending.
+
+Incoming committed-history review covers19123parent/current file versions fromb0eb1de5bthrough9b0148db6. A separate retrospective receipt pins2674unique opaque input transitions, including repeated additions across merge first parents and the source-specific black-guards archive. The closed review has no unresolved exact-transition gaps; it asserts neither a past gate pass nor new engine validation. Complete prior journals/archives, failures and source identities are preserved. See rendering-copy-natural-results-20261108/master-admission-01.json, master-checks-01.json and incoming-history-closed-01.json.
+
+
+### PC08 finite World-entry palette refresh — 2026-11-08
+
+The owned palette branch closes exactly both `operation.palette-cycling` rows
+for default/software at actual640×480/800×600. The immutable
+[acceptance proof](palette-cycling-results-20261108/acceptance-01.json) preserves
+all108parent rows and both pending player decisions:110passed46pending in this
+source phase. No newer master count or combined-current-player claim is made.
+
+Actual RGB/globals/coefficient/FP/profile inputs independently reproduce675
+initial nodes /5,311,744 WORDs and32refreshes /1,568,768 WORDs. All935,676
+ordered selected versions join878Worlds;1,021,416,000viewport pixels over926
+World presentations have zero differences. Twelve actual changed-colour
+source/last-writer/native-lease witnesses and normal original/native retirement
+pass. The proof covers finite World-entry mutation, not arbitrary periodic
+cycling between displayed frames. Initial unpresented colours are baselines.
+Original palette builders/refreshes remain live suppliers; platform services,
+exceptional domains, other providers and native live replacement stay separate.
+
+Recovered x87 power now also serves mode0's dark wing. The affected isolated
+matrix passes3468palettes /63,416,320WORDs; the refresh matrix passes2816cases
+under two precision settings and both packed formats.31observer controls and
+28production assembly ABI cases pass; actual service text is a supplied input.
+Every earlier numerical mismatch, setup refusal, semantic-probe ordering error,
+unobserved v2 rewrite refusal, invisible first-v3 case and metadata/storage
+correction is retained. Nine attempts /seven actual games are stopped. Preserve
+older evidence/status source phases and raw staleness rather than renewing
+all palette or player milestones. See [the scoped research](palette-cycling-20261108.md).
+
+
+## Palette refresh integrated into current master — 2026-11-08
+
+The exact parent union preserves all116accepted master rows, including current
+stretch/cursor/scene/recovery work, and adds exactly both finite palette-refresh
+rows:118/156passed38pending. Both final decisions and all old failures/budgets
+remain unchanged. See `palette-master-merge-results-20261108/acceptance-01.json`.
+Every recorded source map and raw native/runtime drift remains explicit.
+Merged source controls/builds and fresh staged accounting do not assert a new
+combined-native execution or repeat a game/original-oracle/pixel run.
+
+## OS08 opaque second-frame caller fixes — 2026-11-08
+
+The four remaining second-copy continuations of NoCD40209ca7 wrapper57e8e0 are
+admitted with exact PC/tag/ten-byte signatures:57e9ec/22,36;57ea02/12;
+57ea29/13,14;57ea40/17. The generator pins the complete128-byte argument,
+call, normalization/fallback and low16OR/RET12 sequence independently of an
+observed stream. Ordinary tables are52sites/61pairs and empty-stream21/23.
+Generic bypass, source/owner/readability, sprite context and limits stay strict.
+
+OS08.original02 compares108864complete original/native two-frame cases with
+zero refusals and33094656matching destination WORDs, including guards/padding;
+524288additional full-wrapper/model cases check AX routing, masking, call order
+and combined return. The old table rejects all six second-frame pairs in the
+108864-case reproduction. Native code uses the production pixel kernel and
+exact caller predicate; original wrapper/source bytes stay unchanged. Separate
+current primary/black/sprite controls and both observer builds remain required.
+See `opaque-secondary-callers-20261108.md` and its SQLite reports.
+
+NP.world-opaque-secondary-callers records scoped implementation and isolated
+original comparison. No natural original-game start, second-copy witness,
+World590 replay, full volatile ABI, wider formats, acceptance-row promotion or
+whole-player completion follows. Existing historical hashes and failed attempts
+are preserved. Intervening committed history9b0148db6..9da49daa7has152reviewed
+logical file transitions and zero missing exact receipts; this is separate from
+current changes and validation.
+
+### OS08 actual palette-master integration — 2026-11-08
+
+The pending merge preserves actual first parentbb5f0aabfand mastera1b830044,
+including every keyed behavior/evidence record, prior journal/archive and both
+ledger additions. OS08.merged-original01 repeats108864two-frame original/native
+cases/33094656WORDs and524288AX/model cases over the combined runtime sources;
+zero refusals or differences. Merged primary21384cases/5184fallbacks,
+black393216cases, production/regenerated caller and sprite protected-span
+controls, and both observer builds pass. Old hashes and source-phase reports
+remain immutable; inherited palette/acceptance statuses gain no new validation
+from this fix. No original-game start, live second-copy witness, whole-player
+claim or acceptance-row promotion follows.
+
+The complete merged committed-history review covers21533parent/current file
+versions including binary artifacts. One append-only retrospective receipt pins
+266missing custody transitions; the verified closed report has zero missing
+receipts and retains the negative finding. This is independent of fresh merged
+OS08execution and asserts no historical gate pass. See
+`opaque-secondary-results-20261108/merged-history-02.json`.
+### CS13 caller-state publication checkpoint — 2026-11-08
+
+The caller-visible-state operation remains open in both profiles. The owned
+caller-state branch records current bounded Word/generic/additive and initializer
+state proofs, V5 saved/normal-return source publication, a quiescent final source
+prefix, strict native/retained source accounting and independently decoded model
+outputs. Current producer controls include four supplied auxiliary/primary
+stack-slot canaries; codec controls cover 2,048 TOP/tag combinations and 72 wire
+guards. Publication controls replay 64 retained original additive snapshots,
+reject six actual output corruptions and pass 36 source/state/accounting guards.
+
+Four requests have used two actual game starts. The two staging refusals started
+zero games; a capture-path refusal and a normally retired pilot remain retained.
+The pilot has 150,426 source/root observations, 43,274 retained original roots,
+138 independently replayed Worlds and 421,509,000 compared pixels with zero
+differences. Its offline diagnostic also matches 107,152 native state
+publications, but supplies unresolved fast-tail parent PCs and is ineligible for
+acceptance. The diagnostic stack-slot bug is corrected; final nominal captures
+and current master integration remain pending. Original model semantics,
+publication, pixels, typed providers, both operation rows and both final
+rendering decisions retain separate statuses. See
+`research/runtime/rendering-caller-state-closure-20261108.md` and the CS13 SQLite
+references. No original files were modified; no push or evidence publication.
+
+
+## Caller-visible rendering state — CS14 complete supported rows (2026-11-08)
+
+Both default/software `operation.flags-and-return-values` rows pass `caller-state-installed-results-20261108/admission-01.json`:4actual640/800normal public sessions, 523,173independently checked required native state publications and 1,362,471,000complete viewport pixels, zero differences. Exact V5 nonce/World/source/queue/sequence joins and original retained/nested roots account for every primitive; final tails, normal Quit, returned prefixes and zero native owners are mandatory. Fourteen separate original/control components cover Word/generic/Add/glyph, lazy preparation, image/kernel/provider contracts, atomic refusals and publication/codec guards.63sites/76site-tag entries/42fast entries and8supplied stack controls retain their explicit scopes.
+
+The unchanged262144-row observer refused the first800default attempt at262143records with actual exit99; it remains failed, with no normal footer or tail. Plan05shortens only host focus/waits and explicitly extends cumulative8/6to9/7to complete the two missing high domains. Exact native/player/oracle inputs are identical across the two controller phases. Old640proofs retain raw two-controller drift and exact snapshots; source-phase guards reject any native/player/oracle/analysis change or unaccepted parent. Final9requests/7starts include4positive,3failed/ineligible actual starts and2zero-game refusals. Every stopped installation is dual-backed and fully restore-verified before pinned-stub retirement. No old hash/status is refreshed into new execution.
+
+Only these two rows change over the118-row palette parent:120/156passed36pending. Both final decisions, original driver, alias/overlap, arbitrary hidden/exceptional FP and gameplay equivalence remain separate. See `rendering-caller-state-closure-20261108.md`.

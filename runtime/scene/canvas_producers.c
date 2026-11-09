@@ -165,6 +165,8 @@ static void emit_raw(u32* r,const void* payload,u32 n){if((!file&&!continuous_ma
  * or destination pixels enter this cache; equality includes every state byte. */
 static struct SourcePacket {u32 sequence,kind,tag,size,hash,original_frame,next;u8* data;} source_packets[MNM_PRODUCER_V4_SOURCES];
 #include "../../protocols/include/mnm/world_continuous_checksum.h"
+#include "palette_observation.h"
+void canvas_palette_close(void){pal_close();}
 static u32 source_packet_count,source_packet_bytes;
 static u32 continuous_source_heads[1024];
 static void emit_unlocked(u32* r,const void* payload,u32 n){
@@ -313,7 +315,13 @@ static u8* request(const struct Frame* f){
  else if(tag==5||tag==6){r[2]=MNM_PRODUCER_FILL;struct Surface* s=object(f->ecx);if(!s){fail(2,f->caller);return 0;}extent(r,s);r[14]=f->args[tag==5?0:1]&0xffff;if(tag==5){r[12]=s->width;r[13]=s->height;}else{if(!readable(f->args[0],16)){fail(3,tag);return 0;}for(u32 i=0;i<4;++i)r[10+i]=get((void*)(f->args[0]+i*4));}}
  else if(tag==7||tag==8){r[2]=MNM_PRODUCER_COPY;struct Surface* src=object(f->ecx),*dst=object(f->args[0]);if(!src||!dst){fail(4,f->caller);return 0;}extent(r,dst);r[4]=src->id;r[8]=f->args[1];r[9]=f->args[2];r[12]=src->width;r[13]=src->height;r[14]=tag==8?get((void*)(f->ecx+44))&0xffff:0xffffffff;checkpoint(src,1);}
  else if(tag==41){
-  struct Surface* src=object(f->ecx),*dst=object(f->args[0]);if(!src||!dst||!readable(f->args[1],16)||!readable(f->args[2],16)){fail(26,tag);return 0;}r[2]=MNM_PRODUCER_COPY;extent(r,dst);r[4]=src->id;for(u32 i=0;i<4;++i)r[10+i]=get((void*)(f->args[1]+i*4));r[8]=get((void*)f->args[2]);r[9]=get((void*)(f->args[2]+4));if(get((void*)(f->args[2]+8))-r[8]!=r[12]-r[10]||get((void*)(f->args[2]+12))-r[9]!=r[13]-r[11]){fail(27,tag);return 0;}r[14]=get((void*)(f->ecx+44))&0xffff;checkpoint(src,1);
+  struct Surface* src=object(f->ecx),*dst=object(f->args[0]);if(!src||!dst||!readable(f->args[1],16)||!readable(f->args[2],16)){fail(26,tag);return 0;}r[2]=MNM_PRODUCER_COPY;extent(r,dst);r[4]=src->id;for(u32 i=0;i<4;++i)r[10+i]=get((void*)(f->args[1]+i*4));r[8]=get((void*)f->args[2]);r[9]=get((void*)(f->args[2]+4));
+  u32 dw=get((void*)(f->args[2]+8))-r[8],dh=get((void*)(f->args[2]+12))-r[9];
+  if(dw!=r[12]-r[10]||dh!=r[13]-r[11]){
+   if(!continuous_map||!continuous_resident||get((void*)0x6e1f88)||!GetModuleHandleA("MnmDraw.dll")){fail(27,tag);return 0;}
+   r[15]=dw;r[16]=dh;r[23]=MNM_PRODUCER_NATIVE_COPY_STRETCH;
+  }
+  r[14]=get((void*)(f->ecx+44))&0xffff;checkpoint(src,1);
  }
  else if(tag==45){
   if(!readable(f->ecx,0x61cd)){fail(29,tag);return 0;}u32 cells=get((void*)(f->ecx+0x29));if(!cells)return 0;
@@ -436,6 +444,7 @@ static u8* request(const struct Frame* f){
     if(!(continuous_map?mnm_readable_in_window(palette,256*step,node_base,node_end):readable(palette,256*step)))goto palette_fail;
     if(continuous_map&&step==2)copy(colours,(void*)palette,512);
     else for(u32 i=0;i<256;++i){colours[i*2]=*(u8*)(palette+i*step);colours[i*2+1]=*(u8*)(palette+1+i*step);}
+    pal_bind(frame,get((void*)(frame+28)),node,ordinal,(u32)table,(const u32*)out,out+96);
    }
   }
   if(producer==15){put(colours+512,f->args[2]);put(colours+516,f->args[3]);put(colours+520,f->args[4]);}
@@ -611,7 +620,10 @@ int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  if(!caller_state_file)return producer_enter_inner(registers,tag,fx);
  const u32 incoming=GetLastError(),token=caller_state_begin(registers,tag,fx,incoming);
  SetLastError(incoming);const int handled=producer_enter_inner(registers,tag,fx);const u32 outgoing=GetLastError();
- if(token&&handled)caller_state_finish(token,MNM_CALLER_STATE_NATIVE,registers,fx,outgoing);
+ if(token&&handled){
+  if(tag==10)caller_states[token-1].native_return=1;
+  else caller_state_finish(token,MNM_CALLER_STATE_NATIVE,registers,fx,outgoing);
+ }
  SetLastError(outgoing);return handled;
 }
 void canvas_producers_queue(u32* registers){u32 error=GetLastError();PRODUCER_TRACE_SCOPE;if(enabled&&!stopped){if(session_producers&&queue>=limit){fail(98,queue);canvas_producers_close();ExitProcess(95);}continuous_mark_entry();raster_world_open=1;++queue;drawing_update_point(1,registers[6],registers[9]);struct Surface* s=bound();checkpoint(s,2);u32 r[24]={0};r[2]=MNM_PRODUCER_QUEUE_ENTRY;extent(r,s);r[14]=queue;emit(r,0,0);if(!journal_flush()){canvas_producers_close();ExitProcess(95);}sao_capture(registers[6]);frame_enter(registers,100);}SetLastError(error);}
@@ -624,7 +636,7 @@ void producer_leave_observe(u32* registers){
  for(u32 i=0;i<MAX_FRAMES;++i)if(__atomic_load_n(&frames[i].sp,__ATOMIC_ACQUIRE)==sp){struct Frame f=frames[i];__atomic_store_n(&frames[i].sp,0,__ATOMIC_RELEASE);
   /* Exact FXSAVE slot of the shared producer_leave assembly, taken before
    * any observer call. Avoid a second capture of callback floating state. */
-  if(caller_state_file)caller_state_return(sp,f.tag,registers,(const u8*)(((u32)registers-527u)&~15u),error);
+  u32 state_token=caller_state_file?caller_state_capture_return(sp,f.tag,registers,(const u8*)(((u32)registers-527u)&~15u),error):0;
   registers[9]=f.caller;
   if(f.tag==7&&f.caller==0x46ba01)continuous_mark_screen(0);
   if(producer_trace_mode&&f.owner!=GetCurrentThreadId())ExitProcess(98);
@@ -649,6 +661,7 @@ void producer_leave_observe(u32* registers){
     emit(r,f.record+96,r[18]);copy_order_record(&f,2);for(u32 j=0;j<MAX_SURFACES;++j)if(surfaces[j].id==r[3]){struct Surface* s=surfaces+j;if(!(r[2]==MNM_PRODUCER_COPY&&r[23]==MNM_PRODUCER_NATIVE_COPY_RECT_REFUSED)&&((r[2]>=MNM_PRODUCER_FILL&&r[2]<=MNM_PRODUCER_RASTER)||r[2]>=MNM_PRODUCER_RGB_ADD)){++s->dirty;if(r[2]==MNM_PRODUCER_FILL||r[2]==MNM_PRODUCER_JPEG||r[2]==MNM_PRODUCER_COPY||r[2]==MNM_PRODUCER_FADE||r[2]==MNM_PRODUCER_MINIMAP)checkpoint(s,5);}break;}
    }
   }
+  if(state_token)caller_state_publish(state_token);
   if(publication_terminal&&!stopped){
    canvas_producers_close();if(journal_failed)ExitProcess(95);
    char name[260];u32 n=0;while(directory[n]){name[n]=directory[n];++n;}const char* suffix="\\canvas-producers.done";while(*suffix)name[n++]=*suffix++;name[n]=0;
@@ -716,7 +729,7 @@ int canvas_producers_install(void){
  char name[260];u32 i=0;while(directory[i]){name[i]=directory[i];++i;}const char* suffix="\\canvas-producers.bin";while(*suffix)name[i++]=*suffix++;name[i]=0;if(!continuous_map){file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(file==(HANDLE)-1){file=0;return 0;}}
  u32 header[16]={0};copy(header,session_producers?MNM_PRODUCER_V5_MAGIC:whole_update_capture?MNM_PRODUCER_V4_MAGIC:limit>16?MNM_PRODUCER_V3_MAGIC:minimap_owned?"MNMPRO02":MNM_PRODUCER_MAGIC,8);header[2]=session_producers?5:whole_update_capture?4:limit>16?3:minimap_owned?2:1;header[3]=64;header[4]=MNM_PRODUCER_BUILD;header[5]=producer_record_budget();header[6]=limit;if(session_producers||whole_update_capture){header[7]=session_producers?MNM_PRODUCER_V5_SESSION:MNM_PRODUCER_V4_WHOLE_UPDATE;header[8]=MNM_PRODUCER_V4_MAX_BYTES;}if(!continuous_map&&!write(file,header,64))return 0;bytes=64;
  for(u32 j=0;j<HOOKS;++j){if((j>=53&&j<=56&&!producer_trace_mode)||(j>=57&&!extended_stream()))continue;struct Hook* h=hooks+j;u32 old,unused;if(!VirtualProtect((void*)h->address,h->length,0x40,&old))return 0;u8 patch[10]={0xe9};put(patch+1,(u32)h->entry-h->address-5);for(u32 k=5;k<h->length;++k)patch[k]=0x90;copy((void*)h->address,patch,h->length);FlushInstructionCache(GetCurrentProcess(),(void*)h->address,h->length);VirtualProtect((void*)h->address,h->length,old,&unused);}
- if(!publication_install())return 0;enabled=1;if(glyph)glyph_live_installed();return 1;
+ if(!publication_install()||!pal_install())return 0;enabled=1;if(glyph)glyph_live_installed();return 1;
 }
 #include "copy_caller_handoff.h"
 /* Private PE32 hook handoff to the owning native cursor adapter. Only the seven

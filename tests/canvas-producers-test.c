@@ -318,7 +318,8 @@ void start(void){
  rectangle_hook_fixture();
  if(caller_state_starts!=18||caller_state_completed!=18||caller_state_active||caller_state_rows!=18)ExitProcess(220);
  caller_state_close();
- caller_bindings_fixture();
+ caller_opaque_context_fixture();
+ caller_bindings_fixture();caller_native_return_fixture();caller_tail_fixture();
  canvas_producers_close();
  for(u32 i=0;i<HOOKS;++i)canvas_test_call(hooks[i].address,i==3?0x700000:0x700100,4,hooks[i].pop,after);
  char name[260];path(name,"producer-fixture-pass-",0,".bin");

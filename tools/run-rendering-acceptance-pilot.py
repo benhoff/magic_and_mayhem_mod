@@ -2,7 +2,7 @@
 """Capture a real public-player pilot; retain all results without acceptance promotion."""
 import argparse,hashlib,importlib.util,json,os,secrets,signal,sqlite3,subprocess,sys,time
 from pathlib import Path
-from coverage_evidence import write_report
+from coverage_evidence import Reader,write_report
 ROOT=Path(__file__).resolve().parents[1]
 PREFIX='research/runtime/rendering-acceptance-pilot-results-20261031/'
 def sha(path):
@@ -10,7 +10,19 @@ def sha(path):
 def module(name):
  spec=importlib.util.spec_from_file_location(name,ROOT/'tools'/name);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--gameplay-witness',action='store_true',help='Bounded 800x600 public Quick camera, hover, latch and pause witness');p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--operation-census',action='store_true',help='Closed COPY observations on an otherwise unchanged nominal normal route');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--sample-storage-main',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage','normal-combat'],default='pilot');p.add_argument('--copy-callers',action='store_true',help='Diagnostic-only upstream COPY caller observation');p.add_argument('--cursor-copy-callers',action='store_true',help='Read-only cursor protected-view caller handoff');p.add_argument('--cpu-reader-journal',action='store_true',help='One enabled-intro software storage reader/DC diagnostic per owned worktree');p.add_argument('--scene-effects',action='store_true',help='Passive actor/ANI and combat journal joined to source generations');p.add_argument('--size',choices=['640x480','800x600'],default='800x600');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--gameplay-witness',action='store_true',help='Bounded 800x600 public Quick camera, hover, latch and pause witness');p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--operation-census',action='store_true',help='Closed COPY observations on an otherwise unchanged nominal normal route');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--sample-storage-main',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage','normal-combat'],default='pilot');p.add_argument('--copy-callers',action='store_true',help='Diagnostic-only upstream COPY caller observation');p.add_argument('--cursor-copy-callers',action='store_true',help='Read-only cursor protected-view caller handoff');p.add_argument('--cpu-reader-journal',action='store_true',help='One enabled-intro software storage reader/DC diagnostic per owned worktree');p.add_argument('--scene-effects',action='store_true',help='Passive actor/ANI and combat journal joined to source generations');p.add_argument('--size',choices=['640x480','800x600'],default='800x600');p.add_argument('--palette-observation',action='store_true',help='Passive palette custody in the separately bounded palette task');p.add_argument('--palette-plan');a=p.parse_args()
+ palette_plan=None
+ if a.palette_observation:
+  if not a.palette_plan or a.scenario!='normal-combat' or not a.scene_effects or a.skip_intros or a.diagnostic_only or a.copy_callers or a.cpu_reader_journal or a.sample_stalls or a.operations_provenance or a.operation_census or a.stall_intro_host or a.stall_world_host:p.error('Palette custody requires its own plan and unmodified enabled-intro scene combat route')
+  with Reader(ROOT)as reader:
+   plan=reader.json(a.palette_plan)
+   if not(plan['success']is True and plan['maximum_launch_attempts']==6 and isinstance(plan.get('probe_review'),dict) and all(reader.digest(n)==h for n,h in plan['sources'].items())):p.error('Palette plan missing reviewed probe or sources changed')
+   review=reader.json(plan['probe_review']['record'])
+   if not(reader.digest(plan['probe_review']['record'])==plan['probe_review']['sha256'] and review['success']is True and review['ready_for_residual_native_capture']is True and review['closes_palette_rows']is False):p.error('Palette semantic probe review missing')
+   control=reader.json(plan['controls']['record'])
+   if not(reader.digest(plan['controls']['record'])==plan['controls']['sha256'] and control['success']is True and control['sources_stable']is True and all(reader.digest(n)==h for n,h in control['sources'].items())):p.error('Palette production controls changed')
+   palette_plan=dict(record=a.palette_plan,sha256=reader.digest(a.palette_plan))
+ elif a.palette_plan:p.error('--palette-plan requires passive palette custody')
  if a.scene_effects and a.scenario not in ('normal-storage','normal-combat'):p.error('Scene observation requires storage or combat route')
  if a.scenario=='normal-combat' and not a.scene_effects:p.error('Combat route requires its bounded scene plan')
  if a.gameplay_witness and (a.scenario!='normal-quick' or a.skip_intros or a.diagnostic_only or a.copy_callers or a.cpu_reader_journal or a.sample_stalls or a.operations_provenance or a.stall_intro_host or a.stall_world_host):p.error('Gameplay witness requires enabled-intro nominal normal-quick')
@@ -95,6 +107,9 @@ def main():
  if a.scene_effects:
   env.update(MNM_SCENE_ACTORS='1',MNM_CAMPAIGN_CASTING_COMBAT='1',MNM_SCENE_EFFECTS_VIEWS='1',MNM_CAMPAIGN_PROGRESSION_SIZE=a.size)
   report['configuration'].update(scene_actor_observation=1,requested_size=a.size,scene_effects_plan='AC07-six-starts')
+ if a.palette_observation:
+  env['MNM_PALETTE_OBSERVE']='1';report['palette_input_plan']=palette_plan
+  report['configuration'].update(palette_observation=1,scene_effects_plan='PC08-six-task-attempts',scene_actor_observation=2)
  if a.scenario=='normal-combat':
   deadline_ms=650000
   env.pop('MNM_LIVE_MENU_TEST_QT_JOURNEY')
@@ -177,7 +192,15 @@ def main():
   if a.software:command.append('--software-rendering')
   if a.skip_intros:command.append('--skip-movies')
   report['command']=command
-  if a.scene_effects:
+  if a.palette_observation:
+   budget_path=ROOT/'working/palette-cycling/attempts.sqlite3'
+   with sqlite3.connect(budget_path)as budget:
+    budget.execute('BEGIN IMMEDIATE')
+    if budget.execute('SELECT COUNT(*) FROM attempts').fetchone()[0]>=6:raise ValueError('Six-attempt palette task cap exhausted')
+    budget.execute('INSERT INTO attempts(report,kind,started_ns,plan_sha256)VALUES(?,?,?,?)',(a.report,'native-combat-'+('software'if a.software else'default')+'-'+a.size,time.monotonic_ns(),palette_plan['sha256']))
+    report['palette_attempt']=budget.execute('SELECT last_insert_rowid()').fetchone()[0];budget.commit()
+   report['palette_attempt_charged']=True
+  elif a.scene_effects:
    budget_path=ROOT/'working/scene-effects/attempt-budget.sqlite3';budget_path.parent.mkdir(parents=True,exist_ok=True)
    with sqlite3.connect(budget_path) as budget:
     budget.execute('CREATE TABLE IF NOT EXISTS attempts(id INTEGER PRIMARY KEY,report TEXT UNIQUE,started_ns INTEGER)')

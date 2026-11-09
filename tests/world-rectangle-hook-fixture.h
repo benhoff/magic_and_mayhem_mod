@@ -41,6 +41,8 @@ static void caller_bindings_fixture(void){
  u8* saved_map=continuous_map;const u32 gen=continuous_generation_low,genhigh=continuous_generation_high;
  const u32 source=continuous_source_low,sourcehigh=continuous_source_high,nonce=continuous_nonce_low,noncehigh=continuous_nonce_high;
  const u32 saved_world=raster_world_open,saved_sequence=sequence;
+ static const u32 input_addresses[7]={0x5f14d0,0x5f1450,0x6f5eac,0x6c4830,0x5e15f8,0x6e1f88,0x6a2dc8};
+ u32 previous_inputs[7];for(u32 j=0;j<7;++j)previous_inputs[j]=get((void*)input_addresses[j]);
  /* Supplied channel identity only; these direct diagnostic helper calls never
   * dereference the dummy channel or publish a World/source chunk. */
  continuous_map=(u8*)1;continuous_generation_low=7;continuous_generation_high=0;
@@ -50,6 +52,8 @@ static void caller_bindings_fixture(void){
   u32 saved[24];zero(saved,sizeof(saved));saved[8]=0x246;saved[9]=i?0x57e8fb:0x57e957;
   saved[17]=0x500a8c;saved[18]=0x444444;saved[19]=0x500566;saved[20]=0x555555;
   put((void*)0x6903dc,i?0x12345678:0x597086);put((void*)0x6c4e3c,i?0:0x5947b2);
+  const u32 input_values[7]={i?0:0x7d00,i?0:0x7d00,i?0x3f800000:0,i?0x80000000:7,i?0:13,i?0x1234:0,i?0:800};
+  for(u32 j=0;j<7;++j)put((void*)input_addresses[j],input_values[j]);
   u32 token=caller_state_begin(saved,i?22:17,fx,1234);if(!token)ExitProcess(222);
   if(i){++continuous_source_low;sequence=0;}
   caller_state_finish(token,MNM_CALLER_STATE_NATIVE,saved,fx,1234);
@@ -59,4 +63,55 @@ static void caller_bindings_fixture(void){
  continuous_map=saved_map;continuous_generation_low=gen;continuous_generation_high=genhigh;
  continuous_source_low=source;continuous_source_high=sourcehigh;continuous_nonce_low=nonce;continuous_nonce_high=noncehigh;
  raster_world_open=saved_world;sequence=saved_sequence;
+ for(u32 j=0;j<7;++j)put((void*)input_addresses[j],previous_inputs[j]);
+}
+/* Supplied raw stack controls, not original wrapper executions. The retained
+ * original57e8e0 pushes four nonvolatile words; all three auxiliary tails have
+ * three callee-popped arguments. Their caller return is word8, while the
+ * five-argument cdecl calls have word10. Include all four secondary-frame
+ * entries imported from master. Distinct canaries expose swaps. */
+static void caller_opaque_context_fixture(void){
+ static const u32 callers[8][3]={{0x57e985,19,8},{0x57e9a8,18,8},{0x57e9c7,20,8},{0x57e957,17,10},
+  {0x57e9ec,22,8},{0x57ea02,12,8},{0x57ea29,13,10},{0x57ea40,17,10}};
+ for(u32 i=0;i<8;++i){
+  u32 row[192],stack[16];zero(row,sizeof(row));zero(stack,sizeof(stack));
+  row[2]=callers[i][1];row[4]=callers[i][0];
+  stack[8]=callers[i][2]==8?0x500566:0xcccccccc;stack[10]=callers[i][2]==10?0x500566:0xdddddddd;
+  caller_state_context(row,stack);
+  if(row[190]!=2||row[191]!=0x500566)ExitProcess(231);
+ }
+}
+/* Supplied diagnostic return, not an actual glyph adapter/pixel execution.
+ * Snapshot before observer work, then simulate prefix drain/publication and
+ * mutate scratch inputs. Completion must keep the earlier engine state. */
+static void caller_native_return_fixture(void){
+ if(!caller_state_create_at(2))ExitProcess(224);
+ u32 saved[24];zero(saved,sizeof(saved));saved[8]=0x246;saved[9]=0x4a5a68;saved[7]=0x12345678;
+ u8 fx[512] __attribute__((aligned(16)));__asm__ volatile("fxsave %0":"=m"(fx));
+ const u32 saved_sequence=sequence;u32 token=caller_state_begin(saved,10,fx,1234);if(!token)ExitProcess(225);
+ caller_states[token-1].native_return=1;
+ const u32 returned=caller_state_capture_return((u32)(saved+9)+20,10,saved,fx,1234);
+ if(returned!=token||caller_state_completed||caller_state_active!=1)ExitProcess(226);
+ saved[7]=0xdeadbeef;sequence+=3;caller_state_publish(token);
+ if(caller_state_completed!=1||caller_state_active||caller_states[token-1].row[32]!=0x12345678||caller_states[token-1].row[10]!=sequence)ExitProcess(227);
+ caller_state_close();sequence=saved_sequence;
+}
+/* Supplied quiescent source prefix, with no World or drawing execution. */
+static void caller_tail_fixture(void){
+ u8* map=continuous_map;
+ u32* variables[]={&continuous_slot_index,&continuous_generation_low,&continuous_generation_high,
+  &continuous_source_low,&continuous_source_high,&continuous_nonce_low,&continuous_nonce_high,
+  &bytes,&continuous_written,&sequence,&queue,&raster_world_open,&failures,&journal_failed,&continuous_deferred_bytes};
+ u32 previous[15];for(u32 i=0;i<15;++i)previous[i]=*variables[i];
+ continuous_map=HeapAlloc(GetProcessHeap(),8,4096);if(!continuous_map)ExitProcess(228);
+ continuous_slot_index=0;continuous_generation_low=7;continuous_generation_high=0;
+ continuous_source_low=3;continuous_source_high=0;continuous_nonce_low=123;continuous_nonce_high=456;
+ bytes=continuous_written=160;sequence=1;queue=raster_world_open=failures=journal_failed=continuous_deferred_bytes=0;
+ u8* slot=continuous_slot();put(slot,MNM_CONT_WRITING);u32* h=(u32*)(slot+MNM_CONT_SLOT_HEADER);zero(h,160);
+ copy(h,MNM_PRODUCER_V3_MAGIC,8);h[2]=3;h[3]=64;h[4]=MNM_PRODUCER_BUILD;h[5]=MNM_PRODUCER_V3_MAX_RECORDS;h[6]=32;
+ u32* r=h+16;r[0]=96;r[1]=1;r[2]=MNM_PRODUCER_FILL;r[3]=99;r[5]=3;r[6]=2;r[7]=3;r[12]=3;r[13]=2;r[14]=0x1234;
+ caller_state_tail_at(3);
+ if(sequence!=1||bytes!=160||continuous_written!=160||continuous_load(slot,0)!=MNM_CONT_WRITING)ExitProcess(229);
+ if(!HeapFree(GetProcessHeap(),0,continuous_map))ExitProcess(230);continuous_map=map;
+ for(u32 i=0;i<15;++i)*variables[i]=previous[i];
 }

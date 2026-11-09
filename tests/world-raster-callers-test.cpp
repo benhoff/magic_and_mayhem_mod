@@ -8,7 +8,11 @@
 #include <vector>
 using u32=std::uint32_t;
 using u8=std::uint8_t;
+#ifdef MNM_CALLER_HEADER
+#include MNM_CALLER_HEADER
+#else
 #include "../runtime/scene/world_raster_callers.h"
+#endif
 static void require(bool value){if(!value)throw std::runtime_error("Native raster caller control failed");}
 int main(int argc,char** argv)try{
     require(argc==2);std::ifstream file(argv[1],std::ios::binary);require(bool(file));

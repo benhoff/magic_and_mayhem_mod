@@ -1,10 +1,13 @@
-# Caller-visible rendering state: full-row work in progress
+# Caller-visible rendering state: supported rows closed
 
-The requested target is both `operation.flags-and-return-values` rows. Neither
-row is closed by the component results below. Original recovery and supported
-player decisions remain independent. This work continues on the owned
-`codex/rendering-caller-state-20261108` branch; these results are not a master
-merge or new installed-player execution.
+Both `operation.flags-and-return-values` profile rows pass the
+[complete conjunction](caller-state-installed-results-20261108/admission-01.json).
+Four actual default/software640/800 sessions combine required native caller
+state, exact source accounting, independently compared complete viewport pixels
+and normal owner retirement with the separate original/model/kernel/provider
+proofs. The owned parent advances from118to120of156requirements; all other rows
+and both pending final decisions are preserved. Earlier checkpoints and rejected
+pilots below retain their original boundaries and source phases.
 
 ## Production boundaries
 
@@ -266,3 +269,160 @@ atomic refusals and positive/empty commits under sanitizers and retains the
 current production DLL linkage. The reviewed census and audit-CS12-01 have zero
 errors and no validation gaps for the ten touched behaviors. Historical global
 staleness remains visible. This accounting adds no installed game execution.
+
+## CS13 installed publication recovery in progress
+
+The V5 observer separates the actual saved/normal-return state snapshot from
+source publication. In particular, a native glyph completion now publishes its
+source identity after the normal-return observer emits the glyph source. The
+new quiescent source-tail record retains the final menu/glyph prefix after the
+last complete World. Neither change supplies original raster pixels to native
+drawing. V1–V4 remain readable as historical observations.
+
+The private model service replays required state using the separately
+original-compared Word, generic, additive and glyph implementations. A separate
+owned CPU history supplies glyph inputs; every sampled destination texel must
+be defined. Original World planes are supplied only to this offline history,
+never to the running native player. The Python reader independently compares
+the service's expected bytes and refuses inconsistent success flags. Native
+source identities and retained original roots must account for every primitive;
+nested original calls retain their actual stack/entry/completion parents.
+
+The initial publication controls replay 64 retained original additive snapshots
+and reject six actual output corruptions. The current reader additionally has
+36 source, caller, cleanup, retained-call and expected-byte controls. Fast-path
+arithmetic-register exclusions require a closed original continuation analysis;
+DF remains preserved. All 59 whitelist sites/70 site-tag entries have a full
+state model or explicit conditional caller obligations. The 41 fast entries
+retain the actual required context and selector conditions; this static census
+does not assert that every entry was naturally reached.
+
+The first installed phase has four prospectively charged requests and two
+actual starts. Attempts 01 and 02 refused staging before starting the game:
+the writable source contained a previously patched executable, then lacked the
+prepared music catalog. The rejected executable, both launcher manifests, public
+failure text and all 14 copied music-input hashes are retained. Only the writable
+source was restored to the pinned original; `original/` was not modified.
+
+Attempt 03 started the game but could not create the source corpus because Qt's
+exclusive file creation rejected the collector's pre-existing symlink. The
+retained failure includes the source-capture refusal and incomplete observer
+stream. Phase 02 passes the real absent RAM file to the exclusive writer and
+uses the logical symlink only for readers and retention. Its attempt 04 reached
+normal Quit, with original exit zero and 150,426 normally retired caller-state
+observations. This alone does not pass either operation row.
+
+Attempt 04 also exposes a diagnostic context bug at the final opaque fast tail
+`57e9c7`: its three callee-popped arguments put the enclosing return at stack
+word 8, while the observer incorrectly read word 10. The unchanged original
+`57e8e0` body supplies the stack derivation. The repair assigns all three fast
+auxiliary tails to word 8 and retains the five-argument cdecl primary calls at
+word 10. Four supplied-stack controls use distinct word-8/word-10 canaries;
+they are helper controls, not new original-wrapper executions. The earlier
+twelve actual fixture contexts did not exercise this final fast-tail context.
+
+Offline diagnostics may supply the unresolved parent explicitly to inspect the
+remaining pipeline. They preserve raw observations, expose the supplied values,
+always withhold success, and are ineligible for acceptance. Phase 03 freezes the
+corrected observer. Four complete default/software 640/800 state/source/pixel
+comparisons and normal retirement remain required. All failures and starts
+remain charged to the same eight-request/six-start cap. Both caller-state rows
+and both final rendering decisions remain open at this point.
+
+The first offline pilot diagnostic independently matches 138 original World
+replays, 417 World presentations and 421,509,000 compared pixels with zero
+differences. All 150,426 primitive sources have exactly one observed root:
+107,152 native completions and 43,274 retained original completions. The state
+history initially stopped at the first World because it interpreted the raw
+open source packet instead of the existing checked rolling handoff that adds
+the terminal checkpoint/return. That failed analyzer, its partial outputs and
+the correction are retained; no new game was needed.
+
+The corrected offline diagnostic uses the same `prepareRollingHandoff` as the
+original pixel oracle. It compares all 107,152 native publications: 436 Word,
+84,384 generic, 20,009 glyph and 2,323 fast cases, with zero model-state
+differences. Python independently checks the expected register, argument,
+workspace, flag and semantic FX bytes. Additive and colour rectangle native
+calls were not naturally observed in this cohort; their separate bounded
+original/callback proofs are not reclassified as live observations. Supplied
+fast-tail parents and the old source phase keep this diagnostic ineligible for
+acceptance despite its successful pixel and model components.
+
+Current CS13 component records preserve the corrected four stack-slot controls,
+72 strict wire-reader controls, all 2,048 semantic FX codec combinations, and
+fresh affected Word/generic/additive original comparisons. Both operation rows
+remain pending. New palette and four secondary opaque-caller changes on master
+must be reviewed and joined before the final nominal captures; the earlier
+source snapshots, failed phases and cumulative request/start charges remain.
+
+
+## CS14 final observer and source phase
+
+The reviewed normal merge with master2875 includes the palette observer and four
+new secondary opaque calls. All10,456 nonoverlapping owned paths survived the
+merge byte-for-byte; ten overlapping paths were reviewed explicitly. The restart
+stash and exact premerge hashes remain pinned in SQLite. Incoming source
+transitions retain exact parent/current receipts; retrospective report/journal
+custody does not claim a past gate pass or new execution.
+
+The final observer places the new secondary fast auxiliary parents at stack
+word8 and secondary primary/cdecl parents at word10. Eight supplied-stack controls
+use distinct canaries. They remain supplied helper tests; the twelve existing
+actual callback contexts stay separately counted. The final requirements census
+contains63sites,76site/tag entries and42fast entries. Every entry has a full model
+or explicit consumed-state/context/selector obligations. A closed control-flow
+review of the ten fast bodies finds no FP/SIMD work in eight bodies and confines
+the other two routines' floating work to their original lazy initializer prefixes.
+Original body bytes, no direct workspace references and normal disjoint
+frame/destination/private-stack scope are explicit; aliasing and exceptions are
+not inferred from this analysis.
+
+Fresh affected components pass12,744Word,35,280generic,18,432additive and12,288
+initializer cases. The complete glyph proof passes28,142 executions using the
+exact prior27,974case corpus, regenerated to the previously recorded input hashes;
+the shared producer entry is independently compared. Separate Save clip controls
+pass384cases/1,152complete comparisons over RGB565/RGB555. The unchanged image
+entry, private five-family kernel and real typed provider proofs remain separate
+conjuncts. No private fixture is called an installed observation.
+
+Prospective input plan04 freezes406player compiler inputs and1,049
+runtime/controller sources. Its two640profiles complete normal Quit and the
+state/source/pixel comparisons. The first800default session instead reaches
+262,143complete848-byte state rows and actual original exit99, exactly matching
+the observer's capacity refusal before its next write. It has no normal footer
+or source tail and is not admitted. Its complete stopped tree and original pin
+survive two verified stores and a full real restore.
+
+The reviewed repair plan05 preserves every charge and adds exactly one request
+and one actual start to the initial8/6cap: the new cumulative cap is9/7, with
+7requests/5starts already consumed before repair. Only two host acquisition
+controls change. Physical centre focus replaces expensive live sprite-target
+search for this state/pixel question, and movement/settling waits are shortened.
+No picking claim follows from the centre click. Native sources,406compiler
+inputs, player binary, original suppliers,848-byte observer format/capacity,
+state models and pixel checks remain byte-identical. Both scaling modes and
+normal Quit remain mandatory.
+
+The explicit source-phase reader only admits the two hash-pinned completed640
+proofs through this review. It verifies old/new controller preimages and identical
+native/player/oracle identities, retaining raw controller staleness. Nine adverse
+controls reject changed native code, player, oracle, analysis, missing prior
+proofs/bytes and wrong parent identity. Four admission controls check actual
+7/5charges, required repair ancestry, fixed9/7limits and native-source refusal.
+No old hash is refreshed and no failed start is refunded.
+
+
+## CS14 complete row admission
+
+Four distinct normal sessions pass under one byte-identical native/player/oracle phase. Their host acquisition phases remain explicit. Every actual primitive has one observed native or retained original root; nested unchanged original calls retain their observed parents. All completed native expected-state bytes are independently checked again by admission, together with the raw V5 source/binding/tail identities.
+
+| Profile | Native state publications | Primitive source roots | Compared viewport pixels |
+| --- | ---: | ---: | ---: |
+| default 640×480 | 121,548 | 176,542 | 411,015,000 |
+| software 640×480 | 149,193 | 214,373 | 430,254,000 |
+| default 800×600 | 135,242 | 215,040 | 271,969,500 |
+| software 800×600 | 117,190 | 182,032 | 249,232,500 |
+
+All 523,173 required native state comparisons and 1,362,471,000 pixel comparisons agree. Each original process exits normally, every final source prefix and state footer closes, the prefix returns and native owner counts reach zero. All63sites/76site-tag entries retain full or explicit conditional obligations; static coverage does not imply every route was naturally observed. Private additive/colour/kernel/provider tests stay separate from actual publications.
+
+Fourteen source-fresh original/control components,18admission/source-phase guards,36state/source-join guards and the four pre-repair cumulative-budget controls support the conjunction. The final accounting is9requests/7actual starts:4admitted nominal cases,3failed/ineligible actual starts and2zero-game staging refusals. Nothing is refunded or relabeled. Both final rendering decisions remain pending.

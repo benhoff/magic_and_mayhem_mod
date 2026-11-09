@@ -234,11 +234,46 @@ void grayscaleBoundaryOutputs(const char* prefix){
     for(auto word:image.pixels){out.put(char(word));out.put(char(word>>8));}expect(bool(out));
   }
 }
+void nativeStretchCopies() {
+  using namespace mnm;
+  render::CanvasSequence c;c.create(1,2,2);c.create(2,5,5);
+  c.update(1,0,0,render::Image{2,2,{1,31,3,4}});c.fill(2,{0,0,5,5},0x7777);
+  c.stretchCopy(1,2,{0,0,2,2},{1,1,4,4},31);
+  const auto image=c.read(2);
+  const unsigned rows[3][3]={{1,1,0x7777},{1,1,0x7777},{3,3,4}};
+  for(int y=0;y<5;++y)for(int x=0;x<5;++x)
+    expect(image.pixels[y*5+x]==(x>=1&&x<4&&y>=1&&y<4?rows[y-1][x-1]:0x7777));
+  c.create(3,6,2);c.update(3,0,0,render::Image{6,2,{1,2,3,4,5,6,7,8,9,10,11,12}});
+  c.stretchCopy(3,3,{0,0,4,2},{1,0,6,2});
+  expect(c.read(3).pixels==std::vector<std::uint32_t>({1,1,1,2,3,4,7,7,7,8,9,10}));
+  c.create(4,2,2);c.fill(4,{0,0,1,2},9);
+  const auto before=c.read(2).pixels;
+  refuses([&]{c.stretchCopy(4,2,{0,0,2,2},{0,0,3,3});});
+  expect(c.read(2).pixels==before);
+  refuses([&]{c.stretchCopy(1,2,{0,0,2,2},{0,0,0,3});});
+  refuses([&]{c.stretchCopy(1,2,{0,0,3,2},{0,0,3,3});});
+  refuses([&]{c.stretchCopy(1,2,{0,0,2,2},{4,0,6,3});});
+  expect(c.read(2).pixels==before);
+  // The additive V3 marker must fail closed for old streams, unknown markers,
+  // failed HRESULTs, missing dimensions and dimensions outside owned storage.
+  std::vector<std::uint8_t> wire(160);auto put=[&](unsigned at,unsigned v){for(unsigned i=0;i<4;++i)wire[at+i]=v>>(8*i);};
+  const char magic[]="MNMPRO03";std::copy_n(magic,8,wire.begin());
+  put(8,3);put(12,64);put(16,0x40209ca7);put(20,131072);put(24,32);
+  put(64,96);put(68,1);put(72,6);put(76,2);put(80,1);
+  put(64+12*4,2);put(64+13*4,2);put(64+14*4,31);
+  put(64+15*4,3);put(64+16*4,3);put(64+23*4,0x4e435331);
+  expect(legacy::decodeCanvasProducers(wire,false).operations.size()==1);
+  for(auto change:std::vector<std::pair<unsigned,unsigned>>{{15,0},{16,2049},{21,0x88760096},{23,0x12345678},{2,5}}){
+    auto bad=wire;for(unsigned i=0;i<4;++i)bad[64+change.first*4+i]=change.second>>(8*i);
+    refuses([&]{legacy::decodeCanvasProducers(bad,false);});
+  }
+}
 int main(int argc,char** argv) {
   if(argc==2)grayscaleBoundaryOutputs(argv[1]);
   clippedGrayscale();
   try {
     using namespace mnm;
+    nativeStretchCopies();
     decodedFrameCache();
     ownedPacketReferences(); rasterSampling(); rasterInvalidation();
     render::CanvasSequence canvases;

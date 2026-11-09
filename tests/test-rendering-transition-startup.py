@@ -10,6 +10,7 @@ from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import rendering_transition_live as base
 from rendering_transition_low_live import TransitionJourney
+from fixture_support import menu_publication, owned_menu_session
 
 
 class Startup(unittest.TestCase):
@@ -29,21 +30,14 @@ class Startup(unittest.TestCase):
     def test_only_owned_stable_original_publication_is_ready(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            session = root / 'working/experiments/menu-observer/run-test'
-            session.mkdir(parents=True)
-            admissions = root / 'owner/sessions'
-            admissions.mkdir(parents=True)
-            (admissions / 'one.json').write_text(json.dumps({'session': str(session)}))
+            session = owned_menu_session(root)
             journey = object.__new__(TransitionJourney)
             journey.out = root
             journey.session = None
             journey.epoch_roots = []
             with patch.object(base, 'ROOT', root):
                 self.assertIsNone(journey.read())
-                raw = bytearray(540)
-                raw[:8] = b'MNMMCM22'
-                struct.pack_into('<II', raw, 8, 22, len(raw))
-                struct.pack_into('<8I', raw, 128, 3, 1, 3, 1, 0, 0, 99, 0)
+                raw = menu_publication(sequence=3)
                 (session / 'channel.bin').write_bytes(raw)
                 self.assertIsNone(journey.read())  # Odd seqlock is unpublished.
                 struct.pack_into('<I', raw, 128, 4)
@@ -74,11 +68,7 @@ class Startup(unittest.TestCase):
     def test_terminal_original_start_failure_is_not_a_readiness_timeout(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            session = root / 'working/experiments/menu-observer/run-test'
-            session.mkdir(parents=True)
-            admissions = root / 'owner/sessions'
-            admissions.mkdir(parents=True)
-            (admissions / 'one.json').write_text(json.dumps({'session': str(session)}))
+            session = owned_menu_session(root)
             journey = object.__new__(TransitionJourney)
             journey.out = root
             journey.session = None

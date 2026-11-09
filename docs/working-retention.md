@@ -81,6 +81,84 @@ historical engine evidence keeps its original source hashes.
 
 ## Periodic maintenance
 
+### Dry-first cleanup coordinator
+
+`tools/cleanup-working.py` defaults to an inventory. It never removes data unless
+`apply` receives both `--execute` and the exact reviewed `--plan-sha256`.
+There is no force option. Even `apply PLAN` alone only revalidates the plan.
+
+```bash
+python3 tools/cleanup-working.py
+python3 tools/cleanup-working.py inventory --include-worktrees \
+  --output working/retention/cleanup/inventory-01.sqlite3
+```
+
+The comprehensive mode includes the current checkout and all registered linked
+checkouts, reporting missing/aliased roots separately. Only their `working/`
+directories are inventoried. Originals, Git source checkouts, fixtures, stores,
+bookkeeping, pins and restoration aliases stay protected. Traversal is bounded
+per unit; incomplete measurements are explicitly held, not counted as reclaimable
+space. Default inventory prints to stdout and writes no report or archive.
+Use `show DATABASE` to read the SQLite inventory, plan and exact file manifest.
+
+An inventory candidate is a review request. Before selecting a path, establish
+that its producer stopped and review its historical/SQLite evidence references,
+other branches, reconstruction inputs, physical-path consumers and fixture use.
+Automatic literal reference checks and host process observations cannot establish
+all those facts. Record concrete completion and dependency-review reasons:
+
+```bash
+python3 tools/cleanup-working.py plan \
+  --select working/tests/example/run-completed \
+  --completion-reason 'Producer exited; this bounded batch is complete' \
+  --dependency-review 'Reviewed exact evidence/branch/fixture consumers; all retained files can be restored before historical use' \
+  --output working/retention/cleanup/plan-01.sqlite3
+python3 tools/cleanup-working.py apply working/retention/cleanup/plan-01.sqlite3
+```
+
+Plans contain every selected file's original hash and metadata, exact identities,
+review reasons, retention policy and cleanup-tool fingerprints. Plans expire after
+24 hours. Policy/code drift, changed files or a new blocker require a new plan.
+Existing SQLite reports are never overwritten; plan bytes and execution events
+are immutable/append-only. Review the selected manifest with `show` before using
+the returned plan hash for actual handoff:
+
+```bash
+python3 tools/cleanup-working.py show working/retention/cleanup/plan-01.sqlite3
+python3 tools/cleanup-working.py apply working/retention/cleanup/plan-01.sqlite3 \
+  --plan-sha256 REVIEWED_PLAN_HASH --execute --scratch /tmp
+```
+
+Execution uses `mm.evidencePrimary`/`mm.evidenceReplica` on independent filesystems.
+The existing workspace handoff preserves every selected file, tests a real replica
+restore, then replaces only the selected working directory with its pinned
+`.evidence-workspace` restore stub. It rechecks policy, references, pins, recency,
+newest-run retention, host consumers and exact membership after the restore and
+before retirement. Stores retain their configured free-space floors; restore
+scratch is explicitly chosen and capacity-checked. Plan and result custody are
+also retained in the paired stores. Allocated bytes reclaimed and before/after
+filesystem free space are separate measurements, not promised net savings.
+Execution requires a recognized host Linux process view (`systemd`/`init` as
+PID1); private agent/container PID namespaces refuse retirement. Inventory remains
+available there and records its process-view limitation. Run actual handoffs from
+the host terminal with unrelated producers stopped.
+
+```bash
+python3 tools/evidence-workspace.py restore working/tests/example/run-completed
+```
+
+The coordinator deliberately holds databases/catalogs, source/reconstruction
+recipes, nonignored/tracked files, aliases, hardlinks, nested filesystems, recent
+files/directories, existing stubs, every pin and the newest two runs per group.
+It does not transfer pins under a generic cleanup request. Known completed pinned
+executions still require their source-specific reviewed handoff. Tracked-directory
+compaction and legacy/review database consolidation keep their dedicated verified
+workflows in [storage consolidation](storage-consolidation.md); neither is invoked
+automatically. No actual repository payload has been retired while developing
+this coordinator; execution controls use synthetic fixtures.
+
+### Maintenance policy
+
 The user authorized periodic reviewed cleanup on 2026-10-20. Check available
 space at session start, at least daily while work is active, and after each
 build/experiment batch. Start a maintenance review below **150 GiB free**, or

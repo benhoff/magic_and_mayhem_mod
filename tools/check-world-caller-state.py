@@ -19,7 +19,9 @@ SOURCES = ['tools/check-world-caller-state.py', 'tools/caller_state_liveness.py'
     'runtime/scene/world_raster_callers.h', 'runtime/scene/canvas_producers.c',
     'runtime/scene/canvas_producers.S', 'runtime/scene/kind8_sprite_admission.h',
     'runtime/scene/world_producer_bypass.c', 'runtime/scene/drawing_caller_state.h',
-    'protocols/include/mnm/drawing_caller_state_v2.h','protocols/include/mnm/drawing_caller_state_v3.h','protocols/include/mnm/drawing_caller_bindings_v1.h',
+    'protocols/include/mnm/drawing_caller_state_v2.h','protocols/include/mnm/drawing_caller_state_v3.h',
+    'protocols/include/mnm/drawing_caller_state_v4.h','protocols/include/mnm/drawing_caller_state_v5.h',
+    'protocols/include/mnm/drawing_caller_tail_v1.h','protocols/include/mnm/drawing_caller_bindings_v1.h',
     'tools/retain-world-caller-contexts.py','tools/coverage_evidence.py','tools/original-manifest.sh']
 
 
@@ -92,6 +94,41 @@ def main():
         with Reader(ROOT)as reader:
             bodies=reader.json(body_path);record['callee_body_input']=dict(path=body_path,sha256=reader.digest(body_path))
         if bodies['original_sha256']!=ORIGINAL or not bodies['success']:raise ValueError('Invalid retained callee input')
+        # The fast whole-entry bypass preserves semantic FX/workspace. Establish
+        # the local original instruction boundary rather than assuming a caller
+        # ABI permits floating-state changes. The two lazy initializers retain
+        # their separate original/native table/FX comparison requirement.
+        fast_entries=(0x57de00,0x57ec90,0x57f0f0,0x57f5f0,0x5806f0,
+                      0x57e540,0x580a90,0x57fe10,0x581200,0x580260)
+        lazy={0x5806f0:(0x58072d,0x58076a,0x580747,0x5f14d0),
+              0x580260:(0x580299,0x5802d3,0x5802be,0x5f1450)}
+        fast_effects=[]
+        for entry in fast_entries:
+            body=next(f for f in bodies['functions']if f['entry']==entry)
+            if hashlib.sha256(b''.join(image.read(a,b-a)for a,b in body['ranges'])).hexdigest()!=body['sha256']:
+                raise ValueError('Fast original body changed')
+            addresses={i['address']for i in body['instructions']};floating=[];calls=[];workspace=[]
+            for insn in body['instructions']:
+                mnemonic=insn['mnemonic'];operand=insn.get('operand','');address=insn['address']
+                if mnemonic.startswith('f')or mnemonic in('ldmxcsr','stmxcsr','xsave','xrstor','emms')or re.search(r'\b(?:xmm[0-7]|mm[0-7])\b',operand):floating.append(address)
+                if mnemonic=='call':calls.append((address,operand))
+                if any(0x5f1e50<=int(v,16)<0x5f1e90 for v in re.findall(r'0x[0-9a-f]+',operand)):workspace.append(address)
+                if mnemonic.startswith('j')or mnemonic in('loop','loope','loopne'):
+                    if not re.fullmatch(r'0x[0-9a-f]+',operand)or int(operand,16)not in addresses:
+                        raise ValueError('Unresolved fast original branch')
+                if mnemonic not in('ret','jmp')and address+len(bytes.fromhex(insn['bytes']))not in addresses:
+                    raise ValueError('Incomplete fast original fallthrough')
+            if workspace:raise ValueError('Unmodeled direct fast workspace access')
+            if entry in lazy:
+                start,end,call,guard=lazy[entry]
+                if not floating or any(not start<=a<=end for a in floating)or calls!=[(call,'0x59bee0')]:
+                    raise ValueError('Lazy initializer escaped its retained prefix')
+            elif floating or calls:raise ValueError('Unmodeled fast floating/call effect')
+            fast_effects.append(dict(entry=entry,body_sha256=body['sha256'],closed_local_control_flow=True,
+                floating_instructions=floating,calls=[dict(address=a,target=t)for a,t in calls],direct_workspace_references=workspace,
+                lazy_guard=lazy[entry][3]if entry in lazy else None,
+                scope='Normal-return admitted disjoint frame/destination/private-stack domain. Eight bodies have no local FP/SIMD instruction or call; two confine all FP and their sole helper to the separately compared lazy initializer prefix. No direct workspace reference; arbitrary indirect alias/exception behavior and FP instruction/data-pointer history are not asserted.'))
+        record['fast_effects']=fast_effects
         callee_facts=[]
         for entry in(0x595677,0x5947b2,0x59521a,0x595b47,0x59603e,0x597086,0x596cb8):
             body=next(f for f in bodies['functions']if f['entry']==entry)
@@ -139,7 +176,7 @@ def main():
                 context_kind=4
             if site['address']in(0x54ab16,0x54657c,0x54aab2,0x54ab72):
                 contexts=[(0x5006b2,)];context_kind=1
-            if site['address']in(0x57e8fb,0x57e915,0x57e940,0x57e957,0x57e985,0x57e9a8,0x57e9c7):
+            if site['address']in(0x57e8fb,0x57e915,0x57e940,0x57e957,0x57e985,0x57e9a8,0x57e9c7,0x57e9ec,0x57ea02,0x57ea29,0x57ea40):
                 contexts=[(p,)for p in opaque_returns];context_kind=2
             analyses = {reg: inspect(site['address'], decode, registers={reg: mask}, follow_calls=True)
                         for reg, mask in [('eax', 0xffffffff), ('ecx', 0xffffffff),

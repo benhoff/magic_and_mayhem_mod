@@ -1,9 +1,22 @@
 import struct
+import importlib.util
 import sys
 from pathlib import Path
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from drawing_caller_state import decode,fx_state,decode_bindings
+from drawing_caller_state import decode,fx_state,decode_bindings,decode_tail
+spec=importlib.util.spec_from_file_location('caller_tail_decoder',Path(__file__).resolve().parents[1]/'tools/inspect-canvas-producers.py')
+producer=importlib.util.module_from_spec(spec);spec.loader.exec_module(producer)
+
+
+def tail_fixture(empty=False,kind=4):
+    body=b'MNMPRO03'+struct.pack('<14I',3,64,0x40209ca7,262144,32,*([0]*9))
+    if not empty:
+        row=[0]*24;row[:4]=96,1,kind,99;row[5:8]=3,2,3;row[12:15]=3,2,0x1234
+        if kind==11:row[14]=1
+        body+=struct.pack('<24I',*row)
+    header=b'MNMCST01'+struct.pack('<14I',1,64,len(body),7,0,3,0,123,456,0,0,int(not empty),1,1)
+    return bytearray(header+body)
 
 
 def fixture(kind=1,tag=22,count=3,pop=0):
@@ -42,7 +55,90 @@ def fixture_v3():
     return bytearray(header+old[64:832]+epoch+old[832:]+bytes(64))
 
 
+def fixture_v4():
+    old=fixture_v3();header=old[:64];header[:8]=b'MNMCSA04';struct.pack_into('<I',header,8,4);struct.pack_into('<I',header,16,848)
+    extension=list(struct.unpack_from('<16I',old,832))[:13]+[0x7d00,0x7d00,0,7,13,0,800]
+    return bytearray(header+old[64:832]+struct.pack('<20I',*extension)+old[896:]+bytes(16))
+
+
 class CallerStateTests(unittest.TestCase):
+    def test_tail_source_prefix(self):
+        r=decode_tail(tail_fixture(),producer.decode);self.assertEqual((r['generation'],r['source'],r['records']),(7,3,1))
+
+    def test_tail_empty_prefix(self):self.assertEqual(decode_tail(tail_fixture(True),producer.decode)['records'],0)
+
+    def test_tail_missing_nonce(self):
+        raw=tail_fixture();struct.pack_into('<2I',raw,36,0,0)
+        with self.assertRaises(ValueError):decode_tail(raw,producer.decode)
+
+    def test_tail_wrong_length(self):
+        raw=tail_fixture();struct.pack_into('<I',raw,16,64)
+        with self.assertRaises(ValueError):decode_tail(raw,producer.decode)
+
+    def test_tail_truncated(self):
+        with self.assertRaises(ValueError):decode_tail(tail_fixture()[:-1],producer.decode)
+
+    def test_tail_wrong_version(self):
+        raw=tail_fixture();struct.pack_into('<I',raw,8,2)
+        with self.assertRaises(ValueError):decode_tail(raw,producer.decode)
+
+    def test_tail_budget(self):
+        raw=tail_fixture();struct.pack_into('<I',raw,16,16777217)
+        with self.assertRaises(ValueError):decode_tail(raw,producer.decode)
+
+    def test_tail_active_queue(self):
+        raw=tail_fixture();struct.pack_into('<I',raw,44,1)
+        with self.assertRaises(ValueError):decode_tail(raw,producer.decode)
+
+    def test_tail_wrong_slot_state(self):
+        raw=tail_fixture();struct.pack_into('<I',raw,56,2)
+        with self.assertRaises(ValueError):decode_tail(raw,producer.decode)
+
+    def test_tail_sequence(self):
+        raw=tail_fixture();struct.pack_into('<I',raw,52,2)
+        with self.assertRaises(ValueError):decode_tail(raw,producer.decode)
+
+    def test_tail_cannot_be_world(self):
+        with self.assertRaises(ValueError):decode_tail(tail_fixture(kind=11),producer.decode)
+
+    def test_tail_cannot_contain_failure(self):
+        with self.assertRaises(ValueError):decode_tail(tail_fixture(kind=13),producer.decode)
+
+    def test_v5_publication_identity_layout(self):
+        raw=fixture_v4();raw[:8]=b'MNMCSA05';struct.pack_into('<I',raw,8,5)
+        r=decode(raw);self.assertEqual(r['version'],5);self.assertEqual(r['rows'][0]['environment']['amplitude'],13)
+
+    def test_v5_magic_version_mismatch(self):
+        raw=fixture_v4();raw[:8]=b'MNMCSA05'
+        with self.assertRaises(ValueError):decode(raw)
+
+    def test_v4_raw_initializer_inputs(self):
+        r=decode(fixture_v4());self.assertEqual(r['version'],4)
+        self.assertEqual(r['rows'][0]['environment'],dict(wave_guard=0x7d00,source_rows_guard=0x7d00,glyph_sentinel=0,phase=7,amplitude=13,format=0,stride=800))
+
+    def test_v4_inactive_channel_keeps_raw_inputs(self):
+        raw=fixture_v4();raw[832:884]=bytes(52);r=decode(raw)['rows'][0]
+        self.assertIsNone(r['epoch']);self.assertEqual(r['environment']['amplitude'],13)
+
+    def test_v4_unknown_input_is_not_admission(self):
+        raw=fixture_v4();struct.pack_into('<I',raw,832+18*4,0x12345678)
+        self.assertEqual(decode(raw)['rows'][0]['environment']['format'],0x12345678)
+
+    def test_v4_truncated_inputs(self):
+        with self.assertRaises(ValueError):decode(fixture_v4()[:-16])
+
+    def test_v4_wrong_row_size(self):
+        raw=fixture_v4();struct.pack_into('<I',raw,16,832)
+        with self.assertRaises(ValueError):decode(raw)
+
+    def test_v4_footer_inputs_are_reserved(self):
+        raw=fixture_v4();struct.pack_into('<I',raw,len(raw)-4,800)
+        with self.assertRaises(ValueError):decode(raw)
+
+    def test_v3_cannot_receive_v4_fields(self):
+        raw=fixture_v3();struct.pack_into('<I',raw,832+13*4,0x7d00)
+        with self.assertRaises(ValueError):decode(raw)
+
     def test_v3_world_identity(self):
         r=decode(fixture_v3());self.assertEqual(r['version'],3);self.assertEqual(r['rows'][0]['epoch']['generation_before'],1)
 

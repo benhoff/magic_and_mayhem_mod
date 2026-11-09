@@ -34,6 +34,9 @@ See `protocols/include/mnm/world_producer_bypass_v1.h` and
 Copies explicitly name both logical IDs, the source rectangle and destination
 position. Auxiliary 0 is `UINT32_MAX` for opaque copies or a native source key.
 Creation and release establish generations; IDs never silently inherit bytes.
+Later native-owned resident streams have fail-closed COPY metadata extensions
+for rectangle refusal and stretch geometry; see [owned history metadata](owned-initial-history-v1.md).
+They are not admitted by this V1 format.
 
 JPEG payloads contain a NUL-terminated source filename, at most 1024 bytes.
 The replay receives separately pinned **encoded source assets**. Source JPEG

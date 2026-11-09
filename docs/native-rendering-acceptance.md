@@ -1,3 +1,13 @@
+Current local master integration: 116/156 passed, 40 pending. Both native stretch profile rows join every incoming accepted row, including cursor hotspot/background. Four retained actual640/800default/software Grimoire sessions compare336complete destinations/132249600pixels at zero differences. Alias/overlap and both final decisions remain pending. Exact native and collector source phases are retained; this merge adds no game/oracle or whole combined-current execution. See `research/runtime/rendering-copy-natural-results-20261108/master-admission-01.json`.
+
+Recorded owned native stretch admission:114/156passed42pending over the112-row parent. Only both stretch profile rows close. Four actual640/800default/software Grimoire sessions match336complete native CPU destinations and immediately following full GPU planes:132249600pixels, zero differences. Native source-prefix replay separately consumes150NCS1records across65536source records. Alias/overlap and both final decisions remain pending; whole combined-current player and original driver equivalence are not claimed. See `research/runtime/rendering-copy-natural-results-20261108/acceptance-01.json` and `research/runtime/rendering-copy-natural-20261108.md`.
+
+Prior committed source-phase notes follow; their totals belong to their named parents.
+
+PR08 fixes the exact57e957/tag17producer guard under [isolated original/native controls](../research/runtime/producer-rejection-57e957-20261108.md). Acceptance remains114/156passed42pending; the historical failed live run and broader player validation remain separate.
+
+HS08 integrated acceptance: **114/156 passed, 42 pending**. The [exact source-phase union](../research/runtime/cursor-hotspot-results-20261108/master-admission-02.json) preserves all incoming rows and adds both finite cursor hotspot/background rows. Four actual default/software640/800 Sharp/Integer domains passed in the owned phase; this union adds no execution. Original57e957/tag17 exit95 and both final decisions remain pending. See [the hotspot record](../research/runtime/cursor-hotspot-acceptance-20261108.md).
+
 Current local master integration:108/156passed48pending.
 Scene attachment/combat adds four accepted rows to all104incoming master rows.
 See `research/runtime/scene-master-merge-results-20261108/acceptance-02.json`.
@@ -249,3 +259,21 @@ concurrent positive rows and each recorded compiler/runtime source phase.
 The integrated UI07/PA07 inventory has98of156rows passed,
 58pending, all six requested HUD/tooltip/pause targets passed and both
 final decisions pending. Each accepted execution retains its exact build phase.
+
+
+PC08 (2026-11-08) closes only the two finite palette-cycling operation rows.
+Four actual default/software640/800contexts bind real World-entry WORD/DWORD
+refresh inputs and independent numerical results, complete selected-version
+ordering, twelve changed production colours in native output and normal
+retirement. All1,021,416,000compared viewport pixels match. The owned108-row
+parent becomes110passed46pending; newer master phases remain independent.
+Unpresented constructor colours are numerical baselines, not prior native
+frames; arbitrary periodic animation and live palette-builder replacement
+remain separate. Both final player decisions stay pending. See
+[PC08 research](../research/runtime/palette-cycling-20261108.md).
+
+
+The 2026-11-08 palette/master union retains all116current accepted rows and adds
+only both finite palette-refresh rows:118passed38pending. Exact recorded
+execution/source phases and both pending final decisions remain separate from
+merged source controls. No original-game/oracle/pixel recollection is included.

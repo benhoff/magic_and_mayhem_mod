@@ -21,6 +21,10 @@ def main():
  paths += ['protocols/include/mnm/drawing_caller_state_v2.h','runtime/scene/world_rectangle_state.h','tests/world-rectangle-hook-fixture.h']
  paths += ['protocols/include/mnm/drawing_caller_bindings_v1.h']
  paths += ['protocols/include/mnm/drawing_caller_state_v3.h']
+ paths += ['protocols/include/mnm/drawing_caller_state_v4.h']
+ paths += ['protocols/include/mnm/drawing_caller_state_v5.h']
+ paths += ['protocols/include/mnm/drawing_caller_tail_v1.h']
+ paths += ['runtime/scene/palette_observation.h','runtime/scene/palette_observation.S']
  claims=json.loads(a.claims.read_text()) if a.claims else None
  sources={name:sha(ROOT/name) for name in paths}
  if claims:
@@ -47,7 +51,7 @@ def main():
  objects=[]
  for name in ['tests/canvas-producers-test.c','tests/canvas-startup-call.S','runtime/scene/canvas_producers.S','tests/world-producer-bypass-call.S','tests/world-effect-entry-call.S','tests/kind8-sprite-primary-call.S']:
   obj=out/(Path(name).name+'.obj');objects.append(obj);run('compile-'+Path(name).name,['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-I'+str(out),'-c',ROOT/name,'-o',obj])
- run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/base:0x400000','/dynamicbase:no','/safeseh:no','/timestamp:0','/out:'+str(out/'fixture.exe'),*objects,*[build/(name+'.obj') for name in ('drawing_publication.S','glyph_live.c','glyph_leave.S','glyph_route.c','glyph_backend.c','glyph_backend_state.c','glyph_backend_x87.S','word_backend_state.c')],build/'kernel32.lib'])
+ run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/base:0x400000','/dynamicbase:no','/safeseh:no','/timestamp:0','/out:'+str(out/'fixture.exe'),*objects,*[build/(name+'.obj') for name in ('palette_observation.S','drawing_publication.S','glyph_live.c','glyph_leave.S','glyph_route.c','glyph_backend.c','glyph_backend_state.c','glyph_backend_x87.S','word_backend_state.c')],build/'kernel32.lib'])
  run('forwarding',['xvfb-run','-a','wine',out/'fixture.exe'])
  from drawing_colour_refusals import decode as decode_colour_refusal
  colour_refusals=[decode_colour_refusal(p.read_bytes()) for p in sorted(capture.glob('producer-colour-refusal-*.bin'))]
@@ -123,7 +127,7 @@ def main():
  from drawing_caller_state import decode as decode_caller_state
  from drawing_caller_state import decode_bindings
  state=decode_caller_state((capture/'caller-state-0000.bin').read_bytes())
- assert state['version']==3 and state['completed']==18 and sum(row['kind']==1 for row in state['rows'])==17 and sum(row['kind']==2 for row in state['rows'])==1
+ assert state['version']==5 and state['completed']==18 and sum(row['kind']==1 for row in state['rows'])==17 and sum(row['kind']==2 for row in state['rows'])==1
  assert all(row['epoch']is None for row in state['rows'])
  assert all(row['last_error_before']==1234 and row['last_error_after']==1234 for row in state['rows'])
  contexts=[row for row in state['rows']if row['context_kind']]
@@ -137,7 +141,17 @@ def main():
  assert supplied['completed']==2 and [r['enclosing_caller']for r in supplied['rows']]==[0x500566,0x500a8c]
  assert [(r['word_target'],r['generic_target'])for r in targets['rows']]==[(0x597086,0x5947b2),(0x12345678,0)]
  assert [(r['epoch']['generation_before'],r['epoch']['generation_after'],r['epoch']['source_before'],r['epoch']['source_after'],r['epoch']['nonce'])for r in supplied['rows']]==[(7,7,3,3,456*2**32+123),(7,7,3,4,456*2**32+123)]
- report.update(caller_state_native_completions=17,caller_state_retained_completions=1,caller_state_contexts=12,caller_state_version=3,caller_state_normal_retirement=True,caller_bindings_supplied_controls=2,caller_bindings_unknown_targets_retained=True)
+ assert [tuple(r['environment'][k]for k in ('wave_guard','source_rows_guard','glyph_sentinel','phase','amplitude','format','stride'))for r in supplied['rows']]==[(0x7d00,0x7d00,0,7,13,0,800),(0,0,0x3f800000,0x80000000,0,0x1234,0)]
+ supplied_return=decode_caller_state((capture/'caller-state-0002.bin').read_bytes())
+ assert supplied_return['version']==5 and supplied_return['completed']==1
+ r=supplied_return['rows'][0];assert r['kind']==1 and r['tag']==10 and r['after_registers'][7]==0x12345678 and r['sequence_after']==r['sequence_before']+3
+ assert not decode_bindings((capture/'caller-bindings-0002.bin').read_bytes(),supplied_return)['rows']
+ report['caller_native_return_supplied_controls']=1
+ from drawing_caller_state import decode_tail
+ tail=decode_tail((capture/'caller-source-tail-0003.bin').read_bytes(),m.decode)
+ assert (tail['generation'],tail['source'],tail['nonce'],tail['records'])==(7,3,456*2**32+123,1)
+ report['caller_tail_supplied_controls']=1
+ report.update(caller_state_native_completions=17,caller_state_retained_completions=1,caller_state_contexts=12,caller_state_version=5,caller_state_normal_retirement=True,caller_bindings_supplied_controls=2,caller_bindings_unknown_targets_retained=True,caller_opaque_context_supplied_controls=8)
  report.update(effect_entries_native_bypassed=5,effect_wire_normalized=True,effect_guarded_original_canvas_unchanged=True,effect_malformed_refusals=7)
  extent_raw=(capture/'world-extent640-fixture-0000.bin').read_bytes();_,extent_ops=m.decode(extent_raw,complete=False)
  extent_draws=[r for r,payload in extent_ops if r[2]==9]

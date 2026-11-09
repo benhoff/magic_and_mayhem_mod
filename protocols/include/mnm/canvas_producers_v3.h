@@ -22,6 +22,11 @@
  * Records the failed call; it never authorizes an out-of-bounds pixel write. */
 #define MNM_PRODUCER_NATIVE_COPY_RECT_REFUSED 0x4e435231u
 #define MNM_PRODUCER_NATIVE_COPY_RECT_HRESULT 0x88760096u
+/* Additive, fail-closed native COPY geometry extension. COPY word23=NCS1,
+ * words15/16=positive destination width/height; source RECT remains10..13,
+ * destination origin8/9 and raw source key14. No payload or host pointer.
+ * Legacy readers reject the marker. Native RECT failures retain NCR1 instead. */
+#define MNM_PRODUCER_NATIVE_COPY_STRETCH 0x4e435331u
 #define MNM_PRODUCER_V3_SOURCES 2048u
 #define MNM_PRODUCER_V3_SOURCE_BYTES (16u*1024u*1024u)
 
