@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+script=$(CDPATH= cd -- "$(dirname -- "$0")/../tools" && pwd)/guard-master-reference.py
+exec python3 -B "$script" "$@"

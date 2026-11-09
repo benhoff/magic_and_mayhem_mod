@@ -19,6 +19,14 @@ The audit's already verified inputs are reused within that same reader. Working,
 Git-base and staged checks each create a new reader and verify payloads again.
 No persistent validation result, skipped gate or evidence-hash refresh is introduced.
 
+The parallel-agent workflow now shares four execution slots across the whole
+repository, rather than allowing four readers per concurrent check. Sequential
+snapshot audit work holds one slot; prefetch borrows available extras. Linked
+worktrees and temporary Git materializations share the same kernel-lock budget.
+Independent-process controls cover six competing jobs, nested borrowing and
+owner termination. This bounds contention; it does not promise a new speed ratio
+for every concurrent workload. See [parallel integration](integration-workflow.md).
+
 ## Retained real-corpus comparison
 
 On this machine, one snapshot of Git tree

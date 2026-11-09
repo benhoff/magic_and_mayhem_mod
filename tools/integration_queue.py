@@ -54,6 +54,48 @@ class Lease:
         return subprocess.run(command, env=env, pass_fds=descriptors, **kwargs)
 
 
+def require_lease(root):
+    """Check admission without acquiring it, including from Git reference hooks."""
+    path = lock_path(root)
+    try:
+        lease = _current.get()
+        fd = lease.fd if lease else int(os.environ[FD_VARIABLE])
+        value, expected = os.fstat(fd), path.stat()
+        if (not stat.S_ISREG(value.st_mode) or value.st_nlink != 1
+                or (value.st_dev, value.st_ino) != (expected.st_dev, expected.st_ino)):
+            raise ValueError('Integration descriptor names a different lock')
+        # A fresh open-file-description must be blocked by the inherited lease.
+        probe = os.open(path, os.O_RDONLY | os.O_NOFOLLOW)
+        try:
+            try:
+                fcntl.flock(probe, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except BlockingIOError:
+                pass
+            else:
+                raise ValueError('Integration descriptor has no active admission')
+        finally:
+            os.close(probe)
+        # This must be the description holding that admission, not an arbitrary
+        # descriptor opened while another integrator owns the lock.
+        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        return fd
+    except (KeyError, OSError, ValueError) as error:
+        raise ValueError('Master update requires integration admission. Use tools/integrate-work.py '
+                         'or tools/with-integration-lock.py --execute -- <whole integration command>. '
+                         'Preserve the current work; do not disable hooks.') from error
+
+
+def run_with_lease(command, **kwargs):
+    lease = _current.get()
+    if lease is not None:
+        return lease.run(command, **kwargs)
+    if os.environ.get(FD_VARIABLE):
+        root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'], text=True).strip()
+        fd = require_lease(root)
+        return Lease(root, fd, 0).run(command, **kwargs)
+    return subprocess.run(command, **kwargs)
+
+
 @contextmanager
 def integration_lock(root, *, expected_master=None):
     path = lock_path(root)

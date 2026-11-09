@@ -2,8 +2,11 @@
 
 Prepare each change in its own worktree. Acquire admission **before** preparing
 a merge against master, and keep it through combined review, backups, the normal
-staged hook and final promotion. The lock is cooperative: other operators must
-use it too. Preview without creating a lock or changing Git:
+staged hook and final promotion. The installed reference-transaction hook requires
+admission for every local master update, including fast-forwards and plumbing
+updates. Install current hooks from a durable checkout with
+`python3 tools/install-coverage-hook.py`; its absolute hook path applies the same
+current guard to older linked worktrees. Preview without changing Git:
 
 ```bash
 python3 tools/with-integration-lock.py
@@ -18,6 +21,61 @@ several commands should use `integration_queue.integration_lock` and
 `lease.run(...)` for children. The inherited descriptor must survive every child
 hop (`pass_fds`); an environment variable alone is refused. Never remove a busy
 lock file.
+
+## Four to six parallel agents
+
+Keep development, builds and focused tests in separate owned task worktrees.
+Acquire integration admission only when ready to combine with master. The
+following command waits, reads master after admission, creates a new integration
+branch in the clean owned worktree, merges pinned ready tips, reviews history,
+refreshes the census, runs normal finish/backups/staged hooks and promotes the
+checked commit. It preserves the prior task branch and refuses dirty source or
+master checkouts. Preview is the default:
+
+```bash
+python3 tools/integrate-work.py --tip <ready-feature>
+python3 tools/integrate-work.py --tip <ready-feature> --execute \
+  --branch integrate/<unique-batch> --db working/coverage/<batch>.sqlite3 \
+  --report research/runtime/<batch>/preparation.json \
+  --reason '<reviewed combined change>' \
+  --validation-reason '<current validation and retained limitations>' \
+  --index-review-reason '<reviewed source and behavior ownership>' \
+  --message '<combined change>'
+```
+
+Repeat `--tip` to batch compatible ready branches into one combined review and
+staged gate. The batch strategy combines disjoint central register/journal additions
+and append-only ledger tails while retaining every keyed record, using candidate
+Git trees and index entries without intermediate commits. Standard Git text merges
+handle other paths. A single-tip merge uses the metadata resolver below. Changes
+to the same metadata record, deletions and unresolved code conflicts require
+review or separate integrations. The command does not invent semantic resolutions,
+reset sources or bypass a failed finish. Failed preparations retain an immutable
+report and the resulting worktree state. Previously unreceipted committed versions
+require a concrete `--history-reason` and every affected `--behavior`; this records
+custody only. Branch names and report paths must be new.
+
+Custom operators still use the wrapper/Lease API above. Children invoking Git
+must inherit the lease descriptor (`lease.run`); a bare environment variable or an
+unlocked descriptor cannot authorize promotion. The storage guard validates and
+forwards this descriptor when launching a guarded child. The guard rejects bypasses while
+preserving checked candidates and source changes. It is a local concurrency
+guard, not an alternative to coverage review, backups or Git access permissions.
+
+Snapshots share four verification slots across linked worktrees, including
+temporary Git trees. Sequential audit work holds one slot; a parallel prefetch
+borrows currently available extras. Six simultaneous checks do not each reserve
+four readers. Slot locks release on process exit; no PID cleanup or retained pass
+cache is needed. Ordinary coding/build jobs do not acquire these slots. The limit
+controls verification concurrency, not total compiler or game-run concurrency.
+
+Temporary Git copies check their estimated allocated bytes, inode headroom and
+write access before extraction. They try the configured temporary directory and
+then bounded `working/coverage/scratch`. These copies are temporary, contain no
+original media and are removed after their consumer exits. Capacity can still
+change under concurrent writers, so retain the outer storage guard and machine
+floors. `--timings` prints scratch selection/preflight details; backup results now
+split root verification, writer-lock wait and the writer section.
 
 ## Recurring metadata and history reviews
 
@@ -53,6 +111,14 @@ The normal combined-tree review and staged gate remain required.
 compare object/version catalogs in bulk SQL, transfer missing objects and freshly
 verify root payloads. This is incremental replication, not a scrub of all existing
 objects; explicit pair verification supplies that check. Divergence is refused.
+
+Existing canonical root payloads receive fresh two-copy verification through
+read-only SQLite snapshots before taking the exclusive archive writer lock.
+After admission, exact roots must still exist in both catalogs to use that
+invocation's verification. New or missing roots take the locked verification and
+replication path. Immutable object/metadata triggers and the shared writer lease
+remain required; this does not reuse a previous invocation's integrity result.
+The shorter lock permits other agents to append evidence while those reads run.
 
 A regular SQLite source without write bits or WAL/SHM/journal sidecars can reuse
 a retained successful logical restore. Each reuse freshly hashes the entire

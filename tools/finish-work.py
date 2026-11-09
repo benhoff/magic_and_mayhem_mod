@@ -2,6 +2,7 @@
 """Review, back up, stage and commit one owned batch without publication."""
 import argparse
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -24,6 +25,8 @@ def main():
     parser.add_argument('--timings', action='store_true', help='Print finish phase durations and return timings_seconds')
     parser.add_argument('--keep-review-cache',action='store_true',help='Keep a materialized cache after shared-store completion')
     args = parser.parse_args()
+    if args.timings:
+        os.environ['MM_COVERAGE_TIMINGS'] = '1'
     with finish_lock(args.root):
         return run(args)
 

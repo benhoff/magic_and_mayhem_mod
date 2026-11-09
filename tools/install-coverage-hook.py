@@ -13,6 +13,10 @@ def install(root, uninstall=False):
     value = git('config', '--local', '--get', 'core.hooksPath')
     effective = git('config', '--get', 'core.hooksPath')
     ours = {'.githooks', str((root/'.githooks').resolve())}
+    registered = git('worktree', 'list', '--porcelain')
+    if registered.returncode == 0:
+        ours.update(str((Path(line.removeprefix('worktree '))/'.githooks').resolve())
+                    for line in registered.stdout.splitlines() if line.startswith('worktree '))
     if uninstall:
         if value.returncode or value.stdout.strip() not in ours:
             raise ValueError('Coverage hook is not installed locally; nothing changed')
@@ -20,9 +24,10 @@ def install(root, uninstall=False):
     else:
         if effective.returncode == 0 and effective.stdout.strip() not in ours:
             raise ValueError('Existing core.hooksPath must be integrated manually; nothing changed')
-        hook = root/'.githooks/pre-commit'
-        if not hook.is_file() or not hook.stat().st_mode & 0o111:
-            raise ValueError('Missing executable .githooks/pre-commit')
+        for name in ('pre-commit', 'reference-transaction'):
+            hook = root/'.githooks'/name
+            if not hook.is_file() or not hook.stat().st_mode & 0o111:
+                raise ValueError('Missing executable .githooks/'+name)
         hooks = git('rev-parse', '--git-path', 'hooks')
         if hooks.returncode:
             raise ValueError(hooks.stderr.strip())
@@ -34,7 +39,9 @@ def install(root, uninstall=False):
                       not p.name.endswith('.sample') and p.stat().st_mode & 0o111]
             if active:
                 raise ValueError('Existing active hooks must be integrated manually: ' + ', '.join(sorted(active)))
-        chosen = effective.stdout.strip() if effective.returncode == 0 else '.githooks'
+        # Absolute installation applies the same current guard to old linked
+        # worktrees, rather than relying on their historical hook files.
+        chosen = str((root/'.githooks').resolve())
         result = git('config', '--local', 'core.hooksPath', chosen)
     if result.returncode:
         raise OSError(result.stderr.strip())

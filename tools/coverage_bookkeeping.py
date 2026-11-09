@@ -515,8 +515,9 @@ def _finish(workspace, base, reason, validation_reason, message, index_reason=No
     measure('git_add', lambda: subprocess.run(git + ['add', '--all', '--', '.'], check=True))
     # Hooks remain mandatory and execute against this worktree's staged tree.
     def commit_with_hook():
+        from integration_queue import run_with_lease
         with local_evidence(workspace.root):
-            subprocess.run(git + ['commit', '-m', message], check=True)
+            run_with_lease(git + ['commit', '-m', message], check=True)
     measure('git_commit_with_hook', commit_with_hook)
     committed = subprocess.check_output(git + ['rev-parse', 'HEAD'], text=True).strip()
     return {'commit': committed, 'receipts': exported, 'backups': backups,

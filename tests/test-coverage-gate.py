@@ -709,7 +709,8 @@ class GateTests(unittest.TestCase):
         export = Mock(stdout=io.BytesIO(archive.getvalue()), returncode=7)
         export.wait.return_value = 7
         export.poll.return_value = 7
-        with patch.object(cli, 'git', return_value=b'a'*40+b'\n'), patch.object(
+        with patch('verification_budget.directory', return_value=self.root/'working/slots'), patch(
+                'coverage_scratch.tree_requirements', return_value=(4096, 32)), patch.object(cli, 'git', return_value=b'a'*40+b'\n'), patch.object(
                 cli.subprocess, 'Popen', return_value=export):
             with self.assertRaises(subprocess.CalledProcessError) as failure:
                 cli.git_snapshot(self.root, 'HEAD')
@@ -719,7 +720,8 @@ class GateTests(unittest.TestCase):
     def test_malformed_archive_stops_the_exporter(self):
         export = Mock(stdout=io.BytesIO(b'invalid tar'))
         export.poll.return_value = None
-        with patch.object(cli, 'git', return_value=b'a'*40+b'\n'), patch.object(
+        with patch('verification_budget.directory', return_value=self.root/'working/slots'), patch(
+                'coverage_scratch.tree_requirements', return_value=(4096, 32)), patch.object(cli, 'git', return_value=b'a'*40+b'\n'), patch.object(
                 cli.subprocess, 'Popen', return_value=export):
             with self.assertRaises(tarfile.ReadError):
                 cli.git_snapshot(self.root, 'HEAD')
@@ -838,10 +840,12 @@ class GateTests(unittest.TestCase):
         self.assertEqual(json.loads(target.read_text())['sources'], self.before['sources'])
 
     def prepare_hook(self):
-        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_applicability.py', 'coverage_claims.py', 'coverage_evidence.py', 'coverage_merge_history.py', 'coverage_reviews.py', 'index-coverage-sources.py', 'evidence_local.py', 'evidence_objects.py'):
+        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_applicability.py', 'coverage_claims.py', 'coverage_evidence.py', 'coverage_merge_history.py', 'coverage_reviews.py', 'index-coverage-sources.py', 'evidence_local.py', 'evidence_objects.py', 'verification_budget.py', 'coverage_scratch.py', 'integration_queue.py', 'guard-master-reference.py'):
             self.write('tools/' + name, (ROOT/'tools'/name).read_text())
         self.write('.githooks/pre-commit', (ROOT/'.githooks/pre-commit').read_text())
         (self.root/'.githooks/pre-commit').chmod(0o755)
+        self.write('.githooks/reference-transaction', (ROOT/'.githooks/reference-transaction').read_text())
+        (self.root/'.githooks/reference-transaction').chmod(0o755)
         self.json(REVIEWS, {'schema': 1, 'reviews': []})
         self.before = self.current()[0]
         self.init_git()
@@ -859,14 +863,16 @@ class GateTests(unittest.TestCase):
         self.assertIn(b'--staged --base HEAD', commit.stderr)
         self.json(REVIEWS, self.receipt())
         cli.git(self.root, 'add', '.')
-        result=subprocess.run(['git','-C',str(self.root),'commit','-qm','exact reviewed change'],capture_output=True)
+        from integration_queue import integration_lock
+        with integration_lock(self.root) as lease:
+            result=lease.run(['git','-C',str(self.root),'commit','-qm','exact reviewed change'],capture_output=True)
         self.assertEqual(result.returncode,0,result.stderr.decode()+result.stdout.decode())
 
     def test_hook_install_is_local_idempotent_and_reversible(self):
         self.prepare_hook()
         hook_install.install(self.root)
         hook_install.install(self.root)
-        self.assertEqual(cli.git(self.root, 'config', '--local', '--get', 'core.hooksPath').strip(), b'.githooks')
+        self.assertEqual(cli.git(self.root, 'config', '--local', '--get', 'core.hooksPath').decode().strip(), str(self.root/'.githooks'))
         hook_install.install(self.root, uninstall=True)
         self.assertNotEqual(subprocess.run(['git', '-C', str(self.root), 'config', '--local', '--get', 'core.hooksPath'], capture_output=True).returncode, 0)
 

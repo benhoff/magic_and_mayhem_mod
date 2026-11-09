@@ -17,6 +17,7 @@ import sqlite3
 import stat
 import subprocess
 import tempfile
+import time
 
 
 class Sink:
@@ -89,7 +90,9 @@ class Pair:
         if require_independent and self.paths[0].parent.stat().st_dev == self.paths[1].parent.stat().st_dev:
             raise ValueError('Evidence replicas require independent filesystems')
         self.lock = self.paths[0].with_suffix('.lock').open('a+b')
+        waited = time.perf_counter()
         fcntl.flock(self.lock, fcntl.LOCK_EX)
+        self.lock_wait_seconds = time.perf_counter() - waited
         self.stores = []
         self.batching = False
         self.batch_verified=set()
@@ -496,11 +499,49 @@ def checkpoint_objects(root):
     Existing objects are not a full scrub here; verify_pair performs that check.
     Interrupted transfers preserve primary roots and immutable retry identities.
     """
+    # Existing roots are immutable. Verify their payloads through independent
+    # read-only connections before taking the writer lease. This invocation's
+    # verified identities are accepted only for roots still present in BOTH
+    # catalogs after admission. Newly arrived roots take the normal locked path.
+    started = time.perf_counter()
+    verified = verify_existing_roots(root)
+    verification_seconds = time.perf_counter() - started
     with configured(root) as pair:
-        return _checkpoint_objects(pair)
+        started = time.perf_counter()
+        result = _checkpoint_objects(pair, verified_roots=verified)
+        result['timings_seconds'] = dict(root_verification=verification_seconds,
+                                        writer_lock_wait=pair.lock_wait_seconds,
+                                        writer_section=time.perf_counter()-started)
+        return result
 
 
-def _checkpoint_objects(pair):
+def verify_existing_roots(root):
+    """No retained pass cache, writer connection, root insert or hash refresh."""
+    from coverage_evidence import Store
+    paths = settings(root)
+    if not paths or not all(path.is_file() for path in paths):
+        return set()
+    verified = set()
+    with closing(Store(paths[0], readonly=True)) as primary, closing(Store(paths[1], readonly=True)) as replica:
+        # Stable read snapshots can coexist with append-only WAL writers.
+        for store in (primary, replica):
+            store.db.execute('BEGIN')
+        replicated = set(_roots(replica))
+        for key in _roots(primary):
+            if key not in replicated:
+                continue
+            _, _, sha, size = key
+            body = io.BytesIO()
+            primary.copy(sha, size, body)
+            replica.copy(sha, size, Sink())
+            value = json.loads(body.getvalue())
+            if (json.dumps(value, sort_keys=True, separators=(',', ':'))+'\n').encode() != body.getvalue():
+                raise ValueError('Noncanonical retention root requires review')
+            verified.add(key)
+    return verified
+
+
+def _checkpoint_objects(pair, *, verified_roots=()):
     target = pair.stores[1].db
     # Store connections do not enable URI filenames. This canonical path was
     # validated by Pair; the attached schema is used only on SELECT sides.
@@ -533,14 +574,16 @@ def _checkpoint_objects(pair):
             # canonical-JSON checks. Only missing root metadata needs an insert.
             roots_exist = target.execute("SELECT 1 FROM sqlite_master WHERE name='retention_roots'").fetchone()
             for kind, source, sha, size in _roots(pair.stores[0]):
+                present = roots_exist and target.execute('''SELECT 1 FROM retention_roots
+                    WHERE kind=? AND source=? AND sha256=? AND size=?''', (kind, source, sha, size)).fetchone()
+                if present and (kind, source, sha, size) in verified_roots:
+                    continue
                 body = pair.read(sha, size)
                 pair.read(sha, size, 1)
                 value = json.loads(body)
                 canonical = (json.dumps(value, sort_keys=True, separators=(',', ':'))+'\n').encode()
                 if canonical != body:
                     raise ValueError('Noncanonical retention root requires review')
-                present = roots_exist and target.execute('''SELECT 1 FROM retention_roots
-                    WHERE kind=? AND source=? AND sha256=? AND size=?''', (kind, source, sha, size)).fetchone()
                 if not present:
                     if pair.root(kind, source, value) != dict(sha256=sha, size=size):
                         raise ValueError('Noncanonical retention root requires review')

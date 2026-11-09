@@ -28206,3 +28206,16 @@ finds zero remaining receipt gaps across22,479transitions. These are host/static
 checks only; accepted engine execution keeps its exact owned phase. No additional
 original start, original reference replay, pixel comparison or final decision is
 claimed by integration.
+
+
+
+
+## Parallel-agent integration tooling — 2026-11-08
+
+`TOOL.parallel-agents` / `PAR01.controls` tracks host policy for four to six owned task worktrees. Current shared reference hooks require inherited active admission for master updates; the dry-first queued command owns ready-tip preparation, current master selection, normal exact finish/backups/staged checks and conditional promotion. Compatible batches union disjoint central register/journal records and append-only ledger tails through candidate Git trees, without intermediate commits. Overlapping records, unresolved code conflicts, dirty work and failed finishes remain held for review. Four shared snapshot verification slots include linked/materialized trees; terminated owners release kernel locks. Scratch acquisition checks allocated-byte estimates, inode headroom and actual write access. Existing canonical retention roots receive fresh two-copy read verification before the exclusive writer section; new roots and divergent catalogs still face locked checks.
+
+Fresh isolated controls include six competing processes, worker termination/nested borrowing, guarded Git references, real two-tip normal finishes and separate master-checkout fast-forwards, failed/dirty/conflicting preparation, root corruption, replica loss and compatible accounting/storage regressions. These are host tooling milestones; original rendering behavior, native frontend acceptance and engine recovery statuses remain independent. Historical reports/hashes, failed source phases and prior throughput measurements remain retained. Already running Python agents keep their loaded older code; queue/current worker policy applies through current tooling and installed shared hooks. New end-to-end multi-agent throughput remains unmeasured.
+
+Final source-stable host batch: current controls pass across15suites; the full accounting audit has zero errors. Prior mock-refusal diagnostics remain retained separately and grant no earlier source-validation claim. Current/base/staged checks and paired backups remain required for the actual commit.
+
+Final source-stable host batch:394controls pass across16suites; the full accounting audit has zero errors. Prior mock-refusal diagnostics remain retained separately and grant no earlier source-validation claim. Current/base/staged checks and paired backups remain required for the actual commit.

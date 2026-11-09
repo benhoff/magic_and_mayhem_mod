@@ -233,11 +233,18 @@ def shared_cache(root):
     previous = os.environ.get('MM_EVIDENCE_CACHE')
     if previous is None:
         os.environ['MM_EVIDENCE_CACHE'] = str(cache_root(root))
+    from verification_budget import DIRECTORY, directory
+    prior_budget = os.environ.get(DIRECTORY)
+    os.environ[DIRECTORY] = str(directory(root))
     try:
         yield
     finally:
         if previous is None:
             os.environ.pop('MM_EVIDENCE_CACHE', None)
+        if prior_budget is None:
+            os.environ.pop(DIRECTORY, None)
+        else:
+            os.environ[DIRECTORY] = prior_budget
 
 
 def config(root):
@@ -580,13 +587,6 @@ class Reader:
             jobs.setdefault(ident, []).append((target, stamp))
         if not jobs:
             return
-        groups = [[] for _ in range(min(workers, len(jobs)))]
-        sizes = [0] * len(groups)
-        for ident in sorted(jobs, key=lambda key: key[1], reverse=True):
-            index = min(range(len(groups)), key=sizes.__getitem__)
-            groups[index].append(ident)
-            sizes[index] += ident[1]
-
         class Sink:
             def write(self, chunk):
                 pass
@@ -602,11 +602,19 @@ class Reader:
             finally:
                 resolver.close()
 
-        with ThreadPoolExecutor(max_workers=len(groups)) as pool:
-            for verified in pool.map(verify, groups):
-                for sha, size in verified:
-                    for target, stamp in jobs[(sha, size)]:
-                        self._remember(target, stamp, sha)
+        from verification_budget import workers as budget
+        with budget(self.root, min(workers, len(jobs))) as count:
+            groups = [[] for _ in range(count)]
+            sizes = [0] * count
+            for ident in sorted(jobs, key=lambda key: key[1], reverse=True):
+                index = min(range(count), key=sizes.__getitem__)
+                groups[index].append(ident)
+                sizes[index] += ident[1]
+            with ThreadPoolExecutor(max_workers=count) as pool:
+                for verified in pool.map(verify, groups):
+                    for sha, size in verified:
+                        for target, stamp in jobs[(sha, size)]:
+                            self._remember(target, stamp, sha)
 
 
 def _reader_root(path, root=None):

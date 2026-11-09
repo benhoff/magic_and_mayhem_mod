@@ -25,6 +25,8 @@ jobs:
       - name: Test accounting and evidence tooling with isolated fixtures
         run: |
           python3 -B tests/test-integration-tools.py
+          python3 -B tests/test-parallel-agent-tools.py
+          python3 -B tests/test-working-retention.py
           TMPDIR=/dev/shm python3 -B tests/test-finish-performance.py
           python3 -B tests/test-evidence-applicability.py
           python3 -B tests/test-re-coverage.py
@@ -51,6 +53,8 @@ jobs:
       - name: Test audit and gate guards
         run: |
           python3 -B tests/test-integration-tools.py
+          python3 -B tests/test-parallel-agent-tools.py
+          python3 -B tests/test-working-retention.py
           TMPDIR=/dev/shm python3 -B tests/test-finish-performance.py
           python3 -B tests/test-evidence-applicability.py
           python3 -B tests/test-re-coverage.py

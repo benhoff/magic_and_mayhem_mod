@@ -172037,7 +172037,10 @@
         "tests/fixture_support.py"
       ],
       "evidence": [
-        "FIN01.controls"
+        "FIN01.controls",
+        "PAR01.controls",
+        "PAR02.controls",
+        "PAR03.controls"
       ],
       "status": {
         "understanding": "scoped",
@@ -172047,7 +172050,7 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Admission is cooperative; nonparticipating writers may still move master. Operators must acquire before merge preparation and preserve the descriptor through child hops.",
+        "Universal master admission requires the current shared reference hook installation. Older or deliberately unguarded hook configurations retain the earlier cooperative limitation; children must preserve the active descriptor.",
         "Only disjoint metadata changes and append-only ledger tails are reconciled. Overlapping records, evidence-ID collisions and semantic coverage need review. Retrospective affected IDs grant no behavior-contract or validation credit.",
         "Benchmarks use bounded RAM-primary/disk-replica fixtures. End-to-end integration timing and reuse on the large machine legacy database remain unmeasured.",
         "Earlier evidence/statuses for consumers of changed shared source retain their original hashes; broad historical current-code validation is not renewed."
@@ -172100,7 +172103,10 @@
         "tests/fixture_support.py"
       ],
       "evidence": [
-        "SNAP01.controls"
+        "SNAP01.controls",
+        "PAR01.controls",
+        "PAR02.controls",
+        "PAR03.controls"
       ],
       "status": {
         "understanding": "scoped",
@@ -172239,6 +172245,91 @@
       "remaining_gaps": [
         "VC08.G.hidden-copy-controls: Twenty complete native planes, 93 classifier cases, 18 changed-anchor refusals and the exact retained pre-fix retry control pass. Controlled original E8/callee with authored caller endpoints does not recover the whole Spellbox caller or flags.",
         "VC08.G.hidden-copy-player: Both nominal profiles observe the exact guarded hidden redraw, complete800/640/800 recreation and zero-difference viewport histories with normal retirement, using the bit-identical controlled DLL. Whole original Spellbox caller/flags, arbitrary providers and combined-current player remain separate."
+      ]
+    },
+    {
+      "id": "TOOL.parallel-agents",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Queued integration and shared verification for parallel agents",
+      "scope": "Host tooling policy for four to six independent task worktrees: installed shared reference hook requires inherited active admission before every master update; queued explicit ready-tip integration pins inputs, reads master after admission, preserves task branches/dirty work/conflicts, performs exact history custody and normal finish/backups/staged hooks before conditional promotion. Compatible batches union disjoint keyed register/journal additions and append-only ledger tails through a candidate-tree Git strategy, with standard text merging for other paths and no intermediate commits; overlapping records and unresolved code conflicts refuse. Single-tip metadata union remains conservative. Four repository-wide kernel slots bound sequential snapshot audits and borrowed prefetch workers, including linked worktrees and temporary Git copies, with owner-exit release. Scratch checks estimated allocated bytes, inode headroom and write access. Fresh two-copy canonical root reads occur outside the exclusive archive writer lease; newly arrived roots are verified after admission and catalog divergence still refuses. Independent-process, corruption, refusal and real isolated batch-finish controls only; no original/game execution, accepted rendering promotion or end-to-end concurrency speed guarantee.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/integration-workflow.md",
+        "docs/snapshot-performance.md",
+        "AGENTS.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "tools/verification_budget.py",
+        "tools/integration_queue.py",
+        "tools/integration_batch.py",
+        "tools/integrate-work.py",
+        "tools/guard-master-reference.py",
+        "tools/coverage_scratch.py",
+        "tools/coverage_gate.py",
+        "tools/coverage_evidence.py",
+        "tools/evidence_objects.py",
+        "tools/check-re-coverage.py",
+        "tools/coverage_bookkeeping.py",
+        "tools/finish-work.py",
+        "tools/install-coverage-hook.py",
+        "tools/git-merge-mm-coverage.sh",
+        "tools/merge_coverage_batch.py",
+        "tools/working-retention.py"
+      ],
+      "tests": [
+        "tests/test-parallel-agent-tools.py",
+        "tests/test-finish-performance.py",
+        "tests/test-integration-tools.py",
+        "tests/test-evidence-objects.py",
+        "tests/test-evidence-store.py",
+        "tests/test-coverage-gate.py",
+        "tests/test-coverage-bookkeeping.py",
+        "tests/test-local-evidence-workflow.py",
+        "tests/test-re-coverage.py",
+        "tests/test-coverage-merge-history.py",
+        "tests/test-coverage-evidence-imports.py",
+        "tests/test-evidence-blocks.py",
+        "tests/test-coverage-review-shards.py",
+        "tests/test-evidence-applicability.py",
+        "tests/test-private-evidence-backup.py",
+        "tests/test-working-retention.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_reviews.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_merge_history.py",
+        "tools/evidence_local.py",
+        "tools/evidence_blocks.py",
+        "tools/evidence_cache.py",
+        "tools/evidence_workspace.py",
+        "tools/index-coverage-sources.py",
+        "tests/fixture_support.py",
+        "tools/coverage_audit.py",
+        ".githooks/reference-transaction",
+        ".githooks/pre-commit",
+        ".github/workflows/re-coverage.yml"
+      ],
+      "evidence": [
+        "PAR01.controls",
+        "PAR02.controls",
+        "PAR03.controls"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Already running Python processes retain their loaded older code; new worker/backup policy applies when current tooling is invoked. Absolute installed hooks cover older linked checkouts for subsequent Git operations.",
+        "Git hook installation and intact immutable-store triggers are local workflow prerequisites, not a security boundary against deliberate hook/database bypass.",
+        "Multi-tip overlapping behavior/evidence records, deletions, multiple merge bases and unresolved code conflicts require manual review or separate integrations; no synthetic record merge is accepted.",
+        "Scratch capacity is checked at acquisition but other writers can change availability; outer machine storage guards and reserves remain required.",
+        "Worker admission bounds concurrency without FIFO fairness or a full multi-agent throughput guarantee. No engine/current-code historical equivalence is inferred."
       ]
     }
   ],
@@ -393641,6 +393732,63 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "PAR01.controls",
+      "kind": "native_integration",
+      "scope": "Fresh source-stable isolated host controls for guarded queued integration, shared worker budgets, scratch and evidence locking, plus compatible existing accounting/storage regressions. No new original/game run, old hash refresh or engine milestone promotion.",
+      "record": "research/runtime/parallel-agent-tooling-results-20261108/controls01.json",
+      "sha256": "9ca36659038913a7675e82a93c9484c7caeaaaaed0bcca6d4a26ec90d0c6a238",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "PAR02.controls",
+      "kind": "native_integration",
+      "scope": "Fresh source-stable isolated host controls for guarded queued integration, shared worker budgets, scratch and evidence locking, plus compatible existing accounting/storage regressions. No new original/game run, old hash refresh or engine milestone promotion.",
+      "record": "research/runtime/parallel-agent-tooling-results-20261108/controls02.json",
+      "sha256": "0aca0f4819c582a1f27b2297d26d9c871003f68e6496bbd0980800b54d74ef17",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "PAR03.controls",
+      "kind": "native_integration",
+      "scope": "Fresh source-stable isolated host controls for guarded queued integration, shared worker budgets, scratch and evidence locking, plus compatible existing accounting/storage regressions. No new original/game run, old hash refresh or engine milestone promotion.",
+      "record": "research/runtime/parallel-agent-tooling-results-20261108/controls03.json",
+      "sha256": "e3392978bbb849f56b7e48033cd337c0c3ac5b3a0bfaea359d62291ba233e466",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -427930,7 +428078,10 @@
         "tests/test-coverage-review-shards.py"
       ],
       "evidence": [
-        "FIN01.controls"
+        "FIN01.controls",
+        "PAR01.controls",
+        "PAR02.controls",
+        "PAR03.controls"
       ]
     },
     {
@@ -427955,7 +428106,10 @@
         "tests/test-coverage-review-shards.py"
       ],
       "evidence": [
-        "SNAP01.controls"
+        "SNAP01.controls",
+        "PAR01.controls",
+        "PAR02.controls",
+        "PAR03.controls"
       ]
     },
     {
@@ -427995,6 +428149,37 @@
       "evidence": [
         "VC08.player01",
         "VC08.inventory-links01"
+      ]
+    },
+    {
+      "id": "SC.tooling.parallel-agents",
+      "scope": "Six competing process worker bounds, nested borrowing, killed owner release, inherited current shared hooks and guarded master references, byte/inode/write scratch refusal and fallback, fresh read-only root integrity, dirty/failed/conflicting preparation preservation, and real compatible two-tip and disjoint register/journal/ledger batch finish/backups/hooks/conditional and checked-out-master promotion. Host fixtures only.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.parallel-agents"
+      ],
+      "tests": [
+        "tests/test-parallel-agent-tools.py",
+        "tests/test-finish-performance.py",
+        "tests/test-integration-tools.py",
+        "tests/test-evidence-objects.py",
+        "tests/test-evidence-store.py",
+        "tests/test-coverage-gate.py",
+        "tests/test-coverage-bookkeeping.py",
+        "tests/test-local-evidence-workflow.py",
+        "tests/test-re-coverage.py",
+        "tests/test-coverage-merge-history.py",
+        "tests/test-coverage-evidence-imports.py",
+        "tests/test-evidence-blocks.py",
+        "tests/test-coverage-review-shards.py",
+        "tests/test-evidence-applicability.py",
+        "tests/test-private-evidence-backup.py",
+        "tests/test-working-retention.py"
+      ],
+      "evidence": [
+        "PAR01.controls",
+        "PAR02.controls",
+        "PAR03.controls"
       ]
     }
   ],
@@ -429823,8 +430008,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-ebc92d84c08b18e0c2b01e5b4e5d2f9fd8c07b5bcd2086703cee86e15bc09935.json",
-    "sha256": "ebc92d84c08b18e0c2b01e5b4e5d2f9fd8c07b5bcd2086703cee86e15bc09935"
+    "path": "research/runtime/coverage/source-index-976f4989c983c8dfe60b4e598e49ac7710d2dde0758ca8c6d39ae047c876e6e5.json",
+    "sha256": "976f4989c983c8dfe60b4e598e49ac7710d2dde0758ca8c6d39ae047c876e6e5"
   },
   "evidence_applicability": [
     {

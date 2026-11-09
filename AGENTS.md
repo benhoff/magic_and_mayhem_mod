@@ -352,10 +352,14 @@ Preserve failed publication receipts and immutable assets. Publishing or omittin
 publication never changes engine validation claims.
 Use one owned worktree per bounded task batch. Keep later concurrent edits out
 of that batch's source snapshot, evidence claims and commit.
-Before preparing a local master integration, acquire the cooperative admission
-lock through `tools/with-integration-lock.py --execute --expected-master <commit>`
-and hold it through promotion. Follow `docs/integration-workflow.md`, propagating
-the lease descriptor to child operators. The lock coordinates participating
-integrators; current/staged checks and master-tip verification remain required.
+Before preparing a local master integration, acquire admission through
+`tools/integrate-work.py` for ready tips, or wrap the whole custom operation in
+`tools/with-integration-lock.py --execute --expected-master <commit>` and hold it
+through promotion. Follow `docs/integration-workflow.md`. Install current shared
+hooks from a durable checkout; the master reference guard requires an inherited
+active lease. Propagate it to child Git calls instead of disabling hooks. Keep
+coding and focused tests outside the integration slot. Compatible ready tips may
+share one reviewed batch; semantic conflicts and failed checks still require
+review. Current/staged checks and master-tip verification remain required.
 The review workspace remains local and its exact text exports remain Git/CI
 authority; archive relocation does not assert engine validation.

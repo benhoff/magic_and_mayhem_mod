@@ -228,7 +228,11 @@ def stop_group(child, grace):
 
 
 def guarded_run(command, root, rules):
-    child = subprocess.Popen(command, cwd=root, start_new_session=True)
+    descriptors = {}
+    if 'MM_INTEGRATION_LOCK_FD' in os.environ:
+        from integration_queue import require_lease
+        descriptors['pass_fds'] = (require_lease(root),)
+    child = subprocess.Popen(command, cwd=root, start_new_session=True, **descriptors)
     try:
         while child.poll() is None:
             free = shutil.disk_usage(root / 'working').free

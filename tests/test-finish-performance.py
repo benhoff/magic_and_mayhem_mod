@@ -184,6 +184,41 @@ class Backups(unittest.TestCase):
                 objects._checkpoint_objects(pair)
             self.assertTrue(pair.stores[1].has(sha))
 
+    def test_existing_root_verification_runs_without_the_writer_lease(self):
+        with objects.configured(self.root) as pair:
+            ref = pair.root('parallel', 'fixture', dict(value='retained negative'))
+            # Pair still owns the exclusive writer lease. A second Pair would
+            # block here; independent read-only verification must finish.
+            verified = objects.verify_existing_roots(self.root)
+            self.assertIn(('parallel', 'fixture', ref['sha256'], ref['size']), verified)
+
+    def test_new_roots_after_readonly_verification_still_get_locked_verification(self):
+        with objects.configured(self.root) as pair:
+            old = pair.root('parallel', 'old', dict(value='old'))
+        verified = objects.verify_existing_roots(self.root)
+        with objects.configured(self.root) as pair:
+            new = pair.root('parallel', 'new', dict(value='new'))
+            original = pair.read
+            calls = []
+            def observed(sha, *args):
+                calls.append(sha)
+                return original(sha, *args)
+            with patch.object(pair, 'read', side_effect=observed):
+                self.assertTrue(objects._checkpoint_objects(pair, verified_roots=verified)['success'])
+            self.assertNotIn(old['sha256'], calls)
+            self.assertEqual(calls.count(new['sha256']), 2)
+
+    def test_readonly_root_verification_detects_replica_corruption(self):
+        with objects.configured(self.root) as pair:
+            ref = pair.root('parallel', 'fixture', dict(value='negative'))
+            store = pair.stores[1]
+            with store.db:
+                self.unguard(store, 'blocks')
+                block = store.db.execute('SELECT block FROM object_parts WHERE sha256=?', (ref['sha256'],)).fetchone()[0]
+                store.db.execute('UPDATE blocks SET payload=? WHERE sha256=?', (b'broken', block))
+        with self.assertRaises((ValueError, zlib.error)):
+            objects.checkpoint_objects(self.root)
+
     def test_conflicting_git_bindings_refuse_without_rewriting(self):
         with objects.configured(self.root) as pair:
             a, b = pair.bytes(b'first'), pair.bytes(b'second')
