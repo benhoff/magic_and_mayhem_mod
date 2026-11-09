@@ -277,3 +277,9 @@ The 2026-11-08 palette/master union retains all116current accepted rows and adds
 only both finite palette-refresh rows:118passed38pending. Exact recorded
 execution/source phases and both pending final decisions remain separate from
 merged source controls. No original-game/oracle/pixel recollection is included.
+
+## Approved controlled opaque-overlap amendment — 2026-11-09
+
+ALIAS09 closes exactly two owner-amended controlled opaque RGB565 overlap cells: 128/156 passed, 28 pending. Retained 1,536-case original/backend/v3 output is rechecked with 23 current admission guards. This is shared controlled mechanism scope, not natural player overlap. SC.natural-callers, required boundaries and both final decisions remain pending; all 154 unrelated cells and historical source phases are preserved.
+
+The owner-approved `ALIAS09.controlled-opaque-overlap-v1` entry is an explicit overlay on the frozen baseline. The two profile labels share the retained 8×6 opaque RGB565 original-wrapper/backend/v3 mechanism proof; they do not receive natural player-call or 640/800 domain credit. The admission records its amended contract identity, retained source phases, exact component proof and inherited final decisions. General backend per-piece snapshots do not establish the production facade whole-call snapshot policy. Keyed/masked/other-format overlap, live alias discovery and physical-provider equivalence remain separate.

@@ -28461,3 +28461,25 @@ preserves these 126 rows with fresh exclusive-observer ABI, native font ownershi
 DC admission, hidden-copy and eight source-phase controls. The accepted games
 keep their exact execution hashes; renamed task frontends and opt-in activation
 are checked separately. No current combined-player execution is asserted.
+
+### ALIAS08 — source publication and current opaque overlap, 2026-11-08
+
+Assessment03 binds the Grimoire bar source through book+0x1a3a/helper+0x850/bar+4
+to its selected surface creation, and records generic embedded-source creation
+plus the direct destination store missed by a setter-only inventory. These are
+static publication findings, not global backing disjointness or natural overlap.
+`ALIAS08.publications01` and eight current argument/timing controls retain the
+exact source phase. `ALIAS08.opaque-native02` freshly compares all1536 retained
+original opaque overlap cases with current backend/v3 outputs, including16partial
+errors,20policy controls and6rejected streams;9oracle controls pass. No game or
+original collector runs. Exact binaries, inputs, failures and reconstruction
+commands are SQLite-backed; compiler intermediates remain temporary RAM output.
+No acceptance contract is amended:118passed/38pending, both alias rows pending.
+Natural player reachability and the production facade's separate frozen-source
+policy are not promoted. See `rendering-alias-reachability-20261108.md`.
+
+### ALIAS09 — approved bounded overlap closure, 2026-11-09
+
+ALIAS09 closes exactly two owner-amended controlled opaque RGB565 overlap cells: 128/156 passed, 28 pending. Retained 1,536-case original/backend/v3 output is rechecked with 23 current admission guards. This is shared controlled mechanism scope, not natural player overlap. SC.natural-callers, required boundaries and both final decisions remain pending; all 154 unrelated cells and historical source phases are preserved.
+
+`NP.alias-overlap-bounded-closeout` owns only this admission/accounting policy. Current 23 host guards and raw retained 1,536-case comparison support `ALIAS09.controls02`/`ALIAS09.admission01`; no recovered native-engine status, original collector or whole-player execution is renewed. The old ALIAS08 feature and its source/evidence custody are integrated without modifying historical hashes.

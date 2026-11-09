@@ -19166,7 +19166,8 @@
         "NR.surface-backend.formats-pitch.ownership-20261006",
         "ORIGINAL.surface-retry.formats-pitch-replay-20261006",
         "NR.surface-backend.formats-pitch.regressions-20261006",
-        "NR.native-campaign.directcopy-backend-20261009"
+        "NR.native-campaign.directcopy-backend-20261009",
+        "ALIAS08.opaque-native02"
       ],
       "status": {
         "understanding": "partial",
@@ -171954,6 +171955,36 @@
           "build": "nocd-40209ca7",
           "address": 5102000,
           "scope": "Selected static instruction/operand context only; no whole-function or actual branch execution claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5001488,
+          "scope": "Selected static source-creation/publication bytes in assessment03 only; no whole function, backing-disjointness or natural overlap execution claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4996969,
+          "scope": "Selected static source-creation/publication bytes in assessment03 only; no whole function, backing-disjointness or natural overlap execution claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5015978,
+          "scope": "Selected static source-creation/publication bytes in assessment03 only; no whole function, backing-disjointness or natural overlap execution claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5003697,
+          "scope": "Selected static source-creation/publication bytes in assessment03 only; no whole function, backing-disjointness or natural overlap execution claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5714723,
+          "scope": "Selected static source-creation/publication bytes in assessment03 only; no whole function, backing-disjointness or natural overlap execution claim."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5719949,
+          "scope": "Selected static source-creation/publication bytes in assessment03 only; no whole function, backing-disjointness or natural overlap execution claim."
         }
       ],
       "implementation": [
@@ -171985,7 +172016,9 @@
       },
       "evidence": [
         "ALIAS08.caller-leads01",
-        "ALIAS08.controls01"
+        "ALIAS08.controls01",
+        "ALIAS08.publications01",
+        "ALIAS08.publisher-controls01"
       ],
       "remaining_gaps": [
         "All predecessor/indirect flow and wrapper publication/backing lifetimes remain unresolved. Separate fields or constants do not prove disjoint physical storage. Both natural alias/overlap acceptance rows remain pending; no independent output or current native execution is added."
@@ -173696,6 +173729,54 @@
       },
       "remaining_gaps": [
         "FDC08.G.native-ui: Four actual installed profile/size cases, screenshot joins and normal player retirement remain pending. Current controls establish only the bounded observer/native font component milestone."
+      ]
+    },
+    {
+      "id": "NP.alias-overlap-bounded-closeout",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owner-approved bounded opaque overlap acceptance",
+      "scope": "Acceptance accounting for the owner-approved controlled opaque RGB565 overlap amendment only. Fresh retained-data analysis checks original/native full planes and replay/results, preserves154 other rows and both decisions, and retains natural player reachability at SC.natural-callers/gate.required-boundaries. The two profile labels share controlled mechanism proof; no new player/native execution, production-facade or original-recovery equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-alias-reachability-20261108.md",
+        "docs/native-rendering-acceptance.md"
+      ],
+      "implementation": [
+        "tools/close-rendering-alias-bounded.py"
+      ],
+      "tests": [
+        "tests/test-rendering-alias-bounded.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_acceptance.py",
+        "tools/rendering_completion.py",
+        "tools/rendering_execution.py",
+        "tools/coverage_audit.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/check-native-surface-overlap.py",
+        "tools/check-original-surface-overlap.py",
+        "tools/check-original-surface-keys.py",
+        "docs/native-rendering-closure.json",
+        "tests/fixtures/surfaces/original-rgb565-overlap-corpus.json",
+        "tests/fixtures/surfaces/original-rgb565-overlap.json.gz"
+      ],
+      "evidence": [
+        "ALIAS09.controls02",
+        "ALIAS09.admission01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Natural overlapping player call, actual profile output and live COM alias discovery remain under SC.natural-callers and both required-boundaries cells.",
+        "General backend per-piece opaque policy is distinct from production facade whole-call freeze. Keyed/masked/other formats, physical providers, whole-player and original-recovery completion remain open."
       ]
     }
   ],
@@ -398209,6 +398290,156 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "ALIAS08.publications01",
+      "kind": "static",
+      "scope": "Selected original Grimoire bar and generic image source-creation/publication windows, including an additional direct destination store. Static data-flow leads only; all unresolved relationships and natural overlap requirements remain pending.",
+      "record": "research/runtime/rendering-alias-reachability-results-20261108/assessment-03.json",
+      "sha256": "006e79f620feeae398f70f9f173d4619b8dbfdc0751d82df61040db9bbe051c8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selected_publication_anchors/0x4c89aa/bytes",
+          "equals": "894704"
+        },
+        {
+          "pointer": "/selected_publication_anchors/0x57478d/bytes",
+          "equals": "c74008e0496a00"
+        }
+      ]
+    },
+    {
+      "id": "ALIAS08.publisher-controls01",
+      "kind": "native_integration",
+      "scope": "Eight existing host analyzer/timing corruption controls pass for the current inspector source phase. No original game/native drawing or acceptance credit.",
+      "record": "research/runtime/rendering-alias-closeout-results-20261108/publisher-controls-01.json",
+      "sha256": "9ddd6211469a61056b59bbf053cef32ae7974d270db1de0818ea710191c74543",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "ALIAS08.opaque-native02",
+      "kind": "isolated_original",
+      "scope": "Current backend and v3 replay independently compare all1536 retained original opaque RGB565 overlap results/full planes,20 policy checks and6 rejected streams. Nine retained-oracle controls pass. Real alias identity is retained original input; no current original recollection, live COM tracking, production-facade or natural player-call acceptance.",
+      "record": "research/runtime/rendering-alias-closeout-results-20261108/opaque-native-02.json",
+      "sha256": "1e8c49b041344976d24df9bc804bdcdfd110f070c97bae8e9f0afc8fa1d5ead6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/backend_hresult_checks",
+          "equals": 1536
+        },
+        {
+          "pointer": "/stream_hresult_checks",
+          "equals": 1536
+        },
+        {
+          "pointer": "/partial_error_cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/profile_acceptance",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "ALIAS09.controls02",
+      "kind": "native_integration",
+      "scope": "Acceptance accounting for the owner-approved controlled opaque RGB565 overlap amendment only. Fresh retained-data analysis checks original/native full planes and replay/results, preserves154 other rows and both decisions, and retains natural player reachability at SC.natural-callers/gate.required-boundaries. The two profile labels share controlled mechanism proof; no new player/native execution, production-facade or original-recovery equivalence.",
+      "record": "research/runtime/rendering-alias-bounded-results-20261109/controls-02.json",
+      "sha256": "cdb8860a7de94c383fee949633959228e0d5726c9eb8f3b8796a71fb881ee0da",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 23
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "ALIAS09.admission01",
+      "kind": "native_integration",
+      "scope": "Acceptance accounting for the owner-approved controlled opaque RGB565 overlap amendment only. Fresh retained-data analysis checks original/native full planes and replay/results, preserves154 other rows and both decisions, and retains natural player reachability at SC.natural-callers/gate.required-boundaries. The two profile labels share controlled mechanism proof; no new player/native execution, production-facade or original-recovery equivalence.",
+      "record": "research/runtime/rendering-alias-bounded-results-20261109/admission-01.json",
+      "sha256": "a46ade5c2d4f2eb2473aa4bcee8f63554a497e42981695666beb8849597546b7",
+      "sources_pointer": "/analysis_sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/preserved_unrelated_parent_rows",
+          "equals": 154
+        },
+        {
+          "pointer": "/proof/cases",
+          "equals": 1536
+        },
+        {
+          "pointer": "/proof/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/natural_player_reachability",
+          "equals": "pending"
+        },
+        {
+          "pointer": "/original_recovery_promoted",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -433097,6 +433328,22 @@
         "FDC08.native-menu-font-controls03",
         "FDCM09.native"
       ]
+    },
+    {
+      "id": "NP.alias-overlap-bounded-closeout.retained-admission",
+      "level": "headless",
+      "scope": "Acceptance accounting for the owner-approved controlled opaque RGB565 overlap amendment only. Fresh retained-data analysis checks original/native full planes and replay/results, preserves154 other rows and both decisions, and retains natural player reachability at SC.natural-callers/gate.required-boundaries. The two profile labels share controlled mechanism proof; no new player/native execution, production-facade or original-recovery equivalence.",
+      "behaviors": [
+        "NP.alias-overlap-bounded-closeout"
+      ],
+      "tests": [
+        "tools/close-rendering-alias-bounded.py",
+        "tests/test-rendering-alias-bounded.py"
+      ],
+      "evidence": [
+        "ALIAS09.controls02",
+        "ALIAS09.admission01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -434924,8 +435171,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-3a09c26804164071ab9a93baf17b80b52be9c90a7a21e530621e8dcf09ec2076.json",
-    "sha256": "3a09c26804164071ab9a93baf17b80b52be9c90a7a21e530621e8dcf09ec2076"
+    "path": "research/runtime/coverage/source-index-34bcac525cd8d9a3c5d282a708ed4e3ebce6a9e0e15ae1e24480e42adfb08e70.json",
+    "sha256": "34bcac525cd8d9a3c5d282a708ed4e3ebce6a9e0e15ae1e24480e42adfb08e70"
   },
   "evidence_applicability": [
     {

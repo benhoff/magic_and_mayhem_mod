@@ -4589,5 +4589,51 @@
     "evidence": "SCOPE30.decisions-reviewed",
     "applies_to": "supported-player-scope",
     "baseline_decisions_preserved": true
-  }
+  },
+  "acceptance_scope_amendments": [
+    {
+      "schema": 1,
+      "id": "ALIAS09.controlled-opaque-overlap-v1",
+      "requirement": "operation.copy-alias-overlap",
+      "approval": {
+        "date": "2026-11-09",
+        "response": "yes",
+        "request": "Approve bounded mechanism closure while keeping natural reachability explicitly open?"
+      },
+      "configurations": [
+        "player-default",
+        "player-software"
+      ],
+      "acceptance_basis": "controlled_original_wrapper_native_backend_and_v3_replay",
+      "scope": {
+        "format": "RGB565",
+        "surface_extent": [
+          8,
+          6
+        ],
+        "operations": "opaque Blt/BltFast",
+        "aliases": "same backing and original-verified Surface1 aliases normalized to one native backing ID",
+        "semantics": "ordered per-piece snapshots, full source/destination planes and HRESULTs",
+        "provider": "retained Wine original observations and the exact retained Mesa llvmpipe native execution"
+      },
+      "proof": {
+        "record": "research/runtime/rendering-alias-closeout-results-20261108/opaque-native-02.json",
+        "sha256": "1e8c49b041344976d24df9bc804bdcdfd110f070c97bae8e9f0afc8fa1d5ead6"
+      },
+      "profile_mapping": "shared controlled mechanism; no natural profile-specific execution is inferred",
+      "remaining_obligation": {
+        "scope_decision": "SC.natural-callers",
+        "gate": "gate.required-boundaries",
+        "state": "pending"
+      },
+      "exclusions": [
+        "natural player overlap reachability and output",
+        "live COM alias discovery",
+        "production facade whole-call frozen-source equivalence",
+        "keyed/masked/other-format overlap",
+        "physical Windows/hardware driver equivalence",
+        "whole-player or original-recovery completion"
+      ]
+    }
+  ]
 }

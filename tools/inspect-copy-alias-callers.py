@@ -132,6 +132,17 @@ def main():
                 raise ValueError('Generic image destination publication differs')
             if {v['call'] for v in publications['bar_draw']} != {0x4b506c, 0x4c8351}:
                 raise ValueError('Two-piece bar direct-caller leads differ')
+            # These selected stores bind the earlier unresolved publication leads.
+            # They do not prove the absence of other writers or backing aliases.
+            publication_anchors = {
+                0x4c5177: '89863a1a0000', 0x4c51e1: 'e8aa5b0c00',
+                0x4c3f69: '898250080000', 0x4c89aa: '894704',
+                0x4c59b1: '89914c080000', 0x57331d: '8d6a0c',
+                0x573323: 'e8687a0100', 0x57478d: 'c74008e0496a00',
+            }
+            if any(code.get(pc, {}).get('bytes') != expected
+                   for pc, expected in publication_anchors.items()):
+                raise ValueError('Selected source/destination publication bytes differ')
             windows = {name: [v for pc, v in sorted(code.items()) if start <= pc < end]
                        for name, (start, end) in {
                            'deferred_queue_writer': (0x58d5b0, 0x58d63a),
@@ -139,6 +150,12 @@ def main():
                            'generic_image_draw_and_destination_setter': (0x572e90, 0x572f2a),
                            'two_piece_bar_copy': (0x4dd9b0, 0x4ddaca),
                            'bar_default_fields': (0x4dd970, 0x4dd992),
+                           'grimoire_bar_surface_creation': (0x4c5110, 0x4c5222),
+                           'grimoire_bar_source_publication': (0x4c3f36, 0x4c3f6f),
+                           'grimoire_bar_descriptor_source': (0x4c8950, 0x4c89ad),
+                           'grimoire_bar_destination_publication': (0x4c599d, 0x4c59b7),
+                           'generic_image_embedded_source_creation': (0x5732c0, 0x57333c),
+                           'generic_image_direct_destination_publication': (0x574747, 0x57479d),
                        }.items()}
             journals = []
             for name in REFERENCES:
@@ -163,6 +180,7 @@ def main():
                           static_analysis_only=True, original_game_runs=0, new_acceptance_rows=0,
                           original_driver_journals=journals, selected_original_windows=windows,
                           publication_leads=publications,
+                          selected_publication_anchors={hex(pc): code[pc] for pc in publication_anchors},
                           static_inventory=dict(record=prior_name, sha256=reader.digest(prior_name)),
                           objdump_version=subprocess.check_output(['objdump', '--version'], text=True).splitlines()[0],
                           remaining=['Straight-line expressions do not resolve predecessor/indirect flow, object allocation or backing aliases.',
