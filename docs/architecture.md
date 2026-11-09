@@ -16,6 +16,10 @@ preserving gameplay behavior does not require preserving the original UI code.
 
 The campaign application is a hybrid: a native Qt host cooperates with the
 original PE32 game through Wine, injected adapters, and shared channels.
+The [native single-player completion plan](native-simulation-plan.md) defines
+the proposed ownership boundaries, remaining composition gaps and incremental
+acceptance stages. Multiplayer remains on the existing legacy backend; native
+simulation completion and Wine-free deployment are separate milestones.
 The [complete live drawing replacement plan](live-drawing-replacement.md) owns
 rendering takeover scope, implementation order and the complete-mode release gates.
 Reconstructed algorithms and native services exist, but their presence does not

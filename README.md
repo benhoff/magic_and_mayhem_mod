@@ -23,6 +23,7 @@ and mana economy enhancements remain longer-term gameplay objectives.
 | Explore progress and remaining work | [Coverage atlas](apps/coverage-ui/README.md), launched with `python3 tools/serve-coverage-ui.py` |
 | Find checks and experiment protocols | [Test guide](tests/README.md) and the relevant component README |
 | Understand rendering takeover scope | [Live drawing replacement plan](docs/live-drawing-replacement.md) |
+| Plan native single-player engine completion | [Simulation scope, gaps and delivery stages](docs/native-simulation-plan.md) |
 
 For an unprepared checkout, inspect `./tools/prepare-working.sh --help` and follow
 the storage rules below before creating an installation. The root
