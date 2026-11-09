@@ -27983,3 +27983,29 @@ The pending exact union uses actual master9b0148db6as first parent and checked f
 The current progress snapshot supplies display bindings from the parents separate recorded phase maps and retains those maps unchanged; historical hashes are not refreshed. New stretch attachments correctly name actual_destination_extents; the owned snapshot used the legacy actual_world_extents key for these same destination sizes, despite entering zero Worlds. This metadata correction changes no value or engine proof. Merged controls pass41stretch Python cases, the shared artifact-reader tests and four dashboard guards, and the actual dashboard shows116/40with both alias rows/final decisions pending.
 
 Incoming committed-history review covers19123parent/current file versions fromb0eb1de5bthrough9b0148db6. A separate retrospective receipt pins2674unique opaque input transitions, including repeated additions across merge first parents and the source-specific black-guards archive. The closed review has no unresolved exact-transition gaps; it asserts neither a past gate pass nor new engine validation. Complete prior journals/archives, failures and source identities are preserved. See rendering-copy-natural-results-20261108/master-admission-01.json, master-checks-01.json and incoming-history-closed-01.json.
+
+## OS08 opaque second-frame caller fixes — 2026-11-08
+
+The four remaining second-copy continuations of NoCD40209ca7 wrapper57e8e0 are
+admitted with exact PC/tag/ten-byte signatures:57e9ec/22,36;57ea02/12;
+57ea29/13,14;57ea40/17. The generator pins the complete128-byte argument,
+call, normalization/fallback and low16OR/RET12 sequence independently of an
+observed stream. Ordinary tables are52sites/61pairs and empty-stream21/23.
+Generic bypass, source/owner/readability, sprite context and limits stay strict.
+
+OS08.original02 compares108864complete original/native two-frame cases with
+zero refusals and33094656matching destination WORDs, including guards/padding;
+524288additional full-wrapper/model cases check AX routing, masking, call order
+and combined return. The old table rejects all six second-frame pairs in the
+108864-case reproduction. Native code uses the production pixel kernel and
+exact caller predicate; original wrapper/source bytes stay unchanged. Separate
+current primary/black/sprite controls and both observer builds remain required.
+See `opaque-secondary-callers-20261108.md` and its SQLite reports.
+
+NP.world-opaque-secondary-callers records scoped implementation and isolated
+original comparison. No natural original-game start, second-copy witness,
+World590 replay, full volatile ABI, wider formats, acceptance-row promotion or
+whole-player completion follows. Existing historical hashes and failed attempts
+are preserved. Intervening committed history9b0148db6..9da49daa7has152reviewed
+logical file transitions and zero missing exact receipts; this is separate from
+current changes and validation.

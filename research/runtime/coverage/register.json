@@ -133387,7 +133387,8 @@
         "WTRCTX.callers-original-20261020",
         "WTRCTX.callers-native-20261020",
         "WTRCTX2.callers-original-20261020",
-        "WTRCTX2.callers-native-20261020"
+        "WTRCTX2.callers-native-20261020",
+        "OS08.caller-controls02"
       ],
       "status": {
         "understanding": "scoped",
@@ -157772,7 +157773,8 @@
       "evidence": [
         "NPL27.black-callers01",
         "NPL27.planning-controls04",
-        "NPL27.planning-controls05"
+        "NPL27.planning-controls05",
+        "OS08.black-controls01"
       ],
       "status": {
         "understanding": "scoped",
@@ -171357,7 +171359,8 @@
       ],
       "evidence": [
         "PR08.original02",
-        "PR08.guards01"
+        "PR08.guards01",
+        "OS08.primary01"
       ],
       "status": {
         "understanding": "scoped",
@@ -171560,6 +171563,95 @@
       ],
       "remaining_gaps": [
         "Both stretch profile rows are admitted over the112-row owned parent. Original driver sampling, natural alias/overlap, indexed/conversion/clipper stretch, GPU-only stretching, whole combined-current player and both final decisions remain separate."
+      ]
+    },
+    {
+      "id": "NP.world-opaque-secondary-callers",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Opaque wrapper second-frame raster caller admissions",
+      "scope": "Pinned nocd40209ca7 wrapper57e8e0 with global6de6e1 zero: second-frame raw57e9ec/tags22,36, black57ea02/tag12, indexed57ea29/tags13,14 and clipped57ea40/tag17. Exact argument forwarding, cdecl cleanup, black AX normalization, indexed AX1 fallback and combined low16AX OR/RET12; bounded RGB565 two-frame RLE original/native pixel comparison and production signature guards. No full volatile ABI, natural-game reachability, World590 replay or whole-session replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5761248,
+          "scope": "Second-copy branch57e9d8 through57ea58; four continuations, argument/AX/stack contract."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5861510,
+          "scope": "Existing second-frame pixel callee; bounded RGB565 comparison only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5860536,
+          "scope": "Existing second-frame pixel callee; bounded RGB565 comparison only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5854839,
+          "scope": "Existing second-frame pixel callee; bounded RGB565 comparison only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5851058,
+          "scope": "Existing second-frame pixel callee; bounded RGB565 comparison only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5853722,
+          "scope": "Existing second-frame pixel callee; bounded RGB565 comparison only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5758464,
+          "scope": "Existing second-frame pixel callee; bounded RGB565 comparison only."
+        }
+      ],
+      "implementation": [
+        "runtime/scene/world_raster_callers.h",
+        "tools/inspect-world-raster-callers.py"
+      ],
+      "tests": [
+        "tests/world-opaque-secondary-test.cpp",
+        "tools/test-world-opaque-secondary.py",
+        "tests/world-raster-callers-test.cpp",
+        "tools/test-world-raster-callers.py"
+      ],
+      "documents": [
+        "research/runtime/opaque-secondary-callers-20261108.md"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "reconstruction/rendering/raster_pixels.c",
+        "reconstruction/rendering/raster_pixels.h",
+        "reconstruction/rendering/pixel_kernel.c",
+        "reconstruction/rendering/pixel_kernel.h",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/canvas_producers.c",
+        "tools/build-scene-observer.py",
+        "tests/kind8-sprite-admission-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/test-world-black-callers.py",
+        "tools/test-kind8-sprite-admission.py",
+        "reconstruction/rendering/world_special.hpp"
+      ],
+      "evidence": [
+        "OS08.original02",
+        "OS08.black-controls01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "OS08.G.live: No natural original-game run or whole-session replay; the retained World590 rejection remains historical negative evidence.",
+        "OS08.G.domain: RGB555, other frame layouts, full volatile ABI and callers outside the four exact second-frame returns remain outside this proof."
       ]
     }
   ],
@@ -392125,6 +392217,198 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "OS08.original02",
+      "kind": "isolated_original",
+      "scope": "Pinned nocd40209ca7 wrapper57e8e0 with global6de6e1 zero: second-frame raw57e9ec/tags22,36, black57ea02/tag12, indexed57ea29/tags13,14 and clipped57ea40/tag17. Exact argument forwarding, cdecl cleanup, black AX normalization, indexed AX1 fallback and combined low16AX OR/RET12; bounded RGB565 two-frame RLE original/native pixel comparison and production signature guards. No full volatile ABI, natural-game reachability, World590 replay or whole-session replacement claim.",
+      "record": "research/runtime/opaque-secondary-results-20261108/positive-02.json",
+      "sha256": "e63af28e642a43e3d665acd924846fde34f21d02a6420ca7c63db28bd1ee766e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_equivalence",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_starts",
+          "equals": 0
+        },
+        {
+          "pointer": "/wrapper/cases",
+          "equals": 108864
+        },
+        {
+          "pointer": "/wrapper/guard_rejected_cases",
+          "equals": 0
+        },
+        {
+          "pointer": "/wrapper/compared_words_including_canaries",
+          "equals": 33094656
+        },
+        {
+          "pointer": "/wrapper/ax_routing_cases",
+          "equals": 524288
+        },
+        {
+          "pointer": "/wrapper/wrapper_bytes_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OS08.primary01",
+      "kind": "isolated_original",
+      "scope": "Pinned nocd40209ca7 primary wrapper57e8e0 fallback call57e952 to57de00 and return57e957/tag17. Retain exact cdecl five-argument forwarding, twenty-byte cleanup and low16AX mask before the original auxiliary tail. Bounded RGB565 indexed RLE frames, two existing indexed entries, shade/table ordinal, origins, clips and hidden/edge placements compare unchanged original wrapper output with the production native pixel kernel through the exact caller guard. No secondary continuation, full volatile ABI, original World590 operands, original-game replay, whole corner/pan reliability or acceptance-row promotion.",
+      "record": "research/runtime/opaque-secondary-results-20261108/primary-control-01.json",
+      "sha256": "0810bd60883b83dd9727e579cf7a3b5d743b982c808e2adbd6bfac3267d8d6fb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_equivalence",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_starts",
+          "equals": 0
+        },
+        {
+          "pointer": "/wrapper/cases",
+          "equals": 21384
+        },
+        {
+          "pointer": "/wrapper/guard_rejected_cases",
+          "equals": 0
+        },
+        {
+          "pointer": "/wrapper/native_fallback_cases",
+          "equals": 5184
+        },
+        {
+          "pointer": "/wrapper/compared_words_including_canaries",
+          "equals": 6500736
+        },
+        {
+          "pointer": "/wrapper/wrapper_bytes_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OS08.caller-controls02",
+      "kind": "isolated_original",
+      "scope": "Pinned native resident World additive caller admission: accept54aaa0 shape+0x34 continuation54aab2 for producer tag26 with exact ten-byte RET8/padding signature, alongside all prior whitelist entries. Share the production caller/tag/byte predicate with native controls; preserve readable-memory, owner-thread, protected World canvas and owned additive record checks in the surrounding producer. The generator verifies the5c73f0 virtual slot and complete54aaa0 method before retaining this static extension, independent of one finite observed stream; exercise regeneration with an authored empty-queue fixture, explicitly separate from natural observations. Original54aaa0 low16 return matches the existing native zero policy in8316 authored RGB56537x19 cases: widths1/2/17/64, heights1/3/21, eleven X and nine Y positions and seven low16 increments, covering clipped and empty intersections. No pixel/full-register equivalence, larger return domain, natural-live execution, object writers/ownership or complete replacement claim.",
+      "record": "research/runtime/opaque-secondary-results-20261108/positive-02.json",
+      "sha256": "e63af28e642a43e3d665acd924846fde34f21d02a6420ca7c63db28bd1ee766e",
+      "sources_pointer": "/caller_controls/sources",
+      "claims_pointer": "/caller_controls/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_controls/success",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_controls/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_controls/callers",
+          "equals": 52
+        },
+        {
+          "pointer": "/caller_controls/admitted_pairs",
+          "equals": 61
+        },
+        {
+          "pointer": "/caller_controls/generated_controls/callers",
+          "equals": 21
+        },
+        {
+          "pointer": "/caller_controls/generated_controls/admitted_pairs",
+          "equals": 23
+        },
+        {
+          "pointer": "/caller_controls/original_return_cases",
+          "equals": 8316
+        },
+        {
+          "pointer": "/caller_controls/production_and_selftest_hooks_compile",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "OS08.black-controls01",
+      "kind": "isolated_original",
+      "scope": "Exact native World caller admission for direct black595677 continuations500439/5004d4 (tag12) and paired clipped57de00 continuations50045c/5004f7 (tag17). Exact ten-byte signatures, direct call targets and AX-only normalization/store paths are pinned; unknown PCs/tags/changed bytes and surrounding owner/readability guards remain refused. Execute unchanged20-byte black normalization fragments with private stop tails over all65536 AX values and three high-EAX patterns per site; prove cdecl12 cleanup and fallback iff AX1. Only5004d4 was naturally observed in Quick206, which remains a failed acquisition. No new raster pixels, fallback-body execution, full volatile-register/flags equivalence, arbitrary callers, source aliases or complete World acceptance claim.",
+      "record": "research/runtime/opaque-secondary-results-20261108/black-guards-01.json",
+      "sha256": "5e9013b86cc58ae85391a46c511407ff08fafe8635fcdee9d80343397cd2956b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_fragments/cases",
+          "equals": 393216
+        },
+        {
+          "pointer": "/original_fragments/fallback_iff_ax_one",
+          "equals": true
+        },
+        {
+          "pointer": "/caller_controls/callers",
+          "equals": 52
+        },
+        {
+          "pointer": "/caller_controls/admitted_pairs",
+          "equals": 61
+        },
+        {
+          "pointer": "/sprite_guard_controls/0/protected_short_spans",
+          "equals": 628
+        },
+        {
+          "pointer": "/sprite_guard_controls/1/protected_short_spans",
+          "equals": 628
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -428163,8 +428447,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-31b9963ab291c84da728b6716a23fc6cf52b7726b184089a3de4ec605f8ec949.json",
-    "sha256": "31b9963ab291c84da728b6716a23fc6cf52b7726b184089a3de4ec605f8ec949"
+    "path": "research/runtime/coverage/source-index-fccb377d7b6c11f7a7c313864ee115aa8eea466a040009dc2aa417f13ea19a53.json",
+    "sha256": "fccb377d7b6c11f7a7c313864ee115aa8eea466a040009dc2aa417f13ea19a53"
   },
   "evidence_applicability": [
     {

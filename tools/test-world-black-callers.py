@@ -34,7 +34,7 @@ def main():
   if report['original_fragments']['cases']!=393216:raise ValueError('Incomplete AX domain')
   run(['python3',ROOT/'tools/test-world-raster-callers.py','--output',out/'caller-controls'])
   report['caller_controls']=json.loads((out/'caller-controls/report.json').read_text())
-  if not report['caller_controls']['success'] or report['caller_controls']['callers']!=48 or report['caller_controls']['admitted_pairs']!=55:raise ValueError('Incomplete production guard controls')
+  if not report['caller_controls']['success'] or report['caller_controls']['callers']!=52 or report['caller_controls']['admitted_pairs']!=61:raise ValueError('Incomplete production guard controls')
   # Exercise both production and regenerated ordinary tables through the actual
   # primary-sprite wrapper, retaining its owner/class/guard-page refusals.
   source=(ROOT/'runtime/scene/world_producer_bypass.c').read_text();start=source.index('static int raster_caller(');stop=source.index('static u32 bypass_hash',start);batch=source.index('static int raster_batch_caller(')
@@ -43,7 +43,7 @@ def main():
   (out/'generated.h').write_bytes((out/'caller-controls/generated.h').read_bytes())
   report['sprite_guard_controls']=[]
   for mode in ['production','generated']:
-   binary=out/(mode+'-guard');extra=[] if mode=='production' else ['-DMNM_SPRITE_CALLER_HEADER="generated.h"','-DMNM_EXPECT_CALLERS=17','-DMNM_EXPECT_PAIRS=17']
+   binary=out/(mode+'-guard');extra=[] if mode=='production' else ['-DMNM_SPRITE_CALLER_HEADER="generated.h"','-DMNM_EXPECT_CALLERS=21','-DMNM_EXPECT_PAIRS=23']
    run(['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-fno-pie','-no-pie','-I'+str(out),*extra,ROOT/'tests/kind8-sprite-admission-test.cpp','-o',binary])
    report['sprite_guard_controls'].append(json.loads(run([binary,exe])))
   report['success']=all(v['success'] and v['protected_short_spans']==628 for v in report['sprite_guard_controls'])

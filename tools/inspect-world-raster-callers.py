@@ -61,14 +61,21 @@ def main():
   if at(0x57e940,9)!=bytes.fromhex('83c414663d01007511') or at(0x57e949,29)!=bytes.fromhex('8b54241c5256535755e8a9f4ffff83c4148b750025ffff000089442414'):
    raise ValueError('Primary opaque fallback arguments/AX continuation changed')
   callers.setdefault(opaque_fallback,set()).add(17)
+  # Two-copy opaque route: bind both indirect slots, the direct black/clipped
+  # calls, all argument pushes, cdecl cleanup, AX1 fallback tests and the final
+  # low16 OR/RET12. Preserve these even in a stream with no observed raster.
+  secondary={0x57e9ec:{22,36},0x57ea02:{12},0x57ea29:{13,14},0x57ea40:{17}}
+  if at(0x57e9d8,128)!=bytes.fromhex('8b442e1c03f583f8ff750e535756ff15dc03690083c40ceb528b6c241883fd817520535756e8756c010083c40c664866f7d81bc0406685c074318b44241c5055eb1e8b4c241c5155535756ff153c4e6c0083c414663d010075118b54241c5255535756e8c0f3ffff83c4148b4c241425ffff00005f0bc85e5d668bc15bc20c00'):
+   raise ValueError('Opaque secondary arguments/calls/AX continuation changed')
+  for va,ts in secondary.items():callers.setdefault(va,set()).update(ts)
   rows=[];header=['/* Pinned World continuations and the checked inherited kind8 extension. */','static const struct RasterCaller {u32 address;unsigned long long tags;u8 bytes[10];} raster_callers[]={']
   for va,ts in sorted(callers.items()):
    # These ranges were reviewed through the AX stores/masks and queue loop.
    if not (0x5002a0<=va<0x501150 or 0x57e8e0<=va<0x57eb00 or va in (0x54ab16,0x54aab2,0x54657c,0x54ab72)):raise ValueError('Caller outside reviewed World/wrapper range')
    sig=at(va,10);mask=sum(1<<t for t in ts);header.append(' {0x%x,0x%xull,{%s}},'%(va,mask,','.join(hex(x) for x in sig)))
    asm=subprocess.check_output(['objdump','-d','-Mintel','--start-address='+hex(va),'--stop-address='+hex(min(va+80,0x501150 if va<0x501150 else va+80)),str(exe)],text=True)
-   origin='checked_opaque_fallback_return' if va==opaque_fallback else 'checked_inherited_wrapper' if va==0x54aab2 else 'checked_effect_return' if va in effects else 'checked_black_return' if va in black_returns else 'observed_stream'
-   scope='Pinned primary opaque fallback, five forwarded cdecl arguments, twenty-byte cleanup and low16AX mask; no secondary or natural-session replay claim.' if va==opaque_fallback else 'Pinned direct black/fallback call and AX-only normalization/store; natural reachability remains separately recorded.' if va in black_returns else 'Checked direct effect call and AX-only continuation; this static extension is not natural reachability.' if va in effects else 'Pinned54aaa0 RET8 continuation to virtual caller; this static extension alone is not a natural-live witness.' if va==0x54aab2 else 'Observed return path consumes low16 AX only; callee-saved registers preserved, volatile registers/flags overwritten before subsequent use on reviewed path.'
+   origin='checked_opaque_secondary_return' if va in secondary else 'checked_opaque_fallback_return' if va==opaque_fallback else 'checked_inherited_wrapper' if va==0x54aab2 else 'checked_effect_return' if va in effects else 'checked_black_return' if va in black_returns else 'observed_stream'
+   scope='Pinned second-frame cdecl arguments, exact backend binding and low16AX normalization/fallback/OR; isolated wrapper comparison, no natural-session replay or full volatile ABI claim.' if va in secondary else 'Pinned primary opaque fallback, five forwarded cdecl arguments, twenty-byte cleanup and low16AX mask; no secondary or natural-session replay claim.' if va==opaque_fallback else 'Pinned direct black/fallback call and AX-only normalization/store; natural reachability remains separately recorded.' if va in black_returns else 'Checked direct effect call and AX-only continuation; this static extension is not natural reachability.' if va in effects else 'Pinned54aaa0 RET8 continuation to virtual caller; this static extension alone is not a natural-live witness.' if va==0x54aab2 else 'Observed return path consumes low16 AX only; callee-saved registers preserved, volatile registers/flags overwritten before subsequent use on reviewed path.'
    rows.append({'address':hex(va),'tags':sorted(ts),'return_signature':sig.hex(),'disassembly':asm,'origin':origin,'scope':scope})
   header+=['};', '''/* Bytes are an explicitly readable ten-byte continuation. */
 static inline int mnm_world_raster_caller(u32 caller,u32 tag,const u8* bytes){
