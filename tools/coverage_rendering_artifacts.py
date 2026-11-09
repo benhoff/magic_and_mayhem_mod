@@ -1,11 +1,10 @@
 """Read-only artifact roadmap, with recorded acceptance kept source-phase bound."""
 from collections import Counter
-import hashlib
 import json
 from pathlib import Path
 import sqlite3
 
-from coverage_evidence import read_json
+from coverage_evidence import evidence_digest, read_json
 
 
 def rendering_artifacts_view(root, definition):
@@ -45,7 +44,7 @@ def rendering_artifacts_view(root, definition):
         changed = [
             path for path, sha in recorded['sources'].items()
             if not (root / path).is_file()
-            or hashlib.sha256((root / path).read_bytes()).hexdigest() != sha
+            or evidence_digest(root / path, root=root) != sha
         ]
         progress.update(state='historical' if changed else 'matching_sources',
                         changed_sources=changed, scope=recorded['scope'],

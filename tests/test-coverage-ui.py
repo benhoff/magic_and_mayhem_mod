@@ -70,6 +70,28 @@ class RenderingArtifactsTest(unittest.TestCase):
         self.assertEqual(view['progress']['changed_sources'], [TRACKS])
         self.assertEqual(view['progress']['counts']['failed'], 1)
 
+    def test_sqlite_source_uses_verified_payload_identity(self):
+        from coverage_evidence import write_report, MAGIC
+        with tempfile.TemporaryDirectory(prefix='coverage-source-reference-') as directory:
+            root=Path(directory)
+            (root/'.evidence-store.json').write_text(json.dumps({'schema':1,'archives':[]}))
+            closure=root/self.definition['rendering_artifacts']['closure']
+            closure.parent.mkdir(parents=True)
+            closure.write_bytes((ROOT/self.definition['rendering_artifacts']['closure']).read_bytes())
+            name='research/runtime/fixture-source.json'
+            digest=write_report(root,name,b'{"accepted":true}\n')
+            self.assertTrue((root/name).read_bytes().startswith(MAGIC))
+            self.report['sources']={name:digest}
+            with patch('coverage_rendering_artifacts.read_json',return_value=self.report):
+                view=rendering_artifacts_view(root,self.definition)
+            self.assertEqual(view['progress']['state'],'matching_sources')
+            self.assertEqual(view['progress']['changed_sources'],[])
+            self.report['sources'][name]='0'*64
+            with patch('coverage_rendering_artifacts.read_json',return_value=self.report):
+                view=rendering_artifacts_view(root,self.definition)
+            self.assertEqual(view['progress']['state'],'historical')
+            self.assertEqual(view['progress']['changed_sources'],[name])
+
     def test_missing_proof_does_not_break_roadmap(self):
         with patch('coverage_rendering_artifacts.read_json', side_effect=ValueError('Missing SQLite payload')):
             view = rendering_artifacts_view(ROOT, self.definition)

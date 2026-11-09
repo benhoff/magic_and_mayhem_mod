@@ -28511,3 +28511,24 @@ This union starts no game or original reference and compares no new pixels. Owne
 
 
 Merged verification records 54 passing admission/controller/row-union/overlap controls. The incoming-history review covers 16,134 committed parent/current transitions; 2,591 previously unreceipted transitions now have exact retrospective custody receipts, with zero unresolved receipt gaps. These receipts assert no past gate pass or additional engine execution. The normal current/staged integration gate and paired backups remain required.
+
+
+### IM09 — input/media gates,2026-11-09
+
+`input-media-gate-results-20261109/admission-02.json` closes exactly both
+`gate.input-media` cells over checked picking master02a07b2b6:132/156passed,
+24pending. All130parent rows and both pending final decisions remain unchanged.
+Forty retained primary executions supply all36named profile requirements;
+fresh raw checks bind four F9/input cases, eight Mini input/media/music dwells,
+enabled natural EOF/physical skip/painted focused Main and completed picking.
+Independent full pixel proofs retain their exact native/original/compiler phases.
+Thirty-eight current controls reject missing/forged cohort domains, failed media,
+silence, lost focus, owner leaks, unreturned work and unacknowledged input/music.
+No game/capture/build/newpixel comparison or combined-current player claim.
+See `input-media-gate-closeout-20261109.md`; exact source custody is SQLite-backed.
+
+The IM09dashboard check also repairs false source staleness for SQLite-backed
+inputs: compare verified payload hashes, not physical reference bytes. A real
+SQLite regression preserves actual drift; production132/24 and both pending
+decisions now display with current analysis sources. Native execution hashes,
+rendering arithmetic and original behavior are unchanged.

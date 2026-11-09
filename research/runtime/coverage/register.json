@@ -14043,7 +14043,8 @@
         "COV01.execution-claims-20261008",
         "UI07.engine-simulation-20261019",
         "UI08.rendering-refresh-20261019",
-        "HIGH01.rendering-work-review-20261019"
+        "HIGH01.rendering-work-review-20261019",
+        "IM09.ui02"
       ],
       "status": {
         "understanding": "scoped",
@@ -14055,7 +14056,10 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-4-20261020",
         "entry": "TOOL.coverage-ui"
-      }
+      },
+      "remaining_gaps": [
+        "IM09.G.pointer-freshness: Targeted current UI controls verify source references against original SQLite payload hashes and preserve real drift. This repairs false historical labeling; historical native execution and unrelated UI feature proof remain phase-bound."
+      ]
     },
     {
       "id": "TL.effect-trajectory-initializer",
@@ -173885,6 +173889,86 @@
         "PK09.G.execution: Both finite picking rows qualify in acceptance01:96physical object/cell windows,288actual displayed source/return witnesses, four views and Up pan at both sizes/scalings, actual800/640/800recreation and normal retirement. General original ray/Z, allocation generations, current combined-master/default-controller execution and both final decisions remain independent.",
         "PK09.G.scope: Prior PR07/HS08/VC08 failures and exhausted caps remain historical; no same-World, allocation-generation, broad original-ray or final-renderer closure."
       ]
+    },
+    {
+      "id": "NP.input-media-gate-closeout",
+      "title": "Retained input and media acceptance gate",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Finite retained default/software input-media gate over the admitted18named leaves per profile: raw original/native input and F9 ACKs, enabled intro EOF/skip and painted focused Main, actual640/800 pause input/media/music ownership, independent complete viewport proofs and normal retirement. Current Python semantic/evidence analysis only; all actual original/native/compiler/oracle phases keep full original hashes and explicit current drift. Original picking/ray/simulation/layout remain permitted suppliers. No combined-current native execution, physical sound/driver equivalence, campaign/fault/other gate or final-decision promotion.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/input_media_gate.py",
+        "tools/check-rendering-input-media-gates.py"
+      ],
+      "tests": [
+        "tests/test-input-media-gates.py"
+      ],
+      "documents": [
+        "research/runtime/input-media-gate-closeout-20261109.md"
+      ],
+      "validation_dependencies": [
+        "docs/native-rendering-closure.json",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/retained_artifacts.py",
+        "tools/rendering_pause.py",
+        "tools/rendering_pause_assessment.py",
+        "tools/rendering_interaction.py",
+        "tools/pause_focus.py",
+        "tools/close-rendering-movie-return.py",
+        "tools/close-rendering-enabled-intros.py",
+        "tools/close-rendering-movie-skip.py",
+        "tools/close-rendering-retained-rows.py",
+        "tools/close-rendering-identity-gates.py",
+        "tools/close-rendering-animation-auxiliary.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/native_cursor_journal.py",
+        "tools/test-menu-observer.py",
+        "tools/test-native-movie-frames.py",
+        "protocols/python/mnm_protocols/media_v1.py",
+        "research/runtime/input-media-gate-results-20261109/basis-01.json",
+        "research/runtime/input-media-gate-results-20261109/probe-01.json"
+      ],
+      "evidence": [
+        "IM09.controls04",
+        "IM09.input-media02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "IM09.G.cohort: Both input/media gate cells pass for exactly40retained primary executions/36named profile leaves. New primary input/media cohorts require the same source/owner/presentation checks. Original/native execution stays in its exact historical phase; current combined-player execution is not asserted.",
+        "IM09.G.scope: Original execution phases, physical sound/driver behavior, arbitrary maps/providers, all other gate gaps and both final decisions remain separate. New primary receipts need the same input/media admission."
+      ],
+      "validation_domain": {
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "named_leaves_per_profile": 18,
+        "world_extents": [
+          [
+            640,
+            480
+          ],
+          [
+            800,
+            600
+          ]
+        ],
+        "media": "enabled natural EOF and physical Escape; acknowledged native audio/music; no physical waveform claim"
+      }
     }
   ],
   "evidence": [
@@ -398609,6 +398693,93 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "IM09.controls04",
+      "kind": "native_integration",
+      "scope": "Exactly the default/software input-media gates over their admitted finite action/owner/presentation cohorts. Raw enabled EOF/skip, focused Main, F9/input ACK and Mini input/media/music ownership are rechecked; accepted independent complete pixel proofs retain their original full source phases. Original simulation, picking/ray and layout suppliers, native UI/AA policy, historical failures and all other gates/decisions remain separate. No current combined-native execution or physical sound/driver equivalence.",
+      "record": "research/runtime/input-media-gate-results-20261109/controls-04.json",
+      "sha256": "609c63ec61cd48c0bb6b64e82cb60e40af2423a5d2297bb96dad4239dc8eed96",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 38
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "IM09.input-media02",
+      "kind": "native_integration",
+      "scope": "Exactly the default/software input-media gates over their admitted finite action/owner/presentation cohorts. Raw enabled EOF/skip, focused Main, F9/input ACK and Mini input/media/music ownership are rechecked; accepted independent complete pixel proofs retain their original full source phases. Original simulation, picking/ray and layout suppliers, native UI/AA policy, historical failures and all other gates/decisions remain separate. No current combined-native execution or physical sound/driver equivalence.",
+      "record": "research/runtime/input-media-gate-results-20261109/admission-02.json",
+      "sha256": "8acc24c56fac4e3ff781cd6baa2f06ea62ab4ffd7a0ca0c8f76697d064914543",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 132
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 24
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_whole_player_proved",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "IM09.ui02",
+      "kind": "native_integration",
+      "scope": "Actual coverage dashboard Python/JS controls, real SQLite-reference source-hash regression and production132/156projection with both decisions pending. Current analysis freshness only; native execution remains phase-bound.",
+      "record": "research/runtime/input-media-gate-results-20261109/ui-02.json",
+      "sha256": "3f8c2f6f1a2b0fcfb18c8df41ae584a787e2e9491a861a79461d603cdd94e0e8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/production_progress/state",
+          "equals": "matching_sources"
+        },
+        {
+          "pointer": "/production_progress/counts/passed",
+          "equals": 132
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -433535,6 +433706,21 @@
         "PK09.controls03",
         "PK09.player01"
       ]
+    },
+    {
+      "id": "native.input-media-gate-closeout",
+      "level": "headless",
+      "scope": "Finite retained default/software input-media gate over the admitted18named leaves per profile: raw original/native input and F9 ACKs, enabled intro EOF/skip and painted focused Main, actual640/800 pause input/media/music ownership, independent complete viewport proofs and normal retirement. Current Python semantic/evidence analysis only; all actual original/native/compiler/oracle phases keep full original hashes and explicit current drift. Original picking/ray/simulation/layout remain permitted suppliers. No combined-current native execution, physical sound/driver equivalence, campaign/fault/other gate or final-decision promotion.",
+      "behaviors": [
+        "NP.input-media-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-input-media-gates.py"
+      ],
+      "evidence": [
+        "IM09.controls04",
+        "IM09.input-media02"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -435362,8 +435548,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-b44e7a7f593ebf8c5d2b2f0d5e343f69fb87025311b26865f4837b9fb7a4134d.json",
-    "sha256": "b44e7a7f593ebf8c5d2b2f0d5e343f69fb87025311b26865f4837b9fb7a4134d"
+    "path": "research/runtime/coverage/source-index-df0deea043c46252edaa9a4a9e72c3396638e8233f2a235dc7a4b16d70adef97.json",
+    "sha256": "df0deea043c46252edaa9a4a9e72c3396638e8233f2a235dc7a4b16d70adef97"
   },
   "evidence_applicability": [
     {
