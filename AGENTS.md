@@ -10,6 +10,39 @@ The supplement contains local storage limits, paths and build preferences.
 Keep it untracked and do not copy it to other machines. If absent, continue
 with these shared instructions.
 
+## Worktree ownership and integration readiness
+
+- Always create or reuse a dedicated, exclusively owned Git worktree and task
+  branch before editing repository files or running task-producing commands.
+  This includes documentation and tooling tasks. Inspect the starting checkout
+  read-only, then work in the owned checkout; do not develop in the main/master
+  checkout or another task's worktree. Reuse the same owned worktree for the
+  bounded task instead of creating a checkout per step. Apply the local storage
+  policy and share immutable inputs without copying installations or evidence.
+- Finish implementation, focused tests, source/coverage accounting, applicable
+  feature-branch checks and required evidence retention before requesting master
+  integration admission. Commit the owned batch through the normal finish/hook
+  workflow and pin its ready commit. Review known history gaps, dependencies and
+  likely conflicts outside the integration slot. All required inputs, review
+  reasons and local evidence must be available; no unresolved task blocker or
+  user decision may remain. Readiness permits explicitly recorded validation
+  limitations; it does not permit missing required checks or evidence.
+- Never acquire or queue for the integration lock to reserve a place while still
+  developing, testing or preparing evidence. Admit only ready tips. Batch already
+  ready, compatible tips when useful; never hold admission waiting for another
+  task to become ready. A blocked task must not hold up independent ready work.
+- Under admission, recheck the actual master tip and readiness, then perform only
+  the combined merge, required combined-tree review/checks/backups, normal staged
+  hook and checked promotion. Hold the lease throughout that attempt. If a
+  conflict, failed check, missing input or decision requires investigation or
+  repair, preserve the candidate and diagnostics and exit the admitted operation
+  promptly. Repair outside the slot, then reacquire and recheck actual master
+  before a new attempt. Do not sleep, wait for user input or run a debugging
+  session while holding admission. Release promptly after promotion or refusal.
+- Follow [the integration workflow](docs/integration-workflow.md). The lease
+  enforces exclusive master updates, not semantic readiness; agents must enforce
+  this checklist even when using a custom integration wrapper.
+
 ## Goal
 
 Build a documented, reproducible reverse-engineering and modding toolkit for
@@ -350,9 +383,10 @@ payloads across outgoing history, verifies publication and commits the pinned
 availability manifest; `--push` explicitly also pushes the current branch.
 Preserve failed publication receipts and immutable assets. Publishing or omitting
 publication never changes engine validation claims.
-Use one owned worktree per bounded task batch. Keep later concurrent edits out
-of that batch's source snapshot, evidence claims and commit.
-Before preparing a local master integration, acquire admission through
+Apply the worktree ownership and readiness checklist above. Keep later concurrent
+edits out of that batch's source snapshot, evidence claims and commit.
+Only after the task is ready, and before preparing the authoritative local master
+merge, acquire admission through
 `tools/integrate-work.py` for ready tips, or wrap the whole custom operation in
 `tools/with-integration-lock.py --execute --expected-master <commit>` and hold it
 through promotion. Follow `docs/integration-workflow.md`. Install current shared
