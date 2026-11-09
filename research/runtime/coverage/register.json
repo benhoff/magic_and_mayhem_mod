@@ -173283,6 +173283,130 @@
       "remaining_gaps": [
         "Only the exact acceptance union is current. Preserve all original/native/player/controller phases and raw source drift; both final decisions and current combined-player/driver/alias equivalence remain separate."
       ]
+    },
+    {
+      "id": "NP.font-lifecycle-observation",
+      "title": "Passive installed font load, byte-use and retirement custody",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "scope": "Opt-in bounded one-owner NoCD entry/normal-return observations for four font global setup/destructor pairs, raw load, byte caller and installation coordinator. Monotonic load generations and font-relative glyph-source joins; authored ABI controls are independent of installed execution, actual DC/GDI lifetime and independently checked presented glyph pixels. No exception unwinds, full caller/driver equivalence or row promotion. Version2 also associates direct layout glyph entries with exactly one current live raw-font extent and retains each first complete normalized source frame; later FNV checks remain diagnostic.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4974704,
+          "scope": "Guarded entry/normal-return observation only; recovered semantics remain separate.",
+          "recovered_range": "font-global-4be870"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4974784,
+          "scope": "Guarded entry/normal-return observation only; recovered semantics remain separate.",
+          "recovered_range": "font-global-4be8c0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4974864,
+          "scope": "Guarded entry/normal-return observation only; recovered semantics remain separate.",
+          "recovered_range": "font-global-4be910"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4974944,
+          "scope": "Guarded entry/normal-return observation only; recovered semantics remain separate.",
+          "recovered_range": "font-global-4be960"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4975024,
+          "scope": "Guarded entry/normal-return observation only; recovered semantics remain separate.",
+          "recovered_range": "font-global-4be9b0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4975104,
+          "scope": "Guarded entry/normal-return observation only; recovered semantics remain separate.",
+          "recovered_range": "font-global-4bea00"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4975184,
+          "scope": "Guarded entry/normal-return observation only; recovered semantics remain separate.",
+          "recovered_range": "font-global-4bea50"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4975264,
+          "scope": "Guarded entry/normal-return observation only; recovered semantics remain separate.",
+          "recovered_range": "font-global-4beaa0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4872928,
+          "scope": "Guarded entry/normal-return observation only; recovered semantics remain separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4872672,
+          "scope": "Guarded entry/normal-return observation only; recovered semantics remain separate."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5600688,
+          "scope": "Guarded entry/normal-return observation only; recovered semantics remain separate."
+        }
+      ],
+      "documents": [
+        "research/runtime/font-lifecycle-20261108.md",
+        "research/formats/font-lifetime-v1.md",
+        "research/formats/font-lifetime-v2.md"
+      ],
+      "implementation": [
+        "runtime/scene/font_lifetime.c",
+        "runtime/scene/font_lifetime.S",
+        "tools/font_lifetime.py",
+        "tools/run-font-lifetime.py",
+        "tools/analyze-font-lifetime.py",
+        "tools/review-font-scout.py",
+        "tools/prepare-font-repair.py"
+      ],
+      "tests": [
+        "tests/font-lifetime-observer.cpp",
+        "tests/test-font-lifetime.py",
+        "tests/render-contract-call.S"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/observer.c",
+        "runtime/scene/canvas_producers.c",
+        "runtime/shadow/win32_min.h",
+        "tools/build-scene-observer.py",
+        "tools/run-rendering-copy-branches.py",
+        "tools/rendering_build_binding.py",
+        "tools/native_only_contract.py",
+        "tools/check-font-lifetime-observer.py",
+        "tools/prepare-font-lifetime.py"
+      ],
+      "evidence": [
+        "FL08.observer-controls01",
+        "FL08.observer-controls02",
+        "FL08.observer-controls03",
+        "FL08.observer-controls04",
+        "FL08.installed-default01",
+        "FL09.merged-observer-controls01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "FL08.G.installed: Default High-to-Low menu loads,6generations/2replacements/4current destructors and24084glyph uses now have a closed trace and158complete independent source-frame matches. Full presented glyph pixels, software-profile execution and yellow-font drawing remain pending.",
+        "FL08.G.dc: Actual DC image acquisition, selection, restore and teardown remain separate from SFT text; neither complete operation profile row is closed.",
+        "FL08.G.observer: One owner and normal returns only; exceptional unwinds, arbitrary allocation frees and overwritten-allocation retirement are not established.",
+        "FL08.G.remaining-font-domains: Original layouts call581ec0 directly at returns4a6133/4a65c7 in the recorded default trace; no general byte caller, arbitrary resource lifetime, whole ABI or hidden old-allocation retirement claim."
+      ]
     }
   ],
   "evidence": [
@@ -396918,6 +397042,144 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "FL08.observer-controls01",
+      "kind": "native_integration",
+      "scope": "Production entry/normal-return assembly on11authored anchored callees, reload generations/current destructor custody and16strict reader controls; no original-game/DC/pixel acceptance.",
+      "record": "research/runtime/font-lifetime-results-20261108/controls-01.json",
+      "sha256": "c1eb5a62e7b003812003111ef2e2e8221ad420a8c0fb066ba6f17345c7e79c30",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "FL08.observer-controls02",
+      "kind": "native_integration",
+      "scope": "Production entry/normal-return assembly on11authored anchored callees, direct raw-range glyph custody, reload generations/current destructor retirement and strict reader controls. Exact source phase retained; no original game, driver, DC or presented pixels.",
+      "record": "research/runtime/font-lifetime-results-20261108/controls-02.json",
+      "sha256": "d8ba7980af2efb3a056378ec571f608feac302c2102ea2ae8efd264db0e4db18",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "FL08.observer-controls03",
+      "kind": "native_integration",
+      "scope": "Production entry/normal-return assembly on11authored anchored callees, direct raw-range glyph custody, reload generations/current destructor retirement and strict reader controls. Exact source phase retained; no original game, driver, DC or presented pixels.",
+      "record": "research/runtime/font-lifetime-results-20261108/controls-03.json",
+      "sha256": "0230ff9fcd8f4f860be9a0982876613dfaf4e3569191faf829b6236d72187303",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "FL08.observer-controls04",
+      "kind": "native_integration",
+      "scope": "Production entry/normal-return assembly on11authored anchored callees, direct raw-range glyph custody, reload generations/current destructor retirement and strict reader controls. Exact source phase retained; no original game, driver, DC or presented pixels.",
+      "record": "research/runtime/font-lifetime-results-20261108/controls-04.json",
+      "sha256": "78cb89a4aa7b13798d0279e98d4985ac9a275413ef806863ba59971eca3fbf0d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "FL08.installed-default01",
+      "kind": "live_observation",
+      "scope": "Actual default native-only Main/Grimoire High-to-Low menu font loads, direct layout glyph-source custody, current generation reload and ordinary Quit teardown. Complete first normalized source frames match independent SFT files; later FNV checks are diagnostic. No software-profile, yellow-font draw, DC-image lifecycle, presented glyph pixel, overwritten-allocation retirement or whole-player acceptance.",
+      "record": "research/runtime/font-lifetime-results-20261108/installed-default01.json",
+      "sha256": "c02258bd109ed56affac3f02c50beb152768a67f6990b33434bdae243479ae8f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "FL09.merged-observer-controls01",
+      "kind": "native_integration",
+      "scope": "Fresh combined-master production i386 font hook ABI and 22 strict reader controls plus PE32 observer build. No new original game, installed observation, DC or presented pixels.",
+      "record": "research/runtime/font-lifetime-results-20261108/merged-master-controls01.json",
+      "sha256": "64ba13b6aafc02630074184fef555ee7d9695b62ce7af198d61d0939a173e146",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -431665,6 +431927,49 @@
         "CS14.master-union-controls02",
         "CS14.master-union01"
       ]
+    },
+    {
+      "id": "native.font-lifecycle-observer-controls",
+      "level": "headless",
+      "behaviors": [
+        "NP.font-lifecycle-observation"
+      ],
+      "tests": [
+        "tests/font-lifetime-observer.cpp",
+        "tests/test-font-lifetime.py",
+        "tests/render-contract-call.S"
+      ],
+      "evidence": [
+        "FL08.observer-controls01",
+        "FL08.observer-controls02",
+        "FL08.observer-controls03",
+        "FL08.observer-controls04",
+        "FL09.merged-observer-controls01"
+      ],
+      "scope": "Actual production i386 entry/normal-return assembly over eleven authored anchored callees, reload and destructor custody plus strict passive-reader controls. No original game, actual DC or presented pixels.",
+      "remaining_gaps": [
+        "FL08.G.installed",
+        "FL08.G.dc"
+      ]
+    },
+    {
+      "id": "native.font-lifecycle-installed-default",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.font-lifecycle-observation"
+      ],
+      "tests": [
+        "tools/run-font-lifetime.py",
+        "tools/analyze-font-lifetime.py"
+      ],
+      "evidence": [
+        "FL08.installed-default01"
+      ],
+      "scope": "Actual default native-only Main/Grimoire High-to-Low menu font loads, direct layout glyph-source custody, current generation reload and ordinary Quit teardown. Complete first normalized source frames match independent SFT files; later FNV checks are diagnostic. No software-profile, yellow-font draw, DC-image lifecycle, presented glyph pixel, overwritten-allocation retirement or whole-player acceptance.",
+      "remaining_gaps": [
+        "FL08.G.dc",
+        "FL08.G.remaining-font-domains"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -433492,8 +433797,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-c206653acd031a93705a88ea36c1218593ee7dcdc672f2cdebd43f58fca789c7.json",
-    "sha256": "c206653acd031a93705a88ea36c1218593ee7dcdc672f2cdebd43f58fca789c7"
+    "path": "research/runtime/coverage/source-index-5857f6c34fda97efceeab6786e8e2ee4a7ddbbc6135f5b701d28b0fc36a97d65.json",
+    "sha256": "5857f6c34fda97efceeab6786e8e2ee4a7ddbbc6135f5b701d28b0fc36a97d65"
   },
   "evidence_applicability": [
     {

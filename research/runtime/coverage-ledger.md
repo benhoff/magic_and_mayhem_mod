@@ -28346,3 +28346,60 @@ Final source-stable host batch:394controls pass across16suites; the full account
 ## Caller-visible state with actual master —2026-11-08
 
 `caller-state-master-results-20261108/admission-01.json` preserves all122accepted actual-master cells and every unrelated row object, adding only both caller-state cells from the523173state/1362471000pixel4domain proof. Final view124/156passed,32pending; both final decisions remain pending.12parent-union guards pass. All old/native/controller phases, raw drift, rejected attempts and9/7charges remain; no current combined-game, new original reference, driver or alias equivalence is claimed.
+
+
+
+
+## FL08 installed font lifetime trace — 2026-11-08
+
+The bounded default native-only High-to-Low Main/Grimoire scout now binds
+24084original glyph entries to6font generations,2heading/body replacements
+and4current destructor completions. All158complete first normalized glyph
+sources match independent installed SFT tables/bytes. Original layout return
+PCs4a6133/4a65c7bypass the byte caller4a59e0. Heading/body/tooltip uses are
+observed; yellow is loaded without drawn-glyph credit. Both actual games quit
+normally. The first V1 trace retains14756unparented glyphs and earns no
+resource binding. V2 adds unique live-raw-range binding and first full source
+snapshots; neither stage changes raster math or gameplay.
+
+Production entry/return assembly passes11anchored authored callees, direct/byte
+source custody, reload and current-destructor controls;22strict reader guards
+pass. `FL08.observer-controls04` and `FL08.installed-default01` preserve their
+exact independent scopes. One shared-store lock delayed full retention of the
+first already stopped collector; its active process/action receipts and charge
+stay intact. A pinned minimal review independently retains its exact scene
+DLL, original manifest, journal,17menu snapshots and normal stop before the sole
+remaining missing-data scout. No request/start refund or earlier cap reset.
+
+Both font/DC player rows remain pending: current-font source custody is separate
+from actual DC image lifetime, yellow drawing, Software execution and complete
+presented glyph pixels. Replaced old raw allocations are not observed freed.
+All118accepted parent rows and both final decisions remain unchanged byFL08;
+concurrent viewport/alias work retains its own source phase. See
+[the scoped evidence](font-lifecycle-20261108.md). Two new actual original starts
+exhaust the independent2-start/4-request ceiling; no more font starts are
+authorized. Exact artifacts and new reports use SQLite; paired import, real
+restoration and final source accounting remain required before local commit.
+
+
+FL08's original first full collector now finishes normally: its original V1
+source map, all action receipts and every raw artifact are preserved under
+`font-default01-acquisition.json`; the final missing-binding review agrees
+with the earlier pinned minimal handoff. Both actual starts remain charged;
+no process or font run remains active and there is no remaining font start.
+The710MiBtemporary local SQLite snapshot imports410unique objects into both
+immutable stores with a real logical restore; manifest
+68432ed299217f368d8ea3b021955149d26a611b5cfb7ae2aa110e411339ffbf
+preserves original payload hashes. Later accounting/closeout metadata still
+uses the normal verified finish backup; no raw tree or pin is removed.
+
+
+## FL09 font lifetime integration — 2026-11-09
+
+The checked merge preserves the FL08 source phase and every current master
+behavior/evidence/scenario record. Fresh FL09.merged-observer-controls01
+passes production i386 hook ABI controls,22strict reader guards and the
+combined PE32 observer build. Historical installed observations retain their
+original source hashes; this merge adds no original game or combined-player
+execution. Font/DC and overlapping-copy acceptance remain pending; current
+master viewport/cursor and caller-state admissions remain unchanged.
