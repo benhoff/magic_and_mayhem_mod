@@ -1,6 +1,8 @@
-Current finite application validation (2026-11-10): WP10 passes 8 actual current-build default/software sessions at both World sizes, with independent output/history, original effects, response/progress/resource checks and normal retirement. Broader current historical journey/fault/provider acceptance, required boundaries and complete original recovery remain pending. All 154/156 inherited requirement results retain their exact scopes. See [the current execution receipt](../research/runtime/current-whole-player-validation-20261110.md).
+Current combined RB10boundary state (2026-11-10): **156/156finite cells passed** and all eight player boundaries resolved under the exact demonstrated input/map/save/duration/provider policy. Both overall verdicts remain pending,accepted=false. WP10eight-case validation remains preserved at its953e8716source phase; RB10changes four native/build source hashes, so its current-equivalence claim is pending after this merge. See [the boundary closeout](../research/runtime/rendering-required-boundaries-closeout-20261110.md).
 
-Current local-master artifact5 union: **154/156 passed,2 pending**; both final verdicts are issued **pending,accepted=false**. Decision-recording completion retains every other row and scoped original milestone. See [the decision record](../research/runtime/rendering-final-decisions-20261110.md).
+WP10recorded validation phase953e8716(2026-11-10): WP10 passes 8 actual current-build default/software sessions at both World sizes, with independent output/history, original effects, response/progress/resource checks and normal retirement. Broader current historical journey/fault/provider acceptance, required boundaries and complete original recovery remain pending. All 154/156 inherited requirement results retain their exact scopes. See [the current execution receipt](../research/runtime/current-whole-player-validation-20261110.md).
+
+FD10recorded master phase949be12d:  **154/156 passed,2 pending**; both final verdicts are issued **pending,accepted=false**. Decision-recording completion retains every other row and scoped original milestone. See [the decision record](../research/runtime/rendering-final-decisions-20261110.md).
 
 Current artifact5 decision record (2026-11-10): **supported-player pending; original-recovery pending; neither accepted**. Both independent verdicts are issued with exact evidence, profile-specific blockers and recovery exits. The decision-recording gates close: **154/156 passed,2 pending**; this count is not positive player acceptance or complete original recovery. See [the recorded decisions](../research/runtime/rendering-final-decisions-20261110.md).
 
@@ -311,3 +313,13 @@ The owner-approved `ALIAS09.controlled-opaque-overlap-v1` entry is an explicit o
 
 Owned campaign closeout:120/156passed,36pending over the frozen116-row parent. Only natural map exit and loading close, in default/software actual640/800, from four distinct current-source full sessions43–46. Complete independent output matches3,286,371,000pixels with zero differences, original resources retire before later acquisition, native prior surfaces retire and normal Quit drains ownership. Both final decisions remain pending. Later master admissions require a separate union of exact source phases. See `research/runtime/campaign-progression-closeout-results-20261108/acceptance-01.json`.
 
+
+RB10required-boundary closeout (2026-11-10) records156/156finite requirement cells
+passed and zero pending cells. All eight player boundaries are resolved under
+`docs/native-rendering-required-boundaries.json` and the owner-selected exact
+map/save/input/duration domain; all154other cells and the approved controlled
+opaque-overlap mechanism remain exact. Both overall verdicts are still issued
+pending/accepted=false: current whole-player response/progress/resource adequacy
+and historical-negative applicability remain separate EP11work; complete original
+recovery remains independent. See
+[the boundary closeout](../research/runtime/rendering-required-boundaries-closeout-20261110.md).

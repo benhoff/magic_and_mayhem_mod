@@ -17,6 +17,7 @@ def rendering_artifacts_view(root, definition):
     gaps = closure['required_gap_register']
     plan = closure['execution_plan']
     requirements = []
+    scope_decisions = contract['scope_decisions']
     progress = {'state': 'unavailable', 'record': config['progress_record']}
     try:
         recorded = read_json(root / config['progress_record'], root=root)
@@ -41,6 +42,29 @@ def rendering_artifacts_view(root, definition):
             raise ValueError('Unknown requirement task owner')
         if not recorded.get('sources'):
             raise ValueError('Recorded source bindings are missing')
+        if recorded.get('kind') == 'native_rendering_required_boundaries_admission':
+            ref = recorded['proof']
+            if evidence_digest(root / ref['record'], root=root) != ref['sha256']:
+                raise ValueError('Required-boundary proof identity changed')
+            proof = read_json(root / ref['record'], root=root)
+            answers = proof['decisions']
+            if (proof['success'] is not True or proof['gate_ready'] is not True
+                    or proof['supported_player_accepted'] is not False
+                    or proof['original_recovery_complete'] is not False
+                    or len(answers) != 8 or len({v['id'] for v in answers}) != 8
+                    or {v['id'] for v in answers} != {v['id'] for v in scope_decisions}
+                    or any(v['player_scope_state'] != 'resolved'
+                           or v['original_recovery_state'] != 'unresolved' for v in answers)):
+                raise ValueError('Incomplete required-boundary scope dispositions')
+            by_scope = {v['id']: v for v in answers}
+            if any(by_scope[v['id']]['close_when'] != v['close_when']
+                   or by_scope[v['id']]['blocking_condition'] != v['blocking_condition']
+                   for v in scope_decisions):
+                raise ValueError('Required-boundary closing condition changed')
+            scope_decisions = [{**v, **by_scope[v['id']], 'state': 'resolved',
+                                'resolution_evidence': [ref]} for v in scope_decisions]
+            progress['boundary_dispositions'] = dict(resolved_player_scopes=8,
+                unresolved_original_scopes=8, proof=ref, final_verdicts_unchanged=True)
         changed = [
             path for path, sha in recorded['sources'].items()
             if not (root / path).is_file()
@@ -89,7 +113,7 @@ def rendering_artifacts_view(root, definition):
                      'baseline_commit': contract['reviewed_source_commit'],
                      'configurations': configurations,
                      'gates': contract['acceptance']['gates'],
-                     'scope_decisions': contract['scope_decisions'],
+                     'scope_decisions': scope_decisions,
                      'claim_limits': contract['claim_limits']},
         'gaps': {'journeys': journeys,
                  'operations': [requirement(r, 'operation.') for r in gaps['operations']],
