@@ -54,6 +54,13 @@ def main():
     code=at(va,8)
     if code[:4]!=bytes.fromhex('83c414e9') or va+8+struct.unpack('<i',code[4:])[0]!=0x500848:raise ValueError('Clipped AX store continuation changed')
    callers.setdefault(va,set()).add(tag)
+  # Indexed-primary queue dispatch, naturally refused at 500477 in RB10.
+  # Both CPU-selected generic entries use five cdecl arguments. AX==1 selects
+  # the unchanged clipped call and both paths join the original low16 store.
+  if at(0x500464,58)!=bytes.fromhex('8b4c24148b5424205152535557ff153c4e6c0083c414663d01000f85c40300008b4424148b4c24205051535557e86ad9070083c414e9aa030000'):
+   raise ValueError('Indexed-primary arguments/dispatch/AX fallback changed')
+  callers.setdefault(0x500477,set()).update((13,14))
+  callers.setdefault(0x500496,set()).add(17)
   # Primary opaque indexed/black fallback, observed rejected by HS08.
   # Preserve this exact direct call and caller argument/AX continuation even
   # when the observed stream contains no completed raster at this site.
@@ -74,8 +81,8 @@ def main():
    if not (0x5002a0<=va<0x501150 or 0x57e8e0<=va<0x57eb00 or va in (0x54ab16,0x54aab2,0x54657c,0x54ab72)):raise ValueError('Caller outside reviewed World/wrapper range')
    sig=at(va,10);mask=sum(1<<t for t in ts);header.append(' {0x%x,0x%xull,{%s}},'%(va,mask,','.join(hex(x) for x in sig)))
    asm=subprocess.check_output(['objdump','-d','-Mintel','--start-address='+hex(va),'--stop-address='+hex(min(va+80,0x501150 if va<0x501150 else va+80)),str(exe)],text=True)
-   origin='checked_opaque_secondary_return' if va in secondary else 'checked_opaque_fallback_return' if va==opaque_fallback else 'checked_inherited_wrapper' if va==0x54aab2 else 'checked_effect_return' if va in effects else 'checked_black_return' if va in black_returns else 'observed_stream'
-   scope='Pinned second-frame cdecl arguments, exact backend binding and low16AX normalization/fallback/OR; isolated wrapper comparison, no natural-session replay or full volatile ABI claim.' if va in secondary else 'Pinned primary opaque fallback, five forwarded cdecl arguments, twenty-byte cleanup and low16AX mask; no secondary or natural-session replay claim.' if va==opaque_fallback else 'Pinned direct black/fallback call and AX-only normalization/store; natural reachability remains separately recorded.' if va in black_returns else 'Checked direct effect call and AX-only continuation; this static extension is not natural reachability.' if va in effects else 'Pinned54aaa0 RET8 continuation to virtual caller; this static extension alone is not a natural-live witness.' if va==0x54aab2 else 'Observed return path consumes low16 AX only; callee-saved registers preserved, volatile registers/flags overwritten before subsequent use on reviewed path.'
+   origin='checked_indexed_primary_return' if va in (0x500477,0x500496) else 'checked_opaque_secondary_return' if va in secondary else 'checked_opaque_fallback_return' if va==opaque_fallback else 'checked_inherited_wrapper' if va==0x54aab2 else 'checked_effect_return' if va in effects else 'checked_black_return' if va in black_returns else 'observed_stream'
+   scope='Pinned primary indexed five-argument CPU dispatch and AX1 clipped fallback, originally refused in RB10default05; static regeneration is not a fresh natural session.' if va in (0x500477,0x500496) else 'Pinned second-frame cdecl arguments, exact backend binding and low16AX normalization/fallback/OR; isolated wrapper comparison, no natural-session replay or full volatile ABI claim.' if va in secondary else 'Pinned primary opaque fallback, five forwarded cdecl arguments, twenty-byte cleanup and low16AX mask; no secondary or natural-session replay claim.' if va==opaque_fallback else 'Pinned direct black/fallback call and AX-only normalization/store; natural reachability remains separately recorded.' if va in black_returns else 'Checked direct effect call and AX-only continuation; this static extension is not natural reachability.' if va in effects else 'Pinned54aaa0 RET8 continuation to virtual caller; this static extension alone is not a natural-live witness.' if va==0x54aab2 else 'Observed return path consumes low16 AX only; callee-saved registers preserved, volatile registers/flags overwritten before subsequent use on reviewed path.'
    rows.append({'address':hex(va),'tags':sorted(ts),'return_signature':sig.hex(),'disassembly':asm,'origin':origin,'scope':scope})
   header+=['};', '''/* Bytes are an explicitly readable ten-byte continuation. */
 static inline int mnm_world_raster_caller(u32 caller,u32 tag,const u8* bytes){

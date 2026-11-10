@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "id": "demonstrated-required-rendering-boundaries-v1",
+  "authorization": "Use demonstrated finite domains",
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "profiles": [
+    "player-default",
+    "player-software"
+  ],
+  "journeys": 14,
+  "journey_leaves": 47,
+  "operations": 21,
+  "technical_unknowns_waived": false,
+  "input_domain": "exact_retained_acquisitions_inputs_and_durations",
+  "arbitrary_maps_saves_duration_supported": false,
+  "all_installed_assets_supported": false,
+  "supported_outcomes": [
+    "victory",
+    "defeat",
+    "actual-later-map"
+  ],
+  "configuration": {
+    "DEBUG_UseMallocedBackBuffer": false,
+    "padding": [
+      0,
+      0
+    ],
+    "alternate_publication": false,
+    "original_exclusive_fullscreen": false,
+    "qt_toolbar_and_F9_fullscreen": true
+  },
+  "formats": {
+    "live_World": "RGB565",
+    "native_primary": "RGB565",
+    "explicit_offscreen": [
+      "RGB565",
+      "RGB555"
+    ],
+    "live_RGB555_supported": false,
+    "global_RGB555_unreachable": false
+  },
+  "platform": {
+    "host": "Linux x86_64",
+    "guest": "Wine PE32",
+    "presentation": "Qt X11 OpenGL",
+    "observed_renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+    "hardware_renderer_proved": false,
+    "Win98_ME_proved": false,
+    "physical_driver_equivalence": false,
+    "physical_scanout_proved": false,
+    "Windows_SEH_dispatch_proved": false
+  },
+  "supplier_boundary": {
+    "original_coordinator": true,
+    "original_geometry": true,
+    "original_serializers": true,
+    "original_helpers": true,
+    "required_route": [
+      "Main",
+      "Realm",
+      "World",
+      "Report"
+    ],
+    "all_external_suppliers_recovered": false,
+    "all_exceptional_lifetimes_recovered": false
+  },
+  "natural_callers": {
+    "installed_routes": 43,
+    "optional_unresolved_routes": 5,
+    "global_unreachable_proved": false,
+    "natural_overlap_witness": false,
+    "controlled_overlap_extent": [
+      8,
+      6
+    ],
+    "unknown_callers_fail_closed": true,
+    "supported_output": "complete_independently_compared_finite_histories"
+  },
+  "evidence": {
+    "selected_domain": "docs/native-rendering-support-domain.json",
+    "frozen_parent": {
+      "record": "research/runtime/rendering-final-decisions-results-20261110/master-admission-01.json",
+      "sha256": "2ee26bac7000dc60f32cfabf55cb15491add1c75005c42713da85ecf9537318c"
+    },
+    "closeout_bindings": "research/runtime/required-boundaries-results-20261110/closeout-bindings-02.json"
+  },
+  "expansion_rule": "Review and validate affected input,caller,provider,output and lifetime evidence before expanding any promise. Exact recorded input/event/time sequences do not promise arbitrary play on a named map. All unresolved original domains and failed phases remain retained.",
+  "demonstrated_maps": {
+    "cohort_Quick_Battle": [
+      0,
+      2
+    ],
+    "fullscreen_Quick_Battle": [
+      1
+    ],
+    "campaign_realm": "Celtic",
+    "campaign_regions": [
+      1,
+      2
+    ],
+    "scope": "Exact recorded cases only; no arbitrary scenario on a named map."
+  }
+}

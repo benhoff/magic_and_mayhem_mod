@@ -309,3 +309,13 @@ The owner-approved `ALIAS09.controlled-opaque-overlap-v1` entry is an explicit o
 
 Owned campaign closeout:120/156passed,36pending over the frozen116-row parent. Only natural map exit and loading close, in default/software actual640/800, from four distinct current-source full sessions43–46. Complete independent output matches3,286,371,000pixels with zero differences, original resources retire before later acquisition, native prior surfaces retire and normal Quit drains ownership. Both final decisions remain pending. Later master admissions require a separate union of exact source phases. See `research/runtime/campaign-progression-closeout-results-20261108/acceptance-01.json`.
 
+
+RB10required-boundary closeout (2026-11-10) records156/156finite requirement cells
+passed and zero pending cells. All eight player boundaries are resolved under
+`docs/native-rendering-required-boundaries.json` and the owner-selected exact
+map/save/input/duration domain; all154other cells and the approved controlled
+opaque-overlap mechanism remain exact. Both overall verdicts are still issued
+pending/accepted=false: current whole-player response/progress/resource adequacy
+and historical-negative applicability remain separate EP11work; complete original
+recovery remains independent. See
+[the boundary closeout](../research/runtime/rendering-required-boundaries-closeout-20261110.md).

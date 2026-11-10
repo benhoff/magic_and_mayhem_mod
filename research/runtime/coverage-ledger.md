@@ -28862,3 +28862,104 @@ decision-recording gates change: 154/156 passed,2 pending. All154other
 rows, original registered milestones, historical source/failure phases and approved
 scope amendments remain exact. Fresh host controls and adjudication add no new
 game,native execution,pixel comparison,whole-player acceptance or original recovery.
+
+
+
+
+## Required-boundaries review and selected finite support — 2026-11-10
+
+`NP.required-boundaries-review` records a headless retained-data review, not item3
+completion. `RB10.required-boundaries03` passes40actual-data/adversarial controls
+and directly reanalyzes four original resource journals/11776bytes: eight ordered
+World retirements, persistent display-provider identities and fresh populated
+Celtic region2acquisition in default/software actual640/800. The admitted PH09
+owned history keeps its exact historical sources/pixels/caller state and the old
+eight-frame counterexample. The owner selected “Use demonstrated finite domains”;
+`docs/native-rendering-support-domain.json` consumes that choice, preserves
+all14journeys/47leaves/21operations and binds the exact148-row accepted cohort.
+Actual demonstrated Quick selectors include VC08map1as well as retained0/2;
+installed assets are not a support whitelist. Exact original Save/installation
+identities and observed flow287675–303507ms remain distinct from900000ms caps.
+
+Five technical conditions staypending: alternate ownership, Qt toolbar/F9
+fullscreen, natural callers/required aliases/raw readers/writers, full required
+screen-provider lifetimes, and actual live-format requiredness/production.
+The43-route denominator/38-route cross-context union, ALIAS09natural obligation,
+RGB555offscreen versus strict RGB565World and original platform uncertainties
+remain. Both required-boundaries cells and final decisions remain pending;
+acceptance stays148/156passed8pending. No new game, native build/execution,
+original/pixel comparison, gameplay change, old hash refresh or failure retirement.
+Expected checker exit2under--require-ready preserves the refusal instead of
+manufacturing closure. Review01/02and exact development source phases remain
+SQLite-retained. See research/runtime/rendering-required-boundaries-20261110.md.
+
+RB10full audit has zero errors and current scoped implementation/headless support.
+PH09require-applicable has no source actions. Scope/acceptance and Python/JSUI
+regressions pass; actual148/156projection and both pending decisions are exact.
+Incoming104committed transitions receive one missing exact journal custody
+receipt, with no retrospective execution claim. Adding this review's source
+links affects shared accounting associations but changes no existing engine
+bytes or declared milestone; exact pending receipts retain unrelated historical
+staleness. Development contract projections match their recorded claim hashes,
+with reconstructed-versus-original-container scope explicit.
+
+### RB10 live required-boundary engineering (in progress, 2026-11-10)
+
+The owned followup adds passive23-entry/21normal-return provider/format metadata
+and a narrow original indexed-primary caller repair. Original World634 in the
+retained default05failure reaches500477/tag14 through6c4e3c and exits95 at the
+previous guard. Exact500477/tags13–14 and500496/tag17 continuations now pass
+196,608original branch/argument/stack controls,54caller/64pair production
+admission with4,258refusals, and a separate fresh35,280generic original/native
+full-state/pixel comparison. Failed operands and global indirect flows remain
+unrecovered; the two completed fullscreen sessions record zero uses of the added
+sites and do not claim that failed World was replayed.
+
+Default06 and software07 each complete twelve actual toolbar/F9transitions and
+original800/640/800recreation with normal Quit. Complete independent output
+matches11,903,176,720pixels over2,831Worlds, with fresh logical cursor/hover-hit
+witnesses and drained native owners. Both actual providers are llvmpipe. Every
+World observation retains RGB565/current active backing and disabled alternate
+publication/padding. The default pixel result's final string/integer paint-lookup
+refusal stays failed; exact retained-data reanalysis reuses its zero-mismatch
+pixel proof and verifies corrected metadata without recollection. Four-case
+original format queries against the current NativeDraw facade keep explicit
+RGB555offscreen storage separate from live RGB565World support.
+
+The owner-selected finite maps/saves/durations and all14/47/21requirements remain.
+This entry does not close either required-boundary gate or issue a final player
+or original-recovery verdict. Both current campaign populated-provider observations pass: default09 and
+software10 acquire/release/reacquire populated Main/Report owners and retire two
+World epochs under actual coordinator callbacks. These diagnostic runs admit no
+pixels. The complete boundary join remains pending. All raw failures/source phases,
+control binaries, full capture bytes and verified two-store session restores
+remain retained. See `research/runtime/required-boundaries-live-engineering-20261110.md`.
+
+### RB10 required player boundaries resolved (2026-11-10)
+
+Formal closeout admits exactly both `gate.required-boundaries` cells against the
+immutable FD10master:156/156finite cells passed,zero pending cells. All154other
+row objects,14journeys/47leaves/21operations,approved ALIAS09controlled8x6scope,
+source phases and both issued/pending/accepted=false overall verdicts remain.
+The authored `docs/native-rendering-required-boundaries.json` and88actual-data
+controls bind eight resolved player boundaries to exact demonstrated inputs,
+maps,saves,durations and Linux/Wine/Qt/llvmpipe providers; no technical unknown is
+waived or zero observation converted to global absence.
+
+Two complete fullscreen histories compare11,903,176,720pixels over2,831Worlds at
+zero differences, with24physical toolbar/F9transitions,original800/640/800recreation,
+fresh logical cursor/hover hits and clean normal retirement. Both real campaign
+provider diagnostics populate/retire/reacquire Main/Report controls and callbacks,
+Report bitmap/embedded surface and region members,and two World map-resource
+epochs. They grant no pixels. Fresh original getter,196,608continuation cases,
+35,280complete generic state/pixel cases,and generator/production-hook controls
+supply their separate local scope. Every failure and all10requests/6starts remain.
+
+Original alternate ownership outside the selected disabled/zero-padding domain,
+five optional caller domains,natural overlap,rejected World634operands,complete
+external/exceptional suppliers,live555production and physical/Windows behavior
+remain original-recovery gaps. Current whole-player response/progress/resources
+and retained-negative applicability remain independent EP11exits. The dashboard
+verifies the new proof before projecting eight resolved player scopes and eight
+unresolved original scopes. See `rendering-required-boundaries-closeout-20261110.md`
+and `required-boundaries-results-20261110/closeout-admission-02.json`.
