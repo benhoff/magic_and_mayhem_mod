@@ -77,7 +77,7 @@ def main():
                           '--stream',out/'authored-empty-queue.bin','--header',out/'generated.h',
                           '--report',out/'generated.json'])
         generated = json.loads((out/'generated.json').read_text())
-        if generated['caller_count'] != 21 or sum(c['origin']=='checked_inherited_wrapper' for c in generated['callers']) != 1 or sum(c['origin']=='checked_effect_return' for c in generated['callers']) != 11 or sum(c['origin']=='checked_black_return' for c in generated['callers']) != 4 or sum(c['origin']=='checked_opaque_fallback_return' for c in generated['callers']) != 1 or sum(c['origin']=='checked_opaque_secondary_return' for c in generated['callers']) != 4:
+        if generated['caller_count'] != 23 or sum(c['origin']=='checked_indexed_primary_return' for c in generated['callers']) != 2 or sum(c['origin']=='checked_inherited_wrapper' for c in generated['callers']) != 1 or sum(c['origin']=='checked_effect_return' for c in generated['callers']) != 11 or sum(c['origin']=='checked_black_return' for c in generated['callers']) != 4 or sum(c['origin']=='checked_opaque_fallback_return' for c in generated['callers']) != 1 or sum(c['origin']=='checked_opaque_secondary_return' for c in generated['callers']) != 4:
             raise ValueError('Generator dropped or mislabeled the static inherited extension')
         # Exercise every regenerated pair against original file bytes with the
         # same negative tag/PC/signature controls as the production policy.
@@ -86,7 +86,7 @@ def main():
                                 ROOT/'tests/world-raster-callers-test.cpp','-o',out/'generated-test'])
         run('generated-native', [out/'generated-test',args.executable])
         regenerated = json.loads((out/'generated-native.log').read_text())
-        if not regenerated['success'] or regenerated['callers'] != 21 or regenerated['admitted_pairs'] != 23:
+        if not regenerated['success'] or regenerated['callers'] != 23 or regenerated['admitted_pairs'] != 26:
             raise ValueError('Incomplete regenerated table controls')
         report['generated_controls'] = regenerated
         run('return-reference-build', ['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror',

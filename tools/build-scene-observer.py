@@ -24,7 +24,7 @@ def build(selftest=False):
              '-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror']
     if selftest:
         flags += ['-DMNM_SCENE_SELFTEST']
-    names=('observer.c','entry.S','world_trace.c','world_entry.S','world_stream.c','world_lifetime.c','canvas_startup.c','canvas_startup.S','startup_queue.c','kind8_observer.c','canvas_producers.c','canvas_producers.S','palette_observation.S','font_observation.S','drawing_publication.S','glyph_live.c','glyph_leave.S','glyph_route.c','font_lifetime.c','font_lifetime.S')
+    names=('observer.c','entry.S','world_trace.c','world_entry.S','world_stream.c','world_lifetime.c','canvas_startup.c','canvas_startup.S','startup_queue.c','kind8_observer.c','canvas_producers.c','canvas_producers.S','palette_observation.S','font_observation.S','drawing_publication.S','glyph_live.c','glyph_leave.S','glyph_route.c','font_lifetime.c','font_lifetime.S','required_boundaries.c','required_boundaries.S')
     for name in names:
         subprocess.run([*flags,'-c',str(ROOT/'runtime/scene'/name),'-o',str(output/(name+'.obj'))],check=True)
     backend_names=('glyph_backend.c','glyph_backend_state.c','glyph_backend_x87.S','word_backend_state.c')
@@ -44,7 +44,7 @@ def build(selftest=False):
     paths += [ROOT/'protocols/include/mnm/drawing_caller_state_v3.h']
     paths += [ROOT/'protocols/include/mnm/drawing_caller_state_v4.h']
     paths += [ROOT/'protocols/include/mnm/drawing_caller_state_v5.h']
-    paths += [ROOT/'protocols/include/mnm/drawing_caller_tail_v1.h']
+    paths += [ROOT/'protocols/include/mnm/drawing_caller_tail_v1.h', ROOT/'protocols/include/mnm/required_boundaries_v1.h']
     (output/'manifest.json').write_text(json.dumps({'architecture':'PE32 i386','sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
         'sources':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}},indent=2)+'\n')
     if selftest:
