@@ -176060,6 +176060,203 @@
         ],
         "menu_policy": "Retain exact native menu High/Low contexts and distinct semantic layout role."
       }
+    },
+    {
+      "id": "NP.transitions-gate-closeout",
+      "title": "Retained transitions acceptance gate",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Only both transition gates: real natural victory/Realm/travel/region2 first and resumed World output, natural death/defeat/fresh Main, and actual Main Preferences800/640/800 recreation in both default/software profiles. Recheck original callbacks, populated map retirement/reacquisition, native command-surface incarnations, complete source returns and normal input/graphics retirement, joined to the accepted complete-output/history proof. Initial checkpoint Load is input only; no saved-map reload, forfeit or component fixture substitutes progression/results. Retain all execution/compiler/runtime/oracle source phases and failures. No new game, native execution, pixel replay, same-World resize, QWidget glyph/font/DC equivalence, physical scanout/driver, complete external-object lifetime, assembled map/RNG recovery, combined-current player, other gate or final-decision promotion.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/transitions_gate.py",
+        "tools/check-rendering-transitions-gates.py"
+      ],
+      "tests": [
+        "tests/test-transitions-gates.py",
+        "tools/test-transitions-gates.py"
+      ],
+      "documents": [
+        "research/runtime/transitions-gate-closeout-20261110.md"
+      ],
+      "validation_dependencies": [
+        "docs/native-rendering-closure.json",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "research/runtime/caller-state-installed-results-20261108/admission-01.json",
+        "research/runtime/campaign-progression-closeout-results-20261108/acceptance-01.json",
+        "research/runtime/campaign-victory-next-map-results-20261109/acceptance-02.json",
+        "research/runtime/pixels-history-gate-results-20261109/admission-01-proof.json",
+        "research/runtime/pixels-history-gate-results-20261109/admission-01.json",
+        "research/runtime/pixels-history-gate-results-20261109/basis-01.json",
+        "research/runtime/rendering-defeat-results-20261108/acceptance-01.json",
+        "research/runtime/rendering-destination-results-20261106/current-closeout-binding-01.json",
+        "research/runtime/rendering-enabled-intros-results-20261107/closeout-analysis-01.json",
+        "research/runtime/rendering-operations-results-20261107/cpu-transport-binding-01.json",
+        "research/runtime/transitions-gate-results-20261110/basis-01.json",
+        "research/runtime/transitions-gate-results-20261110/bindings-01.json",
+        "tests/test-pixels-history-gates.py",
+        "tools/audit-file-apis.py",
+        "tools/borrowed_pixel_backend_launch.py",
+        "tools/build-menu-observer.py",
+        "tools/caller_state_source_phase.py",
+        "tools/campaign_checkpoint.py",
+        "tools/campaign_gameplay.py",
+        "tools/campaign_map_resources.py",
+        "tools/campaign_progression_entry.py",
+        "tools/campaign_realm_exit.py",
+        "tools/campaign_report.py",
+        "tools/campaign_results_review.py",
+        "tools/campaign_route.py",
+        "tools/campaign_storage.py",
+        "tools/campaign_transition_checkpoint.py",
+        "tools/campaign_transition_review.py",
+        "tools/check-native-surface-overlap.py",
+        "tools/check-rendering-clipped-fill.py",
+        "tools/check-rendering-pixels-history-gates.py",
+        "tools/close-campaign-map-transitions.py",
+        "tools/close-rendering-alias-bounded.py",
+        "tools/close-rendering-animation-auxiliary.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-caller-state.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-full-fill.py",
+        "tools/close-rendering-keyed-palette.py",
+        "tools/close-rendering-natural-stretch.py",
+        "tools/close-rendering-opaque-cropped-copy.py",
+        "tools/close-rendering-operations.py",
+        "tools/close-rendering-retained-rows.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/compact_snapshot_activity.py",
+        "tools/coverage_applicability.py",
+        "tools/coverage_audit.py",
+        "tools/coverage_bookkeeping.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_gate.py",
+        "tools/coverage_merge_history.py",
+        "tools/coverage_reviews.py",
+        "tools/cpu_reader_journal.py",
+        "tools/decompile-game.py",
+        "tools/drawing_caller_state.py",
+        "tools/drawing_corpus.py",
+        "tools/drawing_journeys.py",
+        "tools/evidence_blocks.py",
+        "tools/evidence_cache.py",
+        "tools/evidence_consolidation.py",
+        "tools/evidence_local.py",
+        "tools/evidence_objects.py",
+        "tools/export-menu-support.py",
+        "tools/fault_lifetime_gate.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/integration_queue.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/launch_build_cache.py",
+        "tools/native_copy_clip_regions.py",
+        "tools/native_copy_clip_regions_scoped.py",
+        "tools/native_copy_routes.py",
+        "tools/native_cursor_journal.py",
+        "tools/native_draw_retirement.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/native_only_contract.py",
+        "tools/native_output_owner.py",
+        "tools/native_pixel_counters.py",
+        "tools/natural_copy_applicability.py",
+        "tools/natural_stretch_copy.py",
+        "tools/operations_gate.py",
+        "tools/pause_focus.py",
+        "tools/pause_low_ingress.py",
+        "tools/pixel_backend_launch.py",
+        "tools/pixel_forwarding_guard.py",
+        "tools/pixels_history_gate.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_caller_state_join.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_completion.py",
+        "tools/rendering_copy_readiness.py",
+        "tools/rendering_coverage.py",
+        "tools/rendering_defeat.py",
+        "tools/rendering_execution.py",
+        "tools/rendering_gaps.py",
+        "tools/rendering_interaction.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_operations_history.py",
+        "tools/rendering_pause.py",
+        "tools/rendering_pause_assessment.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_progression.py",
+        "tools/rendering_scope.py",
+        "tools/rendering_surface_loss.py",
+        "tools/rendering_transition.py",
+        "tools/rendering_transition_assessment.py",
+        "tools/resident_capture.py",
+        "tools/retained_artifacts.py",
+        "tools/sqlite_snapshot_store.py",
+        "tools/storage_cpu_read_binding.py",
+        "tools/test-menu-observer.py",
+        "tools/verification_budget.py",
+        "tools/viewport_cursor.py"
+      ],
+      "evidence": [
+        "TG10.controls01",
+        "TG10.transitions01",
+        "TG10.merged-controls01",
+        "TG10.merged-transitions01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "TG10.G.cohort: Only twelve accepted prerequisite/profile cells, ten original sessions and their immutable tested source phases. New transition domains require new owned evidence and reviewed bindings.",
+        "TG10.G.scope: Recreated Worlds are distinct. Physical scanout/driver, QWidget glyph/font/DC equivalence, complete external provider lifetime, map section/RNG reconstruction and combined-current execution remain outside this gate. Other gates, pending natural overlap requiredness and both final decisions remain separate."
+      ],
+      "validation_domain": {
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "leaf_ids": [
+          "journey.battle-results.defeat",
+          "journey.battle-results.victory",
+          "journey.camera-motion.viewport-boundaries",
+          "journey.map-transitions.leave-map",
+          "journey.map-transitions.loading",
+          "journey.map-transitions.next-map"
+        ],
+        "world_extents": [
+          [
+            640,
+            480
+          ],
+          [
+            800,
+            600
+          ]
+        ],
+        "recreation_schedule": [
+          [
+            800,
+            600
+          ],
+          [
+            640,
+            480
+          ],
+          [
+            800,
+            600
+          ]
+        ],
+        "new_original_games": 0,
+        "new_native_executions": 0
+      }
     }
   ],
   "evidence": [
@@ -403170,6 +403367,158 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "TG10.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/transitions-gate-results-20261110/controls-01.json",
+      "sha256": "51cc4bc8e91a04d41182e8b4b6bb5431e282cc5b916d2eb18c5ed61a4458d65b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current source-pinned actual-data adversarial controls over the complete finite retained transition conjunction; no game, native execution or pixel replay.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/failures",
+          "equals": 0
+        },
+        {
+          "pointer": "/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/skipped",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "TG10.transitions01",
+      "kind": "native_integration",
+      "record": "research/runtime/transitions-gate-results-20261110/admission-01.json",
+      "sha256": "80e6642d5fbd98d15dc87294a75e6fe1cb21867a2fd6ab3fc7bf98d9884fef4f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Join exactly the 12 existing prerequisite/profile proofs and close only both transition gates; every other row, native execution phase, narrower output scope and pending natural alias obligation remains exact.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/transition_cells",
+          "equals": 12
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_native_executions",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_whole_player_proved",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TG10.merged-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/transitions-gate-results-20261110/master-controls-01.json",
+      "sha256": "591d6f2c3e5cc3ef69ece21160bf82c89cdc13a60580174e819452cd33722b3b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh merged-source retained-data transitions-gate controls/analysis only. All historical native/original/compiler/oracle phases and narrower scopes remain exact. No combined-current player, game, new native execution, pixel replay or final decision.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/failures",
+          "equals": 0
+        },
+        {
+          "pointer": "/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/skipped",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "TG10.merged-transitions01",
+      "kind": "native_integration",
+      "record": "research/runtime/transitions-gate-results-20261110/master-admission-01.json",
+      "sha256": "dc7fdb5bb4ea8dc7ceb52ce9bf97b51c4dd7d36a0ddfdcb3c8239d50a556abb5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh merged-source retained-data transitions-gate controls/analysis only. All historical native/original/compiler/oracle phases and narrower scopes remain exact. No combined-current player, game, new native execution, pixel replay or final decision.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/transition_cells",
+          "equals": 12
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_native_executions",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -438428,6 +438777,24 @@
         "JG10.controls03",
         "JG10.journeys02"
       ]
+    },
+    {
+      "id": "native.transitions-gate-closeout",
+      "level": "headless",
+      "scope": "Only both transition gates: real natural victory/Realm/travel/region2 first and resumed World output, natural death/defeat/fresh Main, and actual Main Preferences800/640/800 recreation in both default/software profiles. Recheck original callbacks, populated map retirement/reacquisition, native command-surface incarnations, complete source returns and normal input/graphics retirement, joined to the accepted complete-output/history proof. Initial checkpoint Load is input only; no saved-map reload, forfeit or component fixture substitutes progression/results. Retain all execution/compiler/runtime/oracle source phases and failures. No new game, native execution, pixel replay, same-World resize, QWidget glyph/font/DC equivalence, physical scanout/driver, complete external-object lifetime, assembled map/RNG recovery, combined-current player, other gate or final-decision promotion.",
+      "behaviors": [
+        "NP.transitions-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-transitions-gates.py",
+        "tools/test-transitions-gates.py"
+      ],
+      "evidence": [
+        "TG10.controls01",
+        "TG10.transitions01",
+        "TG10.merged-controls01",
+        "TG10.merged-transitions01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -440255,8 +440622,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-af9fd6d33d844ac557c4cea41ab7bf61b91dfd438ba0bc613475e47d61085951.json",
-    "sha256": "af9fd6d33d844ac557c4cea41ab7bf61b91dfd438ba0bc613475e47d61085951"
+    "path": "research/runtime/coverage/source-index-6e1891b06dd60e1e5c3fa84708eb433f1650d1f03427ce5696d26786ffa9602c.json",
+    "sha256": "6e1891b06dd60e1e5c3fa84708eb433f1650d1f03427ce5696d26786ffa9602c"
   },
   "evidence_applicability": [
     {

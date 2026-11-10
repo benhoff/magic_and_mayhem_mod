@@ -28808,3 +28808,30 @@ JG10 closes both gate.journeys profile cells: 150/156 passed, 6 pending. All 94 
 Exact historical semantic admission and independent World/movie output remain distinct. Every leaf primary is expanded and bound to the unchanged accepted PH09 proof; every distinct session receives fresh raw terminal process/input/command/control/cursor/graphics and Main Quit checks. Forty-four complete World viewport sessions also match source nonce/import counts and cancelled source slots/close-caller diagnostics. Two semantic Results sessions retain their established header-only diagnostic boundary and no invented World pixel proof. Combat owner identity comes from raw original menu callbacks, cross-checked with available states. Natural map progression/victory/defeat are preserved, with forfeit return isolated to its existing scope.
 
 See research/runtime/journeys-gate-closeout-20261110.md and journeys-gate-results-20261110/admission-02.json. Retain the owned rendering-transition-recovery-20261107 checkout/task branch, working/journeys-gate-20261110/.retain, all original source/capture phases and refusals, exact new operator/log/source bundles, review/history databases and both shared immutable stores. Transitions, required boundaries, separate final decisions, physical providers and current combined-player/original recovery remain open.
+
+
+
+
+## TG10 transition acceptance gate — 2026-11-10
+
+Both `gate.transitions` profile cells pass from the exact conjunction of all six
+existing transition prerequisites per profile: 150/156 passed, 6 pending.
+`transitions-gate-results-20261110/admission-01.json` retains all 154 other rows
+and both pending final decisions literally. Current host controls join 10 distinct
+retained comparison receipts, exact session/profile/extent identities, independent
+complete viewport output, semantic transition witnesses and retirement.
+The approved controlled opaque-overlap amendment retains its 8x6 scope and pending
+natural caller obligation. Every original/native/compiler/oracle source phase,
+failure and narrower history/output limit remains explicit. No game, new native
+execution, pixel replay, renderer repair, combined-current player or other gate
+promotion. See `transitions-gate-closeout-20261110.md`.
+
+
+## TG10 actual-master union — 2026-11-10
+
+`transitions-gate-results-20261110/master-admission-01.json` joins current host
+analysis with the exact actual-master parent: 152/156 passed, 4 pending.
+Only both transition gates change; all 154 other actual-master rows and both
+final decisions remain exact. Fresh merged host controls/analysis preserve
+every original native/compiler/oracle phase and approved scope amendment.
+No game, new native execution, pixel replay or combined-current player claim.
