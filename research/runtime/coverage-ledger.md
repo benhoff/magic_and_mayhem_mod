@@ -28999,3 +28999,8 @@ selected projection closes only our two boundaries. Four native/build hashes
 differ from the WP10phase, so its current equivalence remains pending under the
 full-hash rule. Its scoped milestone is not reset or relabeled current. RB10has
 zero source drift; no additional game/native/pixel execution or old hash refresh.
+
+
+## Historical source recovery — 2026-11-10
+
+Source custody preserves 5,814 historical locations / 5,639 distinct objects (21,445,201 bytes) with two verified restores, including 58 distinct reviewed old worktree source/UI versions. The bounded operator scan retains its main-root directory-cap limitation; current whole-player validation remains excluded. Nineteen committed nonancestor tips retain their existing branches and explicit source-path review leads. Only the schema-4 latency analyzer and its tests enter maintained tooling under `TOOL.native-frame-latency`; synthetic checks do not establish current live timing or original equivalence. No historical engine status, retention pin or directory is retired. See [source recovery](source-recovery-20261110.md).

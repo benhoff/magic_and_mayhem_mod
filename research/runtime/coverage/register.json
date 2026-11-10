@@ -179677,6 +179677,42 @@
       "gaps": [
         "Broader original allocation/caller/provider/exception/format/platform domains and rejected World634operands remain unresolved. Exact accepted finite histories grant no current complete-player verdict; independent EP11response/progress/resource and negative-evidence applicability remain required."
       ]
+    },
+    {
+      "id": "TOOL.native-frame-latency",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Recovered schema-4 native frame latency analyzer",
+      "scope": "Offline schema-4 owner-export/GUI-pickup/first-Qt-swap identity joins and separate host timing distributions; exact uint64 serial/generation admission, retained-tail handling, warm visible source filtering, duplicate/mismatch/timestamp refusals. Adjacent original uint32-clock cadence preserves wrap and negative residuals and breaks on unobserved clocks. Synthetic tests only; no physical scanout, GPU completion, retained-game reanalysis, current live performance or original-equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/source-recovery-20261110.md"
+      ],
+      "implementation": [
+        "tools/native_frame_latency.py"
+      ],
+      "tests": [
+        "tests/test-native-frame-latency.py"
+      ],
+      "validation_dependencies": [
+        "tools/profile_native_resident_helpers.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "SRC10.latency-controls01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Historical source recovery is bounded and grants no cleanup eligibility. Current broader-player work is excluded.",
+        "Analyzer has synthetic schema-4 validation only; retained-data analysis and live performance measurement remain separate."
+      ]
     }
   ],
   "evidence": [
@@ -407558,6 +407594,29 @@
         }
       ],
       "sources_pointer": "/source_preimages"
+    },
+    {
+      "id": "SRC10.latency-controls01",
+      "kind": "native_integration",
+      "scope": "Synthetic schema-4 analyzer controls only; no engine execution or retained-game comparison.",
+      "record": "research/runtime/source-recovery-results-20261110/latency-controls-01.json",
+      "sha256": "25fa71661fe7cdddbc07fdc6cc7cffaa476d9b014128ee3db97355fab61af1ec",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 12
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -442948,6 +443007,20 @@
         "RB10.boundary-controls02",
         "RB10.boundary-admission02"
       ]
+    },
+    {
+      "id": "tool.native-frame-latency-controls",
+      "scope": "Synthetic trace joins, clock partitions and refusal cases for recovered analyzer only.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.native-frame-latency"
+      ],
+      "tests": [
+        "tests/test-native-frame-latency.py"
+      ],
+      "evidence": [
+        "SRC10.latency-controls01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -444775,8 +444848,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-c0fffffdab6d1b2a10e4c1da581a661f2106c9cdb4b19e9df097a10e8b412b82.json",
-    "sha256": "c0fffffdab6d1b2a10e4c1da581a661f2106c9cdb4b19e9df097a10e8b412b82"
+    "path": "research/runtime/coverage/source-index-252754611849b102c0fd9c585e259c2f625019c874e9b6fba674c9ce87d06bed.json",
+    "sha256": "252754611849b102c0fd9c585e259c2f625019c874e9b6fba674c9ce87d06bed"
   },
   "evidence_applicability": [
     {
