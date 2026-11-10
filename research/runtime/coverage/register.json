@@ -175923,6 +175923,65 @@
         "PH09.G.cohort: Both gate.pixels-history cells pass for the exact accepted-leaf cohort:56healthy viewport sessions/72primary comparisons plus14semantic UI/movie primaries and the approved controlled mechanism. New primary cohorts require the same output/history/caller admission. All native/original/compiler/oracle execution phases remain historical.",
         "PH09.G.scope: Current combined-player, physical scanout, arbitrary providers/maps, original whole-function recovery, other gate conditions and both final decisions remain separate. Raw historical failures/source instability are retained."
       ]
+    },
+    {
+      "id": "NP.required-boundaries-review",
+      "title": "Required rendering boundaries and remaining technical conditions",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Retained-data review of all eight required rendering boundaries against the exact148/156accepted parent. Verify five unused-candidate routes without global absence, distinguish owned-copy safety and controlled overlap from natural output, preserve RGB555 facade versus strict RGB565 World boundaries, join admitted owned history and four actual Celtic region1/2 resource lifetimes, and pin demonstrated original Save/installation inputs. Keep fullscreen, historical alternate ownership, natural callers, complete provider lifetimes, live-format requiredness and fullscreen pending; record the owner-selected demonstrated finite map/save/duration policy without waiving technical conditions. No player-row, original-recovery, current whole-player or source-freshness promotion.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/rendering_required_boundaries.py",
+        "tools/check-rendering-required-boundaries.py"
+      ],
+      "tests": [
+        "tests/test-rendering-required-boundaries.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-required-boundaries-20261110.md"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "docs/native-rendering-closure.json",
+        "docs/native-rendering-closure.md",
+        "docs/native-rendering-dependencies.json",
+        "runtime/native-draw/surfaces.h",
+        "compat/legacy/world_frame.cpp",
+        "apps/qt-shell/viewport_presentation.cpp",
+        "research/runtime/rendering-scope-results-20261030/decisions-01.json",
+        "research/runtime/rendering-scope-results-20261030/callers-03.json",
+        "research/runtime/rendering-scope-results-20261030/components-03.json",
+        "research/runtime/original-alternate-allocation-results-20261026/controls09.json",
+        "research/runtime/screen-provider-master-results-20261026/providers01.json",
+        "research/runtime/pixels-history-gate-results-20261109/admission-01-proof.json",
+        "research/runtime/campaign-progression-closeout-results-20261108/acceptance-01.json",
+        "research/runtime/copy-routing-safety-results-20261109/routing-03.json",
+        "research/runtime/pixels-history-gate-results-20261109/compatibility-02-admission.json",
+        "tools/campaign_map_resources.py",
+        "tools/rendering_pilot.py",
+        "docs/native-rendering-support-domain.json"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "RB10.required-boundaries01",
+        "RB10.required-boundaries02",
+        "RB10.required-boundaries03"
+      ],
+      "scenarios": [
+        "native.required-boundaries-review"
+      ],
+      "gaps": [
+        "Five technical scope conditions remain pending; this review cannot close either required-boundaries cell or either final decision."
+      ]
     }
   ],
   "evidence": [
@@ -402935,6 +402994,85 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "RB10.required-boundaries01",
+      "kind": "static",
+      "scope": "Earlier immutable development review and expected gate refusal; no current contract, player acceptance or original-recovery credit.",
+      "record": "research/runtime/required-boundaries-results-20261110/review-01.json",
+      "sha256": "d527f10c32f2340791899b364d00412e7212141e80d1f3bc72dd549fb7e50403",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/gate_ready",
+          "equals": false
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/controls/tests",
+          "equals": 28
+        }
+      ]
+    },
+    {
+      "id": "RB10.required-boundaries02",
+      "kind": "static",
+      "scope": "Earlier immutable development review and expected gate refusal; no current contract, player acceptance or original-recovery credit.",
+      "record": "research/runtime/required-boundaries-results-20261110/review-02.json",
+      "sha256": "2a362f15832ea675e9eed3dd37cf6f5bb1e284089919661bc71800a7dfc9bf29",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/gate_ready",
+          "equals": false
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/controls/tests",
+          "equals": 34
+        }
+      ]
+    },
+    {
+      "id": "RB10.required-boundaries03",
+      "kind": "native_integration",
+      "scope": "Retained-data review of all eight required rendering boundaries against the exact148/156accepted parent. Verify five unused-candidate routes without global absence, distinguish owned-copy safety and controlled overlap from natural output, preserve RGB555 facade versus strict RGB565 World boundaries, join admitted owned history and four actual Celtic region1/2 resource lifetimes, and pin demonstrated original Save/installation inputs. Keep fullscreen, historical alternate ownership, natural callers, complete provider lifetimes, live-format requiredness and fullscreen pending; record the owner-selected demonstrated finite map/save/duration policy without waiving technical conditions. No player-row, original-recovery, current whole-player or source-freshness promotion.",
+      "record": "research/runtime/required-boundaries-results-20261110/review-03.json",
+      "sha256": "fa4fe826521ed1772156f463a0d2e55f17a3abdd9b9a40a0ca963fbbad23ba3a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/gate_ready",
+          "equals": false
+        },
+        {
+          "pointer": "/task_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/controls/tests",
+          "equals": 40
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -438178,6 +438316,20 @@
         "PH09.controls03",
         "PH09.pixels-history01"
       ]
+    },
+    {
+      "id": "native.required-boundaries-review",
+      "scope": "Retained-data review of all eight required rendering boundaries against the exact148/156accepted parent. Verify five unused-candidate routes without global absence, distinguish owned-copy safety and controlled overlap from natural output, preserve RGB555 facade versus strict RGB565 World boundaries, join admitted owned history and four actual Celtic region1/2 resource lifetimes, and pin demonstrated original Save/installation inputs. Keep fullscreen, historical alternate ownership, natural callers, complete provider lifetimes, live-format requiredness and fullscreen pending; record the owner-selected demonstrated finite map/save/duration policy without waiving technical conditions. No player-row, original-recovery, current whole-player or source-freshness promotion.",
+      "level": "headless",
+      "behaviors": [
+        "NP.required-boundaries-review"
+      ],
+      "tests": [
+        "tests/test-rendering-required-boundaries.py"
+      ],
+      "evidence": [
+        "RB10.required-boundaries03"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -440005,8 +440157,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-05060c8b0123759d657c901df69c159ef655c9eb8b2f2a382c3c1181f3a53c8f.json",
-    "sha256": "05060c8b0123759d657c901df69c159ef655c9eb8b2f2a382c3c1181f3a53c8f"
+    "path": "research/runtime/coverage/source-index-af77499d0c0bf4ec359191571f76deb495ff2719738d6d5ca1f0d0ef61316a10.json",
+    "sha256": "af77499d0c0bf4ec359191571f76deb495ff2719738d6d5ca1f0d0ef61316a10"
   },
   "evidence_applicability": [
     {

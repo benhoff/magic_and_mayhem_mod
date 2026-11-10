@@ -28799,3 +28799,41 @@ See research/runtime/pixels-history-gate-closeout-20261109.md and pixels-history
 ## PH09 actual-master compatibility union — 2026-11-09
 
 The accounting-only union on operations mastere442a77c6 preserves all154other actual-master row objects and adds exactly the two ready pixel/history cells:148/156passed8pending across4distinct gates. All136journey/operation leaves, both pending decisions and original execution phases remain exact. Both parents have current identical declared source bytes; the PH09 code/contract/40controls and independent proofs are unchanged. No engine revalidation, original/native process, capture or pixel replay. See pixels-history-gate-results-20261109/compatibility-02-admission.json. The prior ready pixel/history commitd0ef95493 and its146-row phase remain retained.
+
+
+## Required-boundaries review and selected finite support — 2026-11-10
+
+`NP.required-boundaries-review` records a headless retained-data review, not item3
+completion. `RB10.required-boundaries03` passes40actual-data/adversarial controls
+and directly reanalyzes four original resource journals/11776bytes: eight ordered
+World retirements, persistent display-provider identities and fresh populated
+Celtic region2acquisition in default/software actual640/800. The admitted PH09
+owned history keeps its exact historical sources/pixels/caller state and the old
+eight-frame counterexample. The owner selected “Use demonstrated finite domains”;
+`docs/native-rendering-support-domain.json` consumes that choice, preserves
+all14journeys/47leaves/21operations and binds the exact148-row accepted cohort.
+Actual demonstrated Quick selectors include VC08map1as well as retained0/2;
+installed assets are not a support whitelist. Exact original Save/installation
+identities and observed flow287675–303507ms remain distinct from900000ms caps.
+
+Five technical conditions staypending: alternate ownership, Qt toolbar/F9
+fullscreen, natural callers/required aliases/raw readers/writers, full required
+screen-provider lifetimes, and actual live-format requiredness/production.
+The43-route denominator/38-route cross-context union, ALIAS09natural obligation,
+RGB555offscreen versus strict RGB565World and original platform uncertainties
+remain. Both required-boundaries cells and final decisions remain pending;
+acceptance stays148/156passed8pending. No new game, native build/execution,
+original/pixel comparison, gameplay change, old hash refresh or failure retirement.
+Expected checker exit2under--require-ready preserves the refusal instead of
+manufacturing closure. Review01/02and exact development source phases remain
+SQLite-retained. See research/runtime/rendering-required-boundaries-20261110.md.
+
+RB10full audit has zero errors and current scoped implementation/headless support.
+PH09require-applicable has no source actions. Scope/acceptance and Python/JSUI
+regressions pass; actual148/156projection and both pending decisions are exact.
+Incoming104committed transitions receive one missing exact journal custody
+receipt, with no retrospective execution claim. Adding this review's source
+links affects shared accounting associations but changes no existing engine
+bytes or declared milestone; exact pending receipts retain unrelated historical
+staleness. Development contract projections match their recorded claim hashes,
+with reconstructed-versus-original-container scope explicit.
