@@ -28758,3 +28758,28 @@ a complete ground-model input sequence and supply no new native-world prediction
 All rendering acceptance rows, older source phases, failures and final decisions
 remain unchanged. Four bounded acquisition attempts are exhausted, with two
 isolated original processes and zero game launches; manifest bookends pass.
+
+
+## OG09 operations acceptance gate — 2026-11-09
+
+Both `gate.operations` profile cells pass from the exact conjunction of all 21
+existing operation requirements per profile: 146/156 passed, 10 pending.
+`operations-gate-results-20261109/admission-01.json` retains all 154 other rows
+and both pending final decisions literally. Current host controls join 36 distinct
+retained comparison receipts, exact session/profile/extent identities, independent
+viewport or selected-plane output, semantic operation witnesses and retirement.
+The approved controlled opaque-overlap amendment retains its 8x6 scope and pending
+natural caller obligation. Every original/native/compiler/oracle source phase,
+failure and narrower history/output limit remains explicit. No game, new native
+execution, pixel replay, renderer repair, combined-current player or other gate
+promotion. See `operations-gate-closeout-20261109.md`.
+
+
+## OG09 actual-master union — 2026-11-09
+
+`operations-gate-results-20261109/master-admission-01.json` joins current host
+analysis with the exact actual-master parent: 146/156 passed, 10 pending.
+Only both operations gates change; all 154 other actual-master rows and both
+final decisions remain exact. Fresh merged host controls/analysis preserve
+every original native/compiler/oracle phase and approved scope amendment.
+No game, new native execution, pixel replay or combined-current player claim.

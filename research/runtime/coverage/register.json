@@ -175678,6 +175678,175 @@
         "RZ09.G.live: Runtime cell-provider hit callbacks and presented-pixel application picking are unchanged; no installed World/Region callback, live replacement, resource-generation or current combined-player claim.",
         "RZ09.G.domain: Valid owned inputs only. Corrupt original RLE, unchecked pointer/one-past collection behavior, excluded unsafe traversals and arbitrary caller geometry remain outside comparison; native validation is an intentional safety policy."
       ]
+    },
+    {
+      "id": "NP.operations-gate-closeout",
+      "title": "Retained operations acceptance gate",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Finite conjunction of all 21 admitted operation requirements in each of the default and software profiles. Recheck exact row provenance, profile/extent/identity, independent output and operation-specific witnesses, normal or declared failed/fresh retirement, and the owner-approved controlled opaque-overlap exception. Retain every original execution/source/compiler/oracle phase, failure and narrower output/history limit. No new game, native execution, pixel replay, whole-player/current-combined execution, physical driver/reset, natural alias reachability, other gate or final-decision promotion.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/operations_gate.py",
+        "tools/check-rendering-operations-gates.py"
+      ],
+      "tests": [
+        "tests/test-operations-gates.py",
+        "tools/test-operations-gates.py"
+      ],
+      "documents": [
+        "research/runtime/operations-gate-closeout-20261109.md"
+      ],
+      "validation_dependencies": [
+        "docs/native-rendering-closure.json",
+        "research/runtime/operations-gate-results-20261109/basis-01.json",
+        "research/runtime/operations-gate-results-20261109/bindings-01.json",
+        "tools/audit-file-apis.py",
+        "tools/borrowed_pixel_backend_launch.py",
+        "tools/build-menu-observer.py",
+        "tools/caller_state_source_phase.py",
+        "tools/campaign_storage.py",
+        "tools/check-native-surface-overlap.py",
+        "tools/check-rendering-clipped-fill.py",
+        "tools/close-rendering-alias-bounded.py",
+        "tools/close-rendering-animation-auxiliary.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-caller-state.py",
+        "tools/close-rendering-destination-history.py",
+        "tools/close-rendering-full-fill.py",
+        "tools/close-rendering-keyed-palette.py",
+        "tools/close-rendering-natural-stretch.py",
+        "tools/close-rendering-opaque-cropped-copy.py",
+        "tools/close-rendering-operations.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/compact_snapshot_activity.py",
+        "tools/coverage_applicability.py",
+        "tools/coverage_audit.py",
+        "tools/coverage_bookkeeping.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_gate.py",
+        "tools/coverage_merge_history.py",
+        "tools/coverage_reviews.py",
+        "tools/cpu_reader_journal.py",
+        "tools/decompile-game.py",
+        "tools/drawing_caller_state.py",
+        "tools/drawing_corpus.py",
+        "tools/drawing_journeys.py",
+        "tools/evidence_blocks.py",
+        "tools/evidence_cache.py",
+        "tools/evidence_consolidation.py",
+        "tools/evidence_local.py",
+        "tools/evidence_objects.py",
+        "tools/export-menu-support.py",
+        "tools/fault_lifetime_gate.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/integration_queue.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/launch_build_cache.py",
+        "tools/native_copy_clip_regions.py",
+        "tools/native_copy_clip_regions_scoped.py",
+        "tools/native_copy_routes.py",
+        "tools/native_cursor_journal.py",
+        "tools/native_draw_retirement.py",
+        "tools/native_gpu_copy_diagnostics.py",
+        "tools/native_only_contract.py",
+        "tools/native_output_owner.py",
+        "tools/native_pixel_counters.py",
+        "tools/natural_copy_applicability.py",
+        "tools/natural_stretch_copy.py",
+        "tools/pause_focus.py",
+        "tools/pause_low_ingress.py",
+        "tools/pixel_backend_launch.py",
+        "tools/pixel_forwarding_guard.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_caller_state_join.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_completion.py",
+        "tools/rendering_copy_readiness.py",
+        "tools/rendering_coverage.py",
+        "tools/rendering_execution.py",
+        "tools/rendering_gaps.py",
+        "tools/rendering_interaction.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/rendering_normal_acceptance.py",
+        "tools/rendering_pause.py",
+        "tools/rendering_pause_assessment.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_scope.py",
+        "tools/rendering_surface_loss.py",
+        "tools/rendering_transition.py",
+        "tools/rendering_transition_assessment.py",
+        "tools/resident_capture.py",
+        "tools/retained_artifacts.py",
+        "tools/sqlite_snapshot_store.py",
+        "tools/storage_cpu_read_binding.py",
+        "tools/test-menu-observer.py",
+        "tools/verification_budget.py"
+      ],
+      "evidence": [
+        "OG09.controls01",
+        "OG09.operations01",
+        "OG09.merged-controls01",
+        "OG09.merged-operations01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "OG09.G.cohort: Exactly the 42 admitted operation/profile cells and their frozen source phases. New operation cohorts or changed conditions require new reviewed input bindings and the same output, state and lifetime checks.",
+        "OG09.G.scope: The controlled opaque-overlap amendment retains pending natural caller requiredness. Bounded clipping/stretch planes and existing viewport proofs do not promote complete pixels/history, required boundaries, journeys, transitions, current combined-player or either final decision."
+      ],
+      "validation_domain": {
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "operation_ids": [
+          "operation.copy-alias-overlap",
+          "operation.copy-clipped",
+          "operation.copy-keyed",
+          "operation.copy-opaque",
+          "operation.copy-stretched",
+          "operation.cpu-write-readback",
+          "operation.destination-dependency",
+          "operation.failure-cleanup",
+          "operation.fill-clipped",
+          "operation.fill-full",
+          "operation.flags-and-return-values",
+          "operation.image-cropping",
+          "operation.palette-cycling",
+          "operation.palette-remap",
+          "operation.partial-write",
+          "operation.sprite-auxiliary",
+          "operation.sprite-direct",
+          "operation.sprite-indexed",
+          "operation.surface-loss-restore",
+          "operation.text-font-dc-lifetime",
+          "operation.transition-recovery"
+        ],
+        "world_extents": [
+          [
+            640,
+            480
+          ],
+          [
+            800,
+            600
+          ]
+        ],
+        "controlled_overlap_extent": [
+          8,
+          6
+        ],
+        "new_original_games": 0,
+        "new_native_executions": 0
+      }
     }
   ],
   "evidence": [
@@ -402456,6 +402625,158 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "OG09.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/operations-gate-results-20261109/controls-01.json",
+      "sha256": "e0a948cace808f5b73e490269086f69274daa1332fd8da22dedc76dd56c99e9e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current source-pinned actual-data adversarial controls over the complete finite retained operation conjunction; no game, native execution or pixel replay.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/failures",
+          "equals": 0
+        },
+        {
+          "pointer": "/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/skipped",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "OG09.operations01",
+      "kind": "native_integration",
+      "record": "research/runtime/operations-gate-results-20261109/admission-01.json",
+      "sha256": "cc24578fd10862a65c9cf4a0de4a789134de10f58ee75b33f44d56f3e19faea0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Join exactly the 42 existing operation/profile proofs and close only both operations gates; every other row, native execution phase, narrower output scope and pending natural alias obligation remains exact.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/operation_cells",
+          "equals": 42
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_native_executions",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_whole_player_proved",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "OG09.merged-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/operations-gate-results-20261109/master-controls-01.json",
+      "sha256": "0ef4fbd549d8f364aee9ba9c0b0af8159a9551a6e929dd443a4f89ebfd9266c7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh merged-source retained-data operations-gate controls/analysis only. All historical native/original/compiler/oracle phases and narrower scopes remain exact. No combined-current player, game, new native execution, pixel replay or final decision.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/failures",
+          "equals": 0
+        },
+        {
+          "pointer": "/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/skipped",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "OG09.merged-operations01",
+      "kind": "native_integration",
+      "record": "research/runtime/operations-gate-results-20261109/master-admission-01.json",
+      "sha256": "151e7b4661de8582445b3c1b7e23e946296bd3202d055444eb9c18c761336449",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh merged-source retained-data operations-gate controls/analysis only. All historical native/original/compiler/oracle phases and narrower scopes remain exact. No combined-current player, game, new native execution, pixel replay or final decision.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/operation_cells",
+          "equals": 42
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_native_executions",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -437666,6 +437987,24 @@
         "tests/ground-z-boundary-reference.cpp",
         "tools/test-ground-z-boundary.py"
       ]
+    },
+    {
+      "id": "native.operations-gate-closeout",
+      "level": "headless",
+      "scope": "Finite conjunction of all 21 admitted operation requirements in each of the default and software profiles. Recheck exact row provenance, profile/extent/identity, independent output and operation-specific witnesses, normal or declared failed/fresh retirement, and the owner-approved controlled opaque-overlap exception. Retain every original execution/source/compiler/oracle phase, failure and narrower output/history limit. No new game, native execution, pixel replay, whole-player/current-combined execution, physical driver/reset, natural alias reachability, other gate or final-decision promotion.",
+      "behaviors": [
+        "NP.operations-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-operations-gates.py",
+        "tools/test-operations-gates.py"
+      ],
+      "evidence": [
+        "OG09.controls01",
+        "OG09.operations01",
+        "OG09.merged-controls01",
+        "OG09.merged-operations01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -439493,8 +439832,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-709f932e33c0da763941d0e756a6dd1f51358838616a86a9fffd8720e1677b99.json",
-    "sha256": "709f932e33c0da763941d0e756a6dd1f51358838616a86a9fffd8720e1677b99"
+    "path": "research/runtime/coverage/source-index-51bf1e1af00b90c768499443523ef67e0171c7b3b82aea803076b6a629d7acce.json",
+    "sha256": "51bf1e1af00b90c768499443523ef67e0171c7b3b82aea803076b6a629d7acce"
   },
   "evidence_applicability": [
     {
