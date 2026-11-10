@@ -1,3 +1,5 @@
+Current artifact5 decision record (2026-11-10): **supported-player pending; original-recovery pending; neither accepted**. Both independent verdicts are issued with exact evidence, profile-specific blockers and recovery exits. The decision-recording gates close: **154/156 passed,2 pending**; this count is not positive player acceptance or complete original recovery. See [the recorded decisions](../research/runtime/rendering-final-decisions-20261110.md).
+
 Current journeys admission (2026-11-10): **150/156 passed, 6 pending** across transitions, required boundaries and separate decisions. Both profiles join all fourteen journeys and 47 named leaves each through exact retained semantic/output/lifetime receipts. All 154 other rows and both pending final decisions remain unchanged. No new game or capture. See [the journeys closeout](../research/runtime/journeys-gate-closeout-20261110.md).
 
 Earlier entries below retain their named source phases and totals.

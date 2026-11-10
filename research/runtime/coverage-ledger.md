@@ -28835,3 +28835,20 @@ Only both transition gates change; all 154 other actual-master rows and both
 final decisions remain exact. Fresh merged host controls/analysis preserve
 every original native/compiler/oracle phase and approved scope amendment.
 No game, new native execution, pixel replay or combined-current player claim.
+
+
+## FD10 artifact5 decisions — 2026-11-10
+
+`rendering-final-decisions-results-20261110/admission-01-decisions.json` issues
+separate supported-player and original-recovery verdicts: both **pending**, both
+`accepted=false`. The decision-recording gates pass because verdicts are issued;
+neither product acceptance nor complete original recovery is granted. The matrix
+is 154/156 passed,2 pending; all154other rows, approved overlap
+scope/pending natural obligation and existing recovered milestones remain exact.
+The current finite evidence is reviewed against explicit required-boundary and
+final current whole-player evidence blockers, including response deadlines, forward
+progress and resource bounds. Historical failure relevance remains separate from
+asserting a current regression. Fifteen original contract groups and eight historical
+original-recovery scope assessments retain their independent exits.
+51 current actual-data controls pass; no game,native execution,pixel comparison,
+source-hash refresh or positive engine/product promotion.
