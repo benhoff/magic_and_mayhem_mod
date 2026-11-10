@@ -176257,6 +176257,108 @@
         "new_original_games": 0,
         "new_native_executions": 0
       }
+    },
+    {
+      "id": "NP.final-rendering-decisions",
+      "title": "Separate final rendering acceptance adjudications",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Issue separate supported-player and original-recovery verdicts from the exact current EP10 matrix, accepted finite gate evidence, original contract scopes and retained failures. Both verdicts remain pending and accepted=false: finite historical player proofs and current host joins do not supply a final current whole-player acceptance receipt or complete original recovery. Record precise profile/blocker/exit evidence; preserve all154other rows, original behavior milestones, historical native/compiler/oracle hashes, failures and approved support amendments. Close only the two decision-recording gates. No new game, native execution, pixel comparison, positive acceptance, original-recovery completion, required-boundary closure or gameplay change.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/rendering_final_decisions.py",
+        "tools/check-rendering-final-decisions.py"
+      ],
+      "tests": [
+        "tests/test-rendering-final-decisions.py",
+        "tools/test-rendering-final-decisions.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-final-decisions-20261110.md",
+        "docs/native-rendering-acceptance.md"
+      ],
+      "validation_dependencies": [
+        "docs/native-rendering-closure.json",
+        "research/runtime/fault-lifetime-gate-results-20261109/admission-01-proof.json",
+        "research/runtime/input-media-gate-results-20261109/admission-02-proof.json",
+        "research/runtime/journeys-gate-results-20261110/admission-02-proof.json",
+        "research/runtime/operations-gate-results-20261109/master-admission-01-proof.json",
+        "research/runtime/pixels-history-gate-results-20261109/admission-01-proof.json",
+        "research/runtime/rendering-final-decisions-results-20261110/basis-01.json",
+        "research/runtime/rendering-final-decisions-results-20261110/bindings-01.json",
+        "research/runtime/rendering-normal-results-20261031/progress-01.json",
+        "research/runtime/rendering-scope-results-20261030/decisions-01.json",
+        "research/runtime/transitions-gate-results-20261110/master-admission-01-proof.json",
+        "tools/borrowed_pixel_backend_launch.py",
+        "tools/close-rendering-alias-bounded.py",
+        "tools/compact_snapshot_activity.py",
+        "tools/coverage_applicability.py",
+        "tools/coverage_audit.py",
+        "tools/coverage_bookkeeping.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_gate.py",
+        "tools/coverage_merge_history.py",
+        "tools/coverage_reviews.py",
+        "tools/drawing_corpus.py",
+        "tools/drawing_journeys.py",
+        "tools/evidence_blocks.py",
+        "tools/evidence_cache.py",
+        "tools/evidence_consolidation.py",
+        "tools/evidence_local.py",
+        "tools/evidence_objects.py",
+        "tools/integration_queue.py",
+        "tools/launch_build_cache.py",
+        "tools/native_draw_retirement.py",
+        "tools/native_only_contract.py",
+        "tools/native_output_owner.py",
+        "tools/native_pixel_counters.py",
+        "tools/pixel_backend_launch.py",
+        "tools/pixel_forwarding_guard.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_completion.py",
+        "tools/rendering_coverage.py",
+        "tools/rendering_execution.py",
+        "tools/rendering_gaps.py",
+        "tools/rendering_pilot.py",
+        "tools/rendering_scope.py",
+        "tools/sqlite_snapshot_store.py",
+        "tools/verification_budget.py"
+      ],
+      "evidence": [
+        "FD10.controls01",
+        "FD10.decisions01",
+        "FD10.merged-controls01",
+        "FD10.merged-decisions01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "FD10.G.player: Supported-player verdict is issued pending and accepted=false. Required boundaries and an adequate final current whole-player execution receipt, with response/progress/resource limits and negative-observation applicability, remain separate proof work.",
+        "FD10.G.recovery: Original-recovery verdict is issued pending and accepted=false. All15authored original contract groups and8historical original-recovery scope assessments retain their exact existing registered milestones and independent recovery exits. A positive bounded player outcome would not complete original recovery."
+      ],
+      "validation_domain": {
+        "configurations": [
+          "player-default",
+          "player-software"
+        ],
+        "decision_ids": [
+          "supported-player",
+          "original-recovery"
+        ],
+        "decisions_issued": 2,
+        "positive_claims": 0,
+        "original_contract_groups": 15,
+        "new_original_games": 0,
+        "new_native_executions": 0
+      }
     }
   ],
   "evidence": [
@@ -403519,6 +403621,174 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "FD10.controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-final-decisions-results-20261110/controls-01.json",
+      "sha256": "1bb4323bac3b90998c164c19784d0daca051c3b5637b7188c000c02f800aee82",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current host artifact5 verdict controls/adjudication only. Two issued pending verdicts with accepted=false, exact profile/blocker/exit evidence and preserved historical original/native source phases; no product acceptance or complete original recovery.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/failures",
+          "equals": 0
+        },
+        {
+          "pointer": "/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/skipped",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "FD10.decisions01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-final-decisions-results-20261110/admission-01.json",
+      "sha256": "79d9152c2cfb6573e666fe4d0a6693b444333c09bbf20dd21663171102db2c8f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current host artifact5 verdict controls/adjudication only. Two issued pending verdicts with accepted=false, exact profile/blocker/exit evidence and preserved historical original/native source phases; no product acceptance or complete original recovery.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/decisions_issued",
+          "equals": 2
+        },
+        {
+          "pointer": "/decision_gate_cells",
+          "equals": 2
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/supported_player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/original_recovery_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_native_executions",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "FD10.merged-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-final-decisions-results-20261110/master-controls-01.json",
+      "sha256": "cca5e2e756d03454930f20f51b07b0bcc21458bc0c6f214a21c148f07464e72f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh merged-source pending-verdict controls/adjudication only. Preserve exact current-master finite rows and scoped original milestones; both issued final claims remain unaccepted.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/failures",
+          "equals": 0
+        },
+        {
+          "pointer": "/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/skipped",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "FD10.merged-decisions01",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-final-decisions-results-20261110/master-admission-01.json",
+      "sha256": "2ee26bac7000dc60f32cfabf55cb15491add1c75005c42713da85ecf9537318c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh merged-source pending-verdict controls/adjudication only. Preserve exact current-master finite rows and scoped original milestones; both issued final claims remain unaccepted.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/decisions_issued",
+          "equals": 2
+        },
+        {
+          "pointer": "/decision_gate_cells",
+          "equals": 2
+        },
+        {
+          "pointer": "/supported_player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/original_recovery_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_native_executions",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -438795,6 +439065,24 @@
         "TG10.merged-controls01",
         "TG10.merged-transitions01"
       ]
+    },
+    {
+      "id": "native.final-rendering-decisions",
+      "level": "headless",
+      "scope": "Issue separate supported-player and original-recovery verdicts from the exact current EP10 matrix, accepted finite gate evidence, original contract scopes and retained failures. Both verdicts remain pending and accepted=false: finite historical player proofs and current host joins do not supply a final current whole-player acceptance receipt or complete original recovery. Record precise profile/blocker/exit evidence; preserve all154other rows, original behavior milestones, historical native/compiler/oracle hashes, failures and approved support amendments. Close only the two decision-recording gates. No new game, native execution, pixel comparison, positive acceptance, original-recovery completion, required-boundary closure or gameplay change.",
+      "behaviors": [
+        "NP.final-rendering-decisions"
+      ],
+      "tests": [
+        "tests/test-rendering-final-decisions.py",
+        "tools/test-rendering-final-decisions.py"
+      ],
+      "evidence": [
+        "FD10.controls01",
+        "FD10.decisions01",
+        "FD10.merged-controls01",
+        "FD10.merged-decisions01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -440622,8 +440910,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6e1891b06dd60e1e5c3fa84708eb433f1650d1f03427ce5696d26786ffa9602c.json",
-    "sha256": "6e1891b06dd60e1e5c3fa84708eb433f1650d1f03427ce5696d26786ffa9602c"
+    "path": "research/runtime/coverage/source-index-80b895d22255d1d522ffe32dc8fc4aa7c049d19bc124f676eeec42ed527d88fe.json",
+    "sha256": "80b895d22255d1d522ffe32dc8fc4aa7c049d19bc124f676eeec42ed527d88fe"
   },
   "evidence_applicability": [
     {
