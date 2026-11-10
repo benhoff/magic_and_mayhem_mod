@@ -28862,3 +28862,27 @@ decision-recording gates change: 154/156 passed,2 pending. All154other
 rows, original registered milestones, historical source/failure phases and approved
 scope amendments remain exact. Fresh host controls and adjudication add no new
 game,native execution,pixel comparison,whole-player acceptance or original recovery.
+
+
+## WP10 current finite whole-application execution —2026-11-10
+
+Eight actual current linked-player sessions and 8 independent continuous original-history
+comparisons pass: 800x600 Quick with original-state gameplay witnesses, 640x480 Quick
+from a verified owned input fixture, and campaign Save/Mini/Main Load/changed-draft
+Cancel/both display rebuilds/normal Quit, each in default and software profiles.
+The cohort compares 4201 actual presented World occurrences
+across 2373 complete source generations and 4413403720 viewport pixels.
+Current compiler/runtime/source/binary identity, original effects, existing response
+watchdogs, advancing source generations, bounded capture, logical surface/palette
+conservation and terminal input/cursor/channel/source/graphics/process ownership pass.
+FPS is diagnostic; both actual provider strings are llvmpipe on this machine.
+Two ignored-Preferences attempts remain recorded as 800x600 negative fixture evidence.
+The corrected low cases follow a prospective 8-start amendment: display-mode
+rebuilds alone are not actual low-resolution World coverage. 19 refusal controls pass.
+RN31's old first-World refusal is preserved with exact source/configuration impact;
+current finite non-reproduction proves neither its historical cause nor universal repair.
+`whole-player-validation-results-20261110/cohort-03.json` is the current scoped receipt.
+All 156 inherited rows and approved scope amendments remain literal: 154 passed,
+2 required-boundary cells pending. The broader current 14-journey/21-operation/fault/provider
+acceptance and complete original-recovery decisions remain pending. No engine code,
+gameplay balance, historical source hash or unrelated milestone is changed.
