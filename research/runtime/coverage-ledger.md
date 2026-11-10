@@ -28799,3 +28799,18 @@ See research/runtime/pixels-history-gate-closeout-20261109.md and pixels-history
 ## PH09 actual-master compatibility union — 2026-11-09
 
 The accounting-only union on operations mastere442a77c6 preserves all154other actual-master row objects and adds exactly the two ready pixel/history cells:148/156passed8pending across4distinct gates. All136journey/operation leaves, both pending decisions and original execution phases remain exact. Both parents have current identical declared source bytes; the PH09 code/contract/40controls and independent proofs are unchanged. No engine revalidation, original/native process, capture or pixel replay. See pixels-history-gate-results-20261109/compatibility-02-admission.json. The prior ready pixel/history commitd0ef95493 and its146-row phase remain retained.
+
+
+## TG10 transition acceptance gate — 2026-11-10
+
+Both `gate.transitions` profile cells pass from the exact conjunction of all six
+existing transition prerequisites per profile: 150/156 passed, 6 pending.
+`transitions-gate-results-20261110/admission-01.json` retains all 154 other rows
+and both pending final decisions literally. Current host controls join 10 distinct
+retained comparison receipts, exact session/profile/extent identities, independent
+complete viewport output, semantic transition witnesses and retirement.
+The approved controlled opaque-overlap amendment retains its 8x6 scope and pending
+natural caller obligation. Every original/native/compiler/oracle source phase,
+failure and narrower history/output limit remains explicit. No game, new native
+execution, pixel replay, renderer repair, combined-current player or other gate
+promotion. See `transitions-gate-closeout-20261110.md`.
