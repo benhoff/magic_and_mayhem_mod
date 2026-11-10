@@ -1,3 +1,7 @@
+Current journeys admission (2026-11-10): **150/156 passed, 6 pending** across transitions, required boundaries and separate decisions. Both profiles join all fourteen journeys and 47 named leaves each through exact retained semantic/output/lifetime receipts. All 154 other rows and both pending final decisions remain unchanged. No new game or capture. See [the journeys closeout](../research/runtime/journeys-gate-closeout-20261110.md).
+
+Earlier entries below retain their named source phases and totals.
+
 Current pixel/history and operations union (2026-11-09): **148/156 passed, 8 pending** across4distinct gates. Both pixel/history cells join the actual-master operations closure; all154other master row objects, both pending final decisions and historical execution phases stay exact. No new game, capture or pixel replay. See [the reviewed union](../research/runtime/pixels-history-gate-results-20261109/compatibility-02-admission.json).
 
 Earlier entries retain their exact source phases and totals.
