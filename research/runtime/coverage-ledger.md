@@ -28837,3 +28837,35 @@ links affects shared accounting associations but changes no existing engine
 bytes or declared milestone; exact pending receipts retain unrelated historical
 staleness. Development contract projections match their recorded claim hashes,
 with reconstructed-versus-original-container scope explicit.
+
+### RB10 live required-boundary engineering (in progress, 2026-11-10)
+
+The owned followup adds passive23-entry/21normal-return provider/format metadata
+and a narrow original indexed-primary caller repair. Original World634 in the
+retained default05failure reaches500477/tag14 through6c4e3c and exits95 at the
+previous guard. Exact500477/tags13–14 and500496/tag17 continuations now pass
+196,608original branch/argument/stack controls,54caller/64pair production
+admission with4,258refusals, and a separate fresh35,280generic original/native
+full-state/pixel comparison. Failed operands and global indirect flows remain
+unrecovered; the two completed fullscreen sessions record zero uses of the added
+sites and do not claim that failed World was replayed.
+
+Default06 and software07 each complete twelve actual toolbar/F9transitions and
+original800/640/800recreation with normal Quit. Complete independent output
+matches11,903,176,720pixels over2,831Worlds, with fresh logical cursor/hover-hit
+witnesses and drained native owners. Both actual providers are llvmpipe. Every
+World observation retains RGB565/current active backing and disabled alternate
+publication/padding. The default pixel result's final string/integer paint-lookup
+refusal stays failed; exact retained-data reanalysis reuses its zero-mismatch
+pixel proof and verifies corrected metadata without recollection. Four-case
+original format queries against the current NativeDraw facade keep explicit
+RGB555offscreen storage separate from live RGB565World support.
+
+The owner-selected finite maps/saves/durations and all14/47/21requirements remain.
+This entry does not close either required-boundary gate or issue a final player
+or original-recovery verdict. Both current campaign populated-provider observations pass: default09 and
+software10 acquire/release/reacquire populated Main/Report owners and retire two
+World epochs under actual coordinator callbacks. These diagnostic runs admit no
+pixels. The complete boundary join remains pending. All raw failures/source phases,
+control binaries, full capture bytes and verified two-store session restores
+remain retained. See `research/runtime/required-boundaries-live-engineering-20261110.md`.

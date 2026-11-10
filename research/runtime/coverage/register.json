@@ -158436,7 +158436,8 @@
         "research/original-files.tsv"
       ],
       "evidence": [
-        "RER31.format-query"
+        "RER31.format-query",
+        "RB10.format02"
       ],
       "status": {
         "understanding": "scoped",
@@ -172823,7 +172824,8 @@
         "CS13.producer-callback-controls",
         "CS14.generic-original",
         "CS14.generic-native",
-        "CS14.producer-callback-controls"
+        "CS14.producer-callback-controls",
+        "RB10.generic01"
       ],
       "remaining_gaps": [
         "CS11.G.production: Private unchanged-original finite state comparison passed; actual full callback and installed current-source state/source/pixel/history joins remain to be validated.",
@@ -175981,6 +175983,109 @@
       ],
       "gaps": [
         "Five technical scope conditions remain pending; this review cannot close either required-boundaries cell or either final decision."
+      ]
+    },
+    {
+      "id": "NP.required-boundary-observation",
+      "title": "Passive required rendering boundary and provider observations",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Opt-in byte-pinned passive entry/normal-return metadata for required original screen providers and format initialization, plus every-World alternate/format/binding summaries. Preserve GPR,EFLAGS,FX,LastError and original arguments; bounded output,exact stack return identities and no invented continuation. Observe guest addresses only as execution-local identities. No pixel reads,original allocation/callback invocations,gameplay writes,global dead-code proof or whole original recovery. Actual fullscreen/default-software640/800 proof is a separate live session obligation. Realm entry/exit tags18/19 are entry-only because an indirect tail prevents a closed return-cleanup proof. Serialized World stride is measured in WORDs; display dimensions are pixels.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "runtime/scene/required_boundaries.c",
+        "runtime/scene/required_boundaries.S",
+        "protocols/include/mnm/required_boundaries_v1.h",
+        "tools/required_boundary_observation.py"
+      ],
+      "tests": [
+        "tests/test-required-boundary-observation.py",
+        "tests/required-boundary-abi.cpp",
+        "tests/required-boundary-abi.S",
+        "tools/check-required-boundary-observation.py",
+        "tests/required-boundary-observer.cpp"
+      ],
+      "documents": [
+        "research/runtime/rendering-required-boundaries-20261110.md",
+        "research/runtime/required-boundaries-live-engineering-20261110.md"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/observer.c",
+        "tools/build-scene-observer.py",
+        "tools/check-required-boundary-session.py",
+        "tools/check-required-provider-session.py",
+        "tools/reanalyze-required-boundary-session.py",
+        "tools/required_boundary_source_review.py",
+        "tools/run-required-boundary-session.py",
+        "tools/run-required-provider-session.py"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "RB10.observation04",
+        "RB10.observation05"
+      ],
+      "scenarios": [
+        "native.required-boundary-session"
+      ],
+      "gaps": [
+        "Assembly/metadata controls and the exact default/software fullscreen sessions are recorded separately. Complete boundary admission, declared-domain provider effects and current whole-player acceptance require independent joins. Realm indirect-return cleanup and providers beyond observed routes remain unresolved."
+      ]
+    },
+    {
+      "id": "NP.world-indexed-primary-caller",
+      "kind": "recovered",
+      "subsystem": "rendering_reconstruction",
+      "title": "Natural indexed-primary generic dispatch and clipped fallback",
+      "scope": "Pinned NoCD500464..50049d queue arguments, indirect6c4e3c return500477 to tags13/14 and direct57de00 return500496/tag17. Preserve original five cdecl arguments,20-byte cleanup,AX-only1 fallback and common original AX store. Actual run default05 World634 rejected500477/tag14; the repair admits only byte-pinned pairs. Original fragment controls cover all65536low16 returns with three high-bit patterns. Existing generic helper state/pixel controls remain distinct from this continuation proof; fresh repaired session and independent output still required.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5244004,
+          "scope": "Five-argument generic dispatch and clipped fallback to common AX store."
+        }
+      ],
+      "implementation": [
+        "runtime/scene/world_raster_callers.h",
+        "tools/inspect-world-raster-callers.py",
+        "tools/check-required-primary-installed.py"
+      ],
+      "tests": [
+        "tests/world-indexed-primary-continuation.cpp",
+        "tests/world-raster-callers-test.cpp",
+        "tools/check-required-primary-caller.py"
+      ],
+      "documents": [
+        "research/runtime/rendering-required-boundaries-20261110.md",
+        "research/runtime/required-boundaries-live-engineering-20261110.md"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/world_generic_state.h"
+      ],
+      "evidence": [
+        "RB10.primary03-native",
+        "RB10.primary04-original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "The retained failed World634 has no rejected operand capture. Successful fullscreen source counting has zero500477/500496 occurrences; no repaired natural witness is claimed. Other unknown natural callers remain retained."
       ]
     }
   ],
@@ -403073,6 +403178,164 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "RB10.observation04",
+      "kind": "native_integration",
+      "scope": "Production assembly and metadata decoder controls. No guest game output, exception unwinding, failed-provider completion, all supplier recovery or whole-player claim.",
+      "record": "research/runtime/required-boundaries-results-20261110/observation-controls-04.json",
+      "sha256": "a9bcca0c69c7cff44400d2df18d12c0b50426b55bb6d4898b9c170d43cb9ab83",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/production_encoder/screen_classes",
+          "equals": 4
+        },
+        {
+          "pointer": "/production_encoder/normal_pairs",
+          "equals": 21
+        }
+      ]
+    },
+    {
+      "id": "RB10.primary03-native",
+      "kind": "native_integration",
+      "scope": "Pinned NoCD500464..50049d queue arguments, indirect6c4e3c return500477 to tags13/14 and direct57de00 return500496/tag17. Preserve original five cdecl arguments,20-byte cleanup,AX-only1 fallback and common original AX store. Actual run default05 World634 rejected500477/tag14; the repair admits only byte-pinned pairs. Original fragment controls cover all65536low16 returns with three high-bit patterns. Existing generic helper state/pixel controls remain distinct from this continuation proof; fresh repaired session and independent output still required.",
+      "record": "research/runtime/required-boundaries-results-20261110/primary-caller-controls-03.json",
+      "sha256": "07519248aa1e34bea108e14657c8345e991f2ecbb39e27cef3b2bbf6b2c70be6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/fragment/cases",
+          "equals": 196608
+        },
+        {
+          "pointer": "/guards/admitted_pairs",
+          "equals": 64
+        }
+      ]
+    },
+    {
+      "id": "RB10.format02",
+      "kind": "native_integration",
+      "scope": "Execute unchanged original format-query bytes against production facade storage.\n\nNormal successful GetPixelFormat only. No original allocator/window/provider\nfailure path, game reachability, live World555, physical driver or acceptance.\n",
+      "record": "research/runtime/required-boundaries-results-20261110/format-query-02.json",
+      "sha256": "7d490f5bd2fb2db04da3eddaebbc7b2805d7bb76d7515a38757492ee633c3a12",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RB10.generic01",
+      "kind": "isolated_original",
+      "scope": "Private unchanged original generic indexed/paired, black and displacement routines versus proposed prepared state and existing native CPU pixels. Seven entries, clipped/hidden/empty/refused geometry, padding, twelve masked precision/rounding modes and sixteen incoming x87 condition patterns. Full GPR, five arguments, scratch workspace, defined flags/DF, selected semantic FX and complete guarded pixels. No production callback installation, batch transport, driver or player acceptance claim.",
+      "record": "research/runtime/caller-state-results-20261108/required-primary-20261110-01.json",
+      "sha256": "377ee87c9776e4ae70d2783a5648dcbd5aa0605089594d607b6d8fcddba88072",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/equivalent",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/counts/cases",
+          "equals": 35280
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RB10.primary04-original",
+      "kind": "isolated_original",
+      "scope": "196608 exact original500464..50049d continuation cases;54guard sites/64pairs/4258negative controls. No repaired natural runtime or full-world comparison.",
+      "record": "research/runtime/required-boundaries-results-20261110/primary-caller-controls-04.json",
+      "sha256": "3b82372c9cd023009977a1b3198709d62ca7b67653190277f3a2f37e5d03bba2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/fragment/cases",
+          "equals": 196608
+        },
+        {
+          "pointer": "/guards/admitted_pairs",
+          "equals": 64
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RB10.observation05",
+      "kind": "native_integration",
+      "scope": "Production assembly and metadata decoder controls. No guest game output, exception unwinding, failed-provider completion, all supplier recovery or whole-player claim.",
+      "record": "research/runtime/required-boundaries-results-20261110/observation-controls-05.json",
+      "sha256": "645e24dedaabdd43e05219fd88400e8310a36dbd4a7ce46375831f072ab91579",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/production_encoder/screen_classes",
+          "equals": 4
+        },
+        {
+          "pointer": "/production_encoder/normal_pairs",
+          "equals": 21
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -413828,6 +414091,35 @@
         },
         {
           "value": "missing-operands-registers-stack-and-unobserved-modes",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "required-indexed-primary-callers-20261110",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5244017,
+        "scope": "Natural indexed-primary indirect call and adjacent AX1 clipped fallback only."
+      },
+      "document": "research/runtime/required-boundaries-live-engineering-20261110.md",
+      "complete": false,
+      "scope": "Exact5cdecl-argument500477/tags13\u201314 and500496/tag17 continuations, original20-byte cleanup and AX-only decision. Other computed targets/caller domains remain unresolved.",
+      "entries": [
+        {
+          "value": "0x500477/tags13,14/via0x6c4e3c",
+          "behaviors": [
+            "NP.world-indexed-primary-caller"
+          ]
+        },
+        {
+          "value": "0x500496/tag17/direct0x57de00",
+          "behaviors": [
+            "NP.world-indexed-primary-caller"
+          ]
+        },
+        {
+          "value": "unresolved-other-computed-callers-and-input-domains",
           "behaviors": []
         }
       ]
@@ -438330,6 +438622,24 @@
       "evidence": [
         "RB10.required-boundaries03"
       ]
+    },
+    {
+      "id": "native.required-boundary-session",
+      "scope": "Production passive observer metadata and i386 ABI component controls. Actual source-bound player sessions retain separate evidence and do not follow from this component scenario.",
+      "level": "headless",
+      "behaviors": [
+        "NP.required-boundary-observation"
+      ],
+      "tests": [
+        "tests/test-required-boundary-observation.py",
+        "tests/required-boundary-abi.cpp",
+        "tests/required-boundary-abi.S",
+        "tools/check-required-boundary-observation.py",
+        "tests/required-boundary-observer.cpp"
+      ],
+      "evidence": [
+        "RB10.observation05"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -440157,8 +440467,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-af77499d0c0bf4ec359191571f76deb495ff2719738d6d5ca1f0d0ef61316a10.json",
-    "sha256": "af77499d0c0bf4ec359191571f76deb495ff2719738d6d5ca1f0d0ef61316a10"
+    "path": "research/runtime/coverage/source-index-44def4f367a104275ae943000b3029893e1a61dd84b62b4612d3211575ab6fdb.json",
+    "sha256": "44def4f367a104275ae943000b3029893e1a61dd84b62b4612d3211575ab6fdb"
   },
   "evidence_applicability": [
     {

@@ -1,3 +1,4 @@
+extern void boundary_trace_world(unsigned,unsigned,unsigned,unsigned,unsigned);
 /* Bounded closed producer inputs. Original destination bytes are oracle files. */
 #include "../shadow/win32_min.h"
 #include "glyph_live.h"
@@ -631,7 +632,7 @@ int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  }
  SetLastError(outgoing);return handled;
 }
-void canvas_producers_queue(u32* registers){u32 error=GetLastError();PRODUCER_TRACE_SCOPE;if(enabled&&!stopped){if(session_producers&&queue>=limit){fail(98,queue);canvas_producers_close();ExitProcess(95);}continuous_mark_entry();raster_world_open=1;++queue;drawing_update_point(1,registers[6],registers[9]);struct Surface* s=bound();checkpoint(s,2);u32 r[24]={0};r[2]=MNM_PRODUCER_QUEUE_ENTRY;extent(r,s);r[14]=queue;emit(r,0,0);if(!journal_flush()){canvas_producers_close();ExitProcess(95);}sao_capture(registers[6]);frame_enter(registers,100);}SetLastError(error);}
+void canvas_producers_queue(u32* registers){u32 error=GetLastError();PRODUCER_TRACE_SCOPE;if(enabled&&!stopped){if(session_producers&&queue>=limit){fail(98,queue);canvas_producers_close();ExitProcess(95);}continuous_mark_entry();raster_world_open=1;++queue;drawing_update_point(1,registers[6],registers[9]);struct Surface* s=bound();boundary_trace_world(s?s->pixels:0,s?s->width:0,s?s->height:0,s?s->stride:0,queue);checkpoint(s,2);u32 r[24]={0};r[2]=MNM_PRODUCER_QUEUE_ENTRY;extent(r,s);r[14]=queue;emit(r,0,0);if(!journal_flush()){canvas_producers_close();ExitProcess(95);}sao_capture(registers[6]);frame_enter(registers,100);}SetLastError(error);}
 /* Activate only after all entry observers have finished their snapshots and
  * freed temporary process-heap buffers, immediately before original traversal. */
 void canvas_producers_protect(void){u32 error=GetLastError();if(enabled&&!stopped&&batch_enabled&&raster_active()&&!batch_start(bound())){fail(46,batch_reject);ExitProcess(95);}SetLastError(error);}
