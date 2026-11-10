@@ -28783,3 +28783,19 @@ Only both operations gates change; all 154 other actual-master rows and both
 final decisions remain exact. Fresh merged host controls/analysis preserve
 every original native/compiler/oracle phase and approved scope amendment.
 No game, new native execution, pixel replay or combined-current player claim.
+
+
+
+
+## PH09 retained native pixels/history gates — 2026-11-09
+
+PH09 closes both pixel/history profile gates:146/156passed10pending.56healthy viewport sessions bind 116,153 actual native swaps / 104,089,733,040 independently compared viewport pixels, closed source/command/reference history and 523,173 caller-state cases;72primary comparisons,14semantic primaries and approved controlled overlap keep distinct roles.40current controls pass. Exact historical native/original/compiler/oracle phases remain; no new game/capture/oracle or final decision.
+
+The exact144-row fault/lifetime parent is preserved except the two named gates; both final decisions stay pending. Current Python analysis checks every healthy native leased paint/swap against its complete historical independent viewport proof, actual source nonce/import/END and original continuous plane index. Raw V5 publications and independent expected model bytes rejoin caller effects. Failed semantic ancestors and a raw unstable UI phase keep their original flags; component-only reuse needs exact protected pixel source ancestry. Native widget policy, controlled overlap, selected planes and fault epochs do not become whole-viewport or current combined-player credit.
+
+See research/runtime/pixels-history-gate-closeout-20261109.md and pixels-history-gate-results-20261109/admission-01.json. Retain the owned rendering-transition-recovery-20261107 checkout/task branch, working/pixels-history-20261109/.retain, exact source phases/refusals, review/history databases and both verified immutable stores. No new native/original process, pixel replay, fixture, binary modification, source-hash refresh or historical-failure retirement.
+
+
+## PH09 actual-master compatibility union — 2026-11-09
+
+The accounting-only union on operations mastere442a77c6 preserves all154other actual-master row objects and adds exactly the two ready pixel/history cells:148/156passed8pending across4distinct gates. All136journey/operation leaves, both pending decisions and original execution phases remain exact. Both parents have current identical declared source bytes; the PH09 code/contract/40controls and independent proofs are unchanged. No engine revalidation, original/native process, capture or pixel replay. See pixels-history-gate-results-20261109/compatibility-02-admission.json. The prior ready pixel/history commitd0ef95493 and its146-row phase remain retained.

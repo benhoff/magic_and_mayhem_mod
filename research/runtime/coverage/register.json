@@ -175847,6 +175847,82 @@
         "new_original_games": 0,
         "new_native_executions": 0
       }
+    },
+    {
+      "id": "NP.pixels-history-gate-closeout",
+      "title": "Retained native completed pixels and ordered history gate",
+      "kind": "native_policy",
+      "subsystem": "native_rendering",
+      "scope": "Finite retained pixel/history gate over every accepted leaf primary in both public profiles. Current Python analysis joins every healthy whole-viewport comparison to actual completed native-owned GPU paints/swaps, complete independent viewport output and contiguous source/command/reference history. Twelve Quick/Campaign storage/caller-state sessions at actual640/800 bind typed CPU replies/writes and native caller effects; four enabled-intro sessions keep their independent movie proof. Fault prefixes/fresh epochs, component destination planes, approved controlled overlap and semantic widget layout retain distinct evidence roles. Historical native/original/compiler/oracle phases remain exact; no new raster comparison, current whole-player, physical scanout, arbitrary inputs/providers, other gate or final decision claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "tools/pixels_history_gate.py",
+        "tools/check-rendering-pixels-history-gates.py"
+      ],
+      "tests": [
+        "tests/test-pixels-history-gates.py"
+      ],
+      "documents": [
+        "research/runtime/pixels-history-gate-closeout-20261109.md"
+      ],
+      "validation_dependencies": [
+        "docs/native-rendering-closure.json",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py",
+        "tools/rendering_acceptance.py",
+        "tools/rendering_pilot.py",
+        "tools/retained_artifacts.py",
+        "tools/rendering_operations_history.py",
+        "tools/close-rendering-retained-rows.py",
+        "tools/close-rendering-world-exit.py",
+        "tools/close-rendering-animation-auxiliary.py",
+        "tools/close-rendering-blend-direct.py",
+        "tools/close-rendering-operations.py",
+        "tools/close-rendering-caller-state.py",
+        "tools/rendering_caller_state_join.py",
+        "tools/drawing_caller_state.py",
+        "tools/caller_state_source_phase.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/resident_capture.py",
+        "tools/rendering_capture.py",
+        "tools/rendering_menu_acceptance.py",
+        "tools/native_cursor_journal.py",
+        "tools/test-menu-observer.py",
+        "tools/cpu_reader_journal.py",
+        "research/runtime/pixels-history-gate-results-20261109/basis-01.json",
+        "tools/fault_lifetime_gate.py",
+        "tools/rendering_transition.py",
+        "tools/rendering_pause.py",
+        "tools/rendering_pause_assessment.py",
+        "tools/rendering_interaction.py",
+        "tools/pause_focus.py",
+        "tools/join-rendering-normal-acceptance.py",
+        "tools/rendering_surface_loss.py",
+        "tools/rendering_normal_acceptance.py",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/render_commands_v3.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "research/runtime/rendering-destination-results-20261106/current-closeout-binding-01.json",
+        "research/runtime/rendering-operations-results-20261107/cpu-transport-binding-01.json",
+        "research/runtime/caller-state-installed-results-20261108/admission-01.json",
+        "research/runtime/rendering-enabled-intros-results-20261107/closeout-analysis-01.json"
+      ],
+      "evidence": [
+        "PH09.controls03",
+        "PH09.pixels-history01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "PH09.G.cohort: Both gate.pixels-history cells pass for the exact accepted-leaf cohort:56healthy viewport sessions/72primary comparisons plus14semantic UI/movie primaries and the approved controlled mechanism. New primary cohorts require the same output/history/caller admission. All native/original/compiler/oracle execution phases remain historical.",
+        "PH09.G.scope: Current combined-player, physical scanout, arbitrary providers/maps, original whole-function recovery, other gate conditions and both final decisions remain separate. Raw historical failures/source instability are retained."
+      ]
     }
   ],
   "evidence": [
@@ -402777,6 +402853,88 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "PH09.controls03",
+      "kind": "native_integration",
+      "scope": "Retained bounded default/software pixel/history gate over the exact accepted leaf cohort. Every healthy full-viewport primary joins all actual native leased swaps to completed GUI-owned GPU frames, full independent viewport comparisons and contiguous source/command/reference history. Twelve distinct Quick/Campaign storage and caller-state sessions at actual640/800 bind typed CPU return/write and caller effects; four enabled-intro cases retain their separate independent movie oracle. Expected-negative/fresh fault partitions, selected complete component planes, approved controlled overlap and semantic native widget layout keep separate roles and receive no invented whole-viewport credit. Historical native/original/compiler/oracle phases remain exact; no fresh current-player, physical scanout, arbitrary inputs/providers, other gate or final-decision claim.",
+      "record": "research/runtime/pixels-history-gate-results-20261109/controls-03.json",
+      "sha256": "6bcd716095a42df5ac705978442d46a14fd3e483dd04432de7c676bd25145628",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 40
+        },
+        {
+          "pointer": "/failures",
+          "equals": 0
+        },
+        {
+          "pointer": "/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/skipped",
+          "equals": 0
+        },
+        {
+          "pointer": "/development_fixture_overlay",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "PH09.pixels-history01",
+      "kind": "native_integration",
+      "scope": "Retained bounded default/software pixel/history gate over the exact accepted leaf cohort. Every healthy full-viewport primary joins all actual native leased swaps to completed GUI-owned GPU frames, full independent viewport comparisons and contiguous source/command/reference history. Twelve distinct Quick/Campaign storage and caller-state sessions at actual640/800 bind typed CPU return/write and caller effects; four enabled-intro cases retain their separate independent movie oracle. Expected-negative/fresh fault partitions, selected complete component planes, approved controlled overlap and semantic native widget layout keep separate roles and receive no invented whole-viewport credit. Historical native/original/compiler/oracle phases remain exact; no fresh current-player, physical scanout, arbitrary inputs/providers, other gate or final-decision claim.",
+      "record": "research/runtime/pixels-history-gate-results-20261109/admission-01.json",
+      "sha256": "100abb6f59fa972cbeea661d33796151375d4440776016118f50113c3f0a4c10",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/newly_passed_requirements",
+          "equals": 2
+        },
+        {
+          "pointer": "/passed_requirements",
+          "equals": 146
+        },
+        {
+          "pointer": "/pending_requirements",
+          "equals": 10
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        },
+        {
+          "pointer": "/new_pixel_comparisons",
+          "equals": 0
+        },
+        {
+          "pointer": "/current_whole_player_proved",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -438005,6 +438163,21 @@
         "OG09.merged-controls01",
         "OG09.merged-operations01"
       ]
+    },
+    {
+      "id": "native.pixels-history-gate-closeout",
+      "scope": "Finite retained pixel/history gate over every accepted leaf primary in both public profiles. Current Python analysis joins every healthy whole-viewport comparison to actual completed native-owned GPU paints/swaps, complete independent viewport output and contiguous source/command/reference history. Twelve Quick/Campaign storage/caller-state sessions at actual640/800 bind typed CPU replies/writes and native caller effects; four enabled-intro sessions keep their independent movie proof. Fault prefixes/fresh epochs, component destination planes, approved controlled overlap and semantic widget layout retain distinct evidence roles. Historical native/original/compiler/oracle phases remain exact; no new raster comparison, current whole-player, physical scanout, arbitrary inputs/providers, other gate or final decision claim.",
+      "level": "headless",
+      "behaviors": [
+        "NP.pixels-history-gate-closeout"
+      ],
+      "tests": [
+        "tests/test-pixels-history-gates.py"
+      ],
+      "evidence": [
+        "PH09.controls03",
+        "PH09.pixels-history01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -439832,8 +440005,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-51bf1e1af00b90c768499443523ef67e0171c7b3b82aea803076b6a629d7acce.json",
-    "sha256": "51bf1e1af00b90c768499443523ef67e0171c7b3b82aea803076b6a629d7acce"
+    "path": "research/runtime/coverage/source-index-05060c8b0123759d657c901df69c159ef655c9eb8b2f2a382c3c1181f3a53c8f.json",
+    "sha256": "05060c8b0123759d657c901df69c159ef655c9eb8b2f2a382c3c1181f3a53c8f"
   },
   "evidence_applicability": [
     {
