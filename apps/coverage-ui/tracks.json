@@ -2017,14 +2017,14 @@
   },
   "rendering_artifacts": {
     "closure": "docs/native-rendering-closure.json",
-    "progress_record": "research/runtime/operations-gate-results-20261109/master-admission-01.json",
+    "progress_record": "research/runtime/pixels-history-gate-results-20261109/compatibility-02-admission.json",
     "documents": {
       "contract": "docs/native-rendering-closure.md",
       "gaps": "research/runtime/rendering-required-gaps-20261030.md",
       "plan": "docs/native-rendering-execution.md",
       "acceptance": "docs/native-rendering-acceptance.md"
     },
-    "next_action": "146/156 rendering rows pass; 10 remain pending. Both operations gates join all 21 admitted operations per profile with every other actual-master row, original execution phase and approved overlap boundary retained. Continue the remaining aggregate gates and separate final decisions.",
+    "next_action": "148/156 rendering rows pass;8remain pending across4distinct gates. Pixel/history joins both operations gates while preserving every actual-master row and original execution phase. Continue journeys, transitions, required boundaries and separate final decisions.",
     "task_updates": {
       "EP01": [
         {
@@ -2236,6 +2236,11 @@
           "date": "2026-11-09",
           "note": "NAT09 records a source-backed requiredness exclusion for54,290successful active COPYs across16retained native-only Quick/Campaign,Grimoire and clipped cases. No shared owned backing is possible in those recorded calls. Four failed calls and terminal/unobserved contexts remain outside; no natural overlap witness or global absence is claimed. All156rows and both decisions are preserved: 132/156 passed, 24 pending.",
           "document": "research/runtime/native-player-overlap-boundary-20261109.md"
+        },
+        {
+          "date": "2026-11-09",
+          "note": "PH09 closes both pixel/history profile gates:146/156passed10pending.56healthy viewport sessions bind 116,153 actual native swaps / 104,089,733,040 independently compared viewport pixels, closed source/command/reference history and 523,173 caller-state cases;72primary comparisons,14semantic primaries and approved controlled overlap keep distinct roles.40current controls pass. Exact historical native/original/compiler/oracle phases remain; no new game/capture/oracle or final decision.",
+          "document": "research/runtime/pixels-history-gate-closeout-20261109.md"
         }
       ],
       "EP08": [

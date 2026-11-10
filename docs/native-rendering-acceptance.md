@@ -1,3 +1,11 @@
+Current pixel/history and operations union (2026-11-09): **148/156 passed, 8 pending** across4distinct gates. Both pixel/history cells join the actual-master operations closure; all154other master row objects, both pending final decisions and historical execution phases stay exact. No new game, capture or pixel replay. See [the reviewed union](../research/runtime/pixels-history-gate-results-20261109/compatibility-02-admission.json).
+
+Earlier entries retain their exact source phases and totals.
+
+Current pixel/history admission (2026-11-09): **146/156 passed, 10 pending** across5distinct gates. Both profiles now join actual completed native output, continuous independent history and caller effects over the retained accepted-leaf cohort. All144parent rows, historical source phases and both pending final decisions are preserved. No new game or capture. See [the pixel/history closeout](../research/runtime/pixels-history-gate-closeout-20261109.md).
+
+Earlier entries below retain their named source phases and totals.
+
 Current local-master campaign union (2026-11-09): **142/156 passed, 14 pending**; 7 distinct tasks remain. Four campaign journey leaves in both profiles join every actual-master closure and approved scope amendment. Both final decisions and exact historical execution phases remain separate. See [the campaign merge](../research/runtime/campaign-master-integration-20261109.md).
 
 Current local-master admission (2026-11-09): **130/156 passed, 26 pending**. The two picking profile rows join all concurrent master closures; every other master row, scope amendment and exact execution source phase is preserved. Both final rendering decisions remain pending. See [the picking closeout](../research/runtime/picking-closeout-20261109.md).
