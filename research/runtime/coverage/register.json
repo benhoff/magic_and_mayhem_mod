@@ -67105,7 +67105,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Reuse completed native World images between source updates",
-      "scope": "Opt-in independent resident World captures exact completed native GPU storage at successful World return, refreshes one owned slot per source generation and restores it before existing sealed UI composition. No repeated sprite drawing or producer preparation, original destination seed, ordinary readback, simulation/ANI/RNG advance or source FIFO/return/lease relaxation. Incomplete generations and invalid modes refuse. Prepared draw replay remains the default comparison/stress path. Captured-input pixel/ownership controls and public TITAN throughput are separate; interpolation, scanout, arbitrary original pixel/driver equivalence and sustained60FPS excluded.",
+      "scope": "Independent resident World captures exact completed native GPU storage at successful World return, refreshes one owned slot per source generation and restores it before existing sealed UI composition. No repeated sprite drawing or producer preparation, original destination seed, ordinary readback, simulation/ANI/RNG advance or source FIFO/return/lease relaxation. Incomplete generations and invalid modes refuse. Prepared draw replay remains the diagnostic comparison/stress path; Linux ARM64 public independent launches select image reuse by default and preserve an explicit override. Captured-input pixel/ownership controls and public TITAN throughput are separate; interpolation, scanout, arbitrary original pixel/driver equivalence and sustained60FPS excluded.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -67121,12 +67121,14 @@
         "compat/legacy/world-rolling/CMakeLists.txt",
         "apps/qt-shell/resident_world_session.cpp",
         "apps/qt-shell/resident_world_session.hpp",
-        "tools/test-native-campaign.py"
+        "tools/test-native-campaign.py",
+        "tools/run-native-game.py"
       ],
       "tests": [
         "tests/native-retained-world-test.cpp",
         "tools/test-native-retained-world.py",
-        "tools/test-rendering-next-ten.py"
+        "tools/test-rendering-next-ten.py",
+        "tests/test-native-player-launcher.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -67193,10 +67195,13 @@
         "NXT1.ten-native-boundaries-20261020",
         "NXT7.ten-final-native-boundaries-20261020",
         "COMMIT20261021.second-ten.native_integration",
-        "FPS07.scope-reconciled01"
+        "FPS07.scope-reconciled01",
+        "ARMJIT12.image-reuse01"
       ],
       "remaining_gaps": [
-        "Scoped native generation/extent/return/ownership controls and captured replay equality pass; reuse stays opt-in and prepared drawing remains the default stress path. Existing genuine copy-order GAP history, arbitrary OS-stall resilience, original driver/pixel/scanout equivalence, interpolation remain unresolved or excluded. Fixed-FPS completion condition closed by the existing2026-10-25 diagnostic policy (FPS07.scope-reconciled01); this does not assert that the historical benchmark passed or waive functional response, forward progress or resource bounds."
+        "Scoped native generation/extent/return/ownership controls and captured replay equality pass; reuse stays opt-in and prepared drawing remains the default stress path. Existing genuine copy-order GAP history, arbitrary OS-stall resilience, original driver/pixel/scanout equivalence, interpolation remain unresolved or excluded. Fixed-FPS completion condition closed by the existing2026-10-25 diagnostic policy (FPS07.scope-reconciled01); this does not assert that the historical benchmark passed or waive functional response, forward progress or resource bounds.",
+        "ARM jitter investigation separately tests an interleaved native surface write between completed subqueues. This is a synthetic mechanism check; live visual comparison and physical scanout remain independent claims. Historical source-bound records are preserved.",
+        "ARMJIT12.image-reuse01 validates the interleaved-write mechanism, finite unchanged-identity capture stability and19\u201320FPS with image reuse. The user-reported saved-game shaking was not reproduced by the short capture; no claim of all-map visual stability or physical scanout. Failed large-viewport recording and scaled-input trials remain retained."
       ],
       "implementation_review": {
         "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
@@ -179712,6 +179717,217 @@
       "remaining_gaps": [
         "Historical source recovery is bounded and grants no cleanup eligibility. Current broader-player work is excluded.",
         "Analyzer has synthetic schema-4 validation only; retained-data analysis and live performance measurement remain separate."
+      ]
+    },
+    {
+      "id": "NP.arm64-crc32c-dispatch",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "ARM64 Linux CRC32C hardware dispatch with portable fallback",
+      "scope": "Little-endian aarch64 Linux only: compile CRC intrinsics in a targeted function, detect HWCAP_CRC32 at runtime with atomic capability caching, preserve the portable fallback on CPUs without CRC and all existing x86 paths. CRC identity covers the known vector, empty input, every offset0..15, small lengths and varied tails/extents in GCC/Clang C/C++. ELF x86-64/i386, Windows PE32 and RISC-V compile probes preserve emitted machine code. Retained-frame production validation is an offline timing observation, not current live FPS or original-engine equivalence. Other ARM operating systems/ARM32/big-endian retain the portable path.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-continuous.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/world_continuous_checksum.h"
+      ],
+      "tests": [
+        "tests/world-continuous-crc-test.cpp",
+        "compat/legacy/world-rolling/CMakeLists.txt"
+      ],
+      "evidence": [
+        "NP.arm64-crc32c-dispatch.controls-20261111",
+        "ART12.current-crc-controls02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current GCC/Clang C/C++ hardware/fallback controls on M1 are fresh. Other-target emitted-code controls and production timing remain retained unchanged-input observations; no fresh original/live FPS or other-host execution claim."
+      ]
+    },
+    {
+      "id": "NP.arm-independent-frame-delivery",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Linux ARM64 player defaults to independent owned World delivery",
+      "scope": "Intentional host launch policy: auto selects the existing independent World delivery on Linux aarch64, retaining synchronous delivery on other hosts. Explicit independent/synchronous selection and conflict refusal happen before prefix preparation. Independent mode validates and acknowledges owned snapshots separately from GPU work, using the existing bounded FIFO/native render worker. Selected simulation/game-speed/pacing rules are unchanged. Targeted Apple M1 performance comparisons measure completed original Worlds and native/GUI delivery separately; they do not grant global FPS, arbitrary-map or original-pixel equivalence. Linux ARM64 independent launches also default to completed native World image reuse, preserving an explicit MNM_WORLD_IMAGE_REUSE override. The draw-list alternative can omit interleaved native surface writes during repeated presentations; image reuse preserves their completed result.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/native-player-launch.md",
+        "research/runtime/coverage-ledger.md",
+        "research/runtime/native-retained-world-image.md"
+      ],
+      "implementation": [
+        "tools/run-native-game.py"
+      ],
+      "tests": [
+        "tests/test-native-player-launcher.py",
+        "tests/native-retained-world-test.cpp"
+      ],
+      "validation_dependencies": [
+        "tools/native_only_contract.py",
+        "tools/run-native-owned.py",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_continuous.cpp",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp"
+      ],
+      "evidence": [
+        "ARMFPS11.public-throughput01",
+        "ARMJIT12.image-reuse01",
+        "ART12.current-independent-throughput02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Bounded Apple M1/Wine11.18 campaign and both native-music policies only; no all-map, crowded/boss, long-duration, other ARM GPU or physical input-to-photon performance guarantee.",
+        "Exact retained native executable reused after checking native source bytes against the existing player checkout; this experiment does not claim a newly rebuilt Qt executable or original-pixel equivalence.",
+        "Repository-wide evidence/archive and accepted finish/accounting limitations remain independent of the measured FPS result.",
+        "ARMJIT12.image-reuse01 validates the interleaved-write mechanism, finite unchanged-identity capture stability and19\u201320FPS with image reuse. The user-reported saved-game shaking was not reproduced by the short capture; no claim of all-map visual stability or physical scanout. Failed large-viewport recording and scaled-input trials remain retained.",
+        "ART12.current-independent-throughput02 binds the already retained current matching-UI acquisition and current focused controls; earlier source hashes and historical statuses are preserved. The eight-zombie confirmation is finite and does not grant all-map or scanout acceptance."
+      ]
+    },
+    {
+      "id": "NP.arm-complete-frame-presentation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "ARM independent presentation waits for matching completed UI",
+      "scope": "Linux aarch64 public independent delivery defaults to completed native World image reuse and disables carrying a preceding generation UI into a new World before its first own UI seal. Within-generation completed UI repeats remain supported. Explicit diagnostic overrides are preserved. Authored moving literal overlays demonstrate the old-position intermediate frame in inherited mode and its absence while waiting. Source delivery, simulation and ordered import/return remain unchanged. Finite native controls and public throughput are separate from the user saved-game symptom and arbitrary map/scanout equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/native-player-launch.md",
+        "research/runtime/native-retained-world-image.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "tools/run-native-game.py"
+      ],
+      "tests": [
+        "tests/native-frame-generation-test.cpp",
+        "tests/test-native-player-launcher.py"
+      ],
+      "validation_dependencies": [
+        "renderer/CMakeLists.txt",
+        "renderer/commands.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/live_command_renderer.cpp"
+      ],
+      "evidence": [
+        "ART12.matching-ui-controls01",
+        "ART12.matching-ui-live01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "One user-confirmed clean eight-zombie/arrow scene, short capture and two recording-free throughput windows are bounded observations; arbitrary saved games, long sessions, other GPUs and physical scanout remain pending.",
+        "Unsupported original raster caller0x54a5a1/tag19 refused in the inherited-UI comparison. Different trajectories prevent attributing its absence in the matching run to UI policy."
+      ]
+    },
+    {
+      "id": "NR.owned-world-checkpoint-identities",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "V5 checkpoints use bounded packet identities without file-name limit",
+      "scope": "prepareRollingHandoff separates canonical finite file-oracle IDs below9999 from owned V5 checkpoint IDs bounded by the source operation count. Preserve the131070 source-operation ceiling plus two closing records, missing-entry, request/descriptor/hash/AX validation and actual-return checks. The cancelled real generation1931 has72290 operations and12477 checkpoints, so its V5 closure12478 is representable without four-digit oracle files. Retained-input handoff replay does not execute or validate a resumed original return.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-owned-snapshots.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "compat/legacy/world_rolling_handoff.cpp"
+      ],
+      "tests": [
+        "tests/world-owned-checkpoint-test.cpp"
+      ],
+      "validation_dependencies": [
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/world_continuous.c",
+        "protocols/include/mnm/world_continuous_v5.h"
+      ],
+      "evidence": [
+        "ART12.matching-ui-controls01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Offline retained-input admission and boundary controls do not demonstrate original continuation after a long native menu interval."
+      ]
+    },
+    {
+      "id": "TOOL.zombie-artifact-viewport-input",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Opt-in acknowledged artifact input targets the active game viewport",
+      "scope": "Explicit MNM_ZOMBIE_ARTIFACT_PROBE=1 installs a bounded ordered file-request relay in the healing smoke test. Only the active owning window and visible focused named game viewport receive frame-coordinate mouse or held-arrow Qt events; accepted events are acknowledged. No global desktop injection, ordinary player input change, Cure acceptance or physical keyboard-to-photon claim. Retained private acquisition scripts verify actual normal Zombie casts and living actors.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-owned-snapshots.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/healing_smoke_test.cpp"
+      ],
+      "tests": [
+        "apps/qt-shell/healing_smoke_test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/input_forwarder.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp"
+      ],
+      "evidence": [
+        "ART12.matching-ui-live01",
+        "ART12.viewport-input-accounting02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "The live probe validates acknowledged accepted inputs, eight actual casts and four held arrows; inactive-window, invalid-coordinate and invalid-sequence refusal branches were source-reviewed rather than separately executed.",
+        "Private harness is retained as exact SQLite acquisition source, not promoted to the legacy Cure/crowded acceptance suite."
       ]
     }
   ],
@@ -407617,6 +407833,222 @@
           "equals": 12
         }
       ]
+    },
+    {
+      "id": "NP.arm64-crc32c-dispatch.controls-20261111",
+      "kind": "native_integration",
+      "scope": "Little-endian aarch64 Linux only: compile CRC intrinsics in a targeted function, detect HWCAP_CRC32 at runtime with atomic capability caching, preserve the portable fallback on CPUs without CRC and all existing x86 paths. CRC identity covers the known vector, empty input, every offset0..15, small lengths and varied tails/extents in GCC/Clang C/C++. ELF x86-64/i386, Windows PE32 and RISC-V compile probes preserve emitted machine code. Retained-frame production validation is an offline timing observation, not current live FPS or original-engine equivalence. Other ARM operating systems/ARM32/big-endian retain the portable path.",
+      "record": "research/runtime/native-player-wine1118-20261111/arm-crc-validation.json",
+      "sha256": "ce1f674b3e63a30b277623cda149211d0d507d6ba1824060589844787e0e6cea",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/fallback_and_hardware",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/gcc_clang_c_cpp",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/non_arm_machine_code_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/channel_hash_ack_snapshot",
+          "equals": true
+        },
+        {
+          "pointer": "/controls/retained_frame_checksums_match",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ARMFPS11.public-throughput01",
+      "kind": "live_observation",
+      "scope": "Apple M1 public native-only player: synchronous and independent campaign comparison, two45-second scripted camera/input phases separated by Mini/Cancel, followed by Quit No/Yes. Independent confirmation uses the updated public launcher auto policy with native music enabled. Completed World imports and visible paints are counted separately using host monotonic time.",
+      "record": "research/runtime/arm-frame-throughput-results-20261111/comparison01.json",
+      "sha256": "ac12c7a01346fb8aa4d364979cbfa23340ffbb63f1c008190ff51c7a48f1c750",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/completed_world_fps_target_met",
+          "equals": true
+        },
+        {
+          "pointer": "/native_music_target_met",
+          "equals": true
+        },
+        {
+          "pointer": "/all_normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/clock_and_game_executable_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ARMJIT12.image-reuse01",
+      "kind": "live_observation",
+      "scope": "Apple M1: synthetic interleaved native surface-write control; two complete short lossless capture journeys with unchanged World/UI pixel comparisons; public-player completed-image auto policy, native music, two requested45-second camera phases, Mini/Cancel, Quit No/Yes. The reported saved-game shaking is not reproduced or declared fixed by these finite samples.",
+      "record": "research/runtime/arm-frame-throughput-results-20261111/jitter01.json",
+      "sha256": "dd49b7b039997caedc49621577e717d0e9ad7c1ca0a1605c73dc435820b2885b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/interleaved_write_control_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/short_captures_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/completed_world_fps_target_met",
+          "equals": true
+        },
+        {
+          "pointer": "/all_final_normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/all_final_worlds_balanced",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ART12.matching-ui-controls01",
+      "kind": "native_integration",
+      "scope": "Actual native GPU moving-overlay inherited/matching control and retained original V5 packet boundary/queue controls. Offline replay does not resume the cancelled original session.",
+      "record": "research/runtime/arm-frame-throughput-results-20261111/artifact-controls01.json",
+      "sha256": "35304ec4d0bf3c18b3db965d5df9bec3320bfd1c2a4af621e8a98149a78cbb9b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/all_controls_passed",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ART12.matching-ui-live01",
+      "kind": "live_observation",
+      "scope": "Apple M1 matching-UI short capture and recording-free public performance; separate private eight-accepted-cast/eight-living-zombie and four held-arrow viewport probe. User confirms no glitching in the matching crowd run. Private cancellation and inherited-UI unsupported raster failure remain separate from normal-Quit acceptance.",
+      "record": "research/runtime/arm-frame-throughput-results-20261111/artifact-live01.json",
+      "sha256": "82e24274319aab848de4e6ec99c32e1c91357ebe7adb08b2157b004d5ec902a2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/all_crowd_worlds_balanced",
+          "equals": true
+        },
+        {
+          "pointer": "/recording_free_normal_quit",
+          "equals": true
+        },
+        {
+          "pointer": "/completed_world_fps_target_met",
+          "equals": true
+        },
+        {
+          "pointer": "/matching_crowd_probe_completed",
+          "equals": true
+        },
+        {
+          "pointer": "/reported_crowd_glitch_absent",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ART12.current-independent-throughput02",
+      "kind": "live_observation",
+      "scope": "Current ARM independent launcher policy: retained matching-UI recording-free public journey at19.779853/19.822058Hz, normal Quit and2108 balanced Worlds, with current launcher and native retained-image controls. This registers the unchanged current-code acquisition under the independent-delivery contract after later launch-policy edits made the earlier ARM reports historical. No additional game execution or original-pixel/scanout claim.",
+      "record": "research/runtime/arm-frame-throughput-results-20261111/artifact-throughput02.json",
+      "sha256": "b6aa112cb37be520db7adbb6486c9bf82a710459ac0bb25f9c25c1395ef229c0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/same_retained_execution",
+          "equals": true
+        },
+        {
+          "pointer": "/no_additional_game_execution",
+          "equals": true
+        },
+        {
+          "pointer": "/completed_world_fps_target_met",
+          "equals": true
+        },
+        {
+          "pointer": "/recording_free_normal_quit",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ART12.current-crc-controls02",
+      "kind": "native_integration",
+      "scope": "Fresh M1 GCC/Clang C/C++ known-vector, empty, alignments, sizes/tails and cached-capability fallback/hardware runs. Header and fixture bytes match the retained original compiler/production proof; the CRC CMake target recipe is unchanged, while independent fixtures were added elsewhere. Other-target code-generation observations remain historical unchanged-input controls.",
+      "record": "research/runtime/arm-frame-throughput-results-20261111/current-crc-controls02.json",
+      "sha256": "6180b1c2cae666ddfda821024c513b437024994977c1e972687cb3a929ee4725",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ART12.viewport-input-accounting02",
+      "kind": "live_observation",
+      "scope": "Accounting of the retained corrected eight-Zombie/four-arrow probe: the opt-in healing smoke test is linked as both its test implementation and executed integration test. Existing accepted input acknowledgments, actor/cast observations and exact retained helper source remain the proof; no new game run or invalid-input-branch coverage is claimed.",
+      "record": "research/runtime/arm-frame-throughput-results-20261111/viewport-input-accounting02.json",
+      "sha256": "eaa5ca2ad551bfec60e7686bc017963254cc80dcf84d107189196397a832eead",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -443021,6 +443453,129 @@
       "evidence": [
         "SRC10.latency-controls01"
       ]
+    },
+    {
+      "id": "arm-independent-frame-throughput-20261111",
+      "scope": "Apple M1 public native-only player: synchronous and independent campaign comparison, two45-second scripted camera/input phases separated by Mini/Cancel, followed by Quit No/Yes. Independent confirmation uses the updated public launcher auto policy with native music enabled. Completed World imports and visible paints are counted separately using host monotonic time.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.arm-independent-frame-delivery"
+      ],
+      "tests": [
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "tools/campaign-gameplay-input.py",
+        "tools/campaign-camera-menu-input.py",
+        "tools/campaign-quit-input.py",
+        "tests/test-native-player-launcher.py"
+      ],
+      "evidence": [
+        "ARMFPS11.public-throughput01"
+      ]
+    },
+    {
+      "id": "arm-image-reuse-jitter-20261112",
+      "scope": "Apple M1: synthetic interleaved native surface-write control; two complete short lossless capture journeys with unchanged World/UI pixel comparisons; public-player completed-image auto policy, native music, two requested45-second camera phases, Mini/Cancel, Quit No/Yes. The reported saved-game shaking is not reproduced or declared fixed by these finite samples.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.arm-independent-frame-delivery",
+        "NR.native-retained-world-image"
+      ],
+      "tests": [
+        "tests/native-retained-world-test.cpp",
+        "tests/test-native-player-launcher.py",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "tools/campaign-gameplay-input.py",
+        "tools/campaign-camera-menu-input.py",
+        "tools/campaign-quit-input.py"
+      ],
+      "evidence": [
+        "ARMJIT12.image-reuse01"
+      ]
+    },
+    {
+      "id": "arm-matching-ui-and-checkpoint-controls-20261112",
+      "scope": "Actual native GPU moving-overlay inherited/matching control and retained original V5 packet boundary/queue controls. Offline replay does not resume the cancelled original session.",
+      "level": "headless",
+      "behaviors": [
+        "NP.arm-complete-frame-presentation",
+        "NR.owned-world-checkpoint-identities"
+      ],
+      "tests": [
+        "tests/native-frame-generation-test.cpp",
+        "tests/world-owned-checkpoint-test.cpp",
+        "tests/world-snapshot-queue-test.cpp",
+        "tests/test-native-player-launcher.py"
+      ],
+      "evidence": [
+        "ART12.matching-ui-controls01"
+      ]
+    },
+    {
+      "id": "arm-matching-ui-moving-zombies-20261112",
+      "scope": "Apple M1 matching-UI short capture and recording-free public performance; separate private eight-accepted-cast/eight-living-zombie and four held-arrow viewport probe. User confirms no glitching in the matching crowd run. Private cancellation and inherited-UI unsupported raster failure remain separate from normal-Quit acceptance.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.arm-complete-frame-presentation",
+        "TOOL.zombie-artifact-viewport-input"
+      ],
+      "tests": [
+        "apps/qt-shell/healing_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "tools/campaign-gameplay-input.py",
+        "tools/campaign-camera-menu-input.py",
+        "tools/campaign-quit-input.py"
+      ],
+      "evidence": [
+        "ART12.matching-ui-live01"
+      ]
+    },
+    {
+      "id": "arm-current-independent-throughput-20261112",
+      "scope": "Current ARM independent launcher policy: retained matching-UI recording-free public journey at19.779853/19.822058Hz, normal Quit and2108 balanced Worlds, with current launcher and native retained-image controls. This registers the unchanged current-code acquisition under the independent-delivery contract after later launch-policy edits made the earlier ARM reports historical. No additional game execution or original-pixel/scanout claim.",
+      "level": "live_observation",
+      "behaviors": [
+        "NP.arm-independent-frame-delivery"
+      ],
+      "tests": [
+        "tests/test-native-player-launcher.py",
+        "tests/native-retained-world-test.cpp",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "tools/campaign-gameplay-input.py",
+        "tools/campaign-camera-menu-input.py",
+        "tools/campaign-quit-input.py"
+      ],
+      "evidence": [
+        "ART12.current-independent-throughput02"
+      ]
+    },
+    {
+      "id": "arm-current-crc-dispatch-20261112",
+      "scope": "Fresh M1 GCC/Clang C/C++ known-vector, empty, alignments, sizes/tails and cached-capability fallback/hardware runs. Header and fixture bytes match the retained original compiler/production proof; the CRC CMake target recipe is unchanged, while independent fixtures were added elsewhere. Other-target code-generation observations remain historical unchanged-input controls.",
+      "level": "headless",
+      "behaviors": [
+        "NP.arm64-crc32c-dispatch"
+      ],
+      "tests": [
+        "tests/world-continuous-crc-test.cpp",
+        "compat/legacy/world-rolling/CMakeLists.txt"
+      ],
+      "evidence": [
+        "ART12.current-crc-controls02"
+      ]
+    },
+    {
+      "id": "arm-viewport-artifact-input-20261112",
+      "scope": "Accounting of the retained corrected eight-Zombie/four-arrow probe: the opt-in healing smoke test is linked as both its test implementation and executed integration test. Existing accepted input acknowledgments, actor/cast observations and exact retained helper source remain the proof; no new game run or invalid-input-branch coverage is claimed.",
+      "level": "live_observation",
+      "behaviors": [
+        "TOOL.zombie-artifact-viewport-input"
+      ],
+      "tests": [
+        "apps/qt-shell/healing_smoke_test.cpp"
+      ],
+      "evidence": [
+        "ART12.viewport-input-accounting02"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -444848,8 +445403,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-252754611849b102c0fd9c585e259c2f625019c874e9b6fba674c9ce87d06bed.json",
-    "sha256": "252754611849b102c0fd9c585e259c2f625019c874e9b6fba674c9ce87d06bed"
+    "path": "research/runtime/coverage/source-index-fa484193f11f657971f4289c9fea5e465e5eab34f0e466e62112489e83aae443.json",
+    "sha256": "fa484193f11f657971f4289c9fea5e465e5eab34f0e466e62112489e83aae443"
   },
   "evidence_applicability": [
     {

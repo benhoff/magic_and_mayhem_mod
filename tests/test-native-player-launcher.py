@@ -22,6 +22,7 @@ class PlayerLaunch(unittest.TestCase):
     def launch(self, existing=False, environment=None):
         with contextlib.ExitStack() as stack:
             stack.enter_context(patch.dict(os.environ, dict(MNM_MENU_GAME_SOURCE=str(ROOT/'working/player-launch-fixture-game'), **(environment or {})), clear=True))
+            stack.enter_context(patch.object(player.platform, 'machine', return_value='x86_64'))
             stack.enter_context(patch.object(Path, 'exists', return_value=existing))
             stack.enter_context(patch.object(Path, 'is_file', return_value=True))
             stack.enter_context(patch.object(Path, 'is_symlink', return_value=False))
@@ -52,6 +53,63 @@ class PlayerLaunch(unittest.TestCase):
             self.assertNotIn('MNM_TERRAIN_LIGHTING', os.environ)
             prepare.assert_called_once()
             self.assertEqual(run.call_count, 1)  # No wineserver wait before fresh initialization.
+
+    def test_linux_arm_defaults_to_independent_world(self):
+        with self.launch() as (prepare, _, run), patch.object(player.platform, 'machine', return_value='aarch64'), patch.object(player.sys, 'platform', 'linux'):
+            self.assertEqual(player.main([]), 0)
+            self.assertEqual(run.call_args.args[0][-2:], ['--', '--independent-world'])
+            self.assertNotIn('MNM_WORLD_SNAPSHOT', prepare.call_args.args[-1])
+            self.assertEqual(prepare.call_args.args[-1]['MNM_WORLD_IMAGE_REUSE'], '1')
+            self.assertEqual(run.call_args.kwargs['env']['MNM_WORLD_IMAGE_REUSE'], '1')
+            self.assertEqual(run.call_args.kwargs['env']['MNM_WORLD_FIRST_SEAL_BASELINE'], '1')
+            self.assertNotIn('MNM_WORLD_IMAGE_REUSE', os.environ)
+
+    def test_arm_image_reuse_explicit_diagnostic_override_is_preserved(self):
+        for value in ('0', '1'):
+            with self.subTest(value=value), self.launch(environment={'MNM_WORLD_IMAGE_REUSE': value}) as (_, _, run), patch.object(player.platform, 'machine', return_value='aarch64'), patch.object(player.sys, 'platform', 'linux'):
+                self.assertEqual(player.main([]), 0)
+                self.assertEqual(run.call_args.kwargs['env']['MNM_WORLD_IMAGE_REUSE'], value)
+
+    def test_arm_legacy_independent_flag_also_uses_completed_image(self):
+        with self.launch() as (_, _, run), patch.object(player.platform, 'machine', return_value='aarch64'), patch.object(player.sys, 'platform', 'linux'):
+            self.assertEqual(player.main(['--', '--independent-world']), 0)
+            self.assertEqual(run.call_args.args[0].count('--independent-world'), 1)
+            self.assertEqual(run.call_args.kwargs['env']['MNM_WORLD_IMAGE_REUSE'], '1')
+            self.assertEqual(run.call_args.kwargs['env']['MNM_WORLD_FIRST_SEAL_BASELINE'], '1')
+
+    def test_arm_inherited_ui_diagnostic_override_is_preserved(self):
+        with self.launch(environment={'MNM_WORLD_FIRST_SEAL_BASELINE': '0'}) as (_, _, run), patch.object(player.platform, 'machine', return_value='aarch64'), patch.object(player.sys, 'platform', 'linux'):
+            self.assertEqual(player.main([]), 0)
+            self.assertEqual(run.call_args.kwargs['env']['MNM_WORLD_FIRST_SEAL_BASELINE'], '0')
+
+    def test_arm_synchronous_override_retains_baseline(self):
+        with self.launch() as (_, _, run), patch.object(player.platform, 'machine', return_value='aarch64'):
+            self.assertEqual(player.main(['--world-delivery', 'synchronous']), 0)
+            self.assertNotIn('--independent-world', run.call_args.args[0])
+            self.assertNotIn('MNM_WORLD_IMAGE_REUSE', run.call_args.kwargs['env'])
+            self.assertNotIn('MNM_WORLD_FIRST_SEAL_BASELINE', run.call_args.kwargs['env'])
+
+    def test_explicit_independent_mode_preserves_presentation_arguments(self):
+        with self.launch() as (_, _, run):
+            self.assertEqual(player.main(['--world-delivery', 'independent', '--', '--skip-movies', '--no-native-music']), 0)
+            self.assertEqual(run.call_args.args[0][-3:], ['--skip-movies', '--no-native-music', '--independent-world'])
+            self.assertNotIn('MNM_WORLD_IMAGE_REUSE', run.call_args.kwargs['env'])
+
+    def test_independent_world_option_is_not_duplicated(self):
+        with self.launch() as (_, _, run), patch.object(player.platform, 'machine', return_value='aarch64'):
+            self.assertEqual(player.main(['--world-delivery', 'independent', '--', '--independent-world']), 0)
+            self.assertEqual(run.call_args.args[0].count('--independent-world'), 1)
+
+    def test_synchronous_conflict_refuses_before_preparation(self):
+        with self.launch() as (prepare, _, run):
+            self.assertEqual(player.main(['--world-delivery', 'synchronous', '--', '--independent-world']), 1)
+            prepare.assert_not_called()
+            run.assert_not_called()
+
+    def test_non_linux_arm_keeps_baseline(self):
+        with self.launch() as (_, _, run), patch.object(player.platform, 'machine', return_value='aarch64'), patch.object(player.sys, 'platform', 'darwin'):
+            self.assertEqual(player.main([]), 0)
+            self.assertNotIn('--independent-world', run.call_args.args[0])
 
     def test_explicit_owner_directory_is_forwarded_before_qt_arguments(self):
         owner=ROOT/'working/pilot/owned-case/owner'

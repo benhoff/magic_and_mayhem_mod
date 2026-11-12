@@ -4,6 +4,7 @@ import argparse
 import fcntl
 import json
 import os
+import platform
 from pathlib import Path
 import shutil
 import subprocess
@@ -73,12 +74,28 @@ def main(argv=None, root=ROOT):
     parser.add_argument('--output-owner', type=Path, help='New explicitly assigned ownership directory under working/')
     parser.add_argument('--prefix-template', type=Path,
                         help='Optional stopped, admitted prefix to clone on first launch')
+    parser.add_argument('--world-delivery', choices=('auto', 'synchronous', 'independent'), default='auto',
+                        help='World delivery: auto selects independent rendering on Linux ARM64; '
+                             'synchronous retains the original launch policy')
     parser.add_argument('arguments', nargs=argparse.REMAINDER,
                         help='Native presentation options after --, e.g. -- --skip-movies --no-native-music')
     args = parser.parse_args(argv)
     extra = args.arguments[1:] if args.arguments[:1] == ['--'] else args.arguments
     try:
+        if args.world_delivery == 'synchronous' and '--independent-world' in extra:
+            raise ValueError('--world-delivery synchronous conflicts with --independent-world')
+        linux_arm = sys.platform == 'linux' and platform.machine() == 'aarch64'
+        independent = args.world_delivery == 'independent' or (args.world_delivery == 'auto' and linux_arm)
+        if independent and '--independent-world' not in extra:
+            extra = [*extra, '--independent-world']
         environment = configure(os.environ, extra)
+        if linux_arm and '--independent-world' in extra:
+            # Replay lists omit native surface writes between World subqueues.
+            # Preserve the completed World for presentations between updates.
+            environment.setdefault('MNM_WORLD_IMAGE_REUSE', '1')
+            # Moving native UI/occlusion must use this World's completed UI,
+            # rather than presenting the preceding generation's literal pixels.
+            environment.setdefault('MNM_WORLD_FIRST_SEAL_BASELINE', '1')
         environment.setdefault('MNM_TERRAIN_LIGHTING', 'native')
         lighting, _ = lighting_selection(environment)
         if environment.get('MNM_MENU_DIRECTPLAY_DX6', '1') != '1':
@@ -129,6 +146,7 @@ def main(argv=None, root=ROOT):
                     os.environ['MNM_MENU_DIRECTPLAY_DX6'] = previous
             print('Native renderer required; original renderer fallback disabled.\n'
                   'Terrain lighting: ' + lighting + '.\n'
+                  'World delivery: ' + ('independent' if '--independent-world' in extra else 'synchronous') + '.\n'
                   'Wine runs the original simulation. Prefix: ' + str(prefix), flush=True)
             return subprocess.run([sys.executable, '-B', str(root / 'tools/run-native-owned.py'),
                                    '--native-only', '--prefix', str(prefix),

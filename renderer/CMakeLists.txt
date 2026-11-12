@@ -52,6 +52,10 @@ if(BUILD_TESTING)
     target_link_libraries(native-frame-recipe-test PRIVATE mnm-renderer)
     target_compile_options(native-frame-recipe-test PRIVATE -UNDEBUG -Wall -Wextra -Werror -pedantic)
 
+    add_executable(native-frame-generation-test ../tests/native-frame-generation-test.cpp)
+    target_link_libraries(native-frame-generation-test PRIVATE mnm-renderer)
+    target_compile_options(native-frame-generation-test PRIVATE -UNDEBUG -Wall -Wextra -Werror -pedantic)
+
     find_package(Qt6 REQUIRED COMPONENTS Core)
     add_executable(render-gpu-timing-test ../tests/render-gpu-timing-test.cpp)
     target_link_libraries(render-gpu-timing-test PRIVATE mnm-renderer)

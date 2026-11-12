@@ -29004,3 +29004,136 @@ zero source drift; no additional game/native/pixel execution or old hash refresh
 ## Historical source recovery — 2026-11-10
 
 Source custody preserves 5,814 historical locations / 5,639 distinct objects (21,445,201 bytes) with two verified restores, including 58 distinct reviewed old worktree source/UI versions. The bounded operator scan retains its main-root directory-cap limitation; current whole-player validation remains excluded. Nineteen committed nonancestor tips retain their existing branches and explicit source-path review leads. Only the schema-4 latency analyzer and its tests enter maintained tooling under `TOOL.native-frame-latency`; synthetic checks do not establish current live timing or original equivalence. No historical engine status, retention pin or directory is retired. See [source recovery](source-recovery-20261110.md).
+
+
+## Apple M1 independent delivery throughput — 2026-11-11
+
+`NP.arm-independent-frame-delivery` changes Linux ARM64 public-player auto
+selection to existing V5 owned snapshot/worker delivery, with an explicit
+`--world-delivery synchronous` baseline. Other hosts retain their selection.
+The already-tested pending ARM CRC prerequisite is carried byte-for-byte from
+the native-player task, with its original evidence identity and scoped status.
+
+On the exact retained native executable, the matched camera/input campaign
+baseline measured18.60/17.87completed World imports per second. Independent
+delivery measured19.74/19.70; an additional run through the updated public
+launcher auto selection with native music/voices enabled measured19.74/19.82.
+Each run covered two45-second requested movement phases (about50seconds of
+measured windows each), Mini/Cancel and normal Quit No/Yes, with distinct native
+publication/visible-paint counters. Visible optimized paints were about60FPS.
+All three completed runs balanced every World import/return, zero forwarded
+graphics calls and final released owners; the V5 source queue stayed within two
+credits and retired empty. The game executable hash and selected20FPS cap stayed
+identical. A missing-CLI OCR setup/control failure and the sandbox display
+refusal remain retained; no failed acquisition is relabeled a passing run.
+
+`ARMFPS11.public-throughput01` retains the raw phase windows, normal retirement,
+unchanged timing/config identities, tested binary hash, acquisition scripts and
+controls. Actual installed Tesseract5.5 C API/English-model heading checks were
+used for menu readiness after positive/negative OCR controls; no package was
+installed and no dialogue guard was removed. This is bounded M1 throughput,
+not arbitrary maps/durations/hardware, fresh original pixels or physical
+input-to-photon validation. Existing broad player/engine milestones remain
+historical; this policy's new live observation is separate. Full repository
+evidence checks and normal finish remain required before commit/integration.
+
+ARMFPS11 completion boundary: feature-gate, bookkeeping preparation and normal
+finish were attempted. The existing missing historical evidence archive
+`f8d2461d04a5b481e690cf9fbc7c07330dc079e09ad3aa048de24d2dd359c410`
+and archived-database mismatch still prevent the repository-wide audit/accepted
+review/commit workflow. `arm-frame-throughput-results-20261111/finish01.json`
+retains exact refusals. No hook was bypassed and no integration lease requested.
+The tested independent mode is already selectable on the existing player with
+`-- --independent-world`; the new auto-selection patch remains in its owned
+feature checkout pending those required historical inputs.
+
+## ARM completed-image reuse and jitter boundary — 2026-11-12
+
+`ARMJIT12.image-reuse01` extends the ARM launch policy to completed native World
+image reuse. An explicit diagnostic override remains available. The new GPU
+fixture confirms that prepared draw lists omit a native surface write interposed
+between subqueues; completed-image reuse retains it for eight repeats. Existing92
+repeat/refusal/teardown checks and28+12+4 launcher/contract/CLI checks pass.
+
+Complete short normal-scale captures pass33 prepared and16 retained unchanged
+World/UI pixel pairs. They do not reproduce or establish the cause of the user's
+reported saved-game shaking. Longer recording queue refusals, scaled-input
+Hermes failures and a superseded swap-adjacency analyzer result remain retained;
+no guard is relaxed. See [the bounded investigation](native-retained-world-image.md).
+
+The fresh recording-free public auto launch, with native music and image reuse,
+measures19.800395/19.878944 completed Worlds per second and59.182067/59.616670 GUI
+paints per second in two requested45-second physical-input phases. Normal
+Mini/Cancel, Quit-No/Yes and all2112 accepted/imported/verified-return Worlds
+balance; retained images2112, queue high water2, outstanding0. The native ELF,
+Chaos.exe and20FPS preference are unchanged. This validates finite throughput
+and the retained-image mechanism, not arbitrary-map jitter removal or physical
+scanout. Historical original-comparison/replacement statuses remain unchanged.
+
+The owned batch remains uncommitted pending required exact accounting and
+verified evidence storage. The existing historical SQLite hash-mismatch refusal
+also blocks applicability planning after the network-enabled retry; no historical
+hash or hook is bypassed to claim readiness.
+
+## ARM matching UI and moving zombies — 2026-11-12
+
+`ART12.matching-ui-controls01` records a native moving-overlay fixture, real
+long-prefix V5 checkpoint replay, preserved boundary refusals, two-credit queue
+controls and45 launcher/contract/CLI controls. `ART12.matching-ui-live01` records
+zero older-UI pairings in156 short-capture World exports,38 unchanged-identity
+pixel pairs, and a normal-Quit recording-free public journey at19.779853/
+19.822058 completed Worlds per second with2108 balanced imports/returns.
+
+The crowded matching-UI diagnostic verified eight accepted Zombie casts and
+eight living zombies, completed all four held-arrow camera moves, and measured
+19.146043 sourceHz. The user reported no glitching in that run. Its intentional
+private cancellation is not a normal-Quit or whole-player acceptance result.
+The inherited-UI comparison reproduced the user's moving-zombie glitch and then
+refused unsupported raster caller0x54a5a1/tag19 in WRITING generation645. That
+negative evidence remains pending; no allowlist or source validation was relaxed.
+The first misdirected desktop-input attempt is invalid and retained. The corrected
+opt-in test relay targets only the active named Qt viewport with acknowledgments.
+
+These results support matching completed World/UI presentation within the tested
+scope. Broad map/save coverage, sustained camera hitch attribution, unsupported
+raster callers and physical scanout remain separate gaps. See
+`native-world-owned-snapshots.md`. Historical evidence archive failures still
+block the normal accounting/commit workflow; no integration readiness is claimed.
+
+The subsequent commit request identified the missing evidence on host `father`.
+All ten unpublished pinned historical SQLite archives were restored byte-for-byte
+to the owned task cache and verified against their existing SHA-256 values,
+declared sizes and SQLite quick checks. Earlier failed audit/finish reports remain
+unchanged. Additional evidence is read through an authenticated read-only mount
+of the existing host store, preserving payload verification and avoiding a copy
+of the full store. This restores access to inputs; it grants no engine milestone
+or past gate pass. Fresh current/staged checks and master history review remain
+required before commit and promotion.
+
+The access repair retains a verified selective local SQLite cache of7568
+current report objects, plus the exact source-applicability and source-binding
+excerpts needed by the audit. Original payload hashes and historical container
+identities remain unchanged. `ART12.current-independent-throughput02` binds
+the already retained matching-UI throughput journey to the current independent
+launcher contract, without another game run. The viewport integration test's
+missing test link is corrected in `ART12.viewport-input-accounting02`, reusing
+the exact acknowledged eight-Zombie/four-arrow acquisition without adding
+invalid-input coverage. `ART12.current-crc-controls02` adds the missing headless
+scenario and eight fresh GCC/Clang C/C++ hardware/fallback executions. Its header,
+fixture and CRC CMake recipe match the retained prerequisite; other-target
+compiler observations remain historical unchanged-input controls. Earlier
+refusals remain retained under their original identities.
+
+The full current audit now reports zero errors, preserving the unrelated
+historical staleness, recovered-range and pending-validation warnings. The
+master preparation review covers482618 committed transitions across284 commits;
+73053 missing custody transitions are recorded in166 pending retrospective
+receipts. Nearly all are retained research binaries; the sole source transition
+adds the launcher storage-policy option while retaining the4GiB reservation.
+The normal history helper verified their retained bytes on `father`, and its
+typed SQLite workspace passed a real restore in the existing independent pair.
+Local import compares every exact transition and preserves all prior journal
+entries before inserting/exporting through SQLite. This asserts custody, not a
+past gate pass or new historical engine validation. Reports are under
+`arm-frame-history-results-20261112/` and
+`arm-frame-throughput-results-20261111/imported-master-history01.json`.

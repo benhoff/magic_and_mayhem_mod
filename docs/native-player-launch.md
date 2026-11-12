@@ -20,6 +20,35 @@ Wine still runs the original No-CD executable for simulation and preparation.
 This selection does not establish full-game pixel equivalence or complete native
 engine replacement. Unsupported rendering terminates the session.
 
+Linux ARM64 launches select independent World delivery by default. Validated
+owned snapshots let the original game proceed while a native worker renders,
+and rendering runs separately from the Qt input thread. The existing two-snapshot
+limit and ordered validation/return rules remain in force. Game speed and
+simulation timing are unchanged. Other hosts retain synchronous delivery.
+
+In Linux ARM64 independent mode, extra presentations reuse the completed native
+World image on the GPU, then compose the UI. Replaying only the prepared draw
+list can omit native surface writes between World subqueues, making parts of
+the completed frame disappear on the extra presentations. Each new game update
+still runs its full native drawing pass. Explicit `MNM_WORLD_IMAGE_REUSE=0`
+retains redraw mode for diagnostics; synchronous mode does not enable image reuse.
+
+ARM independent presentation also waits for each World's own completed UI before
+showing that World. Reusing the preceding UI can briefly place moving overlays or
+occlusion at their previous positions. `MNM_WORLD_FIRST_SEAL_BASELINE=1` selects
+this matching-UI policy; an explicit `0` retains inherited UI for diagnostics.
+
+Select a mode explicitly, before any presentation options after `--`:
+
+```sh
+./run-native.sh --world-delivery independent
+./run-native.sh --world-delivery synchronous
+```
+
+The synchronous selection preserves the previous launch behavior for comparison.
+The ARM performance target is 19–20 completed game updates per second; a mode
+selection alone does not demonstrate that rate on every map or workload.
+
 Terrain lighting uses the persistent native worker by default, with capture
 disabled. The existing 100 ms timeout and reply checks retain original lighting
 as a fallback for the rest of a failed session. A worker failure is recorded and

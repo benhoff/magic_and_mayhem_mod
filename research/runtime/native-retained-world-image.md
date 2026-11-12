@@ -2,7 +2,9 @@
 
 Experimental native policy, selected by `MNM_WORLD_IMAGE_REUSE=1` in the
 independent resident path (`test-native-campaign.py --reuse-world-image`).
-The default retains prepared draw replay for comparison and drawing stress.
+The diagnostic default retains prepared draw replay for comparison and drawing
+stress. The Linux ARM64 public player selects completed-image reuse with
+independent delivery; an explicit environment override is preserved.
 
 `CanvasWorld::end` freezes the successfully completed World into one renderer-owned
 native surface before subsequent UI writes. Extra presentations restore that
@@ -111,3 +113,50 @@ the presentation owner. Exact original simulation CPU, phase4 stall attribution,
 broad auxiliary input coverage, interpolation and sustained 60 FPS are pending.
 The paired results, raw report hashes and rate formulae are retained in
 `native-retained-world-paired-public-20261013.json`.
+
+## Linux ARM64 jitter investigation, 2026-11-12
+
+The public ARM independent-delivery policy now selects completed-image reuse;
+`MNM_WORLD_IMAGE_REUSE=0` preserves the explicit redraw diagnostic. The new
+`interleavedNativeWrite` fixture demonstrates a specific missing-history branch:
+a native surface update between two completed World draw subqueues appears in
+the primary frame but disappears on prepared-list replay. Completed-image reuse
+preserves it for eight repeats. The M1 fixture also passes the existing92
+composite/replacement repeats, invalid/incomplete guards and zero ordinary
+readbacks/surface leaks. The linked native libraries are unchanged; the test is
+built separately with its exact command, library hashes and tested executable
+retained. Two failed compiler invocations and their exact source bytes survive.
+
+Two complete short normal-scale lossless journeys inspect33 prepared and16
+retained consecutive paint pairs with identical World, command count, sealed UI,
+mode, surface and viewport geometry. All49 pairs have identical pixels. These
+samples do **not** reproduce or establish the cause of the reported saved-game
+shaking. Changed-UI examples in the earlier diagnostic prefix include ordinary
+cursor movement; they are not counted as flicker. Two longer captures refuse
+the recording queue budget. Two scaled-view attempts fail the existing guarded
+Hermes dismissal test and retain incomplete recordings. No input or capture
+guard was weakened. An initial analyzer reset adjacency at swap events; the
+corrected analyzer and explicit interleaved-swap controls supersede that result.
+
+The recording-free public-player auto launch with native music enabled passes
+normal Mini/Cancel and Quit-No/Yes. Its two requested45-second input phases
+measure19.800395 and19.878944 completed Worlds/second over50.201018 and49.600221
+seconds respectively; GUI paint rates are59.182067 and59.616670. All2112 source,
+import and verified-return counts balance, with2112 retained images, two-slot
+high water and zero outstanding Worlds. The exact retained native ELF and
+Chaos.exe are unchanged; `MaxFramesPerSec=20` remains selected. No full Qt rebuild,
+physical scanout, arbitrary-map visual stability or removal of the user's exact
+saved-game symptom is claimed. Twenty-eight launcher,12 native-only and4 owned
+snapshot CLI controls pass.
+
+`ARMJIT12.image-reuse01` points to
+`arm-frame-throughput-results-20261111/jitter01.json`, a SQLite reference retaining
+the controls, raw windows, complete and refused captures, sources and scripts.
+Raw inputs remain pinned under the owned task's `working/performance/`. The
+shared native executable is
+`/home/hoff/swdev/magic_and_mayhem_mod/working/session-diagnostics-20261111/mnm-qt-shell-86dddb022bfb`;
+the report's shared-executable shorthand is relative to the worktree pool, not
+the task checkout. Existing historical evidence is unchanged. Applicability
+planning still refuses a historical SQLite database hash mismatch after its
+network-enabled retry. Normal finish/accounting and integration remain separate
+from these bounded measurements.

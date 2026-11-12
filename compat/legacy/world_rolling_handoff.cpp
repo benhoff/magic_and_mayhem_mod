@@ -40,7 +40,13 @@ RollingHandoff prepareRollingHandoff(const CanvasProducerStream &stream,
     if (r[2] == 10)
       operations.back().fields[16] = r[1];
   }
-  if (!entry || lastOracle >= 9999 || stream.operations.size() > 131070)
+  // Finite captures name four-digit oracle files. Owned V5 checkpoints have
+  // no such files: their identifiers count checkpoints within this bounded
+  // packet, including native menu work preceding the next World entry.
+  const bool exhaustedOracle = policy == WorldBatchSourcePolicy::ownedV5
+                                   ? lastOracle > stream.operations.size()
+                                   : lastOracle >= 9999;
+  if (!entry || exhaustedOracle || stream.operations.size() > 131070)
     throw std::invalid_argument(
         "Rolling handoff missing entry or exhausted closing identities");
   RollingHandoff result;

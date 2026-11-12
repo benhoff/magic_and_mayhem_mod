@@ -79,10 +79,41 @@ double benchmark(legacy::WorldRollingSession& w,render::GlBlitter& g){
  w.diagnosticReadResident(g);
  return std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-start).count()/200;
 }
+void interleavedNativeWrite(render::GlBlitter& g,const std::filesystem::path& root){
+ const auto a=g.create({16,16,std::vector<std::uint32_t>(256,0x001f)},rgb);
+ const auto b=g.create({16,16,std::vector<std::uint32_t>(256,0x001f)},rgb);
+ {
+  legacy::CanvasWorld prepared(g,store(root)),retained(g,store(root));
+  prepared.enablePreparedReplay();retained.enablePreparedReplay(true);
+  legacy::CanvasProducer start{};start.fields[2]=11;start.fields[3]=7;
+  start.fields[5]=start.fields[6]=16;start.fields[14]=1;
+  auto end=start;end.fields[2]=12;
+  auto complete=[&](auto& world,auto surface){
+   world.beginResident(start,surface,1);
+   world.append(rectangle(3,4,0xf800));world.completeResident();
+   // Native surface producers can write between World draw subqueues. A
+   // prepared SceneDraw list alone does not contain this surface update.
+   g.update(surface,10,10,{1,1,{0x07e0}});
+   world.append(rectangle(4,5,0x001f));world.completeResident();world.end(end);
+  };
+  complete(prepared,a);complete(retained,b);
+  const auto expected=g.read(a).pixels;
+  require(g.read(b).pixels==expected&&expected[170]==0x07e0,"Interleaved primary images differ");
+  for(unsigned n=0;n<8;++n){
+   prepared.replayPrepared();retained.replayPrepared();
+   auto incomplete=g.read(a).pixels;
+   require(incomplete[170]==0x001f,"Prepared negative control unexpectedly replayed native write");
+   incomplete[170]=0x07e0;
+   require(incomplete==expected,"Prepared control differs outside interleaved write");
+   require(g.read(b).pixels==expected,"Image reuse omitted an interleaved native surface write");
+  }
+ }
+ g.destroy(a);g.destroy(b);require(g.stats().surfaces==0,"Interleaved write fixture leaked surfaces");
+}
 }
 int main(int argc,char** argv)try{
  QGuiApplication app(argc,argv);QTemporaryDir temp;require(temp.isValid(),"Temporary fixture root");
- auto root=std::filesystem::path(temp.path().toStdString());populate(root);render::GlBlitter g;authored(g,root);
+ auto root=std::filesystem::path(temp.path().toStdString());populate(root);render::GlBlitter g;authored(g,root);interleavedNativeWrite(g,root);
  double replayMs=0,reuseMs=0;unsigned actual=0;
  if(argc==4){
   const auto raw=read(argv[1]),request=read(argv[2]);auto stream=legacy::decodeCanvasProducers(raw,false);
@@ -104,5 +135,5 @@ int main(int argc,char** argv)try{
  }
  std::cout<<"{\"success\":true,\"destination_dependent_repeats\":92,\"source_updates\":3,\"replacement_repeats\":12,\"failed_returns_not_captured\":true,\"ui_contamination_checked\":true,\"active_world_refused\":true,\"actual_source_repeats\":"<<actual
  <<",\"prepared_replay_ms\":"<<replayMs<<",\"retained_image_ms\":"<<reuseMs<<",\"benchmark_repeats_per_policy\":"<<(argc==4?200:0)
- <<",\"ordinary_readbacks\":0,\"producer_history_unchanged\":true,\"teardown_surfaces\":0}\n";return 0;
+ <<",\"interleaved_native_write_repeats\":8,\"prepared_missing_write_control\":true,\"ordinary_readbacks\":0,\"producer_history_unchanged\":true,\"teardown_surfaces\":0}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
