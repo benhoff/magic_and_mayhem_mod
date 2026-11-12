@@ -2540,7 +2540,8 @@
       "documents": [
         "research/runtime/native-audio-voice-bridge.md",
         "audio/README.md",
-        "research/runtime/native-menu-audio.md"
+        "research/runtime/native-menu-audio.md",
+        "research/runtime/native-audio-handoff-20261112.md"
       ],
       "implementation": [
         "audio/voice_bridge.cpp",
@@ -6824,7 +6825,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-audio-voice-bridge.md",
-        "research/runtime/native-menu-audio.md"
+        "research/runtime/native-menu-audio.md",
+        "research/runtime/native-audio-handoff-20261112.md"
       ],
       "implementation": [
         "runtime/audio/bridge.c",
@@ -47217,7 +47219,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-menu-audio.md",
-        "research/runtime/native-audio-voice-bridge.md"
+        "research/runtime/native-audio-voice-bridge.md",
+        "research/runtime/native-audio-handoff-20261112.md"
       ],
       "implementation": [
         "apps/qt-shell/main.cpp",
@@ -180116,6 +180119,63 @@
         "Private setup variant substitutes ordinary offered Neutral Levitate for Law Cure under both explicit artifact-probe flags. Its exact source/binary is retained; production source/binary is restored and unchanged. Both owned sessions end by diagnostic cancellation, not normal Quit.",
         "Initial controlled08 selected the wizard and failed its target condition; preserve it as a failed acquisition. Controlled09 targets the sole Zombie using retained source geometry and passes the observed target/mana/rise/drift conditions.",
         "The user identified the analogous carpet in the earlier fiery video. Its exact earlier mid-frame source was not retained; the repeated single-zombie case supplies the direct source/asset identification. Other reported visual issues and combat FPS remain separate."
+      ]
+    },
+    {
+      "id": "NA.bounded-audio-handoff",
+      "subsystem": "native_audio",
+      "kind": "native_policy",
+      "title": "Bounded synchronous audio request handoff",
+      "scope": "Native single-producer version5 voice transport scheduling only:1ms precise worker polling, after-ACK cooperative followup bounded by1.25ms between operations and64commands including first, and4096PAUSE producer checks before existing Sleep1. Preserve serialization, payload/HRESULT/value-before-ACK, one-second timeout/permanent retirement and audio-worker ownership. Mixed mapped traffic, owner/GUI stall, lifecycle and production PE32 live/stale-peer controls. No recovered manager/clock policy, asynchronous transport, whole-player/physical waveform/timing equivalence or universal20FPS guarantee.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-audio-handoff-20261112.md",
+        "research/runtime/native-audio-voice-bridge.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "audio/voice_bridge.cpp",
+        "runtime/audio/bridge.c"
+      ],
+      "tests": [
+        "tests/audio-voice-bridge-test.cpp",
+        "tests/audio-primary-test.cpp",
+        "tests/audio-voice-recovery-test.cpp",
+        "tests/audio-voice-output-backend-test.cpp",
+        "tests/audio-output-timeline-test.cpp",
+        "runtime/audio/selftest.c"
+      ],
+      "validation_dependencies": [
+        "audio/voice_bridge.hpp",
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp",
+        "audio/output_timeline.cpp",
+        "audio/output_timeline.hpp",
+        "audio/CMakeLists.txt",
+        "runtime/audio/protocol.h",
+        "runtime/audio/wave_loading.h",
+        "runtime/audio/profile_reads.h",
+        "runtime/audio/file_sizes.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-audio-bridge.py"
+      ],
+      "evidence": [
+        "AUDIO12.handoff-controls01",
+        "AUDIO12.handoff-live01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Time bound is checked between operations; expensive individual I/O/output calls can exceed it. Synchronous operations and OS scheduling still can stall; no hard real-time deadline or CPU/energy reduction is asserted.",
+        "Fresh production20 observes eight ordinary summons and eight moving Zombies,19.98/19.89Hz in six-/five-mover periods. This finite diagnostic is cancelled after proof; no normal Quit or whole-player/physical output/original pixel equivalence. Idle-crowd maximum interval174ms remains.",
+        "Private17 original raster guard refuses unknown route; private18 does not finish twelve casts; production19 onlyone mover fails its motion gate. Those are not successful movement/lifecycle acceptance.",
+        "Shared-source broad historical sound/host/player evidence retains original hashes and statuses with pending current-scope impact review. Component tests here do not revalidate every linked manager, profile, music, UI or whole-player contract."
       ]
     }
   ],
@@ -408425,6 +408485,44 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "AUDIO12.handoff-controls01",
+      "kind": "native_integration",
+      "scope": "Authored PCM and mapped request results, continuous legal mixed success/refusal stream with queued lifecycle responsiveness, owner event-loop stall, channel retirement/restart, consumed clock/primary/recovery and actual production PE32 live/stale-peer fixtures. No original game or human waveform equivalence.",
+      "record": "research/runtime/native-audio-handoff-results-20261112/controls01.json",
+      "sha256": "e5f73c4158a82e2451098c68ae8029ec5af4e3c6600f8bd59f1d27a6a1aa0e11",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AUDIO12.handoff-live01",
+      "kind": "live_observation",
+      "scope": "Finite original-game public native route using exact production ELF and ordinary guarded audio staging, eight accepted normal summons and independent position changes in two moving-crowd periods. Retained private balanced probes and failed setups stay diagnostic. No normal Quit, original pixels/physical waveform or full player acceptance.",
+      "record": "research/runtime/native-audio-handoff-results-20261112/live01.json",
+      "sha256": "a4c4b8e5f11280b4f1ec5509e6e8d2b4c90ed8f647eb1c69c8b9a4c57b6104f8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/diagnostic_recorded",
+          "equals": true
+        },
+        {
+          "pointer": "/moving_target_observed",
+          "equals": true
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -444053,6 +444151,41 @@
       "evidence": [
         "COMBAT12.slowdown-stages02"
       ]
+    },
+    {
+      "id": "audio-bounded-handoff-controls-20261112",
+      "scope": "Authored PCM and mapped request results, continuous legal mixed success/refusal stream with queued lifecycle responsiveness, owner event-loop stall, channel retirement/restart, consumed clock/primary/recovery and actual production PE32 live/stale-peer fixtures. No original game or human waveform equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "NA.bounded-audio-handoff"
+      ],
+      "tests": [
+        "tests/audio-voice-bridge-test.cpp",
+        "tests/audio-primary-test.cpp",
+        "tests/audio-voice-recovery-test.cpp",
+        "tests/audio-voice-output-backend-test.cpp",
+        "tests/audio-output-timeline-test.cpp",
+        "runtime/audio/selftest.c"
+      ],
+      "evidence": [
+        "AUDIO12.handoff-controls01"
+      ]
+    },
+    {
+      "id": "audio-bounded-handoff-moving-observation-20261112",
+      "scope": "Finite original-game public native route using exact production ELF and ordinary guarded audio staging, eight accepted normal summons and independent position changes in two moving-crowd periods. Retained private balanced probes and failed setups stay diagnostic. No normal Quit, original pixels/physical waveform or full player acceptance.",
+      "level": "live_observation",
+      "behaviors": [
+        "NA.bounded-audio-handoff"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "apps/qt-shell/healing_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.cpp"
+      ],
+      "evidence": [
+        "AUDIO12.handoff-live01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -445880,8 +446013,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-9549c0eec13356f365ac28a63cece521030cf1aad068da11a3b59a08582f1ad9.json",
-    "sha256": "9549c0eec13356f365ac28a63cece521030cf1aad068da11a3b59a08582f1ad9"
+    "path": "research/runtime/coverage/source-index-4260742138de95a25717c4e3df7898e23f60d9f729d5194bd7074f3d590e5d92.json",
+    "sha256": "4260742138de95a25717c4e3df7898e23f60d9f729d5194bd7074f3d590e5d92"
   },
   "evidence_applicability": [
     {

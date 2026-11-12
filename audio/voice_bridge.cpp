@@ -2,6 +2,7 @@
 #include "wave_source.hpp"
 #include "profile_source.hpp"
 #include <QMediaDevices>
+#include <QElapsedTimer>
 #include <QtEndian>
 #include <cstring>
 #include <limits>
@@ -77,7 +78,7 @@ BridgeReply VoiceCommands::execute(const std::uint32_t* w,const QByteArray& payl
 // No Device operation runs concurrently with mixing or depends on GUI progress.
 struct VoiceBroker::State:QObject {
     explicit State(QObject* parent):QObject(parent),timer_(this){
-        timer_.setInterval(2);timer_.setTimerType(Qt::PreciseTimer);
+        timer_.setInterval(1);timer_.setTimerType(Qt::PreciseTimer);
         connect(&timer_,&QTimer::timeout,this,[this]{poll();});
     }
     ~State() override{stop();}
@@ -159,8 +160,23 @@ struct VoiceBroker::State:QObject {
         if(output_)output_->refreshClock();
         auto* words=reinterpret_cast<quint32*>(map_);
         __atomic_add_fetch(words+19,1u,__ATOMIC_RELEASE);
+        if(!dispatchRequest())return;
+        // A caller often publishes its next status/control request immediately
+        // after this ACK. Give that chain a bounded handoff opportunity rather
+        // than another timer wakeup for every command. Idle polls do not wait.
+        // Return to the event loop for PCM/output and queued lifecycle work;
+        // the time budget is checked between commands, not inside an operation.
+        QElapsedTimer followup;followup.start();
+        for(unsigned served=1;served<64 && followup.nsecsElapsed()<1250000;){
+            if(dispatchRequest())++served;
+            else QThread::yieldCurrentThread();
+        }
+    }
+    bool dispatchRequest(){
+        auto* words=reinterpret_cast<quint32*>(map_);
         const auto request=qFromLittleEndian(__atomic_load_n(words+4,__ATOMIC_ACQUIRE));
-        if(!request || request==last_)return;
+        if(!request || request==last_)return false;
+        if(output_)output_->refreshClock();
         std::uint32_t input[16];for(unsigned i=0;i<16;++i)input[i]=qFromLittleEndian(words[i]);
         BridgeReply reply{0x80070057,0};
         for(unsigned i=24;i<31;++i)words[i]=0;
@@ -231,6 +247,7 @@ struct VoiceBroker::State:QObject {
         }
         last_=request;words[17]=qToLittleEndian(reply.status);words[18]=qToLittleEndian(reply.value);
         __atomic_store_n(words+16,qToLittleEndian(request),__ATOMIC_RELEASE);
+        return true;
     }
 };
 VoiceBroker::VoiceBroker(QObject* parent):QObject(parent){workerThread_.setObjectName("native-audio");}

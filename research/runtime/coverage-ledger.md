@@ -29233,3 +29233,24 @@ register slots; its failure, private prototype and live-memory acquisition
 boundaries remain explicit. No production code, clock, status promotion,
 normal-Quit or19–20FPS acceptance changes. See
 [the scoped findings](combat-slowdown-followup-20261112.md).
+
+## Bounded native audio handoff — 2026-11-12
+
+`NA.bounded-audio-handoff` adds a native transport policy:1ms worker polling,
+a cooperative1.25ms/64-command followup after an ACK, and4096 bounded PAUSE
+checks before the producer's existing1ms sleep. The version5 wire, request order,
+reply publication, timeout/retirement and audio-thread ownership are unchanged.
+Five focused native controls and actual production PE32 live/stale-peer fixtures
+pass. Continuous mixed request traffic checks reply identity and queued lifecycle
+responsiveness. Original sound-manager/game clocks and simulation are unchanged.
+
+`AUDIO12.handoff-controls01` records headless integration only. The independent
+`AUDIO12.handoff-live01` retains private balanced audio scheduling probes and fresh
+production probe20: eight ordinary summons, eight Zombies changing position,
+19.98/19.89Hz in the six-/five-mover periods. Other ground-order periods are
+19.72/19.62Hz with idle Zombies. This is bounded live observation, not normal Quit,
+all-map19–20FPS, perfect pacing or original sound/pixel equivalence. Probe17's
+original raster guard refusal, probe18's incomplete setup and probe19's failed
+motion gate remain failures. Existing broad historical milestones/hashes remain;
+shared-source drift receives pending impact reviews rather than a full-matrix
+rerun or retroactive freshness. See [the scoped policy and results](native-audio-handoff-20261112.md).
