@@ -78,3 +78,13 @@ path from EGL. Pending imports and incompleteUI blocked opportunities arezero
 in that successful run. Measure current public render-context/driver/submission
 work on identical input before assuming simulation or an originalUI roundtrip
 is the limiting work. Native drawing stays enabled throughout.
+
+## Small combat effects, 2026-11-12
+
+CanvasWorld now routes consecutive owned1..2 by1..2 colour requests through
+[ordered small-colour batching](native-small-colour-batching.md). Source words
+travel in bounded integer instance records, bypassing atlas churn for these
+requests. Larger rectangles retain the existing64-entry atlas. The diagnostic
+`MNM_WORLD_SMALL_COLOUR_BASELINE=1` keeps the previous small-rectangle atlas path.
+Historical cache proofs retain their original source phases; the new policy has
+separate scalar, retained-source comparison and performance evidence.

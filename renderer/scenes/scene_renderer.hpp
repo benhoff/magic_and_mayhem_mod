@@ -25,6 +25,7 @@ struct SceneLimits {
     std::size_t draws=12320;
     ResourceCacheLimits cache;
     bool cacheColourRectangles=false; // bounded owned pixel atlas, independent of resource IDs
+    bool batchSmallColourRectangles=true; // ordered owned2x2 effects, without atlas uploads
     // Explicit offline colour-only policy. Sprite/effect resources remain RGB565.
     bool colourRgb555=false;
 };

@@ -205,6 +205,28 @@ bool SceneRenderer::drawNext(const SceneBatchBudget& budget){
     try{renderer_.batch([&]{
         bool first=true;
         while(cursor_<end && (first||std::chrono::steady_clock::now()<deadline)){first=false;const auto& draw=pending_[cursor_];
+            if(limits_.cacheColourRectangles&&limits_.batchSmallColourRectangles&&draw.visible&&draw.colourRectangle&&
+               draw.colourRectangle->pixels.width<=2&&draw.colourRectangle->pixels.height<=2){
+                std::vector<SmallColourDraw> small;
+                // Consume only this caller's admitted draw/time budget. A sprite,
+                // hidden draw or larger primitive is an ordering barrier.
+                do{
+                    const auto& next=pending_[cursor_];
+                    if(!next.visible||!next.colourRectangle||next.colourRectangle->pixels.width>2||next.colourRectangle->pixels.height>2)break;
+                    const auto& image=next.colourRectangle->pixels;const auto clip=next.viewport.value_or(viewport_);
+                    const int left=std::max(next.anchorX,clip.left),top=std::max(next.anchorY,clip.top);
+                    const int right=int(std::min<std::int64_t>(std::int64_t(next.anchorX)+image.width,clip.right));
+                    const int bottom=int(std::min<std::int64_t>(std::int64_t(next.anchorY)+image.height,clip.bottom));
+                    if(left<right&&top<bottom){
+                        SmallColourDraw write{{left,top,right,bottom},{},next.composite.mode};
+                        for(int y=top;y<bottom;++y)for(int x=left;x<right;++x)
+                            write.pixels[std::size_t(y-top)*2+x-left]=image.pixels[std::size_t(y-next.anchorY)*image.width+x-next.anchorX];
+                        small.push_back(write);
+                    }
+                    ++cursor_;
+                }while(cursor_<end&&small.size()<512&&std::chrono::steady_clock::now()<deadline);
+                renderer_.smallColourRects(canvas_,small);need_.reset();supplied_=false;continue;
+            }
             if(limits_.cache.preparedOnly){const auto req=request(draw);
                 if(req&&!cache_.ready(*req)){
                     if(need_&&!(need_->request==*req))throw std::runtime_error("Resource changed during pending upload");

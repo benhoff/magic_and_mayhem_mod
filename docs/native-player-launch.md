@@ -37,6 +37,10 @@ showing that World. Reusing the preceding UI can briefly place moving overlays o
 occlusion at their previous positions. `MNM_WORLD_FIRST_SEAL_BASELINE=1` selects
 this matching-UI policy; an explicit `0` retains inherited UI for diagnostics.
 
+Small combat colour effects use ordered native batches to reduce texture uploads
+and draw submissions. `MNM_WORLD_SMALL_COLOUR_BASELINE=1` selects the previous
+atlas path for diagnostics. This retains the same source pixels and blend order.
+
 Select a mode explicitly, before any presentation options after `--`:
 
 ```sh

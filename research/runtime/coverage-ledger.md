@@ -29166,3 +29166,40 @@ review was interrupted before commit to finish this correction; its exact source
 versions, successful earlier controls and refusal remain retained. Existing
 environment receipts keep their original producer hashes; new module hashes are
 normal provenance and grant no new live-game validation.
+
+### M1 combat small-colour batching, 2026-11-12
+
+The live slowdown diagnosis retained9.16575Hz consecutive source timing and an
+85.8426ms native/81.4210ms submission report range. Completed generation3196
+has359 owned2x2 colour effects; unpublished generation3197 is excluded. The new
+`NR.small-colour-batching` native policy carries owned integer colour words in
+bounded instance batches, splitting before overlapping writes and every
+intervening non-small primitive. Original simulation, draw order, integer blend
+arithmetic, owned source credits, completed-image/UI generation rules, ordinary
+readback prohibitions and isolated wire protocol remain separate and unchanged.
+
+Current llvmpipe/M1 scalar and serial controls pass; existing colour atlas,
+indexed sprite atlas and retained-image controls pass. Same retained source plus
+an authored native background compares50 whole images exactly. M1 warm native
+completion decreases70.9205 to35.5616ms, draws658 to372 and texture uploads31 to0.
+These replay timings are not a live20FPS or original-output acceptance result.
+See `research/runtime/native-small-colour-batching.md`; new SQLite evidence and
+fresh crowded-session results retain their own scope. Historical shared-source
+staleness and unsupported-rendering limitations are preserved.
+
+`COMBAT12.live-diagnostics01` preserves seven scoped probes and their failures.
+The corrected moving scene observes eight distinct moving zombies, but measured
+phase rates remain11.96–14.77Hz and later refuse unsupported caller54a563/tag14.
+A fiery combat run reaches several movers and16.37Hz before inactive-viewport
+input refusal. A near20Hz CPU-placement prototype lacks sufficient creature
+motion and is not combat acceptance; its launcher edits were removed while
+retaining exact prototype sources. Two later contiguous source histories retain
+444/1625 Worlds before the unchanged unsupported-caller refusal. No caller is
+newly admitted and no normal-Quit/live replacement status is promoted.
+
+The fiery run contains an original enemy Levitate cast80 targeting zombie31,
+with caster mana debit and subsequent height/drift observations, consistent with
+the installed Grimoire. This supports expected floating motion. The user-reported
+rectangular base and exact visual target still need source/original-output
+correlation; Levitate is not proof that those pixels are correct. All new source
+cohorts, videos, failures and source versions remain pinned and backed up.

@@ -41,6 +41,12 @@ using SurfaceId=std::uint64_t;
 struct PixelFormat {unsigned bits=0;std::array<std::uint32_t,3> masks{};};
 // Value6 is reserved for the private additive-rectangle shader branch.
 enum class CompositeMode {copy,half,quarterSource,displace,quarterDestination,projectedShadow,additive=7,runOutline=8,tintOutline=9};
+// Owned, tightly clipped 1..2 by 1..2 colour writes. Source rows have stride2.
+struct SmallColourDraw {
+    Rect destination;
+    std::array<std::uint32_t,4> pixels{};
+    CompositeMode mode=CompositeMode::copy;
+};
 struct SpriteComposite {
     CompositeMode mode=CompositeMode::copy;
     // Nonnegative horizontal displacement, sampling untouched pixels to the right.
@@ -153,6 +159,9 @@ public:
                    SurfaceId mask,const SpriteComposite&,
                    const std::array<std::uint16_t,256>* palette=nullptr);
     void colourRect(SurfaceId,const Image&,Rect,int,int,const SpriteComposite&);
+    // Preserve order; only disjoint writes share a frozen destination and draw.
+    // At most512 writes, on fully defined RGB565/RGB555 storage. No readback.
+    void smallColourRects(SurfaceId,const std::vector<SmallColourDraw>&);
     void additiveRect(SurfaceId destination,Rect,const std::array<std::uint16_t,3>& channels);
     // Surface2-style same-format native operation; see surface_copy.hpp for the bounded policy.
     // Same-ID opaque copies freeze each ordered source piece on the GPU (max16MiB

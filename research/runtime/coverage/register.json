@@ -54370,7 +54370,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded native colour rectangle pixel atlas",
-      "scope": "Opt-in SceneRenderer caches exact owned RGB565 colour rectangle source dimensions/words, independent of mode/destination/clip/resource IDs. At most64LRU64x64slots in one512x512native colour atlas and matching all-one indexed mask (two native handles/524288storagepixels, at most1MiBownedCPUwords). Cache hits reuse native source pixels, not World output. Existing composite/copy clipping, arithmetic, known-word admission, draw order and baseline restoration stay unchanged. Atlas update flushes pending copies before slot reuse; failed upload invalidates the old key. Native CanvasWorld enables the cache; explicit environment baseline disables it. Default generic scenes retain serial primitives. Ordered original source/ANI/simulation/producer history and two-credit/export policies unchanged. No recovered/original equivalence or60FPS claim.",
+      "scope": "Opt-in SceneRenderer caches exact owned RGB565 colour rectangle source dimensions/words, independent of mode/destination/clip/resource IDs. At most64LRU64x64slots in one512x512native colour atlas and matching all-one indexed mask (two native handles/524288storagepixels, at most1MiBownedCPUwords). Cache hits reuse native source pixels, not World output. Existing composite/copy clipping, arithmetic, known-word admission, draw order and baseline restoration stay unchanged. Atlas update flushes pending copies before slot reuse; failed upload invalidates the old key. Native CanvasWorld enables the cache; explicit environment baseline disables it. Default generic scenes retain serial primitives. Ordered original source/ANI/simulation/producer history and two-credit/export policies unchanged. No recovered/original equivalence or60FPS claim. Current cache-enabled scenes route consecutive1..2 by1..2 colour requests through separately registered NR.small-colour-batching unless explicitly disabled; larger sources retain this atlas. Historical evidence keeps its source phases.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -54611,7 +54611,8 @@
         "FPS07.scope-reconciled01"
       ],
       "remaining_gaps": [
-        "Current native/headless and stated corrected full public TITAN flow pass with4612balanced returns and19.5966Hzsource floor. NativeWorld48.9985FPS and visiblepaint57.3311FPS secondcycle miss the historical diagnostic60FPS target; original comparison/replacement, unobserved failures, hardware/driver/scanout/interpolation/movieWorld and wider shared-source freshness remain pending. Earlierfailedjourneys/capture histories retained. Fixed-FPS completion condition closed by the existing2026-10-25 diagnostic policy (FPS07.scope-reconciled01); this does not assert that the historical benchmark passed or waive functional response, forward progress or resource bounds."
+        "Current native/headless and stated corrected full public TITAN flow pass with4612balanced returns and19.5966Hzsource floor. NativeWorld48.9985FPS and visiblepaint57.3311FPS secondcycle miss the historical diagnostic60FPS target; original comparison/replacement, unobserved failures, hardware/driver/scanout/interpolation/movieWorld and wider shared-source freshness remain pending. Earlierfailedjourneys/capture histories retained. Fixed-FPS completion condition closed by the existing2026-10-25 diagnostic policy (FPS07.scope-reconciled01); this does not assert that the historical benchmark passed or waive functional response, forward progress or resource bounds.",
+        "COMBAT12 changes shared renderer/scene sources and adds a separately scoped small-colour policy. Current scalar/cache/atlas/retained-source controls do not refresh historical whole-player or original-comparison claims."
       ],
       "implementation_review": {
         "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
@@ -179969,6 +179970,78 @@
       },
       "remaining_gaps": [
         "Current validation is isolated argument/environment equivalence and configuration/guard controls; no additional original-game or pixel/timing validation. Existing game-performance and whole-player milestones retain their historical source phases."
+      ]
+    },
+    {
+      "id": "NR.small-colour-batching",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Ordered owned small-colour instance batches",
+      "scope": "Native optimization for existing colour-cache scenes: consecutive owned1..2 by1..2 colour requests carry integer source words in batches of at most512 within the caller draw/time budget. Direct rendering validates all input and fully definedRGB565/RGB555 destination before mutation, splits before the first overlapping write and every intervening non-small/hidden primitive, freezes one native destination envelope per disjoint group and preserves copy/half/quarter arithmetic. No source-texture upload, ordinary readback, original output seed, draw sorting or simulation advance. The isolated renderer retains serial existing wire/recovery operations. CanvasWorld defaults to batches; explicit MNM_WORLD_SMALL_COLOUR_BASELINE=1 keeps its old atlas path. Larger rectangles retain64-entry cache bounds. Finite scalar, same-retained-source/native-background and owned crowded input observations have separate limits; no all-map20FPS, original pixels or scanout equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-small-colour-batching.md",
+        "research/runtime/native-colour-rectangle-cache.md",
+        "research/runtime/coverage-ledger.md",
+        "docs/native-player-launch.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "compat/legacy/canvas_world.cpp"
+      ],
+      "tests": [
+        "tests/small-colour-batch-test.cpp",
+        "tests/combat-world-replay.cpp",
+        "tests/colour-rectangle-cache-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/native-retained-world-test.cpp"
+      ],
+      "validation_dependencies": [
+        "renderer/CMakeLists.txt",
+        "renderer/scenes/CMakeLists.txt",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/isolated_dispatch.inc",
+        "assets/resources/resource_manager.cpp",
+        "tests/resource-fixtures.hpp"
+      ],
+      "evidence": [
+        "COMBAT12.small-colour-controls01",
+        "COMBAT12.live-diagnostics01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Same retained generation3196 primitives on an authored nonconstant native background; no reconstruction or equivalence of the historical original destination/history.",
+        "Native submission/completion timings include driver waits and explicit diagnostic synchronization; no GPU busy-time attribution or universal live20FPS guarantee.",
+        "Finite owned crowded and moving-creature observations are separate from full normal-Quit/player acceptance, unlimited combat/long-session stability and physical scanout.",
+        "Shared renderer sources change; historical related evidence keeps exact original hashes and milestones without current whole-player or unsupported-raster validation credit.",
+        "No trial supplies full normal-Quit acceptance; diagnostic cancellation or failures remain explicit.",
+        "Crowd01 did not require creature motion; Moving02 has SQLite contention and is invalid; Performance04 fails its >=3movers condition despite near20Hz stationary work.",
+        "Moving03 verified8distinct first-phase movers but subsequent source intervals fell to11.96..14.77Hz and the source refused unsupported caller54a563/tag14.",
+        "Engaged05 reached fire/combat and several moving zombies, but failed active-viewport input after the user changed focus. Recent rates fell to16.37Hz. The short video is not a complete scanout/original-pixel proof.",
+        "CPU-affinity prototypes in04/05/06/07 used maximum-capacity cores; scene differences/refusals prohibit a causal combat-FPS claim. Prototype sources are retained; public launcher CPU edits were removed from the release batch.",
+        "Visual-source06 and Source07 each preserve a contiguous complete observational source prefix, then fail the existing original raster caller guard. Prefix completeness does not validate unpublished WRITING work or the missing Levitate/tile scenario.",
+        "The original spell80cast targetsZombie31 with mana debit and rising/drifting actor coordinates. The platform under the reported zombie is not yet matched to exact retained source requests/original output at that moment; associating the visual report with that target remains an inference.",
+        "Rendering timings and P-core scene observations are not a controlled same-workload A/B or universal19..20FPS result."
       ]
     }
   ],
@@ -408136,6 +408209,48 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "COMBAT12.small-colour-controls01",
+      "kind": "native_integration",
+      "scope": "Current scalar/serial RGB565/RGB555, clipping/overlap/order/budget/refusal/readback/resource controls on llvmpipe and M1, existing cache/atlas/retained-image regressions, and50full-frame same-retained-source comparisons on authored native background with bounded M1 timings. No game execution in this control scenario.",
+      "record": "research/runtime/combat-small-colour-results-20261112/controls01.json",
+      "sha256": "cdb9912df287c2612390f79e702b54b15489e457c4457283546028ab0c8eec63",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "COMBAT12.live-diagnostics01",
+      "kind": "live_observation",
+      "scope": "Bounded owned viewport-directed zombie probes, passive movement/source cadence and diagnostic captures. Negative instrumentation/focus/unsupported-caller results remain failures. Original Levitate cast and target height are observations; floating-base pixels and19..20Hz active combat remain unresolved. No normal-Quit, original-output or scanout acceptance.",
+      "record": "research/runtime/combat-small-colour-results-20261112/moving01.json",
+      "sha256": "926849515fa41cb647865173c5270038eb200ff17e581f2fa86e5b596a3381ff",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/diagnostic_recorded",
+          "equals": true
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/moving_combat_target_met",
+          "equals": false
+        },
+        {
+          "pointer": "/floating_tile_resolved",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -443694,6 +443809,42 @@
       "evidence": [
         "LAUNCH12.local-defaults-controls02"
       ]
+    },
+    {
+      "id": "combat-small-colour-controls-20261112",
+      "scope": "Current scalar/serial RGB565/RGB555, clipping/overlap/order/budget/refusal/readback/resource controls on llvmpipe and M1, existing cache/atlas/retained-image regressions, and50full-frame same-retained-source comparisons on authored native background with bounded M1 timings. No game execution in this control scenario.",
+      "level": "headless",
+      "behaviors": [
+        "NR.small-colour-batching"
+      ],
+      "tests": [
+        "tests/small-colour-batch-test.cpp",
+        "tests/combat-world-replay.cpp",
+        "tests/colour-rectangle-cache-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/native-retained-world-test.cpp"
+      ],
+      "evidence": [
+        "COMBAT12.small-colour-controls01"
+      ]
+    },
+    {
+      "id": "combat-small-colour-live-diagnostics-20261112",
+      "scope": "Bounded owned viewport-directed zombie probes, passive movement/source cadence and diagnostic captures. Negative instrumentation/focus/unsupported-caller results remain failures. Original Levitate cast and target height are observations; floating-base pixels and19..20Hz active combat remain unresolved. No normal-Quit, original-output or scanout acceptance.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.small-colour-batching"
+      ],
+      "tests": [
+        "tests/small-colour-batch-test.cpp",
+        "tests/combat-world-replay.cpp",
+        "tests/colour-rectangle-cache-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/native-retained-world-test.cpp"
+      ],
+      "evidence": [
+        "COMBAT12.live-diagnostics01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -445521,8 +445672,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-3a06fb1e3fe88c3176a428e0de08bdda29e89f2b320137a00a4120d7c2b762ac.json",
-    "sha256": "3a06fb1e3fe88c3176a428e0de08bdda29e89f2b320137a00a4120d7c2b762ac"
+    "path": "research/runtime/coverage/source-index-d7611ff5d71431e99c3132a27760d2daa0abb8767427eaf87e149de1f776e90f.json",
+    "sha256": "d7611ff5d71431e99c3132a27760d2daa0abb8767427eaf87e149de1f776e90f"
   },
   "evidence_applicability": [
     {
