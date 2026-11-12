@@ -29221,3 +29221,15 @@ production source/binary are restored. No native spell implementation, original
 full-pixel/driver acceptance, normal-Quit or performance promotion is asserted.
 Earlier unresolved-carpet reports remain historical; unrelated glitches and the
 moving-combat19–20FPS target remain open.
+
+## Recording-free combat slowdown followup —2026-11-12
+
+`COMBAT12.slowdown-stages02` retains reviewed byte-preserving cache sharing,
+recording-free movement rates12.20–13.67Hz, restored short CPU-placement
+controls and retained source07 queue analysis. A private preservation-tested
+cadence observer records individual original`509e50`maintenance/action calls
+up to229.58ms. The default Asahi preservation control fails with differing x87
+register slots; its failure, private prototype and live-memory acquisition
+boundaries remain explicit. No production code, clock, status promotion,
+normal-Quit or19–20FPS acceptance changes. See
+[the scoped findings](combat-slowdown-followup-20261112.md).
