@@ -5,14 +5,13 @@ player acceptance target, configuration boundaries and remaining scope decisions
 These launch instructions describe supplied behavior; they do not certify that
 all completion requirements have passed.
 
-On x86 Linux, launch with:
+Launch with:
 
 ```sh
-./run-x86.sh
-# Equivalent direct entry point:
 ./run-native.sh
 ```
 
+On x86 Linux, `./run-x86.sh` is an equivalent entry point.
 Click **Launch game** in the Qt shell. Both entry points require the existing
 `native-only-rendering-v1` profile: our resident World renderer and native pixel
 producers supply the viewport, with original presentation/menu fallback disabled.
@@ -69,7 +68,8 @@ initialization and owner execution are mocked in those controls.
 
 The first launch initializes a dedicated prefix at
 `working/native-player/wineprefix`, using the existing hash-checked supplied
-DirectPlay installer. Later launches reuse it. Another launch using the same
+DirectPlay installer. Later launches reuse it. Checkout-local settings can select
+an already prepared player and its existing save store automatically. Another launch using the same
 player prefix refuses; an active Wine server must finish before reuse. Foreign
 prefixes and symlinked prefix paths refuse. An interrupted initialization is
 preserved for inspection; it is not silently repaired or overwritten.
@@ -105,8 +105,28 @@ unchanged. The persistent player prefix is separate from ordinary `WINEPREFIX`
 and from historical test prefixes. Existing save synchronization stays with the
 menu/session services; this launcher does not import another prefix's saves.
 
+Optional defaults live in the ignored `working/native-player/launch.json`:
+
+```json
+{
+  "schema": 1,
+  "prefix": "working/my-player/wineprefix",
+  "save_store": "working/my-player/saves"
+}
+```
+
+Both locations use the existing owned-directory checks under this checkout's
+`working/`. Prefix ownership, exclusive locking and stopped-server checks still
+apply. `--prefix` overrides the configured prefix; `MNM_MENU_SAVE_STORE` overrides
+the configured save store. With no settings file, the usual prefix and save-store
+defaults apply. These local settings stay on the machine where the player data
+lives.
+
 The entry point reserves 4 GiB for initialization, build and session output via
-`tools/working-retention.py`, and monitors the 90 GiB main-drive reserve. A storage
+`tools/working-retention.py`. It automatically reads the machine policy at
+`working/storage-policy-local.json` when present, otherwise the repository's
+90 GiB policy. The selected policy is inherited by preparation steps and their
+guarded copies. `MNM_WORKING_STORAGE_POLICY` remains an explicit override. A storage
 refusal must be resolved before launch. Help needs no storage reservation:
 
 ```sh

@@ -29137,3 +29137,32 @@ entries before inserting/exporting through SQLite. This asserts custody, not a
 past gate pass or new historical engine validation. Reports are under
 `arm-frame-history-results-20261112/` and
 `arm-frame-throughput-results-20261111/imported-master-history01.json`.
+
+## Checkout-local player defaults — 2026-11-12
+
+`LAUNCH12.local-defaults-controls01` adds optional versioned defaults for the
+existing owned player prefix and save store at `working/native-player/launch.json`.
+The public shell automatically selects an authored local storage policy when
+available, preserving explicit overrides and the4GiB launch reservation. Normal
+use remains `./run-native.sh`; configuration selects existing data in place.
+
+Thirty-nine launcher/configuration checks and12 native-only contract checks pass.
+They include exact argument/environment equivalence with the previous explicit
+ARM launch, CLI/environment priority, fresh-checkout defaults, storage-policy
+selection, help with broken settings, bounded schema parsing and owned-path
+refusals. Prefix ownership/locking and stopped-server checks remain in force.
+No original game runs, data migration or renderer/simulation changes occur.
+Existing live-game/FPS milestones retain their original source phases and raw
+freshness limitations; these new configuration controls are headless validation.
+
+`LAUNCH12.local-defaults-controls02` extends this with policy propagation to
+descendants and the same-filesystem preparation-copy guard. Seventy current
+controls pass:39 launcher/configuration,12 native-only and19 real-filesystem
+environment controls. Targeted retained-source negative controls reproduce the
+old shell's missing exported policy and the old copy helper's missing policy
+argument. The selected reserve and the copy-size reservation remain enforced;
+the environment pool's lease/reset/pin protections remain unchanged. The earlier
+review was interrupted before commit to finish this correction; its exact source
+versions, successful earlier controls and refusal remain retained. Existing
+environment receipts keep their original producer hashes; new module hashes are
+normal provenance and grant no new live-game validation.

@@ -23,6 +23,22 @@ class Environment(unittest.TestCase):
         self.addCleanup(lambda:e._LEASES.__setitem__(slice(None),[x for x in e._LEASES if x.root!=self.root]))
     def lease(self,name):
         run=self.root/'working/tests'/name;run.mkdir();return e.acquire(self.root,run/'game',self.source,kind='game')
+    def test_guarded_copy_inherits_explicit_machine_policy(self):
+        (self.root/'tools').mkdir();guard=self.root/'tools/working-retention.py';guard.write_text('# guarded fixture')
+        target=self.root/'working/tests/copy';policy=str(self.root/'working/machine policy.json')
+        with patch.object(e,'_owner',return_value=self.root),patch.object(e.subprocess,'check_output',return_value=b'1048576 source'),patch.object(e.subprocess,'run') as run,patch.dict(os.environ,{'MNM_WORKING_STORAGE_POLICY':policy}):
+            e._copy(self.source,target,self.root)
+            command=run.call_args.args[0]
+            self.assertEqual(command[:5],[sys.executable,str(guard),'--policy',policy,'run'])
+            self.assertIn('--reserve-gib',command)
+            self.assertEqual(command[-2:],[str(self.source),str(target)])
+    def test_guarded_copy_keeps_repository_policy_without_override(self):
+        (self.root/'tools').mkdir();guard=self.root/'tools/working-retention.py';guard.write_text('# guarded fixture')
+        with patch.object(e,'_owner',return_value=self.root),patch.object(e.subprocess,'check_output',return_value=b'1048576 source'),patch.object(e.subprocess,'run') as run,patch.dict(os.environ,{},clear=True):
+            e._copy(self.source,self.root/'working/tests/copy',self.root)
+            command=run.call_args.args[0]
+            self.assertEqual(command[:3],[sys.executable,str(guard),'run'])
+            self.assertNotIn('--policy',command)
     def test_repeated_runs_reuse_inode_reset_mutations_and_restore_old_saves(self):
         a=self.lease('run-1');inode=(a.target/'large.dll').stat().st_ino;before=e._scan(self.source)[0]
         (a.target/'config/settings.cfg').write_bytes(b'changed setting')
