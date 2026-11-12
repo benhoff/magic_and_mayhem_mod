@@ -3,10 +3,12 @@
 import contextlib
 import importlib.util
 import io
+import json
 import os
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 import unittest
 from unittest.mock import MagicMock, patch
 
@@ -30,6 +32,7 @@ class PlayerLaunch(unittest.TestCase):
             stack.enter_context(patch.object(Path, 'open', return_value=MagicMock()))
             stack.enter_context(patch.object(player.shutil, 'which', return_value='/bin/fixture'))
             stack.enter_context(patch.object(player, 'owned_prefix'))
+            stack.enter_context(patch.object(player, 'player_settings', return_value={}))
             prepare = stack.enter_context(patch.object(player, 'prepare_prefix'))
             flock = stack.enter_context(patch.object(player.fcntl, 'flock'))
             run = stack.enter_context(patch.object(player.subprocess, 'run', return_value=subprocess.CompletedProcess([], 0)))
@@ -63,6 +66,45 @@ class PlayerLaunch(unittest.TestCase):
             self.assertEqual(run.call_args.kwargs['env']['MNM_WORLD_IMAGE_REUSE'], '1')
             self.assertEqual(run.call_args.kwargs['env']['MNM_WORLD_FIRST_SEAL_BASELINE'], '1')
             self.assertNotIn('MNM_WORLD_IMAGE_REUSE', os.environ)
+
+    def test_local_player_defaults_reuse_configured_prefix_and_saves(self):
+        settings = {'schema': 1, 'prefix': 'working/my player/prefix',
+                    'save_store': 'working/my player/saves'}
+        with self.launch(existing=True) as (prepare, _, run), patch.object(player, 'player_settings', return_value=settings):
+            self.assertEqual(player.main([]), 0)
+            self.assertEqual(prepare.call_args.args[1], ROOT/'working/my player/prefix')
+            self.assertEqual(run.call_args.kwargs['env']['MNM_MENU_SAVE_STORE'], str(ROOT/'working/my player/saves'))
+            self.assertNotIn('MNM_MENU_SAVE_STORE', os.environ)
+
+    def test_explicit_prefix_and_save_environment_override_local_defaults(self):
+        settings = {'schema': 1, 'prefix': 'working/local/prefix', 'save_store': 'working/local/saves'}
+        with self.launch(environment={'MNM_MENU_SAVE_STORE': str(ROOT/'working/explicit/saves')}) as (prepare, _, run), patch.object(player, 'player_settings', return_value=settings):
+            self.assertEqual(player.main(['--prefix', 'working/explicit/prefix']), 0)
+            self.assertEqual(prepare.call_args.args[1], ROOT/'working/explicit/prefix')
+            self.assertEqual(run.call_args.kwargs['env']['MNM_MENU_SAVE_STORE'], str(ROOT/'working/explicit/saves'))
+
+    def test_local_defaults_match_the_previous_manual_arm_launch(self):
+        settings={'schema':1,'prefix':'working/existing player/prefix','save_store':'working/existing player/saves'}
+        with self.launch(existing=True, environment={'MNM_MENU_SAVE_STORE':str(ROOT/settings['save_store'])}) as (_, _, run), patch.object(player.platform, 'machine', return_value='aarch64'), patch.object(player.sys, 'platform', 'linux'):
+            self.assertEqual(player.main(['--prefix',settings['prefix']]), 0)
+            manual=run.call_args
+        with self.launch(existing=True) as (_, _, run), patch.object(player, 'player_settings', return_value=settings), patch.object(player.platform, 'machine', return_value='aarch64'), patch.object(player.sys, 'platform', 'linux'):
+            self.assertEqual(player.main([]), 0)
+            self.assertEqual(run.call_args, manual)
+
+    def test_help_does_not_read_local_settings_or_prepare_a_prefix(self):
+        with self.launch() as (prepare, _, run), patch.object(player, 'player_settings', side_effect=ValueError('broken settings')) as settings:
+            with self.assertRaises(SystemExit) as stopped:player.main(['--help'])
+            self.assertEqual(stopped.exception.code, 0)
+            settings.assert_not_called(); prepare.assert_not_called(); run.assert_not_called()
+
+    def test_invalid_local_settings_refuse_before_prefix_preparation(self):
+        with self.launch() as (prepare, _, run), patch.object(player, 'player_settings', side_effect=ValueError('bad settings')):
+            self.assertEqual(player.main([]), 1)
+            prepare.assert_not_called(); run.assert_not_called()
+        with self.launch() as (prepare, _, run), patch.object(player, 'player_settings', return_value={'schema': 1, 'save_store': '/outside'}):
+            self.assertEqual(player.main([]), 1)
+            prepare.assert_not_called(); run.assert_not_called()
 
     def test_arm_image_reuse_explicit_diagnostic_override_is_preserved(self):
         for value in ('0', '1'):
@@ -266,6 +308,53 @@ class PlayerLaunch(unittest.TestCase):
         self.assertEqual(command[-2:], ['--', '--skip-movies'])
         self.assertEqual(self.capture_shell('run-native.sh', '--help'),
                          ['python3', '-B', str(ROOT / 'tools/run-native-game.py'), '--help'])
+
+    def test_storage_policy_defaults_are_checkout_local_and_keep_explicit_override(self):
+        with tempfile.TemporaryDirectory(prefix='native-player-settings-') as name:
+            root = Path(name); (root/'working').mkdir()
+            script = root/'run-native.sh'; script.write_bytes((ROOT/'run-native.sh').read_bytes())
+            def capture(environment):
+                result = subprocess.run(['bash', '-c',
+                    'exec(){ printenv MNM_WORKING_STORAGE_POLICY > "$LAUNCH_POLICY_CAPTURE"; printf "%s\\0" "$@"; exit 0; }; script=$1; shift; source "$script" "$@"',
+                    'policy-control', str(script)], env=environment, capture_output=True, check=True)
+                policy = result.stdout.decode().rstrip('\0').split('\0')[4]
+                self.assertEqual((root/'inherited-policy').read_text().rstrip('\n'), policy)
+                return policy
+            environment = dict({k:v for k,v in os.environ.items() if k != 'MNM_WORKING_STORAGE_POLICY'},
+                               LAUNCH_POLICY_CAPTURE=str(root/'inherited-policy'))
+            self.assertEqual(capture(environment), str(root/'tools/working-retention.json'))
+            (root/'working/storage-policy-local.json').write_text('{}')
+            self.assertEqual(capture(environment), str(root/'working/storage-policy-local.json'))
+            self.assertEqual(capture(dict(environment, MNM_WORKING_STORAGE_POLICY='/explicit policy.json')), '/explicit policy.json')
+
+
+class PlayerSettings(unittest.TestCase):
+    def test_absent_settings_preserve_default(self):
+        with tempfile.TemporaryDirectory() as name:
+            self.assertEqual(player.player_settings(Path(name)), {})
+
+    def test_versioned_settings_accept_paths_with_spaces(self):
+        with tempfile.TemporaryDirectory() as name:
+            root=Path(name); path=root/'working/native-player/launch.json'; path.parent.mkdir(parents=True)
+            settings={'schema':1,'prefix':'working/player one/prefix','save_store':'working/player one/saves'}
+            path.write_text(json.dumps(settings))
+            self.assertEqual(player.player_settings(root), settings)
+
+    def test_malformed_unsupported_and_oversized_settings_refuse(self):
+        cases=['{', '[]', '{"schema":true}', '{"schema":2}', '{"schema":1,"unknown":1}',
+               '{"schema":1,"prefix":null}', '{"schema":1,"save_store":" "}', ' '*8193]
+        with tempfile.TemporaryDirectory() as name:
+            root=Path(name); path=root/'working/native-player/launch.json'; path.parent.mkdir(parents=True)
+            for content in cases:
+                with self.subTest(content=content[:60]):
+                    path.write_text(content)
+                    with self.assertRaises(ValueError):player.player_settings(root)
+
+    def test_symlinked_settings_refuse(self):
+        with tempfile.TemporaryDirectory() as name:
+            root=Path(name); path=root/'working/native-player/launch.json'; path.parent.mkdir(parents=True)
+            target=root/'settings.json'; target.write_text('{"schema":1}'); path.symlink_to(target)
+            with self.assertRaises(ValueError):player.player_settings(root)
 
 
 original_prepare = player.prepare_prefix

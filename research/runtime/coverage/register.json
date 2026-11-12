@@ -179929,6 +179929,47 @@
         "The live probe validates acknowledged accepted inputs, eight actual casts and four held arrows; inactive-window, invalid-coordinate and invalid-sequence refusal branches were source-reviewed rather than separately executed.",
         "Private harness is retained as exact SQLite acquisition source, not promoted to the legacy Cure/crowded acceptance suite."
       ]
+    },
+    {
+      "id": "NP.checkout-local-player-defaults",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "One-command player launch with checkout-local prefix, saves and storage policy",
+      "scope": "Optional ignored working/native-player/launch.json schema1 selects an existing owned Wine prefix and save store for a zero-option run-native launch. Explicit --prefix and MNM_MENU_SAVE_STORE retain priority; missing settings preserve existing defaults. Prefix ownership, symlink/working containment, locking and stopped-server checks remain enforced. The shell prefers an authored working/storage-policy-local.json before the repository policy, with MNM_WORKING_STORAGE_POLICY retaining priority and the4GiB launch reservation unchanged. No prefix/save migration, installer rewrite, simulation/render contract or new live-game acceptance is asserted. The selected policy is exported to descendants and explicitly passed to the existing same-filesystem preparation-copy guard; absent overrides preserve the original copy guard defaults.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/native-player-launch.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "run-native.sh",
+        "tools/run-native-game.py",
+        "tools/experiment_environment.py"
+      ],
+      "tests": [
+        "tests/test-native-player-launcher.py",
+        "tests/test-experiment-environment.py"
+      ],
+      "validation_dependencies": [
+        "tools/native_only_contract.py",
+        "tools/directplay_dx6_launch.py",
+        "tools/working-retention.py"
+      ],
+      "evidence": [
+        "LAUNCH12.local-defaults-controls01",
+        "LAUNCH12.local-defaults-controls02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Current validation is isolated argument/environment equivalence and configuration/guard controls; no additional original-game or pixel/timing validation. Existing game-performance and whole-player milestones retain their historical source phases."
+      ]
     }
   ],
   "evidence": [
@@ -408049,6 +408090,52 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "LAUNCH12.local-defaults-controls01",
+      "kind": "native_integration",
+      "scope": "Isolated actual shell routing in temporary checkouts and mocked Python player execution: configured defaults equal the previous explicit ARM command, overrides/defaults/help preserved, malformed/oversized/symlink/foreign paths refuse, native ownership and stopped-prefix guards retain their existing controls. No Wine, original game, prefix or save migration.",
+      "record": "research/runtime/player-local-defaults-results-20261112/controls01.json",
+      "sha256": "8ce089d060fd2c98d89c3d30bb75379f33d6e915126fac61e21002aee00fe1d0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/no_original_game_execution",
+          "equals": true
+        },
+        {
+          "pointer": "/no_prefix_or_save_data_moved",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "LAUNCH12.local-defaults-controls02",
+      "kind": "native_integration",
+      "scope": "Isolated shell routing and environment inheritance in temporary checkouts, mocked Python player execution, and real-filesystem environment reuse controls. Configured ARM defaults match the prior manual launch, overrides/defaults/help and strict ownership remain. The effective policy is exported and explicitly forwarded into guarded preparation copies; old source variants fail the targeted new regressions. No Wine/original-game execution or user-data migration.",
+      "record": "research/runtime/player-local-defaults-results-20261112/controls02.json",
+      "sha256": "0397d8e28eeea7bc412bb4e191387b9a2c40cbfa17cf7c833f5853a053751183",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/no_original_game_execution",
+          "equals": true
+        },
+        {
+          "pointer": "/no_prefix_or_save_data_moved",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -443576,6 +443663,37 @@
       "evidence": [
         "ART12.viewport-input-accounting02"
       ]
+    },
+    {
+      "id": "checkout-local-player-defaults-20261112",
+      "scope": "Isolated actual shell routing in temporary checkouts and mocked Python player execution: configured defaults equal the previous explicit ARM command, overrides/defaults/help preserved, malformed/oversized/symlink/foreign paths refuse, native ownership and stopped-prefix guards retain their existing controls. No Wine, original game, prefix or save migration.",
+      "level": "headless",
+      "behaviors": [
+        "NP.checkout-local-player-defaults"
+      ],
+      "tests": [
+        "tests/test-native-player-launcher.py",
+        "tests/test-native-only-contract.py"
+      ],
+      "evidence": [
+        "LAUNCH12.local-defaults-controls01"
+      ]
+    },
+    {
+      "id": "checkout-local-player-defaults-propagation-20261112",
+      "scope": "Isolated shell routing and environment inheritance in temporary checkouts, mocked Python player execution, and real-filesystem environment reuse controls. Configured ARM defaults match the prior manual launch, overrides/defaults/help and strict ownership remain. The effective policy is exported and explicitly forwarded into guarded preparation copies; old source variants fail the targeted new regressions. No Wine/original-game execution or user-data migration.",
+      "level": "headless",
+      "behaviors": [
+        "NP.checkout-local-player-defaults"
+      ],
+      "tests": [
+        "tests/test-native-player-launcher.py",
+        "tests/test-native-only-contract.py",
+        "tests/test-experiment-environment.py"
+      ],
+      "evidence": [
+        "LAUNCH12.local-defaults-controls02"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -445403,8 +445521,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-fa484193f11f657971f4289c9fea5e465e5eab34f0e466e62112489e83aae443.json",
-    "sha256": "fa484193f11f657971f4289c9fea5e465e5eab34f0e466e62112489e83aae443"
+    "path": "research/runtime/coverage/source-index-3a06fb1e3fe88c3176a428e0de08bdda29e89f2b320137a00a4120d7c2b762ac.json",
+    "sha256": "3a06fb1e3fe88c3176a428e0de08bdda29e89f2b320137a00a4120d7c2b762ac"
   },
   "evidence_applicability": [
     {
