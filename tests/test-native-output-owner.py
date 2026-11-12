@@ -1,5 +1,6 @@
 """Admission and namespace-boundary controls; no original game inputs."""
 import copy
+import importlib.util
 import hashlib
 import json
 import os
@@ -12,6 +13,34 @@ import unittest
 from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 import native_output_owner as owner
+
+spec=importlib.util.spec_from_file_location('owned_run',Path(__file__).resolve().parents[1]/'tools/run-native-owned.py')
+owned_run=importlib.util.module_from_spec(spec);spec.loader.exec_module(owned_run)
+
+
+class DisplayLine(unittest.TestCase):
+    def number(self,chunks,server_code=None,ready=True):
+        server=SimpleNamespace(poll=lambda:server_code)
+        with patch.object(owned_run.select,'select',return_value=([7],[],[]) if ready else ([],[],[])),patch.object(owned_run.os,'read',side_effect=chunks) as read:
+            value=owned_run._display_number(7,server)
+            return value,read.call_count
+
+    def test_complete_line(self):
+        self.assertEqual(self.number([b'17\n']),('17',1))
+
+    def test_split_digits_and_newline_must_all_be_consumed(self):
+        self.assertEqual(self.number([b'1',b'7',b'\n']),('17',3))
+
+    def test_digits_without_newline_refuse_eof(self):
+        with self.assertRaisesRegex(RuntimeError,'before newline'):self.number([b'17',b''])
+
+    def test_malformed_and_overlong_lines_refuse(self):
+        for line in (b'\n',b' 17\n',b'17x\n',b'17\n4\n',b'\xff\n',b'9'*32):
+            with self.subTest(line=line),self.assertRaises(RuntimeError):self.number([line])
+
+    def test_timeout_or_exited_server_refuse(self):
+        with self.assertRaisesRegex(RuntimeError,'complete display line'):self.number([],ready=False)
+        with self.assertRaisesRegex(RuntimeError,'initialization'):self.number([b'17\n'],server_code=1)
 
 
 class Ownership(unittest.TestCase):
@@ -95,6 +124,38 @@ class Ownership(unittest.TestCase):
         for key in ('WAYLAND_DISPLAY','LD_PRELOAD','LD_AUDIT','LD_LIBRARY_PATH','MNM_LEGACY_XCOOKIE'):
             self.assertIn(['--unsetenv',key],[command[i:i+2] for i in range(len(command)-1)])
         self.assertEqual(command[-1],'--')
+
+    def test_verified_authority_is_explicitly_bound_after_masking_tmp(self):
+        session=self.root/'session';prefix=self.root/'prefix';session.mkdir();prefix.mkdir()
+        with patch.object(owner,'admit',return_value=(self.socket,self.authority)):
+            with patch.object(Path,'is_relative_to',return_value=False):
+                command=owner.command(session,prefix,self.metadata,self.environment,self.receipt)
+        mount=['--ro-bind',str(self.authority),'/tmp/mnm-private-xauthority']
+        triples=[command[i:i+3] for i in range(len(command)-2)]
+        self.assertEqual(triples.count(mount),1)
+        self.assertIn(['--setenv','XAUTHORITY','/tmp/mnm-private-xauthority'],triples)
+        self.assertLess(command.index('--tmpfs'),triples.index(mount))
+        self.assertNotIn(['--bind',str(self.authority),'/tmp/mnm-private-xauthority'],triples)
+
+    def test_ram_checkout_is_explicitly_read_only_with_only_private_writable_children(self):
+        repo=self.root/'repo';repo.mkdir();(repo/'.git').write_text('gitdir: retained')
+        (repo/'AGENTS.md').write_text('owned');(repo/'tools').mkdir();(repo/'tools/menu-game-runner.py').write_text('pass')
+        session=repo/'working/session';prefix=repo/'working/prefix';session.mkdir(parents=True);prefix.mkdir()
+        with patch.object(owner,'admit',return_value=(self.socket,self.authority)):
+            args=owner.command(session,prefix,self.metadata,self.environment,self.receipt,repository=repo)
+        triples=[args[i:i+3] for i in range(len(args)-2)]
+        self.assertIn(['--ro-bind',str(repo),str(repo)],triples)
+        self.assertNotIn(['--bind',str(repo),str(repo)],triples)
+        self.assertEqual([v for v in triples if v[0]=='--bind'],[['--bind',str(session),str(session)],['--bind',str(prefix),str(prefix)]])
+        self.assertLess(triples.index(['--ro-bind',str(repo),str(repo)]),triples.index(['--bind',str(session),str(session)]))
+        self.assertIn(['--tmpfs','/tmp'],[args[i:i+2] for i in range(len(args)-1)])
+
+    def test_masked_targets_still_refuse_an_unbound_or_foreign_repository(self):
+        session=self.root/'session';prefix=self.root/'prefix';session.mkdir();prefix.mkdir()
+        with patch.object(owner,'admit',return_value=(self.socket,self.authority)):
+            for repo in (None,self.root/'absent',Path('/tmp')):
+                with self.subTest(repo=repo),self.assertRaises((ValueError,OSError)):
+                    owner.command(session,prefix,self.metadata,self.environment,self.receipt,repository=repo)
 
 
 if __name__=='__main__':unittest.main()

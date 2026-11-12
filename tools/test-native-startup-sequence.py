@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Replay every captured startup queue natively; compare each completed canvas."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import importlib.util
@@ -166,7 +167,7 @@ def main():
         run('abi-link', ['lld-link', '/machine:x86', '/entry:start', '/subsystem:console', '/nodefaultlib',
                          '/base:0x400000', '/dynamicbase:no', '/safeseh:no', '/timestamp:0', '/out:'+str(abi), *objects, pebuild/'kernel32.lib'])
         abiPrefix=out/'wineprefix'
-        run('abi-prefix', ['cp','-a','--reflink=auto',args.prefix_template.resolve(),abiPrefix])
+        stage_prefix(ROOT, args.prefix_template.resolve(), abiPrefix, log=Path(abiPrefix).parent / 'abi-prefix.log')
         run('abi-forwarding', ['wine', abi], {**env, 'WINEPREFIX': str(abiPrefix)})
         report['wave_return_abi_passed'] = True
         report['shade_minus127_palette_capture_passed'] = True

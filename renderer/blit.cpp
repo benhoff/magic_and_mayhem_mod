@@ -47,7 +47,9 @@ struct Current {
     QOpenGLContext* previous=QOpenGLContext::currentContext();
     QSurface* surface=previous?previous->surface():nullptr;
     bool switched=false;
-    Current(QOpenGLContext& context,QSurface* target):context(context){
+    Current(QOpenGLContext& context,QOffscreenSurface* target):context(context){
+        if(!context.isValid() || !target || !target->isValid())
+            throw GraphicsFailure("OpenGL offscreen target is unavailable");
         if(previous==&context && surface==target)return;
         if(!context.makeCurrent(target))throw GraphicsFailure("Cannot make the OpenGL context current");
         switched=true;
@@ -105,6 +107,7 @@ uniform ivec2 oldOrigin;
 uniform ivec2 sourceOrigin;
 uniform ivec2 destinationOrigin;
 uniform int mode;
+uniform uint blendMask;
 uniform uvec3 additiveChannels;
 uniform int rowOffsets[16];
 uniform int rowPeriod;
@@ -125,7 +128,7 @@ void main(){
     uint s=texelFetch(sourcePixels,at,0).r;
     if(indexedSource)s=spritePalette[s];
     uint d=texelFetch(oldPixels,destination-oldOrigin,0).r;
-    uint m=0x7befu;
+    uint m=blendMask;
     if(mode==8){nativePixel=s;return;}
     if(mode==7){
         uvec3 source=uvec3(s>>11u,(s>>5u)&63u,s&31u);
@@ -282,13 +285,15 @@ struct GlBlitter::Impl {
         return row;
     }
     struct PresentationUniforms {GLint indexed,rgb565,masks,lowBits,maxima;} presentationUniforms{};
-    struct CompositeUniforms {GLint sourceOrigin,destinationOrigin,mode,rowOffsets,rowPeriod,indexed,palette,additive,oldOrigin,stride,height;} compositeUniforms{};
+    struct CompositeUniforms {GLint sourceOrigin,destinationOrigin,mode,rowOffsets,rowPeriod,indexed,palette,additive,oldOrigin,stride,height,blendMask;} compositeUniforms{};
     std::optional<std::array<std::uint16_t,256>> copyPalette,compositePalette;
     GLint maxTexture=0;
     Driver info;
     RenderStats counters;
     std::unordered_map<SurfaceId,Surface> surfaces;
     std::vector<std::weak_ptr<GpuFrame::Data>> frames;
+    struct DeferredFrame {GLuint texture;GLsync produced,consumed;};
+    std::vector<DeferredFrame> deferredFrames;
     std::uint64_t revision=0;
     void trackFrame(const std::shared_ptr<GpuFrame::Data>& frame){
         if(frames.size()>64)frames.erase(std::remove_if(frames.begin(),frames.end(),[](const auto& f){return f.expired();}),frames.end());
@@ -350,7 +355,7 @@ struct GlBlitter::Impl {
         gl.glUniform1i(location(*program,"sourcePixels"),0);gl.glUniform1i(location(*program,"sourceMask"),1);
         useProgram(presentation->programId());
         gl.glUniform1i(location(*presentation,"nativePixels"),0);gl.glUniform1i(location(*presentation,"palette"),1);
-        compositeUniforms={location(*compositing,"sourceOrigin"),location(*compositing,"destinationOrigin"),location(*compositing,"mode"),location(*compositing,"rowOffsets"),location(*compositing,"rowPeriod"),location(*compositing,"indexedSource"),location(*compositing,"spritePalette[0]"),location(*compositing,"additiveChannels"),location(*compositing,"oldOrigin"),location(*compositing,"destinationStride"),location(*compositing,"destinationHeight")};
+        compositeUniforms={location(*compositing,"sourceOrigin"),location(*compositing,"destinationOrigin"),location(*compositing,"mode"),location(*compositing,"rowOffsets"),location(*compositing,"rowPeriod"),location(*compositing,"indexedSource"),location(*compositing,"spritePalette[0]"),location(*compositing,"additiveChannels"),location(*compositing,"oldOrigin"),location(*compositing,"destinationStride"),location(*compositing,"destinationHeight"),location(*compositing,"blendMask")};
         useProgram(compositing->programId());gl.glUniform1i(location(*compositing,"sourcePixels"),0);gl.glUniform1i(location(*compositing,"sourceMask"),1);gl.glUniform1i(location(*compositing,"oldPixels"),2);
         gl.glGenVertexArrays(1,&vao);gl.glGenFramebuffers(1,&fbo);gl.glGetIntegerv(GL_MAX_TEXTURE_SIZE,&maxTexture);
         // This context is private to the renderer; caller/viewport state lives
@@ -566,7 +571,14 @@ struct GlBlitter::Impl {
     }
     ~Impl(){
         if(context.isValid() && surface->isValid()){
-            try {Current current(context,surface);for(auto& pair:surfaces)release(pair.second);
+            try {Current current(context,surface);
+                for(const auto& frame:deferredFrames){
+                    if(frame.produced)gl.glDeleteSync(frame.produced);
+                    if(frame.consumed){gl.glWaitSync(frame.consumed,0,GL_TIMEOUT_IGNORED);gl.glDeleteSync(frame.consumed);}
+                    gl.glDeleteTextures(1,&frame.texture);
+                }
+                deferredFrames.clear();
+                for(auto& pair:surfaces)release(pair.second);
                 for(const auto& timing:gpuTimings)gl.glDeleteQueries(2,timing.queries.data());
                 deleteTextures(1,&scratch);deleteTextures(1,&maskedColour);deleteTextures(1,&maskedSelection);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);copying.reset();importing.reset();coordinateProgram.reset();mappedWorldProgram.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
             catch(const std::exception&){}
@@ -577,10 +589,15 @@ GpuFrame::Data::~Data(){
     if(!owner)return;
     owner->thread();
     try{Current current(owner->context,owner->surface);
-        if(produced)owner->gl.glDeleteSync(produced);
-        if(consumed){owner->gl.glWaitSync(consumed,0,GL_TIMEOUT_IGNORED);owner->gl.glDeleteSync(consumed);}
+        if(produced){owner->gl.glDeleteSync(produced);produced=nullptr;}
+        if(consumed){owner->gl.glWaitSync(consumed,0,GL_TIMEOUT_IGNORED);owner->gl.glDeleteSync(consumed);consumed=nullptr;}
         owner->deleteTextures(1,&texture);
-    }catch(const std::exception&){} // Lost context storage retires with its owner.
+    }catch(const GraphicsFailure&){
+        // The shared GL context can outlive a destroyed platform target. Keep
+        // exact deletion debts until terminal retirement supplies a target;
+        // dropping the names here leaks them into the surviving sharing group.
+        owner->deferredFrames.push_back({texture,produced,consumed});
+    }catch(const std::exception&){} // Preserve existing terminal semantic-refusal handling.
 }
 QSize GpuFrame::size() const{return data_?data_->dimensions:QSize{};}
 bool GpuFrame::hasRaster() const{return data_ && !data_->owner;}
@@ -650,6 +667,23 @@ GlBlitter::GlBlitter(QOpenGLContext* shareContext,QOffscreenSurface* externalSur
     else impl_=std::make_shared<Impl>(shareContext,externalSurface);
 }
 void GlBlitter::injectGraphicsFault(unsigned mode){if(!isolated_ || mode<1 || mode>3)throw std::runtime_error("Fault injection requires isolated renderer and mode1..3");isolated_->faultNext(mode);}
+std::array<bool,2> GlBlitter::losePlatformTargetForTest(){
+    if(isolated_)throw std::runtime_error("Platform-target loss requires an ordinary renderer");
+    auto& p=*impl_;p.thread();
+    if(!p.ownedSurface || p.surface->thread()!=QThread::currentThread() || !p.surface->isValid() || p.batchDepth)
+        throw std::runtime_error("Platform-target loss requires a quiescent GUI-owned target");
+    p.flushCopies();
+    if(QOpenGLContext::currentContext()==&p.context)throw std::runtime_error("Platform-target loss while context is current");
+    const bool before=p.surface->isValid();p.surface->destroy();return {before,p.surface->isValid()};
+}
+bool GlBlitter::restorePlatformTargetForDeletion(){
+    if(isolated_)throw std::runtime_error("Platform-target deletion restore requires an ordinary renderer");
+    auto& p=*impl_;p.thread();
+    if(!p.ownedSurface || p.surface->thread()!=QThread::currentThread() || p.batchDepth)
+        throw std::runtime_error("Platform-target deletion restore requires its GUI owner");
+    if(!p.surface->isValid())p.surface->create();
+    return p.surface->isValid();
+}
 bool GlBlitter::hasRecoveryCheckpoint() const{if(isolated_)return true;return recovery_ && recovery_->revision==impl_->revision;}
 void GlBlitter::checkpointRecovery(){
     if(isolated_){isolated_->checkpoint();return;}
@@ -998,9 +1032,11 @@ void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,in
     if(isolated_){isolated_->call(wire::message(wire::Op::composite,source,destination,r,x,y,mask,c,palette?std::optional<std::array<std::uint16_t,256>>(*palette):std::nullopt),true);return;}
     if(c.mode==CompositeMode::copy&&!palette){copy(source,destination,r,x,y,std::nullopt,mask);return;}
     auto& p=*impl_;p.thread();auto& src=p.get(source);auto& dst=p.get(destination);auto& coverage=p.get(mask);
-    const PixelFormat rgb565{16,{0xf800,0x7e0,0x1f}};
-    if(source==destination||mask==destination||src.format.bits!=rgb565.bits||src.format.masks!=rgb565.masks||dst.format.bits!=rgb565.bits||dst.format.masks!=rgb565.masks||coverage.format.bits!=8||coverage.width!=src.width||coverage.height!=src.height)
-        throw std::invalid_argument("Sprite composition requires distinct RGB565 source/destination and matching coverage");
+    const bool rgb555=dst.format.bits==16&&dst.format.masks==std::array<std::uint32_t,3>{0x7c00,0x3e0,0x1f};
+    const bool rgb565=dst.format.bits==16&&dst.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f};
+    if(source==destination||mask==destination||(!rgb565&&!rgb555)||src.format.bits!=dst.format.bits||src.format.masks!=dst.format.masks||coverage.format.bits!=8||coverage.width!=src.width||coverage.height!=src.height||
+       (rgb555&&(palette||(c.mode!=CompositeMode::half&&c.mode!=CompositeMode::quarterSource&&c.mode!=CompositeMode::quarterDestination))))
+        throw std::invalid_argument("Composition requires matching packed colour storage and coverage; RGB555 admits only unpaletted colour blends");
     if(r.left<0||r.top<0||r.right<=r.left||r.bottom<=r.top||r.right>src.width||r.bottom>src.height||x<0||y<0||x>dst.width-(r.right-r.left)||y>dst.height-(r.bottom-r.top))throw std::invalid_argument("Composition rectangle outside storage");
     if(c.mode!=CompositeMode::copy&&c.mode!=CompositeMode::half&&c.mode!=CompositeMode::quarterSource&&c.mode!=CompositeMode::quarterDestination&&c.mode!=CompositeMode::displace&&c.mode!=CompositeMode::additive&&c.mode!=CompositeMode::runOutline)throw std::invalid_argument("Unsupported sprite composite mode");
     int reach=0;
@@ -1028,13 +1064,17 @@ void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,in
     g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,src.native);g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,coverage.native);g.glActiveTexture(GL_TEXTURE2);g.glBindTexture(GL_TEXTURE_2D,frozen);
     p.useProgram(p.compositing->programId());p.selectPalette(p.compositeUniforms.indexed,p.compositeUniforms.palette,p.compositePalette,palette);g.glUniform2i(p.compositeUniforms.sourceOrigin,r.left,r.top);g.glUniform2i(p.compositeUniforms.destinationOrigin,x,y);g.glUniform2i(p.compositeUniforms.oldOrigin,freeze.left,freeze.top);g.glUniform1i(p.compositeUniforms.stride,dst.width);g.glUniform1i(p.compositeUniforms.mode,int(c.mode));g.glUniform1iv(p.compositeUniforms.rowOffsets,16,c.rowOffsets.data());g.glUniform1i(p.compositeUniforms.rowPeriod,int(c.rowPeriod));
     g.glUniform1i(p.compositeUniforms.height,dst.height);
+    g.glUniform1ui(p.compositeUniforms.blendMask,rgb555?0x3defu:0x7befu);
     p.draw(3);p.check();++p.counters.copies;
 }
 void GlBlitter::colourRect(SurfaceId destination,const Image& pixels,Rect source,int x,int y,const SpriteComposite& mode){
     if(isolated_){isolated_->call(wire::message(wire::Op::colour,destination,pixels,source,x,y,mode),true);return;}
     if(pixels.width>64||pixels.height>64)throw std::invalid_argument("Colour rectangle exceeds primitive budget");
     SurfaceId colour=0,mask=0;
-    try{colour=create(pixels,{16,{0xf800,0x7e0,0x1f}});mask=create({pixels.width,pixels.height,std::vector<std::uint32_t>(pixels.pixels.size(),1)},{8,{}});
+    auto& p=*impl_;p.thread();const auto format=p.get(destination).format;
+    if(format.bits!=16||(format.masks!=std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f}&&format.masks!=std::array<std::uint32_t,3>{0x7c00,0x3e0,0x1f}))
+        throw std::invalid_argument("Colour rectangle requires RGB565 or RGB555 storage");
+    try{colour=create(pixels,format);mask=create({pixels.width,pixels.height,std::vector<std::uint32_t>(pixels.pixels.size(),1)},{8,{}});
         composite(colour,destination,source,x,y,mask,mode);destroy(mask);destroy(colour);
     }catch(...){if(mask)destroy(mask);if(colour)destroy(colour);throw;}
 }
@@ -1202,11 +1242,14 @@ ClipperState GlBlitter::surfaceClipper(SurfaceId id) const{
 void GlBlitter::copyCoordinates(SurfaceId pixels,std::optional<SurfaceId> source,SurfaceId destination,Rect r,int x,int y,std::optional<std::uint32_t> key){
     if(isolated_){isolated_->call(wire::message(wire::Op::coordinates,pixels,source,destination,r,x,y,key),true);return;}
  auto& p=*impl_;p.thread();p.flushCopies();auto& a=p.get(pixels);auto& d=p.get(destination);
- if(d.format.bits!=32 || r.left<0 || r.top<0 || r.right> a.width || r.bottom>a.height || r.right<=r.left || r.bottom<=r.top || x<0 || y<0 || x+r.right-r.left>d.width || y+r.bottom-r.top>d.height)throw std::invalid_argument("Coordinate copy bounds/format");
+ if(d.format.bits!=32 || r.left<0 || r.top<0 || r.right> a.width || r.bottom>a.height || r.right<=r.left || r.bottom<=r.top || x<0 || y<0 || x>d.width-(r.right-r.left) || y>d.height-(r.bottom-r.top))throw std::invalid_argument("Coordinate copy bounds/format");
  if(source && *source==destination){
   if(key)throw std::invalid_argument("Keyed coordinate self copy requires ordered pixel semantics");
   surfaceCopy(*source,destination,{SurfaceCopyApi::BltFast,r,{x,y,x+r.right-r.left,y+r.bottom-r.top},0});return;
  }
+ // The pixel input is a sampler too, even when coordinates come from a
+ // separate surface. Only the self-copy route above may reuse the target.
+ if(pixels==destination)throw std::invalid_argument("Coordinate pixel input aliases destination");
  a.validity.require(r);
  GLuint coordinates=0;if(source){auto& c=p.get(*source);if(c.format.bits!=32 || c.width!=a.width || c.height!=a.height)throw std::invalid_argument("Coordinate source extent/format");c.validity.require(r);coordinates=c.native;}
  Current current(p.context,p.surface);auto& g=p.gl;p.attach(d.native,d.width,d.height);p.setScissor(true);g.glScissor(x,y,r.right-r.left,r.bottom-r.top);p.useProgram(p.coordinateProgram->programId());

@@ -7,7 +7,10 @@ case $(uname -m) in
     *) printf 'This launcher requires an x86 host.\n' >&2; exit 1 ;;
 esac
 
-# Keep the prefix separate from the ARM64 Wine installation brought from Asahi.
-# Explicit WINEPREFIX and run-game.sh --prefix overrides remain supported.
-export WINEPREFIX=${WINEPREFIX:-$REPO_DIR/working/wineprefix-$(uname -m)}
-exec "$REPO_DIR/tools/run-game.sh" "$@"
+# The original renderer remains an explicit diagnostic/compatibility choice.
+if [[ ${1:-} == --original-renderer ]]; then
+    shift
+    export WINEPREFIX=${WINEPREFIX:-$REPO_DIR/working/wineprefix-$(uname -m)}
+    exec "$REPO_DIR/tools/run-game.sh" "$@"
+fi
+exec "$REPO_DIR/run-native.sh" "$@"

@@ -47,18 +47,32 @@ def validate(experiment,directory):
                 linked.update(range(first,last+1));gpu_rows.append(row)
             else:empty.append(row[0])
             continue  # Existing GPU validator proves pieces/snapshot/resources.
-        if route!=1 or not first or first!=last or first not in checked or first in linked:
+        if route!=1:raise ValueError('CPU copy lacks unique native output command')
+        clipped=bool(row[23] and not row[11])
+        if not first:
+            # CPU rows do not carry an independently observed plan-piece count.
+            # An empty interval cannot distinguish an empty clip from lost COPYs.
             raise ValueError('CPU copy lacks unique native output command')
-        record=checked[first];w=record['words']
-        expected=[source,target,*row[24:28],row[28],row[29],int(is_keyed),row[22] if is_keyed else 0]
-        if w[:10]!=expected or any(w[10:]) or [record[k] for k in ('source_width','source_height','target_width','target_height')]!=[row[16],row[17],row[19],row[20]]:
-            raise ValueError('CPU caller/geometry/key/resource output mismatch')
-        linked.add(first);cpu.append(row[0])
-        if is_keyed:keyed.append((row[0],first,'files' in record,row[2]!=0xffffffff))
+        if first>last or (not clipped and first!=last) or any(seq not in checked or seq in linked for seq in range(first,last+1)):
+            raise ValueError('CPU copy lacks unique native output command')
+        sr=list(map(signed,row[24:28]));dr=list(map(signed,row[28:32]))
+        for seq in range(first,last+1):
+            record=checked[seq];w=record['words']
+            geometry=(w[2:8]==[*row[24:28],row[28],row[29]])
+            if clipped:
+                geometry=(sr[2]-sr[0]==dr[2]-dr[0] and sr[3]-sr[1]==dr[3]-dr[1]
+                    and sr[0]<=w[2]<w[4]<=sr[2] and sr[1]<=w[3]<w[5]<=sr[3]
+                    and w[6]-w[2]==dr[0]-sr[0] and w[7]-w[3]==dr[1]-sr[1])
+            if (w[:2]!=[source,target] or not geometry or w[8:10]!=[int(is_keyed),row[22] if is_keyed else 0]
+                or any(w[10:]) or [record[k] for k in ('source_width','source_height','target_width','target_height')]!=[row[16],row[17],row[19],row[20]]):
+                raise ValueError('CPU caller/geometry/key/resource output mismatch')
+            linked.add(seq)
+            if is_keyed:keyed.append((row[0],seq,'files' in record,row[2]!=0xffffffff))
+        cpu.append(row[0])
     if not cpu or not any(k[3] for k in keyed) or not any(r[2]!=0xffffffff for r in gpu_rows):raise ValueError('Both real CPU-keyed and GPU original-module callers are required')
     if not any(retained for _,_,retained,_ in keyed):raise ValueError('Missing retained independent CPU-keyed pixel witness')
-    return dict(verified=True,application_calls=len(rows),cpu_copy_calls=len(cpu),cpu_keyed_calls=len(keyed),
-        gpu_copy_calls=len(gpu_rows),gpu_empty_calls=len(empty),fill_calls=routes['routes'].get('fill_prepared',0),
+    return dict(verified=True,application_calls=len(rows),cpu_copy_calls=len(cpu),cpu_keyed_calls=len({k[0] for k in keyed}),
+        gpu_copy_calls=len(gpu_rows),gpu_empty_calls=sum(r[15]==2 and not r[40] for r in rows),cpu_empty_calls=sum(r[15]==1 and not r[40] for r in rows),fill_calls=routes['routes'].get('fill_prepared',0),
         caller_bound_commands=len(linked),native_copies_compared=report['copies_checked'],
         cpu_keyed_retained_cases=sum(retained for _,_,retained,_ in keyed),post_retirement_calls_excluded=header[21],
         caller_census_sha256=routes['census_sha256'],records_sha256=gpu['diagnostic_records_sha256'],

@@ -25,6 +25,7 @@ WorldRollingSession::WorldRollingSession(render::GlBlitter &renderer,
         return std::get<std::vector<std::uint8_t>>(std::move(read));
       }, mirror_.get()),
       world_(renderer, store), verify_(verify), resident_(resident) {
+  if(mirror_)mirror_->setStoragePressureHandler([this]{world_.releaseCachedImages();});
   const auto profile=std::getenv("MNM_WORLD_OWNER_PROFILE");ownerProfile_=profile&&std::strcmp(profile,"1")==0;
   if(resident && verify)throw std::invalid_argument("Resident and pixel-reference modes are separate");
   if(retainCompletedImage && !preparedReplay)throw std::invalid_argument("Retained World image requires prepared resident presentation");

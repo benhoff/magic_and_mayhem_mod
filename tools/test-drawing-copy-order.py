@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Run an owned PE32 copy journal fixture with real thread return reversal."""
+from experiment_environment import stage_prefix
 import argparse
 import json
 import os
@@ -41,7 +42,7 @@ def main():
     binary = run / 'fixture.exe'
     subprocess.run(['lld-link', '/machine:x86', '/entry:start', '/subsystem:console', '/nodefaultlib',
                     '/safeseh:no', '/timestamp:0', '/out:'+str(binary), str(run/'fixture.obj'), str(run/'kernel32.lib')], check=True)
-    subprocess.run(['cp', '-a', '--reflink=auto', str(a.prefix_template.resolve()), str(run/'wineprefix')], check=True)
+    stage_prefix(ROOT, str(a.prefix_template.resolve()), str(run/'wineprefix'))
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
     env.update(WINEPREFIX=str(run/'wineprefix'), WINEDEBUG='-all', MNM_DRAW02_PRODUCER_BIND='1')
     cases = []

@@ -22,7 +22,7 @@ SCHEMA = 1
 # Changes to enforcement/instructions also need accounting. Ordinary prose is
 # linked through behavior documents; these files control the workflow itself.
 CONTROL_FILES = ('AGENTS.md', 'docs/architecture.md', '.github/workflows/re-coverage.yml',
-                 '.githooks/pre-commit', '.githooks/pre-push', '.gitattributes',
+                 '.githooks/pre-commit', '.githooks/pre-push', '.githooks/reference-transaction', '.gitattributes',
                  '.evidence-store.json', '.evidence-commits.json', 'research/runtime/coverage/README.md')
 DRIFT = {'new_sources_without_index', 'removed_indexed_sources', 'changed_indexed_sources',
          'changed_focused_registers'}
@@ -51,7 +51,7 @@ def gap_items(report):
     """Stable identities, with staleness tracked per evidence/source pair."""
     result = {}
     for kind, items in sorted(report['findings'].items()):
-        if kind in DRIFT:
+        if kind in DRIFT or kind == 'source_applicability':
             continue
         if kind in {'validation_gaps', 'retired_execution_claims'} and not report.get('claim_bindings_required'):
             continue  # Historical trees retain their pre-adoption accounting contract.
@@ -68,7 +68,8 @@ def gap_items(report):
 
 
 def snapshot(root, register=None):
-    with Reader(root) as reader:
+    from verification_budget import workers
+    with workers(root), Reader(root, memoize=True) as reader:
         return _snapshot(root, register, reader)
 
 
@@ -76,7 +77,7 @@ def _snapshot(root, register, reader):
     root = Path(root).resolve()
     register = register if register is not None else load_json(root, REGISTER)
     recorded_sources = {}
-    report = audit(root, register, recorded_sources=recorded_sources)
+    report = audit(root, register, recorded_sources=recorded_sources, reader=reader)
     if report['errors']:
         raise ValueError('Coverage audit failed: ' + '; '.join(report['errors']))
     if 'code_index' not in register:
@@ -93,11 +94,15 @@ def _snapshot(root, register, reader):
     # snapshots must independently fingerprint their actual bytes.
     fingerprint = cache(reader.digest)
     sources = {item['path']: item for item in source_index.index(root, register)['files']}
-    for name in ('research', 'docs'):
-        for path in sorted((root/name).rglob('*')):
-            relative = path.relative_to(root).as_posix()
-            if path.is_file() and path.suffix in {'.md', '.json'} and relative not in {BASELINE} | review_paths:
-                sources[relative] = {'path': relative, 'sha256': fingerprint(path), 'role': 'research', 'references': []}
+    documents = [p for name in ('research', 'docs') for p in sorted((root/name).rglob('*'))
+                 if p.is_file() and p.suffix in {'.md', '.json'}
+                 and p.relative_to(root).as_posix() not in {BASELINE} | review_paths]
+    # The audit already verified registered inputs. Freshly verify the remaining
+    # immutable report payloads concurrently, with a bounded chunk per worker.
+    reader.prefetch_digests(documents)
+    for path in documents:
+        relative = path.relative_to(root).as_posix()
+        sources[relative] = {'path': relative, 'sha256': fingerprint(path), 'role': 'research', 'references': []}
     for path in CONTROL_FILES:
         if (root/path).is_file():
             sources[path] = {'path': path, 'sha256': fingerprint(root/path), 'role': 'control', 'references': []}
@@ -126,7 +131,7 @@ def _snapshot(root, register, reader):
                     'evidence': sorted((evidence[e] for e in behavior['evidence']), key=lambda e: e['id']),
                     'scenarios': sorted((s for s in register['scenarios'] if bid in s['behaviors']), key=lambda s: s['id'])}
         behaviors[bid] = {'sha256': digest(contract), 'record': behavior}
-    return {'schema': SCHEMA, 'scope': 'Reviewed accounting baseline; gaps remain unresolved and evidence remains historical.',
+    return {'schema': SCHEMA, 'evidence_applicability': register.get('evidence_applicability', []), 'scope': 'Reviewed accounting baseline; gaps remain unresolved and evidence remains historical.',
             'sources': sources, 'behaviors': behaviors, 'evidence': evidence,
             'evidence_keys': evidence_keys, 'evidence_sources': evidence_sources,
             'evidence_id_imports': register.get('evidence_id_imports', []),
@@ -188,6 +193,10 @@ def immutable_errors(before, after, merge_history=None):
     for build, sha in before['builds'].items():
         if after['builds'].get(build) != sha:
             errors.append(f'Original build removed or rebound: {build}')
+    current_applicability = {r['id']: r for r in after.get('evidence_applicability', [])}
+    for ref in before.get('evidence_applicability', []):
+        if current_applicability.get(ref['id']) != ref:
+            errors.append('Historical source-applicability review removed or rewritten: ' + ref['id'])
     imports=(merge_history or {}).get('evidence_id_imports', [])
     for item in before.get('evidence_id_imports', []):
         if item not in after.get('evidence_id_imports', []):
@@ -243,7 +252,9 @@ def review_errors(review, delta, before, after, audit_report, historical=False):
     if status not in {'pending', 'recorded', 'not_required'} or not isinstance(validation.get('reason'), str) or not validation['reason'].strip():
         errors.append(f'{label}: explicit validation status/reason required')
     selected = validation.get('stages')
-    if selected is not None and (status != 'recorded' or not isinstance(selected, list)
+    # A pending empty list explicitly asserts no validation dimensions.
+    # Preserve such immutable custody receipts without granting stage credit.
+    if selected is not None and not (status == 'pending' and selected == []) and (status != 'recorded' or not isinstance(selected, list)
                                 or not selected or any(stage not in VALIDATION_STAGES for stage in selected)
                                 or len(set(selected)) != len(selected)):
         errors.append(f'{label}: stages requires a nonempty unique list of recorded validation dimensions')

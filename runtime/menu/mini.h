@@ -1,4 +1,5 @@
 #include "../../protocols/include/mnm/menu_v13.h"
+#include "native_panel_boundary.h"
 static u32 THIS campaign_quit_answer(void*,u32);
 static u8 mini_payload[MNM_MENU_V4_MINI_SIZE];
 static int mini_snapshot(void* object,u8* out,int campaign){
@@ -38,13 +39,8 @@ static u32 mini_dispatch(void* object,u32 action,int campaign){
     // Original storage entry draws panels that consume current World pixels.
     // Native rendering owns the synchronization policy; no GPU pixels or
     // cross-process pointers are passed through the menu wire.
-    if(campaign>=4&&index<2){
-        void* renderer=GetModuleHandleA("MnmRender.dll");
-        if(renderer){
-            u32 (WIN *prepare)(u32)=(u32 (WIN *)(u32))GetProcAddress(renderer,"RenderPrepareStorageV1");
-            if(!prepare || !prepare(index))return MNM_MENU_UNAVAILABLE;
-        }
-    }
+    if(((campaign>=4&&index<2)||(campaign>=3&&action==MNM_MENU_MINI_PREFERENCES)) &&
+       !mini_prepare_native_panel(action==MNM_MENU_MINI_PREFERENCES?2:index))return MNM_MENU_UNAVAILABLE;
     // Quit opens the original confirmation. Never call its Yes callback here.
     record(2,object,index,0);u32 result=((ActionFn)0x4b23f0)(object,index);record(3,object,index,result);
     return MNM_MENU_OK;

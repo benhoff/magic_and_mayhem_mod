@@ -71,6 +71,19 @@ class BackupTests(unittest.TestCase):
         self.assertEqual(path.stat().st_mode&0o777,0o600)
         self.assertEqual(self.remote.stat().st_mode&0o777,0o700)
 
+    def test_archived_snapshot_remains_usable_for_explicit_private_retry(self):
+        from sqlite_snapshot_store import archive
+        sid=m.prepare(self.root,"HEAD",[self.backup])
+        local=self.root/"working/shared-snapshots.sqlite3"
+        cold=Path(self.tmp.name)/"cold-snapshots.sqlite3"
+        archive(self.backup["path"],local,cold,self.root/"working/staging",0,0,True,self.backup["sha256"])
+        self.git("config","mm.snapshotStore",str(local))
+        self.git("config","mm.snapshotColdStore",str(cold))
+        result=self.upload(sid)
+        self.assertEqual(result["state"],"verified")
+        self.assertFalse(Path(self.backup["path"]).exists())
+        self.assertEqual(digest_file(self.remote/"objects"/(self.backup["sha256"]+".sqlite3")),self.backup["sha256"])
+
     def test_second_set_skips_existing_immutable_database(self):
         self.upload(m.prepare(self.root,'HEAD',[self.backup]));self.transfers=0
         result=self.upload(m.prepare(self.root,'HEAD',[self.backup]))

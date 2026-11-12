@@ -21,10 +21,10 @@ def item(native, original):
 
 class CameraCrop(unittest.TestCase):
     def test_crop_retains_heading_at_both_admitted_extents(self):
-        self.assertEqual(dialogue_crop(800,600),(225,90,600,270))
-        self.assertEqual(dialogue_crop(640,480),(180,72,480,216))
+        self.assertEqual(dialogue_crop(800,600),(225,80,600,270))
+        self.assertEqual(dialogue_crop(640,480),(180,64,480,216))
         # The observed640heading begins above row90and needs its complete H.
-        self.assertLess(dialogue_crop(640,480)[1],86)
+        self.assertLessEqual(dialogue_crop(640,480)[1],70)
 
     def test_other_extents_refuse_before_quiet_classification(self):
         for size in [(640,600),(800,480),(641,480),(0,0),(1280,960)]:
@@ -116,6 +116,21 @@ class CameraReadiness(unittest.TestCase):
         with self.assertRaises(ValueError):validate_camera_progress(bad)
         bad=copy.deepcopy(inputs);bad['actions'][-1]['ready_epoch_turns']=3
         with self.assertRaises(ValueError):validate_camera_progress(bad)
+
+    def test_explicit_native_capture_has_no_original_image_credit(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);fixture=self.fixture(root)
+            for row in fixture['camera_dialogue']['checks']:
+                row['metadata'].update(capture_oracle='resident-native',original_saved=False)
+                for field in ('image_sha256','texts','visible'):row[field].pop('original')
+            self.assertTrue(validate_camera_dialogue(fixture,root,True)['verified'])
+            for mutation in (lambda f:f['checks'][0]['metadata'].update(original_saved=True),
+                             lambda f:f['checks'][0]['metadata'].update(native_saved=False),
+                             lambda f:f['checks'][0]['metadata'].update(capture_oracle='dual-draw'),
+                             lambda f:f['checks'][0]['image_sha256'].update(original='invented')):
+                bad=copy.deepcopy(fixture);mutation(bad['camera_dialogue'])
+                with self.assertRaises(ValueError):validate_camera_dialogue(bad,root,True)
+            with self.assertRaises(ValueError):validate_camera_dialogue(fixture,root,False)
 
 
 class CameraMiniReadiness(unittest.TestCase):

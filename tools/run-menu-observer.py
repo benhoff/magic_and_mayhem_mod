@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+from native_windowed_copy import launch_arguments
 REPO=Path(__file__).resolve().parents[1]
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
@@ -53,6 +54,7 @@ def main():
                  '--prefix',str(args.prefix.resolve()),'--runner',str(REPO/'tools'/runner)]
         if metadata.get('source_game') and Path(metadata['source_game']).resolve()!=(REPO/'working/game-nocd').resolve():command+=['--source-game',metadata['source_game']]
         if args.seconds:command+=['--seconds',str(args.seconds)]
+        command+=launch_arguments(env)
         from terrain_light_session import supervise as lighting_session
         with lighting_session(root,metadata,env):
             result=subprocess.run(command,env=env)

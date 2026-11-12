@@ -17,6 +17,7 @@ static u32 command_queue_peak,command_queue_full,command_queue_blocked;
 static u32 command_queue_overflow[6];
 /* Only the drain guard owns deadline state. No clock or peer wait in append. */
 static u32 command_queue_timeout,command_queue_armed,command_queue_since,command_queue_ack,command_queue_timed_out;
+static u32 command_queue_rechecked_progress,command_queue_rechecked_idle,command_queue_deadline[8];
 static void command_queue_configure(void){
     char value[16];u32 n=GetEnvironmentVariableA("MNM_RENDER_CONTINUOUS",value,sizeof(value));
     if(n!=1 || value[0]!='1')return;
@@ -76,6 +77,27 @@ static int command_queue_watch(void){
     if(!pending){command_queue_armed=0;return 1;}
     if(!command_queue_armed || ack!=command_queue_ack){command_queue_armed=1;command_queue_since=now;command_queue_ack=ack;return 1;}
     if(now-command_queue_since>=command_queue_timeout){
+        /* The worker may have been descheduled after writer_valid sampled the
+         * peer. Revalidate at the deadline: an old ACK must not turn already
+         * consumed bytes or actual peer progress into a stalled-reader fault.
+         * Producer traffic alone never renews the peer deadline. */
+        command_queue_deadline[0]=command_queue_since;command_queue_deadline[1]=now;
+        command_queue_deadline[2]=ack;
+        if(!mnm_ring_writer_valid(&command_ring)){
+            u32 reason=mnm_ring_identity(command_ring.map,command_ring.session) && mnm_ring_load(command_ring.map+6)==3?
+                mnm_ring_load(command_ring.map+7):MNM_RENDER_COMMANDS_V2_REASON_INVALID;
+            command_queue_refuse(reason?reason:MNM_RENDER_COMMANDS_V2_REASON_INVALID);return 0;
+        }
+        ack=command_ring.acknowledged;
+        command_queue_deadline[3]=ack;command_queue_deadline[4]=command_ring.published;
+        command_queue_deadline[5]=__atomic_load_n(&command_queue_read,__ATOMIC_ACQUIRE);
+        command_queue_deadline[6]=__atomic_load_n(&command_queue_written,__ATOMIC_ACQUIRE);
+        if(command_queue_deadline[5]==command_queue_deadline[6] && command_ring.published==ack){
+            ++command_queue_rechecked_idle;command_queue_armed=0;return 1;
+        }
+        if(ack!=command_queue_ack){
+            ++command_queue_rechecked_progress;command_queue_since=GetTickCount();command_queue_ack=ack;return 1;
+        }
         __atomic_store_n(&command_queue_timed_out,1,__ATOMIC_RELEASE);
         command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INTERRUPTED);
         mnm_ring_fail(&command_ring,MNM_RENDER_COMMANDS_V2_REASON_INTERRUPTED);return 0;

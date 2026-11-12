@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Capture unchanged no-CD keyed overlap wrapper outputs through real Wine Surface2."""
+from experiment_environment import stage_prefix
 import argparse
 import importlib.util
 import gzip
@@ -13,6 +14,7 @@ import tempfile
 ROOT=Path(__file__).resolve().parents[1]
 BUILD_HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 SOURCES=['tests/surface-keyed-overlap-reference.c','tests/surface-key-reference.c','runtime/shadow/win32_min.h','tools/capture-original-surface-keys.py','tools/capture-original-surface-keyed-overlap.py']
+SOURCES += ['tools/experiment_environment.py']
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 spec=importlib.util.spec_from_file_location('key_capture',ROOT/'tools/capture-original-surface-keys.py')
 key_capture=importlib.util.module_from_spec(spec);spec.loader.exec_module(key_capture)
@@ -36,7 +38,7 @@ def main():
         command('original-before',[str(ROOT/'tools/original-manifest.sh'),'verify'],120)
         if sha(a.executable)!=BUILD_HASH:raise ValueError('Unsupported original executable hash')
         image=a.executable.read_bytes();(run/'original.exe').write_bytes(image)
-        command('prefix',['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),env['WINEPREFIX']],120);command('wineboot',['wineboot','-u'],120)
+        stage_prefix(ROOT, str(a.prefix_template.resolve()), env['WINEPREFIX'], log=Path(env['WINEPREFIX']).parent / 'prefix.log');command('wineboot',['wineboot','-u'],120)
         imports={'VirtualAlloc':16,'VirtualProtect':16,'GetFileSize':8,'LoadLibraryA':4,'GetProcAddress':8,'CreateFileA':28,'ReadFile':20,'WriteFile':20,'CloseHandle':4,'ExitProcess':4}
         definition=run/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{s}\n' for n,s in imports.items()))
         command('imports',['llvm-dlltool','-m','i386','--kill-at','-d',str(definition),'-l',str(run/'kernel32.lib')])

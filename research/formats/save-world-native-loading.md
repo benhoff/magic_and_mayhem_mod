@@ -10,8 +10,13 @@ Evidence: paired writers/readers from executable SHA-256
 `40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168`;
 [function inventory and experiment](../runtime/save-world-serialization.md).
 Confidence is high for reviewed write/read sizes and order, with selected
-original writer execution supporting entity extents. No original-generated
-complete save has been tested.
+original writer execution supporting entity extents. This initial work did not
+test an original-generated complete save. The
+[2026-11-03 candidate inventory](../runtime/campaign-checkpoints-20261103.md)
+subsequently tested 22 unchanged owned saves: their envelopes decode, but all
+world streams reject at offset 300 with `World cell count exceeds limit`.
+That negative result limits the recovered map grammar; it does not establish
+malformed original saves, native restoration or a reason to relax the limit.
 
 ## Native interface and policy
 

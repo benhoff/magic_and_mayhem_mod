@@ -21,7 +21,7 @@ spec=importlib.util.spec_from_file_location('fixture',ROOT/'tools/test-native-mu
 class Admission(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup);self.base=Path(self.temp.name);self.root=self.base/'session';self.root.mkdir()
-        source=self.base/'catalog';fixture.fixture(source);self.metadata=launch.stage(self.root,source)
+        source=self.base/'catalog';fixture.fixture(source);self.metadata=launch.stage(self.root,source,persistent=True)
         (self.root/'game').mkdir();dll=self.root/'game/MnmAudio.dll';dll.write_bytes(b'fixture dll')
         self.metadata.update(native_voices=True,native_render=True,origin='menu_action_bridge',audio_dll_sha256=launch.sha(dll))
         self.channel=self.root/'native-music.bin';data=bytearray(wire.SIZE);data[:8]=wire.MAGIC.encode() if isinstance(wire.MAGIC,str) else wire.MAGIC
@@ -65,7 +65,7 @@ class Admission(unittest.TestCase):
         original=launch.sha;hashed=[]
         def observe(path):hashed.append(path);return original(path)
         with patch.dict(os.environ,{'MNM_VERIFY_ASSETS':'0'}),patch.object(launch,'sha',side_effect=observe):
-            metadata=launch.stage(fresh,self.root/'native-music')
+            metadata=launch.stage(fresh,self.root/'native-music',persistent=True)
         self.assertIs(metadata['full_asset_verification'],False)
         self.assertFalse(any(path.suffix=='.wav' for path in hashed))
         self.assertEqual(metadata['music_toc'],self.metadata['music_toc'])

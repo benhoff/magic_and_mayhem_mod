@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Actual PE32 read-only cadence point and producer journal refusal fixtures."""
+from experiment_environment import stage_prefix
 import argparse,importlib.util,json,os,subprocess,tempfile
 from pathlib import Path
 from drawing_api_session import sha
@@ -19,7 +20,7 @@ def main():
     name='drawing-sample-admission-test'
     subprocess.run(flags+['-c',str(ROOT/'tests'/f'{name}.c'),'-o',str(run/'fixture.obj')],check=True)
     binary=run/'fixture.exe';subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(binary),str(run/'fixture.obj'),str(dll.parent/'kernel32.lib')],check=True)
-    subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),str(run/'wineprefix')],check=True)
+    stage_prefix(ROOT, str(a.prefix_template.resolve()), str(run/'wineprefix'))
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(run/'wineprefix'),WINEDEBUG='-all',MNM_DRAW_UPDATE_BINDING='1')
     cases=[]
     try:

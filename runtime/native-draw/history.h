@@ -12,11 +12,21 @@ __declspec(dllexport) i32 WIN NativeDrawCpuReaderV1(NsCpuReader reader){
 }
 static void ns_cpu_require_at(struct NsState* s,u32 family,u32 route,u32 caller){
  if(!s->history_stale)return;
+ i32 restored=0;
  if(ns_cpu_reader){
-  u32 error=GetLastError();i32 restored=ns_cpu_reader(&s->aliases[s->device->kind==3?3:1],s->pixels,family,route,caller);
+  u32 error=GetLastError();restored=ns_cpu_reader(&s->aliases[s->device->kind==3?3:1],s->pixels,family,route,caller);
   SetLastError(error);
   if(restored==1 && !s->history_stale)return;
  }
+ /* Terminal-only context distinguishes absent/refused readers from a callback
+  * that returned success without restoring this exact physical authority.
+  * Keep the existing v2 refusal record unchanged for historical readers. */
+ u32 context[24]={0x4e4d4e4d,1,96,ns_cpu_reader!=0,(u32)restored,(u32)s->pixels,
+  s->width,s->height,s->pitch,s->bits,s->history_stale,(u32)s->locked,s->lock_owner,
+  (u32)s->dc,(u32)s->storage_dc,s->cpu_guard_world,s->cpu_guard_world_ready,family,route,caller,
+  s->history_generation[0],s->history_generation[1],s->history_nonce[0],s->history_nonce[1]},context_done=0;
+ HANDLE diagnostic=CreateFileA("native-cpu-reader-authority.bin",0x40000000,0,0,1,0x80,0);
+ if(diagnostic!=(HANDLE)-1){WriteFile(diagnostic,context,sizeof(context),&context_done,0);CloseHandle(diagnostic);}
  ++ns_history_refusals;
  u32 record[11]={0x484d4e4d,2,(u32)s->pixels,s->history_generation[0],s->history_generation[1],s->history_nonce[0],s->history_nonce[1],ns_history_refusals,family,route,caller},done=0;
  HANDLE file=CreateFileA("native-cpu-history-refusal.bin",0x40000000,0,0,1,0x80,0);
@@ -48,9 +58,9 @@ __declspec(dllexport) i32 WIN NativeDrawCpuSnapshotV1(void* object,u32* layout,u
 __declspec(dllexport) i32 WIN NativeDrawCpuHistoryV1(const void* pixels,u32 action,u32 gl,u32 gh,u32 nl,u32 nh){
  struct NsLifeGuard lifetime __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(action==3 && ns_guard_enabled<2)return 0;
- for(struct NsState* s=ns_owned;s;s=s->next_owned){
+ struct NsState* s=ns_history_find(pixels,ns_lifetime_mode!=0);
+ if(s){
   const u32 at=(u32)pixels,base=(u32)s->pixels;
-  if(at<base || at-base>=s->pitch*s->height)continue;
   if(action==0){ns_cpu_require_at(s,gl,gh,nl);return 0;}
   if(action==2)return s->history_stale?NS_BUSY:0;
   /* Census metadata only: mapped extent under a protected active Lock.

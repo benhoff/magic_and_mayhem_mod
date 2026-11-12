@@ -24,8 +24,8 @@ static void region_input_fp_restore(void* in){__asm__ volatile("fxrstor (%0)"::"
 #define MNM_REGION_INPUT_LATCH_COUNT 0x6e984c
 #endif
 #include "drawing_region_tracked_actor.h"
-static void region_input_snapshot(u32* row,void* object,u32 mask,RegionMouseRecord mouse,u32 result,u32 error){
- row[3]=++region_input_phase;row[4]=GetTickCount();row[5]=GetCurrentThreadId();row[6]=mask;row[18]=result;row[19]=error;
+static void region_input_fields(u32* row,void* object,u32 mask,RegionMouseRecord mouse,u32 result,u32 error){
+ row[4]=GetTickCount();row[5]=GetCurrentThreadId();row[6]=mask;row[18]=result;row[19]=error;
  copy(row+8,mouse.words,40);
  if(object==(void*)MNM_REGION_INPUT_CAMERA)row[7]|=1;
  if(readable(object,12)){row[7]|=2;row[20]=get((u8*)object+4);row[21]=get((u8*)object+8);}
@@ -55,8 +55,18 @@ static void region_input_snapshot(u32* row,void* object,u32 mask,RegionMouseReco
  if(readable((void*)MNM_REGION_INPUT_LATCH_COUNT,4)){row[7]|=128;row[44]=get((void*)MNM_REGION_INPUT_LATCH_COUNT);}
  region_input_track_snapshot(row);
 }
+static void region_input_snapshot(u32* row,void* object,u32 mask,RegionMouseRecord mouse,u32 result,u32 error){
+ row[3]=++region_input_phase;region_input_fields(row,object,mask,mouse,result,error);
+}
+#ifdef MNM_FRAME_INPUT_OBSERVATION
+#include "drawing_frame_input.h"
+#endif
 static u32 THIS region_input_callback(void* object,u32 mask,RegionMouseRecord mouse){
  u8 fp[512] __attribute__((aligned(16)));u32 error=GetLastError();region_input_fp_save(fp);
+#ifdef MNM_CAMPAIGN_ORDER_OBSERVER
+ u32 order_before[9]={0},order_call=0;
+ if(order_file){order_call=++order_calls;order_sample(2,order_call,mask,order_before);}
+#endif
  u32 at=0xffffffff,thread=GetCurrentThreadId();
  if(region_input_file){
   u32 owner=region_input_thread;
@@ -76,6 +86,9 @@ static u32 THIS region_input_callback(void* object,u32 mask,RegionMouseRecord mo
 #ifdef MNM_CAMPAIGN_INPUT_ADMISSION_OBSERVER
  admission_sample(2,mask,mouse.words);
 #endif
+#ifdef MNM_FRAME_INPUT_OBSERVATION
+ frame_input_sample(2,region_input_calls,object,mask,mouse.words,0,error);
+#endif
  region_input_fp_restore(fp);SetLastError(error);
  u32 result=region_input_original(object,mask,mouse);error=GetLastError();region_input_fp_save(fp);
  if(at!=0xffffffff){region_input_snapshot(region_input_rows[at+1],object,mask,mouse,result,error);
@@ -85,6 +98,12 @@ static u32 THIS region_input_callback(void* object,u32 mask,RegionMouseRecord mo
   --region_input_pending;}
 #ifdef MNM_CAMPAIGN_INPUT_ADMISSION_OBSERVER
  admission_sample(3,mask,mouse.words);
+#endif
+#ifdef MNM_FRAME_INPUT_OBSERVATION
+ frame_input_sample(3,region_input_calls,object,mask,mouse.words,result,error);
+#endif
+#ifdef MNM_CAMPAIGN_ORDER_OBSERVER
+ order_sample(3,order_call,mask,order_before);
 #endif
  region_input_fp_restore(fp);SetLastError(error);return result;
 }

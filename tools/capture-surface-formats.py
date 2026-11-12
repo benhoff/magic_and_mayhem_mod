@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Capture Surface2 native formats, keys and signed/padded rows; serialized Wine."""
+from experiment_environment import stage_prefix
 import argparse,gzip,importlib.util,json,os,struct,subprocess,tempfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -7,6 +8,7 @@ def module(name,path):
  s=importlib.util.spec_from_file_location(name,ROOT/path);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
 keys=module('keys','tools/capture-original-surface-keys.py')
 SOURCES=['tests/surface-formats-reference.c','tests/surface-access-reference.c','runtime/shadow/win32_min.h','tools/capture-surface-formats.py','tools/capture-original-surface-keys.py']
+SOURCES += ['tools/experiment_environment.py']
 def inputs():return [dict(id=i,format=f,layout=layout,kind=kind,clip=clip,key_mode=mode) for i,(f,layout,kind,clip,mode) in enumerate((f,l,k,c,m) for f in range(5) for l in range(5) for k in range(7) for c in range(5) for m in range(4))]
 
 def main():
@@ -20,7 +22,7 @@ def main():
   with (run/(name+'.log')).open('w') as f:subprocess.run(argv,cwd=run,env=env,stdout=f,stderr=f,check=True,timeout=timeout)
  try:
   command('original-before',[str(ROOT/'tools/original-manifest.sh'),'verify'],120)
-  command('prefix',['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),env['WINEPREFIX']],120);command('wineboot',['wineboot','-u'],120)
+  stage_prefix(ROOT, str(a.prefix_template.resolve()), env['WINEPREFIX'], log=Path(env['WINEPREFIX']).parent / 'prefix.log');command('wineboot',['wineboot','-u'],120)
   imports={'LoadLibraryA':4,'GetProcAddress':8,'CreateFileA':28,'ReadFile':20,'WriteFile':20,'CloseHandle':4,'ExitProcess':4};definition=run/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{v}\n' for n,v in imports.items()))
   command('imports',['llvm-dlltool','-m','i386','--kill-at','-d',str(definition),'-l',str(run/'kernel32.lib')]);command('compile',['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-c',str(ROOT/SOURCES[0]),'-o',str(run/'probe.obj')]);command('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(run/'probe.exe'),str(run/'probe.obj'),str(run/'kernel32.lib')])
   cases=inputs();data=struct.pack('<I',len(cases))+b''.join(struct.pack('<6I',*(c[k] for k in ['id','format','layout','kind','clip','key_mode'])) for c in cases);(run/'inputs.bin').write_bytes(data)

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Execute the actual opt-in PE32 primitive lifetime journal on two threads."""
+from experiment_environment import stage_prefix
 import argparse
 import json
 import os
@@ -27,7 +28,7 @@ def main():
     subprocess.run(['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-c',str(ROOT/'tests/drawing-primitive-lifetimes-test.c'),'-o',str(run/'fixture.obj')],check=True)
     binary=run/'fixture.exe'
     subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(binary),str(run/'fixture.obj'),str(run/'kernel32.lib')],check=True)
-    subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),str(run/'wineprefix')],check=True)
+    stage_prefix(ROOT, str(a.prefix_template.resolve()), str(run/'wineprefix'))
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(run/'wineprefix'),WINEDEBUG='-all',MNM_DRAW02_PRODUCER_BIND='1',MNM_DRAW_PRIMITIVE_LIFETIMES='1')
     cases=[]
     try:

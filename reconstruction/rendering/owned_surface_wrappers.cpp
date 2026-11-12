@@ -52,6 +52,31 @@ OwnedSurfaceCopyResult copyOwnedSurfaceWrapper(
     request.flags=plan.flags;
     return {true,backend.copy(*source,*destination,request)};
 }
+OwnedSurfaceCopyRecoveryResult recoverOwnedSurfaceCopy(
+    render::SurfaceBackend& backend, SurfaceCopyWrapper kind,
+    std::optional<render::SurfaceId> source, std::optional<render::SurfaceId> destination,
+    SurfaceRectangle32 sourceRect, std::int32_t x, std::int32_t y,
+    SurfaceWindowContext context, OwnedCopyRecovery recovery, unsigned budget) {
+    if(kind!=SurfaceCopyWrapper::opaqueRecovering && kind!=SurfaceCopyWrapper::keyedRecovering)
+        throw std::invalid_argument("Wrapper has no recovered copy retry contract");
+    SurfaceRectangle32 unused;
+    const auto plan=planSurfaceWrapperCopy(kind,sourceRect,x,y,unused,context,
+                                         bool(source),bool(destination));
+    if(!plan.called) return {};
+    SurfaceRetryInput input;
+    input.wrapper=kind==SurfaceCopyWrapper::keyedRecovering
+        ? SurfaceWrapper::KeyedCopy : SurfaceWrapper::OpaqueCopy;
+    input.fast=plan.fast;
+    input.noWait=context.noWait;
+    input.sourceRoute=recovery.sourceRoute;
+    input.destinationRoute=recovery.destinationRoute;
+    input.keyEnabled=recovery.keyEnabled;
+    input.sourceKey=recovery.sourceKey;
+    input.destinationKey=recovery.destinationKey;
+    OwnedSurfaceRetryAdapter adapter(backend,source,*destination,
+        rectangle(plan.source),rectangle(plan.destination),false,std::move(recovery.bindings));
+    return {true,runSurfaceRetry(input,adapter,budget)};
+}
 SurfaceRetryResult fillOwnedRectangle(render::SurfaceBackend& backend, render::SurfaceId id,
     std::optional<render::Rect> rect, std::uint32_t color,
     OwnedFillRecovery recovery, unsigned budget) {

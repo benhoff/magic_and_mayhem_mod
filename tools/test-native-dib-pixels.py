@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Check native owned HDC painting against GDI and exercise lease refusals."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import importlib.util
@@ -50,7 +51,7 @@ def main():
         r.check_returncode()
     try:
         if not args.wine_prefix:
-            run('prefix', ['cp', '-a', '--reflink=auto', (ROOT/'working/wineprefix-x86_64').resolve(), out/'wineprefix'])
+            stage_prefix(ROOT, (ROOT/'working/wineprefix-x86_64').resolve(), out/'wineprefix', log=Path(out/'wineprefix').parent / 'prefix.log')
         spec = importlib.util.spec_from_file_location('dib_build', ROOT/'tools/build-native-draw.py')
         builder = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(builder)

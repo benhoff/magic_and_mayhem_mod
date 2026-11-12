@@ -11,19 +11,28 @@
 #include <iterator>
 #include <stdexcept>
 using namespace mnm::reconstruction;using U=std::uint32_t;using Bytes=std::vector<unsigned char>;
-int main(int argc,char** argv)try{
- if(argc!=
+// The session and one-shot replay share the same checked byte decoder.
+static Bytes evaluateTerrainLighting(const Bytes& b
 #ifdef ORIGINAL_REFERENCE
-  4
-#else
-  3
+ ,const char* original
 #endif
- )throw std::runtime_error("Expected input reply [original PE]");std::ifstream f(argv[1],std::ios::binary);Bytes b(std::istreambuf_iterator<char>(f),{});
+){
  auto u=[&](std::size_t at){if(at+4>b.size())throw std::runtime_error("Input extent");U v;std::memcpy(&v,b.data()+at,4);return v;};
  if(b.size()<300 || b.size()>MNM_LIGHT_V1_MAX_BYTES || std::memcmp(b.data(),MNM_LIGHT_V1_MAGIC,8) || u(8)!=1 || u(12)!=128 || u(16)!=b.size() || u(112)>1 || u(116) || u(124) || u(120)!=mnm_light_checksum(b.data(),U(b.size())))throw std::runtime_error("Light input identity");
  const U w=u(32),h=u(36),layers=u(40),count=u(44),cc=u(76),cs=u(80),oc=u(84),os=u(88);
  if(w<1 || w>128 || h<1 || h>128 || layers<1 || layers>32 || count!=w*h*((layers+1)/2) || cc>MNM_LIGHT_V1_MAX_SOURCES || cs>MNM_LIGHT_V1_MAX_SOURCES || oc>MNM_LIGHT_V1_MAX_SOURCES || os>oc || u(68)>1 || u(72)>1 || b.size()!=300ull+cc*28ull+oc*32ull+count*5ull)throw std::runtime_error("Light input bounds");
- TerrainLightingCycle cycle(w,h,layers,{std::int32_t(u(48)),std::int32_t(u(52)),std::int32_t(u(56))});TerrainLightingSnapshot input;
+#ifdef MNM_LIGHT_SESSION
+ // Reuse only derived kernels for identical geometry/configuration. Every
+ // mutable field and producer state is restored from this request below.
+ static std::optional<TerrainLightingCycle> cached;
+ static std::array<U,6> previous{};
+ const std::array<U,6> key{w,h,layers,u(48),u(52),u(56)};
+ if(!cached || key!=previous){cached.emplace(w,h,layers,TerrainLightingConfig{std::int32_t(u(48)),std::int32_t(u(52)),std::int32_t(u(56))});previous=key;}
+ auto& cycle=*cached;
+#else
+ TerrainLightingCycle cycle(w,h,layers,{std::int32_t(u(48)),std::int32_t(u(52)),std::int32_t(u(56))});
+#endif
+ TerrainLightingSnapshot input;
  input.player=std::int32_t(u(60));input.changed=std::int32_t(u(64));input.creaturesEnabled=u(68);input.objectsEnabled=u(72);input.creatureScan=cs;input.objectScan=os;input.view={u(92),u(96),u(100)};input.spectator=TerrainSpectatorLight{u(92),u(96)};
  for(U a=0;a<8;++a)for(U z=0;z<8;++z){input.relations.first[a][z]=b[128+a*16+z];input.relations.second[a][z]=b[128+a*16+8+z];}
  std::size_t at=300;
@@ -41,7 +50,7 @@ int main(int argc,char** argv)try{
  // Rebuild original kernels, then restore the captured producer inputs and
  // execute the unchanged original outer updater. The emitted result below is
  // read from original memory, independently of the native result above.
- map_image(read(argv[3]));constexpr U map=0x6c5490;Bytes object(0x66c0,0),creatures(cc*0xe4b,0),objects(oc*0x22e,0);
+ map_image(read(original));constexpr U map=0x6c5490;Bytes object(0x66c0,0),creatures(cc*0xe4b,0),objects(oc*0x22e,0);
  std::memcpy(reinterpret_cast<void*>(map),object.data(),object.size());
  const auto set=[](U p,U value){std::memcpy(reinterpret_cast<void*>(p),&value,4);};
  set(map+4,w);set(map+8,h);set(map+12,layers);set(map+16,w*h);set(map+0x7e0,count);set(map+0x808,u(68));set(map+0x80c,u(72));
@@ -62,6 +71,24 @@ int main(int argc,char** argv)try{
  const auto get=[](U p){U value;std::memcpy(&value,reinterpret_cast<void*>(p),4);return value;};put(32,get(0x5e41a8));for(U i=0;i<11;++i)put(36+i*4,get(stateAddresses[i]));at=80;
  for(const auto& src:buffers){std::memcpy(reply.data()+at,src.data(),count);at+=count;}
 #endif
+ return reply;
+}
+#ifndef MNM_LIGHT_SESSION
+int main(int argc,char** argv)try{
+ if(argc!=
+#ifdef ORIGINAL_REFERENCE
+  4
+#else
+  3
+#endif
+ )throw std::runtime_error("Expected input reply [original PE]");
+ std::ifstream f(argv[1],std::ios::binary);Bytes input(std::istreambuf_iterator<char>(f),{});
+ auto reply=evaluateTerrainLighting(input
+#ifdef ORIGINAL_REFERENCE
+ ,argv[3]
+#endif
+ );
  std::ofstream out(argv[2],std::ios::binary);out.write(reinterpret_cast<const char*>(reply.data()),reply.size());if(!out)throw std::runtime_error("Reply write");
- std::cout<<"{\"success\":true,\"sequence\":"<<u(20)<<",\"creature_capacity\":"<<cc<<",\"object_capacity\":"<<oc<<",\"buffer_bytes\":"<<5*count<<"}\n";return 0;
+ std::cout<<"{\"success\":true}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
+#endif

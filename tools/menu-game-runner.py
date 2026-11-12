@@ -115,9 +115,47 @@ if original_gameplay or os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')=='1':
     spells=root/'spell-events.bin'
     if spells.exists() or spells.is_symlink():raise ValueError('Refusing stale spell observation')
     os.environ['MNM_MENU_SPELL_OBSERVE']='Z:'+str(spells).replace('/','\\')
-os.environ.pop('MNM_MENU_INPUT_ADMISSION_OBSERVE',None)
-if os.environ.get('MNM_CAMPAIGN_INPUT_ADMISSION')=='1':
+os.environ.pop('MNM_MENU_CHECKPOINT_OBSERVE',None)
+os.environ.pop('MNM_MENU_MAP_RESOURCE_OBSERVE',None)
+if os.environ.get('MNM_CAMPAIGN_MAP_RESOURCES')=='1':
+    target=root/'map-resource-boundaries.bin'
+    if target.exists() or target.is_symlink():raise ValueError('Stale map-resource observation')
+    os.environ['MNM_MENU_MAP_RESOURCE_OBSERVE']='Z:'+str(target).replace('/','\\')
+if os.environ.get('MNM_CAMPAIGN_CHECKPOINT') in ('capture','restore') or os.environ.get('MNM_CAMPAIGN_ENTRY_SAVE'):
     if os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')!='1' or not metadata.get('native_render'):
+        raise ValueError('Checkpoint observation requires private native casting diagnostics')
+    checkpoint=root/'checkpoint-events.bin'
+    if checkpoint.exists() or checkpoint.is_symlink():raise ValueError('Stale checkpoint observation')
+    os.environ['MNM_MENU_CHECKPOINT_OBSERVE']='Z:'+str(checkpoint).replace('/','\\')
+os.environ.pop('MNM_MENU_INPUT_ADMISSION_OBSERVE',None)
+os.environ.pop('MNM_MENU_ORDER_ADMISSION_OBSERVE',None)
+if os.environ.get('MNM_CAMPAIGN_ORDER_ADMISSION')=='1':
+    if os.environ.get('MNM_CAMPAIGN_INPUT_ADMISSION')!='1':
+        raise ValueError('Order admission requires the private input diagnostic')
+    order=root/'order-admission.bin'
+    if order.exists() or order.is_symlink():raise ValueError('Stale order observation')
+    os.environ['MNM_MENU_ORDER_ADMISSION_OBSERVE']='Z:'+str(order).replace('/','\\')
+gameplay_acceptance=os.environ.get('MNM_ACCEPTANCE_GAMEPLAY')=='1'
+if os.environ.get('MNM_ACCEPTANCE_UI')=='1':
+    if not gameplay_acceptance or os.environ.get('MNM_ACCEPTANCE_FRAME_INPUT')!='1':raise ValueError('UI acceptance requires the frame/input witness')
+    target=root/'ui-acceptance.bin'
+    if target.exists() or target.is_symlink():raise ValueError('Stale UI acceptance witness')
+    os.environ['MNM_DRAW_UI_ACCEPTANCE_FILE']='Z:'+str(target).replace('/',chr(92))
+if os.environ.get('MNM_ACCEPTANCE_FRAME_INPUT')=='1':
+    if not gameplay_acceptance:raise ValueError('Frame/input witness requires gameplay acceptance')
+    target=root/'frame-input.bin'
+    if target.exists() or target.is_symlink():raise ValueError('Stale frame/input witness')
+    os.environ['MNM_DRAW_FRAME_INPUT_FILE']='Z:'+str(target).replace('/',chr(92))
+    os.environ['MNM_DRAW_REGION_TRACK_SLOT']='0'
+
+if gameplay_acceptance:
+    if not metadata.get('native_render') or not metadata.get('resident_world'):raise ValueError('Gameplay acceptance requires the ordinary resident native player')
+    for flag,name in [('MNM_DRAW_HUD_STATE_FILE','hud-state.bin'),('MNM_DRAW_SEMANTIC_STATE_FILE','semantic-state.bin'),('MNM_DRAW_ACTOR_LATCH_FILE','actor-latches.bin')]:
+        target=root/name
+        if target.exists() or target.is_symlink():raise ValueError('Stale gameplay acceptance observation')
+        os.environ[flag]='Z:'+str(target).replace('/','\\')
+if os.environ.get('MNM_CAMPAIGN_INPUT_ADMISSION')=='1' or gameplay_acceptance:
+    if (os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')!='1' and not gameplay_acceptance) or not metadata.get('native_render'):
         raise ValueError('Input admission observation requires the private casting diagnostic')
     admission=root/'input-admission.bin'
     if admission.exists() or admission.is_symlink():raise ValueError('Stale input admission observation')
@@ -135,10 +173,11 @@ if os.environ.get('MNM_MENU_NATIVE_RENDER')=='1':
     import struct
     sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'protocols/python'))
     from mnm_protocols import frame_v1,input_v1,render_commands_v2,render_commands_v3,render_control_v1
+    from input_wire import valid_header as valid_input_header
     for name,wire in [('render-frame.bin',frame_v1),('render-input.bin',input_v1),('render-commands.bin',render_commands_v3),('render-commands.bin.control',render_control_v1)]:
         path=root/name
         with path.open('rb') as file:header=file.read(wire.HEADER_SIZE)
-        if not (wire.valid_header(header,path.stat().st_size) or (name=='render-commands.bin' and render_commands_v2.valid_header(header,path.stat().st_size))):raise ValueError('Invalid native channel: '+name)
+        if not ((valid_input_header(header,path.stat().st_size) if name=='render-input.bin' else wire.valid_header(header,path.stat().st_size)) or (name=='render-commands.bin' and render_commands_v2.valid_header(header,path.stat().st_size))):raise ValueError('Invalid native channel: '+name)
     commands=(root/'render-commands.bin').read_bytes()[:64]
     control=(root/'render-commands.bin.control').read_bytes()[:512]
     if not struct.unpack_from('<I',commands,16)[0] or any(commands[20:]) or control[16:20]!=commands[16:20]:raise ValueError('Native command channels are stale or mismatched')

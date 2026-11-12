@@ -156,3 +156,11 @@ pixels are a separate assertion in the
 [startup/storage follow-up](native-v3-live-startup-storage.md). Generic action-bound
 sessions, later maps, broader fault/restart outcomes and hardware performance remain explicit
 acceptance gaps; complete replacement remains false.
+
+The RPS03 [nominal campaign attempt](campaign-progression-validation-20261101.md)
+reaches the power summon but terminates on a version 2 native CPU-history refusal
+at generation 466/family 0/route 0, before a natural mission outcome. The exact
+refusal and exit 124 are retained. Its caller and admission cause remain
+unassigned; this supplies a live campaign barrier, not completed rendering or a
+reason to admit stale pixels. Historical controls and status dimensions remain
+unchanged.

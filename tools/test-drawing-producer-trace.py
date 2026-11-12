@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Execute the bounded PE32 producer-recorder mutex/thread ownership fixture."""
+from experiment_environment import stage_prefix
 from coverage_evidence import read_json, evidence_digest, write_report
 import argparse
 import json
@@ -27,7 +28,7 @@ def main():
     from drawing_fixture_prefix import borrow
     if a.borrow_fixture_prefix:prefix,_=borrow(ROOT,a.borrow_fixture_prefix)
     else:
-        subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),str(run/'wineprefix')],check=True)
+        stage_prefix(ROOT, str(a.prefix_template.resolve()), str(run/'wineprefix'))
         prefix=run/'wineprefix'
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(prefix),WINEDEBUG='-all',MNM_DRAW02_PRODUCER_BIND='1')
     results=[]

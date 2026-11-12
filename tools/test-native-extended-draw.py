@@ -28,12 +28,12 @@ def main():
     env = {k: v for k, v in os.environ.items() if not k.startswith(('MNM_', 'WINE'))}
     env.update(TMPDIR=str(out), WINEPREFIX=str(args.prefix.resolve()), WINEDEBUG='-all',
                WINEDLLOVERRIDES='mscoree,mshtml=;winemenubuilder.exe=d', DISPLAY='')
-    def run(name, command, extra=None, timeout=120, cwd=ROOT):
+    def run(name, command, extra=None, timeout=120, cwd=ROOT, expected=0):
         with (out / (name + '.log')).open('x') as log:
             result = subprocess.run(list(map(str, command)), cwd=cwd, env=env | (extra or {}),
                                     stdout=log, stderr=subprocess.STDOUT, timeout=timeout)
-        report['cases'].append(dict(name=name, exit_code=result.returncode))
-        if result.returncode:
+        report['cases'].append(dict(name=name, exit_code=result.returncode, expected=expected))
+        if result.returncode != expected:
             raise RuntimeError(name + ': exit ' + str(result.returncode))
     try:
         if not stable():
@@ -45,7 +45,7 @@ def main():
         run('bridge-build', ['python3', '-B', ROOT / 'tools/build-render-bridge.py',
                              '--output', out / 'bridge'])
         imports = {k: dict(v) for k, v in builder.IMPORTS.items()}
-        imports['kernel32'].update(LoadLibraryA=4, GetProcAddress=8)
+        imports['kernel32'].update(LoadLibraryA=4, GetProcAddress=8, CreateThread=24)
         imports['user32'].update(GetDesktopWindow=0)
         imports['gdi32'].update(GetDIBColorTable=16)
         libraries = []
@@ -72,6 +72,14 @@ def main():
             directory = out / name
             directory.mkdir()
             run(name, ['wine', out / (name + '.exe')], extra, cwd=directory)
+        for label, flag in [('copy-span', 'MNM_OWNER_BAD_COPY_SPAN'),
+                            ('copy-prefix', 'MNM_OWNER_BAD_COPY_PREFIX')]:
+            directory = out / label
+            directory.mkdir()
+            run(label, ['wine', out / 'backing.exe'],
+                dict(MNM_OWNER_DRAW_DLL=path, MNM_NATIVE_CPU_GUARD='3',
+                     MNM_PUBLIC_RESIDENT_WORLD='1', MNM_NATIVE_OWNERSHIP_REQUIRED='1',
+                     **{flag: '1'}), cwd=directory, expected=124)
         report.update(success=True, rop3_tables=256, rotated_mirrored_copies=16,
                       original_clipped_copy_cases=528, palette_classes=7, primary_depths=[8, 16, 24, 32])
     except Exception as error:

@@ -145,3 +145,13 @@ The runner now selects the registered inventory and refuses a missing
 prospective inventory dependency. The first local finish completed reviews and
 verified backups but encountered a transient Git index lock before staging;
 those receipts remain append-only and grant no current-code validation.
+
+## Outgoing service follow-up — 2026-10-26
+
+[Pixel virtual-service recovery](pixel-virtual-services-20261026.md) identifies
+all three previously unresolved outgoing sites as Surface1 slot32 Unlock through
+wrapper+4; Surface2 at+8 supplies Lock. Fresh unchanged-original scripted and
+real Wine evidence closes those selected service identities and ordered results.
+The static scanner results above remain historical and unchanged. This recovers
+no natural incoming caller for any of the five helpers and changes no route
+denominator, observed union, original inventory boundary or native/live status.

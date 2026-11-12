@@ -42,7 +42,7 @@ def main():
         (out/'realm_selection_fixture_bytes.h').write_text(header)
         run(['g++','-m32','-fno-pie','-no-pie','-std=c++17','-O2','-Wall','-Wextra','-Werror','-I'+str(out),ROOT/'tests/realm-adapter-reference.cpp',ROOT/'reconstruction/campaign/realm_selection.cpp','-o',out/'reference'],'compile')
         private=json.loads(run([out/'reference',exe],'private',30))
-        if not private['success'] or (private['admissions'],private['actions'],private['guards'])!=(4,7,23):raise ValueError('Incomplete private Realm matrix')
+        if not private['success'] or (private['admissions'],private['actions'],private['guards'])!=(128,131,58):raise ValueError('Incomplete private Realm matrix')
         run(['python3',ROOT/'tools/build-menu-observer.py'],'pe32-build')
         build=ROOT/'working/build/qt-shell'
         run(['cmake','-S',ROOT/'apps/qt-shell','-B',build,'-DBUILD_TESTING=ON','-DCMAKE_BUILD_TYPE=Release'],'configure',120)

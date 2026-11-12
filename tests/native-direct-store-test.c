@@ -10,13 +10,19 @@ typedef uint8_t u8;typedef uint16_t u16;typedef uint32_t u32;typedef int32_t i32
 #define __declspec(x)
 #define ND_INVALID ((i32)0x80070057u)
 #define NS_BUSY ((i32)0x887601aeu)
-struct NsState {u16 *pixels,*pixels_alias;u8* cpu_dirty;u32 bytes,history_stale,cpu_guard,cpu_guard_world,lock_owner;int locked;void *dc,*storage_dc;struct NsState* next_owned;};
+struct NsState {u16 *pixels,*pixels_alias;u8* cpu_dirty;u32 pitch,height,bytes,history_stale,cpu_guard,cpu_guard_world,lock_owner;int locked;void *dc,*storage_dc;struct NsState* next_owned;};
 static struct NsState* ns_owned;static u32 ns_guard_enabled=3,last_error=0x77,thread=17,dirty_calls,dirty_offset,dirty_width;
 static u32 GetLastError(void){return last_error;}
 static void SetLastError(u32 error){last_error=error;}
 static u32 GetCurrentThreadId(void){last_error=0xbad;return thread;}
 static u32 ns_guard_bytes(const struct NsState* s){return s->bytes;}
 static void ns_guard_dirty(struct NsState* s,u32 offset,u32 width){(void)s;++dirty_calls;dirty_offset=offset;dirty_width=width;}
+/* Isolated storage-policy model; real lifetime/concurrency is exercised by
+ * native-cursor-lifetime-probe.c through the actual PE32 provider. */
+static unsigned guard_depth;
+struct NsLifeGuard {unsigned held;};
+static struct NsLifeGuard ns_life_guard_enter(void){++guard_depth;return (struct NsLifeGuard){1};}
+static void ns_life_guard_leave(struct NsLifeGuard* guard){if(guard->held){if(!guard_depth)abort();--guard_depth;guard->held=0;}}
 #include "../runtime/native-draw/cpu_direct_store.h"
 #define check(x) do{if(!(x)){fprintf(stderr,"failed line%d\n",__LINE__);exit(1);}}while(0)
 int main(void){
@@ -69,6 +75,6 @@ int main(void){
  check(!munmap(heap,(size_t)page));
  s.pixels=private_bytes;s.pixels_alias=public_bytes;ns_owned=&s;ns_store_invalidate();
  u16 unchanged=private_bytes[5];check(!NativeDrawCpuStoreV1(private_bytes+5,0x1234,2));check(public_bytes[5]==0x1234&&private_bytes[5]==unchanged);
- ns_store_invalidate();ns_owned=0;
+ ns_store_invalidate();ns_owned=0;check(!guard_depth);
  puts("{\"success\":true,\"checked_private_stores\":7,\"public_writes\":0}");return 0;
 }

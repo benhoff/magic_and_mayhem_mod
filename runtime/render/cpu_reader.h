@@ -2,14 +2,35 @@
  * FIFO/copy admission stays held while the publication worker services CPU_READ.
  * The tracker is released only for the bounded reply wait. */
 static u32 game_cpu_reader_thread;
+/* Private terminal diagnostics only; no shared pointers or reader admission.
+ * Preserve LastError while retaining the previously silent rejection branch. */
+static i32 game_cpu_reader_reject(u32 stage,void* object,const void* pixels,u32 family,u32 route,u32 caller,const struct GameLock* lock){
+ u32 error=GetLastError(),done=0;
+ u32 r[32]={0x524d4e4d,1,128,stage,(u32)object,(u32)pixels,family,route,caller,
+  GetCurrentThreadId(),game_cpu_reader_thread,
+  __atomic_load_n(&game_copy_owner,__ATOMIC_ACQUIRE),
+  __atomic_load_n(&game_locks_owner,__ATOMIC_ACQUIRE),__atomic_load_n(&game_locks_busy,__ATOMIC_ACQUIRE),
+  game_lock_epoch,session_active,command_channel_session,(u32)lock,
+  lock?lock->active:0,lock?lock->owner:0,lock?lock->epoch:0,lock?lock->resident:0,lock?lock->gpu_history:0,
+  lock?(u32)lock->base.data:0,lock?lock->base.width:0,lock?lock->base.height:0,lock?lock->base.bits:0,
+  lock?lock->desc[9]:0,lock?lock->base.length:0,game_resident_world,game_copy_order_enabled,
+  (game_native_cpu_lease_transfer?1u:0u)|(game_native_cpu_lease_snapshot?2u:0u)|(game_native_cpu_lease_mask?4u:0u)};
+ HANDLE file=CreateFileA("native-cpu-reader-admission.bin",0x40000000,0,0,1,0x80,0);
+ if(file!=(HANDLE)-1){WriteFile(file,r,sizeof(r),&done,0);CloseHandle(file);}
+ SetLastError(error);return 0;
+}
 __declspec(dllexport) i32 WIN RenderRequireCpuHistoryV1(void* object,const void* pixels,u32 family,u32 route,u32 caller){
- u32 error=GetLastError();i32 ok=0;
- if(!game_resident_world || !game_copy_order_enabled || !game_native_cpu_lease_transfer || !game_native_cpu_lease_snapshot || !game_native_cpu_lease_mask)return 0;
+ u32 error=GetLastError(),rejection=6;i32 ok=0;
+ if(!game_resident_world || !game_copy_order_enabled || !game_native_cpu_lease_transfer || !game_native_cpu_lease_snapshot || !game_native_cpu_lease_mask)return game_cpu_reader_reject(1,object,pixels,family,route,caller,0);
  struct CommandLease callback __attribute__((cleanup(command_gate_leave)))=command_gate_enter();
- if(!callback.observe)return 0;
+ if(!callback.observe)return game_cpu_reader_reject(2,object,pixels,family,route,caller,0);
  struct GameCopyLease admission __attribute__((cleanup(game_copy_leave)))={0,1,0};
  if(__atomic_load_n(&game_copy_owner,__ATOMIC_ACQUIRE)!=GetCurrentThreadId())admission=game_copy_bind_enter();
- if(!admission.observe || game_cpu_reader_thread || !game_tracker_acquire()){SetLastError(error);return 0;}
+ if(!admission.observe || game_cpu_reader_thread || !game_tracker_acquire()){
+  game_cpu_reader_reject(!admission.observe?3:game_cpu_reader_thread?4:5,object,pixels,family,route,caller,0);SetLastError(error);return 0;
+ }
+ struct CpuJournalContext journal_context __attribute__((cleanup(cpu_journal_leave)));zero(&journal_context,sizeof(journal_context));
+ cpu_journal_enter(&journal_context,MNM_CRJ_EXPLICIT,caller,object,family,route);
  game_cpu_reader_thread=GetCurrentThreadId();game_surface_sync();
  struct GameLock* lock=0;
  for(u32 i=0;i<32;++i)if(game_locks[i].active && game_alias_same(game_locks[i].object,object)){
@@ -18,28 +39,31 @@ __declspec(dllexport) i32 WIN RenderRequireCpuHistoryV1(void* object,const void*
  if(!lock){
   game_tracker_release();game_materialize_reader(object,3);game_cpu_reader_thread=0;SetLastError(error);return 1;
  }
+ rejection=7;
  if(lock->owner!=GetCurrentThreadId() || lock->epoch!=game_lock_epoch ||
     !(lock->resident || lock->gpu_history) || !lock->base.data)goto reject;
  struct SessionSurface* surface=session_find(object);
  u32 identity[12];i32 query=game_native_cpu_lease_transfer(object,identity,0,0);
  if(query==1){ok=1;goto reject;}
+ rejection=8;
  if(query || !surface || !session_active || game_cpu_read_ticket==0xffffffffu ||
     identity[0]!=(u32)pixels || identity[1]!=lock->base.width || identity[2]!=lock->base.height ||
     identity[3]!=lock->desc[4] || lock->base.bits!=16 || lock->base.length!=identity[1]*identity[2]*2)goto reject;
  u32 offset=lock->rectangle?(u32)lock->region.top*identity[3]+(u32)lock->region.left*2:0;
- if(lock->desc[9]!=(u32)pixels+offset)goto reject;
+ rejection=9;if(lock->desc[9]!=(u32)pixels+offset)goto reject;
  struct Snapshot result,pending;
- if(!game_surface_blank(&pending,&lock->base))goto reject;
+ rejection=10;if(!game_surface_blank(&pending,&lock->base))goto reject;
+ rejection=11;
  if(!game_surface_blank(&result,&lock->base)){
-  __atomic_sub_fetch(&lock_capture_reserved,pending.length,__ATOMIC_RELAXED);free_snapshot(&pending);goto reject;
+  __atomic_sub_fetch(&lock_capture_reserved,pending.length,__ATOMIC_RELAXED);game_snapshot_free(&pending);goto reject;
  }
  u32 layout[4]={identity[0],identity[1],identity[2],identity[3]};
  if(game_native_cpu_lease_snapshot(object,layout,(u16*)pending.data,pending.length))game_cpu_read_refuse(10,object,0);
- u8* mask=game_cpu_lease_mask(lock,result.length);
+ u8* mask=game_cpu_lease_mask(lock,result.length,0);
  if(!mask){
   u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
   if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || result.length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved)game_cpu_read_refuse(17,object,0);
-  mask=HeapAlloc(GetProcessHeap(),8,result.length);if(!mask)game_cpu_read_refuse(18,object,0);
+  mask=game_buffer_allocate(8,result.length);if(!mask)game_cpu_read_refuse(18,object,0);
   __atomic_add_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);
  }
  if(lock->rectangle)for(u32 y=0;y<identity[2];++y)for(u32 x=0;x<identity[1];++x){
@@ -50,6 +74,7 @@ __declspec(dllexport) i32 WIN RenderRequireCpuHistoryV1(void* object,const void*
  u32 fields[10]={surface_id,ticket,0,command_channel_session,identity[1],identity[2],identity[4],identity[5],identity[6],identity[7]};
  __atomic_store_n(&game_cpu_transfer_wait,1,__ATOMIC_RELEASE);
  if(!session_record(MNM_RENDER_STREAM_V5_OPERATION_CPU_READ,fields,40,0,0))game_cpu_read_refuse(11,object,0);
+ cpu_journal_surface(MNM_CRJ_REQUEST,object,0,ticket,!family&&!route&&!caller?2:1,fields,identity[0],identity[3],generation,0,0,0);
  game_tracker_release();
  char path[544];u32 n=GetEnvironmentVariableA("MNM_RENDER_COMMAND_CHANNEL",path,512);
  if(!n || n>=512)game_cpu_read_refuse(12,object,n);copy(path+n,".cpu-reply",11);
@@ -107,13 +132,15 @@ __declspec(dllexport) i32 WIN RenderRequireCpuHistoryV1(void* object,const void*
  if(!session_resident_unlock(surface,&result,&result,mask) ||
     game_native_cpu_lease_transfer(object,identity,(const u16*)result.data,result.length))game_cpu_read_refuse(14,object,0);
  copy(lock->base.data,result.data,result.length);
- __atomic_sub_fetch(&lock_capture_reserved,pending.length+result.length,__ATOMIC_RELAXED);free_snapshot(&pending);HeapFree(GetProcessHeap(),0,mask);
- __atomic_sub_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);free_snapshot(&result);
+ cpu_journal_surface(MNM_CRJ_COMPLETE,object,0,ticket,!family&&!route&&!caller?2:1,fields,identity[0],identity[3],generation,MNM_CRJ_VALIDATED,0,0);
+ game_reserved_snapshot_free(&pending);game_reserved_buffer_free(mask,result.length);
+ __atomic_sub_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);game_snapshot_free(&result);
  /* Keep reader admission through any enclosing copy; its final leave clears
   * the marker after publication/current-byte work, before releasing ownership. */
  {u32 values[19]={ticket,surface_id,family,route,caller,identity[9]};lock_diagnostic_values("resident_lock_cpu_materialized",values);}
  game_cpu_read_completed(!family && !route && !caller?2:1);
  ok=1;
  reject:
- game_cpu_reader_thread=0;game_tracker_release();SetLastError(error);return ok;
+ if(!ok)game_cpu_reader_reject(rejection,object,pixels,family,route,caller,lock);
+ journal_context.result=ok;game_cpu_reader_thread=0;game_tracker_release();SetLastError(error);return ok;
 }

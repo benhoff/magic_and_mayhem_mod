@@ -117,7 +117,8 @@ def main():
     if input_path:
         if not input_path.is_relative_to(REPO/'working'):raise ValueError('Input channel must be under working/')
         with input_path.open('rb') as file:
-            if not input_protocol.valid_header(file.read(input_protocol.HEADER_SIZE), input_path.stat().st_size):raise ValueError('Invalid input channel')
+            from input_wire import valid_header as valid_input_header
+            if not valid_input_header(file.read(input_protocol.HEADER_SIZE), input_path.stat().st_size):raise ValueError('Invalid input channel')
     media_path=args.media_channel.resolve() if args.media_channel else None
     if media_path:
         if not media_path.is_relative_to(REPO/'working'):raise ValueError('Media channel must be under working/')
@@ -135,7 +136,8 @@ def main():
     dll=build_adapter('tools/build-render-bridge.py',lambda: load('render_build','tools/build-render-bridge.py').build())
     parent=REPO/'working/experiments/opengl-render';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));game=root/'game'
-    subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
+    from experiment_environment import stage
+    stage(REPO,game,source,kind='game',persistent=args.stage_only)
     if game.is_symlink() or game.resolve()==source:
         raise ValueError('Disposable staging aliases its source')
     for name in ['Chaos.exe','MnmDraw.dll','MnmRender.dll','MnmMenu.dll','MnmScene.dll','MnmWord.dll','MnmAudio.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg']:

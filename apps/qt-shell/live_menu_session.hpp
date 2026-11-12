@@ -1,6 +1,7 @@
 #pragma once
 #include "menu_bridge.hpp"
-#include "engine_preferences_store.hpp"
+#include "menu_transition_witness.hpp"
+#include "engine_preferences_persistence.hpp"
 #include "../../protocols/include/mnm/menu_v4.h"
 #include <QProcess>
 #include "game_process.hpp"
@@ -11,7 +12,8 @@
 // Process staging, launch and wire protocol remain outside presentation widgets.
 class LiveMenuSession final : public QObject {
 public:
-    explicit LiveMenuSession(QString repository,QObject* parent=nullptr);
+    explicit LiveMenuSession(QString repository,QObject* parent=nullptr,EnginePreferencesPersistence::Commit preferencesCommit={});
+    ~LiveMenuSession() override;
     bool nativeCommandsEnabled=false;
     bool nativeOnlyEnabled=false;
     int launcherExitCode=-1;
@@ -59,6 +61,7 @@ public:
     bool miniMenusEnabled() const {return campaignMiniEnabled||MNM_MENU_MINI_EXPERIMENTAL!=0;}
     bool requestPreferences(quint32 action,const std::array<int,7>& values,quint32 slider=0);
     bool requestDefeatContinue();
+    bool beginOriginalRealmControls(); // Ordinary original Options/confirmation; no wire dispatch.
     bool requestResults(quint32 action);
     bool requestMini(quint32 action);
     bool requestMultiplayer(quint32 action,quint32 transport=0,const QString& gameName={},const QString& userName={});
@@ -68,6 +71,14 @@ public:
     std::function<void(const MenuBridge::State&)> stateChanged;
     // Bounded test/diagnostic witness; an accepted intent is not an engine ACK.
     std::function<void(quint32,bool,const QString&,const MenuBridge::State&)> miniRequestObserved;
+    std::function<void(quint32,bool,const QString&,const MenuBridge::State&)> requestObserved;
+    std::function<void(quint32,bool,const QString&,const MenuBridge::State&)> storageRequestObserved;
+    struct TransitionDiagnostic {
+        quint32 request=0,action=0,target=0,flags=0,generation=0,screen=0,ready=0,ack=0,status=0,sequence=0,handoff=0;
+        qint64 requestAgeMs=0,stateAgeMs=0;
+    };
+    // Terminal host observation for bounded scenarios, before fallback clears state.
+    std::function<void(const TransitionDiagnostic&)> transitionFailureObserved;
     std::function<void(const QString&)> output;
     std::function<void(const QString&)> failed;
     std::function<void()> finished;
@@ -77,12 +88,18 @@ public:
 private:
     friend struct LiveMenuSessionTestAccess; // Synthetic wire/lifecycle validation without a game process.
     void saveAcceptedPreferences();
+    void publishPreferences();
     void poll();
+    void retireBridge();
+    void menuWitness(quint32 event,const MenuBridge::State* observed=nullptr,quint32 action=UINT32_MAX,quint32 request=UINT32_MAX);
+    MenuTransitionWitness menuTimeline_;
     void submitResults();
     bool sameResults(const MenuBridge::State& state) const;
     bool restoreMiniStorage(const MenuBridge::State& state);
+    bool restoreCampaignPreferences(const MenuBridge::State& state);
+    bool deferMenuRequest(std::function<bool()> retry);
     QString repo_,root_,channel_;
-    EnginePreferencesStore preferencesStore_;
+    EnginePreferencesPersistence preferencesStore_;
     bool preferencesToSave_=false;
     std::array<int,7> acceptedPreferences_{};
     GameProcess process_;
@@ -98,9 +115,14 @@ private:
     qint64 cpuReadStarted_=0,cpuReadGrace_=0;
     bool cpuReadWaiting(qint64 now) const;
     bool mediaActive_=false;
+    // One owned intent may wait for a stable seqlock snapshot. Its original
+    // generation and all bridge admission checks remain mandatory.
+    std::function<bool()> deferredMenuRequest_;
+    qint64 deferredMenuRequestAt_=0;
     qint64 mediaStartedAt_=0;
     quint32 sequence_=0,target_=0,action_=0;
-    quint32 storageOpeningGeneration_=0;
+    quint32 campaignEnterGeneration_=0,campaignEnterKind_=0,campaignEnterThread_=0,campaignEnterHandoff_=0,campaignEnterRegion_=0;
+    quint32 storageOpeningGeneration_=0,preferencesOpeningGeneration_=0;
     // One user intent; wire IDs remain strictly increasing and once-only.
     quint32 resultsAction_=0,resultsThread_=0,resultsDepth_=0;
     qint64 resultsRequestedAt_=0;

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Observe an original single-player battle queue under isolated Xvfb/Wine."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import importlib.util
@@ -29,6 +30,7 @@ def sha(path):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--validate-only',action='store_true',help='Validate acquisition option combinations without reading original artifacts or starting a display/game')
     parser.add_argument('--native-draw',action='store_true',help='Guarded native graphics services with real ddraw disabled; V4 continuous test only')
     parser.add_argument('--native-creature-drawing',action='store_true',help='Use native creature preparation/history/queue retirement/post-draw cleanup')
     parser.add_argument('--native-actor-lifecycle',action='store_true',help='Use native actor storage, activation, cleanup and release cascades')
@@ -57,6 +59,7 @@ def main():
     parser.add_argument('--world-raster-batch',action='store_true',help='Guard the original destination and complete selected raster queues with one native canvas reply')
     parser.add_argument('--world-producer-bypass',type=int,choices=range(1,9),help='Replace this many selected generic raster entries in the final captured queue')
     parser.add_argument('--canvas-producers',action='store_true',help='Capture owned menu/loading/font/raster inputs and completed canvases through each sampled World return')
+    parser.add_argument('--palette-observation',action='store_true',help='Passive bounded original palette builder/selection/free custody; requires canvas producer capture')
     parser.add_argument('--drawing-publication',action='store_true',help='Observe actual opaque-copy COM results and independent primary readbacks through the final World/HUD publication')
     parser.add_argument('--drawing-physical-peer',type=Path,help='Reference-only X11 peer for opt-in bounded post-copy physical witnesses')
     parser.add_argument('--producer-oracle-mib',type=int,choices=range(1,3073),default=1024,metavar='1..3072',help='Bounded original completion storage in MiB (default: 1024)')
@@ -75,9 +78,15 @@ def main():
     parser.add_argument('--live-frames',type=int,choices=range(1,257),default=24)
     parser.add_argument('--skip-queues',type=int,default=None,help='Wait this many queue calls before the first sample (World default: 120)')
     parser.add_argument('--interval',type=int,default=1,help='Queue calls between samples')
+    parser.add_argument('--capture-seconds',type=int,choices=range(60,181),default=None,
+                        help='Explicit60..180second budget for finite original-active World observation; existing defaults remain unchanged')
     parser.add_argument('--minimap-owned',action='store_true',help='Observe owned four-view minimap inputs in producer journal V2; original drawing stays active')
     parser.add_argument('--minimap-input-fixture',type=Path,help='Private-Xvfb XTest schedule executable; owned minimap only, 250ms pacing between first16 World calls')
     args=parser.parse_args()
+    if args.capture_seconds is not None and (not args.world_frames or args.world_live or args.canvas_producers or
+            args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix or
+            args.world_raster_batch or args.continuous_queues is not None or args.native_draw):
+        parser.error('--capture-seconds requires finite original-active World observation without replacement')
     if args.world_colour_word is not None and (not args.world_frames or args.world_live or args.canvas_producers or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix):parser.error('Colour checkpoints require finite original-active World capture')
 
     if args.canvas_driver_observe and (not args.canvas_startup or args.native_draw or args.native_creature_drawing or args.native_actor_lifecycle or
@@ -105,6 +114,7 @@ def main():
     if args.manual_input and (not args.world_raster_batch or args.samples not in (16,32) or args.world_raster_prefix!=args.samples or args.magic_items):parser.error('Manual input requires the bounded first16/32 World batch route with zero-items fixture')
     history=args.world_live in ('history-normal','history-verify')
     verify=args.world_live in ('verify','history-verify')
+    if args.palette_observation and not args.canvas_producers:parser.error('Palette observation requires closed canvas producers')
     if args.canvas_producers:
         if args.world_frames or args.world_live or args.canvas_startup or args.word_sprites:parser.error('Producer capture is an isolated finite pipeline; do not combine World/startup hooks')
         if args.startup_queues is None and args.continuous_queues is None:args.startup_queues=args.samples
@@ -131,6 +141,8 @@ def main():
         args.skip_queues=0
     if args.skip_queues is None:args.skip_queues=120 if args.world_frames else 0
     if not 0<=args.skip_queues<=3600 or not 1<=args.interval<=3600:parser.error('Queue sample bounds exceeded')
+    if args.validate_only:
+        print(json.dumps(dict(validated=True,original_game_runs=0,scope='Acquisition option combinations only; no filesystem/input/build admission')));return
     if not os.environ.get('DISPLAY'):
         parser.error('Run under xvfb-run -a -s "-screen 0 1280x1024x24"')
     sources=[*sorted((ROOT/'runtime/scene').glob('*.[chS]')),ROOT/'protocols/include/mnm/scene_snapshot_v1.h',
@@ -252,6 +264,7 @@ def main():
         if args.drawing_publication:env['MNM_DRAW02_PUBLICATION']='1'
         if args.drawing_physical_peer:env['MNM_DRAW02_PHYSICAL_FENCE']='1'
         if args.canvas_producers:env.update(MNM_CANVAS_PRODUCERS='1',MNM_CANVAS_ORACLE_MIB=str(args.producer_oracle_mib))
+        if args.palette_observation:env['MNM_PALETTE_OBSERVE']='1'
         if args.world_producer_bypass:env['MNM_WORLD_PRODUCER_BYPASS']=str(args.world_producer_bypass)
         if args.startup_queues:env['MNM_STARTUP_QUEUES']=str(args.startup_queues)
         if args.kind8_objects:env['MNM_KIND8_QUEUES']=str(3600 if args.sample_kind8 else args.startup_queues)
@@ -263,7 +276,7 @@ def main():
             prefix_receipt=clone(args.prefix_template,root/'wineprefix',env)
             (root/'prefix-template.json').write_text(json.dumps(prefix_receipt,indent=2)+'\n')
         else:
-            subprocess.run(['cp','-a','--reflink=auto',str(args.prefix_template.resolve()),env['WINEPREFIX']],check=True)
+            stage_prefix(ROOT, str(args.prefix_template.resolve()), env['WINEPREFIX'])
             with (root/'wineboot.log').open('x') as log:
                 subprocess.run(['wineboot','-u'],env=env,stdout=log,stderr=subprocess.STDOUT,timeout=90,check=True)
             with (root/'wineboot-idle.log').open('x') as log:
@@ -328,7 +341,8 @@ def main():
                     input_fixture=subprocess.Popen([str(args.minimap_input_fixture.resolve()),str(root/'capture'),str(root/'minimap-input.json')],env={**os.environ,'QT_QPA_PLATFORM':'xcb'},stdout=(root/'minimap-input.log').open('x'),stderr=subprocess.STDOUT)
                 send(14,7,rules=rules)
                 if args.magic_items:send(7,12,slots=wait(7)[2])
-            started_live=time.monotonic();deadline=started_live+(3600 if full_rasters else 300 if args.world_producer_handoff else 60)
+            started_live=time.monotonic();capture_budget=args.capture_seconds if args.capture_seconds is not None else (3600 if full_rasters else 300 if args.world_producer_handoff else 60)
+            deadline=started_live+capture_budget
             while time.monotonic()<deadline:
                 if physical_peer and physical_peer.poll() is not None:raise RuntimeError('Original physical peer failed; inspect '+str(root/'physical-report.json'))
                 if args.continuous_queues is not None:
@@ -436,6 +450,7 @@ def main():
             report['glyph_backend']=inspect(root/'glyph-backend',args.glyph_backend)
         if claims:report['claims']=claims['claims']
         report['window_screenshot_requested']=not args.skip_window_screenshot
+        report['capture_budget_seconds']=capture_budget
         if args.canvas_producers:report['producer_oracle_mib']=args.producer_oracle_mib
         report['startup_replay']=args.startup_replay
         if args.startup_queues:

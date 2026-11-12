@@ -169,3 +169,21 @@ Saved producer checkpoints, image placements and contiguous fade spans have
 fresh source-bound regression records. Broader shared-source historical results
 remain historical. Live image/panel suppression, wider HUD/cursor/tooltip journeys
 and unresolved writers remain separate pending milestones.
+
+
+### Colour and scenario frontier — 2026-10-25
+
+[CCF25](colour-coverage-frontier-20261025.md) adds a freshly executed original
+colour-writer subset to the existing locked-write family; the twelve surface and
+nine drawing-route denominators remain unchanged. The
+[reviewed frontier](colour-coverage-results-20261025/frontier-reviewed.json) also
+indexes current proof per registered rendering behavior and scenario, original
+address scope, explicit gaps and unresolved dispatch. Static discovery without
+an implementation claim is retained for scope review; a passing behavior cannot
+close another behavior in the same scenario. Shared source staleness remains
+separate from implementation defects and all original evidence hashes survive.
+
+Run `tools/audit-rendering-frontier.py --report <new path> --markdown
+research/runtime/coverage/summary-<new-id>.md` for new SQLite-backed output.
+The formal fourteen-journey/twenty-one-operation inventory is static in that
+report, not a new journey execution or a whole-renderer percentage.

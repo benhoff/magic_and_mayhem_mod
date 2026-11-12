@@ -10,42 +10,52 @@ static int region_auxiliary_available(u8* p,u32 slot){
 }
 static int region_grimoire_available(u8* p){return region_auxiliary_available(p,0);}
 static u8 region_payload[MNM_MENU_V7_REGION_SIZE];
+static u32 region_snapshot_failure_line;
+static int region_snapshot_refuse(u32 line){region_snapshot_failure_line=line;return 0;}
 static int region_snapshot(void* object,u8* out,int enter){
+    region_snapshot_failure_line=0;
     u8* p=(u8*)object;
     if(p!=(u8*)0x6578c0||!readable(p,0x81)||get(p)!=0x5c667c||get(p+4)!=18||get(p+8)!=1||
        get(p+0x7c)!=4||p[0x77]>1||(!region_campaign_enabled&&p[0x77])||
-       !get(p+0x6f)||(!region_campaign_enabled&&get(p+0x6f)!=1)||p[0x80])return 0;
+       !get(p+0x6f)||(!region_campaign_enabled&&get(p+0x6f)!=1)||p[0x80])return region_snapshot_refuse(__LINE__);
     if(!readable((void*)0x6f349c,0x48)||get((void*)0x6f349c)!=4||
-       get((void*)0x6f34b0)!=(u32)p||get((void*)0x6f34ac)!=0x659408||get((void*)0x6f34a8)!=0x657ce0)return 0;
-    if(region_campaign_enabled&&(get((void*)0x6f34e0)!=(u32)p||!readable((void*)0x68991c,4)||get((void*)0x68991c)))return 0;
+       get((void*)0x6f34b0)!=(u32)p||get((void*)0x6f34ac)!=0x659408||get((void*)0x6f34a8)!=0x657ce0)return region_snapshot_refuse(__LINE__);
+    if(region_campaign_enabled&&(get((void*)0x6f34e0)!=(u32)p||!readable((void*)0x68991c,4)||get((void*)0x68991c)))return region_snapshot_refuse(__LINE__);
     u8* realm=(u8*)0x659408;
     if(!readable(realm,0xa3b)||get(realm)!=0x5c6a60||get(realm+4)!=4||get(realm+8)||get(realm+0xa37)||
-       !readable((void*)0x689920,4)||get((void*)0x689920)!=5)return 0;
+       !readable((void*)0x689920,4)||get((void*)0x689920)!=5)return region_snapshot_refuse(__LINE__);
     u32 region=get(p+0x6f),loaded=0;
-    if(region_campaign_enabled&&readable(realm,0x1e25)&&get(realm+0x12)==(u32)(realm+0xa49)&&
-       get(realm+0x823)&&get(realm+0x823)<=19&&readable((void*)get(realm+0x59),800*600)){
+    /* Original adjacent entry suspends the parent resources: config, hit map
+     * and auxiliary callback become null, while its selected-region metadata
+     * survives. Require that exact shape, separately from resident resources. */
+    int resident=readable(realm,0x1e25)&&get(realm+0x12)==(u32)(realm+0xa49)&&readable((void*)get(realm+0x59),800*600);
+    u32 parent_kind=readable(realm,0x1e25)?(equal(realm+0xa49,"Celtic",7)?1:equal(realm+0xa49,"Greek",6)?2:equal(realm+0xa49,"Medieval",9)?3:0):0;
+    int suspended=readable(realm,0x1e25)&&!get(realm+0x12)&&!get(realm+0x59)&&!get(realm+0xa23)&&
+        !get(realm+0xa2b)&&parent_kind&&get(realm+0xa2f)==parent_kind&&get(realm+0xa33)==region;
+    if(region_campaign_enabled&&readable(realm,0x1e25)&&(resident||suspended)&&
+       get(realm+0x823)&&get(realm+0x823)<=19){
         if(region>get(realm+0x823)||get(realm+0xa44)||realm[0xa48]||
-           !((equal(realm+0xa49,"Celtic",7))||(equal(realm+0xa49,"Greek",6))||(equal(realm+0xa49,"Medieval",9))))return 0;
+           !((equal(realm+0xa49,"Celtic",7))||(equal(realm+0xa49,"Greek",6))||(equal(realm+0xa49,"Medieval",9))))return region_snapshot_refuse(__LINE__);
         u32 player=get(realm+0xb49),count=get(realm+0xb4d),owner=get((u8*)0x65b1d9+region*4);
         if(!count||count>80||player>=count||owner>=count||get((u8*)0x65ae1d+player*4)>get(realm+0x823)||
-           p[0x77]!=(get((u8*)0x65ae1d+player*4)!=region))return 0;
+           p[0x77]!=(get((u8*)0x65ae1d+player*4)!=region))return region_snapshot_refuse(__LINE__);
         loaded=1;
     }
-    if(!loaded&&(region!=1||p[0x77]))return 0;
-    if(region_campaign_enabled&&!loaded&&(!readable(realm,0x1e25)||!equal(realm+0xa49,"Celtic",7)))return 0;
+    if(!loaded&&(region!=1||p[0x77]))return region_snapshot_refuse(__LINE__);
+    if(region_campaign_enabled&&!loaded&&(!readable(realm,0x1e25)||!equal(realm+0xa49,"Celtic",7)))return region_snapshot_refuse(__LINE__);
     u8* parent=(u8*)0x657ce0;
-    if(!readable(parent,8)||get(parent)!=0x5c63e4||get(parent+4)!=3)return 0;
+    if(!readable(parent,8)||get(parent)!=0x5c63e4||get(parent+4)!=3)return region_snapshot_refuse(__LINE__);
     u8* cb=(u8*)get(p+0x5b),*radios=(u8*)get(p+0x53),*list=(u8*)get(p+0x5f),*buttons=(u8*)get(p+0x4b);
     u32 selected=get(p+0x63),available=0;
     if(!readable(cb,12)||get(cb)!=0x5c66ac||get(cb+4)!=0x4b3420||get(cb+8)!=(u32)p||
        !readable(radios,4*0x7e)||!readable(list,16)||!readable(buttons,2*0x59)||
-       get(p+0x67)!=4||get(p+0x6b)!=4||selected>=4)return 0;
+       get(p+0x67)!=4||get(p+0x6b)!=4||selected>=4)return region_snapshot_refuse(__LINE__);
     for(u32 i=0;i<4;++i){u8* r=radios+i*0x7e;
-        if(get(list+i*4)!=(u32)r||get(r)!=0x5c6d40||get(r+0x2d)!=i||get(r+0x3d)>2||get(r+0x39)!=(i==selected))return 0;
+        if(get(list+i*4)!=(u32)r||get(r)!=0x5c6d40||get(r+0x2d)!=i||get(r+0x3d)>2||get(r+0x39)!=(i==selected))return region_snapshot_refuse(__LINE__);
         if(get(r+8)==1&&get(r+0x3d)!=2)available|=1u<<i;
     }
     for(u32 i=0;i<2;++i){u8* b=buttons+i*0x59;
-        if(get(b)!=0x5c6c6c||get(b+0x2d)!=i||get(b+0x25)!=(u32)cb||get(b+0x3d)>2)return 0;
+        if(get(b)!=0x5c6c6c||get(b+0x2d)!=i||get(b+0x25)!=(u32)cb||get(b+0x3d)>2)return region_snapshot_refuse(__LINE__);
     }
     for(u32 i=0;i<MNM_MENU_V7_REGION_SIZE;++i)out[i]=0;
     put(out,4);put(out+4,4);put(out+8,p[0x77]);put(out+12,selected);put(out+16,available);
@@ -61,7 +71,7 @@ static int region_snapshot(void* object,u8* out,int enter){
     }
     if(region_campaign_enabled&&enter&&get(buttons+8)==1&&get(buttons+0x3d)!=2&&loaded){
         u32 player=get(realm+0xb49),count=get(realm+0xb4d),owner=get((u8*)0x65b1d9+region*4);
-        if(!count||count>80||player>=count||owner>=count)return 0;
+        if(!count||count>80||player>=count||owner>=count)return region_snapshot_refuse(__LINE__);
         u32 special=get((u8*)0x65ae1d+player*4)==region&&owner!=player&&get((u8*)0x65ae1d+owner*4)==region,occupants=0;
         for(u32 i=0;i<count;++i)if(get((u8*)0x65ab9d+i*4)&&get((u8*)0x65ae1d+i*4)==region)++occupants;
         if(special||occupants<4){put(out+20,get(out+20)|2);put(out+28,special?3:MNM_MENU_HANDOFF_CAMPAIGN_RETURN);}
@@ -72,7 +82,7 @@ static int region_snapshot(void* object,u8* out,int enter){
        (loaded?!((equal(out+32,"Celtic",7)&&equal(realm+0xa49,"Celtic",7))||
                  (equal(out+32,"Greek",6)&&equal(realm+0xa49,"Greek",6))||
                  (equal(out+32,"Medieval",9)&&equal(realm+0xa49,"Medieval",9))):!equal(out+32,"Celtic",7))||
-       !battle_string(out+160,128,(void*)get(p+0x78),128)||!out[160])return 0;
+       !battle_string(out+160,128,(void*)get(p+0x78),128)||!out[160])return region_snapshot_refuse(__LINE__);
     return 1;
 }
 static u32 region_dispatch(void* object,u32 action,u32 argument,int enter){

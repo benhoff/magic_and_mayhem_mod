@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "id": "demonstrated-single-player-domain-v1",
+  "kind": "native_rendering_support_policy",
+  "authorization": {
+    "date": "2026-11-10",
+    "answer": "Use demonstrated finite domains",
+    "scope": "Supported maps, saves and durations; no technical unknown is waived."
+  },
+  "evidence_cohort": {
+    "record": "research/runtime/pixels-history-gate-results-20261109/compatibility-02-admission.json",
+    "sha256": "f69a5984e90c5b9a42e287b165029e7b8a3e7504777785840588f20eed58ff67"
+  },
+  "original_build_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "configurations": ["player-default", "player-software"],
+  "input_domain": "exact_demonstrated_acquisition_and_scenario_identities",
+  "map_scope": "Demonstrated Quick Battle selectors (including retained rows0/2 and the actually selected map1 in VC08), and demonstrated Celtic campaign region1-to-region2 routes. Each result retains its own exact input/scenario and source/provider identity.",
+  "save_scope": "Exact demonstrated original-serializer Save inputs and storage round trips, under their individual evidence scopes. No arbitrary save compatibility or complete native save-state decoding promise.",
+  "duration_scope": "Actual recorded successful intervals per result. Deadlines, capture caps and configured stress durations are not observed successful duration.",
+  "installed_assets_are_supported_maps": false,
+  "arbitrary_maps_saves_duration_supported": false,
+  "preserve_all_journeys_and_operations": true,
+  "journeys": 14,
+  "journey_leaves": 47,
+  "operations": 21,
+  "required_outcomes": ["victory", "defeat", "actual-later-map"],
+  "technical_unknowns_waived": false,
+  "source_phase_boundaries_preserved": true,
+  "expansion_requires_affected_input_provider_output_and_lifetime_evidence": true
+}

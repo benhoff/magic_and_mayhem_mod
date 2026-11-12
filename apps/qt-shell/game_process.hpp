@@ -33,6 +33,17 @@ public:
             timedOut_=true;server_.kill();serverDone_=true;complete();
         });
     }
+    ~GameProcess() override {
+        // QProcess can emit finished/error while its base destructor reaps a
+        // running child. At that point our members and the owning session's
+        // bridge/timers may already have been destroyed. No exit callback is
+        // valid during destruction; normal Quit and forceStop remain explicit.
+        disconnect();server_.disconnect();timeout_.stop();timeout_.disconnect();
+        done_={};
+        const auto pid=processId();if(pid>0)::kill(-pid,SIGKILL);
+        if(state()!=QProcess::NotRunning){kill();waitForFinished(1000);}
+        if(server_.state()!=QProcess::NotRunning){server_.kill();server_.waitForFinished(1000);}
+    }
     bool hardStopping() const{return stopping_;}
     void forceStop(const QString& prefix,std::function<void(bool,const QString&)> callback,const QString& serverProgram=QStringLiteral("wineserver")){
         if(stopping_)return;

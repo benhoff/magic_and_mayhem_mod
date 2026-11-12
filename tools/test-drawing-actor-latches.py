@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Execute the bounded PE32 read-only whole-pool actor latch observation fixture."""
+from experiment_environment import stage_prefix
 import argparse
 import json
 import os
@@ -23,7 +24,7 @@ def main():
     flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror']
     subprocess.run(flags+['-c',str(ROOT/'tests/drawing-actor-latches-test.c'),'-o',str(run/'fixture.obj')],check=True)
     binary=run/'fixture.exe';subprocess.run(['lld-link','/machine:x86','/base:0x18000000','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(binary),str(run/'fixture.obj'),str(run/'kernel32.lib')],check=True)
-    subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),str(run/'wineprefix')],check=True)
+    stage_prefix(ROOT, str(a.prefix_template.resolve()), str(run/'wineprefix'))
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};capture=run/'hud-state.bin'
     env.update(WINEPREFIX=str(run/'wineprefix'),WINEDEBUG='-all',MNM_DRAW_ACTOR_LATCH_FILE='Z:'+str(capture).replace('/','\\'))
     results=[]

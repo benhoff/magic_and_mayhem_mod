@@ -43,5 +43,20 @@ int main(void){
  for(unsigned i=0;i<4;++i){fail_at=failures[i];calls=0;assert(!mnm_gpu_copy_commands(&p,1,1,3,emit,0)&&calls==fail_at+1);}
  calls=0;assert(!mnm_gpu_copy_commands(&p,1,1,3,0,0)&&!calls);
  assert(!mnm_gpu_copy_commands(0,1,1,3,emit,0)&&!calls);
- puts("{\"success\":true,\"prepublication_refusals\":27,\"publication_failures\":7,\"maximum_clip_records\":257,\"source_frozen_once\":true}");return 0;
+ /* Safety property over identity combinations, without repeating the
+  * validator's admission predicate: every emitted COPY must be disjoint. */
+ p=(struct MnmGpuCopyPlan){.version=1,.bytes=MNM_GPU_COPY_PLAN_BYTES,.count=1,
+  .source_width=8,.source_height=6,.target_width=8,.target_height=6};
+ p.pieces[0]=(struct MnmGpuCopyPiece){0,0,1,1,0,0};fail_at=999;
+ unsigned routed=0,refused=0;
+ for(unsigned source=0;source<4;++source)for(unsigned target=0;target<4;++target)
+  for(unsigned scratch=0;scratch<4;++scratch)for(unsigned self=0;self<2;++self){
+   p.self=self;calls=0;
+   if(mnm_gpu_copy_commands(&p,source,target,scratch,emit,0)){
+    ++routed;assert(calls);
+    for(unsigned i=0;i<calls;++i)assert(records[i][0] && records[i][1] && records[i][0]!=records[i][1]);
+   }else{++refused;assert(!calls);}
+  }
+ assert(routed && refused && routed+refused==128);
+ printf("{\"success\":true,\"prepublication_refusals\":27,\"publication_failures\":7,\"maximum_clip_records\":257,\"source_frozen_once\":true,\"identity_combinations\":128,\"disjoint_routes\":%u,\"identity_refusals\":%u}\n",routed,refused);return 0;
 }

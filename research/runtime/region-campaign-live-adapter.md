@@ -48,3 +48,51 @@ original manifests before/after. Raw current evidence is retained in
 `working/tests/region-campaign-adapter/run-45wllhbe`; earlier compile preparation
 failures remain separately pinned. Real progressed input/resource/return and
 victory/persistence remain pending, with V20 still disabled by default.
+
+## Observed suspended parent — 2026-11-02
+
+The [retained progressed Region2 diagnosis](rendering-progression-results-20261102/region-parent-suspension-diagnosis-01.json)
+shows an initialized original entry after natural victory and acknowledged Realm
+activation. The inactive parent has null config, hit-map and auxiliary-callback
+pointers, while realm name/count/player/ownership and selected-region metadata
+survive. Requiring resident parent resources rejected this valid original state.
+Null pointers alone do not establish allocation release or lifetime closure.
+
+The separate native suspended-parent case requires all three null pointers,
+name-derived realm kind1/2/3, selected region equal to the active Region, the
+exact location/different relation and no
+pending parent transition, plus the existing exact stack/context, realm name,
+count/player/owner/location, controls and strings. Resident-parent and fresh
+first-region cases retain their own guards. Mixed or malformed suspended states
+remain refused. No original campaign field is written by this projection change.
+
+[Current private controls](rendering-progression-results-20261102/region-parent-controls-02.json)
+pass24 Enter cases,31 refusals,nine auxiliary callbacks and both Cancel cases.
+The exact captured Region2 state, with dynamic control/string pointers relocated
+to private fixture storage, projects correctly and its unchanged original Enter
+callback selects destination2. The original callback/admission bytes remain
+unchanged and the PE32 adapter builds. The first fixture's ambiguous-name compile
+failure and exact source are retained. Current live travel, actual second World,
+cleanup, pixel comparison and lifetime remain independent pending milestones.
+
+
+[Current controls04](rendering-progression-results-20261102/region-parent-controls-04.json)
+extend this to36 Enter cases/34 refusals, the captured Region2 projection and18 Qt
+cases. Both different flags require their exact location relation; mismatched
+realm kinds are refused. A fresh matching ready Realm ACK can complete the
+original menu-return handoff without redispatching Enter. This is not a World
+claim. [Diagnostic10](rendering-progression-results-20261101/completion-progression-follow-diagnostic-20261102-10.json)
+reaches native Region2 and its original Enter; the final retained channel is
+ready Realm at location/destination2. Host acceptance, actual second World and
+normal cleanup still require live validation. The original resources' null state
+does not prove their allocation lifetime.
+
+
+[Diagnostic20's verified observation](rendering-progression-results-20261102/world20-observation-01.json)
+now reaches actual region2 destination arrival,current-region reselection and
+original battle handoff after natural50XP victory. Fresh region2-context World
+presentation and a second typed original tick epoch verify in that exact source
+phase. The whole run fails at cleanup input visibility/helper overlap; no normal
+Quit,independent pixels,assembled-map identity or allocation lifetime is claimed.
+The subsequent test-driver sequencing change requires a new complete execution;
+it does not refresh this historical report or promote behavior statuses.

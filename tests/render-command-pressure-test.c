@@ -30,7 +30,6 @@ struct CopyWaitTiming {u32 dummy;};
 struct GameCopyLease {u32 held,observe,deferred;};
 static void Sleep(u32);
 static i32 WaitOnAddress(volatile void* p,void* c,u32 n,u32 ms){(void)p;(void)c;(void)n;(void)ms;clock_ms+=51;return 0;}
-static void WakeByAddressAll(void* p){(void)p;last_error=0xaa;}
 #include "../runtime/render/command_pressure.h"
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
@@ -62,7 +61,7 @@ static void pressure_reset(void){
     command_pressure_waits=command_pressure_resumes=command_pressure_max_ms=0;
     game_resident_world=game_copy_order_enabled=1;game_copy_owner=tracker_owner=0;
     sleeps=mode=consumed=logged_begin=logged_resume=misses=0;
-    game_copy_pressure_admit=command_pressure_admit;game_copy_native_defer=0;
+    game_copy_pressure_admit=command_pressure_admit;game_copy_native_defer=0;game_copy_native_backing_live=0;
     check(mnm_ring_reader_bind(&pressure_reader,storage,mapped_size));
 }
 static void append_callback(u8* input,u32 count,u32 offset){

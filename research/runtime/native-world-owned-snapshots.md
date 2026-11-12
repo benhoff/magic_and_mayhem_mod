@@ -615,3 +615,75 @@ keeps functional success separate from performance failure: source18.1471Hz
 misses19FPS, World42.4757FPS misses60, visible50.7517/57.2572FPS. Attribution
 of the merged source-rate cost remains pending; this is not performance
 equivalence with the rendering-only branch or a whole replacement claim.
+
+## ARM frame pairing and bounded checkpoint identities, 2026-11-12
+
+The ARM public launch policy now sets `MNM_WORLD_FIRST_SEAL_BASELINE=1` alongside
+completed-image reuse. Independent source ownership and the two-credit queue
+remain unchanged. Each new World waits for its own first completed UI instead
+of presenting the preceding generation's literal UI/occlusion. A native GPU
+fixture moves a literal overlay between two World updates: inherited mode emits
+an intermediate old-position overlay, while matching-UI mode emits only the two
+completed positions. Same-generation repeats remain stable and stale generations
+refuse. This demonstrates a rendering mechanism, not original-driver pixel or
+arbitrary saved-game equivalence.
+
+The earlier complete short retained-image capture exported160 sealed World
+frames,37 using an older UI generation. The new matching-UI capture exports156
+sealed World frames with zero older-UI pairings. All38 unchanged World/UI paint
+pairs have identical pixels; the native-only journey exits through normal Quit.
+The full performance result is recorded separately from recording-heavy captures.
+
+A separate real terminal packet from `run-bl7gyley`, generation1931, contains
+72,290 source records and12,477 checkpoints after a long native menu prefix;
+its source/request CRC32C values verify. The old handoff rejects the packet at
+its finite9999 file-oracle limit. Owned V5 checkpoints have no oracle files and
+count records within the bounded packet, so their closing identifier12478 is
+valid. `NR.owned-world-checkpoint-identities` applies the record-count bound to
+V5 while preserving the canonical finite file boundary,131070 source-record
+ceiling, two closing slots and request/descriptor/hash/AX/actual-return checks.
+The retained packet passes current handoff validation; out-of-range/overflow,
+missing-entry, excessive-record and changed-request controls refuse. That offline
+replay does not claim the cancelled original session resumed or supplied its
+actual return. Raw input, both native test binaries, failed fixture attempts,
+source versions and incremental native link inputs remain in the owned task's
+SQLite evidence and pinned working tree.
+
+### Moving-zombie comparison
+
+The corrected artifact probe sends acknowledged Qt events directly to the named
+game viewport. It requires the owning window to be active, a visible focused
+viewport, bounded frame coordinates, ordered request IDs and an explicit
+`MNM_ZOMBIE_ARTIFACT_PROBE=1` opt-in. Its mouse/key events cannot select another
+desktop window. The first desktop-coordinate attempt failed to summon zombies
+and targeted the wrong UI; it is invalid evidence and remains retained.
+This test control is separate from ordinary player input and the existing Cure
+acceptance scenario. The exact acquisition scripts are retained in SQLite.
+
+The inherited-UI comparison reached eight accepted Zombie casts and eight living
+owned zombies. The user reported glitches when they moved. It then failed at the
+first right-arrow camera interval: Windows exit95, raw WRITING generation645,
+FAILURE43/tag19/caller0x54a5a1. This caller is outside the pinned raster caller
+allowlist. Its unpublished source prefix is negative evidence, not an admitted
+immutable packet. A nearby historical refusal at0x54a563/tag14 is documented in
+`attachment-combat-output-20261107.md`; neither site is admitted by this change.
+Camera timing alone does not establish the reason that branch was reached.
+
+The matching-UI run also reached eight accepted casts and eight living zombies,
+then completed three-second right/left/down/up holds. The user reported no
+glitching in this run. It completed768 balanced accepted/imported/verified-return
+Worlds, retained768 completed images, stayed within two source credits and retired
+with outstanding0. The resident source rate was19.146043Hz with native music.
+The owned diagnostic was intentionally cancelled after its probe; its controller
+exit1/SystemExit143 is retained and is not a normal-Quit acceptance pass. The
+12-second lossless window recording is a camera diagnostic, may affect timing,
+and does not supply a stationary moving-crowd pixel oracle or physical scanout.
+The two runs follow different simulation trajectories; the successful run does
+not prove that matching UI prevents the unsupported caller failure.
+
+The separate recording-free matching-UI public journey completed normal Quit,
+balanced2108 Worlds and measured19.779853/19.822058Hz in two roughly50-second
+windows. This supports the frame-pairing policy and its finite throughput target.
+The user's crowded visual confirmation strengthens the motion case, while
+arbitrary saved games, long sessions and camera-specific hitch attribution remain
+pending. No simulation clock, sprite caller guard or gameplay balance changed.

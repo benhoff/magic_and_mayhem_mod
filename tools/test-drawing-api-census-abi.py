@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Run real separate CALL observer/stubs against synthetic PE32 bodies."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import importlib.util
@@ -35,7 +36,7 @@ def main():
     for index,source in enumerate([ROOT/'tests/drawing-api-census-abi.c',ROOT/'tests/drawing-api-detail-call.S',out/'entry.S']):
         obj=out/(f'part{index}.obj');objects.append(obj);run(f'compile{index}',['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror',*(['-DMNM_COMPACT_CPU_JOURNAL=1'] if args.compact_cpu else []),'-I',out,'-c',source,'-o',obj])
     run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/base:0x400000','/dynamicbase:no','/safeseh:no','/timestamp:0','/out:'+str(out/'fixture.exe'),*objects,out/'kernel32.lib'])
-    run('prefix-copy',['cp','-a','--reflink=auto',args.prefix_template.resolve(),out/'wineprefix'])
+    stage_prefix(ROOT, args.prefix_template.resolve(), out/'wineprefix', log=Path(out/'wineprefix').parent / 'prefix-copy.log')
     try:run('forwarding',['xvfb-run','-a','wine',out/'fixture.exe'])
     finally:run('stop-prefix',['wineserver','-k'],10)
     raw=(out/'abi-hooks.bin').read_bytes()

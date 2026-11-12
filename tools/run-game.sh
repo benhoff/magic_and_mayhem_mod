@@ -129,8 +129,14 @@ select_game() {
     fi
     if [[ -n $SOURCE_GAME_OVERRIDE ]]; then
         SOURCE_GAME_DIR=$(realpath -e -- "$SOURCE_GAME_OVERRIDE")
-        [[ -d $SOURCE_GAME_DIR && $SOURCE_GAME_DIR == "$WORKING_DIR/"* ]] ||
-            die 'Source game override must be a directory under working/'
+        [[ -d $SOURCE_GAME_DIR ]] || die 'Source game override must be a directory'
+    fi
+    if [[ -d $SOURCE_GAME_DIR ]]; then
+        SOURCE_GAME_DIR=$(realpath -e -- "$SOURCE_GAME_DIR")
+        if [[ $SOURCE_GAME_DIR != "$WORKING_DIR/"* ]]; then
+            python3 "$SCRIPT_DIR/check_inputs.py" --game "$SOURCE_GAME_DIR" ||
+                die 'Source game override must be owned or a verified shared input'
+        fi
     fi
     GAME_DIR=$SOURCE_GAME_DIR
     GAME_EXE="$SOURCE_GAME_DIR/Chaos.exe"
@@ -166,8 +172,10 @@ select_runtime_tree() {
     if [[ ! -d $runtime_dir ]]; then
         mkdir -p -- "$RUNTIME_ROOT"
         printf 'Creating writable runtime copy at %s\n' "${runtime_dir#"$REPO_DIR/"}"
-        cp -a --reflink=auto -- "$SOURCE_GAME_DIR" "$runtime_dir"
+        cp -a --no-preserve=links --reflink=auto -- "$SOURCE_GAME_DIR" "$runtime_dir"
     fi
+    [[ ! -L $runtime_dir && $(realpath -e -- "$runtime_dir") != "$SOURCE_GAME_DIR" ]] ||
+        die 'Writable runtime must be a private directory, not an alias of its source'
     GAME_DIR=$runtime_dir
     GAME_EXE="$GAME_DIR/Chaos.exe"
 }

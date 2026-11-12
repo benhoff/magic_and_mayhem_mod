@@ -115,7 +115,10 @@ SceneSession::State::State(const State &other)
                    ? std::make_unique<EntityLighting>(*other.lighting)
                    : nullptr),
       epoch(other.epoch), revision(other.revision), serial(other.serial),
-      appliedView(other.appliedView), tick(other.tick) {}
+      camera(other.camera), minimap(other.minimap), creatures(other.creatures),
+      effects(other.effects), completedSerial(other.completedSerial),
+      appliedView(other.appliedView), refreshViews(other.refreshViews),
+      tick(other.tick) {}
 void SceneSession::checkThread() const {
   if (thread_ != std::this_thread::get_id())
     throw std::runtime_error("Scene session owner thread");
@@ -225,7 +228,31 @@ void SceneSession::setCamera(reconstruction::TerrainCamera camera) {
   (void)reconstruction::traverseTerrain(
       map.width, map.height, map.layers, camera, manifest_.viewport,
       [](auto, auto, auto) { return std::array<std::uint16_t, 2>{0x80, 0}; });
-  manifest_.camera = camera;
+  if (state_.serial == std::numeric_limits<std::uint64_t>::max())
+    throw std::overflow_error("Scene serial exhausted");
+  state_.camera.camera = camera;
+  state_.camera.width = map.width;
+  state_.camera.height = map.height;
+  state_.camera.layers = map.layers;
+  state_.camera.requestedView = camera.view;
+  state_.camera.rendered = 0;
+  state_.camera.redrawFrames = 3;
+  // A plan prepared with another projection can no longer be submitted.
+  if (source_)
+    ++state_.serial;
+}
+void SceneSession::queueCameraTurn(reconstruction::CameraTurn turn) {
+  checkThread();
+  switch (turn) {
+  case reconstruction::CameraTurn::clockwise:
+    state_.camera.clockwise = true;
+    break;
+  case reconstruction::CameraTurn::counterclockwise:
+    state_.camera.counterclockwise = true;
+    break;
+  default:
+    throw std::invalid_argument("Scene camera turn");
+  }
 }
 SceneFramePlan SceneSession::prepare(SceneSourceSnapshot source,
                                      SceneFrameOptions options) {
@@ -233,6 +260,7 @@ SceneFramePlan SceneSession::prepare(SceneSourceSnapshot source,
   const auto &base = map_->map();
   if (!source.epoch || !source.revision ||
       source.entities.size() > limits_.entities || source.sourceView > 3 ||
+      source.specialCatalog.size() > 4096 ||
       source.dimensions !=
           game::Point{int(base.width), int(base.height), int(base.layers)} ||
       (state_.epoch == source.epoch && source.revision <= state_.revision))
@@ -262,7 +290,19 @@ SceneFramePlan SceneSession::prepare(SceneSourceSnapshot source,
     throw std::invalid_argument(
         "Scene source clock gap requires a restored presentation state");
   candidate.tick = source.tick;
+  if (state_.epoch != source.epoch) {
+    candidate.camera = state_.camera;
+    candidate.camera.clockwise = candidate.camera.counterclockwise = false;
+    candidate.camera.rendered = 0;
+    candidate.camera.redrawFrames = 3;
+    candidate.minimap = {source.sourceView, true};
+  }
+  // Catalog actions bind actual resident resources, including entries that
+  // are not the source layer's initial binding.
+  for (const auto &id : source.specialCatalog)
+    load(id);
   std::set<SceneIdentity> active;
+  std::set<std::pair<game::Family, std::uint32_t>> slots;
   std::map<AnimationReceiverId, Receiver> receivers;
   std::vector<SceneAnimationCommand> commands;
   std::vector<
@@ -270,7 +310,9 @@ SceneFramePlan SceneSession::prepare(SceneSourceSnapshot source,
       restores;
   for (const auto &entity : source.entities) {
     entity.identity.token();
-    if (!active.insert(entity.identity).second || !entity.width ||
+    if (!active.insert(entity.identity).second ||
+        !slots.emplace(entity.identity.family, entity.identity.slot).second ||
+        !entity.width ||
         entity.width > 128 || entity.cell.x < 0 || entity.cell.y < 0 ||
         entity.cell.z < 0 || unsigned(entity.cell.x) >= base.width ||
         unsigned(entity.cell.y) >= base.height ||
@@ -304,7 +346,8 @@ SceneFramePlan SceneSession::prepare(SceneSourceSnapshot source,
       const bool bind =
           old == candidate.receivers.end() ||
           !sameId(old->second.resource, layer.animation.resource) ||
-          old->second.revision != visual.revision;
+          old->second.revision != visual.revision ||
+          !sameId(animation.snapshot(id).resource, layer.animation.resource);
       if (bind)
         commands.push_back({id, SceneAnimationCommand::Operation::bind, 0,
                             layer.animation.resource});
@@ -367,7 +410,7 @@ SceneFramePlan SceneSession::prepare(SceneSourceSnapshot source,
       it = candidate.lightSlots.erase(it);
     } else
       ++it;
-  auto candidateCamera = manifest_.camera;
+  auto &candidateCamera = candidate.camera.camera;
   if (manifest_.autoFocus && state_.epoch != source.epoch &&
       !source.entities.empty())
     reconstruction::followTerrainCamera(
@@ -439,15 +482,49 @@ SceneFramePlan SceneSession::prepare(SceneSourceSnapshot source,
       nextMap->advanceLinked(cells);
     }
   }
-  const auto oldCamera = manifest_.camera;
-  manifest_.camera = candidateCamera;
-  SceneFramePlan plan;
-  try {
-    plan = compose(source, candidate, animation, nextMap ? *nextMap : *map_);
-  } catch (...) {
-    manifest_.camera = oldCamera;
-    throw;
+  candidate.creatures.clear();
+  candidate.effects.clear();
+  for (const auto &entity : source.entities) {
+    if (entity.creatureView) {
+      if (entity.identity.family != game::Family::creature ||
+          entity.creatureView->identity != entity.identity.token() ||
+          !entity.creatureView->active)
+        throw std::invalid_argument("Scene creature camera identity");
+      candidate.creatures.resize(std::max(candidate.creatures.size(),
+                                         std::size_t(entity.identity.slot) + 1));
+      auto &view = candidate.creatures[entity.identity.slot];
+      view = *entity.creatureView;
+      const auto receiver = [&](unsigned channel) {
+        return candidate.receivers.count({entity.identity.token(), channel}) != 0;
+      };
+      if (!receiver(0) || (view.state.animationKind == 3 && !receiver(1)) ||
+          (view.state.secondary && !receiver(2)))
+        throw std::invalid_argument("Camera consumer requires an owned source layer");
+      // Position is a live semantic value from this accepted source, rather
+      // than a second copy supplied by camera metadata.
+      view.position.column = entity.cell.x;
+      view.position.row = entity.cell.y;
+      const AnimationReceiverId main{entity.identity.token(), 0};
+      auto binding = candidate.receivers.find(main);
+      if (binding != candidate.receivers.end() && binding->second.fallback)
+        view.state.mainSequenceBase =
+            binding->second.sourceSequence - view.state.viewDirection;
+    }
+    if (entity.effectView) {
+      if (entity.identity.family != game::Family::missileEffect ||
+          entity.effectView->identity != entity.identity.token() ||
+          !entity.effectView->active)
+        throw std::invalid_argument("Scene effect camera identity");
+      candidate.effects.resize(std::max(candidate.effects.size(),
+                                       std::size_t(entity.identity.slot) + 1));
+      auto &view = candidate.effects[entity.identity.slot];
+      view = *entity.effectView;
+      view.state.column = entity.cell.x;
+      view.state.row = entity.cell.y;
+    }
   }
+  candidate.refreshViews = source.sourceView != candidateCamera.view;
+  auto plan = compose(source, candidate, animation, nextMap ? *nextMap : *map_);
   auto retained =
       std::make_shared<const SceneSourceSnapshot>(std::move(source));
   animations_.publish(std::move(animation));
@@ -469,34 +546,11 @@ SceneFramePlan SceneSession::compose(const SceneSourceSnapshot &source,
   for (const auto &c : map.cells)
     if (c.definition >= owner.catalog().records.size())
       throw std::out_of_range("Scene runtime TTD frame");
-  std::vector<SceneCreatureView> creatures;
-  std::vector<SceneEffectView> effects;
-  for (const auto &entity : source.entities) {
-    if (entity.creatureView) {
-      if (entity.identity.family != game::Family::creature ||
-          entity.creatureView->identity != entity.identity.token())
-        throw std::invalid_argument("Scene creature camera identity");
-      creatures.resize(
-          std::max(creatures.size(), std::size_t(entity.identity.slot) + 1));
-      creatures[entity.identity.slot] = *entity.creatureView;
-      const AnimationReceiverId main{entity.identity.token(), 0};
-      auto binding = state.receivers.find(main);
-      if (binding != state.receivers.end() && binding->second.fallback)
-        creatures[entity.identity.slot].state.mainSequenceBase =
-            binding->second.sourceSequence -
-            creatures[entity.identity.slot].state.viewDirection;
-    }
-    if (entity.effectView) {
-      if (entity.identity.family != game::Family::missileEffect ||
-          entity.effectView->identity != entity.identity.token())
-        throw std::invalid_argument("Scene effect camera identity");
-      effects.resize(
-          std::max(effects.size(), std::size_t(entity.identity.slot) + 1));
-      effects[entity.identity.slot] = *entity.effectView;
-    }
-  }
-  const bool changedView = state.appliedView != manifest_.camera.view;
-  if (changedView || source.sourceView != manifest_.camera.view) {
+  auto &creatures = state.creatures;
+  auto &effects = state.effects;
+  const auto &camera = state.camera.camera;
+  const bool changedView = state.appliedView != camera.view;
+  if (changedView || state.refreshViews) {
     std::map<AnimationReceiverId, SceneAnimationSnapshot> before;
     for (const auto &entry : state.receivers)
       before.emplace(entry.first, animation.snapshot(entry.first));
@@ -504,18 +558,17 @@ SceneFramePlan SceneSession::compose(const SceneSourceSnapshot &source,
     for (std::size_t i = 0; i < creatures.size(); ++i)
       if (creatures[i].active)
         requests.push_back({reconstruction::CameraRefresh::Kind::creature, i,
-                            manifest_.camera.view});
+                            camera.view});
     for (std::size_t i = 0; i < effects.size(); ++i)
       if (effects[i].active)
         requests.push_back({reconstruction::CameraRefresh::Kind::effect, i,
-                            manifest_.camera.view});
+                            camera.view});
     requests.push_back({reconstruction::CameraRefresh::Kind::minimap, 0,
-                        manifest_.camera.view});
-    SceneMinimapView minimap;
+                        camera.view});
     auto inputs = source.effectViews;
     inputs.width = map.width;
     inputs.height = map.height;
-    applyCameraViews(animation, requests, creatures, effects, minimap, inputs,
+    applyCameraViews(animation, requests, creatures, effects, state.minimap, inputs,
                      source.specialCatalog);
     if (!changedView) {
       std::vector<std::pair<AnimationReceiverId,
@@ -532,7 +585,8 @@ SceneFramePlan SceneSession::compose(const SceneSourceSnapshot &source,
       }
       animation.restore(restore);
     }
-    state.appliedView = manifest_.camera.view;
+    state.appliedView = camera.view;
+    state.refreshViews = false;
   }
   SceneFramePlan plan;
   plan.owner_ = identity_;
@@ -554,7 +608,7 @@ SceneFramePlan SceneSession::compose(const SceneSourceSnapshot &source,
   const auto &terrain = load(manifest_.terrain);
   const auto &terrainSprite = std::get<assets::Sprite>(terrain.image);
   const auto visits = reconstruction::traverseTerrain(
-      map.width, map.height, map.layers, manifest_.camera, manifest_.viewport,
+      map.width, map.height, map.layers, camera, manifest_.viewport,
       [&](unsigned x, unsigned y, unsigned z) {
         const auto &c =
             map.cells[(std::size_t(z) * map.height + y) * map.width + x];
@@ -569,9 +623,9 @@ SceneFramePlan SceneSession::compose(const SceneSourceSnapshot &source,
     auto definition = reconstruction::decodeTerrainDefinition(
         owner.catalog().records[cell.definition]);
     auto admission = manifest_.admission;
-    admission.view = manifest_.camera.view;
-    admission.cutLevel = manifest_.camera.cutLevel;
-    admission.mode = manifest_.camera.mode;
+    admission.view = camera.view;
+    admission.cutLevel = camera.cutLevel;
+    admission.mode = camera.mode;
     const int shade =
         manifest_.useLighting
             ? state.lighting->cycle().field().at(
@@ -629,22 +683,24 @@ SceneFramePlan SceneSession::compose(const SceneSourceSnapshot &source,
          narrow(std::int64_t(entity.fine.y) +
                 (entity.identity.family == game::Family::creature ? 16 : 0)),
          entity.fine.z},
-        manifest_.camera, map);
+        camera, map);
     for (const auto &layer : entity.layers) {
       if (layer.livingOnly &&
           !reconstruction::modeOneVisible(entity.health ? 1 : 0, 1))
         continue;
-      const auto &resource = load(layer.animation.resource);
+      auto resourceId = layer.animation.resource;
       std::size_t frame = layer.animation.fixedFrame.value_or(0);
       std::optional<assets::AnimationRecord> displayed;
-      if (resource.animation && !layer.animation.fixedFrame) {
+      if (state.receivers.count({entity.identity.token(), layer.channel})) {
         const auto pose =
             animation.snapshot({entity.identity.token(), layer.channel});
         if (!pose.frame)
           continue;
+        resourceId = pose.resource;
         frame = *pose.frame;
-        displayed = record(resource, pose);
+        displayed = record(resources_.resident(resourceId), pose);
       }
+      const auto &resource = load(resourceId);
       if (frame >= resource.frameCount())
         throw std::out_of_range("Scene entity frame");
       if (!layer.attachment && displayed)
@@ -654,11 +710,11 @@ SceneFramePlan SceneSession::compose(const SceneSourceSnapshot &source,
         if (!body)
           continue;
         offset = reconstruction::attachmentOffset(
-            *body, *layer.attachment, entity.width, manifest_.camera.view);
+            *body, *layer.attachment, entity.width, camera.view);
       } else if (displayed)
         offset = reconstruction::spriteOffset(*displayed, entity.width,
-                                              manifest_.camera.view);
-      render::SceneDraw draw{layer.animation.resource, frame,
+                                              camera.view);
+      render::SceneDraw draw{resourceId, frame,
                              narrow(std::int64_t(base.x) + offset.x),
                              narrow(std::int64_t(base.y) + offset.y)};
       draw.viewport = viewport;
@@ -682,7 +738,7 @@ SceneFramePlan SceneSession::compose(const SceneSourceSnapshot &source,
            narrow(std::int64_t(entity.fine.y) +
                   (entity.identity.family == game::Family::creature ? 16 : 0)),
            entity.fine.z, layer.priority},
-          manifest_.camera.view);
+          camera.view);
       add({draw, key, layer.kind, shade, entity.identity, {}}, {});
     }
   }
@@ -749,10 +805,50 @@ void SceneSession::render(const SceneFramePlan &plan,
   draws.reserve(plan.queue.size());
   for (const auto &p : plan.queue)
     draws.push_back(p.draw);
+  auto camera = state_.camera;
+  // Most frames only finish/decrement scheduling state. Copy controllers and
+  // generation-bound view pools only when a queued turn has actual consumers.
+  struct Turn {
+    SceneAnimationBindings animation;
+    SceneMinimapView minimap;
+    std::vector<SceneCreatureView> creatures;
+    std::vector<SceneEffectView> effects;
+    Turn(SceneAnimationBindings &bindings, const State &state)
+        : animation(bindings.stage()), minimap(state.minimap),
+          creatures(state.creatures), effects(state.effects) {}
+  };
+  std::optional<Turn> turn;
+  const bool complete = state_.completedSerial != plan.serial;
+  if (complete) {
+    reconstruction::beginTerrainCameraFrame(camera);
+    if (camera.clockwise || camera.counterclockwise) {
+      turn.emplace(animations_, state_);
+      auto inputs = source_->effectViews;
+      inputs.width = map_->map().width;
+      inputs.height = map_->map().height;
+      finishSceneCameraFrame(camera, turn->animation, turn->creatures,
+                             turn->effects, turn->minimap, inputs,
+                             source_->specialCatalog);
+    } else {
+      reconstruction::finishTerrainCameraFrame(camera, {}, {});
+    }
+  }
   renderer_->beginFrame(draws);
   for (std::size_t i = 0; i < 100000; ++i) {
-    if (renderer_->drawNext(budget))
+    if (renderer_->drawNext(budget)) {
+      if (complete) {
+        if (turn) {
+          animations_.publish(std::move(turn->animation));
+          state_.minimap = turn->minimap;
+          state_.creatures = std::move(turn->creatures);
+          state_.effects = std::move(turn->effects);
+        }
+        state_.camera = camera;
+        state_.appliedView = camera.camera.view;
+        state_.completedSerial = plan.serial;
+      }
       return;
+    }
     if (auto need = renderer_->uploadNeed())
       renderer_->supplyUpload(
           *need, render::prepareResourceUpload(
@@ -777,6 +873,10 @@ void SceneSession::retire() {
   auto map = std::make_unique<EntityMap>(*initialMap_);
   State fresh(capacity(limits_.entities));
   fresh.serial = state_.serial;
+  fresh.camera = state_.camera;
+  fresh.camera.clockwise = fresh.camera.counterclockwise = false;
+  fresh.camera.rendered = 0;
+  fresh.camera.redrawFrames = 0;
   fresh.lighting = std::make_unique<EntityLighting>(
       map->map().width, map->map().height, map->map().layers,
       manifest_.effectLights, manifest_.objectLights, manifest_.lighting);

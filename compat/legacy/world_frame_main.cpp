@@ -15,9 +15,11 @@ int main(int argc,char** argv)try{
     p.addOptions({{"root","Installed read-only asset root.","path"},{"snapshot","Closed immutable scene snapshot.","path"},
         {"bindings","Pinned explicit observation bitmap bindings.","path"},{"output","New output prefix outside the asset root.","prefix"},
         {"background","Owned initial RGB565 background word.","word","0"},
+        {"rgb555-colour","Explicit offline RGB555 colour-only World admission; other primitives remain refused."},
         });p.process(app);
     for(const auto* option:{"root","snapshot","bindings","output"})if(!p.isSet(option))throw std::invalid_argument("Specify --root --snapshot --bindings --output");
-    const auto snapshot=mnm::legacy::decodeWorldFrame(read(p.value("snapshot"),32*1024*1024));
+    const auto snapshot=mnm::legacy::decodeWorldFrame(read(p.value("snapshot"),32*1024*1024),
+        p.isSet("rgb555-colour")?mnm::legacy::WorldInputPolicy::colourRgb555:mnm::legacy::WorldInputPolicy::rgb565);
     auto configured=mnm::assets::AssetStore::create(p.value("root").toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&configured))throw std::runtime_error(e->detail);
     auto store=std::get<mnm::assets::AssetStore>(std::move(configured));mnm::assets::ResourceManager resources(store);mnm::legacy::SnapshotResources bindings(store,resources);
     const auto doc=QJsonDocument::fromJson(read(p.value("bindings"),1024*1024));if(!doc.isArray()||doc.array().size()>256)throw std::invalid_argument("Bindings must be a bounded array");
@@ -30,9 +32,11 @@ int main(int argc,char** argv)try{
     const auto prefix=std::filesystem::absolute(p.value("output").toStdString()).lexically_normal();
     const auto root=std::filesystem::weakly_canonical(store.root());const auto parent=std::filesystem::weakly_canonical(prefix.parent_path());
     if(parent==root||std::mismatch(root.begin(),root.end(),parent.begin(),parent.end()).first==root.end())throw std::invalid_argument("Outputs must be outside asset root");
-    for(const auto* suffix:{".png",".565",".json"})if(std::filesystem::exists(prefix.string()+suffix))throw std::invalid_argument("Outputs must be new");
+    const auto rawSuffix=snapshot.colourRgb555?".555":".565";
+    for(const auto* suffix:{".png",rawSuffix,".json"})if(std::filesystem::exists(prefix.string()+suffix))throw std::invalid_argument("Outputs must be new");
     mnm::render::GlBlitter renderer;QJsonArray draws;QByteArray pixels;QImage image;
-    {mnm::render::SceneRenderer scene(renderer,resources,{width,height,std::vector<std::uint32_t>(std::size_t(width)*height,background)});
+    {mnm::render::SceneLimits limits;limits.colourRgb555=snapshot.colourRgb555;
+        mnm::render::SceneRenderer scene(renderer,resources,{width,height,std::vector<std::uint32_t>(std::size_t(width)*height,background)},limits);
         scene.draw(drawsInput);const auto native=scene.read();image=scene.present();pixels.reserve(width*height*2);
         for(auto pixel:native.pixels){pixels.append(char(pixel));pixels.append(char(pixel>>8));}
         for(const auto& d:drawsInput)draws.append(QJsonObject{{"id",(d.additive||d.colourRectangle)?QStringLiteral("additive-rectangle"):QString::fromStdString(d.resource.text())},{"frame",qint64(d.frame)},{"x",d.anchorX},{"y",d.anchorY}});
@@ -40,11 +44,12 @@ int main(int argc,char** argv)try{
     const auto stats=renderer.stats();if(stats.surfaces)throw std::runtime_error("Snapshot scene surface ownership leaked");
     QJsonObject operations;for(const auto& d:drawsInput){const auto key=QString::number(d.colourRectangle?7:d.additive?6:int(d.composite.mode));operations[key]=operations.value(key).toInt()+1;}
     if(!image.save(QString::fromStdString(prefix.string()+".png")))throw std::runtime_error("PNG export failed");
-    QFile raw(QString::fromStdString(prefix.string()+".565"));if(!raw.open(QIODevice::NewOnly|QIODevice::WriteOnly)||raw.write(pixels)!=pixels.size()||!raw.flush())throw std::runtime_error("Native export failed");raw.close();
+    QFile raw(QString::fromStdString(prefix.string()+rawSuffix));if(!raw.open(QIODevice::NewOnly|QIODevice::WriteOnly)||raw.write(pixels)!=pixels.size()||!raw.flush())throw std::runtime_error("Native export failed");raw.close();
     const QJsonObject report{{"success",true},{"sequence",qint64(snapshot.sequence)},
         {"width",width},{"height",height},{"records",qint64(snapshot.draws.size())},{"draws",draws},{"operations",operations},
         {"complete_mapping",true},{"original_pixels_compared",false},{"live_replacement",false},
-        {"policy","Owned ordered raster inputs, actual RGB565 tables/clips/integer composition; independent initial background"},
+        {"packed_format",snapshot.colourRgb555?"RGB555":"RGB565"},
+        {"policy",snapshot.colourRgb555?"Explicit offline colour-only RGB555; owned requests and independent background":"Owned ordered raster inputs, actual RGB565 tables/clips/integer composition; independent initial background"},
         {"pixel_sha256",QString::fromLatin1(QCryptographicHash::hash(pixels,QCryptographicHash::Sha256).toHex())},{"remaining_surfaces",qint64(stats.surfaces)},{"background",qint64(background)},{"native_readbacks",qint64(stats.nativeReadbacks)},{"driver",QString::fromStdString(renderer.driver().renderer)}};
     QFile output(QString::fromStdString(prefix.string()+".json"));const auto bytes=QJsonDocument(report).toJson();
     if(!output.open(QIODevice::NewOnly|QIODevice::WriteOnly)||output.write(bytes)!=bytes.size()||!output.flush())throw std::runtime_error("Report export failed");

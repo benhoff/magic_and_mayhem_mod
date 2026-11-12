@@ -22,7 +22,7 @@ static void test_input(void){
     input_expect(0,65,0x8001,0x77);input_expect(0,65,0x8000,0x77);input_expect(1,65,0x8000,0x77);
     input_expect(0,66,0,0x77);input_expect(1,20,0x1234,0x88);
     input_expect(0,91,0x1234,0x88);input_expect(1,160,0x1234,0x88);
-    i32 point[2];SetLastError(0x77);if(RenderInputForTest(2,0,point)!=1 || point[0]!=500 || point[1]!=500 || GetLastError()!=0x77)ExitProcess(296);
+    i32 point[2];SetLastError(0x77);if(RenderInputForTest(2,0,point)!=1 || point[0]!=(words[2]==2?400:500) || point[1]!=(words[2]==2?300:500) || GetLastError()!=0x77)ExitProcess(296);
     words[MNM_INPUT_V1_SEQUENCE_OFFSET/4]+=2;words[MNM_INPUT_V1_KEYS_OFFSET/4+65]=1;input_expect(0,65,0,0x77);
     words[MNM_INPUT_V1_SEQUENCE_OFFSET/4]+=2;words[MNM_INPUT_V1_KEYS_OFFSET/4+65]=2;input_expect(0,65,1,0x77);input_expect(0,65,0,0x77);
     words[MNM_INPUT_V1_SEQUENCE_OFFSET/4]|=1;input_expect(0,65,0x1234,0x88);words[MNM_INPUT_V1_SEQUENCE_OFFSET/4]+=1;

@@ -5,6 +5,12 @@ the [coverage ledger](../coverage-ledger.md). It records what has not been mappe
 as well as what has. A function with one behavior link is not a fully recovered
 function; checklist counts never establish whole-engine completion.
 
+The [local integration workflow](../../../docs/integration-workflow.md) covers
+cooperative admission, conservative metadata/history helpers and invocation-local
+verified-read reuse. Each working, Git-base and staged check still runs afresh.
+The [snapshot throughput review](../../../docs/snapshot-performance.md) records
+bounded parallel payload verification and exact full-corpus output equivalence.
+
 ## Run the audit
 
 From the repository root:
@@ -30,11 +36,10 @@ python3 tools/check-re-coverage.py
 Use `--timings` to print elapsed times for the current snapshot, Git-base
 snapshot, merge-history review and receipt check. With `--json`, the same
 durations appear in `timings_seconds`; timing does not change approval rules.
-For example:
+For routine timing output, use stdout/stderr without creating a report file:
 
 ```sh
-python3 tools/check-re-coverage.py --base HEAD --timings \
-  --json working/tests/coverage-timed-next.json
+python3 tools/check-re-coverage.py --base HEAD --timings
 ```
 
 The gate reuses file fingerprints and audited evidence provenance only within
@@ -114,25 +119,32 @@ For each change:
    behavior explicitly. Renames must also update file links and, where needed,
    rebind the same historical provenance keys to the new path.
 2. Reconcile the source census and focused registers. Store referenced snapshots
-   under a durable repository path; ignored `working/` snapshots cannot be read
-   by a fresh CI checkout. This step acknowledges index review, not validation.
-3. Generate an exact draft, choosing the same base used for the final check:
+   through the SQLite writer with the compatibility path required by the
+   register; ignored `working/` exports cannot be read by a fresh CI checkout.
+   This step acknowledges index review, not validation.
+3. Prepare an exact draft in SQLite, choosing the same base used for the final
+   check. Include the index-review option only after reviewing source links:
 
    ```sh
-   python3 tools/check-re-coverage.py --base HEAD \
-     --draft-review working/tests/coverage-review-next.json \
-     --json working/tests/coverage-gate-next.json
+   python3 tools/coverage-bookkeeping.py prepare --base HEAD \
+     --index-review-reason 'Reviewed the changed source links and census findings'
    ```
 
-   During initial uncommitted adoption, omit `--base HEAD` to use the reviewed
-   snapshot. Output paths must be new. The draft command produces incomplete
-   accounting; its successful exit is not a passing gate.
-4. Supply concrete `reason` and `validation.reason` values, then append the draft
-   receipt to `change-reviews.json`'s `reviews` array. Preserve its exact before/
-   after hashes, every affected behavior and each new `pending_gaps` key. Run
-   appropriate tests. A further edit requires regenerated hashes and review.
-5. Run the gate again without `--draft-review`, with the same base. Existing
-   unrelated debt remains visible without blocking this change.
+   No standalone draft JSON is needed. Preparation is incomplete accounting;
+   its successful exit is not a passing gate.
+4. Run the appropriate checks and record concrete review/validation decisions
+   with `coverage-bookkeeping.py record --reason ... --validation-reason ...`
+   and the appropriate `--validation` value. Recording rechecks exact hashes,
+   affected behaviors and pending gaps, then automatically exports the accepted
+   receipt to the existing `change-reviews.json` journal. A further edit requires
+   a fresh draft. Do not create an extra review/closeout JSON copy.
+5. Run `python3 tools/check-re-coverage.py --base HEAD` with the same base and
+   inspect remaining errors; a partial receipt is not a whole-tree gate pass.
+
+For historical trees and initial adoption, the manual `--draft-review` path
+remains supported as an explicit compatibility export under ignored `working/`.
+Its exact hashes, concrete reasons, append-only history and final gate check
+remain mandatory; it is not the default for adopted checkouts.
 
 Receipts have a stable ID, reason, `files` (`path`, before/after SHA-256 or null
 for addition/deletion), `behaviors` (ID and before/after contract SHA-256), exact
@@ -269,10 +281,12 @@ explicit census-scope review. Exclude immutable originals and generated working
 trees. Adding a build file does not validate the code it builds.
 
 Preserve existing snapshots and immutable results. For future work, prefer one
-reviewed durable census per coherent change, retain full per-run reports under
-`working/`, and regenerate summaries only when they communicate a changed
-milestone. The scenario corpus should grow around complete player journeys and
-failure/recovery transitions; checklist totals are not a release criterion.
+reviewed durable census per coherent change, retain full per-run results in
+SQLite, and regenerate summaries only when they communicate a changed milestone.
+Physical `working/` JSON is a bounded producer/interchange export when required,
+not the durable report store. The scenario corpus should grow around complete
+player journeys and failure/recovery transitions; checklist totals are not a
+release criterion.
 
 ## Discovery audit details
 
@@ -293,7 +307,8 @@ uses an index of half-open ranges, preserving inventory order when bodies
 overlap and retaining all owners of nested or fragmented ranges. The guard
 suite checks boundaries, overlap ordering and changes between audit calls.
 
-Write new reports without overwriting earlier evidence:
+Run the normal audit without creating a file. When an identified external
+consumer needs a physical JSON export, use fresh ignored output paths:
 
 ```sh
 python3 tools/audit-re-coverage.py \
@@ -301,8 +316,10 @@ python3 tools/audit-re-coverage.py \
   --markdown working/tests/re-coverage-current.md
 ```
 
-The [generated summary](summary.md) is a snapshot. Use the command above
-for current evidence freshness. Full findings in the JSON include addresses,
+For a durable result, store the report bytes with `write_report` as described in
+the SQLite workflow below; do not copy the expanded export into `research/`.
+The [generated summary](summary-ray-z-20261109.md) is a snapshot. The audit checks current
+evidence freshness. Full findings in an explicit export include addresses,
 flows, candidate callbacks, imports and behavior/scenario links. The register
 now includes pathfinding, motion, audio, asset readers, rendering, animation,
 Qt menus/services, runtime adapters, protocols, native world/tooling and known
@@ -318,16 +335,17 @@ automatic semantic matches. The audit reports new, changed, removed and unlinked
 sources, and changes to consolidated focused registers. Unlinked support tools
 and tests remain mapping debt rather than being silently counted as coverage.
 
-After reviewing a changed component and updating its links, create a new census:
+After reviewing a changed component and updating its links, prepare the census
+and pin its compatibility reference automatically:
 
 ```sh
-python3 tools/index-coverage-sources.py \
-  --output working/tests/source-index-new.json
+python3 tools/coverage-bookkeeping.py prepare --base HEAD \
+  --index-review-reason 'Reviewed the changed component and its explicit source links'
 ```
 
-Review the diff, then set `register.json`'s `code_index.path` and `code_index.sha256`
-to that snapshot. Prefer a durable repository path when preserving a reviewed
-baseline. The exporter refuses overwrite. A census refresh records a source
+Review the register/census changes before recording. The standalone source-index
+exporter remains available for explicit interchange exports and writes managed
+research outputs directly to SQLite. The exporter refuses overwrite. A census refresh records a source
 indexing review; it does not rerun comparisons, promote status or clear stale
 original evidence. `--require-fresh` concerns evidence fingerprints; census drift
 is independently reported by the normal audit.
@@ -450,6 +468,9 @@ for the implementation while preserving an unchanged historical live milestone
 as independently pending. It grants no comparison, integration or replacement
 promotion credit. Each promoted dimension must have its own matching recorded
 stage credit; listing an inactive dimension or malformed/duplicate stages refuses.
+A `pending` review may retain an explicit empty `stages` list as historical
+zero-credit bookkeeping. A recorded validation review still requires a nonempty
+list when `stages` is present; no empty pending list supplies promotion credit.
 Omitting `stages` retains the original requirement to validate every currently
 declared milestone. File hashes, evidence freshness/kinds, behavior contracts,
 scenario requirements for selected stages, and explicit pending-gap accounting
@@ -630,8 +651,9 @@ Finally inspect/stage the generated journal, census and register changes along
 with the implementation, tests and documentation. Run the normal staged gate
 against `HEAD`. The workflow never stages files, commits, refreshes historical
 evidence fingerprints, infers behavior mappings or uses a cached gate pass.
-The current migration covers change reviews; the behavior register and immutable
-execution reports remain in their established text/file formats.
+The review workspace stores change reviews. The behavior register remains
+editable JSON; immutable execution reports use the SQLite evidence store and
+the compatibility paths required by the register.
 
 
 ### Active and historical implementation reviews
@@ -666,10 +688,34 @@ storage policy. Editable central/focused registers, the active review journal,
 gate baseline, source locks, UI policy, wire schemas, test fixtures and authored
 game/launcher configuration remain JSON. Bootstrap manifests stay outside the
 database so a fresh clone can find and verify its archives.
-New immutable research exports can use `coverage_evidence.write_report`;
+New immutable research reports must use `coverage_evidence.write_report`;
 `coverage-bookkeeping.py prepare --index-review-reason ...` and the source-index
-CLI already write managed census outputs directly to SQLite. Outputs explicitly
-requested under `working/` remain ordinary JSON for external tools.
+CLI already write managed census outputs directly to SQLite. Pass serialized
+bytes to the writer without first creating an expanded report under `research/`:
+
+```python
+import json
+from coverage_evidence import write_report
+
+payload = (json.dumps(report, indent=2) + '\n').encode()
+sha256 = write_report(ROOT, 'research/runtime/<new-result-id>.json', payload)
+```
+
+The payload lives in SQLite; only the small compatibility reference required by
+the current register/evidence interface occupies that research path. Do not add
+dated raw JSON copies, review snapshots or duplicate exports beside it. Routine
+review drafts and accepted receipts belong in the SQLite bookkeeping workspace;
+`record` exports accepted receipts to the existing active journal automatically.
+Required retention plans and dual durable archive receipts remain preserved.
+
+Use ordinary JSON under ignored `working/` only for a required producer/tool
+input or explicit interchange/debug export, with a bounded output and an
+identified consumer. If a producer emits a physical report, capture it there and
+store the durable result with `write_report` before closeout. Preserve failed and
+negative results too. These temporary outputs do not become a second durable
+evidence store or bypass the retention rules. Editable registers, schemas,
+configuration and fixtures keep their existing JSON interfaces. Follow the
+[agent storage rules](../../../AGENTS.md#sqlite-evidence-storage) for closeout.
 
 Inventory and compact an existing expanded checkout explicitly:
 
@@ -698,9 +744,12 @@ python3 tools/evidence-store.py export research/runtime/<report>.json --output w
 `hydrate <research-path>...` explicitly restores selected legacy inputs in place.
 Bare `hydrate` remains an optional full expansion and index refresh; it is no
 longer part of routine auditing or CI. Do not edit a reference as JSON. Export it,
-make a new result under a new evidence ID, and publish its captured bytes before
-pushing. Git references retain existing paths so recorded hashes and links do
+make a new result under a new evidence ID. Local completion requires verified
+local evidence and backups; source pushes do not require evidence publication. Git references retain existing paths so recorded hashes and links do
 not need a semantic rewrite.
+When adopting a changed filter for existing tracked payloads without compaction,
+use `git add --renormalize -- <affected-paths>` to apply it even to files whose
+cached stat information says they are unchanged. Review the staged tree normally.
 
 Use `python3 tools/coverage-bookkeeping.py prepare --base HEAD` and `record` with
 concrete `--reason` and `--validation-reason` values. Recording recomputes source,
@@ -735,7 +784,7 @@ python3 tools/finish-work.py \
 ```
 
 The command prepares exact receipts in the local SQLite workspace, verifies the
-whole change gate, exports accepted receipts, makes verified consistent SQLite
+whole change gate, exports accepted receipts, makes verified retained SQLite
 backups, stages the owned worktree and commits with the normal hook enabled.
 It requires all configured archive snapshots locally; `evidence-store.py fetch
 --verify` is a separate explicit setup operation. Local completion never uploads
@@ -749,14 +798,17 @@ Timings grant no cached approval.
 
 Local Git merges, including integration into local master, use the same local
 evidence and verified-backup requirements. They never require publication or
-network access. Keep the evidence database, review workspace and SQLite backup
-catalogs under retained local storage. In this checkout the persistent evidence
-database is `working/coverage/evidence-pending.sqlite3` in the main checkout;
-owned integration worktrees resolve that same store through their local pending
-database link. Review workspaces remain worktree-local. `finish-work.py` returns
-the commit ID and verified backup paths together; preserve that result and the
-backup catalogs. Git contains report identities and exported accounting; a Git
-clone alone does not contain unpublished evidence payloads.
+network access. Keep shared evidence stores and their retention roots under pinned local storage.
+See [evidence storage lifecycle](../../../docs/evidence-storage.md) for the
+configured two-filesystem object pair, incremental backups, completed execution
+handoffs and disposable review caches. Unconfigured checkouts retain their
+previous backup workflow. Configured worktrees share immutable blocks, while
+review workspaces remain local and can be lazily restored from complete typed
+checkpoints. `finish-work.py` returns the commit ID and retained manifests.
+Git contains report identities and exported accounting; a clone alone does not
+contain unpublished evidence payloads. Retiring old page-image backups requires
+an explicit source-specific logical preservation review and real restore; it
+never renews engine evidence or silently promises an old SQLite container SHA.
 
 A normal local finish therefore ends with a Git commit and retained SQLite
 backups. Creating a GitHub release is optional and separate. Remote source
@@ -842,3 +894,9 @@ restore their pointers. This migration supplies no new original-engine compariso
 or live replacement evidence.
 
 Shared local hooks may use the main checkout's absolute .githooks path. They run current gate tooling with `--root` against the selected worktree; staged content and older branch source stay local. The installer preserves an existing absolute path belonging to this checkout.
+
+The [2026-11-01 shared-storage summary](summary-evidence-lifecycle-20261101.md)
+records the scoped evidence lifecycle and retains historical validation gaps.
+[Audit result](../evidence-object-results-20261101/audit-01.json): zero errors,
+no new source-census drift and no warning for `TOOL.shared-evidence-lifecycle`
+or `ES01.shared-lifecycle`. Historical staleness is preserved independently.

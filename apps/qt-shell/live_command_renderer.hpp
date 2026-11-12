@@ -3,6 +3,7 @@
 #include "command_channel.hpp"
 #include "commands.hpp"
 #include <memory>
+#include "acceptance_capture.hpp"
 class GlViewport;
 // Application adapter; callers own polling, launch lifecycle and fallback UI.
 class LiveCommandRenderer final {
@@ -18,8 +19,13 @@ public:
     void setPresentationSuspended(bool suspended);
     void checkpointGraphics(){if(renderer_ && !renderer_->hasRecoveryCheckpoint())renderer_->checkpointRecovery();}
     void recoverGraphics(){if(renderer_)renderer_->recoverContext(target_.context(),target_.offscreen);}
+    std::array<bool,2> loseGraphicsTargetForTest(){if(!renderer_)throw std::runtime_error("No active graphics target");return renderer_->losePlatformTargetForTest();}
+    bool restoreGraphicsTargetForDeletion(){return renderer_&&renderer_->restorePlatformTargetForDeletion();}
     std::function<void()> framePresented;
     std::function<void(std::uint64_t)> cpuReadPending;
+    // Optional observation of the first decoded CPU_READ in a queued batch,
+    // before any command in that batch executes. Configure before polling.
+    std::function<void(const mnm::render::SurfaceCommand&,const mnm::render::CommandResult&)> cpuReadQueued;
     std::function<mnm::render::GpuFrame(std::uint64_t,std::uint64_t)> residentWorld;
     std::function<bool(std::uint64_t,std::uint64_t)> residentReady;
     bool prepareResidentFrames=false,reuseSealedUi=false;
@@ -36,6 +42,8 @@ public:
     const mnm::render::CommandResult* result() const;
 private:
     void fail(const QString& reason);
+    AcceptanceCapture acceptance_{"commands"};
+    std::uint64_t acceptancePresentSerial_=0;
     NativeRenderTarget target_;bool verify_,ended_=false,closed_=false;
     CommandChannel channel_;std::unique_ptr<mnm::render::CommandDecoder> decoder_;
     std::unique_ptr<mnm::render::GlBlitter> renderer_;

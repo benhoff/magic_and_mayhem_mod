@@ -104,6 +104,69 @@ class CoverageTests(unittest.TestCase):
         # Shared evidence can name a scenario only if its ID is linked there.
         self.register['scenarios'][0]['evidence'].append('original')
 
+    def add_scoped_control_reviews(self):
+        from coverage_applicability import PREFIX, python_projection
+        from coverage_claims import fingerprint
+        folder=self.root/PREFIX;folder.mkdir(parents=True)
+        path='tests/checks.py';(self.root/'tests').mkdir(exist_ok=True)
+        old=b'def checked(x): return x+1\n';(self.root/path).write_bytes(old)
+        b=self.register['behaviors'][0];b['tests']=[path]
+        self.register['scenarios'][0]['tests']=[path]
+        self.record['sources'].pop('test.py');self.record['sources'][path]=self.digest(path)
+        self.record['claims'][0].update(contract_sha256=behavior_contract(b,{'fixture':self.register['builds'][0]}),scenarios={'headless':scenario_contract(self.register['scenarios'][0])})
+        self.write_json('record.json',self.record)
+        self.register['evidence_applicability']=[]
+        for ev in self.register['evidence']:
+            ev['sha256']=self.digest('record.json');name=PREFIX+ev['id'];baseline=name+'-source.bin';(self.root/baseline).write_bytes(old)
+            anchor=name+'-anchor.json';self.write_json(anchor,dict(schema=1,behavior=copy.deepcopy(b),evidence=copy.deepcopy(ev)))
+            review=dict(schema=1,kind='scoped_source_applicability',id=ev['id']+'-scope',preservation_only=True,reason='Reviewed named control and complete local/module dependency closure; no new engine or scope credit.',evidence=dict(id=ev['id'],record=ev['record'],sha256=ev['sha256'],definition_sha256=fingerprint(ev)),behavior=b['id'],contract_sha256=self.record['claims'][0]['contract_sha256'],scenarios=self.record['claims'][0]['scenarios'],preserve_status={k:v for k,v in b['status'].items() if k!='understanding' and v!='none'},baseline_anchor=dict(record=anchor,sha256=self.digest(anchor)),source_contracts=[dict(path=path,phase='controls',kind='python-callables-v1',recorded_sha256=self.digest(path),baseline_record=baseline,symbols=['checked'],projection_sha256=python_projection(old,['checked']))])
+            name+='-review.json';self.write_json(name,review);self.register['evidence_applicability'].append(dict(id=review['id'],record=name,sha256=self.digest(name)))
+        (self.root/path).write_bytes(old+b'def unrelated(): return 8\n')
+        return path
+
+    def test_scoped_current_support_retains_raw_staleness_and_immutable_claims(self):
+        self.add_scoped_control_reviews();before=copy.deepcopy(self.record);report=self.report()
+        self.assertEqual(report['errors'],[]);self.assertEqual(report['counts']['stale_evidence'],2)
+        row=report['behaviors'][0];self.assertEqual(row['evidence_freshness'],'stale')
+        for stage in ('implementation','comparison','integration'):
+            self.assertEqual(row['current_validation'][stage]['state'],'current')
+            self.assertTrue(row['current_validation'][stage]['reviewed_applicability'])
+        self.assertEqual(row['revalidation_plan'],[]);self.assertEqual(self.record,before)
+
+    def test_scoped_control_change_requests_controls_runtime_change_requests_scenario(self):
+        path=self.add_scoped_control_reviews();(self.root/path).write_text('def checked(x): return x-1\n')
+        row=self.report()['behaviors'][0];self.assertEqual(row['current_validation']['comparison']['state'],'pending')
+        self.assertEqual({x['action'] for x in row['revalidation_plan']},{'rerun-controls'})
+        (self.root/'code.cpp').write_text('changed runtime\n');row=self.report()['behaviors'][0]
+        self.assertIn('rerun-affected-scenario',{x['action'] for x in row['revalidation_plan']})
+
+    def test_scope_review_baseline_tampering_is_audit_error(self):
+        self.add_scoped_control_reviews();ref=self.register['evidence_applicability'][0]
+        review=json.loads((self.root/ref['record']).read_text());(self.root/review['source_contracts'][0]['baseline_record']).write_text('changed original source\n')
+        self.assertTrue(self.report()['errors'])
+
+    def test_current_alternative_proof_does_not_schedule_historical_reruns(self):
+        (self.root/'code.cpp').write_text('changed runtime\n')
+        fresh=copy.deepcopy(self.record);fresh['sources']['code.cpp']=self.digest('code.cpp')
+        self.write_json('fresh.json',fresh)
+        for ev in list(self.register['evidence']):
+            current=dict(ev,id=ev['id']+'-current',record='fresh.json',sha256=self.digest('fresh.json'))
+            self.register['evidence'].append(current)
+            self.register['behaviors'][0]['evidence'].append(current['id'])
+            self.register['scenarios'][0]['evidence'].append(current['id'])
+        report=self.report();self.assertEqual(report['errors'],[])
+        row=report['behaviors'][0];self.assertEqual(row['evidence_freshness'],'stale')
+        self.assertEqual(row['revalidation_plan'],[])
+        for stage in ('implementation','comparison','integration'):
+            self.assertEqual(row['current_validation'][stage]['state'],'current')
+
+    def test_unbound_historical_record_does_not_schedule_validation(self):
+        (self.root/'code.cpp').write_text('changed runtime\n')
+        for ev in self.register['evidence']:ev.pop('claims_pointer')
+        row=self.report()['behaviors'][0]
+        self.assertEqual(row['current_validation']['comparison']['state'],'pending')
+        self.assertEqual(row['revalidation_plan'],[])
+
     def write_json(self, name, value):
         (self.root/name).write_text(json.dumps(value))
 

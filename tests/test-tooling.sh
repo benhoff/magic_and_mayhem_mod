@@ -17,6 +17,7 @@ python3 -m py_compile \
     "$REPO_DIR/tools/decompile-game.py" \
     "$REPO_DIR/tools/inventory-game-files.py"
 python3 "$REPO_DIR/tests/test-decompile-game.py"
+python3 "$REPO_DIR/tests/test-evidence-applicability.py"
 python3 "$REPO_DIR/tests/test-re-coverage.py"
 python3 "$REPO_DIR/tests/test-coverage-gate.py"
 python3 "$REPO_DIR/tests/test-coverage-bookkeeping.py"

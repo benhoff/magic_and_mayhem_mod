@@ -44,6 +44,7 @@ public:
   std::uint64_t completed() const { return completed_; }
   unsigned firstWorldCanvas() const { return firstWorldCanvas_; }
   unsigned worldCanvas() const { return world_.canvas(); }
+  CanvasWorld::AlternateStats alternateStats() const { return world_.alternateStats(); }
   std::uint64_t worldCanvasChanges() const { return worldCanvasChanges_; }
   std::uint64_t worldContextChanges() const { return world_.residentContextChanges(); }
   std::uint64_t copyRectRefusals() const { return producer_.copyRectRefusals(); }

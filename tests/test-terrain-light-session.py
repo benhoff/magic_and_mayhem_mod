@@ -93,6 +93,36 @@ class SessionControls(unittest.TestCase):
     os.kill(peer.child.pid,signal.SIGKILL);until(lambda:peer.child.poll() is not None)
   self.assertTrue(peer.result['worker_exited_early']);self.assertFalse(peer.result['success'])
   with sqlite3.connect(root/'terrain-light-session/outcome.sqlite3') as db:self.assertEqual(len(db.execute('SELECT * FROM results').fetchall()),1)
+ def test_supervisor_termination_reaps_worker_and_records_failure(self):
+  self.supervisor_loss(signal.SIGTERM)
+ def test_supervisor_kill_cannot_leave_worker_running(self):
+  self.supervisor_loss(signal.SIGKILL)
+ def supervisor_loss(self,number):
+  # Become the orphan's reaper for this control; never signal an unowned PID.
+  libc=ctypes.CDLL(None,use_errno=True)
+  self.assertEqual(libc.prctl(36,1,0,0,0),0) # PR_SET_CHILD_SUBREAPER
+  root,metadata,env=fixture(capture='none');readfd,writefd=os.pipe()
+  supervisor=os.fork()
+  if supervisor==0:
+   os.close(readfd)
+   try:
+    with session.Session(root,metadata,env) as peer:
+     os.write(writefd,str(peer.child.pid).encode()+b'\n');os.close(writefd)
+     while True:signal.pause()
+   except BaseException:os._exit(0)
+  os.close(writefd)
+  try:
+   worker=int(os.read(readfd,64));os.kill(supervisor,number)
+   self.assertEqual(os.waitpid(supervisor,0)[0],supervisor)
+   if number==signal.SIGKILL:
+    until(lambda:os.waitpid(worker,os.WNOHANG)[0]==worker)
+   self.assertFalse(Path('/proc',str(worker)).exists())
+   if number==signal.SIGTERM:
+    with sqlite3.connect(root/'terrain-light-session/outcome.sqlite3') as db:
+     result=json.loads(db.execute('SELECT payload FROM results').fetchone()[0])
+    self.assertFalse(result['success']);self.assertEqual(result['worker_exit'],0)
+  finally:
+   os.close(readfd);libc.prctl(36,0,0,0,0)
  def test_original_default_does_not_start_or_stage_a_worker(self):
   self.assertEqual(session.selection({}),('original','none'));self.assertEqual(session.stage(OUT,b'not original',b'unchanged',{}),(b'unchanged',{}))
   with session.Session(OUT,{},{}):pass

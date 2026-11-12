@@ -83,6 +83,13 @@ translation during retries and live adapter/replacement remain pending.
 
 ## Subsequent standalone driver evidence
 
+The [2026-10-26 retry-context comparison](original-surface-copy-retry-context-20261026.md)
+now recovers selected window/argument lifetimes across both copy loops: initial
+destination geometry/translation is cached, while API/WAIT and source RECT are
+read again for each draw. All18,432 cases match32/64-bit native and sanitized
+models. This narrows the earlier window-translation gap; null-interface mutation,
+reload callback ownership and real driver/live behavior remain pending.
+
 [Real Wine Surface2 observations](surface-driver-restore.md) now cover mode-change
 loss, successful/repeated Restore, primary wrong-dimension refusal and source-key
 retention in two display formats. This API-only probe does not load original

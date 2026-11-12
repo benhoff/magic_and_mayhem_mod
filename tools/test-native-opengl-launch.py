@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Bounded actual standalone launcher proof with owned graphics and native GPU frames."""
+from experiment_environment import stage_prefix
 from coverage_evidence import write_report
 import argparse
 import hashlib
@@ -55,7 +56,7 @@ def main():
         if a.prefix_template:
             from drawing_fixture_prefix import borrow
             template,_=borrow(ROOT,a.prefix_template)
-            subprocess.run(['cp','-a','--reflink=auto',str(template),str(out/'wineprefix')],check=True,timeout=120)
+            stage_prefix(ROOT, str(template), str(out/'wineprefix'))
             # Prefix relocation must finish before the bounded launch begins.
             report['fixture_prefix']=dict(template=str(template),exclusive_supervisor_lease=True,private_clone=str(out/'wineprefix'))
         server=helpers.start_native_hardware(out,env)

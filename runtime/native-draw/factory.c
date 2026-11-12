@@ -139,4 +139,4 @@ __declspec(dllexport) u32 WIN NativeDrawStatusStage(void) {return __atomic_load_
 __declspec(dllexport) void WIN NativeDrawStatusDeferV1(u32 begin) {nd_status_defer(begin);}
 __declspec(dllexport) u32 WIN NativeDrawObjects(void) {return nd_objects;}
 __declspec(dllexport) u32 WIN NativeDrawPalettes(void) {return np_objects;}
-i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;if(reason==1){ns_lifetime_initialize();nd_init();ns_lifetime_install();nd_status_start();np_status_start();}else if(reason==0){nd_cursor_detach();nd_retirement_report(reserved!=0);ns_guard_finish();np_status_finish();nd_status_finish();}return 1;}
+i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;if(reason==1){ns_lifetime_initialize();nd_init();ns_lifetime_install();nd_status_start();np_status_start();nd_clip_start();}else if(reason==0){nd_cursor_detach();nd_retirement_report(reserved!=0);ns_guard_finish();np_status_finish();nd_status_finish();nd_clip_finish();}return 1;}

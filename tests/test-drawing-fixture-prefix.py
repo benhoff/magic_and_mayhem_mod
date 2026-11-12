@@ -25,11 +25,19 @@ class Prefix(unittest.TestCase):
             root=Path(d);prefix=root/'working/experiments/game/wineprefix';prefix.mkdir(parents=True)
             with self.assertRaises(ValueError):prepare(root,root,root,prefix)
 
-    def test_default_keeps_private_clone(self):
+    def test_default_delegates_to_reusable_environment(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);run=root/'working/tests/run';template=root/'template'
+            with patch('experiment_environment.stage') as stage:
+                prefix,lease=prepare(root,run,template)
+                stage.assert_called_once_with(root,prefix,template,persistent=False)
+                self.assertIs(lease,stage.return_value)
+
+    def test_explicit_private_clone(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);run=root/'run';run.mkdir();template=root/'template';template.mkdir()
             with patch('drawing_fixture_prefix.subprocess.run') as call:
-                prefix,lock=prepare(root,run,template);self.assertEqual(prefix,run/'wineprefix');self.assertIsNone(lock)
+                prefix,lock=prepare(root,run,template,private=True);self.assertEqual(prefix,run/'wineprefix');self.assertIsNone(lock)
                 self.assertEqual(call.call_args.args[0],['cp','-a','--reflink=auto',str(template),str(prefix)])
 
 

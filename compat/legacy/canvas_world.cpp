@@ -2,6 +2,7 @@
 #include "../../protocols/include/mnm/world_frame_v1.h"
 #include "canvas_world.hpp"
 #include <cstdlib>
+#include <charconv>
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
 #include <chrono>
 #include <cstring>
@@ -120,7 +121,20 @@ WorldDraw producerWorldDraw(const CanvasProducer &c) {
 CanvasWorld::CanvasWorld(render::GlBlitter &renderer,
                          const assets::AssetStore &store)
     : renderer_(renderer), store_(store), resources_(store_),
-      bindings_(store_, resources_) {}
+      bindings_(store_, resources_) {
+  const auto alternate=std::getenv("MNM_NATIVE_ALTERNATE_CANVAS");
+  alternateStats_.enabled=alternate&&std::strcmp(alternate,"1")==0;
+  if(alternateStats_.enabled){
+    const auto padding=[](const char* name){
+      std::uint32_t value=0;const char* text=std::getenv(name);
+      if(text){const auto end=text+std::strlen(text);const auto result=std::from_chars(text,end,value);
+        if(result.ec!=std::errc{} || result.ptr!=end)throw std::invalid_argument("Native alternate padding setting");}
+      return value;
+    };
+    alternateStats_.xPadding=padding("MNM_NATIVE_ALTERNATE_PADDING_X");
+    alternateStats_.yPadding=padding("MNM_NATIVE_ALTERNATE_PADDING_Y");
+  }
+}
 CanvasWorld::~CanvasWorld(){if(replayBaseline_)renderer_.destroy(replayBaseline_);}
 void CanvasWorld::enablePreparedReplay(bool retainCompletedImage){
   if(active_ || completed_ || rollingCompleted_)throw std::logic_error("Prepared replay activation after source updates");
@@ -134,11 +148,14 @@ render::GpuFrame CanvasWorld::replayPrepared(){
   renderer_.batch([&]{
     renderer_.restoreSurface(replayBaseline_,residentSurface_);
     if(!retainCompletedImage_){
+      if(alternate_)alternate_->begin(replayBaseline_);
       scene_->beginFrame(replayDraws_,render::SceneStart::retainedCanvas);
       while(!scene_->drawNext(12320)){}
+      if(alternate_){alternate_->copyBack(residentSurface_);alternate_->end();++alternateStats_.copies;}
     }
   });
-  ++preparedReplays_;return scene_->presentGpu();
+  ++preparedReplays_;if(alternate_)++alternateStats_.replays;
+  return alternate_?renderer_.presentGpu(residentSurface_):scene_->presentGpu();
 }
 void CanvasWorld::begin(const CanvasProducer &c, const render::Image &native) {
   if (rolling_ || completed_ == std::numeric_limits<unsigned>::max() ||
@@ -178,13 +195,21 @@ void CanvasWorld::beginResident(const CanvasProducer &c,render::SurfaceId native
     limits.cache.indexedAtlas=true;limits.cache.atlasFrames=512;
     // Validate the new owned surface, extent and defined history before
     // retiring the old borrowed scene. Global source ordinals stay contiguous.
-    auto next=std::make_unique<render::SceneRenderer>(renderer_,resources_,native,
+    std::unique_ptr<render::GpuAlternateCanvas> nextAlternate;
+    if(alternateStats_.enabled){
+      nextAlternate=std::make_unique<render::GpuAlternateCanvas>(renderer_,int(r[5]),int(r[6]),alternateStats_.xPadding,alternateStats_.yPadding);
+      nextAlternate->begin(native);
+    }
+    auto next=std::make_unique<render::SceneRenderer>(renderer_,resources_,nextAlternate?nextAlternate->surface():native,
                                                     int(r[5]),int(r[6]),limits);
     scene_=std::move(next);residentSurface_=native;
+    alternate_=std::move(nextAlternate);
+    if(alternate_)++alternateStats_.publications;
     if(replayBaseline_){renderer_.destroy(replayBaseline_);replayBaseline_=0;}
     baselineCaptured_=false;replayDraws_.clear();
     if(replace)++residentContextChanges_;
-  }
+  }else if(alternate_)alternate_->begin(native);
+  if(alternate_)++alternateStats_.frames;
   pending_={r[14],r[5],r[6],r[5],{}};
   queue_=1;canvas_=r[3];queueDraws_=0;checked_=false;active_=true;
   rolling_=resident_=true;rollingSequence_=sequence;
@@ -218,10 +243,29 @@ void CanvasWorld::beginFrame(const CanvasProducer &c,
 }
 void CanvasWorld::append(const CanvasProducer &c) {
   if (!active_ || c.fields[3] != canvas_ || c.fields[5] != pending_.width ||
-      c.fields[6] != pending_.height || queueDraws_ >= 12320 ||
+      c.fields[6] != pending_.height || queueDraws_ >= 12320 || pending_.draws.size() >= 12320 ||
       totalDraws_ == std::numeric_limits<std::uint64_t>::max())
     throw std::invalid_argument(
         "World producer changed destination or exceeded queue budget");
+  if(c.fields[2]==MNM_PRODUCER_FILL){
+    const auto& r=c.fields;
+    const int left=signedWord(r[10]),top=signedWord(r[11]),right=signedWord(r[12]),bottom=signedWord(r[13]);
+    if(!c.bytes().empty()||r[14]>65535||right<left||bottom<top)
+      throw std::invalid_argument("Invalid constant World fill");
+    const int x0=std::max(0,left),y0=std::max(0,top),x1=std::min(int(pending_.width),right),y1=std::min(int(pending_.height),bottom);
+    const auto tiles=x0<x1&&y0<y1?std::size_t((x1-x0+63)/64)*((y1-y0+63)/64):0;
+    if(tiles>12320-pending_.draws.size())throw std::invalid_argument("World fill exceeds expanded draw budget");
+    // A fill owns its constant, without a source plane or destination snapshot.
+    // Tile only the clipped visible area through the existing colour primitive.
+    // Order is preserved alongside neighbouring destination-dependent draws.
+    for(int y=y0;y<y1;y+=64)for(int x=x0;x<x1;x+=64){
+      const int w=std::min(64,x1-x),h=std::min(64,y1-y);
+      WorldDraw tile;tile.backend=12;tile.x=x;tile.y=y;tile.clip={x0,y0,x1,y1};
+      tile.colourRectangle=render::ColourRectangle{{w,h,std::vector<std::uint32_t>(std::size_t(w)*h,r[14])}};
+      pending_.draws.push_back(std::move(tile));
+    }
+    ++queueDraws_;++totalDraws_;checked_=false;profile_.visibleDraws+=unsigned(tiles);return;
+  }
   auto draw = producerWorldDraw(c);
   ++queueDraws_;
   ++totalDraws_;
@@ -319,6 +363,7 @@ render::Image CanvasWorld::completeFrame(const render::Image *reference, bool ex
     profile_.cacheFrames = cacheAfter.frames;
     profile_.cacheSurfaces = cacheAfter.surfaces;
   }
+  if(alternate_){alternate_->copyBack(residentSurface_);++alternateStats_.copies;}
   if(!exportPixels) { checked_=true; return {}; }
   auto started = Clock::now();
   auto native = scene_->read();
@@ -353,11 +398,12 @@ void CanvasWorld::end(const CanvasProducer &c) {
   else
     completed_ = queue_;
   active_ = false;
+  if(alternate_)alternate_->end();
 }
 } // namespace mnm::legacy
 
 mnm::render::GpuFrame mnm::legacy::CanvasWorld::presentGpu() {
   if (active_ || !checked_ || !scene_)
     throw std::logic_error("World GPU presentation before completion");
-  return scene_->presentGpu();
+  return alternate_?renderer_.presentGpu(residentSurface_):scene_->presentGpu();
 }

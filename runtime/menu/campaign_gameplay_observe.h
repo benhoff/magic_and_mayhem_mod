@@ -2,12 +2,13 @@
  * Never issues orders, changes health/mana, or replaces simulation. */
 static HANDLE gameplay_file;
 static volatile u32 gameplay_busy;
-static u32 gameplay_sequence,gameplay_next_sample;
+static u32 gameplay_sequence,gameplay_next_sample,gameplay_point_owner;
 static u8 gameplay_was_active[256];
 static TickFn gameplay_original_melee;
 static void gameplay_write(u32* words){
     if(!gameplay_file||gameplay_sequence>=65536||!__sync_bool_compare_and_swap(&gameplay_busy,0,1))return;
     words[0]=++gameplay_sequence;words[2]=GetCurrentThreadId();words[3]=GetTickCount();
+    __sync_bool_compare_and_swap(&gameplay_point_owner,0,words[2]);
     u8 data[64];for(u32 i=0;i<16;++i)put(data+4*i,words[i]);u32 wrote;
     if(!WriteFile(gameplay_file,data,64,&wrote,0)||wrote!=64){CloseHandle(gameplay_file);gameplay_file=0;}
     __sync_lock_release(&gameplay_busy);
@@ -20,6 +21,7 @@ static u8* gameplay_creature(u32 slot){
     u8* p=(u8*)at;
     return readable(p,0xe4b)&&get(p)==slot?p:0;
 }
+#include "campaign_follow_observe.h"
 static u32 THIS gameplay_melee(void* object){
     u32 error=GetLastError();u8* source=object;u8* target=0;
     u32 row[16]={0,2,0,0,0xffffffff,0,0xffffffff,0,0xffffffff,0,0xffffffff,0,0,0,0,0};
@@ -46,6 +48,7 @@ static void gameplay_sample(void){
             u32 row[16]={0,1,0,0,slot,get(p+0xa8),get(p+0x174),active,get(p+0xe4),
                 get(p+8),get(p+0xc),get(p+0x10),get(p+0x5ec),get(p+0x5fc),get(p+0x64c),get(p+0xe8)};
             gameplay_write(row);
+            gameplay_follow_sample(p);
         }
     }
     SetLastError(error);
@@ -63,7 +66,14 @@ static int install_gameplay_observe(void){
     if(!gameplay_file){VirtualProtect((void*)0x50c0d0,6,old,&restore);return 0;}
     const u8 header[16]={'M','N','M','G','P','0','0','1',1,0,0,0,64,0,0,0};u32 wrote;
     if(!WriteFile(gameplay_file,header,16,&wrote,0)||wrote!=16){CloseHandle(gameplay_file);gameplay_file=0;VirtualProtect((void*)0x50c0d0,6,old,&restore);return 0;}
-    if(!install_spell_observe()){CloseHandle(gameplay_file);gameplay_file=0;VirtualProtect((void*)0x50c0d0,6,old,&restore);return 0;}
+    if(!gameplay_follow_open()||!install_spell_observe()){CloseHandle(gameplay_file);gameplay_file=0;VirtualProtect((void*)0x50c0d0,6,old,&restore);return 0;}
     jump(0x50c0d0,(u32)&gameplay_melee,6);VirtualProtect((void*)0x50c0d0,6,old,&restore);
     FlushInstructionCache(GetCurrentProcess(),(void*)0x50c0d0,6);return 1;
+}
+
+/* Read-only observation cursor on the actual caller/engine thread. */
+__declspec(dllexport) u32 WIN MenuGameplayPointV1(u32 owner,u32* out,u32 bytes){
+ u32 error=GetLastError();
+ if(!gameplay_file||!gameplay_sequence||owner!=gameplay_point_owner||owner!=GetCurrentThreadId()||!out||bytes!=16||__atomic_load_n(&gameplay_busy,__ATOMIC_ACQUIRE)){SetLastError(error);return 0;}
+ out[0]=1;out[1]=16;out[2]=0x40209ca7;out[3]=gameplay_sequence;SetLastError(error);return 1;
 }

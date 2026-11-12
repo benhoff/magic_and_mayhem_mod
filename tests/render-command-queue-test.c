@@ -15,6 +15,33 @@ static void check_visible_wake(void* address){
     check(__atomic_load_n(&command_queue_written,__ATOMIC_ACQUIRE)==3);
     check(command_queue[0]==0x12 && command_queue[1]==0x34 && command_queue[2]==0x56);
 }
+static u32 deadline_race;
+static void deadline_peer_progress(void){
+    clock_probe=0;
+    if(deadline_race==0)storage[9]=command_ring.published;
+    else if(deadline_race==1 || deadline_race==5)storage[9]=command_ring.acknowledged+32;
+    else if(deadline_race==2)storage[8]=1;
+    else if(deadline_race==3)storage[9]=command_ring.published+1;
+    else if(deadline_race==4)++storage[4];
+}
+static void deadline_recheck_cases(const u8* input){
+    for(u32 mode=0;mode<7;++mode){
+        ring_reset_version(mode==5?3:2);command_queue_timeout=100;
+        if(mode==5){command_ring.published=command_ring.acknowledged=storage[5]=storage[9]=0xfffffff0u;}
+        check(command_channel_append(input,64,0,0,0,0));
+        if(mode==6)check(command_queue_watch());else command_channel_pump();
+        clock_ms=100;deadline_race=mode;clock_probe=deadline_peer_progress;
+        command_channel_pump();clock_probe=0;
+        const u32 expected=mode<=1||mode==5?0:mode==2?3:mode<=4?5:4;
+        int passed=command_queue_failure==expected;
+        if(!mode)passed=passed&&!command_queue_armed&&storage[6]==1;
+        if(mode==1 || mode==5)passed=passed&&command_queue_since==100&&storage[6]==1;
+        printf("{\"watchdog_case\":%u,\"success\":%s,\"reason\":%u,\"expected_reason\":%u}\n",mode,passed?"true":"false",command_queue_failure,expected);
+        check(passed);
+        if(mode==1 || mode==5){clock_ms=200;command_channel_pump();check(command_queue_failure==4&&command_queue_timed_out);}
+        command_channel_close();
+    }
+}
 #ifndef QUEUE_TEST_MAIN
 #define QUEUE_TEST_MAIN main
 #endif
@@ -76,5 +103,6 @@ int QUEUE_TEST_MAIN(void){
     u32 expected[]={10,5000,5000,5000,5000,5000,150};
     for(u32 i=0;i<7;++i){stall_env=settings[i];ring_reset();check(command_queue_timeout==expected[i]);command_channel_close();}
     continuous_env=stall_env=0;
-    free(input);puts("{\"success\":true,\"queue_cases\":25,\"bytes\":2097275,\"queue_wrap_bytes\":35653675}");return 0;
+    deadline_recheck_cases(input);
+    free(input);puts("{\"success\":true,\"queue_cases\":32,\"watchdog_cases\":7,\"bytes\":2097275,\"queue_wrap_bytes\":35653675}");return 0;
 }

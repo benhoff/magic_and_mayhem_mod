@@ -173,6 +173,14 @@ class HoverTest(unittest.TestCase):
         self.assertIsNone(fresh_hover(rows[:3],(440,310),1,require_cast=True))
         self.assertEqual(fresh_hover(rows,(440,310),1,require_cast=True)['sequence'],4)
 
+    def test_position_return_mask16_still_requires_later_world_and_no_buttons(self):
+        rows=self.rows();rows[1]['callback_mask']=16
+        self.assertIsNone(fresh_hover(rows[:3],(440,310),1,require_cast=True))
+        self.assertEqual(fresh_hover(rows,(440,310),1,require_cast=True)['sequence'],4)
+        for buttons in (1,2,4,8):
+            rows[1]['mouse_flags']=buttons
+            self.assertIsNone(fresh_hover(rows,(440,310),1,require_cast=True))
+
     def test_button_release_is_not_an_original_motion_return(self):
         for change in [dict(callback_mask=8),dict(mouse_flags=8),dict(mouse_flags=4)]:
             rows=self.rows();rows[1].update(change)
@@ -186,6 +194,80 @@ class HoverTest(unittest.TestCase):
         restored=dict(rows[1],sequence=5,world_counter=44)
         world=dict(final,sequence=6,world_counter=45)
         self.assertEqual(fresh_hover([rows[0],rows[1],later,final,restored,world],(440,310),1)['sequence'],6)
+
+    def test_matching_world_does_not_hide_a_newer_wrong_callback(self):
+        rows=self.rows()
+        later=dict(rows[1],sequence=5,world_counter=44,mouse=[500,400])
+        self.assertIsNone(fresh_hover(rows+[later],(440,310),1))
+        final=dict(rows[-1],sequence=6,world_counter=45)
+        self.assertIsNone(fresh_hover(rows+[later,final],(440,310),1))
+        matching=dict(rows[1],sequence=7,world_counter=46)
+        self.assertIsNone(fresh_hover(rows+[later,final,matching],(440,310),1))
+        world=dict(final,sequence=8,world_counter=47)
+        self.assertEqual(fresh_hover(rows+[later,final,matching,world],(440,310),1)['sequence'],8)
+
+    def test_new_entry_cancels_old_proof_until_return_and_later_world(self):
+        rows=self.rows();entry=dict(rows[1],kind=2,sequence=5,world_counter=44)
+        world=dict(rows[-1],sequence=6,world_counter=45)
+        self.assertIsNone(fresh_hover(rows+[entry],(440,310),1))
+        self.assertIsNone(fresh_hover(rows+[entry,world],(440,310),1))
+        returned=dict(entry,kind=3,sequence=7,world_counter=46)
+        self.assertIsNone(fresh_hover(rows+[entry,world,returned],(440,310),1))
+        final=dict(world,sequence=8,world_counter=47)
+        self.assertEqual(fresh_hover(rows+[entry,world,returned,final],(440,310),1)['sequence'],8)
+        self.assertIsNone(fresh_hover(rows+[entry,world],(440,310),5,already_there=True))
+
+    def test_nested_callback_return_cannot_acknowledge_outer_callback(self):
+        rows=self.rows();outer=dict(rows[1],kind=2,sequence=5,world_counter=44)
+        inner=dict(outer,sequence=6);inner_return=dict(inner,kind=3,sequence=7)
+        world=dict(rows[-1],sequence=8,world_counter=45)
+        partial=rows+[outer,inner,inner_return,world]
+        self.assertIsNone(fresh_hover(partial,(440,310),1))
+        returned=dict(outer,kind=3,sequence=9,world_counter=46)
+        final=dict(world,sequence=10,world_counter=47)
+        self.assertEqual(fresh_hover(partial+[returned,final],(440,310),1)['sequence'],10)
+
+    def return_rows(self):
+        rows=self.rows()
+        for r in rows:
+            r['flags']|=128;r['world_counter']=42
+            r['world_return_ordinal']=10 if r['sequence']<4 else 11
+        return rows
+
+    def test_actual_return_can_advance_while_simulation_clock_is_paused(self):
+        rows=self.return_rows()
+        self.assertEqual(fresh_hover(rows,(440,310),1,require_cast=True)['sequence'],4)
+        for r in rows:r.pop('world_return_ordinal');r['flags']&=~128
+        self.assertIsNone(fresh_hover(rows,(440,310),1,require_cast=True))
+
+    def test_return_token_cannot_be_replaced_by_clock_or_publication(self):
+        for changes in (dict(world_return_ordinal=10,world_counter=100),dict(world_return_ordinal=9),dict(world_return_ordinal=None)):
+            rows=self.return_rows();rows[-1].update(changes)
+            self.assertIsNone(fresh_hover(rows,(440,310),1))
+        rows=self.return_rows();rows[-1]['flags']&=~128
+        self.assertIsNone(fresh_hover(rows,(440,310),1))
+        rows=self.return_rows();rows[-1].pop('world_return_ordinal');rows[-1]['flags']&=~128
+        self.assertIsNone(fresh_hover(rows,(440,310),1))
+
+    def test_return_token_keeps_latest_callback_and_pending_guards(self):
+        rows=self.return_rows();entry=dict(rows[1],kind=2,sequence=5,world_return_ordinal=12)
+        self.assertIsNone(fresh_hover(rows+[entry],(440,310),1))
+        wrong=dict(entry,kind=3,sequence=6,mouse=[500,400])
+        world=dict(rows[-1],sequence=7,world_return_ordinal=13)
+        self.assertIsNone(fresh_hover(rows+[entry,wrong,world],(440,310),1))
+
+    def test_return_token_wrap_is_forward(self):
+        rows=self.return_rows()
+        for r in rows:r['world_return_ordinal']=0xffffffff if r['sequence']<4 else 0
+        self.assertEqual(fresh_hover(rows,(440,310),1)['sequence'],4)
+
+    def test_latest_world_must_still_be_ready(self):
+        rows=self.rows()
+        for changes in (dict(x=500),dict(input_active=0),dict(cursor_type=20),dict(mode=1)):
+            latest=dict(rows[-1],sequence=5,world_counter=44,**changes)
+            self.assertIsNone(fresh_hover(rows+[latest],(440,310),1,require_cast=True))
+        latest=dict(rows[-1],sequence=5,world_counter=44)
+        self.assertEqual(fresh_hover(rows+[latest],(440,310),1,require_cast=True)['sequence'],5)
 
     def test_qt_only_already_there_cannot_replace_original_position_proof(self):
         first=dict(self.rows()[-1],sequence=1,world_counter=40)

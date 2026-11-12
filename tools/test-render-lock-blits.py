@@ -101,7 +101,7 @@ def check_primary_frames(case, mode, count, unknown):
         return bytes(out)
     primary_c = mode in ('chain', 'update', 'rgb24', 'rgb32', 'budget')
     seed_ids = {3 if primary_c else 1 if mode == 'untracked' else 2}
-    if mode == 'reseed':
+    if mode in ('reseed', 'reentrant-target'):
         seed_ids.add(4)
     draw_ids = {index + (mode in ('failed', 'reseed')) for index in range(1, (18 if mode == 'budget' else count) + 1)}
     if primary_c:
@@ -174,7 +174,7 @@ def main():
     counts = {'chain': 2, 'keyed': 1, 'alias': 1, 'failed': 1, 'update': 3,
               'rgb24': 2, 'rgb32': 2, 'reseed': 1, 'key-failed': 1, 'budget': 16,
               'unsupported': 0, 'self': 0, 'untracked': 0, 'clipper': 0, 'restore': 0,
-              'key-removed': 0, 'release': 0, 'bounds': 0, 'subrect': 1, 'reentrant': 0, 'created': 1, 'alias-conflict': 0, 'unlock-restore': 0, 'destination-alias': 1}
+              'key-removed': 0, 'release': 0, 'bounds': 0, 'subrect': 1, 'reentrant': 0, 'created': 1, 'alias-conflict': 0, 'unlock-restore': 0, 'destination-alias': 1, 'reentrant-target': 0, 'retire-source': 1}
     if selected:
         assert set(selected) <= counts.keys(), selected
         counts = {mode: counts[mode] for mode in selected}
@@ -213,8 +213,8 @@ def main():
             target = case / f'gpu-{index:08x}.bin'
             result = subprocess.run(['xvfb-run', '-a', str(build / 'mnm-render-commands'), str(source),
                                      '--output', str(target)], env=env, capture_output=True, text=True, timeout=20)
+            assert result.returncode == 0, (mode, result.stdout, result.stderr)
             report = json.loads(result.stdout)
-            assert result.returncode == 0, (mode, report, result.stderr)
             assert target.read_bytes() == output and report['checks'] == 1 and report['presentations'] == 1
             replays.append(report)
         with frame.open('rb') as f:

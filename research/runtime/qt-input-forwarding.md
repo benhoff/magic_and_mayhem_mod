@@ -3,14 +3,19 @@
 The shell now forwards input from the displayed image to an application client
 under the new Wine desktop. This requires Qt's `xcb` platform on X11/XWayland.
 No input is sent to a window that existed before this launch. Discovery binds
-only a unique deepest mapped input/output child with key/button/motion event
-subscriptions matching the frame dimensions
-under exactly one new `MagicMayhem` desktop. Ambiguous clients, missing frames
-and destroyed targets disable forwarding.
+only under exactly one new `MagicMayhem` desktop matching the displayed frame
+size. A unique mapped `Magic & Mayhem` input/output window with key/button/motion
+subscriptions and visible overlap can be smaller than that desktop. The legacy
+exact-frame deepest-client selector remains the fallback for other client titles.
+Ambiguous named clients, incomplete trees, incompatible geometry, missing frames
+and destroyed targets disable forwarding. Desktop-mode extents are bounded to
+2048 pixels; no decoration size or client offset is guessed.
 
 Click the OpenGL image to focus it. Keyboard scan codes, mouse motion, three
-buttons and vertical wheel notches are sent as targeted X11 events. Desktop
-focus and the physical cursor are not globally moved. Coordinates use the same
+buttons and vertical wheel notches are sent as targeted X11 events. Each event
+translates desktop-frame pixels to the current outer-window coordinates through
+X11, including after window movement. Desktop focus and the physical cursor are
+not globally moved. Coordinates use the same
 rounded/device-scaled image rectangle as OpenGL presentation. Bar clicks are
 ignored; held-button drags and releases outside the image clamp to its edge.
 Auto-repeat keeps the key down. Focus loss, hiding, unbinding and launcher exit
@@ -42,7 +47,9 @@ slots are outside this chunk.
 
 With the optional channel present, DirectDraw vtable slot 20
 (SetCooperativeLevel) is observed and forwarded unchanged. Only a successful
-call records its HWND for ClientToScreen. Snapshot polling preserves LastError
+call records its HWND. Client-relative input v1 uses ClientToScreen; explicit
+desktop-coordinate v2 returns screen coordinates directly and avoids translating
+them twice. Snapshot polling preserves LastError
 on success; fallback preserves the original API's behavior and errors. The
 original drawing, window/message loop and audio APIs remain active. No
 DirectInput replacement, IME/text composition, side-specific modifier polling,

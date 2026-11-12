@@ -72,7 +72,7 @@ def authorize(root,metadata,environment):
 
 class Session:
  def __init__(self,root,metadata,environment):
-  self.root=Path(root).resolve();self.metadata=metadata;self.environment=environment;self.child=None;self.mapping=None;self.log=None;self.failed=None
+  self.root=Path(root).resolve();self.metadata=metadata;self.environment=environment;self.child=None;self.mapping=None;self.log=None;self.failed=None;self.handlers={}
  def __enter__(self):
   self.policy=validate(self.root,self.metadata,self.environment,7)
   if self.policy is None:return self
@@ -80,7 +80,8 @@ class Session:
   try:
    with (directory/'channel.bin').open('r+b') as f:self.mapping=mmap.mmap(f.fileno(),SIZE)
    self.log=(directory/'worker.log').open('xb')
-   self.child=subprocess.Popen([str(self.root/'lighting-build/mnm-terrain-light-session'),'--session',str(directory/'channel.bin'),str(directory/'corpus.bin')],stdin=subprocess.DEVNULL,stdout=self.log,stderr=subprocess.STDOUT,close_fds=True,start_new_session=True)
+   for number in (signal.SIGTERM,signal.SIGINT):self.handlers[number]=signal.signal(number,self.interrupted)
+   self.child=subprocess.Popen([str(self.root/'lighting-build/mnm-terrain-light-session'),'--session',str(directory/'channel.bin'),str(directory/'corpus.bin'),'--parent',str(os.getpid())],stdin=subprocess.DEVNULL,stdout=self.log,stderr=subprocess.STDOUT,close_fds=True,start_new_session=True)
    identity=Path('/proc',str(self.child.pid),'stat').read_text().rsplit(') ',1)[1].split()
    db=sqlite3.connect(directory/'outcome.sqlite3')
    with db:db.execute('CREATE TABLE IF NOT EXISTS lifecycle(pid INTEGER,start_ticks INTEGER,phase TEXT)');db.execute('INSERT INTO lifecycle VALUES (?,?,?)',(self.child.pid,int(identity[19]),'started'))
@@ -92,7 +93,16 @@ class Session:
     time.sleep(.005)
    raise RuntimeError('Lighting worker startup timed out')
   except BaseException as e:self.failed=str(e);self.close();raise
+ def interrupted(self,number,frame):
+  raise SystemExit(128+number)
  def close(self):
+  # A second cancellation must not interrupt reaping or the SQLite outcome.
+  for number in self.handlers:signal.signal(number,signal.SIG_IGN)
+  try:self._close()
+  finally:
+   for number,handler in self.handlers.items():signal.signal(number,handler)
+   self.handlers.clear()
+ def _close(self):
   if self.child is None:
    if self.mapping is not None:self.mapping.close();self.mapping=None
    if self.log is not None:self.log.close();self.log=None

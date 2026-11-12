@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Synthetic change accounting, immutable history, rename and real Git-base checks."""
 import copy
-from contextlib import contextmanager, redirect_stdout
+from contextlib import closing, contextmanager, redirect_stdout
 import io
 import hashlib
 import importlib.util
@@ -16,7 +16,7 @@ from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
-from coverage_gate import BASELINE, REGISTER, REVIEWS, check, changes, digest, draft, snapshot, source_index, file_digest
+from coverage_gate import BASELINE, REGISTER, REVIEWS, check, changes, digest, draft, snapshot, source_index, file_digest, immutable_errors
 from coverage_claims import behavior_contract, scenario_contract
 from coverage_evidence import Reader
 from coverage_reviews import ARCHIVES, load_journal, read_journal, split_journal
@@ -101,6 +101,26 @@ class GateTests(unittest.TestCase):
     def assert_error(self, result, text):
         self.assertTrue(any(text in e for e in result['errors']), result['errors'])
 
+    def test_applicability_reviews_are_append_only(self):
+        before=copy.deepcopy(self.before);after=copy.deepcopy(self.before)
+        ref=dict(id='scope-old',record='research/runtime/coverage/applicability/old.json',sha256='a'*64)
+        before['evidence_applicability']=[ref];after['evidence_applicability']=[]
+        self.assertTrue(any('source-applicability' in e for e in immutable_errors(before,after)))
+        after['evidence_applicability']=[ref,dict(ref,id='scope-next')]
+        self.assertEqual(immutable_errors(before,after),[])
+        after['evidence_applicability'][0]=dict(ref,sha256='b'*64)
+        self.assertTrue(any('source-applicability' in e for e in immutable_errors(before,after)))
+
+    def test_compatible_historical_proof_cannot_record_changed_source_as_fresh_execution(self):
+        self.write('tests/model.py','changed verification only\n');after,report=self.current()
+        # The real audit integration separately tests scoped preservation. Even
+        # preserved readiness cannot turn old raw fingerprints into a new run.
+        report['behaviors'][0]['current_validation']['comparison'].update(state='current',evidence=['old-original'],reviewed_applicability={'old-original':'reviewed-callables'})
+        review=self.receipt(after=after);review['reviews'][0]['validation'].update(status='recorded',evidence=['old-original'],reason='Attempt to misuse old applicable evidence as new execution.')
+        result=check(self.before,after,review,report)
+        self.assert_error(result,'stale: old-original')
+        self.assert_error(result,'does not fingerprint changed source')
+
     def test_unchanged_backlog_passes_and_is_retained(self):
         result = self.result()
         self.assertEqual(result['errors'], [])
@@ -111,15 +131,34 @@ class GateTests(unittest.TestCase):
         self.assertEqual(self.result(), self.result())
         self.assertEqual(snapshot(self.root)[0], snapshot(self.root)[0])
 
+    def test_parallel_snapshot_matches_sequential_and_refuses_unregistered_corruption(self):
+        from coverage_evidence import Store, pointer
+        path=self.root/'research/runtime/unregistered.json';path.parent.mkdir(parents=True,exist_ok=True)
+        payload=b'{"retained":"negative observation"}'
+        store=Store(self.root/'working/coverage/evidence-pending.sqlite3')
+        with store.db:sha=store.put(io.BytesIO(payload),len(payload))
+        store.close();path.write_bytes(pointer(sha,len(payload)))
+        with patch.object(Reader,'prefetch_digests',return_value=None):
+            sequential=snapshot(self.root)
+        self.assertEqual(snapshot(self.root),sequential)
+        import sqlite3
+        with closing(sqlite3.connect(self.root/'working/coverage/evidence-pending.sqlite3')) as db,db:
+            for name, in db.execute("SELECT name FROM sqlite_master WHERE type='trigger' AND tbl_name='chunks'").fetchall():
+                db.execute('DROP TRIGGER "'+name+'"')
+            db.execute('DELETE FROM chunks WHERE sha256=?',(sha,))
+        with self.assertRaisesRegex(ValueError,'hash mismatch'):
+            snapshot(self.root)
+
     def test_snapshot_fingerprints_shared_paths_once_without_cross_call_reuse(self):
         paths = []
 
         class ObservedReader(Reader):
-            def digest(self, path):
+            def _remember(self, path, stamp, sha, body=None):
                 paths.append(path)
-                return super().digest(path)
+                return super()._remember(path, stamp, sha, body)
 
-        # Observe the snapshot reader separately from its independent audit.
+        # Audit and snapshot share one verified-read epoch. Count actual reads,
+        # including the audit, rather than calls returning an already known hash.
         with patch('coverage_gate.Reader', ObservedReader):
             first, _ = snapshot(self.root)
         self.assertEqual(paths.count(self.root/'assets/model.cpp'), 1)
@@ -423,6 +462,17 @@ class GateTests(unittest.TestCase):
                 receipt['reviews'][0]['validation']['stages'] = stages
                 self.assert_error(self.result(receipt), 'stages requires a nonempty unique list')
 
+    def test_pending_empty_stages_accounts_content_without_validation_credit(self):
+        receipt=self.receipt()
+        receipt['reviews'][0]['validation']['stages']=[]
+        self.assertEqual(self.result(receipt)['errors'],[])
+        self.register['behaviors'][0]['status']['implementation']='scoped'
+        self.assert_error(self.result(self.receipt_with_empty_pending_stages()),'Status promotion requires fresh recorded validation')
+
+    def receipt_with_empty_pending_stages(self):
+        receipt=self.receipt();receipt['reviews'][0]['validation']['stages']=[]
+        return receipt
+
     def test_pending_receipt_cannot_claim_stage_credit(self):
         receipt = self.receipt()
         receipt['reviews'][0]['validation']['stages'] = ['implementation']
@@ -670,7 +720,8 @@ class GateTests(unittest.TestCase):
         export = Mock(stdout=io.BytesIO(archive.getvalue()), returncode=7)
         export.wait.return_value = 7
         export.poll.return_value = 7
-        with patch.object(cli, 'git', return_value=b'a'*40+b'\n'), patch.object(
+        with patch('verification_budget.directory', return_value=self.root/'working/slots'), patch(
+                'coverage_scratch.tree_requirements', return_value=(4096, 32)), patch.object(cli, 'git', return_value=b'a'*40+b'\n'), patch.object(
                 cli.subprocess, 'Popen', return_value=export):
             with self.assertRaises(subprocess.CalledProcessError) as failure:
                 cli.git_snapshot(self.root, 'HEAD')
@@ -680,7 +731,8 @@ class GateTests(unittest.TestCase):
     def test_malformed_archive_stops_the_exporter(self):
         export = Mock(stdout=io.BytesIO(b'invalid tar'))
         export.poll.return_value = None
-        with patch.object(cli, 'git', return_value=b'a'*40+b'\n'), patch.object(
+        with patch('verification_budget.directory', return_value=self.root/'working/slots'), patch(
+                'coverage_scratch.tree_requirements', return_value=(4096, 32)), patch.object(cli, 'git', return_value=b'a'*40+b'\n'), patch.object(
                 cli.subprocess, 'Popen', return_value=export):
             with self.assertRaises(tarfile.ReadError):
                 cli.git_snapshot(self.root, 'HEAD')
@@ -799,10 +851,12 @@ class GateTests(unittest.TestCase):
         self.assertEqual(json.loads(target.read_text())['sources'], self.before['sources'])
 
     def prepare_hook(self):
-        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_claims.py', 'coverage_evidence.py', 'coverage_merge_history.py', 'coverage_reviews.py', 'index-coverage-sources.py', 'evidence_local.py'):
+        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_applicability.py', 'coverage_claims.py', 'coverage_evidence.py', 'coverage_merge_history.py', 'coverage_reviews.py', 'index-coverage-sources.py', 'evidence_local.py', 'evidence_objects.py', 'verification_budget.py', 'coverage_scratch.py', 'integration_queue.py', 'guard-master-reference.py'):
             self.write('tools/' + name, (ROOT/'tools'/name).read_text())
         self.write('.githooks/pre-commit', (ROOT/'.githooks/pre-commit').read_text())
         (self.root/'.githooks/pre-commit').chmod(0o755)
+        self.write('.githooks/reference-transaction', (ROOT/'.githooks/reference-transaction').read_text())
+        (self.root/'.githooks/reference-transaction').chmod(0o755)
         self.json(REVIEWS, {'schema': 1, 'reviews': []})
         self.before = self.current()[0]
         self.init_git()
@@ -820,13 +874,16 @@ class GateTests(unittest.TestCase):
         self.assertIn(b'--staged --base HEAD', commit.stderr)
         self.json(REVIEWS, self.receipt())
         cli.git(self.root, 'add', '.')
-        cli.git(self.root, 'commit', '-qm', 'exact reviewed change')
+        from integration_queue import integration_lock
+        with integration_lock(self.root) as lease:
+            result=lease.run(['git','-C',str(self.root),'commit','-qm','exact reviewed change'],capture_output=True)
+        self.assertEqual(result.returncode,0,result.stderr.decode()+result.stdout.decode())
 
     def test_hook_install_is_local_idempotent_and_reversible(self):
         self.prepare_hook()
         hook_install.install(self.root)
         hook_install.install(self.root)
-        self.assertEqual(cli.git(self.root, 'config', '--local', '--get', 'core.hooksPath').strip(), b'.githooks')
+        self.assertEqual(cli.git(self.root, 'config', '--local', '--get', 'core.hooksPath').decode().strip(), str(self.root/'.githooks'))
         hook_install.install(self.root, uninstall=True)
         self.assertNotEqual(subprocess.run(['git', '-C', str(self.root), 'config', '--local', '--get', 'core.hooksPath'], capture_output=True).returncode, 0)
 

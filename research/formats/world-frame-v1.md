@@ -18,7 +18,7 @@ are never embedded in native inputs.
 | 44 | Pinned No-CD build token `0x40209ca7` |
 | 48..60 | Initial left/top/right/bottom clip, signed coordinates |
 | 64, 68 | Original consumer mode and auxiliary-pass flag; diagnostics |
-| 72 | Original colour format; only zero (RGB565) admitted natively |
+| 72 | Original colour format: zero RGB565; one RGB555 requires explicit offline colour-only admission |
 | 76 | Original consumer EAX at return; diagnostic, not a native input |
 
 Bounds: width/height 1..2048, stride width..4096, 1..32768 requests, total
@@ -56,7 +56,7 @@ unshaded ambiguity refusal remains its default.
 | 4 quarter-destination | Same table layout; selected quarter-destination blend |
 | 5 projected shadow | Same table layout; recovered alternating-row coverage and destination darkening |
 | 6 additive rectangle | No encoded frame, indexed flag zero; five DWORDs: width, height, red, green, blue increments |
-| 7 colour rectangle | No encoded frame, indexed flag zero; width/height/mode DWORDs then width*height RGB565 WORDs |
+| 7 colour rectangle | No encoded frame, indexed flag zero; width/height/mode DWORDs then width*height packed WORDs in the declared format |
 | 8 additive sprite | Backend13 exclusively; indexed frame plus256 selected RGB565 WORDs; saturate source/destination channels |
 
 Non-displacement periods must be zero. Native displacement admits offsets
@@ -90,6 +90,17 @@ The CLI owns a constant initial RGB565 background (zero by default). It never
 loads the original before canvas. The independent comparison must demonstrate
 that these drawing inputs construct the entire claimed canvas from that native
 base. This format alone cannot prove that every pixel producer was observed.
+
+The offline preview accepts `--rgb555-colour` to enable format1 for colour-only
+files. Default decoding and live/producer transports still require format0.
+Format1 admits only operation7/backend12, canonical source WORDs0..32767 and
+the existing geometry/order budgets. It does not admit sprites, additive
+rectangles or effects. The preview writes raw WORDs to `.555` and reports
+`packed_format=RGB555`; the authored background may retain the unused high bit.
+Scene storage and the bounded colour cache use RGB555 directly. Blends use
+the original RGB555 channel mask0x3def; no RGB565 colour conversion supplies
+an oracle or substitutes for packed-word comparison. See
+[the scoped comparison](../runtime/rendering-remaining-20261026.md).
 
 Operation6 is a tagged extension of the closed v1 record, retaining its offsets
 and reserved-field meaning. Existing readers reject the unknown operation.

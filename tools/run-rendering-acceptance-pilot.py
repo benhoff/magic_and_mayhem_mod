@@ -1,0 +1,337 @@
+#!/usr/bin/env python3
+"""Capture a real public-player pilot; retain all results without acceptance promotion."""
+import argparse,hashlib,importlib.util,json,os,secrets,signal,sqlite3,subprocess,sys,time
+from pathlib import Path
+from coverage_evidence import Reader,write_report
+ROOT=Path(__file__).resolve().parents[1]
+PREFIX='research/runtime/rendering-acceptance-pilot-results-20261031/'
+def sha(path):
+ with Path(path).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+def module(name):
+ spec=importlib.util.spec_from_file_location(name,ROOT/'tools'/name);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+def main():
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--gameplay-witness',action='store_true',help='Bounded 800x600 public Quick camera, hover, latch and pause witness');p.add_argument('--software',action='store_true');p.add_argument('--operations-provenance',action='store_true');p.add_argument('--operation-census',action='store_true',help='Closed COPY observations on an otherwise unchanged nominal normal route');p.add_argument('--skip-intros',action='store_true');p.add_argument('--trace-timing',action='store_true');p.add_argument('--sample-stalls',action='store_true');p.add_argument('--sample-storage-main',action='store_true');p.add_argument('--diagnostic-only',action='store_true');p.add_argument('--stall-intro-host',action='store_true');p.add_argument('--stall-world-host',action='store_true');p.add_argument('--storage-policy',type=Path);p.add_argument('--scenario',choices=['pilot','normal-quick','normal-storage','normal-combat'],default='pilot');p.add_argument('--copy-callers',action='store_true',help='Diagnostic-only upstream COPY caller observation');p.add_argument('--cursor-copy-callers',action='store_true',help='Read-only cursor protected-view caller handoff');p.add_argument('--cpu-reader-journal',action='store_true',help='One enabled-intro software storage reader/DC diagnostic per owned worktree');p.add_argument('--scene-effects',action='store_true',help='Passive actor/ANI and combat journal joined to source generations');p.add_argument('--size',choices=['640x480','800x600'],default='800x600');p.add_argument('--palette-observation',action='store_true',help='Passive palette custody in the separately bounded palette task');p.add_argument('--palette-plan');a=p.parse_args()
+ palette_plan=None
+ if a.palette_observation:
+  if not a.palette_plan or a.scenario!='normal-combat' or not a.scene_effects or a.skip_intros or a.diagnostic_only or a.copy_callers or a.cpu_reader_journal or a.sample_stalls or a.operations_provenance or a.operation_census or a.stall_intro_host or a.stall_world_host:p.error('Palette custody requires its own plan and unmodified enabled-intro scene combat route')
+  with Reader(ROOT)as reader:
+   plan=reader.json(a.palette_plan)
+   if not(plan['success']is True and plan['maximum_launch_attempts']==6 and isinstance(plan.get('probe_review'),dict) and all(reader.digest(n)==h for n,h in plan['sources'].items())):p.error('Palette plan missing reviewed probe or sources changed')
+   review=reader.json(plan['probe_review']['record'])
+   if not(reader.digest(plan['probe_review']['record'])==plan['probe_review']['sha256'] and review['success']is True and review['ready_for_residual_native_capture']is True and review['closes_palette_rows']is False):p.error('Palette semantic probe review missing')
+   control=reader.json(plan['controls']['record'])
+   if not(reader.digest(plan['controls']['record'])==plan['controls']['sha256'] and control['success']is True and control['sources_stable']is True and all(reader.digest(n)==h for n,h in control['sources'].items())):p.error('Palette production controls changed')
+   palette_plan=dict(record=a.palette_plan,sha256=reader.digest(a.palette_plan))
+ elif a.palette_plan:p.error('--palette-plan requires passive palette custody')
+ if a.scene_effects and a.scenario not in ('normal-storage','normal-combat'):p.error('Scene observation requires storage or combat route')
+ if a.scenario=='normal-combat' and not a.scene_effects:p.error('Combat route requires its bounded scene plan')
+ if a.gameplay_witness and (a.scenario!='normal-quick' or a.skip_intros or a.diagnostic_only or a.copy_callers or a.cpu_reader_journal or a.sample_stalls or a.operations_provenance or a.stall_intro_host or a.stall_world_host):p.error('Gameplay witness requires enabled-intro nominal normal-quick')
+ if a.cursor_copy_callers and not a.copy_callers:p.error('Cursor copy caller handoff requires COPY caller diagnostic')
+ if a.cpu_reader_journal:
+  if a.scenario!='normal-storage' or not a.software or a.skip_intros or a.operation_census or a.operations_provenance or a.copy_callers or a.sample_stalls or a.sample_storage_main or a.stall_intro_host or a.stall_world_host:p.error('CPU reader journal requires its own enabled-intro software storage diagnostic')
+  a.diagnostic_only=True
+ if a.copy_callers:
+  if a.scenario!='normal-quick':p.error('COPY caller observation requires bounded normal-quick')
+  if a.operation_census or a.operations_provenance or a.sample_stalls or a.stall_intro_host or a.stall_world_host:p.error('COPY caller observation requires its own diagnostic route')
+  a.diagnostic_only=True
+ if a.sample_storage_main:
+  if a.scenario!='normal-storage' or a.skip_intros or a.operations_provenance or a.stall_intro_host or a.stall_world_host:p.error('Storage Main sampling requires enabled-intro normal-storage without injected faults')
+  a.sample_stalls=True;a.diagnostic_only=True
+ if a.operation_census and (a.scenario=='pilot' or a.operations_provenance or a.skip_intros or a.diagnostic_only or a.sample_stalls or a.stall_intro_host or a.stall_world_host):p.error('Operation census requires an unchanged nominal normal route with enabled intros')
+ if a.operations_provenance:
+  if a.scenario!='normal-quick':p.error('Operations provenance requires bounded normal-quick')
+  a.diagnostic_only=True
+ if a.stall_intro_host and a.stall_world_host:p.error('Choose one diagnostic host fault')
+ if a.stall_world_host:
+  if a.scenario!='normal-quick':p.error('World host fault requires normal-quick')
+  a.diagnostic_only=True
+ if a.stall_intro_host:
+  if a.skip_intros or a.scenario!='normal-quick':p.error('Intro host fault requires normal-quick with enabled intros')
+  a.diagnostic_only=True
+ if a.sample_stalls:
+  if a.scenario not in ('normal-quick','normal-storage'):p.error('Parent-debugger sampling requires a normal diagnostic route')
+  a.diagnostic_only=True
+ normal=a.scenario!='pilot';prefix='research/runtime/rendering-normal-results-20261031/' if normal else PREFIX
+ if not a.report.startswith(prefix) or (ROOT/a.report).exists():p.error('New owned immutable report required')
+ token=Path(a.report).stem;out=ROOT/'working/pilot'/token;out.mkdir(parents=True,exist_ok=False);(out/'.retain').write_text('Actual public pilot and all negative attempts. Retain before RAM teardown.\n')
+ launcher=module('run-native-owned.py');campaign=module('test-native-campaign.py')
+ # The public launcher can rebuild. Freeze dependencies only after that build,
+ # then require the same executable and dependency graph after execution.
+ build=(ROOT/'working/build/qt-shell').resolve()
+ build_tmp=build.parent/'tmp';build_tmp.mkdir(parents=True,exist_ok=True)
+ build_commands=[['cmake','-S',str(ROOT/'apps/qt-shell'),'-B',str(build),'-DCMAKE_BUILD_TYPE=Release','-DBUILD_TESTING=OFF'],['cmake','--build',str(build),'--target','mnm-qt-shell','--parallel','4']]
+ build_error=None
+ try:
+  with (out/'player-build.log').open('xb') as log:
+   for command in build_commands:subprocess.run(command,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=300,env=dict(os.environ,TMPDIR=str(build_tmp)))
+ except Exception as e:build_error=str(e)
+ build_record=str(Path(a.report).with_suffix(''))+'-player-build.bin'
+ build_sha=write_report(ROOT,build_record,(out/'player-build.log').read_bytes())
+ if build_error:
+  result=dict(schema=1,kind='native_player_build_preparation_failure',success=False,error=build_error,commands=build_commands,log=dict(record=build_record,sha256=build_sha),original_artifacts_consumed=False)
+  digest=write_report(ROOT,a.report,(json.dumps(result,indent=2)+'\n').encode());print(json.dumps(dict(success=False,error=build_error,record=a.report,sha256=digest)),flush=True);return 1
+ compiled=set(campaign.linked_compiler_sources(build,ROOT))
+ binary=build/'mnm-qt-shell';binary_record=str(Path(a.report).with_suffix(''))+'-player-binary.bin'
+ binary_sha=write_report(ROOT,binary_record,binary.read_bytes())
+ names=set(compiled)
+ names.update(['run-native.sh','tools/run-native-game.py','tools/run-native-owned.py','tools/run-qt-shell.sh','tools/native_only_contract.py','tools/native_prefix_template.py','tools/experiment_environment.py','tools/directplay_dx6_launch.py','tools/working-retention.py','tools/run-rendering-acceptance-pilot.py','tools/test-native-campaign.py'])
+ if normal:names.update(['tools/menu-storage-input.py','tools/campaign_storage.py'])
+ if a.scene_effects:
+  names.update(['tools/scene_actor_observation.py','tools/scene_effects_input.py','tools/scene_combat_input.py','tools/campaign-combat-input.py','tools/campaign_gameplay.py'])
+  names.update(v.relative_to(ROOT).as_posix() for v in (ROOT/'tools').glob('campaign_*.py'))
+ if a.sample_stalls:names.update(['tools/sample-rendering-stall.py','tools/rendering_stall_sampler.py'])
+ names.add('tools/rendering_progression.py')
+ if a.gameplay_witness or a.scene_effects:
+  from rendering_build_binding import native_runtime_source_paths
+  names.update(native_runtime_source_paths(ROOT))
+  names.update(['tools/menu-game-runner.py','tools/drawing_hud_state.py','tools/drawing_semantic_state.py','tools/drawing_actor_latches.py','tools/drawing_region_input.py','tools/campaign_input_observation.py','tools/rendering_build_binding.py'])
+ sources={n:sha(ROOT/n) for n in sorted(names)}
+ report=dict(schema=1,kind='public_native_watchdog_diagnostic_acquisition' if a.diagnostic_only else 'public_native_normal_acquisition' if normal else 'public_native_pilot_acquisition',success=False,player_accepted=False,scenario=a.scenario,
+  sources=sources,source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),session_identity=secrets.token_hex(16),
+  configuration=dict(id='software-probe' if a.software else 'default-pilot',software_flag=a.software,skip_intros=a.skip_intros,terrain_lighting='original',native_lighting_capture=False,viewport_scaling='integer-sharp'),
+  original_pixels_used_as_native_inputs=False,original_reference_executed=False,scope=__doc__)
+ report['player_build']=dict(commands=build_commands,log=dict(record=build_record,sha256=build_sha),binary=dict(path='working/build/qt-shell/mnm-qt-shell',record=binary_record,sha256=binary_sha),compiler_sources={n:sources[n] for n in sorted(compiled)})
+ report['configuration']['diagnostic_only']=a.diagnostic_only
+ env={k:v for k,v in os.environ.items() if not k.startswith(('MNM_','WINE')) and k not in ['DISPLAY','XAUTHORITY','LIBGL_ALWAYS_SOFTWARE','GALLIUM_DRIVER','MESA_LOADER_DRIVER_OVERRIDE','QT_XCB_GL_INTEGRATION','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES']}
+ env.update(QT_QPA_PLATFORM='xcb',LP_NUM_THREADS='4',QT_SCALE_FACTOR='1',WINEDEBUG='-all',TMPDIR=str(out),
+  MNM_QT_BUILD_TYPE='Release',MNM_QT_BUILD_TESTS='OFF',MNM_MENU_GAME_SOURCE=str(ROOT/'working/game-nocd'),
+  MNM_LIVE_MENU_TEST_QT_JOURNEY='1',MNM_QUICK_BATTLE_MAP_ROW='0',MNM_ACCEPTANCE_PILOT='1',MNM_ACCEPTANCE_SKIP_INTROS=str(int(a.skip_intros)),
+  MNM_TERRAIN_LIGHTING='original',MNM_NO_ROUTE_SCREENSHOTS='1',MNM_RESIDENT_STAGE_PROFILE='1',MNM_RESIDENT_PROFILE_CAPTURE=str(out/'worlds.bin'),
+  MNM_ACCEPTANCE_CAPTURE_DIRECTORY=str(out/'capture'),MNM_ACCEPTANCE_CAPTURE_ID=report['session_identity'])
+ if normal:
+  env.update(MNM_ACCEPTANCE_NORMAL='1',MNM_TERRAIN_LIGHTING='native',MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS='1',XDG_CONFIG_HOME=str(out/'config'))
+  report['configuration']['terrain_lighting']='native'
+  report['configuration']['source_chunks']=True
+  report['configuration'].update(viewport_capture_stored_limit_bytes=1024**3,world_capture_retained_limit_bytes=2*1024**3)
+  report['configuration']['configuration_home']=str(out/'config')
+ if a.scene_effects:
+  env.update(MNM_SCENE_ACTORS='1',MNM_CAMPAIGN_CASTING_COMBAT='1',MNM_SCENE_EFFECTS_VIEWS='1',MNM_CAMPAIGN_PROGRESSION_SIZE=a.size)
+  report['configuration'].update(scene_actor_observation=1,requested_size=a.size,scene_effects_plan='AC07-six-starts')
+ if a.palette_observation:
+  env['MNM_PALETTE_OBSERVE']='1';report['palette_input_plan']=palette_plan
+  report['configuration'].update(palette_observation=1,scene_effects_plan='PC08-six-task-attempts',scene_actor_observation=2)
+ if a.scenario=='normal-combat':
+  deadline_ms=650000
+  env.pop('MNM_LIVE_MENU_TEST_QT_JOURNEY')
+  env.update(MNM_CAMPAIGN_SMOKE_TEST='1',MNM_CAMPAIGN_DIFFICULTY='1',MNM_CAMPAIGN_STRESS_SECONDS='10',MNM_CAMPAIGN_NORMAL_QUIT='1',MNM_CAMPAIGN_TIMEOUT_MS=str(deadline_ms),MNM_ACCEPTANCE_CAMPAIGN='1',MNM_SCENE_EFFECTS_COMBAT='1')
+  report['configuration'].update(deadline_ms=deadline_ms,viewport_capture_policy='campaign-lossless-viewport-v1')
+ if a.gameplay_witness:
+  env.update(MNM_ACCEPTANCE_GAMEPLAY='1',MNM_ACCEPTANCE_CAMPAIGN='1')
+  report['configuration']['gameplay_witness']=True
+  report['configuration']['gameplay_extra_budget_ms']=40000
+  report['configuration']['viewport_capture_policy']='campaign-lossless-viewport-v1'
+ if a.cpu_reader_journal:
+  env.update(MNM_NATIVE_CPU_READER_JOURNAL='1',MNM_ACCEPTANCE_DIAGNOSTIC='1')
+  report['kind']='public_native_cpu_reader_diagnostic_acquisition'
+  report['configuration']['cpu_reader_journal']=dict(version=1,capacity=65536,scalar_only=True,changes_actions=False,changes_deadlines=False)
+ if a.operations_provenance:
+  env.update(MNM_NATIVE_COPY_DIAGNOSTICS=str(out/'copy-diagnostics'),MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE='all',MNM_CURSOR_COPY_STATE='1',MNM_CURSOR_COPY_EXERCISE='1')
+  report['configuration']['operations_provenance']=dict(copy_scope='all',cursor_state_version=1,qt_cursor_exercise=True)
+ if a.operation_census:
+  env.update(MNM_NATIVE_COPY_DIAGNOSTICS=str(out/'copy-diagnostics'),MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE='all')
+  report['configuration']['operation_census']=dict(copy_scope='all',coordinate_exercise=False,changes_actions=False,changes_admission=False)
+ if a.copy_callers:
+  env.update(MNM_NATIVE_COPY_CALLERS='1',MNM_NATIVE_COPY_DIAGNOSTICS=str(out/'copy-diagnostics'),MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE='all')
+  report['kind']='public_native_copy_caller_diagnostic_acquisition'
+  report['configuration']['copy_callers']=dict(version=3,scalar_only=True,changes_actions=False,changes_admission=False)
+ if a.cursor_copy_callers:
+  env['MNM_NATIVE_CURSOR_COPY_CALLERS']='1'
+  report['configuration']['copy_callers']['cursor_handoff_version']=1
+ if a.sample_stalls:
+  env.update(MNM_ACCEPTANCE_DIAGNOSTIC='1',MNM_ACCEPTANCE_SAMPLE_STALLS='1',MNM_ACCEPTANCE_STALL_SAMPLER_DIR=str(out/'sampler'))
+  report['configuration']['parent_debugger_stall_sampling']=dict(threshold_seconds=1.5,max_stack_samples=1,deadline_or_ownership_changed=False)
+ if a.sample_stalls and a.scenario=='normal-storage' and not a.sample_storage_main:
+  env.update(MNM_NATIVE_COPY_DIAGNOSTICS=str(out/'copy-diagnostics'),MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE='all')
+  report['configuration']['storage_stall_diagnostic']=dict(arm_after='startup',copy_scope='all',changes_actions=False,changes_deadlines=False)
+ if a.sample_storage_main:
+  env.update(MNM_ACCEPTANCE_SAMPLE_STORAGE_MAIN='1',MNM_NATIVE_COPY_DIAGNOSTICS=str(out/'copy-diagnostics'),MNM_NATIVE_COPY_DIAGNOSTIC_SCOPE='all')
+  report['configuration']['storage_main_stall_diagnostic']=dict(arm_after='campaign-storage-8.png',copy_scope='all',changes_actions=False,changes_deadlines=False)
+ if a.trace_timing:
+  env['MNM_RESIDENT_POLL_TIMING']='1'
+  report['configuration']['bounded_host_timing_trace']=True
+ if a.stall_intro_host:
+  env['MNM_ACCEPTANCE_STALL_INTRO_HOST']='1'
+  report['configuration']['injected_fault']=dict(kind='gui-stall-after-first-movie-frame',planned_ms=6200)
+ if a.stall_world_host:
+  env['MNM_ACCEPTANCE_STALL_WORLD_HOST']='1'
+  report['configuration']['injected_fault']=dict(kind='gui-stall-after-first-world-paint',planned_ms=6200)
+ if a.storage_policy:
+  policy=a.storage_policy.resolve(strict=True)
+  env['MNM_WORKING_STORAGE_POLICY']=str(policy)
+  name=str(Path(a.report).with_suffix(''))+'-storage-policy.bin'
+  report['storage_policy']=dict(path=str(policy),record=name,sha256=write_report(ROOT,name,policy.read_bytes()))
+ if a.scenario=='normal-storage':
+  deadline_ms=350000+(0 if a.skip_intros else 180000)
+  report['configuration'].update(deadline_ms=deadline_ms,movie_budget_ms=0 if a.skip_intros else 180000,viewport_capture_stored_limit_bytes=1024**3,world_capture_retained_limit_bytes=2*1024**3)
+  env.pop('MNM_LIVE_MENU_TEST_QT_JOURNEY')
+  env.update(MNM_CAMPAIGN_SMOKE_TEST='1',MNM_CAMPAIGN_STORAGE='1',MNM_CAMPAIGN_DIFFICULTY='1',MNM_CAMPAIGN_RECREATE_WORLD='1',MNM_MENU_DISPLAY_OBSERVE='1',MNM_CAMPAIGN_STORAGE_NAME='native-render-'+secrets.token_hex(6),MNM_CAMPAIGN_TIMEOUT_MS=str(deadline_ms))
+  report['configuration']['difficulty']=1
+ report['installation_inputs']={str(f.relative_to(ROOT/'working/game-nocd')):dict(sha256=sha(f),bytes=f.stat().st_size) for f in sorted((ROOT/'working/game-nocd').rglob('*')) if f.is_file()}
+ before_experiments=set((ROOT/'working/experiments/menu-observer').glob('run-*'))
+ server=child=None;prefix_lease=None;verified=False;before=set((ROOT/'working/tests/native-output-owner').glob('run-*'))
+ def execute_log(label,command):
+  with (out/(label+'.log')).open('xb') as log:subprocess.run([str(v) for v in command],stdout=log,stderr=subprocess.STDOUT,check=True,timeout=180)
+ try:
+  execute_log('original-before',[ROOT/'tools/original-manifest.sh','verify']);verified=True
+  # The legacy launcher still consumes a physical TSV even for catalog inputs.
+  # Validate/materialize it before borrowing a prefix or charging a launch.
+  from rendering_progression import prepare_launch_manifest
+  manifest=ROOT/'working/manifests/game-nocd.tsv'
+  raw=prepare_launch_manifest(ROOT/'working/game-nocd',manifest)
+  record=str(Path(a.report).with_suffix(''))+'-launch-manifest.bin'
+  report['launch_manifest']=dict(path=str(manifest.relative_to(ROOT)),record=record,
+      sha256=write_report(ROOT,record,raw),bytes=len(raw),consumer='tools/run-game.sh verify_game')
+  host=out/'host';host.mkdir();server,owner,_=launcher.start_display(host,allow_glx=True);env.update(DISPLAY=owner['display'],XAUTHORITY=owner['authority'])
+  from evidence_objects import settings
+  if settings(ROOT):
+   from native_prefix_template import borrow
+   prefix_lease,report['prefix_pool']=borrow(ROOT/'working/fixtures/prefix-seed',out/'wineprefix',env)
+  command=[str(ROOT/'run-native.sh'),'--prefix',str(out/'wineprefix')]
+  if prefix_lease is None:command+=['--prefix-template',str(ROOT/'working/fixtures/prefix-seed')]
+  command+=['--','--live-menu-test',str(out/'flow.json')]
+  if a.software:command.append('--software-rendering')
+  if a.skip_intros:command.append('--skip-movies')
+  report['command']=command
+  if a.palette_observation:
+   budget_path=ROOT/'working/palette-cycling/attempts.sqlite3'
+   with sqlite3.connect(budget_path)as budget:
+    budget.execute('BEGIN IMMEDIATE')
+    if budget.execute('SELECT COUNT(*) FROM attempts').fetchone()[0]>=6:raise ValueError('Six-attempt palette task cap exhausted')
+    budget.execute('INSERT INTO attempts(report,kind,started_ns,plan_sha256)VALUES(?,?,?,?)',(a.report,'native-combat-'+('software'if a.software else'default')+'-'+a.size,time.monotonic_ns(),palette_plan['sha256']))
+    report['palette_attempt']=budget.execute('SELECT last_insert_rowid()').fetchone()[0];budget.commit()
+   report['palette_attempt_charged']=True
+  elif a.scene_effects:
+   budget_path=ROOT/'working/scene-effects/attempt-budget.sqlite3';budget_path.parent.mkdir(parents=True,exist_ok=True)
+   with sqlite3.connect(budget_path) as budget:
+    budget.execute('CREATE TABLE IF NOT EXISTS attempts(id INTEGER PRIMARY KEY,report TEXT UNIQUE,started_ns INTEGER)')
+    budget.execute('CREATE TABLE IF NOT EXISTS pre_game_refusals(report TEXT PRIMARY KEY,evidence_record TEXT,evidence_sha256 TEXT,reason TEXT)')
+    budget.execute('BEGIN IMMEDIATE')
+    if budget.execute('SELECT COUNT(*) FROM attempts WHERE report NOT IN (SELECT report FROM pre_game_refusals)').fetchone()[0]>=6:raise ValueError('Six-start scene effects budget exhausted')
+    budget.execute('INSERT INTO attempts(report,started_ns) VALUES(?,?)',(a.report,time.monotonic_ns()));budget.commit()
+   report['scene_effects_attempt_charged']=True
+  if a.cpu_reader_journal:
+   budget_path=ROOT/'working/cpu-reader-journal/attempt-budget.sqlite3';budget_path.parent.mkdir(parents=True,exist_ok=True)
+   with sqlite3.connect(budget_path) as budget:
+    budget.execute('CREATE TABLE IF NOT EXISTS attempts(id INTEGER PRIMARY KEY,report TEXT UNIQUE,started_ns INTEGER)')
+    budget.execute('BEGIN IMMEDIATE')
+    if budget.execute('SELECT COUNT(*) FROM attempts').fetchone()[0]>=1:raise ValueError('One CPU reader diagnostic launch already charged')
+    budget.execute('INSERT INTO attempts(report,started_ns) VALUES(?,?)',(a.report,time.monotonic_ns()));budget.commit()
+   report['cpu_reader_attempt_charged']=True
+  with (out/'public-launch.log').open('xb') as log:
+   child=subprocess.Popen(command,cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+   if a.scenario=='normal-combat':
+    end=time.monotonic()+deadline_ms/1000+40;ready=False
+    while child.poll() is None:
+     flow_path=out/'flow.json'
+     if flow_path.exists():
+      current_flow=json.loads(flow_path.read_text())
+      if current_flow.get('success') is False:
+       report['flow']=current_flow
+       raise ValueError('Scene combat flow refused: '+str(current_flow.get('error')))
+     if not ready:
+      roots=set((ROOT/'working/experiments/menu-observer').glob('run-*'))-before_experiments
+      if len(roots)==1:
+       actual=next(iter(roots))
+       if campaign.world_ready(actual):
+        (out/'flow.json.world-ready').touch(exist_ok=False);ready=True
+        report['world_readiness']=dict(policy='three-original-same-thread-World-observations',experiment=str(actual))
+     if time.monotonic()>end:raise TimeoutError('Bounded scene combat route exceeded deadline')
+     time.sleep(.2)
+   else:child.wait(timeout=deadline_ms/1000+40 if a.scenario=='normal-storage' else 430 if a.gameplay_witness else 390)
+  report['exit_code']=child.returncode
+  subprocess.run(['wineserver','-w'],env=dict(env,WINEPREFIX=str(out/'wineprefix')),check=True,timeout=10)
+  report['private_wine_stopped']=True
+  if child.returncode:raise ValueError('Public launcher failed; retained its actual output')
+  flow=json.loads((out/'flow.json').read_text());report['flow']=flow
+  if a.scenario=='normal-storage':
+   from campaign_storage import validate_storage_flow
+   validate_storage_flow(flow)
+  elif a.scenario=='normal-combat':
+   if flow.get('success') is not True or flow.get('normal_quit') is not True or flow.get('native_command_fallback') is not False:raise ValueError('Combat route did not complete with normal Quit')
+  elif flow.get('success') is not True or flow.get('world_visits')!=2 or flow.get('input_via_qt_viewport') is not True or flow.get('native_fallback') is not False:raise ValueError('Actual Quick Battle action route incomplete')
+  owners=set((ROOT/'working/tests/native-output-owner').glob('run-*'))-before
+  if len(owners)!=1:raise ValueError('Ambiguous public launch owner')
+  owner=owners.pop();report['owner']=str(owner);sessions=sorted((owner/'sessions').glob('*.json'))
+  if len(sessions)!=1:raise ValueError('Pilot requires one normal player generation')
+  session=Path(json.loads(sessions[0].read_text())['session']);report['session']=str(session)
+  from native_only_contract import outcome
+  report['retirement']=outcome(session)
+  if report['retirement']['state']!='completed':raise ValueError('Normal original Quit/resources missing')
+  report['native_admission']=json.loads((session/'native-output-admission.json').read_text())
+  report['resident']=json.loads((session/'resident-world-report.json').read_text())
+  report['success']=True
+ except Exception as e:report['error']=str(e)
+ finally:
+  if child is not None and child.poll() is None:
+   try:os.killpg(child.pid,signal.SIGTERM);child.wait(timeout=15)
+   except (ProcessLookupError,subprocess.TimeoutExpired):
+    try:os.killpg(child.pid,signal.SIGKILL);child.wait(timeout=10)
+    except ProcessLookupError:pass
+  if server is not None:server.terminate();server.wait(timeout=10)
+  if prefix_lease is not None:
+   try:
+    from experiment_environment import _idle
+    stop_deadline=time.monotonic()+10
+    while True:
+     try:_idle(out/'wineprefix','wineprefix');break
+     except (ValueError,subprocess.TimeoutExpired):
+      if time.monotonic()>stop_deadline:raise
+      time.sleep(.2)
+    prefix_lease.close()
+    report['private_wine_stopped']=True
+    report['prefix_pool']['returned']=True
+    report['prefix_pool']['receipt']=str(prefix_lease.receipt)
+   except Exception as e:report.update(success=False,prefix_pool_return_error=str(e))
+  if verified:
+   try:execute_log('original-after',[ROOT/'tools/original-manifest.sh','verify']);report['original_manifest_verified_before_after']=True
+   except Exception as e:report.update(success=False,original_verification_error=str(e))
+  report['sources_stable']=all(sha(ROOT/n)==h for n,h in sources.items());report['success'] &= report['sources_stable']
+  try:
+   report['compiler_closure_stable']=set(campaign.linked_compiler_sources(build,ROOT))==compiled
+   report['player_binary_stable']=sha(binary)==binary_sha
+  except Exception as e:
+   report.update(compiler_closure_stable=False,player_binary_stable=False,build_binding_error=str(e))
+  report['success'] &= report['compiler_closure_stable'] and report['player_binary_stable']
+  if a.storage_policy:
+   report['storage_policy_stable']=sha(policy)==report['storage_policy']['sha256'];report['success'] &= report['storage_policy_stable']
+  if a.sample_stalls:
+   try:
+    sampled=json.loads((out/'sampler/result.json').read_text())
+    launch_log=(out/'public-launch.log').read_text(errors='replace')
+    requested=sampled.get('sample') is not None
+    stacks=launch_log.count('MNM_WATCHDOG_STACK_BEGIN')==launch_log.count('MNM_WATCHDOG_STACK_END')==int(requested)
+    binding=sampled['player_binary']['sha256']==binary_sha and sampled['player_binary']['path']==str(binary) and sampled['player_binary_stable'] is True
+    report['stall_sampler']=sampled
+    report['stall_sampler_valid']=stacks and binding and sampled.get('observation_error') is None and sampled['observations']>0
+    report['success'] &= report['stall_sampler_valid'] and sampled['success']
+   except Exception as e:report.update(success=False,stall_sampler_valid=False,stall_sampler_error=str(e))
+  if a.stall_intro_host or a.stall_world_host:
+   try:
+    rows=[json.loads(line[len('NATIVE_HOST_FAULT '):]) for line in (out/'public-launch.log').read_text(errors='replace').splitlines() if line.startswith('NATIVE_HOST_FAULT ')]
+    report['host_fault']=rows
+    report['host_fault_recorded']=len(rows)==2 and [r['phase'] for r in rows]==['begin','end'] and all(r['planned_ms']==6200 and r['target']==('intro' if a.stall_intro_host else 'world') and len(bytes.fromhex(r['snapshot_hex']))==(2048 if a.stall_intro_host else 64) for r in rows) and int(rows[1]['observed_host_us'])-int(rows[0]['begin_host_us'])>=6200000
+   except Exception as e:report.update(host_fault_recorded=False,host_fault_error=str(e))
+   report['success'] &= report['host_fault_recorded']
+  # Physical files here are bounded execution interchange. Citable bytes go
+  # directly to SQLite before this RAM namespace may retire.
+  report['artifacts']=[]
+  candidates=[f for f in out.rglob('*') if f.is_file() and 'wineprefix' not in f.relative_to(out).parts and f.name!='Xauthority']
+  for owner in set((ROOT/'working/tests/native-output-owner').glob('run-*'))-before:
+   candidates += [f for f in owner.rglob('*') if f.is_file() and f.name!='Xauthority']
+  experiments=set((ROOT/'working/experiments/menu-observer').glob('run-*'))-before_experiments
+  report['experiments']=[str(v) for v in sorted(experiments)]
+  for session in sorted(experiments):
+   candidates += [f for f in session.rglob('*') if f.is_file() and ('game' not in f.relative_to(session).parts or f.suffix.lower() in ('.dll','.cfg','.sav','.ini') or (f.name.startswith('native-') and f.suffix=='.bin'))]
+  for f in sorted(set(candidates)):
+   limit=2*1024**3 if f==out/'worlds.bin' else 1024**3 if f.parent==out/'capture' and normal else 512*1024**2
+   if f.is_symlink() or f.stat().st_size>limit:continue
+   relative=str(f.relative_to(ROOT));name=str(Path(a.report).with_suffix(''))+'-raw-'+hashlib.sha256(relative.encode()).hexdigest()[:20]+'.bin'
+   raw=f.read_bytes();digest=write_report(ROOT,name,raw);report['artifacts'].append(dict(path=relative,record=name,sha256=digest,bytes=len(raw)))
+  report['artifact_count']=len(report['artifacts']);report['temporary_root']=str(out)
+  digest=write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode());print(json.dumps({k:report.get(k) for k in ['success','error','exit_code','artifact_count']}|{'record':a.report,'sha256':digest}),flush=True)
+  from evidence_objects import settings
+  if settings(ROOT) and report.get('private_wine_stopped') is True and (prefix_lease is None or report.get('prefix_pool',{}).get('returned') is True):
+   from evidence_workspace import register_completed
+   register_completed(ROOT,[out,*experiments],dict(record=a.report,sha256=digest))
+ return 0 if report['success'] else 1
+if __name__=='__main__':raise SystemExit(main())

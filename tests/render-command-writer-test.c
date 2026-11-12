@@ -13,7 +13,8 @@ static HANDLE GetProcessHeap(void){return storage;}
 static void* HeapAlloc(HANDLE h,u32 flags,u32 size){(void)h;(void)flags;return fail_alloc?0:malloc(size);}
 static int HeapFree(HANDLE h,u32 flags,void* memory){(void)h;(void)flags;free(memory);return 1;}
 static u32 clock_ms;
-static u32 GetTickCount(void){return clock_ms;}
+static void (*clock_probe)(void);
+static u32 GetTickCount(void){if(clock_probe)clock_probe();return clock_ms;}
 static u32 GetLastError(void){return last_error;}
 static void SetLastError(u32 value){last_error=value;}
 static u32 wake_calls;

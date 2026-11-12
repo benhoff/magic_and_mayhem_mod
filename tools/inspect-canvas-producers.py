@@ -22,6 +22,12 @@ def effect_raster(r, payload):
 def effect_source(indexed,height,state):
     return indexed<=1 and (state in (0,64,512) or indexed==1 and state==524 or 1<=height<=2048 and (state==height*4 or indexed==1 and state==512+height*4))
 
+def native_copy_metadata(r,extended):
+    if not r[23]:return True
+    if not extended or r[2]!=6 or r[18]:return False
+    if r[23]==0x4e435231:return r[21]==0x88760096
+    return r[23]==0x4e435331 and 0<r[15]<=2048 and 0<r[16]<=2048 and not r[21]&0x80000000
+
 def decode(raw, complete=True):
     if len(raw)<64 or raw[:8] not in (b'MNMPRO01',b'MNMPRO02',b'MNMPRO03',b'MNMPRO04',b'MNMPRO05') or len(raw)>(512 if raw[:8] in (b'MNMPRO02',b'MNMPRO04',b'MNMPRO05') else 128)*1024*1024:
         raise ValueError('Invalid producer stream envelope')
@@ -41,7 +47,7 @@ def decode(raw, complete=True):
         if ended:raise ValueError('Producer data after update closure')
         if len(records)>=h[5] or len(raw)-at<96:raise ValueError('Truncated/over-budget producer record')
         r=struct.unpack_from('<24I',raw,at)
-        if r[0]!=96+r[18] or r[0]>len(raw)-at or r[1]!=len(records)+1 or r[2] not in NAMES or (r[2]==24 and not (owned or extended)) or (r[2] in (25,26) and not extended) or (r[2]==27 and not whole) or r[23]:
+        if r[0]!=96+r[18] or r[0]>len(raw)-at or r[1]!=len(records)+1 or r[2] not in NAMES or (r[2]==24 and not (owned or extended)) or (r[2] in (25,26) and not extended) or (r[2]==27 and not whole) or not native_copy_metadata(r,extended):
             raise ValueError('Invalid producer record bounds/sequence/operation')
         payload=raw[at+96:at+r[0]]
         wire_size=r[0]
@@ -66,7 +72,7 @@ def decode(raw, complete=True):
         elif r[2]==23:
             if r[14]>16384 or r[18]!=r[14]*12:raise ValueError('Invalid point requests')
         elif r[2]==22:
-            if not 1<=r[14]<=256 or r[14]%2 or not 1<=r[15]<=256 or r[16]>(3 if owned or (extended and r[19]==0xfffffffe) else 0) or (owned and r[19]!=0xfffffffe) or r[17]>1 or r[18]!=r[14]*r[15]*3 or any(payload[2::3][i]>1 for i in range(r[14]*r[15])):raise ValueError('Invalid minimap terrain input')
+            if not 1<=r[14]<=256 or r[14]%2 or not 1<=r[15]<=256 or r[16]>(3 if owned or (extended and r[19]==0xfffffffe) else 0) or (owned and r[19]!=0xfffffffe) or r[17]>1 or r[18]!=r[14]*r[15]*3 or any(value>1 for value in payload[2::3]):raise ValueError('Invalid minimap terrain input')
         elif r[2]==19:
             if not 40<=r[19]<=1064 or r[20]>2097152 or r[18]!=r[19]+r[20]:raise ValueError('Invalid closed DIB input')
         elif r[2]==18:

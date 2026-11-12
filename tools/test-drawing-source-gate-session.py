@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Run the isolated PE32 diagnostic mutex gate forwarding fixture."""
+from experiment_environment import stage_prefix
 import argparse
 import json
 import os
@@ -51,7 +52,7 @@ def main():
             raise ValueError('Existing prefix must belong to a completed isolated gate fixture')
     else:
         fixture_prefix = run / 'wineprefix'
-        subprocess.run(['cp', '-a', '--reflink=auto', str(args.prefix_template.resolve()), str(fixture_prefix)], check=True)
+        stage_prefix(ROOT, str(args.prefix_template.resolve()), str(fixture_prefix), persistent=True)
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
     capture = run / 'api-cursor-gate.bin'
     env.update(WINEPREFIX=str(fixture_prefix), WINEDEBUG='-all', MNM_DRAW_SESSION_MODE='metadata', MNM_DRAW_SESSION_DIRECTORY='Z:' + str(run).replace('/', '\\'), MNM_GATE_BINDING_TEST_FILE='Z:' + str(capture).replace('/', '\\'))

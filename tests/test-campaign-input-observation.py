@@ -74,6 +74,29 @@ class ObservationTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             decode(b'MNMCAI01' + struct.pack('<II', 2, 128) + struct.pack('<32I', *row))
 
+    def v3(self,rows):
+        return b'MNMCAI01'+struct.pack('<II',3,144)+b''.join(struct.pack('<36I',*r) for r in rows)
+
+    def test_v3_distinguishes_world_returns_from_the_simulation_clock(self):
+        a=self.row()+[10,0,0,0];a[3]=1;a[4]|=128
+        b=a.copy();b[0]=2;b[1]+=1;b[32]=11
+        rows=decode(self.v3([a,b]))['rows']
+        self.assertEqual([r['world_counter'] for r in rows],[100,100])
+        self.assertEqual([r['world_return_ordinal'] for r in rows],[10,11])
+
+    def test_v3_requires_token_flag_reserved_zero_and_forward_order(self):
+        a=self.row()+[10,0,0,0];a[3]=1;a[4]|=128
+        for index,value in ((4,31),(33,1),(34,1),(35,1)):
+            bad=a.copy();bad[index]=value
+            with self.subTest(index=index),self.assertRaises(ValueError):decode(self.v3([bad]))
+        b=a.copy();b[0]=2;b[32]=9
+        with self.assertRaises(ValueError):decode(self.v3([a,b]))
+
+    def test_v3_return_ordinal_wrap_is_forward(self):
+        a=self.row()+[0xffffffff,0,0,0];a[3]=1;a[4]|=128
+        b=a.copy();b[0]=2;b[32]=0
+        self.assertEqual(decode(self.v3([a,b]))['rows'][-1]['world_return_ordinal'],0)
+
 
 if __name__ == '__main__':
     unittest.main()

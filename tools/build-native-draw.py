@@ -18,7 +18,7 @@ IMPORTS = {
                  'AddVectoredExceptionHandler': 8, 'RemoveVectoredExceptionHandler': 4, 'GetCurrentThreadId': 0, 'CreateFileA': 28,
                  'WriteFile': 20, 'CloseHandle': 4, 'CreateFileMappingA': 24,
                  'MapViewOfFile': 20, 'FlushViewOfFile': 8, 'UnmapViewOfFile': 4},
-    'user32': {'IsWindow': 4, 'GetClientRect': 8, 'MapWindowPoints': 16,
+    'user32': {'IsWindow': 4, 'GetClientRect': 8, 'MapWindowPoints': 16,'IntersectRect':12,
                'GetSystemMetrics': 4, 'GetDC': 4, 'ReleaseDC': 8},
     'gdi32': {'CreateCompatibleDC': 4, 'CreateDIBSection': 24, 'SelectObject': 8,
               'DeleteObject': 4, 'DeleteDC': 4, 'GdiFlush': 0, 'GetMapMode': 4, 'GetGraphicsMode': 4,
@@ -54,7 +54,7 @@ def build(output, declared=None):
     if declared is not None and closure-set(declared):
         raise ValueError('Undeclared native DLL compiler/builder inputs: '+repr(sorted(closure-set(declared))))
     dll = output/'MnmDraw.dll'
-    exports = {'NativeDrawCursorStopV1':('NativeDrawCursorStopV1',0),'NativeDrawCursorStatusV1':('NativeDrawCursorStatusV1',8),'NativeDrawGuardBeginV1':('NativeDrawGuardBeginV1',0),'NativeDrawGuardEndV1':('NativeDrawGuardEndV1',0),'NativeDrawPinV1':('NativeDrawPinV1',8),'NativeDrawUnpinV1':('NativeDrawUnpinV1',4),'NativeDrawBackingLiveV1':('NativeDrawBackingLiveV1',4),'NativeDrawRetirementsV1':('NativeDrawRetirementsV1',8),'NativeDrawCreate': ('NativeDrawCreate', 12),
+    exports = {'NativeDrawCopyCallerV1':('NativeDrawCopyCallerV1',16),'NativeDrawCursorStopV1':('NativeDrawCursorStopV1',0),'NativeDrawCursorStatusV1':('NativeDrawCursorStatusV1',8),'NativeDrawGuardBeginV1':('NativeDrawGuardBeginV1',0),'NativeDrawGuardEndV1':('NativeDrawGuardEndV1',0),'NativeDrawPinV1':('NativeDrawPinV1',8),'NativeDrawUnpinV1':('NativeDrawUnpinV1',4),'NativeDrawBackingLiveV1':('NativeDrawBackingLiveV1',4),'NativeDrawRetirementsV1':('NativeDrawRetirementsV1',8),'NativeDrawCreate': ('NativeDrawCreate', 12),
                'NativeDrawReleaseStartupProbeV1': ('NativeDrawReleaseStartupProbeV1', 4),
                'DirectDrawCreate': ('NativeDrawCreate', 12),
                'NativeDrawEnumerateA': ('NativeDrawEnumerateA', 8),
@@ -71,6 +71,7 @@ def build(output, declared=None):
                'NativeDrawCpuStoreV1': ('NativeDrawCpuStoreV1', 12),
                'NativeDrawGpuCopyV1': ('NativeDrawGpuCopyV1', 28),
                'NativeDrawGpuCopyPlanV1': ('NativeDrawGpuCopyPlanV1', 28),
+               'NativeDrawCpuCopyPlanV1': ('NativeDrawCpuCopyPlanV1', 28),
                'NativeDrawCpuTransferV1': ('NativeDrawCpuTransferV1', 16),
                'NativeDrawCpuLeaseTransferV1': ('NativeDrawCpuLeaseTransferV1', 16),
                'NativeDrawCpuReaderV1': ('NativeDrawCpuReaderV1', 4),

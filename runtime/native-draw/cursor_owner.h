@@ -68,10 +68,20 @@ static int nd_cursor_wrapper(u32* copy,const void* p,u32* pin){
  if(!a || a!=b)return 0;
  return NativeDrawPinV1((void*)copy[2],pin)==0;
 }
+static u32 nd_cursor_geometry(const struct NdCursorJob*,const u32*);
+static int nd_cursor_scope_failed(void);
+static int nd_cursor_scope_geometry(u32 geometry);
+/* A failed save/restore must not publish a usable underlay or suppress the next
+ * stationary single-frame timer repaint. Native policy; original code stays
+ * unchanged and general copy admission continues to return its strict errors. */
+static void nd_cursor_repaint(void){
+ *(u32*)0x642c54=0;*(u32*)0x641aa0=0x80000000u;*(u32*)0x641aa4=0x80000000u;
+}
 static void __attribute__((thiscall)) nd_cursor_enqueue(void* source,u32 kind,void* dest,const i32* rectangle,u32 x,u32 y,u32 priority){
  struct NdCursorFx saved __attribute__((cleanup(nd_cursor_restore)));nd_cursor_save(&saved);
  struct NsLifeGuard guard __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
  if(nd_cursor_closing){++nd_cursor_counts[4];return;}
+ if(nd_cursor_scope_failed())return;
  u32 slot=0;for(;slot<128;++slot){u32* q=(u32*)(0x6f6b50+slot*44);if((q[0]!=0)!=(nd_cursor_jobs[slot].active!=0))nd_cursor_fail(__LINE__,0);if(!q[0])break;}
  if(slot==128){++nd_cursor_counts[3];return;}
  if(kind>2 || priority>2 || (rectangle && !nd_cursor_readable(rectangle,16)))nd_cursor_fail(__LINE__,0);
@@ -82,7 +92,12 @@ static void __attribute__((thiscall)) nd_cursor_enqueue(void* source,u32 kind,vo
  j->sequence=++nd_cursor_sequence;j->source_origin=(u32)source;j->dest_origin=(u32)dest;j->dest_primary=(u32)dest==(nd_cursor_primary?nd_cursor_primary->original:*(u32*)0x6f98c0);j->cancelled=j->inflight=0;
  u32* q=(u32*)(0x6f6b50+slot*44);q[1]=priority;q[2]=(u32)j->source;q[3]=(u32)j->dest;q[4]=kind;
  if(rectangle)for(u32 k=0;k<4;++k)q[5+k]=(u32)rectangle[k];
- q[9]=x;q[10]=y;j->active=q[0]=1;++*(u32*)0x6f98d4;++nd_cursor_counts[0];nd_cursor_emit(2,slot,j->sequence,kind);
+ q[9]=x;q[10]=y;
+ if(nd_cursor_scope_geometry(nd_cursor_geometry(j,q))){
+  if(NativeDrawUnpinV1(j->pins[1]) || NativeDrawUnpinV1(j->pins[0]))nd_cursor_fail(__LINE__,0);
+  j->pins[0]=j->pins[1]=0;return;
+ }
+ j->active=q[0]=1;++*(u32*)0x6f98d4;++nd_cursor_counts[0];nd_cursor_emit(2,slot,j->sequence,kind);
 }
 static u32 nd_cursor_geometry(const struct NdCursorJob* j,const u32* q){
  struct NsState *s=ns_lifetime_find((void*)j->source[2]),*d=ns_lifetime_find((void*)j->dest[2]);
@@ -134,13 +149,23 @@ static int nd_cursor_ready(u32 slot){
  u32 count=slot==8?1:slot==4||slot==5?2:3;
  for(u32 i=0;i<count;++i){struct NsState* s=ns_lifetime_find(*(void**)(wrappers[i]+8));
   if(!s || ns_borrowed(s))return 0;}
+ if(slot==6 || slot==7){
+  u32 high;nd_cursor_copy(&high,(void*)0x6de6d5,4);
+  struct NsState* display=ns_lifetime_find(*(void**)(target+8));
+  /* The original clips against this nominal mode, independently of backing
+   * extents. A larger desktop primary remains admissible. A smaller backing
+   * is a rebuild boundary, not permission to issue an out-of-bounds cursor. */
+  if(display->width<(high?800u:640u) || display->height<(high?600u:480u)){
+   nd_cursor_repaint();++nd_cursor_counts[14];return 0;
+  }
+ }
  return 1;
 }
 static u32 nd_cursor_run(u32 slot,u32 argument){
  struct NdCursorFx entry,exit;nd_cursor_save(&entry);u32 generation=0;HANDLE outer=nd_cursor_outer(&generation);
  u32 acquired=0,wait=0;
  if(outer){
-  u32 nested=ns_lifetime_mode && ns_lifetime_owner==GetCurrentThreadId() && ns_lifetime_depth;
+  u32 nested=ns_lifetime_mode && __atomic_load_n(&ns_lifetime_owner,__ATOMIC_ACQUIRE)==GetCurrentThreadId() && ns_lifetime_depth;
   wait=WaitForSingleObject(outer,nested?0:(slot<=1?5000:10));
   if(wait==0 || wait==0x80)acquired=1;
   if(wait){if(acquired&&!ReleaseMutex(outer))nd_cursor_fail(__LINE__,0);nd_cursor_original_close(outer);nd_cursor_restore(&entry);return 0;}
@@ -158,7 +183,7 @@ static u32 nd_cursor_run(u32 slot,u32 argument){
   nd_cursor_restore(&entry);
   if(slot==2)result=((u32(__attribute__((fastcall))*)(u32))nd_cursor_original[slot])(argument);
   else result=((u32(*)(void))nd_cursor_original[slot])();
-  nd_cursor_save(&exit);if(scope.failed)*(u32*)0x642c54=0;nd_cursor_scope_leave(&scope);--nd_cursor_active;nd_cursor_emit(7,slot,result,generation);
+  nd_cursor_save(&exit);if(scope.failed)nd_cursor_repaint();nd_cursor_scope_leave(&scope);--nd_cursor_active;nd_cursor_emit(7,slot,result,generation);
  }
  ns_lifetime_leave();if(acquired&&!ReleaseMutex(outer))nd_cursor_fail(__LINE__,0);if(outer&&!nd_cursor_original_close(outer))nd_cursor_fail(__LINE__,0);
  nd_cursor_restore(&exit);return result;
@@ -239,6 +264,7 @@ static void nd_cursor_detach(void){
 }
 static void nd_cursor_install(void){
  if(ns_lifetime_mode!=2 || nd_cursor_installed)return;
+ u32 caller_error=GetLastError();char caller_flag[2];nd_cursor_caller_enabled=GetEnvironmentVariableA("MNM_NATIVE_CURSOR_COPY_CALLERS",caller_flag,2)==1 && caller_flag[0]=='1';SetLastError(caller_error);
  if((u32)GetModuleHandleA(0)!=0x400000 || *(u32*)0x642c58 || *(u32*)0x6f98d4)nd_cursor_fail(__LINE__,0);
  const u32 addresses[18]={0x4a30b0,0x4a37d0,0x4a39a0,0x4a4370,0x4a4380,0x4a44b0,0x4a45b0,0x4a4910,0x4a2f90,0x58d5b0,0x58d660,0x58ad90,0x58b3e0,0x58c140,0x58c360,0x58c4a0,0x58c8a0,0x58ca90};
  const u8* pins[18]={nd_cursor_pin_setup,nd_cursor_pin_dispose,nd_cursor_pin_select,nd_cursor_pin_invalidate,nd_cursor_pin_restore_back,nd_cursor_pin_restore_front,nd_cursor_pin_foreground,nd_cursor_pin_timer,nd_cursor_pin_reload,nd_cursor_pin_enqueue,nd_cursor_pin_drain,nd_cursor_pin_create,nd_cursor_pin_release,nd_cursor_pin_copy_full,nd_cursor_pin_copy_guarded,nd_cursor_pin_copy_opaque,nd_cursor_pin_copy_keyed,nd_cursor_pin_copy_front_keyed};

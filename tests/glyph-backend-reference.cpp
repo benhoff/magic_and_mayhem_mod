@@ -47,7 +47,7 @@ int main(int argc,char **argv)try{
     const unsigned format=0;
 #endif
         const auto bytes=u32(input,at),size=u32(input,at+4),w=u32(input,at+8),h=u32(input,at+12),stride=u32(input,at+16);
-        if(bytes!=328+size||bytes>input.size()-at||!w||!h||w>256||h>256||stride<w||stride>260)throw std::runtime_error("corpus extent");
+        if(bytes!=328+size||bytes>input.size()-at||!w||!h||w>2048||h>2048||stride<w||stride>2048)throw std::runtime_error("corpus extent");
         Bytes frame(input.begin()+at+328,input.begin()+at+bytes);const auto source=frame;
         std::vector<std::uint16_t> pixels(64+stride*h,0xa55a);for(unsigned y=0;y<h;++y)for(unsigned x=0;x<w;++x)pixels[32+y*stride+x]=std::uint16_t((y*w+x)*1273+113);const auto before=pixels;
         global(0x658174,reinterpret_cast<std::uintptr_t>(pixels.data()+32));global(0x6a2dc8,stride);global(0x6e1f88,format);

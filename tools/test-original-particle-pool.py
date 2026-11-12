@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Compare actual original particle ownership and mutation under nested insertions."""
+from experiment_environment import stage_prefix
 import argparse
 import fcntl
 import hashlib
@@ -79,7 +80,7 @@ def main():
         if prefix.exists():
             if not marker.is_file() or marker.read_text()!=PIN+'\n':raise ValueError('Unowned experiment prefix')
         else:
-            run('prefix',['cp','-a','--reflink=auto',a.prefix_template.resolve(),prefix]);marker.write_text(PIN+'\n')
+            stage_prefix(ROOT, a.prefix_template.resolve(), prefix, log=Path(prefix).parent / 'prefix.log');marker.write_text(PIN+'\n')
         owned_prefix=True;report['session_prefix']=str(prefix.relative_to(ROOT));report['wine_version']=subprocess.check_output(['wine','--version'],text=True).strip()
         run('original',['wine',out/'probe.exe'])
         run('native',[out/'native'],output='native-pool.bin')

@@ -176,6 +176,7 @@ struct CommandConsumer::Impl {
     void active(){renderer.stats();require(state==CommandConsumerState::Active,"Command consumer is closed");require(!executing,"Recursive command execution is unsupported");}
     void execute(const SurfaceCommand& c){
         const auto& w=c.words;admission.accept(c);
+        output.commandStreamVersion=c.version;
         if(recipe && c.operation!=1 && c.operation!=6 && c.operation!=13 && c.operation!=14 && c.operation!=MNM_RENDER_STREAM_V4_OPERATION_WORLD)
             measure(0,[&]{recipe->record(c,handles);});
         switch(c.operation){
@@ -201,7 +202,7 @@ struct CommandConsumer::Impl {
                 }
             }
             if(options.exportImages){output.native=encodeNative(renderer.read(handles.at(w[0])),bits.at(w[0]));output.presentation=renderer.present(handles.at(w[0]));}
-            else present(renderer.presentGpu(handles.at(w[0])));
+            else {output.displayMode=0;output.displayWorldGeneration=output.residentWorldImports;output.displaySurface=w[0];output.displaySealedGeneration=0;present(renderer.presentGpu(handles.at(w[0])));}
             ++output.presents;break;
         case 7:renderer.destroy(handles.at(w[0]));handles.erase(w[0]);bits.erase(w[0]);break;
         case 8:state=CommandConsumerState::Ended;break;
@@ -272,12 +273,12 @@ bool CommandConsumer::presentImportedSealed(){
 }
 void CommandConsumer::presentSealed(const GpuFrame& world,std::uint64_t generation){
     auto& p=*impl_;p.active();require(generation && generation==sealedGeneration(),"Sealed UI/World generation mismatch");
-    try{p.present(p.recipe->renderSealed(world));p.refresh();}
+    try{p.output.displayMode=1;p.output.displaySealedGeneration=p.recipe->sealedSourceGeneration();p.present(p.recipe->renderSealed(world));p.refresh();}
     catch(...){p.state=CommandConsumerState::Failed;p.cleanup();throw;}
 }
 void CommandConsumer::presentPrepared(const GpuFrame& world,std::uint64_t generation){
     auto& p=*impl_;p.active();require(p.recipe && p.recipe->ready() && generation==p.recipe->generation(),"Prepared UI/World generation mismatch");
-    try{auto frame=p.recipe->render(world);p.present(std::move(frame));p.refresh();}
+    try{auto frame=p.recipe->render(world);p.output.displayMode=1;p.output.displaySealedGeneration=p.recipe->sealedSourceGeneration();p.present(std::move(frame));p.refresh();}
     catch(...){p.state=CommandConsumerState::Failed;p.cleanup();throw;}
 }
 

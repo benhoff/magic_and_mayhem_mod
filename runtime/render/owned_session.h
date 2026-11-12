@@ -172,7 +172,7 @@ static void game_native_primary_initial(struct GameSurface* surface,const u32* d
         shape.length=shape.width*shape.height*(shape.bits/8);struct Snapshot initial;
         if(!game_surface_blank(&initial,&shape))return;
         if(game_native_cpu_snapshot(surface->object,identity,initial.data,initial.length)){
-            __atomic_sub_fetch(&lock_capture_reserved,initial.length,__ATOMIC_RELAXED);free_snapshot(&initial);return;
+            __atomic_sub_fetch(&lock_capture_reserved,initial.length,__ATOMIC_RELAXED);game_snapshot_free(&initial);return;
         }
         copy(&surface->pixels,&initial,sizeof(initial));game_surface_bytes+=initial.length;
         __atomic_sub_fetch(&lock_capture_reserved,initial.length,__ATOMIC_RELAXED);
@@ -234,7 +234,7 @@ __declspec(dllexport) int WIN RenderResidentWorldV1(u32 pixels,u32 width,u32 hei
     if(!lock->base.data){
         u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
         if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved)goto done;
-        lock->base.data=HeapAlloc(GetProcessHeap(),0,length);if(!lock->base.data)goto done;
+        lock->base.data=game_buffer_allocate(0,length);if(!lock->base.data)goto done;
         lock->base.length=length;__atomic_add_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);
     }
     if(lock->base.length!=length)goto done;
@@ -398,7 +398,7 @@ static struct SessionSurface* game_gpu_scratch(const struct Snapshot* shape){
     s->bits=shape->bits;s->r=shape->r;s->g=shape->g;s->b=shape->b;session_pixels+=count;
     u32 fields[7]={s->id,s->width,s->height,s->bits,s->r,s->g,s->b};
     const int ok=session_record(1,fields,28,blank.data,blank.length);
-    __atomic_sub_fetch(&lock_capture_reserved,blank.length,__ATOMIC_RELAXED);free_snapshot(&blank);
+    __atomic_sub_fetch(&lock_capture_reserved,blank.length,__ATOMIC_RELAXED);game_snapshot_free(&blank);
     return ok?s:0;
 }
 #include "gpu_copy_census.h"
@@ -484,9 +484,45 @@ static void game_cpu_read_refuse(u32 stage,void* object,u32 detail){
     if(file!=(HANDLE)-1){WriteFile(file,record,sizeof(record),&done,0);CloseHandle(file);}
     ExitProcess(124);
 }
+/* All metadata reads below occur under the caller's existing tracker. */
+static void cpu_journal_surface(u32 event,void* object,void* dc,u32 ticket,u32 kind,const u32* fields,
+ u32 backing,u32 pitch,u32 validated,u32 flags,i32 result,u32 borrow){
+ if(!cpu_journal)return;u32 error=GetLastError(),r[32];zero(r,sizeof(r));struct CpuJournalContext* c=cpu_journal_current();
+ if(c)copy(r,c->row,sizeof(r));
+ struct GameSurface* s=game_surface_find(object,0);struct SessionSurface* ss=session_find(object);
+ r[14]=(u32)(s?s->object:object);r[15]=ss?ss->id:0;r[16]=s?s->generation:0;r[17]=game_lock_epoch;r[18]=ticket;
+ r[19]=ss?ss->width:0;r[20]=ss?ss->height:0;
+ if(fields){r[15]=fields[0];r[19]=fields[4];r[20]=fields[5];copy(r+21,fields+6,16);}
+ r[25]=(u32)dc;r[26]=(u32)result;r[27]=kind|flags;r[28]=backing;r[29]=pitch;r[30]=validated;r[31]=borrow;
+ cpu_journal_emit(event,r);
+ if(event==MNM_CRJ_REQUEST)++cpu_journal->header[20];
+ if(event==MNM_CRJ_COMPLETE)++cpu_journal->header[21];SetLastError(error);
+}
+static void cpu_journal_dc_track(void* object,void* dc){
+ if(!cpu_journal)return;u32 error=GetLastError();struct CpuJournalContext* c=cpu_journal_current();
+ struct GameSurface* s=game_surface_find(object,0);u32 identity=(u32)(s?s->object:object);
+ if(!c){__atomic_fetch_or(cpu_journal->header+9,8,__ATOMIC_RELAXED);SetLastError(error);return;}
+ for(u32 i=0;i<64;++i)if(cpu_journal_borrows[i].context && cpu_journal_borrows[i].object==identity && cpu_journal_borrows[i].dc==(u32)dc){__atomic_fetch_or(cpu_journal->header+9,32,__ATOMIC_RELAXED);SetLastError(error);return;}
+ for(u32 i=0;i<64;++i)if(!cpu_journal_borrows[i].context){
+  cpu_journal_borrows[i]=(struct CpuJournalBorrow){identity,(u32)dc,c->row[5]};++cpu_journal->header[23];
+  cpu_journal_surface(MNM_CRJ_DC_TRACKED,object,dc,0,0,0,0,0,0,MNM_CRJ_TRACKED,0,c->row[5]);SetLastError(error);return;
+ }
+ __atomic_fetch_or(cpu_journal->header+9,32,__ATOMIC_RELAXED);SetLastError(error);
+}
+static void cpu_journal_dc_release(void* object,void* dc,i32 result,u32 checkpoint,u32 generation){
+ if(!cpu_journal)return;u32 error=GetLastError();struct GameSurface* s=game_surface_find(object,0);u32 identity=(u32)(s?s->object:object),borrow=0;
+ for(u32 i=0;i<64;++i)if(cpu_journal_borrows[i].context && cpu_journal_borrows[i].object==identity && cpu_journal_borrows[i].dc==(u32)dc){
+  borrow=cpu_journal_borrows[i].context;
+  if(result>=0){zero(cpu_journal_borrows+i,sizeof(cpu_journal_borrows[i]));--cpu_journal->header[23];}break;
+ }
+ cpu_journal_surface(MNM_CRJ_DC_RELEASE,object,dc,0,0,0,0,0,generation,
+  (borrow?MNM_CRJ_TRACKED:0)|(checkpoint?MNM_CRJ_CHECKPOINT:0),result,borrow);SetLastError(error);
+}
 static void game_materialize_reader(void* object,u32 kind){
     if(!game_resident_world)return;
     u32 error=GetLastError();
+    struct CpuJournalContext journal_fallback __attribute__((cleanup(cpu_journal_leave)));zero(&journal_fallback,sizeof(journal_fallback));
+    if(cpu_journal && !cpu_journal_current())cpu_journal_enter(&journal_fallback,MNM_CRJ_OTHER,(u32)__builtin_return_address(0),object,0,0);
     if(!game_surface_pixels_enter(object))game_cpu_read_refuse(1,object,0);
     struct GameSurface* source=game_surface_find(object,0);
     if(!source || !source->gpu_history){game_tracker_release();SetLastError(error);return;}
@@ -508,6 +544,7 @@ static void game_materialize_reader(void* object,u32 kind){
     u32 fields[10]={surface->id,ticket,0,command_channel_session,identity[1],identity[2],identity[4],identity[5],identity[6],identity[7]};
     __atomic_store_n(&game_cpu_transfer_wait,1,__ATOMIC_RELEASE);
     if(!session_record(MNM_RENDER_STREAM_V5_OPERATION_CPU_READ,fields,40,0,0))game_cpu_read_refuse(5,object,0);
+    cpu_journal_surface(MNM_CRJ_REQUEST,object,0,ticket,kind,fields,identity[0],identity[3],generation,0,0,0);
     game_tracker_release();
     char path[544];u32 n=GetEnvironmentVariableA("MNM_RENDER_COMMAND_CHANNEL",path,512);
     if(!n || n>=512)game_cpu_read_refuse(6,object,n);copy(path+n,".cpu-reply",11);
@@ -533,11 +570,20 @@ static void game_materialize_reader(void* object,u32 kind){
     game_surface_drop_at(source,0);source->gpu_history=0;
     copy(&source->pixels,&result,sizeof(result));result.data=0;
     game_surface_bytes+=source->pixels.length;__atomic_sub_fetch(&lock_capture_reserved,source->pixels.length,__ATOMIC_RELAXED);
+    cpu_journal_surface(MNM_CRJ_COMPLETE,object,0,ticket,kind,fields,identity[0],identity[3],generation,MNM_CRJ_VALIDATED,0,0);
     /* The enclosing ordered callback still owns its CPU conversion/DC work.
      * game_copy_leave retires the reader deadline with that complete lease. */
     lock_diagnostic("resident_cpu_materialized",object,0,ticket,fields[0],0,source->pixels.length,0);
     game_cpu_read_completed(kind);
     game_tracker_release();SetLastError(error);
+}
+/* A clipped CPU transform needs a current destination before preserving holes.
+ * Materialize outside the tracker, before taking the operation's generations. */
+static void game_prepare_cpu_blit_target(void* target,void* source){
+ if(!game_native_cpu_plan || !game_resident_world || !game_surface_pixels_enter(target))return;
+ struct GameSurface* d=game_surface_find(target,0);struct GameSurface* a=source?game_surface_find(source,0):0;
+ u32 needed=d && d->gpu_history && d->clip && (!source || (a && !a->gpu_history));
+ game_tracker_release();if(needed)game_materialize_reader(target,3);
 }
 static void game_materialize_dc(void* object){game_materialize_reader(object,0);}
 static void game_session_dc_checkpoint(struct GameSurface* surface){
@@ -567,7 +613,7 @@ static int game_native_blit_checkpoint(void* object,u32 caller){
  if(shape.width!=layout[1] || shape.height!=layout[2] || shape.bits!=layout[4] ||
     shape.r!=layout[5] || shape.g!=layout[6] || shape.b!=layout[7] || !game_surface_blank(&result,&shape))return 0;
  if(game_native_cpu_snapshot(object,layout,result.data,result.length)){
-  __atomic_sub_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);free_snapshot(&result);return 0;
+  __atomic_sub_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);game_snapshot_free(&result);return 0;
  }
  game_surface_drop_at(dst,0);copy(&dst->pixels,&result,sizeof(result));
  game_surface_bytes+=result.length;__atomic_sub_fetch(&lock_capture_reserved,result.length,__ATOMIC_RELAXED);
@@ -596,13 +642,13 @@ static int session_unlock_region(struct SessionSurface* s,const struct Snapshot*
         if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes ||
            after->length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved ||
            length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved-after->length){game_session_gap(2);return 0;}
-        packed=HeapAlloc(GetProcessHeap(),0,length);if(!packed){game_session_gap(4);return 0;}
+        packed=game_buffer_allocate_extra(0,length,after->length);if(!packed){game_session_gap(4);return 0;}
         __atomic_add_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);
         for(u32 y=0;y<fields[4];++y)copy(packed+y*bytes,pixels+y*stride,bytes);
         pixels=packed;
     }
     int ok=session_record(2,fields,20,pixels,length);
-    if(packed){HeapFree(GetProcessHeap(),0,packed);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);}
+    if(packed){capture_storage_release(packed,length);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);}
     return ok;
 }
 
@@ -619,7 +665,7 @@ static int session_resident_unlock(struct SessionSurface* surface,const struct S
             u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
             if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || after->length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved ||
                length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved-after->length){game_session_gap(2);return 0;}
-            u8* packed=HeapAlloc(GetProcessHeap(),0,length);if(!packed){game_session_gap(4);return 0;}
+            u8* packed=game_buffer_allocate_extra(0,length,after->length);if(!packed){game_session_gap(4);return 0;}
             __atomic_add_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);
             u32 fields[5]={surface->id,regions[i][0],regions[i][1]+row,width,rows};
             game_copy_stage(42);
@@ -627,7 +673,7 @@ static int session_resident_unlock(struct SessionSurface* surface,const struct S
                 copy(packed+p*2,after->data+at*2,2);packed[pixels*2+p]=!same(before->data+at*2,after->data+at*2,2) || (dirty && (dirty[at*2] || dirty[at*2+1]));}
             game_copy_stage(43);
             int ok=session_record(MNM_RENDER_STREAM_V4_OPERATION_MASKED_UPDATE,fields,20,packed,length);
-            HeapFree(GetProcessHeap(),0,packed);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);if(!ok)return 0;
+            capture_storage_release(packed,length);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);if(!ok)return 0;
         }
     }
     return 1;
@@ -640,12 +686,12 @@ static i32 game_cpu_lease_dirty(const struct GameLock* lock,u8* out,u32 action){
  if(!game_native_cpu_lease_mask)return 0;u32 layout[4];game_cpu_lease_layout(lock,layout);
  return game_native_cpu_lease_mask(lock->object,layout,out,out?layout[1]*layout[2]*2:0,action);
 }
-static u8* game_cpu_lease_mask(const struct GameLock* lock,u32 bytes){
+static u8* game_cpu_lease_mask(const struct GameLock* lock,u32 bytes,u32 extra){
  i32 flags=game_cpu_lease_dirty(lock,0,2);if(flags<0)game_cpu_read_refuse(16,lock->object,(u32)flags);
  if(!flags)return 0;
  u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
- if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || bytes>GAME_SURFACE_LIMIT-game_surface_bytes-reserved)game_cpu_read_refuse(17,lock->object,bytes);
- u8* mask=HeapAlloc(GetProcessHeap(),0,bytes);if(!mask)game_cpu_read_refuse(18,lock->object,bytes);
+ if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || extra>GAME_SURFACE_LIMIT-game_surface_bytes-reserved || bytes>GAME_SURFACE_LIMIT-game_surface_bytes-reserved-extra)game_cpu_read_refuse(17,lock->object,bytes);
+ u8* mask=game_buffer_allocate_extra(0,bytes,extra);if(!mask)game_cpu_read_refuse(18,lock->object,bytes);
  __atomic_add_fetch(&lock_capture_reserved,bytes,__ATOMIC_RELAXED);
  if(game_cpu_lease_dirty(lock,mask,0)!=1)game_cpu_read_refuse(19,lock->object,0);return mask;
 }
@@ -662,9 +708,9 @@ static void game_session_unlock(struct GameLock* lock,const struct Snapshot* aft
     }
     s=session_surface(lock->object,lock->rectangle?&lock->base:after,0);if(!s)return;
     if(lock->resident || lock->gpu_history){
-        u8* mask=game_cpu_lease_mask(lock,after->length);
+        u8* mask=game_cpu_lease_mask(lock,after->length,after->length);
         int ok=existing && session_resident_unlock(s,&lock->base,after,mask);
-        if(mask){HeapFree(GetProcessHeap(),0,mask);__atomic_sub_fetch(&lock_capture_reserved,after->length,__ATOMIC_RELAXED);}
+        if(mask){capture_storage_release(mask,after->length);__atomic_sub_fetch(&lock_capture_reserved,after->length,__ATOMIC_RELAXED);}
         if(!ok)return;
         if(game_cpu_lease_dirty(lock,0,1)<0)game_cpu_read_refuse(20,lock->object,0);
         goto present;
@@ -708,6 +754,21 @@ static void game_session_blit_begin(struct GameBlit* p){
 }
 static void game_session_blit_end(struct GameBlit* p,u32 primary){
     if(!session_active)return;
+    if(p->plan){
+        struct SessionSurface* b=session_find(p->target);
+        struct SessionSurface* a=p->fill?0:session_find(p->source);
+        if(!b || (!p->fill && !a)){game_session_gap(4);return;}
+        for(u32 i=0;i<p->plan->count;++i){const struct MnmGpuCopyPiece* r=p->plan->pieces+i;
+            if(p->fill){u32 f[5]={b->id,r->dx,r->dy,r->width,r->height};
+                if(!session_record(2,f,20,p->src.data,r->width*r->height*(p->dst.bits/8)))return;
+            }else{u32 f[10]={a->id,b->id,r->sx,r->sy,r->sx+r->width,r->sy+r->height,r->dx,r->dy,p->fields[8],p->fields[9]};
+                if(!session_record(3,f,40,0,0))return;
+                if(game_copy_routes_v2){if(!p->routes[40])p->routes[40]=session_sequence;p->routes[41]=session_sequence;p->routes[42]=a->id;p->routes[43]=b->id;}
+            }
+        }
+        if(!session_check(b,&p->dst) || (primary && !session_present(b)))return;
+        session_done();return;
+    }
     if(p->fill){
         struct SessionSurface* b=session_find(p->target);if(!b){game_session_gap(4);return;}
         u32 width=p->fields[4]-p->fields[2],height=p->fields[5]-p->fields[3];

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Run native fade takeover on an isolated automatic menu/battle-startup journey."""
+from experiment_environment import stage
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import importlib.util
@@ -67,7 +69,7 @@ def main():
         source=ROOT/'working/game-nocd';data=(source/'Chaos.exe').read_bytes()
         if hashlib.sha256(data).hexdigest()!=HASH:raise ValueError('Unsupported source executable')
         run('build-writers',['python3',ROOT/'tools/build-canvas-writers.py']);run('build-menu',['python3',ROOT/'tools/build-menu-observer.py'])
-        run('copy-game',['cp','-a','--reflink=auto',source.resolve(),root/'game'])
+        stage(ROOT, Path(root/'game'), Path(source.resolve()), kind="game")
         if (root/'game').is_symlink() or sha(root/'game/Chaos.exe')!=HASH:raise ValueError('Disposable copy changed/aliased')
         patch=module('writer_import','tools/prepare-shadow-experiment.py').add_import
         staged=patch(data,'MnmMenu.dll','MenuAnchor',b'.mnmenu');staged=patch(staged,'MnmCanvasWriters.dll','CanvasWritersAnchor',b'.mnwrite')
@@ -92,7 +94,7 @@ def main():
         run('decoder-test',['python3',ROOT/'tests/test-fade-live-capture.py'])
         env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.pop('WAYLAND_DISPLAY',None)
         env.update(MNM_CANVAS_WRITER_EXPERIMENT=str(root),WINEDEBUG='-all',WINEPREFIX=str(root/'wineprefix'))
-        run('copy-prefix',['cp','-a','--reflink=auto',args.prefix_template.resolve(),root/'wineprefix'])
+        stage_prefix(ROOT, args.prefix_template.resolve(), root/'wineprefix', log=Path(root/'wineprefix').parent / 'copy-prefix.log')
         run('wineboot',['wineboot','-u'],90,env)
         raw=bytearray(32768);raw[:16]=b'MNMMCMD2'+struct.pack('<II',2,32768);struct.pack_into('<III',raw,16,2,1,1)
         (root/'channel.bin').write_bytes(raw)

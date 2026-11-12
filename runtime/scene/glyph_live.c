@@ -32,6 +32,22 @@ static int extent(u32 at,u32 n,int writable){
  while(at<end){u32 m[7];if(VirtualQuery((void*)at,m,sizeof m)!=sizeof m||m[4]!=0x1000||(m[5]&0x101)||!(m[5]&0xee)||(writable&&!(m[5]&0xcc))||m[0]>at||m[3]>0xffffffffu-m[0])return 0;u32 next=m[0]+m[3];if(next<=at)return 0;at=next<end?next:end;}
  return 1;
 }
+/* Failure-only metadata: distinguish an unavailable early-bound facade service
+ * from a rejected live lease without reading protected pixels or relaxing it. */
+static void glyph_canvas_refusal_details(void){
+ if(!glyph_native_only)return;
+ u32 r[24]={0x474d4e4d,0x31304158,1,96},written=0;
+ void* draw=GetModuleHandleA("MnmDraw.dll");
+ i32 (WIN *current)(const void*,u32,u32,u32,u32,u32)=draw?(i32 (WIN *)(const void*,u32,u32,u32,u32,u32))GetProcAddress(draw,"NativeDrawCpuHistoryV1"):0;
+ r[4]=(u32)glyph_cpu_history;r[5]=(u32)draw;r[6]=(u32)current;r[7]=pending.canvas_bytes;r[8]=pending.canvas;
+ r[9]=pending.stride;r[10]=pending.width;r[11]=pending.height;r[12]=pending.format;
+ r[13]=glyph_cpu_history?(u32)glyph_cpu_history((void*)pending.canvas,2,0,0,0,0):0xffffffffu;
+ r[14]=current?(u32)current((void*)pending.canvas,3,pending.canvas_bytes,0,0,0):0xffffffffu;
+ VirtualQuery((void*)pending.canvas,r+15,28);
+ r[22]=current?(u32)current((void*)pending.canvas,2,0,0,0,0):0xffffffffu;r[23]=GetCurrentThreadId();
+ HANDLE file=CreateFileA("native-glyph-admission.bin",0x40000000,0,0,1,0x80,0);
+ if(file!=(HANDLE)-1){WriteFile(file,r,sizeof r,&written,0);CloseHandle(file);}
+}
 static HANDLE output(const char* suffix){char name[260];u32 n=0;while(n<directory_length){name[n]=directory[n];++n;}while(*suffix)name[n++]=*suffix++;name[n]=0;return CreateFileA(name,0x40000000,1,0,2,0x80,0);}
 static int write(HANDLE f,const void* p,u32 n){u32 done=0;++io_writes;return WriteFile(f,p,n,&done,0)&&done==n;}
 static void flush(void){if(!mode)return;HANDLE f=output("\\glyph-stats.bin");if(f==(HANDLE)-1){++stats[11];return;}if(!write(f,stats,sizeof stats))++stats[11];CloseHandle(f);}
@@ -62,17 +78,22 @@ int glyph_live_configure(void){
  flush();return stats[11]?-1:(int)mode;
 }
 static int globals(void){
+ glyph_admission_check=1;glyph_admission_value=0;
  if(!extent(0x658174,4,0)||!extent(0x6a2dc8,4,0)||!extent(0x6e1f7c,16,0)||!extent(0x6f5dac,260,1))return 0;
  const u32 clips[]={0x6e0008,0x6cbb6c,0x6a49b8,0x656618};for(u32 i=0;i<4;++i)if(!extent(clips[i],4,0))return 0;
  pending.format=word(0x6e1f88);
+ glyph_admission_check=2;glyph_admission_value=pending.format;
  if(pending.format>1||*(volatile u16*)0x6e1f7c!=(pending.format?0x7c00:0xf800)||*(volatile u16*)0x6e1f7e!=(pending.format?0x3e0:0x07e0)||*(volatile u16*)0x6e1f80!=0x001f)return 0;
  pending.canvas=word(0x658174);pending.stride=word(0x6a2dc8);
  for(u32 i=0;i<4;++i)pending.clip[i]=word(clips[i]);
  pending.width=pending.clip[2];pending.height=pending.clip[3];
- if(!pending.width||!pending.height||pending.width>2048||pending.height>2048||pending.stride<pending.width||pending.stride>2048||pending.clip[0]>=pending.width||pending.clip[1]>=pending.height)return 0;
+ glyph_admission_check=3;glyph_admission_value=(pending.width&65535)|(pending.height<<16);
+ if(!pending.width||!pending.height||pending.width>2048||pending.height>2048||!pending.stride||pending.stride>2048||pending.clip[0]>=pending.width||pending.clip[1]>=pending.height)return 0;
  pending.canvas_bytes=pending.stride*pending.height*2;pending.sentinel=word(0x6f5eac);
+ glyph_admission_check=4;glyph_admission_value=pending.sentinel;
  if(pending.sentinel!=0&&pending.sentinel!=0x3f800000)return 0;
- pending.cold=pending.sentinel==0;return extent(pending.canvas,pending.canvas_bytes,1);
+ pending.cold=pending.sentinel==0;glyph_admission_check=5;glyph_admission_value=pending.canvas;
+ if(!extent(pending.canvas,pending.canvas_bytes,1)){glyph_canvas_refusal_details();return 0;}return 1;
 }
 static int recheck(void){
  const u32 clips[]={0x6e0008,0x6cbb6c,0x6a49b8,0x656618};
@@ -95,7 +116,7 @@ static void sample(u32* returned,u8* fx){
  u32 category=(x<(i32)pending.clip[0]||y<(i32)pending.clip[1]||(long long)x+w>(i32)pending.width||(long long)y+height>(i32)pending.height||(!w&&!height))?2:(pending.incoming[11]||pending.incoming[12]||pending.incoming[13])?1:0;
  if(categories[category]>=(category==0?6u:1u))return;
  u32* h=pending.header;for(u32 i=0;i<64;++i)h[i]=0;
- copy(h,pending.format?"MNMGLIV2":"MNMGLIV1",8);h[2]=pending.format?2:1;h[3]=256;h[4]=mode;h[5]=pending.frame_bytes;h[6]=pending.width;h[7]=pending.height;h[8]=pending.stride;h[9]=pending.canvas_bytes;h[10]=pending.frame_address;h[11]=(u32)(pending.incoming[3]+4);for(u32 i=0;i<4;++i)h[12+i]=pending.clip[i];h[16]=pending.cold;h[17]=pending.sentinel;h[18]=stats[6];h[19]=pending.format;
+ copy(h,pending.format?"MNMGLIV2":"MNMGLIV1",8);h[2]=pending.format?2:1;h[3]=256;h[4]=mode;h[5]=pending.frame_bytes;h[6]=pending.stride;h[7]=pending.height;h[8]=pending.stride;h[9]=pending.canvas_bytes;h[10]=pending.frame_address;h[11]=(u32)(pending.incoming[3]+4);for(u32 i=0;i<4;++i)h[12+i]=pending.clip[i];h[16]=pending.cold;h[17]=pending.sentinel;h[18]=stats[6];h[19]=pending.format;
  copy(h+20,pending.incoming,56);copy(h+34,returned,56);
  char suffix[]="\\glyph-0.bin";suffix[7]=(char)('0'+stats[12]);HANDLE f=output(suffix);
  if(f==(HANDLE)-1){++stats[11];return;}
@@ -107,9 +128,13 @@ int glyph_live_enter(u32* saved,u8* fx){
  if(__sync_lock_test_and_set(&busy,1)){__sync_fetch_and_add(stats+14,1);__sync_fetch_and_add(stats+10,1);glyph_native_only_refuse(22);return 0;}
  if(stats[6]!=0xffffffffu)++stats[6];if(closed||(capture && stats[6]>stats[13]))return refuse(20);
  u32 current=GetCurrentThreadId();if(!thread)thread=current;if(thread!=current)return refuse(14);
- if(!globals()||!extent(saved[6],40,0))return refuse(15);
+ if(!globals())return refuse(15);
+ glyph_admission_check=6;glyph_admission_value=saved[6];
+ if(!extent(saved[6],40,0))return refuse(15);
  pending.frame_address=saved[6];pending.frame_bytes=word(saved[6]);
+ glyph_admission_check=7;glyph_admission_value=pending.frame_bytes;
  if(pending.frame_bytes<40||pending.frame_bytes>1048576||!extent(saved[6],pending.frame_bytes,0))return refuse(15);
+ glyph_admission_check=0;glyph_admission_value=0;
  if(overlap(pending.frame_address,pending.frame_bytes,pending.canvas,pending.canvas_bytes)||overlap(pending.frame_address,pending.frame_bytes,0x6f5dac,260)||overlap(pending.canvas,pending.canvas_bytes,0x6f5dac,260)||overlap(pending.canvas,pending.canvas_bytes,(u32)saved,56)||overlap(pending.frame_address,pending.frame_bytes,(u32)saved,56))return refuse(16);
  if(!capture){
   /* On the owner thread, no original callback occurs between checked spans and
@@ -119,7 +144,7 @@ int glyph_live_enter(u32* saved,u8* fx){
   MnmGlyphBackend* b=&context.backend;b->state.frame=(const u8*)pending.frame_address;b->state.frame_bytes=pending.frame_bytes;
   b->state.coverage_address=0x6f5dac;b->state.left=(i32)pending.clip[0];b->state.top=(i32)pending.clip[1];
   b->state.right=(i32)pending.width;b->state.bottom=(i32)pending.height;b->state.cold=pending.cold;
-  b->pixels=(u16*)pending.canvas;b->width=pending.width;b->height=pending.height;b->stride=pending.stride;
+  b->pixels=(u16*)pending.canvas;b->width=pending.stride;b->height=pending.height;b->stride=pending.stride;
   b->coverage=(u32*)0x6f5dac;b->format=pending.format;
   if(!mnm_glyph_route_owned(saved,fx,&context,pending.frame_address))return refuse(17);
   ++stats[7];++stats[8];release();return 1;
@@ -132,7 +157,7 @@ int glyph_live_enter(u32* saved,u8* fx){
  for(u32 i=0;i<64;++i)pending.trial[pending.canvas_bytes+i]=0xa5;
  copy(pending.coverage_before,(void*)0x6f5dac,256);copy(pending.coverage_after,pending.coverage_before,256);copy(pending.fx_before,fx,512);copy(pending.fx_after,fx,512);copy(pending.incoming,saved,56);
  MnmGlyphRouteContext context;u8* c=(u8*)&context;for(u32 i=0;i<sizeof context;++i)c[i]=0;
- MnmGlyphBackend* b=&context.backend;b->state.frame=pending.frame;b->state.frame_bytes=pending.frame_bytes;b->state.coverage_address=0x6f5dac;b->state.left=(i32)pending.clip[0];b->state.top=(i32)pending.clip[1];b->state.right=(i32)pending.width;b->state.bottom=(i32)pending.height;b->state.cold=pending.cold;b->pixels=(u16*)pending.trial;b->width=pending.width;b->height=pending.height;b->stride=pending.stride;b->coverage=pending.coverage_after;b->format=pending.format;
+ MnmGlyphBackend* b=&context.backend;b->state.frame=pending.frame;b->state.frame_bytes=pending.frame_bytes;b->state.coverage_address=0x6f5dac;b->state.left=(i32)pending.clip[0];b->state.top=(i32)pending.clip[1];b->state.right=(i32)pending.width;b->state.bottom=(i32)pending.height;b->state.cold=pending.cold;b->pixels=(u16*)pending.trial;b->width=pending.stride;b->height=pending.height;b->stride=pending.stride;b->coverage=pending.coverage_after;b->format=pending.format;
  int handled=mnm_glyph_route_owned(saved,pending.fx_after,&context,pending.frame_address);
  copy(pending.predicted,saved,56);copy(saved,pending.incoming,56);
  if(!handled)return refuse(17);

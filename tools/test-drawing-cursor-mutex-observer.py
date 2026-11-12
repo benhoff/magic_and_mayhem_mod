@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Run actual PE32 original mutex import forwarding over owned callbacks."""
+from experiment_environment import stage_prefix
 import argparse
 import json
 import os
@@ -36,7 +37,7 @@ def main():
         subprocess.run(['clang', '--target=i686-pc-windows-msvc', '-O2', '-ffreestanding', '-fno-builtin', '-fno-stack-protector', '-mno-sse', '-mno-mmx', '-Wall', '-Wextra', '-Werror', '-Wno-unused-function', '-c', str(ROOT / 'tests/drawing-cursor-mutex-test.c'), '-o', str(run / 'fixture.obj')], stdout=log, stderr=subprocess.STDOUT, check=True)
         binary = run / 'fixture.exe'
         subprocess.run(['lld-link', '/machine:x86', '/base:0x18000000', '/entry:start', '/subsystem:console', '/nodefaultlib', '/safeseh:no', '/timestamp:0', '/out:' + str(binary), str(run / 'fixture.obj'), str(run / 'kernel32.lib')], stdout=log, stderr=subprocess.STDOUT, check=True)
-    subprocess.run(['cp', '-a', '--reflink=auto', str(args.prefix_template.resolve()), str(run / 'wineprefix')], check=True)
+    stage_prefix(ROOT, str(args.prefix_template.resolve()), str(run / 'wineprefix'), persistent=True)
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
     capture = run / 'cursor-mutex.bin'
     env.update(WINEPREFIX=str(run / 'wineprefix'), WINEDEBUG='-all', MNM_DRAW_CURSOR_MUTEX_FILE='Z:' + str(capture).replace('/', '\\'))

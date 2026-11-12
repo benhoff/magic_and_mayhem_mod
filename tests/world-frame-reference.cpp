@@ -8,6 +8,9 @@
 #ifndef MNM_WORLD_RASTER_RESULT
 #define MNM_WORLD_RASTER_RESULT(op, call) ((void)(call))
 #endif
+#ifndef MNM_WORLD_RECORD_WATCH
+#define MNM_WORLD_RECORD_WATCH(record, op, backend, pixels, width, height) ((void)0)
+#endif
 #ifndef MNM_WORLD_REFERENCE_MAIN
 #define MNM_WORLD_REFERENCE_MAIN main
 #endif
@@ -23,6 +26,7 @@ int MNM_WORLD_REFERENCE_MAIN(int argc,char** argv)try{
     for(unsigned i=0;i<u32(input,36);++i){
         const auto size=u32(input,at),op=u32(input,at+4),n=u32(input,at+32),indexed=u32(input,at+36),payload=u32(input,at+40);
         if(size!=64+n+payload||((op<6||op>=8)&&n<40)||at+size>input.size()||op>MNM_WORLD_DESTINATION_ROWS)throw std::runtime_error("World raster record");
+        MNM_WORLD_RECORD_WATCH(i+1,op,u32(input,at+52),pixels,width,height);
         if(op==7){
             if(n||indexed||payload<14||u32(input,at+52)!=12)throw std::runtime_error("Colour rectangle record");
             const auto w=u32(input,at+64),h=u32(input,at+68),mode=u32(input,at+72);

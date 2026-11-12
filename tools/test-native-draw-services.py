@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Isolated native clipper/DC and logical primary/flip proof; no game retirement claim."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import importlib.util
@@ -33,7 +34,7 @@ def main():
         run('original-before',[ROOT/'tools/original-manifest.sh','verify']);before=True
         spec=importlib.util.spec_from_file_location('native_factory_reservation',ROOT/'tools/capture-original-surface-keys.py')
         module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);reservation=module.reserve_wine()
-        run('prefix',['cp','-a','--reflink=auto',(ROOT/'working/wineprefix-x86_64').resolve(),out/'wineprefix'])
+        stage_prefix(ROOT, (ROOT/'working/wineprefix-x86_64').resolve(), out/'wineprefix', log=Path(out/'wineprefix').parent / 'prefix.log')
         run('wineboot',['wineboot','-u'])
         driver=out/'wineprefix/drive_c/windows/syswow64/ddraw.dll'
         if driver.exists():inputs[str(driver)]=sha(driver)

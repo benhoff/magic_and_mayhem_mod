@@ -360,7 +360,8 @@
       "original": [],
       "documents": [
         "research/runtime/preferences-persistence.md",
-        "research/formats/engine-preferences-store.md"
+        "research/formats/engine-preferences-store.md",
+        "research/runtime/campaign-nominal-repeatability-20261102.md"
       ],
       "implementation": [
         "apps/qt-shell/engine_preferences_store.cpp",
@@ -368,18 +369,27 @@
         "apps/qt-shell/live_menu_session.cpp",
         "apps/qt-shell/live_menu_session.hpp",
         "tools/menu_preferences_store.py",
-        "tools/prepare-menu-observer.py"
+        "tools/prepare-menu-observer.py",
+        "apps/qt-shell/engine_preferences_persistence.hpp"
       ],
       "tests": [
         "tests/engine-preferences-store-test.cpp",
         "tests/test-menu-preferences-store.py",
         "apps/qt-shell/live_preferences_restore_test.cpp",
-        "tools/test-live-menus.py"
+        "tools/test-live-menus.py",
+        "tests/menu-campaign-preferences-test.cpp"
       ],
       "evidence": [
         "UI24.live",
         "UI24.native",
-        "UI25.live"
+        "UI25.live",
+        "RPS05.prefs-stall02",
+        "RPS05.prefs-stall-diagnosis02",
+        "RPS05.prefs-worker-controls03",
+        "RPS05.prefs-worker-dwell03",
+        "RPS05.prefs-worker-history03",
+        "RPS05.controls04",
+        "RPS05.v23-matrix"
       ],
       "status": {
         "understanding": "scoped",
@@ -388,7 +398,10 @@
         "integration": "live_observation",
         "replacement": "none"
       },
-      "confidence": "high_within_scope"
+      "confidence": "high_within_scope",
+      "remaining_gaps": [
+        "RPS05 confirms a synchronous GUI persistence/2000mslease failure in the focused source phase. Current policy validates immutable original profile snapshots and serializes up to16pending/results on a worker,retaining revision/lock/atomicity,Cancel and owner-drain rules. Synthetic current-code liveness and one skipped-intro original rerun pass;nominal matrix,independent current pixels,power-loss and all-caller behavior remain separate. Historical fingerprints/statuses are not renewed."
+      ]
     }
   ],
   "evidence": [
@@ -520,6 +533,148 @@
       "assertions": [
         {
           "pointer": "/qt/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.prefs-stall02",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-startup-dwell-software-low-02.json",
+      "sha256": "7a3bd0154c680b0ef9eae1fd5f5e3bf27be5fb2b50ef50c873cd542be8710d44",
+      "sources_pointer": "/sources",
+      "scope": "Focused skipped-intro software640/Main dwell acknowledges two pre-World chunks,then synchronous GUI Preferences persistence exceeds unchanged menu lease and cancels. Retain exact negative acquisition.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.prefs-stall-diagnosis02",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-startup02-persistence-diagnosis-02.json",
+      "sha256": "c3d2df4c515ca8bec5ba8cb37ef84c23e1c12bf0acbe6a0797a8b31cd7c5e578",
+      "sources_pointer": "/sources",
+      "scope": "Corrected exact diagnosis:4358.833msGUI persistence,4360msstate age and2000mslease. Two acknowledged prefixes;final slot collecting,not a pending source request. Historical variants remain separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.prefs-worker-controls03",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-phase03-controls.json",
+      "sha256": "364153514eeaf4d92926fc578946f576d5dab15cb735657bbf60d0ada5f7a892",
+      "sources_pointer": "/sources",
+      "scope": "Current bounded FIFO persistence,immutable original snapshots,revision conflict,backlog,shutdown and real Qt mapped-menu heartbeat beyond unchanged lease;156campaign controls and six focused fixtures. No original game from controls.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/blocked_writer_heartbeat/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.prefs-worker-dwell03",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-startup-dwell-software-low-03.json",
+      "sha256": "0c0d230c972ef3e31ea03cd5e03bad994f997963ffa363e55e6983f2859480d5",
+      "sources_pointer": "/sources",
+      "scope": "Same focused skipped-intro software640/Main dwell now completes natural defeat/normal Quit,four prefixes and1816Worlds;stable sources and private shutdown. Nominal matrix and comparison separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.prefs-worker-history03",
+      "kind": "live_observation",
+      "record": "research/runtime/rendering-progression-results-20261101/repeatability-startup-dwell-software-low-comparison-03.json",
+      "sha256": "0c6b04892bc247e0300fd3b965908f69dca66bf4b49cb3aa969eb805a2a5e528",
+      "sources_pointer": "/sources",
+      "scope": "Exact phase03 focused software640 diagnostic:7129leased swaps/6234310500pixels,zero mismatches,1816Worlds and four source-only prefixes. Nominal repeatability,other startup variants and current helper phase remain separate.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/mismatching_pixels",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RPS05.controls04",
+      "kind": "native_integration",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-phase04-controls.json",
+      "sha256": "2461f60d561b3f1d75d642490f867a53a09c6b583ce13977f77c0d404c1c90d1",
+      "sources_pointer": "/sources",
+      "scope": "Current bounded persistence/lifecycle fixtures and158campaign controls,including v23 close visible pre-pause targeting and no-overspend/reserved-followup boundaries. Synthetic controls,not a live victory claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RPS05.v23-matrix",
+      "kind": "static",
+      "record": "research/runtime/rendering-progression-results-20261102/repeatability-matrix-v23r2-results.json",
+      "sha256": "c9b90b182e3160ac9ae9d7282644a146fb838bfc0776cb8419d789285d5679a0",
+      "sources_pointer": "/sources",
+      "scope": "Exact join of twelve frozen v23 enabled-intro attempts,all entering first World;two software defeat acquisitions/comparisons pass and ten strict cases fail. Guard-refused pre-command attempts remain separate. No full matrix acceptance,statistical repeatability,current helper renewal or engine status promotion.",
+      "assertions": [
+        {
+          "pointer": "/complete",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
           "equals": true
         }
       ]

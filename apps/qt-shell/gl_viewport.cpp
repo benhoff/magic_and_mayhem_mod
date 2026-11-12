@@ -1,8 +1,11 @@
+#include "watchdog_host_fault.hpp"
 #include "gl_viewport.hpp"
 #include "native_render_target.hpp"
 #include <QOpenGLContext>
 #include <cmath>
+#include <limits>
 #include <QPainter>
+#include <QTransform>
 #include <QResizeEvent>
 #include <QPlatformSurfaceEvent>
 #include <QWindow>
@@ -19,6 +22,7 @@ private:
 };
 GlViewport::GlViewport(QWidget* parent):QWidget(parent){
     setMinimumSize(320,240);setFocusPolicy(Qt::StrongFocus);setMouseTracking(true);
+    connect(this,&GlViewport::frameSwapped,this,[this]{acceptanceWorldSwapped_=acceptanceWorldPainted_;acceptanceLastSwappedPaint_=acceptancePaint_;acceptance_.append("swap",QJsonObject{{"paint",QString::number(acceptancePaint_)}});});
     raster_=mnm::render::GlBlitter::isolatedRecoveryEnabled();
     if(raster_){ready_=true;setAttribute(Qt::WA_OpaquePaintEvent);}
     else{canvas_=new GlViewportCanvas(*this);connect(canvas_,&QOpenGLWidget::frameSwapped,this,&GlViewport::frameSwapped);connect(canvas_,&QOpenGLWidget::aboutToCompose,this,&GlViewport::aboutToCompose);}
@@ -73,6 +77,7 @@ void GlViewport::paintEvent(QPaintEvent* event){
     emit aboutToCompose();
     if(gpuFrame_.valid() && framePaintTiming)framePaintTiming(false);
     {QPainter painter(this);paintRaster(painter);}
+    observePaint(acceptance_.enabled()?grabFramebuffer():QImage{},!frameSize().isEmpty());
     if(gpuFrame_.valid() && framePaintTiming)framePaintTiming(true);
     emit frameSwapped();
 }
@@ -83,8 +88,16 @@ QImage GlViewport::grabFramebuffer(){
 }
 GlViewport::~GlViewport(){if(context()){disconnect(context(),nullptr,this,nullptr);makeCurrent();release();doneCurrent();}}
 void GlViewport::release(){if(texture_)glDeleteTextures(1,&texture_);texture_=0;textureSize_={};vertices_.destroy();vao_.destroy();shader_.removeAllShaders();gpuShader_.removeAllShaders();ready_=false;}
-void GlViewport::setFrame(QImage image){if(ready_)error_.clear();gpuFrame_={};frame_=image.convertToFormat(QImage::Format_RGBA8888);dirty_=true;if(canvas_)canvas_->update();else update();}
-void GlViewport::setGpuFrame(mnm::render::GpuFrame frame){if(frame.valid() && raster_!=frame.hasRaster())throw std::runtime_error("Frame transport does not match viewport");if(ready_)error_.clear();gpuFrame_=std::move(frame);frame_={};dirty_=false;if(canvas_)canvas_->update();else update();}
+void GlViewport::setFrame(QImage image){
+    acceptanceLease_=acceptanceGeneration_=0;if(ready_)error_.clear();gpuFrame_={};frame_=image.convertToFormat(QImage::Format_RGBA8888);dirty_=true;
+    if(acceptance_.enabled() && acceptanceImages_){
+        ++acceptanceImage_;
+        acceptance_.append("image",{{"image",QString::number(acceptanceImage_)},{"width",frame_.width()},{"height",frame_.height()},
+            {"rgba_sha256",QString::fromLatin1(QCryptographicHash::hash(QByteArrayView(reinterpret_cast<const char*>(frame_.constBits()),frame_.sizeInBytes()),QCryptographicHash::Sha256).toHex())}});
+    }
+    if(canvas_)canvas_->update();else update();
+}
+void GlViewport::setGpuFrame(mnm::render::GpuFrame frame,std::uint64_t serial,std::uint64_t generation){acceptanceLease_=serial;acceptanceGeneration_=generation;if(frame.valid() && raster_!=frame.hasRaster())throw std::runtime_error("Frame transport does not match viewport");if(ready_)error_.clear();gpuFrame_=std::move(frame);frame_={};dirty_=false;if(canvas_)canvas_->update();else update();}
 QRect GlViewport::physicalImageRect() const{
     if(frameSize().isEmpty())return {};
     const double ratio=devicePixelRatioF();
@@ -101,8 +114,19 @@ QRectF GlViewport::imageRect() const{
 }
 bool GlViewport::imagePoint(QPointF position,QPoint& point,bool clamp) const{
     const auto rect=imageRect();if(rect.isEmpty())return false;
-    const double x=(position.x()-rect.x())*frameSize().width()/rect.width();
-    const double y=(position.y()-rect.y())*frameSize().height()/rect.height();
+    double x=(position.x()-rect.x())*frameSize().width()/rect.width();
+    double y=(position.y()-rect.y())*frameSize().height()/rect.height();
+    if(scaling_!=Scaling::Smooth){
+        // A pointer identifies a physical display pixel. Nearest presentation
+        // samples that pixel's centre, including fractional DPR and fit scales.
+        // Mapping its corner instead can pick the adjacent source texel.
+        const auto area=physicalImageRect();const auto ratio=devicePixelRatioF();
+        // Dividing an integer native position by fractional DPR and multiplying
+        // it back can land one ULP below its physical pixel boundary.
+        const auto centre=[ratio](double coordinate){return std::floor(std::nextafter(coordinate*ratio,std::numeric_limits<double>::infinity()))+0.5;};
+        x=(centre(position.x())-area.x())*frameSize().width()/area.width();
+        y=(centre(position.y())-area.y())*frameSize().height()/area.height();
+    }
     if(!clamp && (x<0 || y<0 || x>=frameSize().width() || y>=frameSize().height()))return false;
     point={qBound(0,int(std::floor(x)),frameSize().width()-1),qBound(0,int(std::floor(y)),frameSize().height()-1)};return true;
 }
@@ -113,8 +137,14 @@ void GlViewport::initializeGL(){
         "#version 330 core\nlayout(location=0) in vec2 position;layout(location=1) in vec2 uv;out vec2 texcoord;void main(){gl_Position=vec4(position,0,1);texcoord=uv;}") ||
        !shader_.addShaderFromSourceCode(QOpenGLShader::Fragment,
         "#version 330 core\nin vec2 texcoord;out vec4 color;uniform sampler2D frame;uniform bool smoothScaling;"
+        "uniform ivec2 imageOrigin;uniform ivec2 imageExtent;"
         "vec4 pixel(ivec2 p){return texelFetch(frame,clamp(p,ivec2(0),textureSize(frame,0)-1),0);}"
-        "void main(){if(!smoothScaling){color=texture(frame,texcoord);return;}"
+        // Pixel centres and an exact integer quotient define nearest sampling,
+        // including ties. Interpolated UVs can fall on either side of a texel
+        // boundary after floating-point interpolation on the same GL driver.
+        "ivec2 nearestPixel(){uvec2 p=uvec2(ivec2(gl_FragCoord.xy)-imageOrigin);p.y=uint(imageExtent.y)-1u-p.y;"
+        "return ivec2(((2u*p+1u)*uvec2(textureSize(frame,0)))/(2u*uvec2(imageExtent)));}"
+        "void main(){if(!smoothScaling){color=pixel(nearestPixel());return;}"
         "vec2 p=texcoord*vec2(textureSize(frame,0))-0.5;ivec2 lo=ivec2(floor(p));vec2 f=fract(p);"
         "color=mix(mix(pixel(lo),pixel(lo+ivec2(1,0)),f.x),mix(pixel(lo+ivec2(0,1)),pixel(lo+ivec2(1,1)),f.x),f.y);}") || !shader_.link()){
         error_=shader_.log();return;
@@ -124,8 +154,11 @@ void GlViewport::initializeGL(){
        !gpuShader_.addShaderFromSourceCode(QOpenGLShader::Fragment,
         // Integer textures cannot use GL_LINEAR; filter in the presentation shader only.
         "#version 330 core\nin vec2 texcoord;out vec4 color;uniform usampler2D frame;uniform bool smoothScaling;"
+        "uniform ivec2 imageOrigin;uniform ivec2 imageExtent;"
         "vec4 pixel(ivec2 p){return vec4(texelFetch(frame,clamp(p,ivec2(0),textureSize(frame,0)-1),0))/255.0;}"
-        "void main(){if(!smoothScaling){color=vec4(texture(frame,texcoord))/255.0;return;}"
+        "ivec2 nearestPixel(){uvec2 p=uvec2(ivec2(gl_FragCoord.xy)-imageOrigin);p.y=uint(imageExtent.y)-1u-p.y;"
+        "return ivec2(((2u*p+1u)*uvec2(textureSize(frame,0)))/(2u*uvec2(imageExtent)));}"
+        "void main(){if(!smoothScaling){color=pixel(nearestPixel());return;}"
         "vec2 p=texcoord*vec2(textureSize(frame,0))-0.5;ivec2 lo=ivec2(floor(p));vec2 f=fract(p);"
         "color=mix(mix(pixel(lo),pixel(lo+ivec2(1,0)),f.x),mix(pixel(lo+ivec2(0,1)),pixel(lo+ivec2(1,1)),f.x),f.y);}") || !gpuShader_.link()){
         error_=gpuShader_.log();return;
@@ -141,13 +174,17 @@ void GlViewport::initializeGL(){
     ready_=true;dirty_=!gpuFrame_.valid();
 }
 void GlViewport::paintGL(){
+    HostTimingTrace trace("viewport-paint");
     const int width=qRound(this->width()*devicePixelRatioF()),height=qRound(this->height()*devicePixelRatioF());
     glViewport(0,0,width,height);glClearColor(0,0,0,1);glClear(GL_COLOR_BUFFER_BIT);
-    if(!ready_ || frameSize().isEmpty())return;
+    if(!ready_ || frameSize().isEmpty()){
+        if(width>0 && height>0)observePaint({},false);
+        return;
+    }
     if(gpuFrame_.valid() && framePaintTiming)framePaintTiming(false);
     glActiveTexture(GL_TEXTURE0);
     try {glBindTexture(GL_TEXTURE_2D,gpuFrame_.valid()?gpuFrame_.textureForCurrentContext():texture_);}
-    catch(const std::exception& e){error_=QString::fromUtf8(e.what());if(recoverGraphics && recoverGraphics())error_.clear();return;}
+    catch(const std::exception& e){acceptance_.fail("GPU paint failed");error_=QString::fromUtf8(e.what());if(recoverGraphics && recoverGraphics())error_.clear();return;}
     if(dirty_){glPixelStorei(GL_UNPACK_ALIGNMENT,1);
         if(textureSize_!=frame_.size()){
             glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,frameSize().width(),frameSize().height(),0,GL_RGBA,GL_UNSIGNED_BYTE,frame_.constBits());textureSize_=frame_.size();
@@ -157,13 +194,48 @@ void GlViewport::paintGL(){
     glViewport(rect.x(),height-rect.y()-rect.height(),rect.width(),rect.height());
     auto& shader=gpuFrame_.valid()?gpuShader_:shader_;
     shader.bind();shader.setUniformValue("frame",0);shader.setUniformValue("smoothScaling",scaling_==Scaling::Smooth);
+    glUniform2i(shader.uniformLocation("imageOrigin"),rect.x(),height-rect.y()-rect.height());
+    glUniform2i(shader.uniformLocation("imageExtent"),rect.width(),rect.height());
     vao_.bind();glDrawArrays(GL_TRIANGLE_STRIP,0,4);vao_.release();shader.release();
     if(gpuFrame_.valid())try {gpuFrame_.samplingComplete();}
-    catch(const std::exception& e){error_=QString::fromUtf8(e.what());if(recoverGraphics && recoverGraphics())error_.clear();return;}
+    catch(const std::exception& e){acceptance_.fail("GPU paint failed");error_=QString::fromUtf8(e.what());if(recoverGraphics && recoverGraphics())error_.clear();return;}
+    if(acceptance_.enabled() && (gpuFrame_.valid() || (acceptanceImages_ && !frame_.isNull()))){
+        QImage observed(width,height,QImage::Format_RGBA8888);
+        {HostTimingTrace readback("acceptance-readback");glReadPixels(0,0,width,height,GL_RGBA,GL_UNSIGNED_BYTE,observed.bits());}
+        if(glGetError()!=GL_NO_ERROR)acceptance_.fail("Paint readback failed");
+        else observePaint(observed.transformed(QTransform().scale(1,-1)));
+    }else observePaint({});
     if(gpuFrame_.valid() && error_.isEmpty() && framePaintTiming)framePaintTiming(true);
 }
 
+void GlViewport::observePaint(const QImage& image,bool frameDrawn){
+    HostTimingTrace trace("acceptance-paint");
+    // Presentation readiness belongs to the painted frame, independently of
+    // optional pixel recording. Assignment alone never advances swapped state.
+    frameDrawn=frameDrawn && !frameSize().isEmpty();
+    QJsonObject identity;
+    if(frameDrawn && gpuFrame_.valid() && acceptanceState)identity=acceptanceState();
+    ++acceptancePaint_;
+    const auto world=identity.constFind("world");
+    acceptanceWorldPainted_=frameDrawn?(world==identity.constEnd()?acceptanceGeneration_:world->toString().toULongLong()):0;
+    if(acceptanceWorldPainted_)WatchdogHostFault::afterWorldPaint(this);
+    if(!acceptance_.enabled())return;
+    const auto area=physicalImageRect();
+    QJsonObject row{{"paint",QString::number(acceptancePaint_)},{"lease",QString::number(acceptanceLease_)},{"world",QString::number(acceptanceWorldPainted_)},
+        {"width",qRound(width()*devicePixelRatioF())},{"height",qRound(height()*devicePixelRatioF())},{"frame_width",frameSize().width()},{"frame_height",frameSize().height()},
+        {"left",area.x()},{"top",area.y()},{"image_width",area.width()},{"image_height",area.height()},
+        {"transport",raster_?"raster":"opengl"},{"gpu_read_complete",!raster_ && !image.isNull()},{"scaling",int(scaling_)},
+        {"native_gpu_frame",gpuFrame_.valid()},{"pixels_captured",!image.isNull()},
+        {"presentation_owner","dedicated"},{"immutable_lease",true}};
+    if(acceptanceImages_)row["image"]=QString::number(acceptanceImage_);
+    for(auto i=identity.begin();i!=identity.end();++i)row[i.key()]=i.value();
+    if(frameDrawn && gpuFrame_.valid() && row["lease"].toString()=="0")acceptance_.fail("Native paint source identity missing");
+    acceptance_.append("paint",row,image.isNull()?QByteArray():QByteArray(reinterpret_cast<const char*>(image.constBits()),image.sizeInBytes()));
+}
 NativeRenderTarget viewportRenderTarget(GlViewport& v){
-    return {[&v]{return v.ready();},[&v]{return v.context();},
+    NativeRenderTarget target{[&v]{return v.ready();},[&v]{return v.context();},
         [&v](auto frame){v.setGpuFrame(std::move(frame));},[&v]{return v.error();},nullptr};
+    target.observeAcceptance=[&v](auto observer,const void* owner){v.acceptanceOwner=owner;v.acceptanceState=std::move(observer);};
+    target.releaseAcceptance=[&v](const void* owner){if(v.acceptanceOwner==owner){v.acceptanceOwner=nullptr;v.acceptanceState={};}};
+    return target;
 }

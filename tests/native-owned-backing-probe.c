@@ -84,8 +84,16 @@ void start(void){
  require(!history((void*)pixels,1,2,0,17,34),189);
  const u8 source[7]={1,2,3,4,5,6,7};
  char bad_span[2];if(GetEnvironmentVariableA("MNM_OWNER_BAD_COPY_SPAN",bad_span,2)==1)image_copy(source,(u8*)pixels+descriptor[4]*9-2,sizeof(source));
- image_copy(source,(u8*)pixels+2,sizeof(source));
- require(reader_calls==1 && pixels[0]==0x4567,190);
+ SetLastError(0x7347);image_copy(source,(u8*)pixels+2,sizeof(source));
+ require(reader_calls==0 && GetLastError()==0x7347 && history((void*)pixels,2,0,0,0,0)==(i32)0x887601aeu,190);
+ require(VirtualQuery((void*)pixels,memory,28)==28 && memory[5]==1,250);
+ require(!snapshot(surface,layout,observed,sizeof(observed)) && mask(surface,layout,dirty_flags,sizeof(dirty_flags),0)==1,251);
+ for(u32 i=0;i<234;++i)require(dirty_flags[i]==(i>=2 && i<9),252);
+ for(u32 i=0;i<sizeof(source);++i)require(((u8*)observed)[2+i]==source[i],253);
+ /* Reading that same owned allocation still restores and merges exact bytes. */
+ u8 copied[7];image_copy((const u8*)pixels+2,copied,sizeof(copied));
+ require(reader_calls==1 && pixels[0]==0x4567,254);
+ for(u32 i=0;i<sizeof(source);++i)require(copied[i]==source[i],255);
  for(u32 i=0;i<sizeof(source);++i)require(((const u8*)pixels)[2+i]==source[i],191);
  for(u32 test=0;test<5;++test){
   require(!history((void*)pixels,1,3+test,0,17,34),196);
@@ -104,10 +112,19 @@ void start(void){
   if(test==4)require(pixels[3]==0x458c,201);
   require(GetLastError()==0x4321 && reader_calls==test+2,202);
  }
- require(!history((void*)pixels,1,8,0,17,34),245);
+ /* A stale same-allocation source restores once, then preserves forward
+  * DWORD/residual overlap (not memmove and not forward byte-copy order). */
+ require(!history((void*)pixels,1,8,0,17,34),256);
+ image_copy(source,(u8*)pixels+2,sizeof(source));
+ SetLastError(0x7348);image_copy((const u8*)pixels+2,(u8*)pixels+4,6);
+ const u8 overlap[6]={1,2,3,4,3,4};
+ require(reader_calls==7 && GetLastError()==0x7348 && !history((void*)pixels,2,0,0,0,0),257);
+ for(u32 i=0;i<6;++i)require(((const u8*)pixels)[4+i]==overlap[i],258);
+ require(VirtualQuery((void*)pixels,memory,28)==28 && memory[5]==4,259);
+ require(!history((void*)pixels,1,9,0,17,34),245);
  i32(WIN* world)(const void*,u32)=GetProcAddress(module,"NativeDrawCpuGuardWorldV2");require(world&&world((void*)pixels,1)==1,246);
  require(direct_store((void*)pixels,1,2)==(i32)0x887601aeu&&world((void*)pixels,0)==0,247);
- require(!history((void*)pixels,1,9,0,17,34),248);
+ require(!history((void*)pixels,1,10,0,17,34),248);
  require(!((i32(WIN*)(void*,void*))table(surface)[32])(surface,(void*)pixels),184);
  require(!release(surface)&&!release(draw),185);
  u32 direct_result[9]={0x52545344,1,4,6,6,1,1,1,1},direct_written=0;

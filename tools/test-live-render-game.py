@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Observe a bounded original-game command session under an isolated Xvfb/Wine."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import json
@@ -74,8 +75,7 @@ def main():
                WINEPREFIX=str(run / 'wineprefix'))
     env.pop('WAYLAND_DISPLAY', None)
     try:
-        subprocess.run(['cp', '-a', '--reflink=auto', str(args.prefix_template.resolve()),
-                        env['WINEPREFIX']], check=True)
+        stage_prefix(ROOT, str(args.prefix_template.resolve()), env['WINEPREFIX'])
         # A copied prefix needs Wine's host/drive initialization before the
         # bounded game timer starts; first explorer startup can exceed it.
         with (run / 'wineboot.log').open('w') as log:

@@ -1,4 +1,336 @@
+## Corrected clipped-distortion comparison oracle — 2026-11-01
+
+[Divergence review](rendering-divergence-20261101.md) isolates the earlier high03
+discrepancy to World50/draw83 and the newer original-reference helper. The capture
+already normalized19 skipped top rows; the oracle failed to restore that phase.
+Restoring phase `skip-1` matches the older reference and all576 raw-original
+regression cases, including384 clipped cases that failed before the change.
+All1,830 corrected World50 checkpoints match, with unchanged native witnesses.
+Fresh independent original histories now match165,997,240 high-resolution and
+212,644,040 software-capture pixels. Input/fullscreen guards pass on both.
+
+This is an oracle/tooling repair and fresh original execution over retained
+captures. It changes no native engine/capture source and performs no fresh game
+launch or existing engine/acceptance stage promotion. The previous13,659-pixel
+finding is closed as an oracle defect; its original records/hashes and all failed
+harness attempts remain retained. Older source-writer/initialization/watchdog,
+EP06 configuration acceptance and full-player/replacement gaps remain separate.
+New tooling stages have their own exact current source and scenario claims;
+broader historical evidence may remain stale after shared reference changes.
+
+## Cursor and prior-destination provenance follow-up — 2026-11-01
+
+[Provenance review](rendering-provenance-20261101.md) confirms the retained
+source563,433 to target548,433 dependency with actual original-only perturbations;
+the earlier writer remains open. Current800×600 now reaches2,146 direct-distortion
+calls from World2. Its independent comparison fails at World50/paint162 and totals
+13,659 differing pixels across9presentations. The full owned prefix is retained;
+the first divergent draw/read remains unidentified. The640×480 diagnostic matches
+212,644,040 compared pixels. No full rendering equivalence is claimed.
+Real Wine/native offscreen controls corroborate both exact invalid-rectangle
+returns and preserve all checked pixels. A bounded scalar companion joins
+current cursor COPY calls to saved cursor/window/published-input state without
+changing input, coordinate or admission behavior. Final diagnostics use the
+committed capture-worker repair at mastera4d3a6ee3 and retain default key-input,
+fullscreen, independent pixel/history and retirement checks. Extra observation
+and skipped intros make these diagnostics ineligible for nominal acceptance.
+The exact low/high totals and source identities are retained in the final review.
+
+A late fullscreen exception could previously retain a true comparison-success
+flag. The contradictory record/preimage remain immutable; exceptions now revoke
+success and nominal admission rejects explicit collector errors. Scoped pixel
+results and full presentation/input verdicts stay separate. Existing engine
+milestones and acceptance leaves are unchanged. New-policy/observer validation
+has its own source-bound evidence; earlier source phases and failures remain.
+The new commit-range review fills missing intermediate raw-file receipts without
+asserting historical gate passes or new engine validation.
+
+## Retained operations and destination-history residuals — 2026-11-01
+
+[Operations/history review](rendering-operations-history-20261101.md) rechecks the
+complete retained 1,370-call/1,345-COPY clipped acquisition with current readers,
+classifies two earlier failed cursor fast copies by their exact invalid source
+or target rectangle/reason/HRESULT, and reproduces all eight retained one-pixel
+late-history differences. The selected distortion offset locates the required
+source at `(563,433)`, whose entry value is6338; earlier writer, full prefix and
+current required reachability remain open. Fifteen negative controls pass.
+This is fresh offline tooling execution. Historical engine hashes remain exact;
+no current game/native raster execution, acceptance leaf or engine status is
+promoted. The handoff covers36 EP06 operation/configuration obligations and
+separates six EP09 fault obligations, with targeted capture requirements for the
+campaign/watchdog lanes.
+
+## Native adapter merge with completed master work (2026-10-27)
+
+[Integration evidence](native-adapter-master-20261027.md) combines adapter fixes
+with master dd7d5c16 (palette, RGB555/color and player lifetime repairs).
+Fresh controls05 passes 15 CPU, 23 GPU and 18 mocked launcher cases, with exact
+complete sources and behavior contracts. Prior evidence hashes remain retained;
+current gameplay FPS, whole-driver equivalence and live replacement remain
+pending. No independent status promotion.
+
+## Final native-adapter/current-master integration (2026-10-27)
+
+[Integration review](native-adapter-master-20261027.md) combines the adapter fixes
+with current master 1efa145c, including surface recovery and color handling.
+The final tree matches all 4137 inputs in fresh controls04:
+15 CPU, 23 GPU and 18 mocked launcher checks pass. Both parent records and exact
+receipts are retained. Historical 19.9 FPS results do not establish current-game
+latency or whole-driver equivalence; independent stages remain unchanged.
+
+## Surface recovery integration candidate with current master — 2026-10-26
+
+The master integration retains the original copy retry context and native owned
+copy recovery contracts from `26dadcdf`. All 108 source fingerprints across the
+two accepted recovery comparisons remain exact in the combined tree. The 18,432
+original-context comparisons and native64/32/sanitizer results, plus 64 native
+recovery combinations and 4,480 scheduler traces, remain inherited parent
+milestones. This merge performs source/accounting checks, not new engine runs.
+Physical lost-draw, callback ownership and live replacement gaps remain open.
+See [exact source impact](native-surface-recovery-merge-results-20261026/source-impact01.json)
+and [committed-history review](native-surface-recovery-merge-results-20261026/history02.json).
+## Native adapter latency integration (2026-10-27)
+
+[Integration review](native-adapter-master-20261027.md) combines adapter58132cda
+with master0357068d while retaining prepared clipped copy/fill plans and guarded
+snapshot borrows. Fresh merged PE32/native controls pass15 CPU and
+23 GPU cases; launcher controls pass18 mocked cases.
+Eight production inputs differ from the parent timing closure. Its19.90/19.92FPS
+results remain historical bounded observations; current combined application
+performance and original-driver comparison remain pending. Independent stages
+are unchanged. Incoming history has12 reviewed commits and
+2856 transitions with no unresolved exact receipts or missing
+payloads, including separate retrospective raw-evidence retention accounting.
+
+## Original alternate allocation repair — 2026-10-26
+
+An opt-in original-process owner now allocates guarded CPU backing, publishes its
+centered copy source before its rendering base, and retires it before original
+rebuild/shutdown. Its nominal DirectDraw destination avoids the debug-padded
+capture overflow. Nine controls and four normal original processes pass both
+resolutions: 715 World copies, 8 balanced generations and 15744000 source/destination
+WORD checks before UI overlays. The campaign paths include Save/Load and two
+display rebuilds per process. No oracle pixels feed rendering. This is an authored
+repair; the historical original publisher remains unknown. Earlier failures and
+source fingerprints are retained separately. See [repair and limits](original-alternate-allocation-repair-20261026.md).
+## Native adapter latency and protected image-copy destinations (2026-10-26)
+
+[Adapter cost investigation](native-adapter-cost-20261026.md) removes repeated
+lifetime scans, guarded checkpoint clones, dirty-interior scans and private
+buffer allocation churn. The checked No-CD image-copy row at0x533aec now admits
+eligible write-only protected destinations through value-only stores while
+retaining source-history restoration, exact dirty masks and forward DWORD
+alias semantics. Bounded controls pass; historical status dimensions remain
+unchanged. Strict original-engine/native-only candidate11 reaches19.90 fresh
+World updates/s (50.26ms), with resumed quiet19.98 and stress19.91FPS.
+Confirmation candidate12 reaches19.92FPS overall,20.00 quiet and19.92 stress
+after resume, over1,833Worlds. Command-channel full-surface CPU transfers
+fall802→31/35; these are distinct from
+zero World producer readbacks. Retained prior Qt diagnostic context, shared-host
+and tracing effects, bounded trace retention, trace-disabled sustained timing,
+all-current application integration and original-driver whole-game equivalence
+remain separate. Failed/reverted attempts and exact source fingerprints remain
+in SQLite. This work does not promote complete engine replacement.
+
+## Original surface copy retry context — 2026-10-26
+
+Fresh unchanged No-CD opaque/keyed copy wrappers confirm cached initial destination
+extent/window translation, per-attempt Blt/BltFast and WAIT globals, and a reread
+source RECT. Mode switches do not repeat translation. All 18,432 original argument
+and ordered endpoint traces match independent32/64-bit native and ASan/UBSan
+models, including overflow geometry and Restore/key failures. Confidence is high
+within scripted fault/context inputs; no real driver pixels or live replacement.
+
+`RE.surface-copy.retry-context` records this narrow original comparison. The
+compile-extension and fixture stack-alignment failures remain retained with their
+source variants and debugger trace. Null/replaced interfaces, resource callback
+ownership, original window-provider failure outputs and physical lost-draw/live
+composition remain pending. See [findings and bounded reproduction](original-surface-copy-retry-context-20261026.md).
+
+## Native surface copy recovery composition — 2026-10-26
+
+`recoverOwnedSurfaceCopy` connects native opaque/keyed copy geometry to the
+recovered Restore/key/reload/retry scheduler with explicit handle/window snapshots.
+Release and ASan/UBSan each pass 64 loss/API/WAIT/window combinations and 854
+checks, including busy-budget, unknown-content, reload-failure and wrong-mode
+controls. Fresh unchanged original scripted-fault execution matches all 4,480
+scheduler traces; 1,536 budget stops preserve original event prefixes. Immutable
+original manifests verify before and after execution. The initial incomplete
+compiler-provenance attempt remains failed evidence.
+
+`NP.surface-copy.owned-recovery` is a scoped headless native policy. Physical
+original lost-draw composition, dynamic original window/interface mutation,
+resource acquisition/reentrant lifetimes and live replacement remain pending.
+Shared-source historical surface evidence retains its original hashes and is not
+renewed by these controls. See [contract and reproduction](native-surface-copy-recovery-20261026.md)
+and [SQLite execution](native-surface-copy-recovery-results-20261026/execution03.json).
+
+## Alternate canvas integration with landed master (2026-10-26)
+
+The [final integration](alternate-completion-master-20261026.md) combines
+`32d98913` and native-player master `c8733033`. Fresh native controls pass 54
+frames, 144 prepared replays, 94,112,736 pixel checks and six explicit context
+rebuilds. Fresh padded asynchronous and Save/Load/rebuild journeys complete 282
+and 492 Worlds with normal Quit and private Wine cleanup. Four complete World
+checkpoints match unchanged original raster entries across 1,920,000 words.
+Original low/high failed-copy attribution remains source-current. Original
+alternate allocation/publication and arbitrary physical device reset remain
+open. Earlier execution fingerprints and failed attempts are retained; unrelated
+pending workspace edits receive no validation credit.
+
+## Original campaign copy attribution and native padded World — 2026-10-26
+
+Fresh original call/return observations attribute enabled campaign entry failure
+to4b2e1c/58c03a: full736/896-wide source and destination Blt rectangles overflow
+640/800-wide capture surfaces and return88760096 before World. Both alternate
+slots remain zero; allocator/publication/initial pixels/base-source relation,
+writers and retirement remain unresolved. Original code and rectangles are unchanged.
+
+Intentional native padded backing with visible GPU scratch passes54frames,
+144prepared replays,94,112,736pixel checks and six explicit context rebuilds.
+Async padding4/3 completes303Worlds; padded96/0 Save/Load/rebuild completes737,
+with normal Quit. Four full World checkpoints match unchanged original rasters:
+1,920,000RGB565words,zero mismatches. Independently acquired original sessions,
+physical/in-flight device loss,whole-renderer acceptance and original alternate
+semantics remain separate. Historical hashes,failed attempts and stage limits
+are retained. See [scope and evidence](alternate-completion-20261026.md).
+
+## Alternate observation branch master synchronization — 2026-10-25
+
+Master d77015d4 is combined with a5ae70a7,retaining both parents' scoped evidence,
+unknowns and independent stages. The merged Qt shell builds;16 journey controls
+and429 actual native owned-surface checks pass. Fresh original debug-enabled
+campaign entry still produces the invalid-rectangle modal before World at both
+resolutions,with both alternate slots zero. That original/menu-observer/Wine
+probe does not load the new native surface or source-capture implementations.
+Pending-merge bookkeeping now reads actual Git parents, with synthetic inheritance/refusal and exact combined-source review controls. No original rectangle correction or allocation chain is inferred. Historical
+completed disabled journeys and native resident-owner evidence retain their
+hashes/freshness. See [merge findings and validation](alternate-master-sync-20261025.md).
+
+## Original campaign alternate-pointer observations — 2026-10-25
+
+Two debug-disabled original campaign processes complete Save,Mini Load,three
+Quit/defeat/Main returns,two display rebuilds and Main Loads at both resolutions,
+then normal Quit:2,838 World dispatcher entries,zero slot writes/publications.
+All reported created threads remain watched;the authored main/worker control
+catches all eight transient writes. Enabled640/800 campaign entry instead
+shows the original invalid-rectangle modal before World. Its exact failing
+API/operands and enabled continuation remain pending. The established enabled
+Quick Battle prefix does not cover this branch.
+
+Sixteen navigation/diagnostic controls and15 retained-image title checks pass.
+Owned fixture fixes service the unchanged host lease,recognize Mini without
+waiting on paused World,use child-owned Win32 geometry and exact Hermes title
+selection,and reapply no-CD-music settings before each fresh process.
+Failed/guard-interrupted runs and lost declarations remain separate negatives.
+SQLite source/raw retention and exact coverage reviews preserve historical
+hashes;shared instrumentation changes do not renew old API/pixel evidence.
+
+Original alternate allocation,publication,initial pixels,base/source relation,
+all writers and retirement remain unresolved. RS.alternate-canvas-provenance
+keeps partial/partial/none/none/none stages. The separately validated native
+resident owner remains intentional native policy. See [method,results and
+remaining boundaries](alternate-writer-journeys-20261025.md).
+
+## Official1.100 alternate-owner recovery boundary — 2026-10-25
+
+The supplied official update is reproducibly unpacked by its unchanged x86
+extractor,stopping before program launch. Its original synchronous RTPatch API
+then reconstructs unmodified1.100 in a fresh hash-verified retail copy. All4,834
+baseline files and original manifests pass before/after;the private prefix
+retires. The updated executable is SHA405001ab and retained in SQLite.
+
+All stored sections match NoCD except16bytes at four drive/media branches.
+Complete display-rebuild,initializer,graphics-shutdown,canvas-retirement and
+both copy bodies are byte-identical,as are the five/two pointer-read literals.
+The reviewed NoCD edits did not remove those original ownership-related bodies.
+This is static artifact recovery;no game was launched or native policy promoted.
+Original allocator,publication,initial pixels,base/source relationship,writers
+and retirement ownership remain partial. Unknown computed/bulk/external writers
+prevent a global dormant/unimplemented claim. See [exact findings,refusals and
+reproduction](alternate-original-update-recovery-20261025.md).
+
+## Native resident alternate canvas integration and original CFG search — 2026-10-25
+
+The opt-in native resident World route now owns a separate zero-padding GPU
+canvas under the existing native publication/frame lease. It seeds only native
+history, copies completed World back before UI, preserves prepared/retained
+replay and ordinary output leases across replacement, and retires on the render
+owner. Both640/800 modes,full-plane independent pixels,split checkpoints,invalid
+history and abandoned-frame cleanup pass:18source frames,48replays,29,721,600
+checks and zero remaining surfaces. Final live Apprentice observation passes
+255balanced source/import/return Worlds,556extra replays,811copy-backs,zero
+World/native/RGBA readbacks and normal Quit. `NP.alternate-canvas-resident-session`
+is scoped/live-observation; it does not publish either original pointer slot.
+
+Original recovery reviews542,955byte-checked instructions with direct-CFG
+constant propagation and11unit controls. Only the three established padding/flag
+writes overlap the reviewed globals;no pointer publisher is identified. All
+53,977computed stores,2,945unbounded bulk sites and2,948indirect edges remain
+open;27bounded bulk ranges do not overlap the pointer pair. Original allocator,
+natural publication,clear,base/source relationship,writers and retirement stay
+partial. Padded live semantics,async/device-recovery live runs,complete original
+frames and performance remain pending. Initiate Summon Zombie tutorial attempts
+retain the existing Mini/Hermes refusal;the game/tutorial is unchanged.
+See [integration,final evidence and retained failures](alternate-canvas-live-integration-20261025.md).
+
 # Engine modernization coverage ledger
+
+## Native single player completion planning — 2026-11-09
+
+The [native simulation plan](../../docs/native-simulation-plan.md) assesses the
+current ownership, command-session, encounter, scene and campaign foundations
+against a complete native single-player target. It records provider/content,
+time/RNG, lifecycle, lab-policy, continuation, campaign, integration and acceptance
+gaps, with staged deliverables S0–S8. Multiplayer and existing original saves
+retain the legacy backend; native simulation, supported-player acceptance and
+Wine-free deployment have separate verdicts. The final target includes original
+single-player campaign and Quick Battle; bounded encounters remain intermediate.
+
+This is documentation/accounting only. Existing GP, AI, NP, RS and campaign
+behavior scopes, evidence hashes and milestone statuses remain unchanged.
+No original execution, new equivalence, native gameplay replacement or rendering
+acceptance is established. S0 must enumerate the supported content and actual
+provider closure before a fixed acceptance denominator is claimed.
+
+## Windowed diagnostics merged with current master — 2026-10-26
+
+The original-windowed launch argument now composes with terrain-light session
+supervision. Current 21 Python/Qt capture controls, 29 copy regressions, five
+synthetic actual-launcher checks and the full Qt build pass. All 6,571 committed
+file transitions are reviewed, including 23 retrospectively accounted capture
+references. Historical failed input, incomplete all-COPY output and surviving
+owners remain open; no engine milestone is promoted. See
+[merge scope and retained limits](windowed-reader-master-integration-20261026.md).
+
+## Windowed copy and raw-reader frontier investigation — 2026-10-25
+
+The opt-in original-windowed diagnostic reaches native World rendering on a
+16-bit private desktop. Explicit resident-native capture now avoids waiting for
+an unavailable original CPU frame, with no original comparison credit. Current
+21 Python/Qt capture controls and 29 copy regression methods pass. The campaign
+still exhausts its 12-click Hermes bound. A separate Quick Battle reaches 576
+balanced resident Worlds but times out before Results/normal Quit. Its 5,461-row
+metadata census closes during teardown; independent all-COPY comparison remains
+incomplete and native owners survive. No engine integration, comparison or
+replacement stage is promoted. Exact failures, unique sources and pinned RAM-run
+inputs are retained in SQLite. Windowed Qt input-target discovery is the next
+bounded frontier; cause attribution and full caller/reader/ownership closure
+remain pending. See [findings and limits](native-windowed-copy-readers-20261025.md).
+
+## Reusable experiment environments — 2026-10-26
+
+Host staging now defaults to bounded, exclusively leased Wine-prefix and
+in-process game/media pools, with full final manifests and changed bytes retained
+in SQLite before return/reset. Native campaign reuse applies to admitted prefix
+templates; fresh-prefix admission remains unchanged. Standalone preparation and
+pinned/explicit fixture outputs remain durable.
+86filesystem and launcher controls cover reset, exclusion, restoration
+and interrupted recovery. An isolated Wine11.16 registry reset/restore control
+also passes on a real bind-mounted output group. Persistent player prefixes
+retain their full-tree lifetime. Complete Wine/game integration after this source change
+remains pending; no engine comparison or replacement status is promoted and old
+source hashes remain unchanged. See [scope and limits](environment-reuse-20261026.md).
 
 ## Native alternate canvas owner merged with current rendering — 2026-10-25
 
@@ -12080,7 +12412,7 @@ retains1424owned sources/654457216bytes,55complete advancing updates and194API/
 analysis04](draw02-source-worker-egl-campaign-analysis-04.json) binds every observed
 source/worker and retained physical witness, matching193copy regions and193
 whole images/92640000RGBpixels. Final Quick Battle and campaign references
-therefore match649whole images/311520000RGBpixels. Whole-image agreement outside
+therefore match 649whole images/311520000RGBpixels. Whole-image agreement outside
 a partial copy region is visual corroboration, not attribution of those pixels
 to that command. One stable final EGL context per run has no physical witness
 after explicit capture close and remains recorded separately.
@@ -14073,7 +14405,7 @@ caller/module identity, branch flags, generations, resource IDs and FIFO ranges;
 incomplete, dropped, overflowed or unclosed evidence refuses validation.
 
 A current NoCD native V3 journey completes Save/Load, both display rebuilds,
-changed-canvas Main Load and original normal Quit. All867admitted GPU-copy calls
+changed-canvas Main Load and original normal Quit. All 867admitted GPU-copy calls
 match native COPY ranges with zero errors/mismatches:443at return PC0x58c05d
 (including4bootstraps),9at0x58c488 and415at0x58c5be. These belong to the already
 registered whole opaque/rectangle wrappers0x58bf40/0x58c360/0x58c4a0. No new
@@ -20969,6 +21301,33 @@ performance remain separate. Previous results and failed setup attempts retain
 exact historical hashes; unrelated current-source drift receives no new credit.
 
 
+## Actor installed-world dependency cases (2026-10-26)
+
+The final actor integration also retains the concurrent1efa145c camera merge.
+Its separate2-commit/1297-transition retrospective review adds no actor status
+credit. Nine installed-world cases remain pending; current staged colour/palette
+changes are excluded from this merge.
+
+The2026-10-27 master integration retains this partial scope and the initial
+12-commit/8581-transition retrospective review. Later master changes are
+reviewed separately. No engine validation or status is promoted.
+
+The [dependency review](actor-installed-dependencies-20261026.md) identifies nine
+required parent cases: World clock/allocation, World-produced source/task
+ownership, installed profiles/ANI, font/palette/surface publication, transition
+handler adapters, reentrant retirement, scenario/spell/subtypes, particle
+production cadence and audio timing. All15 transition-selected handlers have
+scoped component implementation leads; calling them through the actor session's
+shared raw store remains pending. Broad historical missing-provider descriptions
+must not be read as an absence of those implementations.
+
+The verified SQLite static inventory retains112 historical endpoint
+specifications and36 distinct indirect sites from the275-route family frontier.
+Fixture tokens, component leads and absent implementation links are explicit.
+Four accounting guards pass; this is no new original comparison or installed
+acceptance. The Critical parent remains partial with all nine cases pending;
+historical engine hashes/statuses, live replacement and balance are unchanged.
+
 ## Actor downstream service inventory and body comparisons (2026-10-21)
 
 The72direct service/helper entries now resolve to71PE32 value-address models and
@@ -22896,6 +23255,35 @@ transition review, and `final-local-evidence01.json` identifies the verified loc
 2,647-object SQLite backup. The final normal hook checks the combined staged
 tree; pre-existing master edits are preserved separately at fast-forward time.
 
+
+## Concrete screen ownership and World exit — 2026-10-25
+
+RS.screen-resource-release-callers now models all21 concrete slot+20 callers
+in the22-table shared5595d0 census;the abstract5c6564 purecall remains explicit.
+Fresh release08 compares3429 resource-release schedules,1215 complete normal
+Main/Quick/Mini lifetime schedules and405 campaign/Quick-result exit/destructor
+schedules per optimized32,sanitized32 and sanitized64 configuration. Complete
+owned bytes and every provider-entry storage snapshot agree;all compared
+original bodies remain unchanged. Retained arrays versus owned allocations,
+receiver rereads (including738 actual array-retarget schedules),derived cleanup despite a skipped base guard,signed dynamic
+Mini counts,repeated release and repeated enclosing cycles are explicit.
+
+RS.world-screen-retirement separately compares complete46ab30..46ae8c World
+exit in1536 cases per configuration,including registry/iterator traversal,
+bitmap retirement,two-block queue boundary/last-item frees,canvas detachment,
+owner reset and conditional clock capture. Full declared storage and endpoint
+snapshots/checksums agree. Two execution-backed local range exceptions retain
+the historical function inventory and unknown ranges without rewriting them.
+
+[Recovery and remaining boundaries](screen-resource-ownership-20261025.md)
+separate these local callers from authored simulation/asset/allocator/CRT/OS
+provider internals. Original manifests pass before/after each final execution;
+source and behavior claims bind the actual current bytes. Other class
+construction/destruction,World entry,complete computed alias/registration
+closure,real heap/fault paths,asynchronous retirement,installed semantic
+takeover and full presented-session equivalence remain open. No new runtime
+hook,gameplay change,FPS acceptance or live replacement credit is introduced.
+Earlier failed/stale attempts remain immutable in screen-ownership-results-20261025.
 ## Native cursor ownership and deferred lifetime closure (2026-10-25)
 
 [The owning native adapter](cursor-live-ownership-20261025.md) closes the supported
@@ -23095,6 +23483,51 @@ accounting, without a past gate or new execution claim. Default lighting remains
 original. Combined Qt graphics ownership, arbitrary maps/saves, long sessions and
 rollout remain separate acceptance.
 
+## Colour operation comparisons and rendering frontier — 2026-10-25
+
+[CCF25 report](colour-coverage-frontier-20261025.md) extends original 547d80 CPU
+comparison across all modes, RGB565/RGB555, constants/planes, clipping and sizes
+through 2048×2048. The 4352 existing paired calls include 3054 native admissions and
+1298 forwarded/hidden controls; 384 additional cases all admit natively, 304 drawing
+and 80 empty-clipped. Physical words, sources and full recorded caller state match.
+The fixture now handles the existing optional CPU-store lookup for its unprotected
+CPU-ready plane; original/production arithmetic is unchanged.
+
+Recorded DrawingScene now accepts bounded active-World RGB565 fills. CanvasWorld
+clips and tiles constants through existing 64×64 colour copies in original order,
+with 12320 expanded pending draws retained. 192 authored original/native World cases
+match 38,199,120 pixels, including all four blend modes around large fills; five
+negative admission/budget controls and ordinary scene/session regressions pass.
+`CCF25.cpu-original`, `CCF25.world-original` and `CCF25.world-native` retain distinct
+original comparison and native-policy integration roles. This is isolated
+comparison, not natural live reachability, RGB555 World support, hardware
+presentation, performance or replacement acceptance. Earlier RCI25 full storage
+comparisons remain historical after this native-source change.
+
+The [reviewed frontier](colour-coverage-results-20261025/frontier-reviewed.json)
+checks 785 registered rendering contracts and 664 scenarios, retaining 38 unresolved
+dispatch tables. Per-scenario proof cannot close another behavior or a behavior
+outside this audit. Implementation/comparison/integration/replacement remain
+independent; no whole-engine percentage is computed. The fifteen absent
+implementation claims include static discoveries/planning and require scope
+review before becoming implementation tasks. Pending shared-source freshness is
+not a count of independent defects. Ten frontier plus sixteen crosswalk guards
+pass. Formal 14-journey/21-operation acceptance remains separate; the shipped
+suite has zero generic presented-session catalogs. The web UI layout and gameplay
+rules are unchanged.
+
+### Screen ownership integration with current master — 2026-10-26
+
+Integrate `40f1a13` with `dfff4634`, retaining the cursor ownership, sprite
+services and opt-in terrain normal-session work. The two scoped screen
+comparisons retain identical model, test, driver and behavior-contract hashes;
+this integration does not rerun or widen the original comparison. Acquisition
+and preparation, transitive providers and full live screen ownership remain
+separate work. The committed-history review covers eight commits and 3,846
+file transitions; 380 retained terrain experiment artifacts receive explicit
+retrospective receipts, without claiming a historical gate pass. See
+`screen-ownership-results-20261026/merge-history02.json`.
+
 ## Five pixel helper computed caller investigation — 2026-10-25
 
 [Computed-caller review](five-pixel-computed-callers-20261025.md) extends the
@@ -23143,3 +23576,5564 @@ All 3847 committed transitions across 8 intervening/incoming commits
 have exact receipts, including pending retrospective accounting for 380 older
 terrain merge artifacts; this history accounting is separate from current
 merge validation. Pending main-checkout edits are outside this batch.
+
+## Rendering integration and extended storage closeout (2026-10-26)
+
+RCL26 combines CCF25 with current cursor/terrain work and the subsequent caller
+investigation. Fresh original/native colour CPU boundaries (384 added cases,
+90,011,152 physical WORDs across both matrices) and 192 ordered World fixtures
+pass on the combined source. Historical fingerprints are unchanged.
+
+Both original-active storage profiles now complete sixteen actual World returns
+in each of four phases under an explicit120-second capture deadline, source
+closure and independent original MainQuit/exit. After-Load waits exceed the old
+30-second bound. All533 native/source/default presentations match; baseline126
+physical pixels remain an explained shrink negative control, while the explicit
+corrected262-frame cohort matches physical output. A fresh replay of the completed
+stock Quick Battle matches333 further presentations. Its interrupted earlier
+native attempt remains unaccepted.
+
+Natural campaign colour calls remain modes0/1 (5204 operations); the two other
+stock profiles observe none. Modes2/3, active-World large fills, RGB555 World,
+hardware/all-writer/full-renderer/live replacement remain separate. The static
+input index grants no native implementation credit. Sixteen finite busy World
+samples retain original-only coverage; the kind8-specific comparator refuses
+its unmet selection requirement rather than claiming a native match.
+
+See [scopes, evidence and reproduction](rendering-closeout-20261026.md). Coverage
+stages remain independent; no web UI layout or gameplay balance changes.
+
+## Native renderer player default — 2026-10-25
+
+The [player launcher](../../docs/native-player-launch.md) routes ordinary
+`run-x86.sh` launches through `run-native.sh` into the existing strict native-only
+owner. Original-renderer launch requires `--original-renderer`; the internal
+original backend and configurable Qt diagnostic launcher remain available.
+The wrapper reserves 4 GiB through the existing storage guard, initializes or
+checks a separate persistent owned prefix, leases it against concurrent player
+launches and never kills a busy server for reuse. Initialization delegates
+binary checks/install to the existing supplied DirectPlay helper and verifies
+original manifests before/after. Failed initialization remains inspectable.
+
+`NP.native-player-launch` and `NPL.player-controls-20261025` record 15 passing
+in-memory orchestration/actual Bash-routing controls, with stable source
+fingerprints. Installer, filesystem and owner operations are mocked. The first
+15-control attempt's Bash harness argument error is documented separately; it
+was corrected without executing Wine. The report is an immutable SQLite-backed
+reference. The main-drive preflight refuses at 89.92 GiB free, below the required
+90 GiB reserve, so actual prefix initialization, Qt build and live session
+acceptance remain pending. Native-only selection does not establish full-game
+pixel equivalence, complete original-pixel replacement or hardware performance.
+Original simulation still runs in Wine. Existing evidence is not refreshed.
+
+## Public native player acceptance — 2026-10-26
+
+[The bounded player acceptance](native-player-acceptance-20261026.md) completes
+actual default-prefix initialization and reuse through `run-x86.sh`.
+`NPL26.fresh05`/`NPL26.reuse05` complete458/563 balanced Worlds and3542/4174
+cursor calls,all18 hooks and386 linked compiler inputs,physical stress,Mini/No/Yes
+and original normal Quit,with zero cursor/graphics owners. The prefix marker
+survives reuse unchanged. `NPL26.controls04` supplies15 separate mocked/routing
+controls. Software GL,skip movies and no native music bound this acceptance;
+whole-game pixels,hardware/long-duration/maps/saves/media defaults remain separate.
+
+The harness respects the selected owner prefix and bounds resubmission of an
+unaccepted report click to the identical ready visit. Each accepted final case
+needed one click. Earlier fixture,prefix,compiler-declaration and report-timeout
+failures retain their own immutable records and source versions. Full SQLite
+artifact retention and byte-verified RAM restorations precede namespace teardown.
+The authored player policy receives scoped implementation/live integration;
+original comparison/replacement remain none. Existing screen helpers are reused.
+
+### Main/World/report acquisition and composed retirement — 2026-10-26
+
+`RS.main-screen-acquisition`, `RS.world-screen-acquisition` and
+`RS.report-screen-acquisition` recover the complete normal-return local
+preparation/entry callers and both concrete layout allocation helpers. Main
+publishes its canvas, callbacks, controls and label; World orders its providers,
+loads and flags; the report owns its layouts, sprite, buffers, callback, labels
+and button. See [scope and evidence](screen-acquisition-20261026.md).
+
+`RSA26.acquisition` / `screen-acquisition-results-20261026/acquire07.json` passes
+768 schedules per optimized32, ASan/UBSan32 and ASan/UBSan64 build, including
+192 controlled Main construction → preparation/release → World entry → report
+preparation/full exit → World exit → Main preparation/enclosing destruction
+compositions. Complete owned bytes, endpoint ordering/state, descriptors, strings
+and packets match the pinned unchanged original caller bodies. Fourteen local
+CFG ranges are closed and fingerprinted. Manifests verify all 2,927 immutable
+original files before and after. Existing release models and evidence hashes
+remain unchanged. No installed/live or replacement milestone is promoted.
+
+Attempts 1–5 retain compile/oversized-score failures; attempt6 passes the earlier
+release-only composition on its historical source. The oversized report score
+trace records corruption of a loop-count stack slot by an original decimal
+conversion. The admitted baseline bounds decimal text to six characters plus
+a terminator; naturally reachable score limits and fault recovery remain open.
+
+Both master advances are reconciled: the earlier eight-commit review has
+3,846 exact file transitions including380 retrospective terrain-artifact
+receipts; the subsequent854c8576..c5137b9c incoming history adds two commits
+and71 exact transitions with no missing receipts. Current combined-tree
+accounting is separate from historical receipts. Pending launcher work is
+preserved independently. The approved88GiB storage exception and2GiB durable
+output cap apply only to this local batch; no publication or cleanup is added.
+
+Remaining work is the real Main/Realm/World/report transition routing, World
+construction, lower provider semantics and ownership, exceptional allocations/
+SEH, asynchronous aliases and top-down installed/live ownership acceptance.
+The controlled composition explicitly normalizes service-owned World bitmap
+storage to an empty exit fixture; it does not establish those provider effects.
+
+Rendering closeout integration also includes screen-ownership merge `bdf87f55`.
+The four retained comparison source fingerprints remain unchanged; independent
+screen models retain their own evidence and receive no rendering-run credit.
+See the closeout report and exact source-impact/history records.
+### N29: owned variable-timed sprite timelines (2026-10-26)
+
+Ten bounded native components are implemented for explicit clips, variable loops and one-shots, ping-pong, reverse playback, pause/resume, seeking, rational rates, bounded events, and checkpoints/reload. See [the contract and validation boundaries](rendering-twentyninth-ten-20261026.md). Fresh source-bound Release and ASan/UBSan runs each pass 67,243 checks, 31 refusals, 72 independent timing scenarios, 18 maximal clock cases and 360 CPU/GPU pixel comparisons with zero surface leaks; supplier and CTest regressions pass. The initial run passed Release but refused an omitted supplier-test declaration; execution-1 remains preserved, and corrected execution-2 supplies implementation credit. This service supplies owned plans to existing CPU/GPU drawing; original ANI semantics, widget/world integration, installed acceptance and live replacement remain separate. AS.tag remains partial.
+
+The initial planning-control check observed the temporary pre-validation partial statuses and failed its fixed partial-count expectation; its negative result is retained. A subsequent final-status run was interrupted by the normal90GiB retention guard, also retained without a pass claim. The user approved an89GiB reserve solely for N29 backup/commit completion. Normal policy remains unchanged. Final review/staging use bounded private tmpfs; the normal finisher snapshots and verifies the complete review/evidence databases, then an additional persistence wrapper copies and re-verifies those snapshots and both durable catalogs on the second NVMe before allowing the commit. No evidence publication is attached.
+
+Final planning controls pass all38 tests against the scoped final catalog; the intervening history review matches all622 transitions across four commits. The N29 full audit reports zero errors and all ten implementation bindings current. Existing unrelated historical staleness, unlinked sources and original/live gaps remain explicit.
+
+### N29 local master integration (2026-10-26)
+
+The ten native timeline components are merged with the committed pixel-caller investigation on master. Structured reconciliation preserves both sets of behavior/evidence entries, all exact review receipts and both ledger additions. Every N29 contract and declared execution source fingerprint remains byte-exact, so existing prospective Release and ASan/UBSan proof remains current; no engine execution or original/live milestone is added. The normal90GiB main-drive reserve applies to this merge. Local SQLite reports and verified backups are retained without remote publication. Pre-existing main-checkout edits are preserved separately at promotion. See [the integration review](rendering-n29-master-20261026.md).
+
+### Final N29 master reconciliation after concurrent screen recovery (2026-10-26)
+
+The first validated merge bcebc8fc is retained with its passing staged gate and backups. Its promotion refused an independently owned main reservation before changing main. After that operation completed at bdf87f55 and restored its pending work, all18 current pending paths were backed up and main was reserved for this final merge. Both validated branches, all receipts and evidence identities are preserved. All ten timeline contracts and188 declared input fingerprints remain exact; no new engine execution or original/application/live promotion is claimed. The fixed planning-test expectation adds only the five newly committed unrated screen acquisition/retirement contracts, without adding weights or status credit. Final audit, planning controls, source census and exact staged accounting cover the combined tree; normal90/100GiB storage reserves apply. See [the final reconciliation](rendering-n29-master-final-20261026.md).
+
+## Retained busy World comparison and rendering integration — 2026-10-26
+
+RBI26 combines rendering closeout2403c82d with sprite-timeline main1ffeb53e.
+Fresh native/isolated-original replay of the exact sixteen retained busy World
+samples matches all19,036draws and7,680,000pixels; native zero replay also matches
+every retained live WORD. Separate diagnostic original-before closure passes.
+Native inputs contain no original destination pixels. The colour-specific
+refusal remains historical negative evidence. This is finite current-code
+headless comparison of historical inputs, with no fresh live hook, normal Quit,
+hardware, all-writer or replacement claim. See [the report](rendering-busy-integration-20261026.md).
+## 2026-10-26: natural GPU caller clipping
+
+`NP.natural-gpu-copy-caller-branches` adds24 current geometry/caller/positive-only
+controls plus read-only production input-target/ABI and Win32 helper builds.
+Ordinary original-windowed World output has810 checked attached-clipper GPU
+calls with no area reduction. The declared ordinary SetWindowPos desktop stress
+changes client origin80,73to-320,73. Its strict scalar reader refuses active-miss
+reason2;failed global capture and lifecycle remain preserved.
+
+The separate `NP.published-gpu-copy-call-proof` policy validates only complete
+positive call intervals while retaining that miss. Current immutable replay
+checks783/784 published GPU calls;678 actual original whole-copy caller0x58c03d
+requests are reduced from307200to153600destination pixels, with a retained
+independently replayed clipped witness. This confirms destination-bounds clipping,
+not extra within-bounds clipper reduction, original-driver parity, absence or
+complete output. The existing strict global validator remains unchanged.
+
+Natural self-copy and keyed GPU-source callers remain unproven live. The
+windowed Qt input target0,stage6 timeout,shell signal11,missing output/END and
+surviving1device/51surfaces/1clipper/2915552pixel bytes block normal-Quit and
+ownership acceptance. No comparison or live replacement status is promoted.
+See[natural caller evidence](natural-gpu-copy-callers-20261026.md).
+
+The final RBI26 repeat on the combined windowed-reader/SQLite tree retains
+zero differences across16frames/19,036draws/7,680,000pixels.49SQLite and14local
+workflow cases pass. Earlier presentation fingerprints remain historical after
+seven capture/reader edits; colour CPU/World source fingerprints remain exact.
+No whole-session or replacement promotion is made.
+
+### Public player combined-master verification — 2026-10-26
+
+The player acceptance is combined with committed master1ffeb53e. New immutable
+`NPL26.fresh06`/`NPL26.reuse06` execute the actual public default entrypoint on
+that combined source: 399/465 balanced Worlds, 3426/3541 cursor calls, all 18
+hooks/eight client categories, 386 linked compiler inputs and 2,887 exact source
+bindings per case. Each uses one admitted report click, ends in normal original
+Quit and retires all cursor/graphics owners. The marker survives prefix reuse
+unchanged. The two cases restore 9,593/9,579 regular files from SQLite archives.
+Earlier failed and accepted attempts retain their original bindings and bytes.
+Software GL, movie/music flags, native-policy scope and original comparison/
+replacement boundaries remain unchanged. All 38 combined planning controls pass.
+
+The committed-history review adds exact retrospective accounting for 38
+screen-acquisition log artifacts outside the ordinary suffix census. It does
+not assert that an earlier gate included them. The initial generated summary
+is retained byte-exact under a supported SQLite-backed summary filename; the
+first commit is preserved. A cached retention verifier preserves original gzip
+bytes after comparing complete tar streams and independently restores every
+regular file. Interrupted retention/backup diagnostics and the user-approved
+bounded storage allowance remain separate from engine validation.
+
+### Public player final capture-policy integration — 2026-10-26
+
+Masterd5e08213 and player8d778197 are combined with both parents preserved.
+The single Qt Run-state overlap retains the incoming native capture request
+and existing report-admission/prefix ownership fields. New `NPL26.fresh07`/
+`NPL26.reuse07` complete 384/385 balanced Worlds, 3334/3418 cursor calls, all
+18 hooks/eight client categories, 386 compiler inputs and 2,896 exact source
+bindings per case. Both accept one report Continue, end in normal original
+Quit and retire every cursor/graphics owner. The real default prefix is
+initialized once, then reused with the same marker. Each case restores 9,589
+regular files from SQLite. Earlier accepted and failed executions remain
+immutable historical records, including the1ffeb53e intermediate acceptance.
+
+`NPL26.controls07` passes 15 mocked/routing controls on the final source. All
+38 planning controls pass after explicitly listing four newly landed native
+diagnostic contracts as unrated; no importance or status is assigned. The
+initial missing-expectation failure is retained. Four further committed
+transitions for two windowed-reader raw artifacts receive exact retrospective
+receipts. All 984 new incoming payloads are verified against 13 retained local
+SQLite backups. Native softwareGL/media-flag scope and independent original
+comparison/replacement boundaries remain unchanged. All 18 existing main
+pending paths are retained separately before the owned final reservation.
+
+
+## Host storage consolidation — 2026-10-26
+
+HOST.storage-retention records host storage controls separately from engine
+behavior: exact dual SQLite snapshots, compressed archive history, compact review
+indexes, shared immutable report writers and tested source restoration.
+[Storage evidence](storage-consolidation-20261026.md) retains operation receipts
+and remaining protected/active inputs. No gameplay, recovered-contract,
+comparison or live replacement status is promoted.
+
+## Combined strict native Qt and terrain lighting — 2026-10-26
+
+[Combined acquisition](terrain-light-normal-session.md#combined-strict-native-qt-acquisition--2026-10-26)
+tests the pinned No-CD build with the public Qt campaign actions and strict
+private native-output owner. TLQT26.observation completes275original-active
+lighting updates,32unchanged-PE32/ASan/UBSan comparisons,355balanced Worlds,
+Mini Cancel and Quit No/resume/Yes, original exit0 and graphics/worker retirement.
+The native120-second-per-phase attempt (TLQT26.native-timeout) completes one
+121.827-second physical phase/599actions and1,877native updates without mismatch,
+then request1,878exceeds the100ms budget (106ms observed; late worker wall175466us).
+The closed latch retains original fallback. The harness stops the failed attempt;
+the second phase and normal completion do not pass. All32native captured replies
+still match unchanged original and sanitized replay.
+
+TLQT26.qt-save-refusal separately reaches strict glyph admission reason15 at
+original581ec0 while submitting Save with original-active lighting, after62updates
+without lighting error. Original exit124precedes a nonempty save; Load, the two
+resolution changes and saved-map World reconstruction are not reached. The
+precise global/clip/coverage/frame-span rejection remains unresolved. The existing
+NR.glyph-live-admission entry retains this negative finding without a promotion.
+
+TLQT26.worker-loss passes128native updates,32independent comparisons, checked
+worker termination,117original fallback updates and original exit0/worker reaping;
+the selected backend/strict launcher correctly reports1. The live native Qt binary
+and386compiler dependencies are retained. Execution uses llvmpipe/four Mesa
+threads; hardware/FPS, arbitrary maps/saves and long-duration acceptance remain
+independent. Original manifests verify before/after; new evidence and setup failures
+use SQLite. No implementation/status promotion or default change is made. Resolve
+the Save glyph refusal and spontaneous lighting timeout before default rollout.
+
+TLQT26.abnormal-worker-lifetime additionally records an owned lighting worker
+left alive after the failed strict Save acquisition: original exit124, host parent1,
+started-only lifecycle and no worker outcome. Closeout verified exact PID/start
+ticks/executable and terminated only that orphan. Abrupt Qt/launcher cleanup
+remains unaccepted despite normal-Quit and deliberate worker-loss success.
+
+
+## Strict Qt lighting blocker fixes — 2026-10-26
+
+[Fixed-source acquisition](terrain-light-normal-session.md#fix-batch--2026-10-26)
+separates the observed Save geometry failure, worker processing overhead and
+abnormal worker lifetime from earlier supplier/reconstruction completion.
+Glyph clips now preserve original layout branches while every visible write
+rectangle is checked against independent native storage. The isolated
+RGB565/555original comparison passes1152complete comparisons;768native paths
+bypass the original body, and the sanitized controls refuse overhanging writes
+atomically. Unsupported strict glyphs still terminate with124.
+
+The worker uses direct checked byte decoding and cached derived kernels,
+restoring all request buffers and producer states. The100msdeadline and permanent
+fallback latch remain unchanged. Twelve actual worker controls pass, including
+supervisorSIGTERM cleanup andSIGKILLparent-death protection. A killed supervisor
+can lack its final outcome row; this never implies successful completion.
+
+Current-source strict native Qt original-active observation completes264updates
+through Save/Load, two resolution changes, Main Load World reconstruction and
+normal Quit. Native replacement completes the same journey with240applied
+updates and a7msmaximum wait. The two120-second stress phases complete2434native
+updates with zero fallback/refusal/mismatch,17msmaximum wait and5252usmaximum
+worker compute. Each journey retains32unchanged-original/sanitized comparisons
+and clean graphics/worker retirement. Expected worker loss continues original
+fallback and normal original Quit while correctly reporting selected-backend
+failure. Historical failure evidence and source hashes remain unchanged.
+
+TLQF26evidence closes these observed blockers within the named scenarios. It does
+not establish arbitrary-map/save coverage, hour-long stability, hardware/FPS
+acceptance or default rollout. Original scheduler, loader/serializer and resource
+owners remain original; no gameplay balance or lighting default changed.
+
+
+## Terrain lighting fixes integrated with master — 2026-10-26
+
+The integration combines master `96ae7c2c` with lighting validation/fixes
+`9dacdf34` and `e486a0f9`. All twelve incoming changed production/test files
+retain their exact validated bytes; master's intervening work is preserved.
+`TLQM26.controls` passes twelve actual worker/channel controls on the combined
+tree, including SIGTERM cleanup, SIGKILL parent-death protection and worker loss.
+The glyph admission test passes twenty-five atomic refusals under ASan/UBSan.
+No original executable or new installed journey runs during this integration.
+
+The exact history review covers24commits and8636file transitions, adding2027
+artifact-only retrospective receipts across four commits. These preserve exact
+parent/current hashes without asserting past gate passes or new engine validation.
+See `terrain-light-master-results-20261026/history02.json` and
+`source-preservation01.json`. New generated reports use SQLite references.
+
+The combined-source audit has zero errors and fresh merged worker controls.
+Intervening Qt/World/launcher changes make the older TLQF26 installed journey
+source bindings historical; combined-master live Save/Load, stress and strict
+renderer acceptance remain pending. Original glyph/worker isolated comparisons
+retain their original fingerprints. No engine status or default is promoted;
+lighting remains original by default. The unrelated pending main-checkout storage
+work stays outside this commit and is preserved during the fast-forward.
+
+### Concrete screen providers and exceptional ownership — 2026-10-26
+
+Items 2 and 3 now have explicit local provider and native ownership contracts: `RS.screen-control-resource-providers`, `RS.screen-bitmap-resource-providers`, `RS.screen-provider-failure-paths` and `NP.screen-owned-provider-recovery`. See [scope, recovered quirks and reproduction](screen-providers-and-failures-20261026.md). The earlier acquisition composition's empty-World normalization is superseded for this new fixture by populated owned SPR and palette-chain retirement; historical evidence remains unchanged.
+
+Fresh `SP26.original` and `SP26.native` evidence is recorded in
+[proof11](screen-provider-results-20261026/proof11.json). Each optimized PE32,
+ASan/UBSan PE32 and sanitized native64 configuration passes 2,551 provider
+schedules: 1,174 controls/vector/registry cases, 144 surface cases, 704 palette
+cases, 528 layout cases and one zero-rate World partial-state comparison.
+All configurations match. Native exception tests pass 325 constructor-prefix
+schedules. Sixteen composed Main/World/Report journeys retire their actual
+screen allocations and session resources without pre-clearing World fields.
+The native owner passes concrete SPR/BMP/PCX/JPEG loading, rollback at each
+completed provider prefix, allocation injection, cancellation, stale/foreign
+worker rejection, reentrant replacement and full signed score formatting.
+Existing ResourceManager/preparation regressions and the fresh 768-schedule
+caller regression (`RSA26.provider-regression`) also pass. Immutable input
+manifests verify before and after. No original live replacement is installed.
+
+The earlier original Report score overflow is retained as negative evidence;
+full signed score handling is an explicit native policy. Actual Windows SEH
+delivery, physical drivers/codecs, simulation and score content, real transition
+routing and installed widget/GL acceptance remain outside these results.
+
+### Screen provider master integration — 2026-10-26
+
+Concrete provider recovery `4061ce9a` is reconciled with the current master
+sources. Since the shared evidence helper changed, fresh
+`SP26.master-original-20261026`, `SP26.master-native-20261026` and
+`RSA26.master-regression-20261026` execution replaces no historical fingerprints:
+all old results remain retained. The full provider/caller matrices, populated
+resource composition and native owner regressions pass. All seven touched screen
+implementation bindings are current; the combined audit has zero errors.
+The static planning-review source list now includes the already declared Qt
+lighting runner, and the expected unrated list preserves the provider/alternate
+contracts without assigning weights. See [integration and remaining scope](screen-provider-master-20261026.md).
+Real screen construction/routing, Windows SEH/driver/codec and installed/live
+acceptance remain separate. No replacement milestone or remote publication is
+added. Master promotion preserves independently owned pending edits and requires
+the normal staged accounting gate and verified local backups.
+
+
+## Row-copy and brighten outgoing virtual services — 2026-10-26
+
+`RE.pixel-helper-unlock-dispatch` closes the three selected outgoing service
+identities retained by the five-helper computed-call scan. Original successful
+CreateSurface stores Surface1 at wrapper+4, QueryInterface stores Surface2 at+8,
+Lock uses+8 and the three helper-tail calls use+4 slot32 Unlock(base pixels).
+Row-copy unlocks source then destination regardless of the first result; brighten
+unlocks its sole surface. Zero-sized draw controls still retire. Final EAX is
+the last unchecked Unlock HRESULT. Optional early Unlock remains additional.
+
+`PVIRT.scripted-20261026` passes 512 cells per optimized32 and ASan/UBSan32
+variant: 1024 original creations, 768 selected dispatches and4,194,304 guarded
+physical WORD comparisons each. `PVIRT.driver-20261026` passes64 real Wine 11.16
+RGB565/RGB555 system-memory cells,128 created Surface1/2 alias pairs and96 tail
+dispatches plus48 early Unlocks. Selected targets resolve to built-in
+`ddraw.dll+0x29f70` for its retained DLL hash; no fixed cross-launch address is
+assumed. The early-Unlock cohort returns actual DDERR_NOTLOCKED at the later
+tail calls. All 2,927 original inputs verify before/after. Original selected
+instructions remain active and unchanged. See [contract and evidence](pixel-virtual-services-20261026.md).
+
+The central three-site dispatch entry is complete within this admitted receiver
+scope. Discovery inventory boundaries, unresolved global indirect flows, all
+five natural incoming callers,43-route denominator and38-route historical union
+remain. Existing native pixel splices already retain these original tails; no
+production code or implementation/comparison/integration/replacement status is
+promoted. Failed Lock/loss/Restore, asynchronous alias lifetime, arbitrary receiver
+mutation, other drivers and installed/live acceptance remain separate. Earlier
+fixture, quota, display and already-stopped-server failures remain immutable.
+
+### Pixel virtual-service integration into current master — 2026-10-26
+
+Merge af4bc1ae into 8c23937a retains the recovered three Surface1 Unlock sites and both original-execution results. Combined-tree coverage audit and planning/caller controls are retained under [integration results](pixel-virtual-master-results-20261026/audit02.json). The [history review](pixel-virtual-master-results-20261026/history02.json) accounts exact transitions across both committed parent histories, including ancillary artifacts; it asserts no historical gate pass or new engine comparison. Incoming source/test bytes remain exact; master changes and pending contributor edits are preserved separately. No native implementation, integration, replacement or natural incoming caller status is promoted. Unrelated historical evidence staleness remains pending.
+
+Combined-tree limitation: PVIRT.scripted-20261026 and PVIRT.driver-20261026 retain their exact successful source fingerprints. Master has since changed tools/coverage_evidence.py and tools/drawing_fixture_prefix.py, so these comparisons are historical/stale for the combined tree. The recovery fixture, runner and recovered contract bytes remain unchanged; the merge does not assert current-code original comparison. A new comparison, under a new evidence ID, is required before claiming that validation on the combined source set.
+
+The planning regression first failed because the existing master NP.native-only-launch-contract test link to tools/test-terrain-light-qt-session.py was absent from its work-review source fingerprints. Static review adds only that missing test hash and preserves the complete prior work review, all prior hashes and historical validation/acceptance. The failing controls01 report remains immutable; follow-up controls use a new report.
+
+Follow-up controls02 passes37/38 planning tests and all34 caller tests; its remaining assertion omitted three already-landed master alternate-canvas contracts from the explicit unrated expectation. Add exactly NP.alternate-canvas-padded-resident, NP.alternate-canvas-resident-session and RS.campaign-padded-presentation-error to that expectation, leaving weights/statuses unchanged. Controls03 reruns that affected test; other37 planning checks and34 caller checks retain their passing controls02 result. Audit02 precedes this expectation-only test change; final source census and staged coverage gate review the committed tree.
+
+### Rendering closeout with retained busy World inputs — 2026-10-26
+
+The rendering branch combines closeout `6cc66fc1` with completed main `6cdbbacd`.
+[Fresh busy replay](rendering-busy-integration-results-20261026/comparison-04.json)
+compares all 16 retained frames: 19,036 draws and 7,680,000 RGB565 pixels. Native
+owned-zero, independent unchanged-original zero and retained live output agree;
+the separate original-before diagnostic also agrees. Original destination pixels
+never seed native rendering. This is finite replay of historical inputs, with
+301 frame identities across ten pinned SPR files, not a new live hook journey.
+
+[Fresh colour execution](rendering-busy-integration-results-20261026/colour-comparison-master-01.json)
+renews the scoped CPU and World comparison on the combined sources: all four
+modes and RGB565/RGB555 CPU planes/caller state, 384 extended boundary cases,
+and 192 authored ordered RGB565 World fixtures covering 38,199,120 pixels.
+Five refusals pass; no surfaces leak. Both original-consuming batches verify
+the immutable-input manifest before and after execution. Existing evidence
+hashes remain unchanged; these executions have new evidence IDs.
+
+The [source check](rendering-busy-integration-results-20261026/latest-source-impact-05.json)
+confirms both fresh reports' complete declared sources and contracts remain
+exact after the completed pixel-master merge. Older presentation cohorts retain
+32–33 changed source paths and receive no current-code acceptance. Software
+headless fixtures do not establish natural colour-mode reachability, RGB555
+World ingestion, active-World large fills, normal Quit, continuous presentation,
+hardware, all-writer ownership or replacement. Inherited alternate/rolling
+contracts keep their independent evidence. No whole-renderer status is promoted.
+
+Main's existing shared pending/read-only auxiliary SQLite policy replaces the
+isolated branch's duplicate prototype. Current controls pass 48 storage and
+14 local-workflow tests; prior 49-case prototype controls remain historical.
+No persistent Git setting, UI layout or gameplay balance change is introduced.
+Retrospective exact receipts cover 18 verified environment artifacts appearing
+in two parent commits and one retained negative pixel-closeout log; this is
+storage accounting, not a claim of historical gate success or engine execution.
+The fresh execution capsule restores all 1,002 members with matching hashes,
+sizes and modes. Its failed initial verifier API call remains recorded alongside
+the corrected full verification. Main adoption remains a separate Git closeout
+step preserving concurrent staged work.
+
+
+
+### TAG parent — installed native sprite-table application (2026-10-26)
+
+`AS.tag` now completes its read-only native parent scope, joining the permissive
+owned raw parser to strict installed companion admission, exact raw-name and
+occurrence selection, native playback controls, atomic reload and a real
+Qt/OpenGL window. See [the parent contract](tag-parent-end-to-end-20261026.md).
+This is parent-level implementation and preview integration; the earlier N27
+and N29 components retain their separate historical claims. Original/editor TAG
+use, ANI timing, original allocation/OS failures, game-world construction and
+live replacement remain outside this native policy and unclaimed.
+
+`TAG.parent-installed-window-20261026` binds the complete parent and installed-preview
+scenario to [execution 4](tag-parent-results-20261026/execution-4.json). Fresh
+Release and ASan/UBSan each pass131,792 checks,80 refusals,262 native GPU/direct
+decoded-plane pixel comparisons and17 actual window actions. All85 installed
+TAGs and130,891 entries match independent Python record/SPR-offset/occurrence
+decoding. Selected frames from every table render and reload. Two actual installed-file
+window journeys cover same-stem and terrain-fallback companions, compare every
+displayed pixel and preserve the paused selected image across reload; malformed reload
+retains state and the visible frame, valid reload recovers, and the actual Qt
+timer completes one-shot playback. Raw TAG, independent installed parser,
+sprite-session, sprite-timeline and CTest regressions pass in both modes.
+All274 declared source fingerprints and installed inputs remain stable; original
+manifest checks verify all2,927 files before and after. GPU surface balance is
+asserted; external uninstrumented Qt/driver leak scanning is disabled.
+
+[Attempt1](tag-parent-results-20261026/execution-1.json) stopped because the
+isolated worktree lacked original payloads; manifest verification now targets
+the original-bearing main checkout. [Attempt2](tag-parent-results-20261026/execution-2.json)
+passed Release acceptance but refused an incomplete prospective protocol-header
+closure. Both failures and exact source variants are retained without final
+execution credit. [The committed-history review](tag-parent-results-20261026/history-review-1.json)
+checks17 commits/2,170 exact parent/current file transitions from1ffeb53e through
+d20de6bb with no missing receipts; it does not assert historical gate execution.
+
+The planning controls initially exposed an inherited missing source fingerprint
+for `tools/test-terrain-light-qt-session.py` in the native-only launch planning
+review. Its already-committed source/test link was inspected and added to that
+review, preserving every old source hash, weight and validation/acceptance claim.
+[The failed planning run](tag-parent-results-20261026/planning-controls-1.json)
+remains negative evidence; this metadata repair grants no new launch validation.
+The fixed unrated fixture also now names the three already-committed alternate
+resident/campaign error contracts. They remain unrated; no weights, engine
+statuses or historical execution claims are changed by that expectation update.
+
+Durable outputs are SQLite reports/references, bounded raw logs, retained test
+binaries and normal verified evidence/review database backups. RAM-backed build
+trees are temporary execution output. The normal90GiB main-drive and100GiB
+archive reserves remain unchanged; the session inventory found no eligible
+cleanup candidates and no payload was deleted. No original or installed input
+is modified and no evidence is published.
+
+Final [coverage audit](tag-parent-results-20261026/audit-3.json) has zero errors;
+`AS.tag` implementation and preview claims are current. The corrected
+[planning controls](tag-parent-results-20261026/planning-controls-3.json) pass
+all38 tests. Earlier negative audit/planning reports remain retained.
+
+[Execution3](tag-parent-results-20261026/execution-3.json) retains the earlier
+passing service/corpus and fixture-window result. The first normal closeout was
+[stopped before review export, staging or commit](tag-parent-results-20261026/interrupted-closeout-1.json)
+to add the direct installed-file window journeys. Execution4 declares the revised
+scenario and exact final sources before execution and supplies current parent
+implementation/preview credit; no historical result or source hash is refreshed.
+
+
+### TAG preview merge and parent-task boundary (2026-10-26)
+
+[The TAG preview merge](tag-parent-master-20261026.md) retains the native scoped
+implementation and preview milestone fromfd3bae4f. The broader parent task is
+still partial: original-game TAG behavior, world integration and live replacement
+remain unfinished. Master6cdbbacd changes only the evidence helper among274 previously pinned
+sources; application/parser/renderer/test sources are unchanged. Prior native execution retains its exact historical
+hashes; current-code implementation/preview validation is pending. This merge
+grants no fresh engine execution or original-game equivalence. Eight existing
+pending paths are backed up and pinned for exact restoration after the verified
+merge; another agent's preceding merge was left intact.
+
+The screen-provider integration retains first validated candidate `75f441d2`; final local promotion reconciles subsequent committed master integrations under a verified pending-work reservation. All fresh SP26/RSA26 source/contract bindings remain exact; incoming native preview and original/live boundaries retain their independent status. Normal staged checks and verified retained backups apply to the actual final merge; no publication is added.
+
+### Rendering adoption after completed screen-provider integration — 2026-10-26
+
+The candidate joins validated rendering `adbf8029` with completed main `aeb1c04d`.
+New asset/CMake dependencies require new execution identities rather than a hash
+refresh. [Busy replay05](rendering-busy-integration-results-20261026/comparison-05.json)
+again matches all 16 frames, 19,036 draws and 7,680,000 pixels in the three
+independent comparisons. [Colour repeat02](rendering-busy-integration-results-20261026/colour-comparison-master-02.json)
+again passes all CPU modes/formats and boundary/caller-state checks, and all
+192 RGB565 World fixtures covering 38,199,120 pixels. Original manifests pass
+before and after both batches. The unchanged 48 storage/14 workflow controls
+retain exact source hashes. No unrelated provider path receives validation
+credit from these selected World/colour fixtures.
+
+[Output diagnostics](rendering-busy-integration-results-20261026/busy-output-diagnostics-01.json)
+confirm 16 distinct nonblack images: each has at least 451,546 nonblack pixels and
+2,290 distinct RGB565 words. This rules out empty-output agreement without
+claiming exhaustive per-mode visible effects. The new source/contract check
+and combined audit are retained separately; older cohorts keep their historical
+hashes and independent limitations. Hardware, natural mode reachability,
+continuous presentation, all-writer closure and replacement remain pending.
+
+The incoming-history check accounts 15,238 committed file transitions. Its
+642 missing ancillary-log transitions reduce to 361 exact file additions and
+60 distinct payloads (88,311 bytes); all bytes were verified and retrospective
+receipts appended. This is storage provenance, not renewed engine execution or
+a historical gate assertion. The new capsule restores all 1,015 members with
+matching hashes, sizes and modes. Adoption uses normal Git operations and keeps
+the separate `AS.tag` working edits and untracked inputs; current rendering
+source/contract fingerprints must remain exact after their restoration.
+
+## Size-one lighting capture/update comparison — 2026-10-26
+
+[Size-one recovery](terrain-single-cell-lighting-20261026.md) reconciles the older
+TL.special-size-one open entry with the already implemented
+RE.terrain-single-cell-light component. Its inherited signed byte, pointer/extent
+metadata and maximum/additive stamps receive fresh SIZE1.original-20261026
+comparison:256 bytes,1536 stamps,original PE32 and optimized/sanitized32/64 builds.
+The new RE.terrain-single-cell-captured-cycle compares8192 actual production
+capture requests and complete native replies against the unchanged original
+outer/static updater across four paired dimensions/configurations,including1x1.
+All20,633,600 reply bytes agree per native variant;six noncanonical signed-byte
+values are refused. Both manifests verify2927 originals.
+
+Native implementation and wire bytes are unchanged. Native zero-default storage
+remains intentional policy. Installed map/heap writer provenance and natural
+live index-one callers remain unresolved;integration/replacement stay none.
+Central and both historical focused gap rows now state that boundary without
+promoting their old statuses. Initial compiler failures,narrower success and
+exact source variants remain immutable SQLite evidence. The new contract remains
+unrated in rendering planning. History since the preceding master review covers
+71 exact transitions across two commits without missing receipts.
+
+### Size-one validation integration and global storage provenance — 2026-10-26
+
+Merge bc25fe8c with 8c0c4ea4 and retain all historical comparisons. Fresh S1P.captured-cycle-20261026 compares1536 original/native primitive stamps and8192 production-capture/native decoder requests across four paired configurations; optimized32/64 and ASan/UBSan32/64 agree on20633600 reply bytes each and refuse six noncanonical values. No native production code changes.
+
+RE.terrain-single-cell-global-storage identifies installed map006c5490 byte+6380 (006cb810) in PE .data zero-fill storage. S1P.storage-original-20261026 runs257 probes per optimized32/UBSan32 variant, including untouched loader zero and all256 supplied bytes. Each observes514 positive byte/overlapping same-value stores and zero selected-path writes across514 initializations,257 direct rebuilds and514 allocated clears with2570 supplied delete calls. The original89-entry FX loader/selector consumes pinned installed fields: nonzero diameters4/6/10/10/5/4, no one. Authored FXA_0=1 controls remain separate.64 retained successful original-observation inputs show byte zero; stress records include active indices0 and6. This is new analysis of historical observations, not a new live game. See [scope and exact evidence](terrain-single-cell-storage-20261026.md).
+
+TL.special-size-one now retains whole-program aliases/writers, other source-producing paths, other builds and natural index-one reachability beyond these admitted inputs. New storage understanding is scoped; implementation/comparison/integration/replacement remain none. Existing captured-cycle milestones remain independent, with fresh current-source proof. The history review accounts42 commits and18838 transitions since c5137b9c across both parents:18796 exact receipts,42 journal/marker exclusions,no missing transitions. This is provenance accounting, not a retrospective gate-pass claim. The planning fixture acknowledges the new storage contract and the pre-existing unrated NR.world-constant-fill without changing weights.
+
+The first combined audit retained four input-classification errors: two prior cohort JSON reports were listed as binary inputs. Their hashes remain audited source provenance; only the65 actual binary packets/config inputs are declared recorded inputs. No historical report is rewritten. Configuration lineage confirms different packed seeds decode to identical clean/NoCD effects text and the exact267 original-probe fields. Both legacy focused TL.special-size-one rows receive the current gap text/document links while retaining their prior evidence and statuses.
+
+
+## Native terrain lighting selected by default in the player — 2026-10-26
+
+The authorized player policy defaults `run-native.sh`/`run-x86.sh` to native
+terrain lighting with no capture. Explicit original/observe/native values are
+validated before prefix work and passed to preparation and the owned runner.
+`MNM_TERRAIN_LIGHTING=original` bypasses lighting staging and worker startup.
+Shared diagnostics retain their explicit/original selection. Existing worker
+timeout, original fallback, retirement and failure-exit semantics are unchanged.
+
+`TL.player-lighting-default` and `TLDF26.player-controls` separate this intentional
+policy from recovered baseline behavior. Eighteen current-source controls pass;
+Bash routing and original-mode bypass execute, while prefix/Wine/owner operations
+are mocked. The first control report predates the final help/scenario-binding
+source changes and remains historical. No original artifacts are consumed.
+Combined-master live journeys, long-duration/maps/saves and hardware/FPS
+acceptance remain pending. Original behavior/evidence hashes are preserved.
+
+The committed-history review from `d20de6bb` through `8c0c4ea4` covers18commits
+and7878first-parent file transitions. All7860non-journal transitions have exact
+receipts; eighteen journal transitions preserve flattened append-only history.
+No missing receipt or historical gate claim is introduced. The combined audit
+reports zero errors and fresh `TLDF26.player-controls` source bindings.
+
+## Size-one lighting capture/update comparison — 2026-10-26
+
+[Size-one recovery](terrain-single-cell-lighting-20261026.md) reconciles the older
+TL.special-size-one open entry with the already implemented
+RE.terrain-single-cell-light component. Its inherited signed byte, pointer/extent
+metadata and maximum/additive stamps receive fresh SIZE1.original-20261026
+comparison:256 bytes,1536 stamps,original PE32 and optimized/sanitized32/64 builds.
+The new RE.terrain-single-cell-captured-cycle compares8192 actual production
+capture requests and complete native replies against the unchanged original
+outer/static updater across four paired dimensions/configurations,including1x1.
+All20,633,600 reply bytes agree per native variant;six noncanonical signed-byte
+values are refused. Both manifests verify2927 originals.
+
+Native implementation and wire bytes are unchanged. Native zero-default storage
+remains intentional policy. Installed map/heap writer provenance and natural
+live index-one callers remain unresolved;integration/replacement stay none.
+Central and both historical focused gap rows now state that boundary without
+promoting their old statuses. Initial compiler failures,narrower success and
+exact source variants remain immutable SQLite evidence. The new contract remains
+unrated in rendering planning. History since the preceding master review covers
+71 exact transitions across two commits without missing receipts.
+
+### Size-one validation integration and global storage provenance — 2026-10-26
+
+Merge bc25fe8c with 8c0c4ea4 and retain all historical comparisons. Fresh S1P.captured-cycle-20261026 compares1536 original/native primitive stamps and8192 production-capture/native decoder requests across four paired configurations; optimized32/64 and ASan/UBSan32/64 agree on20633600 reply bytes each and refuse six noncanonical values. No native production code changes.
+
+RE.terrain-single-cell-global-storage identifies installed map006c5490 byte+6380 (006cb810) in PE .data zero-fill storage. S1P.storage-original-20261026 runs257 probes per optimized32/UBSan32 variant, including untouched loader zero and all256 supplied bytes. Each observes514 positive byte/overlapping same-value stores and zero selected-path writes across514 initializations,257 direct rebuilds and514 allocated clears with2570 supplied delete calls. The original89-entry FX loader/selector consumes pinned installed fields: nonzero diameters4/6/10/10/5/4, no one. Authored FXA_0=1 controls remain separate.64 retained successful original-observation inputs show byte zero; stress records include active indices0 and6. This is new analysis of historical observations, not a new live game. See [scope and exact evidence](terrain-single-cell-storage-20261026.md).
+
+TL.special-size-one now retains whole-program aliases/writers, other source-producing paths, other builds and natural index-one reachability beyond these admitted inputs. New storage understanding is scoped; implementation/comparison/integration/replacement remain none. Existing captured-cycle milestones remain independent, with fresh current-source proof. The history review accounts42 commits and18838 transitions since c5137b9c across both parents:18796 exact receipts,42 journal/marker exclusions,no missing transitions. This is provenance accounting, not a retrospective gate-pass claim. The planning fixture acknowledges the new storage contract and the pre-existing unrated NR.world-constant-fill without changing weights.
+
+The first combined audit retained four input-classification errors: two prior cohort JSON reports were listed as binary inputs. Their hashes remain audited source provenance; only the65 actual binary packets/config inputs are declared recorded inputs. No historical report is rewritten. Configuration lineage confirms different packed seeds decode to identical clean/NoCD effects text and the exact267 original-probe fields. Both legacy focused TL.special-size-one rows receive the current gap text/document links while retaining their prior evidence and statuses.
+
+
+### Player lighting default integrated with subsequent master
+
+Combine the checked default-policy commit `0d6760a7` with master
+`87e3abee`. `TLDF26.master-controls` reruns all eighteen launcher controls
+on the combined source. Native lighting remains the public-player default;
+explicit original/observe/native overrides and existing fallback/error semantics
+remain intact. No new installed-game, hour-long or hardware acceptance is
+claimed. Both parent histories and immutable evidence bindings are retained.
+
+The incoming completed-master review covers 2 commits and 768
+file transitions. It preserves 107 exact ancillary artifact transitions
+through retrospective receipts without claiming historical gate passes. All seven
+core lighting session/worker/protocol files match `e486a0f9` byte-for-byte.
+See `terrain-light-default-results-20261026/master-history02.json` and
+`master-core-identities01.json`; source identity does not renew installed/live
+acceptance.
+
+### Windowed input and natural GPU callers — 2026-10-26 follow-up
+
+- `HOST.desktop-frame-input` adds unique named-window discovery within a matching
+  Wine desktop, current X11 coordinate translation and explicit desktop input
+  wire v2; v1 client coordinates remain supported. Current controls03 passes
+  normal/high-DPI input, wire admission and both synthetic PE32 polling modes.
+- `HOST.results-ack-ready-root` accepts an already-ready Main/Quick root in the
+  guarded successful Results Quit ACK. Its new test fails before the fix and all
+  17 timing/identity cases pass after it; other transitions retain their guards.
+- Current quick05 completes two windowed World visits, Qt Right/focus-release/
+  Escape/resize, native Results/Main Quit and shell exit 0. Strict closed census
+  has 1,380 rows, no active misses, 143 checked original GPU calls and 28 actual
+  bounds-clipped calls. END is recorded and graphics retirement has zero devices,
+  surfaces, DCs, clippers, palettes or pixel bytes; native resident retirement
+  succeeds. This is bounded observation, not whole-engine equivalence.
+- The final ordinary quick04 reaches Quit and zero graphics owners but reports
+  native GAP reason2 after a generation/epoch-invalidated whole-copy commit;
+  prior stage8 timeout and signal11 remain negative evidence. No deterministic
+  teardown or integration/replacement status promotion follows from quick05.
+- Natural self-copy and keyed GPU-source callers remain unproved. All 678 final
+  keyed calls have CPU sources. Whole-output validation still refuses 108
+  CPU-source clipper copies, 20 target-rectangle copies and one unsupported fill;
+  the strict validator is unchanged. See
+  [the findings and exact evidence](windowed-input-gpu-callers-20261026.md).
+
+
+### CPU copy clipping and history continuity — 2026-10-26
+
+`NP.native-cpu-copy-plan` adds read-only native CPU clip preparation, ordered piece
+propagation and current destination materialization specifically for clipped CPU
+transforms. Current15CPU/23GPU controls and48Python output/routing/geometry refusal
+controls pass. The bounded current Quick Battle/Results/Quit observation prepares
+all1370calls, including124clippedCPU copies and one clippedfill, and independently
+checks all1345COPYoutputs.141GPU-source calls include88actual geometric reductions
+under ordinary Win32 exposure. END/normalQuit/zero graphics owners and no GAP or
+commit refusal pass. The earlier eager-materialization zero-GPU regression and
+setup/source-stability failures are retained separately. See
+[cpu-copy-clipping-20261026.md](cpu-copy-clipping-20261026.md) and SQLite-backed
+`cpu-copy-results-20261026/` results. Natural self/keyed GPU-source callers remain
+unobserved;fill UPDATE output,other contexts,arbitrary readers,original-driver
+parity and universal intermittent reliability remain separate. No milestone is
+promoted;historical evidence hashes remain intact.
+
+Final reader-only follow-up keeps emptyCPUintervals fail-closed and counts one
+multi-piece keyed application call once. Fresh48Python controls and immutable
+replay02 pass all1345COPYbindings. Only two Python diagnostic/control files changed
+after the native engine/live execution;exact preimages and unchanged engine hashes
+are retained in current-validation02. This is not another original launch.
+
+### CPU copy and windowed-input fixes integrated with master — 2026-10-26
+
+The bounded merge of `7752b171` (including `9e79af2b`) with `8c0c4ea4`
+retains both coverage histories and refreshes the combined source census. The
+[merge review](cpu-copy-master-integration-20261026.md) separates fresh merged
+controls/builds from historical GPU/native and original-game executions. The
+exact history audit covers5,160 file transitions;19 verified raw-artifact
+additions receive retrospective receipts, with no historical gate assertion.
+Natural self/keyed GPU callers, additional clip-region reduction, empty CPU-plan
+proof, fill UPDATE output and broader reader/driver/reliability coverage remain
+pending; no engine milestone is promoted.
+
+Final rendering handoff retains completed master8a6fcd1a and rendering e308b2f7.
+All1,511 newer committed transitions have exact receipts; current control sources
+and HOST claim scopes have zero drift. This adds no new game/driver execution or
+engine milestone. Existing WIP is retained separately under a pinned exact Git
+snapshot and verified local SQLite handoff records.
+
+### Expanded public player and input-mode acceptance — 2026-10-26
+
+The owned follow-up integrates the existing windowed input/Results work without
+duplicating its helpers or the active CPU clipping investigation. Broader
+public-launch attempts identify and preserve two additional failures: the
+640x480 Hermes heading was clipped by its OCR crop, and ordinary client-relative
+frames were incorrectly selected as desktop frames. Current controls04 passes
+both Qt DPI modes, Results timing/identity, wire v1/v2 admission and actual PE32
+polling on the corrected mode selection. The retained-image OCR regression
+passes without fuzzy text recognition. Default-media failures remain negative
+evidence; the later public media, extended, save/recreate, offered-map and
+hardware profiles require separate source-bound executions. No engine status
+is promoted by these controls or their storage retention. See the
+[scope and remaining boundaries](native-player-expanded-20261026.md).
+
+### Expanded player closeout — 2026-10-27
+
+Six bounded public-player profiles pass original normal Quit, all18cursor hooks,
+balanced Worlds and zero cursor/graphics owners: both offered Celtic Forest
+One/Three map rows, enabled intros/music/voices, Save/Load/display recreation,
+NVIDIA hardware and six120-second physical phases with five Mini returns. The
+source phases remain separate; final large-map/long runs follow the four exact
+black/fallback caller additions. Isolated393216AX continuation cases and all47
+production callers/54pairs pass;24original minimap cases independently disprove
+the former five-row read-set assumption. Watchdog controls prove and repair a
+stale-ACK false-expiry schedule without retroactively attributing live stalls.
+Current windowed input/Results controls and the bounded normal-Quit/whole-COPY
+closure pass, while natural self/keyed GPU branches remain unobserved. Historical
+source hashes, failed acquisitions, unreproduced crash causes and broader driver/
+alias/duration boundaries remain explicit. See
+[expanded player acceptance](native-player-expanded-20261026.md) and the
+SQLite-backed `native-player-expanded-results-20261026/closeout-matrix01.json`.
+
+### Fresh combined-source player lifetime — 2026-10-27
+
+Hardware03 refreshes the actual public launch/native lifetime scenario on the
+combined current-master source: NVIDIA, native-lighting default, physical input,
+Mini/No/Yes, balanced World returns, original normal Quit, all18hooks/all8cursor
+client categories, zero clients/jobs/graphics owners and391checked repository Qt
+compiler inputs. All2967declared source files remain stable. Earlier six-profile
+acceptance retains exact historical phases; no old hash, full-driver comparison
+or deferred-generation game-path claim is refreshed. See
+[combined-source acceptance](native-player-master-acceptance-20261027.md).
+### Native SceneSession camera, entity rotation and spectator inputs — 2026-10-26
+
+`NR.scene-frame-camera` connects the existing recovered camera/view consumers and
+owned lighting producers to accepted native source data and frame scheduling.
+The session retains generation-bound creature/effect view caches and minimap
+invalidation, acquires special catalogs before refresh, and draws/pins the actual
+receiver resource after rebinding. Camera-required layers must be owned source
+layers; duplicate generations of a live family/slot are refused. Retirement and
+new epochs clear pending camera work and old receivers. Direct camera changes
+invalidate earlier projection plans.
+
+Queued turns complete once after a successful rendered plan, with recovered
+clockwise priority and counterclockwise deferral. Failed consumer/submission
+checks preserve requests; repeated frozen-plan delivery cannot consume another
+turn or redraw decrement. Ordinary frames avoid copying animation/controller
+pools. Frozen recomposition supplies no animation, simulation or lighting tick.
+Current source ticks supply current spectator anchors and native health/cells;
+generation, relation and enable-control changes request owned light recounts.
+Recovered light publication latency remains explicit.
+
+`CAMERA.scene-frame-native-20261026` and
+`CAMERA.scene-frame-sanitized-20261026` pass the final native64/Clang ASan/UBSan
+matrix, including actual World source delivery, special catalog drawing, linked
+retirement/refusals, scheduling and eight exact CPU/software-OpenGL image
+comparisons. Results, intermediate failures/source-drift refusals and the
+489-edge committed-history review (`adbf8029..8c0c4ea4`, zero missing receipts)
+are retained through SQLite. Earlier fingerprints remain unchanged. Original
+complete-session/producer provenance, physical GPU acceptance and live replacement
+are independent; original parent milestones are not promoted by native component
+execution. See [integration details](scene-camera-frame-integration-20261026.md).
+
+`CAMERA.scene-frame-installed-20261026` additionally loads installed Forest
+40x40x19 with 77 MPS placements and 766 draws; native checkpoint/application image
+agreement and immutable original/installed-input bookends pass. Camera branch
+controls remain native synthetic sources; this adds no original/live milestone.
+
+## Native camera/master integration, 2026-10-27
+
+Camera branch `c9cf63ae` merges with master `432d8b36` without production-source
+conflicts. Fresh native64 installed-scene and Clang ASan/UBSan evidence
+`CAMERA-MASTER.native-20261027` and `CAMERA-MASTER.sanitized-20261027` cover the
+five owned scene contracts, queued camera scheduling, resource/layer lifetimes,
+linked generations and spectator delivery, including eight exact software-GL/CPU
+frames. Forest acquisition retains 77 placements and 766 draws with identical
+checkpoint/CLI images and immutable-input bookends. Historical fingerprints and
+both parent review histories are preserved; the source census is regenerated.
+See [integration scope and retained attempts](camera-master-integration-20261027.md).
+Committed-history review and retrospective payload accounting remain separate
+from fresh scene validation. Original whole-session comparison, hardware and live
+replacement retain their independent pending boundaries.
+
+## Palette effect aggregate completion — 2026-10-26
+
+[Palette closure](palette-effect-closure-20261026.md) reconciles the ten completed
+numerical modes, owned chains and raw ownership/profile providers with fresh
+actual-Wine profile inputs and independent native resource/software-GL output.
+Six installed/default/empty/quoted/nonnumeric/truncation cohorts pass360 unchanged
+original builder calls and1,253,376 packed words. Release and ASan/UBSan delivery
+passes1,080 frames/276,480 independent pixels,151 declared compiler inputs per
+build,zero native surfaces and independently retired private Wine ownership.
+Fresh numerical and chain matrices compare63,416,320 and5,263,360 WORDs;
+the1,280-case provider matrix compares1,346,349,916 bytes per variant,including
+allocation failure,partial retention and explicit zero-allocation teardown.
+Both original manifests pass. Failed recipe/dependency/retirement attempts and
+the reserve-stopped sanitizer build remain immutable negative evidence.
+
+RE.palette-effect-builders is implemented within scope,with recorded original
+comparison and headless integration. Original exceptional/unsafe platform and
+Windows SEH domains retain partial understanding;physical hardware,whole-game
+acceptance and live replacement receive no promotion. Complete native odd-count
+storage and atomic append failure remain intentional policies,distinct from
+original corruption/partial retention. No gameplay or production rendering
+algorithm changes are introduced. UI accounting retains its weight and removes
+this completed aggregate from unplanned High implementation work.
+
+
+## Palette aggregate integrated with master — 2026-10-27
+
+Completed palette implementation/comparison/headless acceptance is merged with
+current master while preserving both parents, historical evidence and unrelated
+pending contributor edits. All 151 actual compiler inputs per platform build
+and wider prospective declarations have explicit source-impact review; changed
+inputs retain historical evidence and pending combined-source re-execution.
+Combined planning controls and coverage audit pass. No new engine, exceptional
+Windows, physical-driver or whole-game/live milestone is claimed.
+See [integration review](palette-master-merge-20261027.md).
+
+
+## Natural late colour modes, RGB555 offline World and NVIDIA fixtures (2026-10-26)
+
+[The remaining rendering batch](rendering-remaining-20261026.md) observes719mode2,
+1183mode3 and104mode1 original colour draws in eight late stockmap1/item15
+World samples after600queue calls. All2006shapes are2x2. The larger explicit
+180second finite observation budget obtains actual samples; shorter/setup
+failures remain retained. Static selected constructor/update stores are recorded
+separately from actual reachability and whole object lifetime/provider recovery.
+The inherited120/four-call observation scenario is not credited for this new
+profile; its counts are static classification, not native CPU splice execution.
+
+The prospective new headless scenario compares14852draws/3840000pixels: native
+and independent original both starting at owned zero agree exactly. Independent
+original-before replay matches captured live output, while native-zero/live
+differs at exactly one pixel per frame,(548,433). Original-only per-record
+observation identifies a terrain clear followed by backend9 wave propagation
+at that pixel in the first frame; earlier source history/writer remains unknown.
+This preserves the negative native/live boundary and grants no live equivalence.
+The retained sixteen busy samples freshly pass19036draws/7680000pixels in all
+three comparisons on current changed shader/decoder code.
+
+`NR.world-rgb555-colour-input` admits explicit offline format1 colour-only
+World requests and `.555` export; default/live/producer consumers retainRGB565.
+Native scene/cache storage selectsRGB555 directly and integer blend mask0x3def;
+RGB565 retains0x7bef. Each software/NVIDIA run compares128authored cases across
+both formats and cached/uncached paths,31587776pixel WORDs,640refusals and9024
+cache hits. Default-format, unsupported primitive/high-bit, previous-frame
+preservation, public preview and zero leaked-surface controls pass. Sprites,
+effects and liveformat1 ingestion remain outside scope.
+
+Fresh4352CPU colour pairs plus384boundary fixtures compare90011152physical
+WORDs/caller state across four modes/both formats. The separate192ordered
+RGB565 World fill/blend fixtures compare38199120pixels and five refusals on
+verified NVIDIA TITAN RTX EGL; no software fallback, window/scanout or FPS
+claim. Ten existing shared shader/scene/cache/effect/surface regressions pass.
+Large fills during active gameplay remain unobserved; authored large-fill
+arithmetic/order, natural invocation and full native history are separate.
+Original manifests bracket original-consuming runs. Exact SQLite evidence,
+failed attempts, incremental sources and verified backups precede RAM closeout.
+No web UI layout, gameplay balance or whole-renderer/replacement claim changes.
+
+
+### Rendering integration with current master — 2026-10-27
+
+Combine rendering `cb24376e` with current master `432d8b36`. Rendering code
+has no overlapping implementation edits; merge the coverage register, receipt
+journal and ledger without changing historical evidence hashes. Fresh
+`RRG27.merge-rgb555-*` controls recompile the merged code and compare 128
+colour-only RGB555/RGB565 World fixtures against unchanged original `547d80`:
+31,587,776 pixel comparisons per software/NVIDIA backend, 640 refusals each,
+cache controls, public offline preview and no leaked surfaces. Original manifests
+pass before and after both runs. Raw inputs, outputs, binaries and logs survive
+a complete SQLite round trip.
+
+Intervening surface-wrapper and capture-producer edits change provenance in the
+six older RRG26 comparison reports. Retain them as historical; the fresh colour
+policy runs do not renew the complete CPU/large-fill or natural/busy capture
+claims. The archived one-pixel native/live history difference, natural large-fill
+reachability, live RGB555, RGB555 sprites/effects, physical presentation and live
+replacement remain open. `merge-source-contract-check-20261027-01.json` and
+`merge-audit-20261027-03.json` record the combined-tree boundaries. The first
+two audits retain archival-provenance schema errors as negative evidence. Final
+catalog03 records actual producer fingerprints copied from the fresh execution
+declarations; storage evidence grants no additional engine milestone.
+
+Use pinned, hash-verified materialized local SQLite backups for this closeout.
+The cold archive remains below its unchanged100GiB reserve; this merge makes no
+cold write or publication and removes no evidence. Preserve all unrelated main
+edits through the exact owned reservation/restoration transaction.
+
+
+## RGB555 rendering final master integration — 2026-10-27
+
+The reviewed rendering batch is integrated after concurrent camera/palette
+master changes with both parents' records and exact historical receipts retained.
+All 18 rendering source/test/producer files and both fresh RGB555 comparison
+fingerprints remain exact. Existing CPU/fill/capture historical limits and live,
+physical presentation and replacement gaps remain open. Combined planning,
+census and normal staged checks cover integration; no broader engine milestone
+is promoted. See [rendering closeout](rendering-remaining-20261026.md).
+
+
+Final RGB555 integration source-impact review also identifies three changed
+renderer compiler inputs in inherited camera and whole-session palette runs.
+The nine linked behaviors retain those executions as historical, with explicit
+pending combined-source session re-execution. Numerical palette modes/chains
+and providers retain unchanged declared inputs; fresh RGB555 reports remain
+exact. See the [parent source-impact record](rendering-remaining-results-20261026/merge-parent-source-impact-20261027-01.json).
+
+## Native player open-item repairs (2026-10-27)
+
+The owned follow-up reproduces a current-master active-session destructor
+use-after-free with ASan/UBSan and a full Qt-shell SIGSEGV under a supplied
+staging deadline. Process/session destruction now disconnects callbacks before
+member teardown and reaps the owned launcher group. Historical signal-11 logs
+without stacks remain independently unattributed. The forwarder constrains its
+last point after a frame-size shrink; supplied Qt resize, normal/high-DPI and
+restart controls retain their separate scopes. Refused Fast-copy diagnostics
+now preserve destination arguments before source/target rejection; five actual
+PE32 facade controls return NS_RECT with every source/target WORD unchanged and
+no native COPY interval. Refused rows are not silently admitted by whole-output
+validation. See [findings and remaining boundaries](player-open-items-20261027.md).
+Natural self-copy/keyed-GPU callers still require positive actual-game evidence.
+
+The fresh public storage01 journey now passes 473 balanced Worlds,all 18 cursor
+hooks/all 8 client categories,normal Quit and zero owners. Independent output
+closes 4,474 active calls/4,400 COPY destinations,with 0 failed/unprepared calls,
+984 GPU and 2,457 CPU-keyed calls. Natural self/keyed-GPU counts remain 0.
+The full-shell supplied deadline also reproduces the old SIGSEGV in
+InputState::publish through late Shell::finished delivery; the repaired shell
+exits 1 without a signal under the same fixture. These current bounded results
+do not retroactively identify the old unstacked crash or Storage05 causes.
+Exact execution-source overlays and a verified 6,910-file raw restore are
+retained through SQLite; the new archive is 23.1 MB rather than another full
+source/prefix snapshot.
+
+
+### Player open-item current-master integration (2026-10-27)
+
+Repair6695 integrates onto master1efa in a separate batch. Fresh prospectively
+bound `PLAYERMERGE27.controls02` closes the three new headless integration
+scenarios. `PLAYERMERGE27.storage01` repeats the actual public Save/Load, two
+display rebuilds and recreated World: 447 balanced Worlds, normal Quit,
+zero cursor/graphics owners and 4188 independently matched successful emitted
+COPY destinations. Two refused invalid cursor requests prevent whole-COPY
+closure; storage01-refusals.json retains their exact new argument geometry. Raw evidence is actually restored and verified.
+Natural self-copy/keyed GPU-source reachability remains unobserved; historical
+crash/refusal causes are not retroactively asserted. Source policy and gameplay
+balance remain unchanged. See [scoped findings](player-open-items-20261027.md).
+
+
+### Player repairs final master handoff (2026-10-27)
+
+Later committed palette/RGB555 work is preserved. `PLAYERHANDOFF27.controls01`
+provides fresh combined-source Qt/ASan/PE32 headless controls for the three new
+repair contracts. The earlier public-player lifetime result remains at its exact
+source phase; no new combined-game or whole-COPY closure is asserted. Natural
+self/keyed GPU-source reachability and two invalid cursor requests remain explicit.
+See [scoped findings and source phases](player-open-items-20261027.md).
+
+### Actor installed-world dependencies: final master integration (2026-10-27)
+
+The actor dependency batch incorporates actual master `29a14068` and preserves its production sources and independent evidence. [Final dependency accounting](actor-installed-dependencies-20261026.md#final-master-integration-2026-10-27) retains all nine pending installed-world cases and fifteen scoped callback implementation leads. Static inventory and retrospective history accounting do not close `RS.actor-downstream-services`, validate whole original sessions or promote live replacement. Four actor guards pass; current bookkeeping audit and the normal staged merge gate are required separately.
+# Reviewed rendering baseline — 2026-10-30
+
+The [reviewed baseline](rendering-reviewed-baseline-20261030.md) pins committed
+tree 648ce219, excluding all main-checkout pending work. The immutable SQLite
+inventory selects 832 rendering behaviors and 720 scenarios. Its full audit has zero
+errors and no source-census/focused-register drift at that revision. Of 3,490 linked
+evidence IDs, 183 have matching declared source bindings and 3,307 have changed inputs;
+these overlapping counts are not missing-code counts or remaining effort.
+Current bound proof covers 56 implementation, 47 comparison and 10 headless integration
+scopes; no selected replacement stage has current proof. Historical statuses and
+evidence fingerprints remain unchanged.
+
+The read-only review verifies nine retained adapter/player/colour/palette/history
+records. It separates supplied code, source freshness, stage/scenario proof and
+assembled-player acceptance. The 14 journeys/21 operations remain authored acceptance
+requirements, with no new journey assessment, engine execution or milestone
+promotion. Six new baseline guards and ten existing frontier guards pass. Initial
+reader/export setup failures remain retained. Available local SQLite inputs are
+hash verified in a frozen Git export; one missing configured auxiliary path is
+recorded without changing shared Git settings. Task-local evidence and verified
+materialized backups stay on durable storage under ordinary reserves.
+
+## Versioned rendering completion contract — 2026-10-30
+
+The [artifact 2 contract review](rendering-completion-contract-20261030.md)
+reconciles the authored completion target with immutable baseline 648ce219.
+It preserves all 14 journeys, 21 operations and 15 source-role groups, defines
+ten completion gates and two pending normal-player configurations, and keeps
+eight scope decisions explicit. Original permitted preparation remains distinct
+from forbidden original pixel fallback; native scene/task-service modernization
+is separate. Default lighting failure keeps its failure even when original
+preparation permits continuation. FPS remains diagnostic with response/progress/
+resource requirements intact. Old B05/P3 current labels become historical authored
+plan states; no registered engine stage or historical evidence hash changes.
+
+The contract-only checker verifies the baseline payload and 31 policy witnesses
+against the product revision without original media/byte or game/GL execution.
+Twelve contract guards, twelve admission guards and eighteen mocked launcher
+guards pass with stable source fingerprints. The initial source phase remains
+immutable. Completion decisions stay pending; no original comparison, whole-player
+acceptance, integration or replacement promotion follows. Required-gap/task-graph
+and final acceptance artifacts remain separate.
+
+## Required rendering gap register — 2026-10-30
+
+The [artifact 3 review](rendering-required-gaps-20261030.md) adds a checked authored
+register bound to the immutable product baseline and completion-contract revision.
+All 14 journeys/47 subrequirements, 21 operations and ten gates retain an explicit
+assessment and closing brief. The 78 mandatory leaf/gate rows are missing adequate
+current complete proof, not 78 missing features or independent runs. No mandatory
+missing-code/integration finding is newly established. Thirty-six briefs remain
+unordered; dependency/priority selection belongs to artifact 4.
+
+Eight conditional scope decisions, two retained negative observations and one
+optional timing diagnostic retain their distinct classifications. The cursor
+refusals and late-history mismatch preserve original results/source phases,
+without asserting newly reproduced current defects. Native-copy, text/palette,
+player lifetime and recovery mechanisms remain existing evidence leads. Exact
+source-binding matches never imply whole-requirement acceptance. The gaps-only
+checker verifies leads and guards before any original-media/byte path; no game,
+GL, hardware execution or engine-stage promotion occurs. Artifact 5's executed
+acceptance and separate player/recovery decisions remain outstanding.
+
+## Rendering execution plan — 2026-10-30
+
+The [artifact 4 review](rendering-execution-plan-20261030.md) and
+[execution guide](../../docs/native-rendering-execution.md) bind the unchanged
+completion-contract/gap sections to twelve planned tasks and all 36 closing
+briefs. Input/applicability locking and requiredness triage precede a current
+public-player acceptance pilot. Bounded normal sessions, actual campaign/later-map/
+victory/defeat and operation residuals then feed scope resolution, software deltas,
+fault/restart evidence and a complete requirement join. Seven candidate session
+packs preserve every journey; their count is not an execution estimate.
+
+The inspected suite has no generic presented-frame session case, despite existing
+admission/backend machinery and recorded-EGL action cases. The pilot must connect
+the smallest required evidence plumbing and actual player correlation before broad
+reruns. The plan assigns technical scope investigations to engineering, retaining
+all eight conditional rules; user choices arise only for concrete support-promise
+changes. No immediate user decision is required. Optional timing stays off the
+completion path and no whole native scene/service port is imposed.
+
+Seventeen new plan guards and 83 existing journey/session/prerequisite/admission/
+mocked-launcher guards check dependencies, exact bindings, complete ownership and
+static-versus-executed boundaries. Twelve tooling witnesses match the reviewed
+product/planning revisions. All tasks remain planned, all historical hashes and
+engine stages are preserved, and no original media, game, GL or acceptance execution
+occurs. Artifact 5 remains the actual evidence-backed acceptance and separate
+supported-player/original-recovery closure record.
+
+## Rendering acceptance record opened — 2026-10-30
+
+The [artifact 5 opening](rendering-acceptance-record-20261030.md) adds a checked
+SQLite-backed [acceptance dossier](../../docs/native-rendering-acceptance.md),
+bound to unchanged completion/gap/execution sections. All 156 per-configuration
+leaf/operation/gate rows remain pending; eight scope decisions, fifteen original
+recovery groups and both retained negative observations stay explicit. Supported
+player and original recovery decisions remain separate and pending. No new current
+rendering failure or successful acceptance is inferred.
+
+EP01 source/lead-applicability work starts by rechecking witnesses and 28 immutable
+lead payloads/assertions and assigning each requirement its execution owner. Actual
+as-built compiler/binary, original/assets/save, provider/display/media and pilot
+input/budget identities and per-requirement adequacy remain pending; no execution
+task is completed. Append-only candidate attachment verifies hashes/assertions and
+keeps source freshness separate from acceptance. Positive current-player receipt
+admission remains part of the real EP03 pilot; this opening producer cannot set pass.
+
+Twenty-two new dossier guards and 100 prerequisite guards check the boundaries without
+original media/game/GL/hardware execution or engine-stage changes. Workspace and
+evidence backups are verified and retained in SQLite under the storage reserve;
+historical hashes remain unchanged. Artifact 5 is now an open pending evidence
+record, with runtime completion still requiring execution of artifact 4.
+
+## Rendering scope questions investigated — 2026-10-30
+
+The [technical decision review](rendering-scope-decisions-20261030.md) records all
+eight questions against the unchanged completion/gap/execution sections. No
+immediate user judgment blocks engineering; only a broader final map/save/duration
+promise may require a product choice. Scope answers and completed proof remain
+distinct. The existing x86 Linux/Wine/native-provider promise closes the current
+player physical/platform boundary; original physical/driver/Windows recovery stays
+open, as do seven other player scope proof conditions and all acceptance rows.
+
+Fresh normal/high-DPI Qt controls pass 32 complete-frame and 34 onscreen comparisons
+with F9/fullscreen, retained frames, logical input, Escape and geometry/chrome
+restoration. A production PE32 facade fixture admits default/explicit RGB565 and
+explicit RGB555 descriptors with retained WORDs across two leases and zero owners.
+These are synthetic software-display/non-strict-facade controls, not actual-game,
+strict-player or physical-reset acceptance. The already exposed Qt transition is
+required validation; world-format admission does not exclude RGB555 surfaces.
+
+A fresh byte-only five-route scan decodes 516,000 instructions from the pinned
+No-CD image/current central inventory. The prospective inventory dependency is
+repaired; all five routes still lack recovered natural callers, with computed and
+runtime uncertainty retained. Original manifests verify before/after. The original
+alternate owner remains unrecovered, earlier destination history is required by
+the retained counterexample, and real populated screen routing remains engineering
+work. No zero candidate, authored provider or component fixture closes those gaps.
+
+Current readers consume a hash-bound scope sidecar and propagate effective states
+into the [pending acceptance record](rendering-scope-results-20261030/acceptance-01.json).
+Frozen baseline decisions and historical evidence hashes remain unchanged; all
+156 requirement/configuration rows and both complete-player/recovery verdicts stay
+pending. Failed input-view/declaration/display/include attempts, logs and control
+binaries remain in SQLite. No production rendering or gameplay balance changes.
+
+The full audit initially refused a static caller-scan evidence registration with an execution-claim field. The refusal is retained as `SCOPE30.audit-registration-refusal`; only the registration field was removed. The immutable scan remains static original-byte evidence, with no natural execution/reachability credit. Finish was stopped before staging or committing and the corrected batch is rechecked with the normal gate.
+## Rendering execution research and acceptance handoff — 2026-10-31
+
+[Research and concrete next work](rendering-execution-research-20261031.md)
+bind actual private inputs, 683 maps, 85 region recipes, a fresh Release shell,
+391 compiler inputs and native module/provider identities to product source
+648ce219. Original disassembly and byte-pinned screen/getter contracts preserve
+alias, natural-path and lifetime uncertainty. The unchanged original format
+query executes successfully against native default565/explicit565/explicit555
+surfaces in four isolated cases; complete game/World555 support is not implied.
+
+Fresh strict native Quick Battle, Save/Load with two rebuilds and an explicit
+software Quick Battle complete normally and retire their owned graphics.
+The row-0 and storage observations independently check 1,249 and 3,170 emitted
+copies respectively, without claiming complete composed-frame equality.
+Two enabled-intro runs fail a music-play expectation with zero-volume inputs;
+an explicit-volume control produces seven plays and actual PCM output and
+retires normally. Both failures remain retained. A real save's 153,600-cell World
+exceeds the native inspector's default 65,536-record cap and parses with a bounded
+explicit larger cap; this is an inspection-policy limit, not a rendering defect.
+
+The join reviews 28 evidence leads and every 156 requirement/configuration row;
+five leads match recorded sources and 23 have changed dependencies. All rows
+remain pending. New research evidence does not close the seven player-scope or
+eight original-recovery conditions. Public-wrapper storage admission, actual
+paint/swap identities, owned initial history, independent reference and positive
+receipt integration are the concrete EP03 implementation work before broader
+acceptance execution. Private-owner research does not stand in for the public
+entrypoint. Product sources, frozen plan/contract and engine stages are unchanged.
+
+## Rendering acceptance research and receipt migration — 2026-10-31
+
+[Artifact 5 research](rendering-acceptance-research-20261031.md) reviews all156
+requirement/configuration rows,48lead/research records and15original-recovery
+groups with106behavior links.24records match their source fingerprints and24
+have changed dependencies; execution-claim identities and complete provenance
+remain separate. All391retained shell compiler inputs still match current code.
+All seven existing reference cases re-admit under their exact original/observed
+or corrected-upload boundaries. No native backend/player is executed or accepted.
+
+Sixteen isolated actual SQLite/API probes keep every row and both decisions
+pending. Restore accepts some metadata rejected or constrained by append;
+candidate assertions also equate integer1with booleantrue. These are researched
+validation/typing requirements for a new execution-capable ledger, not a current
+acceptance bypass. The14actual candidate/work events survive verified backup and
+restore with unchanged IDs/times. The generic coverage summary remains a trusted
+caller interface; per-configuration artifact admission must precede projection.
+
+The transaction experiment also reproduces a prior custom producer error:
+uncommitted raw-review inserts disappear on close. This batch appends the1251
+missing raw receipts across5237da93..04f75b4a with exact immutable payload witnesses,
+checks persistence after reopening and verifies actual journal export. Earlier
+reports/hashes are preserved; no past raw-extension gate pass is claimed.
+The next implementation is EP03's real receipt/validator, versioned ledger
+migration, EP10's dependency/reuse/failure join and EP11's separate verdicts.
+All156acceptance rows, seven player-scope proof conditions and eight original
+scope conditions remain open. No immediate user decision or engine-stage
+promotion follows from this research.
+
+
+## Public native rendering acceptance pilot — 2026-10-31
+
+[The execution review](rendering-acceptance-pilot-20261031.md) connects the actual
+public launcher to the first offered Quick Battle, two World visits, original
+input polls after actual World swaps and normal original Quit. The independent
+owned-history/original-routine reference reconstructs 44 Worlds / 73,735 draws and
+matches 113 native Qt swaps, including 58 World swaps and 105,071,100 viewport pixels.
+No original destination or native output seeds the reference. GUI mutable leases
+are bound at paint; completed GPU reads and actual swaps are distinct evidence.
+Original release accounting and command history end with zero retained owners.
+The actual software flag probe completes launch/route/Quit; full pixel acceptance
+for that configuration remains pending. Both Xvfb runs use llvmpipe; no hardware
+comparison, movie/audio content, other scaling or physical scanout is claimed.
+
+NP.rendering-acceptance-pilot records this bounded milestone without promoting
+other engine contracts or final recovery. A strictly typed append-only EP03 ledger
+binds the frozen five-artifact dossier and retains the scoped positive receipt
+through reopen/restore. All 156full requirement rows and both final decisions
+remain pending; complete EP10 dependency/configuration/reuse/failure joining is
+still work. Historical negative attempts remain immutable. Shared product-source
+changes leave earlier evidence fingerprints stale; they were not refreshed and
+no unrelated subsystem was rerun or promoted. Next work is EP04/EP05 expansion,
+EP06 required residuals, EP08 full software proof and EP09 fault/restart exits.
+
+Reviewed maintenance reclaimed 1,350,668,288 allocated main-drive build bytes and
+689,106,944 redundant cold-cache bytes while preserving pins, inputs, active
+consumers and both cache paths. New raw execution evidence is retained in SQLite
+with a verified cold snapshot/restore; build/staging outputs use RAM. These are
+storage and execution provenance, not expanded gameplay or recovery claims.
+
+
+## First native rendering normal-session batch — 2026-10-31
+
+[Research and bounded findings](rendering-normal-acceptance-20261031.md),
+[requirement progress](rendering-normal-results-20261031/progress-01.json) and
+[scoped execution/control join](rendering-normal-results-20261031/joined-02.json)
+connect current native-lighting default Quick Battle and campaign storage at
+both actual RGB565 World sizes. All 1,410 captured World swaps match independent
+original/history output (1,157 reference Worlds, 1,099,147 original draws).
+The whole recorded viewport/CPU-return cohort passes, without original player
+pixels as oracle inputs; normal original Quit, no forwarding/refusal and graphics
+retirement are checked. Original simulation and owned CPU operation inputs remain
+explicit suppliers, not complete producer/gameplay recovery.
+
+Three concrete native policies now have bounded current integration evidence:
+`NP.rendering-normal-acceptance` remains partially implemented and gains scoped
+live equivalence; `NP.preferences-native-history-boundary` and
+`NP.campaign-preferences-ready-handoff` have scoped implementations/live equivalence.
+They fix F9 geometry, current CPU history before the original Preferences glyph
+consumer, and a ready destination in the same ACK as opening Preferences.
+Original comparison/replacement dimensions remain independent and are not promoted.
+
+RN31.joined binds all current native/compiler sources, original hashes, exact
+collector pairs, both actual World sizes, edited-draft Cancel/reopen, original
+Save/Mini/Main Load, two original display rebuild probes, resource generations,
+input and normal exit. Its 13 control invocations include 48 Python methods,
+thirteen native-panel routes, Qt ownership guards, two DPI presentations and four
+source parser controls. Limited driver reuse retains exact old/new sources and
+replays all 14 real high-mode decisions; only the added 640×480 crop is excluded.
+Current reference comparisons were rerun. Engine/capture drift cannot be waived.
+
+Six default-player leaf obligations pass; 72 default and all 78 software rows stay
+pending. `RN31.G.first-world-watchdog` remains an unresolved full-intro startup
+failure with a command queue timeout/current-history refusal. The later passing
+Quick run and passing short V6 source-chunk comparison do not retire it. Both
+complete-player and original-recovery verdicts remain pending; EP04 is partial.
+Next work isolates that failure before remaining input/HUD/camera, progression,
+operation, software and fault proof and the complete EP10/EP11 join.
+
+Historical failed attempts, source versions and hashes are retained. Shared bridge,
+menu session, glyph diagnostics and collector edits do not renew unrelated original
+contracts or old comparison/implementation claims. The new exact reviews record
+those pending consumers; unrelated historical source staleness is not erased.
+New evidence uses SQLite with verified independent local backups; closed stores
+may relocate through hash-verified aliases while preserving source paths/pins.
+No evidence publication, original modification or gameplay balance change occurs.
+
+
+## Native first-World liveness investigation — 2026-11-01
+
+[Research and next discrimination](rendering-watchdog-20261101.md) and the
+[current diagnostic join](rendering-watchdog-results-20261101/joined-01.json)
+record a narrow native policy, `NP.rendering-watchdog-observation`. It covers
+bounded host/event timing, exact retained V3 ring interpretation, explicit
+intro/World GUI faults excluded from nominal acceptance, and as-built compiler
+closure/executable binding. This is scoped diagnostic observation, not a renderer
+repair, original comparison/replacement or new acceptance-leaf verdict.
+
+The retained original ring contains 67,896 unread bytes / 68 ordered commands with
+no CPU_READ; its private publication queue was empty. A controlled 6.2-second
+World GUI stall produces a real 5,004 ms no-ACK watchdog with 68,196 unread bytes.
+Its original producer exits 95, rather than reproducing the old CPU-history
+refusal ordering. A separate intro stall expires the media heartbeat but allows
+matching World output and normal Quit. Media expiry alone is insufficient in
+that control; the specific original callback/host stall remains unknown.
+`RN31.G.first-world-watchdog` stays unresolved and supported-player acceptance
+remains blocked. All five-second guards and native ownership checks remain strict.
+
+Trace08 exposed a collector defect: compiler dependencies were sampled before
+the public rebuild introduced a new header. Its comparison and incomplete-source
+limitation are retained at the original phase. The collector now builds first,
+retains the executable, verifies the linked source set and binary after execution,
+and the comparator rejects omitted dependencies. Current diagnostic execution
+and corruption/late-include/admission/presentation/input controls are joined
+separately. Earlier high/low/Quick evidence and hashes are unchanged; shared
+source edits leave unrelated historical applicability pending.
+
+Execution uses a physical second-NVMe worktree and isolated prefixes with its
+100 GiB reserve; RAM holds builds/staging only. The main-drive 90 GiB guard remains
+active. Failed setup/build attempts, unique source versions and raw evidence
+are retained in SQLite. Local verified backups and exact source/census/review
+accounting are required for closeout. No original or balance changes, publication
+or broad fault/restart, software, progression or original-recovery claim occurs.
+
+The final as-built enabled-intro Quick checkpoint has 55 independent matching
+World swaps, 30 reference Worlds and 52,234 original draws, with zero mismatches
+across 107,869,460 compared viewport/history pixels and normal original Quit.
+The current diagnostic intro-fault run also has 55 matching World swaps after
+media expiry and is rejected by nominal admission. RW01.joined binds 757 current
+source paths, 29 Python methods and six Qt executions. Its new implementation
+and live-observation claims cover only the declared diagnostics; no original
+comparison/replacement or requirement status is promoted.
+
+## Shared evidence storage lifecycle — 2026-11-01
+
+The [storage lifecycle](../../docs/evidence-storage.md) replaces per-worktree
+container growth with shared immutable objects on two independent filesystems,
+verified incremental replication, typed review checkpoints, explicit prefix
+leases and restored execution manifests. Existing source checkouts and unique
+fixture inputs remain retained. The new native policy is storage-only; historical
+report hashes and engine status dimensions remain unchanged. Synthetic recovery
+controls and an actual completed rendering-watchdog batch migration are recorded
+under [storage results](evidence-object-results-20261101/). Prior preliminary
+controls01 retains an interrupted bookkeeping regression; current controls are
+separate immutable results. First-World watchdog attribution/repair and complete
+rendering acceptance remain outstanding.
+
+The [final storage closeout](evidence-object-results-20261101/joined-01.json)
+passes 205 controls in 13 suites with stable inputs, fully hashes 10,155 objects
+in each independent replica and verifies the unchanged legacy reader. Exact
+full restores precede both execution handoffs (47,765 files total). The measured
+retired allocation is 15.75 GiB versus 3.67 GiB for the entire shared pair, a
+12.08 GiB / 76.7% reduction across both drives. Retired page-image encodings are
+explicitly labeled; original report hashes and logical review records survive.
+`ES01.shared-lifecycle` supports only `TOOL.shared-evidence-lifecycle` scoped
+implementation/headless integration. Engine comparisons, the unresolved
+first-World watchdog, and all rendering acceptance gaps remain independent.
+
+[The coverage audit](evidence-object-results-20261101/audit-01.json) has zero
+errors and no storage-specific warnings; the
+[dated summary](coverage/summary-evidence-lifecycle-20261101.md) preserves all
+historical unknowns and stale evidence. No focused-register imports changed.
+
+## Local master integration of rendering preparation and shared storage — 2026-11-01
+
+The [integration review](evidence-object-results-20261101/master-merge-01.json)
+checks actual master648ce219 and incoming45fe9b7f parents. Before accounting
+changes, the entire combined source tree matches the incoming branch, including
+all205 storage-control source fingerprints. Existing engine observations,
+rendering acceptance artifacts and storage proofs are inherited within their
+recorded scopes; historical staleness is retained. No new engine execution,
+requirement completion or replacement is asserted. Pre-existing main-checkout
+metadata edits and untracked reports are preserved separately and remain pending.
+
+## Working-data rollout and layered restoration — 2026-11-01
+
+The wider storage review found 206 working-directory views and 5,873 named runs;
+classification alone grants no deletion or rendering credit. Prior per-file
+archives can sit beneath a new whole-workspace restore. The restore route now
+validates the working path first, selects a historical checkout explicitly,
+expands its sealed parent and continues the original file-level archive when
+needed. Synthetic byte-exact layered restoration and refusal controls cover
+this storage route; old archive/catalog hashes and engine evidence remain
+independent. Current data-transfer results and held reasons remain in the
+mirrored SQLite custody catalog, including failed preflight attempts.
+
+[Layered controls](evidence-object-results-20261101/layered-controls-01.json)
+pass 223 cases in 14 suites with unchanged complete source fingerprints and
+prospective current scope/scenario claims. The
+[rollout survey](evidence-object-results-20261101/rollout-survey-01.json) retains
+the all-working inventory, explicit extra-checkout removal, master integration
+and the first ten legacy-dependent runs held before deletion. No 730 GiB
+reclamation or whole-renderer completion is asserted by the candidate count.
+
+
+### 2026-11-01 — bounded sweep compression throughput
+
+The isolated throughput batch checks raw block identities before compression,
+prepares each new level-six encoding once for both independent stores and bounds
+parallel encoding behind one SQLite writer. Larger eligible allocations receive
+queue priority on the main device. Failure, corruption, source/activity, lease,
+pin, newest-run, quota and full actual-restore boundaries remain required. New
+controls and fresh-store timing reports are stored separately from the prior
+shared-lifecycle and layered-restore proofs. This is storage custody/tooling work;
+no renderer requirement or original-engine comparison milestone is promoted.
+
+## Startup capture worker repair — 2026-11-01
+
+`RW02.worker02` / `NP.acceptance-capture-worker` bind a focused repair to a newly
+observed startup pause. A trace-disabled run retained a 2.076-second ACK gap;
+Linux denied sibling debugger attaches. A separate parent-GDB diagnostic sampled
+an actual pending-ACK interval in GUI-thread `deflate/qCompress`, reached from
+`AcceptanceCapture::append` during paint. Its wrapper and retained byte-identical
+player are explicitly separate from nominal as-built admission. This establishes
+an active blocking stage, without assigning every elapsed microsecond or the
+historical five-second failure to that sample.
+
+Capture append now owns/stamps its input and submits to one FIFO compression/file
+writer. The bounded 256 MiB / 256-job queue includes in-flight work, never waits
+for the sink during append, and refuses an incomplete proof on overload/error.
+Only terminal cleanup joins. Raw/stored/row bounds, wire ordering and all original
+five-second guards/native ownership remain strict. The exact synchronous preimage
+fails the held-compression caller-progress regression; optimized and ASan/UBSan
+worker controls pass ownership/order, bounded overflow, compression failure and
+first-refusal checks. The production reader accepts each complete control and
+rejects its three failure streams. Ring/parser/compiler-binding/admission and
+native/sanitized watchdog interleaving controls pass separately.
+
+The repaired as-built enabled-intro Quick run completes both movies, 102 matching
+World swaps, 78 independent reference Worlds, 137,118 original draws and
+153,694,060 compared pixels with zero mismatch. Media cancellation stays clear,
+the ring drains and normal original Quit retires graphics resources. The bounded
+pending-ACK sampler does not trigger. Slow compression/writes are observed on the
+worker; no caller append crosses the retained 50 ms threshold and timing caps
+are not exhausted. This is finite diagnostic integration, not a general latency
+or performance claim.
+
+`RN31.G.first-world-watchdog` remains unresolved: the sampled current pause is
+below five seconds, and the old callback/OS conditions and CPU-history terminal
+ordering are not recovered. The new policy has scoped implementation/live
+observation; original comparison/replacement dimensions and broad player/recovery
+verdicts remain independent. Shared capture-source changes leave the earlier
+pilot/normal/watchdog claims historical outside the fresh narrow evidence.
+No new acceptance leaf, gameplay balance change, original modification or evidence
+publication occurs. Setup refusals, denied attaches, intermediate source versions,
+negative controls and successful executions remain immutable SQLite evidence.
+See [the investigation](rendering-watchdog-20261101.md) and
+[the exact join](rendering-watchdog-results-20261101/startup-repair-joined-02.json).
+
+## Capture-worker integration into local master — 2026-11-01
+
+The [integration review](rendering-watchdog-results-20261101/master-integration-01.json)
+reconciles actual master4fa166010 and repaird0bf7a551 parents. Product and test
+sources match the repair exactly; independent coverage IDs and exact review
+receipts from both parents are retained. The worker regression and full-intro
+comparison remain inherited observations within their original scope. This
+merge adds no engine execution and does not resolve the historical five-second
+watchdog. Main-checkout pending edits remain separately retained and uncommitted.
+
+## Diagnostic parent sampling and observed acceptance input — 2026-11-01
+
+[RW03.sampler04](rendering-watchdog-results-20261101/sampler-joined-04.json) binds
+only NP.rendering-stall-sampler and NP.acceptance-input-receipt-wait. The real
+unchanged ELF is a parent-GDB child; a single generation is selected through its
+public admission journal, stable outstanding V3 bytes trigger one stack at 1.5s,
+and current fault03 samples the injected GUI sleep before the unchanged 5,000ms
+refusal. Ten sampler controls plus existing admission/build/ring guards pass.
+
+Strict comparison of baseline intro02 found no first original input receipt.
+The acceptance-only driver now holds one Qt publication until the original poll
+is observed, then waits for release before later actions, with a 3s admission
+bound and no retry or producer-lease renewal. Optimized/sanitized delayed-peer,
+identity/partial/stale and missing-peer controls pass. Current intro03 observes
+all four original transitions and normal Quit; 92 swaps match 64 independent
+original/history Worlds and 147,273,180 pixels, with zero mismatches. Both movies
+complete 1,777/1,004 video frames without producer cancellation. Integration is
+scoped diagnostic observation; original comparison/replacement dimensions and
+all nominal acceptance leaves remain unpromoted.
+
+RN31.G.first-world-watchdog remains unresolved. Distinct traced intro01 Main/Quick
+transition failure RW03.G.intro-main-transition also remains unresolved: its V3
+pending peak was 52ms and no World began. Later passes do not retire either.
+The failed optional observer provides no usable timeline; failures, source
+preimages and provenance are retained. Older whole-source player/equivalence
+claims remain historical/pending after shared collector/driver changes. See
+[the investigation](rendering-watchdog-20261101.md).
+
+The [current generated summary](coverage/summary-watchdog-sampler-20261101.md)
+and [artifact/audit review](rendering-watchdog-results-20261101/sampler-artifact-review-01.json)
+record zero audit errors and current implementation/diagnostic integration support
+for these two policies only. Historical staleness and unknown recovered ranges
+remain explicit; local staged checks still execute independently.
+
+## Watchdog follow-up integrated with cursor diagnostics — 2026-11-01
+
+[RW03.integration01](rendering-watchdog-results-20261101/sampler-integration-joined-02.json)
+binds the actual combined source, including the independently added cursor
+provenance tooling. The explicit drawing-only cursor exercise retains its timed
+input/cursor schedule and gains no receipt-wait input admission. The normal
+acceptance route keeps the new observed-press/release wait; the current strict
+comparator accepts all four original transitions. Neither existing producer guard
+nor the original input hook changes.
+
+The fresh fault samples stable pending bytes after 1.542s, before the unchanged
+5013ms refusal. The combined full-intro run completes both movies, two World visits
+and normal original Quit with a drained ring and zero owners. Its 89 swaps match
+the independent original/history reconstruction across 144967420 pixels with zero
+mismatches. This is current scoped diagnostic evidence; movie/audio content,
+physical scanout, nominal player requirements, the historical five-second
+RN31.G.first-world-watchdog and separate RW03.G.intro-main-transition remain
+outside the claim. Both unresolved failures retain their original evidence.
+
+The later concurrent oracle correction `e5fc9a0eb` is excluded from this bounded
+08f813e1d/2c22e2156 integration snapshot. Its changed paths overlap none of the727
+retained native engine/capture sources. The present comparison preserves its
+original oracle fingerprint; a separate integration must rebuild the corrected
+original history over the same immutable capture before claiming current-master
+comparison. See [the review](rendering-watchdog-results-20261101/sampler-concurrent-oracle-review-01.json).
+
+## Watchdog integration with the corrected original oracle — 2026-11-01
+
+[RW03.oracle-integration01](rendering-watchdog-results-20261101/sampler-oracle-integration-joined-01.json)
+combines the normally committed bounded watchdog integration with the separate
+original distortion-phase correction e5fc9a0eb. Every one of the727 captured
+native engine/capture sources matches; the player ELF and actual full-intro run
+are unchanged. Fresh independent original history is rebuilt with the corrected
+reference helper, using the complete retained producer prefix and verified source
+assets. This launches no second native game process.
+
+The corrected original/history comparison again matches89 captured World swaps,
+59 original Worlds and144,967,420 pixels without mismatch; all four original
+input transitions and fullscreen intervals are revalidated from the same capture.
+Neither native output pixels nor captured original destinations are oracle inputs.
+Both movies completed1,777/1,004 frames and normal original Quit; the drained ring,
+zero owners and1.542s stack request remain exact matching-source native
+observations. Old comparisons, source fingerprints and failed report consumers
+remain immutable.
+
+Only the two narrow native sampler/input-wait policies have current scoped
+implementation/live observation. Historical RN31.G.first-world-watchdog and
+RW03.G.intro-main-transition remain unresolved; no nominal player requirement,
+complete original recovery, movie/audio content, physical scanout or replacement
+milestone is promoted.
+
+## EP06 operation frontier and nominal storage failure — 2026-11-01
+
+The [reviewed frontier](rendering-ep06-20261101.md) reconciles all 18 EP06
+operations in both configurations (36 obligations), preserving all 156 acceptance
+rows, both EP06 gate rows and the separate six EP09 fault-operation obligations.
+All 17 candidate payloads/assertions are verified: three retain matching recorded
+sources; 14 remain historical for changed sources. The new normal-route observer
+does not exercise extra actions or weaken nominal admission. Explicit software
+admission also verifies the actual Mesa provider; EP04 progress stays default-only.
+
+Nominal default storage01 reached Preferences Cancel, Save and Mini Load, then
+failed before Main/rebuild/normal Quit with a resident cancellation and command
+watchdog. The retained ring has 1,010,864 unread bytes, including CPU_READ. Of850
+actual original GPU COPY calls,848 bind complete independently checked command
+intervals and two lack output. All3,951 checked COPY destinations match; this
+incomplete session receives no acceptance credit. Software quick01 failed during
+resource acquisition before launch and proves no renderer result. All original
+manifest and source/binary stability checks passed; negative evidence is retained.
+
+EP06.G.storage-main-command-stall is a new current boundary. The post-click
+5,023ms grab is an unconfirmed lead; collect the GUI stack and ring before timeout
+and repair the actual cause before repeating nominal storage in both targets.
+The historical first-World and intro/Main failures remain unresolved. The new
+reconciliation and its47 focused controls close no whole operation, original
+recovery, replacement, lifecycle or broad player milestone.
+
+## Bounded Main to Quick timeline — 2026-11-01
+
+[MT01.timeline01](main-quick-timeline-results-20261101/joined-01.json) records an
+opt-in bounded host sideband and durable on-disk SQLite collector. One controlled
+Qt read-suppression timeout retains original callback entry/return, wire ACK and
+client retirement order under unchanged deadlines. Exactly two unforced enabled-
+intro attempts complete Main/Quick, both movies and normal original Quit. The
+unforced failure did not reproduce; neither RW03.G.intro-main-transition nor
+RN31.G.first-world-watchdog is retired and no product repair is asserted.
+
+Only NP.main-quick-timeline gains scoped implementation/live-observation support.
+Original callback execution times are unavailable; receipt intervals and logging
+loss/cap limits remain explicit. Current optimized/sanitized journal controls,
+SQLite abrupt-exit persistence and default startup/movie regression pass. The
+post-retention control handoff metadata refusal and exact old producer are kept;
+no extra controlled launch was used. Other shared LiveMenuSession source domains
+remain historical/pending. See [the investigation](main-quick-timeline-20261101.md).
+
+## Main/Quick timeline and concurrent EP06 integration — 2026-11-02
+
+The [integration review](main-quick-timeline-results-20261101/integration-01.json)
+reconciles actual c1afab709/e414b4192 parents in a separate owned checkout. All413
+recorded timeline source fingerprints and contracts match exactly; both parent
+evidence sets and master statuses are preserved. This adds no native attempt or
+original execution. MT01 retains one calibrated control, two unforced full-intro
+passes and the explicit not-reproduced result. Both historical timeout failures
+remain unresolved; unrelated EP06 and nominal storage results retain their scope.
+
+## Campaign/progression preparation — 2026-11-01
+
+`NP.rendering-progression-scenarios` prepares three bounded EP05 cases: fresh
+Apprentice Forest of Pain through the original Camulos portal/victory/Realm
+route into Plains of Greenhenge, a separate victory run, and a separate natural
+defeat run. Public Preferences select640x480 or 800x600; the presented World extent
+is asserted. Ordinary physical-input navigation/combat candidates do not modify
+simulation, scripts, health, mana or progression. Quit/reload/wrong outcome,
+same-region re-entry, missing original OK and owner/thread changes refuse proof.
+The cases retain 780-second driver and 540-second World-input deadlines, default
+and software variants, first/later World continuous capture, callback assertions
+and a connected independent history comparator. No live case was run here.
+
+Static input evidence `RPS01.inputs-final` pins 31 candidate sections / 124 MAP, NOD, EVT, MPS
+files, ordered Celtic1/2 recipes, mission scripts/configuration and an unchanged
+355,405-byte save reload control. Actual random placement/grid and save semantic
+position remain unknown. [The first preparation](rendering-progression-results-20261101/inputs-01.json) retains the unsupported installed
+executable refusal; `RPS01.pristine-restoration` pins restoration only in the
+owned copied installation. Original manifests pass before/after. `RPS01.guards-final`
+records 5 new tests with 13 rejection mutations, 10 pilot and 13 normal companion tests,
+and a real Release Qt player link. These are preparation checks, not engine
+comparison/integration/replacement. All reports/raw selected inputs are SQLite.
+
+Live natural outcomes, later-map completion, exact first-frame boundaries,
+original input consumption and populated object/vptr/generation acquire/release
+handoff evidence remain pending independently of final zero-owner checks and
+pixel comparison. No artifact5 row, existing historical result, supported-player
+or original-recovery decision is promoted. Shared smoke/header/build source drift
+leaves previous evidence historical; the EP04 watchdog failure is unaffected.
+See [runbook](rendering-progression-preparation-20261101.md).
+
+### Initial live continuation and refusals
+
+The continuation in [live execution record](rendering-progression-live-20261101.md)
+preserves two setup failures and an actual original natural defeat from the
+failed default 800×600 progression candidate. `RPS02.startup-negative` stopped
+before original execution because public Launch was omitted;
+`RPS02.manifest-negative` stopped at the real launcher's missing installation
+manifest. The corrected driver clicks public Launch, forwards launcher output,
+and preparation materializes/pins the physical TSV with stale-pin refusal.
+Five actual Qt event-loop control cases and process-level killed-helper snapshot
+coverage accompany the changes; `RPS02.guards` records 37 tooling checks and
+actual Release links. `RPS02.inputs` fingerprints this corrected source phase.
+
+`RPS02.progression-negative` executed full enabled intros and fresh Celtic region
+1 in a native 800×600 World. The original hero died: report discriminator 0,
+title `Defeat!  ( The Forest of Pain )`, text19 `You were killed.`. The retained
+2,579-row gameplay trace has zero original player spell casts and unchanged
+12,800 mana; Camulos remained alive at health100. This establishes that run's
+natural death, with high confidence, and refuses progression. It does not prove
+original OK/return, the separate defeat scenario, retirement, victory, later-map
+entry, pixel equivalence or a renderer defect. Original manifests passed and the
+private Wine process stopped. Raw report/channel bytes and byte-exact differing
+intermediate source bodies remain pinned in SQLite; old hashes are unchanged.
+
+Unexpected report strings and failed flows are now retained before refusal;
+atomic incremental physical-input snapshots survive an owner terminating the
+helper. The revised victory policy uses ordinary starting Zombie/Fireball controls
+and requires original caster mana debits/new living owned Zombies before counting
+casts. Fixed thresholds/projections are bounded test policy, not recovered rules.
+Diagnostic skip-intro acquisitions/comparisons are explicitly ineligible for
+nominal default acceptance. The first longer combat diagnostic also reaches the
+existing1GiBviewport capture ceiling before mission end; no whole-session pixel
+history can be claimed from that stream.
+
+The campaign report focused/central registers retain the narrower terminal
+observation separately from their earlier private/synthetic headless result.
+No comparison, live integration, replacement or artifact5 status is promoted.
+Current engine validation remains pending, including CMake/shared player source
+drift, full report return/cleanup and populated object/vptr/generation handoffs.
+
+The revised skip-intro progression attempt also reached natural death. Its
+separately labelled `RPS02.progression-diagnostic-recovery` verifies 291 raw
+artifacts (4,101,798,516 bytes), two original successful Zombie debits and two
+Fireball debits with two defended20-damage Redcap hits. Camulos stayed at100HP;
+both Zombies were left behind. The original collector emitted no final receipt;
+recovery does not invent its lost in-memory exit/source assertions. Exact prior
+source bodies remain retained. The viewport terminal record explicitly says
+`complete: false` / `Acceptance capture stored budget exceeded` after
+5,852,154,000 raw bytes. Wrong outcome, incomplete pixel history and collector
+custody are separate limitations.
+
+Independent defeat execution `RPS02.defeat-default-negative` stopped before World
+at a menu-adapter timeout. `RPS02.defeat-diagnostic-negative` entered the800×600
+World, then hit a cancelled resident producer/original exit124after about21seconds
+of gameplay. No original report OK/clean return is established. The actual
+comparator refusal `RPS02.comparison-refusal` stops before oracle execution at
+`Incomplete actual public acquisition`; it grants no equivalence credit. These
+source-bound failures predate independently landed main capture-worker changes
+and do not claim current-master validation. Separate victory, later map,
+640×480 and software runs remain unexecuted after these refusals.
+
+The final collector now checkpoints exact execution assertions before large raw
+imports and records ordinary artifact-import failures. The checkpoint explicitly
+has success false/artifact retention incomplete. `RPS02.inputs-final` and
+`RPS02.guards-final` pin the final source phase and successful37tooling checks/
+Release links; prospective live execution of that checkpoint remains pending.
+The prior input/guard and live source hashes remain historical. No engine
+status or supported-player acceptance changes.
+
+### Campaign capture and report-boundary continuation — 2026-11-01
+
+The [owned continuation](campaign-progression-validation-20261101.md) combines
+the campaign preparation/live-negative branch with the current asynchronous
+capture worker. `NP.campaign-viewport-lossless-capture` and
+`NP.campaign-source-lossless-capture` record opt-in lossless diagnostic transports,
+with optimized/sanitizer and independent-reader controls. Every source record
+and paint is preserved; bounded refusal remains incomplete evidence. These
+policies do not replace original simulation or renew historical renderer proofs.
+
+`RPS03.defeat-manual-negative` reaches a natural original defeat, original report
+OK and fresh parent return at 800×600 after enabled intros. The automatic helper
+waits for the wrong World-pop boundary; subsequent manual public Main Quit is
+recorded separately. `RPS03.report-order` identifies callback begin before World
+pop and binds the correction. Automatic rerun, full original pixel comparison,
+victory, later-region entry, mode/provider matrix and populated lifetime closure
+remain pending. `RPS03.waypoints` calibrates a power waypoint against retained
+spawn anchors; actual occupation/mana recovery and combat policy need live proof.
+
+The fresh `RPS03.defeat-default-high` run completes automatically after enabled
+intros: natural defeat, original report OK ACK 5, Main return ACK 6 and normal
+Main Quit. Complete V4 source and V2 viewport captures retain all 1,820 Worlds
+and over 10.5 GB decoded viewport history. `RPS03.defeat-default-high-comparison`
+reconstructs 2,055,857 original draws and matches all 3,007 native presentations
+(2,949 World swaps), totaling 2,629,621,500 pixels with zero differences and zero
+remaining surfaces. Original files, source/compiler closure and executable stay
+stable. No supported-player or populated lifetime promotion is made.
+
+A subsequent input-only phase adds actual-frame HUD/aim geometry and a power
+waypoint with required original debit/living-summon/mana-recovery observations.
+Optional passive hover observation is explicitly diagnostic. That phase still
+requires live victory, later-region entry and the remaining mode/provider cases;
+the successful defeat phase's hashes remain historical after shared driver/build
+source edits. Gameplay balance and original script/simulation are unchanged.
+
+Campaign continuation RPS03: optional-hover diagnostics now confirm ordinary
+movement to the Forest power tile, a 17-mana original Zombie summon and full
+50-mana recovery within the corrected 90-second policy. The third probe reaches
+Camulos but ends in natural player defeat; one Fireball hits an owned Zombie.
+`validation-camulos-tactics-01.json` preserves the exact negative observations.
+A subsequent bridge-bypass/boss-only bounded Fireball burst policy and allied
+firing-line guard pass 93 preparation/Qt controls; fresh victory and region 2
+entry remain pending. The earlier dedicated default 800x600 defeat and independent
+2,629,621,500-pixel match retain their historical source bindings; no engine
+integration, populated lifetime or replacement status is promoted.
+
+RPS03 diagnostic 04 now reaches the original Forest natural victory title and
+21 strings, original OK callback return and World pop to Realm. The overall
+progression attempt times out at its first Realm Map tutorial, so region 2,
+normal Quit and independent comparison remain absent. The captured native frame
+and exact passive records are retained in `validation-realm-tutorial-01.json`.
+The next bounded ordinary-dismissal/deferred-region-selection driver passes 98
+controls, including an actual isolated helper wait/readiness test. Central and
+focused natural-report/Realm entries include these scoped observations while
+retaining their existing integration/replacement statuses and historical hashes.
+
+RPS03 diagnostic05 ends in natural defeat before the new Realm tutorial step.
+`validation-motion16-01.json` identifies original callback0x10 followed by valid
+strictly later World readiness that the former0x60 driver predicate rejects.
+The corrected0x70 physical-input policy retains all position/button/owner/cast
+checks, passes immutable-row replay and99 preparation/Qt controls. This is a
+readiness policy correction; fresh original mission/progression remains pending.
+
+RPS03 diagnostic06 confirms full mana recovery but times out while its direct
+bridge-bypass route loops; wizard health remains196. `validation-bridge-loop-01`
+retains the exact samples and recorded frame. The next pinned policy restores
+the named Bridge point and documented W-twice/Return controls. A portrait-only
+selection/camera diagnosis was unconfirmed and is withdrawn.99 progression guards
+and two production Qt key-input/DPI controls pass; original keyboard consumption,
+tutorial dismissal and full later-map progression still require fresh execution.
+
+RPS03 diagnostic07 confirms a visible opening Hermes conversation with unchanged
+actor state while passive sampler rows keep advancing. The sequence-only detector
+misses it and exhausts the no-click budget. `campaign_dialogue.py` now supplies a
+bounded ordinary Return hint after six seconds of actual actor-state quiet,
+without changing the record parser or claiming a dialogue/clock API. Immutable-row
+replay yields a hint at6.812seconds.105 progression controls and two production
+Qt key/DPI controls pass at source pins12; complete original progression remains
+pending. Historical source fingerprints and prior results stay unchanged.
+
+RPS03 optional-hover diagnostic08 exhausts its matching-Region-callback contract;
+advancing World samples alone do not satisfy that extra predicate. The ordinary
+nominal default800x600 victory attempt then reaches power summon/debit but fails
+at native CPU-history authority (generation466,family0/route0,original exit124).
+`validation-native-history-refusal-01.json` retains exact bytes; caller/reader cause
+remain unassigned and no authority guard is weakened. A separate no-hover
+skip-intro run recovers33→46mana before its90-second driver bound. The next policy
+allows180seconds for actual debit recovery within unchanged540/780bounds and
+passes105controls at input pins13. PoP ownership/regeneration formulas, complete
+current progression and nominal acceptance remain separate pending claims.
+
+
+### Campaign bounded source-13 closeout — 2026-11-01
+
+The [current no-hover diagnostic](rendering-progression-results-20261101/validation-progression-nohover-high-02.json)
+fully recovers the observed power summon debit and reaches Camulos combat, but
+original natural defeat at 322,994 ms correctly fails the required victory
+assertion. All 290 artifacts, exact source/compiler/binary closure, before/after
+original manifests and stopped private Wine are retained. [Combat diagnosis](rendering-progression-results-20261101/validation-refill180-combat-01.json)
+binds 11 accepted player casts, one Camulos Fireball hit from 100 to 80 HP and the actual
+natural report. Input acceptance is separate from impact and outcome; no general
+camera/collision/regeneration formula is inferred. The 105 current preparation/Qt
+controls pass. Full current victory/settled Realm/region 2, 640/software matrix,
+unchanged-save semantics, populated lifetime and supported-player acceptance
+remain pending. Historical successful default defeat and its 2,629,621,500-pixel
+zero-difference comparison retain their own source phase and hashes. No status
+is promoted by this preparation/negative execution batch.
+
+
+The [final campaign preparation audit](rendering-progression-results-20261101/validation-audit-closeout-04.json)
+passes with no structural errors, source-index drift or changed focused imports.
+Three explicit headless prepared scenarios bind actual native Qt controller
+fixture checks through a separately scoped evidence ID; all original-integration
+and replacement statuses remain unchanged. Static preparation, controlled Qt
+integration and actual original transitions remain separate. The7943new SQLite
+reference/payload checks pass; rejected metadata audits are retained, and the
+standing sweep08 was resumed after the owned writer checkpoint was released.
+
+## Bounded COPY proof worker and complete storage matrix — 2026-11-02
+
+[SM01.storage-worker01](storage-main-stall-results-20261101/joined01.json) binds
+scoped current implementation/headless integration for the targeted sampler,
+COPY proof worker and explicit default/software storage join.
+SM01.capture-burst01 separately binds current live observation of the bounded
+acceptance recorder. GL readbacks stay on their owner; owned CPU expectation,
+comparison, hashing and witnesses run FIFO behind a 512 MiB / 256-job bound. The
+commands recorder allows 4,096 small queued fragments under its unchanged 256 MiB
+byte bound; image queues remain 256 jobs. Overflow/error refuses proof, and all
+original deadlines/ownership remain unchanged.
+
+Four enabled-intro nominal cases complete Cancel/Save/Mini/Main Load, two rebuilds
+and normal Quit at both actual World sizes in both named configurations. Their
+3982 World swaps / 3727119000 pixels and 29104 selected COPY destinations match independently. 613 COPY destinations lack individual diagnostics after the declared observer cap; keep their exact missing intervals and diagnostic success=false, separate from complete primary viewport/history comparison.
+Only 8 selected current storage leaves pass; 148 requirements and both final
+decisions remain pending. EP06.frontier02 reuses the same captures for scoped
+facets on 22 of 36 rows, accepting zero whole operations.
+
+The earlier high03 game completion has an immutable rejected comparison because
+its command recorder overflowed. Two sampled failures, the separate late menu
+timeout, source preimages and the wrong-root control/build attempt are retained.
+No finite pass retires historical timeout causes or renews broader original/engine
+claims. The incoming campaign histories/claims and historical master startup
+ledger sections are preserved; 9,637 missing artifact edges gain retrospective
+exact receipts without asserting past gate success. See [the review](storage-main-stall-20261101.md).
+
+## Retained software-low COPY suffix — 2026-11-02
+
+[CT01.offline01](copy-tail-results-20261102/joined01.json) attributes all 613
+unchecked COPYs to unique original caller intervals and five already documented
+wrapper sites. The suffix covers 353 keyed/260 opaque commands, 454 CPU-prepared/
+159 GPU-prepared routes and World generations 976..1041. Generation checkpoints
+bracket 100 commands after-load through after-recreate-load and 513 after that
+final checkpoint; exact menu-action/clock correspondence remains unproved.
+
+Fresh bounded isolated GL fixtures reconstruct input states from retained owned
+history and independent original oracle Worlds. All 613 full native destinations,
+159,181,280 WORDs, match; an omitted-draw control is rejected and nine join controls
+pass. No game/original executable is run or live pixels recovered. Only the new
+offline tooling policy gains scoped implementation/headless support. Original
+diagnostic cap/failure, 613 missing actual-run outputs, all 36 whole-operation
+gaps, 148 remaining acceptance requirements and both final verdicts remain pending.
+See [scope and reproducibility](copy-tail-proof-20261102.md).
+## COPY tail source-only follow-up — 2026-11-02
+
+`CT01.source-replay01` / `SC.copy-tail-source-replay` attribute all 613 missing
+software/640x480 storage COPY witnesses to unique closed original call intervals:
+454 CPU-prepared and 159 GPU-prepared, without clipper/self-alias branches.
+Ninety-three use World generations 976–989 and 520 use 990–1,041. The latter
+bucket includes the final checkpoint generation; this is a generation-based
+classification, without per-command temporal/menu attribution.
+See [COPY tail replay](copy-tail-replay-20261102.md) and its SQLite-backed
+`copy-tail-replay-results-20261102/trace01.json`.
+
+The separate offline harness replays 73,615 V5 commands and 1,041 source-only
+native Worlds. All 8,805 COPY destinations / 2,151,556,376 pixels match the
+independent expectation, as do all 8,192 captured source/before/actual/expected
+hash anchors and all 61 complete CPU-read replies. The additional 613 checks
+cover 159,181,280 destination pixels. Only the offline observer uses a 16,384
+count ceiling and bounded sink waits; production sources/deadlines remain
+unchanged, readbacks remain bounded to 32 GiB and FIFO memory to 512 MiB. Exact
+binary/link map, 136 source fingerprints, 14 refusal/identity controls, three
+failed harness/setup attempts and exact changed source preimages are retained.
+Original manifest verification passes before and after execution.
+
+This closes native replay self-consistency for the 613 destinations. Their
+missing historical execution witnesses remain missing: the original diagnostic
+stays success=false/truncated=true, and 159 original GPU-call intervals still
+lack that live output witness. Historical source hashes/results are unchanged.
+Original COPY equivalence, whole operations, ABI/font/DC/unseen branches, broader
+journeys and both final verdicts remain pending. Storage admission remains 8/156
+and EP06 whole-operation acceptance remains 0/36. The next acquisition can target
+the precise caller/World list instead of rerunning solely for native COPY checks.
+
+Both offline histories also agree on all 613 tail sequences: 2,452 source,
+before, expected and actual hash comparisons pass. `CT01.cross-history01` binds
+143 current source files and four deliberate hash-mutation refusals. The
+original-oracle fixture inputs never enter the continuous native harness.
+Generation-990 bucket conventions differ by seven calls, with no exact temporal
+attribution implied. Historical outputs and whole-operation decisions stay open.
+
+## Retained storage CPU-read identity binding — 2026-11-02
+
+[RDB01.binding01](cpu-read-binding-results-20261102/binding01.json) freshly joins
+212 retained requests/replies across the four nominal storage cases to their
+existing independent comparison digests, live logical surface lifetimes,
+generation/nonce identities, terminal reply files and shutdown completion totals.
+Counts are37/59/61/55 for default high/low and software low/high respectively.
+All recorded completion kinds are non-Lock GetDC-or-panel materialization.
+
+Only16 detailed lifecycle records survive;196 requests lack those optional
+details. The128-record/four-per-reason logger can suppress duplicates and drop
+contended records, so absence is not missing execution. No original caller PC,
+GetDC-versus-panel split, complete DC acquire/release or per-request physical
+lease proof is recovered. Counter files carry no session identity beyond exact
+co-retention in the acquisition. Ten refusal/identity controls pass; original
+manifest bookends verify2927files. No game, original executable or new native
+replay runs. Only the new tooling policy gains scoped headless support; original
+CPU-authority/reader milestones and all148remaining/36whole-operation/final
+decision boundaries stay unchanged. See [the binding scope](storage-cpu-read-binding-20261102.md).
+
+## Upstream COPY caller provenance — 2026-11-02
+
+`NP.copy-caller-provenance` / `SC.copy-caller-provenance` add an opt-in scalar
+companion to the closed V2 COPY census. Seven pinned original wrapper layouts,
+fourteen API sites and the existing Scene detour/frame handoff identify original
+callers without stack searching, source/key mutation or rendering admission
+changes. `CALLER01.layouts01` records static byte/layout inspection only;
+`RI.copies` gains no implementation, comparison or replacement milestone.
+
+`CALLER01.quick05` observes 1,269 calls through END/normal Quit with zero owners:
+345 resolved original calls at 20 E8 sites/21 routing groups, 899 code mismatches
+behind the native cursor protected-view adapter, and 25 unsupported fills.
+All 78 resolved GPU calls come from original return RVA0x6ba01;77 have complete
+independent output intervals. The other267 resolved calls have CPU routing and
+no new per-upstream-caller pixel claim. All observed direct sites match existing
+static candidates; nine still lack discovered owners.
+
+The worker drops99 output comparisons under the unchanged512MiB queue budget;
+one is a resolved GPU call and receives no output credit. The complete scalar
+observation and positive per-call proof do not close strict whole-output
+validation. Five retained attempts distinguish launcher/staging refusals,
+expected installed-detour guard failures and the old strict-output failure.
+Exact failed-source preimages, reports, raw data and current source hashes remain
+immutable and locally retained in SQLite. Thirteen caller tests, eighteen GPU
+branch tests and the fourteen-site native controls pass. Original manifest
+bookends verify2927files.
+
+Natural self/keyed-GPU counts remain0finite observations, not global absence.
+Next: add a separately validated read-only handoff at the existing native cursor
+copy scope, preserve native-service/indirect callers as unknown, and test exact
+wrapper/thread/marker/view identities before one bounded acquisition. Use that
+caller map for targeted natural-branch research. No scope decision is required.
+Original driver/ABI comparison, arbitrary readers/aliases, whole operations0/36,
+storage8/156 and final verdicts remain open. See [the reviewed caller baseline](copy-caller-provenance-20261102.md).
+
+## Cursor COPY provenance handoff — 2026-11-02
+
+`NP.cursor-copy-caller-provenance` / `SC.cursor-copy-caller-provenance` add the
+separate opt-in V3 cursor handoff. Exact installed detour/trampoline guards,
+provider owner/thread and backing lifetime identities, protected views and
+assembly-published original return slot/marker bind the actual entry caller.
+Only the active top scope matches. Native-service/indirect callers retain their
+actual return PC; no queue enqueuer or arbitrary stack candidate substitutes.
+Default ownership, operands, leases and copy admission remain as authored.
+
+`CURCALL01.quick01` freshly observes1027application calls with752source hashes
+unchanged: all1002selected COPYs resolve to41original direct sites/44routing
+groups.695calls use all five native cursor wrappers at21sites;307use the Scene
+handoff.25fills remain unsupported by the caller reader. The existing strict
+whole-COPY validator compares all1002outputs (900CPU,369CPU-keyed,102GPU);
+102detailed upstream GPU intervals,54from cursor wrappers, also have complete
+output. END/normalQuit/zeroowners and2927original-manifest bookends pass.
+
+Nineteen context refusals,9actual production PE32 thunk checks,15caller-reader
+tests,18GPUbranch tests and14-site native resolver/publication controls pass.
+The thunk probe consumes no original image. The new run has no missing outputs;
+old V2 fingerprints and99omitted comparisons remain unchanged. The V3 policy is
+finite diagnostic observation, not a refreshed broad cursor lifetime/driver
+comparison, CPU per-upstream pixel policy, nominal acceptance or live replacement.
+
+Natural self/keyed-GPU counts remain0finite observations. Fifteen observed sites
+lack discovered owners. The retained static/live subtraction leaves115of156
+direct-call candidates unobserved, including11explicit-rectangle and28keyed
+sites. Next research those source/destination producers, alias and GPU-authority
+prerequisites, and controlling actions before selecting another scene. Dynamic
+operands and scene semantics remain hypotheses until traced. Whole operations
+0/36,storage8/156, original ABI/driver/resource/readers and final verdicts remain
+open. See [the finite cursor caller baseline](cursor-copy-callers-20261102.md).
+
+## Bounded CPU-reader/DC observation — 2026-11-02
+
+`CRJ01.observation03` adds a loss-refusing opt-in mapped sideband and a strict
+SQLite-backed join of one enabled-intro software640x480 storage diagnostic.
+The sole charged attempt reaches normal Quit: 703 records, 178 closed contexts,
+43 complete CPU request/reply/physical-validation joins and 87 retired DC borrows,
+with zero drops or error flags. Actual World paint metadata confirms640x480;
+two auxiliary40x40reads are retained separately. Reader reasons split37GetDC,
+3Preferences,2Load and1Save. No new pixel comparison or nominal acceptance is
+claimed. Twelve reader controls, optimized/sanitized reservations, Wine opt-in/
+LastError controls and two independently compared DC regression cases pass.
+
+Four preflight contexts share a recorded caller allocation/RVA but lack a pinned
+binary candidate, affecting six reads. Strict complete_observed_chain remains
+false. Direct staged-executable caller matches use PE-header metadata and do not
+verify mapped code or recover original upstream semantics. The earlier analyzer
+extent refusal, no-CRT build refusal and stale legacy fixture failures remain
+immutable. Fixture-only session shutdown and RGB565 oracle corrections do not
+change production rendering policy.
+
+Only the new diagnostic policy gains scoped implementation/live-observation
+support. Original CPU authority, DC/font equivalence, arbitrary readers, historical
+stalls, storage8/156, whole operations0/36 and final verdicts remain open. Shared
+runtime edits can stale earlier evidence without renewing it. See [the bounded
+result and missing links](cpu-reader-journal-20261102.md). No second game attempt
+or gameplay change was made.
+
+## CPU-reader / cursor source integration — 2026-11-02
+
+Frozen CPU-reader0b34c8596 and cursor7b91ee635 are integrated in a separate owned
+batch. The public pilot retains both opt-in routes and rejects their combination.
+CRJ01.combined-controls01 supplies current optimized/sanitized journal, Wine
+mapping/LastError,12CPU-reader,15COPY-reader, portable cursor/call-site and mixed
+flag refusal checks. It launches no original game and supplies no new live claim.
+Both parents' historical observations keep exact source hashes and milestones;
+shared input changes leave current combined-code live validation pending. The
+43CPU/87DC observation's four caller gaps remain explicit, and storage8/156,
+whole operations0/36, original comparisons/replacement and final verdicts stay
+unchanged. See [the integration boundary](cpu-reader-integration-20261102.md).
+
+## Campaign transition continuation — 2026-11-02
+
+[RPS04.victory-region-negative](rendering-progression-results-20261101/completion-progression-default-high-20261102-02.json)
+observes natural Forest victory, its original50XP report/OK, and a settled Realm
+after ordinary tutorial dismissal. The overall acquisition fails at the next
+native projection. Original Realm Activate is acknowledged and the retained
+viewport shows The Plains of Greenhenge entry, but the native Region snapshot is
+rejected. This is no proof of an actual region2 World, normal cleanup, independent
+comparison or lifetime completion. A bounded read-only rejection tracer retains
+the exact guard line and its source fields on a subsequent reproduction; no
+Region admission predicate is relaxed. Diagnostic03 instead dies after defeating
+Camulos and supplies no Region guard evidence.
+
+The historical generation466 CPU refusal now has same-launch module/address
+normalization: generated MnmDraw RVA0xe28c, the Fast wrapper's draw call return.
+Its original admission failure remains unresolved. Terminal authority/bridge
+records preserve the existing fail-closed behavior, and actual PE32 controls
+reject absent, failing and lying reader callbacks. Six active-reader controls
+pass separately. New acquisition provenance freezes native runtime/build inputs
+as well as the Qt compiler closure; historical hashes remain unchanged. Current
+108 preparation/Qt controls pass in their recorded phase. These scoped findings
+do not promote original integration or live replacement statuses. See the
+[batch findings and remaining boundaries](campaign-transition-completion-20261102.md).
+
+RPS04 diagnostic06 identifies the separate Realm Activate refusal: valid original
+mouse-ring index15 is rejected by the native maximum3 check. The established
+original contract has32 records of40 bytes; both native bounds now use exactly
+0..31. [Scoped private controls](rendering-progression-results-20261102/realm-ring-controls-01.json)
+pass128 admissions/131 actions/58 guards through the unchanged original Realm
+tick, checking both modes, all positions, exact1280-byte restoration and preserved
+selected-index advance. Held physical presses and invalid/deferred-invalid
+indices remain refused. Native PE compilation passes. This corrects a concrete
+native ingress bug; fresh live activation and the distinct progressed Region
+projection/World boundary remain pending. Historical evidence and statuses are
+unchanged.
+
+RPS04 diagnostic07 now reaches original Region2 after the ring-bound correction.
+The exact rejected parent has null config/map/callback pointers and retained
+selected-region2/realm-kind1 metadata; the resident-resource-only policy refused it.
+A separate strict suspended-parent case passes [24 original entries/31 refusals](rendering-progression-results-20261102/region-parent-controls-02.json),
+including the actual captured Region2 projection/Enter destination with dynamic
+pointers relocated. Parent allocation release/lifetime is not inferred from
+null pointers. Live travel, second World, cleanup and comparison remain pending.
+
+Diagnostic08 instead ends in natural defeat0 and correctly fails victory before
+exercising those corrected gates. The publisher-documented ordinary guard/follow
+candidate now has a bounded passive +906 reference trace, fresh living identity
+checks and observed bridge movement requirements. [Fresh113 preparation/Qt controls](rendering-progression-results-20261101/completion-guards-20261102-02.json)
+pass; actual delivery/reference/movement and reliability remain pending. This
+does not implement the outstanding custom commander feature or replace AI.
+
+
+Diagnostic10 verifies ordinary follow reference, bridge movement and three owned
+Zombie melee damage rows before natural50XP victory. Both native adapter fixes
+then pass, with actual Region2 Enter and final ready Realm location/destination2;
+the host still times out before a second World claim. Current private controls
+pass36 Enter/34 refusal/18 Qt cases with name-derived realm kind and both guarded
+location relations. The schema2 driver now separates destination travel from
+battle entry and requires a fresh rendering generation plus original tick epoch
+for each claimed World. [Current116 controls](rendering-progression-results-20261101/completion-guards-20261102-05.json)
+pass. Diagnostic11 loses combat before travel and is retained as negative evidence.
+Actual second World, normal cleanup, independent pixels, nominal matrix, lifetime
+and supported-player acceptance remain pending. Historical CPU refusal cause is
+unresolved; no integration/replacement status is promoted by these controls.
+
+
+RPS04 diagnostic20 now closes the previously missing region2-context World
+observation in one exact skip-intro phase: original50XP victory/OK/settled Realm,
+destination travel to2,reselection/battle handoff and fresh800x600 presentation
+3228after3227. The [verified join](rendering-progression-results-20261102/world20-observation-01.json)
+checks original first-three tick pairs19–24/36–41 separated by full World pop31.
+This is no assembled-map/RNG identity or complete lifecycle proof. Whole acquisition
+fails at cleanup input visibility/helper overlap before normal Quit. Current
+cleanup defers each transition until physical-helper retirement and waits for
+visible viewport before confirmation.112Python/five actual Qt startup controls
+and current links pass; current full normal Quit,enabled-intro matrix,independent
+pixels,populated lifetime and supported-player acceptance remain pending. No
+behavior status is promoted. Portal-clear input is unexercised in20; historical
+CPU cause and all exact prior failures/fingerprints stay retained.
+
+The subsequent enabled-intro nominal21/22 runs stop at bounded rearm guards;
+22 retains190HP and recovers4to39mana after reaching exact power XYZ.
+[Its exact diagnosis](rendering-progression-results-20261102/rearm22-diagnosis-01.json)
+preserves the source phase. Current v18 permits210seconds on point while retaining
+42mana and the global540/780second/cast limits.112 Python/five Qt controls pass;
+full current cleanup,nominal matrix and independent pixels remain pending.
+
+Diagnostic23 executes the revised recovery successfully at42mana/182HP but loses
+the Camulos fight. Its [approach diagnosis](rendering-progression-results-20261102/combat23-diagnosis-01.json)
+shows the long movement order continuing during the stable-pose wait. Current
+v19 adds one bounded order to a recent observed wizard pose and requires exact
+arrival/stability before casting.114 Python/five Qt controls pass. This input
+candidate needs fresh original combat/full-route validation; prior diagnostic20
+remains the sole second-World partial milestone.
+
+Diagnostic24 refuses the unsuccessful fixed-position order at its15second
+arrival guard. Current v20 replaces that candidate with one publisher-documented
+ordinary Space-pause casting pair,bounded12seconds,with release required before
+accepting the natural report.112 Python/five Qt controls pass; fresh pause/cast
+execution,complete route,normal Quit,nominal matrix and pixels remain pending.
+No original simulation/AI/health/mana/script/balance field is modified.
+
+Diagnostic25 recovers42mana/179HP but the second bridge support guard refuses
+follower8HP at8.60cells after source6 damage; ordinary pause is unexercised.
+Current v21 starts the same20second catch-up window on observed bridge arrival
+and shortens recovery to36mana.112 Python/five Qt controls pass; enabled-intro
+nominal26 is the fresh execution. No transition/distance/living assertion or
+original gameplay field changes; full normal Quit,pixels and matrix remain pending.
+
+Nominal26 refuses initial follow visibility after opening refill; the healthy
+follower has reached the bridge while wizard remains at power. Current v22
+adds bounded known-bridge visibility staging,retaining actual visible click and
+fresh follow-reference guards.112 Python/five Qt controls pass; diagnostic27
+is the fresh test. Pause,full cleanup,current nominal matrix and pixels remain
+pending; prior diagnostic20 is still the sole second-World partial milestone.
+
+Diagnostic27 extends the partial milestone through second-World Mini Quit/Yes
+and cleanup report OK back to ready Realm. The adapter restores Realm; driver
+stage13 incorrectly waits Main. The verified join retains both typed World
+epochs,Space input/debit observations and exact source preimages. New
+`CP.realm-mode4-mini-return` records selected static Options/confirmation/Realm
+return branches. A bounded ordinary original-control exit driver is implemented
+for validation; native mode4 dispatch,original save implementation/persistence,
+Main Quit,pixels,matrix and populated lifetime remain pending. Guard21 retains
+a C++ capture failure after119 Python controls; corrected build22 is in progress.
+
+The corrected original-control cleanup candidate passes119 Python/five Qt
+startup/30 Qt Region-ownership controls with the complete linked player source
+graph bound. Diagnostic28 is active. Native mode4 dispatch and original save
+implementation remain outside scope; normal Quit,pixels and nominal matrix
+require fresh original execution. No behavior status is promoted.
+
+
+Diagnostic28 now completes the selected full route in600.213seconds: natural
+original50XP/21-text victory/OK,settled Realm,region2 travel/reselection/fresh
+World,two typed original World tick epochs,World Mini Quit/Yes/report OK/Realm,
+original Realm Options/mode4 Quit/Yes/fresh Main,then normal Main Quit. Acquisition
+retains296 artifacts and verifies complete captures,stopped private Wine,zero
+final owners and unchanged source/build closure. It is skip-intro diagnostic
+observation. Independent comparison and enabled-intro matrix remain separate;
+original save/persistence,populated object lifetime,assembled-map/RNG identity
+and supported-player acceptance are not proved. No status promotion.
+
+The3670-World independent replay exceeds its old300second compute limit; the
+negative result is being retained before retry. Three isolated configuration
+producers pass119 Python/five Qt startup/30 Qt ownership controls at the bounded
+900second overall scenario and900second history-replay budgets. The measured
+600.213second skip-intro route plus about242seconds of intro exceeds the former
+780second overall allowance. The540second combat helper,12second Space pair,
+adapter leases and all source/callback/pixel/resource assertions remain unchanged.
+Enabled-intro default640 and software800/640 defeat/progression/victory cases
+are executing independently; no result or acceptance is inferred from launch.
+
+
+Diagnostic28's independent original-history retry now passes all15,347leased
+native Qt swaps/15,292World swaps across3,670original World render generations:13,420,951,500pixels,
+zero differences,18GPU-to-CPU returns and zero remaining command surfaces.
+Original manifests pass; exact oracle binaries and the prior300second timeout
+remain retained in SQLite. This is the exact skip-intro780second player phase
+with900second verification compute allowance,not nominal acceptance or populated
+lifetime/save/simulation equivalence. Current900second player phase23 has fresh
+119Python/five Qt startup/30Qt ownership controls and separate full-intro attempts;
+no old source fingerprint or behavior status is promoted. Audit10 passes in its
+recorded phase with4,491historical stale entries; final scope/census review follows.
+
+The first three nominal configurations fail before World with an unacknowledged
+source-only chunk and host lease/cancellation boundary. Their immutable diagnosis
+records software closed-glyph refusal20/exit124 as a distinct terminal observation,
+without inferring causal order or weakening leases/history checks. Later same-source
+victory attempts enter the requested actual640/software Worlds but produce natural
+defeat and are rejected. Complete current nominal victory/progression remains pending.
+
+
+The complete phase23 nominal acquisition matrix has12current-source full-intro
+attempts: one default800defeat completes original report/OK/Main Quit and resource
+retirement;seven attempts fail before World,and four victory cases enter actual
+Worlds but return natural defeat0 instead of1. Their exact source maps equal the
+current primary bundle. Independent default800defeat history remains a separate
+result. This closes attempt bookkeeping,not complete nominal victory/progression,
+combat repeatability,populated lifetime,save persistence or supported acceptance.
+
+
+Current phase23 enabled-intro default800defeat now independently matches5,702leased
+native swaps/5,642World swaps over1,378original World render generations:
+4,986,399,000pixels,zero differences,zero CPU-read observations andzero remaining
+command surfaces. Its2,785movie/unleased swaps are outside comparison. Original
+report/OK/Main Quit,resource retirement,manifests and current source/binary closure
+pass. Exact oracle binaries are retained. Diagnostic28's corrected leased count
+is15,347of15,348observed swaps;its13,420,951,500pixels/18CPU returns remain
+unchanged. No immutable result hash or behavior status is promoted or refreshed.
+
+
+Final phase24 fixes Region fixture default-all membership when BUILD_TESTING=ON,
+while keeping the explicit target available and excluded from productionOFF builds.
+Separate ON/OFF generated build graphs and154focused controls pass. This is test
+wiring;completed original comparison phases/hashes stay unchanged,and no current
+full-bundle equivalence or engine-status promotion is inferred.
+
+## Campaign completion / master integration — 2026-11-02
+
+Master7d4bb8915 and campaign9f8475790 are combined in an owned actual-merge
+checkout. The CPU-reader conflict preserves both terminal rejection diagnostics
+and opt-in journal contexts without widening admission. Current119Python/five
+Qt startup/30Region controls,optimized/sanitized journal reservations,four
+synthetic Wine cases,three PE32 authority refusals and six active-reader cases
+pass. Four setup failures and all prior live fingerprints remain retained. No
+original game is launched,existing statuses are unchanged,and current combined
+live validation remains pending. Exact committed-history review,pending-master
+snapshot,local backups and the normal staged merge gate remain separate from
+engine evidence. See [integration scope](campaign-master-merge-20261102.md).
+
+## Nominal campaign startup persistence path — 2026-11-02
+
+RPS05 retains a focused failure with4358.833ms synchronous GUI persistence and
+4360ms state age against the unchanged2000ms menu lease. Two pre-World prefixes
+had already been acknowledged;the corrected diagnosis retains the old narrative
+error and states collecting slot1/no pending chunk. Current bounded immutable
+profile snapshots/FIFO worker preserve original readback,revision,atomicity and
+Cancel rules. A2233.199ms blocked writer leaves the synthetic GUI/menu heartbeat
+live;156campaign controls and six focused fixtures pass. The same skipped-intro
+software640/Main dwell now reaches natural defeat/normal Quit,four prefixes and
+1816Worlds. Independent phase03 comparison matches7129leased swaps and
+6234310500pixels with zero mismatches. Nominal startup/victory repeatability and
+historical variant causes remain separate. Phase01 independently matches
+5821546500leased viewport pixels but has no source-only chunks and retains its
+old source phase. No status promotion or gameplay balance change. See
+[the bounded scope](campaign-nominal-repeatability-20261102.md).
+
+## Campaign nominal matrix and bounded helper closeout — 2026-11-03
+
+Frozen RPS05 v23 completes all12 enabled-intro attempts and all enter first World.
+Two software defeat routes/pixel comparisons pass; six progression/victory cases
+naturally lose, two helpers refuse, one World producer cancels and one completed
+Quit has truncated capture. Software640 matches6777leased swaps/5926486500pixels;
+software800 matches6121/5352814500, both zero differences. Separate skipped-intro
+v23 victory completes50XP/Realm/region2/freshWorld/cleanup and matches11897leased
+swaps/10403926500pixels. These retain their exact source phases, not current
+nominal acceptance. Infrastructure refusals and scheduler handoff remain retained.
+
+Current v29 has164passing campaign guards and one nominal software640 natural
+loss before support order/pause. Immutable coalesced helper snapshot persistence,
+exact post-refill bridge staging, living-line guards, bounded witnessed ordinary
+support order and empty-mana retreat are authored input policies. They grant no
+native commander, recovered AI/range/collision or reliable victory claim. V26's
+six named Camulos casts actually damage guard5; corrected static geometry places
+the sampled guard beyond target, so interception/retargeting cause remains open.
+No historical fingerprint/status is refreshed. Save persistence, populated
+lifetime, full simulation and supported acceptance remain pending. See the
+[reviewed scenarios and exact evidence](campaign-nominal-repeatability-20261102.md).
+
+## Engaged campaign approach threats — 2026-11-03
+
+RPS06 joins the retained v29 cleared-bridge pose with original victim/source
+records: a living type11/owner1 enemy targets wizard0 but the old input predicate
+admits only type10/owner2. After bridge arrival it deals30meleeHP; Camulos then
+removes remaining111HP through six Fireballs. The omission and damage-source
+join are confirmed, not a sole-cause or recovered AI/collision formula claim.
+The driver now prioritizes nearby living hostile actors attacking the wizard or
+its living owned Zombie, while keeping Camulos and neutral-bridge resupply roles
+separate. Current167campaign controls pass. Fresh nominal outcome/pixels remain
+pending; no balance, lease/deadline/budget or behavior-status change. See the
+[bounded correction](campaign-approach-20261103.md).
+
+RPS06 v30 enabled-intro software640 enters World and selects/kills the omitted
+escort through original29→9→0 player Fireball damage. Three casts/two same-target
+hits are recorded; exact bridge arrival has92HP after141HP resupply. Later the
+support-order witness refuses at7HP/12mana, so the whole route fails. Its314
+artifacts, stopped private Wine, manifests and source closure remain retained.
+V31 adds bounded early post-refill bridge combat and two-cast escort bursts;
+existing clocks are not reset and169current campaign controls pass. A restricted
+private-X unit refusal is retained separately. Fresh nominal outcome/pixels
+remain pending; no source hash, engine status or balance field is refreshed.
+
+RPS06 v31's original melee join confirms74HP resupply loss113→39 before bridge
+interruption eligibility. V32 suspends/resumes the exact resupply or post-refill
+bridge phase for affordable nearby combat;initial resupply starts only once and
+clocks are not reset. A3second applied original melee witness handles transient
+unset target fields with current living source/victim role checks. It is not
+stable object/generation or recovered AI proof. Current173guards pass;fresh
+nominal outcome/pixels remain pending, and both earlier failures stay retained.
+
+RPS06 closes three nominal software640 attempts, all strict failures. Current
+v32 retains182HP through resupply, spends mana on owner1/type10 escorts and
+naturally loses with original Defeat0. It records no route interruption or
+supported type11 kill, so live suspension/escort-kill validation is not claimed.
+Retained v31 helper-observed113HP/69HP resupply poses admit the current gate;
+the remote39HP completion pose refuses. This is offline decision eligibility,
+not new original execution or a matched source/RNG outcome comparison. Current
+173guards pass. Unit-order/resource/target policy, nominal victory/progression,
+identity/lifetime/save/full simulation remain pending. No engine status or
+historical fingerprint is promoted or refreshed. Exact results and correction
+scope are in the [closeout](campaign-approach-20261103.md).
+
+## Campaign checkpoint diagnostics — 2026-11-03
+
+CPK03 provides the original No-CD `checkpoint-camulos-05.sav`, SHA256
+`9ec512d4c05a75c20e7cc7befec8398e112c2ca700917f34e93f5501099ee7c1`,
+356531bytes:CF52PoP(23,57,6),184HP/50mana,one living owned Zombie and living
+Camulos. Explicit retained-seed Load/new Save/Load and fresh-process Main Load
+match all five active creatures' slot/type/owner/active/HP/position/mana at
+original +43completion0to1 boundaries. Independent software640comparison covers
+522+39Worlds,632+101leased paints and641008500pixels with zero differences.
+Original manifests,source/compiler/binary closure,normal Quit and final resource
+retirement pass. This is a separately scoped live observation,never fresh
+campaign progression or nominal matrix acceptance. Current183campaign/import
+controls and the synthetic native cache-pressure fixture pass.
+
+An intentional native cache policy reclaims only idle rebuildable sprite/colour
+images before producer storage would exceed the existing64surface/16Mpixelcap;
+canvas identity,validity/history and source resources survive. Exact-cap,
+word-preserving rebuild,incomplete-frame refusal and teardown pass synthetically.
+Populated original storage/pixels complete with this code;no live eviction
+counter or matched source/RNG causal A/B claim is made. All four earlier failed
+acquisitions remain failed,including a real pre-Save budget failure,an unwitnessed
+but normally completed Save/Load,and an opening hover refusal. The last stalled
+frame has no dialogue;the original-hover cause/selection remains unresolved.
+
+The hash-pinned fixture can be copied from SQLite into an owned store while
+preserving every existing save. This does not replace original serialization.
+The native world decoder still rejects22owned candidates and this original-
+loaded fixture at offset300;no limit/grammar is relaxed. Unit-order/resource/
+target policy,actual route suspension,fresh nominal victory/Realm/region2,the
+complete12case matrix,full saved simulation and object lifetimes remain pending.
+See the [checkpoint protocol,commands and evidence](campaign-checkpoints-20261103.md).
+
+
+## 2026-11-03 — bounded check storage and reviewed output custody
+
+`TOOL.check-storage-budget` separates the diagnostic default (120seconds plus
+cleanup grace, no viewport/history/World capture) from explicit full evidence
+(default900seconds, unchanged lossless capture/comparison requirements).
+Preparation emits full-mode acceptance commands. Lightweight output is refused
+before the pixel oracle and remains usable only for its verified semantic/
+selected-field checkpoint and opaque byte-copy scope.
+
+[Current evidence](check-storage-results-20261103/validation-closeout-01.json)
+records two catalog-only original software640 checkpoint restores:0 versus
+48,895,866render capture bytes, matching pinned save/selected fields, normal
+Quit and returned exclusive prefix loans. Full comparison covers50original
+Worlds,112leased paints and97,944,000pixels with zero differences. Current41
+storage/prefix/import Python tests,144campaign Python tests and7Qt driver cases
+pass. Headless policy claims pin their complete executed control/compiler source
+closure separately from the live original results. Initial music-path admission
+failure and the early missing-preparation guard refusal remain retained.
+
+A fingerprinted shared game/assets/admitted-prefix set and SQLite catalogs avoid
+new per-checkout input copies. Catalog-only setup preserves existing private
+installations/saves; source resolution and runtime-alias refusal keep writes in
+private copies. Live normal return is confirmed; forced private Wine shutdown
+command selection has headless controls and remains a separate live boundary.
+
+[Historical lighting custody](check-storage-results-20261103/historical-retirement-01.json)
+and [comparison custody](check-storage-results-20261103/comparison-retirement-01.json)
+preserve thirteen explicitly reviewed completed trees with every file/pin,
+both independent stores and exact real restores before retirement:12.422GiB
+allocated reclaimed. Old failed observations/comparisons and source hashes keep
+their original status. Source checkouts, current inputs, unique sources, held
+prefixes and old archive catalogs remain preserved. The
+[new Wine/comparison queue proof](check-storage-results-20261103/queued-handoff-01.json)
+adds twelve stopped completed trees, including the automatically queued full
+comparison, with5.141GiB temporary output retired after exact restores.
+Filesystem free space and shared-store growth are recorded separately.
+
+These are intentional host storage policies and bounded diagnostic results.
+They do not renew historical engine fingerprints or establish fresh nominal
+campaign victory/progression, the12case matrix, populated handoff lifetimes,
+whole saved simulation, native world parsing, gameplay orders or balance.
+See [check storage](check-storage-20261103.md) and
+[runnable commands](../../docs/check-storage.md).
+
+### Campaign selection and order admission — 2026-11-03
+
+`INPUT.campaign-order-admission` adds a bounded passive buffer observer and
+strict reader, reusing the existing original Region callback and World-return
+hooks. Three original software640 checkpoint probes observed sole-Zombie primary
+selection, a 21-byte opcode5move submission and later independent movement.
+Every one of the ten Region callback pairs per run binds to the existing
+independent callback envelope. Only the final repeat matches the current latest-hover
+sources; the first two remain historical. All three retained unchanged save bytes,
+normal Quit, stopped Wine and complete evidence. This is live observation,
+not original/native equivalence or replacement.
+
+The physical-input guard now examines the complete prefix before accepting
+hover readiness. Four prefix/pending/nested-callback regressions fail the previous source and pass
+the fix; current focused checks passed156Python cases and7Qt driver cases.
+The repeat verifies the stricter guard against actual original callbacks and
+World returns. Six stopped output trees were retained in two verified stores,
+restored exactly and retired to pinned stubs; no pixel captures were requested.
+
+Attack delivery/engagement, mana under combat, route suspension and fresh nominal
+victory→Realm→region2plus independent rendering comparison remain pending before
+the12case matrix. Existing broader campaign/spell/rendering evidence and source
+hashes remain historical; this observation does not renew those claims. See
+[the scoped findings and runnable probe](campaign-order-admission-20261103.md).
+
+### Campaign target admission and attack submission — 2026-11-03
+
+`INPUT.campaign-target-admission` and
+`INPUT.campaign-support-attack-submission` separate validated original candidate
+identity, primary selection and actual World-return readiness from buffer
+submission, later engagement and outcome. V3 passive wires preserve legacy
+readers and add actual forwarded World-return ordinals; no extra original ticks
+or simulation writes are introduced. A held simulation clock alone is an
+insufficient proxy for original hover updates.
+
+Current isolated controls pass183Python cases and7Qt driver cases. Four logical
+return-token controls distinguish the previous clock policy from the current
+return policy; these authored fixtures remain separate from original execution.
+Six retained original diagnostics bind260callback pairs to the independent
+Region envelope. Earlier phases remain historical with their exact source
+snapshots. One historical-wrapper original Fireball was accepted on empty
+ground during a held clock for6mana (50→44), with HP184 unchanged. This is one
+cast/debit observation, not damage or complete pause/spell equivalence.
+
+The final current-source checkpoint probe selects the sole owned Zombie with
+candidate-checked left input, then witnesses a new original right-press opcode7
+buffer append for actor3,target4. The sampled clock holds3164 while actual
+World-return ordinals advance769→776 and the independent candidate changes
+Zombie→Camulos. Submission does not prove delivery or later gameplay engagement.
+Original Save/Load, unchanged save bytes, normal Quit, stopped Wine and complete
+source/binary evidence pass. The helper stops before the boss volley.
+
+Two failed attack preparations remain failed: X while the pointer describes
+HUD does not establish paused keyboard semantics; repeated Fireball icon input
+leaves spell mode2 active and the noncast guard refuses the creature click.
+Direct scene selection before arming spells passes. The guard is retained; the
+driver no longer treats an icon click as cancellation acknowledgement.
+Ten completed output trees passed dual-store custody and exact restoration
+before pinned retirement; active runs, shared inputs and source checkouts remain.
+
+Fresh natural victory→Realm→region2, live route interruption/resumption, attack
+engagement, full rendering comparison and the12case matrix remain separate
+pending milestones. Existing wider campaign/spell/rendering evidence hashes and
+statuses remain historical. Native save parsing still rejects the verified
+original-loaded checkpoint at offset300. See
+[target diagnostics and runnable boundaries](campaign-target-admission-20261103.md).
+
+The subsequent lightweight fresh entry exposed an independent host-readiness
+boundary: painted/swapped World identity was updated only when capture was on.
+`HOST.capture-independent-world-readiness` separates that counter from optional
+pixel evidence. Exact old-source OpenGL/raster controls fail without capture;
+all four capture-on/off cases pass the correction, without accepting queued
+frames before paint/swap or writing capture files in lightweight mode.
+The original timed-out attempt remains failed and has a separately retained
+idle-prefix recovery receipt; no normal-Quit/outcome is asserted for it.
+A second attempt stopped before game launch when private Xvfb could not finish
+its display-number reply. `HOST.private-display-line-readiness` requires the
+complete newline-terminated reply across split reads under32bytes/10seconds.
+Fifteen logical controls and ten actual private-server starts pass; this does
+not renew complete output isolation or rendering acceptance. All original
+negative report/source fingerprints remain retained.
+
+Current-source checkpoint repeat04 also passes direct sole-Zombie selection and
+original opcode7submission with unchanged50mana before the volley. Its73paired
+callbacks agree with the independent Region envelope; seven original phases now
+retain333paired observations. The current202Python/7Qt/4native controls are bound
+to the two input contracts and the native host contracts separately.
+Fresh lightweight attempt03 admits actual World1(640×480,paint60,82frames) and
+physical gameplay, then correctly fails on the original defeat discriminator.
+Six original player Fireballs clear the bridge107HP→0; resupply recovers16→36mana,
+but later escorts consume the boss reserve. The negative campaign remains failed;
+only the narrow first-World readiness milestone receives live observation.
+`INPUT.campaign-boss-mana-reserve` adds an authored supported/rearmed target
+priority under a six-cast estimate; four focused role/budget/interruption guards
+pass. Checkpoint04 observes the priority without nearby escorts and stops before
+casting. Live reserve conflict, damage, living-player victory and nominal
+progression remain pending. No damage formula or gameplay balance is changed.
+
+Current source now passes fresh supported diagnostic04: original50XP victory,
+OK/settled Realm/travel, actual region2World and normal Main Quit with zero
+remaining graphics owners. It skips intros and captures no pixels, so nominal
+rendering acceptance is still pending. Original boss target acquisition follows
+the verified Zombie buffer submission; six accepted paused Fireballs debit37→1
+mana while Wizard HP stays84. Four attributed damage rows reduce boss100→20;
+script-owned retreat/portal follows, and the Wizard enters at16HP. No original
+Zombie melee boss-damage row was observed, and complete command-delivery or
+melee-lethal causality is not inferred. All327input callback pairs in the fresh
+run bind to the independent Region envelope. This sequence has its own narrow
+`HOST.campaign-supported-boss-diagnostic` live scope; wider contracts retain their
+historical fingerprints and independent pending boundaries.
+Eleven additional completed trees, including the separately recovered timeout,
+passed dual-store preservation and exact restoration before retirement. The
+old negative's1373source files are retained by exact hash. Source checkouts,
+canonical inputs and the active full rendering run remain preserved.
+
+Enabled-intro full nominal software640 acquisition now passes original victory,
+Realm/travel/region2and normal Main Quit with stable source/player closure and
+complete evidence. It keeps the independent pixel result pending: the original
+replay has completed3042Worlds/2477427draw calls without native-player or original
+destination-pixel inputs; all captured native paints still require comparison.
+Full viewport storage is about515MiB for36.9GB raw under the64GiB/1GiB policy.
+No other matrix branch or population/save/scanout boundary is inferred.
+
+The independent enabled-intro nominal software640 comparison now passes:
+3042original Worlds/2477427draw calls,10491native World presentations and
+9227724000pixels have zero differences. First swaps of World1/region2World3034
+are both covered; command surfaces and comparison process groups retire.
+Original/native pixel inputs remain independent, source stability and unchanged
+original manifests pass, and3046comparison artifacts are retained in SQLite.
+`HOST.campaign-nominal-world-history` records only this1of12current-source matrix
+branches. Historical branch fingerprints remain unchanged. Route interruption,
+other11branches, populated lifetimes, native save parsing, physical scanout and
+native simulation/balance remain separate pending boundaries.
+
+
+### Nominal campaign matrix continuation — 2026-11-03
+
+Eleven remaining configured branches are seeded independently before execution.
+The earlier enabled-intro full software640 victory result retains its exact
+source and report hashes; it is not a fresh repeat. Each new matrix cell requires
+its own natural outcome, original callbacks, full captures, independent history
+comparison and verified custody. Initial cell validation remains pending. See
+[campaign matrix scope and evidence](campaign-matrix-20261103.md).
+
+Matrix continuation first software800 attempt fails after542seconds without a
+natural report. It admitted initial combat at28,52, three cells short of31,52,
+then drifted/stalled; no sole-cause claim. INPUT.campaign-initial-bridge-staging
+requires adjacent-cell staging with a60second bound, preserving exact cleared
+waypoint admission. New route dependencies leave the prior nominal software640
+result historical: current-source matrix execution/comparison is pending again.
+All original hashes,317artifacts, negative observations and source preimages stay
+retained; no original movement/AI/balance or whole-campaign status is promoted.
+
+Current initial-bridge staging has a separately bound capture-free original800
+diagnostic: admission at30,52, neutral defender clearing,194HP/36mana resupply,
+original Save/Load and normal Quit. This supports only the scoped driver boundary;
+no nominal matrix cell, pixel, full-save or sole-cause milestone follows.
+
+Source 2 software800 clears/refills but fails at the original support-order guard:
+living Zombie35,47 projects outside the Wizard40,31 camera, so no selection click
+is sent. Wizard98HP and Zombie90HP remain alive; Space releases on failure. The
+new INPUT.campaign-offscreen-support-selection policy requires candidate-checked
+scene hover, one X and a fresh latest sole-primary World witness before the
+separate original opcode7 assertion. Four refusal controls pass; new current
+original execution remains pending. All prior report/source hashes are retained.
+
+Source 3 full800 fails after a valid scene hover and one paused X: original primary
+remains Wizard0; Space releases, no opcode7 follows. Visually checked manualp15
+says X selects the next friendly creature. Source 4 permits a two-press candidate
+cycle, deliberately exercised by checkpoint combat, and refuses whole-prefix
+pending callbacks. Original cycle order/paused consumption/visibility are not
+recovered; all earlier success/failure/source hashes remain unchanged.
+
+Campaign matrix source 6: current211Python,7Qt driver and4presentation controls
+pass. A separately bound forced-team original800 checkpoint verifies ordinary
+Ctrl9 assignment/recall, complete-prefix sole-primary acknowledgements, boss
+candidate after recall and exact Zombie3-to-Camulos4 opcode7 append, with original
+Save/Load/Quit and pause release. No delivery, damage or nominal/pixel claim.
+Earlier source phases and failures retain exact hashes. Twelve frozen full
+enabled-intro matrix cells and route interruption remain separate.
+
+Campaign matrix source 7 now supplies scoped live observation for
+INPUT.campaign-resupply-combat-suspension: two resupply interruptions/resumptions,
+subsequent full refill and a post-refill bridge interruption/resumption against
+type 10 and type 11 owner 1 attackers. Independent original GP and cast/debit/
+attributed-damage rows are bound in route-suspension-live-binding-07.json. The
+whole progression run still loses; low-mana resumptions do not imply cleared
+threats. Repeated-run/full AI, damage, collision, lifetime and native simulation
+remain outside scope. All earlier source hashes and negatives are retained.
+
+Campaign matrix source 7 current natural offscreen team recall has a scoped live
+binding within failed default640 progression. Original raw order/GP/spell bytes
+independently match sole-primary selection, opcode7 actor3/target4 append,
+subsequent GP target4 and three Boss damage events100to40. Pause releases in4.75s;
+whole campaign fails later rearm travel. The Wizard is stationary during recall,
+so moving-camera regression and delivery causality remain pending. See the two
+team-recall source 7 binding/crosscheck reports and campaign-matrix-20261103.md.
+No successful whole matrix, pixel or native commander feature claim follows.
+
+Campaign matrix source 7 completes12 enabled-intro/full-capture attempts: 4
+defeat configuration passes and 8 requested victory/progression failures.
+Independent comparisons cover 6646 original Worlds /
+26033 native World presentations / 22966119000
+pixels with zero differences. All 28 case trees pass exact
+dual-store custody/restore before retirement. Current whole nominal victory/
+progression remain pending; scoped bridge, offscreen order/damage and route
+interruption/resumption results are independent. See matrix-closeout-07.json and
+campaign-matrix-20261103.md for each failed boundary and remaining scope.
+
+## Campaign bridge-clear/refill ordering — 2026-11-04
+
+The retained source7 default640 progression failure enters boss combat before its next outer-loop bridge-death check, then starts refill after three boss casts. The new bounded driver pins the bridge defender from its calibrated first World spawn and prevents initial boss fallback before observed death and completed exact-point36mana refill. This is authored test-driver policy. Fixture controls and fresh original execution are separate; full nominal success, the eight outstanding victory/progression matrix cases, moving-camera target readiness and native gameplay remain pending. See `campaign-bridge-clear-20261104.md` and `INPUT.campaign-bridge-clear-refill-gate`.
+
+Source41 controls pass224cases. One capture-free software800 diagnostic observes the pinned defender dead before resupply, then exact23,57,6 refill at187HP/36mana without prior boss orders/casts; original scoped Save/Load and normal Quit pass. `BCG04.checkpoint.live01` binds independently decoded GP samples2021/3850. Integration for this new native policy is `live_observation`; comparison/replacement remain `none`. Full enabled-intro outcome/pixels and repeatability remain separate.
+
+The source41 enabled-intro full software800 attempt also reaches exact bridge/refill before boss actions (164HP/36mana), then validates moving-Wizard41,31to41,30 retained-point624,230 team recall/opcode7. Four attributed Boss hits100to20 are followed by an inactive zero-HP sample, without captured Boss lethal; the existing portal candidate leads to a43,28 stall and original natural Defeat. No full-case or pixel promotion. `BCG04.full-boundaries.live01` binds raw order1795/1804/1805 and GP/spell crosschecks. Newly mapped `INPUT.campaign-terminal-boss-portal-candidate` retains integration/comparison/replacement `none`; terminal/exit semantics and guarded portal ingress are next. All four completed case trees pass mirrored custody/real restore and are retired. Historical frozen matrix remains4/12passes.
+
+`BCG04.terminal-negative.raw01` additionally preserves all six defended Boss spell returns: four reductions100to20, then two unchanged20to20 returns, before inactive-zero GP6304. The mechanism is unresolved; no kill, invulnerability, health-floor or portal-trigger claim follows from these samples.
+
+## Campaign terminal/portal command admission — 2026-11-04
+
+Installed script16 configures Camulos portal creation; events17/21 refer to exit and XP. Raw callback comparison shows source41 portal clicks append attacks against guards, while historical successes include opcode5moves and opcode10coordinate attacks. New `INPUT.campaign-portal-command-admission` requires candidate-checked sole-Wizard input and actual opcode5move acknowledgement under24attempt/30second bounds, with a separate original checkpoint portal-command probe. Current execution remains pending; the20HP mechanism, actual portal entry and full campaign/pixels remain separate. See `campaign-terminal-20261104.md`.
+
+Terminal follow-up preserves setup01, stricter portal02, upstream follow03, occlusion04 and repeated upstream follow05 negatives. Opcode10 is coordinate attack via539080/50ca30, correcting provisional headless wording; current portal admission accepts only opcode5moves. Source45 adds INPUT.campaign-rounded-follow-staging so an already occupied rounded goal can proceed to mandatory original selection/follow checks, under the unchanged20second bound. Fresh validation remains pending.
+
+- Campaign terminal batch source48:235current controls (224Python/7Qt/4presentation), bounded portal opcode5admission, rounded follow-goal prerequisite and no-button Boss hover/revalidation. Retained phase07 proves an actual original move but fails missing host after-load metadata; phase08 fixes metadata and passes strict restore/normal Quit but fails a changed firing position. Phase09 reaches100to20Boss damage and times out with Camulos active; a single fresh attributed-damage Return hint is provisional. Historical opcode10interaction wording is corrected to coordinate attack. Original death/exit/portal semantics and whole nominal victory/progression remain pending. See `campaign-terminal-20261104.md`; no historical fingerprints refreshed.
+
+Current terminal closeout: source48 checkpoint10 passes strict restore/normal Quit but fails Boss preparation at25seconds. Enabled-intro capture-free software800 clears the bridge/refills, then refuses all four Boss hover candidates before any boss attack or Return hint.235controls and zero-error coverage audit do not establish successful portal entry, whole victory/pixels or matrix completion. All11stopped executions have mirrored exact-restore custody. The next gap is reliable original Boss scene/camera admission; no widened time/identity/balance rule is validated.
+
+Moving Boss hover follow-up: retained source48 nominal input/actor records show Camulos moves before the first no-button probe while all four alternatives reuse the old position. New INPUT.campaign-moving-boss-hover refreshes the Boss pose and current actor roles per probe, retaining the post-center Wizard reference; four attempts,25second preparation, two revalidations, original candidate/opcode7and pause bounds remain. Current validation and full camera/delivery/outcome semantics remain pending. See `campaign-boss-hover-20261104.md`.
+
+Moving Boss current checkpoint:238controls pass after one retained private-X startup failure and unchanged retry. Source49capture-free software800passes strict original restore/normal Quit, no-button refreshed-pose Boss admission and independently reconstructed original14byte opcode7from support3to Boss4. Pause releases in2.364seconds. BH04.checkpoint.live01 promotes only this partial native input-policy integration; comparison/replacement remain none, and natural campaign outcome/pixels/delivery/camera recovery remain separate.
+
+Source49nominal closeout: on-screen support selection reaches verified boss order/volley, four damaging hits100to20, one guarded ordinary Return attempt and three actual Wizard opcode5moves. It does not exercise the changed team-recall path and fails the24portal-candidate bound; no current victory/pixels/matrix claim. BH04.nominal.scoped01separately records packet acknowledgement and native key attempt with current hashes, excluding portal entry/key consumption/death/delivery semantics. Both stopped runs have mirrored exact-restore custody.
+
+Renderer CPU ownership follow-up: retained preflight caller fingerprints match the pinned menu DLL only after a single observed Wine ImageBase rewrite. A forced-relocation synthetic DLL verifies that installed loader behavior without original game execution. New NP.cpu-reader-loader-identity keeps exact file SHA/header verification, allocation/RVA and ambiguity refusals; it resolves only candidate metadata, never mapped-code/upstream identity or rendering authority. Historical reports stay immutable. Current CPU/DC ownership and independent storage/rebuild pixels remain pending. See `rendering-cpu-ownership-20261104.md`.
+
+Renderer CPU ownership closeout (2026-11-04): the optional pinned-file loader model resolves all four retained preflight contexts to MnmMenu.dll candidates after a synthetic Wine 11.16 control proves the single ImageBase header rewrite. Historical mapped-code/upstream identity and old source hashes remain unchanged. Current 75 Python controls, optimized/sanitized reservations, four Wine journal gating cases and three DC cases/nine frames pass. The single charged enabled-intro software storage launch stops before Chaos for a missing launcher TSV; all 290 artifacts and strict analysis/comparison refusals are preserved. The producer now prepares/verifies the TSV before prefix borrowing/charging, and exact nonlaunching launcher checks pass. Generic comparison process/custody ownership now includes the explicit pilot/normal/CPU/watchdog kinds with real-restore coverage. Current full live CPU/DC joins, independent pixels, nominal acceptance and fault/restart remain pending; the attempt budget is unchanged. See `rendering-cpu-ownership-20261104.md` and its SQLite-backed result directory.
+
+Software storage ownership validation (2026-11-04, prospective): a new separately budgeted batch on404030bb verifies shared inputs, physical launcher TSV and exact nonlaunching integrity checks before charging. Production player and independent history/original oracles are rebuilt in RAM; prior controls retain unchanged source hashes. NP.software-storage-reader-ownership records the narrow diagnostic contract before its ownership/history admission checks. The enabled-intro software storage/rebuild acquisition is running; complete CPU/DC joins, independent reply/pixel matches and normal retirement remain pending. The prior failed attempt, original upstream/mapped-code limitations, nominal acceptance and fault/restart remain separate. See `rendering-storage-ownership-20261104.md`.
+
+Software storage ownership result (2026-11-04): the source404030bb enabled-intro High800x600 software journey passes Save/Mini Load/Main Load, two rebuilds, Preferences Cancel and normal Quit. The strict current join closes230caller contexts,54CPU requests/completions and113DC borrows/releases with no missing links. Independent history reproduces797Worlds/817011draws; all54full replies and898986000presented pixels match (961World presentations, zero mismatches/remaining surfaces). The earlier640-only analysis refusal is preserved; a new explicit size selector must match the typed acquisition mode, with5new profile tests,10capture/history and10CPU binding controls passing. No native code, original launch, deadline or historical fingerprint is rewritten. NP.software-storage-reader-ownership records only this diagnostic profile, with mapped-code/upstream and nominal/whole-operation limits intact.
+
+Native fault/restart result (2026-11-04): after the storage proof passed, one separately charged current GUI-resident native-only V3 journey passes the existing controlled producer fault, nine terminal predicates stable522ms, public Hard Restart, distinct launcher/channel/World identities, old-launcher absence, fresh World and ordinary Quit. The failed generation is `restarted` without completion credit; exactly one fresh generation finishes with zero graphics owners/forwarded calls. Four transition and twelve contract controls pass. Both generations' exact sources/raw evidence and stopped-prefix proof are retained. This does not renew both-owner historical coverage or prove V5/worker fault handling, physical context loss, in-place/save continuity, media/audio restart or pixels for the failure journey. See `rendering-storage-ownership-20261104.md` and its SQLite-backed results; completed output retires only after dual-store and real-restore custody.
+
+## Dedicated worker/V5 terminal replies and Hard Restart — 2026-11-04
+
+Starting at913af9c, `NP.cpu-read-terminal-publication` fixes a witnessed queued V5
+CPU_READ success-reply publication after an already failed/cancelled producer.
+The headless GL proof checks both terminal causes, zero readbacks/replies,
+cleared waits/surfaces and two fresh read sessions;1,920,000successful WORDs
+compare. Failed exploratory fixture phases and an initial missing-trace-flags
+worker refusal remain retained.21Python controls,172worker presentations,
+25diagnostic framebuffer checks and4terminal/fresh-worker cases pass.
+
+One separately charged native-only software dedicated-worker journey observes
+actual owner, decoded stream5 and transport3 in both generations, with CPU
+materializations0at both World points. Controlled failure gives539ms stable
+terminal cleanup; public Hard Restart creates distinct identities, old launcher
+absence and a fresh original normal Quit with zero graphics owners/forwarding.
+The failed generation gets no normal completion credit. Three complete trees
+receive verified dual-SQLite and real-restore custody before retirement.
+`NP.worker-v5-fault-restart` is live observation, independently of the headless
+pending-CPU_READ proof. The prior GUI run's observed V3 transport must not be
+used to infer its decoded stream version. Historical hashes remain unchanged.
+
+See `rendering-worker-restart-20261104.md` and the SQLite-backed
+`rendering-worker-restart-results-20261104/batch-closeout-01.json`. No current
+original-pixel comparison, live pending-read fault, atomic failure/publication
+exclusion, physical context loss, saved/in-place/media recovery, original ABI
+or whole renderer replacement is asserted. Shared-source changes leave prior
+software storage/pixel evidence historical for this phase. Next: a separately
+budgeted actual-game worker fault at a witnessed pending CPU_READ boundary.
+
+## Witnessed worker pending CPU read — 2026-11-04
+
+`NP.worker-pending-cpu-fault` adds an opt-in worker-side queued-read observer and
+bounded public Save/fault/Hard Restart driver. One charged native-only software
+journey witnesses V5ticket1/surface86/800x600/history7 and a matching original
+GetDC request/refusal before readback. Terminal checks find no new reply or
+native readback/materialization, cleared wait and zero surfaces. Stable cleanup
+lasts532ms; distinct fresh identities, old-launcher absence, normal Quit/exit0,
+7balanced Worlds and zero graphics owners/forwarding pass. Both World-point
+CPU counts remain0; the later decoded request/journal join supplies the new proof.
+
+The automated acquisition remains a retained analysis failure: its validator
+wrongly equated canonical journal and raw interface pointers. Only two Python
+analysis/test files changed after execution.26current Python controls and the
+complete retained-record acceptance replay pass over unchanged native engine,
+Qt/hook and compiler sources (`PR04.pending-cpu01`). No second original run or
+old hash refresh is asserted. An initial replay refusal is retained because the
+failed launcher lacks a process-exit receipt; that exit status stays unobserved.
+The failed generation is restarted without normal-completion credit.
+
+Actual GL failed/cancelled boundary and fresh-read controls compare1,920,000WORDs;
+worker-thread adapter controls and4terminal/fresh-worker cases pass. The headless
+checkpoint policy (`PR04.terminal-controls01`) stays independent. Initial missing
+Python fields/build include and all exact intermediate source phases remain
+retained.520raw artifacts and3completed trees have verified dual-store and real-
+restore custody. See `rendering-pending-read-20261104.md` and SQLite-backed
+`rendering-pending-read-results-20261104/batch-closeout-01.json`.
+
+No successful Save/Load, stable pointer alias ABI, original upstream semantics,
+pixels, arbitrary race exclusion, physical context loss, saved/in-place/media
+recovery, repeated-run or nominal campaign acceptance. Earlier source-bound
+results retain their historical fingerprints. Next: ordinary worker Save/Load
+with successful CPU replies and independent request/completion checks.
+
+
+## Ordinary public-player acceptance cohort — 2026-11-04
+
+`PA04.public-player-cohort02` records eight fresh ordinary public GUI-resident
+campaign storage/Quick Battle executions, each at both actual frame sizes for
+the default and explicit software profiles. Enabled intros/native lighting,
+source/configuration/binary stability, independent full presented history and
+CPU replies, original callbacks, normal Quit/zero graphics owners/forwarding
+all pass. All100 controls pass (57 Python,25 Qt menu,18 capture);4,282 complete presented Worlds,
+4,243,578,160 pixels and222 full CPU replies compare with zero
+pixel differences. Storage aggregate original completion joins are separate
+from unproved per-caller semantics. Both display rebuilds and exact private-input
+restoration pass. All24 stopped execution/comparison trees have verified dual-
+store and real-restore custody before retirement.
+
+Ten total attempts preserve one prior positive and one failed software phase.
+The repaired campaign Continue policy accepts an already-ready Main only with
+exact ACK/thread/status and fresh-generation checks. Normal viewport backlog
+allows4096jobs under the unchanged256MiB charge; strict refusal remains and
+the prior worker stall is unassigned. Both preimage regressions are retained.
+
+The finite source-phase join admits16/156 requirement rows and leaves140 plus
+both final decisions pending. First-World pixels do not prove every preparation
+side effect/caller state. Preferences credit is resolution-only; camera/picking,
+HUD/visibility, movie output/skip/return, natural progression/results, whole
+operations/gates, unknown original branches and historical failures remain
+separate. Earlier evidence hashes are unchanged. The retained37-candidate
+applicability review verifies all payloads/assertions, finds33 changed source
+sets and4 matching candidates, and grants no pass from source matching alone.
+See [the bounded cohort](rendering-player-acceptance-20261104.md) and immutable
+`rendering-player-acceptance-results-20261104/batch-closeout-02.json`.
+
+### Public-player gameplay rendering pilot — 2026-11-05
+
+- `GA05.public-gameplay-default 800-01` / `NP.public-player-gameplay-witness`:
+  one enabled-intro GUI-resident default 800×600 Quick run observes all four camera
+  orientations, pan, two original living-wizard raw-latch toggles and pointer-away
+  continuity, the three camera bodies used by the four-case minimap table, and
+  original0→1→0 pause mode with a1,077ms stable World-counter interval. All 51
+  action markers bind exact retained original-admission rows/ticks.
+- 74 controls pass. Complete independent original history validates 1,020 presented
+  Worlds and 1,081,095,840 pixels with zero mismatches. Normal Quit and zero graphics
+  owners/forwarding pass. CPU destination requests are zero in this case. Actual
+  default provider is llvmpipe; hardware and other profile/size coverage stay open.
+- Three bounded attempts retain the cold/deadline plus missing World-sampler
+  failure and a normal-Quit capture-queue refusal. The latter is fixed by enabling
+  the existing lossless delta viewport policy: 4.35 GB raw fits 56.9 MB, every paint
+  retained, unchanged 256MiB queue/1GiB stored limits. A fixed 40 s allowance covers
+  extra gameplay actions without renewing producer/input leases. Independent state
+  reanalyses retain the initial coarse-pause-window refusal and stricter mode/row
+  guards; no fourth game launch or historical hash refresh follows.
+- Exact scalar-to-sealed-source-generation identity, tooltip text/restoration,
+  complete picking/selection/animation/visibility semantics and a current gameplay
+  configuration matrix remain pending. No new frozen requirement leaf or final
+  player/recovery decision passes. The earlier eight-domain cohort keeps its old
+  source phase; unchanged-route claims are not renewed by this pilot.
+
+### Sustained World acceptance closed — 2026-11-05
+
+`SW05.sustained-world-closed01` closes `active-world.sustained-world` for both
+explicit player targets at both actual sizes. The same pack renews current
+`quick-battle-entry.setup-confirm` and `shutdown.menu-exit` evidence. These are
+three closed leaves / six profile rows: two newly closed sustained rows and four
+renewed setup/Quit rows. The unchanged dossier has 156 rows; this pack covers six,
+leaving 150 outside its closeout scope. Historical packs are retained separately.
+
+One compatible default800 capture/comparison is reused; exactly three missing
+ordinary Quick cases run. All four cases cover 392 original source generations,
+1,298 presented Worlds and 1,529,038,940 independently compared pixels with zero
+mismatches. All 406 command surface creates balance 406 deletes; each source
+generation has conserved surface/palette identity/count and logical-plane bytes.
+Original Quit has zero native graphics owners/forwarding and no pending World.
+Timing is diagnostic. Both final rendering decisions remain pending.
+
+The existing acceptance join gains a requirement-scoped closeout mode and complete
+format4 admission. Its old format3-only refusal and initial duplicate-swap join
+refusal remain retained. The corrected join accounts every actual swap occurrence;
+no game rerun, renderer change, runtime probe, fixture or new gameplay scenario is
+needed. The four existing suites pass 38 controls. Nine stopped execution/comparison
+trees pass two verified stores and a real restore before retirement, reclaiming
+4,307,357,696 allocated bytes; private source inputs are restored exactly. Shared
+inputs, source checkouts and historical hashes remain preserved. GA05's shared
+normal-admission guard-file fingerprint becomes historical; its renderer/oracle
+closures remain unchanged and are separately verified for reuse here.
+
+Animation/visibility, full camera/picking/selection/HUD/tooltip semantics, CPU
+routes, whole operations/gates and hardware/general-duration claims remain open.
+See [the closeout](rendering-sustained-closeout-20261105.md) and its immutable
+`rendering-sustained-results-20261105/current-closeout-binding-01.json`.
+
+
+## Native cleanup and storage closeout — 2026-11-05
+
+`NP.cleanup-storage-closeout` / `CS05.cleanup-storage-closed01` closes normal shutdown cleanup and finite Save/Load/restored-World/changed-draft-Cancel at both actual sizes for both explicit profiles. Four compatible Quick pairs are re-evaluated; five new storage attempts include four independent passes and one retained pre-Save software640 deadline. One reviewed unchanged repetition passes without resolving the native admission/reliability gap. The current pack renews sustained/setup/Quit:16of156rows,10new and6renewed; other140rows and both final decisions remain pending. 44 targeted guards, 3713 source generations, 5256 World swap occurrences and 5231671940 independent pixels pass with zero mismatches; 212 storage CPU requests/replies join exactly. Direct terminal input/cursor/channel/graphics/process/source assertions show zero pending work and native owners under normal original Quit. Historic cursor refusals, sparse caller identification, fault/restart and unexecuted deferred branches retain their limits. Prior SW05 derived evidence keeps historical join/test hashes; actual frozen Quick acquisition/comparison sources remain current for this re-evaluation. No renderer/probe/fixture/driver change or final-player/original-recovery claim. Fourteen completed trees pass two stores and real restores, reclaiming13.276GiB; private input hashes restore exactly. See [bounded closeout](rendering-cleanup-storage-closeout-20261105.md) and SQLite binding `rendering-cleanup-storage-results-20261105/current-closeout-binding-01.json`.
+
+
+### Scoped evidence applicability — 2026-11-05
+
+`TOOL.scoped-evidence-applicability` now separates raw historical source drift
+from applicability of an exact accepted behavior/scenario/stage. Immutable
+reviews preserve existing CS05 cleanup/storage and SW05 sustained claims across
+unrelated callable/test changes; the raw one/three changed sources remain visible.
+No original runs, historical hash refreshes or existing engine status promotions
+occur. `EA05.scoped-applicability-controls03` passes 287 synthetic checks including
+the real hook/audit. Controls01/02 remain historical. Phase plans request controls,
+retained-data analysis or retained-capture comparison before recollection;
+uncovered and native/runtime changes still require affected-scenario validation.
+New scope/status requires new appropriate proof. The native pack remains 16/156;
+pre-Save admission/reliability and other unresolved boundaries stay open. See
+[evidence applicability](../runtime/evidence-applicability-20261105.md) and
+[workflow](../../docs/evidence-applicability.md). SQLite reports retain exact
+source/status anchors, superseded reviews and controls without payload duplication.
+
+
+## Native-rendering artifact dashboard — 2026-11-03
+
+The read-only coverage UI now presents completion artifacts 2, 3 and 4 from the
+authored closure map, the explicitly selected SQLite storage acceptance snapshot
+and dated task updates. It separates defined contract/gap/plan work from the
+selected 8/156 recorded passes, 148 pending obligations, broader task closure and
+the pending supported-player/original-recovery decisions. Changed report source
+bindings label the snapshot historical; missing proof supplies no inferred count.
+Per-configuration leaf states, task dependencies/deliverables/exits and later COPY,
+CPU-reader/DC and campaign diagnostics remain visible without adding unjoined
+evidence to the acceptance count. UI tests validate presentation only; no engine
+status, original hash or historical evidence fingerprint is promoted or refreshed.
+
+
+### Pending dashboard/accounting work reviewed — 2026-11-05
+
+The user authorizes committing the previously preserved dashboard, historical
+review readers, SQLite workflow guidance and exact source-census references. The
+old pending AS.tag entry predates the later installed sprite-player closeout; the
+current accepted AS.tag definition/status/evidence is retained unchanged. Every
+original pending byte, including that older entry, is retained in the paired
+snapshot linked from `rendering-closeout-bite-results-20261105/pending-reconciliation-01.json`.
+Headless dashboard/control tests validate presentation and historical-input
+handling; browser preview and engine execution remain separate. No original
+fingerprint or engine milestone is renewed by this bookkeeping commit.
+
+
+### Selected native lighting and retained menu closeout — 2026-11-05
+
+`LM05.lighting-menu-closed01` closes the selected native-lighting leaf for both
+explicit profiles at both actual World sizes. Four retained storage runs bind
+2,472 calls/processes/applications, exact worker SQLite outcomes, binary/source
+identities, terminal CLOSED channels and final request/reply nonce/sequence/input
+checksum/caller/clock, with zero fallback/refusal/error and normal worker exit 0.
+The accepted CS05 parent preserves 16 rows; four previously accepted initial
+campaign/resolution rows are renewed and two lighting rows are new: 22/156 pass,
+134 pending, both final decisions pending. 74 current guards pass. No new original
+run, pixel comparison, renderer/runtime change or game fixture is introduced.
+CS05 review03 and the unchanged SW05 review preserve their existing scopes
+across the passive join/test additions, retaining raw three-file drift with no
+rerun actions. Historical hashes/failures and superseded reviews are unchanged.
+The dashboard selects the new pack while its presentation inputs stay outside
+native proof dependencies. See [lighting/menu closeout](rendering-lighting-menu-closeout-20261105.md)
+and its SQLite bindings/open-item review. Movie/camera/picking/HUD/state,
+natural progression/results, remaining operations, original-caller/ABI/font/DC/
+provider and fault boundaries stay separate. No changing-light scene or original
+lighting-call equivalence is inferred. The pre-Save admission/reliability gap remains.
+
+
+### Preferences resume from retained native output — 2026-11-05
+
+`PR05.preferences-resume-closed01` closes two finite resume rows, preserving all
+22 accepted parent rows: 24/156 pass, 132 pending; both final decisions remain
+pending. Four default/software, 640x480/800x600 cases bind 12 returns (two Mini
+Cancels and Main resolution Apply/rebuild/Main Load per case), physical Escape
+and original Mini ACK/thread to 36 fresh previously compared native World
+presentations totaling 31,482,000 pixels, resource conservation and accepted
+lighting/history. The hash-locked actual resident producer establishes its fresh
+frame/import/dwell predicate; Cancel numeric baselines were not serialized and
+are not invented. 81 current normal/UI/client controls pass. No game execution,
+new pixel comparison, fixture or renderer/runtime change occurs.
+
+The new LM05 applicability review preserves its existing analysis/test closure;
+CS05/SW05 remain applicable with raw drift and no revalidation actions. Old
+source hashes/statuses/evidence and failures stay unchanged. The UI selects the
+24-row pack while presentation sources remain separate from native proof.
+Direct Mini Apply, other settings, pause timing, full journey, ready Main focus,
+actual movie output/skip-return, remaining operations/fault/provider boundaries
+and the known pre-Save admission/reliability failure remain open. See
+[Preferences resume review](rendering-preferences-resume-20261105.md) for evidence,
+the source-derived freshness limit and the bounded rerun command.
+
+
+### Native Campaign and Quick loading handoff — 2026-11-05
+
+`LH05.loading-handoff-closed01` closes four loading rows, preserving all 24
+accepted parent rows: 28/156 pass, 128 pending; both final decisions remain
+pending. Eight Campaign/Quick cases cover default/software and actual
+640x480/800x600. Original entry callbacks and native progress bind the swapped
+pre-World GUI surface to owned RGB565 imports and actual Worlds1..3, with exact
+CREATE/import/presentation sequence and count/byte conservation. All32selected
+presentations reuse independent complete-output comparisons:27,984,000pixels,
+zero mismatches, continuous owned history and no destination/native-player oracle
+seeding.89current normal/UI/client controls pass. No new game, pixel comparison,
+fixture or renderer/runtime change occurs.
+
+The exact PR05 applicability review preserves its unchanged callable/test scope;
+LM05/CS05/SW05 remain applicable with raw drift and zero source actions. Existing
+behavior/status/evidence definitions and failures remain unchanged. The UI selects
+28rows without adding presentation dependencies to native proof. Every retained
+first-World comparison still explicitly lacks complete caller-preparation proof;
+those rows, loading-art equivalence, real later-map loading, per-World exit
+retirement and all remaining scope stay pending. The CS05 pre-Save admission/
+reliability failure remains open. See [loading-handoff review](rendering-loading-handoff-20261105.md)
+for exact evidence, controls, limits and a bounded rerun command.
+
+
+### Public Main/setup native acceptance — 2026-11-06
+
+`MS06.main-setup-closed01` closes setup-change, main-menu and cancel-return for
+both profiles: six new rows preserve all 28 accepted parent rows, giving 34/156
+passed and 122 pending. Both final decisions remain pending. Four public sessions
+cover default/software and directly observed original High/Low preferences;
+native Qt menus use the existing 800x600 logical layout without entering a World.
+Sixty-eight original callback effects bind actual rule/handicap/map changes,
+16 ready Main focus observations, 16 Cancel-return focus observations, physical
+Space/Escape effects and normal Quit. Map Cancel preserves the complete current
+setup; outer Setup Cancel restores entry defaults. Fresh original setup recreates
+AI names/portraits; their identity is not asserted across new Create actions.
+
+The accepted native executable and 405 compiler-source dependencies remain exact.
+Only an external public physical/accessibility driver and retained-data assertions
+are added; no renderer/runtime/native code, patch, fixture or new World comparison.
+Native menu presentation/focus is an intentional policy, with no original-menu
+pixel-equivalence claim. Seven actual original sessions include four passes and
+three retained harness/assertion failures; two staging refusals and one prefix
+preflight refusal launched no game. Repair records correct old requested-launch
+counters without replacing historical hashes. No positive domain was repeated.
+
+`MS06.controls01` records 108 current controls, including evidence-backed guards
+with no skips. Raw states/images/events, producer preimages, negative attempts,
+prefix recovery and exact input restoration remain in SQLite and the verified
+local evidence pair. The exact LH05 applicability boundary preserves its unchanged
+analysis/tests; LH05/PR05/LM05/CS05/SW05 remain current with no actions. UI selection
+stays separate from native source dependencies. Existing behavior/evidence/status
+definitions, unknowns and negative evidence remain unchanged. Movie output/return,
+first-World preparation, later-map/results, remaining operations/fault/providers,
+both decisions and the known CS05 pre-Save admission/reliability failure remain
+open. See [Main/setup closeout](rendering-main-setup-closeout-20261106.md).
+
+
+### Normal terminal World exit — 2026-11-06
+
+`WX06.normal-world-exit-closed01` closes two shutdown World-exit rows, preserving
+34 accepted rows:36/156 passed,120 pending; both final decisions remain pending.
+Eight existing Quick/storage default/software640/800 domains bind original
+Results/Quick/Main or restored Campaign/Main exit callbacks to the last actual
+swapped native World and its accepted independent complete-output comparison.
+Eight presentations reuse7,486,400pixels, zero mismatches; no new comparison.
+Every one of3,713imported World generations has an owned surface incarnation and
+ordered CREATE/import/DELETE/END. The entire accepted resource ledger rederives
+exactly. Coalesced source generations need not each have a swap.
+
+Both retained V6 slot headers prove one FREE completed slot and one original-owned
+next WRITING slot, with no native-owned work. Known producer close records reason1
+then cancels the partial next source write:cancelled1/finished0 remains explicit.
+An acknowledged producer Stop, drained END, returned source work, released input,
+terminal cursor jobs/clients, pre-reclamation graphics inventory, renderer and
+original/private process checks prove normal retirement. No process-exit-only,
+successful FINISHED, immediate every-API intermediate retirement, physical VRAM
+or OS-wide handle census claim is made.
+
+103current actual-case/normal/UI/client checks pass, including14evidence-backed
+controls without skips. Diagnostic pretty-printer refusal, three earlier passing
+analysis versions, the refused test-harness invocation, exact source preimages
+and guard/provenance reviews remain
+immutable. All reports are SQLite-backed; no whole capture restore, new game,
+native/runtime change, binary build or game fixture occurs. Earlier analyzer/test
+files and all preexisting behavior/evidence definitions remain unchanged. MS06,
+LH05,PR05,LM05,CS05,SW05 stay accepted with no actions. Other120rows, both final
+decisions, natural later-map/results, movie/first-World/state/operation/fault/provider
+boundaries and the known CS05 pre-Save admission/reliability failure remain open.
+See [World-exit review](rendering-world-exit-closeout-20261106.md).
+
+
+### Natural enabled movie return to Main — 2026-11-06
+
+`MR06.natural-movie-return-closed01` closes two natural movie-return rows,
+preserving all36accepted parent rows:38/156passed118pending; both final decisions
+stay pending. Four retained public default/software High/Low contexts have native
+availability, accepted complete Intro0/Intro1, exact uncancelled final media ACK
+and initial original Main readiness. Each initial Main screenshot is painted with
+enabled focused Quick Battle in the focused host; physical Preferences input and
+actual original callbacks prove resumed menu input. Normal Quit retires owners,
+with zero unintended Worlds. Native menus stay800x600logical; no World size is
+inferred and prior actual-size proof remains accepted.
+
+Eight ordered decoded RGBA digests match retained independent expected data for
+identical encoded assets:11124frames and2562969600decoded pixels covered by digest
+equality. Reference-tool bytes are unchanged; old native binary/source freshness
+and milestone status are not promoted. The delivery counter measures callbacks,
+not physical swaps:movie GPU pixels compared remain0. Complete movie viewport
+output, movie-skip, exact EOF/first-paint simultaneity, original DirectShow placement/
+control/audio-device equivalence remain separate; only return rows close.
+
+85current actual-case/menu/media/launch/UI/client checks pass, including16new
+negative guards and existing19menu guards without skips. No new game, decoder run,
+native/runtime code, binary build, per-pixel comparison or game fixture. New
+reports use SQLite; raw capture trees remain in their verified stores. Earlier
+analyzers/tests and all existing behavior/evidence definitions remain unchanged;
+WX06/MS06/LH05/PR05/LM05/CS05/SW05 stay accepted with no actions. Other118rows,
+both decisions and known Save admission/historical failures remain open. See
+[natural movie-return review](rendering-movie-return-closeout-20261106.md).
+
+
+## Source-camera/output binding closeout — 2026-11-06
+
+`OC06.source-camera-output-closed01` closes the finite retained default800 Quick
+orientation/minimap-center source-generation/output prerequisite. Original owned
+terrain and camera/cell/creature arguments agree; the four-case selector uses
+three bodies, and six action windows show0,3,2,1,0 plus changed map center.191
+source generations and1020actual World swap occurrences join to native import
+incarnations and complete independent original output, covering1027751340reused
+viewport pixels. Current native/runtime and oracle sources are accepted through
+MR06/WX06; the old gameplay shared-test fingerprint is preserved. No new game,
+pixel comparison, native code/build or fixture. The full periodic scalar join,
+software/640 gameplay, picking/HUD/viewport limits, simulation pause, full camera
+requirements, known Save admission/historical failures and both decisions remain
+open. All38accepted requirement rows are unchanged;118pending. See
+[the closeout](rendering-source-camera-closeout-20261106.md).
+
+
+## Retained camera diagnostics — 2026-11-06
+
+`CM06.retained-diagnostics01` validates finite software800 source/action facets:
+215source generations,120single-Cell and94two-Cell packets plus startup, all4views
+and changed pan center. Every Cell call is checked against the unchanged earlier
+contract. Independent viewport output remains negative: all3819024Sharp differences
+across288comparisons reproduce at exact rational texel boundaries and match an
+adjacent expected texel. No tolerance/oracle/native change or universal rounding
+claim. Five public requests launched3actual games and2zero-game refusals; the two
+Integer games missed physical menu actions before World, publishing no next host
+request. Precise mouse delivery cause stays open; forced stops are not normal Quit.
+The batch is stopped and640cases were never launched. Final revised external
+collector/positive gate remain unvalidated end to end. Earlier38accepted rows and
+all statuses/evidence definitions are unchanged;118rows/bothdecisions and known
+failures remain open. No native/runtime edit, binary build or new game fixture.
+See [camera diagnostics](rendering-camera-matrix-closeout-20261106.md).
+
+
+## Indexed source and destination-history operation closeout — 2026-11-06
+
+`DH06.indexed-history-closed01` closes4operation rows: native indexed sprites and
+destination-dependent history at both profiles and actual640/800, using8accepted
+Quick/Campaign storage cases.3713owned source generations, exact request sequence/
+entry/low16AX/FNV-CRC32C, frame/colour/clip/order inputs and nonempty covered
+indexed/clipped/projected-shadow witnesses join5256World-tagged swaps and
+4779555440reused independent viewport pixels. All149post-import compositions
+remain compared;3retained GPU-frame textures outlive logical command handles
+under their separate owner and receive no current-import scene credit.8cases
+also have visible nonzero indexed palette lookups.54focused checks pass.
+No new game, comparison, native/runtime edit, build or fixture. All38accepted
+parent rows/definitions remain unchanged:42/156passed114pending,bothdecisions
+pending. CPU caller/whole ABI, upstream palette generation, other sprite/operation
+families, first-World preparation, camera/Sharp/input, natural progression/results,
+fault/provider and all known historical/Save/camera failures remain separate.
+See [the operation closeout](rendering-destination-closeout-20261106.md).
+
+
+## Native Sharp sampling and lost menu intents repaired — 2026-11-06
+
+`RF06.native-regressions01` validates native code corrections, separately from
+acceptance-row accounting. The exact retained Sharp geometry reproduces a
+floating-point nearest-texel boundary error in the old shader. Both OpenGL
+presentation paths now use physical pixel centres and integer source-coordinate
+division; the independent reference, tolerance and Smooth policy are unchanged.
+286complete framebuffer and34on-screen comparisons pass at DPR1/1.5.
+
+Main/Map and Save can lose a valid action when the bridge snapshot overlaps
+an original publication. The native session now retains one owned unpublished
+intent for at most500ms of active menu time, preserves its generation/screen/
+thread/ACK and arguments, and rechecks every bridge guard before dispatch. It
+never resends a published request.21forced publication cases,3real XTest button
+actions and8existing menu suites pass. Stable owner/readiness changes, retirement,
+expiry and overtaking input refuse; media pauses dispatch and stop/restart
+discards the intent. Save now records accepted/refused submissions rather than
+allowing a silent refusal to wait for the overall diagnostic deadline.
+
+The historical CM06/CS05 records prove their earlier failure boundaries, without
+identifying every exact cause. Their hashes/results and all prior milestones stay
+unchanged. These native-source changes require targeted current execution; the
+42-row retained pack is not renewed and neither final decision is promoted.
+See [native defect fixes](rendering-defect-fixes-20261106.md). New reports, failures,
+prospective claims and exact tested executables are retained through SQLite.
+
+The targeted skipped-intro software640 original diagnostic also passes Save,
+Mini Load, two display rebuilds, Main Load, restored gameplay and normal Quit.
+One original Save and two Load callbacks bind three accepted storage submissions;
+846imports/returns balance,12,254native calls forward0pixels and all graphics
+owners retire. One actual game follows four retained zero-game preparation
+refusals. Exact-source/current preview proof remains separate from independent
+World-pixel equivalence, historical cause attribution and repeated-run reliability.
+`RF06.software640-storage-diagnostic01` retains that finite positive observation;
+no acceptance row or old evidence is promoted/refreshed.
+
+### BD06 natural direct sprites and blend pixels — 2026-11-06
+
+Native acceptance reaches 46/156 passed, 110 pending: direct sprites and the
+creature/effects blend leaf close for both explicit profiles in four retained
+Campaign/storage cases at actual 640/800 sizes. Three source generations per
+case provide 48 nonzero, non-overwritten source-to-original-to-native viewport
+samples, covering direct RGB565 and half/quarter blends. Blend results differ
+from opaque replacement. Exact queued packet/request identities and source
+coordinate lineage join unchanged continuous original history and complete
+native composition comparisons. All 42 parent rows and both pending decisions
+are preserved. Software Quick generation-2 calls with no qualifying blend result
+receive no positive credit. No game, native/runtime edit, build, fixture or new
+original reference execution. Original ABI, attachment/combat, palette builders,
+CPU callers, camera/Sharp, progression, provider/fault domains and known failures
+remain open. See [bounded evidence and controls](rendering-blend-direct-closeout-20261106.md).
+
+
+## Native defect fixes and concurrent closeout integration — 2026-11-06
+
+Native commit ac08de541 and concurrent direct/blend closeout661b4ea2d retain
+both parents, stable IDs, exact receipts and full ledger additions. The latter
+changes no native source; the tested native sources/regressions stay exact.
+`RF06.public-main-map-input01` additionally passes real public Main/Preferences/
+Quick/Setup/Map mouse OK/back/Main Quit with nine exact original ready ACKs,
+physical XTest delivery, zero World entry and normal native retirement. One
+preceding accessibility startup failure launches no game; its exact source,
+raw data and interrupted prefix recovery are retained. Private runtime/Mesa
+preflight precedes the repaired case. The stopped camera batch stays stopped.
+
+The incoming46-row pack remains at its original source phase. Native-source
+drift does not renew whole-player applicability or erase historical failures;
+both final decisions stay pending. Exact committed-history/artifact reviews
+retain source versions and identify accounting separately from execution. See
+[the integration](rendering-defect-fixes-integration-20261106.md).
+### CP06 caller-bound opaque/cropped native copies — 2026-11-06
+
+Native acceptance reaches 50/156 passed, 106 pending: opaque copies and image
+cropping close for both explicit profiles. Whole-source RGB565 output uses eight
+retained Quick/Campaign cases; cropped output uses the four Campaign/storage
+cases, at actual 640/800. Closed original caller/authority/result intervals bind
+every emitted copy. Selected source/before/complete native destination hashes
+match independent copy transforms; both CPU/GPU source routes have witnesses.
+Thirty-six source-coordinate-to-viewport witnesses span three distinct source
+generations per admitted kind/domain. Preserve all 46 parent rows and both pending
+decisions. No alias/clipper/GPU-keyed positives are manufactured; four low-resolution
+invalid-rectangle cursor calls remain failures without emitted COPY intervals.
+Software Quick crop inadequacy and exact analyzer preimages remain negative
+history. No game, native/runtime edit, build, fixture or original reference run.
+Original driver/ABI/CPU producer recovery, other copy families, known caller issues,
+camera/Sharp, progression/results and provider/fault boundaries remain open.
+See [bounded evidence and controls](rendering-copy-closeout-20261106.md).
+
+### Native defect fixes and concurrent copy closeout integration — 2026-11-06
+
+The tested native fix and integration `07aef58b1` also retain concurrent copy
+closeout `0e642f81d`. Stable behavior/evidence identities, exact review receipts,
+the 50-row pack and both complete ledger additions survive. No native source or
+native regression test changes. RF06's scoped implementation/preview proof stays
+current; broader CP06/BD06 source bindings remain historical where the corrected
+native sources differ. The supplemental committed-history review checks each
+commit against its actual first parent and distinguishes exact accounting from
+new execution. Both final rendering decisions remain pending. No new game run,
+build, reference execution or acceptance promotion is claimed by this merge.
+
+### SK06 public enabled-intro Escape — 2026-11-06
+
+Native acceptance reaches 52/156 passed, 104 pending: movie skip closes for both
+profiles using four real default/software High/Low public cases. Physical Escape
+interrupts accepted visible Intro0 or Intro1 delivery; exact stable media wire and
+history acknowledge cancellation. The later-intro cases first complete Intro0
+with retained independent decoded-output equality. Painted/focused Main accepts
+real input with exact original callbacks, then normal Quit retires graphics/media
+and starts no World. All 50 parent rows and both decisions are preserved. The
+accepted player and 405 compiler sources are unchanged; no new game fixture or
+native/runtime edit. Keep the missing-original-alias refusal, two zero-game
+staging/accessibility failures, exact driver preimages and all private input/prefix
+records. Source preferences restore exactly. Movie GPU/original audiovisual/ABI,
+fault/provider, known cursor/camera/Sharp issues and other journeys remain open.
+See [bounded proof and controls](rendering-movie-skip-closeout-20261106.md).
+
+
+SK06 integration source boundary: concurrent master bed0d49cb959f596bd9b9b4f97488148fc4d5128 changes viewport/menu native sources. The four accepted movie-skip cases and55controls remain pinned to player94c70f6b and their recorded compiler closure; no current-code applicability is inferred for the newer C++ version. Keep52accepted rows and both decisions, retain raw staleness and require targeted revalidation before claiming current-source execution. Incoming RF06fixes and their tests/evidence remain unchanged. See rendering-movie-skip-results-20261106/concurrent-integration-review-01.json.
+
+
+### Cursor resolution and saved-background admission — 2026-11-07
+
+CR07 reproduces the exact CP06 off-screen save-under/sprite pair using unchanged
+original foreground code with nominal800/live640 state. The old native owner
+fails the independent admission regression. Native cursor-only entry and per-copy
+checks now reject incompatible backing or invalid cached geometry, abort the
+remaining paint transaction, release unpublished pins and force stationary repaint
+after settling. General invalid-copy HRESULTs/bounds remain strict.
+
+Current controls pass108complete provider planes across4startup/backing profiles,
+18changed-anchor refusals,24existing owning-client planes and optimized/sanitized
+10368client/1280queue/12disposal/6retry comparisons per configuration. Immediate,
+deferred, stale restore, post-admission mode flip, edges, resumed800output and
+zero-resource retirement are explicit. Every failure/preimage remains in SQLite;
+original manifests pass before/after. No original game entrypoint is run.
+
+The new NP.cursor-resolution-admission scope is implemented/headless only. Exact
+historical flag/cause attribution and current live transitions remain pending.
+52frozen rows and both final decisions retain their historical source phase; new
+native source bytes do not renew broad player/provider acceptance. See
+[cursor correction and controls](cursor-resolution-admission-20261107.md).
+
+
+## Repaired rendering barriers reconciled — 2026-11-07
+
+`FR07.barriers-reconciled01` closes three narrow stale barriers using unchanged
+merged RF06 execution: exact Sharp sampling (286framebuffer/34onscreen checks),
+public physical Main/Map actions (9original ready states), and software640 V3
+Save/Mini Load/display rebuild/Main Load/normal Quit (846balanced deliveries).
+All recorded positive source bindings still match; the existing native milestones
+remain applicable. See [review](rendering-fixed-barriers-closeout-20261107.md).
+No new execution, fixture, code change or stage promotion. Preserve52accepted/
+104pending rows, historical pack source limitations, every old failure, the camera
+batch stop, broader pixel/domain/reliability/attribution work and both decisions.
+
+
+### Cursor fix and concurrent barrier accounting integration — 2026-11-07
+
+Native cursor fix f1b42ad8c and barrier reconciliation1575c7b43 retain both exact
+histories, stable register identities, review receipts and complete ledger
+additions. Every native source and test remains exactly the validated fix.
+CR07 implementation/headless proof stays current. FR07 keeps its original RF06
+source phase; cursor-header drift does not renew affected whole-game inputs or
+reset previously observed finite positives.52frozen rows and both final decisions
+remain unchanged. Both committed first-parent ranges have exact file receipts and
+no unresolved gaps. No additional build/test/game execution is claimed. See
+[cursor integration boundary](cursor-resolution-integration-20261107.md).
+
+## Ten fixed-FPS completion conditions reconciled — 2026-11-07
+
+`FPS07.scope-reconciled01` applies the already approved diagnostic-FPS completion
+policy to ten older native component gap entries: scene production/budget, owned
+snapshot delivery, prepared World/command replay, masked scratch reuse, colour
+cache, covered displacement, retained World image and owner-cost profiling.
+See [exact scopes](rendering-ten-fps-closeouts-20261107.md). Historical benchmarks
+and every functional/pixel/ownership/deadline/progress/resource gap remain intact.
+Existing completion/acceptance guards execute; no new fixture, engine code,
+player run, status promotion or acceptance row. Preserve52accepted/104pending,
+raw native source drift and both pending decisions.
+
+
+### Cursor correction and diagnostic-FPS accounting integration — 2026-11-07
+
+The tested cursor correction also preserves FPS-accounting70f85f66b and its exact
+receipts, unchanged contracts/milestones and complete ledger addition. Native
+sources and tests remain byte-identical to f1b42ad8c. The existing diagnostic-FPS
+policy does not waive output, progress, deadline or resource bounds. Both latest
+first-parent histories have no missing exact receipt. No new execution or frozen
+row promotion is claimed;52rows and both pending decisions retain their phases.
+See [integration](cursor-resolution-integration-20261107.md).
+
+
+## FT07 partial-write and public Results return — 2026-11-07
+
+Ten functional cases close four acceptance rows: eight retained Quick/Campaign
+default/software640/800 partial-write domains and two current fixed-player public
+Quick Results/setup/Main focus/input/normal Quit cases. Preserve52parent rows:
+56/156passed,100pending; both final decisions remain pending.24caller-bound
+partial-destination witnesses preserve8562576exterior WORDs;15current native
+copy/fill/key/clip/error controls plus the two existing compatibility executables
+pass. Actual Results callbacks/ACKs and painted/focused native Main accept further
+physical input;22default and19software World imports/completions/verified returns
+balance at normal zero-owner Quit. Current player405compiler sources and actual
+native DLL admission closures are bound separately. Retained copy viewports and
+the inherited52row pack remain historical for six C++files; no old hashes refresh.
+Three original games from four public requests include two positives, one retained
+forced collector stop after direct Results, and one zero-game staging refusal.
+Native prefix/compiler/lease/oracle negatives and exact repair/preimage evidence
+remain retained.19actual-data guards,30UI and9client controls pass without skips.
+No new game fixture or native/runtime implementation. Natural victory/defeat,
+current World-pixel equality, full camera/firstWorld/gameplay, arbitrary providers
+and fault/reliability and the known Save admission gap remain separate.
+See [bounded report](rendering-functional-ten-closeout-20261107.md) and immutable
+`rendering-functional-ten-results-20261107/closeout-analysis-01.json`.
+
+
+FT07 integration preserves concurrent cursor source/tests and all CR07 claims.
+Two shared cursor header hashes differ from the actual FT07 native/component DLL
+versions: current integrated execution is pending for those exact dependencies.
+Retain ten completed cases, four leaf rows, all56accepted/100pending and both
+decisions at their recorded source phases; no old hash refresh, native waiver,
+status reset, new game or matrix rerun. The unchanged retained-data Python analysis
+remains current. See rendering-functional-ten-results-20261107/concurrent-integration-review-01.json
+and rendering-functional-ten-closeout-20261107.md.
+
+
+## KP07 keyed-copy and selected palette remapping — 2026-11-07
+
+Four acceptance rows close: `operation.copy-keyed` and `operation.palette-remap`
+for both explicit profiles. Preserve every one of the 56 accepted parent rows:
+60/156 passed, 96 pending; both final decisions remain pending. Eight retained
+Quick/Campaign default/software 640/800 contexts supply 24 caller-bound keyed
+destinations with skipped-key preservation and actual visible changed pixels,
+plus 72 same-frame/index samples remapped through three distinct selected shade
+tables into independently expected original WORDs and actual native viewports.
+Request/source/handle/import identities and complete prior composition proof
+remain bound. Native execution stays at its recorded historical source phases;
+only the new retained-data analysis and guards receive fresh execution support.
+The exact two known 640x480 keyed cursor INVALIDRECT/no-work requests remain
+failures and earn no success credit. Other failures cannot use their exclusion.
+Actual bytes from all 23 historical supplied GPU controls are freshly verified;
+no natural GPU-keyed reachability or current native-DLL equivalence is inferred.
+Upstream palette builders/platform/ordinals, cycling, arbitrary callers/providers,
+whole cursor/camera/gameplay, other 96 rows and final decisions remain separate.
+The initial zero-refusal analyzer assumption, failed report and exact source
+preimages are retained. No new game, original-reference run, capture, native
+implementation, game fixture or build. See
+[closeout](rendering-four-row-closeout-20261107.md) and immutable SQLite
+`rendering-four-row-results-20261107/closeout-analysis-02.json`.
+
+
+## MU07 minimap updates — 2026-11-07
+
+Two acceptance rows close: minimap-update for both explicit profiles at actual
+640x480 and800x600. Preserve all60parent rows:62/156passed,94pending; both
+final decisions remain pending. Four retained real Campaign/storage contexts
+supply12advancing source generations with meaningful changed inputs and visible
+output. Independently computed directly determined terrain/overlay WORDs bind
+the original finite calls/state, unique successful display copies between exact
+World imports, live source/destination incarnations and every corresponding
+native viewport pixel. Minimap display copies precede scene drawing: later
+original World planes overwrite that region and receive no minimap oracle credit.
+Hidden auxiliary-background restoration, whole markers/borders/camera/picking,
+upstream visibility and arbitrary maps/views/providers remain separate.64actual-
+data/UI/client guards pass without skips. Initial cardinality and post-scene
+oracle failures, the sandbox-refused archive write and exact source preimages
+remain retained. Only new Python retained-data analysis is current; native
+execution preserves historical full hashes and eight inherited source changes.
+All known cursor/other failures and final decisions remain. No original game or
+reference run, capture, native code/build or new fixture. See
+[closeout](rendering-minimap-update-closeout-20261107.md) and immutable SQLite
+`rendering-next-two-results-20261107/closeout-analysis-04.json`.
+
+
+## AA07 five animation and auxiliary acceptance rows — 2026-11-07
+
+Close active-World animation and auxiliary sprite output for both profiles, plus
+default creature-animation:67/156passed,89pending. Preserve every62parent row
+and both pending decisions. Four retained Campaign/storage default/software
+640/800contexts supply24distinct decoded RedCap/Wizard1 SPR frame states and
+24positive projected-shadow/owned-wave outputs. Exact archived asset/frame bytes,
+source World clocks, stable camera/map/canvas incarnation, actual entry/low16AX/
+order/payload identity and independent original final WORDs join40372actual
+viewport pixels and11033changed visible WORDs. All selected source pixels reach
+the viewport; later RGB-add/colour rectangles exclude earlier sprite credit.
+71actual-data/UI/client checks pass without skips. Original simulation supplies
+frame decisions; ANI controller/timing, per-actor lifetime, whole attachments/
+combat/visibility, unowned reads, arbitrary maps/views/providers and the software
+creature-animation row remain separate. Initial extra-writer analysis and native
+applicability refusals, exact sources and every old failure remain retained.
+New Python analysis is current; native/original/viewport execution retains its
+historical full hashes and eight source differences. No game/reference run,
+capture, native code/build or new game fixture. See
+[closeout](rendering-five-acceptance-closeout-20261107.md) and immutable SQLite
+`rendering-five-results-20261107/closeout-analysis-03.json`.
+
+## IP07 — finite camera/cursor/picking and physical pixel alignment, 2026-11-07
+
+Fix the reproduced native Sharp/Integer input/display mismatch using physical
+pixel centres, including fractional-DPR borders. Current GPU controls pass
+673734input/framebuffer samples,68complete/34onscreen comparisons and actual XCB
+input regressions at DPR1/1.5. Add the optional read-only same-owner frame/cursor/
+original Region witness. The default/software800/640 Quick matrix passes both
+scales, four views and Up pan:4210source generations,12077actual World swaps,
+10561336500viewport pixels with zero independent-reference differences,
+80original selection toggles and normal zero-owner Quit in all four cases.
+
+`IP07.matrix01` binds current native/compiler/player/oracle sources and exact
+retained execution bytes. Thirty Python witness/readiness guards and unchanged
+optimized/sanitized native controls pass; the completed PE32 wrapper fixture is
+reanalyzed from its retained capture. No original poll, hit test or simulation
+tick was added. Numeric actor identities are not allocation generations. The
+checked5c6a54Region vtable cell anchors callback4fdad0; its function inventory and
+whole-body recovery remain unresolved. Raw camera/producer-center transforms,
+atomic HUD/source semantics and broad cursor/picking/viewport bounds remain open.
+
+Retain every preparation/native/control/analysis failure and all plans. The
+insufficient640capture is recollected once under an observed three-generation
+readiness barrier; the sufficient800capture is retained. Software800World60 has
+a3082ms poll-to-return interval and3365ms frame-to-callback gap under lossless
+capture. Cause/production attribution and response-deadline validation remain
+pending. Both final rendering decisions are unchanged. Admission of the two
+four-orientation configuration rows is pending the exact inherited inventory
+join; this feature proof itself promotes no frozen acceptance row. See
+[closeout](rendering-interaction-20261107.md) and SQLite `matrix-01.json` under
+`rendering-interaction-results-20261107/`.
+
+### IP07 integration and four-orientation admission
+
+Integrate feature5154b3d63 with master0c3678eb6, preserving the intervening
+functional, keyed/palette, minimap and animation/auxiliary closeouts.
+`IP07.fourviews01` joins the exact67-row parent inventory to the current IP07
+matrix and its96required source-route frames. Only the two four-orientation
+configuration rows close:69/156passed,87pending. The four row-admission guards
+pass; they cannot substitute for actual player/source/output evidence. All
+inherited native/analyzer source fingerprints and raw drift remain historical;
+no native full-hash waiver or new original/pixel execution is asserted by this
+join. Both decisions, all failures and the capture timing/response-deadline
+qualification remain. Broad pan/HUD, viewport boundaries/rebuilds, cursor motion,
+hotspots, picking/selection and actor lifetimes remain separate.
+
+The current admission evidence is `IP07.fourviews02`, preserving the first
+join and adding its required explicit UI scope. The actual read-only UI
+projection verifies 69 passed / 87 pending. Four admission, 30 Python UI,
+nine client and 22 acceptance guards pass without skips. Final incoming
+animation and feature committed-history hashes are retained in
+`incoming-master-history-04.json`. Its 4028 missing raw-artifact receipts are
+added retrospectively through SQLite in `incoming-master-history-05.json`.
+All payloads verified; preserve the failed first review and original commits.
+This accounting does not assert new engine execution or a historical gate pass.
+
+
+## RC07 three retained-evidence acceptance rows — 2026-11-07
+
+Close software creature-animation and normal-lifetime gates for both profiles:
+72/156passed,84pending, preserving all69parent rows and both pending decisions.
+Two retained software Campaign/storage640/800contexts freshly join actual
+selected viewport pixels and independent original WORDs to frozen AA07 distinct
+RedCap/Wizard1 frame/resource/source-clock evidence. ANI/controller timing and
+actor-pool lifecycle remain separate. The lifetime gate expands every accepted
+primary acquisition, including IP07matrix attachments:22unique normal executions
+with7964balanced imported/completed/returned World generations. Raw original
+Main Quit/process exit0, inactive input, drained command END/control Stop, closed
+cursor jobs and zero pre-reclamation graphics owners are required. Source nonce/
+slots and per-import live command incarnations where captured are checked.
+Results lacks optional close-caller diagnostics; its raw slots receive no caller
+attribution. Cancellation is not FINISHED. Future accepted primary executions
+require the same retirement admission. Fault/restart, every intermediate API/OS
+owner, arbitrary providers and final decisions remain separate.77actual-data/UI/
+client guards pass without skips. Missing-diagnostic failure, exact sources and
+source-capture correction, successful preliminary results and all old failures
+remain. Incoming committed-history review verifies8295file transitions;13final
+operator artifact gaps receive exact retrospective receipts without historical
+gate or validation claims. Only new Python retained-data analysis is current;
+all old native/compiler/original/viewport and AA07source phases/raw drift remain.
+No original game, capture, native code/build or game fixture. See
+[closeout](rendering-retained-closeout-20261107.md) and immutable SQLite
+`rendering-retained-results-20261107/closeout-analysis-04.json`.
+
+
+## IG07 retained identity gates — 2026-11-07
+
+Close gate.identity for default/software across the exact22-case accepted primary
+cohort:74/156passed82pending, all72parent rows and both decisions preserved.
+Fresh retained-byte checks bind4848-entry installation manifests, original NoCD
+40209ca7and every staged PE32 executable, all ten native DLLs per run, three
+ELF64player binaries with actual compiler banners and consistent405-file source
+closures, recorded native source phases, observed llvmpipeLLVM22.1.8 and exact
+launch/profile/native-only isolation. Only CFG/prefs.cfg may differ from baseline:
+verify complete retained bytes equal the sole IsHighRes TRUE-to-FALSE edit in ten
+Low inputs. Initial strict equality refusal and exact sources remain. Future
+primary executions require this identity admission and the existing lifetime
+admission.78actual-data/UI/client guards pass without skips; prior55committed
+file transitions have exact receipts and no unresolved gaps. Only new Python
+provenance analysis is current; no historical source hash refresh, native waiver,
+physical driver/GL ABI, new engine execution or final decision claim. Every old
+failure, missing journey/operation/transition and the other82rows remain separate.
+No game, capture, native code/build or game fixture. See
+[closeout](rendering-identity-closeout-20261107.md) and immutable SQLite
+`rendering-identity-results-20261107/closeout-analysis-03.json`.
+
+## PR07: physical pan/picking/HUD alignment and failed resize handoff (2026-11-07)
+
+The unchanged accepted IP07 four-domain cohort supplies eight actual Up pans at
+640/800 and Sharp/Integer for default/software. Fresh retained-data analysis
+binds changed original/frame-bound cameras, fixed minimap geometry, post-pan
+source-derived object targets, original motion/selection acknowledgements and
+all 2,411 interval swaps:2,108,419,500 complete viewport pixels, zero differences.
+Only the two `journey.camera-motion.pan` rows close. The final inventory joins
+the latest reviewed parent, preserving every other row, source phase and both
+pending decisions. No new game/oracle/native execution supports this admission.
+
+The separate picking/resize batch ends failed after its hard6requests/3original
+startups. Three zero-game preparation refusals, one no-graphics X authorization
+startup, the Quick-Escape/Mini driver error and the second-Spellbox timeout all
+remain retained. The last capture has20high-size object/cell windows, zero
+completed rebuilds and no normal Quit. After acknowledged Main Preferences Low,
+Finish18 remains unacknowledged at17 in the second Spellbox; native rendering
+stops on the existing menu timeout. This is a confirmed session failure with
+unisolated cause, not a fixed renderer bug or a leak inference. Both picking
+rows and same-World rebuild continuity remain pending. No further original run
+is authorized by this exhausted batch plan. See
+[PR07 scope/evidence](rendering-picking-resize-20261107.md).
+
+### OP07 retained CPU transport operation rows — 2026-11-07
+
+Two CPU write/readback rows close from four already admitted normal-storage
+640/800 default/software domains:212complete actual reply buffers independently
+match ordered history, with12meaningful full CPU uploads reaching distinct
+checked recorded complete GPU COPY planes. Reads and writes are separate paths;
+no same-buffer read-modify-read, physical untouched-word, arbitrary raw-reader,
+font/DC lifetime or full ABI claim. PR07 pan rows and all76parent rows remain:
+78/156passed78pending;16operation rows still open with retained leads and exact
+admission/caller/lifecycle/output gaps. Failed early analyses/source preimages
+and known640cursor refusals remain. New Python analysis/accounting only; no game,
+capture, native code/build or fixture. See
+[operation closeout](rendering-operations-closeout-20261107.md).
+
+
+## Enabled native intro viewport output (2026-11-07)
+
+IN07 closes both complete-intro rows for default/software High/Low:76/156passed80pending, all74parent rows and both decisions preserved. Four new public original-game cases finish eight native intro requests/11124decoded frames and normal zero-World Quit. Every ordered submitted image matches pinned independent FFmpeg/YUV/BT.601 expected data; 11136actual movie swaps/9731436000whole viewport pixels compare with zero differences, including letterbox, alpha and nearest sampling. Each new case passes complete retained-byte identity and raw normal-lifetime admission. A separate opt-in version3movie capture policy adds2GiB stored/64GiBraw/131072rows with256MiB/4096jobs and128paint keys; old v1/v2limits remain. New captures stage in RAM and exact bytes survive in paired SQLite.108actual-data/compatibility/media/UI/client guards and optimized/sanitized native worker controls pass.
+
+Retain all three zero-game AT-SPI/unsupported-source/missing-music refusals, their sources and cleanup, and the first actual normal game whose old1GiB output capture explicitly refuses. Total original games5, with4accepted complete cases; total requests8. The first strict full analyzer misclassified post-intro native GUI frames. Exact preimages/failure and retained-data correction survive: only explicit GUI ownership, live leases/commands, mode0 and zero World/sealed tags after all2781movie images qualify; no GUI movie-pixel credit. No new game for that correction. Earlier native/compiler/original/viewport phases, every historical failure, whole GUI/World/operation/transition/provider/physical scanout/original DirectShow/device obligations and both final decisions remain. Current execution covers this finite movie output scope, not whole-player or rendering recovery completion. See [the closeout](rendering-enabled-intros-closeout-20261107.md) and its immutable analysis/binding. No gameplay balance or remote operation.
+
+
+### Enabled-intro integration preserves concurrent acceptance
+
+The exact join over `34ee1d2eee233d3c2d78f5f132158ce2d22c7c3c` preserves all78incoming pan/CPU-transport/earlier rows and adds only2enabled-intro rows:80/156passed,76pending,both decisions pending. The standalone intro76-row phase and every parent source hash/attachment/failure remain immutable; no current whole-player or original DirectShow/driver equivalence is inferred. Source checkpoint and recovery stash retain the pre-update owned tree; final exact reviews and normal current/staged gates apply to the combined source.
+
+## First composed native World entry closeout — 2026-11-07
+
+`FW07.first-world-closed01` closes the four Campaign/Quick
+`first-composed-world` rows for default/software at actual640/800. The frozen
+inventory advances74→78passed,82→78pending; all parent rows/attachments and both
+pending final decisions survive. Eight first swapped World1 viewports freshly
+reconstruct6,996,000pixels from independent original raster/owned history and
+complete native command/viewport geometry at zero differences.12,804first-queue
+rasters bind exact source, order, entries, effective clips/pitch and consumed AX0/1.
+Original consumer/table window5002a0..501330 and every observed continuation match
+the staged PE. Recorded native adapter and original AX/history executor sources,
+accepted identity and normal retirement bind the preservation argument. Original
+traversal/metadata/clip/lazy-table preparation remain permitted suppliers; raw row
+snapshots and whole original preparation recovery remain false. Quick map1 is
+Celtic Forest One(small),row0; Campaign uses the accepted default initial region.
+
+55actual-data/UI/client guards pass without skips. The incoming identity commit's
+35content transitions have exact receipts and no gaps. Failed first analysis,
+source preimages, superseded positives, intentionally interrupted writer-lock
+attempt and sandbox HTTP-listener refusal remain in SQLite. Final immutable-object
+reads avoid the writer lock. Only Python retained-data analysis is current;
+historical native/compiler/original/viewport hashes and raw drift remain. No game
+run, capture, native implementation/build or fixture. Unknown maps/providers,
+whole ABI/preparation, remaining journeys/operations/gates, historical watchdog
+and both final decisions stay separate. See
+[bounded proof and limits](rendering-first-world-closeout-20261107.md).
+
+### First World integration with current pan/transport acceptance
+
+The actual master-first join preserves all74common accepted rows, four FW07
+first-World, two PR07pan and two OP07CPU transport rows:82passed/74pending.
+Every exact parent row/attachment and both full source maps survive with no
+conflicts; all current parent Python analysis hashes match. Both final decisions
+and every historical failure remain separate. No native/original proof is rerun
+or promoted by this metadata join. The canonical combined record is
+rendering-first-world-results-20261107/merged-acceptance-03.json.
+Earlier80-row candidates, zero-error audits, the wrong-leaf refusal, an
+intentionally interrupted hook when master advanced, exact authored source
+preimages, all accepted reviews and verified paired backups remain retained.
+
+
+### Enabled-intro integration preserves concurrent acceptance
+
+The exact join over `2b3559ffa3932e379962ccc3e9ca3f66e012443e` preserves all82incoming pan/CPU-transport/earlier rows and adds only2enabled-intro rows:84/156passed,72pending,both decisions pending. The standalone intro76-row phase and every parent source hash/attachment/failure remain immutable; no current whole-player or original DirectShow/driver equivalence is inferred. Source checkpoint and recovery stash retain the pre-update owned tree; final exact reviews and normal current/staged gates apply to the combined source.
+
+## MK07: presented marker and camera-corner acceptance (2026-11-07)
+
+Only the two remaining `journey.hud-minimap-tooltips.markers` profile rows close.
+All82incoming rows, complete source phases and both pending decisions are
+preserved:84/156passed72pending. Four retained IP07Quick cases at640/800 and
+default/software supply80real post-selection intervals,240source generations,
+four stored orientations plus pan and Sharp/Integer. All21,046direct native
+marker pixels match independently computed camera/cell/creature WORDs;2,873
+complete interval viewport checks (2,512,438,500pixel checks, including repeated
+swaps) match the independent owned original-history oracle at zero differences.
+Original callback state, cell pointer offset, camera origin, creature grid
+refresh and owned CPU-input/COPY/PRESENT incarnation lineage are checked.
+
+The actual original caller disables its outer diamond border (+6207nonzero);
+its four camera corner borders are included. This does not validate an enabled
+outer border. Applicable unchanged original marker-kernel proofs remain at
+their recorded execution phase; only current retained-data Python analysis
+earns headless integration. No new game, native implementation/build, oracle
+execution, atomic post-tick HUD, full cursor background/selection restoration,
+visibility generation, watchdog or second-battle resize credit. Early row
+exploration, the duplicate minimap-row refusal and analysis/source-namespace
+refusals are retained without double credit or renderer-defect inference.
+See [scope/evidence](rendering-markers-20261107.md) and immutable SQLite
+`rendering-markers-results-20261107/closeout-01.json`.
+
+### FF07 natural full-fill operation rows — 2026-11-07
+
+Two full-fill rows close from four already admitted640/800default/software
+storage/menu cases:355natural source fill calls join the closed caller census,
+including328full fills, and12meaningful full UPDATE witnesses reach checked
+complete recorded actual GPU COPY source/prior/destination planes. Exact source
+argument colors, COPY fences and live handle incarnations agree. The same
+imported World surface/generation remains live through both UPDATE and GPU
+output; retired-World transition witnesses are excluded by fresh retained-data
+analysis02and five added guards. The initial admission refusal/source versions
+and interrupted uncommitted finishes remain. Exclude NIZ1
+policy initialization and eight unpaired terminal fills. Rectangular fills here
+are inside their surfaces and earn no clipping credit. All84parent rows, including both minimap-marker rows, remain:
+86/156passed70pending;14operation rows remain open. Python retained-data analysis
+only; historical native/original phases and every failure remain. No game,
+capture, native code/build or fixture. See
+[full-fill closeout](rendering-full-fill-closeout-20261107.md).
+
+
+### Enabled-intro integration preserves concurrent acceptance
+
+The exact join over `aa4139b13ed4a7ae258133b3ae20f5d78ebb78bb` preserves all86incoming marker/full-fill/pan/CPU-transport/earlier rows and adds only2enabled-intro rows:88/156passed,68pending,both decisions pending. The standalone intro76-row phase and every parent source hash/attachment/failure remain immutable; no current whole-player or original DirectShow/driver equivalence is inferred. Source checkpoint and recovery stash retain the pre-update owned tree; final exact reviews and normal current/staged gates apply to the combined source.
+
+## Shared rendering closeout and second Spellbox diagnosis — 2026-11-07
+
+BC07 adds a bounded shared retained-proof runner around unchanged CPU, full-fill,
+pan and marker admissions. One SQLite reader/result preserves all unrelated
+rows, source phases, failures and both decisions; eleven actual-data/adverse/UI
+checks pass. Its four-component replay reproduces eight existing admissions
+from the selected74-row parent to82; current master86/156is unchanged.
+Required census, exact receipts, audit/gates, paired backups and normal hook
+remain separate mandatory closeout steps. SH07 separately reviews the retained
+second Spellbox freeze and adds prospectively bounded public High->High/High->Low
+diagnostics with read-only SQLite/process waits. Both prior zero-game staging
+refusals, exhausted PR07six-request/three-game failure and unisolated cause are
+preserved. No native/runtime/Qt bytes, original artifacts, gameplay balance or
+final acceptance status is changed. See
+[the owned review](rendering-closeout-handoff-20261107.md) for current execution
+boundaries and immutable results.
+
+SH07 final reduced-route diagnostic:3requests,2zero-game refusals,1failed
+original startup;440retained lane samples reproduce second Finish18/ACK17without
+the picking workload. Host retirement's1.342176357supper bound identifies the
+2sstate-lease branch rather than10srequest timeout. Guest process/stack cause
+remains unproved. Ten current retained-data/parser controls validate decoding,
+namespace device/inode matching, old-frame rebuild waiting and timing; corrected observer has no new live
+validation. Original/native/compiler/player source phases and both full picking
+rows/final decisions remain separate. No rectangle/deadline policy is weakened.
+
+
+### BC07/SH07 requested master integration
+
+The requested merge is based on ed5b85b1d and preserves all88intro/earlier
+acceptance rows,68pending rows and both final decisions. Current retained-input
+reanalysis compares exact old/current V1/V2 reader metadata and decoded bodies,
+then unchanged case/row guards, with native/compiler/original execution hashes
+kept historical. No game/native build, fresh renderer output or new acceptance
+row is supplied. All14batch,10handoff and43enabled-intro controls pass without
+skips on the merged source. Original source-phase failures/results remain immutable.
+Incoming5commits/9821parent-file transitions have six missing unique metadata
+pairs recorded retrospectively in SQLite; no past gate claim. See the owned
+[closeout/integration review](rendering-closeout-handoff-20261107.md).
+
+
+## SV07: scene occlusion output and remaining attachment/combat rows — 2026-11-07
+
+The owned scene-visibility-effects batch closes only both active-world.visibility
+rows from four retained ordinary Campaign/storage default/software 640/800 cases.
+412 scene points switch between an unchanged named creature bitmap/palette/anchor/
+clip/camera and later opaque rasters with different WORDs; 824 actual viewport
+pixels match independent original output. Exact original entries/consumed AX,
+source order, live source/import incarnations and complete selected viewport
+lineage are checked. New current work is Python retained-data analysis and
+controls; original/native/compiler/viewport hashes remain historical. No fog/
+coverage-grid/terrain-owner recovery, actor identity, native code/build, game,
+fixture, replacement or gameplay balance change.
+
+SV07.occlusion03 preserves all 88 parent rows: 90/156 passed, 66 pending. Of the six
+requested scene/effects rows, four remain pending: actual parent/child ANI/base/
+anchor placement across views and actual combat action/effect/health identity
+joined to accepted source generations and complete output. Offline attachment
+recipes, old combat events and downstream effect sprites do not close them.
+Both final decisions, original reliability failures and source phases survive.
+All 67 scene/UI/client controls pass without skips. Both failed analyzer
+preparations and the wrong client-command refusal retain exact source phases
+and SQLite results. See [the six-row review](scene-visibility-effects-20261107.md)
+and `rendering-scene-effects-results-20261107/admission-03.json`.
+
+
+### PA07: bounded Campaign Mini pause acceptance
+
+The public Campaign Mini pause leaf now passes for default/software profiles
+from four actual 800×600/640×480cases and eight nominal 3 second dwells. Raw
+original owner/ACK and frozen World returns, released/blocked gameplay input,
+live media/music ownership, both Cancel/Escape original callbacks, fresh
+independently compared resumed output/input and normal owner retirement agree.
+5,483,989,500 actual GPU pixel checks have zero differences. The two pause rows preserve
+all 90 parent rows and both pending final decisions: 92/156 passed, 64 pending.
+See [the phase-preserving acceptance review](rendering-pause-20261107.md) and
+`rendering-pause-results-20261107/pause-closed-01.json`.
+
+The bounded version 4 command-history diagnostic policy fixes an observed old
+recorder row-cap refusal; it changes no rendering/simulation behavior. Retained
+writer controls cover optimized/sanitized policy limits, legacy budgets, role
+isolation and nonblocking queue refusal. Sampling, source640 OCR geometry and
+physical Escape focus/keymap/ACK admission were repaired with failures retained.
+Four current cases and two historical successful phases remain separate; eight
+failed game runs receive no acceptance credit. Original manifest/oracle hashes
+remain pinned. Native-header full-hash drift makes earlier affected native
+evidence historical unless separately reviewed/revalidated; statuses and old
+hashes are preserved without asserting current-code equivalence. No rendering
+bug, all-simulation/music freeze, arbitrary-provider, font/DC/ABI, whole
+cursor/background, watchdog/second-battle resize or final-renderer closure claim.
+
+### Bounded clipped-copy operation rows — CL07
+
+CL07 closes both `operation.copy-clipped` rows over the88-row parent:90/156passed,66pending,both decisions pending. Four public native-only default/software actual640/800World domains bind1910owner-thread caller plans to actual RGNDATA, attached clippers, original arguments/results, independent piece geometry and live native storage. Eight meaningful complete CPU/GPU destination witnesses compare3.84million pixels at zero differences and preserve1369600exterior WORD values, including751388nonzero values. Low uses ordinary Win32 movement and native surface-edge intersection; the World640source remains separate from its800primary. Other threads/global all-COPY diagnostics and whole World/viewport/physical-driver/ABI claims receive no credit.
+
+The optional provider observer preserves existing clip snapshots without extra GDI/pixel queries or callback file I/O. Twenty off/on supplied-input native controls preserve expected HRESULT/plans/full WORD output; current existing GPU controls verify bounded selected planes, unchanged duplicate execution, fresh lifetime/ancestry signatures and budget/refusal branches. Diagnostic capture now permits at most8distinct inputs per ancestry/key class/256MiB retained planes, within unchanged worker/readback caps. All149Python/client guards pass without skips. Three admitted captures are reanalyzed after control-only repairs; only final softwareLow14 runs the final controller. Three cases use the current bounded player; accepted default80007 retains its original player/compiler/native phase. No historical hash or milestone is refreshed.
+
+All six zero-game refusals, eight conservatively counted original starts, failed/partial analyses, exact preimages and old plans remain. Independent reviews count interrupted09/10without editing their null/zero reports or conferring acceptance; the final enforced14request/eight-start cap includes the extra zero-game pool refusal. No accepted game or full matrix is repeated. Completed stages retire only after paired full-file preservation, real restore, idle-consumer checks and historical-path pins. Twelve other operation rows and every other pending requirement/final decision remain. Incoming scene rows and committed-history accounting are integrated separately. See [the bounded closeout](rendering-clipped-operations-closeout-20261107.md). No new game fixture, replacement, balance change or remote operation.
+
+### CL07 preserves incoming pause and capture-policy work
+
+The final merge starts from actual master `2d559b55b`: all92incoming accepted scene/pause/earlier rows and both decisions remain; the same four clipping domains add only2rows for94/156passed,62pending. The earlier uncommitted92-row merge has a lossless pinned Git source-tree checkpoint, not a gate/commit claim. Current capture-header changes are opt-in metadata policy only; four retained cases pass current-reader analysis and the applicable PA07native capture controls retain exact source bytes. Nine strict reader guards cover the new/legacy reader. New CL07*02evidence preserves old*01hashes/staleness and declares no new game/native engine execution or current full-player producer. Rendering/guest copy math remains byte-exact; data/control changes do not reopen completed milestones. The committed pause range adds5412exactly reviewed transitions with zero unresolved gaps.
+
+## UI07 HUD, tooltip and Space/Mini pause acceptance — 2026-11-07
+
+The [four-domain closeout](rendering-hud-tooltip-pause-20261107.md) admits the six
+default/software HUD-update, tooltip-open-close and pause rows at actual640/800.
+The standalone inventory preserves88parent rows and adds6:94/156passed,62pending,
+with both decisions pending. All four complete actual outputs have zero pixel
+differences against independent original source/history replay. Actual original
+actor values/text/SFT glyphs, pause/counter transitions, Mini ownership/Cancel,
+full identity and normal original Quit remain independently checked.
+
+Thirteen charged requests retain eleven games, including seven failed games
+and two zero-game refusals; four accepted cases supply row credit. Production
+header stubs, actual-data adverse guards and source640 controls have distinct
+headless/static scope. No optional campaign API journal or original key-message
+handler is newly recovered. Full font/DC/ABI/actor lifetimes, all-simulation
+pause, arbitrary providers and both final verdicts remain open. Exact historical
+source phases are preserved; the concurrent PA07 command-capture build and its
+pause proof must be retained separately when the inventories are integrated.
+
+## UI07 integration with concurrent pause acceptance — 2026-11-07
+
+The exact join over `110c33ae26fba3e4c38f714b1a1c55e81df6bded` preserves all94incoming
+passed rows and adds only4pending HUD/tooltip targets: 98/156passed,
+58pending. All six requested HUD-update/tooltip-open-close/pause rows
+pass. The already accepted PA07 pause rows and their attachments stay unchanged;
+UI07 also retains its separately proved Space/Mini observations. Both final
+decisions and every earlier failure/source phase remain pending or preserved
+within their original scope. The incoming opt-in capture-v4, COPY/clip diagnostics and helper changes
+have different full hashes from UI07's recorded3712fff8 player/legacy reader.
+These are retained execution phases; this join supplies no new merged-build
+execution, broad all-simulation pause, resource-lifetime or whole-player claim.
+
+## Evidence consolidation and prospective retention — 2026-11-07
+
+`HOST.storage-retention` adds explicit verified tracked-directory compaction and
+source-specific legacy snapshot union/recovery. Fourteen current storage controls plus
+fifteen existing archive controls pass. Exact operational custody and boundaries
+are documented in `research/runtime/evidence-consolidation-20261107.md`. New
+rebuildable temporary output may expire after reconstruction/consumer/pin review;
+historical evidence keeps its original preservation rules. No original execution,
+engine equivalence, accepted requirement/status or historical hash is renewed.
+
+The completed pass retains 41 verified source handoffs (42.719 GiB selected
+file allocation removed) and all 251 raw snapshots in two read-only union
+catalogs (8.375 GiB net catalog reduction). One physical/Git-mismatched
+checkout stays intact. Both distinct old catalogs and the historical snapshot
+helper passed real restores; maintenance databases have dual verified logical
+checkpoints. `STORAGE07.compaction-controls04` binds the current 29 controls;
+older phases remain unchanged. See `STORAGE07.custody01` for exact boundaries.
+
+Later integration preserves native parent `110c33ae26fb` and exact
+accounting for 6899 additional committed file transitions. The host
+storage contract and current29-control proof remain unchanged. This source
+join grants no new engine execution or status promotion by the storage task.
+
+2026-11-08 host storage follow-up: `STORAGE08.custody01` records 14 additional verified
+tracked-directory handoffs and 11.466 GiB gross selected allocation removed,
+with 8 sources held for physical/Git mismatches or active consumers.
+Actual master 6d0998cf6 and
+storage 0b465721e are reviewed as separate native/host source parents. The existing
+29-control proof remains exact; this custody/accounting supplies no new engine
+execution, source-fingerprint refresh or milestone promotion.
+
+
+## Bounded clipped constant-fill operation closeout — 2026-11-08
+
+CF08 closes only both `operation.fill-clipped` rows over the98-row actual
+master6d0998cf65parent:100/156passed56pending, both final decisions pending.
+The same four CL07default/software actual640/800World domains supply eight real
+owner query/actual/caller fill pairs: four initial no-ops receive no meaningful
+credit, four later clipped zero fills bind unique recorded UPDATEs and live
+800×600primary identities. Independent argument/region transforms and four
+fresh exact-input existing native GPU replays match1920000complete destination
+WORDs, with684800exterior values preserved,375694nonzero. Two real Low paints
+also match1749000viewport pixels, with all800×600source pixels represented.
+High intermediate paints remain coalesced and are not invented by replay.
+Native prior replies and intervening recorded uploads are transform inputs,
+not a new independent original-history oracle. Historical player/compiler/
+original/capture sources and every failure remain unchanged. No game, original
+oracle, new game fixture or capture; only four bounded native command replays
+and current retained-data/control analysis. Remaining16operation rows include
+ten ordinary and six fault/recovery rows; full flags/ABI, partial-prefix failure,
+arbitrary formats/providers, physical stores/drivers and final decisions remain.
+See[the exact closeout](rendering-clipped-fill-closeout-20261108.md).
+
+CF08actual-master integration preserves storage-consolidation master83f9ba350
+as first parent and feature6cf09d508as second. Its98-row parent projection and
+all108proof dependencies are unchanged;100/156passed56pending and both decisions
+persist. Exact incoming5502and owned46file transitions have zero receipt gaps.
+The merged audit has zero errors/current CF08support. Only metadata/source
+accounting and the staged gate are current at integration; four GPU replays,
+58guards, two Low paints and all historical engine phases keep their original
+identities. No native/original run or control test is repeated for this merge.
+
+
+### RT07: partial terminal/restart recovery; acceptance remains pending
+
+Both actual800 default/software public Campaign Mini terminal-fault cases pass:
+real drained-ring INVALID, nine native owner/frame/timer/input retirement
+predicates, stable terminal samples, physical public Hard Restart, different
+runner/channel/World identities, fresh positive input and ordinary Campaign/Main
+Quit. Independent original/command replay checks5,182,287,000pixel values with
+zero differences. One unpresented failed software World earns no output credit;
+failed generations receive no nominal acceptance.
+
+Both640domains remain pending. Default640-01 reaches recovery but refuses focus
+before any original Quit Yes input. A bounded640-only visibility/input wait has
+three passing controls. Later640-02/04 time out on accessibility during initial
+Launch with native state starting and zero World output; cause unresolved. The
+zero-game640-03 NVIDIA Xvfb crash follows an omitted Mesa environment and remains
+retained. Eleven requests/nine actual starts include every failure; collection
+stops with no new acceptance rows. The owned94-row parent and both pending final
+decisions remain unchanged; later master rows retain their separate admissions.
+
+Opt-in per-channel World capture, actual command producer bindings and terminal
+state observations enable two-generation evidence without changing rendering or
+simulation.28native writer cases,9reader guards,18native fault cases,17Python
+terminal/epoch/budget tests,3confirmation tests and2archive controls pass. Exact
+source phases, negative admissions, raw capture flags and uncredited tails stay
+visible. See [the partial recovery review](rendering-transition-recovery-20261107.md)
+and `rendering-transition-recovery-results-20261107/transition-partial-01.json`.
+No whole renderer, arbitrary provider, pending-CPU, physical-reset or replacement
+claim; no new rendering defect is established by the launch timeout.
+
+
+RT07integration preserves current master6763ec077and its exact100/156passed,
+56pending admission, both decisions and all source phases. The interrupted
+83f9candidate has a pinned source tree and a two-store exact reconstruction patch
+with a verified Git-index restore; it claims no commit/hook pass. All406host and
+19oracle sources still match recorded RT07inputs. Four guest sources and runner
+changed and two headers were added; combined guest1021-source execution stays
+pending. Original player/runtime/oracle hashes and both640gaps remain untouched.
+Zero new acceptance rows, no applicability waiver or engine execution in the merge.
+# RT08 recovery startup follow-up — 2026-11-08
+
+The four requested operation admissions remain pending; the selected parent stays
+100/156 passed, 56 pending, with both final decisions pending. Two new requests
+charge one original start. A zero-game private accessibility-bus activation
+failure is retained; explicit dbus-daemon controls pass. The subsequent default640
+original exits0 before observed menu callbacks or World progress and retires with
+incomplete-history GAP reason2. Its final summary/earlier terminal predicates
+remain distinct and earn no cleanup credit. Collection stops without software640.
+Startup polling avoids busy-thread accessibility RPCs and now reports an owned
+terminal error promptly; 24 current controls pass. No native raster or gameplay
+change, successful combined-guest claim or historical proof refresh. See
+[RT08](rendering-recovery-startup-20261108.md) and `RT08.startup-negative01`.
+
+
+
+## Natural defeat report and retirement — 2026-11-08
+
+DF08 closes only default/software `journey.battle-results.defeat` across retained
+actual640/800 runs.102/156passed54pending; all100parent rows and both pending
+final decisions are unchanged. Original actor health/death bytes corroborate
+the physical helper. Original report OK, single World pop, fresh Main ACK and
+normal Quit bind complete source returns, cancelled next original-owned write,
+STOP/ack and zero input/jobs/graphics owners. Every captured native leased swap
+joins its historical independent original-history comparison and actual GPU
+plane hash:22966119000pixels,zero differences. No new game, current native
+player/oracle execution, raster repair or simulation/balance change.
+
+Historical exact binaries/compiler/runtime/oracle phases and broader populated
+object/vptr/generation lifetime gaps stay pinned. Compiled visible public-button
+menu automation is separate from physical menu accessibility and widget glyphs.
+Victory/later-map, font/DC, other54rows and both decisions remain pending.
+Thirty new adverse guards,34progression guards,14explicitly reviewed retirement
+controls,30UI and9client tests pass. Preserve the initial omitted-input skips,
+historical expected-field failure and independent raw-slot wrapper; no old
+report/hash was refreshed. The6987committed file transitions6763ec077→39f76b228
+have exact receipts after retrospective custody accounting for3393opaque RT07
+attachments; this is separate from engine validation and past gate claims.
+See[the closeout](rendering-defeat-closeout-20261108.md),
+[acceptance](rendering-defeat-results-20261108/acceptance-01.json) and
+[controls](rendering-defeat-results-20261108/controls-01.json).
+
+
+DF08 actual-master integration starts at recovery-diagnostics2a3c8705d with
+checked feature6014e815c. Preserve all incoming behavior/evidence/scenario and
+ledger histories; only the two defeat rows add acceptance credit. Exact102/54
+projection and both decisions stay unchanged. No changed defeat proof source
+or contract; require-applicable passes without execution. Fresh merged audit
+has zero errors/current scoped headless DF08support. The443new committed file
+transitions have zero receipt gaps after376opaque incoming attachment custody
+receipts. Preserve both negative history scans, both review caches/checkpoints
+and all original phases; no new game/native/oracle validation or source waiver.
+
+
+## Font installation and DC caller recovery — 2026-11-08
+
+CR08 adds scoped original contracts RS.screen-font-installation (5575b0) and
+RS.dc-image-wrapper-callers (58d1a0/58d240/58d280/58d370). Comparison04 passes
+512font coordinator and1024DC wrapper cases against unchanged original bodies,
+with independently reset inputs, direct full owned/global byte and callback-vector
+comparisons, selected EAX/ECX/argument/flags/callee/stack/normal SEH checks, and
+matching native64/ASan/UBSan diagnostic transcripts. Draw-wrapper ECX is the
+reused HDC output, not necessarily its incoming receiver; errors are ignored
+as documented and release rereads the surface. Installation preserves repeated
+resolution reads, four tracking writes, differing resource failure policies and
+all local normal branches, without retiring prior fonts.
+
+Named image/COM/font/file/widget/thread/error bodies remain supplied. No actual
+GDI pixels, Windows exception/driver/LastError equivalence, installed font/DC
+selection/reload/teardown trace, production bypass ABI or new player run is
+claimed. Both text-font-dc-lifetime and flags-and-return-values configuration
+pairs remain pending; DF08 stays102/156passed54pending and both decisions
+pending. Preserve failures01/02/03 and exact preimages (dead argument probe,
+wrong ECX expectation, strict compiler snapshot refusal). Generated results,
+tested binaries and sources use verified SQLite references. See
+[the recovery](rendering-contract-recovery-20261108.md) and CR08.callers-original04.
+
+# SX08 private-display startup repair — 2026-11-08
+
+The private namespace now explicitly read-only binds its verified Xauthority
+file, fixing RT08's hidden RAM-backed credential path. Existing no-game child
+controls reproduce disk-pass/RAM-fail before the fix and disk/RAM-pass plus
+wrong-cookie refusal afterward, with host isolation/pixels preserved.25Python
+guards pass. One bounded actual default640 run reaches original Main,1280native
+World completions and positive released Up/original-return progress; full pixel
+and source captures remain off. Its optional Quit/finalizer does not finish;
+the primary error is unavailable, raw observations/tested source are retained
+and prefix recovery is separately verified. Corrected capture-free pointer and
+failure recording have unit execution only. Current control evidence supports
+only the scoped/headless authority policy; full live collector/normal Quit,
+fault-operation rows and renderer acceptance receive no promotion. All102parent
+acceptance rows and both pending decisions remain. See
+[SX08](native-startup-display-20261108.md), `SX08.authority-controls01`,
+`SX08.startup-postmortem01` and `SX08.controller-units01`.
+
+
+## Selection state and visible highlight acceptance — 2026-11-08
+
+SL08 closes only both finite `journey.cursor-interaction.selection` rows from four retained IP07 actual default/software640/800 domains:104/156passed,52pending.80original selection callbacks bind living numeric wizard role and flag68on/off with flag70clear to three displayed pointer-away source generations per state, Sharp/Integer, four views plus pan. Exact original four-corner Sprites/markers.spr resources/caller/request checks, actor containment, source-derived RGB565 history and conservative actual command-coordinate provenance match70359new viewport pixels with zero differences. All12077World-associated leased swaps and10561336500previously compared pixels remain independently bound; historical native/compiler/runtime/oracle source phases are retained.
+
+The analyzer now distinguishes other exact marker-bank frames sharing the caller, follows each original sub-cell/animation anchor, admits known opaque black without treating unknown zero as colour authority, and reconstructs bounded already recovered blend history beneath the off state. Every raw cursor refusal remains explicit: each complete bounded journal has one acknowledged-post-close slot3invalidation refusal and no drawing/copy success is inferred. CR07invalid save-under/keyed requests, initial guard failures, failed full analyses and source preflights remain negative evidence.54selection controls pass. No new original game, native engine or oracle is run, and no native raster/simulation repair is claimed.
+
+`NP.selection-highlight-closeout` has scoped implementation/headless integration only; original comparison/replacement remain none. Allocation generations, whole picking/hotspot, storage selection continuity, response deadlines, physical provider, current full player, other rows and both final decisions remain independent. See [selection closeout](rendering-selection-closeout-20261108.md) and `SL08.selection-highlight01`.
+
+
+# RT09 four recovery operation rows — 2026-11-08
+
+Default/software `operation.transition-recovery` and `operation.failure-cleanup`
+close across actual640/800:108/156passed48pending, preserving the104-row SL08
+selection parent. Thirty of42operation rows are accepted; both final decisions
+remain pending. Two new Low cases use four original starts, no retry, and pass
+independent original-history/native output, exact declared INVALID retirement,
+terminal stability, physical public restart, fresh identity/input and normal
+Campaign/Main Quit. Both High cases are re-assessed from retained raw evidence
+within their recorded native/runtime phases. No source waiver or current whole-
+player/High guest, physical reset, pending-CPU/arbitrary failure, in-place/save
+continuation or gameplay change is claimed. Aggregate independently compared
+pixel values:8469532500,zero differences.34focused controls pass.
+Only the new retained-data admission receives scoped/headless current support.
+Four stopped private game trees have paired full-file retention, real restores
+and historical-path pins. SQLite references preserve every negative observation,
+source phase and old budget. See [RT09](rendering-four-recovery-20261108.md),
+`RT09.four-operation-rows01`.
+
+
+
+
+### AC07 actor sidecar and partial combat/attachment output — 2026-11-08
+
+The owned `scene-attachment-combat-20261107` batch admits exactly both combat
+rows over the SV07 baseline:92/156passed64pending, all90parent rows and both
+pending decisions preserved. `attachment-combat-results-20261107/admission-02.json`
+is explicit partial admission with two requested rows still pending. Four actual
+campaign default/software640/800 executions bind original Wizard/Redcap melee
+journal events to adjacent same-thread source generations, exact health and
+engagement tuples, a changed normalized rendered participant frame, uniquely
+owned source draws, eight visible original/native points per body per selected
+paint, full independent viewport comparisons and normal native-only Quit.
+Original comparison/replacement and native gameplay reconstruction remain none.
+
+The new opt-in v2 private actor sidecar has25production encoder/wire/input guards;
+37retained-data actor/event/clip/visibility/session guards and25actual-cast/row/
+host-budget-source guards pass. The partial admission also passes30Python UI and
+9client controls. Frame-local role tokens do not establish actor allocation
+identity. Two raw queue auxiliary words remain opaque/address-like; the initial
+pointer-free header comment is overbroad. Corrected scope and fresh controls04
+preserve every earlier native byte hash and control contract.
+
+Both800attachment cases pass independent complete output and mode1 Excalibur
+parent/child placement in all four views. Both640attachment domains remain
+unaccepted. One low setup run confirms QSaveFile disk quota exceeded in its exact
+core. A second low run observes the single self-cast, child and four views, but
+fails Results-to-readyQuick admission and normal retirement. Its quota guard
+retains more than46GiB headroom with no trigger. The original Results callback
+is recorded; the first pre-cleanup pending transition state/timing is missing,
+so a lease/renderer/driver cause remains unresolved. A later post-report prefix
+return cannot supply past normal Quit. Five actual attachment games are charged
+and exhausted; two certified zero-game requests in the separate budgets retain
+their original rows. The contact plan independently uses its six-start bound.
+No additional original start is authorized by this partial closeout.
+
+All failures, unique source versions, raw captures and original pins remain
+retained. Stopped old RAM executions move only through paired complete manifests
+and real verified restores, with canonical historical-path stubs. New low data
+uses a separate private RAM filesystem and remains pinned through handoff.
+Broader attachment/status/caller/map/provider/input/lifecycle domains, both
+attachment rows, the four-row task and both final decisions remain pending.
+See [the AC07 research](attachment-combat-output-20261107.md).
+
+
+### AC07 saved-ready inventory correction and preserved combat admission — 2026-11-08
+
+Owned checkpoint `a2f2be6946ef3b27b24ed0799db59027c240e6da` retains both combat
+rows with its normal staged gate and verified local backups. Its9,086real
+parent/current file transitions have exact receipts, including the retrospective
+journal self-export; no concurrent main source/status was imported.
+
+The approved sixth attachment start fails before inventory/cast at an unchecked
+optional live Spellbox read. Its failed acquisition, pre-cleanup read-only trace,
+quota report and late idle-prefix verification remain separate. The exact saved
+ready-wire correction passes39offline controls and preserves every used input
+from both accepted800snapshots. New optionalNone runtime handling remains
+unvalidated; the fifth Results/Quick-return failure also remains unresolved.
+
+`attachment-combat-results-20261107/admission-03.json` revalidates only the
+retained finite combat proof and exact row accounting under the narrow host
+budget/ready-input source reviews:92passed64pending, two requested rows still
+pending. Native/runtime, original oracle and pixel-analyzer hashes are strict;
+all historical source maps and failed starts remain. No new game or pixel-matrix
+comparison is credited by this join. Six actual attachment starts exhaust the
+user-approved cap; the two-start increase remains pending approval. Both
+attachment physical/output milestones remainnone. The sixth raw trees/pins
+and changed idle prefix have paired full manifests, real restores and canonical
+stubs. Private High preferences/launcher bytes are restored and2,927original
+files verify. See the AC07 research and `attachment-runtime-diagnosis-06.json`.
+
+
+### Three requested rows qualified; software attachment pending — 2026-11-08
+
+`attachment-combat-results-20261107/admission-04.json` qualifies both combat
+profile rows and the default attachment row:93passed63pending in the preserved
+90-row parent source phase. Seven distinct accepted actual cases contribute
+5481closed Worlds,14775World presentations and
+14692465760complete viewport pixel checks with zero differences.
+Default640case05 supplies one original offered Excalibur self-cast, four
+mode1/first-point parent-child views,64visible matched native sample points,
+474independently reconstructed Worlds,1,404World presentations and normal
+Results/Quick/Main/Quit with all graphics resources released. Both800attachment
+cases and four combat cases retain their original source/native/oracle phases.
+
+The user approved8total attachment starts. Eighth software640case01 observes
+one original self-cast and four active-child views, but cancels after253complete
+Worlds while next generation254is still WRITING. Its failed acquisition and
+`attachment-runtime-diagnosis-08.json` give no software attachment row or normal
+retirement credit. A launch-specific retained module table binds reason1closure
+to MnmScene DLL_PROCESS_DETACH atRVA1737. The menu alive0sample and screenshot
+show the failure before Escape. The native report says producer cancelled; the
+initial original exit cause/code remain unknown. The raster finite-displacement
+record is a normal detach-time counter with zero retained traffic, not a refusal.
+The RAM quota guard never triggers. The earlier fifth Results/Quick failure
+remains separate; successful default retirement does not diagnose either failure.
+All8actual starts stay charged. Both attachment behavior milestones remainnone
+until the whole four-domain attachment cohort passes; the default profile row
+has its narrower complete two-size proof. Both final decisions remain pending.
+
+After host reboot, exact tested binary/configuration and the admitted prefix were
+restored from paired evidence. A fresh405-source compiler closure reproduces the
+accepted player byte-for-byte; new build intermediates are temporary. A private
+AT-SPI broker setup refusal launches zero original games and adds zero budget
+rows. Selecting the private daemon before dbus-run-session passes a registry
+control and enables both subsequent starts without engine/collector/input
+changes.43current admission controls plus30Python/9client UI controls pass.
+The first admission join was interrupted before publication because it was
+started before the metadata preparation finished; admission04is a fresh rerun
+against settled files, not a reused partial result.
+
+Exact High private preferences and launcher bytes are restored and2,927original
+files verify. Source phase reviews preserve original old5/6hashes under the
+approved8bound and cached-ready correction; native/runtime, oracle and pixel
+source hashes stay strict. The final join is retained-data analysis, not another
+game. `attachment-plan-12-pending.json` is explicitly nonlaunchable: one further
+software640case with bounded external exit tracing would require9total-start
+authority. Two synthetic namespace exit-trace controls pass; they establish no
+original exit cause or future case success. No further game is authorized by
+this three-row checkpoint, and no concurrent main source/status is imported.
+
+
+### All four requested rows qualified — 2026-11-08
+
+Current `attachment-combat-results-20261107/admission-05.json` records that
+all four requested attachment/combat profile rows qualify: 94passed62pending in this owned90-row parent phase.
+8distinct accepted actual cases contribute5943closed Worlds,
+16077World presentations and16390087600viewport pixel
+checks, with zero differences against the independent original-history oracle.
+Every accepted case has normal Quit/resource retirement. No concurrent main
+source/status is imported; both final decisions and native gameplay remain open.
+
+The user approved ten total attachment starts, all ten are charged, and collection
+stops. The tenth software640case has success=True, error=None.
+The exact current host route observes views0/3/2/1 with three camera turns and
+omits the redundant turn after the fourth required observation.57offline controls
+pass. Historical accepted four-turn cases retain exact source bytes and all
+original input facts through `post-four-view-control-phase-02.json`; the current
+route never relaxes the native caller guard or changes the recipe/exit sequence.
+
+A retained-data correction retracts the earlier assertion that the eighth run's
+Windows exit code was missing. Existing `original-process-exit.txt` contains95;
+next WRITING generation254ends inFAILURE43/tag14/caller0x54a563 after669records.
+The strict caller policy rejects this site; pinned original disassembly confirms
+its indexed-copy continuation and AX==1clipped fallback, but the rejected raster
+input/register/stack bytes are absent. No caller admission or native repair is
+claimed. See `attachment-retained-failure-correction-02.json`. The temporal
+relationship to the extra camera turn does not establish prevention or causality.
+All superseded diagnoses and failures remain immutable.
+
+The ninth actual run instead times out before ready Spellbox/self-cast/any closed
+World. Its whole-process lifecycle trace slows staging; timeout causality is
+unresolved and no Windows exit-status artifact is retained. It remains charged,
+failed and distinct from the eighth refusal. The tenth case omits ptrace and uses
+the existing low-overhead exit recorder plus bounded passive menu/quota observers.
+The earlier Results/Quick return, quota and optional-read failures remain retained
+and are not retroactively explained by later successful cases. Other effect,
+caller, map, provider, lifetime and gameplay domains remain pending.
+
+
+### AC07 master merge preserves all incoming rows — 2026-11-08
+
+The actual merge of master32f9eb80f and scene2afa7eed9 preserves all104incoming
+accepted rows, including selection and natural defeat, and adds exactly four
+already-qualified attachment/combat profile rows:108/156passed48pending.
+`scene-master-merge-results-20261108/acceptance-02.json` retains both immutable
+parent reports, every prior row/source/native/compiler/oracle phase, all ten
+charged attachment starts and both pending final decisions. The eight scene
+cases still supply5943Worlds/16077World presentations/16390087600zero-difference
+World viewport pixel checks. The join is accounting, with zero game, native
+player or original-oracle execution. Raw merged-source drift remains explicit;
+this does not prove current whole combined-player equivalence.
+
+Four metadata conflicts preserve both ledger tails, keyed register entries and
+exact append-only SQLite review receipts. Runtime sources merge cleanly and the
+merged PE32MnmScene/MnmMenu observers compile with their expected exports. A
+real checkout-relocation bug in retained scene artifact lookup is corrected:
+use the producer repository explicitly recorded by --repo or its pinned
+repository-local run-native.sh command, independent of the consuming checkout.
+Do not infer roots from artifact suffixes or accept foreign/ambiguous launchers.
+All eight retained artifact sets remain identical to the original producer
+selection, and all four original self-cast transitions revalidate. The scene
+pixel/raster/math/oracle algorithms and runtime caller guard are unchanged.
+
+218current relevant controls pass, including production encoder fixtures, actor
+output/scope guards, attachment accounting, selection and UI controls. Exact
+tested ELF/DLL bytes, initial failed tests, first narrow scope-replay refusal,
+corrected positive-test assertion and unsupported version-flag diagnostics are
+retained. Only affected failed scripts rerun; unaffected passing controls keep
+their exact inputs. No extra original launch, native gameplay change, historical
+hash refresh, caller54a563admission, source-phase waiver or final-player claim.
+Fresh source-census/audit, exact committed-history review, actual-master normal
+staged hook and local paired backups are recorded separately at closeout.
+
+RT09 actual-master union preserves both completed parent admissions and the
+unchanged four-row proof: 112/156passed44pending.
+Metadata-only strict row joining repeats no engine/oracle/pixel execution; all
+native source phases and both final decisions remain unchanged. See
+`rendering-recovery-four-results-20261108/master-admission-01.json`.
+
+
+## CR08 imported-time identity correction — 2026-11-08
+
+The pinned NoCD import table identifies557802's IAT5c52e8 as WINMM.timeGetTime.
+The initial thread temporary/supplier label was incorrect; its tested address,
+DWORD forwarding and original body comparisons remain preserved in comparison04.
+The native temporary is now stamp, the scope names imported time, an explicit
+API binding preserves its unknown timing/consumer boundary, and the producer
+refuses a different DLL/symbol. Fresh comparison05 passes512font and1024DC cases
+against unchanged original bodies with native64/ASan/UBSan results matching.
+Both original manifests pass; the actual time API is supplied, not executed.
+No prior hash, execution observation or historical claim is rewritten.
+
+Actual incoming master85dcfea26's private X11 staging fix remains separate from
+this isolated proof; its new source paths are outside the comparison dependency
+closure. The integration preserves both incoming histories and all102accepted
+player rows,54pending rows and both decisions. Font/DC installed lifetimes and
+whole production bypass ABI remain pending for both configurations. No game or
+new rendering acceptance is claimed. See rendering-contract-recovery-20261108.md
+and comparison-05.json under its SQLite result directory.
+
+
+## CR08 final master integration — 2026-11-08
+
+The corrected caller recovery joins master a04895c2b after selection and finite
+scene/attachment acceptance. Every comparison05 dependency (nine source files)
+and retained218-control scene dependency (186 source files) matches the merged
+tree. No new original/native-player execution or player row closes:108passed,
+48pending, both final decisions and both font/DC and production-ABI operation
+requirements remain as recorded by master. The two bounded recovered contracts
+retain their current isolated comparison; installed lifecycle and broad live
+equivalence remain separate. All24172incoming committed file transitions have
+exact receipts;22missing metadata versions receive per-commit retrospective
+custody without a past gate claim. Both parent histories, all prior receipts
+and raw failures survive. See rendering-contract-recovery-20261108.md and the
+SQLite rendering-contract-master-merge-results-20261108 reports.
+
+
+## CR08 latest master integration — 2026-11-08
+
+Master e1f2f4709 adds RT09's four finite recovery rows to the previously joined
+scene and selection rows:112passed44pending. The CR08 integration preserves
+every one of those rows and both pending decisions. The earlier108/48 phase
+is retained as history, not the latest total. All9caller comparison05 sources,
+186scene-control sources and24RT09analyzer sources match this combined tree.
+Historical RT09native/runtime drift remains visible and is not renewed by
+metadata integration. No new game, native player, oracle or pixel execution
+is performed here. The font/DC installed lifecycle and whole caller ABI
+remain pending. Latest history covers25717committed file versions with three
+new retrospective metadata bindings, separate from all earlier reviews. See
+rendering-contract-master-final-results-20261108 for the exact SQLite reports.
+
+
+## CS09 image-copy caller-state correction — 2026-11-08
+
+The actual full native533a00 entry had equal pixels but different EDX, defined
+arithmetic flags and retired-X slot in2112original comparisons. A saved-state
+entry now returns the original EAX/ECX/EDX, row-counter argument and final
+ADD ESP,38h flags. Nonzero deterministic SIMD inputs additionally exposed
+USER32.IntersectRect clearing XMM0 on empty intersections. The confirmed
+5c5294 import is now called with the incoming FX state; its outgoing state and
+LastError survive native ownership/copy work. Native pixel copying stays native.
+
+Fresh image-abi-09 passes19008complete original/native state-and-pixel cases,
+8reader refusal guards, existing actual PE32 extended/protected-backing controls
+and expected span/prefix/direction refusals. Exact tested executables, all
+observed wires, source preimages, setup failures and the runner03retention
+failure remain explicit SQLite records. No original image instruction executes
+through the poisoned native entry; the separate original reference stays intact.
+No game is launched or acceptance row promoted. Both flags-and-return-values
+rows and both final decisions remain pending; the112/44parent inventory is
+unchanged. Surface/World/sprite/screen installed caller-state and independent
+pixel joins remain required. See native-image-caller-state-20261108.md and
+RS.image-copy-caller-state; all broader historical fingerprints stay historical.
+
+### Caller-visible state continuation (2026-11-08; CS10, in progress)
+
+The full `operation.flags-and-return-values` requirement remains the requested
+work target in both player profiles. CS10 adds current five-family interior
+splice comparisons and fixes the protected World direct-WORD whole-entry state
+publication. The latter passes12,744unchanged-original/native cases through the
+shared production entry assembly, including workspace, arguments, full GPR/ESP,
+defined flags, selected floating state and independent complete pixels. The
+pixel-only negative policy control matches every pixel but zero complete state
+results. Four atomic admission refusals and positive/empty state commits pass
+ASan/UBSan; the complete current scene DLL links. These are private component
+milestones, with supplied CPU-plane/providers, not installed batch/player proof.
+
+See [the ongoing full-row work record](rendering-caller-state-closure-20261108.md).
+Generic/black/displacement/other World state effects, lazy preparation effects,
+actual caller requirements and installed default/software output-state joins
+remain explicit. The new runtime source phase does not renew old World/live
+hashes or promote their statuses. Whole acceptance and both final decisions
+remain pending; no original game launch has been added by CS10 so far.
+
+### Caller-state whole-row continuation: generic, initializer and passive state (CS11, 2026-11-08)
+
+The caller-visible state row remains open for both player configurations. The
+owned continuation retains35,280unchanged-original generic/black/displacement
+state-and-pixel comparisons and6,144unchanged-original lazy initializer table/FX
+comparisons. Generic state publication and the retained initializer's actual
+incoming/outgoing floating boundary are integrated into the producer callback.
+Both are bounded normal-return contracts, with unsupported floating controls
+kept as native refusal policy. Neither proof launches the original game.
+
+The default-off versioned caller-state diagnostic now has2,048sanitized TOP/tag
+codec cases,24reader guards, and actual PE32 callback/shared entry/return controls:
+15saved native completions plus one retained normal-return completion retire with
+all SP/arity/FX/LastError checks. Existing61forwards,13batch bypasses,15native
+sprite draws and708sprite guards pass. Failed compile/link/fixture phases and
+exact source preimages remain retained. All new generated research payloads use
+SQLite references. Generic, initializer and observation behavior IDs and scenarios
+are seeded independently of pending installed/profile acceptance.
+
+The additive whole-entry model is being compared before production wiring.
+Colour rectangles and other required caller/provider boundaries, final source
+bindings, installed640/800default/software state/pixel/history joins and normal
+retirement remain outstanding. This continuation does not close either operation
+row or either player decision. See rendering-caller-state-closure-20261108.md and
+caller-state-results-20261108/generic-state-02.json, effect-preparation-01.json,
+observer-codec-01.json and producer-controls-05.json. Earlier CS10 source phases,
+raw historical drift and acceptance totals are not rewritten.
+
+Caller-state CS12 continuation (2026-11-08): current complete-source private
+WORD12,744/generic35,280/additive18,432/effect-initializer12,288 comparisons pass;
+additive publication is wired, and version3 passive state diagnostics carry exact
+World/source identities. Current actual PE32 callback controls pass17native+1
+retained completions and12enclosing parents; two separate supplied frames cover
+known/unknown indirect-selector custody and epoch reset. Sanitized2,048codec and
+51reader controls pass. Current59-site static analysis retains raw unknowns and
+separate conditional callee facts; the repaired primary opaque fallback passes
+21,384targeted cases on this source phase. Provider-local Wine DirectDraw
+comparison establishes typed outputs and complete unchanged planes for five
+invalid-copy boundaries, including both retained shapes. Native LastError and
+other explicit policies remain separate. Exact reports/failures/raw captures and
+tested binaries are SQLite-retained. No original game or installed acceptance
+session was launched. C01/C03/C07/C09 installed caller/state/source/pixel/history
+joins remain pending; neither flags-and-return-values profile row is promoted.
+See rendering-caller-state-closure-20261108.md and caller-state-results-20261108/.
+
+
+### COPY stretch/overlap retained-evidence boundary — 2026-11-08
+
+Current analysis of eight retained CP06 Quick/Campaign default/software
+actual640/800 cases verifies37337closed active application calls and exact
+GPU census bindings. There are36866prepared one-to-one COPY geometries,
+467source-less calls, zero tracked aliases and four refused unknown geometries.
+No positive natural stretch/overlap output witness is present; supplied backend
+controls and eleven static explicit-RECT callers do not supply those witnesses.
+Ordinary COPY planning refuses stretch and CPU self-copy; successful native
+CPU transforms can still publish CREATE/UPDATE through the checkpoint path.
+Plan refusal alone is not a rendering-support failure; independent
+caller-bound checkpoint-transform output remains unproved. Both requirements/four
+profile rows stay pending;112/156passed44pending and both final decisions remain.
+Nine new classifier guards and ten unchanged route controls pass; no game, new
+game fixture, native-source change, historical hash refresh or accepted rerun.
+See [the exact blockers and bounded next step](rendering-two-copy-readiness-20261108.md)
+and SQLite`rendering-two-copy-results-20261108/assessment-03.json`.
+
+
+## Dry-first working cleanup coordinator — 2026-11-08
+
+HOST.storage-retention adds tools/cleanup-working.py and storage_cleanup.py.
+Default inventory and apply-without-execute are non-destructive. Explicit reviewed
+completed execution selections bind exact member hashes/metadata, source/policy
+fingerprints and two independent review reasons in immutable SQLite plans.
+Execution requires the reviewed plan hash, --execute and explicit restore scratch.
+Existing paired workspace sealing and real replica restore precede removal;
+external retention/consumer checks run again after that restore. Originals, source
+checkouts, pins, recent/newest runs, databases, aliases, hardlinks, fixture inputs
+and tracked/referenced payloads stay held. No existing engine or storage milestone
+is promoted; no real project payload is retired by this development batch.
+Synthetic controls and a bounded actual-host dry inventory are recorded separately
+from engine execution. Literal metadata/process checks retain their documented
+historical/dynamic-consumer limits. See docs/working-retention.md.
+
+STORAGE08.cleanup-controls03 records38passing controls (18new cleanup,20existing
+retention). The complete synthetic cycle preserves exact capture, failure result
+and configuration bytes through both stores and a real restore. Initial fixture
+and inventory-performance failures remain documented in immutable earlier reports;
+/tmp inode exhaustion led only to task-owned /dev/shm accounting scratch.
+
+The bounded actual-host dry inventory covers4748units:4724held and24review
+requests, with10952151040allocated candidate bytes before review/compression/
+replication costs. No scan errors; host process view admitted. Held units are
+partially measured and receive no reclaimable-space credit. This is a review
+queue, not safe deletions, promised net savings or rendering-acceptance closure.
+Full linked-checkout mode remains available; this operational pilot covers main
+working data only. Both interrupted inventory attempts and inode/source-census
+preparation refusals remain diagnostic history, not successful runs.
+
+Final STORAGE08.cleanup-controls04 adds the parent-selection/newest-run refusal:
+39controls pass (19new,20existing) on final sources. The earlier38-control and
+4748-unit host dry inventory keep their exact source phase; no old hash is renewed.
+No project cleanup, engine execution or historical milestone promotion follows.
+
+
+## Cleanup coordinator merged with caller recovery — 2026-11-08
+
+The master integration preserves every incoming CR08 caller finding and its
+comparison05 source phase, all112accepted rendering rows/44pending requirements,
+and both pending final decisions. Cleanup implementation and all39control source
+fingerprints remain byte-identical to6ba396a6e; no test/game/oracle/pixel rerun or
+cleanup execution is added. Resolve only the keyed register, append-only journal
+and ledger-tail union, then regenerate the combined census and run the exact
+master-base staged gate with verified local backups. The earlier bounded dry
+inventory remains its recorded source phase and review leads only.
+
+The first candidate againstfbcf880ba was interrupted when master advanced to
+b0eb1de5b; its review/backups and exact staged tree remain retained at
+refs/mm/checkpoints/cleanup-before-master-b0eb-20261108. Its interrupted hook
+receives no pass claim. The actual master pending merge now preserves the newer
+stretch/overlap COPY assessment and every incoming CR08finding. History02covers
+12458committed transitions with zero unresolved gaps; all earlier exact receipts
+survive, including two additional per-commit journal custody pairs. Main is the
+owned active merge checkout; the former task checkout is inactive and preserved.
+All39control source fingerprints still match, with no test/game/cleanup rerun.
+
+
+## Shared retained-artifact and synthetic fixture support — 2026-11-08
+
+`TOOL.shared-fixture-support` extracts verified artifact reads and producer-local
+session scoping into `tools/retained_artifacts.py`, retaining the menu/scene
+entry points and their errors. Optional declared-size budgets reject before
+reading; actual bytes still require exact size/hash agreement. Observations
+excluded by scope remain retained. Test-only command/menu/owned-session builders
+in `tests/fixture_support.py` now serve transition, normal acceptance, menu and
+startup controls independently of production decoders. Negative mutations and
+acceptance assertions stay in their owning tests.
+
+`SF08.fixture-controls01` retains 275 passing focused controls and exact logs
+in SQLite, including actual retained scene/attachment, selection and defeat
+inputs. This support-only execution adds no original game/native oracle run,
+player acceptance row or engine validation promotion. Historical source hashes,
+accepted statuses, failures and source-applicability boundaries remain immutable;
+changed support/analyzer sources have explicit pending targeted revalidation.
+See `docs/test-fixtures.md`. The owned batch begins at master `fbcf880ba`;
+live prefix lifecycle and bulk collector retention extraction remain separate.
+
+The task branch then advances to actual master `b0eb1de5b`, retaining the incoming
+COPY-readiness behavior, reports, source and exact journal entries. The register
+and ledger are reconciled by stable identity/additive tails; all nine changed
+code/test files match recovery stash `7228cada4` byte-for-byte. That stash stays
+retained. Nine dependent player/storage controls also pass: 284 total checks.
+The earlier census/audit stays as its original source phase; final accounting
+uses the combined tree. The obsolete initial preparation was explicitly
+interrupted when master advanced; no old draft grants a pass.
+
+
+### Shared fixture support on the current master merge
+
+The checked fixture commit `67f6f9650` is joined to actual storage-cleanup master
+`5381d3ccb`. Only the register, active review journal and additive ledger tails
+conflict. Their stable-ID union preserves every master behavior status and
+evidence definition, both parents' receipts, storage tools and COPY-readiness
+findings. All nine fixture implementation/test source files match the checked
+commit exactly. The 284 source-bound controls are reused after verifying every
+recorded fingerprint; no tests, game, oracle or native pixel runs are repeated.
+
+`research/runtime/shared-fixture-master-results-20261108/` retains the exact
+resolution, incoming committed-history review and combined current audit through
+SQLite. The regenerated census and normal staged hook cover the actual merged
+tree. All historical engine validation/applicability limitations,112accepted
+player rows and both pending decisions remain unchanged. The older fixture
+checkout/branch and recovery stash `7228cada4` remain held as the tested phase.
+
+
+## HS08 nonzero hotspot acceptance and newly observed producer refusal (2026-11-08)
+
+The new bounded task exercises actual classes6/7/9 with nonzero configured
+hotspots and configured zero-hotspot center returns in both Sharp/Integer,
+under explicit default/software640/800. Existing IP07 captures had no nonzero
+hotspot classes. Fresh execution and complete admission remain separate from
+original-driver/full-ABI, arbitrary cursor, corner/pan stability, storage/rebuild
+continuity, allocation lifetimes and both final rendering decisions.
+
+A confirmed new rejection remains open: request4 completes589Worlds, then
+World590's retained partial source ends in failure43/tag17/return57e957 inside
+57e8e0; Windows exit95 is retained. Rejected raster operands/register/stack
+bytes are missing. The observed callee profile is57de00; no whitelist admission
+or raster repair is made. Camera/corner movement preceded this event without
+establishing causality. See the owned hotspot record and pilot-diagnosis01.
+Both the failed full scout and its independent broad copy-output truncation
+remain negative; later finite cursor passes cannot retire this player failure.
+
+Three setup refusals start zero games; the copied already-patched EXE, its
+old pinned manifest and the existing /tmp isolation guard all refused before
+original execution. Exact inputs/preimages and relocation custody are retained.
+A further driver-only failure incorrectly required default16 over valid move1.
+The user approved nine requests while preserving six original starts; earlier
+charges and exhausted picking/recovery/attachment budgets remain untouched.
+The current smaller schedule uses center/top/right/left and center returns,
+with three stable displayed original states. Its broad observer can miss menu
+readbacks outside the required cursor interval; those losses remain explicit
+and do not close whole COPY/menu operation acceptance.
+
+HS08 admission02now closes only both finite hotspot rows:106/156passed,
+50pending in the preserved104-row parent phase. Four actual default/software
+640/800Sharp/Integer domains have832closed reconstructed Worlds,2164World
+swaps/2115415500complete viewport pixels,72nonzero source states and34842
+independent visible cursor-stencil checks, zero differences.6197cursor calls
+have complete original destination coverage/output in the contiguous physical
+scenario interval. All9requests/6starts are charged; four journals classify
+only one post-close invalidation each, without active geometry/queue failures.
+Raw broad-observer losses before/after the physical cursor interval, initial
+class16-only and future-paint joins, the malformed first admission and every
+source version remain retained. No native raster repair or broader COPY/player
+verdict follows.57e957/tag17/exit95 and both final decisions remain pending.
+
+
+HS08 actual-master integration preserves every incoming acceptance row and adds only both finite hotspot/background rows: **114/156 passed, 42 pending**. See `cursor-hotspot-results-20261108/master-admission-01.json` and `cursor-hotspot-acceptance-20261108.md`. This is a static source-phase union; raw source drift, historical failures, unresolved57e957 and both final decisions remain visible. No combined-player execution is claimed.
+
+
+HS08 actual-master integration preserves every incoming acceptance row and adds only both finite hotspot/background rows: **114/156 passed, 42 pending**. See `cursor-hotspot-results-20261108/master-admission-02.json` and `cursor-hotspot-acceptance-20261108.md`. This is a static source-phase union; raw source drift, historical failures, unresolved57e957 and both final decisions remain visible. No combined-player execution is claimed.
+
+
+## PR08 primary opaque fallback producer fix — 2026-11-08
+
+The missing57e957/tag17caller guard is repaired and pinned in the generator.
+Pre-fix21384original-wrapper cases reproduce5184refusals; current positive02
+accepts all5184fallbacks and matches6500736WORDs, low16AX and stack/nonvolatile
+state across the complete cohort.3766signature/tag/PCrefusals,393216black AX
+cases and both4922/4884sprite suites (628protected spans each) pass. Exact
+tested ELF/DLL/EXE/source bytes are retained in SQLite. NP.world-opaque-fallback-caller
+records isolated original comparison only; integration/replacement remain none.
+No original game was started and no prior cap reset. Failed HS08World590 and its
+missing operands remain negative/unreplayed; other caller, full pan/ABI/player
+gaps and both decisions remain open. Frontier stays114/156passed42pending.
+See `producer-rejection-57e957-20261108.md` and PR08.original02.
+
+
+## Natural Grimoire stretch and NCS1 prefix — 2026-11-08
+
+Native public Grimoire calls reach NoCD58cbc0/return58cc63 unequal RGB565 keyed rectangles. Native CPU transforms already published full C3 UPDATEs; the source observer instead failed27/tag41 and cancelled the16384-record prefix drain. The additive fail-closed NCS1record and sampled-authority/frozen-source native replay repair that representation. NCR1rectangle refusal and old V1/V2 rejection remain distinct. Native integer-floor sampling is intentional policy, not original driver parity.
+
+`NCS1.two-stretch-rows01` admits only both stretch operation profile rows over the112-row owned parent:114/156passed42pending. Four actual640/800default/software public Grimoire sessions independently match all336complete destinations/132249600pixels, zero differences, and an immediately following whole GPU source or destination-before readback for each. Finite unrelated diagnostic omissions remain explicit. No captured destination seeds its own expected history. `NCS1.prefix-integration01` separately proves150actual NCS1records consumed across65536source-only records, with ordinary original/native retirement and no World work. `NCS1.controls01` retains41Python controls and the exact tested C++canvas/decoder binary.
+
+All14managed requests/11actual starts remain charged and retained:four positive, seven failed and three zero-game refusals; setup07is separately unadmitted. The High host-close crash lost in-memory external action receipts and receives no whole acquisition credit. Actual destroyed-window controls repair that collector race. The accepted Low phase is preserved with exact post-retirement-only AST review; no accepted matrix is recollected. Five stopped failed stages retain every file/pin in both immutable stores after real restores, reclaiming5389017088allocated bytes with pinned historical restore stubs. Keep all SQLite staging/review/budget catalogs, tested binaries, source phases and source checkouts.
+
+Both alias/overlap profile rows remain pending: no natural overlapping call is witnessed; supplied self-copy controls do not resolve reachability/traversal. Original driver sampling, hidden whole replay pixels, indexed/conversion/clipper or all-GPU stretch, World/gameplay, combined-current player and both final decisions remain separate. See research/runtime/rendering-copy-natural-20261108.md and its SQLite report references.
+
+
+### Natural stretch actual-master integration — 2026-11-08
+
+The pending exact union uses actual master9b0148db6as first parent and checked featuref2af4fc6aas second parent. It preserves all114incoming accepted rows, both hotspot rows and the primary opaque clipped fallback correction, then adds only both stretch rows:116/156passed40pending. The four original/native stretch executions stay in their recorded source phases. All1343native/compiler dependency paths are reviewed per case; the incoming world_raster_callers.hchange remains explicit full-hash drift. Shared artifact-reader/analyzer drift remains visible. No game/oracle/pixel rerun or whole combined-current execution is claimed by integration.
+
+The current progress snapshot supplies display bindings from the parents separate recorded phase maps and retains those maps unchanged; historical hashes are not refreshed. New stretch attachments correctly name actual_destination_extents; the owned snapshot used the legacy actual_world_extents key for these same destination sizes, despite entering zero Worlds. This metadata correction changes no value or engine proof. Merged controls pass41stretch Python cases, the shared artifact-reader tests and four dashboard guards, and the actual dashboard shows116/40with both alias rows/final decisions pending.
+
+Incoming committed-history review covers19123parent/current file versions fromb0eb1de5bthrough9b0148db6. A separate retrospective receipt pins2674unique opaque input transitions, including repeated additions across merge first parents and the source-specific black-guards archive. The closed review has no unresolved exact-transition gaps; it asserts neither a past gate pass nor new engine validation. Complete prior journals/archives, failures and source identities are preserved. See rendering-copy-natural-results-20261108/master-admission-01.json, master-checks-01.json and incoming-history-closed-01.json.
+
+
+### PC08 finite World-entry palette refresh — 2026-11-08
+
+The owned palette branch closes exactly both `operation.palette-cycling` rows
+for default/software at actual640×480/800×600. The immutable
+[acceptance proof](palette-cycling-results-20261108/acceptance-01.json) preserves
+all108parent rows and both pending player decisions:110passed46pending in this
+source phase. No newer master count or combined-current-player claim is made.
+
+Actual RGB/globals/coefficient/FP/profile inputs independently reproduce675
+initial nodes /5,311,744 WORDs and32refreshes /1,568,768 WORDs. All935,676
+ordered selected versions join878Worlds;1,021,416,000viewport pixels over926
+World presentations have zero differences. Twelve actual changed-colour
+source/last-writer/native-lease witnesses and normal original/native retirement
+pass. The proof covers finite World-entry mutation, not arbitrary periodic
+cycling between displayed frames. Initial unpresented colours are baselines.
+Original palette builders/refreshes remain live suppliers; platform services,
+exceptional domains, other providers and native live replacement stay separate.
+
+Recovered x87 power now also serves mode0's dark wing. The affected isolated
+matrix passes3468palettes /63,416,320WORDs; the refresh matrix passes2816cases
+under two precision settings and both packed formats.31observer controls and
+28production assembly ABI cases pass; actual service text is a supplied input.
+Every earlier numerical mismatch, setup refusal, semantic-probe ordering error,
+unobserved v2 rewrite refusal, invisible first-v3 case and metadata/storage
+correction is retained. Nine attempts /seven actual games are stopped. Preserve
+older evidence/status source phases and raw staleness rather than renewing
+all palette or player milestones. See [the scoped research](palette-cycling-20261108.md).
+
+
+## Palette refresh integrated into current master — 2026-11-08
+
+The exact parent union preserves all116accepted master rows, including current
+stretch/cursor/scene/recovery work, and adds exactly both finite palette-refresh
+rows:118/156passed38pending. Both final decisions and all old failures/budgets
+remain unchanged. See `palette-master-merge-results-20261108/acceptance-01.json`.
+Every recorded source map and raw native/runtime drift remains explicit.
+Merged source controls/builds and fresh staged accounting do not assert a new
+combined-native execution or repeat a game/original-oracle/pixel run.
+
+## OS08 opaque second-frame caller fixes — 2026-11-08
+
+The four remaining second-copy continuations of NoCD40209ca7 wrapper57e8e0 are
+admitted with exact PC/tag/ten-byte signatures:57e9ec/22,36;57ea02/12;
+57ea29/13,14;57ea40/17. The generator pins the complete128-byte argument,
+call, normalization/fallback and low16OR/RET12 sequence independently of an
+observed stream. Ordinary tables are52sites/61pairs and empty-stream21/23.
+Generic bypass, source/owner/readability, sprite context and limits stay strict.
+
+OS08.original02 compares108864complete original/native two-frame cases with
+zero refusals and33094656matching destination WORDs, including guards/padding;
+524288additional full-wrapper/model cases check AX routing, masking, call order
+and combined return. The old table rejects all six second-frame pairs in the
+108864-case reproduction. Native code uses the production pixel kernel and
+exact caller predicate; original wrapper/source bytes stay unchanged. Separate
+current primary/black/sprite controls and both observer builds remain required.
+See `opaque-secondary-callers-20261108.md` and its SQLite reports.
+
+NP.world-opaque-secondary-callers records scoped implementation and isolated
+original comparison. No natural original-game start, second-copy witness,
+World590 replay, full volatile ABI, wider formats, acceptance-row promotion or
+whole-player completion follows. Existing historical hashes and failed attempts
+are preserved. Intervening committed history9b0148db6..9da49daa7has152reviewed
+logical file transitions and zero missing exact receipts; this is separate from
+current changes and validation.
+
+### OS08 actual palette-master integration — 2026-11-08
+
+The pending merge preserves actual first parentbb5f0aabfand mastera1b830044,
+including every keyed behavior/evidence record, prior journal/archive and both
+ledger additions. OS08.merged-original01 repeats108864two-frame original/native
+cases/33094656WORDs and524288AX/model cases over the combined runtime sources;
+zero refusals or differences. Merged primary21384cases/5184fallbacks,
+black393216cases, production/regenerated caller and sprite protected-span
+controls, and both observer builds pass. Old hashes and source-phase reports
+remain immutable; inherited palette/acceptance statuses gain no new validation
+from this fix. No original-game start, live second-copy witness, whole-player
+claim or acceptance-row promotion follows.
+
+The complete merged committed-history review covers21533parent/current file
+versions including binary artifacts. One append-only retrospective receipt pins
+266missing custody transitions; the verified closed report has zero missing
+receipts and retains the negative finding. This is independent of fresh merged
+OS08execution and asserts no historical gate pass. See
+`opaque-secondary-results-20261108/merged-history-02.json`.
+### CS13 caller-state publication checkpoint — 2026-11-08
+
+The caller-visible-state operation remains open in both profiles. The owned
+caller-state branch records current bounded Word/generic/additive and initializer
+state proofs, V5 saved/normal-return source publication, a quiescent final source
+prefix, strict native/retained source accounting and independently decoded model
+outputs. Current producer controls include four supplied auxiliary/primary
+stack-slot canaries; codec controls cover 2,048 TOP/tag combinations and 72 wire
+guards. Publication controls replay 64 retained original additive snapshots,
+reject six actual output corruptions and pass 36 source/state/accounting guards.
+
+Four requests have used two actual game starts. The two staging refusals started
+zero games; a capture-path refusal and a normally retired pilot remain retained.
+The pilot has 150,426 source/root observations, 43,274 retained original roots,
+138 independently replayed Worlds and 421,509,000 compared pixels with zero
+differences. Its offline diagnostic also matches 107,152 native state
+publications, but supplies unresolved fast-tail parent PCs and is ineligible for
+acceptance. The diagnostic stack-slot bug is corrected; final nominal captures
+and current master integration remain pending. Original model semantics,
+publication, pixels, typed providers, both operation rows and both final
+rendering decisions retain separate statuses. See
+`research/runtime/rendering-caller-state-closure-20261108.md` and the CS13 SQLite
+references. No original files were modified; no push or evidence publication.
+
+
+## Caller-visible rendering state — CS14 complete supported rows (2026-11-08)
+
+Both default/software `operation.flags-and-return-values` rows pass `caller-state-installed-results-20261108/admission-01.json`:4actual640/800normal public sessions, 523,173independently checked required native state publications and 1,362,471,000complete viewport pixels, zero differences. Exact V5 nonce/World/source/queue/sequence joins and original retained/nested roots account for every primitive; final tails, normal Quit, returned prefixes and zero native owners are mandatory. Fourteen separate original/control components cover Word/generic/Add/glyph, lazy preparation, image/kernel/provider contracts, atomic refusals and publication/codec guards.63sites/76site-tag entries/42fast entries and8supplied stack controls retain their explicit scopes.
+
+The unchanged262144-row observer refused the first800default attempt at262143records with actual exit99; it remains failed, with no normal footer or tail. Plan05shortens only host focus/waits and explicitly extends cumulative8/6to9/7to complete the two missing high domains. Exact native/player/oracle inputs are identical across the two controller phases. Old640proofs retain raw two-controller drift and exact snapshots; source-phase guards reject any native/player/oracle/analysis change or unaccepted parent. Final9requests/7starts include4positive,3failed/ineligible actual starts and2zero-game refusals. Every stopped installation is dual-backed and fully restore-verified before pinned-stub retirement. No old hash/status is refreshed into new execution.
+
+Only these two rows change over the118-row palette parent:120/156passed36pending. Both final decisions, original driver, alias/overlap, arbitrary hidden/exceptional FP and gameplay equivalence remain separate. See `rendering-caller-state-closure-20261108.md`.
+
+
+
+
+## Natural alias COPY caller investigation — 2026-11-08
+
+`ALIAS08.caller-leads01` retains all156direct COPY caller candidates with exact
+straight-line source/destination expressions:29distinct constant-wrapper pairs,
+127unresolved pairs and no same-expression candidate. Distinct wrappers never
+prove disjoint backing. Selected original deferred-queue storage/drain and
+generic-image/bar publication scaffolding narrow the remaining leads. All three
+generic destination setter callers pass6a49e0; two bar draw callers and67queue
+publishers remain static contexts, not naturally executed overlap witnesses.
+
+Two retained original-active journals supply3812source-copy calls, zero identical
+generations and zero prior successful QueryInterface alias pairs at copy entry;
+every unlinked backing relationship remains unknown. Exact small metadata bytes
+are read directly from verified cold objects and retained through SQLite, without
+restoring full captures.33focused current Python controls pass; the malformed
+timeline and later build-map bookkeeping refusal retain exact negative phases.
+No native/runtime edit, game run, pixel comparison, new game fixture or original
+driver reexecution is added. Both alias rows remain pending, all116accepted
+rows and both pending final decisions remain unchanged. Whole predecessor/
+indirect flow, actual source publication/allocation, natural overlap traversal
+and complete output remain open. See rendering-alias-reachability-20261108.md.
+
+
+### Alias investigation integration into current master
+
+The integration preserves the incoming palette work and its118accepted/38pending
+frontier, adds zero acceptance rows, and keeps both alias rows pending. All11
+analysis/control source files remain byte-identical to the33-control phase; no
+control, original game, oracle or pixel matrix is rerun. Incoming native palette/
+observer changes retain their own tested phases; no combined native execution
+claim is made. The exact committed-history review retains retrospective opaque
+artifact custody separately from validation, with zero remaining receipt gaps.
+See rendering-alias-reachability-results-20261108/master-preserved-scope-01.json
+and master-history-01.json.
+
+
+### Alias investigation integration into current master
+
+The integration preserves the incoming palette work and its118accepted/38pending
+frontier, adds zero acceptance rows, and keeps both alias rows pending. All11
+analysis/control source files remain byte-identical to the33-control phase; no
+control, original game, oracle or pixel matrix is rerun. Incoming native palette/
+observer changes retain their own tested phases; no combined native execution
+claim is made. The exact committed-history review retains retrospective opaque
+artifact custody separately from validation, with zero remaining receipt gaps.
+See rendering-alias-reachability-results-20261108/final2-preserved-scope-01.json
+and final2-history-01.json.
+
+
+
+
+
+
+### FIN01 — Local integration throughput, 2026-11-08
+
+Host-only tooling adds cooperative admission before merge preparation, dry-first conservative metadata/history helpers, sealed SQLite restore-proof reuse, bulk replica catalog checks and invocation-local verified reads. `TOOL.integration-throughput` owns the bounded contract and `FIN01.controls` records source-stable synthetic execution. Normal current/staged checks and two-copy custody remain required. Historical evidence hashes and engine milestones are retained unchanged; affected old shared-source proofs may need targeted applicability review. Full-merge timing and the large legacy database reuse remain unmeasured. See `docs/integration-workflow.md`.
+
+
+### SNAP01 — Fresh snapshot verification throughput, 2026-11-08
+
+`TOOL.snapshot-throughput` owns four-worker, bounded, read-only verification of remaining research payloads after the registered audit. Each payload still receives complete size/SHA-256 verification; path policies, mutation checks and fresh working/base/staged readers remain. A retained a68af15c2 tree snapshot improves from205.52s to106.31s with identical complete snapshot-section and audit hashes, preserving4937stale records and2489validation gaps. SNAP01.controls records current host controls and comparison. Historical engine hashes/statuses are retained unchanged; no semantic coverage or whole-merge timing claim. See `docs/snapshot-performance.md`.
+
+
+### Tooling integration against current master — 2026-11-08
+
+The integration now combines actual master2875ee929 with tooling e18cf4117, retaining every opaque-caller/palette/stretch/cursor parent record. All SNAP01host inputs match the tested322-case phase exactly. The earlier A1review/backups and failed staged materialization remain at refs/mm/checkpoints/tooling-staged-before-master-advance-20261108, with every prior report/receipt preserved. Updated committed-history accounting covers47230transitions with zero remaining receipt gaps;112new entries concern opaque/journal custody only. No original/native execution or acceptance milestone is renewed. See tooling-master-merge-results-20261108/applicability02.json.
+
+
+### Final tooling integration after alias reservation
+
+This integration combines actual alias master e8389da21 with checked tooling merge9e555033a, preserving all parent records, existing accepted rows and pending native/alias boundaries. The SNAP01host inputs remain byte-identical to their322-control phase. The earlier staged-tree refusal, master advance and checked intermediate candidate remain retained independently. No game, native/oracle comparison, source-hash refresh or acceptance promotion is added. See tooling-master-merge-results-20261108/applicability03.json.
+
+
+
+
+## VC08 viewport boundaries and cursor motion — 2026-11-08
+
+The user-requested viewport-boundaries/cursor-motion pack closes exactly four
+finite default/software rows over the116-row owned parent: **120/156 passed,
+36pending**, with both final decisions pending. `VC08.player01` retains the
+original frozen execution contracts; `VC08.inventory-links01` accounts only for
+explicit recovered-range annotations, with no semantic/source/test/scenario
+change or new execution. Actual-master admission remains a separate source-phase
+union and must preserve every incoming acceptance row.
+
+Both nominal original-process800/640/800 journeys complete54edge/scaling windows
+per profile, three fresh displayed original cursor polls per window, eight
+bounded camera direction samples and normal original Quit. All6,669displayed
+World frames/5,933,482,500pixels independently match original-code history;
+2,696source Worlds and25chunks are retained. Normal source returns balance,
+input/cursor/graphics/renderer owners retire. Same-World continuity, arbitrary
+clamp saturation, picking, physical driver parity and whole combined-current
+execution remain outside this result.
+
+The required High-to-Low repair is intentional native policy: only the pinned
+5770f5 E8/return5770fa, opaque40x40copy at identical coordinates wholly outside
+both640x48016-bit buffers becomes a no-op. Both actual runs observe that branch
+and load the bit-identical controlled DLL. `VC08.hidden-controls01` preserves
+the pre-fix bounded retry,20complete native planes,93policy cases and18changed
+anchor refusals; `VC08.cursor-regression01` adds108complete existing cursor
+planes with no original-game start. Direct COM INVALIDRECT remains strict.
+`VC08.original-call01` links only the actual unchanged five-byte original call
+instruction with authored endpoints; no whole original Spellbox ABI is claimed.
+
+All six public requests/five actual starts, the initial accessibility refusal,
+Map-picker timeout and both failed rebuild acquisitions are retained. The
+prospective extra start bought a genuinely missing exact caller diagnostic;
+no HS08/PR07 cap was reset. Main/cold/SATA90/100/10GiB floors and all pins/raw
+inputs remain held. See `viewport-cursor-continuity-20261108.md`, its SQLite
+results, and the exact first-hit format in `research/formats/hidden-spellbox-copy-v1.md`.
+
+### VC08 actual-master source-phase union
+
+`viewport-cursor-results-20261108/master-admission-01.json` preserves all118
+incoming accepted rows and adds exactly four finite viewport/cursor profile
+rows: **122/156passed,34pending**. Both final decisions remain pending. All
+original attachments, source hashes and failures remain; ten changed owned
+observer/palette/host dependencies are explicit raw drift. The rebuilt direct
+native provider is byte-identical to the controlled DLL; no original game or
+fixture is recollected for integration freshness.
+
+The incoming alias change added only research leads and left an authored binding
+stale. The strict union refused it; `master-binding-review-01` proves that only
+the two added lead lists differ, corrects only the active binding and validates
+all156unchanged conditions/owners/IDs/policies. Old opening/evidence/dossier
+hashes remain unchanged; annotation identity is separate. Eight static union
+adverse cases pass. Incoming history22,479transitions receive2,201missing exact
+custody receipts, without asserting an earlier gate pass or new execution.
+
+The combined-tree audit has zero errors;34current host guards and the actual
+dashboard122/34/historical-source checks pass. A second committed-history review
+finds zero remaining receipt gaps across22,479transitions. These are host/static
+checks only; accepted engine execution keeps its exact owned phase. No additional
+original start, original reference replay, pixel comparison or final decision is
+claimed by integration.
+
+
+
+
+## Parallel-agent integration tooling — 2026-11-08
+
+`TOOL.parallel-agents` / `PAR01.controls` tracks host policy for four to six owned task worktrees. Current shared reference hooks require inherited active admission for master updates; the dry-first queued command owns ready-tip preparation, current master selection, normal exact finish/backups/staged checks and conditional promotion. Compatible batches union disjoint central register/journal records and append-only ledger tails through candidate Git trees, without intermediate commits. Overlapping records, unresolved code conflicts, dirty work and failed finishes remain held for review. Four shared snapshot verification slots include linked/materialized trees; terminated owners release kernel locks. Scratch acquisition checks allocated-byte estimates, inode headroom and actual write access. Existing canonical retention roots receive fresh two-copy read verification before the exclusive writer section; new roots and divergent catalogs still face locked checks.
+
+Fresh isolated controls include six competing processes, worker termination/nested borrowing, guarded Git references, real two-tip normal finishes and separate master-checkout fast-forwards, failed/dirty/conflicting preparation, root corruption, replica loss and compatible accounting/storage regressions. These are host tooling milestones; original rendering behavior, native frontend acceptance and engine recovery statuses remain independent. Historical reports/hashes, failed source phases and prior throughput measurements remain retained. Already running Python agents keep their loaded older code; queue/current worker policy applies through current tooling and installed shared hooks. New end-to-end multi-agent throughput remains unmeasured.
+
+Final source-stable host batch: current controls pass across15suites; the full accounting audit has zero errors. Prior mock-refusal diagnostics remain retained separately and grant no earlier source-validation claim. Current/base/staged checks and paired backups remain required for the actual commit.
+
+Final source-stable host batch:394controls pass across16suites; the full accounting audit has zero errors. Prior mock-refusal diagnostics remain retained separately and grant no earlier source-validation claim. Current/base/staged checks and paired backups remain required for the actual commit.
+
+
+## Caller-visible state with actual master —2026-11-08
+
+`caller-state-master-results-20261108/admission-01.json` preserves all122accepted actual-master cells and every unrelated row object, adding only both caller-state cells from the523173state/1362471000pixel4domain proof. Final view124/156passed,32pending; both final decisions remain pending.12parent-union guards pass. All old/native/controller phases, raw drift, rejected attempts and9/7charges remain; no current combined-game, new original reference, driver or alias equivalence is claimed.
+
+
+
+
+## FL08 installed font lifetime trace — 2026-11-08
+
+The bounded default native-only High-to-Low Main/Grimoire scout now binds
+24084original glyph entries to6font generations,2heading/body replacements
+and4current destructor completions. All158complete first normalized glyph
+sources match independent installed SFT tables/bytes. Original layout return
+PCs4a6133/4a65c7bypass the byte caller4a59e0. Heading/body/tooltip uses are
+observed; yellow is loaded without drawn-glyph credit. Both actual games quit
+normally. The first V1 trace retains14756unparented glyphs and earns no
+resource binding. V2 adds unique live-raw-range binding and first full source
+snapshots; neither stage changes raster math or gameplay.
+
+Production entry/return assembly passes11anchored authored callees, direct/byte
+source custody, reload and current-destructor controls;22strict reader guards
+pass. `FL08.observer-controls04` and `FL08.installed-default01` preserve their
+exact independent scopes. One shared-store lock delayed full retention of the
+first already stopped collector; its active process/action receipts and charge
+stay intact. A pinned minimal review independently retains its exact scene
+DLL, original manifest, journal,17menu snapshots and normal stop before the sole
+remaining missing-data scout. No request/start refund or earlier cap reset.
+
+Both font/DC player rows remain pending: current-font source custody is separate
+from actual DC image lifetime, yellow drawing, Software execution and complete
+presented glyph pixels. Replaced old raw allocations are not observed freed.
+All118accepted parent rows and both final decisions remain unchanged byFL08;
+concurrent viewport/alias work retains its own source phase. See
+[the scoped evidence](font-lifecycle-20261108.md). Two new actual original starts
+exhaust the independent2-start/4-request ceiling; no more font starts are
+authorized. Exact artifacts and new reports use SQLite; paired import, real
+restoration and final source accounting remain required before local commit.
+
+
+FL08's original first full collector now finishes normally: its original V1
+source map, all action receipts and every raw artifact are preserved under
+`font-default01-acquisition.json`; the final missing-binding review agrees
+with the earlier pinned minimal handoff. Both actual starts remain charged;
+no process or font run remains active and there is no remaining font start.
+The710MiBtemporary local SQLite snapshot imports410unique objects into both
+immutable stores with a real logical restore; manifest
+68432ed299217f368d8ea3b021955149d26a611b5cfb7ae2aa110e411339ffbf
+preserves original payload hashes. Later accounting/closeout metadata still
+uses the normal verified finish backup; no raw tree or pin is removed.
+
+
+## FL09 font lifetime integration — 2026-11-09
+
+The checked merge preserves the FL08 source phase and every current master
+behavior/evidence/scenario record. Fresh FL09.merged-observer-controls01
+passes production i386 hook ABI controls,22strict reader guards and the
+combined PE32 observer build. Historical installed observations retain their
+original source hashes; this merge adds no original game or combined-player
+execution. Font/DC and overlapping-copy acceptance remain pending; current
+master viewport/cursor and caller-state admissions remain unchanged.
+
+
+### Pending zero-stage bookkeeping compatibility — 2026-11-08
+
+[79 current gate controls](campaign-gate-compat-results-20261108/controls-01.json)
+verify that an explicit empty stage list on a pending historical custody receipt
+asserts no validation dimensions and grants no stage credit. Recorded empty
+lists and nonempty pending stage lists still refuse; implementation promotion
+without fresh recorded proof still fails. This narrow tooling fix preserves the
+original immutable receipt, hashes and every required current/staged gate.
+No original execution, engine acceptance or status promotion occurs. The shared
+hook must receive this checked fix before it can validate the campaign branch's
+preserved zero-credit retrospective receipt.
+
+
+
+### Font/DC acceptance investigation — 2026-11-08, incomplete
+
+`font-dc-lifetime-20261108.md` retains production i386 font observer ABI/reader
+controls, all-six-installed-font kernel comparison (4335cases/3420849WORDs),
+explicit passive nominal DC journal controls and the imported narrow hidden
+Spellbox copy guard. A successful two-World/reload/Quit pilot has145zero-difference
+World planes,8original SFT loads and complete DC custody. Oracle-only removal of
+67268original font commands changed no presented World: hidden original menu
+text is separate from the actual native Qt menu-font path. No font row closes.
+
+Current native Qt controls pass12reader/time/screenshot controls,960caption
+paints and23fully retired font generations across22menu variants/three sizes.
+This is a bounded headless observation/component milestone only. Actual visible
+native captions before/after reload in default/software640/800 and normal live
+registration release remain pending. Original retained reload allocations,
+undrawn yellow font and native outline/AA policy remain explicit. Preserve every
+negative report and source phase; neither final rendering decision changes.
+
+### Font/DC finite rows closed —2026-11-09
+
+`font-dc-lifetime-results-20261108/acceptance-01.json` admits exactly the two
+`operation.text-font-dc-lifetime` profile rows at actual640/800. Four successful
+normal sessions and fresh independent comparisons prove711World images and
+1108866000viewport pixels with zero differences,32original SFT generations,
+44real DC borrows (zero required CPU-read tickets),264fresh native caption joins
+and16native registrations retired. User-approved final10request/8reserved-start
+caps retain one unknown prior start conservatively and every old failure.
+
+The last retained capture exposed an independent oracle table omission for the
+already recovered580a90/backend13additive sprite. A guarded reference-only repair,
+three malformed-input refusals and four fresh retained comparisons close that
+comparison gap without changing the native renderer or starting another game.
+Original hidden-menu text remains separate from visible native Qt SFT outlines;
+native AA policy, undrawn yellow, original retained reload allocations and Qt
+internal allocator limits stay explicit. The124-row caller-state master parent
+is preserved:126/156passed,30pending; both final decisions remain pending.
+
+The merged source review in font-dc-master-results-20261109/admission-02.json
+preserves these 126 rows with fresh exclusive-observer ABI, native font ownership,
+DC admission, hidden-copy and eight source-phase controls. The accepted games
+keep their exact execution hashes; renamed task frontends and opt-in activation
+are checked separately. No current combined-player execution is asserted.
+
+### ALIAS08 — source publication and current opaque overlap, 2026-11-08
+
+Assessment03 binds the Grimoire bar source through book+0x1a3a/helper+0x850/bar+4
+to its selected surface creation, and records generic embedded-source creation
+plus the direct destination store missed by a setter-only inventory. These are
+static publication findings, not global backing disjointness or natural overlap.
+`ALIAS08.publications01` and eight current argument/timing controls retain the
+exact source phase. `ALIAS08.opaque-native02` freshly compares all1536 retained
+original opaque overlap cases with current backend/v3 outputs, including16partial
+errors,20policy controls and6rejected streams;9oracle controls pass. No game or
+original collector runs. Exact binaries, inputs, failures and reconstruction
+commands are SQLite-backed; compiler intermediates remain temporary RAM output.
+No acceptance contract is amended:118passed/38pending, both alias rows pending.
+Natural player reachability and the production facade's separate frozen-source
+policy are not promoted. See `rendering-alias-reachability-20261108.md`.
+
+### ALIAS09 — approved bounded overlap closure, 2026-11-09
+
+ALIAS09 closes exactly two owner-amended controlled opaque RGB565 overlap cells: 128/156 passed, 28 pending. Retained 1,536-case original/backend/v3 output is rechecked with 23 current admission guards. This is shared controlled mechanism scope, not natural player overlap. SC.natural-callers, required boundaries and both final decisions remain pending; all 154 unrelated cells and historical source phases are preserved.
+
+`NP.alias-overlap-bounded-closeout` owns only this admission/accounting policy. Current 23 host guards and raw retained 1,536-case comparison support `ALIAS09.controls02`/`ALIAS09.admission01`; no recovered native-engine status, original collector or whole-player execution is renewed. The old ALIAS08 feature and its source/evidence custody are integrated without modifying historical hashes.
+
+
+
+
+## PK09 finite picking: qualified default and repaired software acquisition —2026-11-09
+
+`NP.picking-closeout` owns only both `journey.cursor-interaction.picking` rows. The frozen124-row caller-state parent and both final decisions remain unchanged at this checkpoint. Default02qualifies48physical source-derived object/cell windows, all four views/Up pan/Sharp/Integer at actual800/640and returned800,144displayed original input/World-return joins, full independent6004317000viewport pixels at zero differences, and normal retirement. The full pixel producer reconstructs2001original Worlds; current interaction reanalysis reuses that exact proof without another game or original raster execution.
+
+Retain both prototype analysis refusals: legal source camera metadata in a chunk and actor pose movement between windows. Opt-in checks now forbid chunk World/failure boundaries and require each current actor XY/source target/original picked XY to agree within its fixed window; full ground triples remain stable within windows. Old strict defaults/historical hashes remain. Software01fails after23windows with a source target whose anchor changes before original delivery. Software02uses public focus without scene clicks and three quiet source poses, completing48windows, two rebuilds and normal Quit. Its independent output/input comparison remains pending; no software row or final decision is promoted by acquisition.
+
+All4requests/3actual starts are charged, including the zero-game `/tmp`isolation refusal and failed software start. The existing isolation guard is unchanged; sessions/prefixes use the cold owned worktree and captures/reference output use RAM. The failed RAM checkout, exact source preimages, binaries, raw observations, negative reports, local staging SQLite and every pin stay held. Prior PR07/HS08/VC08caps remain exhausted and unchanged. User-approved89GiBmain reserve is batch-only; actual guards retain90GiBso far. No original modification, gameplay balance change, source push, publication, private transfer or cleanup. See `picking-closeout-20261109.md`.
+
+
+## PK09 both finite picking rows qualify — 2026-11-09
+
+`PK09.player01` preserves all 124 caller-state parent rows and adds both finite picking rows: **126/156 passed, 30 pending**. Both final decisions remain pending. Default and explicit software profiles complete 96 object/cell windows, 288 displayed source/return witnesses, four views and Up pan, Sharp/Integer at both sizes, actual 800→640→800 recreation and normal retirement. All 14,724 World presentations / 12,979,329,000 complete viewport pixels match the independent original-history reference. The default pixel proof is reused unchanged through fresh interaction analysis; software has its own reference execution.
+
+All four requests / three actual starts remain charged: two qualified games, one failed software game and one zero-game path refusal. Both failed prototype analyses, source phases, exact hashes and negative evidence remain. Thirty-one current controls check admission, legal camera chunks, actor/target/picked-cell joins, source readiness and scaling focus. Native/runtime/compiler/oracle bytes remain unchanged full-hash dependencies. General ray/Z, allocation generations, hardware, same-World continuity and combined-current master/default-controller execution remain pending. See [the picking closeout](picking-closeout-20261109.md).
+
+
+## Picking integrated with current master — 2026-11-09
+
+The reviewed static union adds exactly two picking rows to actual master font/DC acceptance: **130/156 passed, 26 pending**. Every other master row is preserved exactly, including font/DC closures and the owner-approved controlled opaque-overlap amendment. The latter retains its controlled 8×6 RGB565 mechanism scope and pending natural-player obligation. The common 124-row dossier, candidate-only annotation review and both pending final decisions remain unchanged; the actual master scope-amendment overlay is retained exactly. `picking-closeout-results-20261109/master-progress-01.json` binds all three parents and records raw source drift; the production UI check reads all 156 rows.
+
+This union starts no game or original reference and compares no new pixels. Owned picking execution remains bound to its distinct default/software controller phases; incoming font/runtime changes do not establish combined-current execution. Exact committed-history accounting, current/staged gates and paired review/evidence backups are required separately. All failures, source preimages, attempt limits and earlier parent histories remain retained.
+
+
+Merged verification records 54 passing admission/controller/row-union/overlap controls. The incoming-history review covers 16,134 committed parent/current transitions; 2,591 previously unreceipted transitions now have exact retrospective custody receipts, with zero unresolved receipt gaps. These receipts assert no past gate pass or additional engine execution. The normal current/staged integration gate and paired backups remain required.
+
+
+### IM09 — input/media gates,2026-11-09
+
+`input-media-gate-results-20261109/admission-02.json` closes exactly both
+`gate.input-media` cells over checked picking master02a07b2b6:132/156passed,
+24pending. All130parent rows and both pending final decisions remain unchanged.
+Forty retained primary executions supply all36named profile requirements;
+fresh raw checks bind four F9/input cases, eight Mini input/media/music dwells,
+enabled natural EOF/physical skip/painted focused Main and completed picking.
+Independent full pixel proofs retain their exact native/original/compiler phases.
+Thirty-eight current controls reject missing/forged cohort domains, failed media,
+silence, lost focus, owner leaks, unreturned work and unacknowledged input/music.
+No game/capture/build/newpixel comparison or combined-current player claim.
+See `input-media-gate-closeout-20261109.md`; exact source custody is SQLite-backed.
+
+The IM09dashboard check also repairs false source staleness for SQLite-backed
+inputs: compare verified payload hashes, not physical reference bytes. A real
+SQLite regression preserves actual drift; production132/24 and both pending
+decisions now display with current analysis sources. Native execution hashes,
+rendering arithmetic and original behavior are unchanged.
+
+### NAT09 — native-player overlap requiredness boundary, 2026-11-09
+
+NAT09 records a source-backed requiredness exclusion for54,290successful active COPYs across16retained native-only Quick/Campaign,Grimoire and clipped cases. No shared owned backing is possible in those recorded calls. Four failed calls and terminal/unobserved contexts remain outside; no natural overlap witness or global absence is claimed. All156rows and both decisions are preserved: 132/156 passed, 24 pending.
+
+`NP.native-player-overlap-boundary` owns host analysis only: captured DLL/source/lifetime provenance, fresh PE32 layout compilation and27current classifier/provider-phase guards. Four canonical-provider captures corroborate the interface rule. No engine implementation, actual overlapping invocation/output, global absence or new accepted row is asserted. See [the exact boundary](native-player-overlap-boundary-20261109.md).
+
+
+
+
+## SL09 native surface loss and fresh-generation restoration — 2026-11-09
+
+`SL09.acceptance01` closes only both finite `operation.surface-loss-restore`
+cells over the124-row caller-state parent:126/156passed,30pending. All154other
+rows and both final decisions remain literal. Concurrent font/DC, approved
+overlap and picking admissions require their separate actual-master union;
+this feature record does not erase them or claim a combined-current player.
+
+Four actual primary GUI default/software640/800pairs independently compare
+7504084500displayed pixels across8122World presentations with zero differences;
+original routines reconstruct7711Worlds. Each destroys its actual Qt offscreen
+target at a completed turn, observes typed `GraphicsFailure`, supplies a target
+for GL deletion, retires all command/storage/frame/World owners, remains terminal
+with blocked input, and uses physical public Hard restart to new original
+runner/channel/World identities. Fresh positive input and ordinary Quit are
+required. Old generations receive no normal credit; unpresented tails remain
+uncredited. The GUI diagnostic owner supplies its deletion target through the
+renderer API; worker join supplies its own after failure. This establishes that
+bounded target lifetime, not general automatic GUI hardware/display recovery,
+physical GPU reset, legacy DirectDraw equivalence, arbitrary loss/races or old
+game/surface continuation. Isolated checkpoint continuation remains separate.
+
+Native changes reject invalid targets before the current-context shortcut,
+retain frame texture/fence deletion debts and avoid throwing from frame-recipe
+teardown on graphics loss. Six actual native GL/GUI/worker/restart/context
+fixtures,70strict receipt/header/extent/source-phase/admission/budget tests and
+24existing transition controls pass. Both640proofs retain exact old control
+phases; the reviewed800continuation changes five Python files while preserving
+the compiled player, runtime and oracle. Exact AST/preimage custody and retained
+raw-proof reassessment preserve the low scope without claiming a new low CLI run.
+
+The initial GUI pilot missed a worker-only probe: one start observed, full2-start
+reservation retained. Its sole actual game repair passes. A software reader
+refused terminal `INTERRUPTED4`; corrected retained-data analysis admits only
+active/cancelled/interrupted terminal states with cancellation, exact geometry,
+zero reserved words and bounded queued tail. A zero-game800preflight found a
+low-only Quit guard before expansion. All failures/source hashes remain exact.
+Five acquisition requests exhaust10charged starts;9are observed and the initial
+failed count remains incomplete. Each accepted pair has exactly two starts.
+No budget refund, second game repair, balance change or original-file change.
+All2927original files verify before/after the consuming experiments. Reports,
+tested binaries, unique source phases and raw captures use paired SQLite custody.
+See [the scoped research](surface-loss-restore-20261109.md).
+
+
+## SL09 actual-master source-phase union — 2026-11-09
+
+Actual first parent `01f446ab379a7b03a83e7c5f8b69253e61ab8c34` and feature `160dae3cd7c8d8732d3a16aed8de4906c6d2305d` preserve their exact
+accepted phases. `master-admission-01.json` adds only both surface-loss cells:
+134/156 passed, 22 pending; all 154 other actual-master rows and both decisions
+remain literal. Approved overlap amendments and their pending natural-caller
+obligation remain exact, alongside font/DC and picking acceptance. Fresh
+SL09.merged-controls01 validates the merged native components and 70 guards with zero
+original games. Native/compiler/protocol/oracle source drift remains recorded
+under the original execution hashes; no combined-current game, physical driver
+or original-replacement claim is added. The ten charged starts remain exhausted.
+
+
+## CT08: compact map-exit and next-map-loading review — 2026-11-08
+
+`NP.campaign-transition-retained-review` targets only
+`journey.map-transitions.leave-map` and `journey.map-transitions.loading`.
+[Retained analysis](campaign-transition-lean-results-20261108/review-04.json)
+checks original owner-thread World pop/entry callback ordering and fresh
+Realm/travel/Region2 bridge states, then independently rederives native command
+surface retirement/recreation from existing command captures. Nominal software640
+retires surface94 before creating surface242 for generation3034; diagnostic
+default800 retires surface88 before creating surface238 for generation3662.
+These are launch-specific native handle/incarnation identities, not stable
+addresses or complete original object/vptr/generation lifetime recovery.
+
+Both retained comparisons remain exact:9,227,724,000 and13,420,951,500 historical
+pixel checks, with zero differences. This review references those comparisons;
+it runs no new pixel/original oracle, native player or game. The diagnostic case
+remains diagnostic, with absent historical comparison-process retirement recorded
+as unknown. Only software640 supplies a nominal candidate; default640/default800/
+software800 and current per-domain applicability/output/ownership admission remain
+missing. All112accepted parent rows,44pending rows and both pending decisions stay
+unchanged. No historical failure or source hash is refreshed.
+
+81focused controls pass, including33new adverse/bounded-read controls. Existing
+SQLite inputs are read directly:184,401,464compressed raw bytes, decoded only in
+RAM. The final report is17,770bytes, capped at64KiB; no capture, installation,
+prefix or build snapshot is added. Initial setup/schema refusals and exact tested
+source preimages are retained through SQLite. [Scope and reproduction](campaign-transition-lean-20261108.md)
+describe the remaining domains and original lifetime boundary.
+
+
+
+
+### Campaign map exit and loading — 2026-11-08
+
+[Four-domain acceptance](campaign-progression-closeout-results-20261108/acceptance-01.json)
+closes only `journey.map-transitions.leave-map` and
+`journey.map-transitions.loading` for default/software actual640×480 and800×600.
+Current-source full executions43–46 retain enabled intros, original Load, natural
+Victory/Realm/travel/region2 and normal Quit. Complete independent comparisons
+match3,286,371,000pixels. Paired original populated resource epochs bind actual
+World callbacks; first-map storage retires before later acquisition. Persistent
+display identities span maps, native prior surface incarnations retire and final
+ownership drains. `NP.campaign-map-transition-closeout` records scoped native
+headless integration; `NP.campaign-map-resource-boundaries` independently records
+original live observation. Original comparison/replacement and external supplier
+recovery are not promoted.
+
+The exact116-row parent becomes120/156passed,36pending in this owned source
+phase. Later master admissions require an explicit union. Both final decisions
+and all unrelated rows stay unchanged. A357,718byte immutable original Save
+replaces repeated combat setup; input41separately verifies original Save/Load
+active actor fields, while each full run independently proves natural map
+progression. Historical36pixels/controller review predate the C++Save change
+and supply no current closure credit. See
+[campaign closeout notes](campaign-progression-closeout-20261108.md) for bounded
+resource observation, quota-aware RAM guards, exact output ownership, temporary
+oracle retention, preserved negative evidence and SQLite durability boundaries.
+
+
+### CP09 natural victory and next-map output — 2026-11-09
+
+[Retained four-domain admission](campaign-victory-next-map-results-20261109/acceptance-02.json)
+closes only `journey.battle-results.victory` and
+`journey.map-transitions.next-map`. Existing full captures 43–46 provide original
+natural victory, native visible result-control acknowledgement, fresh Realm
+return/travel and actual Celtic region 2 entry. Exact compiled projection
+sources prove functional result display and withdrawal; persistent QWidget
+destruction and original glyph/font/DC pixels are not asserted. Complete native
+swap multisets and captured plane hashes recheck 3,286,371,000 independently
+compared pixels, including first and resumed later-map output. Paired original
+resource epochs, native incarnation retirement and normal final drain pass.
+
+`NP.campaign-victory-next-map-closeout` records scoped implementation and
+headless retained-data integration; original comparison/replacement remain none.
+No new game, reference execution or pixel comparison occurs, and no historical
+source hash is refreshed. Exact candidate map inputs remain distinct from
+unrecovered section/layout/RNG choices. Twenty focused guards pass. The owned
+120-cell parent becomes 124/156 passed, 32 pending; newer master admissions
+remain separate source phases. See
+[campaign result scope](campaign-victory-next-map-20261109.md).
+
+The [current CP09 coverage snapshot](coverage/summary-campaign-results-20261109.md) records the zero-error audit, unchanged historical drift and independently pending boundaries.
+
+
+## Campaign progression master union — 2026-11-09
+
+The reviewed acceptance union preserves all 134 actual-master accepted rows and closes eight campaign profile cells: leave-map, loading, victory/results and next-map output for default/software at actual 640×480 and 800×600. The resulting tracker records **142/156 passed, 14 pending**, representing **7 distinct tasks**. Both final decisions remain pending.
+
+Actual master parent: `e3d87becea2fb17c91f315f8b56618391b933841`. Campaign feature: `23e676abca41ac966744d3733012672a984c72d9`. [Merged admission](campaign-master-results-20261109/admission-01.json) binds both exact parent records. The complete master tracker, approved controlled overlap scope amendment and every noncampaign row remain intact. Campaign captures43–46 retain 3,286,371,000 compared pixels with zero differences; this merge adds no original run, capture, oracle execution or pixel comparison. Historical application/runtime/compiler/oracle/analysis phases remain explicit; no combined-current player execution or original-recovery promotion follows.
+
+Metadata conflicts are resolved by the conservative keyed register/journal union. Complete actual-master ledger/document bytes are preserved and campaign-only insertions appended. Native/code files merge without conflict. Campaign test fixtures reconstruct the exact frozen definition by restoring only the recorded candidate evidence leads in an in-memory copy; the authored master dossier, acceptance conditions, owners and approved scope amendment are unchanged. Changed conditions still refuse. Both strict production analyzers remain unchanged. The first failed candidate, all source bytes and failed controls are retained in `campaign-master-results-20261109/failed-candidate-source-01.json`. Fixture subprocesses now omit the unrelated inherited integration descriptor; the real finish/commit keeps its full-command lease. The historical font integration analyzer correctly refuses current full-source credit after changes to the two campaign driver files. Its immutable control hash and historical status remain; current native menu-font regression is checked independently without renewing that old gate.
+
+The existing owned checkout/build is reused. Before rebuilding, exact old tested binaries are retained in both immutable stores. New compiler intermediates are temporary; built binaries, controls, unique failures, exact source states and review/history databases are durable. Reports go directly to SQLite. No publication or private transfer is part of this merge.
+
+Remaining IDs: `gate.fault-lifetime`, `gate.journeys`, `gate.operations`, `gate.pixels-history`, `gate.required-boundaries`, `gate.separate-decisions`, `gate.transitions`.
+
+
+### CR09 — owned copy routing safety, 2026-11-09
+
+`NP.owned-copy-routing-safety` closes unsafe GPU feedback within17reviewed owned-copy entry families: canonical storage identity, distinct direct copies, existing shared-source snapshot/ordered routes or refusal, and unknown-identity refusal under stated guards. Geometric rectangle-overlap detection and a natural overlap witness are unnecessary for this safety property. A missing coordinate pixel-input/destination alias guard is repaired before drawing;8local/worker refusals preserve full inputs,8positive paths retain semantics, and128GPU emitter identity combinations produce12safe routes/116refusals. Existing192surface cases, prepared-frame controls,354command frame comparisons and408clipping operations pass. Native provider/bridge coverage here is source review under enabled ownership guards; no fresh PE32/game, global absence, original traversal equivalence or current combined-player/hardware claim. All accepted matrices retain their source phases and no acceptance row is promoted. See [the ownership contract and exact inventory](copy-routing-safety-20261109.md).
+
+
+### FL09 — fault/lifetime gates, 2026-11-09
+
+`fault-lifetime-gate-results-20261109/admission-01.json` closes exactly both
+`gate.fault-lifetime` cells: 144/156 passed, 12 pending. All other
+154 rows and both final decisions remain unchanged. Eight retained producer
+INVALID/native-target-loss pairs cover default/software and actual 640/800.
+Current raw checks bind exact negative results, parked Mini, terminal owners and
+input/output, 64 stable terminal samples, 16 distinct original runner/World
+identities, physical public fresh restart, positive input and normal retirement.
+Existing independent 18,266 swaps / 17,332 World presentations / 15,973,617,000 pixels retain
+zero differences and their historical native/compiler/original/oracle phases.
+All 32 actual-data guards pass; prototypes and exact source phases remain.
+No game/capture/build/new pixel comparison, renderer repair, physical reset,
+old-generation continuation or combined-current player claim.
+See `fault-lifetime-gate-closeout-20261109.md`.
+
+
+
+## 2026-11-09 — Original mask/ground-Z/classification recovery
+
+Recovered and implemented `RE.sprite-point-mask`, `RE.world-ground-picking`,
+`RE.world-hit-classification` and focused `RE.world-ground-picking-upper-layer`.
+Unchanged original/native isolated execution matches 4,067,638 point decisions,
+23,177 terrain scenarios (including four Z31 worlds) and 1,000 class cases;
+ASan/UBSan controls and standalone CMake/CTest pass. Ground XYZ is last admitted
+traversal annotation, independently of maximum terrain depth (504 original
+counterexamples); hit class uses strict signed candidate precedence and ties.
+Opaque zero-color masks and suppressed child hits are confirmed. No geometric
+ray intersection is used in this selected path. See
+[scope, addresses, evidence and reproduction](ray-z-recovery-20261109.md).
+
+Understanding/implementation are scoped, comparison recorded, integration
+headless, replacement none. Full Region/World callback, resource lifetime and
+runtime binding remain outstanding; the original provider and native presented-
+pixel application policy are unchanged. Retained 288 live witnesses do not contain
+a complete ground-model input sequence and supply no new native-world prediction.
+All rendering acceptance rows, older source phases, failures and final decisions
+remain unchanged. Four bounded acquisition attempts are exhausted, with two
+isolated original processes and zero game launches; manifest bookends pass.
+
+
+## OG09 operations acceptance gate — 2026-11-09
+
+Both `gate.operations` profile cells pass from the exact conjunction of all 21
+existing operation requirements per profile: 146/156 passed, 10 pending.
+`operations-gate-results-20261109/admission-01.json` retains all 154 other rows
+and both pending final decisions literally. Current host controls join 36 distinct
+retained comparison receipts, exact session/profile/extent identities, independent
+viewport or selected-plane output, semantic operation witnesses and retirement.
+The approved controlled opaque-overlap amendment retains its 8x6 scope and pending
+natural caller obligation. Every original/native/compiler/oracle source phase,
+failure and narrower history/output limit remains explicit. No game, new native
+execution, pixel replay, renderer repair, combined-current player or other gate
+promotion. See `operations-gate-closeout-20261109.md`.
+
+
+## OG09 actual-master union — 2026-11-09
+
+`operations-gate-results-20261109/master-admission-01.json` joins current host
+analysis with the exact actual-master parent: 146/156 passed, 10 pending.
+Only both operations gates change; all 154 other actual-master rows and both
+final decisions remain exact. Fresh merged host controls/analysis preserve
+every original native/compiler/oracle phase and approved scope amendment.
+No game, new native execution, pixel replay or combined-current player claim.
+
+
+
+
+## PH09 retained native pixels/history gates — 2026-11-09
+
+PH09 closes both pixel/history profile gates:146/156passed10pending.56healthy viewport sessions bind 116,153 actual native swaps / 104,089,733,040 independently compared viewport pixels, closed source/command/reference history and 523,173 caller-state cases;72primary comparisons,14semantic primaries and approved controlled overlap keep distinct roles.40current controls pass. Exact historical native/original/compiler/oracle phases remain; no new game/capture/oracle or final decision.
+
+The exact144-row fault/lifetime parent is preserved except the two named gates; both final decisions stay pending. Current Python analysis checks every healthy native leased paint/swap against its complete historical independent viewport proof, actual source nonce/import/END and original continuous plane index. Raw V5 publications and independent expected model bytes rejoin caller effects. Failed semantic ancestors and a raw unstable UI phase keep their original flags; component-only reuse needs exact protected pixel source ancestry. Native widget policy, controlled overlap, selected planes and fault epochs do not become whole-viewport or current combined-player credit.
+
+See research/runtime/pixels-history-gate-closeout-20261109.md and pixels-history-gate-results-20261109/admission-01.json. Retain the owned rendering-transition-recovery-20261107 checkout/task branch, working/pixels-history-20261109/.retain, exact source phases/refusals, review/history databases and both verified immutable stores. No new native/original process, pixel replay, fixture, binary modification, source-hash refresh or historical-failure retirement.
+
+
+## PH09 actual-master compatibility union — 2026-11-09
+
+The accounting-only union on operations mastere442a77c6 preserves all154other actual-master row objects and adds exactly the two ready pixel/history cells:148/156passed8pending across4distinct gates. All136journey/operation leaves, both pending decisions and original execution phases remain exact. Both parents have current identical declared source bytes; the PH09 code/contract/40controls and independent proofs are unchanged. No engine revalidation, original/native process, capture or pixel replay. See pixels-history-gate-results-20261109/compatibility-02-admission.json. The prior ready pixel/history commitd0ef95493 and its146-row phase remain retained.
+
+
+## JG10 retained journeys gates — 2026-11-10
+
+JG10 closes both gate.journeys profile cells: 150/156 passed, 6 pending. All 94 exact journey leaves across fourteen journeys bind their original semantic admissions to accepted complete output/history and fresh raw normal lifetime checks in 58 distinct sessions, 46 with World work. All 154 other row objects and both pending final decisions are preserved. 36 current mutation controls pass. Historical original/native/compiler/oracle phases and failures stay intact; no new game, capture, native build, raster comparison or current combined-player claim.
+
+Exact historical semantic admission and independent World/movie output remain distinct. Every leaf primary is expanded and bound to the unchanged accepted PH09 proof; every distinct session receives fresh raw terminal process/input/command/control/cursor/graphics and Main Quit checks. Forty-four complete World viewport sessions also match source nonce/import counts and cancelled source slots/close-caller diagnostics. Two semantic Results sessions retain their established header-only diagnostic boundary and no invented World pixel proof. Combat owner identity comes from raw original menu callbacks, cross-checked with available states. Natural map progression/victory/defeat are preserved, with forfeit return isolated to its existing scope.
+
+See research/runtime/journeys-gate-closeout-20261110.md and journeys-gate-results-20261110/admission-02.json. Retain the owned rendering-transition-recovery-20261107 checkout/task branch, working/journeys-gate-20261110/.retain, all original source/capture phases and refusals, exact new operator/log/source bundles, review/history databases and both shared immutable stores. Transitions, required boundaries, separate final decisions, physical providers and current combined-player/original recovery remain open.
+
+
+
+
+## TG10 transition acceptance gate — 2026-11-10
+
+Both `gate.transitions` profile cells pass from the exact conjunction of all six
+existing transition prerequisites per profile: 150/156 passed, 6 pending.
+`transitions-gate-results-20261110/admission-01.json` retains all 154 other rows
+and both pending final decisions literally. Current host controls join 10 distinct
+retained comparison receipts, exact session/profile/extent identities, independent
+complete viewport output, semantic transition witnesses and retirement.
+The approved controlled opaque-overlap amendment retains its 8x6 scope and pending
+natural caller obligation. Every original/native/compiler/oracle source phase,
+failure and narrower history/output limit remains explicit. No game, new native
+execution, pixel replay, renderer repair, combined-current player or other gate
+promotion. See `transitions-gate-closeout-20261110.md`.
+
+
+## TG10 actual-master union — 2026-11-10
+
+`transitions-gate-results-20261110/master-admission-01.json` joins current host
+analysis with the exact actual-master parent: 152/156 passed, 4 pending.
+Only both transition gates change; all 154 other actual-master rows and both
+final decisions remain exact. Fresh merged host controls/analysis preserve
+every original native/compiler/oracle phase and approved scope amendment.
+No game, new native execution, pixel replay or combined-current player claim.
+
+
+## FD10 artifact5 decisions — 2026-11-10
+
+`rendering-final-decisions-results-20261110/admission-01-decisions.json` issues
+separate supported-player and original-recovery verdicts: both **pending**, both
+`accepted=false`. The decision-recording gates pass because verdicts are issued;
+neither product acceptance nor complete original recovery is granted. The matrix
+is 154/156 passed,2 pending; all154other rows, approved overlap
+scope/pending natural obligation and existing recovered milestones remain exact.
+The current finite evidence is reviewed against explicit required-boundary and
+final current whole-player evidence blockers, including response deadlines, forward
+progress and resource bounds. Historical failure relevance remains separate from
+asserting a current regression. Fifteen original contract groups and eight historical
+original-recovery scope assessments retain their independent exits.
+51 current actual-data controls pass; no game,native execution,pixel comparison,
+source-hash refresh or positive engine/product promotion.
+
+
+## FD10 actual-master decision union — 2026-11-10
+
+`rendering-final-decisions-results-20261110/master-admission-01-decisions.json`
+issues both pending,unaccepted verdicts against exact current master. Only both
+decision-recording gates change: 154/156 passed,2 pending. All154other
+rows, original registered milestones, historical source/failure phases and approved
+scope amendments remain exact. Fresh host controls and adjudication add no new
+game,native execution,pixel comparison,whole-player acceptance or original recovery.
+
+
+## WP10 current finite whole-application execution —2026-11-10
+
+Eight actual current linked-player sessions and 8 independent continuous original-history
+comparisons pass: 800x600 Quick with original-state gameplay witnesses, 640x480 Quick
+from a verified owned input fixture, and campaign Save/Mini/Main Load/changed-draft
+Cancel/both display rebuilds/normal Quit, each in default and software profiles.
+The cohort compares 4201 actual presented World occurrences
+across 2373 complete source generations and 4413403720 viewport pixels.
+Current compiler/runtime/source/binary identity, original effects, existing response
+watchdogs, advancing source generations, bounded capture, logical surface/palette
+conservation and terminal input/cursor/channel/source/graphics/process ownership pass.
+FPS is diagnostic; both actual provider strings are llvmpipe on this machine.
+Two ignored-Preferences attempts remain recorded as 800x600 negative fixture evidence.
+The corrected low cases follow a prospective 8-start amendment: display-mode
+rebuilds alone are not actual low-resolution World coverage. 19 refusal controls pass.
+RN31's old first-World refusal is preserved with exact source/configuration impact;
+current finite non-reproduction proves neither its historical cause nor universal repair.
+`whole-player-validation-results-20261110/cohort-03.json` is the current scoped receipt.
+All 156 inherited rows and approved scope amendments remain literal: 154 passed,
+2 required-boundary cells pending. The broader current 14-journey/21-operation/fault/provider
+acceptance and complete original-recovery decisions remain pending. No engine code,
+gameplay balance, historical source hash or unrelated milestone is changed.
+
+
+
+
+
+
+## Required-boundaries review and selected finite support — 2026-11-10
+
+`NP.required-boundaries-review` records a headless retained-data review, not item3
+completion. `RB10.required-boundaries03` passes40actual-data/adversarial controls
+and directly reanalyzes four original resource journals/11776bytes: eight ordered
+World retirements, persistent display-provider identities and fresh populated
+Celtic region2acquisition in default/software actual640/800. The admitted PH09
+owned history keeps its exact historical sources/pixels/caller state and the old
+eight-frame counterexample. The owner selected “Use demonstrated finite domains”;
+`docs/native-rendering-support-domain.json` consumes that choice, preserves
+all14journeys/47leaves/21operations and binds the exact148-row accepted cohort.
+Actual demonstrated Quick selectors include VC08map1as well as retained0/2;
+installed assets are not a support whitelist. Exact original Save/installation
+identities and observed flow287675–303507ms remain distinct from900000ms caps.
+
+Five technical conditions staypending: alternate ownership, Qt toolbar/F9
+fullscreen, natural callers/required aliases/raw readers/writers, full required
+screen-provider lifetimes, and actual live-format requiredness/production.
+The43-route denominator/38-route cross-context union, ALIAS09natural obligation,
+RGB555offscreen versus strict RGB565World and original platform uncertainties
+remain. Both required-boundaries cells and final decisions remain pending;
+acceptance stays148/156passed8pending. No new game, native build/execution,
+original/pixel comparison, gameplay change, old hash refresh or failure retirement.
+Expected checker exit2under--require-ready preserves the refusal instead of
+manufacturing closure. Review01/02and exact development source phases remain
+SQLite-retained. See research/runtime/rendering-required-boundaries-20261110.md.
+
+RB10full audit has zero errors and current scoped implementation/headless support.
+PH09require-applicable has no source actions. Scope/acceptance and Python/JSUI
+regressions pass; actual148/156projection and both pending decisions are exact.
+Incoming104committed transitions receive one missing exact journal custody
+receipt, with no retrospective execution claim. Adding this review's source
+links affects shared accounting associations but changes no existing engine
+bytes or declared milestone; exact pending receipts retain unrelated historical
+staleness. Development contract projections match their recorded claim hashes,
+with reconstructed-versus-original-container scope explicit.
+
+### RB10 live required-boundary engineering (in progress, 2026-11-10)
+
+The owned followup adds passive23-entry/21normal-return provider/format metadata
+and a narrow original indexed-primary caller repair. Original World634 in the
+retained default05failure reaches500477/tag14 through6c4e3c and exits95 at the
+previous guard. Exact500477/tags13–14 and500496/tag17 continuations now pass
+196,608original branch/argument/stack controls,54caller/64pair production
+admission with4,258refusals, and a separate fresh35,280generic original/native
+full-state/pixel comparison. Failed operands and global indirect flows remain
+unrecovered; the two completed fullscreen sessions record zero uses of the added
+sites and do not claim that failed World was replayed.
+
+Default06 and software07 each complete twelve actual toolbar/F9transitions and
+original800/640/800recreation with normal Quit. Complete independent output
+matches11,903,176,720pixels over2,831Worlds, with fresh logical cursor/hover-hit
+witnesses and drained native owners. Both actual providers are llvmpipe. Every
+World observation retains RGB565/current active backing and disabled alternate
+publication/padding. The default pixel result's final string/integer paint-lookup
+refusal stays failed; exact retained-data reanalysis reuses its zero-mismatch
+pixel proof and verifies corrected metadata without recollection. Four-case
+original format queries against the current NativeDraw facade keep explicit
+RGB555offscreen storage separate from live RGB565World support.
+
+The owner-selected finite maps/saves/durations and all14/47/21requirements remain.
+This entry does not close either required-boundary gate or issue a final player
+or original-recovery verdict. Both current campaign populated-provider observations pass: default09 and
+software10 acquire/release/reacquire populated Main/Report owners and retire two
+World epochs under actual coordinator callbacks. These diagnostic runs admit no
+pixels. The complete boundary join remains pending. All raw failures/source phases,
+control binaries, full capture bytes and verified two-store session restores
+remain retained. See `research/runtime/required-boundaries-live-engineering-20261110.md`.
+
+### RB10 required player boundaries resolved (2026-11-10)
+
+Formal closeout admits exactly both `gate.required-boundaries` cells against the
+immutable FD10master:156/156finite cells passed,zero pending cells. All154other
+row objects,14journeys/47leaves/21operations,approved ALIAS09controlled8x6scope,
+source phases and both issued/pending/accepted=false overall verdicts remain.
+The authored `docs/native-rendering-required-boundaries.json` and88actual-data
+controls bind eight resolved player boundaries to exact demonstrated inputs,
+maps,saves,durations and Linux/Wine/Qt/llvmpipe providers; no technical unknown is
+waived or zero observation converted to global absence.
+
+Two complete fullscreen histories compare11,903,176,720pixels over2,831Worlds at
+zero differences, with24physical toolbar/F9transitions,original800/640/800recreation,
+fresh logical cursor/hover hits and clean normal retirement. Both real campaign
+provider diagnostics populate/retire/reacquire Main/Report controls and callbacks,
+Report bitmap/embedded surface and region members,and two World map-resource
+epochs. They grant no pixels. Fresh original getter,196,608continuation cases,
+35,280complete generic state/pixel cases,and generator/production-hook controls
+supply their separate local scope. Every failure and all10requests/6starts remain.
+
+Original alternate ownership outside the selected disabled/zero-padding domain,
+five optional caller domains,natural overlap,rejected World634operands,complete
+external/exceptional suppliers,live555production and physical/Windows behavior
+remain original-recovery gaps. Current whole-player response/progress/resources
+and retained-negative applicability remain independent EP11exits. The dashboard
+verifies the new proof before projecting eight resolved player scopes and eight
+unresolved original scopes. See `rendering-required-boundaries-closeout-20261110.md`
+and `required-boundaries-results-20261110/closeout-admission-02.json`.
+
+
+RB10/WP10master compatibility: independent953e8716adds the finite eight-session
+WP10receipt without changing any of the156FD10row objects. Outside admission,
+`wp-master-compatibility-01.json` preserves that receipt,all154unrelated rows,
+both pending decisions,source stores and exact retrospective variants; the
+selected projection closes only our two boundaries. Four native/build hashes
+differ from the WP10phase, so its current equivalence remains pending under the
+full-hash rule. Its scoped milestone is not reset or relabeled current. RB10has
+zero source drift; no additional game/native/pixel execution or old hash refresh.
+
+
+## Historical source recovery — 2026-11-10
+
+Source custody preserves 5,814 historical locations / 5,639 distinct objects (21,445,201 bytes) with two verified restores, including 58 distinct reviewed old worktree source/UI versions. The bounded operator scan retains its main-root directory-cap limitation; current whole-player validation remains excluded. Nineteen committed nonancestor tips retain their existing branches and explicit source-path review leads. Only the schema-4 latency analyzer and its tests enter maintained tooling under `TOOL.native-frame-latency`; synthetic checks do not establish current live timing or original equivalence. No historical engine status, retention pin or directory is retired. See [source recovery](source-recovery-20261110.md).
+
+
+## Apple M1 independent delivery throughput — 2026-11-11
+
+`NP.arm-independent-frame-delivery` changes Linux ARM64 public-player auto
+selection to existing V5 owned snapshot/worker delivery, with an explicit
+`--world-delivery synchronous` baseline. Other hosts retain their selection.
+The already-tested pending ARM CRC prerequisite is carried byte-for-byte from
+the native-player task, with its original evidence identity and scoped status.
+
+On the exact retained native executable, the matched camera/input campaign
+baseline measured18.60/17.87completed World imports per second. Independent
+delivery measured19.74/19.70; an additional run through the updated public
+launcher auto selection with native music/voices enabled measured19.74/19.82.
+Each run covered two45-second requested movement phases (about50seconds of
+measured windows each), Mini/Cancel and normal Quit No/Yes, with distinct native
+publication/visible-paint counters. Visible optimized paints were about60FPS.
+All three completed runs balanced every World import/return, zero forwarded
+graphics calls and final released owners; the V5 source queue stayed within two
+credits and retired empty. The game executable hash and selected20FPS cap stayed
+identical. A missing-CLI OCR setup/control failure and the sandbox display
+refusal remain retained; no failed acquisition is relabeled a passing run.
+
+`ARMFPS11.public-throughput01` retains the raw phase windows, normal retirement,
+unchanged timing/config identities, tested binary hash, acquisition scripts and
+controls. Actual installed Tesseract5.5 C API/English-model heading checks were
+used for menu readiness after positive/negative OCR controls; no package was
+installed and no dialogue guard was removed. This is bounded M1 throughput,
+not arbitrary maps/durations/hardware, fresh original pixels or physical
+input-to-photon validation. Existing broad player/engine milestones remain
+historical; this policy's new live observation is separate. Full repository
+evidence checks and normal finish remain required before commit/integration.
+
+ARMFPS11 completion boundary: feature-gate, bookkeeping preparation and normal
+finish were attempted. The existing missing historical evidence archive
+`f8d2461d04a5b481e690cf9fbc7c07330dc079e09ad3aa048de24d2dd359c410`
+and archived-database mismatch still prevent the repository-wide audit/accepted
+review/commit workflow. `arm-frame-throughput-results-20261111/finish01.json`
+retains exact refusals. No hook was bypassed and no integration lease requested.
+The tested independent mode is already selectable on the existing player with
+`-- --independent-world`; the new auto-selection patch remains in its owned
+feature checkout pending those required historical inputs.
+
+## ARM completed-image reuse and jitter boundary — 2026-11-12
+
+`ARMJIT12.image-reuse01` extends the ARM launch policy to completed native World
+image reuse. An explicit diagnostic override remains available. The new GPU
+fixture confirms that prepared draw lists omit a native surface write interposed
+between subqueues; completed-image reuse retains it for eight repeats. Existing92
+repeat/refusal/teardown checks and28+12+4 launcher/contract/CLI checks pass.
+
+Complete short normal-scale captures pass33 prepared and16 retained unchanged
+World/UI pixel pairs. They do not reproduce or establish the cause of the user's
+reported saved-game shaking. Longer recording queue refusals, scaled-input
+Hermes failures and a superseded swap-adjacency analyzer result remain retained;
+no guard is relaxed. See [the bounded investigation](native-retained-world-image.md).
+
+The fresh recording-free public auto launch, with native music and image reuse,
+measures19.800395/19.878944 completed Worlds per second and59.182067/59.616670 GUI
+paints per second in two requested45-second physical-input phases. Normal
+Mini/Cancel, Quit-No/Yes and all2112 accepted/imported/verified-return Worlds
+balance; retained images2112, queue high water2, outstanding0. The native ELF,
+Chaos.exe and20FPS preference are unchanged. This validates finite throughput
+and the retained-image mechanism, not arbitrary-map jitter removal or physical
+scanout. Historical original-comparison/replacement statuses remain unchanged.
+
+The owned batch remains uncommitted pending required exact accounting and
+verified evidence storage. The existing historical SQLite hash-mismatch refusal
+also blocks applicability planning after the network-enabled retry; no historical
+hash or hook is bypassed to claim readiness.
+
+## ARM matching UI and moving zombies — 2026-11-12
+
+`ART12.matching-ui-controls01` records a native moving-overlay fixture, real
+long-prefix V5 checkpoint replay, preserved boundary refusals, two-credit queue
+controls and45 launcher/contract/CLI controls. `ART12.matching-ui-live01` records
+zero older-UI pairings in156 short-capture World exports,38 unchanged-identity
+pixel pairs, and a normal-Quit recording-free public journey at19.779853/
+19.822058 completed Worlds per second with2108 balanced imports/returns.
+
+The crowded matching-UI diagnostic verified eight accepted Zombie casts and
+eight living zombies, completed all four held-arrow camera moves, and measured
+19.146043 sourceHz. The user reported no glitching in that run. Its intentional
+private cancellation is not a normal-Quit or whole-player acceptance result.
+The inherited-UI comparison reproduced the user's moving-zombie glitch and then
+refused unsupported raster caller0x54a5a1/tag19 in WRITING generation645. That
+negative evidence remains pending; no allowlist or source validation was relaxed.
+The first misdirected desktop-input attempt is invalid and retained. The corrected
+opt-in test relay targets only the active named Qt viewport with acknowledgments.
+
+These results support matching completed World/UI presentation within the tested
+scope. Broad map/save coverage, sustained camera hitch attribution, unsupported
+raster callers and physical scanout remain separate gaps. See
+`native-world-owned-snapshots.md`. Historical evidence archive failures still
+block the normal accounting/commit workflow; no integration readiness is claimed.
+
+The subsequent commit request identified the missing evidence on host `father`.
+All ten unpublished pinned historical SQLite archives were restored byte-for-byte
+to the owned task cache and verified against their existing SHA-256 values,
+declared sizes and SQLite quick checks. Earlier failed audit/finish reports remain
+unchanged. Additional evidence is read through an authenticated read-only mount
+of the existing host store, preserving payload verification and avoiding a copy
+of the full store. This restores access to inputs; it grants no engine milestone
+or past gate pass. Fresh current/staged checks and master history review remain
+required before commit and promotion.
+
+The access repair retains a verified selective local SQLite cache of7568
+current report objects, plus the exact source-applicability and source-binding
+excerpts needed by the audit. Original payload hashes and historical container
+identities remain unchanged. `ART12.current-independent-throughput02` binds
+the already retained matching-UI throughput journey to the current independent
+launcher contract, without another game run. The viewport integration test's
+missing test link is corrected in `ART12.viewport-input-accounting02`, reusing
+the exact acknowledged eight-Zombie/four-arrow acquisition without adding
+invalid-input coverage. `ART12.current-crc-controls02` adds the missing headless
+scenario and eight fresh GCC/Clang C/C++ hardware/fallback executions. Its header,
+fixture and CRC CMake recipe match the retained prerequisite; other-target
+compiler observations remain historical unchanged-input controls. Earlier
+refusals remain retained under their original identities.
+
+The full current audit now reports zero errors, preserving the unrelated
+historical staleness, recovered-range and pending-validation warnings. The
+master preparation review covers482618 committed transitions across284 commits;
+73053 missing custody transitions are recorded in166 pending retrospective
+receipts. Nearly all are retained research binaries; the sole source transition
+adds the launcher storage-policy option while retaining the4GiB reservation.
+The normal history helper verified their retained bytes on `father`, and its
+typed SQLite workspace passed a real restore in the existing independent pair.
+Local import compares every exact transition and preserves all prior journal
+entries before inserting/exporting through SQLite. This asserts custody, not a
+past gate pass or new historical engine validation. Reports are under
+`arm-frame-history-results-20261112/` and
+`arm-frame-throughput-results-20261111/imported-master-history01.json`.

@@ -193,3 +193,27 @@ The subsequently committed range `e94f344..b4d5007` is reviewed separately in
 all 11 committed files are hash-reviewed, with exact receipt chains for 10 source
 and two behavior transitions. The review journal remains append-only. This
 accounting does not assert a past gate pass or a new execution result.
+
+## Black sentinel caller extension — 2026-10-27
+
+Expanded public Quick Battle sampling observes a refused tag12 continuation at
+`0x5004d4`. The original World queue also has the matching sentinel branch at
+`0x500439`: both directly call black `0x595677`, clean twelve cdecl argument bytes
+and use AX==1 to select clipped fallback. Their paired fallback returns
+`0x50045c`/`0x5004f7` clean twenty bytes and jump to the common AX store. Native
+admission now pins those four exact PC/tag/ten-byte signatures; generation checks
+the direct callees and full normalization/store branches. Other caller/context
+guards remain. The bounded continuation proof and retained failure are documented
+in [expanded player acceptance](native-player-expanded-20261026.md). This adds
+no original raster pixel, arbitrary caller or all-map acceptance claim.
+
+
+## Primary opaque fallback correction (2026-11-08)
+
+PR08 repairs the omitted57e957/tag17 continuation to57de00. Exact original
+argument forwarding,20-byte cleanup and low16AX masking,21384original/native
+wrapper cases and all affected signature/context controls pass. The generator
+retains the pinned primary entry without a successful observed row. See
+[the bounded producer fix](producer-rejection-57e957-20261108.md). Historical
+World590 remains failed/unreplayed; no full player/secondary/ABI claim or extra
+acceptance row follows. All older source hashes and bounded milestones remain.

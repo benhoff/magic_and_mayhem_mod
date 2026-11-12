@@ -41,7 +41,8 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py', 'tools/campaign_input_admission.py', 'tools/campaign_input_observation.py', 'runtime/menu/campaign_input_admission_observe.h', 'tools/campaign_render_oracle.py', 'tools/pixel_route_requirements.py', 'tools/campaign_pixel_routes.py']
 SOURCES += ['tools/campaign_storage.py', 'tools/menu-storage-input.py', 'tools/menu_save_store.py', 'apps/qt-shell/campaign_storage_test.cpp', 'tools/campaign_crowded.py', 'tests/campaign-crowded-test.py','runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 SOURCES += ['tools/directplay_dx6_launch.py','tools/native_prefix_template.py','tools/native_render_driver.py']
-SOURCES += ['renderer/isolated_dispatch.inc']
+SOURCES += ['renderer/isolated_dispatch.inc', 'tools/native_windowed_copy.py']
+SOURCES += ['tools/native_media_acceptance.py']
 SOURCES += ['tools/campaign_camera_dialogue.py', 'tools/campaign-camera-menu-input.py', 'tools/campaign_cadence.py']
 
 
@@ -458,6 +459,7 @@ def main():
     parser.add_argument('--save-load',action='store_true',help='Native campaign Save/resume/Load/resume/normal Quit with fresh World checkpoints')
     parser.add_argument('--recreate-world',action='store_true',help='After Save/Load, leave the map, apply original 640/800 display rebuilds, then Main Load the saved map into a new owned canvas')
     parser.add_argument('--normal-quit',action='store_true',help='Require native Mini Quit No/Yes, native report/Main and original normal process exit')
+    parser.add_argument('--original-windowed',action='store_true',help='Diagnostic original -win route with native clipper/copy output and protected CPU-reader checks')
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
     parser.add_argument('--command-wire-version',type=int,choices=(2,3),default=3,help='Diagnostic matched transport control; continuous public default is V3')
@@ -503,6 +505,9 @@ def main():
     parser.add_argument('--hitch-capture',action='store_true',help='Bounded warm active paint-hitch windows with queue/UI/lease state; requires frame trace')
     parser.add_argument('--frame-trace',action='store_true',help='Bounded public worker/source/GUI timeline; owned independent World only')
     parser.add_argument('--reuse-world-image',action='store_true',help='Experimental reuse of completed native GPU World between source updates')
+    parser.add_argument('--alternate-canvas',action='store_true',help='Opt-in native owned GPU World target and ordered copy-back')
+    parser.add_argument('--alternate-padding-x',type=int,choices=range(0,129),default=0)
+    parser.add_argument('--alternate-padding-y',type=int,choices=range(0,65),default=0)
     parser.add_argument('--async-world',action='store_true',help='Experimental separate native GPU World producer and immutable bounded handoff')
     parser.add_argument('--hardware',action='store_true',help='Use a private no-monitor TITAN/NVIDIA display; refuse software fallback')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
@@ -579,7 +584,13 @@ def main():
     if not 30 <= args.timeout <= 600:
         parser.error('--timeout must be between 30 and 600')
     if args.copy_diagnostic_scope!='world' and not args.gpu_copy_diagnostics:parser.error('All-copy scope requires --gpu-copy-diagnostics')
+    if args.original_windowed and not (args.resident_world and args.gpu_copy_diagnostics and args.copy_diagnostic_scope=='all' and args.normal_quit and args.no_pixel_forwarding and args.other_pixel_producers):
+        parser.error('Original windowed diagnostic requires resident World, all-copy diagnostics, no-forward producers and normal Quit')
+    if args.original_windowed and (args.hardware or args.display):
+        parser.error('Original windowed diagnostic requires its private 16-bit desktop')
     if args.gpu_copy_diagnostics and not args.resident_world:parser.error('Copy diagnostics require resident World')
+    if (args.alternate_padding_x or args.alternate_padding_y) and not args.alternate_canvas:parser.error('Alternate padding requires --alternate-canvas')
+    if args.alternate_canvas and not args.resident_world:parser.error('Alternate canvas requires resident World')
     if args.portrait_stress_seconds and (not args.require_casting_combat or not 10 <= args.portrait_stress_seconds <= 120):parser.error('Portrait stress requires casting/combat and 10..120 seconds')
     if args.stress_seconds and not args.crowded_case and not 10 <= args.stress_seconds <= 120:parser.error('--stress-seconds must be 0 or 10..120')
     if not 1 <= args.min_fps <= 120:parser.error('--min-fps must be 1..120')
@@ -593,6 +604,7 @@ def main():
     print('Campaign test evidence: ' + str(out), flush=True)
     report = {'schema': 1, 'success': False, 'status': 'running', 'stage': 'build',
               'command_wire_version':args.command_wire_version,
+              'original_windowed_requested':args.original_windowed,
               'gpu_copy_diagnostics_required':args.gpu_copy_diagnostics,'copy_diagnostic_scope':args.copy_diagnostic_scope,
               'intro_completion_required':args.require_intro_completion,
               'required_mode': ['native-menus', 'native-command-presentation'],
@@ -640,6 +652,7 @@ def main():
         if args.copy_diagnostic_scope=='all':declaration_command.extend(['--behavior','NP.native-copy-output-closure','--scenario','NP.native-copy-output-closure.campaign'])
         if args.frame_trace:declaration_command.extend(['--behavior','HOST.native-frame-trace','--scenario','HOST.native-frame-trace.public','--behavior','HOST.native-gui-delivery-diagnostics','--scenario','HOST.native-gui-delivery-diagnostics.public'])
         if args.reuse_world_image:declaration_command.extend(['--behavior','NR.native-retained-world-image','--scenario','NR.native-retained-world-image.public'])
+        if args.alternate_canvas:declaration_command.extend(['--behavior','NP.alternate-canvas-resident-session','--scenario','ACO3.resident-live'])
         if args.display_while_pending:declaration_command.extend(['--behavior','HOST.pending-import-display','--scenario','HOST.pending-import-display.public'])
         if args.frame_trace and not (args.no_route_screenshots or args.synchronous_route_capture):declaration_command.extend(['--behavior','HOST.native-route-capture','--scenario','HOST.native-route-capture.public','--behavior','HOST.native-capture-request-intake','--scenario','HOST.native-capture-request-intake.public'])
         if args.hitch_capture:declaration_command.extend(['--behavior','HOST.native-hitch-capture','--scenario','HOST.native-hitch-capture.public'])
@@ -703,6 +716,9 @@ def main():
                     report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
         report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
+    if args.original_windowed:
+        env['MNM_ORIGINAL_WINDOWED_DIAGNOSTIC']='1'
+        report['sources']['tools/native_windowed_copy.py']=sha(ROOT/'tools/native_windowed_copy.py')
     env['MNM_CAMPAIGN_BUTTON_HOLD_MS']=str(args.button_hold_ms)
     if args.observe_input_admission:env['MNM_CAMPAIGN_INPUT_ADMISSION']='1'
     if args.require_casting_combat:env['MNM_CAMPAIGN_HOVER_READINESS']='1'
@@ -745,6 +761,11 @@ def main():
     if args.frame_trace:env['MNM_NATIVE_FRAME_TRACE']='1'
     # Make the comparison independent of an inherited experiment setting.
     env['MNM_WORLD_IMAGE_REUSE']='1' if args.reuse_world_image else '0'
+    env['MNM_NATIVE_ALTERNATE_CANVAS']='1' if args.alternate_canvas else '0'
+    env['MNM_NATIVE_ALTERNATE_PADDING_X']=str(args.alternate_padding_x)
+    env['MNM_NATIVE_ALTERNATE_PADDING_Y']=str(args.alternate_padding_y)
+    report['alternate_canvas_required']=args.alternate_canvas
+    report['alternate_padding_required']=[args.alternate_padding_x,args.alternate_padding_y]
     env['MNM_ASYNC_WORLD_GPU']='1' if args.async_world else '0'
     if args.worker_status_cadence:env['MNM_WORKER_STATUS_CADENCE']='1'
     if args.worker_status_every_turn:env['MNM_WORKER_STATUS_EVERY_TURN']='1'
@@ -830,9 +851,12 @@ def main():
             elif args.display:
                 env['DISPLAY'] = args.display
             else:
+                from native_windowed_copy import screen_spec
+                screen = screen_spec(args.original_windowed)
+                report['private_desktop_screen'] = screen
                 with (out / 'display').open('w+') as display, (out / 'xvfb.log').open('w') as log:
                     server = subprocess.Popen(['Xvfb', '-displayfd', str(display.fileno()), '-screen', '0',
-                                               '1280x1024x24', '-nolisten', 'tcp'], pass_fds=(display.fileno(),),
+                                               screen, '-nolisten', 'tcp'], pass_fds=(display.fileno(),),
                                               stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
                     deadline = time.monotonic() + 10
                     while time.monotonic() < deadline:
@@ -1018,6 +1042,13 @@ def main():
                     report['native_cpu_materialization']=dict(count=h[5],**kinds,counts_sha256=sha(counts),last_surface=h[7],command_session=h[4],width=h[8],height=h[9],last_bytes=h[10],generation=h[11]|h[12]<<32,nonce=h[13]|h[14]<<32,sha256=sha(reply),scope='Explicit ordered CPU-reader snapshots, classified separately from ordinary World returns and original pixels')
                 if args.other_pixel_producers and args.normal_quit and not reply.exists():raise ValueError('Combined normal Quit did not exercise native CPU materialization')
                 resident=json.loads((roots[0]/'resident-world-report.json').read_text())
+                if args.alternate_canvas:
+                    alternate=resident.get('native_alternate_canvas',{})
+                    if (alternate.get('enabled') is not True or alternate.get('padding')!=args.alternate_padding_x or alternate.get('padding_y',0)!=args.alternate_padding_y or
+                        int(alternate.get('publications',0))<1 or
+                        int(alternate.get('frames',-1))!=int(resident['completed']) or
+                        int(alternate.get('copy_backs',0))<int(resident['completed'])):
+                        raise ValueError('Native alternate generation/frame/copy-back proof failed')
                 # Retain independent functional results even when source throughput
                 # fails. The identical rate gate is enforced before acceptance below.
                 report['ordinary_resident_gates']=validate_resident_cpu_census(resident,rate_floor,args.cpu_census_only,defer_rate_failure=True)
@@ -1058,29 +1089,9 @@ def main():
                     if report['sources'].get(name)!=digest or sha(ROOT/name)!=digest:raise ValueError('Undeclared or changed native audio compiler source: '+name)
                 report['native_audio_compiled_sources']=audio_build['compiled_sources']
             if args.native_media:
-                media=json.loads((roots[0]/'native-media-report.json').read_text())
-                availability=[entry for entry in media if entry.get('operation')==4]
-                if not availability or any(entry.get('status')!=3 or entry.get('native_pipeline_available') is not True for entry in availability):
-                    raise ValueError('Native startup media availability acknowledgement missing')
-                policy=json.loads((roots[0]/'native-audio-launch-policy.json').read_text())
-                if policy.get('native_media_startup_probe') is not True or (args.native_factory and policy.get('wine_directsound_disabled') is not True):
-                    raise ValueError('Native media startup/module policy was not confirmed')
-                report['native_audio_launch_policy']=policy
-                movies=[entry for entry in media if entry.get('operation')==1]
-                if not movies or any(entry.get('status') not in (3,4) or not entry.get('accepted') or entry.get('error') or
-                                     entry.get('video_frames',0)<1 or entry.get('audio_frames',0)<1 or
-                                     entry.get('audible_output_requested') is not True or
-                                     (entry.get('audio_device_available') is not True and not (args.initial_silent_start and entry.get('initial_silent_output') is True)) for entry in movies):
-                    raise ValueError('Native movie decoding/output/completion history missing or failed')
-                if any(entry.get('status') in (5,6) for entry in media):raise ValueError('Native media rejected or failed a submitted request')
-                report['native_media']=media
-                if args.require_intro_completion:
-                    intros=[row for row in media if row.get('operation')==1 and Path(row.get('asset','')).name.lower() in ('intro0.avi','intro1.avi')]
-                    if {Path(row['asset']).name.lower() for row in intros}!={'intro0.avi','intro1.avi'} or any(row.get('status')!=3 or not row.get('accepted') or min(row.get('video_frames',0),row.get('presented_video_frames',0))<=0 for row in intros):
-                        raise ValueError('Enabled intros did not naturally complete decoded and presented video')
-                    with (roots[0]/'native-media.bin').open('rb') as wire:media_header=wire.read(64)
-                    if len(media_header)!=64 or struct.unpack_from('<I',media_header,48)[0]:raise ValueError('Media producer cancelled after a host/acceptance/playback timeout')
-                    report['intro_completion']={'verified':True,'movies':[{k:row[k] for k in ('request','status','video_frames','presented_video_frames','asset')} for row in intros],'producer_cancelled_request':0,'scope':'Natural completion of both encoded intro clips; no original decoder pixel equivalence claim'}
+                from native_media_acceptance import validate_media
+                report.update(validate_media(roots[0], native_factory=args.native_factory,
+                    allow_initial_silence=args.initial_silent_start, require_intro_completion=args.require_intro_completion))
             if args.native_music:
                 from native_music_launch import validate_activity as validate_music,catalog_inputs
                 report['native_music']=validate_music(json.loads((roots[0]/'native-music-report.json').read_text()),allow_initial_silence=args.initial_silent_start)

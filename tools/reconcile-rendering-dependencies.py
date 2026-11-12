@@ -12,6 +12,7 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import sys
 from coverage_claims import behavior_contract
 from coverage_evidence import evidence_digest, read_json, write_report
 from original_x86 import Decoder, PE32
@@ -228,9 +229,62 @@ def acquire(report):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--report', required=True)
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--contract-only', action='store_true',
+                        help='Review the completion contract and baseline bindings without original media or byte analysis')
+    mode.add_argument('--gaps-only', action='store_true',
+                      help='Review required gaps, evidence leads and unordered closing briefs without original media')
+    mode.add_argument('--execution-plan-only', action='store_true',
+                      help='Review execution dependencies, evidence reuse and next action without launching any task')
+    mode.add_argument('--acceptance-only', action='store_true',
+                      help='Open the pending acceptance dossier and review evidence candidates without launching the player')
+    parser.add_argument('--run-guards', action='store_true',
+                        help='With a static review mode, run isolated accounting/admission guards')
     args = parser.parse_args()
+    if args.run_guards and not (args.contract_only or args.gaps_only or args.execution_plan_only or args.acceptance_only):
+        parser.error('--run-guards requires a static review mode')
     target = ROOT/args.report
     require(not target.exists(), 'Refusing to overwrite a report')
+    if args.contract_only or args.gaps_only or args.execution_plan_only or args.acceptance_only:
+        from evidence_local import local_evidence
+        if args.acceptance_only:
+            from rendering_acceptance import review
+        elif args.execution_plan_only:
+            from rendering_execution import review
+        elif args.gaps_only:
+            from rendering_gaps import review
+        else:
+            from rendering_completion import review
+        require(target.resolve().is_relative_to(ROOT/'research/runtime') and target.suffix == '.json',
+                'Contract review requires a new .json reference under research/runtime')
+        with local_evidence(ROOT):
+            result = review(ROOT)
+        if args.run_guards:
+            tests = ['tests/test-rendering-completion.py', 'tests/test-native-only-contract.py',
+                     'tests/test-native-player-launcher.py']
+            if args.gaps_only or args.execution_plan_only or args.acceptance_only:
+                tests.insert(0, 'tests/test-rendering-gaps.py')
+            if args.execution_plan_only or args.acceptance_only:
+                tests = ['tests/test-rendering-execution.py', 'tests/test-drawing-journeys.py',
+                         'tests/test-drawing-session.py', *tests]
+            if args.acceptance_only:
+                tests.insert(0, 'tests/test-rendering-acceptance.py')
+            result['sources'].update({p: evidence_digest(ROOT/p, root=ROOT) for p in tests})
+            result['guard_commands'] = []
+            for path in tests:
+                completed = subprocess.run([sys.executable, '-B', path], cwd=ROOT,
+                    capture_output=True, text=True, timeout=60)
+                result['guard_commands'].append(dict(path=path, returncode=completed.returncode,
+                                                     stdout=completed.stdout, stderr=completed.stderr))
+            result['guards_passed'] = all(c['returncode'] == 0 for c in result['guard_commands'])
+            result['guard_scope'] = 'Explicit policy/test-source accounting guards, not complete dependency closure or engine execution proof.'
+            result['sources_stable'] = all(evidence_digest(ROOT/p, root=ROOT) == h
+                                           for p, h in result['sources'].items())
+            result['success'] = result['success'] and result['guards_passed'] and result['sources_stable']
+        sha = write_report(ROOT, args.report, (json.dumps(result, indent=2)+'\n').encode())
+        print(json.dumps(dict(success=result['success'], contract=result['contract'],
+                              counts=result['counts'], sha256=sha)), flush=True)
+        return 0 if result['success'] else 1
     report = dict(schema=1, success=False, kind='static_rendering_dependency_reconciliation',
                   original_sha256=BUILD, original_code_executed=False, native_equivalence=False,
                   integration_promoted=False, live_replacement=False, global_unreachable_proved=False,

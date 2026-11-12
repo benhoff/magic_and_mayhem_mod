@@ -1,5 +1,7 @@
 /* Native-only glyph admission must never return to the original pixel body. */
 static u32 glyph_native_only;
+/* Reserved refusal words identify the exact admission check and operand. */
+static u32 glyph_admission_check,glyph_admission_value;
 static void glyph_native_only_configure(void){
  const u32 error=GetLastError();char value[16];SetLastError(0);
  u32 n=GetEnvironmentVariableA("MNM_NATIVE_ONLY",value,sizeof(value));
@@ -16,7 +18,7 @@ static void glyph_native_only_configure(void){
 }
 static void glyph_native_only_refuse(u32 reason){
  if(!glyph_native_only)return;
- u32 r[8]={0x474d4e4d,0x3146524c,1,32,reason,GetCurrentThreadId(),0,0},written=0;
+ u32 r[8]={0x474d4e4d,0x3146524c,1,32,reason,GetCurrentThreadId(),glyph_admission_check,glyph_admission_value},written=0;
  HANDLE file=CreateFileA("native-glyph-forward-refusal.bin",0x40000000,0,0,1,0x80,0);
  if(file!=(HANDLE)-1){WriteFile(file,r,sizeof(r),&written,0);CloseHandle(file);}
  ExitProcess(124);

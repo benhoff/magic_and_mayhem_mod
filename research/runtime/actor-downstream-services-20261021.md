@@ -101,6 +101,14 @@ OS exception delivery remain separate.
 
 ## Remaining work, kept separate
 
+The [2026-10-26 installed-world case review](actor-installed-dependencies-20261026.md)
+supersedes the broad missing-provider descriptions below as a current work list.
+It identifies nine required timing, resource and callback composition cases.
+All fifteen transition-selected handler addresses have scoped native component
+leads; font, support and particle-family recovery has also advanced. Their
+installed shared-state adapters and World cadence remain pending. Earlier
+reports below retain their historical scopes and hashes.
+
 The broad `RS.actor-downstream-services` contract stays partial. The direct-entry
 work does not promote these outstanding requirements:
 

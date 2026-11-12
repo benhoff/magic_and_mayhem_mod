@@ -22,6 +22,7 @@ namespace {
 void require(bool value,const char* message){if(!value)throw std::runtime_error(message);}
 unsigned comparisons=0;
 unsigned onscreenComparisons=0;
+std::uint64_t inputPixels=0;
 void settle(){QEventLoop loop;QTimer::singleShot(100,&loop,&QEventLoop::quit);loop.exec();}
 void screenCompare(QMainWindow& window,GlViewport& viewport,QColor expected){
     settle();const auto screenshot=window.screen()->grabWindow(window.winId()).toImage();
@@ -48,7 +49,8 @@ void startupAndStreaming(){
     auto* toolbar=window.addToolBar("Game");toolbar->setMovable(false);
     auto* log=new QDockWidget("Launch log",&window);log->setWidget(new QPlainTextEdit(log));window.addDockWidget(Qt::BottomDockWidgetArea,log);
     ViewportPresentation controls(window,*viewport,{GlViewport::Scaling::Smooth,true});controls.addControls(*toolbar);controls.hideInFullscreen(*toolbar);controls.hideInFullscreen(*log);
-    window.resize(900,750);controls.show();settle();require(!toolbar->isHidden(),"Startup fullscreen hid launch controls");
+    window.resize(900,750);controls.show();settle();require(window.isFullScreen(),"Fullscreen state was lost after resizing");require(!toolbar->isHidden(),"Startup fullscreen hid launch controls");
+    require(window.geometry()==window.screen()->geometry(),"Fullscreen window does not cover its actual screen");
     viewport->show();settle();require(viewport->ready(),"Empty native viewport did not initialize");
     require(!toolbar->isHidden() && !log->isHidden(),"Blank native viewport hid launch controls");
     mnm::render::GlBlitter renderer(viewport->context());const auto surface=renderer.create({4,3,std::vector<std::uint32_t>(12,0x1f437f)},{24,{0xff0000,0xff00,0xff}});
@@ -56,13 +58,15 @@ void startupAndStreaming(){
     screenCompare(window,*viewport,QColor(31,67,127));require(toolbar->isHidden() && log->isHidden(),"Ready frame did not hide fullscreen chrome");
     QColor previous(31,67,127);
     for(unsigned i=0;i<8;++i){
-        controls.setFullscreen(i%2==0);screenCompare(window,*viewport,previous);
+        controls.setFullscreen(i%2==0);require(window.isFullScreen()==(i%2==0),"Fullscreen toggle state mismatch");screenCompare(window,*viewport,previous);
+        if(window.isFullScreen())require(window.geometry()==window.screen()->geometry(),"Fullscreen toggle does not cover its actual screen");
         const QColor color(17+i*13,41+i*9,91+i*7);
         renderer.update(surface,0,0,{4,3,std::vector<std::uint32_t>(12,(color.red()<<16)|(color.green()<<8)|color.blue())});
         viewport->setGpuFrame(renderer.presentGpu(surface));screenCompare(window,*viewport,color);
         previous=color;
     }
-    controls.setFullscreen(true);viewport->setGpuFrame({});settle();require(!toolbar->isHidden() && !log->isHidden(),"Empty frame left fullscreen UI black");
+    controls.setFullscreen(true);viewport->setGpuFrame({});settle();
+    require(!toolbar->isHidden() && !log->isHidden(),"Empty frame left fullscreen UI black");
 }
 void compare(GlViewport& viewport,const QImage& source){
     QApplication::processEvents();viewport.repaint();const auto output=viewport.grabFramebuffer();
@@ -98,11 +102,33 @@ void compare(GlViewport& viewport,const QImage& source){
             std::fprintf(stderr,"Pixel mismatch at %d,%d channel %d: %d vs %.3f\n",x,y,c,channels[c],expected[c]);
             throw std::runtime_error("Framebuffer disagrees with independent scaling oracle");
         }
+        // Dense complete X/Y axes cover every rounding boundary; the interior
+        // grid also checks paired coordinates. Sample three positions within
+        // each physical pixel against actual GPU output, not another mapPoint.
+        if(viewport.scaling()!=GlViewport::Scaling::Smooth &&
+           (x==left || y==top || x==left+w-1 || y==top+h-1 || (x%37==0 && y%37==0))){
+            for(const double fraction:{0.0,0.25,0.75}){
+                QPoint picked;
+                const bool inside=x>=left && x<left+w && y>=top && y<top+h;
+                const bool admitted=viewport.imagePoint({(x+fraction)/ratio,(y+fraction)/ratio},picked);
+                if(admitted!=inside){
+                    std::fprintf(stderr,"Input border at physical %d,%d fraction %.2f DPR %.2f, logical %.17g,%.17g; image %d,%d %dx%d; admitted %d expected %d\n",x,y,fraction,ratio,(x+fraction)/ratio,(y+fraction)/ratio,left,top,w,h,int(admitted),int(inside));
+                    throw std::runtime_error("Physical input and image borders diverged");
+                }
+                if(inside && source.pixelColor(picked)!=color){
+                    std::fprintf(stderr,"Input picks %d,%d (%08x), framebuffer pixel %d,%d displays %08x; source %dx%d, image %d,%d %dx%d, DPR %.2f\n",picked.x(),picked.y(),source.pixelColor(picked).rgba(),x,y,color.rgba(),source.width(),source.height(),left,top,w,h,ratio);
+                    throw std::runtime_error("Input picks a different source pixel from the displayed framebuffer");
+                }
+                ++inputPixels;
+            }
+        }
     }
     QPoint point;
     for(const auto logical: {QPoint(0,0),QPoint(source.width()/2,source.height()/2),QPoint(source.width()-1,source.height()-1)}){
         const QPointF position(rect.x()+(logical.x()+0.5)*rect.width()/source.width(),rect.y()+(logical.y()+0.5)*rect.height()/source.height());
-        require(viewport.imagePoint(position,point) && point==logical,"Logical input coordinates changed");
+        require(viewport.imagePoint(position,point),"Visible input point refused");
+        if(viewport.scaling()==GlViewport::Scaling::Smooth)require(point==logical,"Smooth logical input coordinates changed");
+        else require(source.pixelColor(point)==output.pixelColor(int(std::floor(position.x()*ratio)),int(std::floor(position.y()*ratio))),"Fractional input differs from displayed pixel");
     }
     require(!viewport.imagePoint({rect.right()+0.1,rect.center().y()},point),"Right border admitted");
     require(viewport.imagePoint({rect.right()+10,rect.bottom()+10},point,true) && point==QPoint(source.width()-1,source.height()-1),"Drag clamp changed");
@@ -119,11 +145,30 @@ struct KeyObserver:QObject {
         return false;
     }
 };
+void sharpBoundaryCases(){
+    GlViewport viewport;viewport.resize(1100,795);viewport.show();settle();
+    require(viewport.ready(),"Sharp regression viewport did not initialize");
+    mnm::render::GlBlitter renderer(viewport.context());
+    for(const auto size:{QSize(800,600),QSize(640,480),QSize(799,599)}){
+        QImage image(size,QImage::Format_RGBA8888);mnm::render::Image native{size.width(),size.height(),{}};
+        for(int y=0;y<size.height();++y)for(int x=0;x<size.width();++x){
+            const QColor color(x%256,y%256,(x*17+y*31)%256);
+            image.setPixelColor(x,y,color);native.pixels.push_back((color.red()<<16)|(color.green()<<8)|color.blue());
+        }
+        const auto surface=renderer.create(native,{24,{0xff0000,0xff00,0xff}});
+        for(const auto output:{QSize(1100,795),QSize(1079,807),QSize(641,481)}){
+            viewport.resize(output);viewport.setFrame(image);compare(viewport,image);
+            viewport.setGpuFrame(renderer.presentGpu(surface));compare(viewport,image);
+        }
+        renderer.destroy(surface);
+    }
+}
 }
 int main(int argc,char** argv){
     QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(format);
     QApplication app(argc,argv);
     try {
+        sharpBoundaryCases();
         startupAndStreaming();
         QMainWindow window;auto* viewport=new GlViewport(&window);window.setCentralWidget(viewport);
         auto* toolbar=window.addToolBar("Presentation");toolbar->setMovable(false);
@@ -181,6 +226,6 @@ int main(int argc,char** argv){
         QImage large(800,600,QImage::Format_RGBA8888);large.fill(QColor(31,63,127));viewport->setFrame(large);
         window.resize(350,350);viewport->setScaling(GlViewport::Scaling::Integer);compare(*viewport,large);
         require(viewport->imageRect().width()<=viewport->width() && viewport->imageRect().height()<=viewport->height(),"Integer fallback cropped frame");
-        std::printf("{\"success\":true,\"full_frame_comparisons\":%u,\"onscreen_comparisons\":%u,\"empty_frame_controls\":true,\"cpu_gpu_scaling\":true,\"logical_input_preserved\":true,\"fullscreen_restore\":true,\"f9_consumed\":true,\"escape_forwarded\":true,\"presentation_readbacks\":0,\"gpu_scaling_uploads\":0}\n",comparisons,onscreenComparisons);
+        std::printf("{\"success\":true,\"full_frame_comparisons\":%u,\"onscreen_comparisons\":%u,\"input_framebuffer_samples\":%llu,\"empty_frame_controls\":true,\"cpu_gpu_scaling\":true,\"logical_input_preserved\":true,\"fullscreen_restore\":true,\"f9_consumed\":true,\"escape_forwarded\":true,\"presentation_readbacks\":0,\"gpu_scaling_uploads\":0}\n",comparisons,onscreenComparisons,static_cast<unsigned long long>(inputPixels));
     }catch(const std::exception& error){std::fprintf(stderr,"Presentation test failed: %s\n",error.what());return 1;}
 }

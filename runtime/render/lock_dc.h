@@ -11,6 +11,7 @@ static void game_dc_acquired(void* object,void* dc){
         game_surface_pixels_invalidate_locked(object);
         s->dc=dc;s->dc_bitmap=bitmap;s->dc_owner=GetCurrentThreadId();
         s->dc_generation=s->generation;
+        cpu_journal_dc_track(object,dc);
     }else game_surface_invalidate_locked(object);
     lock_diagnostic("dc_acquired",object,0,(u32)dc,0,0,0,0);game_tracker_release();
 }
@@ -46,7 +47,7 @@ static void game_dc_before(void* object,void* dc,struct GameDC* pending){
      * Do not infer orientation from GetObject or read bmBits directly. */
     if(pending->pixels.data){
         if(GetBitmapBits(bitmap,(i32)pending->pixels.length,pending->pixels.data)!=(i32)pending->pixels.length){
-            __atomic_sub_fetch(&lock_capture_reserved,pending->pixels.length,__ATOMIC_RELAXED);free_snapshot(&pending->pixels);
+            game_reserved_snapshot_free(&pending->pixels);
             lock_diagnostic("dc_read_failed",object,0,(u32)dc,0,0,0,0);
         }else lock_diagnostic("dc_copied",object,0,(u32)dc,0,0,0,0);
     }
@@ -55,7 +56,7 @@ static void game_dc_after(struct GameDC* pending,void* dc,i32 result){
     if(!lock_capture_path_length)return;
     lock_diagnostic(result<0?"dc_release_failed":"dc_released",pending->target,0,(u32)dc,0,result,0,0);
     if(!game_surface_pixels_enter(pending->target))goto free;
-    struct GameSurface* s=game_surface_find(pending->target,0);
+    struct GameSurface* s=game_surface_find(pending->target,0);u32 journal_checkpoint=0;
     if(result>=0){
         if(s && pending->pixels.data && s->dc==dc && s->dc_owner==GetCurrentThreadId() &&
            s->generation==pending->generation && pending->epoch==__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED)){
@@ -63,10 +64,12 @@ static void game_dc_after(struct GameDC* pending,void* dc,i32 result){
             game_surface_drop(s);s->generation_origin=9;copy(&s->pixels,&pending->pixels,sizeof(s->pixels));pending->pixels.data=0;
             game_surface_bytes+=s->pixels.length;__atomic_sub_fetch(&lock_capture_reserved,s->pixels.length,__ATOMIC_RELAXED);
             game_session_dc_checkpoint(s);
+            journal_checkpoint=1;
             if(s->primary)game_surface_publish(s);
             lock_diagnostic("dc_checkpoint",pending->target,0,(u32)dc,0,result,0,0);
         }else game_surface_invalidate_locked(pending->target);
     }
+    cpu_journal_dc_release(pending->target,dc,result,journal_checkpoint,pending->generation);
     game_tracker_release();
- free:if(pending->pixels.data)__atomic_sub_fetch(&lock_capture_reserved,pending->pixels.length,__ATOMIC_RELAXED);free_snapshot(&pending->pixels);
+ free:game_reserved_snapshot_free(&pending->pixels);
 }

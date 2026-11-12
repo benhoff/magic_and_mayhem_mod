@@ -20,6 +20,16 @@ bool MenuBridge::create(const QString& path,bool battle,bool spells,bool mini,bo
     heartbeat();return true;
 }
 bool MenuBridge::read(State& state) const {
+    readUnstable_=false;
+    if(!mapping_)return false;
+    const auto* sequence=reinterpret_cast<const quint32*>(mapping_)+(battle_?MNM_MENU_V2_ENGINE_WORD:MNM_MENU_V1_ENGINE_WORD);
+    const auto before=load(sequence);
+    const bool accepted=readSnapshot(state);
+    const auto after=load(sequence);
+    readUnstable_=!accepted&&before&&((before&1u)||(after&1u)||before!=after);
+    return accepted;
+}
+bool MenuBridge::readSnapshot(State& state) const {
     if(!mapping_||std::memcmp(mapping_,campaignBook_?MNM_MENU_V22_MAGIC:campaignSpells_?MNM_MENU_V21_MAGIC:campaign_?MNM_MENU_V20_MAGIC:realm_?MNM_MENU_V19_MAGIC:character_?MNM_MENU_V18_MAGIC:lobby_?MNM_MENU_V17_MAGIC:sessions_?MNM_MENU_V16_MAGIC:multiplayer_?MNM_MENU_V15_MAGIC:grimoire_?MNM_MENU_V14_MAGIC:storage_?MNM_MENU_V13_MAGIC:campaignPreferences_?MNM_MENU_V12_MAGIC:campaignDefeat_?MNM_MENU_V11_MAGIC:campaignQuit_?MNM_MENU_V10_MAGIC:campaignMini_?MNM_MENU_V9_MAGIC:enter_?MNM_MENU_V8_MAGIC:region_?MNM_MENU_V7_MAGIC:preferences_?MNM_MENU_V6_MAGIC:results_?MNM_MENU_V5_MAGIC:mini_?MNM_MENU_V4_MAGIC:spells_?MNM_MENU_V3_MAGIC:battle_?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8))return false;
     auto* words=reinterpret_cast<quint32*>(mapping_);
     if(load(words+2)!=(campaignBook_?22u:campaignSpells_?21u:campaign_?20u:realm_?19u:character_?18u:lobby_?17u:sessions_?16u:multiplayer_?15u:grimoire_?14u:storage_?13u:campaignPreferences_?12u:campaignDefeat_?11u:campaignQuit_?10u:campaignMini_?9u:enter_?8u:region_?7u:preferences_?6u:results_?5u:mini_?4u:spells_?3u:battle_?2u:1u)||load(words+3)!=(campaignBook_?MNM_MENU_V22_SIZE:campaignSpells_?MNM_MENU_V21_SIZE:campaign_?MNM_MENU_V20_SIZE:realm_?MNM_MENU_V19_SIZE:character_?MNM_MENU_V18_SIZE:lobby_?MNM_MENU_V17_SIZE:sessions_?MNM_MENU_V16_SIZE:multiplayer_?MNM_MENU_V15_SIZE:grimoire_?MNM_MENU_V14_SIZE:storage_?MNM_MENU_V13_SIZE:campaignPreferences_?MNM_MENU_V12_SIZE:campaignDefeat_?MNM_MENU_V11_SIZE:campaignQuit_?MNM_MENU_V10_SIZE:campaignMini_?MNM_MENU_V9_SIZE:enter_?MNM_MENU_V8_SIZE:region_?MNM_MENU_V7_SIZE:preferences_?MNM_MENU_V6_SIZE:results_?MNM_MENU_V5_SIZE:mini_?MNM_MENU_V4_SIZE:spells_?MNM_MENU_V3_SIZE:battle_?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE))return false;
@@ -211,7 +221,7 @@ bool MenuBridge::request(quint32 action,const State& state,quint32 argument,cons
         (battle_&&((action==MNM_MENU_OPEN_SINGLE&&current.screen==22)||((setupAction||action==MNM_MENU_SETUP_CANCEL)&&current.screen==14)||((action==MNM_MENU_MAP_OK||action==MNM_MENU_MAP_CANCEL)&&current.screen==25)));
     if(!allowed||(setupAction&&!rules)||(rules&&std::any_of(rules->begin(),rules->end(),[](int value){return value<0||value>10000;})))return false;
     if(retired_||!current.ready||current.status==MNM_MENU_RETIRED||current.ack!=request_||
-       current.generation!=state.generation||current.screen!=state.screen||request_==UINT32_MAX )return false;
+       current.generation!=state.generation||current.screen!=state.screen||current.thread!=state.thread||request_==UINT32_MAX )return false;
     ++request_;publish(true,action,current.generation,argument,rules);return true;
 }
 bool MenuBridge::finishSpells(const State& state,const std::array<int,63>& assignments){
@@ -246,8 +256,9 @@ bool storageStem(const QString& name){
 }
 }
 bool MenuBridge::requestStorage(quint32 action,const State& state,quint32 row,const QString& name){
+    readUnstable_=false;
     State current;if(!storage_||retired_||!read(current)||!current.ready||current.status==MNM_MENU_RETIRED||current.ack!=request_||
-       current.generation!=state.generation||current.screen!=state.screen||request_==UINT32_MAX||(current.screen!=MNM_MENU_LOAD_SCREEN&&current.screen!=13))return false;
+       current.generation!=state.generation||current.screen!=state.screen||current.thread!=state.thread||request_==UINT32_MAX||(current.screen!=MNM_MENU_LOAD_SCREEN&&current.screen!=13))return false;
     if(action==MNM_MENU_STORAGE_CANCEL){if(row||!name.isEmpty())return false;}
     else if(action==MNM_MENU_STORAGE_ACCEPT||action==MNM_MENU_STORAGE_DELETE){
         if(current.screen==MNM_MENU_LOAD_SCREEN||action==MNM_MENU_STORAGE_DELETE){if((current.screen==MNM_MENU_LOAD_SCREEN&&action==MNM_MENU_STORAGE_DELETE)||!name.isEmpty()||!row||row>quint32(current.storage.names.size())||!storageStem(current.storage.names[int(row)-1]))return false;}

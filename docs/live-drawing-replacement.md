@@ -1,5 +1,34 @@
 # Complete live drawing replacement
 
+The [versioned completion contract](native-rendering-closure.md) reconciles the
+supported player/configuration target and required proof against the reviewed
+baseline. Its authored rules and eight open scope decisions grant no new engine
+acceptance; all 14 journeys and 21 operations remain required.
+
+The [required gap register](../research/runtime/rendering-required-gaps-20261030.md)
+connects every required check to existing evidence and a concrete closing brief,
+keeping missing proof separate from missing implementation and unresolved scope.
+
+Start current completion work with the [execution plan](native-rendering-execution.md).
+It orders all 36 closing briefs, puts a real acceptance pilot before broad reruns,
+and identifies the next task and its exit. The dated implementation plan below
+is historical context; its older fixed-FPS and source-specific limitations do
+not replace the current completion contract or evidence-bound gap assessments.
+
+The [acceptance record](native-rendering-acceptance.md) is open with separate
+supported-player and original-recovery verdicts, both pending. It retains all
+per-configuration requirements and evidence candidates while the plan is executed.
+
+The [current scope review](../research/runtime/rendering-scope-decisions-20261030.md)
+records technical answers, fresh component/caller checks and remaining proof.
+Only the existing bounded physical/platform claim closes; it neither accepts the
+player nor removes required native fullscreen, format, history or lifetime work.
+
+The [reviewed rendering baseline for committed tree 648ce219](../research/runtime/rendering-reviewed-baseline-20261030.md)
+consolidates delivered code, source-bound current/historical proof, retained
+failures and unknowns. It is a static baseline, with no new gameplay validation
+or completion promotion.
+
 The [recovery and acceptance closure map](native-rendering-closure.md) reconciles
 local master `c4510223` into separate bottom-up contracts, top-down journeys and
 a finite blocker list. It preserves this plan's existing journey/operation scope
@@ -11,7 +40,7 @@ still unavailable.** The original engine continues simulation and preparation;
 selected native modes bypass admitted original pixel producers and World drawing.
 Ordinary observation/partial modes retain their own forwarding policies.
 
-This is the current scope and release plan. The
+This historical section records its scope and release plan. The
 [code-checked integration backlog](../research/runtime/native-rendering-integration-gaps-20261015.md)
 and its [review record](../research/runtime/native-rendering-gap-review-20261016.json)
 separate implementation limits, supported subsets and missing acceptance evidence.

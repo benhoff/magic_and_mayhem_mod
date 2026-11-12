@@ -83,21 +83,34 @@ static int install_battle(void){
     put((void*)0x5c6544,(u32)&tick);put((void*)0x5c6950,(u32)&tick);
     VirtualProtect((void*)0x5c6950,4,b,&unused);VirtualProtect((void*)0x5c6544,4,a,&unused);return 1;
 }
+static void checkpoint_storage_sample(u32 screen,u32 result);
 static u32 THIS result_tick(void* object){
     u32 error=GetLastError();int storage=menu_version>=13&&readable(object,8)&&(get((u8*)object+4)==MNM_MENU_LOAD_SCREEN||get((u8*)object+4)==13);
     if(storage)record(1,object,0,0);menu_poll(object,1);SetLastError(error);
-    u32 result=((TickFn)0x5595d0)(object);error=GetLastError();menu_poll(object,0);if(storage)record(4,object,0,result);SetLastError(error);return result;
+    u32 screen=storage?get((u8*)object+4):0;
+    u32 completedBefore=storage&&readable(object,0x47)?get((u8*)object+0x43):2;
+    u32 result=((TickFn)0x5595d0)(object);error=GetLastError();
+    if(storage&&!completedBefore&&readable(object,0x47)&&get((u8*)object+0x43)==1)
+        checkpoint_storage_sample(screen,1);
+    menu_poll(object,0);if(storage)record(4,object,0,result);SetLastError(error);return result;
 }
 #include "preferences_display.h"
 #include "campaign_observe.h"
 #include "campaign_gameplay_observe.h"
+#include "campaign_checkpoint_observe.h"
 #include "campaign_input_admission_observe.h"
+#include "campaign_order_observe.h"
+#define MNM_UI_ACCEPTANCE_OBSERVATION 1
+static void ui_acceptance_sample(u32,u32,u32,u32,u32);
+#define MNM_FRAME_INPUT_OBSERVATION 1
+static void frame_input_sample(u32,u32,void*,u32,const u32*,u32,u32);
 #include "campaign_world_observe.h"
 #include "campaign_mini_observe.h"
 #include "region_entry_observe.h"
 #include "grimoire_observe.h"
 #define MNM_REGION_LATCH_OBSERVATION 1
 #include "drawing_region_input.h"
+#include "hud_acceptance.h"
 static int install(void){
     const u8 main_bytes[7]={0x51,0x53,0x55,0x56,0x57,0x8b,0xf9};
     const u8 quick_bytes[8]={0x56,0x8b,0xf1,0xe8,0x68,0xf1,0x0a,0x00};
@@ -132,8 +145,8 @@ static int install(void){
         menu_init();
         if(!install_grimoire_observe())menu_retired=1;
         if(!install_campaign_observe())menu_retired=1;
-        if((campaign_log||menu_version>=8)&&!install_campaign_world_observe())menu_retired=1;
-        if(!install_gameplay_observe()||!admission_open())menu_retired=1;
+        if(!install_gameplay_observe()||!checkpoint_open()||!admission_open()||!order_open())menu_retired=1;
+        if((campaign_log||menu_version>=8||admission_file)&&!install_campaign_world_observe())menu_retired=1;
         if((campaign_log||menu_version>=9)&&!install_campaign_mini_observe())menu_retired=1;
         if(campaign_log&&menu_version<7&&!install_campaign_navigation())menu_retired=1;
         if(menu_version>=7){
@@ -231,7 +244,7 @@ static int install(void){
     }
     VirtualProtect((void*)0x5c63e4,0x4c,table_protect,&unused);
     VirtualProtect((void*)0x4a83a0,8,quick_protect,&unused);VirtualProtect((void*)0x4a75c0,7,main_protect,&unused);
-    return log_file!=0&&region_input_open();
+    return log_file!=0&&region_input_open()&&frame_input_open()&&ui_acceptance_open();
 }
 __declspec(dllexport) void MenuAnchor(void){}
 #ifdef MNM_MENU_SELFTEST
@@ -246,5 +259,5 @@ int WIN DllMain(void* dll,u32 reason,void* reserved){
 #ifndef MNM_MENU_SELFTEST
     if(reason==1){u32 error=GetLastError();install();SetLastError(error);}
 #endif
-    if(reason==0){semantic_state_close();hud_state_close();region_input_close();admission_close();latch_close();if(grimoire_log)CloseHandle(grimoire_log);if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_admission_trace)CloseHandle(menu_admission_trace);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
+    if(reason==0){map_resource_close();ui_acceptance_close();if(checkpoint_file)CloseHandle(checkpoint_file);frame_input_close();semantic_state_close();hud_state_close();region_input_close();admission_close();order_close();latch_close();if(gameplay_follow_file)CloseHandle(gameplay_follow_file);if(grimoire_log)CloseHandle(grimoire_log);if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_admission_trace)CloseHandle(menu_admission_trace);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
 }

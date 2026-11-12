@@ -9,7 +9,13 @@ NativeFrameRecipe::NativeFrameRecipe(GlBlitter& renderer,unsigned world,std::uin
  if(!world || !generation)throw std::invalid_argument("Prepared native frame identity");
  worldIdentity_=handles.at(world);ensure(world,handles,true);
 }
-NativeFrameRecipe::~NativeFrameRecipe(){for(auto& pair:maps_)renderer_.destroy(pair.second);drop(work_);drop(coordinates_);drop(ui_);}
+NativeFrameRecipe::~NativeFrameRecipe(){
+ // A lost provider must not terminate C++ unwinding. Its renderer still owns
+ // any undeleted storage; terminal retirement releases that context. This
+ // catch supplies no successful cleanup, pixel or continuation credit.
+ try{for(auto& pair:maps_)renderer_.destroy(pair.second);drop(work_);drop(coordinates_);drop(ui_);}
+ catch(const GraphicsFailure&){}
+}
 void NativeFrameRecipe::drop(SurfaceId& surface){if(surface){const auto s=renderer_.dimensions(surface);pixels_-=std::size_t(s.width())*s.height();renderer_.destroy(surface);surface=0;}}
 void NativeFrameRecipe::budget(std::size_t pixels,unsigned count) const {
  if(surfaces()+count>MNM_RESIDENT_PREPARED_HANDLES || pixels>MNM_RESIDENT_PREPARED_PIXELS-pixels_)throw std::runtime_error("Compiled native frame budget");

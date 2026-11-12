@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Execute native facade clipping and resource lifetimes in an isolated prefix."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import importlib.util
@@ -60,7 +61,7 @@ def main():
     try:
         reservation = module('resource_reservation', 'tools/capture-original-surface-keys.py').reserve_wine()
         if not args.wine_prefix:
-            run('prefix', ['cp', '-a', '--reflink=auto', (ROOT/'working/wineprefix-x86_64').resolve(), prefix])
+            stage_prefix(ROOT, (ROOT/'working/wineprefix-x86_64').resolve(), prefix, log=Path(prefix).parent / 'prefix.log')
         builder = module('resource_builder', 'tools/build-native-draw.py')
         dll = builder.build(out/'build', claims['sources'])
         shutil.copyfile(dll, out/'MnmDraw.dll')

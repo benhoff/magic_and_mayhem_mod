@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Bounded all-created-thread pointer watches during original Quick Battle."""
+from experiment_environment import stage
 import argparse
 import ctypes as C
 import ctypes.util
@@ -31,9 +32,9 @@ def load(name,path):
 def win(path):return 'Z:'+str(path.resolve()).replace('/','\\')
 def digest(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def decode(path):
- raw=path.read_bytes();h=struct.unpack('<64I',raw[:256]);version=h[2];tail=256 if version==2 else 0;rows=list(struct.iter_unpack('<16I',raw[256:len(raw)-tail]));
- if h[:2]!=(0x414d4e4d,0x31305743) or version not in (1,2) or h[3]!=256 or len(rows)!=h[16]:raise ValueError('Incomplete debugger record')
- return dict(complete=bool(h[4]),error=h[5],pid=h[6],main_thread=h[7],image_base=h[8],threads_armed=h[9],threads_retired=h[10],write_events=h[11],dispatch_calls=h[12],shutdown_calls=h[13],slot_writes=list(h[14:16]),rows=rows,code_checks=h[17],bounded_termination=bool(h[18]),loader_breakpoints=h[19],first_chance_exceptions=h[20],child_exit=h[21],debug_events=h[22],observed_video=h[23],offscreen_height=h[24],offscreen_pitch_bytes=h[25],idle_context=list(h[28:32]),idle_samples=h[32],error_dialog=bool(h[34]),error_message=raw[-256:].split(b'\0')[0].decode('cp1252') if version==2 else '',error_config=list(h[36:39]),sha256=digest(path))
+ raw=path.read_bytes();h=struct.unpack('<64I',raw[:256]);version=h[2];tail=256 if version>=2 else 0;rows=list(struct.iter_unpack('<16I',raw[256:len(raw)-tail]));
+ if h[:2]!=(0x414d4e4d,0x31305743) or version not in (1,2,3) or h[3]!=256 or len(rows)!=h[16]:raise ValueError('Incomplete debugger record')
+ return dict(complete=bool(h[4]),error=h[5],pid=h[6],main_thread=h[7],image_base=h[8],threads_armed=h[9],threads_retired=h[10],write_events=h[11],dispatch_calls=h[12],shutdown_calls=h[13],slot_writes=list(h[14:16]),rows=rows,code_checks=h[17],bounded_termination=bool(h[18]),loader_breakpoints=h[19],first_chance_exceptions=h[20],child_exit=h[21],debug_events=h[22],observed_video=h[23],offscreen_height=h[24],offscreen_pitch_bytes=h[25],idle_context=list(h[28:32]),idle_samples=h[32],error_dialog=bool(h[34]),error_message=raw[-256:].split(b'\0')[0].decode('cp1252') if version>=2 else '',error_config=list(h[36:39]),sha256=digest(path))
 def main():
  resource.setrlimit(resource.RLIMIT_CORE,(0,0));p=argparse.ArgumentParser(description=__doc__)
  p.add_argument('--output',type=Path,required=True);p.add_argument('--report',required=True);p.add_argument('--source-game',type=Path,required=True)
@@ -91,7 +92,7 @@ def main():
   imports={'CreateFileA':28,'WriteFile':20,'CloseHandle':4,'SetFilePointer':16,'FlushFileBuffers':4,'ExitProcess':4,'GetEnvironmentVariableA':12,'GetCommandLineA':0,'CreateProcessA':40,'WaitForDebugEvent':8,'ContinueDebugEvent':12,'GetThreadContext':8,'SetThreadContext':8,'ReadProcessMemory':20,'GetFileAttributesA':4,'GetLastError':0,'TerminateProcess':8,'VirtualProtect':16,'CreateThread':24,'WaitForSingleObject':8,'SuspendThread':4,'ResumeThread':4}
   definition=out/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(n+'@'+str(v)+'\n' for n,v in imports.items()));run('imports',['llvm-dlltool','-m','i386','--kill-at','-d',definition,'-l',out/'kernel32.lib'])
   flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-I'+str(out)]
-  user=out/'user32.def';user.write_text('LIBRARY USER32.dll\nEXPORTS\nFindWindowA@8\nGetWindowThreadProcessId@8\nGetWindow@8\nGetWindowTextA@12\n');run('user-imports',['llvm-dlltool','-m','i386','--kill-at','-d',user,'-l',out/'user32.lib'])
+  user=out/'user32.def';user.write_text('LIBRARY USER32.dll\nEXPORTS\nFindWindowA@8\nGetWindowThreadProcessId@8\nGetWindow@8\nGetWindowTextA@12\nGetClientRect@8\nClientToScreen@8\nGetWindowRect@8\nGetForegroundWindow@0\n');run('user-imports',['llvm-dlltool','-m','i386','--kill-at','-d',user,'-l',out/'user32.lib'])
   pin=out/'alternate_canvas_pinned.h'
   def build(label,source,extra=()):
    run(label+'-build',[*flags,'-MMD','-MF',out/(label+'.d'),'-c',ROOT/source,'-o',out/(label+'.obj')])
@@ -114,7 +115,7 @@ def main():
   # Installation supplies assets only. Always stage the hash-pinned immutable
   # executable,even if this working installation has an earlier adapter.
   report['installation_executable']=dict(sha256=installation_executable,used_as_executable_input=False)
-  run('installation-copy',['cp','-a','--reflink=auto',source,game])
+  stage(ROOT, Path(game), Path(source), kind="game")
   for name in ['Chaos.exe','MnmMenu.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg','CFG/chaos.cfg','CFG/Encrypted/chaos.cfg']:
    if not (game/name).resolve().is_relative_to(game.resolve()):raise ValueError('Escaping staged write target '+name)
   shutil.copyfile(menu,game/'MnmMenu.dll')

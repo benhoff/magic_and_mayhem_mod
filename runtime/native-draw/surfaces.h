@@ -26,12 +26,19 @@ static struct NsState* ns_owned;
 static struct NsState* ns_lifetime_dead;
 static struct NsState* ns_lifetime_all;
 static u32 ns_lifetime_reserved_bytes;
+#include "clip_region_census.h"
 static void* ns_tables[5][45];
 static u32 ns_bytes,ns_creates,ns_locks,ns_copies,ns_flips;
 static u32 ns_lock_serial;
 static void ns_dc_drop(struct NsState*);
 static void ns_cpu_require(struct NsState*);
 static int ns_borrowed(const struct NsState* s){return s->locked || s->dc || s->storage_dc;}
+/* Called under the provider gate after removing a public/pin/writer credit,
+ * including physical writer leases moved by Flip. Collection remains at the
+ * outermost exit, in the original list order, after all nested work finishes. */
+static void ns_lifetime_changed(const struct NsState* s){
+ if(ns_lifetime_mode && !s->interfaces && !s->lifetime_pins && !ns_borrowed(s))ns_lifetime_pending=1;
+}
 #include "cpu_guard.h"
 #include "cpu_direct_store.h"
 #include "native_only.h"
@@ -72,7 +79,7 @@ static u32 WIN ns_release(struct NsObject* o){
  struct NsState* s=o->state;u32 error=GetLastError();
  if(ns_lifetime_mode && !s->refs[o->kind]){SetLastError(error);return 0;}
  u32 refs=--s->refs[o->kind];
- if(!refs && !--s->interfaces && !ns_lifetime_mode)ns_destroy(s);
+ if(!refs && !--s->interfaces){if(ns_lifetime_mode)ns_lifetime_changed(s);else ns_destroy(s);}
  nd_status();SetLastError(error);return refs;
 }
 
@@ -124,7 +131,7 @@ static i32 WIN ns_unlock(struct NsObject* o,void* argument){
  if(s->cpu_guard_world)ns_cpu_require(s);
  /* Surface4 accepts a rectangle, older interfaces accept the returned pointer. */
  if(o->kind!=3 && argument && argument!=s->lock_pointer)return ND_INVALID;
- if(s->locked<0)ExitProcess(125);--s->locked;s->lock_pointer=0;s->lock_owner=s->lock_full=0;ns_guard_refresh(s);return 0;
+ if(s->locked<0)ExitProcess(125);--s->locked;s->lock_pointer=0;s->lock_owner=s->lock_full=0;ns_guard_refresh(s);ns_lifetime_changed(s);return 0;
 }
 static i32 WIN ns_key(struct NsObject* o,u32 flags,const u32* key){
  if((flags&~1u)!=8 && (flags&~1u)!=2)return NS_UNSUPPORTED;
@@ -142,6 +149,7 @@ static i32 WIN ns_get_key(struct NsObject* o,u32 flags,u32* key){
 #include "blit_effects.h"
 static i32 ns_draw_route(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx,u32 gpu){
  struct NsState *d=dst->state,*s=src?src->state:0;i32 rd[4],rs[4];
+ u32 observed_fill=0,fill_observation=0;const u32 observe_fill=nd_clip_view!=0 && (flags&0x400)!=0;
  for(u32 i=0;i<4;++i){rd[i]=dr?dr[i]:(i<2?0:(i==2?(i32)d->width:(i32)d->height));
   rs[i]=sr?sr[i]:(i<2?0:(s?(i==2?(i32)s->width:(i32)s->height):0));}
  long long width=(long long)rd[2]-rd[0],height=(long long)rd[3]-rd[1];
@@ -216,6 +224,7 @@ static i32 ns_draw_route(struct NsObject* dst,const i32* dr,struct NsObject* src
    const u32 source_y=s?(u32)((long long)rs[1]+ns_sample((u32)((long long)y-rd[1]),sh,(u32)height)):0;
    for(i32 x=left;x<right;++x){
     u32 value=s?ns_read(s,(u32)((long long)rs[0]+sample_x.value),source_y):fx[20];
+    if(observe_fill && !s){if(!fill_observation){observed_fill=value;fill_observation=1;}else if(observed_fill!=value)fill_observation|=2;}
     if(!(flags&0x8000) || value<s->key_low || value>s->key_high)ns_write(d,x,y,s?ns_convert(d,s,value):value);
     if(s)ns_sample_next(&sample_x);
    }
@@ -224,7 +233,8 @@ static i32 ns_draw_route(struct NsObject* dst,const i32* dr,struct NsObject* src
  if(frozen)HeapFree(GetProcessHeap(),0,frozen);
  if(!(flags&0x8000) && !d->clipper && rd[0]==0 && rd[1]==0 && rd[2]==(i32)d->width && rd[3]==(i32)d->height)d->history_stale=0;
  if(!(++ns_copies&255))nd_status();
-done:ns_guard_refresh(d);if(clips)HeapFree(GetProcessHeap(),0,clips);return result;
+done:nd_clip_observe((flags&0x400)?5u:gpu?6u:4u,dst,src,rd,rs,flags,clips,(u32)result,0xffffffffu,observed_fill,fill_observation);
+ ns_guard_refresh(d);if(clips)HeapFree(GetProcessHeap(),0,clips);return result;
 }
 static i32 ns_draw(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx){
  return ns_draw_route(dst,dr,src,sr,flags,fx,0);
@@ -290,6 +300,7 @@ static i32 WIN ns_flip(struct NsObject* o,struct NsObject* target,u32 flags){
  u32 stale=front->history_stale;front->history_stale=back->history_stale;back->history_stale=stale;
  for(u32 i=0;i<2;++i){u32 v=front->history_generation[i];front->history_generation[i]=back->history_generation[i];back->history_generation[i]=v;
   v=front->history_nonce[i];front->history_nonce[i]=back->history_nonce[i];back->history_nonce[i]=v;}
+ ns_lifetime_changed(front);ns_lifetime_changed(back);
  ++ns_flips;if(!(ns_flips&255))nd_status();return front->locked || front->storage_dc?NS_BUSY:0;
 }
 static i32 WIN ns_get_clipper(struct NsObject* o,void** out){

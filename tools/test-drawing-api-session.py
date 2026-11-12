@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Execute PE32 forwarding/LastError/x87 and full-plane observer fixtures under private Wine."""
+from experiment_environment import stage_prefix
 import argparse,importlib.util,json,os,shutil,subprocess,tempfile
 from pathlib import Path
 from drawing_api_session import inspect,sha
@@ -25,7 +26,7 @@ def main():
         if not prefix.is_relative_to(parent_fixture) or not (prefix.parent/'execution-status.json').is_file():raise ValueError('Require completed isolated fixture prefix')
     else:
         prefix=run/'wineprefix'
-        subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),str(prefix)],check=True)
+        stage_prefix(ROOT, str(a.prefix_template.resolve()), str(prefix), persistent=True)
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(prefix),WINEDEBUG='-all',MNM_DRAW_SESSION_DIRECTORY='Z:'+str(capture).replace('/','\\'))
     if a.update_routes:env['MNM_DRAW_UPDATE_ROUTES']='1'
     peer=None

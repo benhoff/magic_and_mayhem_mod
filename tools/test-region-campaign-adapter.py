@@ -33,7 +33,7 @@ def main():
         (out/'region_campaign_fixture_bytes.h').write_text(header)
         run(['g++','-m32','-fno-pie','-no-pie','-std=c++17','-O2','-Wall','-Wextra','-Werror','-I'+str(out),ROOT/'tests/region-campaign-adapter-reference.cpp','-o',out/'reference'],'compile')
         private=json.loads(run([out/'reference',exe],'private',30))
-        if not private['success'] or (private['entries'],private['refusals'],private['auxiliary'],private['cancels'])!=(18,15,9,2):raise ValueError('Incomplete original Region delegation')
+        if not private['success'] or (private['entries'],private['refusals'],private['auxiliary'],private['cancels'])!=(36,34,9,2):raise ValueError('Incomplete original Region delegation')
         run(['python3',ROOT/'tools/build-menu-observer.py'],'pe32-build')
         build=ROOT/'working/build/qt-shell';run(['cmake','-S',ROOT/'apps/qt-shell','-B',build,'-DBUILD_TESTING=ON','-DCMAKE_BUILD_TYPE=Release'],'configure',120)
         targets=['mnm-qt-shell','menu-region-campaign-test','menu-region-controller-test','menu-region-bridge-test','menu-realm-bridge-test','menu-character-bridge-test','campaign-menu-fixture']
@@ -41,7 +41,7 @@ def main():
         closure=module('region_compiler','tools/test-native-campaign.py').linked_compiler_sources(build,ROOT)
         if not closure<=set(sources):raise ValueError('Undeclared compiler inputs: '+repr(sorted(closure-set(sources))))
         qt=json.loads(run([build/'menu-region-campaign-test'],'qt-region',30,env=dict(os.environ,QT_QPA_PLATFORM='offscreen')))
-        if not qt['success'] or qt['cases']!=13:raise ValueError('Incomplete Qt Region journey')
+        if not qt['success'] or qt['cases']!=30:raise ValueError('Incomplete Qt Region journey')
         run(['ctest','--test-dir',build,'-R','^(qt-menu-region-controller|qt-menu-region-bridge|qt-menu-realm-bridge|qt-menu-character|qt-campaign-menu-fixture)$','--output-on-failure'],'regression',120)
         if fingerprints()!=sources or hashlib.sha256(exe.read_bytes()).hexdigest()!=exporter.HASH:raise ValueError('Execution inputs changed')
         report=dict(success=True,private=private,qt=qt,pe32_builds=1,qt_regressions=5,source_stable=True,source_sha256=exporter.HASH,sources=sources,execution_claims=claims,scope=b['scope'],live_validated=False,original_work_bypassed=False,artifacts={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in out.iterdir() if p.is_file()})

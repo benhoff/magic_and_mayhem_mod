@@ -11,6 +11,8 @@ public:
     bool create(const QString& path,quint32 session,quint32 version=1);
     bool open(const QString& path);
     QByteArray poll(quint32 budget=MNM_RENDER_COMMANDS_V1_POLL_BYTES);
+    // Observe terminal producer state without consuming/acknowledging bytes.
+    void requireProducerHealthy() const;
     void cancel();
     quint32 state() const{return state_;}
     quint32 reason() const{return reason_;}

@@ -1,5 +1,14 @@
 # Working storage retention
 
+For new output, use the proportionate-retention rules in `AGENTS.md` and
+[storage consolidation](storage-consolidation.md). Declare rebuildable temporary
+output before creating it, retain its exact reconstruction recipe and inputs,
+and review consumers and pins before removal. Keep tested executables and
+claim-supporting observations durable. Existing historical output remains under
+its original preservation rules until an explicit verified handoff. Completed
+clean merged checkouts can compact tracked research/fixtures through the new
+worktree command while retaining their working data and Git registration.
+
 The repository policy keeps at least **90 GiB of filesystem free space** on the
 main checkout's drive. There is no fixed size limit on `working/`, including
 nested worktree output. Before launching, the guard subtracts the estimated
@@ -20,7 +29,135 @@ reports are exemptions from blanket cleanup selection. Registered Git source
 checkouts are preserved; their ignored completed-run output can be reviewed
 separately. Automatic archiving inside experiment launch remains disabled.
 
+## Reusable experiment environments
+
+Temporary test/build/experiment runners now default to `tools/experiment_environment.py` for copied
+Wine prefixes and in-process game/media stages. A template family keeps one
+verified baseline and at most two exclusively locked working trees. Runs receive
+real private directories at their normal paths. On successful return, SQLite
+retains the complete final manifest and compressed changed/new file bytes,
+including settings, saves, ownership, modes, modification times and extended
+attributes. The next loan resets those differences to the
+verified template; unchanged files keep their existing allocation.
+
+The pool is `working/environment-pool/` in the main checkout, shared by linked
+worktrees on that filesystem. Provisioned output-volume aliases and bind mounts use a local pool
+on their own filesystem. Pool baselines and outstanding loans are pinned against
+retention cleanup. Busy clients, new user pins, changed templates, unexpected
+idle-tree changes and interrupted operations retain the tree and refuse reuse.
+There is no extra-copy fallback when both slots are unavailable. Copies onto the main drive
+use its existing free-space guard; a provisioned output filesystem uses the
+caller's capacity guard. Initial pool preparation needs storage headroom.
+
+Each run retains `environment-game.sqlite3`, `environment-wineprefix.sqlite3`,
+or `environment-native-music.sqlite3`. Restore before reading historical staged
+files that have returned to the pool:
+
+```bash
+python3 tools/experiment_environment.py --restore working/tests/<group>/<run>/environment-wineprefix.sqlite3
+```
+
+Restore verifies baseline and delta hashes and refuses an existing destination.
+An interrupted loan whose original tree remains idle can be retained and returned
+with `--recover <receipt>`. Recovery takes the exclusive lock, preserves the
+original receipt and creates a new recovery receipt. Partial moves/resets and
+foreign idle-tree modifications require review; recovery never kills clients.
+
+`MNM_REUSE_ENVIRONMENTS=0` requests the previous full private-copy/fresh-prefix
+workflow. Invalid values fail. Dedicated persistent player prefixes and stable destinations outside
+`working/tests/`, `working/experiments/` and `working/build/` keep full trees.
+Explicit fixture seed producers, user-pinned
+parents, standalone preparation commands and `--stage-only` retain full stages
+for later consumers. These exceptions remain subject to reviewed maintenance.
+Native campaign tests reuse explicitly supplied admitted prefix templates. The
+default fresh-prefix path retains its DirectPlay admission/initialization contract.
+The default user prefix in `run-game.sh` already persists and is unchanged.
+
+This is storage/lifecycle policy. Synthetic filesystem and launcher controls
+validate reset, exclusion, changed-state restoration and interrupted recovery.
+An isolated Wine11.16 registry control also verifies clean reuse and historical
+restoration. Actual-game comparisons after this provisioning change remain pending;
+historical engine evidence keeps its original source hashes.
+
 ## Periodic maintenance
+
+### Dry-first cleanup coordinator
+
+`tools/cleanup-working.py` defaults to an inventory. It never removes data unless
+`apply` receives both `--execute` and the exact reviewed `--plan-sha256`.
+There is no force option. Even `apply PLAN` alone only revalidates the plan.
+
+```bash
+python3 tools/cleanup-working.py
+python3 tools/cleanup-working.py inventory --include-worktrees \
+  --output working/retention/cleanup/inventory-01.sqlite3
+```
+
+The comprehensive mode includes the current checkout and all registered linked
+checkouts, reporting missing/aliased roots separately. Only their `working/`
+directories are inventoried. Originals, Git source checkouts, fixtures, stores,
+bookkeeping, pins and restoration aliases stay protected. Traversal is bounded
+per unit; incomplete measurements are explicitly held, not counted as reclaimable
+space. Default inventory prints to stdout and writes no report or archive.
+Use `show DATABASE` to read the SQLite inventory, plan and exact file manifest.
+
+An inventory candidate is a review request. Before selecting a path, establish
+that its producer stopped and review its historical/SQLite evidence references,
+other branches, reconstruction inputs, physical-path consumers and fixture use.
+Automatic literal reference checks and host process observations cannot establish
+all those facts. Record concrete completion and dependency-review reasons:
+
+```bash
+python3 tools/cleanup-working.py plan \
+  --select working/tests/example/run-completed \
+  --completion-reason 'Producer exited; this bounded batch is complete' \
+  --dependency-review 'Reviewed exact evidence/branch/fixture consumers; all retained files can be restored before historical use' \
+  --output working/retention/cleanup/plan-01.sqlite3
+python3 tools/cleanup-working.py apply working/retention/cleanup/plan-01.sqlite3
+```
+
+Plans contain every selected file's original hash and metadata, exact identities,
+review reasons, retention policy and cleanup-tool fingerprints. Plans expire after
+24 hours. Policy/code drift, changed files or a new blocker require a new plan.
+Existing SQLite reports are never overwritten; plan bytes and execution events
+are immutable/append-only. Review the selected manifest with `show` before using
+the returned plan hash for actual handoff:
+
+```bash
+python3 tools/cleanup-working.py show working/retention/cleanup/plan-01.sqlite3
+python3 tools/cleanup-working.py apply working/retention/cleanup/plan-01.sqlite3 \
+  --plan-sha256 REVIEWED_PLAN_HASH --execute --scratch /tmp
+```
+
+Execution uses `mm.evidencePrimary`/`mm.evidenceReplica` on independent filesystems.
+The existing workspace handoff preserves every selected file, tests a real replica
+restore, then replaces only the selected working directory with its pinned
+`.evidence-workspace` restore stub. It rechecks policy, references, pins, recency,
+newest-run retention, host consumers and exact membership after the restore and
+before retirement. Stores retain their configured free-space floors; restore
+scratch is explicitly chosen and capacity-checked. Plan and result custody are
+also retained in the paired stores. Allocated bytes reclaimed and before/after
+filesystem free space are separate measurements, not promised net savings.
+Execution requires a recognized host Linux process view (`systemd`/`init` as
+PID1); private agent/container PID namespaces refuse retirement. Inventory remains
+available there and records its process-view limitation. Run actual handoffs from
+the host terminal with unrelated producers stopped.
+
+```bash
+python3 tools/evidence-workspace.py restore working/tests/example/run-completed
+```
+
+The coordinator deliberately holds databases/catalogs, source/reconstruction
+recipes, nonignored/tracked files, aliases, hardlinks, nested filesystems, recent
+files/directories, existing stubs, every pin and the newest two runs per group.
+It does not transfer pins under a generic cleanup request. Known completed pinned
+executions still require their source-specific reviewed handoff. Tracked-directory
+compaction and legacy/review database consolidation keep their dedicated verified
+workflows in [storage consolidation](storage-consolidation.md); neither is invoked
+automatically. No actual repository payload has been retired while developing
+this coordinator; execution controls use synthetic fixtures.
+
+### Maintenance policy
 
 The user authorized periodic reviewed cleanup on 2026-10-20. Check available
 space at session start, at least daily while work is active, and after each
@@ -161,3 +298,20 @@ hashes; it does not rerun engine validation. The archive is on a second drive in
 the same machine, so an independent off-machine backup remains a separate task.
 
 The inventory tolerates files removed by active captures during a `du` scan only when every diagnostic is a disappeared descendant and the final root total is present. Permission, I/O, missing-root and other measurement failures still refuse the launch. Measurements remain non-atomic; the existing reservation and live free-space monitor remain required. The native-render integration exposed this race; twelve guard tests include disappearing replies and fail-closed measurement cases.
+
+
+### User quota headroom
+
+The launch preflight and running monitor use the smaller of filesystem free
+space and the current user's remaining block quota. Linux quota limits use
+1024-byte units; a configured soft limit is honored conservatively even during
+its grace period. Exhausted quota inodes also refuse a launch. The query is
+read-only and never raises a quota. Linux x86_64 can use the explicitly scoped
+`quotactl_fd` syscall fallback when libc does not expose that function.
+
+Set `require_user_quota: true` in an authored policy when quota availability is
+required: unsupported or failed queries then refuse the launch. Otherwise an
+unavailable quota query keeps the existing filesystem-space fallback. The
+printed preflight includes the measured filesystem free bytes, user quota and
+effective headroom. Reservations and the two-second monitor cannot prevent an
+unrelated writer exhausting space between samples.

@@ -120,3 +120,35 @@ test('simulation shows the spell panel and older snapshots give a refresh instru
   assert.match(vm.runInContext('spellProgressView()',context),/Restart the dashboard server/);
   assert.doesNotMatch(vm.runInContext('spellProgressView()',context),/data-spell="/);
 });
+
+
+test('artifact panel asks older servers to refresh without breaking rendering', () => {
+  const html=client('high_tranche_plan', []).render();
+  assert.match(html,/Native rendering: artifacts 2, 3 & 4/);
+  assert.match(html,/load artifact progress/);
+  assert.match(html,/data-progress-section="implementation"/);
+});
+
+test('artifact details retain history, failures, task exits and escaped notes', () => {
+  const {context,render}=client('high_tranche_plan', []);
+  context.artifacts={closure:'docs/native-rendering-closure.json',documents:{contract:'contract.md',gaps:'gaps.md',plan:'plan.md',acceptance:'acceptance.md'},
+    contract:{id:'contract',revision:1,baseline_commit:'abc123',configurations:[],gates:[],scope_decisions:[],claim_limits:[]},
+    gaps:{journeys:[],leaves:47,operations:[],gates:[],briefs:36},
+    progress:{state:'historical',record:'proof.json',counts:{passed:8,pending:147,failed:1},total:156,changed_sources:['changed.cpp'],scope:'Finite proof only',decisions:{'supported-player':'pending','original-recovery':'pending'}},
+    plan:{order:['EP03','EP04'],optional:['EP12'],optimality:'No measured minimum',tasks:[{id:'EP04',title:'Normal sessions',state:'planned',required_for_completion:true,depends_on:['EP03'],action:'Continue proof',updates:[{date:'2026-11-03',note:'<script>unsafe</script>',document:'notes.md'}],recorded:{total:2,passed:1,pending:0,failed:1},deliverables:['Bound receipt'],exit_condition:'Adequate proof'}]},next_action:'Close remaining scope'};
+  vm.runInContext('data.rendering_artifacts=artifacts',context);
+  let html=render();
+  for(const id of [2,3,4])assert.match(html,new RegExp('data-render-artifact="'+id+'"'));
+  assert.match(html,/8 \/ 156 recorded passes; 147 pending; 1 failed/);
+  assert.match(html,/Historical source phase/);
+  assert.match(html,/not current-code acceptance/);
+  assert.match(html,/Frozen plan state: planned/);
+  assert.match(html,/Closes when:/);
+  assert.match(html,/&lt;script&gt;unsafe&lt;\/script&gt;/);
+  assert.doesNotMatch(html,/<script>unsafe/);
+  vm.runInContext("data.rendering_artifacts.progress={state:'unavailable',error:'Missing payload'}",context);
+  html=render();
+  assert.match(html,/Acceptance snapshot unavailable/);
+  assert.doesNotMatch(html,/8 \/ 156/);
+  assert.match(html,/data-artifact-task="EP04"/);
+});

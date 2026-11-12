@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Exercise producer entry/return forwarding and strict closed-input refusal."""
+from experiment_environment import stage_prefix
 from coverage_evidence import read_json, evidence_digest, write_report
 import argparse,hashlib,importlib.util,json,os,struct,subprocess,tempfile
 from pathlib import Path
@@ -7,13 +8,23 @@ from kind8_sprite_fixture import original_fixture
 ROOT=Path(__file__).resolve().parents[1]
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--claims',type=Path);p.add_argument('--prefix-template',type=Path);p.add_argument('--report',type=Path);a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--claims',type=Path);p.add_argument('--prefix-template',type=Path);p.add_argument('--shared-prefix',type=Path);p.add_argument('--output-parent',type=Path);p.add_argument('--report',type=Path);a=p.parse_args()
+ if a.shared_prefix and a.prefix_template:p.error('Select shared prefix or a template')
  if a.report and a.report.exists():p.error('Refusing evidence overwrite')
  spec=importlib.util.spec_from_file_location('inspector',ROOT/'tools/inspect-canvas-producers.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
  paths=['runtime/scene/canvas_producers.c','runtime/scene/canvas_producers.S','tests/canvas-producers-test.c','tests/canvas-startup-call.S','tools/test-canvas-producers.py','tools/inspect-canvas-producers.py','runtime/shadow/win32_min.h','protocols/include/mnm/canvas_producers_v1.h','tools/build-scene-observer.py','runtime/scene/world_producer_bypass.c','protocols/include/mnm/world_producer_bypass_v1.h','tests/world-producer-bypass-call.S','runtime/scene/world_raster_callers.h']
- paths += ['protocols/include/mnm/canvas_producers_v3.h','protocols/include/mnm/canvas_producers_v2.h','runtime/scene/world_raster_batch.c','protocols/include/mnm/world_raster_batch_v3.h']
+ paths += ['protocols/include/mnm/canvas_producers_v3.h','protocols/include/mnm/canvas_producers_v2.h','runtime/scene/world_raster_batch.c','protocols/include/mnm/world_raster_batch_v3.h','runtime/scene/world_word_state.h','reconstruction/rendering/word_backend_state.c','reconstruction/rendering/word_backend_state.h','tools/drawing_fixture_prefix.py','tools/experiment_environment.py']
  paths += ['reconstruction/rendering/generic_producer_caller.h','tests/world-effect-entry-call.S','tests/world-effect-hook-fixture.h','protocols/include/mnm/world_effect_raster_v1.h']
  paths += ['tools/kind8_sprite_fixture.py','tests/kind8-sprite-hook-fixture.h','tests/kind8-sprite-primary-call.S','runtime/scene/kind8_sprite_admission.h','reconstruction/rendering/kind8_sprite_class.h']
+ paths += ['runtime/scene/world_generic_state.h','runtime/scene/world_effect_prepare.h','runtime/scene/drawing_caller_state.h','runtime/scene/drawing_caller_state_codec.h','protocols/include/mnm/drawing_caller_state_v1.h','runtime/canvas-writers/raster_workspace.h','reconstruction/rendering/raster_pixels.h','reconstruction/rendering/pixel_kernel.h']
+ paths += ['tools/drawing_caller_state.py']
+ paths += ['protocols/include/mnm/drawing_caller_state_v2.h','runtime/scene/world_rectangle_state.h','tests/world-rectangle-hook-fixture.h']
+ paths += ['protocols/include/mnm/drawing_caller_bindings_v1.h']
+ paths += ['protocols/include/mnm/drawing_caller_state_v3.h']
+ paths += ['protocols/include/mnm/drawing_caller_state_v4.h']
+ paths += ['protocols/include/mnm/drawing_caller_state_v5.h']
+ paths += ['protocols/include/mnm/drawing_caller_tail_v1.h']
+ paths += ['runtime/scene/palette_observation.h','runtime/scene/palette_observation.S']
  claims=json.loads(a.claims.read_text()) if a.claims else None
  sources={name:sha(ROOT/name) for name in paths}
  if claims:
@@ -22,12 +33,17 @@ def main():
    sources[name]=h
  paths += ['tools/drawing_colour_refusals.py','runtime/scene/vertical_bar_trace.h','reconstruction/rendering/vertical_bar.h','runtime/scene/drawing_source_point.h','protocols/include/mnm/drawing_source_point_v1.h','runtime/scene/producer_trace_guard.h','runtime/scene/drawing_publication.h','runtime/scene/drawing_publication.S','runtime/scene/drawing_physical.h','runtime/scene/glyph_live.c','runtime/scene/glyph_live.h','runtime/scene/glyph_leave.S','runtime/scene/glyph_route.c','reconstruction/rendering/glyph_backend.c','reconstruction/rendering/glyph_backend_state.c','reconstruction/rendering/glyph_backend_x87.S','reconstruction/rendering/glyph_backend.h','reconstruction/rendering/glyph_backend_state.h']
  sources.update({name:sha(ROOT/name) for name in paths})
- parent=ROOT/'working/tests/canvas-producers';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));capture=out/'capture';capture.mkdir();print(out,flush=True)
+ parent=a.output_parent.resolve() if a.output_parent else ROOT/'working/tests/canvas-producers'
+ if not (parent.is_relative_to(ROOT/'working') or parent.is_relative_to(Path('/tmp'))):p.error('Output parent must be private working or RAM storage')
+ parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));capture=out/'capture';capture.mkdir();print(out,flush=True)
  env={**{k:v for k,v in os.environ.items() if not k.startswith('MNM_')},'WINEPREFIX':str(ROOT/'working/tests/scene-selftest-wine'),'WINEDEBUG':'-all','MNM_CANVAS_PRODUCERS':'1','MNM_SCENE_DIR':'Z:'+str(capture).replace('/','\\'),'MNM_SCENE_SAMPLES':'1'}
  env.pop('MNM_CANVAS_STARTUP',None);env.pop('MNM_SCENE_WORLD',None)
  if a.prefix_template:
-  subprocess.run(['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),str(out/'wineprefix')],check=True)
+  stage_prefix(ROOT, str(a.prefix_template.resolve()), str(out/'wineprefix'))
   env['WINEPREFIX']=str(out/'wineprefix')
+ if a.shared_prefix:
+  from drawing_fixture_prefix import borrow
+  shared,_=borrow(ROOT,a.shared_prefix);env['WINEPREFIX']=str(shared)
  def run(name,command):
   with (out/(name+'.log')).open('x') as log:subprocess.run([str(x) for x in command],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=180)
  run('bridge-build',['python3',ROOT/'tools/build-scene-observer.py','--selftest']);build=ROOT/'working/build/scene-observer-selftest'
@@ -35,7 +51,7 @@ def main():
  objects=[]
  for name in ['tests/canvas-producers-test.c','tests/canvas-startup-call.S','runtime/scene/canvas_producers.S','tests/world-producer-bypass-call.S','tests/world-effect-entry-call.S','tests/kind8-sprite-primary-call.S']:
   obj=out/(Path(name).name+'.obj');objects.append(obj);run('compile-'+Path(name).name,['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-I'+str(out),'-c',ROOT/name,'-o',obj])
- run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/base:0x400000','/dynamicbase:no','/safeseh:no','/timestamp:0','/out:'+str(out/'fixture.exe'),*objects,*[build/(name+'.obj') for name in ('drawing_publication.S','glyph_live.c','glyph_leave.S','glyph_route.c','glyph_backend.c','glyph_backend_state.c','glyph_backend_x87.S')],build/'kernel32.lib'])
+ run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/base:0x400000','/dynamicbase:no','/safeseh:no','/timestamp:0','/out:'+str(out/'fixture.exe'),*objects,*[build/(name+'.obj') for name in ('palette_observation.S','drawing_publication.S','glyph_live.c','glyph_leave.S','glyph_route.c','glyph_backend.c','glyph_backend_state.c','glyph_backend_x87.S','word_backend_state.c')],build/'kernel32.lib'])
  run('forwarding',['xvfb-run','-a','wine',out/'fixture.exe'])
  from drawing_colour_refusals import decode as decode_colour_refusal
  colour_refusals=[decode_colour_refusal(p.read_bytes()) for p in sorted(capture.glob('producer-colour-refusal-*.bin'))]
@@ -108,6 +124,34 @@ def main():
  if [r[15] for r in sprite_rows]!=[1,1,3,8,8]*3:raise ValueError('Sprite native entry routes changed')
  report['sprite_artifacts']={str(capture/name):sha(capture/name) for name in ['world-kind8-sprite-fixture-0000.bin','world-kind8-sprite-batch-0000.bin','world-kind8-sprite-proof-0000.bin']}
  report.update(sprite_original=sprite_original,sprite_primary_calls=10,sprite_direct_abi_entries=5,sprite_random_calls=15,sprite_protected_short_spans=628,sprite_guard_controls=708,sprite_legacy_transport_refused=True,sprite_fixture=str(capture/'world-kind8-sprite-fixture-0000.bin'),sprite_batch=str(capture/'world-kind8-sprite-batch-0000.bin'),sprite_native_draws=15,sprite_original_canvas_protected_unchanged=True)
+ from drawing_caller_state import decode as decode_caller_state
+ from drawing_caller_state import decode_bindings
+ state=decode_caller_state((capture/'caller-state-0000.bin').read_bytes())
+ assert state['version']==5 and state['completed']==18 and sum(row['kind']==1 for row in state['rows'])==17 and sum(row['kind']==2 for row in state['rows'])==1
+ assert all(row['epoch']is None for row in state['rows'])
+ assert all(row['last_error_before']==1234 and row['last_error_after']==1234 for row in state['rows'])
+ contexts=[row for row in state['rows']if row['context_kind']]
+ assert len(contexts)==12 and all(row['enclosing_caller']==0x5006b2 for row in contexts)
+ assert [(row['tag'],row['context_kind'])for row in contexts[-2:]]==[(26,1),(52,1)]
+ _,rectangle_ops=m.decode((capture/'world-rectangle-fixture-0000.bin').read_bytes(),complete=False)
+ assert [(row[2],row[22],len(payload))for row,payload in rectangle_ops]==[(14,0x54ab16,20),(26,0x54ab72,12)]
+ assert not decode_bindings((capture/'caller-bindings-0000.bin').read_bytes(),state)['rows']
+ supplied=decode_caller_state((capture/'caller-state-0001.bin').read_bytes())
+ targets=decode_bindings((capture/'caller-bindings-0001.bin').read_bytes(),supplied)
+ assert supplied['completed']==2 and [r['enclosing_caller']for r in supplied['rows']]==[0x500566,0x500a8c]
+ assert [(r['word_target'],r['generic_target'])for r in targets['rows']]==[(0x597086,0x5947b2),(0x12345678,0)]
+ assert [(r['epoch']['generation_before'],r['epoch']['generation_after'],r['epoch']['source_before'],r['epoch']['source_after'],r['epoch']['nonce'])for r in supplied['rows']]==[(7,7,3,3,456*2**32+123),(7,7,3,4,456*2**32+123)]
+ assert [tuple(r['environment'][k]for k in ('wave_guard','source_rows_guard','glyph_sentinel','phase','amplitude','format','stride'))for r in supplied['rows']]==[(0x7d00,0x7d00,0,7,13,0,800),(0,0,0x3f800000,0x80000000,0,0x1234,0)]
+ supplied_return=decode_caller_state((capture/'caller-state-0002.bin').read_bytes())
+ assert supplied_return['version']==5 and supplied_return['completed']==1
+ r=supplied_return['rows'][0];assert r['kind']==1 and r['tag']==10 and r['after_registers'][7]==0x12345678 and r['sequence_after']==r['sequence_before']+3
+ assert not decode_bindings((capture/'caller-bindings-0002.bin').read_bytes(),supplied_return)['rows']
+ report['caller_native_return_supplied_controls']=1
+ from drawing_caller_state import decode_tail
+ tail=decode_tail((capture/'caller-source-tail-0003.bin').read_bytes(),m.decode)
+ assert (tail['generation'],tail['source'],tail['nonce'],tail['records'])==(7,3,456*2**32+123,1)
+ report['caller_tail_supplied_controls']=1
+ report.update(caller_state_native_completions=17,caller_state_retained_completions=1,caller_state_contexts=12,caller_state_version=5,caller_state_normal_retirement=True,caller_bindings_supplied_controls=2,caller_bindings_unknown_targets_retained=True,caller_opaque_context_supplied_controls=8)
  report.update(effect_entries_native_bypassed=5,effect_wire_normalized=True,effect_guarded_original_canvas_unchanged=True,effect_malformed_refusals=7)
  extent_raw=(capture/'world-extent640-fixture-0000.bin').read_bytes();_,extent_ops=m.decode(extent_raw,complete=False)
  extent_draws=[r for r,payload in extent_ops if r[2]==9]

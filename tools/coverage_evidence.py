@@ -6,6 +6,8 @@ and validation claims remain unchanged. Archives are pinned by SHA-256 in Git.
 from contextlib import contextmanager
 from contextvars import ContextVar
 from functools import lru_cache
+from collections import OrderedDict
+from concurrent.futures import ThreadPoolExecutor
 import gzip
 import hashlib
 import io
@@ -78,13 +80,54 @@ def safe_path(root, name):
 
 
 class Store:
-    def __init__(self, path, readonly=False):
+    def __init__(self, path, readonly=False, shared=False):
         self.path = Path(path)
+        self.shared = False
         if readonly:
             self.db = sqlite3.connect(self.path.resolve().as_uri() + '?mode=ro', uri=True)
         else:
             self.path.parent.mkdir(parents=True, exist_ok=True)
             self.db = sqlite3.connect(self.path, timeout=60)
+            existing = self.db.execute("SELECT 1 FROM sqlite_master WHERE name='metadata'").fetchone()
+            layout = self.db.execute("SELECT value FROM metadata WHERE key='chunk_layout'").fetchone() if existing else None
+            if layout == ('shared-v1',) or (shared and not existing):
+                self._shared_schema()
+            elif shared:
+                self.db.close()
+                raise ValueError('Existing legacy stores require explicit verified import into a shared store')
+            else:
+                self._legacy_schema()
+        layout = self.db.execute("SELECT value FROM metadata WHERE key='chunk_layout'").fetchone()
+        self.shared = layout == ('shared-v1',)
+        if self.db.execute("SELECT value FROM metadata WHERE key='schema'").fetchone() != ('1',):
+            raise ValueError('Unsupported evidence database')
+
+    def _shared_schema(self):
+        # The read schema remains compatible with old Store(readonly=True).
+        # chunks is a view; complete-object and cross-object block identities
+        # are separate, so repeated blocks have one physical representation.
+        self.db.executescript('''
+            PRAGMA journal_mode=WAL;
+            PRAGMA foreign_keys=ON;
+            PRAGMA synchronous=FULL;
+            CREATE TABLE IF NOT EXISTS objects(sha256 TEXT PRIMARY KEY,size INTEGER NOT NULL,git_blob TEXT);
+            CREATE TABLE IF NOT EXISTS blocks(sha256 TEXT PRIMARY KEY,size INTEGER NOT NULL,payload BLOB NOT NULL);
+            CREATE TABLE IF NOT EXISTS object_parts(sha256 TEXT REFERENCES objects(sha256),ordinal INTEGER,
+                block TEXT REFERENCES blocks(sha256),PRIMARY KEY(sha256,ordinal));
+            CREATE VIEW IF NOT EXISTS chunks AS SELECT p.sha256,p.ordinal,b.payload
+                FROM object_parts p JOIN blocks b ON b.sha256=p.block;
+            CREATE TABLE IF NOT EXISTS versions(git_blob TEXT,path TEXT,sha256 TEXT REFERENCES objects(sha256),PRIMARY KEY(git_blob,path));
+            CREATE INDEX IF NOT EXISTS git_blob_lookup ON objects(git_blob);
+            CREATE TABLE IF NOT EXISTS metadata(key TEXT PRIMARY KEY,value TEXT NOT NULL);
+            INSERT OR IGNORE INTO metadata VALUES('schema','1');
+            INSERT OR IGNORE INTO metadata VALUES('chunk_layout','shared-v1');
+        ''')
+        for table in ('objects', 'blocks', 'object_parts', 'versions'):
+            for operation in ('update', 'delete'):
+                self.db.execute(f"CREATE TRIGGER IF NOT EXISTS {table}_no_{operation} BEFORE {operation} ON {table} BEGIN SELECT RAISE(ABORT,'Immutable evidence'); END")
+        self.db.commit()
+
+    def _legacy_schema(self):
             self.db.executescript('''
                 PRAGMA foreign_keys=ON;
                 CREATE TABLE IF NOT EXISTS objects (
@@ -107,8 +150,6 @@ class Store:
                 CREATE TRIGGER IF NOT EXISTS chunks_no_delete BEFORE DELETE ON chunks
                     BEGIN SELECT RAISE(ABORT,'Immutable evidence'); END;
             ''')
-        if self.db.execute("SELECT value FROM metadata WHERE key='schema'").fetchone() != ('1',):
-            raise ValueError('Unsupported evidence database')
 
     def close(self):
         self.db.close()
@@ -117,7 +158,15 @@ class Store:
         row = self.db.execute('SELECT size FROM objects WHERE sha256=?', (sha,)).fetchone()
         return row is not None and (size is None or row[0] == size)
 
-    def put(self, stream, size, git_blob=None):
+    def put(self, stream, size, git_blob=None, *, prepared=None):
+        if self.shared:
+            from evidence_blocks import CompressionPool, prepare, insert
+            if prepared is not None:
+                if prepared.size!=size:raise ValueError('Prepared evidence size differs')
+                return insert(self,prepared,git_blob)
+            with CompressionPool(1) as pool,prepare([self],stream,size,pool) as value:
+                return insert(self,value,git_blob)
+        if prepared is not None:raise ValueError('Prepared blocks require shared evidence')
         h, compressed, remaining = hashlib.sha256(), [], size
         while remaining:
             data = stream.read(min(CHUNK, remaining))
@@ -130,7 +179,7 @@ class Store:
         if not self.has(sha):
             self.db.execute('INSERT INTO objects VALUES (?,?,?)', (sha, size, git_blob))
             self.db.executemany('INSERT INTO chunks VALUES (?,?,?)',
-                                ((sha, i, value) for i, value in enumerate(compressed)))
+                               ((sha, i, value) for i, value in enumerate(compressed)))
         elif not self.has(sha, size):
             raise ValueError('Evidence size collision')
         return sha
@@ -184,11 +233,18 @@ def shared_cache(root):
     previous = os.environ.get('MM_EVIDENCE_CACHE')
     if previous is None:
         os.environ['MM_EVIDENCE_CACHE'] = str(cache_root(root))
+    from verification_budget import DIRECTORY, directory
+    prior_budget = os.environ.get(DIRECTORY)
+    os.environ[DIRECTORY] = str(directory(root))
     try:
         yield
     finally:
         if previous is None:
             os.environ.pop('MM_EVIDENCE_CACHE', None)
+        if prior_budget is None:
+            os.environ.pop(DIRECTORY, None)
+        else:
+            os.environ[DIRECTORY] = prior_budget
 
 
 def config(root):
@@ -272,16 +328,64 @@ def opened_store(path, readonly=False):
         store.close()
 
 
+def pending_path(root):
+    """Use one explicitly configured ignored store across new worktrees."""
+    root = Path(root).resolve()
+    from evidence_objects import settings
+    shared = settings(root)
+    if shared:
+        return shared[0]
+    value = None
+    if (root/".git").exists():
+        result = subprocess.run(["git", "-C", str(root), "config", "--get", "mm.evidencePending"],
+                                capture_output=True, text=True, check=False)
+        if result.returncode == 0:
+            value = result.stdout.strip()
+    if value:
+        target = Path(value)
+        if not target.is_absolute() or "working" not in target.parts or any(
+                part in ("original", ".git", "..") for part in target.parts):
+            raise ValueError("Shared pending evidence must be an absolute ignored working path")
+        if "working" not in target.resolve().parts or any(
+                part in ("original", ".git") for part in target.resolve().parts):
+            raise ValueError("Shared pending evidence resolves outside ignored working storage")
+        return target
+    return root/"working/coverage/evidence-pending.sqlite3"
+
+
+def extra_pending_paths(root):
+    """Read-only legacy stores; never import their contents just to inspect Git."""
+    value = os.environ.get("MM_EVIDENCE_EXTRA_DB", "[]")
+    paths = json.loads(value)
+    if not isinstance(paths, list) or any(not isinstance(p, str) for p in paths):
+        raise ValueError("MM_EVIDENCE_EXTRA_DB must be a JSON array of absolute SQLite paths")
+    root = Path(root)
+    if (root/".git").exists():
+        result = subprocess.run(["git", "-C", str(root), "config", "--get-all", "mm.evidenceExtra"],
+                                capture_output=True, text=True, check=False)
+        if result.returncode == 0:
+            paths += result.stdout.splitlines()
+    answer = []
+    for name in paths:
+        path = Path(name)
+        if not path.is_absolute() or "original" in path.resolve().parts or ".git" in path.resolve().parts:
+            raise ValueError("Unsafe auxiliary evidence store")
+        if path not in answer:
+            answer.append(path)
+    return answer
+
+
 class Resolver:
     def __init__(self, root):
         self.root, self.stores = Path(root), []
         self.spec = config(root)
+        self.extra_pending = extra_pending_paths(root)
         alternate = os.environ.get('MM_EVIDENCE_DB')
         if alternate:
             self.stores.append(Store(alternate, readonly=True))
-        pending = self.root/'working/coverage/evidence-pending.sqlite3'
-        if pending.is_file() and not any(s.path.resolve() == pending.resolve() for s in self.stores):
-            self.stores.append(Store(pending, readonly=True))
+        for pending in (self.root/'working/coverage/evidence-pending.sqlite3', pending_path(self.root)):
+            if pending.is_file() and not any(s.path.resolve() == pending.resolve() for s in self.stores):
+                self.stores.append(Store(pending, readonly=True))
 
     def close(self):
         for store in self.stores:
@@ -291,6 +395,17 @@ class Resolver:
         for store in self.stores:
             if store.has(sha, size):
                 return store
+        for path in self.extra_pending:
+            if not path.is_file():
+                raise ValueError('Configured auxiliary evidence unavailable: ' + str(path))
+            info = path.stat()
+            existing = next((s for s in self.stores
+                             if (s.path.stat().st_dev, s.path.stat().st_ino) == (info.st_dev, info.st_ino)), None)
+            if existing is None:
+                existing = Store(path, readonly=True)
+                self.stores.append(existing)
+            if existing.has(sha, size):
+                return existing
         for archive in (self.spec or {}).get('archives', []):
             expected = cache_root(self.root)/(archive['sha256'] + '.sqlite3')
             if any(s.path == expected for s in self.stores):
@@ -314,10 +429,17 @@ class Reader:
     Connections belong to one invocation. A later audit always observes the
     current pointer or edited file, and every resolved payload is hash checked.
     """
-    def __init__(self, root):
+    def __init__(self, root, *, memoize=False, cache_bytes=16*1024**2):
         self.root = Path(root).resolve()
         self.resolver = Resolver(self.root)
         self._token = None
+        self._memoize = memoize
+        if type(cache_bytes) is not int or cache_bytes < 0:
+            raise ValueError('Invalid invocation evidence-cache bound')
+        self._cache_limit = cache_bytes
+        self._fingerprints = {}
+        self._bodies = OrderedDict()
+        self._body_bytes = 0
 
     def __enter__(self):
         self._token = _active_reader.set(self)
@@ -331,7 +453,43 @@ class Reader:
             self.close()
 
     def close(self):
+        self._fingerprints.clear()
+        self._bodies.clear()
+        self._body_bytes = 0
         self.resolver.close()
+
+    def _stamp(self, target):
+        s = target.stat()
+        return (s.st_dev, s.st_ino, s.st_size, s.st_mtime_ns, s.st_ctime_ns)
+
+    def _observed(self, target):
+        if not self._memoize:
+            return None, None
+        stamp = self._stamp(target)
+        previous = self._fingerprints.get(target)
+        if previous is not None and previous[0] != stamp:
+            self._fingerprints.pop(target)
+            old = self._bodies.pop(target, None)
+            if old is not None:
+                self._body_bytes -= len(old)
+            previous = None
+        return stamp, previous[1] if previous is not None else None
+
+    def _remember(self, target, stamp, sha, body=None):
+        if not self._memoize:
+            return
+        if self._stamp(target) != stamp:
+            raise ValueError('Input changed during evidence read: ' + str(target))
+        self._fingerprints[target] = (stamp, sha)
+        if body is not None and len(body) <= self._cache_limit:
+            old = self._bodies.pop(target, None)
+            if old is not None:
+                self._body_bytes -= len(old)
+            while self._bodies and self._body_bytes + len(body) > self._cache_limit:
+                _, evicted = self._bodies.popitem(last=False)
+                self._body_bytes -= len(evicted)
+            self._bodies[target] = body
+            self._body_bytes += len(body)
 
     def path(self, path):
         path = Path(path)
@@ -342,8 +500,14 @@ class Reader:
 
     def read_bytes(self, path):
         target = self.path(path)
+        stamp, known = self._observed(target)
+        if known is not None and target in self._bodies:
+            self._bodies.move_to_end(target)
+            return self._bodies[target]
         data = target.read_bytes()
         if len(data) > 160 or not data.startswith(MAGIC):
+            if self._memoize:
+                self._remember(target, stamp, hashlib.sha256(data).hexdigest(), data)
             return data
         ident = identity(data)
         relative = target.relative_to(self.root).as_posix()
@@ -352,7 +516,9 @@ class Reader:
         safe_path(self.root, relative)
         output = io.BytesIO()
         self.resolver.copy(*ident, output)
-        return output.getvalue()
+        body = output.getvalue()
+        self._remember(target, stamp, ident[0], body)
+        return body
 
     def read_text(self, path, encoding=None, errors=None, newline=None):
         with io.TextIOWrapper(io.BytesIO(self.read_bytes(path)), encoding=encoding,
@@ -364,10 +530,20 @@ class Reader:
 
     def digest(self, path):
         target = self.path(path)
+        stamp, known = self._observed(target)
+        if known is not None:
+            return known
         with target.open('rb') as stream:
             head = stream.read(161)
         if len(head) > 160 or not head.startswith(MAGIC):
-            return digest_file(target)
+            if self._memoize and target.stat().st_size <= self._cache_limit:
+                body = target.read_bytes()
+                sha = hashlib.sha256(body).hexdigest()
+                self._remember(target, stamp, sha, body)
+            else:
+                sha = digest_file(target)
+                self._remember(target, stamp, sha)
+            return sha
         ident = identity(head)
         relative = target.relative_to(self.root).as_posix()
         if not artifact(relative):
@@ -377,8 +553,68 @@ class Reader:
             def write(self, chunk):
                 pass
         # Store.copy checks the original SHA-256, size and chunk boundaries.
-        self.resolver.copy(*ident, DigestSink())
+        output = io.BytesIO() if self._memoize and ident[1] <= self._cache_limit else DigestSink()
+        self.resolver.copy(*ident, output)
+        self._remember(target, stamp, ident[0], output.getvalue() if isinstance(output, io.BytesIO) else None)
         return ident[0]
+
+    def prefetch_digests(self, paths, *, workers=4):
+        """Verify uncached report payloads in bounded, independent read workers.
+
+        Each worker owns its SQLite connections and decodes one chunk at a time.
+        Only fingerprints return to this reader; large report bodies are never
+        buffered. This invocation's file stamps still guard every alias.
+        """
+        if type(workers) is not int or not 1 <= workers <= 4:
+            raise ValueError('Evidence verification requires one to four workers')
+        if not self._memoize:
+            return
+        jobs = {}
+        for path in paths:
+            target = self.path(path)
+            stamp, known = self._observed(target)
+            if known is not None:
+                continue
+            with target.open('rb') as stream:
+                head = stream.read(161)
+            if len(head) > 160 or not head.startswith(MAGIC):
+                continue  # Ordinary source/document hashing keeps its normal path.
+            ident = identity(head)
+            relative = target.relative_to(self.root).as_posix()
+            if not artifact(relative):
+                raise ValueError('Evidence pointer outside report storage policy: ' + relative)
+            safe_path(self.root, relative)
+            jobs.setdefault(ident, []).append((target, stamp))
+        if not jobs:
+            return
+        class Sink:
+            def write(self, chunk):
+                pass
+
+        def verify(group):
+            # sqlite3 connections must be created and closed on their owner
+            # thread. Readers never write objects or create evidence pointers.
+            resolver = Resolver(self.root)
+            try:
+                for ident in group:
+                    resolver.copy(*ident, Sink())
+                return group
+            finally:
+                resolver.close()
+
+        from verification_budget import workers as budget
+        with budget(self.root, min(workers, len(jobs))) as count:
+            groups = [[] for _ in range(count)]
+            sizes = [0] * count
+            for ident in sorted(jobs, key=lambda key: key[1], reverse=True):
+                index = min(range(count), key=sizes.__getitem__)
+                groups[index].append(ident)
+                sizes[index] += ident[1]
+            with ThreadPoolExecutor(max_workers=count) as pool:
+                for verified in pool.map(verify, groups):
+                    for sha, size in verified:
+                        for target, stamp in jobs[(sha, size)]:
+                            self._remember(target, stamp, sha)
 
 
 def _reader_root(path, root=None):
@@ -459,9 +695,15 @@ def write_report(root, path, data):
                and artifact(target.resolve().relative_to(root).as_posix()))
     if managed:
         safe_path(root, target.resolve().relative_to(root).as_posix())
-        with opened_store(root/'working/coverage/evidence-pending.sqlite3') as store:
-            with store.db:
-                sha = store.put(io.BytesIO(data), len(data))
+        from evidence_objects import settings, configured
+        shared = settings(root)
+        if shared:
+            with configured(root) as pair:
+                sha = pair.put(io.BytesIO(data), len(data))
+        else:
+            with opened_store(pending_path(root)) as store:
+                with store.db:
+                    sha = store.put(io.BytesIO(data), len(data))
         atomic_replace(target, pointer(sha, len(data)), None)
         return sha
     atomic_replace(target, data, None)
@@ -660,7 +902,7 @@ def clean(root, path, stream, out):
                 out.write(indexed.stdout)
                 return
             data.seek(0)
-        store_path = Path(root)/'working/coverage/evidence-pending.sqlite3'
+        store_path = pending_path(root)
         with opened_store(store_path) as store, store.db:
             sha = store.put(data, size)
         out.write(pointer(sha, size))

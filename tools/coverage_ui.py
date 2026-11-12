@@ -15,6 +15,7 @@ import threading
 from urllib.parse import parse_qs, urlsplit
 
 from coverage_audit import audit, STAGES
+from coverage_rendering_artifacts import rendering_artifacts_view, artifact_files
 from coverage_claims import stage_kinds
 from rendering_reconciliation import load_reviews
 from coverage_importance import importance_view
@@ -315,6 +316,7 @@ def _build_snapshot(root):
     definition = json.loads((root / TRACKS).read_text())
     snapshot['tracks'] = track_view(definition, behaviors, snapshot['evidence'])
     snapshot['spell_progress'] = spell_view(definition, behaviors)
+    snapshot['rendering_artifacts'] = rendering_artifacts_view(root, definition)
     importance = importance_view(json.loads((root / IMPORTANCE).read_text()), register, snapshot['tracks'], root=root)
     snapshot['importance'] = importance
     snapshot['critical_needs'] = critical_needs_view(
@@ -331,6 +333,7 @@ def _build_snapshot(root):
         if behavior['id'] in planned:
             behavior['tranche_task'] = planned[behavior['id']]
     allowed = {REGISTER, TRACKS, IMPORTANCE, CRITICAL_NEEDS}
+    allowed.update(artifact_files(snapshot['rendering_artifacts']))
     for b in behaviors:
         for role in ('documents', 'implementation', 'tests'): allowed.update(b[role])
     allowed.update(e['record'] for e in register['evidence'])

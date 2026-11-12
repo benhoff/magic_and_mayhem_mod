@@ -33,6 +33,18 @@ int main(int argc,char** argv)try{
     require(encoder.submit([&]{return readNativeCaptureRequest(request);}).get().isEmpty(),"Missing request invented name");
     write("{\"name\":\"combat-00-dialogue\"}");
     require(encoder.submit([&]{return readNativeCaptureRequest(request);}).get()=="combat-00-dialogue"&&QFile::exists(request),"Valid request changed or removed before capture");
+    write("{\"name\":\"camera-mini-input-0-00\",\"oracle\":\"resident-native\"}");
+    require(readNativeCaptureRequest(request).isEmpty()&&!QFile::exists(request),"Unadmitted native-only request accepted");
+    write("{\"name\":\"camera-mini-input-0-00\",\"oracle\":\"resident-native\"}");
+    const auto selected=readNativeCaptureRequestPolicy(request,true);
+    require(selected.name=="camera-mini-input-0-00"&&selected.nativeOnly,"Explicit native capture lost policy");
+    const auto nativeOnlyBase=directory.filePath("native-only");
+    require(saveNativeDiagnosticCapture(nativeOnlyBase,image,QImage{},true,{{"fallback",false}}),"Native capture waited for original pixels");
+    QFile nativeAck(nativeOnlyBase+".json");require(nativeAck.open(QIODevice::ReadOnly),"Native ACK missing");
+    const auto nativeMetadata=QJsonDocument::fromJson(nativeAck.readAll()).object();
+    require(nativeMetadata.value("native_saved").toBool()&&!nativeMetadata.value("original_saved").toBool()&&nativeMetadata.value("capture_oracle")=="resident-native"&&!QFile::exists(nativeOnlyBase+"-original.png"),"Native-only capture invented original image");
+    require(!saveNativeDiagnosticCapture(directory.filePath("dual-missing"),image,QImage{},false,{{"fallback",false}}),"Dual capture accepted absent original");
+    require(!saveNativeDiagnosticCapture(directory.filePath("native-missing"),QImage{},QImage{},true,{{"fallback",false}}),"Native capture accepted absent native image");
     for(const auto& bytes:{QByteArray("{\"name\":\"../escape\"}"),QByteArray("[1,2]"),QByteArray("{bad"),QByteArray("{\"name\":42}"),QByteArray(4097,' '),QByteArray("{\"name\":\"")+QByteArray(80,'a')+"\"}"}){
         write(bytes);require(encoder.submit([&]{return readNativeCaptureRequest(request);}).get().isEmpty()&&!QFile::exists(request),"Malformed/oversized request not removed on worker");
     }

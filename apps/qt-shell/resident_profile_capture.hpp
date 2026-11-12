@@ -1,6 +1,6 @@
 #pragma once
-#include <QJsonObject>
 #include <QString>
+#include <QJsonObject>
 #include <cstdint>
 #include <memory>
 #include <vector>

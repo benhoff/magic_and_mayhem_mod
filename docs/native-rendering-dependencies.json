@@ -53,7 +53,7 @@
     {
       "contract": "C06",
       "role": "mixed",
-      "decision": "Original lighting/table/configuration production can supply owned values; native pixel operations must consume current table/palette state. Bounded builder and preview implementations already exist.",
+      "decision": "Original lighting/table/configuration production remains a permitted preparation supplier; native pixel operations must consume current owned values. The public player now selects native terrain lighting by default. Original/observe overrides are separate configurations; a failed native worker retaining original fallback does not turn its failed outcome into a native-lighting pass.",
       "source_witnesses": [
         "runtime/scene/canvas_producers.c",
         "reconstruction/rendering/palette_effects.cpp"
@@ -93,7 +93,7 @@
     {
       "contract": "C10",
       "role": "conditional_unresolved",
-      "decision": "An unknown canvas is rejected through existing tracked-surface/current-Lock admission. No global alternate-slot exclusion, alias relationship, writer or allocation closure follows.",
+      "decision": "Tracked-surface/current-Lock admission and bounded native padded storage do not establish original natural alternate ownership or requiredness. The opt-in original allocation repair is an intentional policy with separate evidence; it does not identify the historical allocator/publisher or prove unreachability.",
       "source_witnesses": [
         "runtime/scene/world_raster_batch.c",
         "runtime/render/owned_session.h"
@@ -103,7 +103,7 @@
     {
       "contract": "C11",
       "role": "mixed",
-      "decision": "Qt input/wire and current callback admission are native; original simulation/input consumers are allowed suppliers. The strict movement/Mini failure remains P3.",
+      "decision": "Qt input/wire and callback admission are native; original simulation/input consumers are permitted suppliers. Recorded strict movement/Mini successes retain their source phases; current supported-player acceptance still requires the declared input, cursor, transition and retirement checks.",
       "source_witnesses": [
         "apps/qt-shell/input_forwarder.cpp",
         "runtime/menu/storage.h"
@@ -268,5 +268,6 @@
   ],
   "schema": 1,
   "kind": "authored_rendering_dependency_decisions",
-  "reviewed_commit": "c451022381223fceebec694ec055f215fda488b2"
+  "reviewed_commit": "648ce2191c6b5c5d5b18a2508dcddc2ee6fec7d7",
+  "completion_contract": "native-rendering-completion-v1"
 }

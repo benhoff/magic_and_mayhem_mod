@@ -1,5 +1,6 @@
 #include "native_frame_cadence.hpp"
 #include "resident_world_session.hpp"
+#include "resident_capture_path.hpp"
 #include "resident_profile_capture.hpp"
 #include "gl_viewport.hpp"
 #include <QJsonDocument>
@@ -18,11 +19,13 @@ struct WorldGpuJob {
     OwnedWorldSnapshot source;
     mnm::render::RenderStats stats;
     CanvasWorld::Profile profile;
+    CanvasWorld::AlternateStats alternate;
     QString driver;
     double nativeMs=0,producerMs=0;
     std::uint64_t readbacks=0,captures=0;
 };
-QString create(const QString& path,bool owned){auto nonce=QRandomGenerator::system()->generate64();if(!nonce)nonce=1;WorldContinuousChannel::create(path,nonce,0,true,owned,!owned && (qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE").isEmpty() || qEnvironmentVariableIntValue("MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS")==1));return path;}
+QString capturePath(const QString& channel){return residentCapturePath(channel,qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE"),qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE_DIRECTORY"));}
+QString create(const QString& path,bool owned){const auto capture=capturePath(path);auto nonce=QRandomGenerator::system()->generate64();if(!nonce)nonce=1;WorldContinuousChannel::create(path,nonce,0,true,owned,!owned && (capture.isEmpty() || qEnvironmentVariableIntValue("MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS")==1));return path;}
 CanvasProducer close(const std::array<std::uint8_t,192>& bytes,unsigned offset){
     CanvasProducer result{};for(unsigned i=0;i<24;++i){const auto* p=bytes.data()+offset+i*4;result.fields[i]=p[0]|unsigned(p[1])<<8|unsigned(p[2])<<16|unsigned(p[3])<<24;}
     if(result.fields[0]!=96 || result.fields[18] || result.fields[23])throw std::runtime_error("Resident World closing record");
@@ -32,7 +35,7 @@ CanvasProducer close(const std::array<std::uint8_t,192>& bytes,unsigned offset){
 ResidentWorldSession::ResidentWorldSession(GlViewport& viewport,const QString& path,const QString& game,bool independent):ResidentWorldSession(viewportRenderTarget(viewport),path,game,independent){}
 ResidentWorldSession::ResidentWorldSession(NativeRenderTarget target,const QString& path,const QString& game,bool independent):target_(std::move(target)),channel_(create(path,independent)),game_(game),independent_(independent){
     stageProfile_=qEnvironmentVariableIsSet("MNM_RESIDENT_STAGE_PROFILE");profileClock_.start();
-    const auto capture=qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE");
+    const auto capture=capturePath(path);
     if(!capture.isEmpty()){
         if(!stageProfile_)throw std::runtime_error("Resident capture requires stage profiling");
         capture_=std::make_unique<ResidentProfileCapture>(capture,256ull*1024*1024,!independent_ && qEnvironmentVariableIntValue("MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS")==1);
@@ -254,6 +257,7 @@ void ResidentWorldSession::pollAsynchronous(bool acceptedNormalQuit){
                     auto frame=backend->world->consumeResident(job->source.generation,job->source.handoff.stream);
                     job->nativeMs=clock.nsecsElapsed()/1000000.;job->producerMs=backend->world->producerWorkMs();job->profile=backend->world->profile();
                     job->stats=renderer.stats();job->driver=QString::fromStdString(renderer.driver().renderer);job->readbacks=backend->world->worldReadbacks();job->captures=backend->world->retainedImageCaptures();
+                    job->alternate=backend->world->alternateStats();
                     if(backend->world->completed()!=job->source.generation||job->readbacks||job->stats.nativeReadbacks||job->stats.rgbaReadbacks)throw std::runtime_error("Async World completion/readback contract");
                     return frame;
                 };
@@ -270,6 +274,7 @@ void ResidentWorldSession::pollAsynchronous(bool acceptedNormalQuit){
         const double production=std::chrono::duration<double,std::milli>(result.completed-result.started).count();
         productionMs_+=production;maxProductionMs_=std::max(maxProductionMs_,production);
         producerReadbacks_=job->readbacks;producerCaptures_=job->captures;
+        producerAlternate_=job->alternate;
         nativeMs_+=job->nativeMs;maxNativeMs_=std::max(maxNativeMs_,job->nativeMs);producerStats_=job->stats;producerDriver_=job->driver;
         decodeMs_+=source.decodeMs;handoffMs_+=source.prepareMs;producerMs_+=job->producerMs;prepareMs_+=job->profile.prepareMs;submitMs_+=job->profile.submitMs;++profiled_;
         if(frameTrace_)lastSourceTiming_={std::chrono::duration<double,std::milli>(result.started-source.readyAt).count(),std::chrono::duration<double,std::milli>(source.readyAt-source.acquiredAt).count(),source.decodeMs,source.prepareMs,job->producerMs,job->profile.prepareMs,job->profile.submitMs,source.ticks};
@@ -311,9 +316,11 @@ mnm::render::GpuFrame ResidentWorldSession::import(std::uint64_t generation,std:
 }
 QJsonObject ResidentWorldSession::report() const {
     const auto stats=asynchronous_?producerStats_:renderer_?renderer_->stats():mnm::render::RenderStats{};
+    const auto alternate=asynchronous_?producerAlternate_:world_?world_->alternateStats():CanvasWorld::AlternateStats{};
     const auto cpuSnapshots=!asynchronous_&&world_?world_->cpuReaderSnapshots():0;
     const auto owned=snapshotQueue_?snapshotQueue_->stats():WorldSnapshotQueue::Stats{};
     QJsonObject result{{"completed",QString::number(completed_)},{"imports",QString::number(imports_)},{"verified_returns",QString::number(returns_)},{"rasters",QString::number(rasters_)},
+        {"native_alternate_canvas",QJsonObject{{"enabled",alternate.enabled},{"publications",QString::number(alternate.publications)},{"frames",QString::number(alternate.frames)},{"copy_backs",QString::number(alternate.copies)},{"prepared_replays",QString::number(alternate.replays)},{"padding",int(alternate.xPadding)},{"padding_y",int(alternate.yPadding)},{"policy","Native GPU visible World with exclusive generation lease and optional centered padded backing; native history copied at entry and completed World copied back before UI. Original pointer slots are untouched."}}},
         {"first_world_canvas",int(world_?world_->firstWorldCanvas():0)},{"world_canvas",int(world_?world_->worldCanvas():0)},{"world_canvas_changes",QString::number(world_?world_->worldCanvasChanges():0)},
         {"world_context_changes",QString::number(world_?world_->worldContextChanges():0)},
         {"source_chunks_enabled",channel_.prefixes()},{"source_chunks",QString::number(sourceChunks_)},

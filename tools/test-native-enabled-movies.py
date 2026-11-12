@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Bounded enabled native intro playback followed by original frame publication."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import importlib.util
@@ -100,7 +101,7 @@ def main():
             if sha(game/name)!=metadata[key]:
                 raise ValueError('Staged game/bridge changed')
         prefix=out/'wineprefix'
-        run('clone-prefix',['cp','-a','--reflink=auto',(ROOT/'working/wineprefix-x86_64').resolve(),prefix])
+        stage_prefix(ROOT, (ROOT/'working/wineprefix-x86_64').resolve(), prefix, log=Path(prefix).parent / 'clone-prefix.log')
         env.update(WINEPREFIX=str(prefix),MNM_RENDER_MEDIA='Z:'+str(channel).replace('/','\\'),
                    MNM_RENDER_STREAM='Z:'+str(frame).replace('/','\\'))
         with (out/'wine.log').open('x') as log:

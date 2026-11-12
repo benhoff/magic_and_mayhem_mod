@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Validate opt-in canvas writer DLL admission against synthetic Win32 pages."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import json
@@ -26,7 +27,7 @@ def main():
         run('build',['python3',ROOT/'tools/build-canvas-writers.py','--selftest'])
         build=ROOT/'working/build/canvas-writers-selftest'
         for name in ['selftest.exe','MnmCanvasWriters.dll','manifest.json']:shutil.copy2(build/name,out/name)
-        run('clone-prefix',['cp','-a','--reflink=auto',ROOT/'working/wineprefix-x86_64',out/'wineprefix'])
+        stage_prefix(ROOT, ROOT/'working/wineprefix-x86_64', out/'wineprefix', log=Path(out/'wineprefix').parent / 'clone-prefix.log')
         run('wineboot',['wineboot','-u'],env)
         for mode in ['off','bad','anchor','on']:
             capture=out/(mode+'.bin');local={**env,'MNM_FADE_CAPTURE':'Z:'+str(capture).replace('/','\\')}

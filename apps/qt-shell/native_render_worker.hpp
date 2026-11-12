@@ -4,7 +4,9 @@
 #include "render_deadline_probe.hpp"
 #include "native_frame_trace.hpp"
 #include "native_worker_status_gate.hpp"
+#include "surface_loss_probe.hpp"
 #include <QThread>
+#include "acceptance_capture.hpp"
 #include <QOffscreenSurface>
 #include <mutex>
 #include <atomic>
@@ -28,11 +30,17 @@ public:
     const mnm::render::CommandResult* result() const{return status_.hasResult?&status_.result:nullptr;}
     QJsonObject report() const{return status_.report;}
     std::function<void()> framePresented;
+    // Immutable after create/first poll; invoked only by the render worker.
+    std::function<void(const mnm::render::SurfaceCommand&,const mnm::render::CommandResult&)> cpuReadQueued;
     std::function<void(LiveCommandSession::State)> stateChanged;
 private:
     std::atomic<std::uint64_t> pendingCpuRead_{0};
     void run() override;
     void join(bool producerExited);
+    void testSurfaceLoss();
+    std::unique_ptr<SurfaceLossProbe> surfaceLossProbe_;
+    bool surfaceLossParked_=false,surfaceLossDestroyed_=false,surfaceLossGuiThread_=false,surfaceLossTargetRestored_=false;
+    qint64 surfaceLossDestroyBegin_=0,surfaceLossDestroyEnd_=0;
     struct Status {
         LiveCommandSession::State state=LiveCommandSession::State::WaitingFrame;
         unsigned recoveries=0;
@@ -68,5 +76,6 @@ private:
     RenderStageTiming worldTiming_,commandTiming_,extraTiming_,exportTiming_,turnTiming_;
     RenderStageTiming activeWorldTiming_,activeCommandTiming_;
     QJsonArray slowTurns_;
+    AcceptanceCapture acceptance_{"exports"};
     std::uint64_t exports_=0,skipped_=0,highWater_=0,turns_=0,exportAllocations_=0;
 };

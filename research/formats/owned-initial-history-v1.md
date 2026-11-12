@@ -20,6 +20,23 @@ this extension. Earlier consumers reject the formerly reserved nonzero word23
 before replay, so mixed versions fail closed. Unmarked failure classes remain
 outside this scoped extension. It does not assert general original-driver failure semantics.
 
+Native RGB565 resident source prefixes additionally admit COPY word23
+`0x4e435331` (`NCS1`) for successful unequal-extent copies through original
+wrapper `0x58cbc0`. Word4 names the source, word3 the destination, words10..13
+retain the source rectangle, words8/9 the destination origin, words15/16 the
+positive destination width/height (at most2048), and word14 the raw source key
+or `UINT32_MAX` for opaque copies. There is no payload. A failed HRESULT or
+unknown marker refuses; an actual native rectangle refusal retains the existing
+NCR1 form instead. V1/V2 and older consumers reject this additive extension.
+
+The native replay uses integer-floor nearest sampling independently in X/Y,
+validates every sampled source before any destination write, and snapshots
+aliased source storage before writing. Keyed holes and the destination exterior
+retain their previous history. Dirty owned CPU words use the existing GPU mirror
+upload path. This is a native sampling policy; it does not establish original
+driver sampling, indexed/conversion/clipper stretch, natural alias reachability,
+or GPU-only stretching. See [the scoped implementation and evidence](../runtime/rendering-copy-natural-20261108.md).
+
 A retained display-transition witness has source81 at640x480, requested source
 rectangle(371,556)..(411,596), return0x88760096 and caller0x4a4c26. Earlier replay
 ignored this result and attempted the invalid copy. Native policy accounting

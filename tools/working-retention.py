@@ -45,7 +45,58 @@ def policy(path):
                 'monitor_seconds', 'stop_grace_seconds'):
         if key in value and (type(value[key]) not in (int, float) or not math.isfinite(value[key]) or value[key] <= 0):
             raise ValueError('Invalid policy value: ' + key)
+    if 'require_user_quota' in value and type(value['require_user_quota']) is not bool:
+        raise ValueError('require_user_quota must be boolean')
     return value
+
+
+def quota_status(path):
+    """Read this uid's Linux filesystem quota; never change any quota."""
+    import ctypes as c
+    import errno
+    import platform
+    class Dq(c.Structure):
+        _fields_=[(name,c.c_uint64) for name in ('bhardlimit','bsoftlimit','curspace','ihardlimit','isoftlimit','curinodes','btime','itime')]+[('valid',c.c_uint32)]
+    uid=os.getuid();result={'uid':uid,'state':'unsupported'}
+    library=c.CDLL(None,use_errno=True)
+    function=getattr(library,'quotactl_fd',None)
+    if function is None and (platform.system()!='Linux' or platform.machine()!='x86_64'):
+        return result
+    descriptor=os.open(path,os.O_RDONLY|os.O_DIRECTORY)
+    try:
+        value=Dq();c.set_errno(0)
+        if function is not None:
+            function.argtypes=[c.c_int,c.c_int,c.c_int,c.c_void_p];function.restype=c.c_int
+            status=function(descriptor,c.c_int(0x80000700).value,uid,c.byref(value))
+        else:
+            # Linux x86_64 asm/unistd_64.h: __NR_quotactl_fd=443.
+            library.syscall.restype=c.c_long
+            status=library.syscall(c.c_long(443),c.c_int(descriptor),c.c_uint(0x80000700),c.c_int(uid),c.byref(value))
+        if status:
+            number=c.get_errno();unsupported={errno.ENOSYS,errno.EOPNOTSUPP,errno.ESRCH,errno.ENODEV,errno.ENOTTY}
+            return dict(result,state='unsupported' if number in unsupported else 'error',errno=number)
+        if value.valid&3!=3:return dict(result,state='error',reason='Quota block limits/usage not returned')
+        # Linux QIF_DQBLKSIZE is1024bytes. A soft limit is conservatively
+        # honored even during its grace interval; no grace-space is reserved.
+        limits=[v*1024 for v in (value.bhardlimit,value.bsoftlimit) if v]
+        limit=min(limits) if limits else None
+        inode_limits=[v for v in (value.ihardlimit,value.isoftlimit) if v] if value.valid&12==12 else []
+        return dict(result,state='available',limit_bytes=limit,used_bytes=value.curspace,
+            available_bytes=max(0,limit-value.curspace) if limit is not None else None,
+            inode_available=max(0,min(inode_limits)-value.curinodes) if inode_limits else None,
+            valid=value.valid)
+    finally:os.close(descriptor)
+
+
+def available_space(working,rules):
+    filesystem=shutil.disk_usage(working).free
+    quota=quota_status(working)
+    if rules.get('require_user_quota',False) and quota['state']!='available':
+        raise OSError('Required user quota could not be read: '+json.dumps(quota,sort_keys=True))
+    available=quota.get('available_bytes') if quota['state']=='available' else None
+    free=min(filesystem,available) if available is not None else filesystem
+    if quota.get('inode_available')==0:free=0
+    return free,dict(quota,filesystem_free_bytes=filesystem,effective_free_bytes=free)
 
 
 def usage(working, depth=None):
@@ -228,10 +279,14 @@ def stop_group(child, grace):
 
 
 def guarded_run(command, root, rules):
-    child = subprocess.Popen(command, cwd=root, start_new_session=True)
+    descriptors = {}
+    if 'MM_INTEGRATION_LOCK_FD' in os.environ:
+        from integration_queue import require_lease
+        descriptors['pass_fds'] = (require_lease(root),)
+    child = subprocess.Popen(command, cwd=root, start_new_session=True, **descriptors)
     try:
         while child.poll() is None:
-            free = shutil.disk_usage(root / 'working').free
+            free,_ = available_space(root / 'working',rules)
             if free < rules['minimum_free_gib'] * GIB:
                 print(f"Stopping guarded command: {free / GIB:.2f} GiB free is below "
                       f"the {rules['minimum_free_gib']:g} GiB reserve.", file=sys.stderr, flush=True)
@@ -253,6 +308,7 @@ def guarded_run(command, root, rules):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--policy', type=Path, default=ROOT / 'tools/working-retention.json')
+    parser.add_argument('--root', type=Path, default=ROOT, help='Checkout owning the working path; defaults to this tool checkout')
     sub = parser.add_subparsers(dest='action', required=True)
     plan = sub.add_parser('inventory', help='Write a new dry-run JSON report')
     plan.add_argument('--output', type=Path, required=True)
@@ -268,23 +324,44 @@ def main():
     restore = sub.add_parser('restore', help='Restore an archived payload to its exact original path')
     restore.add_argument('path', help='Repository-relative working path from the archive catalog')
     args = parser.parse_args()
+    root = args.root.resolve()
     try:
         rules = policy(args.policy)
+        if args.action=='restore':
+            from evidence_workspace import MARKER
+            target=root/args.path
+            try:name=target.relative_to(root)
+            except ValueError:raise ValueError('Restore path is outside the selected checkout') from None
+            if not name.parts or name.parts[0]!='working' or any(p in ('.','..','original','.git') for p in name.parts):
+                raise ValueError('Restore requires a safe working path')
+            args.path=name.as_posix()
+            # A root or one of its descendants may have been sealed as a unit.
+            for parent in (target,*target.parents):
+                if parent==root/'working':break
+                if (parent/MARKER).is_file():
+                    from evidence_workspace import restore
+                    from evidence_objects import configured
+                    with configured(root) as pair:restore(root,parent,pair)
+                    print('Restored workspace: '+str(parent))
+                    if target.exists() or target.is_symlink():return 0
+                    # Older maintenance may already have archived this file
+                    # individually. Continue its original catalog restore.
+                    break
         if args.action in ('archive', 'restore'):
             from working_archive import archive_lock, maintain, restore as restore_file
             if args.action == 'restore':
                 with archive_lock(Path(rules['archive_root'])):
-                    restore_file(ROOT, Path(rules['archive_root']), args.path)
+                    restore_file(root, Path(rules['archive_root']), args.path)
                 print('Restored: ' + args.path)
                 return 0
             if args.max_files is not None and args.max_files <= 0:
                 raise ValueError('--max-files must be positive')
-            result = maintain(ROOT, rules, args.prune, args.include_worktree_output, args.max_files)
+            result = maintain(root, rules, args.prune, args.include_worktree_output, args.max_files)
             return 1 if result['failures'] else 0
         if args.action == 'inventory':
             if args.output.exists():
                 raise ValueError('Refusing to overwrite an inventory')
-            report = inventory(ROOT, rules)
+            report = inventory(root, rules)
             args.output.parent.mkdir(parents=True, exist_ok=True)
             with args.output.open('x') as out:
                 json.dump(report, out, indent=2)
@@ -298,11 +375,11 @@ def main():
             command = command[1:]
         if args.action == 'run' and not command:
             raise ValueError('Supply a command after --')
-        working = ROOT / 'working'
+        working = root / 'working'
         # Free-space-only launches need no expensive, non-atomic working-tree
         # scan. Inventory remains available for allocated-size accounting.
         total = usage(working)[str(working)] if rules.get('max_working_gib') is not None else 0
-        free = shutil.disk_usage(working).free
+        free,quota = available_space(working,rules)
         reasons = pressure(total, free, rules, args.reserve_gib * GIB)
         if reasons and args.action == 'run' and rules.get('auto_archive', False):
             from working_archive import maintain
@@ -310,16 +387,16 @@ def main():
             archive_rules = dict(rules, minimum_free_gib=rules['minimum_free_gib'] + args.reserve_gib)
             if rules.get('max_working_gib') is not None:
                 archive_rules['max_working_gib'] = max(0, rules['max_working_gib'] - args.reserve_gib)
-            maintain(ROOT, archive_rules, prune=True)
+            maintain(root, archive_rules, prune=True)
             total = usage(working)[str(working)]
-            free = shutil.disk_usage(working).free
+            free,quota = available_space(working,rules)
             reasons = pressure(total, free, rules, args.reserve_gib * GIB)
         print(json.dumps({'working_gib': total / GIB if rules.get('max_working_gib') is not None else None,
-                          'free_gib': free / GIB, 'minimum_free_gib': rules['minimum_free_gib'],
+                          'free_gib': free / GIB, 'user_quota':quota, 'minimum_free_gib': rules['minimum_free_gib'],
                           'reserved_gib': args.reserve_gib, 'refusal_reasons': reasons}), flush=True)
         if reasons:
             return 2
-        return guarded_run(command, ROOT, rules) if command else 0
+        return guarded_run(command, root, rules) if command else 0
     except (ValueError, OSError, subprocess.CalledProcessError) as exc:
         parser.exit(1, str(exc) + '\n')
 

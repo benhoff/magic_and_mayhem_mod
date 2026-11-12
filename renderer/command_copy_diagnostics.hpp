@@ -7,12 +7,14 @@ struct SurfaceCommand;
 // rendering operation, World provider, CPU reply or facade history transfer.
 class CommandCopyDiagnostics final {
 public:
-    enum class Selection { WorldAncestry, AllCopies };
+    enum class Selection { WorldAncestry, AllCopies, DistinctInputs };
     explicit CommandCopyDiagnostics(const QString& directory,Selection selection=Selection::WorldAncestry);
     ~CommandCopyDiagnostics();
     bool before(const SurfaceCommand&,GlBlitter&,SurfaceId source,SurfaceId target);
     void after(const SurfaceCommand&,GlBlitter&,SurfaceId target);
     void committed(const SurfaceCommand&);
+    // Terminal cleanup only; never join the sink before acknowledging END.
+    void finish();
 private:
     struct Impl;
     std::unique_ptr<Impl> impl_;

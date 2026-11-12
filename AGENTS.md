@@ -10,6 +10,39 @@ The supplement contains local storage limits, paths and build preferences.
 Keep it untracked and do not copy it to other machines. If absent, continue
 with these shared instructions.
 
+## Worktree ownership and integration readiness
+
+- Always create or reuse a dedicated, exclusively owned Git worktree and task
+  branch before editing repository files or running task-producing commands.
+  This includes documentation and tooling tasks. Inspect the starting checkout
+  read-only, then work in the owned checkout; do not develop in the main/master
+  checkout or another task's worktree. Reuse the same owned worktree for the
+  bounded task instead of creating a checkout per step. Apply the local storage
+  policy and share immutable inputs without copying installations or evidence.
+- Finish implementation, focused tests, source/coverage accounting, applicable
+  feature-branch checks and required evidence retention before requesting master
+  integration admission. Commit the owned batch through the normal finish/hook
+  workflow and pin its ready commit. Review known history gaps, dependencies and
+  likely conflicts outside the integration slot. All required inputs, review
+  reasons and local evidence must be available; no unresolved task blocker or
+  user decision may remain. Readiness permits explicitly recorded validation
+  limitations; it does not permit missing required checks or evidence.
+- Never acquire or queue for the integration lock to reserve a place while still
+  developing, testing or preparing evidence. Admit only ready tips. Batch already
+  ready, compatible tips when useful; never hold admission waiting for another
+  task to become ready. A blocked task must not hold up independent ready work.
+- Under admission, recheck the actual master tip and readiness, then perform only
+  the combined merge, required combined-tree review/checks/backups, normal staged
+  hook and checked promotion. Hold the lease throughout that attempt. If a
+  conflict, failed check, missing input or decision requires investigation or
+  repair, preserve the candidate and diagnostics and exit the admitted operation
+  promptly. Repair outside the slot, then reacquire and recheck actual master
+  before a new attempt. Do not sleep, wait for user input or run a debugging
+  session while holding admission. Release promptly after promotion or refusal.
+- Follow [the integration workflow](docs/integration-workflow.md). The lease
+  enforces exclusive master updates, not semantic readiness; agents must enforce
+  this checklist even when using a custom integration wrapper.
+
 ## Goal
 
 Build a documented, reproducible reverse-engineering and modding toolkit for
@@ -68,6 +101,34 @@ Apply any machine-specific storage budget and staging preferences from
 unique inputs, `.retain` pins and active consumers, and review dependencies
 before cleanup. Follow the SQLite evidence preservation rules below.
 
+### Proportionate retention for new work
+
+- Choose the smallest acquisition that answers the current question. Use bounded
+  semantic diagnostics first; request full lossless captures only for assertions
+  that need those bytes. Reuse applicable retained acquisitions for new analyses.
+- Retain the inputs and raw observations supporting a claim, exact tested
+  executables, source revision plus unique changes, configuration, result and
+  useful failure diagnostics. Keep unique negative evidence and reproduction
+  inputs. A setup refusal ordinarily needs its report, log and exact source state,
+  rather than a new complete installation or prefix snapshot.
+- Classify new compiler intermediates, resettable environments and reproducible
+  derived output as temporary at creation. Before their reviewed removal, check
+  consumers and pins and retain the reconstruction command, exact inputs and
+  tool versions. A tested binary or an irreplaceable capture is durable evidence.
+  Unknown/unclassified output remains held. Do not automatically archive every
+  rebuildable temporary byte into the permanent evidence pair.
+- Keep one owned active checkout per task and reuse shared immutable inputs.
+  Once a clean merged checkout is inactive, compact duplicate tracked research
+  and fixtures through the verified worktree workflow. Retain Git registration,
+  unique changes, working data and restore instructions. Existing pins and
+  historical evidence require their original reviewed handoff; this prospective
+  policy does not silently reclassify them.
+- Completed legacy catalogs may be consolidated with source-specific schema,
+  every logical record and original snapshot bytes retained in two verified
+  stores. Explicitly record retirement of physical SQLite page layouts and
+  restore commands; never present a logical reconstruction under an old
+  whole-container hash. See `docs/storage-consolidation.md`.
+
 ## Reverse-engineering coverage upkeep
 
 Use [binary-to-behavior accounting](research/runtime/coverage/README.md) alongside
@@ -86,6 +147,26 @@ infer semantic mappings or update the register automatically.
 - Keep understanding, implementation, original comparison, integration and live
   replacement statuses independent. Record intentional native policies separately
   from recovered baseline behavior. A function link covers only its stated scope.
+- Treat source drift as an impact review, not a reset of completed behavior.
+  Follow [targeted revalidation](docs/evidence-applicability.md).
+  Before launching another original-game run for an existing claim, inspect
+  `python3 tools/evidence-applicability.py plan --evidence <id> --behavior <id>`.
+  Use `--require-applicable` when consuming an unchanged accepted parent proof.
+  A preserved scope can supply retained inputs to a new analysis; an old
+  collector's whole-file freshness refusal alone does not justify recollection.
+  Documentation/accounting edits without a contract change require accounting.
+  Control changes require current controls; analyzer changes require retained-data
+  analysis; oracle changes require retained-capture comparison. Recollect only
+  affected runtime/input/scenario evidence, or evidence genuinely missing from
+  retained captures. Do not rerun a full matrix merely to make every hash current.
+- Preserve unchanged existing milestones with reviewed source-applicability
+  boundaries where appropriate. These reports pin original source bytes, existing
+  behavior/scenario contracts and accepted statuses; audits freshly compare the
+  named Python callables, conservative local dependencies and module initialization.
+  They preserve applicability, not exact byte freshness, new CLI/test-discovery
+  coverage, widened input domains or status promotions. Native/runtime sources
+  remain full-hash dependencies. Retain raw staleness and every superseded review;
+  do not replace old hashes or use an applicability report as fresh execution.
 - Preserve historical evidence and its recorded source hashes. Register a new
   result under a new evidence ID; never refresh old hashes just to clear staleness.
   Source-only changes may leave evidence stale: report the affected limitation,
@@ -262,7 +343,22 @@ fixtures and source locks as JSON. Evidence pointers in Git preserve exact origi
 SHA-256-pinned SQLite release archives; never refresh historical hashes to
 satisfy current checks. Local commits and local merges, including merges into
 local master, require locally available, hash-verified evidence, retained verified
-SQLite backups and passing coverage checks. Remote publication is not a
+SQLite backups and passing coverage checks. New local storage uses the shared
+immutable object pair in [evidence storage lifecycle](docs/evidence-storage.md):
+configure `mm.evidencePrimary` and `mm.evidenceReplica` on independent filesystems.
+Two verified copies of each unique object are the durable default. Incremental
+object replication and restored typed-record checkpoints satisfy local backup
+retention without adding whole SQLite images for every finish. Preserve the
+current machine free-space floors. Legacy copies retire only through explicit
+source-specific manifests, verified real restores and durable handoff receipts;
+record any retired physical container encoding honestly, without changing an
+original report hash. Stopped completed execution trees may transfer every file
+and original pin into this pair after full restore verification and consumer
+checks, retaining a pinned historical-path restore stub. This does not authorize
+source-checkout removal or generic cleanup of pins/recent/active inputs. Launch
+queues handoff; it never archives. A standard review cache is disposable only
+after its complete schema, rows, drafts and auxiliary data survive a verified
+checkpoint. Current/staged gates still execute; no cached pass is authoritative. Remote publication is not a
 prerequisite for either operation; never upload evidence merely to finish a
 local commit or merge. Keep the local databases and their backup catalogs pinned
 against working-storage cleanup; a Git commit contains references, not payloads.
@@ -287,7 +383,17 @@ payloads across outgoing history, verifies publication and commits the pinned
 availability manifest; `--push` explicitly also pushes the current branch.
 Preserve failed publication receipts and immutable assets. Publishing or omitting
 publication never changes engine validation claims.
-Use one owned worktree per bounded task batch. Keep later concurrent edits out
-of that batch's source snapshot, evidence claims and commit.
+Apply the worktree ownership and readiness checklist above. Keep later concurrent
+edits out of that batch's source snapshot, evidence claims and commit.
+Only after the task is ready, and before preparing the authoritative local master
+merge, acquire admission through
+`tools/integrate-work.py` for ready tips, or wrap the whole custom operation in
+`tools/with-integration-lock.py --execute --expected-master <commit>` and hold it
+through promotion. Follow `docs/integration-workflow.md`. Install current shared
+hooks from a durable checkout; the master reference guard requires an inherited
+active lease. Propagate it to child Git calls instead of disabling hooks. Keep
+coding and focused tests outside the integration slot. Compatible ready tips may
+share one reviewed batch; semantic conflicts and failed checks still require
+review. Current/staged checks and master-tip verification remain required.
 The review workspace remains local and its exact text exports remain Git/CI
 authority; archive relocation does not assert engine validation.

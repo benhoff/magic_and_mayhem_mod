@@ -149,7 +149,7 @@ class StagingTest(unittest.TestCase):
         alias = self.root/'alias'
         alias.symlink_to(self.source, target_is_directory=True)
         game = self.root/'game'
-        self.staging.copy_installation(alias, game)
+        self.staging.copy_installation(alias, game,persistent=True)
         self.assertFalse(game.is_symlink())
         (game/'Chaos.exe').write_bytes(b'staged executable')
         (game/'CFG/prefs.cfg').write_bytes(b'staged preferences')
@@ -160,7 +160,7 @@ class StagingTest(unittest.TestCase):
         game = self.root/'game'
         game.symlink_to(self.source, target_is_directory=True)
         with self.assertRaises(ValueError):
-            self.staging.copy_installation(self.source, game)
+            self.staging.copy_installation(self.source, game,persistent=True)
         self.assertFalse((self.source/'source').exists())
 
     def test_external_executable_link_is_refused_before_patch(self):
@@ -169,7 +169,7 @@ class StagingTest(unittest.TestCase):
         (self.source/'Chaos.exe').unlink()
         (self.source/'Chaos.exe').symlink_to(outside)
         with self.assertRaises(ValueError):
-            self.staging.copy_installation(self.source, self.root/'game')
+            self.staging.copy_installation(self.source, self.root/'game',persistent=True)
         self.assertEqual(outside.read_bytes(), b'untouched external executable')
 
     def test_external_preferences_link_is_refused_before_configuration(self):
@@ -178,7 +178,7 @@ class StagingTest(unittest.TestCase):
         (self.source/'CFG/prefs.cfg').unlink()
         (self.source/'CFG/prefs.cfg').symlink_to(outside)
         with self.assertRaises(ValueError):
-            self.staging.copy_installation(self.source, self.root/'game')
+            self.staging.copy_installation(self.source, self.root/'game',persistent=True)
         self.assertEqual(outside.read_bytes(), b'untouched external preferences')
 
 

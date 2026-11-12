@@ -3,13 +3,20 @@
  * retire/rebind a public wrapper without changing an in-flight copy's source.
  * No borrowed wrapper is read after the original copy starts. */
 struct NdCursorView {u32 origin,words[12],pin;};
-struct NdCursorScope {struct NdCursorView views[3];u32 count,failed;struct NdCursorScope* previous;};
+struct NdCursorScope {struct NdCursorView views[3];u32 count,failed,slot;struct NdCursorScope* previous;};
 struct NdCursorCopy {struct NdCursorView source,dest;struct NdCursorCopy* previous;};
 static struct NdCursorScope* nd_cursor_scope;
 static struct NdCursorCopy* nd_cursor_copy_active;
+static int nd_cursor_scope_failed(void){
+ return nd_cursor_scope && nd_cursor_scope->slot>=4 && nd_cursor_scope->slot<=7 && nd_cursor_scope->failed;
+}
+static int nd_cursor_scope_geometry(u32 geometry){
+ if(geometry!=2 || !nd_cursor_scope || nd_cursor_scope->slot<4 || nd_cursor_scope->slot>7)return 0;
+ nd_cursor_scope->failed=1;++nd_cursor_counts[14];return 1;
+}
 static void nd_cursor_view_drop(struct NdCursorView* v){if(v->pin){if(NativeDrawUnpinV1(v->pin))ExitProcess(123);v->pin=0;}}
 static int nd_cursor_scope_enter(struct NdCursorScope* s,u32 slot){
- s->count=s->failed=0;s->previous=nd_cursor_scope;
+ s->count=s->failed=0;s->slot=slot;s->previous=nd_cursor_scope;
  u32 target=slot==7||slot==5?0x6a4fe0:0x6a49e0;
  const u32 addresses[3]={0x641fc8,slot==4||slot==5?target:0x642000,target};
  u32 count=slot==4||slot==5?2:slot==6||slot==7?3:slot==8?1:0;
@@ -34,9 +41,24 @@ static void* nd_cursor_owned_operand(void* object,struct NdCursorView* temporary
  if(!nd_cursor_wrapper(temporary->words,object,&temporary->pin))return 0;
  return temporary->words;
 }
-static void nd_cursor_copy_service(u32 index,void* source,void* dest,const u32* rectangle,u32 x,u32 y){
+#include "cursor_copy_callers.h"
+#include "hidden_spellbox_copy.h"
+static u32 nd_hidden_spellbox_recorded;
+static void nd_hidden_spellbox_record(const struct NsState* s,const struct NsState* d,
+ const u32* r,u32 x,u32 y){
+ /* One first-hit diagnostic, no input/host pointer and no shared wire. Failure
+  * to retain it gives no branch-observation credit; rendering policy is fixed. */
+ if(nd_hidden_spellbox_recorded)return;nd_hidden_spellbox_recorded=1;
+ u32 row[32]={0x484d4e4d,0x31305043,1,128,0x40209ca7,0x5770fa,
+  s->width,s->height,d->width,d->height,r[0],r[1],r[2],r[3],x,y,15,1,
+  s->bits,d->bits,s->lifetime_identity,d->lifetime_identity};
+ HANDLE f=CreateFileA("native-hidden-spellbox-copy.bin",0x40000000,1,0,1,0x80,0);
+ if(f!=(HANDLE)-1){u32 wrote=0;WriteFile(f,row,sizeof(row),&wrote,0);CloseHandle(f);}
+}
+static void nd_cursor_copy_service(u32 index,void* source,void* dest,const u32* rectangle,u32 x,u32 y,u32 caller){
  struct NdCursorFx entry,exit;nd_cursor_save(&entry);
  struct NsLifeGuard guard __attribute__((cleanup(ns_life_guard_leave)))=ns_life_guard_enter();
+ if(nd_cursor_scope_failed()){nd_cursor_restore(&entry);return;}
  struct NdCursorCopy copy;copy.source.pin=copy.dest.pin=0;copy.previous=nd_cursor_copy_active;
  void* s=nd_cursor_owned_operand(source,&copy.source),*d=nd_cursor_owned_operand(dest,&copy.dest);
  u32 primary_token=nd_cursor_primary?nd_cursor_primary->original:*(u32*)0x6f98c0;
@@ -47,18 +69,46 @@ static void nd_cursor_copy_service(u32 index,void* source,void* dest,const u32* 
   ++nd_cursor_counts[13];if(nd_cursor_scope)nd_cursor_scope->failed=1;
   nd_cursor_view_drop(&copy.dest);nd_cursor_view_drop(&copy.source);nd_cursor_restore(&entry);return;
  }
+ u32 q[11]={0};q[4]=index==13?1:2;
+ if(rectangle)for(u32 k=0;k<4;++k)q[k+5]=rectangle[k];q[9]=x;q[10]=y;
+ u32 invalid=nd_cursor_geometry(&geometry,q);
+ if(invalid==2 && index==15 && caller==0x5770fa && nd_cursor_readable((void*)0x5770f5,5)){
+  struct NsState *a=ns_lifetime_find((void*)geometry.source[2]),*b=ns_lifetime_find((void*)geometry.dest[2]);
+  if(nd_hidden_spellbox_copy(index,caller,(const u8*)0x5770f5,a->width,a->height,a->bits,
+       b->width,b->height,b->bits,rectangle,x,y)){
+   ++nd_cursor_counts[14];nd_hidden_spellbox_record(a,b,rectangle,x,y);
+   nd_cursor_view_drop(&copy.dest);nd_cursor_view_drop(&copy.source);nd_cursor_restore(&entry);return;
+  }
+ }
+ if(nd_cursor_scope_geometry(invalid)){
+  nd_cursor_view_drop(&copy.dest);nd_cursor_view_drop(&copy.source);nd_cursor_restore(&entry);return;
+ }
  struct NdCursorPrimary shadow={*(u32*)0x6f98c0,(u32)d,nd_cursor_primary};
  if(primary){nd_cursor_primary=&shadow;*(u32*)0x6f98c0=(u32)d;}
+ struct NdCursorCaller observed;
+ if(nd_cursor_caller_enabled){
+  struct NsState *a=ns_lifetime_find((void*)((u32*)s)[2]),*b=ns_lifetime_find((void*)((u32*)d)[2]);
+  observed.frame=(struct MnmCursorCallerFrame){index,caller,(u32)s,(u32)d,0,ns_lifetime_thread(),((u32*)s)[2],((u32*)d)[2],a?a->lifetime_identity:0,b?b->lifetime_identity:0};
+  observed.previous=nd_cursor_caller_active;nd_cursor_caller_active=&observed;
+ }
  nd_cursor_copy_active=&copy;nd_cursor_restore(&entry);
- if(index==13)((void(__attribute__((thiscall))*)(void*,void*,u32,u32))nd_cursor_original[index])(s,d,x,y);
+ if(nd_cursor_caller_enabled){
+  if(index==13)nd_copy_caller_whole(nd_cursor_original[index],s,d,x,y,&observed.frame.slot);
+  else nd_copy_caller_rect(nd_cursor_original[index],s,d,rectangle,x,y,&observed.frame.slot);
+ }else if(index==13)((void(__attribute__((thiscall))*)(void*,void*,u32,u32))nd_cursor_original[index])(s,d,x,y);
  else ((void(__attribute__((thiscall))*)(void*,void*,const u32*,u32,u32))nd_cursor_original[index])(s,d,rectangle,x,y);
  nd_cursor_save(&exit);nd_cursor_copy_active=copy.previous;
+ if(nd_cursor_caller_enabled){observed.frame.slot=0;nd_cursor_caller_active=observed.previous;}
  if(primary){if(*(u32*)0x6f98c0==shadow.clone)*(u32*)0x6f98c0=shadow.original;nd_cursor_primary=shadow.previous;}
  nd_cursor_view_drop(&copy.dest);nd_cursor_view_drop(&copy.source);nd_cursor_restore(&exit);
 }
-static void __attribute__((thiscall)) nd_cursor_copy_full(void* s,void* d,u32 x,u32 y){nd_cursor_copy_service(13,s,d,0,x,y);}
-#define ND_CURSOR_COPY(name,index) static void __attribute__((thiscall)) name(void* s,void* d,const u32* r,u32 x,u32 y){nd_cursor_copy_service(index,s,d,r,x,y);}
+static void __attribute__((thiscall)) nd_cursor_copy_full(void* s,void* d,u32 x,u32 y){nd_cursor_copy_service(13,s,d,0,x,y,(u32)__builtin_return_address(0));}
+#define ND_CURSOR_COPY(name,index) static void __attribute__((thiscall)) name(void* s,void* d,const u32* r,u32 x,u32 y){nd_cursor_copy_service(index,s,d,r,x,y,(u32)__builtin_return_address(0));}
 ND_CURSOR_COPY(nd_cursor_copy_guarded,14)
 ND_CURSOR_COPY(nd_cursor_copy_opaque,15)
 ND_CURSOR_COPY(nd_cursor_copy_keyed,16)
 ND_CURSOR_COPY(nd_cursor_copy_front_keyed,17)
+static void* nd_cursor_caller_detour(u32 index){
+ void* entries[5]={(void*)nd_cursor_copy_full,(void*)nd_cursor_copy_guarded,(void*)nd_cursor_copy_opaque,(void*)nd_cursor_copy_keyed,(void*)nd_cursor_copy_front_keyed};
+ return index>=13 && index<=17?entries[index-13]:0;
+}

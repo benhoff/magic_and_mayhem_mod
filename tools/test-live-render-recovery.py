@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Bounded original-game recovery negotiation; pixel equivalence is unclaimed."""
+from experiment_environment import stage_prefix
 import argparse
 import importlib.util
 import json
@@ -28,7 +29,7 @@ def main():
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',WINEDEBUG='-all',WINEPREFIX=str(run/'wineprefix'));env.pop('WAYLAND_DISPLAY',None)
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
-        subprocess.run(['cp','-a','--reflink=auto',str(args.prefix_template.resolve()),env['WINEPREFIX']],check=True)
+        stage_prefix(ROOT, str(args.prefix_template.resolve()), env['WINEPREFIX'])
         with (run/'wineboot.log').open('w') as log:subprocess.run(['wineboot','-u'],env=env,stdout=log,stderr=log,check=True,timeout=90)
         for mode in ['early-checkpoint','checkpoint','recover']:
             case=run/mode;case.mkdir();qt=wine=None

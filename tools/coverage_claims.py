@@ -52,7 +52,7 @@ def stage_kinds(stage, status):
     return EXECUTION_KINDS
 
 
-def validation_support(behavior, builds, evidence, sources, claims, scenarios, stale):
+def validation_support(behavior, builds, evidence, sources, claims, scenarios, stale, applicability=None, changed_sources=None):
     """Current support per stage, with historical limitations retained explicitly."""
     result = {}
     contract = behavior_contract(behavior, builds)
@@ -63,7 +63,7 @@ def validation_support(behavior, builds, evidence, sources, claims, scenarios, s
             continue
         candidates = [eid for eid in behavior['evidence']
                       if eid in evidence and evidence[eid]['kind'] in stage_kinds(stage, status)]
-        current, historical, limitations = [], [], set()
+        current, historical, limitations, reviewed = [], [], set(), {}
         for eid in candidates:
             claim = claims.get(eid, {}).get(behavior['id'])
             if claim is None:
@@ -89,10 +89,17 @@ def validation_support(behavior, builds, evidence, sources, claims, scenarios, s
                 continue
             historical.append(eid)
             if eid in stale:
-                limitations.add('stale')
-                continue
+                review = (applicability or {}).get(eid, {})
+                changed = set((changed_sources or {}).get(eid, []))
+                if (not changed or review.get('preserve_status', {}).get(stage) != status
+                        or not changed <= set(review.get('compatible_sources', []))):
+                    limitations.add('stale')
+                    continue
+                reviewed[eid] = review['id']
             current.append(eid)
         result[stage] = {'state': 'current' if current else 'pending',
                          'evidence': current, 'historical_evidence': historical,
                          'limitations': sorted(limitations or ({'no_execution'} if not candidates else set()))}
+        if reviewed:
+            result[stage]['reviewed_applicability'] = reviewed
     return result

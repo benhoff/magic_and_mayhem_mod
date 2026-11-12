@@ -43,13 +43,16 @@ def compare_words(actual, expected, zero, poison):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--campaign', type=Path, required=True, help='Completed native campaign report.json')
+    p.add_argument('--alternate-padding',nargs=2,type=int,metavar=('X','Y'),help='Require native padded owner during replay')
     a = p.parse_args()
+    if a.alternate_padding is not None and not (0<=a.alternate_padding[0]<=128 and 0<=a.alternate_padding[1]<=64):p.error('Bounded native padding required')
     parent=ROOT/'working/tests/native-storage-comparison';parent.mkdir(parents=True,exist_ok=True)
     out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print('Comparison evidence:',out,flush=True)
     report=dict(success=False,scope=__doc__,original_pixels_used_as_native_inputs=False,
                 independent_presented_session_equivalence=False)
     inputs={};sources={};verified=False
     env={**os.environ,'QT_QPA_PLATFORM':'xcb','LIBGL_ALWAYS_SOFTWARE':'1','GALLIUM_DRIVER':'llvmpipe','LP_NUM_THREADS':'4'}
+    if a.alternate_padding is not None:env.update(MNM_NATIVE_ALTERNATE_CANVAS='1',MNM_NATIVE_ALTERNATE_PADDING_X=str(a.alternate_padding[0]),MNM_NATIVE_ALTERNATE_PADDING_Y=str(a.alternate_padding[1]))
     def run(label, command, timeout=300):
         with (out/(label+'.log')).open('x') as log:
             subprocess.run([str(x) for x in command],cwd=ROOT,env=env,stdout=log,stderr=log,check=True,timeout=timeout)
@@ -105,6 +108,10 @@ def main():
         report['compiled_sources']={n:sha(ROOT/n) for n in sorted(compiled)}
         if any(sources[n]!=h for n,h in report['compiled_sources'].items()):raise ValueError('Changed comparison compiler inputs')
         replay=json.loads((out/'native/replay.json').read_text())
+        if a.alternate_padding is not None:
+            alt=replay.get('native_alternate_canvas',{})
+            if not (alt.get('enabled') and [alt.get('padding'),alt.get('padding_y')]==a.alternate_padding and int(alt.get('frames',0))>0 and int(alt.get('copy_backs',0))>=int(alt['frames'])):raise ValueError('Padded alternate replay was not exercised')
+            report['alternate_padding_verified']=a.alternate_padding
         (out/'zero.565').write_bytes(bytes(960000));(out/'poison.565').write_bytes(b'\xa5\x5a'*480000)
         results=[]
         for row,checkpoint in zip(replay['checkpoints'],checkpoints,strict=True):

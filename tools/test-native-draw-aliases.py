@@ -4,6 +4,7 @@
 Run in an isolated X display under working-retention.py. This checks owned
 system-memory storage, not physical driver residency or whole-game retirement.
 """
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import importlib.util
@@ -90,7 +91,7 @@ def main():
             if (not (template/'system.reg').is_file()
                     or not (template/'drive_c').is_dir() or template == out/'prefix'):
                 raise ValueError('Require a separate completed Wine prefix template')
-            run('prefix',['cp','-a','--reflink=auto',template,out/'prefix'])
+            stage_prefix(ROOT, template, out/'prefix', log=Path(out/'prefix').parent / 'prefix.log')
         else:
             run('boot',['wineboot','-i'],
                 dict(WINEDLLOVERRIDES='mscoree,mshtml=;winemenubuilder.exe=d'))

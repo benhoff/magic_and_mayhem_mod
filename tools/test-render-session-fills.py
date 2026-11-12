@@ -63,6 +63,9 @@ def main():
             dll='MnmRender.dll', symbol_name='RenderAnchor', section_name=b'.mnmgl'))
         output, active = case / 'qt.json', case / 'producer.active'
         child = dict(env, MNM_BOOTSTRAP_SELFTEST=mode, MNM_RENDER_OWNED_SESSION='1',
+                     # Finish this short sequence explicitly; the default sample
+                     # waits for 16 operations and outlives these 2/3 presentations.
+                     MNM_RENDER_SESSION_PRESENTATIONS='3' if mode == 'fill-update' else '2',
                      MNM_COMMAND_TEST_DELAY='1',
                      MNM_RENDER_COMMAND_CHANNEL='Z:' + str(channel).replace('/', '\\'),
                      MNM_RENDER_STREAM='Z:' + str(frame).replace('/', '\\'),
@@ -100,6 +103,11 @@ def main():
                     value = int.from_bytes(raw[at:at + bits // 8], 'little')
                     colors = ([(value * (j * 6 + 1) + j * 13) & 255 for j in range(3)] if bits == 8 else
                               [((value & m) // (m & -m)) * 255 // (m // (m & -m)) for m in masks])
+                    # Native RGB565 presentation follows the documented DIB
+                    # bit expansion; integer scaling is the generic-mask path.
+                    if bits == 16:
+                        red, green, blue = value >> 11, (value >> 5) & 63, value & 31
+                        colors = [(red << 3) | (red >> 2), (green << 2) | (green >> 4), (blue << 3) | (blue >> 2)]
                     packed += struct.pack('<I', 0xff000000 | colors[0] << 16 | colors[1] << 8 | colors[2])
                 expected.append(hashlib.sha256(packed).hexdigest())
             count = frames

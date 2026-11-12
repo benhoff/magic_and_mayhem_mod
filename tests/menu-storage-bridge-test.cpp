@@ -6,6 +6,11 @@
 #include <QListWidget>
 #include <QPushButton>
 #include <QtEndian>
+#include <QVBoxLayout>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QMouseEvent>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -17,7 +22,87 @@ struct LiveMenuSessionTestAccess {
  static bool original(const LiveMenuSession& s){return s.inBattle_;}
  static void refusedRestart(LiveMenuSession& s){s.preparing_=true;require(!s.start());s.preparing_=false;}
  static void expire(LiveMenuSession& s){s.lastState_=-MNM_MENU_V1_LEASE_MS-1;}
+ static void expireIntent(LiveMenuSession& s){s.deferredMenuRequestAt_=-501;}
 };
+static void publicationRaceChecks(){
+ // A physical button's callback may overlap an original seqlock publication.
+ // No wire request exists until the exact same menu owner is readable again.
+ for(int kind=0;kind<3;++kind)for(int variant=0;variant<7;++variant){
+  QTemporaryDir root;LiveMenuSession session("/unused");const auto path=root.filePath("publication.bin");auto& bridge=LiveMenuSessionTestAccess::initialize(session,path);
+  QFile peer(path);require(peer.open(QIODevice::ReadWrite));auto* bytes=peer.map(0,MNM_MENU_V13_SIZE);require(bytes);
+  auto put=[&](int word,quint32 v){qToLittleEndian(v,bytes+word*4);};auto get=[&](int word){return qFromLittleEndian<quint32>(bytes+word*4);};
+  const auto screen=kind==0?3u:kind==1?25u:13u;quint32 sequence=0;
+  auto state=[&](quint32 generation,quint32 thread=123){
+   sequence|=1u;put(32,sequence);put(33,generation);put(34,screen);put(35,1);put(36,0);put(37,MNM_MENU_OK);put(38,thread);
+   if(kind==2){const quint32 fields[]={13,17,6,5,0,0,0,0};for(int i=0;i<8;++i)put(MNM_MENU_V13_STORAGE/4+i,fields[i]);}
+   put(32,++sequence);
+  };
+  int accepted=0,refused=0,failures=0;
+  auto observed=[&](quint32,bool ok,const QString&,const MenuBridge::State&){if(ok)++accepted;else ++refused;};
+  session.requestObserved=observed;session.storageRequestObserved=observed;session.failed=[&](const QString&){++failures;};
+  state(10);LiveMenuSessionTestAccess::poll(session);
+  put(32,++sequence); // Hold the original publication open through the click.
+  QString name="owned-save";
+  auto click=[&]{return kind==2?session.requestStorage(MNM_MENU_STORAGE_ACCEPT,0,name):session.request(kind==0?MNM_MENU_OPEN_QUICK:MNM_MENU_MAP_OK,kind==1?1:0);};
+  require(click());require(!get(7)&&!accepted);require(!click());require(refused==1);
+  name="changed-after-click";
+  if(variant==0||variant==4){
+   LiveMenuSessionTestAccess::poll(session);require(!get(7)&&!accepted&&!failures);
+   if(variant==4){session.setMediaActive(true);put(32,++sequence);LiveMenuSessionTestAccess::poll(session);require(!get(7));session.setMediaActive(false);}
+   else put(32,++sequence);
+  }else if(variant==1)state(11); // Changed generation never inherits the intent.
+  else if(variant==2)state(10,124); // Nor does a different original thread.
+  else if(variant==3)LiveMenuSessionTestAccess::expireIntent(session);
+  else if(variant==5){put(32,++sequence);bridge.retire();}
+  else {put(32,++sequence);put(35,0);} // Stable loss of readiness is a refusal.
+  LiveMenuSessionTestAccess::poll(session);
+  if(variant==0||variant==4){
+   require(get(7)==1&&accepted==1&&!failures);
+   if(kind==2)require(std::strcmp(reinterpret_cast<char*>(bytes+MNM_MENU_V13_HOST_NAME),"owned-save")==0);
+   LiveMenuSessionTestAccess::poll(session);require(get(7)==1&&accepted==1);
+  }else require(get(7)==0&&accepted==0&&failures==1);
+  peer.unmap(bytes);
+ }
+}
+static int physicalPublicationChecks(QApplication& app,const QString& output){
+ QTemporaryDir root;QWidget window;window.setWindowTitle("Magic & Mayhem Workshop");window.resize(640,360);
+ QVBoxLayout layout(&window);std::array<QPushButton*,3> buttons{};
+ std::array<std::unique_ptr<LiveMenuSession>,3> sessions;std::array<std::unique_ptr<QFile>,3> peers;
+ std::array<uchar*,3> mappings{};int phase=0;bool failed=false;QJsonArray receipts;
+ struct MouseWitness:QObject{
+  int presses=0,releases=0;
+  bool eventFilter(QObject*,QEvent* e)override{
+   if(e->spontaneous()&&e->type()==QEvent::MouseButtonPress)++presses;
+   if(e->spontaneous()&&e->type()==QEvent::MouseButtonRelease)++releases;
+   return false;
+  }
+ } mouse;
+ auto write=[&]{QFile f(output);require(f.open(QIODevice::WriteOnly));f.write(QJsonDocument(QJsonObject{{"phase",phase},{"success",phase==3&&!failed},{"failed",failed},{"physical_presses",mouse.presses},{"physical_releases",mouse.releases},{"receipts",receipts}}).toJson());require(f.flush());};
+ for(int i=0;i<3;++i){
+  sessions[i]=std::make_unique<LiveMenuSession>("/unused");auto& session=*sessions[i];
+  const auto path=root.filePath(QString("physical-%1.bin").arg(i));LiveMenuSessionTestAccess::initialize(session,path);
+  peers[i]=std::make_unique<QFile>(path);require(peers[i]->open(QIODevice::ReadWrite));auto* bytes=peers[i]->map(0,MNM_MENU_V13_SIZE);require(bytes);mappings[i]=bytes;
+  auto put=[bytes](int word,quint32 v){qToLittleEndian(v,bytes+word*4);};
+  put(32,1);put(33,10);put(34,i==0?3:i==1?25:13);put(35,1);put(37,MNM_MENU_OK);put(38,123);
+  if(i==2){const quint32 fields[]={13,17,6,5,0,0,0,0};for(int n=0;n<8;++n)put(MNM_MENU_V13_STORAGE/4+n,fields[n]);}
+  put(32,2);LiveMenuSessionTestAccess::poll(session);
+  auto* button=new QPushButton(i==0?"Main action":i==1?"Map action":"Save action",&window);buttons[i]=button;button->setEnabled(i==0);button->installEventFilter(&mouse);layout.addWidget(button);
+  QObject::connect(button,&QPushButton::pressed,&window,[put]{put(32,3);});
+  QObject::connect(button,&QPushButton::clicked,&window,[&,i,put]{
+   require(phase==i);auto& current=*sessions[i];
+   const bool accepted=i==2?current.requestStorage(MNM_MENU_STORAGE_ACCEPT,0,"physical-save"):current.request(i==0?MNM_MENU_OPEN_QUICK:MNM_MENU_MAP_OK,i==1?1:0);
+   receipts.append(QJsonObject{{"action",i},{"accepted_intent",accepted},{"request_before_stable",int(qFromLittleEndian<quint32>(mappings[i]+28))}});write();
+   QTimer::singleShot(30,&window,[&,i,put,accepted]{
+    put(32,4);auto& current=*sessions[i];LiveMenuSessionTestAccess::poll(current);LiveMenuSessionTestAccess::poll(current);
+    const auto request=qFromLittleEndian<quint32>(mappings[i]+28);
+    if(!accepted||request!=1){failed=true;write();app.exit(1);return;}
+    buttons[i]->setEnabled(false);++phase;if(phase<3)buttons[phase]->setEnabled(true);write();if(phase==3)app.quit();
+   });
+  });
+ }
+ window.show();QTimer::singleShot(0,&window,write);QTimer::singleShot(15000,&window,[&]{failed=true;write();app.exit(1);});
+ const int code=app.exec();for(int i=0;i<3;++i)peers[i]->unmap(mappings[i]);return code;
+}
 static void miniAdmissionChecks(){
  for(int variant=0;variant<6;++variant){
   QTemporaryDir root;LiveMenuSession session("/unused");const auto path=root.filePath("mini.bin");LiveMenuSessionTestAccess::initialize(session,path);
@@ -78,7 +163,8 @@ static void storageOpeningChecks(){
  }
 }
 int main(int argc,char** argv){
- QApplication app(argc,argv);miniAdmissionChecks();storageOpeningChecks();QTemporaryDir root;LiveMenuSession session("/unused");const auto path=root.filePath("channel.bin");auto& bridge=LiveMenuSessionTestAccess::initialize(session,path);
+ QApplication app(argc,argv);if(argc==3&&QString(argv[1])=="--physical")return physicalPublicationChecks(app,QString::fromLocal8Bit(argv[2]));
+ publicationRaceChecks();miniAdmissionChecks();storageOpeningChecks();QTemporaryDir root;LiveMenuSession session("/unused");const auto path=root.filePath("channel.bin");auto& bridge=LiveMenuSessionTestAccess::initialize(session,path);
  QFile peer(path);require(peer.open(QIODevice::ReadWrite));auto* bytes=peer.map(0,MNM_MENU_V13_SIZE);require(bytes);
  auto put=[&](int word,quint32 v){qToLittleEndian(v,bytes+4*word);};auto get=[&](int word){return qFromLittleEndian<quint32>(bytes+4*word);};quint32 sequence=0;
  auto state=[&](quint32 generation,quint32 ack,quint32 screen,bool ready,quint32 modal=0){
@@ -88,7 +174,13 @@ int main(int argc,char** argv){
  };
  LoadGameWidget load;SaveGameWidget save;LiveStorageMenuController controller(session,load,save);int native=0,viewport=0;
  session.stateChanged=[&](const auto& s){require(controller.present(s));if(s.ready)++native;};session.originalViewportRequested=[&]{++viewport;};
+ int admitted=0,refused=0;
+ session.requestObserved=[&](quint32 action,bool accepted,const QString& reason,const MenuBridge::State& observed){
+  require(action==MNM_MENU_OPEN_LOAD&&observed.screen==3);
+  if(accepted){require(reason.isEmpty());++admitted;}else{require(!reason.isEmpty());++refused;}
+ };
  state(1,0,3,true);LiveMenuSessionTestAccess::poll(session);require(session.request(MNM_MENU_OPEN_LOAD));require(!session.request(MNM_MENU_OPEN_LOAD));
+ require(admitted==1&&refused==1);session.requestObserved={};
  state(2,1,MNM_MENU_LOAD_SCREEN,true);MenuBridge::State probe;require(bridge.read(probe));require(probe.storage.selected==2&&probe.storage.names.size()==2);LiveMenuSessionTestAccess::poll(session);require(load.selectedSaveId()=="2");
  load.findChild<QPushButton*>("loadGameLoad")->click();require(get(8)==MNM_MENU_STORAGE_ACCEPT&&get(10)==2);
  state(3,2,MNM_MENU_LOAD_SCREEN,false);LiveMenuSessionTestAccess::poll(session);require(viewport==1&&LiveMenuSessionTestAccess::original(session));require(!session.requestStorage(MNM_MENU_STORAGE_ACCEPT,1));

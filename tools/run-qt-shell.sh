@@ -36,4 +36,11 @@ export MNM_CACHE_ADAPTERS=${MNM_CACHE_ADAPTERS:-1}
 # Public native sessions use the guarded glyph adapter unless explicitly disabled.
 # Standalone observation/comparison launchers keep their own mode selection.
 export MNM_GLYPH_BACKEND=${MNM_GLYPH_BACKEND-takeover}
+if [[ ${MNM_ACCEPTANCE_SAMPLE_STALLS:-0} == 1 ]]; then
+    exec python3 -B "$REPO_DIR/tools/sample-rendering-stall.py" \
+        --binary "$BUILD_DIR/mnm-qt-shell" --repo "$REPO_DIR" \
+        --owner "${MNM_NATIVE_OUTPUT_OWNER:?Diagnostic owner receipt required}" \
+        --output "${MNM_ACCEPTANCE_STALL_SAMPLER_DIR:?Diagnostic output required}" \
+        -- --repo "$REPO_DIR" "$@"
+fi
 exec "$BUILD_DIR/mnm-qt-shell" --repo "$REPO_DIR" "$@"

@@ -34,7 +34,7 @@ def prepare(source, movies=False, menu_only=False, gameplay=False, api=False, ap
     api_dll = load('drawing_api_build', 'tools/build-drawing-cpu-census.py' if cpu else 'tools/build-drawing-api-census.py').build(source / 'Chaos.exe', selected) if api else None
     parent = ROOT / 'working/experiments/drawing-census'; parent.mkdir(parents=True, exist_ok=True)
     root = Path(tempfile.mkdtemp(prefix='run-', dir=parent)); game = root / 'game'
-    load('drawing_isolation', 'tools/prepare-scene-observer.py').copy_installation(source, game)
+    load('drawing_isolation', 'tools/prepare-scene-observer.py').copy_installation(source, game, persistent=True)
     if sha(game / 'Chaos.exe') != BUILD_SHA256: raise ValueError('Disposable source copy hash mismatch')
     # The pinned executable uses Save\\ for .sav files and __temp.vas.
     # Source-media installations can omit this empty writable output directory.

@@ -15,7 +15,8 @@ static int WIN currentHistory(const void*,u32 action,u32,u32,u32,u32){
  return 0; /* CPU-ready fixture; action3 only queries protected-span metadata. */
 }
 static void WIN countProducer(u32,u32,u32){}
-static void* rectProc(void*,const char* name){if(!std::strcmp(name,"NativeDrawCpuHistoryV1"))return reinterpret_cast<void*>(currentHistory);if(!std::strcmp(name,"NativeDrawProducerCountV1"))return reinterpret_cast<void*>(countProducer);if(std::strcmp(name,"NativeDrawPlaneV1"))throw std::runtime_error("Unexpected plane lookup");return reinterpret_cast<void*>(rectPlane);}
+static void* rectProc(void*,const char* name){if(!std::strcmp(name,"NativeDrawCpuStoreV1"))return nullptr;if(!std::strcmp(name,"NativeDrawCpuHistoryV1"))return reinterpret_cast<void*>(currentHistory);if(!std::strcmp(name,"NativeDrawProducerCountV1"))return reinterpret_cast<void*>(countProducer);if(std::strcmp(name,"NativeDrawPlaneV1"))throw std::runtime_error("Unexpected plane lookup");return reinterpret_cast<void*>(rectPlane);}
+#include "colour-rect-boundaries.hpp"
 int main(int argc,char** argv)try{
  if(argc!=3)throw std::runtime_error("Expected pinned original PE/result");map_image(read(argv[1]));
  unsigned char original[5],patched[5];std::memcpy(original,reinterpret_cast<void*>(0x547e53),5);
@@ -53,9 +54,10 @@ int main(int argc,char** argv)try{
   if(mnm_colour_rect_native!=count){if(edge)++emptyAdmitted;modes.matched(mode,format,pixels!=seed);++admitted;}else ++forwarded;words+=pixels.size();
  }
  modes.require(modeNames);
+ const auto boundaries=colourBoundaries(original,patched);
  PixelRouteCoverage<1> coverage;const std::array<std::string,1> routeNames={"colour_rect/rectangle"};
  for(const auto& mode:modes.routes)for(unsigned f=0;f<2;++f){coverage.routes[0].native[f]+=mode.native[f];coverage.routes[0].changed[f]+=mode.changed[f];}
  std::ofstream out(argv[2]);out<<"{\"success\":true,\"native_cases\":"<<admitted<<",\"empty_native_cases\":"<<emptyAdmitted<<",\"forward_or_hidden_cases\":"<<forwarded<<",\"physical_words\":"<<words<<",\"formats\":2,\"modes\":4,\"caller_state_equal\":true,";
- coverage.write(out,routeNames);out<<",\"mode_coverage\":{";modes.write(out,modeNames);out<<"}}\n";
+ coverage.write(out,routeNames);out<<",\"mode_coverage\":{";modes.write(out,modeNames);out<<"},\"boundaries\":{\"cases\":"<<boundaries.cases<<",\"native\":"<<boundaries.native<<",\"changed\":"<<boundaries.changed<<",\"physical_words\":"<<boundaries.words<<",\"caller_state_equal\":true,\"rows\":["<<boundaries.rows.str()<<"]}}\n";
  return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

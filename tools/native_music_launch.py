@@ -1,4 +1,5 @@
 """Stage and admit owned prepared CD tracks and their fresh native music channel."""
+from experiment_environment import stage as stage_environment
 import hashlib
 import json
 from pathlib import Path
@@ -42,11 +43,11 @@ def catalog_inputs(root, verify=True):
     if not 2<=len(toc)<=99:raise ValueError('Invalid native music track count')
     return inputs,toc
 
-def stage(root,source):
+def stage(root,source,*,persistent=False):
     verify=full_asset_verification()
     before,toc=catalog_inputs(source,verify);target=root/'native-music'
     if target.exists():raise ValueError('Native music staging already exists')
-    subprocess.run(['cp','-a','--reflink=auto','--',str(source),str(target)],check=True)
+    stage_environment(Path(__file__).resolve().parents[1], target, source, kind="game", persistent=persistent)
     after,copied=catalog_inputs(target,verify)
     if before!=after or toc!=copied or catalog_inputs(source,verify)[0]!=before:raise ValueError('Native music inputs changed during staging')
     return dict(native_music=True,full_asset_verification=verify,music_channel=str(root/'native-music.bin'),music_catalog=str(target),music_inputs=before,music_toc=[list(x) for x in toc])

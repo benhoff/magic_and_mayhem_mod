@@ -1,3 +1,7 @@
+#include "pending_cpu_fault_test.hpp"
+#include "gui_surface_loss_probe.hpp"
+#include "watchdog_host_fault.hpp"
+#include "host_event_trace.hpp"
 #include "live_realm_controller.hpp"
 #include "live_character_controller.hpp"
 #include "../../protocols/include/mnm/menu_v18.h"
@@ -78,6 +82,7 @@
 #include <QWindow>
 #include <cstdio>
 #include <exception>
+#include <chrono>
 #include "campaign_smoke_test.hpp"
 #include "resident_world_session.hpp"
 #include "native_render_worker.hpp"
@@ -92,6 +97,7 @@ class Shell final:public QMainWindow {
     QElapsedTimer nativePollTick_;
     unsigned nativePollTimingRows_=0;
 public:
+    bool armPendingCpuReadFault(){return renderWorker_&&pendingCpuFault_&&pendingCpuFault_->arm();}
     QJsonObject residentFailureState() const {
         return {{"terminal",residentTerminal_},{"owners_retired",!renderWorker_&&!commands_&&!residentWorld_},
             {"timers_stopped",!frames_.isActive()&&!commandDrain_.isActive()&&!poll_.isActive()&&!inputTimer_.isActive()},
@@ -107,7 +113,8 @@ public:
         const auto* result=renderWorker_?renderWorker_->result():commands_?commands_->result():nullptr;
         return {nativeCommandFrames_,nativeActive(),nativeFallback_,nativePaintedFrames_,renderWorker_?renderWorker_->recoveries():commands_?commands_->recoveries():0,
             !residentWorldError_.isEmpty()?residentWorldError_:renderWorker_?renderWorker_->error():commands_?commands_->error():QString(),
-            result?QString::fromStdString(result->driver.renderer):QString(),result?result->stats.presentationPixels:0,result?result->residentWorldImports:0};
+            result?QString::fromStdString(result->driver.renderer):QString(),result?result->stats.presentationPixels:0,result?result->residentWorldImports:0,
+            renderWorker_?QStringLiteral("dedicated-thread"):commands_?QStringLiteral("gui-resident"):QString(),result?result->commandStreamVersion:0,result?result->cpuMaterializations:0};
     }
     void showPresentation(){if(presentation_)presentation_->show();else show();}
     explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false,bool nativeVoices=false,bool liveMenus=false,bool nativeCommands=false,PresentationOptions presentation={},bool nativeMusic=false):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia),nativeVoices_(nativeVoices),nativeCommands_(nativeCommands) {
@@ -174,7 +181,7 @@ public:
             liveMenus_->prepareNativeAudio=[this](const QString& path){return createNativeVoices(path,QFileInfo(path).dir().filePath("game/Sounds"));};
             liveMenus_->prepareNativeMedia=[this](const QString& path){
                 media_=std::make_unique<MediaBroker>(*gl_,QFileInfo(path).dir().filePath("game"));
-                media_->frame=[this](QImage frame){if(residentTerminal_)return;menuStack_->setCurrentWidget(viewport_);gl_->setFrame(std::move(frame));placeholder_->hide();gl_->show();gl_->setFocus();};
+                media_->frame=[this,path](QImage frame){if(residentTerminal_)return;WatchdogHostFault::afterMovieFrame(this,path);menuStack_->setCurrentWidget(viewport_);gl_->setFrame(std::move(frame));placeholder_->hide();gl_->show();gl_->setFocus();};
                 media_->movieChanged=[this](bool playing){input_->suspend(residentTerminal_ || playing || (commands_&&commands_->state()!=LiveCommandSession::State::Active));
                     if(liveMenus_)liveMenus_->setMediaActive(playing);
                     if(commands_)commands_->setMediaActive(playing);
@@ -272,6 +279,7 @@ public:
         });
         poll_.setInterval(250);connect(&poll_,&QTimer::timeout,this,[this]{GlViewport::ActivityScope activity(gl_,GlViewport::Activity::WindowDiscovery);discover();});
         inputTimer_.setInterval(50);connect(&inputTimer_,&QTimer::timeout,this,[this]{GlViewport::ActivityScope activity(gl_,GlViewport::Activity::InputHeartbeat);if(input_)input_->heartbeat();});
+        frames_.setObjectName("native-frame-poll");commandDrain_.setObjectName("native-command-drain");poll_.setObjectName("legacy-window-discovery");inputTimer_.setObjectName("native-input-heartbeat");
         frames_.setInterval(16);commandDrain_.setSingleShot(true);commandDrain_.setInterval(0);
         const auto pollFrame=[this]{
             if(!stream_)return;
@@ -328,6 +336,12 @@ public:
                     catch(const std::exception& e){residentFailed(QString::fromUtf8(e.what()));return;}
                 }
                 if(liveMenus_)liveMenus_->renderingProgress();
+                if(guiSurfaceLoss_ && residentWorld_ && commands_){
+                    try{
+                        const auto error=guiSurfaceLoss_->poll(*commands_,residentWorld_->nativeFrames(),residentWorld_->displayState().pending);
+                        if(!error.isEmpty()){residentFailed(error);return;}
+                    }catch(const std::exception& error){residentFailed(QString::fromUtf8(error.what()));return;}
+                }
                 const double totalMs=workClock.nsecsElapsed()/1000000.0;
                 if(residentWorld_&&nativePollTiming_&&nativePollTimingRows_<256&&(totalMs>=50||gap>=100)){
                     ++nativePollTimingRows_;
@@ -414,11 +428,13 @@ private:
         detach_->show();retry_->show();elapsed_.restart();poll_.start();discover();
     }
     bool createNativePresentation(const QString& path,const QString& inputPath,const QString& commandPath,bool continuous,QStringList& arguments){
+        WatchdogHostFault::setCommandPath(commandPath);
             stream_=std::make_unique<FrameStream>();
             if(!stream_->create(path)){statusBar()->showMessage(stream_->error());return false;}
             inputState_=std::make_unique<InputState>();
 
-            if(!inputState_->create(inputPath)){statusBar()->showMessage("Cannot create game input channel.");return false;}
+            const bool desktopCoordinates=qEnvironmentVariable("MNM_ORIGINAL_WINDOWED_DIAGNOSTIC")=="1";
+            if(!inputState_->create(inputPath,desktopCoordinates)){statusBar()->showMessage("Cannot create game input channel.");return false;}
             input_->setState(inputState_.get());inputTimer_.start();
             arguments={"--stream",path,"--input",inputPath};elapsed_.restart();
             if(nativeCommands_){
@@ -430,6 +446,7 @@ private:
                 const auto presented=[this]{++nativeCommandFrames_;input_->suspend(residentTerminal_ || (media_ && media_->movieActive()) || (menuStack_&&menuStack_->currentWidget()!=viewport_));placeholder_->hide();gl_->show();statusBar()->showMessage((residentWorld_||renderWorker_)?"Native World presentation active.":"Native command presentation active. Original rendering retained.");};
                 const auto stateChanged=[this](LiveCommandSession::State state){if(state==LiveCommandSession::State::Stopping){input_->suspend(true);return;}if(state==LiveCommandSession::State::Recovering || state==LiveCommandSession::State::WaitingFrame){input_->suspend(true);gl_->hide();placeholder_->setText("Recovering native presentation. Original game window remains available.");placeholder_->show();statusBar()->showMessage("Recovering native presentation.");}};
                 const auto session=(QRandomGenerator::global()->generate()&0x7fffffffu)|1u;
+                guiSurfaceLoss_.reset();
                 const bool resident=liveMenus_ && qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")=="1";
                 if(resident && !continuous){statusBar()->showMessage("Resident World requires continuous commands.");return false;}
                 const auto directory=QFileInfo(commandPath).dir();
@@ -437,6 +454,10 @@ private:
                 if(resident && qEnvironmentVariableIntValue("MNM_WORLD_SNAPSHOT")==1){
                     try{renderWorker_=std::make_unique<NativeRenderWorker>(*gl_,directory.filePath("world-continuous.bin"),directory.filePath("game"),residentWorldReport_);}
                     catch(const std::exception& e){statusBar()->showMessage(e.what());return false;}
+                    if(qEnvironmentVariableIntValue("MNM_RESIDENT_PENDING_CPU_TEST")==1&&qEnvironmentVariableIntValue("MNM_RESIDENT_RESTART_TEST")==1){
+                        pendingCpuFault_=std::make_shared<PendingCpuFaultTest>(commandPath,session);
+                        renderWorker_->cpuReadQueued=[fault=pendingCpuFault_](const auto& command,const auto& result){fault->observe(command,result);};
+                    }else pendingCpuFault_.reset();
                     renderWorker_->framePresented=presented;
                     // Repeated copied status does not re-run widget transitions.
                     renderWorker_->stateChanged=[this,stateChanged](auto state){if(state!=lastRenderState_){lastRenderState_=state;stateChanged(state);}};
@@ -444,6 +465,12 @@ private:
                     frames_.setInterval(1);
                 }else{
                     commands_=std::make_unique<LiveCommandSession>(*gl_);
+                    if(qEnvironmentVariableIntValue("MNM_SURFACE_LOSS_TEST")==1){
+                        if(qEnvironmentVariableIntValue("MNM_ACCEPTANCE_NORMAL")!=1 || qEnvironmentVariableIntValue("MNM_NATIVE_DEVICE_RECOVERY")==1){
+                            statusBar()->showMessage("Surface-loss diagnostic requires ordinary acceptance rendering");return false;
+                        }
+                        guiSurfaceLoss_=std::make_unique<GuiSurfaceLossProbe>(commandPath,session,wireVersion);
+                    }
                     guiGraphicsRecoveries_=0;
                     if(qEnvironmentVariableIntValue("MNM_NATIVE_DEVICE_RECOVERY")==1)gl_->recoverGraphics=[this]{
                         if(!commands_ || !commands_->error().isEmpty() || guiGraphicsRecoveries_>=3)return false;
@@ -520,6 +547,22 @@ private:
         process_.start(launcher,arguments);
         if(!check){elapsed_.restart();poll_.start();statusBar()->showMessage("Waiting for the game window…");}
     }
+    void finishPendingCpuFault(){
+        if(!pendingCpuFault_||!renderWorker_)return;
+        try{pendingCpuFault_->finish(renderWorker_->result(),renderWorker_->pendingCpuRead());}
+        catch(const std::exception& e){residentWorldError_=QString::fromUtf8(e.what());log_->appendPlainText("Pending CPU test refused: "+residentWorldError_);}
+    }
+    void recordAcceptanceTerminal(){
+        if(qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE_DIRECTORY").isEmpty()||!liveMenus_||liveMenus_->evidenceDirectory().isEmpty())return;
+        const QJsonObject record{{"schema",1},{"session",liveMenus_->evidenceDirectory()},
+            {"host_us",QString::number(qint64(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now().time_since_epoch()).count()))},{"state",residentFailureState()},
+            {"error",residentWorldError_},{"native_command_frames",QString::number(nativeCommandFrames_)},
+            {"native_painted_frames",QString::number(nativePaintedFrames_)}};
+        QFile file(QDir(liveMenus_->evidenceDirectory()).filePath("native-terminal-state.json"));
+        const auto bytes=QJsonDocument(record).toJson();
+        if(!file.open(QIODevice::WriteOnly|QIODevice::NewOnly)||file.write(bytes)!=bytes.size()||!file.flush())
+            log_->appendPlainText("Cannot retain terminal capture observation.");
+    }
     void residentFailed(const QString& message){
         if(nativeOnly_){
             nativeOnlySession_.fail(message);
@@ -533,9 +576,10 @@ private:
         if(media_)media_->stop();
         if(input_){input_->suspend(true);input_->setTarget(0);}
         if(gl_){gl_->setGpuFrame({});gl_->setFrame({});gl_->hide();}
-        if(renderWorker_){renderWorker_->abort();renderWorker_.reset();}
-        if(commands_){commands_->abort();commands_.reset();}
+        if(renderWorker_){renderWorker_->abort();finishPendingCpuFault();renderWorker_.reset();}
+        if(commands_){commands_->abort();if(guiSurfaceLoss_)guiSurfaceLoss_->commandCleanup(commands_->result());commands_.reset();}
         if(residentWorld_){residentWorld_->abort(message);residentWorld_->saveReport(residentWorldReport_);residentWorld_.reset();}
+        if(guiSurfaceLoss_)guiSurfaceLoss_->retired(bool(commands_),bool(residentWorld_),gl_&&!gl_->frameSize().isEmpty());
         retry_->setEnabled(false);fallback_->setEnabled(false);
         restart_->setEnabled(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running()));
         if(menuStack_)menuStack_->setCurrentWidget(viewport_);
@@ -546,12 +590,13 @@ private:
             QTimer::singleShot(0,this,[this]{
                 if(liveMenus_&&liveMenus_->running())liveMenus_->forceStop([this](bool ok,const QString& error){
                     if(!ok)nativeOnlySession_.fail(error);
-                    finished();restart_->setEnabled(ok);
+                    finished();restart_->setEnabled(ok);recordAcceptanceTerminal();
                 });
-                else{finished();restart_->setEnabled(true);}
+                else{finished();restart_->setEnabled(true);recordAcceptanceTerminal();}
             });
         }
     }
+    std::unique_ptr<GuiSurfaceLossProbe> guiSurfaceLoss_;
     bool residentTerminal_=false;
     void hardRestart(){
         if(restarting_||checking_||!(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running())||(nativeOnly_&&residentTerminal_)))return;
@@ -580,11 +625,13 @@ private:
         else process_.forceStop(QDir(repo_).filePath("working/wineprefix-x86_64"),stopped);
     }
     void discover(){
+        HostTimingTrace trace("legacy-window-discovery");
         const auto candidates=host_.desktops(excluded_);
         if(opengl_ && !nativeFallback_){
             xcb_window_t target=0;
-            if(candidates.size()==1){host_.lowerDesktop(candidates.front());if(!gl_->frameSize().isEmpty())target=host_.inputWindow(candidates.front(),gl_->frameSize());}
-            input_->setTarget(target);return;
+            const bool desktopCoordinates=inputState_&&inputState_->desktopCoordinates();
+            if(candidates.size()==1){host_.lowerDesktop(candidates.front());if(!gl_->frameSize().isEmpty())target=desktopCoordinates?host_.desktopInputWindow(candidates.front(),gl_->frameSize()):host_.inputWindow(candidates.front(),gl_->frameSize());}
+            input_->setTarget(target,desktopCoordinates&&target?candidates.front():0);return;
         }
         if(candidates.size()==1 && attach(candidates.front()))return;
         if(candidates.size()>1){poll_.stop();retry_->setEnabled(true);statusBar()->showMessage("Multiple new game desktops found. Close extra desktops, then click Attach game.");return;}
@@ -627,7 +674,7 @@ private:
             if(!evidence.open(QIODevice::WriteOnly|QIODevice::NewOnly)||evidence.write(bytes)!=bytes.size())log_->appendPlainText("Cannot save native music session evidence.");
         }
         music_.reset();
-        if(renderWorker_){if(restarting_)renderWorker_->abort();else if(!renderWorker_->finishProducer()){rendererFinished=false;residentTerminal_=true;residentWorldError_=renderWorker_->error();log_->appendPlainText("Native render owner stopped: "+residentWorldError_);}renderWorker_.reset();}
+        if(renderWorker_){if(restarting_)renderWorker_->abort();else if(!renderWorker_->finishProducer()){rendererFinished=false;residentTerminal_=true;residentWorldError_=renderWorker_->error();log_->appendPlainText("Native render owner stopped: "+residentWorldError_);}finishPendingCpuFault();renderWorker_.reset();}
         if(restarting_&&residentWorld_)residentWorld_->abort("Game force-stopped for hard restart");
         if(residentWorld_){try{residentWorld_->saveReport(residentWorldReport_);}catch(const std::exception& e){log_->appendPlainText(e.what());residentWorld_->saveReport(residentWorldReport_);}}
         if(commands_){if(restarting_)commands_->abort();else if(!commands_->finishProducer()){rendererFinished=false;log_->appendPlainText("Native command producer stopped: "+commands_->error());}commands_.reset();}
@@ -670,7 +717,7 @@ private:
     SpellboxWidget* liveSpells_=nullptr;std::unique_ptr<LiveSpellMenuController> spellMenus_;
     std::unique_ptr<LiveBattleMenuController> battleMenus_;
     std::unique_ptr<LiveMenuSession> liveMenus_;QStackedWidget* menuStack_=nullptr;MainMenuWidget* liveMain_=nullptr;QuickBattleMenuWidget* liveQuick_=nullptr;QPushButton* fallback_=nullptr;bool menuAssetsLoaded_=false,closeAfterGame_=false;
-    QString repo_;bool restarting_=false;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false,nativeFallback_=false;std::unique_ptr<NativeRenderWorker> renderWorker_;LiveCommandSession::State lastRenderState_=LiveCommandSession::State::WaitingFrame;std::unique_ptr<LiveCommandSession> commands_;std::unique_ptr<ResidentWorldSession> residentWorld_;QString residentWorldReport_,residentWorldError_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_,commandDrain_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;std::unique_ptr<mnm::audio::MusicBroker> music_;QTimer inputTimer_;GameProcess process_;QTimer poll_;QElapsedTimer elapsed_;
+    QString repo_;bool restarting_=false;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false,nativeFallback_=false;std::shared_ptr<PendingCpuFaultTest> pendingCpuFault_;std::unique_ptr<NativeRenderWorker> renderWorker_;LiveCommandSession::State lastRenderState_=LiveCommandSession::State::WaitingFrame;std::unique_ptr<LiveCommandSession> commands_;std::unique_ptr<ResidentWorldSession> residentWorld_;QString residentWorldReport_,residentWorldError_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_,commandDrain_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;std::unique_ptr<mnm::audio::MusicBroker> music_;QTimer inputTimer_;GameProcess process_;QTimer poll_;QElapsedTimer elapsed_;
     QSet<xcb_window_t> excluded_;bool checking_=false;
     QWidget* viewport_=nullptr;QVBoxLayout* layout_=nullptr;QLabel* placeholder_=nullptr;
     QWidget* container_=nullptr;QWindow* foreign_=nullptr;xcb_window_t windowId_=0;
@@ -751,7 +798,7 @@ int main(int argc,char** argv){
         if(QFile::exists(vendor))qputenv("__EGL_VENDOR_LIBRARY_FILENAMES",vendor.toLocal8Bit());
     }
     QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(format);
-    QApplication app(argc,argv);QCoreApplication::setApplicationName("mnm-qt-shell");
+    HostEventApplication app(argc,argv);QCoreApplication::setApplicationName("mnm-qt-shell");
     QCommandLineParser parser;parser.setApplicationDescription("Magic & Mayhem Qt development shell");parser.addHelpOption();
     addMediaOptions(parser);
     addAudioOptions(parser);
@@ -1036,7 +1083,7 @@ int main(int argc,char** argv){
     if(parser.isSet("live-menu-test")){
         if(qEnvironmentVariable("MNM_RESIDENT_RESTART_TEST")=="1"){
             if(!parser.isSet("resident-world"))parser.showHelp(2);
-            installResidentRestartTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();},[&shell]{return shell.residentFailureState();});
+            installResidentRestartTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();},[&shell]{return shell.residentFailureState();},[&shell]{return shell.armPendingCpuReadFault();});
         }
         else if(qEnvironmentVariableIsSet("MNM_LIVE_MENU_TEST_QT_JOURNEY"))installQuickBattleAppTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
         else if(qEnvironmentVariableIsSet("MNM_CAMPAIGN_SMOKE_TEST"))installCampaignSmokeTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});

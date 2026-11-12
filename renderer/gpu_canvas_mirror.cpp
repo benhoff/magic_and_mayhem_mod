@@ -15,6 +15,11 @@ Image GpuCanvasMirror::readForCpu(std::uint32_t id) {
 void GpuCanvasMirror::create(std::uint32_t id, int width, int height) {
   if (!id || surfaces_.count(id))
     throw std::invalid_argument("Duplicate GPU producer canvas");
+  if(width<1 || height<1 || width>2048 || height>2048)
+    throw std::invalid_argument("Invalid GPU producer canvas dimensions");
+  const auto stats=renderer_.stats();
+  if(reclaim_ && (stats.surfaces>=64 || std::size_t(width)*height>16777216-stats.pixels))
+    reclaim_();
   const auto handle = renderer_.allocate(width, height,
       {16, {0xf800, 0x07e0, 0x001f}});
   try {

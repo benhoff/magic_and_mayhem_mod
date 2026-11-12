@@ -1,6 +1,7 @@
 #include "world_frame.hpp"
 #include "../../protocols/include/mnm/world_frame_v1.h"
 #include <cstring>
+#include <algorithm>
 #include <limits>
 #include "../../renderer/sprites/tint_colour.hpp"
 #include <stdexcept>
@@ -19,13 +20,16 @@ std::optional<std::uint32_t> decodeWorldRefusal(const QByteArray& b){
     if(!width||width>2048||!height||height>2048||stride<width||stride>4096)throw std::invalid_argument("Invalid World refusal dimensions");
     return failure;
 }
-WorldFrame decodeWorldFrame(const QByteArray& b){
-    if(b.size()<MNM_WORLD_HEADER||b.size()>MNM_WORLD_MAX_BYTES||b.first(8)!=MNM_WORLD_MAGIC||word(b,8)!=1||word(b,12)!=MNM_WORLD_HEADER||word(b,16)!=std::uint32_t(b.size())||!word(b,20)||word(b,40)||word(b,44)!=MNM_WORLD_BUILD||word(b,72))throw std::invalid_argument("Unsupported/refused World input envelope");
+WorldFrame decodeWorldFrame(const QByteArray& b,WorldInputPolicy policy){
+    if(policy!=WorldInputPolicy::rgb565&&policy!=WorldInputPolicy::colourRgb555)throw std::invalid_argument("Unknown World input policy");
+    if(b.size()<MNM_WORLD_HEADER||b.size()>MNM_WORLD_MAX_BYTES||b.first(8)!=MNM_WORLD_MAGIC||word(b,8)!=1||word(b,12)!=MNM_WORLD_HEADER||word(b,16)!=std::uint32_t(b.size())||!word(b,20)||word(b,40)||word(b,44)!=MNM_WORLD_BUILD||word(b,72)>(policy==WorldInputPolicy::colourRgb555?1u:0u))throw std::invalid_argument("Unsupported/refused World input envelope");
     WorldFrame frame;frame.sequence=word(b,20);frame.width=word(b,24);frame.height=word(b,28);frame.stride=word(b,32);
+    frame.colourRgb555=word(b,72)==1;
     const auto count=word(b,36);if(!frame.width||frame.width>2048||!frame.height||frame.height>2048||frame.stride<frame.width||frame.stride>4096||!count||count>MNM_WORLD_MAX_DRAWS)throw std::invalid_argument("Invalid World dimensions/draw count");
     qsizetype at=MNM_WORLD_HEADER;
     for(std::uint32_t i=0;i<count;++i){
         const auto size=word(b,at),op=word(b,at+4),encoded=word(b,at+32),indexed=word(b,at+36),payload=word(b,at+40);
+        if(frame.colourRgb555&&op!=MNM_WORLD_COLOUR_RECT)throw std::invalid_argument("RGB555 World admits only colour rectangles");
         if(size!=MNM_WORLD_RECORD+encoded+payload||((op<6||op==MNM_WORLD_ADDITIVE_SPRITE||op==MNM_WORLD_RUN_OUTLINE||op==MNM_WORLD_TINT_OUTLINE||op==MNM_WORLD_SOURCE_ROW_SHIFT||op==MNM_WORLD_DESTINATION_ROWS)&&encoded<40)||encoded>MNM_WORLD_MAX_FRAME||indexed>1||op>MNM_WORLD_DESTINATION_ROWS||size>std::uint32_t(b.size()-at)||word(b,at+52)>16)throw std::invalid_argument("Invalid World raster record");
         const bool rowEffect=op==MNM_WORLD_SOURCE_ROW_SHIFT||op==MNM_WORLD_DESTINATION_ROWS;
         const auto rowCount=rowEffect?word(b,at+MNM_WORLD_RECORD+8):0u;
@@ -40,6 +44,7 @@ WorldFrame decodeWorldFrame(const QByteArray& b){
             const auto w=word(b,at+64),h=word(b,at+68),mode=word(b,at+72);if(!w||!h||w>64||h>64||mode>3||payload!=12+w*h*2)throw std::invalid_argument("Invalid colour rectangle extent/mode");
             render::Image pixels{int(w),int(h),{}};pixels.pixels.reserve(w*h);
             for(std::uint32_t j=0;j<w*h;++j){const auto offset=at+76+j*2;const auto* p=reinterpret_cast<const unsigned char*>(b.constData()+offset);pixels.pixels.push_back(p[0]|std::uint32_t(p[1])<<8);}
+            if(frame.colourRgb555&&std::any_of(pixels.pixels.begin(),pixels.pixels.end(),[](auto v){return v>0x7fff;}))throw std::invalid_argument("Noncanonical RGB555 World source");
             d.colourRectangle=render::ColourRectangle{std::move(pixels)};d.composite.mode=mode==0?render::CompositeMode::copy:mode==1?render::CompositeMode::quarterDestination:mode==2?render::CompositeMode::half:render::CompositeMode::quarterSource;
             frame.draws.push_back(std::move(d));at+=size;continue;
         }

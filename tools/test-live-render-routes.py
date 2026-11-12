@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Bounded original campaign/movie-enabled routes with independent X11 region comparisons."""
+from experiment_environment import stage_prefix
 import argparse
 import configparser
 import ctypes as c
@@ -104,7 +105,7 @@ def main():
     source_prefs=ROOT/'working/game-nocd/CFG/prefs.cfg';prefs_hash=helper.sha(source_prefs)
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
-        subprocess.run(['cp','-a','--reflink=auto',str(args.prefix_template.resolve()),env['WINEPREFIX']],check=True)
+        stage_prefix(ROOT, str(args.prefix_template.resolve()), env['WINEPREFIX'])
         with (run/'wineboot.log').open('w') as log:subprocess.run(['wineboot','-u'],env=env,stdout=log,stderr=log,check=True,timeout=90)
         observer=module('route_menu_build','tools/build-menu-observer.py').build(run/'menu-build')
         for mode in (['campaign','movies-enabled'] if args.mode=='both' else [args.mode]):

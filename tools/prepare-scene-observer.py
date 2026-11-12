@@ -24,12 +24,13 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def copy_installation(source, game):
+def copy_installation(source, game, *, persistent=False):
     # cp -a preserves a directory symlink instead of making an isolated copy.
     source=Path(source).resolve()
     if game.exists() or game.is_symlink():
         raise ValueError('Disposable destination must be new')
-    subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
+    from experiment_environment import stage
+    stage(ROOT,game,source,kind='game',persistent=persistent)
     if game.is_symlink() or game.resolve()==source:
         raise ValueError('Disposable game copy aliases its source')
     for name in ['Chaos.exe','MnmScene.dll','MnmMenu.dll','MnmWord.dll','MnmDraw.dll','MnmCreatureDrawing.dll','MnmActorLifecycle.dll','MnmWorldCellProducer.dll','CFG/prefs.cfg']:
@@ -37,7 +38,7 @@ def copy_installation(source, game):
             raise ValueError('Disposable write target escapes the game copy: '+name)
 
 
-def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source_game=None,glyph_mode=None,native_draw=False,native_creature_drawing=False,native_actor_lifecycle=False,native_world_cell_producer=False):
+def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source_game=None,glyph_mode=None,native_draw=False,native_creature_drawing=False,native_actor_lifecycle=False,native_world_cell_producer=False,persistent=False):
     if world_live and not world_frames:raise ValueError('Continuous World needs the World input observer')
     if world_frames and word_mode:raise ValueError('World observation and word takeover use separate experiments')
     if word_mode not in (None,'shadow','takeover','clip-shadow','clip-takeover'):raise ValueError('Unsupported word-sprite mode')
@@ -55,7 +56,7 @@ def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source
     parent.mkdir(parents=True,exist_ok=True)
     output=Path(tempfile.mkdtemp(prefix='run-',dir=parent))
     game=output/'game'
-    copy_installation(source,game)
+    copy_installation(source,game,persistent=persistent)
     if sha(game/'Chaos.exe')!=HASH:
         raise ValueError('Disposable copy hash mismatch')
     patch=load('scene_import','tools/prepare-shadow-experiment.py').add_import
@@ -141,6 +142,6 @@ if __name__=='__main__':
     args=parser.parse_args()
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
-        print(prepare(args.menu_driver,args.word_sprites,native_creature_drawing=args.native_creature_drawing,native_actor_lifecycle=args.native_actor_lifecycle,native_world_cell_producer=args.native_world_cell_producer))
+        print(prepare(args.menu_driver,args.word_sprites,native_creature_drawing=args.native_creature_drawing,native_actor_lifecycle=args.native_actor_lifecycle,native_world_cell_producer=args.native_world_cell_producer,persistent=True))
     finally:
         subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)

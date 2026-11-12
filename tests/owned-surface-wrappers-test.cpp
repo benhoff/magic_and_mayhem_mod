@@ -7,7 +7,7 @@
 #include <stdexcept>
 using namespace mnm::render;
 using namespace mnm::reconstruction;
-static unsigned checks=0,refusals=0,copies=0,fills=0,reloads=0,bars=0;
+static unsigned checks=0,refusals=0,copies=0,fills=0,reloads=0,bars=0,recoveries=0;
 static void require(bool ok,const char* why) {++checks; if(!ok) throw std::runtime_error(why);}
 template<class F> static void refuses(F&& action) {
     bool caught=false;
@@ -100,6 +100,94 @@ static void copyControls(SurfaceBackend& b) {
     require(b.read(source).pixels==expected,"Alias source identity");
     require(b.release(alias)==1,"Alias reference retention");
     b.destroy(destination); b.destroy(source);
+}
+static void copyRecoveryControls(SurfaceBackend& b) {
+    Image input=plane();
+    for(unsigned n=0;n<48;++n) input.pixels[n]=0x1000+n;
+    input.pixels[9]=0x2222;
+    for(auto kind:{SurfaceCopyWrapper::opaqueRecovering,SurfaceCopyWrapper::keyedRecovering})
+        for(bool fast:{false,true}) for(bool noWait:{false,true})
+        for(bool primary:{false,true}) for(unsigned lost=0;lost<4;++lost) {
+            const auto source=b.create(input,rgb(16)),dest=b.create(plane(0x9999),rgb(16));
+            b.setSourceKey(source,0x2222);
+            if(lost&1) b.markLost(source);
+            if(lost&2) b.markLost(dest);
+            std::vector<unsigned> events;
+            OwnedCopyRecovery options;
+            options.keyEnabled=true; options.sourceKey=0x2222; options.destinationKey=0x3333;
+            options.sourceRoute=options.destinationRoute=SurfaceReloadRoute::Callback;
+            options.bindings.report=[&](auto h){require(h==0x887601c2,"Copy loss report");events.push_back(0);};
+            options.bindings.source=[&](auto& backend,auto id){
+                require(id==source && !backend.isLost(id) && backend.sourceKey(id)==0x2222,"Source recovery/key order");
+                events.push_back(1); backend.update(id,0,0,input);
+            };
+            options.bindings.destination=[&](auto& backend,auto id){
+                require(id==dest && !backend.isLost(id) && backend.sourceKey(id)==0x3333,"Destination recovery/key order");
+                events.push_back(2); backend.update(id,0,0,plane(0x9999));
+            };
+            const auto out=recoverOwnedSurfaceCopy(b,kind,source,dest,{1,1,4,3},1,1,
+                                                   {fast,noWait,primary,1,1},options,2);
+            require(out.called && out.retry.returned && !out.retry.budgetExhausted &&
+                    out.retry.draws==(lost ? 2u : 1u),"Copy recovery completion");
+            require(events==(lost ? std::vector<unsigned>{0,1,2} : std::vector<unsigned>{}),"Copy recovery event order");
+            auto expected=plane(0x9999);
+            const int shift=!fast && primary ? 1 : 0;
+            for(int y=0;y<2;++y) for(int x=0;x<3;++x) {
+                const auto value=input.pixels[std::size_t(y+1)*8+x+1];
+                if(kind==SurfaceCopyWrapper::opaqueRecovering || value!=0x2222)
+                    expected.pixels[std::size_t(y+1+shift)*8+x+1+shift]=value;
+            }
+            require(b.read(dest).pixels==expected.pixels,"Recovered copy pixels");
+            require(!b.borrowed(source) && !b.borrowed(dest),"Recovery leaked leases");
+            b.destroy(dest); b.destroy(source); ++recoveries;
+        }
+    const auto source=b.create(input,rgb(16)),dest=b.create(plane(9),rgb(16));
+    OwnedCopyRecovery options;
+    unsigned reports=0;
+    options.bindings.report=[&](auto){++reports;};
+    for(auto kind:{SurfaceCopyWrapper::opaqueGuarded,SurfaceCopyWrapper::keyedRectangle,
+                   SurfaceCopyWrapper::keyedExplicit,SurfaceCopyWrapper(99)})
+        refuses([&]{recoverOwnedSurfaceCopy(b,kind,source,dest,{},0,0,{},options);});
+    refuses([&]{recoverOwnedSurfaceCopy(b,SurfaceCopyWrapper::keyedRecovering,std::nullopt,dest,{},0,0,{},options);});
+    const auto skipped=recoverOwnedSurfaceCopy(b,SurfaceCopyWrapper::opaqueRecovering,std::nullopt,dest,{},0,0,{},options);
+    require(!skipped.called && !skipped.retry.returned && !skipped.retry.draws && !reports,"Guarded recovery bypass");
+    for(unsigned budget:{0u,65537u})
+        refuses([&]{recoverOwnedSurfaceCopy(b,SurfaceCopyWrapper::opaqueRecovering,source,dest,{0,0,8,6},0,0,{},options,budget);});
+    options.sourceRoute=SurfaceReloadRoute(99);
+    refuses([&]{recoverOwnedSurfaceCopy(b,SurfaceCopyWrapper::opaqueRecovering,source,dest,{0,0,8,6},0,0,{},options);});
+    require(!reports && b.read(dest).pixels==plane(9).pixels,"Invalid recovery performed work");
+    options.sourceRoute=SurfaceReloadRoute::None;
+    SurfaceBackend::Descriptor descriptor;
+    require(!b.lock(source,descriptor),"Busy recovery source Lock");
+    auto out=recoverOwnedSurfaceCopy(b,SurfaceCopyWrapper::opaqueRecovering,source,dest,{0,0,8,6},0,0,{},options,3);
+    require(out.retry.budgetExhausted && !out.retry.returned && out.retry.draws==3 && reports==3,"Busy budget falsely completed");
+    require(b.borrowed(source) && b.read(dest).pixels==plane(9).pixels,"Busy retry changed lease/pixels");
+    options.bindings.report=[&](auto h){require(h==SurfaceAccessState::busy,"Busy result");require(!b.unlock(source),"Report releases source");};
+    out=recoverOwnedSurfaceCopy(b,SurfaceCopyWrapper::opaqueRecovering,source,dest,{0,0,8,6},0,0,{},options,2);
+    require(out.retry.returned && out.retry.draws==2 && b.read(dest).pixels==input.pixels,"Transient busy recovery");
+    b.markLost(source);
+    options.bindings.report={};
+    refuses([&]{recoverOwnedSurfaceCopy(b,SurfaceCopyWrapper::opaqueRecovering,source,dest,{0,0,8,6},0,0,{},options);});
+    require(!b.isLost(source),"Unknown-source recovery did not Restore");
+    refuses([&]{b.read(source);});
+    b.update(source,0,0,input);
+    b.markLost(dest);
+    options.destinationRoute=SurfaceReloadRoute::Callback;
+    options.bindings.destination=[](auto&,auto){throw std::runtime_error("Reload failure");};
+    refuses([&]{recoverOwnedSurfaceCopy(b,SurfaceCopyWrapper::opaqueRecovering,source,dest,{0,0,8,6},0,0,{},options);});
+    require(!b.isLost(dest) && !b.borrowed(dest),"Failed reload state");
+    refuses([&]{b.read(dest);});
+    // A failed primary Restore still follows source reload and consumes the budget.
+    const auto front=b.create(plane(),rgb(16),0x840,std::nullopt,true);
+    b.markLost(front); reports=0; unsigned sourceReloads=0;
+    options.destinationRoute=SurfaceReloadRoute::None;
+    options.sourceRoute=SurfaceReloadRoute::Callback;
+    options.bindings.source=[&](auto&,auto){++sourceReloads;};
+    options.bindings.display=SurfaceBackend::Mode{9,6,rgb(16)};
+    options.bindings.report=[&](auto h){require(h==0x887601c2,"Wrong-mode copy reports draw result");++reports;};
+    out=recoverOwnedSurfaceCopy(b,SurfaceCopyWrapper::opaqueRecovering,source,front,{0,0,8,6},0,0,{},options,2);
+    require(out.retry.budgetExhausted && !out.retry.returned && reports==2 && sourceReloads==2 && b.isLost(front),"Wrong-mode budget/order");
+    b.destroy(front); b.destroy(dest); b.destroy(source);
 }
 static void fillControls(SurfaceBackend& b) {
     const auto id=b.create(plane(7),rgb(16));
@@ -235,11 +323,12 @@ int main(int argc,char** argv) {
     QGuiApplication app(argc,argv);
     try {
         SurfaceBackend backend;
-        copyControls(backend); fillControls(backend); reloadControls(backend); barControls(backend);
+        copyControls(backend); copyRecoveryControls(backend); fillControls(backend); reloadControls(backend); barControls(backend);
         require(backend.stats().surfaces==0 && backend.paletteObjects()==0,"Owned resources leaked");
         std::cout<<"{\"success\":true,\"checks\":"<<checks<<",\"refusals\":"<<refusals
                  <<",\"copy_cases\":"<<copies<<",\"fill_cases\":"<<fills
-                 <<",\"reload_cases\":"<<reloads<<",\"bar_cases\":"<<bars<<"}\n";
+                 <<",\"reload_cases\":"<<reloads<<",\"bar_cases\":"<<bars
+                 <<",\"copy_recovery_cases\":"<<recoveries<<"}\n";
         return 0;
     } catch(const std::exception& e) {std::cerr<<e.what()<<'\n'; return 1;}
 }

@@ -3,6 +3,7 @@
 import argparse
 from contextlib import contextmanager, ExitStack
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -16,6 +17,7 @@ from coverage_merge_history import inherited_history
 from coverage_reviews import load_journal, read_journal
 from coverage_evidence import shared_cache
 from evidence_local import local_evidence
+from coverage_scratch import scratch
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -28,8 +30,7 @@ def git(root, *args):
 def git_snapshot(root, revision):
     """Read a base tree without switching branches or executing its code."""
     commit = git(root, 'rev-parse', '--verify', '--end-of-options', revision + '^{commit}').decode().strip()
-    with shared_cache(root), tempfile.TemporaryDirectory(prefix='coverage-git-base-') as temporary:
-        target = Path(temporary)
+    with shared_cache(root), scratch(root, 'coverage-git-base-', revision=commit) as target:
         # Stream the archive instead of buffering several GiB before extraction.
         # Keep stderr off a pipe so an export failure cannot deadlock the reader.
         command = ['git', '-C', str(root), 'archive', '--format=tar', commit]
@@ -84,15 +85,14 @@ def staged_tree(root):
         if mode not in {b'100644', b'100755'}:
             raise ValueError(f'Unsupported staged file mode: {path}')
         paths.append(name)
-    with shared_cache(root), tempfile.TemporaryDirectory(prefix='coverage-git-index-') as temporary:
-        target = Path(temporary)
+    with shared_cache(root), scratch(root, 'coverage-git-index-') as target:
         # The evidence smudge direction is identity. Avoid one filter process
         # per report (and retain exact staged pointer bytes for this check).
         subprocess.run(['git', '-C', str(root),
                         '-c', 'filter.mm-evidence.process=',
                         '-c', 'filter.mm-evidence.smudge=',
                         '-c', 'filter.mm-evidence.required=false',
-                        'checkout-index', '--prefix=' + temporary + '/',
+                        'checkout-index', '--prefix=' + str(target) + '/',
                         '-z', '--stdin'], input=b'\0'.join(paths) + b'\0' if paths else b'',
                        check=True, capture_output=True)
         yield target
@@ -122,8 +122,17 @@ def main():
     parser.add_argument('--timings', action='store_true', help='Print phase durations to stderr and include them in the JSON report')
     args = parser.parse_args()
     ROOT = args.root.resolve()
-    with local_evidence(ROOT), ExitStack() as stack:
-        return run(args, stack)
+    prior = os.environ.get('MM_COVERAGE_TIMINGS')
+    try:
+        if args.timings:
+            os.environ['MM_COVERAGE_TIMINGS'] = '1'
+        with local_evidence(ROOT), ExitStack() as stack:
+            return run(args, stack)
+    finally:
+        if prior is None:
+            os.environ.pop('MM_COVERAGE_TIMINGS', None)
+        else:
+            os.environ['MM_COVERAGE_TIMINGS'] = prior
 
 
 def run(args, stack):

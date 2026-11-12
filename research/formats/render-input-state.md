@@ -44,3 +44,21 @@ The bridge is read-only with respect to this file. Normal shutdown publishes
 inactive state; an interrupted writer is rejected by its sequence or lease.
 
 See [input integration and evidence](../runtime/qt-input-forwarding.md).
+
+## Desktop coordinates, version 2
+
+`protocols/schemas/input-v2.json` adds an explicit coordinate space for native
+frames containing the entire Wine desktop. Its file size remains 1088 bytes,
+with the same producer sequence, active lease, cursor, dimensions and key array.
+The magic is `MNMINK02`, version is 2, and the creator-owned word at offset 40
+is `coordinate_space=1` (desktop screen pixels). Bytes 44–63 must be zero;
+unknown spaces, versions, sizes and nonzero reserved bytes refuse admission.
+
+For v2, the host publishes the pointer in displayed desktop-frame pixels. The
+PE32 GetCursorPos adapter returns those screen coordinates directly after the
+existing cooperative-window and lease checks. It must not add ClientToScreen a
+second time. Version 1 remains client-relative and still calls ClientToScreen.
+There are no host pointers or C++ layouts in either channel. The ordinary Qt
+shell creates v2; both launch admission paths and the storage input reader accept
+validated v1/v2 headers. Synthetic writer/reader and actual-game observations are
+recorded separately in `research/runtime/windowed-input-gpu-callers-20261026.md`.

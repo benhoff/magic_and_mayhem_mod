@@ -1,4 +1,5 @@
 #include "live_menu_session.hpp"
+#include "host_timing_trace.hpp"
 #include "../../protocols/include/mnm/menu_v20.h"
 #include "../../protocols/include/mnm/menu_v9.h"
 #include <QDir>
@@ -7,7 +8,7 @@
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
-LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(parent),repo_(std::move(repository)){
+LiveMenuSession::LiveMenuSession(QString repository,QObject* parent,EnginePreferencesPersistence::Commit preferencesCommit):QObject(parent),repo_(std::move(repository)),preferencesStore_(std::move(preferencesCommit)){
     if(qEnvironmentVariableIsSet("MNM_NATIVE_OUTPUT_OWNER"))winePrefix=qEnvironmentVariable("MNM_OWNED_WINE_PREFIX");
     progressedMenusEnabled=qEnvironmentVariable("MNM_EXPERIMENTAL_CAMPAIGN_MENUS")=="1";
     campaignBookEnabled=progressedMenusEnabled;
@@ -48,28 +49,36 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
             channel_=QDir(root_).filePath("channel.bin");bridge_=std::make_unique<MenuBridge>();
             if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled,regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,sessionMenusEnabled&&multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,hostLobbyEnabled&&sessionMenusEnabled&&multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,characterMenusEnabled,realmMenusEnabled,progressedMenusEnabled,campaignSpellboxEnabled,campaignBookEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
             active_=!bypass_;clock_.restart();lastState_=0;
-            if(active_)timer_.start();else bridge_->retire();
+            menuTimeline_.open(QDir(root_).filePath("menu-host-timeline.bin"));menuWitness(MNM_MTL_CREATED);
+            if(active_)timer_.start();else retireBridge();
             QStringList arguments{root_,"--menu-channel",channel_,"--prefix",winePrefix.isEmpty()?QDir(repo_).filePath(hostLobbyEnabled?"working/tests/menu-host-dx6-wine":"working/tests/menu-live-wine"):winePrefix};
             if(nativeCommandsEnabled)arguments.append("--native-render");
             if(smokeSeconds)arguments.append({"--seconds",QString::number(smokeSeconds)});
             process_.start(QDir(repo_).filePath("tools/run-menu-observer.py"),arguments);
             if(launched)launched();
         }else{
-            timer_.stop();active_=false;if(bridge_)bridge_->retire();bridge_.reset();
+            timer_.stop();active_=false;if(bridge_)retireBridge();bridge_.reset();
             if(output)output(QString("Menu launcher exited with status %1. Evidence: %2\n").arg(code).arg(root_));
             if(finished)finished();
         }
     });
     timer_.setInterval(50);connect(&timer_,&QTimer::timeout,this,[this]{poll();});
 }
+LiveMenuSession::~LiveMenuSession(){
+    // Stop delivery before bridge_, state_ and timer_ are torn down. The
+    // process owner reaps its children without publishing normal completion.
+    timer_.stop();timer_.disconnect(this);process_.disconnect(this);
+    if(bridge_)retireBridge();
+}
 bool LiveMenuSession::start(){
     if(running())return false;
-    storageOpeningGeneration_=0;
+    preferencesStore_.wait();publishPreferences();
+    storageOpeningGeneration_=preferencesOpeningGeneration_=0;
     launcherExitCode=-1;
     preferencesStore_.begin(preferencesStorePath,{});
     cpuRead_=0;cpuReadStarted_=cpuReadGrace_=0;
     resultsAction_=0;preferencesToSave_=false;preparation_.clear();root_.clear();sequence_=0;state_={};pending_=transition_=bypass_=exitRequested_=quitting_=inBattle_=normalQuitAccepted_=false;
-    mediaActive_=false;mediaStartedAt_=0;
+    mediaActive_=false;mediaStartedAt_=0;deferredMenuRequest_={};
     auto env=QProcessEnvironment::systemEnvironment();env.remove("MNM_MENU_CHANNEL");env.remove("MNM_RUNNER");env.remove("MNM_MENU_OBSERVE");env.remove("MNM_AUDIO_CHANNEL");env.remove("MNM_RENDER_MEDIA");
     if(!env.contains("MNM_MENU_DIRECTPLAY_DX6"))env.insert("MNM_MENU_DIRECTPLAY_DX6",hostLobbyEnabled?"1":"0");
     env.remove("MNM_MUSIC_CHANNEL");process_.setProcessEnvironment(env);process_.setWorkingDirectory(repo_);preparing_=true;
@@ -87,7 +96,7 @@ void LiveMenuSession::setMediaActive(bool active){
     if(mediaActive_==active)return;
     const auto now=clock_.isValid()?clock_.elapsed():0;
     if(active)mediaStartedAt_=now;
-    else{const auto paused=now-mediaStartedAt_;lastState_+=paused;requestedAt_+=paused;if(resultsAction_)resultsRequestedAt_+=paused;}
+    else{const auto paused=now-mediaStartedAt_;lastState_+=paused;requestedAt_+=paused;if(resultsAction_)resultsRequestedAt_+=paused;if(deferredMenuRequest_)deferredMenuRequestAt_+=paused;}
     mediaActive_=active;
 }
 bool LiveMenuSession::normalQuitAccepted(){
@@ -99,16 +108,33 @@ bool LiveMenuSession::normalQuitAccepted(){
 bool LiveMenuSession::running() const{return preparing_||process_.hardStopping()||process_.state()!=QProcess::NotRunning;}
 void LiveMenuSession::forceStop(std::function<void(bool,const QString&)> completed){
     const bool staged=preparing_;
-    timer_.stop();active_=false;preferencesToSave_=false;pending_=transition_=false;
-    if(bridge_)bridge_->retire();
+    timer_.stop();active_=false;preferencesToSave_=false;pending_=transition_=false;deferredMenuRequest_={};
+    if(bridge_)retireBridge();
     process_.forceStop(staged?QString{}:winePrefix.isEmpty()?QDir(repo_).filePath(hostLobbyEnabled?"working/tests/menu-host-dx6-wine":"working/tests/menu-live-wine"):winePrefix,
         [this,completed=std::move(completed)](bool ok,const QString& error){
             preparing_=false;bridge_.reset();completed(ok,error);
         });
 }
 bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<int,17>* rules){
-    if(mediaActive_||!active_||inBattle_||pending_||transition_||resultsAction_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->request(action,state_,argument,rules))return false;
+    auto observe=[&](bool accepted,const QString& reason){if(!accepted)menuWitness(MNM_MTL_REQUEST_REFUSED,nullptr,action);if(requestObserved)requestObserved(action,accepted,reason,state_);return accepted;};
+    if(mediaActive_||!active_||inBattle_||pending_||transition_||deferredMenuRequest_||resultsAction_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)
+        return observe(false,QString("Session unavailable: media=%1 active=%2 battle=%3 pending=%4 transition=%5 results=%6").arg(mediaActive_).arg(active_).arg(inBattle_).arg(pending_).arg(transition_).arg(resultsAction_));
+    const bool firstMain=state_.screen==3&&action==MNM_MENU_OPEN_QUICK&&!menuTimeline_.resolved();
+    if(firstMain&&!menuTimeline_.tracked())menuWitness(MNM_MTL_REQUEST_BEFORE,nullptr,action,bridge_->requestedSequence()+1);
+    if(!bridge_->request(action,state_,argument,rules)){
+        if(bridge_->readUnstable()){
+            const auto ownedRules=rules?std::make_shared<const std::array<int,17>>(*rules):nullptr;
+            return deferMenuRequest([this,action,argument,ownedRules]{return request(action,argument,ownedRules.get());});
+        }
+        return observe(false,"Current wire ownership or request admission changed");
+    }
     quitting_=action==MNM_MENU_QUIT;pending_=true;requestedAt_=clock_.elapsed();action_=action;
+    campaignEnterGeneration_=campaignEnterKind_=campaignEnterThread_=campaignEnterHandoff_=campaignEnterRegion_=0;
+    if(progressedMenusEnabled&&action==MNM_MENU_REGION_ENTER){
+        campaignEnterGeneration_=state_.generation;campaignEnterThread_=state_.thread;campaignEnterHandoff_=state_.region.enterHandoff;
+        campaignEnterRegion_=state_.region.region;
+        campaignEnterKind_=state_.region.realm=="Celtic"?1:state_.region.realm=="Greek"?2:state_.region.realm=="Medieval"?3:0;
+    }
     switch(action){
     case MNM_MENU_REALM_ACTIVATE:target_=(state_.realm.rows[int(argument)-1].owned?4:18);break;
     case MNM_MENU_REALM_CHARACTER:target_=20;break;
@@ -128,10 +154,12 @@ bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<i
     case MNM_MENU_SETUP_MAP:target_=25;break;
     default:target_=3;break;
     }
+    if(firstMain){menuWitness(MNM_MTL_REQUEST_PUBLISHED);if(menuTimeline_.suppressRead())menuWitness(MNM_MTL_READ_SUPPRESSED);}
+    observe(true,{});
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 bool LiveMenuSession::requestPreferences(quint32 action,const std::array<int,7>& values,quint32 slider){
-    if(mediaActive_||!preferencesMenusEnabled||!active_||inBattle_||pending_||transition_||resultsAction_||state_.screen!=10||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->requestPreferences(action,state_,values,slider))return false;
+    if(mediaActive_||!preferencesMenusEnabled||!active_||inBattle_||pending_||transition_||deferredMenuRequest_||resultsAction_||state_.screen!=10||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->requestPreferences(action,state_,values,slider))return false;
     if(action==MNM_MENU_PREFERENCES_OK){preferencesToSave_=true;acceptedPreferences_=values;}
     pending_=true;requestedAt_=clock_.elapsed();action_=action;target_=action==MNM_MENU_PREFERENCES_PREVIEW?10:3;
     if(action!=MNM_MENU_PREFERENCES_PREVIEW&&stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
@@ -139,6 +167,18 @@ bool LiveMenuSession::requestPreferences(quint32 action,const std::array<int,7>&
 bool LiveMenuSession::requestDefeatContinue(){
     if(!campaignDefeatEnabled||state_.screen!=MNM_MENU_DEFEAT_SCREEN)return false;
     return request(MNM_MENU_DEFEAT_OK);
+}
+bool LiveMenuSession::beginOriginalRealmControls(){
+    if(!progressedMenusEnabled||!realmMenusEnabled||!active_||mediaActive_||inBattle_||pending_||transition_||deferredMenuRequest_||resultsAction_||
+       !bridge_||!originalViewportRequested||state_.screen!=4||!state_.ready||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)return false;
+    MenuBridge::State current;
+    if(!bridge_->read(current)||current.screen!=4||!current.ready||current.handoff||current.status!=MNM_MENU_OK||current.realm.actions!=7||
+       current.generation!=state_.generation||current.thread!=state_.thread||current.ack!=state_.ack||current.ack!=bridge_->requestedSequence())return false;
+    // The original owns its mode4 Mini, confirmation and save. Keep the lease
+    // and normal fresh-parent restoration while disabling native requests.
+    state_=current;sequence_=current.sequence;lastState_=clock_.elapsed();inBattle_=true;
+    if(stateChanged){auto waiting=current;waiting.ready=0;stateChanged(waiting);}
+    originalViewportRequested();return true;
 }
 bool LiveMenuSession::sameResults(const MenuBridge::State& state) const {
     const auto bit=resultsAction_==MNM_MENU_RESULT_CONTINUE?1u:2u;
@@ -149,7 +189,7 @@ bool LiveMenuSession::requestResults(quint32 action){
     if(mediaActive_||!active_||(action!=MNM_MENU_RESULT_CONTINUE&&action!=MNM_MENU_RESULT_QUIT))return false;
     if(resultsAction_)return resultsAction_==action; // Coalesce repeated input.
     const auto bit=action==MNM_MENU_RESULT_CONTINUE?1u:2u;
-    if(!active_||inBattle_||pending_||transition_||!bridge_||state_.screen!=MNM_MENU_RESULT_SCREEN||
+    if(!active_||inBattle_||pending_||transition_||deferredMenuRequest_||!bridge_||state_.screen!=MNM_MENU_RESULT_SCREEN||
        state_.results.context!=1||!state_.thread||!(state_.results.actions&bit)||
        clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)return false;
     resultsAction_=action;resultsThread_=state_.thread;resultsDepth_=state_.results.depth;
@@ -173,27 +213,41 @@ void LiveMenuSession::submitResults(){
 }
 bool LiveMenuSession::requestMini(quint32 action){
     QString refusal;
-    if(mediaActive_||!miniMenusEnabled()||!active_||inBattle_||pending_||transition_||state_.screen!=MNM_MENU_MINI_SCREEN)refusal="host ownership";
+    if(mediaActive_||!miniMenusEnabled()||!active_||inBattle_||pending_||transition_||deferredMenuRequest_||state_.screen!=MNM_MENU_MINI_SCREEN)refusal="host ownership";
     else if(clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)refusal="host lease expired";
     else if(!bridge_->request(action,state_))refusal="wire readiness or generation changed";
     if(!refusal.isEmpty()){if(miniRequestObserved)miniRequestObserved(action,false,refusal,state_);return false;}
     pending_=true;requestedAt_=clock_.elapsed();action_=action;
     storageOpeningGeneration_=(action==MNM_MENU_MINI_LOAD||action==MNM_MENU_MINI_SAVE)?state_.generation:0;
+    preferencesOpeningGeneration_=action==MNM_MENU_MINI_PREFERENCES?state_.generation:0;
     if(miniRequestObserved)miniRequestObserved(action,true,{},state_);
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 bool LiveMenuSession::requestMultiplayer(quint32 action,quint32 transport,const QString& gameName,const QString& userName){
-    if(!multiplayerMenusEnabled||!active_||inBattle_||pending_||transition_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->requestMultiplayer(action,state_,transport,gameName,userName))return false;
+    if(!multiplayerMenusEnabled||!active_||inBattle_||pending_||transition_||deferredMenuRequest_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->requestMultiplayer(action,state_,transport,gameName,userName))return false;
     pending_=true;requestedAt_=clock_.elapsed();action_=action;target_=22;
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 bool LiveMenuSession::requestStorage(quint32 action,quint32 row,const QString& name){
-    if(!storageMenusEnabled||!active_||inBattle_||pending_||transition_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->requestStorage(action,state_,row,name))return false;
+    auto observe=[&](bool accepted,const QString& reason){if(storageRequestObserved)storageRequestObserved(action,accepted,reason,state_);return accepted;};
+    if(mediaActive_||!storageMenusEnabled||!active_||inBattle_||pending_||transition_||deferredMenuRequest_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS)
+        return observe(false,"Storage host ownership or lease unavailable");
+    if(!bridge_->requestStorage(action,state_,row,name)){
+        if(bridge_->readUnstable())return deferMenuRequest([this,action,row,name]{return requestStorage(action,row,name);});
+        return observe(false,"Storage wire ownership or request admission changed");
+    }
     pending_=true;requestedAt_=clock_.elapsed();action_=action;target_=state_.screen;
+    observe(true,{});
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
+bool LiveMenuSession::deferMenuRequest(std::function<bool()> retry){
+    deferredMenuRequest_=std::move(retry);deferredMenuRequestAt_=clock_.elapsed();
+    if(output)output("Menu publication in progress; retaining the action until a stable snapshot.\n");
+    if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}
+    return true;
+}
 bool LiveMenuSession::requestExit(){
-    if(mediaActive_||!active_||inBattle_||!sequence_||(!pending_&&!transition_&&state_.screen!=3&&state_.screen!=22&&state_.screen!=14&&state_.screen!=25&&state_.screen!=MNM_MENU_RESULT_SCREEN&&state_.screen!=10&&state_.screen!=18&&state_.screen!=MNM_MENU_DEFEAT_SCREEN&&state_.screen!=MNM_MENU_LOAD_SCREEN&&state_.screen!=13&&state_.screen!=MNM_MENU_GRIMOIRE_SCREEN&&state_.screen!=15&&state_.screen!=16&&state_.screen!=21&&state_.screen!=24))return false;
+    if(mediaActive_||deferredMenuRequest_||!active_||inBattle_||!sequence_||(!pending_&&!transition_&&state_.screen!=3&&state_.screen!=22&&state_.screen!=14&&state_.screen!=25&&state_.screen!=MNM_MENU_RESULT_SCREEN&&state_.screen!=10&&state_.screen!=18&&state_.screen!=MNM_MENU_DEFEAT_SCREEN&&state_.screen!=MNM_MENU_LOAD_SCREEN&&state_.screen!=13&&state_.screen!=MNM_MENU_GRIMOIRE_SCREEN&&state_.screen!=15&&state_.screen!=16&&state_.screen!=21&&state_.screen!=24))return false;
     exitRequested_=true;
     if(!pending_&&!transition_&&state_.ready){
         const bool accepted=state_.screen==24?request(MNM_MENU_LOBBY_CANCEL):state_.screen==21?request(MNM_MENU_SESSION_CANCEL):(state_.screen==15||state_.screen==16)?requestMultiplayer(MNM_MENU_MULTIPLAYER_CANCEL):state_.screen==MNM_MENU_GRIMOIRE_SCREEN?request(MNM_MENU_GRIMOIRE_CLOSE):state_.screen==MNM_MENU_DEFEAT_SCREEN?requestDefeatContinue():state_.screen==18?request(MNM_MENU_REGION_CANCEL):state_.screen==10?requestPreferences(MNM_MENU_PREFERENCES_CANCEL,state_.preferences.values):state_.screen==MNM_MENU_RESULT_SCREEN?requestResults(MNM_MENU_RESULT_QUIT):request(state_.screen==25?MNM_MENU_MAP_CANCEL:state_.screen==14?MNM_MENU_SETUP_CANCEL:state_.screen==22?MNM_MENU_BACK:MNM_MENU_QUIT);
@@ -202,19 +256,34 @@ bool LiveMenuSession::requestExit(){
     return true;
 }
 bool LiveMenuSession::finishSpells(const std::array<int,63>& assignments){
-    if(mediaActive_||!active_||inBattle_||pending_||transition_||resultsAction_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->finishSpells(state_,assignments))return false;
+    if(mediaActive_||!active_||inBattle_||pending_||transition_||deferredMenuRequest_||resultsAction_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->finishSpells(state_,assignments))return false;
     pending_=true;requestedAt_=clock_.elapsed();action_=MNM_MENU_SPELL_FINISH;
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 void LiveMenuSession::fallback(const QString& reason){
-    storageOpeningGeneration_=0;resultsAction_=0;preferencesToSave_=false;active_=false;bypass_=!nativeOnlyEnabled;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)bridge_->retire();
+    deferredMenuRequest_={};
+    if(transitionFailureObserved){
+        const auto now=clock_.isValid()?clock_.elapsed():0;
+        TransitionDiagnostic d;d.request=bridge_?bridge_->requestedSequence():0;d.action=action_;d.target=target_;
+        d.flags=(pending_?1u:0u)|(transition_?2u:0u)|(active_?4u:0u)|(mediaActive_?8u:0u)|(inBattle_?16u:0u);
+        d.generation=state_.generation;d.screen=state_.screen;d.ready=state_.ready;d.ack=state_.ack;d.status=state_.status;d.sequence=state_.sequence;d.handoff=state_.handoff;
+        d.requestAgeMs=qMax<qint64>(0,now-requestedAt_);d.stateAgeMs=qMax<qint64>(0,now-lastState_);transitionFailureObserved(d);
+    }
+    menuWitness(MNM_MTL_FALLBACK);
+    storageOpeningGeneration_=preferencesOpeningGeneration_=0;resultsAction_=0;preferencesToSave_=false;active_=false;bypass_=!nativeOnlyEnabled;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)retireBridge();
     if(failed)failed(reason);
 }
 void LiveMenuSession::saveAcceptedPreferences(){
     if(!preferencesToSave_)return;
+    HostTimingTrace trace("preferences-persistence");
     preferencesToSave_=false;QString error;
-    const bool saved=preferencesStore_.accept(QDir(root_).filePath("game/CFG/prefs.cfg"),acceptedPreferences_,&error);
-    if(output)output(saved?"Preferences saved for future launches.\n":"Preferences remain available in this session; persistence failed: "+error+"\n");
+    publishPreferences();
+    if(!preferencesStore_.accept(QDir(root_).filePath("game/CFG/prefs.cfg"),acceptedPreferences_,&error)&&output)
+        output("Preferences remain available in this session; persistence failed: "+error+"\n");
+}
+void LiveMenuSession::publishPreferences(){
+    for(const auto& result:preferencesStore_.takeResults())if(output)
+        output(result.saved?"Preferences saved for future launches.\n":"Preferences remain available in this session; persistence failed: "+result.error+"\n");
 }
 bool LiveMenuSession::cpuReadWaiting(qint64 now) const{
     return cpuRead_?(now>=cpuReadStarted_ && now-cpuReadStarted_<=10000):now<cpuReadGrace_;
@@ -240,7 +309,20 @@ bool LiveMenuSession::restoreMiniStorage(const MenuBridge::State& next){
     if(stateChanged)stateChanged(next);
     return true;
 }
+bool LiveMenuSession::restoreCampaignPreferences(const MenuBridge::State& next){
+    // Readiness can arrive in the opening ACK itself. Its generation must be
+    // newer than the requesting Mini visit, rather than newer than the ACK.
+    // Original-controlled entry retains its prior fresh-state admission.
+    if(!campaignPreferencesEnabled||!next.ready||
+       next.screen!=10||next.preferences.parentScreen!=17||next.preferences.depth!=6||
+       next.thread!=state_.thread||next.ack!=state_.ack||next.status!=MNM_MENU_OK||
+       next.generation==(preferencesOpeningGeneration_?preferencesOpeningGeneration_:state_.generation))return false;
+    preferencesOpeningGeneration_=0;inBattle_=false;state_=next;
+    if(stateChanged)stateChanged(next);
+    return true;
+}
 void LiveMenuSession::poll(){
+    publishPreferences();
     if(!active_||!bridge_)return;
     if(!mediaActive_&&resultsAction_&&clock_.elapsed()-resultsRequestedAt_>10000){
         fallback("Results action did not become ready within ten seconds; using original controls.");return;
@@ -249,17 +331,30 @@ void LiveMenuSession::poll(){
     // A movie owns presentation and input. Keep the lease alive while leaving
     // the latest engine state unread for delivery after playback completes.
     if(mediaActive_)return;
+    if(deferredMenuRequest_){
+        const auto started=deferredMenuRequestAt_;
+        if(clock_.elapsed()-started>500){fallback("Menu publication did not stabilize within 500 milliseconds.");return;}
+        auto retry=std::move(deferredMenuRequest_);
+        if(!retry()){fallback("Menu ownership changed while an action waited for publication.");return;}
+        if(deferredMenuRequest_){deferredMenuRequestAt_=started;return;}
+    }
     MenuBridge::State next;
-    if(bridge_->read(next)&&next.sequence!=sequence_){
+    if(!menuTimeline_.suppressRead()&&bridge_->read(next)&&next.sequence!=sequence_){
+        menuWitness(MNM_MTL_ENGINE_READ,&next);
+        if(menuTimeline_.tracked()&&!menuTimeline_.resolved()&&next.screen==22&&next.ready&&next.ack==bridge_->requestedSequence()){menuWitness(MNM_MTL_DESTINATION_READY,&next);menuTimeline_.resolve();}
         sequence_=next.sequence;lastState_=clock_.elapsed();
         if(next.status==MNM_MENU_RETIRED){fallback("Menu adapter retired; using original menus.");return;}
         if(pending_&&next.ack!=state_.ack){
+            if(action_==MNM_MENU_DEFEAT_OK &&
+               (next.ack!=bridge_->requestedSequence()||next.thread!=state_.thread)){
+                fallback("Campaign Continue acknowledgement identity differs; using original controls.");return;
+            }
             if(((progressedMenusEnabled&&(state_.screen==18||action_==MNM_MENU_DEFEAT_OK||action_==MNM_MENU_SPELL_FINISH||(campaignBookEnabled&&(action_==MNM_MENU_GRIMOIRE_SELECT||action_==MNM_MENU_GRIMOIRE_CLOSE))))||(action_>=MNM_MENU_REALM_ACTIVATE&&action_<=MNM_MENU_REGION_SPELLBOX)||action_==MNM_MENU_CHARACTER_ADJUST||action_==MNM_MENU_CHARACTER_OK||action_==MNM_MENU_CHARACTER_CANCEL)&&
                (next.ack!=bridge_->requestedSequence()||next.thread!=state_.thread)){
                 fallback("Menu acknowledgement identity differs; using original menus.");return;
             }
-            if(storageOpeningGeneration_&&(next.ack!=bridge_->requestedSequence()||next.thread!=state_.thread)){
-                fallback("Mini storage acknowledgement identity differs; using original controls.");return;
+            if((storageOpeningGeneration_||preferencesOpeningGeneration_)&&(next.ack!=bridge_->requestedSequence()||next.thread!=state_.thread)){
+                fallback("Mini destination acknowledgement identity differs; using original controls.");return;
             }
             if(resultsAction_){
                 if(next.ack!=bridge_->requestedSequence()||next.thread!=resultsThread_){
@@ -277,6 +372,10 @@ void LiveMenuSession::poll(){
                 }
                 resultsAction_=0;
             }
+            if(progressedMenusEnabled&&action_==MNM_MENU_REGION_ENTER&&
+               (next.ack!=bridge_->requestedSequence()||next.thread!=campaignEnterThread_)){
+                fallback("Campaign Enter acknowledgement identity differs; using original controls.");return;
+            }
             pending_=false;
             if(next.status!=MNM_MENU_OK){fallback(QString("Menu action rejected (%1); using original menus.").arg(next.status));return;}
             if(campaignBookEnabled&&action_==MNM_MENU_GRIMOIRE_CLOSE){inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;}
@@ -284,6 +383,13 @@ void LiveMenuSession::poll(){
                 inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
             }
             if(action_==MNM_MENU_REGION_ENTER){
+                // The original can finish travel before its ACK is read. The
+                // completed, fresh same-Realm parent is stronger than a transient
+                // handoff flag, and does not authorize a second dispatch.
+                if(progressedMenusEnabled&&campaignEnterGeneration_&&campaignEnterHandoff_==MNM_MENU_HANDOFF_CAMPAIGN_RETURN&&
+                   next.ready&&next.screen==4&&!next.handoff&&next.generation!=campaignEnterGeneration_&&next.realm.kind==campaignEnterKind_&&next.realm.destination==campaignEnterRegion_){
+                    campaignEnterGeneration_=0;inBattle_=false;transition_=false;state_=next;if(stateChanged)stateChanged(next);return;
+                }
                 if(progressedMenusEnabled&&next.handoff==MNM_MENU_HANDOFF_CAMPAIGN_RETURN){inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;}
                 if(next.handoff!=3){fallback("Original campaign Enter returned an unknown destination; using original controls.");return;}
                 inBattle_=true;transition_=false;state_=next;if(battleStarted)battleStarted(3);return;
@@ -311,10 +417,27 @@ void LiveMenuSession::poll(){
                 inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
             }
             if(action_==MNM_MENU_SESSION_JOIN||action_==MNM_MENU_MULTIPLAYER_SUBMIT||action_==MNM_MENU_STORAGE_ACCEPT||action_==MNM_MENU_STORAGE_CANCEL||action_==MNM_MENU_MINI_LOAD||action_==MNM_MENU_MINI_SAVE||action_==MNM_MENU_DEFEAT_OK||action_==MNM_MENU_RESULT_CONTINUE||action_==MNM_MENU_RESULT_QUIT||action_==MNM_MENU_MINI_CANCEL||action_==MNM_MENU_MINI_PREFERENCES||action_==MNM_MENU_MINI_QUIT){
+                // Campaign Continue can likewise return all the way to Main
+                // before this poll sees its ACK. Preserve that fresh ready root
+                // instead of requiring a second, nonexistent generation.
+                if(action_==MNM_MENU_DEFEAT_OK && next.ready && next.screen==3 &&
+                   !next.handoff && next.generation!=state_.generation){
+                    inBattle_=false;transition_=false;state_=next;
+                    if(stateChanged)stateChanged(next);
+                    return;
+                }
+                // Quit can finish the return before its ACK is read. Results
+                // ownership/thread/ACK and OK status were checked above. Do not
+                // require another generation after this already-ready root.
+                if(action_==MNM_MENU_RESULT_QUIT && next.ready && (next.screen==3||next.screen==22) && !next.handoff){
+                    inBattle_=false;transition_=false;state_=next;
+                    if(stateChanged)stateChanged(next);
+                    return;
+                }
                 // Original viewport owns gameplay, Preferences and Quit confirmation.
                 // Confirmation Yes/No semantics remain entirely in the original game.
                 inBattle_=true;transition_=false;state_=next;
-                if(restoreMiniStorage(next))return;
+                if(restoreMiniStorage(next)||restoreCampaignPreferences(next))return;
                 if(originalViewportRequested)originalViewportRequested();
                 return;
             }
@@ -325,7 +448,7 @@ void LiveMenuSession::poll(){
                 normalQuitAccepted_=true;
                 // Quit was accepted by the original callback. No further menu ticks
                 // are required while the original engine shuts down.
-                timer_.stop();active_=false;bridge_->retire();
+                timer_.stop();active_=false;retireBridge();
                 if(output)output("Original game Quit accepted; waiting for the launcher to finish.\n");
                 return;
             }
@@ -339,7 +462,7 @@ void LiveMenuSession::poll(){
             inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
         }
         if(inBattle_){
-            if(restoreMiniStorage(next))return;
+            if(restoreMiniStorage(next)||restoreCampaignPreferences(next))return;
             if(progressedMenusEnabled&&next.ready&&(next.screen==18||next.screen==MNM_MENU_GRIMOIRE_SCREEN||(campaignSpellboxEnabled&&next.screen==7))&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
             }
@@ -364,9 +487,6 @@ void LiveMenuSession::poll(){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
             }
             if(!storageOpeningGeneration_&&storageMenusEnabled&&next.ready&&(next.screen==MNM_MENU_LOAD_SCREEN||next.screen==13)&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
-                inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
-            }
-            if(campaignPreferencesEnabled&&next.ready&&next.screen==10&&next.preferences.parentScreen==17&&next.preferences.depth==6&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
             }
             if(miniMenusEnabled()&&next.ready&&next.screen==MNM_MENU_MINI_SCREEN&&(next.mini.battle||(campaignMiniEnabled&&next.mini.context==5&&next.mini.mode==2))&&!next.mini.confirmation&&
@@ -402,4 +522,23 @@ void LiveMenuSession::poll(){
     if(resultsAction_)submitResults();
     if(!mediaActive_&&!inBattle_&&!cpuReadWaiting(clock_.elapsed())&&(clock_.elapsed()-lastState_>(sequence_?MNM_MENU_V1_LEASE_MS:120000)||((pending_||transition_)&&clock_.elapsed()-requestedAt_>10000)))
         fallback("Menu adapter timed out; using original menus. Requests will not be retried.");
+}
+
+void LiveMenuSession::menuWitness(quint32 event,const MenuBridge::State* observed,quint32 action,quint32 request){
+    if(!menuTimeline_.enabled())return;
+    const bool terminal=event==MNM_MTL_RETIRE_BEFORE||event==MNM_MTL_RETIRE_AFTER;
+    if(event!=MNM_MTL_CREATED&&event!=MNM_MTL_REQUEST_BEFORE&&!terminal&&(!menuTimeline_.tracked()||menuTimeline_.resolved()))return;
+    const auto& snapshot=observed?*observed:state_;
+    const auto now=clock_.isValid()?clock_.elapsed():0;
+    std::array<quint32,16> row{};
+    row[4]=request==UINT32_MAX?(bridge_?bridge_->requestedSequence():0):request;
+    row[5]=action==UINT32_MAX?action_:action;row[6]=snapshot.ack;
+    row[7]=snapshot.generation;row[8]=snapshot.screen;row[9]=snapshot.status;row[10]=snapshot.sequence;
+    row[11]=(pending_?1u:0u)|(transition_?2u:0u)|(active_?4u:0u)|(mediaActive_?8u:0u)|(inBattle_?16u:0u);
+    row[12]=quint32(qMax<qint64>(0,now-requestedAt_));row[13]=quint32(qMax<qint64>(0,now-lastState_));row[14]=target_;
+    menuTimeline_.record(event,row);
+}
+void LiveMenuSession::retireBridge(){
+    if(!bridge_)return;
+    menuWitness(MNM_MTL_RETIRE_BEFORE);bridge_->retire();menuWitness(MNM_MTL_RETIRE_AFTER);
 }

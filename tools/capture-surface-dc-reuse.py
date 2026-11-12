@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Capture real Surface2 GetDC/GDI/ReleaseDC indexed/RGB565/RGB32 outputs, one Wine session."""
+from experiment_environment import stage_prefix
 import argparse,base64,gzip,importlib.util,json,os,struct,subprocess,tempfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -8,6 +9,7 @@ def module(name,path):
 keys=module('keys','tools/capture-original-surface-keys.py')
 sentinel=module('sentinel','tools/check-original-surface-sentinel.py')
 SOURCES=['tests/surface-dc-reuse-reference.c','runtime/shadow/win32_min.h','tools/capture-surface-dc-reuse.py','tools/capture-original-surface-keys.py','tools/check-original-surface-sentinel.py','tests/fixtures/surfaces/original-sentinel-corpus.json','tests/fixtures/surfaces/original-sentinel.json.gz']
+SOURCES += ['tools/experiment_environment.py']
 def inputs():
  payload,_=sentinel.load();sentinel.compare(payload);cases=[]
  for name in ['indexed1','indexed4','indexed8','rgb24','offset-gap','installed-cursors']:
@@ -27,7 +29,7 @@ def main():
   with (run/(name+'.log')).open('w') as f:subprocess.run(argv,cwd=run,env=env,stdout=f,stderr=f,check=True,timeout=timeout)
  try:
   command('original-before',[str(ROOT/'tools/original-manifest.sh'),'verify'],120)
-  command('prefix',['cp','-a','--reflink=auto',str(a.prefix_template.resolve()),env['WINEPREFIX']],120);command('wineboot',['wineboot','-u'],120)
+  stage_prefix(ROOT, str(a.prefix_template.resolve()), env['WINEPREFIX'], log=Path(env['WINEPREFIX']).parent / 'prefix.log');command('wineboot',['wineboot','-u'],120)
   imports={'LoadLibraryA':4,'GetProcAddress':8,'CreateFileA':28,'ReadFile':20,'WriteFile':20,'CloseHandle':4,'ExitProcess':4};definition=run/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{v}\n' for n,v in imports.items()))
   command('imports',['llvm-dlltool','-m','i386','--kill-at','-d',str(definition),'-l',str(run/'kernel32.lib')]);command('compile',['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-c',str(ROOT/SOURCES[0]),'-o',str(run/'probe.obj')]);command('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(run/'probe.exe'),str(run/'probe.obj'),str(run/'kernel32.lib')])
   cases=[dict(c,id=i,width=8,height=6,bits=bits,initial_palette=initial,action=action,clip=clip) for i,(c,bits,initial,action,clip) in enumerate((c,bits,initial,action,clip) for c in inputs() if c['shape']=='equal' for bits in [8,16,32] for initial in ([0,1] if bits==8 else [0]) for action in (range(7) if bits==8 else [0]) for clip in [0,1])]

@@ -27,6 +27,8 @@ int main(void){
     table[63]=0x3f800001;reject(good);table[63]=0x80000000;reject(good);table[63]=0x7fc00000;reject(good);table[63]=0;
     incoming[4]=1;incoming[40]=0xff;incoming[41]=0x7f;reject(good);incoming[40]=0;incoming[41]=0;incoming[32]=1;reject(good);incoming[32]=0;incoming[40]=1;reject(good);incoming[40]=0;incoming[4]=0;
     frame[51]=64;reject(good);frame[51]=63;
+    bad=good;bad.state.right=9;bad.state.x=7;reject(bad);
     assert(!executions);assert(!mnm_glyph_backend(&good));assert(executions==1);
+    good.state.right=9;assert(!mnm_glyph_backend(&good));assert(executions==2);
     printf("%u atomic admission refusals; admitted dispatch reached once\n",refusals);return 0;
 }

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Isolated native owned RGB565 surface proof against Wine DirectDraw; no game retirement claim."""
+from experiment_environment import stage_prefix
 import argparse
 import hashlib
 import importlib.util
@@ -40,7 +41,7 @@ def main():
         for registry in ('system.reg','user.reg','userdef.reg'):
             path=template/registry
             if path.exists():inputs[str(path)]=sha(path)
-        run('prefix',['cp','-a','--reflink=auto',template,out/'wineprefix'])
+        stage_prefix(ROOT, template, out/'wineprefix', log=Path(out/'wineprefix').parent / 'prefix.log')
         run('wineboot',['wineboot','-u'])
         for directory in ('system32','syswow64'):
             driver=out/'wineprefix/drive_c/windows'/directory/'ddraw.dll'

@@ -17,7 +17,7 @@ WORK_LABELS = {
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def task_work_review(review, labels, behavior, root):
+def task_work_review(review, labels, behavior, root, *, historical_contract=False):
     """Static code assessment, independent of historical execution stages."""
     implementation = review.get('implementation')
     if implementation not in set(WORK_LABELS) - {'acceptance_failure'}:
@@ -54,8 +54,9 @@ def task_work_review(review, labels, behavior, root):
     sources = review.get('source_sha256', {})
     witnesses = review.get('code_witnesses', [])
     required = set(behavior['implementation']) | set(behavior['tests']) | set(behavior['documents'])
+    missing = required - set(sources)
     research_witnesses = review.get('research_witnesses', [])
-    if (not sources or not required.issubset(sources) or
+    if (not sources or (missing - set(behavior['documents']) and not historical_contract) or
             (implementation != 'not_implemented' and not witnesses) or
             (implementation == 'not_implemented' and (witnesses or not research_witnesses))):
         raise ValueError('Work review needs reviewed source fingerprints and code witnesses')
@@ -110,7 +111,7 @@ def task_work_review(review, labels, behavior, root):
     pending = review.get('pending_source_review', [])
     if not isinstance(pending, list) or not set(pending).issubset(sources):
         raise ValueError('Pending review inputs must have explicit source links')
-    changed = []
+    changed = ['newly linked input: ' + name for name in sorted(missing)]
     for name, expected in sources.items():
         path = (root / name).resolve()
         if (Path(name).is_absolute() or not path.is_relative_to(root.resolve()) or
@@ -214,7 +215,9 @@ def tranche_view(plan, register, rated, root=ROOT, *, priority=5, size=11, count
             if tranche.get('work_review_required') and not work:
                 raise ValueError('Reviewed tranche needs an implementation work assessment per task')
             if work:
-                work = task_work_review(work, plan.get('work_labels', {}), b, Path(root))
+                work = task_work_review(work, plan.get('work_labels', {}), b, Path(root),
+                                        historical_contract=task.get('contract_sha256') != behavior_contract(
+                                            b, {build['id']: build for build in register['builds']}))
                 if any(not set(domain['suppliers']).issubset(by_id)
                        for domain in work.get('scope_domains', [])):
                     raise ValueError('Scope resolution references an unknown supplier contract')

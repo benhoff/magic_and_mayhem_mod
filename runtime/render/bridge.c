@@ -254,9 +254,11 @@ static i32 WIN blt(void* object,void* dest,void* source,void* rect,u32 flags,voi
     if(!copy_lease.observe){game_copy_routes_missed(2);i32 result=((Blt)lookup(object)->original[5])(object,dest,source,rect,flags,effects);game_copy_unobserved(object);return result;}
     u32 error=GetLastError(),caller=(u32)__builtin_return_address(0);
     struct Table* t=lookup(object);
+    game_prepare_cpu_blit_target(object,source);
     int token=history_enter();struct DrawCapture* c=begin_draw(object,dest,source,rect,flags,effects,1,0,0,caller);
     if(token && !c)history_gap(6);
     struct GameBlit propagated;game_blit_before(object,dest,source,rect,flags,effects,0,0,0,&propagated);propagated.caller=caller;
+    game_copy_callers_prepare(&propagated,(u32)__builtin_frame_address(0)+4,0);
     SetLastError(error);i32 status=propagated.gpu?game_gpu_blit(&propagated):((Blt)t->original[5])(object,dest,source,rect,flags,effects);error=GetLastError();
     game_blit_after(&propagated,status);
     game_copy_routes_finish(&propagated,status,game_gpu_census?game_gpu_census->header[6]:0);
@@ -275,6 +277,7 @@ static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 fla
     if(token && !c)history_gap(6);
     game_copy_stage(2);
     struct GameBlit propagated;game_blit_before(object,0,source,rect,flags,0,1,x,y,&propagated);propagated.caller=caller;
+    game_copy_callers_prepare(&propagated,(u32)__builtin_frame_address(0)+4,1);
     game_copy_stage(3);
     SetLastError(error);i32 status=propagated.gpu?game_gpu_blit(&propagated):((BltFast)t->original[7])(object,x,y,source,rect,flags);error=GetLastError();
     game_copy_stage(4);
@@ -354,20 +357,25 @@ static i32 WIN surface_dc(void* object,void** output){
     if(!command_lease.observe){i32 result=((GetObject)lookup(object)->original[17])(object,output);u32 error=GetLastError();if(result>=0 && !command_lease.retired)command_borrow_add(object,2,readable(output,4)?*output:0);SetLastError(error);return result;}
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
     if(!copy_lease.observe){i32 result=((GetObject)lookup(object)->original[17])(object,output);u32 error=GetLastError();if(result>=0)command_borrow_add(object,2,readable(output,4)?*output:0);game_copy_unobserved(object);SetLastError(error);return result;}
+    struct CpuJournalContext journal_context __attribute__((cleanup(cpu_journal_leave)));zero(&journal_context,sizeof(journal_context));
+    cpu_journal_enter(&journal_context,MNM_CRJ_GET_DC,(u32)__builtin_return_address(0),object,0,0);
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
     game_materialize_dc(object);SetLastError(entry);
     i32 status=((GetObject)t->original[17])(object,output);u32 error=GetLastError();
     if(status>=0)game_dc_acquired(object,readable(output,4)?*output:0);
+    cpu_journal_plain(MNM_CRJ_DC_RETURN,object,readable(output,4)?*output:0,status);journal_context.result=(u32)status;
     if(token && status>=0 && history_find(object))history_gap(6);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN surface_release_dc(void* object,void* dc){
     COMMAND_CALLBACK(command_borrow_release(object,2,dc,((i32 (WIN *)(void*,void*))lookup(object)->original[26])(object,dc)));
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
     if(!copy_lease.observe){i32 result=command_borrow_release(object,2,dc,((i32 (WIN *)(void*,void*))lookup(object)->original[26])(object,dc));game_copy_unobserved(object);return result;}
+    struct CpuJournalContext journal_context __attribute__((cleanup(cpu_journal_leave)));zero(&journal_context,sizeof(journal_context));
+    cpu_journal_enter(&journal_context,MNM_CRJ_RELEASE_DC,(u32)__builtin_return_address(0),object,0,0);
     u32 entry=GetLastError();struct Table* t=lookup(object);
     struct GameDC pending;game_dc_before(object,dc,&pending);
     SetLastError(entry);i32 status=command_borrow_release(object,2,dc,((i32 (WIN *)(void*,void*))t->original[26])(object,dc));u32 error=GetLastError();
-    game_dc_after(&pending,dc,status);SetLastError(error);return status;
+    game_dc_after(&pending,dc,status);journal_context.result=(u32)status;SetLastError(error);return status;
 }
 static i32 surface_property(void* object,void* value,u32 slot){
     COMMAND_CALLBACK(((i32 (WIN *)(void*,void*))lookup(object)->original[slot])(object,value));
@@ -529,14 +537,15 @@ __declspec(dllexport) u32 WIN RenderOwnedInitialZeroV1(void* object,u32 width,u3
     }
     SetLastError(error);return ok;
 }
-__declspec(dllexport) u32 WIN RenderPrepareStorageV1(u32 action){
+static u32 render_prepare_cpu_panel(u32 action,const char* diagnostic,u32 caller){
     u32 error=GetLastError(),ok=0;void* objects[32];u32 count=0;
-    if(action>1)return 0;
     if(!game_resident_world){SetLastError(error);return 1;}
     struct CommandLease callback __attribute__((cleanup(command_gate_leave)))=command_gate_enter();
     if(!callback.observe){SetLastError(error);return 0;}
     struct GameCopyLease admission __attribute__((cleanup(game_copy_leave)))=game_copy_bind_enter();
     if(!admission.observe || !game_tracker_acquire()){SetLastError(error);return 0;}
+    struct CpuJournalContext journal_context __attribute__((cleanup(cpu_journal_leave)));zero(&journal_context,sizeof(journal_context));
+    cpu_journal_enter(&journal_context,action==2?MNM_CRJ_PREFERENCES:action?MNM_CRJ_LOAD:MNM_CRJ_SAVE,caller,0,0,0);
     game_surface_sync();
     /* Preflight every live GPU history before publishing any snapshots. The
      * ordered lease retains identities while each bounded reply releases the
@@ -552,8 +561,18 @@ __declspec(dllexport) u32 WIN RenderPrepareStorageV1(u32 action){
 done:
     game_tracker_release();
     if(ok){for(u32 i=0;i<count;++i)game_materialize_dc(objects[i]);
-        lock_diagnostic("resident_storage_materialized",0,0,action,count,0,0,0);}
-    SetLastError(error);return ok;
+        lock_diagnostic(diagnostic,0,0,action,count,0,0,0);}
+    journal_context.result=ok;SetLastError(error);return ok;
+}
+__declspec(dllexport) u32 WIN RenderPrepareStorageV1(u32 action){
+    if(action>1)return 0;
+    return render_prepare_cpu_panel(action,"resident_storage_materialized",(u32)__builtin_return_address(0));
+}
+/* Preferences' original glyph writer uses the cached World canvas without
+ * opening a new writable Lock. Publish current CPU history before that callback,
+ * under the same ownership/borrow preflight as Save/Load; never open stale pages. */
+__declspec(dllexport) u32 WIN RenderPreparePreferencesV1(void){
+    return render_prepare_cpu_panel(2,"resident_preferences_materialized",(u32)__builtin_return_address(0));
 }
 /* Application orchestration calls this before process exit, outside DllMain.
  * It closes capture admission while original drawing remains installed. */
@@ -573,6 +592,13 @@ __declspec(dllexport) u32 WIN RenderShutdown(u32 milliseconds){
     SetLastError(error);return complete;
 }
 #ifdef MNM_RENDER_SELFTEST
+/* Actual mapped-journal/LastError control; absent from production exports. */
+__declspec(dllexport) u32 WIN RenderReaderJournalControlForTest(u32 operation){
+    if(!operation)return cpu_journal!=0;
+    u32 error=GetLastError();struct CpuJournalContext c;zero(&c,sizeof(c));
+    cpu_journal_enter(&c,MNM_CRJ_GET_DC,(u32)__builtin_return_address(0),0,0,0);
+    c.result=23;cpu_journal_leave(&c);cpu_journal_close(1);SetLastError(error);return 23;
+}
 /* Read-only identity/colour inspection; execution still uses real COM hooks. */
 __declspec(dllexport) u32 WIN RenderPaletteStateForTest(void* object,void* palette,u32* out){
     u32 error=GetLastError();if(!game_tracker_acquire()){SetLastError(error);return 0;}
@@ -698,7 +724,7 @@ __declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid
 #endif
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;
-    if(reason==0){__atomic_store_n(&lock_diagnostic_stop,1,__ATOMIC_RELEASE);game_copy_routes_close();game_gpu_census_close();command_control_detach();command_scheduler_detach();return 1;}
+    if(reason==0){__atomic_store_n(&lock_diagnostic_stop,1,__ATOMIC_RELEASE);cpu_journal_detach();game_copy_routes_close();game_gpu_census_close();command_control_detach();command_scheduler_detach();return 1;}
     if(reason!=1)return 1;
     char path[512];u32 size=GetEnvironmentVariableA("MNM_RENDER_STREAM",path,sizeof(path));
     if(!size || size>=sizeof(path))return 1;
@@ -729,6 +755,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
         game_native_gpu_plan=(i32 (WIN *)(void*,const i32*,void*,const i32*,u32,struct MnmGpuCopyPlan*,u32))GetProcAddress(native_draw,"NativeDrawGpuCopyPlanV1");
         game_native_gpu_copy=(i32 (WIN *)(void*,const i32*,void*,const i32*,u32,u16*,u32))GetProcAddress(native_draw,"NativeDrawGpuCopyV1");
         game_native_cpu_transfer=(i32 (WIN *)(void*,u32*,const u16*,u32))GetProcAddress(native_draw,"NativeDrawCpuTransferV1");
+        game_native_cpu_plan=(i32 (WIN *)(void*,const i32*,void*,const i32*,u32,struct MnmGpuCopyPlan*,u32))GetProcAddress(native_draw,"NativeDrawCpuCopyPlanV1");
         game_native_cpu_snapshot=(i32 (WIN *)(void*,u32*,u8*,u32))GetProcAddress(native_draw,"NativeDrawCpuSnapshotV1");
         game_native_cpu_lease_snapshot=(i32 (WIN *)(void*,const u32*,u16*,u32))GetProcAddress(native_draw,"NativeDrawCpuLeaseSnapshotV1");
         game_native_cpu_lease_transfer=(i32 (WIN *)(void*,u32*,const u16*,u32))GetProcAddress(native_draw,"NativeDrawCpuLeaseTransferV1");
@@ -743,6 +770,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     }
     game_gpu_census_init();
     game_copy_routes_init();
+    cpu_journal_init();
     if(game_resident_world && game_copy_order_enabled)game_copy_pressure_admit=&command_pressure_admit;
     if(lock_capture_path_length)readback_disabled=1;
     init_failure_diagnostics();init_draw_capture();command_control_init();
