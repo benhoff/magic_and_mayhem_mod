@@ -9808,7 +9808,8 @@
       ],
       "documents": [
         "research/runtime/spell-dispatch-inventory.md",
-        "research/runtime/creature-ai-combat-spells.md"
+        "research/runtime/creature-ai-combat-spells.md",
+        "research/runtime/levitate-platform-20261112.md"
       ],
       "implementation": [],
       "tests": [],
@@ -9819,7 +9820,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "SP.080.platform-artwork identifies the original platform art in one targeted original Levitate observation. Full spell resistance/weight, stacking, duration, landing damage, cleanup and failure paths remain unvalidated."
+      ]
     },
     {
       "id": "SP.081",
@@ -180041,7 +180045,59 @@
         "CPU-affinity prototypes in04/05/06/07 used maximum-capacity cores; scene differences/refusals prohibit a causal combat-FPS claim. Prototype sources are retained; public launcher CPU edits were removed from the release batch.",
         "Visual-source06 and Source07 each preserve a contiguous complete observational source prefix, then fail the existing original raster caller guard. Prefix completeness does not validate unpublished WRITING work or the missing Levitate/tile scenario.",
         "The original spell80cast targetsZombie31 with mana debit and rising/drifting actor coordinates. The platform under the reported zombie is not yet matched to exact retained source requests/original output at that moment; associating the visual report with that target remains an inference.",
-        "Rendering timings and P-core scene observations are not a controlled same-workload A/B or universal19..20FPS result."
+        "Rendering timings and P-core scene observations are not a controlled same-workload A/B or universal19..20FPS result.",
+        "COMBAT12.levitate-platform01 supersedes the earlier unresolved-carpet diagnosis for the reproduced Levitate visual: Effects11 sequence2 supplies the platform artwork. Historical moving01 remains unchanged. Combat19..20FPS and unrelated artifacts remain separate."
+      ]
+    },
+    {
+      "id": "SP.080.platform-artwork",
+      "subsystem": "spell_dispatch",
+      "kind": "recovered",
+      "title": "Levitate floating platform artwork identification",
+      "scope": "Bounded original spell80 observation and original asset identification. A deliberately targeted living Zombie12 receives caster mana debit and rises/drifts; original source requests after the cast contain exact indexed Effects11.spr frames83/95/99. Installed ANI_90 binds Effects11 sequence2, whose frame family includes these platform images. Original spell80 case calls522880; its static helper reads16-byte effect-catalog entry90 and starts the corresponding controller. The apparent floating ground patch in this reproduced case is supplied original artwork, independently decoded and present in native World replay before Qt presentation. This identifies this visual; it does not recover full Levitate gameplay or assert all pixels/driver equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4763888,
+          "scope": "Static case0x50 calls522880; original targeted cast observation and platform artwork only, not full dispatcher/effect execution equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5384320,
+          "scope": "Static effect-catalog entry90 read at offsets5a0/5a4, controller bind/reset and conditional adjacent sequence. No full lift/duration/resistance/cleanup contract."
+        }
+      ],
+      "documents": [
+        "research/runtime/levitate-platform-20261112.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/campaign-spell-test.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_spell.py",
+        "tools/campaign_gameplay.py",
+        "runtime/menu/campaign_spell_observe.h",
+        "tools/decode-cfg.py"
+      ],
+      "evidence": [
+        "COMBAT12.levitate-platform01",
+        "COMBAT12.levitate-platform02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "No native spell implementation, full original-raster equivalence, original physical driver or scanout proof. Weight/resistance, duration, landing damage, stacking, failure, cleanup and other targets remain separate.",
+        "Private setup variant substitutes ordinary offered Neutral Levitate for Law Cure under both explicit artifact-probe flags. Its exact source/binary is retained; production source/binary is restored and unchanged. Both owned sessions end by diagnostic cancellation, not normal Quit.",
+        "Initial controlled08 selected the wizard and failed its target condition; preserve it as a failed acquisition. Controlled09 targets the sole Zombie using retained source geometry and passes the observed target/mana/rise/drift conditions.",
+        "The user identified the analogous carpet in the earlier fiery video. Its exact earlier mid-frame source was not retained; the repeated single-zombie case supplies the direct source/asset identification. Other reported visual issues and combat FPS remain separate."
       ]
     }
   ],
@@ -408251,6 +408307,52 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "COMBAT12.levitate-platform01",
+      "kind": "live_observation",
+      "scope": "Controlled native-menu setup variant, one original Zombie summon and targeted spell80 cast, original mana/actor observations,292contiguous completed source/request/actual-return packets, native World history replay and independent original platform asset/config/ANI decoding. Earlier wrong-target failure retained. No native spell replacement or full player acceptance.",
+      "record": "research/runtime/combat-small-colour-results-20261112/levitate01.json",
+      "sha256": "d7bb1d41e90c5b358e2e356604a8b1aebc03f7c561e53d353729ab27091a4270",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/identification_confirmed",
+          "equals": true
+        },
+        {
+          "pointer": "/renderer_fix_required_for_this_artwork",
+          "equals": false
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "COMBAT12.levitate-platform02",
+      "kind": "live_observation",
+      "scope": "Controlled native-menu setup variant, one original Zombie summon and targeted spell80 cast, original mana/actor observations,292contiguous completed source/request/actual-return packets, native World history replay and independent original platform asset/config/ANI decoding. Earlier wrong-target failure retained. No native spell replacement or full player acceptance.",
+      "record": "research/runtime/combat-small-colour-results-20261112/levitate02.json",
+      "sha256": "1fd1ca63be1a734506c88f497df9431aa3c9df47b4f99ab45249254af33d590f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/identification_confirmed",
+          "equals": true
+        },
+        {
+          "pointer": "/renderer_fix_required_for_this_artwork",
+          "equals": false
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -408840,7 +408942,8 @@
         {
           "value": 80,
           "behaviors": [
-            "SP.080"
+            "SP.080",
+            "SP.080.platform-artwork"
           ]
         },
         {
@@ -443845,6 +443948,21 @@
       "evidence": [
         "COMBAT12.live-diagnostics01"
       ]
+    },
+    {
+      "id": "levitate-platform-identification-20261112",
+      "scope": "Controlled native-menu setup variant, one original Zombie summon and targeted spell80 cast, original mana/actor observations,292contiguous completed source/request/actual-return packets, native World history replay and independent original platform asset/config/ANI decoding. Earlier wrong-target failure retained. No native spell replacement or full player acceptance.",
+      "level": "live_observation",
+      "behaviors": [
+        "SP.080.platform-artwork"
+      ],
+      "tests": [
+        "tests/campaign-spell-test.py"
+      ],
+      "evidence": [
+        "COMBAT12.levitate-platform01",
+        "COMBAT12.levitate-platform02"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -445672,8 +445790,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-d7611ff5d71431e99c3132a27760d2daa0abb8767427eaf87e149de1f776e90f.json",
-    "sha256": "d7611ff5d71431e99c3132a27760d2daa0abb8767427eaf87e149de1f776e90f"
+    "path": "research/runtime/coverage/source-index-9549c0eec13356f365ac28a63cece521030cf1aad068da11a3b59a08582f1ad9.json",
+    "sha256": "9549c0eec13356f365ac28a63cece521030cf1aad068da11a3b59a08582f1ad9"
   },
   "evidence_applicability": [
     {

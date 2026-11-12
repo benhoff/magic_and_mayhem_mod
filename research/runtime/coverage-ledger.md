@@ -29203,3 +29203,21 @@ the installed Grimoire. This supports expected floating motion. The user-reporte
 rectangular base and exact visual target still need source/original-output
 correlation; Levitate is not proof that those pixels are correct. All new source
 cohorts, videos, failures and source versions remain pinned and backed up.
+
+### Levitate platform identified, 2026-11-12
+
+`SP.080.platform-artwork` / `COMBAT12.levitate-platform01` identifies the reported
+“magic carpet” as original Effects11 sequence2 artwork. A deliberately targeted
+original spell80 on the sole Zombie12 debits mana and raises height4→7 before
+XY drift. Exact original source requests select platform frames83/95/99 after
+the cast. Independent SPR decoding shows the55×32 platform; installed ANI_90 and
+original522880 catalog reads link that family to Levitate. A contiguous292World
+native replay validates actual returns and contains the platform before Qt UI
+composition. Removing the platform would alter supplied game artwork.
+
+The initial wrong-target attempt remains failed. Private setup source/binary,
+recordings, complete source histories and original assets are retained in SQLite;
+production source/binary are restored. No native spell implementation, original
+full-pixel/driver acceptance, normal-Quit or performance promotion is asserted.
+Earlier unresolved-carpet reports remain historical; unrelated glitches and the
+moving-combat19–20FPS target remain open.
