@@ -29166,3 +29166,91 @@ review was interrupted before commit to finish this correction; its exact source
 versions, successful earlier controls and refusal remain retained. Existing
 environment receipts keep their original producer hashes; new module hashes are
 normal provenance and grant no new live-game validation.
+
+### M1 combat small-colour batching, 2026-11-12
+
+The live slowdown diagnosis retained9.16575Hz consecutive source timing and an
+85.8426ms native/81.4210ms submission report range. Completed generation3196
+has359 owned2x2 colour effects; unpublished generation3197 is excluded. The new
+`NR.small-colour-batching` native policy carries owned integer colour words in
+bounded instance batches, splitting before overlapping writes and every
+intervening non-small primitive. Original simulation, draw order, integer blend
+arithmetic, owned source credits, completed-image/UI generation rules, ordinary
+readback prohibitions and isolated wire protocol remain separate and unchanged.
+
+Current llvmpipe/M1 scalar and serial controls pass; existing colour atlas,
+indexed sprite atlas and retained-image controls pass. Same retained source plus
+an authored native background compares50 whole images exactly. M1 warm native
+completion decreases70.9205 to35.5616ms, draws658 to372 and texture uploads31 to0.
+These replay timings are not a live20FPS or original-output acceptance result.
+See `research/runtime/native-small-colour-batching.md`; new SQLite evidence and
+fresh crowded-session results retain their own scope. Historical shared-source
+staleness and unsupported-rendering limitations are preserved.
+
+`COMBAT12.live-diagnostics01` preserves seven scoped probes and their failures.
+The corrected moving scene observes eight distinct moving zombies, but measured
+phase rates remain11.96–14.77Hz and later refuse unsupported caller54a563/tag14.
+A fiery combat run reaches several movers and16.37Hz before inactive-viewport
+input refusal. A near20Hz CPU-placement prototype lacks sufficient creature
+motion and is not combat acceptance; its launcher edits were removed while
+retaining exact prototype sources. Two later contiguous source histories retain
+444/1625 Worlds before the unchanged unsupported-caller refusal. No caller is
+newly admitted and no normal-Quit/live replacement status is promoted.
+
+The fiery run contains an original enemy Levitate cast80 targeting zombie31,
+with caster mana debit and subsequent height/drift observations, consistent with
+the installed Grimoire. This supports expected floating motion. The user-reported
+rectangular base and exact visual target still need source/original-output
+correlation; Levitate is not proof that those pixels are correct. All new source
+cohorts, videos, failures and source versions remain pinned and backed up.
+
+### Levitate platform identified, 2026-11-12
+
+`SP.080.platform-artwork` / `COMBAT12.levitate-platform01` identifies the reported
+“magic carpet” as original Effects11 sequence2 artwork. A deliberately targeted
+original spell80 on the sole Zombie12 debits mana and raises height4→7 before
+XY drift. Exact original source requests select platform frames83/95/99 after
+the cast. Independent SPR decoding shows the55×32 platform; installed ANI_90 and
+original522880 catalog reads link that family to Levitate. A contiguous292World
+native replay validates actual returns and contains the platform before Qt UI
+composition. Removing the platform would alter supplied game artwork.
+
+The initial wrong-target attempt remains failed. Private setup source/binary,
+recordings, complete source histories and original assets are retained in SQLite;
+production source/binary are restored. No native spell implementation, original
+full-pixel/driver acceptance, normal-Quit or performance promotion is asserted.
+Earlier unresolved-carpet reports remain historical; unrelated glitches and the
+moving-combat19–20FPS target remain open.
+
+## Recording-free combat slowdown followup —2026-11-12
+
+`COMBAT12.slowdown-stages02` retains reviewed byte-preserving cache sharing,
+recording-free movement rates12.20–13.67Hz, restored short CPU-placement
+controls and retained source07 queue analysis. A private preservation-tested
+cadence observer records individual original`509e50`maintenance/action calls
+up to229.58ms. The default Asahi preservation control fails with differing x87
+register slots; its failure, private prototype and live-memory acquisition
+boundaries remain explicit. No production code, clock, status promotion,
+normal-Quit or19–20FPS acceptance changes. See
+[the scoped findings](combat-slowdown-followup-20261112.md).
+
+## Bounded native audio handoff — 2026-11-12
+
+`NA.bounded-audio-handoff` adds a native transport policy:1ms worker polling,
+a cooperative1.25ms/64-command followup after an ACK, and4096 bounded PAUSE
+checks before the producer's existing1ms sleep. The version5 wire, request order,
+reply publication, timeout/retirement and audio-thread ownership are unchanged.
+Five focused native controls and actual production PE32 live/stale-peer fixtures
+pass. Continuous mixed request traffic checks reply identity and queued lifecycle
+responsiveness. Original sound-manager/game clocks and simulation are unchanged.
+
+`AUDIO12.handoff-controls01` records headless integration only. The independent
+`AUDIO12.handoff-live01` retains private balanced audio scheduling probes and fresh
+production probe20: eight ordinary summons, eight Zombies changing position,
+19.98/19.89Hz in the six-/five-mover periods. Other ground-order periods are
+19.72/19.62Hz with idle Zombies. This is bounded live observation, not normal Quit,
+all-map19–20FPS, perfect pacing or original sound/pixel equivalence. Probe17's
+original raster guard refusal, probe18's incomplete setup and probe19's failed
+motion gate remain failures. Existing broad historical milestones/hashes remain;
+shared-source drift receives pending impact reviews rather than a full-matrix
+rerun or retroactive freshness. See [the scoped policy and results](native-audio-handoff-20261112.md).

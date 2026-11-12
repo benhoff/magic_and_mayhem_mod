@@ -2540,7 +2540,8 @@
       "documents": [
         "research/runtime/native-audio-voice-bridge.md",
         "audio/README.md",
-        "research/runtime/native-menu-audio.md"
+        "research/runtime/native-menu-audio.md",
+        "research/runtime/native-audio-handoff-20261112.md"
       ],
       "implementation": [
         "audio/voice_bridge.cpp",
@@ -6824,7 +6825,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-audio-voice-bridge.md",
-        "research/runtime/native-menu-audio.md"
+        "research/runtime/native-menu-audio.md",
+        "research/runtime/native-audio-handoff-20261112.md"
       ],
       "implementation": [
         "runtime/audio/bridge.c",
@@ -9808,7 +9810,8 @@
       ],
       "documents": [
         "research/runtime/spell-dispatch-inventory.md",
-        "research/runtime/creature-ai-combat-spells.md"
+        "research/runtime/creature-ai-combat-spells.md",
+        "research/runtime/levitate-platform-20261112.md"
       ],
       "implementation": [],
       "tests": [],
@@ -9819,7 +9822,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "SP.080.platform-artwork identifies the original platform art in one targeted original Levitate observation. Full spell resistance/weight, stacking, duration, landing damage, cleanup and failure paths remain unvalidated."
+      ]
     },
     {
       "id": "SP.081",
@@ -46769,7 +46775,8 @@
         "research/runtime/engine-cadence-controls-20261011.json",
         "research/runtime/engine-cadence-titan-20261011.json",
         "research/runtime/rendering-low20-20261020.md",
-        "research/runtime/rendering-eleventh-ten-closeouts-20261022.md"
+        "research/runtime/rendering-eleventh-ten-closeouts-20261022.md",
+        "research/runtime/combat-slowdown-followup-20261112.md"
       ],
       "implementation": [
         "runtime/engine-cadence/observer.c",
@@ -46823,11 +46830,16 @@
         "RREC06.concurrent-dependency-links-pending-20261019",
         "HIGH03.public-default-cadence-20261020",
         "LOW20.component-controls-20261020",
-        "NT11.source-observers-20261022"
+        "NT11.source-observers-20261022",
+        "COMBAT12.slowdown-stages01",
+        "COMBAT12.slowdown-stages02"
       ],
       "remaining_gaps": [
         "Fresh TITAN4545World casting/combat/portrait/menu/Quit trace passes and establishes4355advancing1counter/8globalANI/1scheduler/1queue windows plus189non-advancing1queue/no selected tick/ANI/maintenance/scheduler windows. Field+fd5a is observed as a low byte; complete mode policy and other timers/world/effect work are excluded. Repeated original render-only invocation safety, independent simulation timing, arbitrary long stalls, complete pause/network/alternate pacing/all-animation/lifecycle/driver/pixel equivalence and60FPS remain unproven.",
-        "NT11 supplies fresh bounded diagnostic implementation evidence only. Historical original captures and source fingerprints remain unchanged; original-game comparison, complete backing/writer/lifetime/presentation-route ownership, semantic journeys, normal shutdown quiescence and live replacement remain independent pending work. Shared-source edits may stale older comparison/integration evidence."
+        "NT11 supplies fresh bounded diagnostic implementation evidence only. Historical original captures and source fingerprints remain unchanged; original-game comparison, complete backing/writer/lifetime/presentation-route ownership, semantic journeys, normal shutdown quiescence and live replacement remain independent pending work. Shared-source edits may stale older comparison/integration evidence.",
+        "Default engine-cadence preservation fixture fails on this Asahi Wine route at exit3: GPR/flags/LastError match but x87 saved register slots differ. The separately retained legacy-x87-restore private thunk passes the13-path PE32 fixture; no production observer or other hook workaround is shipped, no single FXRSTOR defect or actual player FPU corruption is established.",
+        "Private-observer throughput14 verifies six moving Zombies. Six stable live-memory prefixes contain up to146667events and1523complete advancing windows; they are not a DLL-detach trace or normal-Quit/lifecycle proof. Individual509e50wall calls reach229.5845ms. Action, positional-audio, pathfinding, host scheduling and translator costs within those calls still need separation. No native creature replacement or gameplay timing change.",
+        "Late300private-probe updates average50.84ms after most observed Zombies stop moving; this quiet tail cannot satisfy the moving-combat target. Production state/status milestones and historical hashes remain unchanged."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-5-20261020",
@@ -47207,7 +47219,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-menu-audio.md",
-        "research/runtime/native-audio-voice-bridge.md"
+        "research/runtime/native-audio-voice-bridge.md",
+        "research/runtime/native-audio-handoff-20261112.md"
       ],
       "implementation": [
         "apps/qt-shell/main.cpp",
@@ -54370,7 +54383,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded native colour rectangle pixel atlas",
-      "scope": "Opt-in SceneRenderer caches exact owned RGB565 colour rectangle source dimensions/words, independent of mode/destination/clip/resource IDs. At most64LRU64x64slots in one512x512native colour atlas and matching all-one indexed mask (two native handles/524288storagepixels, at most1MiBownedCPUwords). Cache hits reuse native source pixels, not World output. Existing composite/copy clipping, arithmetic, known-word admission, draw order and baseline restoration stay unchanged. Atlas update flushes pending copies before slot reuse; failed upload invalidates the old key. Native CanvasWorld enables the cache; explicit environment baseline disables it. Default generic scenes retain serial primitives. Ordered original source/ANI/simulation/producer history and two-credit/export policies unchanged. No recovered/original equivalence or60FPS claim.",
+      "scope": "Opt-in SceneRenderer caches exact owned RGB565 colour rectangle source dimensions/words, independent of mode/destination/clip/resource IDs. At most64LRU64x64slots in one512x512native colour atlas and matching all-one indexed mask (two native handles/524288storagepixels, at most1MiBownedCPUwords). Cache hits reuse native source pixels, not World output. Existing composite/copy clipping, arithmetic, known-word admission, draw order and baseline restoration stay unchanged. Atlas update flushes pending copies before slot reuse; failed upload invalidates the old key. Native CanvasWorld enables the cache; explicit environment baseline disables it. Default generic scenes retain serial primitives. Ordered original source/ANI/simulation/producer history and two-credit/export policies unchanged. No recovered/original equivalence or60FPS claim. Current cache-enabled scenes route consecutive1..2 by1..2 colour requests through separately registered NR.small-colour-batching unless explicitly disabled; larger sources retain this atlas. Historical evidence keeps its source phases.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -54611,7 +54624,8 @@
         "FPS07.scope-reconciled01"
       ],
       "remaining_gaps": [
-        "Current native/headless and stated corrected full public TITAN flow pass with4612balanced returns and19.5966Hzsource floor. NativeWorld48.9985FPS and visiblepaint57.3311FPS secondcycle miss the historical diagnostic60FPS target; original comparison/replacement, unobserved failures, hardware/driver/scanout/interpolation/movieWorld and wider shared-source freshness remain pending. Earlierfailedjourneys/capture histories retained. Fixed-FPS completion condition closed by the existing2026-10-25 diagnostic policy (FPS07.scope-reconciled01); this does not assert that the historical benchmark passed or waive functional response, forward progress or resource bounds."
+        "Current native/headless and stated corrected full public TITAN flow pass with4612balanced returns and19.5966Hzsource floor. NativeWorld48.9985FPS and visiblepaint57.3311FPS secondcycle miss the historical diagnostic60FPS target; original comparison/replacement, unobserved failures, hardware/driver/scanout/interpolation/movieWorld and wider shared-source freshness remain pending. Earlierfailedjourneys/capture histories retained. Fixed-FPS completion condition closed by the existing2026-10-25 diagnostic policy (FPS07.scope-reconciled01); this does not assert that the historical benchmark passed or waive functional response, forward progress or resource bounds.",
+        "COMBAT12 changes shared renderer/scene sources and adds a separately scoped small-colour policy. Current scalar/cache/atlas/retained-source controls do not refresh historical whole-player or original-comparison claims."
       ],
       "implementation_review": {
         "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
@@ -58266,7 +58280,8 @@
       ],
       "documents": [
         "research/runtime/creature-execution.md",
-        "research/runtime/creature-remaining-contracts-validation.md"
+        "research/runtime/creature-remaining-contracts-validation.md",
+        "research/runtime/combat-slowdown-followup-20261112.md"
       ],
       "implementation": [
         "reconstruction/creature-ai/maintenance.hpp",
@@ -58284,7 +58299,9 @@
         "NS41.lifecycle-original",
         "NS41.lifecycle-native",
         "NS63.lifecycle-current-original",
-        "NS63.lifecycle-current-native"
+        "NS63.lifecycle-current-native",
+        "COMBAT12.slowdown-stages01",
+        "COMBAT12.slowdown-stages02"
       ],
       "status": {
         "understanding": "scoped",
@@ -58342,7 +58359,10 @@
           "Upkeep admission in509e50 is not exercised; only death release is exercised",
           "Complete wizard/scenario strategy, native session/app integration and live replacement"
         ]
-      }
+      },
+      "remaining_gaps": [
+        "Private-observer throughput14 verifies six moving Zombies. Six stable live-memory prefixes contain up to146667events and1523complete advancing windows; they are not a DLL-detach trace or normal-Quit/lifecycle proof. Individual509e50wall calls reach229.5845ms. Action, positional-audio, pathfinding, host scheduling and translator costs within those calls still need separation. No native creature replacement or gameplay timing change."
+      ]
     },
     {
       "id": "AI.route-displacement",
@@ -179969,6 +179989,193 @@
       },
       "remaining_gaps": [
         "Current validation is isolated argument/environment equivalence and configuration/guard controls; no additional original-game or pixel/timing validation. Existing game-performance and whole-player milestones retain their historical source phases."
+      ]
+    },
+    {
+      "id": "NR.small-colour-batching",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Ordered owned small-colour instance batches",
+      "scope": "Native optimization for existing colour-cache scenes: consecutive owned1..2 by1..2 colour requests carry integer source words in batches of at most512 within the caller draw/time budget. Direct rendering validates all input and fully definedRGB565/RGB555 destination before mutation, splits before the first overlapping write and every intervening non-small/hidden primitive, freezes one native destination envelope per disjoint group and preserves copy/half/quarter arithmetic. No source-texture upload, ordinary readback, original output seed, draw sorting or simulation advance. The isolated renderer retains serial existing wire/recovery operations. CanvasWorld defaults to batches; explicit MNM_WORLD_SMALL_COLOUR_BASELINE=1 keeps its old atlas path. Larger rectangles retain64-entry cache bounds. Finite scalar, same-retained-source/native-background and owned crowded input observations have separate limits; no all-map20FPS, original pixels or scanout equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-small-colour-batching.md",
+        "research/runtime/native-colour-rectangle-cache.md",
+        "research/runtime/coverage-ledger.md",
+        "docs/native-player-launch.md",
+        "research/runtime/combat-slowdown-followup-20261112.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "compat/legacy/canvas_world.cpp"
+      ],
+      "tests": [
+        "tests/small-colour-batch-test.cpp",
+        "tests/combat-world-replay.cpp",
+        "tests/colour-rectangle-cache-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/native-retained-world-test.cpp"
+      ],
+      "validation_dependencies": [
+        "renderer/CMakeLists.txt",
+        "renderer/scenes/CMakeLists.txt",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/isolated_dispatch.inc",
+        "assets/resources/resource_manager.cpp",
+        "tests/resource-fixtures.hpp"
+      ],
+      "evidence": [
+        "COMBAT12.small-colour-controls01",
+        "COMBAT12.live-diagnostics01",
+        "COMBAT12.slowdown-stages01",
+        "COMBAT12.slowdown-stages02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Same retained generation3196 primitives on an authored nonconstant native background; no reconstruction or equivalence of the historical original destination/history.",
+        "Native submission/completion timings include driver waits and explicit diagnostic synchronization; no GPU busy-time attribution or universal live20FPS guarantee.",
+        "Finite owned crowded and moving-creature observations are separate from full normal-Quit/player acceptance, unlimited combat/long-session stability and physical scanout.",
+        "Shared renderer sources change; historical related evidence keeps exact original hashes and milestones without current whole-player or unsupported-raster validation credit.",
+        "No trial supplies full normal-Quit acceptance; diagnostic cancellation or failures remain explicit.",
+        "Crowd01 did not require creature motion; Moving02 has SQLite contention and is invalid; Performance04 fails its >=3movers condition despite near20Hz stationary work.",
+        "Moving03 verified8distinct first-phase movers but subsequent source intervals fell to11.96..14.77Hz and the source refused unsupported caller54a563/tag14.",
+        "Engaged05 reached fire/combat and several moving zombies, but failed active-viewport input after the user changed focus. Recent rates fell to16.37Hz. The short video is not a complete scanout/original-pixel proof.",
+        "CPU-affinity prototypes in04/05/06/07 used maximum-capacity cores; scene differences/refusals prohibit a causal combat-FPS claim. Prototype sources are retained; public launcher CPU edits were removed from the release batch.",
+        "Visual-source06 and Source07 each preserve a contiguous complete observational source prefix, then fail the existing original raster caller guard. Prefix completeness does not validate unpublished WRITING work or the missing Levitate/tile scenario.",
+        "The original spell80cast targetsZombie31 with mana debit and rising/drifting actor coordinates. The platform under the reported zombie is not yet matched to exact retained source requests/original output at that moment; associating the visual report with that target remains an inference.",
+        "Rendering timings and P-core scene observations are not a controlled same-workload A/B or universal19..20FPS result.",
+        "COMBAT12.levitate-platform01 supersedes the earlier unresolved-carpet diagnosis for the reproduced Levitate visual: Effects11 sequence2 supplies the platform artwork. Historical moving01 remains unchanged. Combat19..20FPS and unrelated artifacts remain separate.",
+        "Recording-free throughput11 verifies five moving Zombies but its measured movement phases are12.20..13.67Hz; no19..20Hz moving-combat acceptance or normal Quit. Native lifetime mean15.85ms does not locate original CPU instructions.",
+        "Same-session original-main-thread default/maximum-capacity-core windows remain11.06..14.28Hz. All original affinity was restored; scene evolution and short windows prohibit a universal causal placement claim.",
+        "Retained source07 tail has4417of4719polls with no ready or outstanding snapshot. Its previous capture/video overhead remains; native timeline wall time is not GPU busy time or original CPU time."
+      ]
+    },
+    {
+      "id": "SP.080.platform-artwork",
+      "subsystem": "spell_dispatch",
+      "kind": "recovered",
+      "title": "Levitate floating platform artwork identification",
+      "scope": "Bounded original spell80 observation and original asset identification. A deliberately targeted living Zombie12 receives caster mana debit and rises/drifts; original source requests after the cast contain exact indexed Effects11.spr frames83/95/99. Installed ANI_90 binds Effects11 sequence2, whose frame family includes these platform images. Original spell80 case calls522880; its static helper reads16-byte effect-catalog entry90 and starts the corresponding controller. The apparent floating ground patch in this reproduced case is supplied original artwork, independently decoded and present in native World replay before Qt presentation. This identifies this visual; it does not recover full Levitate gameplay or assert all pixels/driver equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4763888,
+          "scope": "Static case0x50 calls522880; original targeted cast observation and platform artwork only, not full dispatcher/effect execution equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5384320,
+          "scope": "Static effect-catalog entry90 read at offsets5a0/5a4, controller bind/reset and conditional adjacent sequence. No full lift/duration/resistance/cleanup contract."
+        }
+      ],
+      "documents": [
+        "research/runtime/levitate-platform-20261112.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/campaign-spell-test.py"
+      ],
+      "validation_dependencies": [
+        "tools/campaign_spell.py",
+        "tools/campaign_gameplay.py",
+        "runtime/menu/campaign_spell_observe.h",
+        "tools/decode-cfg.py"
+      ],
+      "evidence": [
+        "COMBAT12.levitate-platform01",
+        "COMBAT12.levitate-platform02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "No native spell implementation, full original-raster equivalence, original physical driver or scanout proof. Weight/resistance, duration, landing damage, stacking, failure, cleanup and other targets remain separate.",
+        "Private setup variant substitutes ordinary offered Neutral Levitate for Law Cure under both explicit artifact-probe flags. Its exact source/binary is retained; production source/binary is restored and unchanged. Both owned sessions end by diagnostic cancellation, not normal Quit.",
+        "Initial controlled08 selected the wizard and failed its target condition; preserve it as a failed acquisition. Controlled09 targets the sole Zombie using retained source geometry and passes the observed target/mana/rise/drift conditions.",
+        "The user identified the analogous carpet in the earlier fiery video. Its exact earlier mid-frame source was not retained; the repeated single-zombie case supplies the direct source/asset identification. Other reported visual issues and combat FPS remain separate."
+      ]
+    },
+    {
+      "id": "NA.bounded-audio-handoff",
+      "subsystem": "native_audio",
+      "kind": "native_policy",
+      "title": "Bounded synchronous audio request handoff",
+      "scope": "Native single-producer version5 voice transport scheduling only:1ms precise worker polling, after-ACK cooperative followup bounded by1.25ms between operations and64commands including first, and4096PAUSE producer checks before existing Sleep1. Preserve serialization, payload/HRESULT/value-before-ACK, one-second timeout/permanent retirement and audio-worker ownership. Mixed mapped traffic, owner/GUI stall, lifecycle and production PE32 live/stale-peer controls. No recovered manager/clock policy, asynchronous transport, whole-player/physical waveform/timing equivalence or universal20FPS guarantee.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-audio-handoff-20261112.md",
+        "research/runtime/native-audio-voice-bridge.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "audio/voice_bridge.cpp",
+        "runtime/audio/bridge.c"
+      ],
+      "tests": [
+        "tests/audio-voice-bridge-test.cpp",
+        "tests/audio-primary-test.cpp",
+        "tests/audio-voice-recovery-test.cpp",
+        "tests/audio-voice-output-backend-test.cpp",
+        "tests/audio-output-timeline-test.cpp",
+        "runtime/audio/selftest.c"
+      ],
+      "validation_dependencies": [
+        "audio/voice_bridge.hpp",
+        "audio/voice_output.cpp",
+        "audio/voice_output.hpp",
+        "audio/output_timeline.cpp",
+        "audio/output_timeline.hpp",
+        "audio/CMakeLists.txt",
+        "runtime/audio/protocol.h",
+        "runtime/audio/wave_loading.h",
+        "runtime/audio/profile_reads.h",
+        "runtime/audio/file_sizes.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-audio-bridge.py"
+      ],
+      "evidence": [
+        "AUDIO12.handoff-controls01",
+        "AUDIO12.handoff-live01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Time bound is checked between operations; expensive individual I/O/output calls can exceed it. Synchronous operations and OS scheduling still can stall; no hard real-time deadline or CPU/energy reduction is asserted.",
+        "Fresh production20 observes eight ordinary summons and eight moving Zombies,19.98/19.89Hz in six-/five-mover periods. This finite diagnostic is cancelled after proof; no normal Quit or whole-player/physical output/original pixel equivalence. Idle-crowd maximum interval174ms remains.",
+        "Private17 original raster guard refuses unknown route; private18 does not finish twelve casts; production19 onlyone mover fails its motion gate. Those are not successful movement/lifecycle acceptance.",
+        "Shared-source broad historical sound/host/player evidence retains original hashes and statuses with pending current-scope impact review. Component tests here do not revalidate every linked manager, profile, music, UI or whole-player contract."
       ]
     }
   ],
@@ -408136,6 +408343,186 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "COMBAT12.small-colour-controls01",
+      "kind": "native_integration",
+      "scope": "Current scalar/serial RGB565/RGB555, clipping/overlap/order/budget/refusal/readback/resource controls on llvmpipe and M1, existing cache/atlas/retained-image regressions, and50full-frame same-retained-source comparisons on authored native background with bounded M1 timings. No game execution in this control scenario.",
+      "record": "research/runtime/combat-small-colour-results-20261112/controls01.json",
+      "sha256": "cdb9912df287c2612390f79e702b54b15489e457c4457283546028ab0c8eec63",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "COMBAT12.live-diagnostics01",
+      "kind": "live_observation",
+      "scope": "Bounded owned viewport-directed zombie probes, passive movement/source cadence and diagnostic captures. Negative instrumentation/focus/unsupported-caller results remain failures. Original Levitate cast and target height are observations; floating-base pixels and19..20Hz active combat remain unresolved. No normal-Quit, original-output or scanout acceptance.",
+      "record": "research/runtime/combat-small-colour-results-20261112/moving01.json",
+      "sha256": "926849515fa41cb647865173c5270038eb200ff17e581f2fa86e5b596a3381ff",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/diagnostic_recorded",
+          "equals": true
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/moving_combat_target_met",
+          "equals": false
+        },
+        {
+          "pointer": "/floating_tile_resolved",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "COMBAT12.levitate-platform01",
+      "kind": "live_observation",
+      "scope": "Controlled native-menu setup variant, one original Zombie summon and targeted spell80 cast, original mana/actor observations,292contiguous completed source/request/actual-return packets, native World history replay and independent original platform asset/config/ANI decoding. Earlier wrong-target failure retained. No native spell replacement or full player acceptance.",
+      "record": "research/runtime/combat-small-colour-results-20261112/levitate01.json",
+      "sha256": "d7bb1d41e90c5b358e2e356604a8b1aebc03f7c561e53d353729ab27091a4270",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/identification_confirmed",
+          "equals": true
+        },
+        {
+          "pointer": "/renderer_fix_required_for_this_artwork",
+          "equals": false
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "COMBAT12.levitate-platform02",
+      "kind": "live_observation",
+      "scope": "Controlled native-menu setup variant, one original Zombie summon and targeted spell80 cast, original mana/actor observations,292contiguous completed source/request/actual-return packets, native World history replay and independent original platform asset/config/ANI decoding. Earlier wrong-target failure retained. No native spell replacement or full player acceptance.",
+      "record": "research/runtime/combat-small-colour-results-20261112/levitate02.json",
+      "sha256": "1fd1ca63be1a734506c88f497df9431aa3c9df47b4f99ab45249254af33d590f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/identification_confirmed",
+          "equals": true
+        },
+        {
+          "pointer": "/renderer_fix_required_for_this_artwork",
+          "equals": false
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "COMBAT12.slowdown-stages01",
+      "kind": "live_observation",
+      "scope": "Recording-free actual moving-creature cadence, restored same-session CPU placement controls, retained native queue analysis and private-preservation-tested original maintenance timing prefixes. Diagnostic/negative evidence only; no full20FPS, normal-Quit or native simulation acceptance.",
+      "record": "research/runtime/combat-small-colour-results-20261112/slowdown01.json",
+      "sha256": "2a5be76f7411def68b439fe2ad09263b82eebb9590bccfb447c2d10e2d4a5d1e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/diagnostic_recorded",
+          "equals": true
+        },
+        {
+          "pointer": "/moving_combat_target_met",
+          "equals": false
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/production_sources_changed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "COMBAT12.slowdown-stages02",
+      "kind": "live_observation",
+      "scope": "Recording-free actual moving-creature cadence, restored same-session CPU placement controls, retained native queue analysis and private-preservation-tested original maintenance timing prefixes. Diagnostic/negative evidence only; no full20FPS, normal-Quit or native simulation acceptance.",
+      "record": "research/runtime/combat-small-colour-results-20261112/slowdown02.json",
+      "sha256": "a8e6b7315c4c8f058958609c3d8e34136416f094c921148febc1a57da12dded9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/diagnostic_recorded",
+          "equals": true
+        },
+        {
+          "pointer": "/moving_combat_target_met",
+          "equals": false
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/production_sources_changed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "AUDIO12.handoff-controls01",
+      "kind": "native_integration",
+      "scope": "Authored PCM and mapped request results, continuous legal mixed success/refusal stream with queued lifecycle responsiveness, owner event-loop stall, channel retirement/restart, consumed clock/primary/recovery and actual production PE32 live/stale-peer fixtures. No original game or human waveform equivalence.",
+      "record": "research/runtime/native-audio-handoff-results-20261112/controls01.json",
+      "sha256": "e5f73c4158a82e2451098c68ae8029ec5af4e3c6600f8bd59f1d27a6a1aa0e11",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AUDIO12.handoff-live01",
+      "kind": "live_observation",
+      "scope": "Finite original-game public native route using exact production ELF and ordinary guarded audio staging, eight accepted normal summons and independent position changes in two moving-crowd periods. Retained private balanced probes and failed setups stay diagnostic. No normal Quit, original pixels/physical waveform or full player acceptance.",
+      "record": "research/runtime/native-audio-handoff-results-20261112/live01.json",
+      "sha256": "a4c4b8e5f11280b4f1ec5509e6e8d2b4c90ed8f647eb1c69c8b9a4c57b6104f8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/diagnostic_recorded",
+          "equals": true
+        },
+        {
+          "pointer": "/moving_target_observed",
+          "equals": true
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -408725,7 +409112,8 @@
         {
           "value": 80,
           "behaviors": [
-            "SP.080"
+            "SP.080",
+            "SP.080.platform-artwork"
           ]
         },
         {
@@ -443694,6 +444082,110 @@
       "evidence": [
         "LAUNCH12.local-defaults-controls02"
       ]
+    },
+    {
+      "id": "combat-small-colour-controls-20261112",
+      "scope": "Current scalar/serial RGB565/RGB555, clipping/overlap/order/budget/refusal/readback/resource controls on llvmpipe and M1, existing cache/atlas/retained-image regressions, and50full-frame same-retained-source comparisons on authored native background with bounded M1 timings. No game execution in this control scenario.",
+      "level": "headless",
+      "behaviors": [
+        "NR.small-colour-batching"
+      ],
+      "tests": [
+        "tests/small-colour-batch-test.cpp",
+        "tests/combat-world-replay.cpp",
+        "tests/colour-rectangle-cache-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/native-retained-world-test.cpp"
+      ],
+      "evidence": [
+        "COMBAT12.small-colour-controls01"
+      ]
+    },
+    {
+      "id": "combat-small-colour-live-diagnostics-20261112",
+      "scope": "Bounded owned viewport-directed zombie probes, passive movement/source cadence and diagnostic captures. Negative instrumentation/focus/unsupported-caller results remain failures. Original Levitate cast and target height are observations; floating-base pixels and19..20Hz active combat remain unresolved. No normal-Quit, original-output or scanout acceptance.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.small-colour-batching"
+      ],
+      "tests": [
+        "tests/small-colour-batch-test.cpp",
+        "tests/combat-world-replay.cpp",
+        "tests/colour-rectangle-cache-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/native-retained-world-test.cpp"
+      ],
+      "evidence": [
+        "COMBAT12.live-diagnostics01"
+      ]
+    },
+    {
+      "id": "levitate-platform-identification-20261112",
+      "scope": "Controlled native-menu setup variant, one original Zombie summon and targeted spell80 cast, original mana/actor observations,292contiguous completed source/request/actual-return packets, native World history replay and independent original platform asset/config/ANI decoding. Earlier wrong-target failure retained. No native spell replacement or full player acceptance.",
+      "level": "live_observation",
+      "behaviors": [
+        "SP.080.platform-artwork"
+      ],
+      "tests": [
+        "tests/campaign-spell-test.py"
+      ],
+      "evidence": [
+        "COMBAT12.levitate-platform01",
+        "COMBAT12.levitate-platform02"
+      ]
+    },
+    {
+      "id": "combat-slowdown-stages-20261112",
+      "scope": "Recording-free actual moving-creature cadence, restored same-session CPU placement controls, retained native queue analysis and private-preservation-tested original maintenance timing prefixes. Diagnostic/negative evidence only; no full20FPS, normal-Quit or native simulation acceptance.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.small-colour-batching",
+        "NR.engine-cadence-observation",
+        "AI.creature-maintenance"
+      ],
+      "tests": [
+        "tools/test-engine-cadence.py",
+        "tests/engine-cadence-reference.c",
+        "tests/engine-cadence-reference.S"
+      ],
+      "evidence": [
+        "COMBAT12.slowdown-stages02"
+      ]
+    },
+    {
+      "id": "audio-bounded-handoff-controls-20261112",
+      "scope": "Authored PCM and mapped request results, continuous legal mixed success/refusal stream with queued lifecycle responsiveness, owner event-loop stall, channel retirement/restart, consumed clock/primary/recovery and actual production PE32 live/stale-peer fixtures. No original game or human waveform equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "NA.bounded-audio-handoff"
+      ],
+      "tests": [
+        "tests/audio-voice-bridge-test.cpp",
+        "tests/audio-primary-test.cpp",
+        "tests/audio-voice-recovery-test.cpp",
+        "tests/audio-voice-output-backend-test.cpp",
+        "tests/audio-output-timeline-test.cpp",
+        "runtime/audio/selftest.c"
+      ],
+      "evidence": [
+        "AUDIO12.handoff-controls01"
+      ]
+    },
+    {
+      "id": "audio-bounded-handoff-moving-observation-20261112",
+      "scope": "Finite original-game public native route using exact production ELF and ordinary guarded audio staging, eight accepted normal summons and independent position changes in two moving-crowd periods. Retained private balanced probes and failed setups stay diagnostic. No normal Quit, original pixels/physical waveform or full player acceptance.",
+      "level": "live_observation",
+      "behaviors": [
+        "NA.bounded-audio-handoff"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "apps/qt-shell/healing_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.cpp"
+      ],
+      "evidence": [
+        "AUDIO12.handoff-live01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -445521,8 +446013,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-3a06fb1e3fe88c3176a428e0de08bdda29e89f2b320137a00a4120d7c2b762ac.json",
-    "sha256": "3a06fb1e3fe88c3176a428e0de08bdda29e89f2b320137a00a4120d7c2b762ac"
+    "path": "research/runtime/coverage/source-index-4260742138de95a25717c4e3df7898e23f60d9f729d5194bd7074f3d590e5d92.json",
+    "sha256": "4260742138de95a25717c4e3df7898e23f60d9f729d5194bd7074f3d590e5d92"
   },
   "evidence_applicability": [
     {

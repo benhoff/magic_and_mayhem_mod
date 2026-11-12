@@ -14,6 +14,7 @@
 #include <QPointer>
 #include <algorithm>
 #include <atomic>
+#include <cstddef>
 #include <mutex>
 #include <unordered_map>
 #include <stdexcept>
@@ -197,6 +198,37 @@ void main(){ivec2 at=ivec2(gl_FragCoord.xy);uint index=texelFetch(coordinates,at
  uvec4 c=texelFetch(worldPixels,ivec2(int(index)%worldWidth,int(index)/worldWidth),0);
  nativePixel=((c.r>>3u)<<11u)|((c.g>>2u)<<5u)|(c.b>>3u);
 })";
+constexpr auto smallColourVertex=R"(#version 330 core
+layout(location=0)in ivec4 rectangle;
+layout(location=1)in uvec4 colours;
+layout(location=2)in int operation;
+uniform ivec2 canvasSize;
+flat out ivec2 origin;
+flat out uvec4 words;
+flat out int mode;
+void main(){
+ const ivec2 corners[6]=ivec2[6](ivec2(0,0),ivec2(1,0),ivec2(0,1),ivec2(0,1),ivec2(1,0),ivec2(1,1));
+ ivec2 position=rectangle.xy+corners[gl_VertexID]*(rectangle.zw-rectangle.xy);
+ gl_Position=vec4(vec2(position)*2.0/vec2(canvasSize)-1.0,0.0,1.0);
+ origin=rectangle.xy;words=colours;mode=operation;
+})";
+constexpr auto smallColourFragment=R"(#version 330 core
+uniform usampler2D oldPixels;
+uniform ivec2 oldOrigin;
+uniform uint blendMask;
+flat in ivec2 origin;
+flat in uvec4 words;
+flat in int mode;
+layout(location=0)out uint nativePixel;
+void main(){
+ ivec2 at=ivec2(gl_FragCoord.xy),local=at-origin;
+ uint s=words[local.y*2+local.x];
+ if(mode==0){nativePixel=s;return;}
+ uint d=texelFetch(oldPixels,at-oldOrigin,0).r,m=blendMask;
+ if(mode==1)nativePixel=((s>>1u)&m)+((d>>1u)&m);
+ else if(mode==2){uint h=(d>>1u)&m;nativePixel=h+((h>>1u)&m)+((s>>2u)&(m>>1u)&m);}
+ else {uint h=(s>>1u)&m;nativePixel=h+((h>>1u)&m)+((d>>2u)&(m>>1u)&m);}
+})";
 void validateImage(const Image& i,unsigned bits){
     if(bits!=8 && bits!=16 && bits!=24 && bits!=32)throw std::runtime_error("Unsupported native pixel size");
     if(i.width<1 || i.height<1 || i.width>2048 || i.height>2048 ||
@@ -241,7 +273,7 @@ struct GlBlitter::Impl {
     QOpenGLFunctions_3_3_Core gl;
     using CopyImage=void(QOPENGLF_APIENTRYP)(GLuint,GLenum,GLint,GLint,GLint,GLint,GLuint,GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei);
     CopyImage copyImage=nullptr;
-    std::unique_ptr<QOpenGLShaderProgram> program,presentation,compositing,copying,importing,coordinateProgram,mappedWorldProgram;
+    std::unique_ptr<QOpenGLShaderProgram> program,presentation,compositing,copying,importing,coordinateProgram,mappedWorldProgram,smallColour;
     GLuint vao=0,fbo=0,scratch=0,copyBuffer=0,paletteBank=0;
     int scratchWidth=0,scratchHeight=0;
     GLuint maskedColour=0,maskedSelection=0;
@@ -580,7 +612,7 @@ struct GlBlitter::Impl {
                 deferredFrames.clear();
                 for(auto& pair:surfaces)release(pair.second);
                 for(const auto& timing:gpuTimings)gl.glDeleteQueries(2,timing.queries.data());
-                deleteTextures(1,&scratch);deleteTextures(1,&maskedColour);deleteTextures(1,&maskedSelection);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);copying.reset();importing.reset();coordinateProgram.reset();mappedWorldProgram.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
+                deleteTextures(1,&scratch);deleteTextures(1,&maskedColour);deleteTextures(1,&maskedSelection);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);smallColour.reset();copying.reset();importing.reset();coordinateProgram.reset();mappedWorldProgram.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
             catch(const std::exception&){}
         }
     }
@@ -1077,6 +1109,66 @@ void GlBlitter::colourRect(SurfaceId destination,const Image& pixels,Rect source
     try{colour=create(pixels,format);mask=create({pixels.width,pixels.height,std::vector<std::uint32_t>(pixels.pixels.size(),1)},{8,{}});
         composite(colour,destination,source,x,y,mask,mode);destroy(mask);destroy(colour);
     }catch(...){if(mask)destroy(mask);if(colour)destroy(colour);throw;}
+}
+void GlBlitter::smallColourRects(SurfaceId destination,const std::vector<SmallColourDraw>& writes){
+    if(writes.size()>512)throw std::invalid_argument("Small colour write budget exceeded");
+    // Validate the complete input before any pixel mutation, including the
+    // isolated fallback. Never sample undefined destination words.
+    const auto size=dimensions(destination);
+    for(const auto& w:writes){const auto r=w.destination;
+        if(r.left<0||r.top<0||r.right<=r.left||r.bottom<=r.top||r.right-r.left>2||r.bottom-r.top>2||r.right>size.width()||r.bottom>size.height()||
+           (w.mode!=CompositeMode::copy&&w.mode!=CompositeMode::half&&w.mode!=CompositeMode::quarterSource&&w.mode!=CompositeMode::quarterDestination)||
+           std::any_of(w.pixels.begin(),w.pixels.end(),[](auto p){return p>65535;}))
+            throw std::invalid_argument("Invalid owned small colour write");
+    }
+    if(writes.empty())return;
+    if(isolated_){
+        // Keep the existing versioned renderer-service protocol. Its serial
+        // colour operation retains recovery and ordered retry semantics.
+        for(const auto& w:writes){const auto r=w.destination;Image image{r.right-r.left,r.bottom-r.top,{}};
+            for(int y=0;y<image.height;++y)for(int x=0;x<image.width;++x)image.pixels.push_back(w.pixels[std::size_t(y)*2+x]);
+            SpriteComposite mode;mode.mode=w.mode;colourRect(destination,image,{0,0,image.width,image.height},r.left,r.top,mode);
+        }
+        return;
+    }
+    auto& p=*impl_;p.thread();auto& dst=p.get(destination);
+    const auto masks=dst.format.masks;const bool rgb555=masks==std::array<std::uint32_t,3>{0x7c00,0x3e0,0x1f};
+    if(dst.format.bits!=16||(!rgb555&&masks!=std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f}))
+        throw std::invalid_argument("Small colour writes require RGB565/RGB555 storage");
+    dst.validity.require({0,0,dst.width,dst.height});
+    p.flushCopies();Current current(p.context,p.surface);auto& g=p.gl;
+    if(!p.smallColour){
+        auto shader=std::make_unique<QOpenGLShaderProgram>();
+        if(!shader->addShaderFromSourceCode(QOpenGLShader::Vertex,smallColourVertex)||
+           !shader->addShaderFromSourceCode(QOpenGLShader::Fragment,smallColourFragment)||!shader->link())
+            throw GraphicsFailure(shader->log().toStdString());
+        p.smallColour=std::move(shader);
+    }
+    struct Instance {std::array<GLint,4> rectangle;std::array<GLuint,4> colours;GLint mode;};
+    std::vector<Instance> group;group.reserve(writes.size());
+    for(std::size_t first=0;first<writes.size();){
+        auto area=writes[first].destination;group.clear();std::size_t end=first;
+        for(;end<writes.size();++end){const auto& w=writes[end];const auto r=w.destination;
+            // A shared snapshot is correct only for disjoint writes. Stop at
+            // the first dependency, preserving order across every batch.
+            if(std::any_of(group.begin(),group.end(),[r](const auto& a){return r.left<a.rectangle[2]&&r.right>a.rectangle[0]&&r.top<a.rectangle[3]&&r.bottom>a.rectangle[1];}))break;
+            group.push_back({{r.left,r.top,r.right,r.bottom},w.pixels,GLint(w.mode)});
+            area={std::min(area.left,r.left),std::min(area.top,r.top),std::max(area.right,r.right),std::max(area.bottom,r.bottom)};
+        }
+        const auto frozen=p.snapshot(dst,area);p.damage(dst,area);p.setScissor(false);p.useProgram(p.smallColour->programId());
+        g.glActiveTexture(GL_TEXTURE2);g.glBindTexture(GL_TEXTURE_2D,frozen);
+        g.glUniform1i(p.smallColour->uniformLocation("oldPixels"),2);
+        g.glUniform2i(p.smallColour->uniformLocation("oldOrigin"),area.left,area.top);
+        g.glUniform2i(p.smallColour->uniformLocation("canvasSize"),dst.width,dst.height);
+        g.glUniform1ui(p.smallColour->uniformLocation("blendMask"),rgb555?0x3defu:0x7befu);
+        if(!p.copyBuffer)g.glGenBuffers(1,&p.copyBuffer);
+        g.glBindBuffer(GL_ARRAY_BUFFER,p.copyBuffer);g.glBufferData(GL_ARRAY_BUFFER,GLsizeiptr(group.size()*sizeof(Instance)),group.data(),GL_STREAM_DRAW);
+        g.glEnableVertexAttribArray(0);g.glVertexAttribIPointer(0,4,GL_INT,sizeof(Instance),nullptr);g.glVertexAttribDivisor(0,1);
+        g.glEnableVertexAttribArray(1);g.glVertexAttribIPointer(1,4,GL_UNSIGNED_INT,sizeof(Instance),reinterpret_cast<const void*>(offsetof(Instance,colours)));g.glVertexAttribDivisor(1,1);
+        g.glEnableVertexAttribArray(2);g.glVertexAttribIPointer(2,1,GL_INT,sizeof(Instance),reinterpret_cast<const void*>(offsetof(Instance,mode)));g.glVertexAttribDivisor(2,1);
+        g.glDrawArraysInstanced(GL_TRIANGLES,0,6,GLsizei(group.size()));++p.counters.drawCalls;p.counters.drawInstances+=group.size();p.counters.copies+=group.size();p.check();
+        first=end;
+    }
 }
 void GlBlitter::additiveRect(SurfaceId destination,Rect r,const std::array<std::uint16_t,3>& channels){
     if(isolated_){isolated_->call(wire::message(wire::Op::additive,destination,r,channels),true);return;}
