@@ -180864,7 +180864,8 @@
       "documents": [
         "research/runtime/coverage-ledger.md",
         "research/runtime/native-additive-batching-20261113.md",
-        "research/runtime/native-particle-cost-20261113.md"
+        "research/runtime/native-particle-cost-20261113.md",
+        "research/runtime/native-rgb-add-batching-20261113.md"
       ],
       "implementation": [
         "renderer/scenes/scene_renderer.cpp",
@@ -181067,7 +181068,8 @@
       "evidence": [
         "NATIVE13.additive-batching01",
         "NATIVE13.native-particle-cost01",
-        "NATIVE13.native-particle-cost02"
+        "NATIVE13.native-particle-cost02",
+        "NATIVE13.rgb-add-batching01"
       ],
       "status": {
         "understanding": "scoped",
@@ -181081,7 +181083,8 @@
         "Captured868-World prefix is reused; original acquisition stopped at World869 guarded caller0x54a563. No new original game execution or normal-Quit acceptance.",
         "Cold native setup and untested workloads remain outside the measured combat window. Isolated recovery retains serial drawing.",
         "2026-11-13 changes shared replay-main source only to add wire-only admission. Scoped heavier-case observations live under NR.derived-particle-stress-replay; this does not silently refresh prior full-hash execution evidence or broaden original/live acceptance.",
-        "Current native stage/batch-size controls and retained868-frame/2x/4xpixel regressions recorded separately under NATIVE13.native-particle-cost01; historical evidence/source hashes remain intact. No original/live acceptance renewal."
+        "Current native stage/batch-size controls and retained868-frame/2x/4xpixel regressions recorded separately under NATIVE13.native-particle-cost01; historical evidence/source hashes remain intact. No original/live acceptance renewal.",
+        "2026-11-13 bounded RGB-add rectangle aggregation shares the existing sprite accumulator. Fresh52case scalar controls on M1/llvmpipe,1107World/4xparticle native pixel regressions and explicit rectangle profile export are scoped under NATIVE13.rgb-add-batching01; historical source/evidence hashes and broader original/live milestones remain unchanged."
       ]
     },
     {
@@ -181316,12 +181319,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded native additive batch stage attribution",
-      "scope": "Existing opt-in owner profiling additionally separates per-frame additive batch planning, owned source combination, upload and composite submission wall spans and bounded batch/source/pixel counters. Default rendering avoids diagnostic clocks. No readback, source order, AI/simulation/clock/balance, runtime wire or original guard change. These perturbed CPU/driver wall spans are not CPU self-time or GPU busy time.",
+      "scope": "Existing opt-in owner profiling additionally separates per-frame additive batch planning, owned source combination, upload and composite submission wall spans and bounded batch/source/pixel counters. Default rendering avoids diagnostic clocks. No readback, source order, AI/simulation/clock/balance, runtime wire or original guard change. These perturbed CPU/driver wall spans are not CPU self-time or GPU busy time. Successful batches now count RGB-add rectangles separately from indexed sprites; phase totals cover either source type, while low16-wrap-risk rectangles remain serial.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/coverage-ledger.md",
-        "research/runtime/native-particle-cost-20261113.md"
+        "research/runtime/native-particle-cost-20261113.md",
+        "research/runtime/native-rgb-add-batching-20261113.md"
       ],
       "implementation": [
         "renderer/scenes/scene_renderer.cpp",
@@ -181523,7 +181527,8 @@
       ],
       "evidence": [
         "NATIVE13.native-particle-cost01",
-        "NATIVE13.native-particle-cost02"
+        "NATIVE13.native-particle-cost02",
+        "NATIVE13.rgb-add-batching01"
       ],
       "status": {
         "understanding": "scoped",
@@ -181535,7 +181540,8 @@
       "remaining_gaps": [
         "Scoped native policy/regression and isolated CPU+GPU service times only. No original pixel oracle, live FPS, Qt/HUD/audio/scanout, long-session or every-workload guarantee.",
         "Retained868-World parent stops before the existing World869 caller0x54a563 refusal. No original run, normal-Quit acceptance, engine/AI/clock/balance/wire/guard change.",
-        "Manual artifact-free acceptance remains unconfirmed: user was not watching the earlier4xpreview. Cold setup remains outside the measured combat range."
+        "Manual artifact-free acceptance remains unconfirmed: user was not watching the earlier4xpreview. Cold setup remains outside the measured combat range.",
+        "2026-11-13 bounded RGB-add rectangle aggregation shares the existing sprite accumulator. Fresh52case scalar controls on M1/llvmpipe,1107World/4xparticle native pixel regressions and explicit rectangle profile export are scoped under NATIVE13.rgb-add-batching01; historical source/evidence hashes and broader original/live milestones remain unchanged."
       ]
     },
     {
@@ -182173,6 +182179,240 @@
         "Actual public native-only120second Main/Quick/Cancel/Main dwell/normalQuit is scoped menu validation, with no World completed. Actual live battle after chunks and all shutdown races remain separate; next-World source pixels/ACKs and FIFO are headless controls.",
         "Asynchronous V5 and finite profile capture without source chunks retain prior bounds. V7 source-aware diagnostic capture is implemented but not freshly executed here.",
         "No original pixel-oracle, AI/simulation/clock/balance, every-map/resource-churn or live battle performance/equivalence promotion. Historical broader hashes/statuses remain pending current applicability."
+      ]
+    },
+    {
+      "id": "NR.additive-rectangle-batching",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded native source aggregation of additive rectangles",
+      "scope": "Native RGB565 scene policy for adjacent visible clipped RGB-add rectangles. Bound source aggregation to caller draw/time/upload budgets,128x128union,65536visited pixels and at most512rectangles in synchronous native World; generic scenes opt out. Preserve original low16-add-before-saturation behavior by retaining serial barriers for increments above65504/65472/65504. Nonrectangle/hidden/oversized/isolated operations retain existing order and fallback. Reuse bounded source/mask GPU storage; no destination CPU readback or original simulation/AI/clock/balance/wire/guard changes. Independent scalar and retained native replay validation pending; no original-equivalence promotion.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5528592,
+          "scope": "Existing recovered RGB565 low16-add/clamp semantics only; this batching policy is native."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-rgb-add-batching-20261113.md",
+        "research/runtime/coverage-ledger.md",
+        "research/runtime/native-world-kind8.md"
+      ],
+      "implementation": [
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "compat/legacy/canvas_world.cpp"
+      ],
+      "tests": [
+        "tests/additive-sprite-batching-test.cpp",
+        "tests/test-render-replay.py"
+      ],
+      "evidence": [
+        "NATIVE13.rgb-add-batching01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native source aggregation and isolated CPU+GPU completion only; no original pixel equivalence, live FPS/Qt/HUD/audio/scanout/long-session or universal performance claim.",
+        "The user reported no subjective slowdown in the1107World input acquisition. The earlier crowded wizard death/explosion cause remains unresolved. Acquisition ran baselinee35da8af; all candidate validation is offline/headless.",
+        "GUI latency analyzer refuses different owner-source and UI-only export generations; raw owner phases do not assert an accepted GUI latency result. Cold setup remains outside burst timing.",
+        "RGB-add increments beyond65504/65472/65504 remain serial because low16 wrap-before-clamp is not associative. Unknown/unsupported original producers retain existing guards."
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/acceptance_capture.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/host_timing_trace.hpp",
+        "apps/qt-shell/native_render_target.hpp",
+        "apps/qt-shell/profile_capture_codec.hpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "apps/qt-shell/watchdog_host_fault.hpp",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/../animation.hpp",
+        "assets/resources/../asset_file.hpp",
+        "assets/resources/../bmp.hpp",
+        "assets/resources/../jpeg.hpp",
+        "assets/resources/../path_resolver.hpp",
+        "assets/resources/../pcx.hpp",
+        "assets/resources/../sprite_loader.hpp",
+        "assets/resources/../terrain_catalog.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/screen_resources.cpp",
+        "assets/resources/screen_resources.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/../../assets/jpeg.hpp",
+        "compat/legacy/../../assets/pcx.hpp",
+        "compat/legacy/../../protocols/include/mnm/canvas_producers_v1.h",
+        "compat/legacy/../../protocols/include/mnm/canvas_producers_v2.h",
+        "compat/legacy/../../protocols/include/mnm/canvas_producers_v3.h",
+        "compat/legacy/../../protocols/include/mnm/canvas_producers_v4.h",
+        "compat/legacy/../../protocols/include/mnm/scene_snapshot_v1.h",
+        "compat/legacy/../../protocols/include/mnm/world_continuous_checksum.h",
+        "compat/legacy/../../protocols/include/mnm/world_continuous_v3.h",
+        "compat/legacy/../../protocols/include/mnm/world_continuous_v4.h",
+        "compat/legacy/../../protocols/include/mnm/world_continuous_v5.h",
+        "compat/legacy/../../protocols/include/mnm/world_continuous_v6.h",
+        "compat/legacy/../../protocols/include/mnm/world_effect_raster_v1.h",
+        "compat/legacy/../../protocols/include/mnm/world_frame_v1.h",
+        "compat/legacy/../../protocols/include/mnm/world_raster_batch_v3.h",
+        "compat/legacy/../../protocols/include/mnm/world_rolling_v1.h",
+        "compat/legacy/../../reconstruction/rendering/effect_raster_return.hpp",
+        "compat/legacy/../../reconstruction/rendering/fade_span.hpp",
+        "compat/legacy/../../renderer/../assets/asset_file.hpp",
+        "compat/legacy/../../renderer/../assets/path_resolver.hpp",
+        "compat/legacy/../../renderer/../assets/sprite_loader.hpp",
+        "compat/legacy/../../renderer/alternate_canvas.hpp",
+        "compat/legacy/../../renderer/blit.hpp",
+        "compat/legacy/../../renderer/canvas_mirror.hpp",
+        "compat/legacy/../../renderer/canvas_sequence.hpp",
+        "compat/legacy/../../renderer/dib.hpp",
+        "compat/legacy/../../renderer/gpu_alternate_canvas.hpp",
+        "compat/legacy/../../renderer/gpu_canvas_mirror.hpp",
+        "compat/legacy/../../renderer/minimap/minimap.hpp",
+        "compat/legacy/../../renderer/minimap/overlays.hpp",
+        "compat/legacy/../../renderer/sprites/tint_colour.hpp",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_snapshot_queue.hpp",
+        "renderer/../assets/asset_file.hpp",
+        "renderer/../assets/path_resolver.hpp",
+        "renderer/../assets/sprite_loader.hpp",
+        "renderer/../assets/sprite_run_clipping.hpp",
+        "renderer/../protocols/include/mnm/render_stream_v2.h",
+        "renderer/../protocols/include/mnm/render_stream_v3.h",
+        "renderer/../protocols/include/mnm/render_stream_v4.h",
+        "renderer/../protocols/include/mnm/render_stream_v5.h",
+        "renderer/../protocols/include/mnm/resident_frame_budget.h",
+        "renderer/../protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/cursor_compositor.cpp",
+        "renderer/cursor_compositor.hpp",
+        "renderer/diagnostic_worker.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/../sprites/../../assets/sprite_run_clipping.hpp",
+        "renderer/scenes/../sprites/row_effect.hpp",
+        "renderer/scenes/../sprites/tint_outline.hpp",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/../apps/qt-shell/resident_profile_capture.hpp",
+        "tests/displacement-batch-test.cpp",
+        "tests/resident-profile-capture-test.cpp",
+        "tests/resident-profile-capture-test.py",
+        "tests/scene-resource-fixtures.hpp",
+        "tests/small-colour-batch-test.cpp",
+        "tools/native_world_replay.py",
+        "tools/render-replay.py",
+        "tools/render-replay/../../compat/legacy/../../protocols/include/mnm/world_rolling_v1.h",
+        "tools/render-replay/../../compat/legacy/../../renderer/../assets/asset_file.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/../assets/path_resolver.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/../assets/sprite_loader.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/alternate_canvas.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/blit.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/canvas_mirror.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/canvas_sequence.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/gpu_alternate_canvas.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/gpu_canvas_mirror.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/minimap/minimap.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/minimap/overlays.hpp",
+        "tools/render-replay/../../compat/legacy/canvas_producers.hpp",
+        "tools/render-replay/../../compat/legacy/canvas_world.hpp",
+        "tools/render-replay/../../compat/legacy/scene_snapshot.hpp",
+        "tools/render-replay/../../compat/legacy/world_frame.hpp",
+        "tools/render-replay/../../compat/legacy/world_raster_batch.hpp",
+        "tools/render-replay/../../compat/legacy/world_resources.hpp",
+        "tools/render-replay/../../compat/legacy/world_rolling_channel.hpp",
+        "tools/render-replay/../../compat/legacy/world_rolling_handoff.hpp",
+        "tools/render-replay/../../compat/legacy/world_rolling_packet.hpp",
+        "tools/render-replay/../../compat/legacy/world_rolling_session.hpp",
+        "tools/render-replay/CMakeLists.txt",
+        "tools/render-replay/main.cpp",
+        "tools/resident_capture.py"
       ]
     }
   ],
@@ -410815,6 +411055,25 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NATIVE13.rgb-add-batching01",
+      "kind": "native_integration",
+      "scope": "Bounded native RGB565 rectangle source aggregation with low16-wrap-risk serial fallback; independent52case controls on M1/llvmpipe,1107World two-repeat exact native pixel regression, retained4xparticle pixel/performance regression and three-repeat51World effect-burst timing. Original simulation/AI/clock/balance unchanged; user negative reproduction and unresolved earlier crowd cause retained.",
+      "record": "research/runtime/native-rgb-add-results-20261113/optimization01.json",
+      "sha256": "1d40306bdb952bc2b595270abd15823bfa9e4381417df22eba2498a1b837d63a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -446730,6 +446989,25 @@
       "evidence": [
         "NATIVE13.owned-source-drain01"
       ]
+    },
+    {
+      "id": "native-rgb-add-batching-20261113",
+      "scope": "Bounded native RGB565 rectangle source aggregation with low16-wrap-risk serial fallback; independent52case controls on M1/llvmpipe,1107World two-repeat exact native pixel regression, retained4xparticle pixel/performance regression and three-repeat51World effect-burst timing. Original simulation/AI/clock/balance unchanged; user negative reproduction and unresolved earlier crowd cause retained.",
+      "level": "headless",
+      "behaviors": [
+        "NR.additive-rectangle-batching",
+        "NR.additive-stage-attribution",
+        "NR.additive-sprite-batching"
+      ],
+      "tests": [
+        "tests/additive-sprite-batching-test.cpp",
+        "tests/displacement-batch-test.cpp",
+        "tests/small-colour-batch-test.cpp",
+        "tests/test-render-replay.py"
+      ],
+      "evidence": [
+        "NATIVE13.rgb-add-batching01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -448557,8 +448835,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-0a1ff353f2a4cefc1ec58454c2df014f163e0c78c05ce583abc847d9618a9bed.json",
-    "sha256": "0a1ff353f2a4cefc1ec58454c2df014f163e0c78c05ce583abc847d9618a9bed"
+    "path": "research/runtime/coverage/source-index-b6c83c46b2adfc5dfe8a8757daaba2b2eff75d9b3b65546eb87d65151f9ff56f.json",
+    "sha256": "b6c83c46b2adfc5dfe8a8757daaba2b2eff75d9b3b65546eb87d65151f9ff56f"
   },
   "evidence_applicability": [
     {

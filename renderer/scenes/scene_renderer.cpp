@@ -12,7 +12,7 @@ namespace mnm::render {
 SceneRenderer::SceneRenderer(GlBlitter& renderer,assets::ResourceManager& resources,const Image& background,SceneLimits limits)
     :renderer_(renderer),resources_(resources),cache_(renderer,resources,limits.cache),limits_(limits),
      viewport_{0,0,background.width,background.height},thread_(std::this_thread::get_id()){
-    if(!limits.draws || limits.draws>65536||!limits.maxAdditiveSprites||limits.maxAdditiveSprites>512)throw std::invalid_argument("Scene draw/additive budget outside limits");
+    if(!limits.draws || limits.draws>65536||!limits.maxAdditiveSprites||limits.maxAdditiveSprites>512||!limits.maxAdditiveRectangles||limits.maxAdditiveRectangles>512)throw std::invalid_argument("Scene draw/additive budget outside limits");
     const auto format=limits_.colourRgb555?PixelFormat{16,{0x7c00,0x3e0,0x1f}}:spriteFormat;
     background_=renderer_.create(background,format);
     try{canvas_=renderer_.create(background,format);}catch(...){renderer_.destroy(background_);throw;}
@@ -21,7 +21,7 @@ SceneRenderer::SceneRenderer(GlBlitter& renderer,assets::ResourceManager& resour
                              SurfaceId canvas,int width,int height,SceneLimits limits)
     :renderer_(renderer),resources_(resources),cache_(renderer,resources,limits.cache),limits_(limits),
      canvas_(canvas),ownsCanvas_(false),viewport_{0,0,width,height},thread_(std::this_thread::get_id()){
-    if(limits.colourRgb555||!limits.draws||limits.draws>65536||!limits.maxAdditiveSprites||limits.maxAdditiveSprites>512||width<1||height<1||width>2048||height>2048)
+    if(limits.colourRgb555||!limits.draws||limits.draws>65536||!limits.maxAdditiveSprites||limits.maxAdditiveSprites>512||!limits.maxAdditiveRectangles||limits.maxAdditiveRectangles>512||width<1||height<1||width>2048||height>2048)
         throw std::invalid_argument("Borrowed scene limits");
     const auto frame=renderer_.presentGpu(canvas);
     if(frame.size()!=QSize(width,height))throw std::invalid_argument("Borrowed scene canvas extent");
@@ -199,42 +199,61 @@ void SceneRenderer::supplyUpload(const SceneUploadNeed& need,PreparedSpriteFrame
     cache_.supply(need.request,std::move(prepared));supplied_=true;
 }
 bool SceneRenderer::drawAdditives(std::size_t end,std::chrono::steady_clock::time_point deadline,std::size_t& uploadBytes){
-    if(!limits_.batchAdditiveSprites||GlBlitter::isolatedRecoveryEnabled())return false;
+    const bool rectangles=bool(pending_[cursor_].additive);
+    if(!(rectangles?limits_.batchAdditiveRectangles:limits_.batchAdditiveSprites)||GlBlitter::isolatedRecoveryEnabled())return false;
     using Clock=std::chrono::steady_clock;
     const auto elapsed=[](auto start){return std::chrono::duration<double,std::milli>(Clock::now()-start).count();};
     auto phase=additiveProfile_.enabled?Clock::now():Clock::time_point{};
-    struct Source {const assets::SpriteFrame* frame;const SpriteColourTable* colours;Rect region;int x,y;};
+    struct Source {const assets::SpriteFrame* frame;const SpriteColourTable* colours;Rect region;int x,y;std::uint16_t constant;};
     std::vector<Source> sources;Rect area{};std::size_t visited=0,next=cursor_;
-    for(;next<end&&next-cursor_<limits_.maxAdditiveSprites;++next){
+    const auto cap=rectangles?limits_.maxAdditiveRectangles:limits_.maxAdditiveSprites;
+    for(;next<end&&next-cursor_<cap;++next){
         if(next!=cursor_&&std::chrono::steady_clock::now()>=deadline)break;
         const auto& d=pending_[next];
-        if(!d.visible||!d.clip||!d.colours||d.additive||d.colourRectangle||d.rowEffect||d.wholeOpaqueRunClipping||d.composite.mode!=CompositeMode::additive)break;
-        const auto& resource=limits_.cache.residentOnly?resources_.resident(d.resource):resources_.load(d.resource);
-        const auto* sprite=std::get_if<assets::Sprite>(&resource.image);
-        if(!sprite||sprite->storage!=assets::SpriteStorage::indexed8)break;
-        const auto& f=sprite->frames.at(d.frame);const auto clip=d.viewport.value_or(viewport_);
-        const auto x=std::int64_t(d.anchorX)-f.originX,y=std::int64_t(d.anchorY)-f.originY;
+        if(!d.visible||!d.clip||bool(d.additive)!=rectangles||d.colourRectangle||d.rowEffect||d.wholeOpaqueRunClipping)break;
+        const assets::SpriteFrame* frame=nullptr;std::uint16_t constant=0;
+        std::int64_t x=d.anchorX,y=d.anchorY;int width=0,height=0;
+        if(rectangles){
+            const auto& a=*d.additive;
+            // The recovered rectangle kernel wraps each addition to16bits
+            // before clamping. Only this domain is associative for every
+            // possible destination channel; larger increments stay serial.
+            if(a.channels[0]>65535-31||a.channels[1]>65535-63||a.channels[2]>65535-31)break;
+            width=a.width;height=a.height;
+            constant=std::uint16_t((std::min(unsigned(a.channels[0]),31u)<<11)|(std::min(unsigned(a.channels[1]),63u)<<5)|std::min(unsigned(a.channels[2]),31u));
+        }else{
+            if(!d.colours||d.composite.mode!=CompositeMode::additive)break;
+            const auto& resource=limits_.cache.residentOnly?resources_.resident(d.resource):resources_.load(d.resource);
+            const auto* sprite=std::get_if<assets::Sprite>(&resource.image);
+            if(!sprite||sprite->storage!=assets::SpriteStorage::indexed8)break;
+            frame=&sprite->frames.at(d.frame);width=frame->width;height=frame->height;
+            x-=frame->originX;y-=frame->originY;
+        }
+        const auto clip=d.viewport.value_or(viewport_);
         const auto left=std::max(x,std::int64_t(clip.left)),top=std::max(y,std::int64_t(clip.top));
-        const auto right=std::min(x+f.width,std::int64_t(clip.right)),bottom=std::min(y+f.height,std::int64_t(clip.bottom));
+        const auto right=std::min(x+width,std::int64_t(clip.right)),bottom=std::min(y+height,std::int64_t(clip.bottom));
         if(left>=right||top>=bottom)continue;
         const Rect region{int(left),int(top),int(right),int(bottom)};
         const Rect combined=sources.empty()?region:Rect{std::min(area.left,region.left),std::min(area.top,region.top),std::max(area.right,region.right),std::max(area.bottom,region.bottom)};
         const auto pixels=std::size_t(right-left)*(bottom-top);
         const auto cost=std::size_t(combined.right-combined.left)*(combined.bottom-combined.top)*4+(additiveMask_?0:128*128*4);
         if(combined.right-combined.left>128||combined.bottom-combined.top>128||visited+pixels>65536||cost>uploadBytes)break;
-        area=combined;visited+=pixels;sources.push_back({&f,&*d.colours,region,int(x),int(y)});
+        area=combined;visited+=pixels;sources.push_back({frame,d.colours?&*d.colours:nullptr,region,int(x),int(y),constant});
     }
     if(next-cursor_<2)return false;
-    if(additiveProfile_.enabled){additiveProfile_.planningMs+=elapsed(phase);++additiveProfile_.batches;additiveProfile_.sprites+=next-cursor_;additiveProfile_.visitedPixels+=visited;phase=Clock::now();}
+    if(additiveProfile_.enabled){additiveProfile_.planningMs+=elapsed(phase);++additiveProfile_.batches;(rectangles?additiveProfile_.rectangles:additiveProfile_.sprites)+=next-cursor_;additiveProfile_.visitedPixels+=visited;phase=Clock::now();}
     if(!sources.empty()){
         Image pixels{area.right-area.left,area.bottom-area.top,{}};
         pixels.pixels.resize(std::size_t(pixels.width)*pixels.height);
         for(const auto& s:sources){
-            const auto& indices=std::get<std::vector<std::uint8_t>>(s.frame->pixels);
             for(int y=s.region.top;y<s.region.bottom;++y)for(int x=s.region.left;x<s.region.right;++x){
-                const auto at=std::size_t(y-s.y)*s.frame->width+x-s.x;
-                if(!s.frame->opaqueMask.at(at))continue;
-                const auto colour=(*s.colours)[indices.at(at)];auto& sum=pixels.pixels[std::size_t(y-area.top)*pixels.width+x-area.left];
+                auto colour=s.constant;
+                if(s.frame){
+                    const auto at=std::size_t(y-s.y)*s.frame->width+x-s.x;
+                    if(!s.frame->opaqueMask.at(at))continue;
+                    colour=(*s.colours)[std::get<std::vector<std::uint8_t>>(s.frame->pixels).at(at)];
+                }
+                auto& sum=pixels.pixels[std::size_t(y-area.top)*pixels.width+x-area.left];
                 sum=(std::min((sum>>11)+(colour>>11),31u)<<11)|(std::min(((sum>>5)&63u)+((colour>>5)&63u),63u)<<5)|std::min((sum&31u)+(colour&31u),31u);
             }
         }
@@ -302,7 +321,7 @@ bool SceneRenderer::drawNext(const SceneBatchBudget& budget){
     try{renderer_.batch([&]{
         bool first=true;
         while(cursor_<end && (first||std::chrono::steady_clock::now()<deadline)){first=false;const auto& draw=pending_[cursor_];
-            if(draw.composite.mode==CompositeMode::additive&&drawAdditives(end,deadline,bytes))continue;
+            if((draw.additive||draw.composite.mode==CompositeMode::additive)&&drawAdditives(end,deadline,bytes))continue;
             if(limits_.cacheColourRectangles&&limits_.batchSmallColourRectangles&&draw.visible&&draw.colourRectangle&&
                draw.colourRectangle->pixels.width<=2&&draw.colourRectangle->pixels.height<=2){
                 std::vector<SmallColourDraw> small;

@@ -29430,3 +29430,28 @@ error/fallback or outstanding source ownership. This closes the scoped live menu
 buffer regression, independently of278528-record headless/next-World controls;
 no new live battle or pixel-equivalence promotion. SQLite
 `NATIVE13.owned-source-drain01` retains the exact binaries, source and observations.
+
+##2026-11-13 native RGB-add rectangle effect batching
+
+`NR.additive-rectangle-batching` adds bounded source-only aggregation for
+consecutive RGB565 additive rectangles, separate from indexed particle sprites.
+World1019 in the1107World user recording contains602tiny RGB-add rectangles and
+no additive sprites; raw owner wall spans show74.113ms World/71.657ms submission.
+The user observed no subjective slowdown in this recording, so the earlier
+crowded wizard death/explosion cause remains unresolved. Original simulation,
+AI, clocks, combat balance, protocol and guards remain unchanged.
+
+Native aggregation retains128x128union/65536visited pixels/caller budgets and
+at most512rectangles, sharing the existing bounded GPU source/mask planes.
+Increments above65504/65472/65504 remain serial to preserve recovered low16
+wrap-before-clamp semantics. Other operations remain ordering barriers. Generic
+scenes opt out; opt-in profiling counts rectangles separately from sprites.
+
+The identical51World effect burst across three M1 repeats improves native
+completion p9576.492→19.028ms,max88.308→21.805ms and over50ms68→0of153samples.
+All1107World images and79selected4xparticle frames match prior native pixels
+across two fresh replays. Focused scalar/wrap/budget/lifetime and neighboring
+batch controls plus replay guards remain separate from original/live acceptance.
+Cold setup and GUI-latency export/source joins remain explicit limits. SQLite
+`NATIVE13.rgb-add-batching01` retains the scoped headless evidence; see
+[findings](native-rgb-add-batching-20261113.md).
