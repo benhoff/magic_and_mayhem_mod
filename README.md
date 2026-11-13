@@ -18,6 +18,7 @@ and mana economy enhancements remain longer-term gameplay objectives.
 | Understand responsibilities and dependencies | [Project architecture](docs/architecture.md) |
 | Contribute code or research | [Contributor rules](AGENTS.md) and [coverage accounting workflow](research/runtime/coverage/README.md) |
 | Play with our native renderer | `./run-x86.sh` or `./run-native.sh`; see [native player launch](docs/native-player-launch.md) |
+| Repeat the same moving renderer workload | `./tools/render-replay.py`; see [recording and offline replay](docs/render-replay.md) |
 | Launch the prepared original game | `./tools/run-game.sh`; see its `--help` for launch, check, and smoke modes |
 | Use the native Qt host | [Qt shell guide](apps/qt-shell/README.md), starting with `./tools/run-qt-shell.sh` |
 | Explore progress and remaining work | [Coverage atlas](apps/coverage-ui/README.md), launched with `python3 tools/serve-coverage-ui.py` |
