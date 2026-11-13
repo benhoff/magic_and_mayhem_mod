@@ -1,5 +1,5 @@
 #pragma once
-#include "../../protocols/include/mnm/world_continuous_v6.h"
+#include "../../protocols/include/mnm/world_continuous_v7.h"
 #include <QFile>
 #include <array>
 #include <cstdint>
@@ -10,6 +10,7 @@ public:
   struct Block {
     std::uint64_t generation;
     std::vector<std::uint8_t> source, request;
+    std::uint64_t sourceOrdinal=0;
   };
   static void create(const QString &, std::uint64_t nonce,
                      std::uint64_t target, bool resident = false, bool snapshot = false, bool prefixes = false);

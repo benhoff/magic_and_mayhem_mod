@@ -13,6 +13,7 @@
 #include <QScreen>
 #include <memory>
 #include <cstdio>
+#include <stdexcept>
 void installLiveMenuTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,const QString& path){
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_HOST_LOBBY")){installLiveHostLobbyTest(app,window,session,path);return;}
     session.hostLobbyEnabled=false;
@@ -43,12 +44,14 @@ void installLiveMenuTest(QApplication& app,QMainWindow& window,LiveMenuSession& 
     struct Evidence {int stage=0;quint32 thread=0;bool consistent=true,fallback=false;QJsonArray states;};
     auto evidence=std::make_shared<Evidence>();
     const auto exitMode=qEnvironmentVariable("MNM_LIVE_MENU_TEST_EXIT");
+    const int dwellMs=qEnvironmentVariableIntValue("MNM_LIVE_MENU_TEST_DWELL_MS");
+    if(dwellMs<0 || dwellMs>180000)throw std::invalid_argument("Menu test dwell outside0..180000ms");
     auto output=session.output;
     session.output=[output](const QString& text){if(output)output(text);std::fprintf(stderr,"%s",qPrintable(text));};
     auto failure=session.failed;
     session.failed=[failure](const QString& text){if(failure)failure(text);std::fprintf(stderr,"Menu fallback: %s\n",qPrintable(text));};
     auto presentation=session.stateChanged;
-    session.stateChanged=[evidence,presentation,&window,path,exitMode](const MenuBridge::State& state){
+    session.stateChanged=[evidence,presentation,&window,path,exitMode,dwellMs](const MenuBridge::State& state){
         if(presentation)presentation(state);
         if(!state.ready)return;
         if(evidence->thread&&evidence->thread!=state.thread)evidence->consistent=false;
@@ -59,7 +62,7 @@ void installLiveMenuTest(QApplication& app,QMainWindow& window,LiveMenuSession& 
             evidence->states.append(QJsonObject{{"screen",int(state.screen)},{"generation",int(state.generation)},
                 {"ack",int(state.ack)},{"status",int(state.status)},{"thread",int(state.thread)}});
             const int stage=evidence->stage++;
-            QTimer::singleShot(0,&window,[&window,path,stage,evidence,exitMode]{
+            QTimer::singleShot(stage==0?dwellMs:0,&window,[&window,path,stage,evidence,exitMode]{
                 window.grab().save(QFileInfo(path).dir().filePath(QString("qt-stage-%1.png").arg(stage)));
                 if(stage==1&&exitMode=="quick")window.close();
                 else if(stage==2&&!exitMode.isEmpty()){
@@ -80,11 +83,11 @@ void installLiveMenuTest(QApplication& app,QMainWindow& window,LiveMenuSession& 
         }
     };
     auto finished=session.finished;
-    session.finished=[evidence,finished,path,&app,exitMode]{
+    session.finished=[evidence,finished,path,&app,exitMode,dwellMs]{
         if(finished)finished();
         const bool success=evidence->stage==3&&evidence->consistent&&(exitMode.isEmpty()?evidence->fallback:true);
         QFile file(path);bool saved=file.open(QIODevice::WriteOnly|QIODevice::NewOnly);
-        if(saved){QJsonObject report{{"success",success},{"exit_mode",exitMode},{"qt_buttons_activated",true},{"states",evidence->states},
+        if(saved){QJsonObject report{{"success",success},{"exit_mode",exitMode},{"menu_dwell_ms",dwellMs},{"qt_buttons_activated",true},{"states",evidence->states},
             {"original_fallback_presented",evidence->fallback},{"original_drawing_retained",true},{"scope","Live Main/Quick/Cancel callbacks and engine-confirmed Qt transitions only"}};
             saved=file.write(QJsonDocument(report).toJson())>0&&file.flush();}
         app.exit(success&&saved?0:1);

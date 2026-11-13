@@ -30,11 +30,10 @@ CanvasProducerStream stream(const std::vector<CanvasProducer>& operations) {
  return decodeCanvasProducers(prefix(operations),false);
 }
 void state(unsigned char* s,unsigned v){__atomic_store_n(reinterpret_cast<unsigned*>(s),v,__ATOMIC_RELEASE);}
-void channelControls(const QString& path) {
+void channelControls(const QString& path,bool owned) {
  rejected([&]{WorldContinuousChannel::create(path+"bad",1,0,false,false,true);});
- rejected([&]{WorldContinuousChannel::create(path+"bad",1,0,true,true,true);});
- WorldContinuousChannel::create(path,0x200000003ull,0,true,false,true);
- WorldContinuousChannel native(path);require(native.prefixes()&&!native.snapshot(),"V6 negotiation");
+ WorldContinuousChannel::create(path,0x200000003ull,0,true,owned,true);
+ WorldContinuousChannel native(path);require(native.prefixes()&&native.snapshot()==owned,"Prefix envelope negotiation");
  QFile file(path);require(file.open(QIODevice::ReadWrite),"Fixture mapping");auto* m=file.map(0,MNM_CONT_BYTES);require(m,"Fixture map");
  mnm_ack_put(m,9,1);auto* slot=m+MNM_CONT_HEADER;auto* source=slot+MNM_CONT_SLOT_HEADER;
  auto bytes=prefix({operation(3)});
@@ -67,7 +66,7 @@ void channelControls(const QString& path) {
  std::memset(source,0,64);auto* request=source+MNM_CONT_SOURCE_BYTES;std::memset(request,0,64);
  mnm_ack_put(slot,6,mnm_cont_crc32c(source,64));mnm_ack_put(slot,7,mnm_cont_crc32c(request,64));state(slot,MNM_CONT_REQUEST);
  require(native.poll(b)&&b.generation==1,"Chunks advanced World ordinal");
- std::vector<std::uint8_t> ack(80);mnm_ack_encode(ack.data(),request,1,0,3,2);native.reply(1,ack);
+ std::vector<std::uint8_t> ack(80);(owned?mnm_snapshot_ack_encode:mnm_ack_encode)(ack.data(),request,1,0,3,2);native.reply(1,ack);
  mnm_ack_put(slot,8,256);state(slot,MNM_CONT_RETURNED);native.release(1);
  native.cancel();rejected([&]{native.pollSource(b);});require(file.unmap(m),"Fixture unmap");
  // Previous envelopes reject source-only state instead of ignoring it.
@@ -77,7 +76,7 @@ void channelControls(const QString& path) {
 }
 }
 int main(int argc,char** argv)try{
- QGuiApplication app(argc,argv);QTemporaryDir tmp;require(tmp.isValid(),"Fixture root");channelControls(tmp.filePath("channel"));
+ QGuiApplication app(argc,argv);QTemporaryDir tmp;require(tmp.isValid(),"Fixture root");channelControls(tmp.filePath("v6"),false);channelControls(tmp.filePath("v7"),true);
  const auto root=std::filesystem::path(tmp.path().toStdString());populate(root);
  render::GlBlitter renderer;unsigned total=0;
  {

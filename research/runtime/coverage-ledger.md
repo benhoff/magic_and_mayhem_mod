@@ -29409,3 +29409,24 @@ original pixel oracle, liveFPS or manual artifact-free acceptance promotion.
 See [native submission findings](native-particle-cost-20261113.md) and SQLite
 `NATIVE13.native-particle-cost02`. Preserve historical hashes and broader pending
 source applicability; cold setup and untested workloads remain outside scope.
+
+### 2026-11-13: independent native menu source-buffer lifetime
+
+`NR.owned-menu-source-draining` adds explicit V7 owned delivery with source-only
+apply-before-ACK draining for the public independent non-asynchronous renderer.
+Two actual player failures exhaust the131072record cap with V5 source chunks
+absent, then close glyph admission/exit124. New source chunks preserve FIFO,
+World generations/credits, bounded slots and the original return/NOACCESS checks.
+The queue control drains278528records beforeWorld1; source-history GPU/CPU pixel
+controls and prior channel/ACK guards pass. Live dwell/normal-Quit acceptance is
+recorded separately from headless controls and interruptions. No engine/AI/clock/
+balance, original pixel-oracle or battle performance promotion. See
+[findings](owned-source-drain-20261113.md) and [wire contract](../formats/world-continuous-v7.md).
+
+The fresh120-second public independent/native-only menu dwell drains196608records
+in12chunks during one World interval, then completes Main/Quick/Cancel/Main and
+normal original Quit/exit0. Native-only state is completed, with no rendering
+error/fallback or outstanding source ownership. This closes the scoped live menu
+buffer regression, independently of278528-record headless/next-World controls;
+no new live battle or pixel-equivalence promotion. SQLite
+`NATIVE13.owned-source-drain01` retains the exact binaries, source and observations.

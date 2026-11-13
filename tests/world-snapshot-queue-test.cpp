@@ -32,6 +32,11 @@ struct Peer {
   if(badRequest)r[48]^=1;
   put(p,6,mnm_cont_crc32c(p+128,unsigned(source.size()))^(badSource?1:0));put(p,7,mnm_cont_crc32c(r,unsigned(request.size())));store(p,2);
  }
+ void publishSource(unsigned g,unsigned ordinal,const std::vector<unsigned char>& bytes){
+  auto* p=slot(g);assert(load(p)==0 || load(p)==MNM_CONT_SOURCE_ACK);std::memset(p+4,0,124);
+  put(p,2,g);put(p,4,unsigned(bytes.size()));put(p,22,ordinal);
+  std::memcpy(p+128,bytes.data(),bytes.size());put(p,6,mnm_cont_crc32c(p+128,unsigned(bytes.size())));store(p,MNM_CONT_SOURCE_REQUEST);
+ }
  void returned(unsigned g,int mutation=-1,bool prefix=false){
   auto* p=slot(g);wait([&]{return load(p)==4;});
   auto* ack=p+128+MNM_CONT_SOURCE_BYTES+MNM_CONT_REQUEST_BYTES;
@@ -90,8 +95,40 @@ int main(int argc,char** argv){
   WorldSnapshotQueue q(channel);
   wait([&]{return q.stats().terminal;});assert(!q.stats().error.empty()&&q.stats().returned==0&&channel.cancelled());
  }
+ // More than twice the historical131072-record cap without a World. Native
+ // application owns the acknowledgement; bytes remain immutable until then.
+ {
+  auto path=temp.filePath("owned-prefix");WorldContinuousChannel::create(path,23,0,true,true,true);
+  WorldContinuousChannel channel(path);assert(channel.prefixes()&&channel.snapshot());Peer peer(path,source,request);WorldSnapshotQueue q(channel,true);
+  std::vector<unsigned char> chunk(source.begin(),source.begin()+64);chunk.resize(64+16384*96);
+  for(unsigned i=0;i<16384;++i){auto* c=chunk.data()+64+i*96;put(c,0,96);put(c,1,i+1);put(c,2,5);put(c,3,7);put(c,5,5);put(c,6,3);put(c,12,5);put(c,13,3);put(c,14,i);}
+  unsigned applied=0;
+  for(unsigned ordinal=1;ordinal<=17;++ordinal){
+   peer.publishSource(1,ordinal,chunk);wait([&]{return q.stats().sourcePending;});
+   assert(load(peer.slot(1))==MNM_CONT_SOURCE_PROCESSING&&q.stats().accepted==0&&q.stats().outstanding==0);
+   OwnedSourceChunk item;wait([&]{return q.takeSource(item);});assert(item.generation==1&&item.ordinal==ordinal&&item.wireSource==chunk);
+   assert(item.stream.operations.size()==16384);for(const auto& c:item.stream.operations){assert(c.fields[2]==5&&c.fields[14]==applied%16384);++applied;}
+   refuses([&]{q.appliedSource(0);});refuses([&]{q.appliedSource(ordinal+1);});
+   std::this_thread::sleep_for(std::chrono::milliseconds(2));assert(load(peer.slot(1))==MNM_CONT_SOURCE_PROCESSING);
+   q.appliedSource(ordinal);wait([&]{return q.stats().sourceChunks==ordinal;});assert(load(peer.slot(1))==MNM_CONT_SOURCE_ACK);
+   refuses([&]{q.appliedSource(ordinal);});
+  }
+  assert(applied==278528&&q.stats().sourceRecords==278528&&q.stats().imports==0);
+  store(peer.slot(1),MNM_CONT_FREE);peer.publish(1);peer.returned(1);wait([&]{return q.stats().returned==1;});
+  // A subsequent prefix cannot overtake the preceding unimported World.
+  peer.publishSource(2,18,chunk);wait([&]{return q.stats().sourcePending;});OwnedSourceChunk next;assert(!q.takeSource(next));
+  OwnedWorldSnapshot world;assert(q.take(world)&&world.generation==1);assert(!q.takeSource(next));q.imported(1);
+  assert(q.takeSource(next)&&next.generation==2&&next.ordinal==18);q.appliedSource(18);wait([&]{return q.stats().sourceChunks==18;});
+  assert(q.stats().accepted==1&&q.stats().returned==1&&q.stats().imports==1&&q.stats().outstanding==0);q.stop();
+ }
+ // Stop while waiting for source application must join without an ACK.
+ {
+  auto path=temp.filePath("stop-prefix");WorldContinuousChannel::create(path,29,0,true,true,true);WorldContinuousChannel channel(path);Peer peer(path,source,request);WorldSnapshotQueue q(channel);
+  auto chunk=std::vector<unsigned char>(source.begin(),source.begin()+64);chunk.resize(160);put(chunk.data()+64,0,96);put(chunk.data()+64,1,1);put(chunk.data()+64,2,5);
+  peer.publishSource(1,1,chunk);wait([&]{return q.stats().sourcePending;});q.stop();assert(q.stats().terminal&&q.stats().error.empty()&&q.stats().sourceChunks==0&&load(peer.slot(1))==MNM_CONT_SOURCE_PROCESSING);
+ }
  {
   auto path=temp.filePath("legacy");WorldContinuousChannel::create(path,11,0,true);WorldContinuousChannel channel(path);refuses([&]{WorldSnapshotQueue q(channel);});
  }
- std::cout<<"{\"owned_before_render\":2,\"backpressure\":true,\"source_overwrite_safe\":true,\"ordered_imports\":3,\"failure_cases\":16,\"stop_phases\":2,\"retained_wire_owned\":true,\"legacy_refused\":true,\"cancellation_joined\":true}\n";
+ std::cout<<"{\"source_records_before_world\":278528,\"source_ack_after_apply\":true,\"source_stop_joined\":true,\"owned_before_render\":2,\"backpressure\":true,\"source_overwrite_safe\":true,\"ordered_imports\":3,\"failure_cases\":16,\"stop_phases\":2,\"retained_wire_owned\":true,\"legacy_refused\":true,\"cancellation_joined\":true}\n";
 }

@@ -14,7 +14,7 @@ CanvasProducer closing(const std::array<std::uint8_t,192>& bytes,unsigned offset
 }
 }
 WorldSnapshotQueue::WorldSnapshotQueue(WorldContinuousChannel& channel,bool retainWire,bool trace):channel_(channel),retainWire_(retainWire),trace_(trace){
- if(!channel.snapshot())throw std::invalid_argument("Snapshot queue requires explicit V5 owned delivery");
+ if(!channel.snapshot())throw std::invalid_argument("Snapshot queue requires explicit owned delivery");
  owner_=std::thread([this]{capture();});
 }
 WorldSnapshotQueue::~WorldSnapshotQueue(){stop();}
@@ -23,7 +23,7 @@ void WorldSnapshotQueue::stop(){
  if(owner_.joinable())owner_.join();
 }
 WorldSnapshotQueue::Stats WorldSnapshotQueue::stats() const{
- std::lock_guard<std::mutex> lock(mutex_);auto result=state_;result.ready=ready_.size();return result;
+ std::lock_guard<std::mutex> lock(mutex_);auto result=state_;result.ready=ready_.size();result.sourcePending=bool(source_);return result;
 }
 bool WorldSnapshotQueue::take(OwnedWorldSnapshot& result){
  std::lock_guard<std::mutex> lock(mutex_);
@@ -31,6 +31,21 @@ bool WorldSnapshotQueue::take(OwnedWorldSnapshot& result){
  if(ready_.empty())return false;
  if(ready_.front().generation!=taken_+1)throw std::logic_error("Snapshot take order");
  result=std::move(ready_.front());ready_.pop_front();++taken_;return true;
+}
+bool WorldSnapshotQueue::takeSource(OwnedSourceChunk& result){
+ std::lock_guard<std::mutex> lock(mutex_);
+ if(!state_.error.empty())throw std::runtime_error(state_.error);
+ // Apply only after every preceding World has been imported. The capture
+ // worker waits for this item, so no later source/World can overtake it.
+ if(!source_ || sourceTaken_ || state_.outstanding || !ready_.empty())return false;
+ result=std::move(*source_);sourceTaken_=true;return true;
+}
+void WorldSnapshotQueue::appliedSource(std::uint64_t ordinal){
+ std::lock_guard<std::mutex> lock(mutex_);
+ if(!state_.error.empty())throw std::runtime_error(state_.error);
+ if(!source_ || !sourceTaken_ || sourceApplied_ || !ordinal || source_->ordinal!=ordinal)
+  throw std::invalid_argument("Source application identity/order");
+ sourceApplied_=true;progress_.notify_all();
 }
 void WorldSnapshotQueue::imported(std::uint64_t generation){
  std::lock_guard<std::mutex> lock(mutex_);
@@ -50,6 +65,28 @@ void WorldSnapshotQueue::capture(){
    }
    if(channel_.cancelled())break;
    WorldContinuousChannel::Block block;
+   if(channel_.prefixes() && channel_.pollSource(block)){
+    active=true;OwnedSourceChunk chunk;chunk.generation=block.generation;chunk.ordinal=block.sourceOrdinal;
+    chunk.sourceBytes=block.source.size();chunk.stream=decodeCanvasProducers(block.source,false);
+    for(const auto& c:chunk.stream.operations)
+     if(c.fields[2]==11 || c.fields[2]==12 || c.fields[2]==13 || c.fields[2]==27)
+      throw std::invalid_argument("World/failure record in owned source-only chunk");
+    const auto records=chunk.stream.operations.size();
+    if(retainWire_)chunk.wireSource=block.source;
+    {std::lock_guard<std::mutex> lock(mutex_);source_=std::move(chunk);sourceTaken_=sourceApplied_=false;}
+    auto start=Clock::now();
+    {
+     std::unique_lock<std::mutex> lock(mutex_);
+     while(!sourceApplied_){
+      if(stopping_.load(std::memory_order_acquire) || channel_.cancelled() || ms(start)>120000.)
+       throw std::runtime_error("Source application interrupted/deadline");
+      progress_.wait_for(lock,std::chrono::milliseconds(1));
+     }
+    }
+    channel_.acknowledgeSource(block);
+    {std::lock_guard<std::mutex> lock(mutex_);++state_.sourceChunks;state_.sourceRecords+=records;source_.reset();}
+    active=false;continue;
+   }
    if(!channel_.poll(block)){
     std::unique_lock<std::mutex> lock(mutex_);progress_.wait_for(lock,std::chrono::milliseconds(1));continue;
    }

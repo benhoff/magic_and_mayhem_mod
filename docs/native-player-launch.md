@@ -169,3 +169,9 @@ without arguments inherited the harness's script-path argument. The harness now
 shifts that argument before sourcing, and all 15 controls pass. That attempt did
 not start Wine or exercise original rendering. Its test-source SHA-256 was
 `2396a839e447b1932d2c16fa7947043ecccbc4a45ed6f4174ec6b5e74e9b2388`.
+
+
+Independent presentation now uses versioned source-only draining for menu/loading
+commands between Worlds. Long menu dwell keeps bounded buffers and preserves
+source order. Explicit asynchronous GPU delivery remains a separate V5 policy.
+See [the live buffer fix](../research/runtime/owned-source-drain-20261113.md).
