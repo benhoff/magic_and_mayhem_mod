@@ -35,7 +35,7 @@ int main(int argc,char** argv)try{
             d.colourRectangle=render::ColourRectangle{source};d.anchorX=int(i*13%67)-2;d.anchorY=int(i*7%51)-2;
             d.composite.mode=std::array<render::CompositeMode,4>{render::CompositeMode::copy,render::CompositeMode::half,render::CompositeMode::quarterSource,render::CompositeMode::quarterDestination}[i%4];
             if(i%5==0)d.viewport=render::Rect{3,4,61,45};
-            if(i%17==0)d.anchorX=d.anchorY=8; // Dependencies must split the frozen snapshot.
+            if(i%17==0)d.anchorX=d.anchorY=8; // Repeated destinations must retain exact blend order.
             if(i%19==0)d.visible=false;
             draws.push_back(d);
             if(i%31==0){d.colourRectangle=render::ColourRectangle{{3,2,std::vector<std::uint32_t>(6,0x1234)}};d.visible=true;draws.push_back(d);} // Ordering barrier.
@@ -55,6 +55,21 @@ int main(int argc,char** argv)try{
         require(after.textureUploadCalls==before.textureUploadCalls,"Small colours uploaded source textures");
         require(after.drawCalls-before.drawCalls==1,"Disjoint small colours did not share a single draw");sparseCalls+=after.drawCalls-before.drawCalls;
         require(fast.read().pixels==scalar(base,sparse,rgb555?0x3def:0x7bef).pixels,"Sparse small pixels differ");++comparisons;
+        // The maximum admitted chain must still execute every rounding step,
+        // including copies that overwrite prior blends, without extra snapshots.
+        std::vector<render::SceneDraw> dense;
+        for(unsigned i=0;i<512;++i){auto d=sparse[i%sparse.size()];
+            d.anchorX=8+int(i%2);d.anchorY=8+int(i%3==0);
+            d.colourRectangle=render::ColourRectangle{{2,2,{(i*7919u)&maximum,(i*3571u+31)&maximum,maximum,0}}};
+            d.composite.mode=std::array<render::CompositeMode,4>{render::CompositeMode::copy,render::CompositeMode::half,render::CompositeMode::quarterSource,render::CompositeMode::quarterDestination}[(i/7)%4];
+            dense.push_back(d);
+        }
+        fast.beginFrame(dense);const auto denseBefore=renderer.stats();
+        require(fast.drawNext(512),"Dense batch did not finish");const auto denseAfter=renderer.stats();
+        require(denseAfter.drawCalls-denseBefore.drawCalls==1,"Overlapping small colours require multiple draws");
+        require(denseAfter.nativeReadbacks==denseBefore.nativeReadbacks&&denseAfter.textureUploadCalls==denseBefore.textureUploadCalls,"Dense colours read back or uploaded source textures");
+        old.draw(dense);const auto denseOracle=scalar(base,dense,rgb555?0x3def:0x7bef);
+        require(fast.read().pixels==denseOracle.pixels&&old.read().pixels==denseOracle.pixels,"Dense colour chain differs from scalar/serial reference");++comparisons;
         fast.releaseCachedImages();fast.draw(sparse);require(fast.read().pixels==scalar(base,sparse,rgb555?0x3def:0x7bef).pixels,"Cache release lost small-colour state");++comparisons;
     }
     const render::Image base{4,4,std::vector<std::uint32_t>(16,0x1234)};const auto target=renderer.create(base,{16,{0xf800,0x7e0,31}});

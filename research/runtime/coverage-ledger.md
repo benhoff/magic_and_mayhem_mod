@@ -29254,3 +29254,43 @@ original raster guard refusal, probe18's incomplete setup and probe19's failed
 motion gate remain failures. Existing broad historical milestones/hashes remain;
 shared-source drift receives pending impact reviews rather than a full-matrix
 rerun or retroactive freshness. See [the scoped policy and results](native-audio-handoff-20261112.md).
+
+## Large battle native-rendering attribution — 2026-11-12
+
+`BATTLE12.native-attribution01` records the unchanged production pipeline under
+a four-owner battle with12ordinary player summons, up to42living actors in
+sampled movement periods,26moving actors and89cross-owner melee events. Source
+cadence falls from19.97Hz to8.18Hz in combined melee periods. Native submission
+averages93.42ms/world while original ACK wait averages90.98ms and pacing wait
+falls to zero. Original main-thread CPU includes the adapter's Sleep0polling;
+these data do not establish AI self-time. Independent native replay of verified
+completed World2274 averages64.29ms completion with zero warm uploads; all50
+serial/current-batched image comparisons agree on an authored background.
+Native draw/compositing overhead is the first optimization target. No code or
+historical status/hash changes, full original pixels, normal-Quit or universal
+battle-rate claim. Earlier guarded run's unknown tag14/caller54a563 refusal and
+initial input-router failure remain failed acquisitions. See
+[the attribution and boundaries](large-battle-attribution-20261112.md).
+
+The follow-up native optimization replaces overlap-split small-colour snapshots
+with stable per-pixel operation chains, bounded to 512 rectangles / 2048 pixel
+operations. Every integer blend/rounding step stays ordered; one snapshot and
+instanced draw handles overlaps. `BATTLE12.pixel-chain-controls01` retains 14
+scalar/serial comparisons per backend, 50 same-source battle image comparisons,
+and cache/atlas/retained-image regressions on llvmpipe and Apple M1. Frozen battle
+completion falls 64.29 to 52.83 ms (694 to 596 draws), still above a 20 Hz budget.
+A broader sprite-blend prototype provided no benefit in this workload and was
+withdrawn, with its results and failures retained. Shared-renderer historical
+source hashes remain unchanged; this is scoped native validation, not original
+pixels, full history, scanout or all-map 20 FPS acceptance. See
+[the battle findings](large-battle-attribution-20261112.md).
+
+`BATTLE12.pixel-chain-live01` records the selected snapshot-only build's moving
+battle: 12 accepted summons, 28 living/26 moving actors sampled, 163 cross-owner
+hits, 19.66 Hz melee and a user report of no visible artifacts. Its lighter draw
+and upload workload prevents a causal live FPS comparison with baseline03.
+The supported texture-barrier prototype was also withdrawn: matching pixels,
+but 76.15 ms completed-frame cost versus 53.70 ms with snapshots. Submission-only
+timing would have hidden that regression. Neither discarded alternative enters
+the final implementation. Heavy-scene 20 FPS, original pixels and normal-Quit
+acceptance remain separate limitations.

@@ -14,16 +14,29 @@ slot and is explicitly excluded. Raw timing headers, the exact completed source
 and request, final reports and executables are retained in
 `working/slowdown-20261112/observations.sqlite3` in the owned task checkout.
 
-`GlBlitter::smallColourRects` accepts at most512 fully owned clipped1..2 by1..2
-RGB565/RGB555 writes, carrying four integer source words per instance. A direct
-batch requires fully defined destination storage. It validates the entire list
-before mutation, then freezes one destination envelope for each consecutive
-nonoverlapping group. The first overlapping write starts a new group; order is
-never sorted. Mixed copy/half/quarter blends use the same integer masks and
-arithmetic as the existing compositor. Native pixels remain integer storage;
-there is no ordinary readback, source-texture upload, interpolation or original
-output seed. The snapshot uses existing bounded renderer scratch. The instance
-buffer is bounded by512 records and shares the renderer's existing buffer owner.
+`GlBlitter::smallColourRects` accepts at most 512 fully owned clipped 1..2 by
+1..2 RGB565/RGB555 writes. A direct batch requires fully defined destination
+storage and validates the entire list before mutation. The current implementation
+partitions at most 2048 pixel operations into destination-pixel chains with a
+stable sort. Operations at a given pixel retain their exact original order.
+One snapshot supplies the initial destination words; one instanced draw evaluates
+each chain, including every intermediate integer rounding step. No other pixel
+is read by these copy/half/quarter blends, so grouping distinct pixels does not
+change their result. Sprite, larger-rectangle, hidden-draw and caller-budget
+barriers remain unchanged.
+
+The original implementation froze a separate destination envelope for each
+consecutive disjoint group. That implementation and its measurements below are
+retained historical evidence. The overlapping-pixel change is measured separately
+in [large-battle attribution](large-battle-attribution-20261112.md).
+
+The operation buffer contains at most 2048 packed source/mode words (8 KiB); the
+instance buffer contains at most 2048 pixel/span records (32 KiB). Native pixels
+remain integer storage. There is no ordinary readback, source-image upload,
+interpolation, original output seed or algebraic approximation of chained blends.
+The source words are uploaded through a bounded OpenGL 3.3 texture buffer, not a
+source image atlas. Renderer-owned scratch and buffer objects are released with
+the context; cache release does not discard pending destination state.
 The isolated renderer retains serial colour operations and its existing wire and
 recovery protocol.
 
