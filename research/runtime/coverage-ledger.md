@@ -29486,3 +29486,29 @@ plans and verified backups. Duplicate backup ranges share COW blocks with every
 whole-container hash/path/pin preserved; about245MiBactual space recovered.
 See [usage](../../docs/native-effect-stress.md) and
 [findings](native-effect-stress-20261113.md).
+
+
+## 2026-11-13 bounded native effect throughput
+
+`NR.keyed-overlap-chain-rendering`, `NR.displacement-lookup-storage`,
+`NR.regional-row-sampling` and `NR.ordered-texture-feedback` optimize native
+service without changing original engine AI/simulation/clocks/balance or wire
+contracts. The quiet M1 unchanged-input pass matches all 360 baseline/CPU/repeat
+images; all 288 measured frames meet 50 ms, with dense keyed overlap p95
+1943.77→0.67 ms, batched wave 51.15→22.99 ms, dense rows 43.40→5.19 ms and
+dense translucency 52.26→25.32 ms. Guarded GPU chains preserve masked keys,
+whole native words and row-major piece history. Fixed displacement lookup
+preserves pre-sprite staging and budgets; eligible row effects snapshot regional
+spans while oversized/software/isolated effects retain frozen clones. Supported
+same-texel blends use ordered texture feedback; neighbour reads and unsupported
+or forced-baseline contexts retain snapshots. No original/live equivalence,
+live FPS guarantee or confirmed wizard-death cause is asserted.
+
+Independent scalar/native controls cover both M1 and llvmpipe, feedback and
+forced snapshots, native formats/unused bits, key/clip/translations/batching,
+long chains, capacity refusals, row crossings/frozen history and regional versus
+large fallback/cache release. Adjacent row/displacement/additive/small-colour
+controls and retained native World/particle pixels exercise shared paths.
+Exact sources, tested ELFs, input hashes, per-frame results and diagnostics are
+retained through SQLite with verified local backups. Historical evidence stays
+unchanged. See [implementation and measured boundaries](native-effect-throughput-20261113.md).

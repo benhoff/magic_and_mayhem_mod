@@ -82,6 +82,9 @@ public:
     // Native canvas/history, decoded resources and presentation leases survive.
     void releaseCachedImages();
 private:
+    struct DisplacementCell {int key=-1,value=0;};
+    // At most 65536 visited pixels: fixed half-load table, allocated on demand.
+    std::vector<DisplacementCell> displacementMap_;
     std::vector<SceneDraw> pending_;
     std::size_t cursor_=0;
     bool drawing_=false;

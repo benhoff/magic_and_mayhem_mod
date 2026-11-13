@@ -62,6 +62,28 @@ void main(){
     vec2 p[3]=vec2[3](vec2(-1,-1),vec2(3,-1),vec2(-1,3));
     gl_Position=vec4(p[gl_VertexID],0,1);
 })";
+// Resolve the row-major dependency chain from one immutable piece snapshot.
+constexpr auto keyedChainSource=R"(#version 330 core
+uniform usampler2D pixels;
+uniform ivec2 size, destinationOrigin, delta;
+uniform uint sourceKey, keyMask;
+layout(location=0) out uint result;
+void main(){
+    ivec2 at=ivec2(gl_FragCoord.xy)-destinationOrigin;
+    int steps=0;
+    if(delta.y>0 || (delta.y==0 && delta.x>0)){
+        steps=4096;
+        if(delta.x>0)steps=min(steps,at.x/delta.x);
+        if(delta.x<0)steps=min(steps,(size.x-1-at.x)/(-delta.x));
+        if(delta.y>0)steps=min(steps,at.y/delta.y);
+    }
+    ivec2 root=at-steps*delta;
+    for(int i=0;i<=steps;++i){
+        uint word=texelFetch(pixels,root+i*delta,0).r;
+        if((word&keyMask)!=sourceKey){result=word;return;}
+    }
+    discard;
+})";
 constexpr auto copyVertexSource=R"(#version 330 core
 layout(location=0) in ivec4 rectangle;
 layout(location=1) in ivec2 sourcePoint;
@@ -271,7 +293,9 @@ struct GlBlitter::Impl {
     QOpenGLFunctions_3_3_Core gl;
     using CopyImage=void(QOPENGLF_APIENTRYP)(GLuint,GLenum,GLint,GLint,GLint,GLint,GLuint,GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei);
     CopyImage copyImage=nullptr;
-    std::unique_ptr<QOpenGLShaderProgram> program,presentation,compositing,copying,importing,coordinateProgram,mappedWorldProgram,smallColour;
+    using TextureBarrier=void(QOPENGLF_APIENTRYP)();
+    TextureBarrier textureBarrier=nullptr;
+    std::unique_ptr<QOpenGLShaderProgram> program,presentation,compositing,copying,importing,coordinateProgram,mappedWorldProgram,smallColour,keyedChain;
     GLuint vao=0,fbo=0,scratch=0,copyBuffer=0,paletteBank=0,colourBuffer=0,colourOperations=0;
     int scratchWidth=0,scratchHeight=0;
     GLuint maskedColour=0,maskedSelection=0;
@@ -350,6 +374,9 @@ struct GlBlitter::Impl {
         const auto actual=context.format();
         if(actual.majorVersion()>4||(actual.majorVersion()==4&&actual.minorVersion()>=3)||context.hasExtension(QByteArrayLiteral("GL_ARB_copy_image")))
             copyImage=reinterpret_cast<CopyImage>(context.getProcAddress(QByteArrayLiteral("glCopyImageSubData")));
+        if(qEnvironmentVariableIntValue("MNM_NATIVE_FEEDBACK_BASELINE")!=1 &&
+           (actual.majorVersion()>4||(actual.majorVersion()==4&&actual.minorVersion()>=5)||context.hasExtension(QByteArrayLiteral("GL_ARB_texture_barrier"))))
+            textureBarrier=reinterpret_cast<TextureBarrier>(context.getProcAddress(QByteArrayLiteral("glTextureBarrier")));
         if(!gl.initializeOpenGLFunctions())throw std::runtime_error("OpenGL 3.3 functions are unavailable");
         const auto string=[this](GLenum which){const auto* value=gl.glGetString(which);return value?std::string(reinterpret_cast<const char*>(value)):std::string{};};
         info={string(GL_VENDOR),string(GL_RENDERER),string(GL_VERSION)};
@@ -360,7 +387,7 @@ struct GlBlitter::Impl {
                 throw std::runtime_error(result->log().toStdString());
             return result;
         };
-        program=shader(fragmentSource);presentation=shader(presentationSource);compositing=shader(compositeSource);importing=shader(importSource);coordinateProgram=shader(coordinateSource);mappedWorldProgram=shader(mappedWorldSource);
+        keyedChain=shader(keyedChainSource);program=shader(fragmentSource);presentation=shader(presentationSource);compositing=shader(compositeSource);importing=shader(importSource);coordinateProgram=shader(coordinateSource);mappedWorldProgram=shader(mappedWorldSource);
         std::string instanceFragment=fragmentSource;
         for(const char* name:{"sourceOrigin","destinationOrigin"}){const auto uniform=std::string("uniform ivec2 ")+name+";";instanceFragment.replace(instanceFragment.find(uniform),uniform.size(),std::string("flat in ivec2 ")+name+";");}
         const std::string paletteUniform="uniform uint spritePalette[256];";
@@ -581,27 +608,32 @@ struct GlBlitter::Impl {
             deleteTextures(1,&frozen);frozen=0;check();
         }catch(...){deleteTextures(1,&frozen);throw;}
     }
-    // Measured keyed overlap reads its own preceding writes in row-major order.
-    // A separate one-pixel texture avoids sampling the attached framebuffer.
+    // Each piece sees preceding pieces. Within a piece, only a positive
+    // row-major translation can read a preceding write. The first non-key
+    // ancestor propagates along that chain; key ancestors leave the next word.
     void copySharedKeyed(Surface& dst,const SurfaceCopyPiece& piece,std::uint32_t key,std::uint32_t keyMask){
-        GLuint pixel=0;
-        try {
-            gl.glActiveTexture(GL_TEXTURE0);
-            pixel=texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,1,1,nullptr);
-            for(int y=piece.source.top;y<piece.source.bottom;++y)
-                for(int x=piece.source.left;x<piece.source.right;++x){
-                    // This pixel must see preceding writes, and pending keyed
-                    // instances must consume the old one-pixel texture before
-                    // it is overwritten. Outer batches retain this dependency.
-                    flushCopies();
-                    attach(dst.native,dst.width,dst.height);
-                    gl.glBindTexture(GL_TEXTURE_2D,pixel);
-                    gl.glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,x,y,1,1);check();
-                    copyTexture(pixel,0,dst,{0,0,1,1},piece.x+x-piece.source.left,
-                                piece.y+y-piece.source.top,key,keyMask);
-                }
-            deleteTextures(1,&pixel);pixel=0;check();
-        }catch(...){deleteTextures(1,&pixel);throw;}
+        const auto r=piece.source;
+        const auto frozen=snapshot(dst,r);
+        damage(dst,{piece.x,piece.y,piece.x+r.right-r.left,piece.y+r.bottom-r.top});
+        setScissor(true);gl.glScissor(piece.x,piece.y,r.right-r.left,r.bottom-r.top);
+        gl.glActiveTexture(GL_TEXTURE0);gl.glBindTexture(GL_TEXTURE_2D,frozen);
+        useProgram(keyedChain->programId());
+        keyedChain->setUniformValue("pixels",0);
+        gl.glUniform2i(keyedChain->uniformLocation("size"),r.right-r.left,r.bottom-r.top);
+        gl.glUniform2i(keyedChain->uniformLocation("destinationOrigin"),piece.x,piece.y);
+        gl.glUniform2i(keyedChain->uniformLocation("delta"),piece.x-r.left,piece.y-r.top);
+        gl.glUniform1ui(keyedChain->uniformLocation("sourceKey"),key);
+        gl.glUniform1ui(keyedChain->uniformLocation("keyMask"),keyMask);
+        draw(3);check();counters.copies+=std::uint64_t(r.right-r.left)*(r.bottom-r.top);
+    }
+    // Only same-fragment read/modify/write modes may use ordered feedback.
+    // ARB_texture_barrier permits one read/write per texel between barriers.
+    GLuint blendInput(Surface& dst,Rect& region,bool local){
+        if(local&&textureBarrier){
+            flushCopies();attach(dst.native,dst.width,dst.height);textureBarrier();
+            region={0,0,dst.width,dst.height};return dst.native;
+        }
+        return snapshot(dst,region);
     }
     ~Impl(){
         if(context.isValid() && surface->isValid()){
@@ -614,7 +646,7 @@ struct GlBlitter::Impl {
                 deferredFrames.clear();
                 for(auto& pair:surfaces)release(pair.second);
                 for(const auto& timing:gpuTimings)gl.glDeleteQueries(2,timing.queries.data());
-                deleteTextures(1,&scratch);deleteTextures(1,&maskedColour);deleteTextures(1,&maskedSelection);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);gl.glDeleteBuffers(1,&colourBuffer);deleteTextures(1,&colourOperations);smallColour.reset();copying.reset();importing.reset();coordinateProgram.reset();mappedWorldProgram.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
+                deleteTextures(1,&scratch);deleteTextures(1,&maskedColour);deleteTextures(1,&maskedSelection);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);gl.glDeleteBuffers(1,&colourBuffer);deleteTextures(1,&colourOperations);keyedChain.reset();smallColour.reset();copying.reset();importing.reset();coordinateProgram.reset();mappedWorldProgram.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
             catch(const std::exception&){}
         }
     }
@@ -1092,8 +1124,8 @@ void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,in
     if(c.mode==CompositeMode::copy){p.copyTexture(src.native,coverage.native,dst,r,x,y,std::nullopt,UINT32_MAX,palette);return;}
     p.damage(dst,{x,y,x+r.right-r.left,y+r.bottom-r.top});
     const int extraRows=(x+r.right-r.left-1+reach)/dst.width;
-    const Rect freeze=extraRows?Rect{0,y,dst.width,std::min(dst.height,y+r.bottom-r.top+extraRows)}:Rect{x,y,x+r.right-r.left+reach,y+r.bottom-r.top};
-    auto& g=p.gl;const auto frozen=p.snapshot(dst,freeze);
+    Rect freeze=extraRows?Rect{0,y,dst.width,std::min(dst.height,y+r.bottom-r.top+extraRows)}:Rect{x,y,x+r.right-r.left+reach,y+r.bottom-r.top};
+    auto& g=p.gl;const auto frozen=p.blendInput(dst,freeze,c.mode==CompositeMode::half||c.mode==CompositeMode::quarterSource||c.mode==CompositeMode::quarterDestination||c.mode==CompositeMode::additive);
     p.setScissor(true);g.glScissor(x,y,r.right-r.left,r.bottom-r.top);
     g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,src.native);g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,coverage.native);g.glActiveTexture(GL_TEXTURE2);g.glBindTexture(GL_TEXTURE_2D,frozen);
     p.useProgram(p.compositing->programId());p.selectPalette(p.compositeUniforms.indexed,p.compositeUniforms.palette,p.compositePalette,palette);g.glUniform2i(p.compositeUniforms.sourceOrigin,r.left,r.top);g.glUniform2i(p.compositeUniforms.destinationOrigin,x,y);g.glUniform2i(p.compositeUniforms.oldOrigin,freeze.left,freeze.top);g.glUniform1i(p.compositeUniforms.stride,dst.width);g.glUniform1i(p.compositeUniforms.mode,int(c.mode));g.glUniform1iv(p.compositeUniforms.rowOffsets,16,c.rowOffsets.data());g.glUniform1i(p.compositeUniforms.rowPeriod,int(c.rowPeriod));
@@ -1233,11 +1265,11 @@ void GlBlitter::additiveRect(SurfaceId destination,Rect r,const std::array<std::
         throw std::invalid_argument("Additive rectangle requires in-bounds RGB565 storage");
     dst.validity.require({0,0,dst.width,dst.height});
     p.damage(dst,r);
-    Current current(p.context,p.surface);auto& g=p.gl;const auto frozen=p.snapshot(dst,r);
+    Current current(p.context,p.surface);auto& g=p.gl;auto region=r;const auto frozen=p.blendInput(dst,region,true);
     p.setScissor(true);g.glScissor(r.left,r.top,r.right-r.left,r.bottom-r.top);
-    // Scratch is distinct from the destination; only oldPixels is sampled in mode6.
+    // Only oldPixels is sampled in mode6, at this fragment's destination texel.
     for(unsigned unit=0;unit<3;++unit){g.glActiveTexture(GL_TEXTURE0+unit);g.glBindTexture(GL_TEXTURE_2D,frozen);}
-    p.useProgram(p.compositing->programId());g.glUniform1i(p.compositeUniforms.mode,6);g.glUniform2i(p.compositeUniforms.oldOrigin,r.left,r.top);
+    p.useProgram(p.compositing->programId());g.glUniform1i(p.compositeUniforms.mode,6);g.glUniform2i(p.compositeUniforms.oldOrigin,region.left,region.top);
     g.glUniform3ui(p.compositeUniforms.additive,channels[0],channels[1],channels[2]);p.draw(3);
     p.check();++p.counters.copies;
 }

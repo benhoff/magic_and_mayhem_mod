@@ -272,7 +272,15 @@ bool SceneRenderer::drawAdditives(std::size_t end,std::chrono::steady_clock::tim
 }
 bool SceneRenderer::drawDisplacements(std::size_t end,std::chrono::steady_clock::time_point deadline){
     if(!limits_.batchDisplacements||!renderer_.canBatchDestinationSamples())return false;
-    std::unordered_map<int,int> mapping;
+    if(displacementMap_.empty())displacementMap_.resize(131072);
+    std::vector<std::size_t> touched;touched.reserve(65536);
+    struct Reset {std::vector<DisplacementCell>& cells;std::vector<std::size_t>& indices;
+        ~Reset(){for(auto slot:indices)cells[slot].key=-1;}} reset{displacementMap_,touched};
+    const auto slot=[&](int key){
+        auto at=std::size_t(std::uint32_t(key)*2654435761u)&(displacementMap_.size()-1);
+        while(displacementMap_[at].key!=-1&&displacementMap_[at].key!=key)at=(at+1)&(displacementMap_.size()-1);
+        return at;
+    };
     std::vector<std::pair<int,int>> changes;
     std::size_t next=cursor_,visited=0;
     for(;next<end&&next-cursor_<32;++next){
@@ -293,14 +301,17 @@ bool SceneRenderer::drawDisplacements(std::size_t end,std::chrono::steady_clock:
                 if(!f.opaqueMask.at(std::size_t(y-top)*f.width+x-left))continue;
                 const int target=int(y*viewport_.right+x),sample=target+d.composite.rowOffsets[unsigned(y)%d.composite.rowPeriod];
                 if(sample>=viewport_.right*viewport_.bottom)continue; // preflight admits only the explicit retain-outside policy
-                const auto prior=mapping.find(sample);
-                changes.emplace_back(target,prior==mapping.end()?sample:prior->second);
+                const auto& prior=displacementMap_[slot(sample)];
+                changes.emplace_back(target,prior.key==-1?sample:prior.value);
             }
         // All samples for this sprite refer to the state before this sprite.
-        for(const auto& change:changes)mapping[change.first]=change.second;
+        for(const auto& change:changes){const auto at=slot(change.first);auto& cell=displacementMap_[at];
+            if(cell.key==-1){touched.push_back(at);cell.key=change.first;}cell.value=change.second;}
     }
     if(next-cursor_<2)return false;
-    std::vector<std::pair<int,int>> ordered(mapping.begin(),mapping.end());std::sort(ordered.begin(),ordered.end());
+    std::vector<std::pair<int,int>> ordered;ordered.reserve(touched.size());
+    for(auto at:touched){const auto& cell=displacementMap_[at];ordered.emplace_back(cell.key,cell.value);}
+    std::sort(ordered.begin(),ordered.end());
     std::vector<DestinationSample> spans;
     for(const auto& pixel:ordered){
         if(pixel.first==pixel.second)continue;
@@ -360,20 +371,40 @@ bool SceneRenderer::drawNext(const SceneBatchBudget& budget){
                 const auto plan=planRowEffect(frame,*draw.rowEffect,std::int64_t(draw.anchorX)-frame.originX,std::int64_t(draw.anchorY)-frame.originY,
                     clip.left,clip.top,clip.right,clip.bottom,viewport_.right,viewport_.bottom);
                 const bool sample=draw.rowEffect->kind==RowEffectKind::sampleDestination;
-                SurfaceId frozen=sample&&!plan.empty()?renderer_.cloneSurface(canvas_):0;
-                try{
-                    for(const auto& span:plan){auto destination=span.destination,source=span.sample;int copied=0;
-                        while(copied<span.count){
-                            const int x=int(destination%viewport_.right),y=int(destination/viewport_.right);
-                            const int sx=int(source%viewport_.right),sy=int(source/viewport_.right);
-                            const int count=std::min(span.count-copied,std::min(viewport_.right-x,sample?viewport_.right-sx:viewport_.right));
-                            if(sample)renderer_.copy(frozen,canvas_,{sx,sy,sx+count,sy+1},x,y);
-                            else cache_.drawRegion(draw.resource,draw.frame,canvas_,{span.sourceFirst+copied,span.sourceRow,span.sourceFirst+copied+count,span.sourceRow+1},x,y,draw.colours?&*draw.colours:nullptr);
-                            destination+=count;source+=count;copied+=count;
-                        }
+                std::vector<DestinationSample> samples;
+                std::size_t sampled=0;
+                bool regional=sample&&renderer_.canBatchDestinationSamples();
+                if(regional)for(const auto& span:plan){
+                    auto destination=span.destination,source=span.sample;int copied=0;
+                    while(copied<span.count){
+                        const int x=int(destination%viewport_.right),y=int(destination/viewport_.right);
+                        const int sx=int(source%viewport_.right),sy=int(source/viewport_.right);
+                        const int count=std::min(span.count-copied,std::min(viewport_.right-x,viewport_.right-sx));
+                        sampled+=count;
+                        if(sampled>65536||samples.size()==65536){regional=false;break;}
+                        samples.push_back({x,y,sx,sy,count});destination+=count;source+=count;copied+=count;
                     }
-                }catch(...){if(frozen)renderer_.destroy(frozen);throw;}
-                if(frozen)renderer_.destroy(frozen);
+                    if(!regional)break;
+                }
+                if(regional)renderer_.sampleDestination(canvas_,samples);
+                else{
+                    // Oversize and isolated operations retain the frozen-canvas
+                    // path; splitting them would change cross-span history.
+                    SurfaceId frozen=sample&&!plan.empty()?renderer_.cloneSurface(canvas_):0;
+                    try{
+                        for(const auto& span:plan){auto destination=span.destination,source=span.sample;int copied=0;
+                            while(copied<span.count){
+                                const int x=int(destination%viewport_.right),y=int(destination/viewport_.right);
+                                const int sx=int(source%viewport_.right),sy=int(source/viewport_.right);
+                                const int count=std::min(span.count-copied,std::min(viewport_.right-x,sample?viewport_.right-sx:viewport_.right));
+                                if(sample)renderer_.copy(frozen,canvas_,{sx,sy,sx+count,sy+1},x,y);
+                                else cache_.drawRegion(draw.resource,draw.frame,canvas_,{span.sourceFirst+copied,span.sourceRow,span.sourceFirst+copied+count,span.sourceRow+1},x,y,draw.colours?&*draw.colours:nullptr);
+                                destination+=count;source+=count;copied+=count;
+                            }
+                        }
+                    }catch(...){if(frozen)renderer_.destroy(frozen);throw;}
+                    if(frozen)renderer_.destroy(frozen);
+                }
             }else if(draw.visible&&draw.composite.mode==CompositeMode::tintOutline){
                 const auto& resource=limits_.cache.residentOnly?resources_.resident(draw.resource):resources_.load(draw.resource);
                 const auto& f=std::get<assets::Sprite>(resource.image).frames.at(draw.frame);const auto clip=draw.viewport.value_or(viewport_);
@@ -429,7 +460,7 @@ ResourceCacheStats SceneRenderer::cacheStats() const{checkThread();return cache_
 void SceneRenderer::release(const assets::ResourceId& id){checkThread();cache_.release(id);}
 void SceneRenderer::releaseCachedImages(){
     checkThread();if(drawing_)throw std::runtime_error("Cannot evict images during an incomplete scene frame");
-    cache_.clear();
+    cache_.clear();std::vector<DisplacementCell>().swap(displacementMap_);
     if(additiveMask_){renderer_.destroy(additiveMask_);additiveMask_=0;}
     if(additiveSource_){renderer_.destroy(additiveSource_);additiveSource_=0;}
     colourStats_.evictions+=colourCacheStats().entries;colourTiles_.clear();
