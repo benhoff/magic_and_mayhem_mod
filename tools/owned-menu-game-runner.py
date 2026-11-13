@@ -46,8 +46,8 @@ def main():
             json.dump(admission,out,indent=2);out.write('\n')
         journal=Path(os.environ['MNM_NATIVE_OUTPUT_OWNER']).resolve().parent/'sessions'
         journal.mkdir(exist_ok=True)
-        with (journal/(hashlib.sha256(str(root).encode()).hexdigest()+'.json')).open('x') as out:
-            json.dump(admission,out,indent=2);out.write('\n')
+        from owned_session_journal import publish
+        publish(journal/(hashlib.sha256(str(root).encode()).hexdigest()+'.json'),admission)
         return subprocess.run(args+[str(ROOT/'tools/menu-game-runner.py'), *sys.argv[1:]],
                               close_fds=True, stdin=subprocess.DEVNULL).returncode
 

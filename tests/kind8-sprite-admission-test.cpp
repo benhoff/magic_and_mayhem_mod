@@ -11,8 +11,8 @@ using u32=std::uint32_t;using u8=unsigned char;
 #include "../runtime/scene/world_raster_callers.h"
 #endif
 #ifndef MNM_EXPECT_CALLERS
-#define MNM_EXPECT_CALLERS 52
-#define MNM_EXPECT_PAIRS 61
+#define MNM_EXPECT_CALLERS 54
+#define MNM_EXPECT_PAIRS 64
 #endif
 namespace {
 struct Span{u32 start,bytes;};std::vector<Span> spans;u32 imageBytes;
@@ -27,6 +27,7 @@ static int readable(u32 p,u32 n){
     return 0;
 }
 #include "../runtime/scene/kind8_sprite_admission.h"
+#include "../runtime/scene/fading_particle_admission.h"
 static u32 batch_guard_open=1,batch_owner=123,current_thread=123;
 static u32 GetCurrentThreadId(){return current_thread;}
 #include "sprite-batch-caller.inc"

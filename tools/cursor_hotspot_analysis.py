@@ -71,6 +71,34 @@ def readiness_states(acquired,rows,observed,name,window):
     return selected
 
 
+def cursor_readiness_paint(observed,row,recorded,body,hits,lo,hi):
+    """Bind the first complete swapped paint inside the original readiness hold.
+
+    A World import can be painted before its subsequent cursor COPY. The
+    collector's recorded paint remains evidence of that partial presentation;
+    an independently captured later swap can prove the completed cursor only
+    within the same World, scaling and original readiness clock interval.
+    Selection uses command order and clocks, never pixel agreement.
+    """
+    before=[v for v in hits if v['sequence']<=recorded['commands']]
+    chosen=recorded
+    if not before:
+        candidates=[(paint,raw)for index in observed['swaps']for paint,raw in[observed['paints'][index]]
+            if int(paint['world'])==row['frame']['generation']
+            and paint['scaling']==recorded['scaling']
+            and max(lo,int(recorded['host_us']))<int(paint['host_us'])<=hi
+            and any(v['sequence']<=paint['commands']for v in hits)]
+        require(candidates,'No complete cursor paint inside the original readiness interval')
+        chosen,body=min(candidates,key=lambda v:(int(v[0]['host_us']),int(v[0]['paint'])))
+        before=[v for v in hits if v['sequence']<=chosen['commands']]
+    require(before,'Original cursor draw did not precede the actual readiness paint')
+    return chosen,body,before,dict(recorded_paint=int(recorded['paint']),
+        selected_paint=int(chosen['paint']),recorded_commands=recorded['commands'],
+        selected_commands=chosen['commands'],readiness_host_us=hi,
+        selected_host_us=int(chosen['host_us']),same_original_readiness_interval=True,
+        recorded_partial_paint_retained=chosen is not recorded)
+
+
 def cursor_viewport(raw,paint,placement,atlas,key):
     """Every visible non-key atlas sample, with no native pixel choosing input."""
     x0,y0,x1,y1=placement['destination'];sx,sy,_,_=placement['source']
@@ -248,15 +276,17 @@ def assess(reader,a,c,observed,worlds):
                 require(len({r['cursor']['poll'] for r in tail})>=3 and all(
                     r['cursor']['point']==expected_point and cursor_after_action(r,rows[w['released']['frame_input_row']-1])
                     for r in tail),'Stale/different original pointer')
-                geometries=[]
+                geometries=[];paint_bindings=[]
+                readiness=next(v for v in a['actions']if v['action']=='hotspot-readiness'and v['name']==name)
                 for r,shown_paint,shown_body in selected:
                     classes[r['cursor_type']]+=1
                     zero_classes={n for n,d in desc.items() if d['hotspot']==[0,0]}
                     require(r['cursor_type'] in (REQUIRED_CLASSES if '-hotspot-frame-' in name else zero_classes),
                         'The settled edge/default cursor class is not the required actual state')
                     hits=cursor_draws(r,desc,size,joined,owners)
-                    hits=[v for v in hits if v['sequence']<=shown_paint['commands']]
-                    require(hits,'Original cursor draw did not precede the actual readiness paint')
+                    shown_paint,shown_body,hits,binding=cursor_readiness_paint(observed,r,shown_paint,shown_body,
+                        hits,int(w['released']['host_us']),readiness['host_ns']//1000)
+                    paint_bindings.append(binding)
                     for v in hits:
                         owner=owners[v['sequence']];caller=callers[owner[0]-1]
                         require(owner[13]==0
@@ -273,7 +303,7 @@ def assess(reader,a,c,observed,worlds):
                 require(len(geometries)==3 and len({g['cursor_class'] for g in geometries})==1,
                     'Need three stable original descriptor/copy/output states')
                 nonzero.extend(dict(mode=mode,action=name,**g) for g in geometries if g['cursor_class'] in REQUIRED_CLASSES)
-                cases.append(dict(action=name,point=expected_point,
+                cases.append(dict(action=name,point=expected_point,readiness_paints=paint_bindings,
                     generations=[r['frame']['generation'] for r in tail],classes=[r['cursor_type'] for r in tail]))
         require(REQUIRED_CLASSES<={v['cursor_class'] for v in nonzero if v['mode']==mode},
             'Required nonzero cursor classes were not actually observed')

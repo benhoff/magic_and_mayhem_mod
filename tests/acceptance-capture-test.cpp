@@ -20,6 +20,8 @@ std::condition_variable gateChanged;
 bool blocked=false,entered=false,released=false,compressionFailure=false;
 std::thread::id compressorThread;
 std::atomic<unsigned> compressions{0};
+bool parallelControl=false,parallelFailure=false,parallelPaint=false,releaseFast=false,releaseSlow=false;
+unsigned parallelEntered=0,parallelFastDone=0;
 void require(bool condition,const char* message){if(!condition)throw std::runtime_error(message);}
 struct Row {QJsonObject metadata;QByteArray body;};
 std::vector<Row> read(const QString& directory){
@@ -144,6 +146,69 @@ QJsonObject commandHistory(const QString& root,bool extended,int count,const QSt
     return {{"success",policy&&terminal&&ordered&&rows.size()==std::size_t(accepted+2)},
         {"directory",directory},{"command_history",selected},{"role",role},{"requested",count},{"accepted",accepted},{"overflow_expected",refused},{"ordered",ordered}};
 }
+QJsonObject parallelOrder(const QString& root,bool failure,bool paint=false){
+    const auto directory=temporary(root);qputenv("MNM_ACCEPTANCE_CAPTURE_DIRECTORY",directory.toUtf8());
+    qputenv("MNM_ACCEPTANCE_NORMAL","1");
+    if(paint){qputenv("MNM_ACCEPTANCE_CAMPAIGN","1");qunsetenv("MNM_ACCEPTANCE_COMMAND_HISTORY");}
+    else{qputenv("MNM_ACCEPTANCE_COMMAND_HISTORY","1");qunsetenv("MNM_ACCEPTANCE_CAMPAIGN");}
+    {std::lock_guard<std::mutex> lock(gateMutex);blocked=false;compressionFailure=false;
+        parallelControl=true;parallelFailure=failure;parallelPaint=paint;releaseFast=releaseSlow=false;parallelEntered=parallelFastDone=0;}
+    std::promise<void> submitted;auto ready=submitted.get_future();std::string error;
+    std::thread producer([&]{try{
+        AcceptanceCapture capture(paint?"viewport":"commands");QByteArray source(paint?4:2,'a');source[0]=0;
+        QJsonObject meta{{"ordinal",0}};if(paint){meta["width"]=1;meta["height"]=1;}
+        capture.append(paint?"paint":"fragment",meta,QByteArray::fromRawData(source.constData(),source.size()));source[1]='z';
+        unsigned value=0;
+        for(int i=1;i<8;++i){QByteArray body(paint?4:2,'a');value=paint?(value^unsigned(i)):unsigned(i);body[0]=char(value);meta["ordinal"]=i;capture.append(paint?"paint":"fragment",meta,body);}
+        if(paint)capture.append("swap",{{"paint",8}});
+        else{capture.append("cpu-read",{{"sequence",1}},"reply");capture.append("ended",{});}
+        submitted.set_value();capture.finish();
+    }catch(const std::exception& e){error=e.what();}});
+    bool allEntered=false,fastFinished=false,onlyOpen=false;
+    {std::unique_lock<std::mutex> lock(gateMutex);allEntered=gateChanged.wait_for(lock,std::chrono::seconds(3),[]{return parallelEntered==255;});releaseFast=true;}gateChanged.notify_all();
+    {std::unique_lock<std::mutex> lock(gateMutex);fastFinished=gateChanged.wait_for(lock,std::chrono::seconds(3),[]{return parallelFastDone==7;});}
+    const bool returned=ready.wait_for(std::chrono::seconds(1))==std::future_status::ready;
+    if(allEntered&&fastFinished){
+        const auto names=QDir(directory).entryList({"*.bin"},QDir::Files);
+        if(names.size()==1){QFile file(QDir(directory).filePath(names[0]));if(file.open(QIODevice::ReadOnly)){
+            const auto bytes=file.readAll();if(bytes.size()>=16){const auto m=qFromLittleEndian<quint32>(bytes.constData()+8),n=qFromLittleEndian<quint32>(bytes.constData()+12);onlyOpen=n==0&&bytes.size()==qsizetype(16+m)&&QJsonDocument::fromJson(bytes.mid(16,m)).object()["kind"]=="open";}
+        }}
+    }
+    {std::lock_guard<std::mutex> lock(gateMutex);releaseSlow=true;}gateChanged.notify_all();producer.join();
+    {std::lock_guard<std::mutex> lock(gateMutex);parallelControl=parallelPaint=false;}
+    qunsetenv("MNM_ACCEPTANCE_COMMAND_HISTORY");qunsetenv("MNM_ACCEPTANCE_CAMPAIGN");qunsetenv("MNM_ACCEPTANCE_NORMAL");require(error.empty(),"Parallel producer exception");
+    const auto rows=read(directory);const auto open=rows.front().metadata,close=rows.back().metadata;const int expected=failure?3:8;bool ordered=true,delta=true;QByteArray previous,lastExpected;unsigned value=0;
+    for(int i=0;i<expected;++i){
+        QByteArray wanted(paint?4:2,'a');value=paint?(value^unsigned(i)):unsigned(i);wanted[0]=char(value);auto actual=rows.at(std::size_t(i+1)).body;
+        if(paint){const auto metadata=rows.at(std::size_t(i+1)).metadata;
+            if(i){delta&=metadata["capture_body_encoding"]=="xor-previous-paint-v1"&&metadata["capture_body_base"].toInt()==i;auto* out=actual.data();for(int n=0;n<actual.size();++n)out[n]=char(uchar(out[n])^uchar(previous[n]));}
+            else delta&=metadata["capture_body_encoding"]=="full-rgba-v1"&&metadata["capture_body_base"].toInt()==-1;
+            delta&=metadata["capture_body_sha256"].toString().toLatin1()==QCryptographicHash::hash(actual,QCryptographicHash::Sha256).toHex();previous=actual;
+        }
+        ordered&=rows.at(std::size_t(i+1)).metadata["ordinal"].toInt()==i&&actual==wanted;lastExpected=wanted;
+    }
+    const bool terminal=failure?(!close["complete"].toBool()&&close["error"]=="Acceptance capture compression failed"&&rows.size()==5):
+        (close["complete"].toBool()&&close["error"].toString().isEmpty()&&(paint?(rows.size()==11&&rows[9].metadata["kind"]=="swap"):(rows.size()==12&&rows[9].metadata["kind"]=="cpu-read"&&rows[9].body=="reply"&&rows[10].metadata["kind"]=="ended")));
+    const bool bounds=open["compression_workers"].toInt()==8&&open["queue_limit_bytes"].toDouble()==256ll*1024*1024&&open["queue_limit_rows"].toInt()==4096&&close["peak_queue_bytes"].toDouble()<=256ll*1024*1024&&close["peak_queue_rows"].toInt()<=4096;
+    return {{"success",allEntered&&fastFinished&&returned&&onlyOpen&&ordered&&delta&&terminal&&bounds},{"parallel_command_history",!paint},{"parallel_campaign",paint},{"campaign",paint},{"paints",expected},{"last_plane_sha256",QString::fromLatin1(QCryptographicHash::hash(lastExpected,QCryptographicHash::Sha256).toHex())},{"compression_failure_expected",failure},
+        {"all_eight_compressors_entered",allEntered},{"later_compressions_finished_before_first",fastFinished},{"writer_waited_for_first",onlyOpen},
+        {"append_returned_while_first_blocked",returned},{"FIFO_deep_owned_payloads",ordered},{"FIFO_delta_and_hashes",delta},{"limits_unchanged",bounds},{"directory",directory}};
+}
+QJsonObject refusalWithoutFinish(const QString& root){
+    const auto directory=temporary(root);qputenv("MNM_ACCEPTANCE_CAPTURE_DIRECTORY",directory.toUtf8());qputenv("MNM_ACCEPTANCE_NORMAL","1");qputenv("MNM_ACCEPTANCE_CAMPAIGN","1");qunsetenv("MNM_ACCEPTANCE_COMMAND_HISTORY");
+    AcceptanceCapture capture("viewport");capture.fail("first explicit capture refusal");capture.fail("must not replace first refusal");
+    bool closed=false;const auto deadline=std::chrono::steady_clock::now()+std::chrono::seconds(3);
+    while(std::chrono::steady_clock::now()<deadline){try{const auto rows=read(directory);closed=rows.back().metadata["error"]=="first explicit capture refusal"&&!rows.back().metadata["complete"].toBool();if(closed)break;}catch(const std::exception&){}std::this_thread::sleep_for(std::chrono::milliseconds(1));}
+    capture.finish();qunsetenv("MNM_ACCEPTANCE_CAMPAIGN");qunsetenv("MNM_ACCEPTANCE_NORMAL");
+    return {{"success",closed},{"idle_refusal_closed_before_finish",closed},{"first_refusal_preserved",closed},{"directory",directory}};
+}
+QJsonObject invalidCampaignPrefix(const QString& root){
+    const auto directory=temporary(root);qputenv("MNM_ACCEPTANCE_CAPTURE_DIRECTORY",directory.toUtf8());qputenv("MNM_ACCEPTANCE_NORMAL","1");qputenv("MNM_ACCEPTANCE_CAMPAIGN","1");
+    {AcceptanceCapture capture("viewport");capture.append("paint",{{"width",1},{"height",1}},QByteArray(4,'a'));capture.append("paint",{{"width",2},{"height",1}},QByteArray(4,'b'));capture.append("paint",{{"width",1},{"height",1}},QByteArray(4,'c'));capture.finish();}
+    const auto rows=read(directory);const auto close=rows.back().metadata;const bool valid=rows.size()==3&&rows[1].body==QByteArray(4,'a')&&!close["complete"].toBool()&&close["error"]=="Campaign capture paint extent";
+    qunsetenv("MNM_ACCEPTANCE_CAMPAIGN");qunsetenv("MNM_ACCEPTANCE_NORMAL");return {{"success",valid},{"invalid_extent_preserves_contiguous_prefix",valid},{"directory",directory}};
+}
+
 QJsonObject campaign(const QString& root,bool longRun){
     const auto directory=temporary(root);qputenv("MNM_ACCEPTANCE_CAPTURE_DIRECTORY",directory.toUtf8());
     qputenv("MNM_ACCEPTANCE_CAMPAIGN","1");
@@ -196,16 +261,25 @@ QJsonObject campaign(const QString& root,bool longRun){
 }
 
 QByteArray qCompress(const uchar* source,qsizetype length,int level){
-    ++compressions;
+    ++compressions;int parallelLabel=-1;bool rejectParallel=false;
     {std::unique_lock<std::mutex> lock(gateMutex);
         compressorThread=std::this_thread::get_id();entered=true;gateChanged.notify_all();
         if(blocked)gateChanged.wait(lock,[]{return released;});
         if(compressionFailure)return {};
+        if(parallelControl&&(length==2||(parallelPaint&&length==4))&&source[0]<8){
+            parallelLabel=int(source[0]);parallelEntered|=1u<<parallelLabel;gateChanged.notify_all();
+            if(parallelLabel==0)gateChanged.wait(lock,[]{return releaseSlow;});
+            else gateChanged.wait(lock,[]{return releaseFast;});
+            rejectParallel=parallelFailure&&parallelLabel==3;
+        }
     }
+    if(rejectParallel){std::lock_guard<std::mutex> lock(gateMutex);++parallelFastDone;gateChanged.notify_all();return {};}
     uLongf size=compressBound(uLong(length));QByteArray result(qsizetype(size)+4,0);
     qToBigEndian<quint32>(quint32(length),result.data());
     require(compress2(reinterpret_cast<Bytef*>(result.data()+4),&size,source,uLong(length),level)==Z_OK,"Compression backend");
-    result.resize(qsizetype(size)+4);return result;
+    result.resize(qsizetype(size)+4);
+    if(parallelLabel>0){std::lock_guard<std::mutex> lock(gateMutex);++parallelFastDone;gateChanged.notify_all();}
+    return result;
 }
 
 int main(int argc,char** argv)try{
@@ -214,6 +288,16 @@ int main(int argc,char** argv)try{
     const bool baseline=argc==3 && QByteArray(argv[2])=="--baseline";
     const bool longRun=argc==3 && QByteArray(argv[2])=="--campaign-long";
     const QString root=QString::fromLocal8Bit(argv[1]);QDir().mkpath(root);
+    if(argc==3 && QByteArray(argv[2])=="--parallel-campaign"){
+        QJsonArray cases{parallelOrder(root,false,true),parallelOrder(root,true,true),refusalWithoutFinish(root),invalidCampaignPrefix(root)};bool success=true;
+        for(const auto& value:cases)success&=value.toObject()["success"].toBool();
+        std::cout<<QJsonDocument(QJsonObject{{"success",success},{"cases",cases}}).toJson(QJsonDocument::Compact).constData()<<'\n';return success?0:1;
+    }
+    if(argc==3 && QByteArray(argv[2])=="--parallel-commands"){
+        QJsonArray cases{parallelOrder(root,false),parallelOrder(root,true)};bool success=true;
+        for(const auto& value:cases)success&=value.toObject()["success"].toBool();
+        std::cout<<QJsonDocument(QJsonObject{{"success",success},{"cases",cases}}).toJson(QJsonDocument::Compact).constData()<<'\n';return success?0:1;
+    }
     if(argc==3 && QByteArray(argv[2])=="--command-history"){
         QJsonArray cases{commandHistory(root,false,17000),commandHistory(root,true,17000),commandHistory(root,true,66000),commandHistory(root,true,100,"viewport")};
         qputenv("MNM_ACCEPTANCE_COMMAND_HISTORY","1");cases.append(commandBurst(root,true));qunsetenv("MNM_ACCEPTANCE_COMMAND_HISTORY");
