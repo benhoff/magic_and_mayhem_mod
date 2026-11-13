@@ -139,3 +139,10 @@ capacity, arbitrary churn, other maps/HRESULTs, original menu-navigation
 reliability, hardware and whole-session original pixels/simulation remain open.
 The Preferences detour is retained as a separate navigation gap. No original
 behavior comparison or live replacement claim is added.
+
+
+The2026-11-13 [owned-delivery extension](owned-source-drain-20261113.md) adds
+explicitV7 and apply-before-ACK queue handling for independent non-asynchronous
+public presentation. The V6 milestones above retain their exact historical scope;
+V7 menu dwell and component evidence are recorded separately. AsyncV5 and finite
+capture without source chunks keep their prior limits.

@@ -199,8 +199,9 @@ if metadata.get('resident_world'):
     with world.open('rb') as f:header=f.read(128)
     snapshot=metadata.get('owned_world_snapshot') is True
     if snapshot!=(os.environ.get('MNM_WORLD_SNAPSHOT')=='1'):raise ValueError('Owned World snapshot activation mismatch')
-    version=5 if snapshot else 6 if header[:8]==b'MNMCON06' else 4
-    if len(header)!=128 or header[:8]!=f'MNMCON0{version}'.encode() or struct.unpack_from('<I',header,8)[0]!=version or struct.unpack_from('<I',header,20)[0]!={4:1,5:2,6:3}[version] or any(header[36:]):raise ValueError('Resident World channel must be fresh negotiated V4/V5/V6')
+    if snapshot!=(header[:8]in(b'MNMCON05',b'MNMCON07')):raise ValueError('Owned World envelope/activation mismatch')
+    version=7 if header[:8]==b'MNMCON07' else 5 if snapshot else 6 if header[:8]==b'MNMCON06' else 4
+    if len(header)!=128 or header[:8]!=f'MNMCON0{version}'.encode() or struct.unpack_from('<I',header,8)[0]!=version or struct.unpack_from('<I',header,20)[0]!={4:1,5:2,6:3,7:4}[version] or any(header[36:]):raise ValueError('Resident World channel must be fresh negotiated V4/V5/V6/V7')
     def winepath(path):return 'Z:'+str(path).replace('/',chr(92))
     os.environ.update(MNM_PUBLIC_RESIDENT_WORLD='1',MNM_CANVAS_PRODUCERS='1',MNM_SCENE_SAMPLES='32',MNM_WORLD_RASTER_PREFIX='32',MNM_WORLD_RASTER_BATCH='1',MNM_WORLD_CONTINUOUS=winepath(world),MNM_SCENE_DIR=winepath(directory))
     # Native glyphs share the resident producer entry and publish through its

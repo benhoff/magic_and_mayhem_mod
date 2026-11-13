@@ -25,7 +25,7 @@ struct WorldGpuJob {
     std::uint64_t readbacks=0,captures=0;
 };
 QString capturePath(const QString& channel){return residentCapturePath(channel,qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE"),qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE_DIRECTORY"));}
-QString create(const QString& path,bool owned){const auto capture=capturePath(path);auto nonce=QRandomGenerator::system()->generate64();if(!nonce)nonce=1;WorldContinuousChannel::create(path,nonce,0,true,owned,!owned && (capture.isEmpty() || qEnvironmentVariableIntValue("MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS")==1));return path;}
+QString create(const QString& path,bool owned){const auto capture=capturePath(path);auto nonce=QRandomGenerator::system()->generate64();if(!nonce)nonce=1;WorldContinuousChannel::create(path,nonce,0,true,owned,(!owned || qEnvironmentVariableIntValue("MNM_ASYNC_WORLD_GPU")!=1) && (capture.isEmpty() || qEnvironmentVariableIntValue("MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS")==1));return path;}
 CanvasProducer close(const std::array<std::uint8_t,192>& bytes,unsigned offset){
     CanvasProducer result{};for(unsigned i=0;i<24;++i){const auto* p=bytes.data()+offset+i*4;result.fields[i]=p[0]|unsigned(p[1])<<8|unsigned(p[2])<<16|unsigned(p[3])<<24;}
     if(result.fields[0]!=96 || result.fields[18] || result.fields[23])throw std::runtime_error("Resident World closing record");
@@ -38,7 +38,7 @@ ResidentWorldSession::ResidentWorldSession(NativeRenderTarget target,const QStri
     const auto capture=capturePath(path);
     if(!capture.isEmpty()){
         if(!stageProfile_)throw std::runtime_error("Resident capture requires stage profiling");
-        capture_=std::make_unique<ResidentProfileCapture>(capture,256ull*1024*1024,!independent_ && qEnvironmentVariableIntValue("MNM_RESIDENT_CAPTURE_SOURCE_CHUNKS")==1);
+        capture_=std::make_unique<ResidentProfileCapture>(capture,256ull*1024*1024,channel_.prefixes());
     }
     frameTrace_=qEnvironmentVariableIntValue("MNM_NATIVE_FRAME_TRACE")==1;
     retainCompletedImage_=qEnvironmentVariableIntValue("MNM_WORLD_IMAGE_REUSE")==1;
@@ -191,21 +191,35 @@ void ResidentWorldSession::pollOwned(bool acceptedNormalQuit){
         if(normalQuitRetired_)return;
         if(channel_.cancelled()){
             const auto p=gpuProduction_?gpuProduction_->stats():mnm::render::GpuProductionQueue::Stats{};
-            if(acceptedNormalQuit && productionRetired(asynchronous_,completed_,p) && !ownedPending_ && !queue.outstanding && completed_==imports_ && completed_==queue.returned && queue.accepted==queue.returned){
+            if(acceptedNormalQuit && productionRetired(asynchronous_,completed_,p) && !ownedPending_ && !queue.outstanding && !queue.sourcePending && completed_==imports_ && completed_==queue.returned && queue.accepted==queue.returned){
                 returns_=queue.returned;normalQuitRetired_=true;if(capture_)capture_->finish();saveReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));return;
             }
-            throw std::runtime_error("Owned World producer cancelled with outstanding work");
+            throw std::runtime_error("Owned World producer cancelled before normal Quit (accepted="+std::to_string(queue.accepted)+", returned="+std::to_string(queue.returned)+", imports="+std::to_string(imports_)+", outstanding="+std::to_string(queue.outstanding)+", source_pending="+std::to_string(queue.sourcePending)+")");
         }
         if(!target_.ready() || ownedPending_)return;
+        const auto ensureWorld=[&]{if(!world_){
+            renderer_=std::make_unique<mnm::render::GlBlitter>(target_.context(),target_.offscreen);auto store=mnm::assets::AssetStore::create(game_.toStdString());
+            if(auto* e=std::get_if<mnm::assets::Error>(&store))throw std::runtime_error(e->detail);
+            world_=std::make_unique<WorldRollingSession>(*renderer_,std::get<mnm::assets::AssetStore>(std::move(store)),false,true,true,retainCompletedImage_);
+        }};
+        OwnedSourceChunk prefix;
+        if(snapshotQueue_->takeSource(prefix)){
+            ensureWorld();world_->consumeSource(prefix.stream);
+            if(world_->completed()!=completed_ || world_->worldReadbacks() || renderer_->stats().rgbaReadbacks || renderer_->stats().nativeReadbacks!=world_->cpuReaderSnapshots())
+                throw std::runtime_error("Owned source chunk changed World/readback contract");
+            if(capture_)capture_->enqueueSource(prefix.generation,prefix.wireSource);
+            ++sourceChunks_;sourceRecords_+=prefix.stream.operations.size();sourceBytes_+=prefix.sourceBytes;
+            maxSourceRecords_=std::max(maxSourceRecords_,std::uint64_t(prefix.stream.operations.size()));
+            if(sourceIntervalGeneration_!=prefix.generation){sourceIntervalGeneration_=prefix.generation;sourceIntervalRecords_=0;}
+            sourceIntervalRecords_+=prefix.stream.operations.size();maxSourceIntervalRecords_=std::max(maxSourceIntervalRecords_,sourceIntervalRecords_);
+            snapshotQueue_->appliedSource(prefix.ordinal);
+            queueReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));return;
+        }
         const auto now=std::chrono::steady_clock::now();
         // Consume verified engine updates independently of supplemental display deadlines.
         OwnedWorldSnapshot source;if(!snapshotQueue_->take(source))return;
         const auto sourceTakenAt=frameTrace_?std::chrono::steady_clock::now():std::chrono::steady_clock::time_point{};
-        if(!world_){
-            renderer_=std::make_unique<mnm::render::GlBlitter>(target_.context(),target_.offscreen);auto store=mnm::assets::AssetStore::create(game_.toStdString());
-            if(auto* e=std::get_if<mnm::assets::Error>(&store))throw std::runtime_error(e->detail);
-            world_=std::make_unique<WorldRollingSession>(*renderer_,std::get<mnm::assets::AssetStore>(std::move(store)),false,true,true,retainCompletedImage_);
-        }
+        ensureWorld();
         if(source.generation!=completed_+1)throw std::runtime_error("Owned native source sequence gap");
         if(capture_)capture_->enqueue(source.generation,source.wireSource,source.wireRequest);
         QElapsedTimer timing;timing.start();ownedFrame_=world_->consumeResident(source.generation,source.handoff.stream);
@@ -233,7 +247,7 @@ void ResidentWorldSession::pollAsynchronous(bool acceptedNormalQuit){
         if(normalQuitRetired_)return;
         if(channel_.cancelled()){
             const auto p=gpuProduction_?gpuProduction_->stats():mnm::render::GpuProductionQueue::Stats{};
-            if(acceptedNormalQuit && productionRetired(asynchronous_,completed_,p) && !ownedPending_ && !queue.outstanding && completed_==imports_ && completed_==queue.returned && queue.accepted==queue.returned){
+            if(acceptedNormalQuit && productionRetired(asynchronous_,completed_,p) && !ownedPending_ && !queue.outstanding && !queue.sourcePending && completed_==imports_ && completed_==queue.returned && queue.accepted==queue.returned){
                 normalQuitRetired_=true;saveReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));return;
             }
             throw std::runtime_error("Async World producer cancelled with outstanding work");
