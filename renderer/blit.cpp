@@ -590,6 +590,10 @@ struct GlBlitter::Impl {
             pixel=texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,1,1,nullptr);
             for(int y=piece.source.top;y<piece.source.bottom;++y)
                 for(int x=piece.source.left;x<piece.source.right;++x){
+                    // This pixel must see preceding writes, and pending keyed
+                    // instances must consume the old one-pixel texture before
+                    // it is overwritten. Outer batches retain this dependency.
+                    flushCopies();
                     attach(dst.native,dst.width,dst.height);
                     gl.glBindTexture(GL_TEXTURE_2D,pixel);
                     gl.glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,x,y,1,1);check();

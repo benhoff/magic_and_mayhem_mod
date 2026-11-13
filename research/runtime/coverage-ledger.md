@@ -29455,3 +29455,34 @@ batch controls plus replay guards remain separate from original/live acceptance.
 Cold setup and GUI-latency export/source joins remain explicit limits. SQLite
 `NATIVE13.rgb-add-batching01` retains the scoped headless evidence; see
 [findings](native-rgb-add-batching-20261113.md).
+
+
+## 2026-11-13 deterministic native effect stress suite
+
+`NR.native-effect-stress-suite` exercises four native effect families at three
+authored moving load profiles, fixed-seed800x600RGB565 inputs and four source
+frames. All360primary M1frames, including72warmups, match an independent CPU
+oracle and fresh repeats;288measured samples remain separate from warmup.
+Final input schema 2 binds palette, clipping, visibility, row state and copy
+arguments. All360final pixel hashes also match the preserved first pass.
+Wave2p9551.34ms, translucency3p9552.30ms, row3p9542.46ms and keyed3p951926.05ms
+show the current limits. Budget overruns are observations, not successful
+performance targets or live-combat FPS. No engine/AI/clock/balance changes.
+
+`NR.batched-keyed-overlap-order` fixes a newly reproduced native pixel failure:
+unbatched8x8keyed RGB565Blt matches CPU row-major semantics, but outer batching
+reused a one-pixel source before queued copies consumed it and could miss prior
+writes. Flush before each next read/update; both routes now match,4096pixels per
+operation remains, and65x64refuses without mutation. All1107retained World images
+also match the previous native renderer across two fresh replays. No identified
+live occurrence, wizard-death cause or original/live equivalence promotion.
+
+Seven admission/native controls pass on M1 and llvmpipe, including moving inputs,
+fresh-repeat/baseline checks, a separately corrupted reference, argument/capacity
+refusals and keyed batch ordering. Optional GPU timeline export is diagnostic
+only; it includes idle gaps and does not establish GPU busy time. SQLite retains
+exact source/ELF/input identities, pre-fix failures, all per-frame results, cleanup
+plans and verified backups. Duplicate backup ranges share COW blocks with every
+whole-container hash/path/pin preserved; about245MiBactual space recovered.
+See [usage](../../docs/native-effect-stress.md) and
+[findings](native-effect-stress-20261113.md).
