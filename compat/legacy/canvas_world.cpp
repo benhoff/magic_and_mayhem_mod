@@ -197,6 +197,9 @@ void CanvasWorld::beginResident(const CanvasProducer &c,render::SurfaceId native
     const auto additiveBaseline=std::getenv("MNM_WORLD_ADDITIVE_BATCH_BASELINE");
     limits.batchAdditiveSprites=!additiveBaseline||std::strcmp(additiveBaseline,"1")!=0;
     limits.maxAdditiveSprites=512;
+    const auto rectangleBaseline=std::getenv("MNM_WORLD_ADDITIVE_RECT_BASELINE");
+    limits.batchAdditiveRectangles=!rectangleBaseline||std::strcmp(rectangleBaseline,"1")!=0;
+    limits.maxAdditiveRectangles=512;
     limits.cache.indexedAtlas=true;limits.cache.atlasFrames=512;
     // Validate the new owned surface, extent and defined history before
     // retiring the old borrowed scene. Global source ordinals stay contiguous.
@@ -238,6 +241,9 @@ void CanvasWorld::beginFrame(const CanvasProducer &c,
     const auto additiveBaseline=std::getenv("MNM_WORLD_ADDITIVE_BATCH_BASELINE");
     limits.batchAdditiveSprites=!additiveBaseline||std::strcmp(additiveBaseline,"1")!=0;
     limits.maxAdditiveSprites=512;
+    const auto rectangleBaseline=std::getenv("MNM_WORLD_ADDITIVE_RECT_BASELINE");
+    limits.batchAdditiveRectangles=!rectangleBaseline||std::strcmp(rectangleBaseline,"1")!=0;
+    limits.maxAdditiveRectangles=512;
     limits.cache.indexedAtlas = true;limits.cache.atlasFrames=512;
     scene_ = std::make_unique<render::SceneRenderer>(renderer_, resources_,
                                                      native, limits);
@@ -357,7 +363,7 @@ render::Image CanvasWorld::completeFrame(const render::Image *reference, bool ex
       }
       if(profile_.binding.enabled)profile_.sceneDrawingMs+=milliseconds(drawing);
       const auto a=scene_->additiveProfile();profile_.additive.enabled=a.enabled;
-      profile_.additive.batches+=a.batches;profile_.additive.sprites+=a.sprites;
+      profile_.additive.batches+=a.batches;profile_.additive.sprites+=a.sprites;profile_.additive.rectangles+=a.rectangles;
       profile_.additive.visitedPixels+=a.visitedPixels;profile_.additive.uploadPixels+=a.uploadPixels;
       profile_.additive.planningMs+=a.planningMs;profile_.additive.combinationMs+=a.combinationMs;
       profile_.additive.uploadMs+=a.uploadMs;profile_.additive.compositeMs+=a.compositeMs;

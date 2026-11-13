@@ -31,6 +31,8 @@ struct SceneLimits {
     bool batchDisplacements=true; // bounded ordered destination-coordinate composition
     bool batchAdditiveSprites=false; // exact owned source aggregation; native World opts in
     std::size_t maxAdditiveSprites=32; // synchronous native World may use up to512
+    bool batchAdditiveRectangles=false; // only increments without low16 wraparound
+    std::size_t maxAdditiveRectangles=32;
 };
 struct SceneBatchBudget {
     std::size_t draws=32,uploadBytes=256*1024;
@@ -41,7 +43,7 @@ struct SceneUploadNeed {std::size_t draw=0;ResourceUploadRequest request;};
 struct SceneUploadStats {std::uint64_t bytes=0,ticks=0,maxTickBytes=0;};
 struct AdditiveWorkProfile {
     bool enabled=false;
-    std::uint64_t batches=0,sprites=0,visitedPixels=0,uploadPixels=0;
+    std::uint64_t batches=0,sprites=0,rectangles=0,visitedPixels=0,uploadPixels=0;
     double planningMs=0,combinationMs=0,uploadMs=0,compositeMs=0;
 };
 enum class SceneStart { background, retainedCanvas };
