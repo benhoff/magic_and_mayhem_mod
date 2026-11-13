@@ -13,6 +13,7 @@ public:
   struct Profile {
     double adoptMs=0, prepareMs=0, submitMs=0, readbackMs=0, compareMs=0;
     double sceneAdmissionMs=0,sceneDrawingMs=0;
+    render::AdditiveWorkProfile additive;
     WorldResources::Profile binding;
     unsigned visibleDraws=0;
     std::uint64_t copyBatches=0,snapshotPixels=0,scratchAllocations=0;

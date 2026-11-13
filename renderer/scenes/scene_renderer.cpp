@@ -5,12 +5,14 @@
 #include <stdexcept>
 #include <type_traits>
 #include <limits>
+#include <cstdlib>
+#include <cstring>
 
 namespace mnm::render {
 SceneRenderer::SceneRenderer(GlBlitter& renderer,assets::ResourceManager& resources,const Image& background,SceneLimits limits)
     :renderer_(renderer),resources_(resources),cache_(renderer,resources,limits.cache),limits_(limits),
      viewport_{0,0,background.width,background.height},thread_(std::this_thread::get_id()){
-    if(!limits.draws || limits.draws>65536)throw std::invalid_argument("Scene draw budget must be 1..65536");
+    if(!limits.draws || limits.draws>65536||!limits.maxAdditiveSprites||limits.maxAdditiveSprites>512)throw std::invalid_argument("Scene draw/additive budget outside limits");
     const auto format=limits_.colourRgb555?PixelFormat{16,{0x7c00,0x3e0,0x1f}}:spriteFormat;
     background_=renderer_.create(background,format);
     try{canvas_=renderer_.create(background,format);}catch(...){renderer_.destroy(background_);throw;}
@@ -19,7 +21,7 @@ SceneRenderer::SceneRenderer(GlBlitter& renderer,assets::ResourceManager& resour
                              SurfaceId canvas,int width,int height,SceneLimits limits)
     :renderer_(renderer),resources_(resources),cache_(renderer,resources,limits.cache),limits_(limits),
      canvas_(canvas),ownsCanvas_(false),viewport_{0,0,width,height},thread_(std::this_thread::get_id()){
-    if(limits.colourRgb555||!limits.draws||limits.draws>65536||width<1||height<1||width>2048||height>2048)
+    if(limits.colourRgb555||!limits.draws||limits.draws>65536||!limits.maxAdditiveSprites||limits.maxAdditiveSprites>512||width<1||height<1||width>2048||height>2048)
         throw std::invalid_argument("Borrowed scene limits");
     const auto frame=renderer_.presentGpu(canvas);
     if(frame.size()!=QSize(width,height))throw std::invalid_argument("Borrowed scene canvas extent");
@@ -163,6 +165,8 @@ void SceneRenderer::beginFrame(const std::vector<SceneDraw>& draws,SceneStart st
     if(start==SceneStart::background&&!background_)throw std::invalid_argument("Borrowed scene has no background");
     if(start==SceneStart::retainedCanvas&&!valid_)throw std::runtime_error("No complete native canvas to retain");
     for(const auto& draw:draws)validate(draw);
+    const auto ownerProfile=std::getenv("MNM_WORLD_OWNER_PROFILE");
+    additiveProfile_={};additiveProfile_.enabled=ownerProfile&&std::strcmp(ownerProfile,"1")==0;
     // Admission errors preserve the previous completed frame. An execution error
     // refuses presentation of partial pixels until a later successful full draw.
     auto owned=draws;valid_=false;
@@ -196,9 +200,12 @@ void SceneRenderer::supplyUpload(const SceneUploadNeed& need,PreparedSpriteFrame
 }
 bool SceneRenderer::drawAdditives(std::size_t end,std::chrono::steady_clock::time_point deadline,std::size_t& uploadBytes){
     if(!limits_.batchAdditiveSprites||GlBlitter::isolatedRecoveryEnabled())return false;
+    using Clock=std::chrono::steady_clock;
+    const auto elapsed=[](auto start){return std::chrono::duration<double,std::milli>(Clock::now()-start).count();};
+    auto phase=additiveProfile_.enabled?Clock::now():Clock::time_point{};
     struct Source {const assets::SpriteFrame* frame;const SpriteColourTable* colours;Rect region;int x,y;};
     std::vector<Source> sources;Rect area{};std::size_t visited=0,next=cursor_;
-    for(;next<end&&next-cursor_<32;++next){
+    for(;next<end&&next-cursor_<limits_.maxAdditiveSprites;++next){
         if(next!=cursor_&&std::chrono::steady_clock::now()>=deadline)break;
         const auto& d=pending_[next];
         if(!d.visible||!d.clip||!d.colours||d.additive||d.colourRectangle||d.rowEffect||d.wholeOpaqueRunClipping||d.composite.mode!=CompositeMode::additive)break;
@@ -218,6 +225,7 @@ bool SceneRenderer::drawAdditives(std::size_t end,std::chrono::steady_clock::tim
         area=combined;visited+=pixels;sources.push_back({&f,&*d.colours,region,int(x),int(y)});
     }
     if(next-cursor_<2)return false;
+    if(additiveProfile_.enabled){additiveProfile_.planningMs+=elapsed(phase);++additiveProfile_.batches;additiveProfile_.sprites+=next-cursor_;additiveProfile_.visitedPixels+=visited;phase=Clock::now();}
     if(!sources.empty()){
         Image pixels{area.right-area.left,area.bottom-area.top,{}};
         pixels.pixels.resize(std::size_t(pixels.width)*pixels.height);
@@ -232,11 +240,14 @@ bool SceneRenderer::drawAdditives(std::size_t end,std::chrono::steady_clock::tim
         }
         // Saturating nonnegative channel sums are associative. Zero source
         // words leave uncovered destination pixels unchanged, including holes.
+        if(additiveProfile_.enabled){additiveProfile_.combinationMs+=elapsed(phase);phase=Clock::now();}
         if(!additiveSource_)additiveSource_=renderer_.allocate(128,128,spriteFormat);
         if(!additiveMask_){additiveMask_=renderer_.create({128,128,std::vector<std::uint32_t>(128*128,1)},{8,{}});uploadBytes-=128*128*4;}
         renderer_.update(additiveSource_,0,0,pixels);uploadBytes-=pixels.pixels.size()*4;
+        if(additiveProfile_.enabled){additiveProfile_.uploadMs+=elapsed(phase);additiveProfile_.uploadPixels+=pixels.pixels.size();phase=Clock::now();}
         SpriteComposite mode;mode.mode=CompositeMode::additive;
         renderer_.composite(additiveSource_,canvas_,{0,0,pixels.width,pixels.height},area.left,area.top,additiveMask_,mode);
+        if(additiveProfile_.enabled)additiveProfile_.compositeMs+=elapsed(phase);
     }
     cursor_=next;need_.reset();supplied_=false;return true;
 }

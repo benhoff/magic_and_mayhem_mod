@@ -83,3 +83,8 @@ with verified local backups before finish. Original capture/assets remain shared
 read-only. Compiler intermediates and exported tapes are reconstructible
 temporary output; earlier evidence keeps its original hashes and applicability
 limitations.
+
+The subsequent [heavy stress optimization](native-particle-cost-20261113.md)
+raises only the native World source cap to 512 and its synchronous private turn
+to 512 draws. The 32-source figures above describe this earlier exact executable;
+its evidence and hashes remain historical. Pixel/storage/work limits remain.

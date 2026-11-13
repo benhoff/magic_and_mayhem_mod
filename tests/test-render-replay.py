@@ -223,6 +223,10 @@ class NativeTests(unittest.TestCase):
             self.assertGreater(sum(owner['producer_calls']), 0)
             for key in ['prepare_ms', 'scene_admission_ms', 'scene_drawing_ms', 'identities_ms']:
                 self.assertGreaterEqual(owner[key], 0)
+            additive = frame['additive_profile']
+            for key in ['batches', 'sprites', 'visited_pixels', 'upload_pixels',
+                        'planning_ms', 'combination_ms', 'upload_ms', 'composite_ms']:
+                self.assertGreaterEqual(additive[key], 0)
 
     def test_real_source_history_is_applied_before_world(self):
         first = authored_world(1)

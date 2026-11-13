@@ -29390,3 +29390,22 @@ See [stress findings](heavy-render-stress-20261113.md),
 [usage](../../docs/render-replay.md#create-a-heavier-particle-replay) and SQLite
 `NATIVE13.heavy-render-stress01`. Historical broader source hashes/statuses remain
 retained with pending applicability after the replay-main wire-validation edit.
+
+
+### 2026-11-13: reduce native heavy-particle submission cost
+
+`NR.additive-stage-attribution` separates successful particle planning/source
+combination/upload/composite wall spans. CPU combination is about0.15–0.17ms;
+tiny GPU submissions dominate those diagnostic spans. Native synchronous World
+turns and additive source caps increase32to512 under
+`NR.synchronous-world-batch-sizing`, retaining union/work/upload/time bounds,
+barriers and exact source semantics. Generic source caps stay32; prepared replay
+retains its existing outer budget. Three same-range M1repeats on4xstress reduce
+p95 50.054→33.824ms and max69.609→38.234ms;14→0of237samples exceed50ms.
+All868parent and79selected2x/4xpixels match retained native baselines across two
+fresh replays. Twenty additive,14small-colour,13displacement and12replay controls
+pass on software/M1. No original engine/AI/clock/balance/wire/guard change,
+original pixel oracle, liveFPS or manual artifact-free acceptance promotion.
+See [native submission findings](native-particle-cost-20261113.md) and SQLite
+`NATIVE13.native-particle-cost02`. Preserve historical hashes and broader pending
+source applicability; cold setup and untested workloads remain outside scope.
