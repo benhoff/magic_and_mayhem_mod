@@ -21,3 +21,7 @@ add_executable(mnm-replay-capture-fixture EXCLUDE_FROM_ALL "${MNM_ROOT}/tests/re
 target_include_directories(mnm-replay-capture-fixture SYSTEM PRIVATE ${ZSTD_INCLUDE_DIRS})
 target_link_libraries(mnm-replay-capture-fixture PRIVATE Qt6::Core)
 target_compile_options(mnm-replay-capture-fixture PRIVATE -UNDEBUG -Wall -Wextra -Werror -pedantic)
+add_executable(mnm-additive-batching-test EXCLUDE_FROM_ALL "${MNM_ROOT}/tests/additive-sprite-batching-test.cpp")
+target_include_directories(mnm-additive-batching-test PRIVATE "${MNM_ROOT}/tests")
+target_link_libraries(mnm-additive-batching-test PRIVATE mnm-world-rolling Qt6::Gui)
+target_compile_options(mnm-additive-batching-test PRIVATE -UNDEBUG -Wall -Wextra -Werror -pedantic)

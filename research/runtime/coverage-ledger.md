@@ -29352,3 +29352,21 @@ period. The final executable matches the initial captured pixel baseline; its
 three benchmark repeats measure median 12.021 ms / p95 81.489 ms. Initial evidence
 and source hashes remain retained separately. No native rendering optimization
 or original engine change is claimed by this testing workflow.
+
+### 2026-11-13: remove additive-particle native rendering spikes
+
+`NR.additive-sprite-batching` coalesces bounded consecutive indexed RGB565
+additive sources before one unchanged destination composite; overlap saturation,
+masks, palette zero, clipping, draw barriers and caller budgets are retained.
+`NR.native-replay-spike-profiling` exports existing opt-in owner counters outside
+measured intervals. On the same captured combat window, three M1 repeats per
+executable reduce native p95 78.918→26.665 ms and maximum109.377→33.001 ms;
+30→0 samples exceed50ms. Frame817 draws fall943→199. All868 captured frame hashes
+match the old renderer across two fresh replays;16focused scalar/serial cases
+and12replay controls pass on software/M1. No original engine/AI/clock/balance,
+wire, caller guard or source pacing changes. See
+[native particle findings](native-additive-batching-20261113.md) and SQLite
+`NATIVE13.additive-batching01`. Native cold setup remains outside this optimization;
+live FPS, full UI/audio/scanout and original equivalence are not promoted. Shared
+source edits leave broader historical stages pending applicability with exact
+old hashes retained.

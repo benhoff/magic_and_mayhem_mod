@@ -109,6 +109,13 @@ QJsonObject run(Tape& tape,const assets::AssetStore& store,unsigned first,unsign
                 const double submit=std::chrono::duration<double,std::milli>(submitted-start).count();submitTotal+=submit;
                 engine.synchronize();
                 QJsonObject row{{"generation",double(event.generation)},{"native_submit_ms",submit},{"native_completion_ms",std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-start).count()},{"draw_calls",double(engine.renderer.stats().drawCalls-before.drawCalls)},{"texture_upload_calls",double(engine.renderer.stats().textureUploadCalls-before.textureUploadCalls)}};
+                const auto& owner=engine.world.ownerCosts();
+                if(owner.enabled){
+                    QJsonArray producerMs,producerCalls;
+                    for(unsigned k=0;k<owner.producerMs.size();++k){producerMs.append(owner.producerMs[k]);producerCalls.append(double(owner.producerCalls[k]));}
+                    const auto& p=engine.world.profile();
+                    row["owner_profile"]=QJsonObject{{"validation_ms",owner.validationMs},{"entry_ms",owner.entryMs},{"append_ms",owner.appendMs},{"complete_ms",owner.completeMs},{"return_ms",owner.returnMs},{"present_ms",owner.presentMs},{"total_ms",owner.totalMs},{"producer_ms",producerMs},{"producer_calls",producerCalls},{"adopt_ms",p.adoptMs},{"prepare_ms",p.prepareMs},{"submit_ms",p.submitMs},{"scene_admission_ms",p.sceneAdmissionMs},{"scene_drawing_ms",p.sceneDrawingMs},{"identities_ms",p.binding.identitiesMs},{"catalogue_ms",p.binding.catalogueMs},{"resources_ms",p.binding.resourcesMs},{"resolve_ms",p.binding.resolveMs},{"cache_uploads",double(p.cacheUploads)},{"cache_hits",double(p.cacheHits)},{"visible_draws",int(p.visibleDraws)}};
+                }
                 if(verify||event.generation==last){
                     finalHash=pixels(engine.world.diagnosticReadResident(engine.renderer));++diagnosticReads;
                     row["completion_with_diagnostic_ms"]=std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-start).count();row["sha256"]=finalHash;

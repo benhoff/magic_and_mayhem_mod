@@ -194,6 +194,8 @@ void CanvasWorld::beginResident(const CanvasProducer &c,render::SurfaceId native
     limits.cacheColourRectangles=!baseline||std::strcmp(baseline,"1")!=0;
     const auto smallBaseline=std::getenv("MNM_WORLD_SMALL_COLOUR_BASELINE");
     limits.batchSmallColourRectangles=!smallBaseline||std::strcmp(smallBaseline,"1")!=0;
+    const auto additiveBaseline=std::getenv("MNM_WORLD_ADDITIVE_BATCH_BASELINE");
+    limits.batchAdditiveSprites=!additiveBaseline||std::strcmp(additiveBaseline,"1")!=0;
     limits.cache.indexedAtlas=true;limits.cache.atlasFrames=512;
     // Validate the new owned surface, extent and defined history before
     // retiring the old borrowed scene. Global source ordinals stay contiguous.
@@ -232,6 +234,8 @@ void CanvasWorld::beginFrame(const CanvasProducer &c,
     limits.cacheColourRectangles=!baseline||std::strcmp(baseline,"1")!=0;
     const auto smallBaseline=std::getenv("MNM_WORLD_SMALL_COLOUR_BASELINE");
     limits.batchSmallColourRectangles=!smallBaseline||std::strcmp(smallBaseline,"1")!=0;
+    const auto additiveBaseline=std::getenv("MNM_WORLD_ADDITIVE_BATCH_BASELINE");
+    limits.batchAdditiveSprites=!additiveBaseline||std::strcmp(additiveBaseline,"1")!=0;
     limits.cache.indexedAtlas = true;limits.cache.atlasFrames=512;
     scene_ = std::make_unique<render::SceneRenderer>(renderer_, resources_,
                                                      native, limits);

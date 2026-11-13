@@ -29,6 +29,7 @@ struct SceneLimits {
     // Explicit offline colour-only policy. Sprite/effect resources remain RGB565.
     bool colourRgb555=false;
     bool batchDisplacements=true; // bounded ordered destination-coordinate composition
+    bool batchAdditiveSprites=false; // exact owned source aggregation; native World opts in
 };
 struct SceneBatchBudget {
     std::size_t draws=32,uploadBytes=256*1024;
@@ -91,10 +92,12 @@ private:
     struct ColourTile {Image image;std::uint64_t age=0;};
     std::vector<ColourTile> colourTiles_;
     SurfaceId colourAtlas_=0,colourMask_=0;
+    SurfaceId additiveSource_=0,additiveMask_=0;
     std::uint64_t colourAge_=0;
     ColourRectangleCacheStats colourStats_;
     void drawColourRectangle(const Image&,Rect,int,int,const SpriteComposite&,bool forceCache=false);
     bool drawDisplacements(std::size_t end,std::chrono::steady_clock::time_point deadline);
+    bool drawAdditives(std::size_t end,std::chrono::steady_clock::time_point deadline,std::size_t& uploadBytes);
     void validate(const SceneDraw&);
     std::optional<ResourceUploadRequest> request(const SceneDraw&);
 };

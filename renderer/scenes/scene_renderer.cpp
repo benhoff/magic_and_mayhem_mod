@@ -25,7 +25,7 @@ SceneRenderer::SceneRenderer(GlBlitter& renderer,assets::ResourceManager& resour
     if(frame.size()!=QSize(width,height))throw std::invalid_argument("Borrowed scene canvas extent");
     valid_=true;
 }
-SceneRenderer::~SceneRenderer(){cache_.clear();if(colourMask_)renderer_.destroy(colourMask_);if(colourAtlas_)renderer_.destroy(colourAtlas_);if(ownsCanvas_)renderer_.destroy(canvas_);if(background_)renderer_.destroy(background_);}
+SceneRenderer::~SceneRenderer(){cache_.clear();if(additiveMask_)renderer_.destroy(additiveMask_);if(additiveSource_)renderer_.destroy(additiveSource_);if(colourMask_)renderer_.destroy(colourMask_);if(colourAtlas_)renderer_.destroy(colourAtlas_);if(ownsCanvas_)renderer_.destroy(canvas_);if(background_)renderer_.destroy(background_);}
 ColourRectangleCacheStats SceneRenderer::colourCacheStats() const {checkThread();auto s=colourStats_;s.entries=std::count_if(colourTiles_.begin(),colourTiles_.end(),[](const auto& t){return !t.image.pixels.empty();});s.pixels=colourAtlas_?2*512*512:0;return s;}
 void SceneRenderer::drawColourRectangle(const Image& image,Rect rect,int x,int y,const SpriteComposite& mode,bool forceCache){
     if(!limits_.cacheColourRectangles&&!forceCache){renderer_.colourRect(canvas_,image,rect,x,y,mode);return;}
@@ -194,6 +194,52 @@ void SceneRenderer::supplyUpload(const SceneUploadNeed& need,PreparedSpriteFrame
     if(prepared.pixels.width!=width||prepared.pixels.height!=height||prepared.originX!=ox||prepared.originY!=oy)throw std::runtime_error("Prepared upload geometry differs");
     cache_.supply(need.request,std::move(prepared));supplied_=true;
 }
+bool SceneRenderer::drawAdditives(std::size_t end,std::chrono::steady_clock::time_point deadline,std::size_t& uploadBytes){
+    if(!limits_.batchAdditiveSprites||GlBlitter::isolatedRecoveryEnabled())return false;
+    struct Source {const assets::SpriteFrame* frame;const SpriteColourTable* colours;Rect region;int x,y;};
+    std::vector<Source> sources;Rect area{};std::size_t visited=0,next=cursor_;
+    for(;next<end&&next-cursor_<32;++next){
+        if(next!=cursor_&&std::chrono::steady_clock::now()>=deadline)break;
+        const auto& d=pending_[next];
+        if(!d.visible||!d.clip||!d.colours||d.additive||d.colourRectangle||d.rowEffect||d.wholeOpaqueRunClipping||d.composite.mode!=CompositeMode::additive)break;
+        const auto& resource=limits_.cache.residentOnly?resources_.resident(d.resource):resources_.load(d.resource);
+        const auto* sprite=std::get_if<assets::Sprite>(&resource.image);
+        if(!sprite||sprite->storage!=assets::SpriteStorage::indexed8)break;
+        const auto& f=sprite->frames.at(d.frame);const auto clip=d.viewport.value_or(viewport_);
+        const auto x=std::int64_t(d.anchorX)-f.originX,y=std::int64_t(d.anchorY)-f.originY;
+        const auto left=std::max(x,std::int64_t(clip.left)),top=std::max(y,std::int64_t(clip.top));
+        const auto right=std::min(x+f.width,std::int64_t(clip.right)),bottom=std::min(y+f.height,std::int64_t(clip.bottom));
+        if(left>=right||top>=bottom)continue;
+        const Rect region{int(left),int(top),int(right),int(bottom)};
+        const Rect combined=sources.empty()?region:Rect{std::min(area.left,region.left),std::min(area.top,region.top),std::max(area.right,region.right),std::max(area.bottom,region.bottom)};
+        const auto pixels=std::size_t(right-left)*(bottom-top);
+        const auto cost=std::size_t(combined.right-combined.left)*(combined.bottom-combined.top)*4+(additiveMask_?0:128*128*4);
+        if(combined.right-combined.left>128||combined.bottom-combined.top>128||visited+pixels>65536||cost>uploadBytes)break;
+        area=combined;visited+=pixels;sources.push_back({&f,&*d.colours,region,int(x),int(y)});
+    }
+    if(next-cursor_<2)return false;
+    if(!sources.empty()){
+        Image pixels{area.right-area.left,area.bottom-area.top,{}};
+        pixels.pixels.resize(std::size_t(pixels.width)*pixels.height);
+        for(const auto& s:sources){
+            const auto& indices=std::get<std::vector<std::uint8_t>>(s.frame->pixels);
+            for(int y=s.region.top;y<s.region.bottom;++y)for(int x=s.region.left;x<s.region.right;++x){
+                const auto at=std::size_t(y-s.y)*s.frame->width+x-s.x;
+                if(!s.frame->opaqueMask.at(at))continue;
+                const auto colour=(*s.colours)[indices.at(at)];auto& sum=pixels.pixels[std::size_t(y-area.top)*pixels.width+x-area.left];
+                sum=(std::min((sum>>11)+(colour>>11),31u)<<11)|(std::min(((sum>>5)&63u)+((colour>>5)&63u),63u)<<5)|std::min((sum&31u)+(colour&31u),31u);
+            }
+        }
+        // Saturating nonnegative channel sums are associative. Zero source
+        // words leave uncovered destination pixels unchanged, including holes.
+        if(!additiveSource_)additiveSource_=renderer_.allocate(128,128,spriteFormat);
+        if(!additiveMask_){additiveMask_=renderer_.create({128,128,std::vector<std::uint32_t>(128*128,1)},{8,{}});uploadBytes-=128*128*4;}
+        renderer_.update(additiveSource_,0,0,pixels);uploadBytes-=pixels.pixels.size()*4;
+        SpriteComposite mode;mode.mode=CompositeMode::additive;
+        renderer_.composite(additiveSource_,canvas_,{0,0,pixels.width,pixels.height},area.left,area.top,additiveMask_,mode);
+    }
+    cursor_=next;need_.reset();supplied_=false;return true;
+}
 bool SceneRenderer::drawDisplacements(std::size_t end,std::chrono::steady_clock::time_point deadline){
     if(!limits_.batchDisplacements||!renderer_.canBatchDestinationSamples())return false;
     std::unordered_map<int,int> mapping;
@@ -245,6 +291,7 @@ bool SceneRenderer::drawNext(const SceneBatchBudget& budget){
     try{renderer_.batch([&]{
         bool first=true;
         while(cursor_<end && (first||std::chrono::steady_clock::now()<deadline)){first=false;const auto& draw=pending_[cursor_];
+            if(draw.composite.mode==CompositeMode::additive&&drawAdditives(end,deadline,bytes))continue;
             if(limits_.cacheColourRectangles&&limits_.batchSmallColourRectangles&&draw.visible&&draw.colourRectangle&&
                draw.colourRectangle->pixels.width<=2&&draw.colourRectangle->pixels.height<=2){
                 std::vector<SmallColourDraw> small;
@@ -353,6 +400,8 @@ void SceneRenderer::release(const assets::ResourceId& id){checkThread();cache_.r
 void SceneRenderer::releaseCachedImages(){
     checkThread();if(drawing_)throw std::runtime_error("Cannot evict images during an incomplete scene frame");
     cache_.clear();
+    if(additiveMask_){renderer_.destroy(additiveMask_);additiveMask_=0;}
+    if(additiveSource_){renderer_.destroy(additiveSource_);additiveSource_=0;}
     colourStats_.evictions+=colourCacheStats().entries;colourTiles_.clear();
     if(colourMask_){renderer_.destroy(colourMask_);colourMask_=0;}
     if(colourAtlas_){renderer_.destroy(colourAtlas_);colourAtlas_=0;}
