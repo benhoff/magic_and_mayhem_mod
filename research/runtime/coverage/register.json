@@ -180191,6 +180191,71 @@
         "Private17 original raster guard refuses unknown route; private18 does not finish twelve casts; production19 onlyone mover fails its motion gate. Those are not successful movement/lifecycle acceptance.",
         "Shared-source broad historical sound/host/player evidence retains original hashes and statuses with pending current-scope impact review. Component tests here do not revalidate every linked manager, profile, music, UI or whole-player contract."
       ]
+    },
+    {
+      "id": "NR.displacement-batching",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded ordered destination-displacement batches",
+      "scope": "Native RGB565 presentation only: compose pre-sprite coordinate mappings for consecutive visible clipped owned SPR displacement draws. At most32sprites,128x128each,65536visited pixels and caller draw/time budget; hidden/other/oversized/whole-run-horizontal-clipped draws are barriers. Per-sprite staging preserves frozen-history reads under overlap, absolute row phase, tight row crossings and finite retain-outside policy. Sorted disjoint spans sample one distinct GPU snapshot, at most65536pixels and4096instances per submission. Fully defined destination, format, bounds and nonoverlap validation precede mutation. Prepared-only scenes avoid unused colour uploads; unsupported/singleton/isolated/software-renderer operations keep existing serial paths. No original engine, clock, AI, balance, runtime/wire or ordinary-readback changes.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-displacement-batching.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp"
+      ],
+      "tests": [
+        "tests/displacement-batch-test.cpp",
+        "tests/combat-world-replay.cpp",
+        "tests/small-colour-batch-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/scene-upload-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/native-retained-world-test.cpp"
+      ],
+      "validation_dependencies": [
+        "renderer/CMakeLists.txt",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/known_pixels.hpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/sprites/sprite.cpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/resources/resource_manager.cpp",
+        "tests/resource-fixtures.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_frame.cpp"
+      ],
+      "evidence": [
+        "NATIVE12.displacement-controls01",
+        "NATIVE12.displacement-controls02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Authored-background native serial/scalar controls do not reconstruct original destination history.",
+        "Warm retained-frame completion includes diagnostic synchronization; no hardware GPU busy-time or universal live19..20FPS claim.",
+        "Live heavier fights, dynamic uploads, normal Quit and physical scanout remain separate validation.",
+        "Shared-renderer historical evidence retains original source hashes and pending applicability outside the focused controls.",
+        "Unknown hardware drivers retain normal native admission but have no measured performance claim; known software rasterizers use serial fallback after measured negative performance evidence."
+      ]
     }
   ],
   "evidence": [
@@ -408608,6 +408673,44 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NATIVE12.displacement-controls01",
+      "kind": "native_integration",
+      "scope": "Bounded native destination displacement: independent scalar/serial whole-image tests with overlap, clipping, row crossing, finite outside policy, draw/upload budgets, barriers and refusal; direct M1/software plus isolated serial fallback. Same retained heavy source on authored background,100frames in serial/batched/batched/serial order per backend. Native timing only; no original output/history or live FPS claim.",
+      "record": "research/runtime/native-displacement-results-20261112/controls01.json",
+      "sha256": "6d016c18e88a60f331fc281e338a6413649eb37b0cf0b023665e9ad975068560",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NATIVE12.displacement-controls02",
+      "kind": "native_integration",
+      "scope": "Bounded native destination displacement: independent scalar/serial whole-image tests with overlap, clipping, row crossing, finite outside policy, draw/upload budgets, barriers and refusal; direct M1 plus software and isolated serial fallback. Same retained heavy source on authored background,100frames in serial/batched/batched/serial order per backend. Native timing only; no original output/history or live FPS claim.",
+      "record": "research/runtime/native-displacement-results-20261112/controls02.json",
+      "sha256": "e158d58b7bfab87f8f633cf9bc38f6d017bb68fe52ebb3b121da9e55fcacaf40",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -444324,6 +444427,46 @@
       "evidence": [
         "BATTLE12.pixel-chain-live01"
       ]
+    },
+    {
+      "id": "native-displacement-batches-20261112",
+      "scope": "Bounded native destination displacement: independent scalar/serial whole-image tests with overlap, clipping, row crossing, finite outside policy, draw/upload budgets, barriers and refusal; direct M1/software plus isolated serial fallback. Same retained heavy source on authored background,100frames in serial/batched/batched/serial order per backend. Native timing only; no original output/history or live FPS claim.",
+      "level": "headless",
+      "behaviors": [
+        "NR.displacement-batching"
+      ],
+      "tests": [
+        "tests/displacement-batch-test.cpp",
+        "tests/combat-world-replay.cpp",
+        "tests/small-colour-batch-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/scene-upload-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/native-retained-world-test.cpp"
+      ],
+      "evidence": [
+        "NATIVE12.displacement-controls01"
+      ]
+    },
+    {
+      "id": "native-displacement-batches-software-fallback-20261112",
+      "scope": "Bounded native destination displacement: independent scalar/serial whole-image tests with overlap, clipping, row crossing, finite outside policy, draw/upload budgets, barriers and refusal; direct M1 plus software and isolated serial fallback. Same retained heavy source on authored background,100frames in serial/batched/batched/serial order per backend. Native timing only; no original output/history or live FPS claim.",
+      "level": "headless",
+      "behaviors": [
+        "NR.displacement-batching"
+      ],
+      "tests": [
+        "tests/displacement-batch-test.cpp",
+        "tests/combat-world-replay.cpp",
+        "tests/small-colour-batch-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/scene-upload-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/native-retained-world-test.cpp"
+      ],
+      "evidence": [
+        "NATIVE12.displacement-controls02"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -446151,8 +446294,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-d9b23976d3110b7199500af7d22556ab3c1d6712af855a7b4489500995d53e19.json",
-    "sha256": "d9b23976d3110b7199500af7d22556ab3c1d6712af855a7b4489500995d53e19"
+    "path": "research/runtime/coverage/source-index-b76bf91223863d88206550d71b32b21ef68c186305ae0585dee076cb2ef52b8a.json",
+    "sha256": "b76bf91223863d88206550d71b32b21ef68c186305ae0585dee076cb2ef52b8a"
   },
   "evidence_applicability": [
     {

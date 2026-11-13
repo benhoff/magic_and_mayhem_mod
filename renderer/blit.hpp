@@ -47,6 +47,8 @@ struct SmallColourDraw {
     std::array<std::uint32_t,4> pixels{};
     CompositeMode mode=CompositeMode::copy;
 };
+// Disjoint destination row spans sampling one pre-operation native image.
+struct DestinationSample {int x,y,sourceX,sourceY,width;};
 struct SpriteComposite {
     CompositeMode mode=CompositeMode::copy;
     // Nonnegative horizontal displacement, sampling untouched pixels to the right.
@@ -162,6 +164,11 @@ public:
     // Preserve order; only disjoint writes share a frozen destination and draw.
     // At most512 writes, on fully defined RGB565/RGB555 storage. No readback.
     void smallColourRects(SurfaceId,const std::vector<SmallColourDraw>&);
+    // Direct GL only; isolated scenes retain existing serial protocol operations.
+    // At most65536 sampled pixels in sorted disjoint row spans, submitted in
+    // blocks of4096. Requires fully defined RGB565; validates before mutation.
+    bool canBatchDestinationSamples() const;
+    void sampleDestination(SurfaceId,const std::vector<DestinationSample>&);
     void additiveRect(SurfaceId destination,Rect,const std::array<std::uint16_t,3>& channels);
     // Surface2-style same-format native operation; see surface_copy.hpp for the bounded policy.
     // Same-ID opaque copies freeze each ordered source piece on the GPU (max16MiB
