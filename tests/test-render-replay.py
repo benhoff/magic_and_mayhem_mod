@@ -202,6 +202,28 @@ class NativeTests(unittest.TestCase):
                          partial['native']['runs'][0]['final_sha256'])
         self.assertEqual(benchmark['native']['runs'][0]['diagnostic_readbacks'], 1)
 
+    def test_opt_in_owner_profile_preserves_readback_contract(self):
+        previous = os.environ.get('MNM_WORLD_OWNER_PROFILE')
+        try:
+            os.environ['MNM_WORLD_OWNER_PROFILE'] = '1'
+            _, report = self.replay('benchmark', '--start', '33', '--end', '36')
+        finally:
+            if previous is None:
+                os.environ.pop('MNM_WORLD_OWNER_PROFILE', None)
+            else:
+                os.environ['MNM_WORLD_OWNER_PROFILE'] = previous
+        native = report['native']
+        self.assertEqual(native['ordinary_readbacks'], 0)
+        self.assertEqual(native['runs'][0]['diagnostic_readbacks'], 1)
+        for frame in native['runs'][0]['frames']:
+            owner = frame['owner_profile']
+            self.assertEqual(len(owner['producer_ms']), 28)
+            self.assertEqual(len(owner['producer_calls']), 28)
+            self.assertGreater(owner['total_ms'], 0)
+            self.assertGreater(sum(owner['producer_calls']), 0)
+            for key in ['prepare_ms', 'scene_admission_ms', 'scene_drawing_ms', 'identities_ms']:
+                self.assertGreaterEqual(owner[key], 0)
+
     def test_real_source_history_is_applied_before_world(self):
         first = authored_world(1)
         # Move CREATE/FILL into a source-only prefix. Renumber the remaining

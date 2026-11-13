@@ -99,6 +99,24 @@ Use `--backend software` for an isolated llvmpipe control. Hardware mode uses
 the normal local OpenGL driver and reports its renderer name. Avoid competing
 game/GPU workloads when measuring performance.
 
+For native spike attribution, export the existing opt-in owner stage counters:
+
+```bash
+MNM_WORLD_OWNER_PROFILE=1 ./tools/render-replay.py benchmark working/render-replays/crowd.sqlite3
+```
+
+Each selected frame's `owner_profile` in the results SQLite payload separates
+producer operations, binding/preparation, scene admission, drawing and
+presentation. Export occurs outside frame timing; collecting the counters itself
+adds diagnostic overhead. These are wall times, not CPU self-time or GPU busy
+time. Use ordinary benchmarks for performance comparisons.
+
+Native World rendering batches consecutive additive particles using bounded
+owned source contributions, preserving exact RGB565 saturation and draw barriers.
+`MNM_WORLD_ADDITIVE_BATCH_BASELINE=1` selects the older serial path for diagnostic
+comparisons. This changes native drawing only; simulation and game pacing stay
+the same.
+
 ## Storage and validation
 
 Cases are SQLite databases with ordered, hashed, prefix-compressed source bytes,
