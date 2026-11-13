@@ -13,6 +13,7 @@
 #include <cstdio>
 namespace {
 QJsonArray pixelHashes;
+unsigned diagnosticFramebufferChecks=0;
 void require(bool ok,const char* message){if(!ok)throw std::runtime_error(message);}
 void word(QByteArray& out,unsigned v){char b[4];qToLittleEndian(v,b);out.append(b,4);}
 void record(QByteArray& out,unsigned op,unsigned& sequence,std::initializer_list<unsigned> fields,QByteArray pixels={}){
@@ -20,12 +21,15 @@ void record(QByteArray& out,unsigned op,unsigned& sequence,std::initializer_list
     for(auto v:fields)word(out,v);
     out+=pixels;
 }
-void pixel(GlViewport& viewport,QColor expected){
+bool pixel(GlViewport& viewport,QColor expected,bool pendingAllowed=false){
     viewport.repaint();const auto image=viewport.grabFramebuffer();
+    ++diagnosticFramebufferChecks;
     require(viewport.error().isEmpty()&&!image.isNull(),"Threaded viewport paint failed");
+    if(pendingAllowed && image.pixelColor(image.width()/2,image.height()/2)!=expected)return false;
     require(image.pixelColor(image.width()/2,image.height()/2)==expected,"Immutable native frame changed or disagreed with pixel oracle");
     const auto rgba=image.convertToFormat(QImage::Format_RGBA8888);
     pixelHashes.append(QString::fromLatin1(QCryptographicHash::hash(QByteArrayView(reinterpret_cast<const char*>(rgba.constBits()),rgba.sizeInBytes()),QCryptographicHash::Sha256).toHex()));
+    return true;
 }
 }
 int main(int argc,char** argv){
@@ -154,7 +158,11 @@ int main(int argc,char** argv){
         for(unsigned i=0;i<20;++i){
             input.clear();record(input,2,sequence,{1,0,0,1,1},QByteArray::fromHex(i%2?"1f00":"00f8"));record(input,6,sequence,{1});
             const auto before=shown;require(mnm_ring_write(&producer,input.data(),unsigned(input.size()))==1,"Reuse publication");
-            wait([&]{return shown>before;});pixel(viewport,i%2?Qt::blue:Qt::red);
+            // A previously blocked completed export can arrive before this
+            // new command's output. Check each newly delivered image until the
+            // requested colour arrives; the bounded wait still fails if lost.
+            auto checked=before;bool matched=false;
+            wait([&]{if(matched)return true;if(shown<=checked)return false;checked=shown;matched=pixel(viewport,i%2?Qt::blue:Qt::red,true);return matched;});
         }
         require(worker.report()["presentation_export_allocations"].toString().toULongLong()==2,"Output textures were reallocated instead of reused");
         // A native movie owns the viewport, but command ACKs still drain.
@@ -185,6 +193,6 @@ int main(int argc,char** argv){
         QElapsedTimer deadline;deadline.start();while(failed.poll(false,true)&&deadline.elapsed()<10000){app.processEvents();std::this_thread::sleep_for(std::chrono::milliseconds(1));}
         require(!failed.error().isEmpty(),"Malformed command accepted");failed.abort();bad.unmap(badMap);
         const auto hashes=QJsonDocument(pixelHashes).toJson(QJsonDocument::Compact);
-        std::printf("{\"success\":true,\"pixel_sha256\":%s,\"native_presentations\":172,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"movie_pause_drains_commands\":true,\"movie_pause_defers_gui_frames\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":25,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1,\"inherited_source_presented_once\":true,\"first_world_seal_timing\":true,\"detailed_ui_block_states\":true,\"frame_trace_bounds\":true,\"frame_trace_gui\":true,\"frame_trace_order_refusal\":true,\"deadline_deduplication\":true,\"elapsed_histogram_boundaries\":true,\"continuous_ui_clock_frames\":60,\"ordered_source_updates\":20,\"mixed_generation_refused\":true}\n",hashes.constData());return 0;
+        std::printf("{\"success\":true,\"pixel_sha256\":%s,\"native_presentations\":172,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"movie_pause_drains_commands\":true,\"movie_pause_defers_gui_frames\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":%u,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1,\"inherited_source_presented_once\":true,\"first_world_seal_timing\":true,\"detailed_ui_block_states\":true,\"frame_trace_bounds\":true,\"frame_trace_gui\":true,\"frame_trace_order_refusal\":true,\"deadline_deduplication\":true,\"elapsed_histogram_boundaries\":true,\"continuous_ui_clock_frames\":60,\"ordered_source_updates\":20,\"mixed_generation_refused\":true}\n",hashes.constData(),diagnosticFramebufferChecks);return 0;
     }catch(const std::exception& e){std::fprintf(stderr,"Render worker controls failed: %s\n",e.what());return 1;}
 }

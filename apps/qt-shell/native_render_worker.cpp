@@ -305,8 +305,12 @@ void NativeRenderWorker::run(){
                             {"surface",int(result?result->displaySurface:0)},{"sealed_world",QString::number(result?result->displaySealedGeneration:0)},
                             {"width",frozen.size().width()},{"height",frozen.size().height()}});
                         std::lock_guard<std::mutex> lock(mutex_);trace.published=frameTrace_.stamp();readyFrame_=std::move(frozen);readySerial_=exports_;readyGeneration_=uiState.worldOutput?uiState.generation:0;
-                    }else{++skipped_;trace.exportBlocked=true;}
-                    frameChanged_=false;
+                        frameChanged_=false;
+                    }else{
+                        // Keep the latest completed image pending. A GUI lease
+                        // can retire before another PRESENT/source arrives.
+                        ++skipped_;trace.exportBlocked=true;
+                    }
                 }
             }
             if(durableGraphics_){world_->checkpointGraphics();commands_->checkpointGraphics();}

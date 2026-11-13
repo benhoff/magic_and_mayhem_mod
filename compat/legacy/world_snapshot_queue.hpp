@@ -36,6 +36,7 @@ public:
   Stats stats() const;
   void stop();
 private:
+  friend struct WorldSnapshotQueueTestAccess; // authored post-verification host fixtures
   void capture();
   WorldContinuousChannel& channel_;
   bool retainWire_=false;
