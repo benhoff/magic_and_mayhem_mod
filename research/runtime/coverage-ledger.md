@@ -29327,3 +29327,28 @@ gap contains intervening UI-tagged swaps at approximately 60 Hz; this is not a
 pixel-based freeze measurement. Earlier battle window: 24–28 living actors,
 15 movers, 28 hits, source 19.96 Hz; GUI tail unavailable there. Controlled source
 cancellation after measurement retains timing, and is not normal-Quit validation.
+
+### 2026-11-13: deterministic native World stream replay
+
+`NR.deterministic-world-stream-replay` adds SQLite cases, pinned shared assets,
+fixed-rate viewing, frame stepping/rewind, fresh-repeat pixel comparison and
+selected-range native timing after complete history restoration. Eleven authored
+controls pass on llvmpipe/M1; capture limit/prefix controls pass separately.
+Actual combat acquisition retains 868 complete Worlds, 38 peak living actors,
+35 moving slots and 57 melee hits. Selected frames 700–820 repeat identically;
+three benchmark repeats measure median 11.760 ms and p95 83.676 ms native serial
+completion, with repeatable late-frame spikes above the 50 ms budget. These are
+renderer service times, not live FPS or original pixel equivalence. The full
+input script/normal Quit did not finish: World 869 preserves the existing guarded
+caller `0x54a563` refusal. No original engine/AI/clock/balance or admission change.
+See [replay findings](deterministic-render-replay-20261113.md),
+[usage](../../docs/render-replay.md) and SQLite `NATIVE13.render-replay01`.
+Manual record-CLI normal-Quit acceptance, HUD/audio/scanout and native hotspot
+attribution remain separate. Historical profiling statuses/hashes are retained
+with pending broader applicability after the opt-in capture change.
+`NATIVE13.render-replay02` retains fresh controls and captured execution after
+correcting the offline viewer deadline to include drawing within its requested
+period. The final executable matches the initial captured pixel baseline; its
+three benchmark repeats measure median 12.021 ms / p95 81.489 ms. Initial evidence
+and source hashes remain retained separately. No native rendering optimization
+or original engine change is claimed by this testing workflow.

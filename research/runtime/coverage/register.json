@@ -46099,7 +46099,9 @@
         "research/runtime/resident-profile-offline-o2-20261011.json",
         "research/runtime/resident-profile-matched-input-comparison-20261011.json",
         "research/runtime/rendering-low20-20261020.md",
-        "research/runtime/rendering-twelfth-ten-closeouts-20261022.md"
+        "research/runtime/rendering-twelfth-ten-closeouts-20261022.md",
+        "docs/render-replay.md",
+        "research/runtime/deterministic-render-replay-20261113.md"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -46129,7 +46131,8 @@
         "tools/rendering_twelfth_controls.py",
         "tests/test-rendering-twelfth-ten.py",
         "tests/rendering-twelfth-ten/CMakeLists.txt",
-        "tests/rendering-twelfth-linear.cpp"
+        "tests/rendering-twelfth-linear.cpp",
+        "tests/test-render-replay.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -46338,7 +46341,8 @@
         "Original paired pacing and millisecond residual observations do not establish universal20Hz simulation behavior. Preserve selected50ms target; presentation/original-work attribution, crowded/other-scene workloads and safe60FPS gameplay remain outstanding.",
         "CPU symbolization is deferred until campaign cleanup; fresh execution of that deferred sampling branch is pending. Growing diagnostic JSON publication every64 Worlds remains outside stage timing and unoptimized.",
         "Storage automation emits an empty steps array; its requested minimum_fps does not exercise the ordinary smoke flow worst-window cadence validator. The successful480-World storage journey is functional/resource evidence, not a new per-window paint-rate or sustained hardware pass.",
-        "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work."
+        "NT12 supplies fresh bounded authored implementation controls on software/TITAN and owned PE32/X11, not renewed original-game or captured-workload performance validation. Historical original failures and source hashes remain immutable; shared-source changes can stale prior comparison/integration proofs. Complete original state/backing/writer/route ownership, arbitrary workload/pause/network controls, acceptance, scanout and live replacement remain separate pending work.",
+        "2026-11-13 adds opt-in native prefix capture and a1..8192 World I/O limit, with bounded controls registered separately under NR.deterministic-world-stream-replay. Default recording semantics and earlier hashes/statuses remain historical; broader current profiling/campaign/normal-Quit applicability is not renewed."
       ],
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-5-20261020",
@@ -180373,6 +180377,231 @@
         "Focused controls and bounded combat observations do not prove universally smooth20FPS, physical scanout or long-session stability.",
         "Original source intervals can exceed50ms; existing unsupported raster caller0x54a563 remains guarded.",
         "Broader hosting/renderer historical proofs retain original hashes and pending source applicability."
+      ]
+    },
+    {
+      "id": "NR.deterministic-world-stream-replay",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Deterministic offline World stream cases and history-preserving replay",
+      "scope": "Bounded SQLite cases retain contiguous engine World source/request bytes from generation1, optional source-history records, exact hashes and pinned asset inputs. Offline native replay restores all earlier producer/canvas state before selected frames, resets state on restart/repeat/backward seek, supports fixed-rate viewing and isolated timing/hash comparisons. No original simulation, AI, input, HUD/audio, original pixel oracle or live FPS equivalence is inferred; authored closed-queue controls remain separately labelled.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/render-replay.md",
+        "research/runtime/coverage-ledger.md",
+        "research/runtime/deterministic-render-replay-20261113.md"
+      ],
+      "implementation": [
+        "tools/native_world_replay.py",
+        "tools/render-replay.py",
+        "tools/render-replay/main.cpp",
+        "tools/render-replay/CMakeLists.txt",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp"
+      ],
+      "tests": [
+        "tests/test-render-replay.py",
+        "tests/resident-profile-capture-test.cpp",
+        "tests/resident-profile-capture-test.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/acceptance_capture.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/host_timing_trace.hpp",
+        "apps/qt-shell/native_render_target.hpp",
+        "apps/qt-shell/profile_capture_codec.hpp",
+        "apps/qt-shell/watchdog_host_fault.hpp",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/../animation.hpp",
+        "assets/resources/../asset_file.hpp",
+        "assets/resources/../bmp.hpp",
+        "assets/resources/../jpeg.hpp",
+        "assets/resources/../path_resolver.hpp",
+        "assets/resources/../pcx.hpp",
+        "assets/resources/../sprite_loader.hpp",
+        "assets/resources/../terrain_catalog.hpp",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/screen_resources.cpp",
+        "assets/resources/screen_resources.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/../../assets/jpeg.hpp",
+        "compat/legacy/../../assets/pcx.hpp",
+        "compat/legacy/../../protocols/include/mnm/canvas_producers_v1.h",
+        "compat/legacy/../../protocols/include/mnm/canvas_producers_v2.h",
+        "compat/legacy/../../protocols/include/mnm/canvas_producers_v3.h",
+        "compat/legacy/../../protocols/include/mnm/canvas_producers_v4.h",
+        "compat/legacy/../../protocols/include/mnm/scene_snapshot_v1.h",
+        "compat/legacy/../../protocols/include/mnm/world_continuous_checksum.h",
+        "compat/legacy/../../protocols/include/mnm/world_continuous_v3.h",
+        "compat/legacy/../../protocols/include/mnm/world_continuous_v4.h",
+        "compat/legacy/../../protocols/include/mnm/world_continuous_v5.h",
+        "compat/legacy/../../protocols/include/mnm/world_continuous_v6.h",
+        "compat/legacy/../../protocols/include/mnm/world_effect_raster_v1.h",
+        "compat/legacy/../../protocols/include/mnm/world_frame_v1.h",
+        "compat/legacy/../../protocols/include/mnm/world_raster_batch_v3.h",
+        "compat/legacy/../../protocols/include/mnm/world_rolling_v1.h",
+        "compat/legacy/../../reconstruction/rendering/effect_raster_return.hpp",
+        "compat/legacy/../../reconstruction/rendering/fade_span.hpp",
+        "compat/legacy/../../renderer/../assets/asset_file.hpp",
+        "compat/legacy/../../renderer/../assets/path_resolver.hpp",
+        "compat/legacy/../../renderer/../assets/sprite_loader.hpp",
+        "compat/legacy/../../renderer/alternate_canvas.hpp",
+        "compat/legacy/../../renderer/blit.hpp",
+        "compat/legacy/../../renderer/canvas_mirror.hpp",
+        "compat/legacy/../../renderer/canvas_sequence.hpp",
+        "compat/legacy/../../renderer/dib.hpp",
+        "compat/legacy/../../renderer/gpu_alternate_canvas.hpp",
+        "compat/legacy/../../renderer/gpu_canvas_mirror.hpp",
+        "compat/legacy/../../renderer/minimap/minimap.hpp",
+        "compat/legacy/../../renderer/minimap/overlays.hpp",
+        "compat/legacy/../../renderer/sprites/tint_colour.hpp",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "compat/legacy/world_snapshot_queue.hpp",
+        "renderer/../assets/asset_file.hpp",
+        "renderer/../assets/path_resolver.hpp",
+        "renderer/../assets/sprite_loader.hpp",
+        "renderer/../assets/sprite_run_clipping.hpp",
+        "renderer/../protocols/include/mnm/render_stream_v2.h",
+        "renderer/../protocols/include/mnm/render_stream_v3.h",
+        "renderer/../protocols/include/mnm/render_stream_v4.h",
+        "renderer/../protocols/include/mnm/render_stream_v5.h",
+        "renderer/../protocols/include/mnm/resident_frame_budget.h",
+        "renderer/../protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_copy_diagnostics.cpp",
+        "renderer/command_copy_diagnostics.hpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/cursor_compositor.cpp",
+        "renderer/cursor_compositor.hpp",
+        "renderer/diagnostic_worker.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/gpu_production_queue.hpp",
+        "renderer/isolated_renderer.cpp",
+        "renderer/isolated_renderer.hpp",
+        "renderer/isolated_wire.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/native_frame_recipe.cpp",
+        "renderer/native_frame_recipe.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/../sprites/../../assets/sprite_run_clipping.hpp",
+        "renderer/scenes/../sprites/row_effect.hpp",
+        "renderer/scenes/../sprites/tint_outline.hpp",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/../apps/qt-shell/resident_profile_capture.hpp",
+        "tools/render-replay/../../compat/legacy/../../protocols/include/mnm/world_rolling_v1.h",
+        "tools/render-replay/../../compat/legacy/../../renderer/../assets/asset_file.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/../assets/path_resolver.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/../assets/sprite_loader.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/alternate_canvas.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/blit.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/canvas_mirror.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/canvas_sequence.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/gpu_alternate_canvas.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/gpu_canvas_mirror.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/minimap/minimap.hpp",
+        "tools/render-replay/../../compat/legacy/../../renderer/minimap/overlays.hpp",
+        "tools/render-replay/../../compat/legacy/canvas_producers.hpp",
+        "tools/render-replay/../../compat/legacy/canvas_world.hpp",
+        "tools/render-replay/../../compat/legacy/scene_snapshot.hpp",
+        "tools/render-replay/../../compat/legacy/world_frame.hpp",
+        "tools/render-replay/../../compat/legacy/world_raster_batch.hpp",
+        "tools/render-replay/../../compat/legacy/world_resources.hpp",
+        "tools/render-replay/../../compat/legacy/world_rolling_channel.hpp",
+        "tools/render-replay/../../compat/legacy/world_rolling_handoff.hpp",
+        "tools/render-replay/../../compat/legacy/world_rolling_packet.hpp",
+        "tools/render-replay/../../compat/legacy/world_rolling_session.hpp",
+        "tools/resident_capture.py"
+      ],
+      "evidence": [
+        "NATIVE13.render-replay01",
+        "NATIVE13.render-replay02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "World-only native regression reference, not original pixel equivalence, deterministic AI/gameplay, HUD/audio, live FPS, dedicated render-owner loop, compositor or scanout proof.",
+        "Actual acquisition stopped at existing reason43/tag14/caller0x54a563 in World869; only explicit valid prefix1..868 is imported. Full script/normal Quit and manual record-CLI end-to-end acceptance are unvalidated.",
+        "Captured frames700..820 have repeatable native timing spikes above50ms; individual CPU/GPU attribution and subsequent optimizations remain outstanding.",
+        "Asset inputs stay external and hash-pinned; capture ordinal playback uses a requested fixed rate, not original wall-clock intervals."
       ]
     }
   ],
@@ -408863,6 +409092,44 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NATIVE13.render-replay01",
+      "kind": "native_integration",
+      "scope": "Native World-only authored moving32-instance controls on llvmpipe/M1, native/Python prefix recording and corruption controls, and actual captured combat prefix1..868 with selected700..820 hashes across two fresh M1 runs and three serial native benchmark repeats. Restored history, viewer rewind, negative baseline and zero ordinary readbacks; no original pixel comparison, deterministic gameplay, live FPS or full acquisition/normal-Quit acceptance.",
+      "record": "research/runtime/deterministic-render-replay-results-20261113/replay01.json",
+      "sha256": "08cfde91211e6628ff676a2a742d96063378b434b81cc298175589fa59f71680",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NATIVE13.render-replay02",
+      "kind": "native_integration",
+      "scope": "Native World-only authored moving32-instance controls on llvmpipe/M1, native/Python prefix recording and corruption controls, and actual captured combat prefix1..868 with selected700..820 hashes across two fresh M1 runs and three serial native benchmark repeats. Restored history, viewer rewind, negative baseline and zero ordinary readbacks; no original pixel comparison, deterministic gameplay, live FPS or full acquisition/normal-Quit acceptance.",
+      "record": "research/runtime/deterministic-render-replay-results-20261113/replay02.json",
+      "sha256": "5fc954aa1b35445ea70efbc7158b87616ce69de360d32d8bca07788a34520d05",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -444657,6 +444924,38 @@
       "evidence": [
         "NATIVE13.frame-pacing-battle01"
       ]
+    },
+    {
+      "id": "native-deterministic-world-replay-20261113",
+      "scope": "Native World-only authored moving32-instance controls on llvmpipe/M1, native/Python prefix recording and corruption controls, and actual captured combat prefix1..868 with selected700..820 hashes across two fresh M1 runs and three serial native benchmark repeats. Restored history, viewer rewind, negative baseline and zero ordinary readbacks; no original pixel comparison, deterministic gameplay, live FPS or full acquisition/normal-Quit acceptance.",
+      "level": "headless",
+      "behaviors": [
+        "NR.deterministic-world-stream-replay"
+      ],
+      "tests": [
+        "tests/test-render-replay.py",
+        "tests/resident-profile-capture-test.cpp",
+        "tests/resident-profile-capture-test.py"
+      ],
+      "evidence": [
+        "NATIVE13.render-replay01"
+      ]
+    },
+    {
+      "id": "native-deterministic-world-replay-final-20261113",
+      "scope": "Native World-only authored moving32-instance controls on llvmpipe/M1, native/Python prefix recording and corruption controls, and actual captured combat prefix1..868 with selected700..820 hashes across two fresh M1 runs and three serial native benchmark repeats. Restored history, viewer rewind, negative baseline and zero ordinary readbacks; no original pixel comparison, deterministic gameplay, live FPS or full acquisition/normal-Quit acceptance.",
+      "level": "headless",
+      "behaviors": [
+        "NR.deterministic-world-stream-replay"
+      ],
+      "tests": [
+        "tests/test-render-replay.py",
+        "tests/resident-profile-capture-test.cpp",
+        "tests/resident-profile-capture-test.py"
+      ],
+      "evidence": [
+        "NATIVE13.render-replay02"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -446484,8 +446783,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-10aa0ae7a7c22d2aff6d0974c56d683e9166a539b8c3dea6d1fcc17d26a1ed5d.json",
-    "sha256": "10aa0ae7a7c22d2aff6d0974c56d683e9166a539b8c3dea6d1fcc17d26a1ed5d"
+    "path": "research/runtime/coverage/source-index-4581895cecddccbe901ad6f4275077faed08e2e40719a4fa8ca6730142616da4.json",
+    "sha256": "4581895cecddccbe901ad6f4275077faed08e2e40719a4fa8ca6730142616da4"
   },
   "evidence_applicability": [
     {

@@ -20,6 +20,9 @@ def main():
         _,source,request=struct.unpack_from('<QII',expected,end);end+=16+source+request
     assert prefix['worlds']==2 and prefix['captured_worlds']==4 and (worker/'python-prefix.bin').read_bytes()==expected[:end]
     history=list(records(worker/'sources.bin'))
+    bounded=list(records(worker/'bounded-prefix.bin'))
+    assert [(g,c)for g,c,s,q in bounded]==[(1,0),(2,0)]
+    assert bounded[0][2:]==bounded[1][2:]
     assert [(g,c) for g,c,s,q in history]==[(1,1),(1,2),(1,0),(2,3),(2,0)]
     assert all(len(s)==4096 and len(q)==(0 if c else 64) for g,c,s,q in history)
     try:normalize_capture(worker/'sources.bin',worker/'flat-source.bin')

@@ -21,6 +21,12 @@ int main(int argc,char** argv) try {
     normal.finish();normal.finish();const auto complete=normal.report();
     require(complete["complete"].toBool() && complete["written_worlds"].toInt()==4 && complete["queue_bytes"].toInt()==0,"Capture worker retirement");
     QFile file(root+"/expected-v1.bin");require(file.open(QIODevice::WriteOnly|QIODevice::NewOnly) && file.write(expected)==expected.size(),"Expected capture bytes");file.close();
+    qputenv("MNM_RESIDENT_CAPTURE_PREFIX","1");qputenv("MNM_RESIDENT_CAPTURE_MAX_WORLDS","2");
+    ResidentProfileCapture bounded(root+"/bounded-prefix.bin");
+    require(bounded.enqueue(1,source,request)&&bounded.enqueue(2,source,request),"Bounded recording prefix");
+    require(!bounded.enqueue(3,source,request),"Recording limit failed to stop I/O");bounded.finish();
+    const auto boundedReport=bounded.report();require(boundedReport["format"].toInt()==4&&boundedReport["complete"].toBool()&&boundedReport["written_worlds"].toInt()==2&&boundedReport["world_limit_reached"].toBool()&&!boundedReport["truncated"].toBool(),"Intentional recording limit confused incomplete capture");
+    qunsetenv("MNM_RESIDENT_CAPTURE_PREFIX");qunsetenv("MNM_RESIDENT_CAPTURE_MAX_WORLDS");
     ResidentProfileCapture history(root+"/sources.bin",256ull*1024*1024,true);
     require(history.enqueueSource(1,source)&&history.enqueueSource(1,source)&&history.enqueue(1,source,request),"Source prefixes before first World");
     require(history.enqueueSource(2,source)&&history.enqueue(2,source,request),"Next source prefix and World");
@@ -38,5 +44,11 @@ int main(int argc,char** argv) try {
     const auto occupied=root+"/occupied.bin";QFile sentinel(occupied);require(sentinel.open(QIODevice::WriteOnly|QIODevice::NewOnly) && sentinel.write("preserved",9)==9,"Sentinel");sentinel.close();
     ResidentProfileCapture exists(occupied);exists.finish();require(!exists.report()["error"].toString().isEmpty(),"Existing file admitted");require(sentinel.open(QIODevice::ReadOnly) && sentinel.readAll()=="preserved","Existing file overwritten");
     bool refused=false;try{ResidentProfileCapture invalid(root+"/invalid.bin",127);}catch(const std::runtime_error&){refused=true;}require(refused,"Queue policy admitted invalid bound");
+    for(const auto* limit:{"0","8193","-1","bad"}){
+        qputenv("MNM_RESIDENT_CAPTURE_MAX_WORLDS",limit);bool invalid=false;
+        try{ResidentProfileCapture bad(root+"/invalid-limit.bin");}catch(const std::runtime_error&){invalid=true;}
+        require(invalid&&!QFile::exists(root+"/invalid-limit.bin"),"Invalid recording limit created output");
+    }
+    qunsetenv("MNM_RESIDENT_CAPTURE_MAX_WORLDS");
     std::cout<<QJsonDocument(QJsonObject{{"success",true},{"normal",complete},{"overflow",overflow.report()},{"controls",5},{"exact_raw_bytes",expected.size()}}).toJson(QJsonDocument::Compact).constData()<<'\n';return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
