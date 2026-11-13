@@ -199,35 +199,33 @@ void main(){ivec2 at=ivec2(gl_FragCoord.xy);uint index=texelFetch(coordinates,at
  nativePixel=((c.r>>3u)<<11u)|((c.g>>2u)<<5u)|(c.b>>3u);
 })";
 constexpr auto smallColourVertex=R"(#version 330 core
-layout(location=0)in ivec4 rectangle;
-layout(location=1)in uvec4 colours;
-layout(location=2)in int operation;
+layout(location=0)in ivec4 pixelSpan;
 uniform ivec2 canvasSize;
-flat out ivec2 origin;
-flat out uvec4 words;
-flat out int mode;
+flat out ivec2 operations;
 void main(){
  const ivec2 corners[6]=ivec2[6](ivec2(0,0),ivec2(1,0),ivec2(0,1),ivec2(0,1),ivec2(1,0),ivec2(1,1));
- ivec2 position=rectangle.xy+corners[gl_VertexID]*(rectangle.zw-rectangle.xy);
+ ivec2 position=pixelSpan.xy+corners[gl_VertexID];
  gl_Position=vec4(vec2(position)*2.0/vec2(canvasSize)-1.0,0.0,1.0);
- origin=rectangle.xy;words=colours;mode=operation;
+ operations=pixelSpan.zw;
 })";
 constexpr auto smallColourFragment=R"(#version 330 core
 uniform usampler2D oldPixels;
+uniform usamplerBuffer colourOperations;
 uniform ivec2 oldOrigin;
 uniform uint blendMask;
-flat in ivec2 origin;
-flat in uvec4 words;
-flat in int mode;
+flat in ivec2 operations;
 layout(location=0)out uint nativePixel;
 void main(){
- ivec2 at=ivec2(gl_FragCoord.xy),local=at-origin;
- uint s=words[local.y*2+local.x];
- if(mode==0){nativePixel=s;return;}
- uint d=texelFetch(oldPixels,at-oldOrigin,0).r,m=blendMask;
- if(mode==1)nativePixel=((s>>1u)&m)+((d>>1u)&m);
- else if(mode==2){uint h=(d>>1u)&m;nativePixel=h+((h>>1u)&m)+((s>>2u)&(m>>1u)&m);}
- else {uint h=(s>>1u)&m;nativePixel=h+((h>>1u)&m)+((d>>2u)&(m>>1u)&m);}
+ uint d=texelFetch(oldPixels,ivec2(gl_FragCoord.xy)-oldOrigin,0).r,m=blendMask;
+ for(int i=0;i<operations.y;++i){
+  uint encoded=texelFetch(colourOperations,operations.x+i).r;
+  uint s=encoded&65535u,mode=encoded>>16u;
+  if(mode==0u)d=s;
+  else if(mode==1u)d=((s>>1u)&m)+((d>>1u)&m);
+  else if(mode==2u){uint h=(d>>1u)&m;d=h+((h>>1u)&m)+((s>>2u)&(m>>1u)&m);}
+  else {uint h=(s>>1u)&m;d=h+((h>>1u)&m)+((d>>2u)&(m>>1u)&m);}
+ }
+ nativePixel=d;
 })";
 void validateImage(const Image& i,unsigned bits){
     if(bits!=8 && bits!=16 && bits!=24 && bits!=32)throw std::runtime_error("Unsupported native pixel size");
@@ -274,7 +272,7 @@ struct GlBlitter::Impl {
     using CopyImage=void(QOPENGLF_APIENTRYP)(GLuint,GLenum,GLint,GLint,GLint,GLint,GLuint,GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei);
     CopyImage copyImage=nullptr;
     std::unique_ptr<QOpenGLShaderProgram> program,presentation,compositing,copying,importing,coordinateProgram,mappedWorldProgram,smallColour;
-    GLuint vao=0,fbo=0,scratch=0,copyBuffer=0,paletteBank=0;
+    GLuint vao=0,fbo=0,scratch=0,copyBuffer=0,paletteBank=0,colourBuffer=0,colourOperations=0;
     int scratchWidth=0,scratchHeight=0;
     GLuint maskedColour=0,maskedSelection=0;
     int maskedWidth=0,maskedHeight=0;
@@ -612,7 +610,7 @@ struct GlBlitter::Impl {
                 deferredFrames.clear();
                 for(auto& pair:surfaces)release(pair.second);
                 for(const auto& timing:gpuTimings)gl.glDeleteQueries(2,timing.queries.data());
-                deleteTextures(1,&scratch);deleteTextures(1,&maskedColour);deleteTextures(1,&maskedSelection);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);smallColour.reset();copying.reset();importing.reset();coordinateProgram.reset();mappedWorldProgram.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
+                deleteTextures(1,&scratch);deleteTextures(1,&maskedColour);deleteTextures(1,&maskedSelection);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);gl.glDeleteBuffers(1,&colourBuffer);deleteTextures(1,&colourOperations);smallColour.reset();copying.reset();importing.reset();coordinateProgram.reset();mappedWorldProgram.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
             catch(const std::exception&){}
         }
     }
@@ -1144,31 +1142,46 @@ void GlBlitter::smallColourRects(SurfaceId destination,const std::vector<SmallCo
             throw GraphicsFailure(shader->log().toStdString());
         p.smallColour=std::move(shader);
     }
-    struct Instance {std::array<GLint,4> rectangle;std::array<GLuint,4> colours;GLint mode;};
-    std::vector<Instance> group;group.reserve(writes.size());
-    for(std::size_t first=0;first<writes.size();){
-        auto area=writes[first].destination;group.clear();std::size_t end=first;
-        for(;end<writes.size();++end){const auto& w=writes[end];const auto r=w.destination;
-            // A shared snapshot is correct only for disjoint writes. Stop at
-            // the first dependency, preserving order across every batch.
-            if(std::any_of(group.begin(),group.end(),[r](const auto& a){return r.left<a.rectangle[2]&&r.right>a.rectangle[0]&&r.top<a.rectangle[3]&&r.bottom>a.rectangle[1];}))break;
-            group.push_back({{r.left,r.top,r.right,r.bottom},w.pixels,GLint(w.mode)});
-            area={std::min(area.left,r.left),std::min(area.top,r.top),std::max(area.right,r.right),std::max(area.bottom,r.bottom)};
-        }
-        const auto frozen=p.snapshot(dst,area);p.damage(dst,area);p.setScissor(false);p.useProgram(p.smallColour->programId());
-        g.glActiveTexture(GL_TEXTURE2);g.glBindTexture(GL_TEXTURE_2D,frozen);
-        g.glUniform1i(p.smallColour->uniformLocation("oldPixels"),2);
-        g.glUniform2i(p.smallColour->uniformLocation("oldOrigin"),area.left,area.top);
-        g.glUniform2i(p.smallColour->uniformLocation("canvasSize"),dst.width,dst.height);
-        g.glUniform1ui(p.smallColour->uniformLocation("blendMask"),rgb555?0x3defu:0x7befu);
-        if(!p.copyBuffer)g.glGenBuffers(1,&p.copyBuffer);
-        g.glBindBuffer(GL_ARRAY_BUFFER,p.copyBuffer);g.glBufferData(GL_ARRAY_BUFFER,GLsizeiptr(group.size()*sizeof(Instance)),group.data(),GL_STREAM_DRAW);
-        g.glEnableVertexAttribArray(0);g.glVertexAttribIPointer(0,4,GL_INT,sizeof(Instance),nullptr);g.glVertexAttribDivisor(0,1);
-        g.glEnableVertexAttribArray(1);g.glVertexAttribIPointer(1,4,GL_UNSIGNED_INT,sizeof(Instance),reinterpret_cast<const void*>(offsetof(Instance,colours)));g.glVertexAttribDivisor(1,1);
-        g.glEnableVertexAttribArray(2);g.glVertexAttribIPointer(2,1,GL_INT,sizeof(Instance),reinterpret_cast<const void*>(offsetof(Instance,mode)));g.glVertexAttribDivisor(2,1);
-        g.glDrawArraysInstanced(GL_TRIANGLES,0,6,GLsizei(group.size()));++p.counters.drawCalls;p.counters.drawInstances+=group.size();p.counters.copies+=group.size();p.check();
-        first=end;
+    // These blends read only their own destination pixel. Partition into pixel
+    // chains, retaining the exact input order within each chain. Unlike a shared
+    // snapshot per nonoverlapping group, one snapshot now also handles overlaps.
+    // At most 512 writes * 4 pixels; no destination readback or colour folding.
+    struct Operation {int pixel;GLuint packed;};
+    std::vector<Operation> operations;operations.reserve(writes.size()*4);
+    auto area=writes.front().destination;
+    for(const auto& w:writes){const auto r=w.destination;
+        area={std::min(area.left,r.left),std::min(area.top,r.top),std::max(area.right,r.right),std::max(area.bottom,r.bottom)};
+        for(int y=r.top;y<r.bottom;++y)for(int x=r.left;x<r.right;++x)
+            operations.push_back({y*dst.width+x,w.pixels[std::size_t(y-r.top)*2+x-r.left]|(GLuint(w.mode)<<16)});
     }
+    std::stable_sort(operations.begin(),operations.end(),[](const auto& a,const auto& b){return a.pixel<b.pixel;});
+    std::vector<std::array<GLint,4>> instances;instances.reserve(operations.size());
+    std::vector<GLuint> words;words.reserve(operations.size());
+    for(std::size_t i=0;i<operations.size();){
+        const auto first=i;const auto pixel=operations[i].pixel;
+        do{words.push_back(operations[i++].packed);}while(i<operations.size()&&operations[i].pixel==pixel);
+        instances.push_back({pixel%dst.width,pixel/dst.width,GLint(first),GLint(i-first)});
+    }
+    const auto frozen=p.snapshot(dst,area);p.damage(dst,area);p.setScissor(false);p.useProgram(p.smallColour->programId());
+    g.glActiveTexture(GL_TEXTURE2);g.glBindTexture(GL_TEXTURE_2D,frozen);
+    g.glUniform1i(p.smallColour->uniformLocation("oldPixels"),2);
+    g.glUniform2i(p.smallColour->uniformLocation("oldOrigin"),area.left,area.top);
+    g.glUniform2i(p.smallColour->uniformLocation("canvasSize"),dst.width,dst.height);
+    g.glUniform1ui(p.smallColour->uniformLocation("blendMask"),rgb555?0x3defu:0x7befu);
+    if(!p.colourBuffer)g.glGenBuffers(1,&p.colourBuffer);
+    if(!p.colourOperations)g.glGenTextures(1,&p.colourOperations);
+    g.glBindBuffer(GL_TEXTURE_BUFFER,p.colourBuffer);
+    g.glBufferData(GL_TEXTURE_BUFFER,GLsizeiptr(words.size()*sizeof(GLuint)),words.data(),GL_STREAM_DRAW);
+    g.glActiveTexture(GL_TEXTURE3);g.glBindTexture(GL_TEXTURE_BUFFER,p.colourOperations);
+    g.glTexBuffer(GL_TEXTURE_BUFFER,GL_R32UI,p.colourBuffer);
+    g.glUniform1i(p.smallColour->uniformLocation("colourOperations"),3);
+    if(!p.copyBuffer)g.glGenBuffers(1,&p.copyBuffer);
+    g.glBindBuffer(GL_ARRAY_BUFFER,p.copyBuffer);
+    g.glBufferData(GL_ARRAY_BUFFER,GLsizeiptr(instances.size()*sizeof(instances[0])),instances.data(),GL_STREAM_DRAW);
+    g.glEnableVertexAttribArray(0);g.glVertexAttribIPointer(0,4,GL_INT,sizeof(instances[0]),nullptr);g.glVertexAttribDivisor(0,1);
+    g.glDisableVertexAttribArray(1);g.glDisableVertexAttribArray(2);
+    g.glDrawArraysInstanced(GL_TRIANGLES,0,6,GLsizei(instances.size()));
+    ++p.counters.drawCalls;p.counters.drawInstances+=instances.size();p.counters.copies+=writes.size();p.check();
 }
 void GlBlitter::additiveRect(SurfaceId destination,Rect r,const std::array<std::uint16_t,3>& channels){
     if(isolated_){isolated_->call(wire::message(wire::Op::additive,destination,r,channels),true);return;}

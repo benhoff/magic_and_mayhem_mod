@@ -66406,7 +66406,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/native-frame-trace.md"
+        "research/runtime/native-frame-trace.md",
+        "research/runtime/large-battle-attribution-20261112.md"
       ],
       "implementation": [
         "apps/qt-shell/native_frame_trace.hpp",
@@ -66487,7 +66488,9 @@
         "HOST.native-frame-trace.controls-20261012",
         "HOST.native-frame-trace.baseline-public-negative-20261012",
         "NR.native-status-outside-drawing.final-public-20261013",
-        "HOST.native-gui-delivery-diagnostics.merge-final-public-20261014"
+        "HOST.native-gui-delivery-diagnostics.merge-final-public-20261014",
+        "BATTLE12.native-attribution01",
+        "BATTLE12.pixel-chain-live01"
       ],
       "remaining_gaps": [
         "Current full functional TITAN trace balances4343Worlds with zero ordinary readbacks and verified originals/cleanup. Engine18.739FPS fails19floor; native48.913FPS fails60. Visible native49.438FPS; status publication19.873seconds/230.551visible seconds, GUI paintmean0.225ms. Current causal optimization, tracing overhead, GPU/scanout/original equivalence and intermittent pixels remain pending.",
@@ -124836,7 +124839,8 @@
         "research/runtime/rendering-seventeenth-five-20261023.md",
         "research/runtime/rendering-required-dependencies-20261024.md",
         "docs/native-rendering-dependencies.json",
-        "research/runtime/attachment-combat-output-20261107.md"
+        "research/runtime/attachment-combat-output-20261107.md",
+        "research/runtime/large-battle-attribution-20261112.md"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -125598,7 +125602,9 @@
         "TLQF26.native-only-controls",
         "TLQF26.native-stress",
         "TLQF26.worker-loss",
-        "AC07.attachment-low-quota-failure01"
+        "AC07.attachment-low-quota-failure01",
+        "BATTLE12.native-attribution01",
+        "BATTLE12.pixel-chain-live01"
       ],
       "status": {
         "understanding": "scoped",
@@ -125618,7 +125624,8 @@
         "RFL20261025 adds a separate functional FPS policy and local callback-after-readiness recheck. Shared helper/harness source changes do not refresh historical benchmark, broader camera-body/original-pixel or launch-policy stage evidence. The new source-bound functional behavior has independent current execution; historical fingerprints remain unchanged.",
         "TLQF26 closes the observed Save geometry refusal, avoidable per-request worker setup and orphan-worker boundary within the named controls. Historical TLQT26 failures remain immutable. Maximum tested live native stress is two120-second phases/2434updates; host scheduling has no real-time guarantee. Different maps, hour-long sessions, hardware/FPS and default rollout remain pending. SIGKILL can prevent the supervisor outcome row; kernel parent-death termination still stops its worker.",
         "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation.",
-        "AC07.G.ram-quota-failure: actual default640setup stops before cast/World. Exact core preserves original Source chunk acknowledgement mode/cancellation and secondary uncaught QSaveFile error2 Disk quota exceeded. Filesystem free space alone does not establish user-quota headroom; first failing producer syscall remains unobserved. No normal failure-retirement, universal reliability, attachment output or quota recovery claim is supplied by this negative capture."
+        "AC07.G.ram-quota-failure: actual default640setup stops before cast/World. Exact core preserves original Source chunk acknowledgement mode/cancellation and secondary uncaught QSaveFile error2 Disk quota exceeded. Filesystem free space alone does not establish user-quota headroom; first failing producer syscall remains unobserved. No normal failure-retirement, universal reliability, attachment output or quota recovery claim is supplied by this negative capture.",
+        "BATTLE12 native battle02 refuses original exit95: unacknowledged generation657 has failure43/tag14/caller54a563. The known native raster admission gap remains unadmitted. Separate battle03 succeeds in its bounded motion/melee input proof but ends by diagnostic cancellation, not normal Quit/full-player acceptance."
       ],
       "implementation_review": {
         "review": "SC25.pending-review-inputs-25802e38f9c87eaf",
@@ -179996,7 +180003,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Ordered owned small-colour instance batches",
-      "scope": "Native optimization for existing colour-cache scenes: consecutive owned1..2 by1..2 colour requests carry integer source words in batches of at most512 within the caller draw/time budget. Direct rendering validates all input and fully definedRGB565/RGB555 destination before mutation, splits before the first overlapping write and every intervening non-small/hidden primitive, freezes one native destination envelope per disjoint group and preserves copy/half/quarter arithmetic. No source-texture upload, ordinary readback, original output seed, draw sorting or simulation advance. The isolated renderer retains serial existing wire/recovery operations. CanvasWorld defaults to batches; explicit MNM_WORLD_SMALL_COLOUR_BASELINE=1 keeps its old atlas path. Larger rectangles retain64-entry cache bounds. Finite scalar, same-retained-source/native-background and owned crowded input observations have separate limits; no all-map20FPS, original pixels or scanout equivalence.",
+      "scope": "Native optimization for existing colour-cache scenes: consecutive owned 1..2 by 1..2 colour requests, at most512 within the caller draw/time budget. Direct rendering validates all input and fully defined RGB565/RGB555 storage before mutation. Stable destination-pixel partitioning retains input order within each chain, then one frozen destination envelope and one instanced draw evaluate every copy/half/quarter integer operation without intermediate rounding changes. At most2048 packed source/mode words and2048 pixel/span instances. Sprites, hidden draws, larger rectangles and caller budgets remain ordering barriers. No ordinary readback, source image atlas upload, original output seed or simulation advance. Isolated rendering retains serial wire/recovery operations. CanvasWorld enables the path with existing cache policy; MNM_WORLD_SMALL_COLOUR_BASELINE=1 retains its old atlas path. Larger rectangles retain64-entry cache bounds. Finite scalar, serial and same-retained-source/native-background controls are separate from original history, all-map20FPS and scanout equivalence.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -180004,7 +180011,8 @@
         "research/runtime/native-colour-rectangle-cache.md",
         "research/runtime/coverage-ledger.md",
         "docs/native-player-launch.md",
-        "research/runtime/combat-slowdown-followup-20261112.md"
+        "research/runtime/combat-slowdown-followup-20261112.md",
+        "research/runtime/large-battle-attribution-20261112.md"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -180042,7 +180050,10 @@
         "COMBAT12.small-colour-controls01",
         "COMBAT12.live-diagnostics01",
         "COMBAT12.slowdown-stages01",
-        "COMBAT12.slowdown-stages02"
+        "COMBAT12.slowdown-stages02",
+        "BATTLE12.native-attribution01",
+        "BATTLE12.pixel-chain-controls01",
+        "BATTLE12.pixel-chain-live01"
       ],
       "status": {
         "understanding": "scoped",
@@ -180067,7 +180078,10 @@
         "COMBAT12.levitate-platform01 supersedes the earlier unresolved-carpet diagnosis for the reproduced Levitate visual: Effects11 sequence2 supplies the platform artwork. Historical moving01 remains unchanged. Combat19..20FPS and unrelated artifacts remain separate.",
         "Recording-free throughput11 verifies five moving Zombies but its measured movement phases are12.20..13.67Hz; no19..20Hz moving-combat acceptance or normal Quit. Native lifetime mean15.85ms does not locate original CPU instructions.",
         "Same-session original-main-thread default/maximum-capacity-core windows remain11.06..14.28Hz. All original affinity was restored; scene evolution and short windows prohibit a universal causal placement claim.",
-        "Retained source07 tail has4417of4719polls with no ready or outstanding snapshot. Its previous capture/video overhead remains; native timeline wall time is not GPU busy time or original CPU time."
+        "Retained source07 tail has4417of4719polls with no ready or outstanding snapshot. Its previous capture/video overhead remains; native timeline wall time is not GPU busy time or original CPU time.",
+        "BATTLE12.native-attribution01 reproduces42living actors/26movers/89cross-owner melee events with8.18Hz source cadence. Native submission93.42ms/world and original ACK90.98ms dominate; independent frozen packet replay64.29ms exceeds50ms budget despite50serial/batched full-word comparisons passing. Large native draw/compositing overhead and live texture churn remain optimization targets; no code or status change.",
+        "Current pixel-chain implementation replaces the historical overlap-split grouping. Shared renderer evidence outside this bounded policy retains original source hashes and pending source-drift limits; no full renderer/original equivalence promotion. Broad sprite blend batching was tested then withdrawn because it did not improve the optimized retained battle workload.",
+        "Pixel-chain live run04 passes12summons,28living/26moving,163hits and user no-visible-artifacts observation at19.66Hz. It is lighter than baseline03; only retained-frame64.29to52.83ms is a controlled speed comparison. Target20FPS remains unproved in the heaviest scenes. Texture-barrier candidate matches pixels but regresses completed-frame cost76.15vs53.70ms fallback and is withdrawn."
       ]
     },
     {
@@ -408523,6 +408537,77 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "BATTLE12.native-attribution01",
+      "kind": "live_observation",
+      "scope": "Current production four-owner map2 Quick Battle with12ordinary player summons, sampled42living/26moving actors and89original cross-owner melee events; phase-aligned source cadence/ACK/pacer, native live cumulative costs and owned per-thread CPU. Independent retained World2274 native replay,50serial/batched image comparisons on authored background, M1 synchronized warm timings. Failed helper/setup/raster acquisitions and missing terminal per-turn trace stay explicit; no original pixels, normal Quit, native optimization or AI self-time claim.",
+      "record": "research/runtime/large-battle-results-20261112/attribution01.json",
+      "sha256": "97557e2f42650845995636b8c2479f469f6378bef014ae7bf2808f6373cbc717",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/large_battle_observed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_throughput_bottleneck_observed",
+          "equals": true
+        },
+        {
+          "pointer": "/player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/production_code_changed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "BATTLE12.pixel-chain-controls01",
+      "kind": "native_integration",
+      "scope": "Bounded native RGB565/RGB555 ordered pixel chains:14full scalar/serial comparisons on each of llvmpipe/Apple M1, dense512write chain, clipping, all admitted modes, incremental budgets and primitive barriers/refusals. Same closed World2274 on authored native background,50serial/batched comparisons and warm M1 completion; cache, atlas and92destination-dependent retained-image controls on both backends. No original pixels/history, live-rate or scanout assertion.",
+      "record": "research/runtime/large-battle-results-20261112/pixel-chain-controls01.json",
+      "sha256": "14208f78e4632659b8e4e69a07f4edfde0905f5cef2d97bc5baf75bb57d3c190",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "BATTLE12.pixel-chain-live01",
+      "kind": "live_observation",
+      "scope": "Pixel-chain snapshot-only native build,12ordinary Zombie summons,28living actors/26movers sampled and163cross-owner melee hits;19.66Hz melee with8.58ms native submission. User reports no visible artifacts. Lighter329draws/9uploads than baseline1371draws/105uploads, so no causal live-rate speedup or original-image/normal-Quit/whole-game claim. Separate retained-frame comparison measures performance.",
+      "record": "research/runtime/large-battle-results-20261112/pixel-chain-live01.json",
+      "sha256": "1c9c345bedd0d6ae995bd565011e9595f060ebd49cfa81df76900f97260a5091",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live_movement_melee_proof",
+          "equals": true
+        },
+        {
+          "pointer": "/user_no_visible_artifacts",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit",
+          "equals": false
+        },
+        {
+          "pointer": "/controlled_live_speedup",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -444186,6 +444271,59 @@
       "evidence": [
         "AUDIO12.handoff-live01"
       ]
+    },
+    {
+      "id": "large-battle-native-attribution-20261112",
+      "scope": "Current production four-owner map2 Quick Battle with12ordinary player summons, sampled42living/26moving actors and89original cross-owner melee events; phase-aligned source cadence/ACK/pacer, native live cumulative costs and owned per-thread CPU. Independent retained World2274 native replay,50serial/batched image comparisons on authored background, M1 synchronized warm timings. Failed helper/setup/raster acquisitions and missing terminal per-turn trace stay explicit; no original pixels, normal Quit, native optimization or AI self-time claim.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.small-colour-batching",
+        "HOST.native-frame-trace",
+        "NP.native-only-launch-contract"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/combat-world-replay.cpp"
+      ],
+      "evidence": [
+        "BATTLE12.native-attribution01"
+      ]
+    },
+    {
+      "id": "small-colour-pixel-chains-20261112",
+      "scope": "Bounded native RGB565/RGB555 ordered pixel chains:14full scalar/serial comparisons on each of llvmpipe/Apple M1, dense512write chain, clipping, all admitted modes, incremental budgets and primitive barriers/refusals. Same closed World2274 on authored native background,50serial/batched comparisons and warm M1 completion; cache, atlas and92destination-dependent retained-image controls on both backends. No original pixels/history, live-rate or scanout assertion.",
+      "level": "headless",
+      "behaviors": [
+        "NR.small-colour-batching"
+      ],
+      "tests": [
+        "tests/small-colour-batch-test.cpp",
+        "tests/combat-world-replay.cpp",
+        "tests/colour-rectangle-cache-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/native-retained-world-test.cpp"
+      ],
+      "evidence": [
+        "BATTLE12.pixel-chain-controls01"
+      ]
+    },
+    {
+      "id": "pixel-chain-moving-battle-20261112",
+      "scope": "Pixel-chain snapshot-only native build,12ordinary Zombie summons,28living actors/26movers sampled and163cross-owner melee hits;19.66Hz melee with8.58ms native submission. User reports no visible artifacts. Lighter329draws/9uploads than baseline1371draws/105uploads, so no causal live-rate speedup or original-image/normal-Quit/whole-game claim. Separate retained-frame comparison measures performance.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.small-colour-batching",
+        "HOST.native-frame-trace",
+        "NP.native-only-launch-contract"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/small-colour-batch-test.cpp",
+        "tests/combat-world-replay.cpp"
+      ],
+      "evidence": [
+        "BATTLE12.pixel-chain-live01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -446013,8 +446151,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-4260742138de95a25717c4e3df7898e23f60d9f729d5194bd7074f3d590e5d92.json",
-    "sha256": "4260742138de95a25717c4e3df7898e23f60d9f729d5194bd7074f3d590e5d92"
+    "path": "research/runtime/coverage/source-index-d9b23976d3110b7199500af7d22556ab3c1d6712af855a7b4489500995d53e19.json",
+    "sha256": "d9b23976d3110b7199500af7d22556ab3c1d6712af855a7b4489500995d53e19"
   },
   "evidence_applicability": [
     {
