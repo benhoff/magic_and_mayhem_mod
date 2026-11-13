@@ -198,7 +198,7 @@ void ResidentWorldSession::pollOwned(bool acceptedNormalQuit){
         }
         if(!target_.ready() || ownedPending_)return;
         const auto now=std::chrono::steady_clock::now();
-        if(nextFrame_.time_since_epoch().count() && now<nextFrame_)return;
+        // Consume verified engine updates independently of supplemental display deadlines.
         OwnedWorldSnapshot source;if(!snapshotQueue_->take(source))return;
         const auto sourceTakenAt=frameTrace_?std::chrono::steady_clock::now():std::chrono::steady_clock::time_point{};
         if(!world_){

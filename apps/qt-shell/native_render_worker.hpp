@@ -34,6 +34,7 @@ public:
     std::function<void(const mnm::render::SurfaceCommand&,const mnm::render::CommandResult&)> cpuReadQueued;
     std::function<void(LiveCommandSession::State)> stateChanged;
 private:
+    friend struct NativeRenderWorkerTestAccess;
     std::atomic<std::uint64_t> pendingCpuRead_{0};
     void run() override;
     void join(bool producerExited);

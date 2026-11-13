@@ -29305,3 +29305,25 @@ contract, source/budget barriers, serial fallback and retained heavy-frame test.
 Scalar/serial controls and same-source native timings are separate from live
 battle FPS or original image/history equivalence. Existing shared-renderer proofs
 retain historical hashes; untested broader scenarios remain pending.
+
+### 2026-11-13 — native source admission and completed-export retry
+
+Two bounded native policies remove avoidable presentation delays without changing
+original simulation, AI, combat, animation or pacing. `HOST.ready-source-admission`
+separates ready verified FIFO consumption from the supplemental display deadline;
+`HOST.completed-export-retry` preserves completed-image delivery across the existing
+two-lease output backpressure. Old code fails each focused control; current code
+passes software/M1 with source identities/import barriers, replay deadline, finished
+blue pixels versus unfinished white update, allocation bound and abort retirement
+checked. See [native pacing](native-frame-pacing-20261113.md) and its SQLite reports.
+Broader hosting statuses and historical hashes are retained with pending current
+applicability. No original comparison/replacement, universal smoothness or long-run
+stability promotion; existing indexed-raster caller `0x54a563` remains refused.
+The final combined-fix moving battle accepted 12 summons and 124 damage events;
+its final 15 second window measured engine 20.00 Hz and distinct World-tagged Qt
+swaps 19.89 Hz (21–22 living actors, 12 movers, 10 melee hits). Native queue mean
+1.052 ms and submit mean 5.942 ms are scoped wall timings. A 100.964 ms World-tag
+gap contains intervening UI-tagged swaps at approximately 60 Hz; this is not a
+pixel-based freeze measurement. Earlier battle window: 24–28 living actors,
+15 movers, 28 hits, source 19.96 Hz; GUI tail unavailable there. Controlled source
+cancellation after measurement retains timing, and is not normal-Quit validation.

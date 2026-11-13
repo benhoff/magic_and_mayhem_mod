@@ -53554,11 +53554,12 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Render owned native World and HUD independently of engine production",
-      "scope": "Opt-in public independent-world mode requires resident native graphics/menu/command routing and explicit owned V5 snapshot acceptance. Capture/validate/actual-return owner remains separate from dedicated-thread native GL in owned mode; finite two-snapshot credits include deferred native imports. A16.667ms native clock chooses queued source updates or prepared World/HUD replays, preserving source FIFO/generation/nonce, exact original20Hz pacing and once-only producer history. WORLD commands wait for matching completed native data; extra rendered/presented frames and source/simulation counts are separate. No GUI wait on background work, original producer repeats, readback/pixel reply/DirectDraw restoration or simulation/ANI advance. Strict pending/error/normal Quit retirement and joined cancellation remain mandatory; interpolation is a separate native policy. Display admission is independent of UI-only publications anduses last sealed same-generation UI during partialUItransactions;new source consumption/import alreadycovers its owner turn. No mixed-generation redraws or incomplete first UI.",
+      "scope": "Opt-in public independent-world mode requires resident native graphics/menu/command routing and explicit owned V5 snapshot acceptance. Capture/validate/actual-return owner remains separate from dedicated-thread native GL in owned mode; finite two-snapshot credits include deferred native imports. Verified ready source updates enter immediately when no WORLD import is pending; a16.667ms native clock gates only supplemental prepared World/HUD replays, preserving source FIFO/generation/nonce, exact original20Hz pacing and once-only producer history. WORLD commands wait for matching completed native data; extra rendered/presented frames and source/simulation counts are separate. No GUI wait on background work, original producer repeats, readback/pixel reply/DirectDraw restoration or simulation/ANI advance. Strict pending/error/normal Quit retirement and joined cancellation remain mandatory; interpolation is a separate native policy. Display admission is independent of UI-only publications anduses last sealed same-generation UI during partialUItransactions;new source consumption/import alreadycovers its owner turn. No mixed-generation redraws or incomplete first UI.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/native-world-owned-snapshots.md"
+        "research/runtime/native-world-owned-snapshots.md",
+        "research/runtime/native-frame-pacing-20261113.md"
       ],
       "implementation": [
         "apps/qt-shell/resident_world_session.cpp",
@@ -53579,7 +53580,8 @@
       "tests": [
         "tests/menu-resident-quit-test.cpp",
         "tests/native-frame-recipe-test.cpp",
-        "tools/probe-independent-native-world.py"
+        "tools/probe-independent-native-world.py",
+        "tests/resident-source-admission-test.cpp"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/world_continuous_v5.h",
@@ -53643,7 +53645,8 @@
       "remaining_gaps": [
         "Current bounded native controls and the stated fresh live observation support partial policy implementation. Sustained60FPS/GUI critical-path cost,full original comparison,interpolation,unexecuted failure/auxiliary branches and default-route regression equivalence remain pending. No live replacement promotion.",
         "Dedicated render-thread integration is pending fresh gameplay proof; previous GUI-owned observations remain historical.",
-        "Current cached dedicated-owner TITAN campaign passes functional/19FPSsmokechecks at4707balanced sources;60FPS andstricter19.5Hz source benchmarkremainfailed. GUI-owned observations arehistorical; current thread route hasfreshlive observation only."
+        "Current cached dedicated-owner TITAN campaign passes functional/19FPSsmokechecks at4707balanced sources;60FPS andstricter19.5Hz source benchmarkremainfailed. GUI-owned observations arehistorical; current thread route hasfreshlive observation only.",
+        "2026-11-13 native pacing fixes have focused old/new controls and bounded battle observations under HOST.ready-source-admission and HOST.completed-export-retry. Historical broad hosting evidence keeps its exact source/contract hashes; broader current equivalence and long-run stability remain pending. Existing indexed-raster caller0x54a563 refusal is not widened."
       ]
     },
     {
@@ -53854,7 +53857,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/native-world-owned-snapshots.md"
+        "research/runtime/native-world-owned-snapshots.md",
+        "research/runtime/native-frame-pacing-20261113.md"
       ],
       "implementation": [
         "apps/qt-shell/native_render_worker.cpp",
@@ -53875,7 +53879,8 @@
       ],
       "tests": [
         "tests/native-render-worker-test.cpp",
-        "tools/test-native-render-worker.py"
+        "tools/test-native-render-worker.py",
+        "tests/native-frame-export-retry-test.cpp"
       ],
       "validation_dependencies": [
         "apps/qt-shell/gl_viewport.hpp",
@@ -53946,7 +53951,8 @@
       "remaining_gaps": [
         "Fresh current dedicated-owner controls and TITAN full native campaign support partial native policy and live observation. ActualWorld27.2142FPS andvisible35.8486/48.8832FPS fail60FPS;source19.0883Hz failsstricter19.5diagnostic although19FPSsmokefloor passes. Full original comparison/replacement,physicalscanout,interpolation,contextloss/recreation,format/dimension changes andunexecuted failurebranches remainpending. Initial50mscopy-order deadlinefailure ispreserved; repeated successfuljourneys do notproveaGAPfix.",
         "Merged-master owner/GPU/recipe/movie pause controls and short TITAN menu/movement/resume/Quit flow are observed. Short source18.4065Hz fails19FPS floor; World44.9324FPS fails60. Full merged casting/combat/portrait/native audiovisual/World-producing movie matrix remains pending. Prior branch full results remain historical and copy-order timeout unresolved.",
-        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation."
+        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation.",
+        "2026-11-13 native pacing fixes have focused old/new controls and bounded battle observations under HOST.ready-source-admission and HOST.completed-export-retry. Historical broad hosting evidence keeps its exact source/contract hashes; broader current equivalence and long-run stability remain pending. Existing indexed-raster caller0x54a563 refusal is not widened."
       ]
     },
     {
@@ -180255,6 +180261,118 @@
         "Live heavier fights, dynamic uploads, normal Quit and physical scanout remain separate validation.",
         "Shared-renderer historical evidence retains original source hashes and pending applicability outside the focused controls.",
         "Unknown hardware drivers retain normal native admission but have no measured performance claim; known software rasterizers use serial fallback after measured negative performance evidence."
+      ]
+    },
+    {
+      "id": "HOST.ready-source-admission",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Admit verified native source updates independently of supplemental display deadline",
+      "scope": "Independent owned GPU path dequeues a verified source immediately when no source import is pending, even before the next supplemental16.667ms display deadline. FIFO generations, nonce/identity, balanced two-source credits, once-only import and original20Hz pacing remain unchanged. Supplemental replay retains its deadline. Authored tests start after queue verification; original wire verification remains separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-frame-pacing-20261113.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp"
+      ],
+      "tests": [
+        "tests/resident-source-admission-test.cpp"
+      ],
+      "validation_dependencies": [
+        "compat/legacy/world_snapshot_queue.hpp",
+        "compat/legacy/world_snapshot_queue.cpp",
+        "apps/qt-shell/native_frame_cadence.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/world_frame.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.hpp"
+      ],
+      "evidence": [
+        "NATIVE13.frame-pacing-controls01",
+        "NATIVE13.frame-pacing-battle01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native scheduling policy only; no original pixel/history comparison or engine/AI/animation/clock/balance change.",
+        "Focused controls and bounded combat observations do not prove universally smooth20FPS, physical scanout or long-session stability.",
+        "Original source intervals can exceed50ms; existing unsupported raster caller0x54a563 remains guarded.",
+        "Broader hosting/renderer historical proofs retain original hashes and pending source applicability."
+      ]
+    },
+    {
+      "id": "HOST.completed-export-retry",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Retry completed native presentation after immutable lease backpressure",
+      "scope": "Native render owner retains its completed-image dirty flag while both immutable presentation leases are occupied and retries after a lease returns without another source or PRESENT. Export only the latest completed presentation; partial surface updates cannot publish unfinished pixels. Coalescing remains display-only, at most two texture allocations with existing sampling/production fences and abort retirement. Blocked-attempt counters include retries, not lost source frames.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-frame-pacing-20261113.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/native_render_worker.hpp"
+      ],
+      "tests": [
+        "tests/native-frame-export-retry-test.cpp",
+        "tests/native-render-worker-test.cpp",
+        "tests/resident-terminal-restart-test.cpp",
+        "tests/pending-world-display-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/native_render_target.hpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/world_frame.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.hpp"
+      ],
+      "evidence": [
+        "NATIVE13.frame-pacing-controls01",
+        "NATIVE13.frame-pacing-battle01"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Native scheduling policy only; no original pixel/history comparison or engine/AI/animation/clock/balance change.",
+        "Focused controls and bounded combat observations do not prove universally smooth20FPS, physical scanout or long-session stability.",
+        "Original source intervals can exceed50ms; existing unsupported raster caller0x54a563 remains guarded.",
+        "Broader hosting/renderer historical proofs retain original hashes and pending source applicability."
       ]
     }
   ],
@@ -408711,6 +408829,40 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NATIVE13.frame-pacing-controls01",
+      "kind": "native_integration",
+      "scope": "Authored post-verification FIFO admission before future display deadline, pending import and identity barriers, unchanged replay clock; actual completed-output retry with occupied two-lease buffers, no new PRESENT, partial update pixel refusal, fixed allocation bound and abort; existing worker172PRESENT/movie/lifecycle/pending-generation regressions. Software and M1 native GL. No original equivalence.",
+      "record": "research/runtime/native-frame-pacing-results-20261113/controls01.json",
+      "sha256": "0d081ef4fb743721cf4fb85bf1fb5f6fd98ec71b379126c839d37c1684289363",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NATIVE13.frame-pacing-battle01",
+      "kind": "live_observation",
+      "scope": "Combined native pacing fixes in controlled isolated moving-zombie combat;12accepted summons, six battle phases,124observed damage events. Separate15second original-clock final battle window with21..22living actors/12movers/10melee hits, and denser earlier24..28actor window with GUI tail missing. Original frame cadence, native queue/submit wall spans and distinct World-tagged Qt swaps are separate. Intentional source cancellation after measurement; no normal Quit, original equivalence, maximum-population benchmark, universal smoothness or scanout proof.",
+      "record": "research/runtime/native-frame-pacing-results-20261113/battle01.json",
+      "sha256": "04d8bb92153a79c47032d620c8ae0513b5adbb308f21ffe93a7b11494944d281",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -444467,6 +444619,44 @@
       "evidence": [
         "NATIVE12.displacement-controls02"
       ]
+    },
+    {
+      "id": "native-frame-pacing-controls-20261113",
+      "scope": "Authored post-verification FIFO admission before future display deadline, pending import and identity barriers, unchanged replay clock; actual completed-output retry with occupied two-lease buffers, no new PRESENT, partial update pixel refusal, fixed allocation bound and abort; existing worker172PRESENT/movie/lifecycle/pending-generation regressions. Software and M1 native GL. No original equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "HOST.ready-source-admission",
+        "HOST.completed-export-retry"
+      ],
+      "tests": [
+        "tests/native-frame-export-retry-test.cpp",
+        "tests/native-render-worker-test.cpp",
+        "tests/pending-world-display-test.cpp",
+        "tests/resident-source-admission-test.cpp",
+        "tests/resident-terminal-restart-test.cpp"
+      ],
+      "evidence": [
+        "NATIVE13.frame-pacing-controls01"
+      ]
+    },
+    {
+      "id": "native-frame-pacing-moving-battle-20261113",
+      "scope": "Combined native pacing fixes in controlled isolated moving-zombie combat;12accepted summons, six battle phases,124observed damage events. Separate15second original-clock final battle window with21..22living actors/12movers/10melee hits, and denser earlier24..28actor window with GUI tail missing. Original frame cadence, native queue/submit wall spans and distinct World-tagged Qt swaps are separate. Intentional source cancellation after measurement; no normal Quit, original equivalence, maximum-population benchmark, universal smoothness or scanout proof.",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.ready-source-admission",
+        "HOST.completed-export-retry"
+      ],
+      "tests": [
+        "tests/native-frame-export-retry-test.cpp",
+        "tests/native-render-worker-test.cpp",
+        "tests/pending-world-display-test.cpp",
+        "tests/resident-source-admission-test.cpp",
+        "tests/resident-terminal-restart-test.cpp"
+      ],
+      "evidence": [
+        "NATIVE13.frame-pacing-battle01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -446294,8 +446484,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-b76bf91223863d88206550d71b32b21ef68c186305ae0585dee076cb2ef52b8a.json",
-    "sha256": "b76bf91223863d88206550d71b32b21ef68c186305ae0585dee076cb2ef52b8a"
+    "path": "research/runtime/coverage/source-index-10aa0ae7a7c22d2aff6d0974c56d683e9166a539b8c3dea6d1fcc17d26a1ed5d.json",
+    "sha256": "10aa0ae7a7c22d2aff6d0974c56d683e9166a539b8c3dea6d1fcc17d26a1ed5d"
   },
   "evidence_applicability": [
     {
