@@ -1183,6 +1183,44 @@ void GlBlitter::smallColourRects(SurfaceId destination,const std::vector<SmallCo
     g.glDrawArraysInstanced(GL_TRIANGLES,0,6,GLsizei(instances.size()));
     ++p.counters.drawCalls;p.counters.drawInstances+=instances.size();p.counters.copies+=writes.size();p.check();
 }
+bool GlBlitter::canBatchDestinationSamples() const {
+    if(isolated_)return false;
+    // Many short spans help the hardware driver but cost more than ordinary
+    // sprites in software rasterizers. Preserve their established serial path.
+    const auto& name=impl_->info.renderer;
+    return name.find("llvmpipe")==std::string::npos&&name.find("softpipe")==std::string::npos&&
+           name.find("Software Rasterizer")==std::string::npos&&name.find("SWR")==std::string::npos;
+}
+void GlBlitter::sampleDestination(SurfaceId destination,const std::vector<DestinationSample>& spans){
+    if(isolated_)throw std::invalid_argument("Destination sampling uses direct rendering only");
+    auto& p=*impl_;p.thread();auto& dst=p.get(destination);
+    if(dst.format.bits!=16||dst.format.masks!=std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f})
+        throw std::invalid_argument("Destination sampling requires RGB565");
+    if(spans.size()>65536)throw std::invalid_argument("Destination span budget exceeded");
+    std::size_t pixels=0;std::int64_t previous=-1;
+    Rect source{dst.width,dst.height,0,0},damage=source;
+    for(const auto& s:spans){
+        if(s.width<1||s.width>dst.width||s.x<0||s.sourceX<0||s.y<0||s.sourceY<0||
+           s.x>dst.width-s.width||s.sourceX>dst.width-s.width||s.y>=dst.height||s.sourceY>=dst.height||
+           std::int64_t(s.y)*dst.width+s.x<previous||(pixels+=s.width)>65536)
+            throw std::invalid_argument("Invalid or overlapping destination samples");
+        previous=std::int64_t(s.y)*dst.width+s.x+s.width;
+        source={std::min(source.left,s.sourceX),std::min(source.top,s.sourceY),std::max(source.right,s.sourceX+s.width),std::max(source.bottom,s.sourceY+1)};
+        damage={std::min(damage.left,s.x),std::min(damage.top,s.y),std::max(damage.right,s.x+s.width),std::max(damage.bottom,s.y+1)};
+    }
+    if(spans.empty())return;
+    dst.validity.require({0,0,dst.width,dst.height});
+    p.flushCopies();Current current(p.context,p.surface);
+    const auto frozen=p.snapshot(dst,source);p.damage(dst,damage);
+    // Use the existing integer copy shader and bounded instance buffer. Every
+    // source is frozen and destination spans are disjoint; no texture feedback.
+    p.copyDestination=&dst;p.copySource=frozen;p.copyMask=0;p.copyKey.reset();p.instanceKeyMask=UINT32_MAX;p.copyIndexed=false;
+    for(const auto& s:spans){
+        p.instances.push_back({{s.x,s.y,s.width,1},{s.sourceX-source.left,s.sourceY-source.top},0});
+        if(p.instances.size()==4096)p.flushCopies();
+    }
+    p.flushCopies();++p.counters.copies;
+}
 void GlBlitter::additiveRect(SurfaceId destination,Rect r,const std::array<std::uint16_t,3>& channels){
     if(isolated_){isolated_->call(wire::message(wire::Op::additive,destination,r,channels),true);return;}
     auto& p=*impl_;p.thread();auto& dst=p.get(destination);

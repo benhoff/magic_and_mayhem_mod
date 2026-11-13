@@ -28,6 +28,7 @@ struct SceneLimits {
     bool batchSmallColourRectangles=true; // ordered owned2x2 effects, without atlas uploads
     // Explicit offline colour-only policy. Sprite/effect resources remain RGB565.
     bool colourRgb555=false;
+    bool batchDisplacements=true; // bounded ordered destination-coordinate composition
 };
 struct SceneBatchBudget {
     std::size_t draws=32,uploadBytes=256*1024;
@@ -93,6 +94,7 @@ private:
     std::uint64_t colourAge_=0;
     ColourRectangleCacheStats colourStats_;
     void drawColourRectangle(const Image&,Rect,int,int,const SpriteComposite&,bool forceCache=false);
+    bool drawDisplacements(std::size_t end,std::chrono::steady_clock::time_point deadline);
     void validate(const SceneDraw&);
     std::optional<ResourceUploadRequest> request(const SceneDraw&);
 };

@@ -29294,3 +29294,14 @@ but 76.15 ms completed-frame cost versus 53.70 ms with snapshots. Submission-onl
 timing would have hidden that regression. Neither discarded alternative enters
 the final implementation. Heavy-scene 20 FPS, original pixels and normal-Quit
 acceptance remain separate limitations.
+
+### Native displacement batching (2026-11-12)
+
+`NR.displacement-batching` covers bounded coordinate composition for consecutive
+native displacement sprites, a frozen source envelope and disjoint instanced row
+spans. Original simulation, AI, combat and timing are untouched. See
+[native displacement batching](native-displacement-batching.md) for the pixel
+contract, source/budget barriers, serial fallback and retained heavy-frame test.
+Scalar/serial controls and same-source native timings are separate from live
+battle FPS or original image/history equivalence. Existing shared-renderer proofs
+retain historical hashes; untested broader scenarios remain pending.

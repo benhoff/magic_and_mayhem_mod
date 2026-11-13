@@ -194,6 +194,46 @@ void SceneRenderer::supplyUpload(const SceneUploadNeed& need,PreparedSpriteFrame
     if(prepared.pixels.width!=width||prepared.pixels.height!=height||prepared.originX!=ox||prepared.originY!=oy)throw std::runtime_error("Prepared upload geometry differs");
     cache_.supply(need.request,std::move(prepared));supplied_=true;
 }
+bool SceneRenderer::drawDisplacements(std::size_t end,std::chrono::steady_clock::time_point deadline){
+    if(!limits_.batchDisplacements||!renderer_.canBatchDestinationSamples())return false;
+    std::unordered_map<int,int> mapping;
+    std::vector<std::pair<int,int>> changes;
+    std::size_t next=cursor_,visited=0;
+    for(;next<end&&next-cursor_<32;++next){
+        if(next!=cursor_&&std::chrono::steady_clock::now()>=deadline)break;
+        const auto& d=pending_[next];
+        if(!d.visible||!d.clip||d.additive||d.colourRectangle||d.rowEffect||d.composite.mode!=CompositeMode::displace)break;
+        const auto& resource=limits_.cache.residentOnly?resources_.resident(d.resource):resources_.load(d.resource);
+        const auto* sprite=std::get_if<assets::Sprite>(&resource.image);if(!sprite)break;
+        const auto& f=sprite->frames.at(d.frame);const auto clip=d.viewport.value_or(viewport_);
+        const auto left=std::int64_t(d.anchorX)-f.originX,top=std::int64_t(d.anchorY)-f.originY;
+        // Whole-run clipping can split one sprite into several ordered snapshots;
+        // preserve that existing path whenever horizontal clipping is required.
+        if(f.width>128||f.height>128||visited+std::size_t(f.width)*f.height>65536||
+           (d.wholeOpaqueRunClipping&&(left<clip.left||left+f.width>clip.right)))break;
+        visited+=std::size_t(f.width)*f.height;changes.clear();
+        for(auto y=std::max(top,std::int64_t(clip.top));y<std::min(top+f.height,std::int64_t(clip.bottom));++y)
+            for(auto x=std::max(left,std::int64_t(clip.left));x<std::min(left+f.width,std::int64_t(clip.right));++x){
+                if(!f.opaqueMask.at(std::size_t(y-top)*f.width+x-left))continue;
+                const int target=int(y*viewport_.right+x),sample=target+d.composite.rowOffsets[unsigned(y)%d.composite.rowPeriod];
+                if(sample>=viewport_.right*viewport_.bottom)continue; // preflight admits only the explicit retain-outside policy
+                const auto prior=mapping.find(sample);
+                changes.emplace_back(target,prior==mapping.end()?sample:prior->second);
+            }
+        // All samples for this sprite refer to the state before this sprite.
+        for(const auto& change:changes)mapping[change.first]=change.second;
+    }
+    if(next-cursor_<2)return false;
+    std::vector<std::pair<int,int>> ordered(mapping.begin(),mapping.end());std::sort(ordered.begin(),ordered.end());
+    std::vector<DestinationSample> spans;
+    for(const auto& pixel:ordered){
+        if(pixel.first==pixel.second)continue;
+        const int x=pixel.first%viewport_.right,y=pixel.first/viewport_.right,sx=pixel.second%viewport_.right,sy=pixel.second/viewport_.right;
+        if(!spans.empty()){auto& s=spans.back();if(s.y==y&&s.sourceY==sy&&s.x+s.width==x&&s.sourceX+s.width==sx){++s.width;continue;}}
+        spans.push_back({x,y,sx,sy,1});
+    }
+    renderer_.sampleDestination(canvas_,spans);cursor_=next;need_.reset();supplied_=false;return true;
+}
 bool SceneRenderer::drawNext(std::size_t budget){
     return drawNext(SceneBatchBudget{budget,std::numeric_limits<std::size_t>::max(),std::chrono::hours(1)});
 }
@@ -227,6 +267,7 @@ bool SceneRenderer::drawNext(const SceneBatchBudget& budget){
                 }while(cursor_<end&&small.size()<512&&std::chrono::steady_clock::now()<deadline);
                 renderer_.smallColourRects(canvas_,small);need_.reset();supplied_=false;continue;
             }
+            if(draw.composite.mode==CompositeMode::displace&&drawDisplacements(end,deadline))continue;
             if(limits_.cache.preparedOnly){const auto req=request(draw);
                 if(req&&!cache_.ready(*req)){
                     if(need_&&!(need_->request==*req))throw std::runtime_error("Resource changed during pending upload");
