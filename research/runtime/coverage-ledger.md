@@ -28999,3 +28999,1131 @@ selected projection closes only our two boundaries. Four native/build hashes
 differ from the WP10phase, so its current equivalence remains pending under the
 full-hash rule. Its scoped milestone is not reset or relabeled current. RB10has
 zero source drift; no additional game/native/pixel execution or old hash refresh.
+
+
+### Broader current player acceptance — current-source recovery phase, 2026-11-10
+
+The owned broader-player batch adopts the reviewed197e9a8f finite-boundary baseline,
+retaining the156/156historical row objects, all14journeys/47leaves and21operations
+per profile, every original source phase and the controlled8×6opaque-overlap
+amendment. Whole-player acceptance remains pending while the current matrix runs.
+The newly observed actual NVIDIA TITAN RTX/Zink driver and explicit software
+profile retain separate host/provider evidence; neither is physical original-driver
+or device-reset equivalence. No production native application, renderer, runtime,
+protocol or gameplay code changes in this batch.
+
+All four current surface-loss pairs are admitted: both640/800extents on actual
+NVIDIA and software, exact current native/runtime/compiler/player fingerprints,
+complete required presented pixels and declared failed/fresh retirement. The
+NVIDIA640raw comparison retains its four-pixel negative; source-only and UI
+transform replays isolate the already documented out-of-logical-allocation
+displacement-retention policy. A separate original-instruction oracle preserves
+in-range calls/AX assertions, certifies every retained tap, compares every pixel
+and explicitly grants no original-padding equivalence. Its26guard,5binding and
+9adversarial admission controls pass. The other raw-positive results remain
+independent from the native-policy expectations; no pixels are ignored.
+
+The prospective continuation retains12pre-boundary reservations,2reserved but
+unused setup-refusal starts and8older WP10starts. The current primary matrix is
+56complete-World cases,12menu/media contexts,8failed/fresh pairs and8selected-plane
+contexts, supplemented by exact10/30second strict campaigns on both providers
+and one NVIDIA fullscreen/input/hover/backing/retirement route. The existing
+software fullscreen result already has the exact current binary and native
+closure and is reused. Minimum conservative additional reservations111remain
+within the unchanged112additional/120combined ceiling; no failure, local budget,
+reservation or historical hash is refunded or refreshed. Execution queues are
+sequential and stop at the first refusal/failure.
+
+Zero-game planning resolves all94historical primaries,184journey attachments and
+110operation attachments without acceptance credit. Nine join controls reject
+missing/duplicate/foreign rows, changed historical identities, stale/unadmitted
+or mixed-profile cases, selected-plane/failed-epoch journey credit and natural
+overlap promotion. Actual full-matrix output/lifecycle, strict B05and historical
+B06/RN31relevance, plus provider-impact review remain required before a verdict.
+New reports, failures, raw bytes and exact unique source checkpoints are SQLite
+backed; completed temporary captures/comparisons retire only after dual
+verification and a complete real restore. Original2927-file manifests verify
+before and after original-artifact consumption. Source/accounting validation,
+integration and original-recovery statuses remain independent.
+
+Broader-player guard-stop continuation: five current fault pairs are admitted.
+The NVIDIA800transition attempt started two original epochs but lost transient
+collector proof when the unchanged100GiBCold guard stopped it. Its negative
+acquisition, exact stop identities, complete raw custody and both charges are
+retained; no pass or refund is granted. The explicit prospective agent-set
+continuation review preserves every112/120parent cap and names113/121as the
+smallest remaining bound, with no unallocated repairs and no user numerical
+approval claim. Replacement actions, deadlines and native engine sources are
+unchanged; storage preflight increases to6GiB. Overall broader acceptance and
+original recovery remain pending.
+
+The broader-player NVIDIA800transition replacement returned complete semantic
+collection but its fresh command history refused with an explicit bounded-queue
+error. A retained-data analysis establishes30,089,412missing command bytes beyond
+the1MiBstopped ring; no normal END/replies or acceptance are fabricated. Exact raw
+negative custody, two verified stores and real restores preserve all677artifacts
+and both starts. No engine regression or causal repair is inferred from this
+recording failure. The full matrix remains pending; another exact pair requires
+completed owned maintenance and a separately recorded prospective115/123agent
+bound, with unchanged native/capture/input/deadline contracts and old caps intact.
+
+
+### Current B04 surface-loss and transition scopes — 2026-11-10
+
+BP13.surface-loss01and BP13.transitions01complete eight exact current public-player
+failed/fresh contexts: default/software at640/800for actual GUI target destruction
+and drained transport INVALID. Sixteen positive starts have complete required
+prefix/fresh pixels, source progress, positive fresh input, normal cleanup and
+verified two-copy raw/derived retention. Recovery and recorder controls are
+separate. This closes the finite current transition implementation/integration
+scope and refreshes surface-loss applicability without physical reset, old-generation
+continuation, pending-CPU interruption, Original recovery or broader player credit.
+
+Retain the first B04NVIDIA800helper drain refusal and both charges. Its replacement
+acquisition and raw comparison pass; validation01refuses only plan14's missing
+owned_input key. Pinned-parent retained-data validation02passes every original
+assertion without another game, Native process or raster comparison. The earlier
+negative validation/coordinator and all old source phases remain immutable.
+Plan15binds the exact fixture for unstarted cases and preserves the130additional/
+138combined ceiling,98positive starts and every94journey/42operation cell.
+The remaining82normal/provider/strict cases and both overall decisions remain
+pending. See [the current scope and retained failures](broader-player-acceptance-20261110.md).
+
+### Broader player B05 viewport diagnostic source impact
+
+B05 changes only the opt-in viewport recorder: sequential delta preparation,
+bounded eight-worker compression, ordered publication and first-refusal logging.
+Current optimized/sanitized codec/reader controls, the unchanged2300paint long
+control and six fresh real-GL controls pass. Exact retained-prefix replay supplies
+a diagnostic queue-overflow experiment and successful repaired transport, not a
+proved old live cause, missing game END or complete old output. The former B04
+surface-loss/transition milestones retain their exact bytes and scope; their
+Native header applicability to the current broader conjunction is superseded.
+Plan16requires90fresh cases/98starts with49old charges retained,147additional/
+155combined, no spare. The new NVIDIA fullscreen pilot and source-dependent
+prerequisites are in progress; no whole-player or Original-recovery promotion.
+
+The B05 NVIDIA fullscreen pilot now passes all12physical transitions and both
+800/640/800recreations,1,230source generations,3,796World swaps and
+3,948,782,480raw-original compared pixels with zero mismatches. Source/input,
+normal retirement and paired real-restored retention pass. The software boundary
+acquisition completes and awaits its independent comparison. Both zero-start
+storage refusals remain exact; the missing boundary-family comparison handoff is
+handled separately with every byte/pin retained before duplicate execution bytes
+retire. The source-input-complete90case/98start queue remains fail-stop under the
+same147/155ceiling. Current narrow policy analysis04adds the explicit analyzer
+ownership link to fresh retained controls; analysis03and all prior fingerprints
+remain historical. No whole-player verdict or Original-recovery promotion yet.
+
+### Current B05 four-context surface-loss proof
+
+`BP16.surface-loss01` independently refreshes the existing bounded GUI-loss scope
+at the B05full Native/compiler/runtime identities: four640/800NVIDIA/software
+failure/fresh-generation pairs, all required pixels, positive fresh input/source
+progress, normal fresh retirement and verified two-copy raw/derived retention.
+Three raw comparisons pass; the NVIDIA640raw mismatch remains negative and its
+separate native-edge proof passes without ignoring pixels or granting Original
+padding equivalence. Target restoration remains deletion-only. All historical
+sources/milestones/charges stay intact. The current transport cohort is running;
+whole-player acceptance and complete Original recovery are still pending.
+
+
+The current B05 fault cohort is complete. `current-fault-conjunction-02.json`
+(SHA-256 `577c823f95b666e8a181c1a8d6db0ac67e04bf66dd58a770d07417a442718458`) binds all eight declared failed/fresh
+pairs across NVIDIA/default and software,640/800: sixteen actual starts,
+12,645 required presentations and 11,880,082,500 independently compared pixels
+with zero required mismatches. All four transport pairs pass raw-original
+comparison. Three surface-loss pairs pass raw-original comparison; default640
+retains its raw-original pixel negative and separate certified native-edge
+comparison, with no ignored pixels or original-padding equivalence. Every
+failed prefix receives no normal-exit credit; every fresh generation has its own
+progress, input, pixels, resource retirement and two-copy/real-restore handoff.
+`BP16.surface-loss02` and `BP16.transitions01` retain scoped/live-observation
+status. Earlier phases and all failure charges remain historical.
+
+The read-only final matrix reader now verifies strict orchestration against the
+exact immutable execution-plan and global-review pins, with eight passing
+refusal controls (`matrix-source-controls-01.json`). Provider boundary review02
+is fresh retained-data analysis after that reader correction; review01 retains
+its older analysis fingerprint. Two earlier owned expanded audit files were
+compacted after two-copy verification and real restores, preserving every
+payload byte/hash and result (`owned-audit-compaction-01.json`).
+
+Broader player acceptance remains pending: four strict,56 complete-World,
+12 menu/media and eight selected-plane contexts still require their own current
+proofs, followed by the94journey/42operation-cell conjunction, historical failure
+review, separate verdicts, exact accounting/checks/backups and checked integration.
+
+
+The next strict30NVIDIA request stopped before session assignment with
+`Expecting value: line 1 column 1 (char 0)`. The owner journal publisher exposed
+the final JSON name before `json.dump` completed. This supports a publication
+race diagnosis; exact live input bytes and exception stack were not captured.
+Its stopped owner/prefix and session survive two verified copies and real
+restores (`bp16-strict-default30-01-journal-custody-01.json`); its full one-start
+reservation stays charged and receives no acceptance credit.
+
+`owned_session_journal.publish` now flushes a private same-directory temporary
+inode before linking it under the exclusive final name. It preserves the exact
+legacy JSON bytes and existing-name refusal; consumer assertions, game actions
+and deadlines are unchanged. All228isolated checks across35files pass, including
+eight concurrent-publication tests, eight budget guards and eight applicability
+refusals. Fresh drain controls pass16Python and7unchanged-helper self-tests.
+The exact two completed fullscreen journals and one strict10journal re-publish
+byte-identically from both retained copies through the current helper. Their old
+records/source hashes remain untouched; no Native/compiler/runtime file changes
+or waivers are permitted (`completed-journal-publication-applicability-01.json`).
+
+The publication continuation catalog SHA-256 is `2197d0f680863bde3d346a1f3a643a5e92d6e182e913e0719b4867ef6413e017`;
+review SHA-256 is `9c760eeb91f4d715bc81f9977d41e5010c361705f3965dde488afbd2707e466a`. It retains11of90positive
+contexts and declares the remaining79with fresh source/input maps and unchanged
+contexts. All37old requests/69reservations remain exact. One manually reviewed
+strict30replacement raises the agent-set finite ceiling to148additional/156with
+the earlierWP10eight; no spare, refund, automatic repair or user numeric approval
+is claimed. The first new strict30replacement must qualify and retain evidence
+before expansion. Planning refusals for stale drain-control dependency and
+Python-only dependency traversal remain retained with zero game runs. Broader
+player acceptance and original recovery remain pending.
+
+
+All four exact strict10/30NVIDIA/software campaigns now pass and retain evidence;
+14current contexts are qualified. The first World attachment setup refused with
+zero original starts/experiments: the retained build declaration listed the
+409linked compiler dependencies plus `apps/qt-shell/CMakeLists.txt` as one compiler
+set, while the unchanged collector requires exact409-set equality. Current
+source bytes and executable already matched. `player-build-only-binding-06.json`
+separates409compiler and1configuration input without dropping any of410build
+fingerprints. Nine continuation/refusal tests and the actual unchanged collector
+predicate pass with no native rebuild or game. The refused setup directory, pin,
+old false flags/report and full one-start reservation remain retained in two
+verified stores with a real restore.
+
+The binding continuation catalog SHA-256 is `6a6e516cb97e72a763bd889a9127920fe4adc563cdefcb49b74a86f133296009`.
+Its no-game preflight preserves all14accepted contexts and41old rows/73charges,
+checks every child reference, explicitly includes the CMake input in the new
+source maps and declares76remaining positive contexts. The agent-set ceiling is
+149additional/157includingWP10eight; no spare, refund, automatic retry or user
+numeric approval is claimed. First qualify the attachment-default640pilot under
+the corrected declaration before expansion. Broader acceptance and original
+recovery remain pending. The earlier CMake-source-map planning refusal is retained
+with zero game runs. No Native/compiler/runtime bytes changed.
+
+
+The corrected attachment request completed one original game, then its independent
+comparison refused `Capture incomplete or truncated`: the legacy command recorder
+hit its16,384-row limit. The exact prefix/refusal, failed comparison, acquired-but-
+unadmitted request and full reservation survive two verified copies and real
+restores (`bp18-world-attachment-default640-01-command-custody-02.json`). No missing
+tail or terminal is synthesized and this request receives no acceptance credit.
+
+The unchanged B05player already supports opt-in v4lossless command history. A new
+launch adapter selects that existing mode for the exact player/public launcher,
+changing only `MNM_ACCEPTANCE_COMMAND_HISTORY=1`. All native limits remain exact:
+65,536rows,8GiBraw,1GiBstored,256MiBqueued,4,096jobs and eight compression workers.
+Eighteen budget/selection controls pass, including the actual nested launch wrapper
+and binary-change refusal. No native rebuild, action, deadline or pixel assertion
+changes. The reviewed continuation preserves14complete contexts and all42old
+rows/74charges;76remaining positives need150additional/158includingWP10eight.
+This agent-set limit has no spare, refund or automatic retry and claims no user
+numeric approval. Qualify one new complete attachment pilot before expansion.
+Broader player acceptance and original recovery remain pending.
+
+
+The bp19attachment pilot stopped before any Original game: `Attachment domain
+already captured`. The legacy local counter regards the earlier successful
+acquisition as captured even though its independent comparison was refused.
+Its zero-game proof, empty experiment set, stopped/returned prefix, Qt-only
+capture, exact historical SQLite counter and full charged reservation survive
+two verified copies and real restores (`bp19-world-attachment-default640-01-counter-custody-01.json`).
+The local counter remains untouched.
+
+A distinct prospective bp20source-cohort counter namespace supplements the global
+ledger; it does not reset old reservations. Nine new budget guards, five namespace
+refusals and four actual capture-header policy refusals pass. Preserve14complete
+contexts and all43old rows/75charges;76remaining positive contexts need151additional/
+159includingWP10eight, without spare/refund/automatic retry or user numeric
+approval claims. The existing B05player, v4selection, native limits, game actions,
+deadlines and independent comparison contracts remain exact. Qualify one complete
+attachment pilot before expanding75. Overall acceptance/recovery remain pending.
+
+
+The bp20attachment-default640acquisition and independent comparison now pass:
+663original source generations,1,431World presentations and zero pixel differences
+across the complete independently rendered history. The existing v4command header
+is independently verified with every unchanged native limit. Initial assembly
+validation refused an absolute lookup of a producer-relative CFG artifact; those
+preferences bytes were already retained. Seven identity/refusal controls and an
+exact source comparison confirm that only this lookup and its source accounting
+change. No post-game live file substitutes for retained bytes, and every other
+World assertion is byte-identical. New validation02 and reviewed coordinator02
+admit/real-restore/retain the same acquisition without a game, replay, additional
+reservation, refund, old-record rewrite or native hash waiver. Its earlier
+validation/coordinator remain refused.
+
+`relative-preferences-admission-review-01.json` binds the exact analysis correction;
+`relative-attachment-pilot-qualification-01.json` verifies admission, actual recorder
+header and paired raw/RAM custody.15of90positive contexts now qualify;75remain.
+All44request rows/76conservative charges stay exact under151additional/159with
+WP10eight. The new42-file isolated suite passes280tests. Further source-bound
+acquisitions use unchanged phase20inputs/drivers/caps; their independent World
+analysis uses the reviewed exact artifact identity. The queue stops on any failed
+case or at a complete between-case storage boundary. Full matrix/failure review,
+separate verdicts, coverage gates/normalfinish/backups and checked integration
+remain pending. Normal accounting preserved two schema refusals for descriptive
+publication fields; title,confidence,subsystem/docs are now complete without
+changing its behavior contract or validation claims.
+
+
+The NVIDIA800attachment context also passes with717original source generations,
+1,529World presentations,2,050,178,380compared viewport pixels and zero mismatches.
+Its source-bound comparison, exact preferences-identity validation, admission,
+three-tree paired/real-restored handoff and RAM-capture handoff are complete.
+16of90current contexts now qualify;74remain. The queue stopped cleanly between
+cases before software640, leaving45request rows/77conservative charges exact.
+
+The refreshed census has no new/changed/removed unindexed sources. Normal
+`coverage-audit-04.json` passes with zero errors; the156unlinked historical source
+items remain the reviewed baseline. Bookkeeping prepare03has a current draft but
+1,936gate errors still need exact pending/current receipts across1,502affected
+behaviors and188new gaps. This is not a gate pass or overall acceptance. Source
+capacity upkeep runs only while this queue is stopped, preserving source cores,
+working/untracked data,pins,Git registration and all old databases/restore paths.
+A new prospective Cold/SATA pair has a verified two-copy probe and100/10GiBfloors.
+Only future reviewed child producers receive three storage overrides appended to
+the inherited Git configuration; default MSsettings and every old restore command
+stay unchanged. Raw games,source hashes,Native limits,actions,deadlines and all
+existing reservations remain exact.
+
+
+Both software attachment extents now pass complete independent comparisons,
+admission and paired raw/RAMretention, so18of90current contexts qualify. The next
+caller-default640request refused before any Original manifest,host,prefix or game:
+its outer source declaration is current, but an explicit delegated `--plan` still
+selected its old base declaration. Preserve the absent acquisition hash,empty
+setup/RAMdirectory,stack and full reservation in
+`bp20-world-caller-default640-01-delegated-custody-01.json`. The queue stopped; no
+automatic retry or refund followed.
+
+The reviewed declaration correction binds every explicit child selector to its
+current outerphase. Twelve contexts in caller,font and palette had legacy base
+selectors. Caller and picking already own RAMcaptures; their unchanged ownership
+replaces only the duplicate outer backing adapter, with exact retained-artifact
+checks and paired realrestore required while physical RAM remains held. No Native
+code,controller code,caps,actions,deadlines or independent assertions change.
+All296isolated tests in44files pass, including16new declaration/budget guards.
+The complete phase21preflight retains18current contexts and all48old rows/80charges,
+declaring72remaining positives under152additional/160withWP10eight. No spare,refund,
+automatic retry or user numeric approval is claimed. One caller-default640pilot
+must qualify and retain evidence before expansion. Broader player acceptance and
+original recovery remain pending.
+
+The bp21caller-default640pilot starts one actual original game but fails the
+unchanged progress deadline. Its optional caller-state recorder contains exactly
+262,143completion rows (the262,144row contract reserves one footer), with no
+normal footer and original exit99.181,249rows precede the first World;66World
+returns and65presented generations are retained. This exact saturated capture
+matches the explicit fail-closed capacity branch; it does not establish a cause
+for other exit99captures, a pause, or stale viewport polling. Its failed row/full
+charge, exact sources, two stopped execution trees and held RAM survive paired
+verification and real restores in `bp21-world-caller-default640-01-capacity-custody-01.json`.
+
+A caller-only observation correction visits the same visible Qt items without
+walking hidden widget pages, while explicitly traversing hidden combo lists.
+The generic hidden-subtree prototype failed the actual live-shell equality check
+because hidden lists expose SHOWING children; retain this counterexample and
+its exact prototypes. Only equality control06qualifies: all seven current
+preview/live-shell layouts match every visible dictionary/order/geometry/value/
+focus field. The live-shell poll measures62ms versus376ms in this bounded control;
+this is observation overhead, not game performance or an acceptance threshold.
+Eight traversal and nine budget controls pass. The inherited296tests remain
+current in controls13; controls14is an exact older-helper run, not refreshed proof.
+Phase22preflight verifies all18retained contexts and72prospective cases. All49old
+rows/81charges remain. The agent-set finite ceiling becomes153additional/161with
+WP10eight, without spare/refund/automatic repair/user numeric approval. One
+explicitly linked caller replacement must complete all original/pixel/state/
+retirement and paired RAM checks before expanding71. Native/compiler/runtime
+sources, diagnostic caps, controller actions/timing, game deadlines and independent
+assertions remain exact. Broader acceptance and Original recovery remain pending.
+
+The corrected caller-default640 capture passes its complete independent comparison:
+80 reconstructed Worlds and 81,516 caller-state model cases have zero mismatches.
+Validation, admission, three-tree paired handoff and held-RAM real restore pass in
+`bp22-world-caller-default640-01-coordinator-04.json`. The subsequent NVIDIA800
+context also passes: 70 Worlds and 108,460 model cases, normal exit and complete
+paired retention. Twenty of the 90 current contexts now qualify; 70 remain.
+
+Preserve the analysis-only refusals on the first normal capture. Its original
+comparison input still named the old journal publisher; a new required input
+changes only that analysis source selector to match the actual fresh acquisition.
+The old input and publisher bytes remain retained. The legacy reader then refused
+an empty preimage sequence where it expects a mapping. A strict schema binding
+interprets only that exact empty shape, preserving every recorded phase byte/hash
+and all source verification and unique-source bundle retention. A concrete later
+missing-RAM-helper report remains negative; the exact retained optimized helper
+is restored without rebuilding or changing the player. Six claims and five schema
+controls pass. These repairs add no original game or request charge and rewrite
+no old acquisition, comparison, coordinator or source hash. See
+`nominal-claims-analysis-plan-04.json` and its retained predecessors.
+
+All 324 isolated controls in 48 files pass in `isolated-tooling-controls-15.json`.
+Before the remaining menu/media and selected-plane cases, their CFG lookup is
+reviewed against the actual producer's checkout-relative artifact paths. Reuse
+only the strict same-session preferences identity helper, with all seven existing
+identity/corruption/ambiguity controls passing. Every other old validator byte,
+including semantics, pixels, context and retirement assertions, is identical.
+The review covers exactly 12 menu/media and eight selected-plane contexts; no
+whole-viewport credit is added to selected-plane evidence. Queue10 stops only
+after the admitted/retained NVIDIA800 case, and queue11 resumes the same 70 cases
+with these prospective analysis selectors. All 51 rows/83 charges at that boundary
+remain exact under the unchanged 153/161 ceiling. The native player, all compiler
+and runtime sources, diagnostic caps, physical actions and game deadlines remain
+unchanged. Overall acceptance, final accounting and integration remain pending.
+
+All four current caller contexts now pass:272Worlds/347,223state-model cases,
+zero mismatches in `current-caller-conjunction-01.json`. All four current combat
+contexts pass with4,436reconstructed Worlds. The NVIDIA640defeat-and-return case
+passes1,979Worlds/5,894presentations/5,207,647,500viewport pixels with zero mismatches;
+comparison,admission,three-tree and RAMhandoffs complete.27of90contexts are
+retained;63remain(43World,12menu/media,8selectedplane).58rows/90conservative
+charges remain exact under153additional/161withWP10eight. The queue stops before
+defeat800for verified source-copy capacity work. Six physically mismatched source
+copies remain held; no original source,fixture,pin or old database is normalized
+or removed. A prospective100/90Cold/main pair changes only future storage
+settings and preserves every old store/defaultrestore path. Native/compiler/
+runtime/player,actions,caps and deadlines remain exact. All current/old failure
+records remain separate; full conjunction,verdicts,gates,normalfinish and local
+integration are still pending.
+
+All four defeat contexts now complete current independent comparison/admission/
+paired raw and RAMretention. `current-defeat-conjunction-01.json` verifies
+7348Worlds/7150193original draws/25037Worldpresentations/22101238500pixels,
+zero mismatches,in actualNVIDIA/software640/800.30of90contexts qualify;60remain
+(40World,12menu/media,8selectedplane),starting with the prerequisite font/DCpilot.
+All49baseline rows81charges and153/161ceilings remain exact. Nine verified source
+compactions and nine typed bookkeeping restores completed in capacity-closeout04;
+9563418624allocated bytes reclaimed,six mismatched copies held. Descriptive
+progress/gaps now match this checkpoint without changing any behavior contract,
+status,evidence ID,Original link or source fingerprint. Full conjunction/verdicts/
+accounting/normalfinish/localmasterintegration remain pending.
+
+
+### Phase23 font pilot and retained recorder-cap negative
+
+The first font/DC acquisition completed its physical route and normal process
+retirement,but its optional font observer saturated the unchanged131072data-row
+cap. The footer131073records loss2 and4current owners; the strict comparison
+refuses before the Originalhistory oracle. `bp22-world-font-default640-01-capacity-custody-01.json`
+retains the exact17,634,196byte trace,source state,acquired/unadmitted row and full
+charge. Three stopped trees pass paired full real restores before handoff;the
+rawRAMcopy remains held after its paired restore. No record/footer is completed,
+old hash refreshed or Original/native font failure inferred beyond this loss.
+
+Only a separately named font-specific UI observer changes. It prunes hidden Qt
+widget-page descendants while retaining hidden-list descendants and exact live
+visible properties/order. With the font journey freshness wrappers,seven current
+Native layouts produce identical observations;live-shell polling is356ms versus
+58ms.29focused observer,budget and byte-identical-controller scope guards pass.
+Every existing controller method,action,wait,deadline,Native/runtime byte and
+font/capture cap remains unchanged. The rejected70count no-game budget prototype
+and metadata-only custody setup refusal remain retained alongside corrections.
+
+The one manually reviewed fresh pilot passes116reconstructedWorlds and227370000
+viewport pixels with zero mismatches. Its complete54370record trace contains
+8font generations/54345glyphs,loss0,currentowners0,pendingcalls0;the actualDCchain
+has11borrows and normal Native font retirement. Validation,admission,paired raw
+andRAMhandoffs and exact comparison reference binding all pass in
+`font-visible-pilot-qualification-01.json`. Later font contexts still need their
+own actual provider/extent,pixels,font/DCclosure and retirement.
+
+Phase23retains all62prior rows/94conservative charges and30previous complete
+contexts. The pilot makes31retained contexts;59remain(39World,12menu/media,
+8selectedplane). The new finite ceiling is154additional/162withWP10eight,
+exactly one manual replacement above phase22,with no spare/refund/automatic retry
+or claimed user numerical approval. Local font launch/actual-start caps remain
+unchanged. NativeB05ELF275da459...,410build and1054runtime inputs stay exact.
+The queue resumes only after pilot qualification. Full-matrix failure/boundary/
+verdict analyses,source census/audit,exact current/staged gates,normal finish and
+checked local master integration remain pending. Originalrecovery and every
+previous failure/source phase remain independent.
+
+
+### BP23 font cohort checkpoint — 34 current contexts
+
+All four fresh font cases at actual 640×480/800×600 on NVIDIA and software pass their independent output, glyph, DC and Native retirement checks. The strict raw traces contain 54,370 / 51,922 / 43,331 / 41,616 records, each with zero loss, current owners and pending calls under the unchanged 131,072-row cap. Every case has a verified paired, real-restored execution handoff. The scoped conjunction is `research/runtime/broader-player-acceptance-results-20261110/current-font-conjunction-01.json` (SHA-256 `c3a387918d9f4ae560a48d666dc59ac1a4ae4969efcec927dac69e93df337017`).
+
+The earlier normal functional acquisition with recorder loss 2 remains unadmitted, retained and charged. The font-only visible-widget observer changes no controller actions, recorder caps, deadlines, Native code or runtime sources. The four-context result brings the retained cohort to 34 of 90; 56 contexts and the full current conjunction, separate verdicts, final accounting, normal finish and checked local integration remain pending. Original recovery remains independent and incomplete.
+
+
+### BP24 hotspot diagnostic gap — expansion stopped
+
+The 35 completed contexts remain retained. Both NVIDIA 800×600 hotspot acquisitions exit normally and their complete viewport comparisons match, but required intermediate COPY observations are absent: phase23 has 170 gaps and the faster-observer phase24 pilot has 136. These cases remain acquired and unadmitted; every old row and charge is preserved. The live queue is stopped.
+
+Retained-data command dimensions and ordering exclude the cumulative COPY and readback caps at all 170 phase23 required gaps, leaving failed bounded worker reservations as a source-based inference; no per-refusal branch counter was captured. The final 8,192-record total alone does not explain those earlier gaps. Preserve the original custody report and the more precise `bp23-world-hotspot-default800-01-queue-branch-analysis-02.json` finding.
+
+A Native-only pressure control on the unchanged B05 renderer reproduces diagnostic loss (104 of 600 COPYs recorded) while actual GPU output remains correct. A separate child-only scheduling trial constrains the owner and inherited standard workers to one allowed CPU and lowers only the main thread to nice19 after the diagnostic constructor marker. It records all 600 COPYs with unchanged 512MiB/256-job and cumulative limits; concurrent command and viewport captures close completely. External GL thread affinities stay explicitly recorded. This control is not a live-player proof: an exact implemented host adapter, its controls and a new bounded live declaration/pilot are still required before expansion. No Native byte, cap, action, deadline, historical failure or milestone is changed.
+
+
+### BP26 Native COPY diagnostic source repair — validation pending
+
+The failed live host-scheduling pilot remains charged and unaccepted (AT-SPI reply timeout before cursor actions, forced private-prefix stop). Native-only scheduling controls are retained separately and do not prove public GUI responsiveness. The next cohort returns to ordinary process scheduling.
+
+The Native diagnostic repair introduces bounded parallel pure CPU preparation and a single ordered writer, unchanged 512MiB/256-job/8192-copy/32GiB bounds, a fixed 50ms all-copy budget admission wait with its mutex released, and explicit refusal counters. The new stable policy is `NP.copy-diagnostic-preparation`; see `research/runtime/native-copy-diagnostic-pipeline-20261111.md`. Focused CPU/GPU/GUI controls, the new exact executable/source declaration and full current cohort remain pending. All 35 B05 positives and every old milestone retain their original source phase; none is refreshed or waived into the new Native identity. No Original run or acceptance is claimed by this source checkpoint.
+
+### BP26 bounded COPY preparation controls — 2026-11-11
+
+`NP.copy-diagnostic-preparation` now has scoped implementation and headless integration through `BP26.COPY-controls01`, with optimized/ASAN/UBSAN FIFO, budget, ownership and error controls; both actual GPU providers independently check 1,200 complete COPY observations and physical GUI response; six current recovery controls pass. Pure CPU preparation is parallel, all writes remain FIFO, existing caps stay exact, and all-COPY budget waits are bounded at 50 ms without holding the worker budget mutex. This intentional native diagnostic policy is separate from recovered Original behavior. See [the pipeline research](native-copy-diagnostic-pipeline-20261111.md).
+
+The old 35 B05 contexts retain their exact historical milestones and do not count as current B06 execution. Full broader-player acceptance remains pending on a wholly fresh 90-context/98-start source cohort; all 70 prior request rows/102 charges remain preserved. Neither Original recovery, physical driver reset, arbitrary map/save/duration support nor production FPS is promoted by the Native-only controls.
+
+
+### B06 complete-input continuation — 2026-11-11
+
+The exact B06 native player passes the complete 5,004-COPY NVIDIA hotspot pilot,
+both current-provider fullscreen contexts and the first 640×480 NVIDIA
+surface-loss/fresh-generation pair. Each is separately admitted and retained
+with two verified copies and a real restore. Current Native CPU/GPU/GUI controls
+and the latest 70 final-reader tests plus two historical-mapping controls pass.
+The eight technical provider-boundary dispositions pass; whole-player acceptance
+and complete Original recovery remain independent and ungranted.
+
+The fresh finite declaration is 90 contexts and 98 positive Original starts, with all
+71 older request rows and 103 charges unchanged: final 161 rows and 201 charges, 209
+including WP10 eight. Catalog03 completes unstarted helper, font, palette and claims
+inputs without a game, reservation or Native source/ELF change. The original
+source phases, failed COPY/recording observations, raw padding differences,
+unclassified historical causes and finite supplier/input domains remain held.
+Finish every remaining current case and the full evidence/accounting conjunction
+before local master admission. See broader-player-acceptance-results-20261110/
+B06-auxiliary-input-review-01.json, B06-current-provider-boundary-impact-01.json
+and active-task-handoff-38.json.
+
+
+### B06 current surface-loss cohort — 2026-11-11
+
+All four current B06 quiescent offscreen-target-loss/fresh-generation contexts
+pass at actual NVIDIA/software and 640×480/800×600. Their eight Original starts,
+required prefix/fresh output, input/state/lifetime checks and paired real-restored
+retention remain independently linked. Required output has zero mismatching
+pixels; a failed epoch receives no normal-completion credit. The retained-data
+conjunction adds no game or raster execution and does not adjudicate the active
+whole-queue budget. Its initial partial-check use of the whole admission helper
+was correctly refused while the next transition request was active; the
+correction leaves every producer/admission guard unchanged.
+
+See broader-player-acceptance-results-20261110/
+B06-current-surface-loss-conjunction-02.json. Seven of 90 current contexts are
+complete; transitions, strict readiness and the rest of the current matrix,
+full Native acceptance and local master integration remain pending. Complete
+Original recovery and physical device/driver reset remain separate and open.
+
+
+### B06 safe storage boundary — 2026-11-11
+
+Nine current B06 contexts and 15 actual Original starts pass: the hotspot pilot,
+both fullscreen cases, all four surface-loss pairs and both NVIDIA transition
+pairs. All admitted source/binary/output/lifetime proofs and paired real-restored
+handoffs recheck. The finite queue stopped without error at a completed-case
+storage boundary: 80 request rows, 118 charges, all current rows admitted and no
+unfinished request. The next software 640×480 transition case was not reserved.
+Main free space was 91.7169 GiB, below the queue’s 92 GiB acquisition threshold;
+the 90/100/10 GiB main/Cold/SATA hard floors hold.
+
+See broader-player-acceptance-results-20261110/
+B06-storage-boundary-checkpoint-01.json and COPY-current-cohort-16-part-01.json.
+A distinct old 7.55 GiB movie run is preserved in two verified stores and passed
+a real restore; its original files remain intact. Retirement requires the
+pending explicit exception to the newest-two rule because it is the group’s
+only run. No approval has been received for that action. Full Native acceptance,
+the remaining 81 contexts/83 starts, final accounting/finish and local master
+integration remain pending. No global acceptance or Original recovery is granted.
+
+
+### B06 approved capacity continuation — 2026-11-11
+
+The user approved the specific historical movie-run exception by replying “keep
+going” to that pending archival question. The exact 79-file run, including its
+original pin, survives in both verified Cold/main stores and a new real restore;
+its historical path now contains a pinned restore stub. Reclaimed allocation is
+8,108,371,968 bytes. Two clean merged inactive registered checkouts also completed
+verified tracked research/tests compaction, retaining all source cores, working
+data, Git registration and restore instructions; reclaimed allocation is
+4,010,983,424 bytes. No historical database was relocated.
+
+All 26 B06 phase declarations and 2,075 source bindings rechecked unchanged.
+Queue16 part02 resumed the same finite matrix from the next unstarted software
+640×480 transition context after checking the exact nine accepted cases and
+80-row/118-charge boundary. The new case’s two game runs and raw Original
+comparison pass; its Native-policy comparison and complete retention are pending.
+No new case, retry, refund, deadline, cap, Native source or player binary change
+was introduced. The remaining full-matrix acceptance, independent verdicts,
+coverage finish and local master integration remain open.
+
+See broader-player-acceptance-results-20261110/
+approved-old-native-movie-handoff-01.json,
+completed-Cold-source-compaction-02.json,
+COPY-cohort-16-part-02-continuation-01.json and active-task-handoff-45.json.
+
+
+### B06 current transition-recovery cohort — 2026-11-11
+
+All four current B06 drained resident-transition failure/fresh-generation contexts
+pass at actual NVIDIA/software and 640×480/800×600. Both comparisons, all required
+pixels/state/lifetime checks, coordinator admission and every paired real-restored
+execution, capture and derived-output handoff pass. Required-output mismatches are
+zero. Failed epochs retain only their declared compared-prefix credit. The retained
+raw Original padding negative remains separate from the Native finite-edge policy;
+no Original padding equivalence or physical device/driver-reset claim is granted.
+
+The four-context retained-data conjunction adds no game or pixel replay and does
+not adjudicate the concurrent whole-queue budget. Together with the four current
+surface-loss pairs, all eight declared failure/fresh-generation contexts now pass.
+At transition completion the B06 matrix had 11 accepted contexts and 19 actual
+Original starts; 79 contexts/79 starts remained. Strict readiness continues under
+the unchanged finite plan, Native binary, deadlines, reservation ceiling and hard
+storage floors. Full Native acceptance, Original recovery and local master
+integration remain open.
+
+See broader-player-acceptance-results-20261110/
+B06-current-transition-conjunction-01.json (a3f6e0c8799aa0b403da35e84571df2c26af250c6680ba611c3ee2292f252640),
+bp27-transition-software640-01-coordinator-01.json and
+bp27-transition-software800-01-coordinator-01.json.
+
+
+### B06 strict readiness and fifteen-case boundary — 2026-11-11
+
+All four current B06 strict 10/30-second contexts pass on actual NVIDIA and
+llvmpipe. Their two active physical camera/HUD phases per case, Original
+callbacks, Mini Cancel, Quit No/resume, Quit Yes/report/Main/exit, source identity,
+response/forward progress and normal retirement pass with complete paired
+real-restored retention. The cases contain 3,772 source World observations.
+Maximum observed producer acknowledgement is 241 ms and Native consume is
+222.686771 ms, under the existing source deadlines. FPS remains diagnostic;
+these finite readiness cases grant no full-pixel equivalence or universal
+reliability/performance claim.
+
+The full timed conjunction performs no new game, Native execution or pixel
+comparison. See broader-player-acceptance-results-20261110/
+B06-current-strict-readiness-conjunction-01.json
+(55aab7492c0589ab595fe1a8757720528782cf016c4134448dee420e02eebcb9).
+
+Queue16 part02 then stopped successfully at the task-owned completed-case
+maintenance boundary: 15 current contexts/23 actual Original starts,
+86 total request rows/126 charges, no unfinished current request and no new
+B06 acquisition/comparison failure. The next NVIDIA hotspot640 case remains
+unreserved. Seventy-five contexts/75 starts, the full failure/acceptance/verdict
+conjunction, final accounting/finish and local master integration remain open.
+The exact old 71 rows/103 charges and 201/209 ceilings remain unchanged.
+See COPY-current-cohort-16-part-02.json.
+
+
+### B06 verified legacy-cache capacity and same-matrix continuation — 2026-11-11
+
+Standard review-cache preservation keeps every original schema, row, pending draft
+and auxiliary value. The Native-player seven-table/1,883,587-row/two-draft typed
+checkpoint passed two copies and a real restore before eviction. Its metadata
+overhead increased net storage, so subsequent legacy caches use full byte-exact
+container snapshots through the existing immutable writer. Twelve focused
+roundtrip/refusal controls pass, including BLOB/NUL/Unicode, indexes/views/triggers,
+changed source, tampered guard, active consumers, lock ownership, protected output
+and restore-capacity refusal. The initial byte-cache attempt correctly refused
+its own held lock; the repair permits only that exact operation descriptor and
+still refuses every external or other own consumer. No cache changed in that
+refused attempt.
+
+Four Cold caches and 27 eligible SATA caches then passed two-copy verification
+and independent real restores before atomic restore guards. Original allocation
+reclaimed is 2,545,426,432 and 16,587,403,264 bytes respectively; these figures are
+source allocations, not net filesystem gains after archive retention. Unmerged
+branches, all unique source changes, original pins, evidence stores and raw backup
+snapshots remain in place. One SATA candidate remains held. Both current and
+frozen bookkeeping must explicitly restore an archived cache before use; cached
+gate results are never authoritative.
+
+The existing source-specific legacy import also preserves 3,966 Native-player
+report objects, all report hashes/bindings/metadata/schema, two verified copies
+and a complete logical restore. Its original path remains a readable shared view.
+The old mutable container encoding is explicitly retired; no reconstructed
+container is asserted under its former whole-file hash, and original snapshot
+files remain physical. This is no review-database relocation or source removal.
+
+After capacity work, actual free GiB were Cold108.26/main129.49/SATA25.93. Queue16
+part03 resumed the same finite B06 matrix on the existing Main/SATA pair, with
+all older object stores still in place and the unchanged100/90/10GiB floors. It
+rechecked all15 accepted current contexts,26 source phases,exactB06ELF and the
+86-row/126-charge boundary, retained and cleared only its own stop marker, then
+reserved the next NVIDIA hotspot640 case. No case, Native source, game action,
+deadline, cap, refund, automatic retry or source waiver changed. At restart75
+contexts/75 positive starts remained; full Native acceptance, final accounting
+and local master integration remain open.
+
+See broader-player-acceptance-results-20261110/
+completed-standard-review-cache-handoff-01.json,
+completed-Native-legacy-source-handoff-01.json,
+idle-byte-review-caches-handoff-02.json,
+idle-SATA-byte-review-caches-handoff-01.json and
+COPY-cohort-16-part-03-continuation-01.json.
+
+
+### B06 retained hotspot readiness analysis — 2026-11-11
+
+The stopped NVIDIA640 hotspot case has239independently reconstructed Worlds,
+498World presentations and489720000viewport pixels with zero mismatches. Its
+recorded World186 readiness paint401(command55449) preceded cursorCOPY55451;
+actual swapped paint402(command55453) completed that cursor before the original
+readiness deadline. Fresh analysis selects the first complete captured same-World,
+same-scaling swap inside the original hold by command order/clocks,never pixel
+agreement. Exact original state/atlas/caller,all required COPY outputs,all full
+viewport pixels,three distinct readiness generations,physical input and lifetime
+checks remain. The original partial paint and failed comparison remain negative.
+
+Current640comparison02 and800comparison03,93isolated refusal controls andboth
+real partial-ledger final-gate refusals pass. Every acquisition/Native source,
+Original start/reservation andold800validation pointer/coordinator remains exact;
+explicit new retained-analysis bindings supply current validation andpaired
+retention. A rejected temporary matrix-reader edit andthe800sourceguardrefusal
+are retained separately; the frozen reader is restored byte-for-byte.
+
+Queue17part01 resumes the unchanged74unstarted contexts after16current accepted
+contexts/24actual starts and87rows/127charges,with all26frozen phases/2075sources
+and the exactB06ELF rechecked. Final90contexts/98positive starts,161rows/201charges
+(209includingWP10eight),all94journey/42operation cells,independent Native/Original
+verdicts,source accounting,normal finish andlocalmasterintegration remain required.
+See broader-player-acceptance-results-20261110/B06-hotspot-readiness-diagnosis-01.json,
+B06-hotspot-analysis-controls-01.json andCOPY-cohort-17-part-01-continuation-01.json.
+
+
+### B06 reviewed canonical-plan setup continuation — 2026-11-11
+
+All four actual NVIDIA/software640/800 hotspot contexts now pass with paired
+retention:15271 independent COPY outputs,7117 required COPY observations andzero
+diagnostic refusals. Eighteen total current contexts/26actual starts are qualified.
+The next attachment request failed at its plan-prefix guard before any output,
+prefix borrow,player orOriginal launch. Its exact failed request andonecharge,
+source bytes,coordinator andlog remain immutable; no acquisition is synthesized.
+
+A preflight found the same guard in font,palette andpicking. New isolated adapters
+replace only that exact expression with equality to the hash-bound canonical
+phase,preserving all other AST nodes andthe existing visibility/history/provider
+bindings.33 guard/budget controls,the real current attachment build projection
+andall18 current cases pass. No Native/runtime/compiler source orELF changed.
+
+Plan28/catalog04 preserve the original71rows/103charges,the extra closed setup
+row/onecharge,andthe same positive90contexts/98starts. The72 remaining positive
+contexts require final162rows/202charges,210includingWP10eight. Four attachment
+declarations get freshbp28 IDs/prefixes/counters; three never-requested older
+attachment declarations stay historical. No automatic retry,refund,failed-row
+rewrite,new positive domain orNative-source waiver occurs. The first replacement
+attachment pilot must fully compare,validate andretain before expansion. Full
+Native/Original final verdicts,source accounting,normal finish andlocalmaster
+integration remain pending. See broader-player-acceptance-results-20261110/
+B06-current-hotspot-conjunction-01.json,B06-attachment-setup-refusal-01.json,
+B06-canonical-plan-guard-controls-02.json andB06-setup-continuation-review-01.json.
+
+
+### Fading-particle admission and current runtime boundary — 2026-11-11
+
+Twenty B06contexts/28actual starts completed before software640 attachment failed at World205: failure43,tag14,caller54a563,exit95. The exact failed request and all93rows/133charges remain held. Static recovery and isolated original-primary execution identify the omitted fading-particle method54a4a0. Its new protected admission is covered by240original primary calls,264callbacks,14484guard controls, the existing sprite regression and77760-case trace/pixel model comparisons. See native-world-fading-particle-admission.md. Runtime build07 pins1055full-hash inputs and the unchanged Native ELF; all20prior B06contexts retain historical evidence without current-runtime credit. A separately reviewed finite bp29pilot and full current90/98conjunction, independent Native/Original decisions, exact coverage finish and authorized localmaster merge remain pending. No new actual game,refund,automatic retry or global acceptance follows from isolated controls.
+
+
+### B07 software attachment pilot and bounded continuation — 2026-11-11
+
+The replacement software640attachment pilot passes450sourceWorlds/29sourcechunks,1355Worldswaps and1820800320independentviewportpixels withzero mismatches. Attachment semantics,normal Original exit0,Native/input/resource retirement andtwo-copy realrestore retention pass. Acquisition3954e5300034ddc547d461c39479492a9feb329cb027185d9ffd26b837ae1ba1; comparison1ee444944aa5d467826cc28e69ee3a67a4a1af91c494bbb36dc62c0515def6fd; pilotresult12b12c4b5f5e5dc7d962f8ff28868a8abe07f4fdd66b469086f40607e4f63b08.
+
+The retained1,811,792record caller review finds none of the eight fading leaves in this passing pilot. It qualifies this finite context only; the newfading admission retains isolated/headless status andno live causal-repair claim. The failed World205raw refusal/exit95 andits actual start stay intact. Two exploratory retained-data scans refused incorrect envelope/reachability assumptions; their operators/logs remain held andno newgame followed either refusal.
+
+Fresh native-controls08executes six real-GL controls with1055currentruntime inputs. Component06andCOPY03join unchanged applicableCPU/sanitizer/both-providerCOPYparents undernew evidence IDs, preserving every historical hash. The77,760trace/77,760pixel model comparison is newly registered asBP29.particle-sprites.original01within its unchanged recovered scope. Both new final readers refuse the actual incomplete cohort;tenledger mutation controls also pass.
+
+Plan29andcatalog05retain all93priorrows/133charges andwithhold current credit from20B06contexts/28actual starts. New90contexts/98starts require final183rows/231charges,239includingWP10eight. A preflight found old strict extent-analysis identities:catalog06andtwo newphase/analysis pairs rebind only fourstrict contexts andtheir argv selectors before any strict request. Actions,deadlines,Native/runtime/compiler sources andstart bounds remain exact. The current full-runtime matrix is running underCohort19with noautomatic retry; at this snapshot only the onepilot isqualified. Full Native/Original decisions,coverage finish andauthorizedlocalmaster integration remain pending.
+
+
+### B07 attachment cohort and retained caller review — 2026-11-12
+
+All four current attachment contexts pass on NVIDIA and software at 640×480 and 800×600: 2,051 source Worlds and 7,177,175,820 viewport pixels compare with zero mismatches. Every case has normal Original/Native retirement and two verified evidence copies with a real restore. The scoped result is `runtime29-current-attachment-conjunction-01.json`; together with the completed NVIDIA 800×600 fullscreen context, this makes five qualified current contexts. Combat remains in comparison, and complete current player acceptance and local integration remain pending.
+
+The retained attachment caller review decodes 8,953,473 source records and finds none of the eight newly admitted fading leaves. `runtime29-attachment-caller-conjunction-02.json` preserves the exact inputs and the earlier scanner prerequisite refusal. It uses only the four explicitly admitted rows and the unchanged full current-case checker; it makes no whole-ledger or active-combat claim. No game or Native execution was added. The fading behavior stays headless, all historical failures remain retained, and no causal repair or Original recovery is inferred.
+
+
+### Final dashboard projection preparation — 2026-11-12
+
+The standalone `tools/project-broader-player-dashboard.py` accepts only a complete current player proof and its independent decisions. It rechecks the exact inherited 156 requirement rows, all 90 contexts/98 starts through the verdict issuer, the unchanged boundary proof, source closure, and the exact pending Original-recovery object. Eight focused controls also exercise the existing dashboard reader. The projection uses a fresh report and a compatibility kind; it never replaces an old payload or selects itself in `tracks.json`. Its controls are `runtime29-dashboard-controls-01.json`.
+
+An initial draft edit of the existing UI reader overlapped a frozen Python acquisition dependency. Its exact candidate and diff are preserved in `runtime29-dashboard-preparation-deferral-01.json`, and the original phase bytes were restored. The standalone approach leaves that reader unchanged. This transient edit is disclosed; a matching bookend fingerprint is not a continuous immutability observation. Native/runtime/compiler files were not changed. No acceptance, source waiver, additional game request or milestone follows from this preparation. After the completed cohort, `working/broader-player/run-runtime29-final-readers-02.py` runs the boundary/failure/player/independent-decision checks and then creates the guarded dashboard projection. Source/coverage closeout and checked local integration remain required.
+
+
+### Failed B06 execution custody — copy-only checkpoint, 2026-11-12
+
+`B06-failed-attachment-custody-plan-01.json` reviews exactly the two stopped task-owned software640 failure trees: `working/pilot/bp28-world-attachment-software640-01-acquisition` and `working/experiments/menu-observer/run-nvexcnoz`. Their 4,963 files occupy 1,268,498,432 allocated bytes (about 1.18 GiB). All 2,076 original acquisition source preimages are retained in the current evidence pair; the two superseded runtime files come from the exact build06 source objects. No historical source fingerprint is refreshed.
+
+`B06-failed-attachment-copy-only-01.json` proves two complete verified copies and real restores, including every original pin and metadata. Both original execution trees remain in place. The failed World205 record, exit95, incomplete observations, one actual start, failed request and full charge remain unchanged; no Native acceptance, historical causal repair or Original recovery is inferred.
+
+Automatic approval review rejected replacement of these particular B06 trees with restore stubs because that archival action lacked explicit user approval. The rejected command did not execute. An explicit approval question is pending; do not treat the older five-run cursor approval, the posted-question acknowledgement or elapsed time as approval for these trees. The safer copy-only preparation is complete, and Native acceptance acquisition/comparison continues independently.
+
+
+### Current combat cohort and retained caller recovery — 2026-11-12
+
+The four combat contexts pass at actual 640×480/800×600 on NVIDIA and software. `runtime29-current-combat-conjunction-01.json` records 4,373 source Worlds, 11,604 World presentations and 10,349,707,500 viewport pixels with zero selected Native mismatches. NVIDIA640 uses the predeclared finite-edge policy; its complete raw Original comparison retains six differing pixels on one paint. The other three raw comparisons match exactly. All cases have normal retirement and verified paired real restores. A separate retained scan of 7,713,323 combat source rows finds none of the eight new fading callers; together with attachment evidence, 16,666,796 rows grant no natural live fading milestone.
+
+The queue stopped at `bp29-world-caller-default640-01` after a successful normal acquisition. The empty-list-only analysis wrapper refused the exact build07 source-root descriptor before oracle execution. Its failed coordinator01 and stopped Cohort19 part02 remain immutable. Further preflight exposed the stale caller inventory, a mechanically renamed missing history-build reference, and older prospective claim sources. A fresh static inventory preserves all 65 sites and every obligation exactly, and the retained source-current bp27 history helper supplies the same executable. New analysis declarations and adapters change no acquisition command, action, cap, deadline, binary or Native/runtime source.
+
+`runtime29-caller-root-analysis-plan-05.json` verifies all 1,376 Native source preimages and seven SQLite evidence payloads. An earlier retained analysis refused the legacy literal-file snapshot loop's comparison of reference-file encodings with original payload hashes; its report, log and empty output folder remain held. The payload-aware adapter keeps every original payload and source hash intact and uses comparison02. That actual comparison passes 92,954 caller-state cases, 83 reconstructed Worlds, 208 World presentations and 237,864,000 viewport pixels at zero mismatch. No new game or player run followed the acquired capture.
+
+Standard validation/admission and copy-only custody qualify the tenth current context. Coordinator02 is a distinct successful record; failed coordinator01 is never overwritten or aliased. Its three original execution/comparison folders and controller-owned RAM remain physically held after two-copy verification and real restores. All 103 request rows and 143 conservative charges persist, with only the expected acquired-to-admitted lifecycle change. The remaining 80 positive contexts and full 183-row/231-charge, 90-context/98-start conjunction remain unfinished.
+
+Focused controls pass: 34 source-root/payload/argument/coordinator checks, all 14 original finite-edge require predicates, and 23 caller-aware final-reader checks (including ten binding corruptions and actual incomplete-cohort refusals). The auxiliary input audit checks 146 uses across 30 unique inputs and finds only the three reviewed caller-specific input issues. Use `run-runtime29-final-readers-03.py` and `register-runtime29-complete-acceptance-02.py` only after the complete cohort passes. No complete player verdict, Original recovery, natural fading validation, feature commit or local master merge is granted here.
+
+Automatic approval review separately rejected the caller's destructive retirement step. `runtime29-finite-positive-retention-approval-plan-01.json` makes the fixed 90-case positive-cohort workflow explicit; its approval question is pending, independently of the earlier B06 negative-tree question. The caller's three folders total 1,596,616,704 allocated bytes (about 1.49 GiB) and remain in place. No rejected action ran.
+
+
+### Explicit archival approvals and continuation — 2026-11-12
+
+The user answered “approved” to the two pending questions. `runtime29-finite-positive-retention-approval-01.json` authorizes the exact reviewed 90-case positive-cohort workflow, and `B06-failed-attachment-archival-approval-01.json` authorizes the two reviewed failed B06 trees. These approvals supersede the pending status in the earlier checkpoint; all exclusions and mandatory copy/restore/consumer checks remain.
+
+Fresh verification and complete real restores passed before replacing the five specifically reviewed execution/comparison trees with pinned restore stubs. The B06 handoff reclaims 1,268,482,048 allocated bytes; the held caller handoff reclaims 1,596,592,128 allocated bytes. Original bytes, metadata, pins, source hashes, failed/successful reports and all request charges remain retained. Controller-owned RAM, shared inputs, source checkouts and old empty refusal folders stay in place. Distinct retirement receipts preserve the earlier copy-only proofs.
+
+`runtime29-approved-cohort-continuation-01.json` rechecks all ten qualified contexts and the 103-row/143-charge ledger. Cohort19 resumes as part03 through the caller-aware operator, with 80 remaining positive contexts. It requires the explicit approval receipt and stops on any failed acquisition, analysis, validation or retention step. The final 90/98 and 183/231 requirements, independent Original-recovery verdict, normal finish and checked local integration remain unfinished.
+
+
+## Current caller recorder and loader stops — 2026-11-12
+
+The two explicit archival approvals were executed successfully: the reviewed
+B06 negative and first caller trees retain every byte and pin in two verified
+stores after complete real restores. Exactly 2,865,074,176 allocated bytes were
+reclaimed. These storage receipts confer no additional validation credit.
+
+The next NVIDIA 800x600 caller attempt (`bp29-world-caller-default800-01`)
+failed after 76 completed Worlds. Its optional caller-state file contains
+exactly 262,143 complete 848-byte rows, with no normal footer: 146,289 rows
+precede the first World row. Original exits 99 at the recorder capacity guard;
+producer teardown leaves `INTERRUPTED4`, and the Results lookup consequently
+sees the terminal page. This diagnoses this exact saturated capture, not every
+exit99 or a universal Native rendering failure. The failed start and charge
+remain exact. Its execution trees and controller-owned RAM stay physically held
+after two-copy preservation and real restoration. See
+`broader-player-acceptance-results-20261110/bp29-world-caller-default800-01-capacity-custody-01.json`.
+
+A separately scoped target-property observer preserves live traversal, hidden
+list descendants, target multiplicity, enabled/focus/role/geometry/value checks,
+full screenshot observations, and the exact physical click AST. Seven unchanged
+Native previews pass 168 selector comparisons; 21 traversal controls pass. No
+recorder cap, Native/compiler/runtime byte, game action or deadline changes.
+The first planning continuation's pilot (`bp30-world-caller-default800-01`)
+refuses during recursive Python module loading, before any Native or Original
+launch. The parent loader revisits modules; the initial binding applied its
+camera wrapper twice, and the second AST guard correctly refused it. Preserve
+that zero-game request and its complete one-start reservation separately; see
+`bp30-world-caller-default800-01-loader-custody-01.json`. The earlier custody
+bookkeeper's closed-Reader refusal and its corrected execution are also retained.
+
+The corrected binding is idempotent per actual module identity. Its real loader
+controls revisit both distinct active menu modules and the camera five times
+under both provider bindings, forbidding all non-Git process launches. All 31
+loader/traversal controls pass; neither control launches a game. Fifteen finite
+ledger controls preserve all 105 existing requests and 145 conservative charges.
+A new, separately named prospective continuation preserves the ten accepted
+current contexts and declares only the remaining 80 contexts / 88 positive
+starts, with no spare or automatic retry: prospective final accounting is
+185 requests / 233 additional charges, or 241 including WP10's eight. It must
+qualify its single replacement pilot before expansion. Prior 183/231 and 184/232
+plans and stopped results remain immutable historical plans, not completed cohorts.
+Full current-player acceptance, dashboard selection, normal finish and master
+integration remain pending.
+
+
+### Font prerequisites and retained-only pilot recovery — 2026-11-12
+
+All four current caller contexts pass: 1,073,011,500 pixels with zero mismatches and 356,963 checked caller-state cases. This does not promote the unreached natural fading branch. The next font attempt (`bp31-world-font-default800-01`) refused older observer controls before any player or Original launch. Its full outer reservation and immutable negative remain preserved; both execution trees passed copy-only custody and remain physically held.
+
+Fresh focused observer and hidden-copy controls pass at byte-identical player and Scene DLL hashes. Plan32 retains 13 qualified contexts and declares 77 new positive contexts/85 actual starts: the unchanged final positive domain is 90 contexts/98 starts, within 186 total request rows/234 conservative charges (242 including WP10). Earlier 185/233 planning remains historical.
+
+The actual plan32 font pilot captured normally. Comparison01 found zero pixel errors but refused an obsolete native-font-control command argument. The phase already named the correct current control. Separate retained-only comparison02 passes 206,382,000 pixels, 104 source Worlds and 174 World presentations with zero mismatches, font/DC semantics and normal retirement. No game or request was added. A distinct successor preserves the failed comparison, coordinator and pilot operator. Its approved positive execution/RAM handoffs retain every byte and pin in two verified copies after real restores. Fourteen contexts now qualify; 76 remain. Strict current-source final readers and the remaining finite execution are still pending. No full player acceptance, Original recovery, source waiver or natural fading promotion follows from this progress.
+
+
+### Positive font reference argument — 2026-11-12
+
+`bp32-world-font-default640-01` stopped before any Native or Original process: when the initial font pilot moved to 800x600, the former 640x480 pilot retained no `--pilot-review` argument. The qualified exact-payload alias existed but was not passed. Preserve this distinct zero-game refusal and full outer charge; its two execution trees passed dual-copy real restores and remain physically held. Fourteen completed contexts stay qualified.
+
+Plan33 retains all 111 request rows/151 charges and the 14 accepted contexts, and declares 76 remaining contexts/84 positive starts. The unchanged final positive domain is 90 contexts/98 starts; exact full accounting is now 187 total rows/235 conservative charges, or 243 including WP10. Plan32's 186/234 remains an immutable earlier plan. Every remaining font command now supplies the exact qualified alias and the phase-bound current font control. Controls audit all remaining comparison references. An actual unchanged-collector check passes prerequisites and intentionally refuses Native process creation with zero games, no player PID, returned prefix, verified original bookends and unchanged global requests. The new final-reader suite passes 100 controls and still rejects the incomplete cohort. The single newly named 640x480 replacement must fully qualify before expansion. No engine/source/action/deadline/cap changes, refund, automatic retry, global acceptance or Original recovery claim follows.
+
+
+### Current four-context font milestone — 2026-11-12
+
+All four current Nvidia/Mesa and 640x480/800x600 font contexts pass: 404 source Worlds, 56 source chunks, 708 World presentations and 838,645,500 independently compared pixels, with zero mismatches. Each proves font/DC semantics and normal retirement at the unchanged player/Scene DLL hashes. Every execution and temporary RAM duplicate passed two-copy real-restore retention, and each completed request/counter database passed a typed logical restore. The 640x480 replacement qualified 15 contexts before expansion; both Mesa font cases then qualified, bringing the current total to 17 of 90.
+
+`font-reference33-current-font-conjunction-01.json` binds those four existing validations and adds no game or pixel comparison. The queue proceeds to palette cycling within the unchanged plan33 positive domain and 187-row/235-charge bound. Full Native player acceptance, Original recovery, natural fading reachability and final master integration remain pending.
+
+
+### Palette counter schema and finite continuation — 2026-11-12
+
+The first current palette case (`bp33-world-palette-default640-01`) opened the Native launch UI and performed two scaling-selection inputs, then refused a missing `attempts` table before Original Launch. It therefore records one actual Native UI launch and zero Original game starts. Preserve its full outer charge, complete negative trees and original empty counter. The trees passed paired real-restore custody and remain physically held.
+
+The Native palette collector expects the table created by its preceding Original probe. A source-specific audit reviewed all 10 remaining declared counter paths/23 declarations. Other declared counters initialize their own tables. Only a fresh bp34 palette namespace is prepared from the existing probe's exact SQL, with count/insert/uniqueness controls rolled back to zero actual rows and a complete typed schema checkpoint restored from two stores. Nine schema controls and 114 final-reader controls pass. No controller, Native/runtime/compiler code, cap, physical action or deadline changes.
+
+Two preparation reports remain false and immutable: one referenced the wrong parent analysis filename; the next wrote every plan/catalog/source object but used a closed SQLite Reader while constructing its final report. Separate completion03 freshly verifies those existing plans, all source/reference bindings, 17 retained proofs, the exact 115-row/155-charge ledger and the still-empty prepared counter. It recreates nothing and launches no Native or Original process.
+
+Plan34 retains those 17 contexts and all failed charges, and declares 73 remaining positive contexts/81 starts. The full positive domain remains 90 contexts/98 starts; exact final accounting is now 188 rows/236 conservative charges, or 244 with WP10. Earlier plan33's 187/235 remains historical. Qualify the separately named 640x480 palette pilot before expansion. Full player acceptance, Original recovery, natural fading reachability and final master integration remain pending.
+
+
+### Current four-context palette milestone — 2026-11-12
+
+All four Nvidia/Mesa and 640x480/800x600 palette contexts pass: 813 source Worlds, 157 source chunks, 861 World presentations and 964,573,500 independently compared pixels, with zero mismatches. Each proves actual WORD/DWORD original palette refresh, ordinary forwarded camera movement, normal retirement, current Native/runtime/compiler/player hashes, paired real-restore retention and exact typed counter restoration. The prepared palette namespace retains only the actual four requests at the correct phase hash; synthetic schema-control rows were rolled back.
+
+The family conjunction adds no game or pixel comparison. Its first ad-hoc summarizer expected a font-only convenience field and refused before publishing a result. Preserve that exact source/log as a metadata-only negative. The separately named corrected aggregator checks the palette comparer's explicit independent-reference provenance, successful complete pixel comparison and standard validated output history. No underlying acquisition, comparison, source hash, charge or verdict is rewritten.
+
+Twenty-one of 90 current contexts now qualify. The existing finite plan34 queue proceeds to picking within its unchanged 90-context/98-positive-start domain and 188-row/236-charge final bound. Full Native player acceptance, Original recovery, natural fading reachability and final master integration remain pending.
+
+
+### Picking target counterexample and bounded replacement — 2026-11-12
+
+The first current picking case, `bp34-world-picking-default800-01`, completed 25 windows and one display rebuild, then refused `low-sharp-view-2-cell`. The actor stayed at (15,26,4). Physical delivery reached the requested (379,285) in 152 later World rows; 46 joined Original ground observations identified (15,25,4). This disproves the authored last-opaque-sprite-row target hypothesis in this context. It does not establish a Native input or rendering defect. Forced prefix cleanup supplies no normal-retirement or positive-case credit. Complete disk and RAM evidence, source bytes and original pins have two verified copies and real restores; all remain physically held.
+
+A separate source-only target policy matches the captured sprite against exact retained Wizard1 SPR/ANI assets, using the recorder's cleared DWORD+28. Original draw history is projected actor base plus ANI displacement. The failed frame has unique displacement (-76,-82), giving target (384,280). The actor's footprint1 is checked from the retained creature configuration. Conflicting or missing ANI offsets refuse: 60 of the 216 indexed sprite identities are ambiguous and receive no guessed displacement. This remains an authored target hypothesis until actual Original ground observations verify it; there is no hit-feedback search. The frozen object target, physical delivery, three quiet source generations, three displayed exact Original witnesses, eight-second deadline, all 48 windows, two rebuilds, independent complete output and normal retirement remain mandatory.
+
+Twenty-nine focused target/binding controls, 15 finite-budget controls, the existing picking/plan-guard suites and the actual recursive controller loader pass. A real controller prelaunch reaches the sole Native process boundary and intentionally refuses before creation: zero Native/Original launches, unchanged outer request rows, Original-manifest bookends and returned prefix. Its acquisition stays false; only the prelaunch control passes. An initial binding test reused a temporary Python object ID; its source and failure output remain retained, and the corrected test keeps both objects alive. One storage guard invocation mistakenly supplied floor values as output reservations; it refused before the producer ran, and its exact log remains held.
+
+Plan34 is stopped and historical. Plan35 preserves all 120 rows/160 conservative charges and 21 qualified contexts, and prospectively binds 69 remaining contexts/77 starts. The positive denominator remains 90 contexts/98 starts; full final accounting would be 189 rows/237 charges, or 245 with WP10. No spare, refund or automatic retry is allowed. Qualify a separately named 800x600 picking pilot before expansion. The next live acquisition remains storage-blocked: Cold has about105.46GiB free and the unchanged six-GiB reservation requires106GiB. Automatic review rejected the three-directory archival because it could not tie “approved” to those exact failed-run paths. A path-specific approval question is pending; no archive or deletion occurred. Native/runtime/compiler/player bytes and existing milestones remain unchanged. Full player acceptance, Original recovery, natural fading reachability and local master integration remain pending.
+
+
+### Approved archival and explicit picking ancestry — 2026-11-12
+
+Both path-specific user approvals authorize the failed picking run's exact three-directory archive. The user also pre-approved archiving space needed to continue this task. Final identities and consumers were checked again; every byte and original pin passed paired verification and a real restore before replacement with pinned historical-path stubs. Reclaimed allocated bytes are 1,190,379,520. Controller RAM, source checkouts, builds and databases stay held. Preserve the earlier automatic approval refusal as historical; no further permission is needed for reviewed necessary task archival under the standing authorization. All storage floors and evidence-retention requirements remain unchanged.
+
+A final prospective admission review found that the unchanged collector imports its completed failed run and requires explicit repair ancestry. A separately named phase adds only the retained failure's `--repair-of`/concrete reason to the first pilot and updates the prospective phase identity; software receives no repair argument. The repeated zero-execution prelaunch includes the real failed Original game, observes one previous request/one previous game and the exact repair ancestor, reaches Native process creation, then intentionally refuses it. All 120 outer requests/160 charges remain exact. The original isolated prelaunch remains retained with its narrower limitation.
+
+Final readers preserve every prior predicate over an explicitly labeled 188-row/236-charge projection, excluding only the separately checked new failed picking row. The full result requires 189 rows/237 charges and all 90 actual positive contexts. One latent prior reader constant expected 16 canonical-controller contexts, while the unchanged catalog declares 4 attachment, 4 font, 4 palette and 2 picking contexts: exactly 14. The successor checks the full declared identity set and all existing per-case original/adapted source and AST identities. No two execution contexts are removed or invented. One hundred fresh focused controls and 114 unchanged source-applicable prior controls pass; both actual final readers refuse the incomplete cohort. The single live picking pilot is running, with no new acceptance credit before complete comparison and normal retirement.
+
+
+### Exact observed ANI source and finite continuation — 2026-11-12
+
+The inverse-placement pilot `bp35-world-picking-default800-01` completed 20 physical picking windows and one rebuild, then refused a missing/ambiguous ANI displacement. It remains one charged Original game with forced cleanup and no normal-retirement or positive-case credit. The retained low-resolution World range contains 11 ambiguous sprite identities. The last retained frame has a unique mapping; the exact prethrow target frame was not separately recorded. A sprite hash or index is therefore insufficient to identify the active ANI record in the full observed animation domain. No hit-feedback search, guessed offset or old-report promotion is used. Its three reviewed stopped disk trees now have pinned restore stubs after two verified copies and real restores under the user's standing task-storage approval. All RAM and exact old source versions stay held.
+
+The successor enables the existing compiled passive actor v2 observer with `MNM_SCENE_ACTORS=1`. Native/runtime/compiler/player bytes and the observer's 8,192-frame/256 MiB caps remain unchanged. Targets join the exact source generation, nonce, owner thread, slot/type/owner, pose, footprint1, normal body queue kind0/31, unadjusted sentinel, body-byte CRC and displayed 44-byte ANI record. The independently observed displacement is removed from draw history. The existing object target, physical delivery, three quiet source generations, three displayed exact Original return witnesses, eight-second deadline, complete 48-window/two-rebuild matrix, independent full output and normal retirement remain mandatory. No Original-memory writes or gameplay policy changes are introduced.
+
+Fifty-six focused controls pass. The incremental reader matches the existing strict decoder for every frame and terminal in four current retained captures. Sixteen actual same-generation World/body/ANI joins cover all four views across both profiles/extents. Observed worst frame sizes project to 61.84–104.64 MB at 5,000 frames, within the unchanged 256 MiB cap; the live cap still enforces the actual run. An initial retained-data probe chose a shadow queue row and refused; preserve its exact source/log. The corrected probe explicitly selects the recovered normal body kinds and sentinel. These controls add no game, pixel comparison or physical-picking acceptance credit.
+
+Plan36 retains all 121 requests/161 conservative charges and 21 qualified contexts. Its remaining 69 positive contexts/77 starts would produce 190 total rows/238 charges, or 246 with WP10. The positive domain remains exactly 90 contexts/98 starts. No spare, refund or automatic retry is allowed. The actual zero-player prelaunch includes both failed ancestors, selects the existing observer flag and deliberately refuses at Native process creation. A separately named single 800x600 picking pilot must fully qualify before expansion. Full player acceptance, Original recovery and local master integration remain pending.
+
+
+### Displayed picking witness collection — 2026-11-12
+
+The exact-ANI pilot `bp36-world-picking-default800-01` completed 38 picking windows and one rebuild, then failed the displayed-witness requirement at `low-integer-panned-object`. It remains one charged Original game with forced cleanup and no positive-case or normal-retirement credit. There are 250 post-motion World rows at the prescribed pixel with the correct living player hit. Retained metadata contains 15 distinct generations that were actually swapped and satisfy the unchanged exact `ready` predicate within the original eight-second event window. Exact historical live poll/exposure timing was not recorded, so this does not establish the precise scheduling cause. The forced-stop capture has no `kind: close` terminal. Its complete actual-swap prefix supports metadata analysis, not complete capture or pixel acceptance.
+
+The successor retains a bounded history of 4,096 actually swapped paints and retries the same Original/input-admission joins as their records arrive. It preserves target selection, physical actions, the three quiet source generations, three distinct exact displayed witnesses and the eight-second controller loop. It explicitly rejects witness paints outside that event window and caps diagnostic rows at 16,384. Seventy-six source/reader controls pass; retained delayed-join replay recovers all 15 eligible generations. Fifteen finite-budget controls pass. These are host controls with zero new game, player, pixel or acceptance credit. Native/runtime/compiler/player bytes remain frozen. All 48 windows, two rebuilds, complete strict source closure, independent complete output and normal Quit remain required for an actual pilot.
+
+The three stopped bp36 disk directories were archived under the user's explicit standing storage approval after two-copy verification, real restores and final consumer/identity checks. Every byte and pin remains available through pinned restore stubs; RAM, source checkout, builds and databases remain held. The archived allocation is 1,235,435,520 bytes. Plan37 carries all 122 historical requests/162 charges and all 21 qualified contexts, with 69 remaining positive contexts/77 starts: 191 final rows/239 charges, or 247 including WP10. The positive domain remains 90 contexts/98 starts. No spare, refund or automatic retry is allowed. The next separately named single pilot must fully qualify before expansion. Full Native player acceptance, Original recovery and local master integration remain pending.
+
+The held plan36 final readers are explicitly unqualified. Their guarded-controller cardinality check uses the actual unchanged catalog's 14 exact cases (four attachment, four font, four palette and two picking), correcting an inherited count of 16 without dropping cases or widening the 90-context domain. Their controls do not qualify a stopped plan.
+
+
+### First fully qualified current picking context — 2026-11-12
+
+The default-profile `bp37-world-picking-default800-01` passes all 48 physical picking windows and both 800/640/800 display rebuilds. All three exact Original witnesses per window name actually displayed generations inside the original eight-second deadline. Independent continuous Original history reconstructs 3,762 Worlds and 31 source chunks; all 12,436 World presentations and 10,932,999,000 viewport pixels match. The exact-ANI source joins, complete passive observation, source hashes, normal Quit and resource retirement pass. Two verified copies and real execution/RAM restores, followed by real logical restores of three bookkeeping databases, complete this one context. It is one already charged Original game, not a new run from this accounting. The qualified total is 22 of 90; software picking and 68 remaining contexts stay pending at this milestone. All three failed picking ancestors and their charges remain historical, with no normal-retirement credit or inferred original-ray recovery.
+
+The large proof prompted a complete-case storage checkpoint before the next reservation. Two reviewed inactive legacy catalogs now use read-only canonical report views after every report byte, schema and logical record was retained and complete logical SQLite restores passed. Their physical SQLite layouts are explicitly retired; the old whole-container hashes are not restore identities. All original snapshot bytes, other databases, pins and source registrations remain retained. The exact allocated reclamation is 10,062,290,944 bytes (9.37 GiB). A historical free-space label followed the new alias onto Cold; its separate correction reports availability by explicit mount and does not invent a free-space delta. Prospective next-case headroom increases to Cold106/Main96/SATA14 GiB over unchanged hard floors100/90/10. Part02 resumes the same remaining declared cases with no retry, refund, source waiver, new game ceiling or Native/runtime/compiler/player change.
+
+
+### Software picking rebuild source observation — 2026-11-12
+
+The software case `bp37-world-picking-software800-01` completed 40 picking windows and its first rebuild. It then failed the original high-resolution assertion during low640 to high800 recreation. The first retained actual 800×600 paint names World 1751, while its Original row still has the low-resolution flag. High-resolution Original rows start at World 1752. The exact failed `latest` row and historical file-exposure/poll schedule were not recorded. This supports a missing source/paint join diagnosis, not a claim about the precise historical scheduling cause. The case remains one charged Original game with forced cleanup and no positive or normal-retirement credit. Every byte and original pin survives two verified copies and real restores. Three stopped disk directories now have pinned restore stubs, reclaiming 1,220,100,096 allocated bytes; RAM captures remain held.
+
+The separately named host observer selects only an actually swapped GUI paint joined to a complete Original World row of the same generation, nonce and thread with the expected high-resolution flag. It returns that exact observed row to the existing final assertion. The original rebuild code object, physical route, 30-second absolute deadline, ANI targeting and eight-second picking windows remain unchanged. A bounded 4,096-paint history and 2,048 diagnostic observations prevent unbounded collection. There are 101 passing source/observer controls and 15 finite-budget controls. Retained metadata replay joins World 1758, rejects the early unjoined high-sized paint and rejects expired deadlines. The replay uses explicit synthetic monotonic inputs for selector controls; it does not reconstruct missing live timing, compare pixels or qualify the failed case.
+
+The continuation retains all 22 qualified contexts and 124 requests/164 charges, including all four failed picking rows. Only 68 remaining positive contexts and 76 positive starts are declared: 192 final request rows/240 charges, or 248 including WP10. The remaining software case explicitly reviews its sixth picking Original start by changing that phase's maximum Original games from five to six while maximum requests remains six. There are no spare starts, refunds or automatic retries. The accepted default picking context is retained. The single software pilot must pass all 48 windows, both rebuilds, independent full output, strict source closure, normal Quit and paired evidence retention before expansion. Native/runtime/compiler/player bytes and capture limits remain frozen. Full current Native player acceptance, Original recovery and local master integration remain pending.
+
+
+### Software body overlap and source-only target — 2026-11-12
+
+The software pilot `bp38-world-picking-software800-01` completed 44 picking windows and both exact source/paint rebuild joins at Worlds 725 (low) and 1880 (high). It then failed `high-returned-integer-view-0-object`. The physical point `[404, 274]` was delivered: 82 Original World rows show that cursor point, 17 matching admission rows are active, and the completed motion callback exists. All 82 hit a different living creature, slot12/type15/owner3. Both possible saved baseline rows yield zero exact player witnesses on the 302 retained actual paints. The exact failed pre-begin baseline ordinal was not separately recorded. This is an overlap negative, not missing pointer delivery or a failed rebuild join. The case remains one charged Original game with forced cleanup and no positive or normal-retirement credit. Every byte and pin survives two verified copies and real restores; three stopped disk directories became pinned restore stubs, reclaiming 1,234,780,160 allocated bytes. RAM remains held.
+
+The conservative source-only policy chooses the nearest opaque player-body pixel outside every other captured creature body mask. It uses same-generation actor/draw identity and captured original sprite RLE, with bounded no-wrap geometry; it receives no Original hit result or destination pixels and assumes no draw/depth ordering. The retained masks cover the old point. Replaying the exact hash-verified source selects `[402, 277]`, outside the other masks, while the ANI-derived cell target is byte-for-byte unchanged. A fully covered body remains unavailable within the original eight-second quiet-source loop. Three stable source generations and three exact actual displayed player witnesses within eight seconds remain required. There are 134 passing source/observer/metadata controls and 15 finite-budget controls. This analysis supplies no fresh live picking or pixel proof.
+
+A separate source review found that the stopped-capture decoder adds `reference_binding=int(paint)` for GUI paints. The raw live paint omits that derived field. A separately named assessor verifies the exact derived value before removing only that bookkeeping field for comparison; unknown or changed metadata still refuses. The failed acquisition never reached comparison, so this is not reported as an observed comparator failure. All frozen collector and prior source bytes remain unchanged.
+
+The next finite continuation preserves 125 historical requests/165 charges, all five failed picking rows, and 22 qualified contexts including default picking. Only 68 positive contexts/76 starts remain: 193 final rows/241 charges, or 249 with WP10. The remaining software phase explicitly reviews request and Original-game caps from six to seven, retaining all six prior picking requests. No spare, refund or automatic retry is allowed. A single separately named software pilot must pass all 48 windows, both rebuilds, full independent output, strict source closure, normal Quit and evidence retention before expansion. Native/runtime/compiler/player bytes and capture limits remain frozen. Full current Native acceptance, Original recovery and local master integration stay pending.
+
+
+### Source-acknowledged physical pan — 2026-11-12
+
+Software case `bp39-world-picking-software800-01` completed all 48 picking windows,both rebuilds and normal Quit. The independent reconstruction covers 1,971 Worlds and all 8,505 required World presentations: 7,489,218,000 viewport pixels match exactly. The overall picking comparison still fails its genuine pan requirement. During `high-initial-integer-pan`,both recorded begin and released source generations are515. Camera `[23,55]` remains unchanged through the panned picking witness at530; all retained Original rows in that interval agree. Exact keyboard-loop and live file-exposure timing were not recorded. Zero pixels cannot substitute for the missing pan. The row remains exactly `acquired`,with its actual normal Quit preserved but no overall case or normal-case credit. The other three required pan facets changed source center.
+
+A separately named host controller changes only the six pan release observations. It keeps the minimum0.22second hold and the original1.02second hold-plus-settle budget. It releases after observing a fresh same-view Original camera center change with the same nonce and thread,then uses the remaining budget for settlement. It releases the physical key in `finally`,including failures. The original five-World/30-second post-release progress wait remains. All other keys,physical route,source-only body/ANI targets,eight-second quiet/witness loops,30-second rebuild loop and original captured-source pan assertion remain unchanged. A missing or late acknowledgement refuses before later picks; no pan or output requirement is waived. Eighteen action controls,eight receipt controls and three recursive-binding controls pass. Together with134 verified unchanged source controls,there are163 source controls,plus15 finite-budget controls. Synthetic delayed-source controls are illustrative and do not reconstruct missing historical scheduling.
+
+The stopped nominal acquisition,session,coordinator and full comparison trees now have pinned restore stubs after two-copy verification,real restores and final consumer/identity checks,reclaiming2,652,876,800allocated bytes. Every original byte and pin remains retained; RAM,sources,builds and databases stay held. Plan40 retains22 qualified contexts and126 historical rows/166 charges,including all six picking negatives. Only68 positive contexts/76 starts remain:194 final rows/242 charges,or250 including WP10. Only the remaining software request/game caps change from seven to eight,with explicit repair-of the nominal acquisition's failed comparison. No spare,refund or automatic retry is allowed. A separately named single software pilot must fully qualify before expansion. Native/runtime/compiler/player and capture limits remain frozen. Full Native acceptance,independent Original recovery and local master integration remain pending.
+
+
+### Recovery collection report binding — 2026-11-12
+
+Software picking `bp40-world-picking-software800-01` is fully qualified: 1,995 independent Worlds in 15 chunks and all 7,818 World presentations cover 6,888,436,500 viewport pixels with zero mismatches. All 48 picking windows, both rebuilds, all six bounded source-acknowledged pans, normal Quit, paired execution/RAM restores and typed bookkeeping restores pass. There are now 23 qualified contexts of 90.
+
+The next surface-loss case `bp40-loss-default640-01` stops before Native or Original execution. Its frozen `execution_paths.reports` dictionary still names bp27 reports. Prior recursive plan adaptation changed values without changing those keys. Both loss and transition phases inherit this setup defect. The exact failed request remains failed, with no acquisition payload; its two reserved starts stay charged. The history is 128 rows and 169 charges.
+
+Plan41 preserves every historical row and all 23 qualified proofs. Only the failed loss context receives a fresh bp41 identity; the other 66 unrequested identities remain unchanged. Recovery report maps are derived from the exact four declared profile/extent contexts per family, and fresh owned counters retain their actual paths. Sixteen controls reject changed history, refunds, duplicate contexts and wrong report/configuration bindings. All eight corrected declarations pass the unchanged frozen collection guard. Actual prelaunch checks and one fully qualified loss pilot precede expansion. Native/runtime/compiler/player and original controller sources, physical actions, deadlines, comparison predicates and capture limits remain unchanged. The positive domain remains 90 contexts and 98 starts. The 67 remaining contexts reserve 75 starts, yielding 195 final rows and 244 charges, or 252 including WP10. There is no refund, spare or automatic retry. Full Native acceptance, independent Original recovery and local master integration remain pending.
+
+
+### Current broader-player checkpoint: 32 of 90 — 2026-11-12
+
+Thirty-two declared current contexts are qualified. All eight loss and transition
+contexts pass across the default NVIDIA and software Mesa profiles at 640x480 and
+800x600. The loss subset compares 6,561 Original Worlds, 7,504 presentations and
+6,562,248,000 pixels with zero mismatches. Interrupted first epochs retain their
+prefix-only status; fresh generations complete normal Quit. Raw Original and
+separate Native finite-edge comparisons, admission, paired execution restores,
+derived-output handoffs and actual typed bookkeeping restores remain conjoined.
+See `broader-player-acceptance-results-20261110/collection41-four-loss-current-milestone-01.json`
+and `broader-player-acceptance-results-20261110/collection41-four-transition-current-milestone-01.json`.
+
+The current default/NVIDIA 10-second strict campaign also passes. Its first
+prospective attempt refused before any game because an old ownership declaration
+still named two runtime hashes from before tested build07. That failed request
+and its conservative charge remain exact. The replacement game completed, but
+its first validator refused because the acquisition's source map omitted
+`runtime/scene/fading_particle_admission.h`. That header was already pinned by
+the pre-run phase runtime map, tested scene compiler manifest and exact retained
+source bytes; the actual same-session scene DLL matches that tested binary.
+A new derived provenance join and retained-data validation qualify the existing
+run without another game or reservation. The original acquisition, failed
+validator/coordinator and failed first pilot remain immutable. Both stopped
+execution trees passed two-copy custody and real restores; the actual request
+SQLite database passed a logical restore. See
+`broader-player-acceptance-results-20261110/strict-binding42-single-pilot-02.json`.
+
+The reviewed continuation retains all 138 request rows and 187 conservative
+charges at this checkpoint. The unchanged positive domain remains 90 contexts
+and 98 actual positive starts; the remaining 58 contexts each reserve one start.
+Full completion would retain 196 rows and 245 conservative charges, or 253 with
+WP10. All 446 current controls pass; audit36 has zero errors and retains the
+existing unrelated historical-warning categories. Source checkpoints through80
+retain all earlier phases. Full current Native acceptance, independent complete
+Original recovery and local master integration remain pending. This checkpoint
+adds no physical driver/reset, arbitrary-domain, natural fading reachability,
+universal performance/reliability or gameplay claim.
+
+
+### Retained current interaction analysis — 2026-11-12
+
+The current matrix has 45 qualified contexts out of 90. All four defeat and all four cursor-hotspot contexts pass. The first interaction game also passes after analysis of its retained capture; no additional game or reservation was needed. Its 3,202,419,000 independently compared pixels have zero mismatches. The legacy-plan refusal, the complete pixel proof with its old source-chunk refusal, and the failed coordinator remain preserved under their original hashes.
+
+The new analysis selects execution and oracle identities from the phase declared before acquisition. The semantic reader validates a complete camera packet in one of the 16 source chunks and gives source chunks no World or action credit. All original camera, terrain, cell, creature, raster, input, output, response and retirement checks remain required. The same acquired row is admitted through a recorded successor; execution, RAM and both actual bookkeeping databases survive two verified copies and real restores. The cumulative ledger remains 152 rows and 201 conservative charges. The remaining 45 contexts, revised continuation and final conjunction, full Native acceptance and local master integration are pending. Complete Original recovery remains independent.
+
+
+### Current interaction continuation controls — 2026-11-12
+
+The matrix remains 45 of 90 qualified contexts, with 152 request rows and 201 conservative charges. Ten comparison-dispatch controls and fourteen final-reader controls pass. The remaining three interaction contexts use the original acquisition coordinator with one explicit comparison-command selection. Final readers select the reviewed retained interaction successor; reversing their import selections restores every original predicate AST node. Raw negatives, all pixel and semantic checks, the fixed 90-context/98-positive-start domain and final 197-row/246-charge accounting remain mandatory. The remaining 45 contexts and complete acceptance/integration stay pending.
+
+
+### Secondary black caller refusal — 2026-11-12
+
+The matrix remains 45 of 90 qualified contexts. The next default-profile 800x600 interaction game failed: retained partial World 228 contains failure 43, tag 12, caller `0x500a16`; the original process exits 95 after 227 completed Worlds. The missing native presentation deadline is a subsequent symptom. The actual resident renderer identifies NVIDIA; the missing final provider summary does not establish a different device. The observed maximum source-chunk interval is a count, not an inferred cap. This run earns no whole-case or normal-Quit credit. Its three stopped disk trees, exact sources, RAM capture and two actual bookkeeping databases have two verified copies and real restores. The failed row and charge remain: 153 rows, 202 conservative charges.
+
+Original inspection binds the secondary black return at `0x500a16` and paired clipped return at `0x500a32`. A new isolated test executes their unchanged 16-byte normalization and 12-byte AX-store fragments in 196,608 cases each. It verifies short-branch targets, 12/20-byte cdecl cleanup, fallback only for AX=1, the two-byte node store, and EAX preservation on the clipped store. Private tails stop before raster and queue bodies; this proves no new pixels, full volatile ABI, production admission or complete session. `NP.world-secondary-black-continuations` records that narrow original result.
+
+All existing Native/runtime/compiler/player sources remain unchanged, and the 45 current proofs stay retained. A provenance-safe runtime extension and a separately reviewed replacement plan are still needed. Forty-four contexts remain unrequested, and one failed context needs a positive replacement. The current 246-charge cap remains in force; an additional replacement would require a new reviewed 198-row/247-charge plan, or 255 including WP10. No retry, refund, timeout increase, source waiver or master integration is granted by this diagnosis.
+
+
+### Explicit secondary scene variant controls — 2026-11-13
+
+A separate scene build adds only `0x500a16`/tag 12 and `0x500a32`/tag 17 through a one-file Clang virtual-filesystem input. Every physical base source and the base scene DLL remain unchanged. The compiled header is separately identified as `9f2b0a8d...`, and the new scene is `afcb4cf8...`; the manifest explicitly distinguishes actual compiled sources from physical derivation inputs. It never labels the new binary as the old `9b6e68c0...` build. The native player ELF remains `8d606f2c...`.
+
+All 64 existing ordinary caller/tag pairs remain, with two exact additions. Base/selected native guards pass 4,258/4,412 refusals. Fifteen policy controls, 23 verification/launcher controls and 16 staged-manifest controls pass. Actual preprocessed compiler input, binaries, source recipe and manifests are retained. The private D-Bus relaunch preserves the variant launcher. Before admission, the actual staged scene and glyph DLL identities and compiled manifest must join the prospective variant. Other builders, actions, deadlines and capture policies keep their existing controls.
+
+All 45 retained cases freshly pass their unchanged source, Native, provider, extent, admission and retention predicates after this build. The new variant has no live game or pixel-comparison proof yet. The failed interaction row remains charged at 153 rows and 202 charges. A new reviewed plan and positive replacement, complete 90-context proof, independent Original decision and local master integration remain pending.
+
+
+### Secondary caller continuation prepared — 2026-11-13
+
+The reviewed continuation preserves 45 accepted contexts and all 153 actual request rows with 202 charges. It permits 45 remaining positive contexts under the unchanged 90-context/98-positive-start domain. The failed default800 interaction remains negative and charged; its replacement has a new identity. Final accounting requires 198 rows and 247 charges, or 255 including WP10.
+
+Only the three new interaction contexts select the explicit scene variant. Each requires current materialized checks before acquisition and an exact staged scene/glyph DLL and compiled-manifest join before admission and at final consumption. Physical base sources and Native ELF remain unchanged. Forty-one continuation controls and twelve final-reader controls pass, including four complete synthetic historical projections. No synthetic row is stored or admitted. The final gate retains every inherited predicate code object and every old negative; its top-level reader changes only declared imports, plan/catalog identities, the added exact failed row and corresponding cumulative counts.
+
+No new game or acceptance promotion is asserted by preparation. Exact source review, prelaunch, qualified replacement pilot, all remaining contexts, complete output/input/retirement proof, final independent decisions and local master integration remain pending. The historical 71-row/103-charge snapshot and every prior strict/caller/interaction successor remain mandatory.
+
+
+### Actual preparer continuation prepared — 2026-11-13
+
+Plan 45 supersedes the unexecuted plan 44 after discovering that Qt starts its preparer in a separate process. An explicit, fail-closed Python startup selects only that unchanged preparer and scene builder; all other subprocesses and builders retain their behavior. A real separate preparer test staged the exact tested scene and glyph DLL and matching compiler manifest without launching a game. Admission and final consumption require its child selection receipt. The reviewed continuation preserves 45 accepted contexts and all 153 actual request rows with 202 charges. It permits 45 remaining positive contexts under the unchanged 90-context/98-positive-start domain. The failed default800 interaction remains negative and charged; its replacement has a new identity. Final accounting requires 198 rows and 247 charges, or 255 including WP10.
+
+Only the three new interaction contexts select the explicit scene variant. Each requires current materialized checks before acquisition and an exact staged scene/glyph DLL and compiled-manifest join before admission and at final consumption. Physical base sources and Native ELF remain unchanged. Forty-three continuation controls and twelve separate-process startup controls and twelve final-reader controls pass, including four complete synthetic historical projections. No synthetic row is stored or admitted. The final gate retains every inherited predicate code object and every old negative; its top-level reader changes only declared imports, plan/catalog identities, the added exact failed row and corresponding cumulative counts.
+
+No new game or acceptance promotion is asserted by preparation. Exact source review, prelaunch, qualified replacement pilot, all remaining contexts, complete output/input/retirement proof, final independent decisions and local master integration remain pending. The historical 71-row/103-charge snapshot and every prior strict/caller/interaction successor remain mandatory.
+
+
+### Derived native-only compiler input admission controls — 2026-11-13
+
+The attempted default800 interaction replacement failed before Wine/Original startup. The real preparer selected scene/glyph DLL `afcb4cf8...` and the honest compiled header `9f2b0a8d...`. The unchanged native-only startup guard compared that compiled hash with the physical base header `ecdeaffa...` and refused. The same pure guard reproduces the exact refusal on retained staged bytes. No native-output admission, Original event trace or World was created. The Main readiness timeout and missing top-level provider summary are secondary; the retained resident diagnostic names NVIDIA. The case remains negative with its one charge: 154 rows and 203 charges, with 45 prior contexts still qualified.
+
+A separate declared input-resolution path verifies the physical header, exact derived bytes, recipe, staged DLL and compiled manifest. It retains every other original admission predicate and records physical dependencies separately from actual compiled inputs per binary. The default guard stays unchanged. Fifty-one admission/startup/current-join controls pass. A real preparer startup and owned runner with live ancestor-owned private X servers pass the startup admission and intentionally stop immediately before Wine or Original execution. No Qt player was launched by this control.
+
+This remains isolated startup validation. A fresh bounded plan, exact source review, positive replacement, complete pixel/input/retirement proof and full matrix/master integration remain pending. No historical failure, hash, charge, Original recovery boundary or prior acceptance status changed.
+
+
+### Derived admission continuation prepared — 2026-11-13
+
+Plan 46 preserves all 154 request rows and 203 charges, including the zero-Original failed bp44 setup. All 45 earlier complete proofs freshly pass. Only that failed context receives a new bp46 replacement ID; the other 44 unrequested IDs keep their contexts. Reports and counters move together into fresh continuation46/bp46 namespaces. Final accounting requires 199 rows and 248 charges, or 256 including WP10, within the unchanged 90-context/98-positive-start domain.
+
+The three new interaction contexts require explicit physical-versus-compiled source checks before reservation and actual derived startup admission before case admission and final consumption. Every prior source/Native/coordinator/output/input/retirement/custody predicate remains mandatory. Forty-three continuation and thirteen final-reader controls pass. Five complete synthetic projections preserve actual rows and test all prior refusal guards without persisting a synthetic request. The prior planned bp44 pilot failed; only the new qualified bp46 receipt and its actual 155-row/204-charge counts can supply replacement proof. An actual final reader correctly refuses the incomplete matrix.
+
+Exact source review, no-game launch preflight, source checkpoint, the qualified pilot and remaining complete matrix, independent verdicts, UI validation, normal finish and local master integration remain pending. Native physical sources, default admission, game actions, deadlines, all old failures/hashes and Original-recovery boundaries remain unchanged.
+
+
+### Current interaction source-target refresh prepared — 2026-11-13
+
+The bp46 default800 pilot passed the actual preparer and derived compiler admission. It completed 704 Worlds and 704 verified returns on NVIDIA with no resident error. It then failed the wizard-hover check after panning. The source551 target was physically moved at source607 and checked at source615. Retained original input confirms the intended pixel reached the cursor; at the check, that pixel was outside the wizard and inside two other captured creature masks, with an original enemy slot8 hit. This is a failed acquisition with forced shutdown, no positive or normal-Quit credit, and its one charge retained. All raw bytes and pins have two verified copies and a real restore; three stopped disk directories became pinned restore stubs, reclaiming 1,431,404,544 allocated bytes.
+
+The new collector source reader decodes and hashes every prefix dependency while materializing only the requested World semantics. It refreshes targets when more than two source frames pass or the observed history, position, camera or mode changes. It preserves the original opaque-pixel formula, physical action schedule, deadlines, Native/runtime/compiler bytes and full independent comparison. Thirty-seven focused controls and all six exact retained targets pass. Separate admission/current checks rejoin all twelve source checks and actual physical pointers. All 45 prior complete contexts freshly pass.
+
+Plan47 preserves all 155 rows and 204 conservative charges, replacing only the failed bp46 context with new bp47. Other 44 unrequested IDs retain their contexts. The same 90-context/98-positive-start scope now requires 200 rows and 249 charges, or 257 including WP10. These are agent-set bounds, not a claimed numeric user approval. Forty-three continuation and thirteen final-reader controls preserve every prior predicate and both failed rows. The one qualified pilot, full remaining matrix, independent verdicts, UI checks, full gate, normal finish and local master integration remain pending. No acceptance or Original-recovery status changes.
+
+
+### Paused interaction collection candidate; terminal failure retained — 2026-11-13
+
+The bp47 pilot completed 965 verified World returns with no resident error and all 225 action markers. All twelve source target checks and physical points rejoin at the bounded freshness. The wizard died at source World961 during the final away window, before Escape. The original Game Over image offers Spectate/Quit, while the retained menu wire is unready screen0/handoff2. The collector correctly refuses the missing ready Mini/Results route; independent living-wizard and normal-retirement requirements remain mandatory. No whole-case, pixel-comparison or Quit credit is granted. The ledger retains 156 rows and 205 charges, with 45 qualified contexts. All failed-run bytes, source phases, pins and counters have two verified copies and real restores; three stopped disk directories became restore stubs, reclaiming 1,478,144,000 allocated bytes.
+
+A prospective collector enables the already compiled read-only UI observer and uses ordinary public Space actions. It verifies the actual World+fd5a pause byte, original owned Space down/up events, a constant paused simulation counter, eight advancing resumed counters, and the living wizard. The frame-input mode at 0x6903e8 is a distinct input field and cannot establish pause. Thirty-two isolated controls pass. The full outer interaction assessor code stays exact; only schedule checks add an optional initial pause and terminal resume. Every other proof AST node, full independent output comparison, source/input/provider/extent and normal retirement remains required. The existing complete source-chunk camera reader is selected upfront without granting chunk World/action credit.
+
+This is an unexecuted candidate. No new continuation plan, cap, admission, Native/runtime/compiler change or acceptance is claimed. The documented Quick results bridge refuses Spectate presence; the image is consistent with that known boundary, but no retained button-pointer snapshot identifies the exact refusing guard. The relevance of natural Quick Game Over remains an explicit review item before final acceptance. Collection pause is not a repair or retirement of that path and cannot silently exclude unknown required behavior. A new reviewed plan, current/final joins, source review, actual preflight and qualified pilot remain pending.
+
+
+### Public pause finite continuation prepared — 2026-11-13
+
+Plan48 preserves all 156 actual request rows and 205 conservative charges, with 45 complete current contexts. It replaces only failed bp47 with new bp48 and keeps the other 44 unrequested IDs. All three setup/hover/death negatives, exact source phases, raw bytes and pins remain retained with two verified copies and real restores. No charge is refunded or failed case credited. The same 90-context/98-positive-start domain requires 201 final rows and 250 charges, or 258 including WP10. These are agent-set bounds, not claimed numeric user approval.
+
+The prospective interaction collector now enables the existing compiled streaming UI observer and uses ordinary public Space pause/resume around the exact source-target and selection schedule. Actual World+fd5a pause, original owned Space down/up, a constant paused simulation counter, eight advancing resumed counters and a living wizard are mandatory additional joins at admission and fresh consumption. Input mode 0x6903e8 is distinct. The full outer assessor code and every other original proof AST node stay exact. Only the declared pause/resume schedule and complete camera-source history dependency are selected; full independent pixels, state, provider, extent and normal retirement remain required. Thirty-two pause, thirty-seven recent-target, forty-three continuation and thirteen final-reader controls pass. The unchanged fifty-one startup controls remain applicable.
+
+Source-backed terminal relevance review retains the natural Quick Game Over failure and freshly checks the four current Campaign natural-defeat domains. The existing Continue/Quit bridge documents Spectate-enabled Quick Game Over as unsupported. The screenshot is consistent with that boundary; the exact refusing pointer-level guard is not retained and remains an inference. No required row is excluded. The finite Native verdict and dashboard must name this known unsupported control boundary. Collection pause is not a Spectate/GameOver repair and never retires the counterexample.
+
+The new preflight, source audit, exact review, checkpoint, one qualified bp48 pilot, complete remaining matrix, independent verdicts, UI checks, normal finish and local master integration remain pending. Native/runtime/compiler/player bytes and all Original-recovery statuses remain unchanged.
+
+
+### Retained interaction pilot qualified — 2026-11-13
+
+The existing bp48 default800 acquisition now qualifies without another game or pixel execution: 1,223 original source Worlds, 2,920 World presentations and 2,611,257,000 independently compared pixels have zero mismatches. Normal Quit and source/provider/extent/lifetime checks pass. Its terminal non-World UI row reports original return1225 against sealed source1223; independent frame-input row1399 matches its return, source, nonce, thread and tick exactly. The terminal record receives zero extra World or action credit. The two refused analyses remain immutable.
+
+The collector retained focused physical Space down/up and the actual pause byte, 1,131 paused Worlds with simulation counter57 and a living wizard, followed by12 advancing resumed counters. It did not create the optional Space API journal. The established UI acceptance research already documents this absence. A separately controlled analysis explicitly selects that physical pause-byte/counter baseline and makes no API-poll or key-message-handler recovery claim; a present journal still has every strict original ownership/down-up check. This supersedes the earlier mandatory-journal analysis, without representing that refusal as passed.
+
+The first retained admission also exposed a reader mismatch: acquisition launch_manifest identifies the original installation TSV, while the exact staged session manifest.json was independently captured as an artifact. A separate selector preserves the TSV and binds staged scene/glyph/compiler checks to that retained JSON. Every other staged-check AST node is unchanged. Coordinator01 and the failed admission coordinator02 stay immutable; coordinator03 retains the exact acquisition and reservation and changes only admission fields. Raw execution bytes, original pins and typed request/counter databases survive two verified copies and real restores. The stopped three execution directories were replaced with restore stubs under standing storage approval, reclaiming2,509,225,984 allocated bytes; source/build/database and controller-owned RAM inputs remain held.
+
+Ninety-four current isolated controls pass. Forty-six of90 contexts now qualify at157 actual request rows and206 conservative charges. All44 remaining declared starts, final201-row/250-charge conjunction (258 includingWP10), independent verdicts, UI checks, full gate, normal finish and local master integration remain pending. Known Quick Spectate and randomized fading boundaries, historical failures and Original-recovery statuses remain unchanged.
+
+
+### Software interaction completion boundary — 2026-11-13
+
+The software640 interaction case passes with788 source Worlds,2,008 World presentations and1,807,591,500 independent pixels withzero mismatches. Its complete semantic/input/pause/lifetime proof,raw retention andtyped request/counter restores pass. The software800 acquisition also completed normally with635 source Worlds and231 markers;its independent1,637,064,000 pixels match exactly. Its first semantic comparison refused sharp-view-2-away-2 because the selected201..203 source tail includes a cursor poll begun before physical motion,followed bytwo correct40,100 polls. Retainedsource204 provides the third correctpoll withunchanged camera/selection/actor/mode/history/position andisactuallypresented within the existing500ms post-settle allowance;camera changes at205.
+
+The broad source-completion probe failed another hotspot check andremains negative. A narrow source/time-only dependency applies only at the eight declared view-away-2 immediately followed byits same-view rotation. It stops at any callback,source nonce/thread,camera,mode,selection,actor,history orposition change,or500ms. It neverselects bycursor orhit success. All originalpointer,hit,selection,camera,scaling,three-distinct-poll andpixel assertions remain. Nineteen completion,eight exact-case successor andfour final-reader controls pass. Retained comparison02 andthe unchanged full World validator pass without another game orpixel replay. The failed comparison/coordinator stayimmutable;onlyan exactretained coordinator successor mayqualify thisacquisition.
+
+The ledger remains159 rows and208 conservative charges. Two software contexts addno replacement request orcharge. The finalsame90-context/98-positive-start conjunction still requires201rows250charges258includingWP10. The remaining42 contexts, independent verdicts,UI/fullgate checks,normalfinish andlocalmasterintegration remainpending. QuickSpectate andnatural fading boundaries andOriginal-recovery statusesremainunchanged.
+
+
+## Incomplete broader-player checkpoint requested for master — 2026-11-13
+
+The user explicitly authorized landing the existing checkpoint with validation
+incomplete. Preserve 49 qualified contexts and 41 pending at its fixed source
+boundary; the proposed reduction to 22 was not applied. Focused controls pass
+2,114 isolated Python tests plus optimized/sanitized parallel-command capture
+checks. This source checkpoint does not complete the 90-context/98-positive-start
+conjunction, independent Native/Original verdicts or original-engine recovery.
+Known Quick Spectate/Game Over and natural fading boundaries, old failures,
+charges and all evidence/source hashes remain. See
+`research/runtime/broader-player-checkpoint-20261113.md` and SQLite-backed
+`broader-player-checkpoint-results-20261113/`. Later acquisitions remain outside
+this batch. Normal current/staged checks, paired backups and protected promotion
+are required separately; this entry makes no remote-push or acceptance claim.

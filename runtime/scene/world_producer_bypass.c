@@ -9,6 +9,7 @@ static u32 bypass_limit,bypass_queue,bypass_completed;
 static u32 raster_first,raster_last,raster_preparations,raster_world_open;
 #include "world_raster_callers.h"
 #include "kind8_sprite_admission.h"
+#include "fading_particle_admission.h"
 #include "../../reconstruction/rendering/generic_producer_caller.h"
 #ifdef MNM_SCENE_SELFTEST
 static u32 generic_bypass_fixture,kind8_sprite_guard_fixture;
@@ -74,5 +75,5 @@ static int bypass_reply(u32* r,struct Surface* surface,u32 entry){
 /* Sprite extension is limited to protected batch delivery; legacy per-draw
  * pixel replies keep the original caller policy. */
 static int raster_batch_caller(u32 caller,u32 tag,const u32* stack){
- return raster_caller(caller,tag,stack)||(batch_guard_open&&GetCurrentThreadId()==batch_owner&&kind8_sprite_caller(caller,tag,stack));
+ return raster_caller(caller,tag,stack)||(batch_guard_open&&GetCurrentThreadId()==batch_owner&&(kind8_sprite_caller(caller,tag,stack)||fading_particle_caller(caller,tag,stack)));
 }

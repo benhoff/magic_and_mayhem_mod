@@ -92,7 +92,8 @@ static int kind8_supported(u32 row){
     const struct MnmKind8Class type=mnm_kind8_class(table,method);
     if(type.method!=MNM_K8_UNKNOWN)return readable(object,type.readable_bytes);
     const struct MnmKind8SpriteClass sprite=mnm_kind8_sprite_class(table,method);
-    return sprite.kind&&readable(object,sprite.root_bytes);
+    return (sprite.kind&&readable(object,sprite.root_bytes))||
+        (table==0x5c752c&&method==0x54a4a0&&readable(object,122));
 }
 void world_begin(u32* registers,u32 sample){
     if(active||!GetEnvironmentVariableA("MNM_SCENE_WORLD",directory,2))return;
