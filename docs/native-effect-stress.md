@@ -102,3 +102,22 @@ temporary fixture directories are reconstructible.
 Ordinary CI runs the isolated Python admission controls. Actual GPU controls
 remain explicit local runs. Measured findings and retained source phases are in
 [the runtime record](../research/runtime/native-effect-stress-20261113.md).
+
+Native throughput improvements and their pixel/fallback boundaries are recorded
+in [the optimization review](../research/runtime/native-effect-throughput-20261113.md).
+`MNM_NATIVE_FEEDBACK_BASELINE=1` selects the snapshot fallback for supported
+same-pixel blends, for controlled comparisons. It does not change the authored
+inputs or the original engine.
+
+Build focused optimization controls with:
+
+```sh
+cmake --build working/build/render-replay --target mnm-native-effect-optimization-test mnm-row-effect-test -j2
+QT_QPA_PLATFORM=xcb working/build/render-replay/mnm-native-effect-optimization-test
+# Choose a new output prefix for each row-effect run.
+QT_QPA_PLATFORM=xcb working/build/render-replay/mnm-row-effect-test working/row-effects-new
+```
+
+The optimization control independently checks ordered keyed copies, blend
+arithmetic, row-crossing history and oversized fallback. Set
+`LIBGL_ALWAYS_SOFTWARE=1` under `xvfb-run -a` for the software route.
