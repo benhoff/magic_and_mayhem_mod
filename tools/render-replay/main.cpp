@@ -169,11 +169,12 @@ public:
 }
 int main(int argc,char** argv)try{
     QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(format);QApplication app(argc,argv);
-    require(argc==8||argc==9,"Usage: mnm-world-replay TAPE ASSETS view|verify|benchmark FIRST LAST REPEATS FPS [SMOKE]");
+    require(argc==8||argc==9,"Usage: mnm-world-replay TAPE ASSETS validate|view|verify|benchmark FIRST LAST REPEATS FPS [SMOKE]");
     Tape tape(QString::fromLocal8Bit(argv[1]));const auto parse=[](const char* s){bool ok=false;const auto v=QString::fromLocal8Bit(s).toUInt(&ok);require(ok,"Invalid replay integer");return v;};
     const auto first=parse(argv[4]),last=parse(argv[5]),repeats=parse(argv[6]);bool ok=false;const double fps=QString::fromLocal8Bit(argv[7]).toDouble(&ok);require(ok&&fps>=1&&fps<=1000&&first&&first<=last&&last<=tape.worlds&&repeats>=1&&repeats<=8,"Replay range/rate bounds");
-    auto opened=assets::AssetStore::create(argv[2]);if(const auto* e=std::get_if<assets::Error>(&opened))throw std::runtime_error(e->detail);const auto store=std::get<assets::AssetStore>(std::move(opened));
     const QString mode=QString::fromLocal8Bit(argv[3]);QJsonObject result;
+    if(mode=="validate"){std::cout<<QJsonDocument(QJsonObject{{"success",true},{"validated_worlds",int(tape.worlds)},{"validated_events",int(tape.size())},{"renderer_started",false}}).toJson(QJsonDocument::Compact).constData()<<'\n';return 0;}
+    auto opened=assets::AssetStore::create(argv[2]);if(const auto* e=std::get_if<assets::Error>(&opened))throw std::runtime_error(e->detail);const auto store=std::get<assets::AssetStore>(std::move(opened));
     if(mode=="view"){Viewer viewer(tape,store,first,last,fps,argc==9?parse(argv[8]):0);viewer.show();const int code=app.exec();result=viewer.report();std::cout<<QJsonDocument(result).toJson(QJsonDocument::Compact).constData()<<'\n';return code;}
     require(mode=="verify"||mode=="benchmark","Unknown replay mode");require(mode!="verify"||repeats>=2,"Verification requires at least two fresh replays");result=run(tape,store,first,last,repeats,mode=="verify");std::cout<<QJsonDocument(result).toJson(QJsonDocument::Compact).constData()<<'\n';return 0;
 }catch(const std::exception& e){std::cout<<QJsonDocument(QJsonObject{{"success",false},{"error",QString::fromUtf8(e.what())}}).toJson(QJsonDocument::Compact).constData()<<'\n';return 1;}

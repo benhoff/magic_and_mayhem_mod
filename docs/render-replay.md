@@ -42,6 +42,40 @@ The importer validates the entire capture, including an excluded tail if
 `--prefix N` selects a completed prefix. It preserves source-history chunks;
 flattening or inventing missing initial state is refused.
 
+## Create a heavier particle replay
+
+Derive an authored stress case from a retained battle containing additive
+particles:
+
+```bash
+./tools/render-stress.py working/render-replays/particles-4x.sqlite3 \
+  --from-case working/render-replays/crowd.sqlite3 \
+  --start 790 --end 868 --copies 4
+./tools/render-replay.py view working/render-replays/particles-4x.sqlite3 --start 790 --end 868
+```
+
+Choose a range that exists in your case. Factors 1, 2, 4 and 8 are supported;
+1 is a conversion control. The tool duplicates only in-World indexed additive
+particle requests, translating their anchors by bounded offsets (`--spread 24`
+by default). It preserves source palettes, clips and relative order. Terrain,
+creatures, shadows, UI and other source commands stay single. This increases
+native drawing work; it does not spawn simulated creatures or exercise extra AI.
+The factor counts particle requests, not visible pixels or GPU time; clipping,
+overlap and batching make cost scale nonlinearly.
+
+The entire parent is byte-verified and admitted by the native wire decoder,
+including captured requests where present. The derived closed native packets
+are checked again. Wire admission does not start a renderer or establish pixel
+correctness; use `verify` and a serial rendering reference for that. Parent
+history from frame 1 is retained; amplification begins at `--start`, and the
+derived case ends at `--end`. Parent hashes, offsets, range and authored
+provenance are stored in SQLite. The parent is never overwritten. Existing
+case/per-World limits remain enforced; oversized or malformed cases refuse.
+
+Run `benchmark` over the same selected range for each factor, without competing
+game, compiler or test workloads. The outputs are renderer stress workloads,
+not recordings of larger original-engine battles or live FPS measurements.
+
 ## Watch and inspect the same frames
 
 ```bash

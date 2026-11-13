@@ -29370,3 +29370,23 @@ wire, caller guard or source pacing changes. See
 live FPS, full UI/audio/scanout and original equivalence are not promoted. Shared
 source edits leave broader historical stages pending applicability with exact
 old hashes retained.
+
+### 2026-11-13: heavier native particle stress cases
+
+`NR.derived-particle-stress-replay` adds a reusable bounded authoring tool and
+wire-only native admission. Retained history/other drawing stays single; selected
+additive particle requests become2x/4x translated authored copies, with repaired
+source references and explicit native closures/provenance. Original simulation,
+actor count, balance, clock and guards are unchanged. Three same-range790..868
+M1repeats measure1x/2x/4xp95 37.831/40.221/50.016ms and worst
+43.947/54.415/68.532ms;0/3/13 of237samples exceed50ms. Peak particle requests
+are1228/2456/4912. The4xcase is a retained native budget-overrun workload.
+Both amplified cases match serial pixels at all79selected frames; neutral1x
+conversion matches all868parent frame hashes. Seven authoring/native controls
+and12replay regressions pass on software/M1. Actual Qt4xpreview completes; the
+user was not watching, so manual visual acceptance remains unconfirmed. No new
+original run, liveFPS, full UI/audio/scanout or original pixel-oracle promotion.
+See [stress findings](heavy-render-stress-20261113.md),
+[usage](../../docs/render-replay.md#create-a-heavier-particle-replay) and SQLite
+`NATIVE13.heavy-render-stress01`. Historical broader source hashes/statuses remain
+retained with pending applicability after the replay-main wire-validation edit.
