@@ -30,6 +30,7 @@ struct SceneLimits {
     bool colourRgb555=false;
     bool batchDisplacements=true; // bounded ordered destination-coordinate composition
     bool batchAdditiveSprites=false; // exact owned source aggregation; native World opts in
+    std::size_t maxAdditiveSprites=32; // synchronous native World may use up to512
 };
 struct SceneBatchBudget {
     std::size_t draws=32,uploadBytes=256*1024;
@@ -38,6 +39,11 @@ struct SceneBatchBudget {
 struct ColourRectangleCacheStats {std::uint64_t hits=0,uploads=0,evictions=0;std::size_t entries=0,pixels=0;};
 struct SceneUploadNeed {std::size_t draw=0;ResourceUploadRequest request;};
 struct SceneUploadStats {std::uint64_t bytes=0,ticks=0,maxTickBytes=0;};
+struct AdditiveWorkProfile {
+    bool enabled=false;
+    std::uint64_t batches=0,sprites=0,visitedPixels=0,uploadPixels=0;
+    double planningMs=0,combinationMs=0,uploadMs=0,compositeMs=0;
+};
 enum class SceneStart { background, retainedCanvas };
 // GUI-thread persistent RGB565 canvas/background and resource upload ownership.
 // Manager/renderer outlive this object. read/present are explicit sync points;
@@ -63,6 +69,7 @@ public:
     std::optional<SceneUploadNeed> uploadNeed() const;
     void supplyUpload(const SceneUploadNeed&,PreparedSpriteFrame);
     SceneUploadStats uploadStats() const {checkThread();return uploadStats_;}
+    AdditiveWorkProfile additiveProfile() const {checkThread();return additiveProfile_;}
     Image read();
     QImage present();
     GpuFrame presentGpu();
@@ -79,6 +86,7 @@ private:
     std::optional<SceneUploadNeed> need_;
     bool supplied_=false;
     SceneUploadStats uploadStats_;
+    AdditiveWorkProfile additiveProfile_;
     GlBlitter& renderer_;
     assets::ResourceManager& resources_;
     ResourceCache cache_;

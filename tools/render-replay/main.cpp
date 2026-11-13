@@ -114,6 +114,8 @@ QJsonObject run(Tape& tape,const assets::AssetStore& store,unsigned first,unsign
                     QJsonArray producerMs,producerCalls;
                     for(unsigned k=0;k<owner.producerMs.size();++k){producerMs.append(owner.producerMs[k]);producerCalls.append(double(owner.producerCalls[k]));}
                     const auto& p=engine.world.profile();
+                    const auto& a=p.additive;
+                    row["additive_profile"]=QJsonObject{{"batches",double(a.batches)},{"sprites",double(a.sprites)},{"visited_pixels",double(a.visitedPixels)},{"upload_pixels",double(a.uploadPixels)},{"planning_ms",a.planningMs},{"combination_ms",a.combinationMs},{"upload_ms",a.uploadMs},{"composite_ms",a.compositeMs}};
                     row["owner_profile"]=QJsonObject{{"validation_ms",owner.validationMs},{"entry_ms",owner.entryMs},{"append_ms",owner.appendMs},{"complete_ms",owner.completeMs},{"return_ms",owner.returnMs},{"present_ms",owner.presentMs},{"total_ms",owner.totalMs},{"producer_ms",producerMs},{"producer_calls",producerCalls},{"adopt_ms",p.adoptMs},{"prepare_ms",p.prepareMs},{"submit_ms",p.submitMs},{"scene_admission_ms",p.sceneAdmissionMs},{"scene_drawing_ms",p.sceneDrawingMs},{"identities_ms",p.binding.identitiesMs},{"catalogue_ms",p.binding.catalogueMs},{"resources_ms",p.binding.resourcesMs},{"resolve_ms",p.binding.resolveMs},{"cache_uploads",double(p.cacheUploads)},{"cache_hits",double(p.cacheHits)},{"visible_draws",int(p.visibleDraws)}};
                 }
                 if(verify||event.generation==last){

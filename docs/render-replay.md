@@ -143,10 +143,19 @@ Each selected frame's `owner_profile` in the results SQLite payload separates
 producer operations, binding/preparation, scene admission, drawing and
 presentation. Export occurs outside frame timing; collecting the counters itself
 adds diagnostic overhead. These are wall times, not CPU self-time or GPU busy
-time. Use ordinary benchmarks for performance comparisons.
+time. The additional `additive_profile` separates successful batch planning,
+source combination, upload and composite submission, with batch/sprite and
+visited/uploaded pixel counts. It excludes singleton/fallback work and GPU drain;
+use the enclosing scene timing for total cost. Use ordinary benchmarks for
+performance comparisons.
 
 Native World rendering batches consecutive additive particles using bounded
 owned source contributions, preserving exact RGB565 saturation and draw barriers.
+Synchronous World completion admits 512 draws per private turn and up to 512
+consecutive additive sources per batch. Generic scenes retain 32-source batches.
+The 128×128 union, 65,536 visited pixels and caller upload/time budgets still bound
+each batch; prepared replay retains its existing outer draw budget. See the
+[stress optimization measurements](../research/runtime/native-particle-cost-20261113.md).
 `MNM_WORLD_ADDITIVE_BATCH_BASELINE=1` selects the older serial path for diagnostic
 comparisons. This changes native drawing only; simulation and game pacing stay
 the same.

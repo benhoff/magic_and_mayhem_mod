@@ -81,5 +81,32 @@ int main(int argc,char** argv)try{
             require(renderer.stats().surfaces==surfaces,"Additive scratch surfaces leaked");++cases;
         }
     }
+    const auto tiny=sprite(1,1);const auto tinyId=resources.add("tiny",tiny);
+    const bool profileWasSet=qEnvironmentVariableIsSet("MNM_WORLD_OWNER_PROFILE");const auto oldProfile=qgetenv("MNM_WORLD_OWNER_PROFILE");qputenv("MNM_WORLD_OWNER_PROFILE","1");
+    for(const bool barriers:{false,true}){
+        std::vector<render::SceneDraw> draws;auto expected=base;
+        for(unsigned i=0;i<768;++i){
+            render::SceneDraw d{tinyId,0,32,32};d.colours=palette(i%5);(*d.colours)[0]=std::uint16_t(1u<<(i%3==0?0:i%3==1?5:11));d.composite.mode=render::CompositeMode::additive;
+            if(barriers&&i%127==0)d.composite.mode=render::CompositeMode::copy;
+            scalar(expected,tiny,d);draws.push_back(std::move(d));
+        }
+        for(const unsigned cap:{32u,512u}){
+            render::SceneLimits limits;limits.batchAdditiveSprites=true;limits.maxAdditiveSprites=cap;limits.cache.indexedAtlas=true;
+            render::SceneRenderer scene(renderer,resources.manager,base,limits);scene.beginFrame(draws);
+            const auto before=renderer.stats();while(!scene.drawNext(512)){}const auto after=renderer.stats();
+            require(after.nativeReadbacks==before.nativeReadbacks&&after.rgbaReadbacks==before.rgbaReadbacks,"Wide additive delivery readback");
+            require(scene.read().pixels==expected.pixels,"Wide overlapping source aggregation differs from sequential scalar");
+            const auto profile=scene.additiveProfile();require(profile.enabled&&profile.sprites>0,"Additive stage profile absent");
+            require(profile.combinationMs>=0&&profile.uploadMs>=0&&profile.compositeMs>=0,"Invalid additive stage timing");
+            if(!barriers)require(profile.batches==(cap==32?24:2)&&profile.sprites==768&&profile.visitedPixels==768,"Wide additive count/bound differs");
+            ++cases;
+        }
+    }
+    if(profileWasSet)qputenv("MNM_WORLD_OWNER_PROFILE",oldProfile);else qunsetenv("MNM_WORLD_OWNER_PROFILE");
+    for(const unsigned cap:{0u,513u}){
+        render::SceneLimits limits;limits.maxAdditiveSprites=cap;const auto before=renderer.stats().surfaces;bool refused=false;
+        try{render::SceneRenderer invalid(renderer,resources.manager,base,limits);}catch(const std::invalid_argument&){refused=true;}
+        require(refused&&renderer.stats().surfaces==before,"Invalid additive limit changed storage");
+    }
     std::cout<<"{\"success\":true,\"cases\":"<<cases<<",\"draws_saved\":"<<saved<<",\"ordinary_readbacks\":0}\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
