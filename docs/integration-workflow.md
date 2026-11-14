@@ -83,6 +83,17 @@ recheck the pinned candidate and checkouts before updating master. Use `Lease.ru
 and inherited descriptors for child Git calls. Do not wrap preparation or finish
 in this lock. `finish-work.py` requires an owned branch and refuses admission.
 
+## Cleanup after promotion
+
+Release promotion admission before workspace cleanup. Before reporting task
+completion, remove reviewed temporary output and retire the completed owned
+worktree through [the closeout and retirement procedure](storage-consolidation.md#task-closeout-and-worktree-retirement).
+If a checkout or allocation must remain, record its allocated size, owner,
+specific reason and release condition. Cleanup is required even when free space
+is above the maintenance target; required evidence and recovery inputs retain
+their custody protections. Keep hooks and recovery records in a surviving durable
+checkout, and run retirement from outside the selected tree.
+
 ## Recurring metadata and history reviews
 
 Both helpers preview by default. Mutation requires `--execute`, a concrete reason

@@ -179,16 +179,57 @@ before cleanup. Follow the SQLite evidence preservation rules below.
   Unknown/unclassified output remains held. Do not automatically archive every
   rebuildable temporary byte into the permanent evidence pair.
 - Keep one owned active checkout per task and reuse shared immutable inputs.
-  Once a clean merged checkout is inactive, compact duplicate tracked research
-  and fixtures through the verified worktree workflow. Retain Git registration,
-  unique changes, working data and restore instructions. Existing pins and
-  historical evidence require their original reviewed handoff; this prospective
-  policy does not silently reclassify them.
+  Clean up temporary output at task closeout, then retire the clean, merged,
+  inactive checkout through the reviewed workflow below. Use tracked-directory
+  compaction when the checkout still has a justified consumer. Existing pins and
+  historical evidence require an explicit ownership/dependency and custody review;
+  neither age nor a merged tip alone permits their removal.
 - Completed legacy catalogs may be consolidated with source-specific schema,
   every logical record and original snapshot bytes retained in two verified
   stores. Explicitly record retirement of physical SQLite page layouts and
   restore commands; never present a logical reconstruction under an old
   whole-container hash. See `docs/storage-consolidation.md`.
+
+### Mandatory closeout and worktree retirement — approved 2026-11-14
+
+Workspace cleanup is part of task completion, regardless of available free space.
+This policy supersedes older blanket requirements in shared and machine-local
+instructions to preserve completed source checkouts and Git registrations. It
+authorizes routine reviewed cleanup without a new permission request; it does not
+reclassify historical pins or authorize deleting an unreviewed worktree.
+
+- Before reporting completion, stop owned processes, retain required evidence,
+  tested executables and reconstruction inputs, and remove reviewed disposable
+  compiler, build, staging and installation output. Newly created, explicitly
+  temporary task-owned output may be removed after its consumers finish even
+  within the usual recent/newest-run windows; those protections still apply to
+  evidence, unknown output and other tasks' data. Do not archive every rebuildable
+  intermediate first. Keep the ready source checkout until integration finishes.
+- After integration, outside integration admission, retire the owned checkout
+  once it is clean and inactive and its dependencies have been discharged.
+  Recent timestamps alone do not delay retirement of this task's newly completed
+  checkout after those checks; evidence still needs its verified custody handoff.
+  Record any retained allocation with its size, owner, concrete reason and release
+  condition. Pending integration, active inputs and unresolved evidence needs are
+  valid holds; record the remaining cleanup instead of claiming full retirement.
+- Apply the same retirement path to individually reviewed historical worktrees.
+  Verify the exact merged commit and all source/recovery inputs in two independent
+  durable copies, using retained Git objects/bundles plus unique changes rather
+  than another expanded checkout. A branch in the shared Git directory is not an
+  independent backup. Keep branches/ready refs reachable; branch deletion is a
+  separate review.
+- Inventory tracked, untracked and ignored files, worktree-local settings,
+  symlinks, hardlinks, pins, locks and current consumers. Preserve essential
+  records in two verified copies and historical bulk in its verified surviving
+  copy. Move required stores, restoration metadata and hooks to durable locations
+  outside the retiring tree and update their consumers first. Never remove
+  original artifacts, active/recent work or the only usable recovery route.
+- Follow [the retirement procedure](docs/storage-consolidation.md#task-closeout-and-worktree-retirement).
+  Retain a hash-bound SQLite plan/receipt and verify a real independent restore
+  before removal. Recheck source identity and inactivity immediately before the
+  scripted removal; invoke Git from a surviving checkout without force flags.
+  Refusals stay held for investigation outside admission. Report reclaimed
+  allocated bytes separately from free-space changes and archival overhead.
 
 ## Reverse-engineering coverage upkeep
 
@@ -416,11 +457,12 @@ source-specific manifests, verified real restores and durable handoff receipts;
 record any retired physical container encoding honestly, without changing an
 original report hash. Stopped completed execution trees may transfer every file
 and original pin into this pair after full restore verification and consumer
-checks, retaining a pinned historical-path restore stub. This does not authorize
-source-checkout removal or generic cleanup of pins/recent/active inputs. Launch
-queues handoff; it never archives. A standard review cache is disposable only
-after its complete schema, rows, drafts and auxiliary data survive a verified
-checkpoint. Current/staged gates still execute; no cached pass is authoritative. Remote publication is not a
+checks, retaining a pinned historical-path restore stub. That execution handoff
+does not itself authorize source-checkout removal; use the separate reviewed
+retirement procedure above. It does not permit generic cleanup of pins or active
+inputs. Launch queues handoff; it never archives. A standard review cache is
+disposable only after its complete schema, rows, drafts and auxiliary data survive
+a verified checkpoint. Current/staged gates still execute; no cached pass is authoritative. Remote publication is not a
 prerequisite for either operation; never upload evidence merely to finish a
 local commit or merge. Keep the local databases and their backup catalogs pinned
 against working-storage cleanup; a Git commit contains references, not payloads.
