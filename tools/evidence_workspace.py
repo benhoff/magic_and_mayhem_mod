@@ -174,7 +174,10 @@ def seal(root, path, pair, *, retire=False, restore_budget=16*1024**3):
             path.mkdir()
             created=True
             (path/MARKER).write_text(json.dumps(manifest,separators=(',',':'))+'\n')
-            (path/'.retain').write_text('Original workspace and pins retained in two verified object stores.\nManifest: '+manifest['sha256']+'\nRestore before historical consumers.\n')
+            (path/'.retain').write_text(
+                'Workspace manifest and original pins: two verified copies.\n'
+                f'Minimum retained payload copies: {payload_copies}.\n'
+                'Manifest: '+manifest['sha256']+'\nRestore before historical consumers.\n')
             from evidence_objects import _sync
             _sync(path/MARKER);_sync(path/'.retain')
         except BaseException:

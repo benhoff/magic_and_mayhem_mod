@@ -44,6 +44,7 @@ class Hybrid(unittest.TestCase):
             self.assertEqual(result['replicas_verified'],1)
             self.assertEqual(result['metadata_replicas_verified'],2)
             self.assertEqual(result['bulk_one_copy_files'],1)
+            self.assertIn('Minimum retained payload copies: 1.',(tree/'.retain').read_text())
             bulk=next(r for r in before if r['path']=='frames.bin')
             self.assertTrue(pair.stores[0].has(bulk['sha256']))
             self.assertFalse(pair.stores[1].has(bulk['sha256']))
