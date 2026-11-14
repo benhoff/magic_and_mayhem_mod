@@ -8,9 +8,12 @@ class GuiSurfaceLossProbe final {
 public:
     GuiSurfaceLossProbe(const QString& channel,quint32 producer,quint32 version):probe_(channel,producer,version){}
     QString poll(LiveCommandSession& commands,quint64 worlds,bool pendingWorld){
-        if(!probe_.requested())return {};
         const auto* result=commands.result();
-        require(result&&result->liveSurfaces&&result->presents&&!pendingWorld&&!commands.hasPendingCommands(),"GUI surface loss requires a completed unborrowed turn");
+        // An externally drained producer ring does not prove that this GUI
+        // poll has retired its buffered commands or borrowed World turn.
+        // Leave the atomic request untouched until the owner is quiescent.
+        if(!result || !result->liveSurfaces || !result->presents || pendingWorld || commands.hasPendingCommands())return {};
+        if(!probe_.requested())return {};
         auto& observation=probe_.observation;
         observation["provider_owner"]="gui-resident";
         observation["worker_thread"]=false;

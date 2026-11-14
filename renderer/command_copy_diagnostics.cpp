@@ -15,6 +15,8 @@
 #include <map>
 #include <algorithm>
 #include <stdexcept>
+#include <future>
+#include <atomic>
 namespace mnm::render {
 namespace {
 void require(bool ok,const char* why){if(!ok)throw std::runtime_error(why);}
@@ -30,6 +32,75 @@ QByteArray bytes(const Image& image){
 }
 QString hash(const QByteArray& b){return QString::fromLatin1(QCryptographicHash::hash(b,QCryptographicHash::Sha256).toHex());}
 }
+namespace detail {
+// Pure CPU results never touch the renderer, journal, retention sets or counters.
+// The existing FIFO sink owns their reservation through the final write.
+struct PreparedCopy {
+    unsigned sequence=0;std::array<std::uint32_t,13> words{};bool ancestry=false;
+    std::array<std::uint32_t,16> input{};Image source,before,actual,expected;
+    QString sourceHash,beforeHash,actualHash,expectedHash;
+    std::uint64_t mismatches=0;double referenceMs=0,encodingHashMs=0;
+};
+std::unique_ptr<PreparedCopy> prepareCopy(unsigned sequence,const std::array<std::uint32_t,13>& words,
+        bool ancestry,const std::array<std::uint32_t,16>& input,Image source,Image before,Image actual){
+    auto value=std::make_unique<PreparedCopy>();auto& p=*value;
+    p.sequence=sequence;p.words=words;p.ancestry=ancestry;p.input=input;
+    p.source=std::move(source);p.before=std::move(before);p.actual=std::move(actual);
+    QElapsedTimer timing;timing.start();p.expected=p.before;const auto& w=p.words;
+    require(p.actual.width==p.expected.width && p.actual.height==p.expected.height,"Copy diagnostic destination changed");
+    for(unsigned y=0;y<w[5]-w[3];++y)for(unsigned x=0;x<w[4]-w[2];++x){
+        const auto pixel=p.source.pixels.at(std::size_t(y+w[3])*p.source.width+x+w[2]);
+        if(!w[8] || pixel!=w[9])p.expected.pixels.at(std::size_t(y+w[7])*p.expected.width+x+w[6])=pixel;
+    }
+    for(std::size_t i=0;i<p.actual.pixels.size();++i)
+        if(p.actual.pixels[i]!=p.expected.pixels.at(i))++p.mismatches;
+    p.referenceMs=timing.nsecsElapsed()/1000000.;timing.restart();
+    // Share digests only after exact complete canonical-word equality. All
+    // four named fields and independent expected/actual mismatch bytes remain.
+    p.actualHash=hash(bytes(p.actual));
+    const bool beforeEqual=p.before.width==p.actual.width && p.before.height==p.actual.height && p.before.pixels==p.actual.pixels;
+    p.beforeHash=beforeEqual?p.actualHash:hash(bytes(p.before));
+    const bool sourceActual=p.source.width==p.actual.width && p.source.height==p.actual.height && p.source.pixels==p.actual.pixels;
+    const bool sourceBefore=!sourceActual && p.source.width==p.before.width && p.source.height==p.before.height && p.source.pixels==p.before.pixels;
+    p.sourceHash=sourceActual?p.actualHash:sourceBefore?p.beforeHash:hash(bytes(p.source));
+    p.expectedHash=p.mismatches?hash(bytes(p.expected)):p.actualHash;
+    p.encodingHashMs=timing.nsecsElapsed()/1000000.;return value;
+}
+class CopyPreparers final {
+    using Result=std::unique_ptr<PreparedCopy>;using Task=std::packaged_task<Result()>;
+public:
+    static constexpr unsigned Count=8;
+    CopyPreparers(){
+        try{for(unsigned i=0;i<Count;++i)threads_.emplace_back([this]{
+            for(;;){Task task;
+                {std::unique_lock<std::mutex> lock(mutex_);wake_.wait(lock,[this]{return stopping_||!tasks_.empty();});
+                    if(tasks_.empty())return;
+                    task=std::move(tasks_.front());tasks_.pop_front();}
+                const auto active=++active_;auto old=peak_.load();while(old<active&&!peak_.compare_exchange_weak(old,active)){}
+                task();--active_;
+            }
+        });}catch(...){stop();throw;}
+    }
+    ~CopyPreparers(){stop();}
+    template<class F> std::shared_ptr<std::future<Result>> submit(F&& work){
+        Task task(std::forward<F>(work));auto result=std::make_shared<std::future<Result>>(task.get_future());
+        {std::lock_guard<std::mutex> lock(mutex_);require(!stopping_,"COPY preparers stopped");tasks_.push_back(std::move(task));}
+        wake_.notify_one();return result;
+    }
+    unsigned peak()const{return peak_.load();}
+private:
+    void stop(){
+        {std::lock_guard<std::mutex> lock(mutex_);stopping_=true;}wake_.notify_all();
+        for(auto& thread:threads_)if(thread.joinable())thread.join();
+    }
+    std::mutex mutex_;std::condition_variable wake_;bool stopping_=false;
+    std::deque<Task> tasks_;std::vector<std::thread> threads_;std::atomic<unsigned> active_{0},peak_{0};
+};
+
+}
+using detail::PreparedCopy;
+using detail::CopyPreparers;
+using detail::prepareCopy;
 struct CommandCopyDiagnostics::Impl {
     using Input=std::array<std::uint32_t,16>;
     QDir directory;QFile records;
@@ -46,16 +117,20 @@ struct CommandCopyDiagnostics::Impl {
     Image source,before;
     unsigned pending=0,seen=0,enqueued=0,checked=0,ended=0,truncated=0,saved=0;
     std::size_t pendingCharge=0;bool finalized=false;
+    unsigned rowRefusals=0,readbackRefusals=0,workerRefusals=0;
+    std::uint64_t admissionWaitNs=0,maxAdmissionWaitNs=0;
     std::uint64_t pixels=0,readbacks=0,readbackBytes=0;
     double readbackMs=0,referenceMs=0,encodingHashMs=0,writeMs=0;
     QString error;
     static constexpr std::size_t QueueLimit=512ull*1024*1024;
+    std::unique_ptr<CopyPreparers> preparers;
     detail::DiagnosticWorker worker{QueueLimit,256};
-    void process(unsigned,const std::array<std::uint32_t,13>&,bool,Input,Image,Image,Image);
+    void process(std::unique_ptr<PreparedCopy>);
     void checkError(){const auto failure=worker.error();if(!failure.empty())throw std::runtime_error(failure);}
     explicit Impl(const QString& path,Selection choose):directory(path),records(directory.filePath("copies.jsonl")),selection(choose){
         require(!path.isEmpty() && QDir().mkpath(path),"Cannot create copy diagnostics directory");
         require(records.open(QIODevice::WriteOnly|QIODevice::NewOnly),"Refusing copy diagnostic overwrite");
+        if(selection==Selection::AllCopies)preparers=std::make_unique<CopyPreparers>();
     }
     void report(){
         records.flush();QSaveFile file(directory.filePath("report.json"));
@@ -66,7 +141,11 @@ struct CommandCopyDiagnostics::Impl {
           {"retained_pixel_cases",qint64(saved)},{"pixels_compared",qint64(pixels)},{"diagnostic_native_readbacks",qint64(readbacks)},
           {"diagnostic_readback_bytes",qint64(readbackBytes)},{"original_pixels_used_as_native_inputs",false},
           {"cpu_readback_ms",readbackMs},{"cpu_reference_compare_ms",referenceMs},
-          {"cpu_encoding_hash_ms",encodingHashMs},{"cpu_witness_write_ms",writeMs},{"timing_scope","Readbacks on GL owner; independent comparison, hashing and witness writes on one worker. Host elapsed includes waits; no GPU busy-time or scanout claim"},
+          {"cpu_encoding_hash_ms",encodingHashMs},{"cpu_witness_write_ms",writeMs},{"timing_scope","Readbacks on GL owner; bounded parallel CPU comparison/hashing and one FIFO witness writer. Per-job elapsed sums can overlap; no GPU busy-time, production FPS or scanout claim"},
+          {"preparation_workers",preparers?int(CopyPreparers::Count):1},{"preparation_peak_jobs",preparers?int(preparers->peak()):1},
+          {"worker_admission_wait_limit_ms",selection==Selection::AllCopies?50:0},{"worker_admission_wait_ns",qint64(admissionWaitNs)},
+          {"worker_admission_wait_ns_max",qint64(maxAdmissionWaitNs)},{"copy_limit_refusals",int(rowRefusals)},
+          {"readback_limit_refusals",int(readbackRefusals)},{"worker_reservation_refusals",int(workerRefusals)},
           {"scope","Selected native COPY commands until8192copies/32GiB diagnostic readbacks. Selection is explicit; independent CPU transform and complete destination comparison. No original World or presented-session equivalence."}};
         if(selection==Selection::DistinctInputs){
             out["copies_skipped_duplicate"]=qint64(duplicateSkipped);out["copies_skipped_class_budget"]=qint64(classSkipped);
@@ -101,9 +180,13 @@ bool CommandCopyDiagnostics::before(const SurfaceCommand& c,GlBlitter& renderer,
     const auto cost=(std::uint64_t(s.width())*s.height()+2ull*std::uint64_t(d.width())*d.height())*4;
     const auto planeBytes=cost+std::uint64_t(d.width())*d.height()*4;
     if(distinct && planeBytes>Impl::InputByteLimit-p.inputBytes){++p.byteSkipped;return false;}
-    if(p.enqueued>=8192 || cost>32ull*1024*1024*1024-p.readbackBytes){p.truncated=1;return false;}
+    if(p.enqueued>=8192){++p.rowRefusals;p.truncated=1;return false;}
+    if(cost>32ull*1024*1024*1024-p.readbackBytes){++p.readbackRefusals;p.truncated=1;return false;}
     p.pendingCharge=std::size_t(cost+std::uint64_t(d.width())*d.height()*4+65536);
-    if(!p.worker.reserve(p.pendingCharge)){p.checkError();p.truncated=1;return false;}
+    QElapsedTimer admission;admission.start();
+    const auto admitted=p.worker.reserve_for(p.pendingCharge,std::chrono::milliseconds(p.selection==Selection::AllCopies?50:0));
+    const auto elapsed=std::uint64_t(admission.nsecsElapsed());p.admissionWaitNs+=elapsed;p.maxAdmissionWaitNs=std::max(p.maxAdmissionWaitNs,elapsed);
+    if(!admitted){++p.workerRefusals;p.checkError();p.truncated=1;return false;}
     if(distinct){p.inputs.insert(input);++p.inputClasses[bucket];p.inputBytes+=planeBytes;p.pendingInput=input;}
     QElapsedTimer timing;timing.start();
     p.source=renderer.read(source);p.before=renderer.read(target);p.readbacks+=2;
@@ -117,31 +200,26 @@ void CommandCopyDiagnostics::after(const SurfaceCommand& c,GlBlitter& renderer,S
     p.readbackMs+=timing.nsecsElapsed()/1000000.;timing.restart();
 
     const bool ancestry=p.ancestry.count(c.words[0]);
-    p.worker.post(p.pendingCharge,[&p,sequence=c.sequence,words=c.words,ancestry,input=p.pendingInput,source=std::move(p.source),before=std::move(p.before),actual=std::move(actual)]()mutable{
-        p.process(sequence,words,ancestry,input,std::move(source),std::move(before),std::move(actual));
-    });
+    auto prepare=[sequence=c.sequence,words=c.words,ancestry,input=p.pendingInput,source=std::move(p.source),before=std::move(p.before),actual=std::move(actual)]()mutable{
+        return prepareCopy(sequence,words,ancestry,input,std::move(source),std::move(before),std::move(actual));
+    };
+    if(p.preparers){
+        std::shared_ptr<std::future<std::unique_ptr<PreparedCopy>>> future;
+        try{future=p.preparers->submit(std::move(prepare));}
+        catch(...){p.worker.cancel(p.pendingCharge);p.pending=0;p.pendingCharge=0;throw;}
+        p.worker.post(p.pendingCharge,[&p,future]{p.process(future->get());});
+    }else p.worker.post(p.pendingCharge,[&p,prepare=std::move(prepare)]()mutable{p.process(prepare());});
     ++p.enqueued;p.pending=0;p.pendingCharge=0;
 }
-void CommandCopyDiagnostics::Impl::process(unsigned sequence,const std::array<std::uint32_t,13>& words,bool ancestry,Input input,Image source,Image before,Image actual){
-    auto& p=*this;QElapsedTimer timing;timing.start();
-    // Only after GPU execution and its output capture, compute an independent
-    // CPU expectation. No expected image can influence that execution.
-    auto expected=before;const auto& w=words;
-    require(actual.width==expected.width && actual.height==expected.height,"Copy diagnostic destination changed");
-    for(unsigned y=0;y<w[5]-w[3];++y)for(unsigned x=0;x<w[4]-w[2];++x){
-        const auto pixel=source.pixels.at(std::size_t(y+w[3])*source.width+x+w[2]);
-        if(!w[8] || pixel!=w[9])expected.pixels.at(std::size_t(y+w[7])*expected.width+x+w[6])=pixel;
-    }
-    std::uint64_t mismatches=0;
-    for(std::size_t i=0;i<actual.pixels.size();++i)if(actual.pixels[i]!=expected.pixels.at(i))++mismatches;
-    p.referenceMs+=timing.nsecsElapsed()/1000000.;timing.restart();
-    const auto s=bytes(source),b=bytes(before),a=bytes(actual);
-    // Full word comparison has established equality before sharing canonical
-    // bytes and their digest. Mismatches retain independently encoded evidence.
-    const auto e=mismatches?bytes(expected):a;
-    const auto sourceHash=hash(s),beforeHash=hash(b),actualHash=hash(a);
-    const auto expectedHash=mismatches?hash(e):actualHash;
-    p.encodingHashMs+=timing.nsecsElapsed()/1000000.;timing.restart();
+void CommandCopyDiagnostics::Impl::process(std::unique_ptr<PreparedCopy> prepared){
+    auto& p=*this;auto& value=*prepared;const auto sequence=value.sequence;const auto& words=value.words;
+    const auto ancestry=value.ancestry;const auto& input=value.input;const auto mismatches=value.mismatches;
+    const auto& source=value.source;const auto& before=value.before;const auto& actual=value.actual;const auto& expected=value.expected;
+    const auto s=bytes(source),b=bytes(before),a=bytes(actual),e=mismatches?bytes(expected):a;
+    const auto& sourceHash=value.sourceHash;const auto& beforeHash=value.beforeHash;
+    const auto& actualHash=value.actualHash;const auto& expectedHash=value.expectedHash;
+    p.referenceMs+=value.referenceMs;p.encodingHashMs+=value.encodingHashMs;
+    QElapsedTimer timing;timing.start();
     QJsonArray encodedWords;for(auto word:words)encodedWords.append(qint64(word));
     QJsonObject row{{"sequence",int(sequence)},{"source_world_ancestry",bool(ancestry)},{"words",encodedWords},{"source_width",source.width},{"source_height",source.height},
       {"target_width",actual.width},{"target_height",actual.height},{"pixels",qint64(actual.pixels.size())},
