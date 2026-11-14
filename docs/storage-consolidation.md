@@ -166,6 +166,61 @@ changes engine validation status or refreshes historical hashes.
 
 ## Explicit tracked-directory compaction and snapshot unions
 
+### Redundant report materializations
+
+Historical checkouts can appear modified because a generated report was expanded
+from its committed SQLite reference. `tools/compact-worktree-reports.py` offers a
+smaller storage operation before full retirement: replace only expanded bytes
+whose size and SHA-256 exactly match that checkout's existing Git reference.
+Unique edits, authored registers, hardlinks, report symlinks, working data and
+original inputs are ineligible. This preserves the registered checkout and does
+not authorize its removal or renew engine validation.
+
+Run from an owned maintenance checkout. Review the target's pins, consumers and
+recovery routes first. Both planning and application require an inactive, merged
+linked checkout without staged changes, locks or unfinished Git operations.
+Planning skips reports written within 24 hours. Every selected payload needs two
+verified copies on independent filesystems and a real restore from each; the
+complete SQLite execution plan is also checkpointed and restored before mutation.
+Missing copies refuse by default. `--retain-missing-copies` explicitly retains
+the exact Git-bound bytes in the maintenance checkout's configured pair, then
+rechecks both restores; it never accepts corrupt copies or lowers reserve floors.
+
+```bash
+python3 tools/compact-worktree-reports.py --main MAIN --own MAINTENANCE \
+  --restore-directory RAM plan OLD_CHECKOUT --output working/report-plan.sqlite3 \
+  --reason 'Exact reviewed ownership, pin meaning, consumers and replay limits'
+python3 tools/compact-worktree-reports.py --main MAIN --own MAINTENANCE \
+  --restore-directory RAM apply working/report-plan.sqlite3 \
+  --expected-plan-sha256 HASH_RETURNED_BY_PLAN
+```
+
+Application verifies the unchanged plan, operator, HEAD, activity and both payload
+copies again. Atomic replacement preserves mode, group, extended attributes and
+modification time; the plan retains prior file identity/metadata. Each completed
+replacement and the final custody receipt survive in SQLite. An interrupted
+application retains its completed prefix; inspect it and prepare a new plan for
+the remainder. Preserve the prior outcome/notice before explicitly removing a
+task-owned old notice; an existing different or shared notice refuses overwrite.
+Do not reuse the original plan hash after execution. Complete plan checkpoints
+group immutable object writes while performing an actual schema/row restore;
+both stores commit and sync before the verified receipt admits replacement.
+The execution journal commits each 64 replacements and flushes the completed
+prefix on ordinary failures. A power loss can leave one group marked prepared
+after its pointers were written. Reconcile those exact pointer bytes against
+the retained before identities/allocation rather than trusting state alone;
+both original payload copies and the admitted plan already survive independently.
+
+`WORKTREE-REPORTS-CANONICALIZED.txt` records the replay boundary. Current SQLite
+readers resolve references directly. Frozen readers requiring physical JSON, binary or source bytes must
+hydrate selected paths with current `MAIN/tools/evidence-store.py --root
+OLD_CHECKOUT hydrate <path>...` before replay. Verify the reader's configured
+payload routes before accepting a handoff. Pins on comparison data and historical
+source remain meaningful; this operation changes only redundant report encoding.
+No full-tree, physical JSON or all-concurrent-writers compatibility is claimed.
+
+### Tracked directories and snapshot unions
+
 `tools/compact-evidence-storage.py --root MAIN worktree CHECKOUT --scratch RAM`
 compacts only tracked `research/` and `tests/` directories of an explicitly
 selected clean, merged, inactive linked checkout. It holds recent, modified,
