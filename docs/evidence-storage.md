@@ -311,3 +311,27 @@ used empty independent stores, retained identical object identities and compress
 block sizes, and performed a full real restore. This measured workload is about
 2.7 times faster; it does not predict the whole sweep. The source-stable 15-suite
 control report is `throughput-controls-02.json` in the same results directory.
+
+
+## Large mirror construction and interrupted phases
+
+Mirror construction streams one compressed block at a time. A bulk
+`INSERT .. SELECT` into a guarded table can make SQLite materialize the entire
+BLOB result before insertion, so it is unsuitable for this migration. Temporary
+metadata work uses an explicitly selected scratch directory on the replica
+filesystem; source and replica reserves are checked throughout. Run the migration
+as an isolated, single-threaded process because SQLite's temporary-directory
+setting is process-wide. The previous environment and directory setting are
+restored on exit. The normal Main storage guard still wraps large producers.
+
+An interrupted build preserves the full old mirror. Review the prepared output
+and diagnostics outside integration admission. Explicitly reusing a completed
+primary scrub requires unchanged fresh source/mirror catalogs, no physical
+primary or nonempty-WAL writes since the recorded verification began, immutable
+payload guards and the exact reviewed decoder source revision. New phase receipts
+also bind physical identities. Use `--reuse-primary-verification
+--verified-source-commit <reviewed-original-producer-revision>` only after that
+review. It refuses changed or missing proof; it never substitutes for the current
+coverage gates. The whole replacement is freshly verified, and results distinguish
+`primary_full_hash_executed` from the retained verification phase and its timestamp.
+Historical verification source hashes and reports remain unchanged.

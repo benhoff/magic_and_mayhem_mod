@@ -183149,7 +183149,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Essential two-copy and reviewed single-copy historical bulk custody",
-      "scope": "Host-only hybrid immutable evidence custody: schema-1 strict pairs remain supported; schema-2 workspace filenames, size and executable magic classify new admitted payloads, with anonymous reports/checkpoints defaulting to two copies. Explicit reviewed full-mirror plans protect Git-bound reports, roots, unique source, saves, configuration, tested executables and complete typed-SQLite closures. A full surviving-primary object hash scrub and verified essential replacement precede atomic mirror replacement. Sparse-aware incremental completion, explicit replica refusal, promotion, real workspace restoration and frozen-writer refusal are controlled. Six migration and ten hybrid synthetic controls plus existing object/block/storage/local-workflow suites establish these bounded host controls. No original game behavior, automatic historical expiry, all-producer adoption, off-host durability or historical engine-validation renewal.",
+      "scope": "Host-only hybrid immutable evidence custody: schema-1 strict pairs remain supported; schema-2 workspace filenames, size and executable magic classify new admitted payloads, with anonymous reports/checkpoints defaulting to two copies. Explicit reviewed full-mirror plans protect Git-bound reports, roots, unique source, saves, configuration, tested executables and complete typed-SQLite closures. A full surviving-primary object hash scrub and verified essential replacement precede atomic mirror replacement. Sparse-aware incremental completion, explicit replica refusal, promotion, real workspace restoration and frozen-writer refusal are controlled. Six migration and ten hybrid synthetic controls plus existing object/block/storage/local-workflow suites establish these bounded host controls. No original game behavior, automatic historical expiry, all-producer adoption, off-host durability or historical engine-validation renewal. Streamed block insertion avoids trigger-induced BLOB result spooling; SQLite temporary work is explicitly scoped to the replica filesystem in an isolated migration process and both drives retain live reserve checks. Explicit retained primary-scrub reuse requires fresh unchanged catalogs, storage no-write/identity checks, immutable payload guards and the reviewed unchanged decoder revision; the replacement always receives fresh full verification and reuse is reported separately from execution.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -183186,7 +183186,8 @@
       "evidence": [
         "STOR13.hybrid-controls01",
         "STOR13.hybrid-controls02",
-        "STOR13.hybrid-controls03"
+        "STOR13.hybrid-controls03",
+        "STOR13.hybrid-controls04"
       ],
       "status": {
         "understanding": "scoped",
@@ -183198,7 +183199,8 @@
       "remaining_gaps": [
         "Single-copy historical bulk can be lost with its remaining primary filesystem; metadata is not a substitute for payloads.",
         "Existing unclassified archives remain strict until a source-specific reviewed migration; no blanket deletion of old failures, pins, active consumers or source checkouts.",
-        "Full SQLite closures remain two-copy; arbitrary pruning and physical-page-image retirement are outside this change. Historical source hashes and engine statuses are preserved."
+        "Full SQLite closures remain two-copy; arbitrary pruning and physical-page-image retirement are outside this change. Historical source hashes and engine statuses are preserved.",
+        "2026-11-13: The initial large INSERT..SELECT builder spilled BLOB results under /var/tmp and crossed the Cold reserve before being stopped. Full old mirrors and the completed primary scrub survived; failed logs and rolled-back prepared metadata are retained. The streamed revision has a measured temporary-allocation regression control. Its process-wide SQLite temporary-directory setting requires an isolated, single-threaded migration command. Retained-phase reuse preserves historical verification with explicit filesystem no-write/decoder applicability; it is not a fresh primary scrub or a cached gate pass."
       ]
     }
   ],
@@ -430671,6 +430673,29 @@
           "equals": 93
         }
       ]
+    },
+    {
+      "id": "STOR13.hybrid-controls04",
+      "kind": "native_integration",
+      "record": "research/runtime/hybrid-retention-results-20261113/controls-04.json",
+      "sha256": "267a4b3fb6547dcd854f7aa33323114625beaf3f9a5853282646e7116b05da1d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Focused host retention controls only; no original-game execution or historical engine claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 98
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -466200,7 +466225,8 @@
       "evidence": [
         "STOR13.hybrid-controls01",
         "STOR13.hybrid-controls02",
-        "STOR13.hybrid-controls03"
+        "STOR13.hybrid-controls03",
+        "STOR13.hybrid-controls04"
       ]
     }
   ],
@@ -468029,8 +468055,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-6f0eed713fc0587a9c00f1ca0f43b0dd827da690a9f91df3dfccec39a92e7a42.json",
-    "sha256": "6f0eed713fc0587a9c00f1ca0f43b0dd827da690a9f91df3dfccec39a92e7a42"
+    "path": "research/runtime/coverage/source-index-3e219e1b24193216ad5c5892b242b7a68a2eaa4bd7db221407cbbd7b70b2f456.json",
+    "sha256": "3e219e1b24193216ad5c5892b242b7a68a2eaa4bd7db221407cbbd7b70b2f456"
   },
   "evidence_applicability": [
     {

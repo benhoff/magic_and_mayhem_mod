@@ -30157,3 +30157,16 @@ reclaiming 22,900,469,760 allocated bytes. Single-drive loss exposure for that b
 is explicit. Earlier custody reports remain historical facts; no engine evidence
 hash, game acceptance status or original-media byte changes. See
 research/runtime/hybrid-retention-20261113.md and the SQLite-backed controls.
+
+
+### Streamed mirror construction and preserved interrupted phase — 2026-11-13
+
+The large shared primary passed all 3,642,983 object hashes. Its first replacement
+build spilled bulk SQL BLOB results under /var/tmp and was stopped after crossing
+the Cold reserve; spill closure restored 109 GiB free. The old full mirror and
+original verification receipt remain retained. The revised builder streams blocks,
+scopes temporary metadata to the replica filesystem, guards both reserves and
+allows only explicitly reviewed unchanged primary-phase reuse. Fresh replacement
+verification and all current/staged gates remain mandatory. Five additional
+controls cover bounded temporary allocation and reuse/reserve refusals. This is
+host storage work; no game run, original hash refresh or engine-status promotion.

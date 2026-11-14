@@ -9,6 +9,10 @@ import os
 import shutil
 import sqlite3
 import time
+import tempfile
+import subprocess
+import inspect
+import math
 
 from coverage_evidence import Store
 from evidence_objects import Sink,_sync
@@ -59,7 +63,7 @@ def prepare(primary,replica,output):
     if output.exists()or output.suffix!='.sqlite3' or 'working'not in output.parts or any(p.is_symlink()for p in output.parents):
         raise ValueError('Plan requires a new ignored SQLite path')
     output.parent.mkdir(parents=True,exist_ok=True)
-    with locked(primary),closing(Store(primary,readonly=True))as source,closing(Store(replica,readonly=True))as mirror,closing(sqlite3.connect(output))as plan:
+    with scratch(replica),locked(primary),closing(Store(primary,readonly=True))as source,closing(Store(replica,readonly=True))as mirror,closing(sqlite3.connect(output))as plan:
         source.db.execute('BEGIN');mirror.db.execute('BEGIN')
         plan.executescript('''PRAGMA synchronous=FULL;
             CREATE TABLE metadata(key TEXT PRIMARY KEY,payload BLOB);
@@ -129,8 +133,112 @@ def prepare(primary,replica,output):
 def event(plan,state,value):
     plan.execute('INSERT INTO events VALUES(?,?,?)',(time.time_ns(),state,encoded(value)));plan.commit()
 
-def apply(plan_path,expected_sha,*,minimum_free=(100*2**30,90*2**30),progress_every=10000):
+@contextmanager
+def scratch(replica):
+    """Scope SQLite spill for this isolated, single-threaded migration process.
+
+    SQLite may cache its default directory before environment changes. Set and
+    verify its process-wide directory as well; restore both settings on exit.
+    """
+    previous={key:os.environ.get(key)for key in ('SQLITE_TMPDIR','TMPDIR')}
+    with tempfile.TemporaryDirectory(prefix='mirror-scratch-',dir=replica.parent)as directory,closing(sqlite3.connect(':memory:'))as control:
+        row=control.execute('PRAGMA temp_store_directory').fetchone()
+        prior=row[0]if row else''
+        try:
+            for key in previous:os.environ[key]=directory
+            control.execute("PRAGMA temp_store_directory='"+directory.replace("'","''")+"'")
+            row=control.execute('PRAGMA temp_store_directory').fetchone()
+            if row is None or row[0]!=directory:raise ValueError('SQLite cannot select the budgeted temporary directory')
+            yield
+        finally:
+            control.execute("PRAGMA temp_store_directory='"+prior.replace("'","''")+"'")
+            for key,value in previous.items():
+                if value is None:os.environ.pop(key,None)
+                else:os.environ[key]=value
+
+
+def reserve_check(paths,floors):
+    if any(shutil.disk_usage(path.parent).free<floor+128*1024**2
+           for path,floor in zip(paths,floors)):
+        raise ValueError('Evidence or temporary-storage reserve crossed')
+
+
+def guard_connection(db,paths,floors):
+    def guard():
+        return int(any(shutil.disk_usage(path.parent).free<floor+128*1024**2
+                       for path,floor in zip(paths,floors)))
+    db.set_progress_handler(guard,1000)
+
+
+def physical_state(primary):
+    result={str(primary):identity(primary)}
+    for suffix in ('-wal','-journal'):
+        path=Path(str(primary)+suffix)
+        if path.exists()and path.stat().st_size:
+            if suffix=='-journal':raise ValueError('Primary has a rollback journal; review before reuse')
+            result[str(path)]=identity(path)
+    return result
+
+
+def decoder_revision(commit):
+    root=Path(__file__).resolve().parents[1]
+    if not commit:raise ValueError('Retained primary verification needs its reviewed source commit')
+    revision=subprocess.check_output(['git','-C',str(root),'rev-parse','--verify','--end-of-options',commit+'^{commit}'],text=True).strip()
+    original=subprocess.check_output(['git','-C',str(root),'show',revision+':tools/coverage_evidence.py'])
+    current=Path(inspect.getfile(Store)).read_bytes()
+    if original!=current:raise ValueError('Verified primary decoder source changed; perform a new full scrub')
+    return dict(commit=revision,decoder_sha256=hashlib.sha256(current).hexdigest())
+
+
+def retained_primary_proof(plan,source,value,commit):
+    """Reuse an actual completed scrub, never a cached pass or changed source.
+
+    Legacy phase receipts lack a physical stamp. Their file and nonempty WAL
+    timestamps must precede the recorded scrub start, ruling out intervening
+    filesystem writes/replacement on this trusted local filesystem. Catalogs
+    are freshly compared separately. The reviewed decoder revision must match.
+    """
+    proof=plan.execute("SELECT at_ns,payload FROM events WHERE state='primary-full-hash-verified' ORDER BY at_ns DESC LIMIT 1").fetchone()
+    if proof is None:raise ValueError('No completed primary full-hash verification to reuse')
+    payload=json.loads(proof[1])
+    start=plan.execute("SELECT at_ns FROM events WHERE state='verification-started' AND at_ns<=? ORDER BY at_ns DESC LIMIT 1",(proof[0],)).fetchone()
+    if start is None or payload.get('catalog')!=value['catalog']:
+        raise ValueError('Retained primary verification does not bind this catalog')
+    state=physical_state(source.path)
+    if any(max(stamp[3:])>start[0]for stamp in state.values()):
+        raise ValueError('Primary storage changed since the retained scrub began')
+    if 'physical_state'in payload and state!=payload['physical_state']:
+        raise ValueError('Primary storage identity differs from verified phase')
+    for table in ('objects','blocks','object_parts'):
+        for operation in ('update','delete'):
+            row=source.db.execute("SELECT sql FROM sqlite_master WHERE type='trigger' AND name=?",(table+'_no_'+operation,)).fetchone()
+            if row is None or 'RAISE(ABORT'not in row[0].upper():
+                raise ValueError('Primary immutable payload guard is missing')
+    revision=decoder_revision(commit)
+    return dict(mode='retained_full_scrub',verified_at_ns=proof[0],started_at_ns=start[0],
+                physical_state=state,reviewed_decoder=revision,
+                limitation='Fresh catalog/physical no-write checks and unchanged reviewed decoder preserve the prior object scrub; this invocation does not repeat it.')
+
+
+def copy_blocks(new,paths,floors):
+    # INSERT..SELECT with BEFORE INSERT guards makes SQLite materialize the
+    # entire BLOB result in TEMP before inserting. Stream single blocks instead;
+    # the IN set contains hashes only and deduplicates without another DISTINCT.
+    rows=new.db.execute('''SELECT b.sha256,b.size,b.payload FROM retained_source.blocks b
+        WHERE b.sha256 IN(SELECT p.block FROM retained_source.object_parts p
+            JOIN main.objects o ON o.sha256=p.sha256)''')
+    for row in rows:
+        reserve_check(paths,floors)
+        new.db.execute('INSERT INTO main.blocks VALUES(?,?,?)',row)
+
+
+def apply(plan_path,expected_sha,*,minimum_free=(100*2**30,90*2**30),progress_every=10000,
+          reuse_primary_verification=False,verified_source_commit=None):
     from compact_snapshot_activity import busy
+    if len(minimum_free)!=2 or any(not math.isfinite(n)or n<0 for n in minimum_free):
+        raise ValueError('Finite nonnegative storage floors required')
+    if verified_source_commit and not reuse_primary_verification:
+        raise ValueError('A verified source commit applies only to explicit phase reuse')
     with closing(sqlite3.connect(plan_path))as plan:
         value=json.loads(plan.execute("SELECT payload FROM metadata WHERE key='plan'").fetchone()[0])
         h=hashlib.sha256(encoded(value))
@@ -144,23 +252,33 @@ def apply(plan_path,expected_sha,*,minimum_free=(100*2**30,90*2**30),progress_ev
         estimate=(value['estimated_retained_block_bytes']*1.25
                   +value['essential_objects']*768+value['bulk_objects']*512+1024**3)
         if shutil.disk_usage(replica.parent).free-estimate<minimum_free[1]:raise ValueError('Essential mirror staging would breach reserve')
-        with locked(primary),closing(Store(primary,readonly=True))as source:
+        with scratch(replica),locked(primary),closing(Store(primary,readonly=True))as source:
+            paths=(primary,replica);reserve_check(paths,minimum_free)
+            guard_connection(source.db,paths,minimum_free)
             source.db.execute('BEGIN')
             if fingerprint(source.db)!=value['catalog']:raise ValueError('Primary changed after planning')
             with closing(Store(replica,readonly=True))as old:
+                guard_connection(old.db,paths,minimum_free)
                 if fingerprint(old.db)!=value['catalog']:raise ValueError('Mirror changed after planning')
-            event(plan,'verification-started',dict(primary=str(primary)))
-            # Verify every surviving object, including bulk, before discarding
-            # any old replica payload. This is a real full remaining-copy scrub.
-            for index,(sha,size)in enumerate(source.db.execute('SELECT sha256,size FROM objects')):
-                source.copy(sha,size,Sink())
-                if index%progress_every==0:print('Verified surviving object',index,flush=True)
-            event(plan,'primary-full-hash-verified',dict(catalog=value['catalog']))
+            if reuse_primary_verification:
+                verification=retained_primary_proof(plan,source,value,verified_source_commit)
+                event(plan,'primary-verification-reused',verification)
+                print('Retained primary scrub accepted after fresh catalog, physical no-write and decoder-source checks',flush=True)
+            else:
+                before=physical_state(primary)
+                event(plan,'verification-started',dict(primary=str(primary),physical_state=before))
+                for index,(sha,size)in enumerate(source.db.execute('SELECT sha256,size FROM objects')):
+                    source.copy(sha,size,Sink())
+                    if index%progress_every==0:print('Verified surviving object',index,flush=True)
+                if physical_state(primary)!=before:raise ValueError('Primary storage changed during full scrub')
+                event(plan,'primary-full-hash-verified',dict(catalog=value['catalog'],physical_state=before))
+                verification=dict(mode='fresh_full_scrub',physical_state=before)
             bulk={r[0]for r in plan.execute('SELECT sha256 FROM bulk')}
+            reserve_check(paths,minimum_free)
             with closing(Store(replacement,shared=True))as new:
                 initialize(new);new.minimum_free=minimum_free[1]
                 new.db.execute('PRAGMA journal_mode=DELETE')
-                new.db.set_progress_handler(lambda: int(shutil.disk_usage(replica.parent).free<minimum_free[1]+64*1024**2),10000)
+                guard_connection(new.db,paths,minimum_free)
                 # Copy only essential objects. The original primary remains
                 # untouched and the old full mirror remains in place here.
                 new.db.execute('ATTACH DATABASE ? AS retained_source',(str(primary),))
@@ -169,9 +287,7 @@ def apply(plan_path,expected_sha,*,minimum_free=(100*2**30,90*2**30),progress_ev
                 with new.db:
                     new.db.execute('''INSERT INTO objects SELECT o.*FROM retained_source.objects o
                         LEFT JOIN one_copy b USING(sha256)WHERE b.sha256 IS NULL''')
-                    new.db.execute('''INSERT INTO blocks SELECT b.*FROM retained_source.blocks b
-                        WHERE b.sha256 IN(SELECT DISTINCT p.block FROM retained_source.object_parts p
-                            JOIN main.objects o ON o.sha256=p.sha256)''')
+                    copy_blocks(new,paths,minimum_free)
                     new.db.execute('''INSERT INTO object_parts SELECT p.*FROM retained_source.object_parts p
                         JOIN main.objects o ON o.sha256=p.sha256''')
                     new.db.execute('INSERT INTO retention_roots SELECT *FROM retained_source.retention_roots')
@@ -190,7 +306,7 @@ def apply(plan_path,expected_sha,*,minimum_free=(100*2**30,90*2**30),progress_ev
             # the complete survivor and the replacement mirror have verified.
             with closing(Store(primary))as writer:
                 initialize(writer)
-                writer.db.set_progress_handler(lambda: int(shutil.disk_usage(primary.parent).free<minimum_free[0]+64*1024**2),10000)
+                guard_connection(writer.db,paths,minimum_free)
                 with writer.db:
                     for sha in bulk:decide(writer,sha,1,'approved historical workspace bulk')
                 _sync(primary)
@@ -211,5 +327,7 @@ def apply(plan_path,expected_sha,*,minimum_free=(100*2**30,90*2**30),progress_ev
             result=dict(success=True,primary=str(primary),replica=str(replica),bulk_copies=1,essential_copies=2,
                         bulk_objects=len(bulk),essential_objects=value['essential_objects'],
                         remaining_primary_full_hash_verified=True,replacement_verified=True,
+                        primary_full_hash_executed=not reuse_primary_verification,
+                        primary_verification=verification,
                         reclaimed_allocated_bytes=before-replica.stat().st_blocks*512)
             event(plan,'completed',result);return result

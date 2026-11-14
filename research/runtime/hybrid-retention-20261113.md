@@ -34,3 +34,17 @@ plans and receipts; this report does not claim their completion.
 Historical engine proof remains at its original source boundary. This host-only
 change provides no game execution, acceptance promotion, off-host guarantee or
 automatic expiry of legacy captures and failures.
+
+
+The first large shared-store build completed all 3,642,983 primary-object hashes
+then exposed SQLite BLOB-result materialization in its bulk insertion. Temporary
+files under /var/tmp crossed the Cold reserve; interruption closed the spill and
+restored 109 GiB free. The original full mirror stayed intact, and the prepared
+transaction rolled back. This failure is retained rather than represented as a
+completed migration. A streamed builder and both-drive guards have a 64 MiB
+resource fixture: the old SQL path exceeds an 8 MiB temporary-spill limit, while
+the streamed path remains within it. Source-touch, missing/reviewed decoder and
+retained-phase reuse refusals are separately controlled. The actual retained
+primary proof is reviewed against its unchanged decoder and no-write storage
+boundary; the retry still verifies fresh catalogs and the complete replacement.
+Operational completion is recorded separately in the paired closeout receipts.
