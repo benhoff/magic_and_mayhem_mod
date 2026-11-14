@@ -64,6 +64,17 @@ class LocalTests(unittest.TestCase):
                 self.assertEqual(Path(os.environ['MM_EVIDENCE_DB']), database)
         self.assertEqual(dict(os.environ), previous)
 
+    def test_scoped_local_read_does_not_scan_unused_archives_or_fetch(self):
+        database,report=self.pending()
+        (self.root/CONFIG).write_text(json.dumps({'schema':1,'archives':[{'sha256':'a'*64}]}))
+        with patch('evidence_local.digest_file',side_effect=AssertionError('unrelated archive scanned')):
+            with patch('coverage_evidence.urllib.request.urlopen',side_effect=AssertionError('network')):
+                with local_evidence(self.root,verify_archives=False),Reader(self.root)as reader:
+                    self.assertEqual(reader.json(report),{'success':True})
+                    with self.assertRaisesRegex(ValueError,'unavailable locally'):
+                        from coverage_evidence import fetch_archive
+                        fetch_archive(self.root,{'sha256':'b'*64})
+
     def test_missing_or_corrupt_cached_archive_refuses_without_fetch(self):
         (self.root/CONFIG).write_text(json.dumps({'schema': 1, 'archives': [{'sha256': 'a'*64}]}))
         with patch('coverage_evidence.urllib.request.urlopen', side_effect=AssertionError('Network forbidden')):
@@ -163,6 +174,33 @@ class FinishTests(unittest.TestCase):
         return finish(self.workspace, 'HEAD', 'Reviewed owned source and existing links.',
                       'Current original comparison remains pending; no milestone promoted.',
                       'Finish owned batch', 'Reviewed source census links')
+
+    def test_finish_cli_binds_checked_commit_tree_and_base(self):
+        self.git('switch','-c','owned')
+        base=self.git('rev-parse','HEAD')
+        self.fixture.write('assets/model.cpp','cli source change\n')
+        token='c'*32
+        result=subprocess.run([sys.executable,str(ROOT/'tools/finish-work.py'),'--root',str(self.root),
+            '--reason','Reviewed CLI source','--validation-reason','Pending original comparison',
+            '--index-review-reason','Reviewed source links','--message','CLI finish','--result-token',token],
+            capture_output=True,text=True)
+        self.assertEqual(result.returncode,0,result.stderr+result.stdout)
+        lines=[line.split()for line in result.stdout.splitlines()if line.startswith('MM_FINISH_CHECKED ')]
+        self.assertEqual(lines, [['MM_FINISH_CHECKED',token,self.git('rev-parse','HEAD'),self.git('rev-parse','HEAD^{tree}'),base]])
+
+    def test_finish_cli_refuses_master_before_validation(self):
+        self.git('branch','-M','master');base=self.git('rev-parse','HEAD')
+        result=subprocess.run([sys.executable,str(ROOT/'tools/finish-work.py'),'--root',str(self.root),
+            '--reason','Reviewed','--validation-reason','Pending','--message','Blocked'],capture_output=True,text=True)
+        self.assertNotEqual(result.returncode,0);self.assertIn('owned task branch',result.stderr)
+        self.assertEqual(self.git('rev-parse','HEAD'),base)
+
+    def test_late_hook_index_mutation_cannot_report_checked_success(self):
+        self.fixture.write('assets/model.cpp','reviewed change\n')
+        hook=self.root/'.git/hooks/commit-msg'
+        hook.write_text('#!/bin/sh\nprintf late > assets/model.cpp\ngit add assets/model.cpp\n');hook.chmod(0o755)
+        with self.assertRaisesRegex(ValueError,'differs from checked'):
+            self.run_finish()
 
     def test_local_finish_records_backups_and_commits_with_hook_without_upload(self):
         hook = self.root/'.git/hooks/pre-commit'

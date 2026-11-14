@@ -29,6 +29,39 @@ the complete surviving primary and replacement essential mirror before retiring
 duplicate bulk. Historical two-copy receipts remain true statements about their
 original phase; current custody is recorded separately. Do not rewrite old hashes.
 
+## Proportionate commits and merges — user approved 2026-11-14
+
+This policy supersedes older blanket full-corpus commit checks and instructions
+requiring merge preparation/validation while holding integration admission.
+
+- Every change uses an owned task branch, focused tests appropriate to its risk,
+  exact source/change accounting and the normal staged hook. Ordinary prose does
+  not require engine execution. Record validation limits honestly.
+- Routine `--base` checks inspect actual Git/index bytes and affected claims.
+  The pinned `change_scope_index` is provenance metadata, never a cached pass.
+  Changed sources, shared evidence/scenarios and changed contracts expand scope.
+  New provenance entries are checked against original report bytes; historical
+  entries cannot be rewritten to hide dependencies. Source census and immutable
+  history checks still run. Unrelated historical evidence is not renewed.
+- Engine behavior and validation claims require relevant original mappings,
+  source/evidence links, appropriate comparisons and explicit remaining gaps.
+  Status promotions still require fresh scope-bound execution evidence. Use
+  `check-re-coverage.py --full` or the full audit for intentional corpus reviews.
+- Actual evidence deletion, relocation and storage retirement retain full
+  survivor/replacement verification, consumer checks and real restore proofs.
+  A source commit or checkpoint-only backup does not authorize removal.
+- Prepare and normally finish the exact combined candidate outside admission.
+  Retain essential review records and changed source/evidence in two stores;
+  keep the live review cache by default. Seal required acquisition inputs
+  explicitly before claiming durable engine validation; routine finish does not
+  retire queued execution workspaces. A routine finish does not reconstruct
+  that cache, scrub the whole archive or archive unrelated objects. Explicit
+  cache eviction still requires its complete checkpoint and real restore.
+- Acquire the master lease only to recheck the observed base, pinned candidate
+  commit/tree and clean checkouts, then promote. If master or the candidate
+  changed, preserve the candidate and redo affected checks outside admission.
+  Never develop, validate, back up or wait for a decision while holding the lease.
+
 ## Machine-specific instructions
 
 Before starting work, read `AGENTS.local.md` beside this file if it exists and
@@ -60,14 +93,13 @@ with these shared instructions.
   developing, testing or preparing evidence. Admit only ready tips. Batch already
   ready, compatible tips when useful; never hold admission waiting for another
   task to become ready. A blocked task must not hold up independent ready work.
-- Under admission, recheck the actual master tip and readiness, then perform only
-  the combined merge, required combined-tree review/checks/backups, normal staged
-  hook and checked promotion. Hold the lease throughout that attempt. If a
-  conflict, failed check, missing input or decision requires investigation or
-  repair, preserve the candidate and diagnostics and exit the admitted operation
-  promptly. Repair outside the slot, then reacquire and recheck actual master
-  before a new attempt. Do not sleep, wait for user input or run a debugging
-  session while holding admission. Release promptly after promotion or refusal.
+- Before admission, prepare the combined candidate against the observed master,
+  perform required combined-tree reviews/checks/backups and the normal staged
+  hook, and pin its exact commit/tree/base. A ready feature pass alone does not
+  validate a different combined tree. Resolve conflicts outside admission.
+- Under admission, recheck master, the pinned candidate and clean checkouts;
+  perform only checked promotion. A changed base or candidate refuses promotion
+  and preserves the work for review outside the slot. Release promptly.
 - Follow [the integration workflow](docs/integration-workflow.md). The lease
   enforces exclusive master updates, not semantic readiness; agents must enforce
   this checklist even when using a custom integration wrapper.
@@ -200,8 +232,9 @@ infer semantic mappings or update the register automatically.
   result under a new evidence ID; never refresh old hashes just to clear staleness.
   Source-only changes may leave evidence stale: report the affected limitation,
   and rerun the relevant comparison before claiming current-code validation.
-- Run `python3 tools/audit-re-coverage.py` after affected changes and inspect
-  warnings for the touched behavior/evidence IDs. Run checks appropriate to the
+- Run `python3 tools/check-re-coverage.py --base HEAD` after ordinary changes and
+  inspect affected behavior/evidence findings. Run `python3 tools/audit-re-coverage.py`
+  for an intentional full audit or a discovery change needing corpus accounting. Run checks appropriate to the
   change; use `--require-fresh` when requiring all registered evidence to match
   current source. Existing unrelated historical staleness is not a reason to
   rerun every subsystem or stop authorized work.
@@ -414,15 +447,14 @@ Preserve failed publication receipts and immutable assets. Publishing or omittin
 publication never changes engine validation claims.
 Apply the worktree ownership and readiness checklist above. Keep later concurrent
 edits out of that batch's source snapshot, evidence claims and commit.
-Only after the task is ready, and before preparing the authoritative local master
-merge, acquire admission through
-`tools/integrate-work.py` for ready tips, or wrap the whole custom operation in
-`tools/with-integration-lock.py --execute --expected-master <commit>` and hold it
-through promotion. Follow `docs/integration-workflow.md`. Install current shared
-hooks from a durable checkout; the master reference guard requires an inherited
-active lease. Propagate it to child Git calls instead of disabling hooks. Keep
-coding and focused tests outside the integration slot. Compatible ready tips may
-share one reviewed batch; semantic conflicts and failed checks still require
-review. Current/staged checks and master-tip verification remain required.
-The review workspace remains local and its exact text exports remain Git/CI
-authority; archive relocation does not assert engine validation.
+Only after the exact combined candidate has passed its required reviews, checks,
+normal staged hook and retained backups, acquire promotion admission through
+`tools/integrate-work.py`. It prepares and validates outside the lease, then
+rechecks the actual master base and exact clean candidate before promotion.
+Custom operators use `tools/with-integration-lock.py --execute --expected-master
+<base>` around promotion only. Follow `docs/integration-workflow.md`. Current
+hooks and the inherited active lease remain mandatory for master updates. Do not
+re-run validation, acquire evidence or investigate failures inside admission.
+Preserve refused candidates and repair outside the slot.
+The review workspace remains local and exact text exports remain Git/CI authority.
+Archive relocation does not assert engine validation.

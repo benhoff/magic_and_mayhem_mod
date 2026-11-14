@@ -172,6 +172,9 @@ def changes(before, after):
                           'role': (new or old)['role'],
                           'change': 'added' if old is None else 'removed' if new is None else
                                     'modified' if old['sha256'] != new['sha256'] else 'links_changed'})
+            if 'git_mode' in (old or {}) or 'git_mode' in (new or {}):
+                files[-1].update(before_mode=old.get('git_mode') if old else None,
+                                 after_mode=new.get('git_mode') if new else None)
     for bid in sorted(set(before['behaviors']) | set(after['behaviors'])):
         if before['behaviors'].get(bid) != after['behaviors'].get(bid):
             affected.add(bid)
@@ -277,7 +280,7 @@ def review_errors(review, delta, before, after, audit_report, historical=False):
     current_files = {f['path']: f for f in delta['files']}
     current_behaviors = {b['id']: b for b in delta['behaviors']}
     matched_files = [current_files[f['path']] for f in review.get('files', [])
-                     if f['path'] in current_files and all(f[k] == current_files[f['path']][k] for k in ('before_sha256', 'after_sha256'))]
+                     if f['path'] in current_files and all(f.get(k) == current_files[f['path']][k] for k in ('before_sha256', 'after_sha256','before_mode','after_mode') if k in current_files[f['path']])]
     matched_behaviors = [b['id'] for b in review.get('behaviors', [])
                          if b['id'] in current_behaviors and b == current_behaviors[b['id']]]
     # A recorded execution receipt is bound to its behavior contracts. When
@@ -300,7 +303,8 @@ def review_errors(review, delta, before, after, audit_report, historical=False):
         fresh = []
         for eid in ids:
             ev = after['evidence'].get(eid)
-            if not ev or ev['kind'] == 'static' or eid in stale:
+            if (not ev or ev['kind'] == 'static' or eid in stale
+                    or ('checked_evidence'in audit_report and eid not in audit_report['checked_evidence'])):
                 errors.append(f'{label}: validation evidence missing, static or stale: {eid}')
             else:
                 fresh.append(eid)
@@ -442,7 +446,7 @@ def check(before, after, reviews, audit_report, merge_history=None):
         artifact_paths = {after['evidence'][eid]['record'] for eid in review.get('validation', {}).get('evidence', [])
                           if eid in after['evidence'] and after['evidence'][eid]['kind'] != 'static'}
         matches = [current_files[f['path']] for f in review.get('files', []) if f['path'] in current_files
-                   and all(f[k] == current_files[f['path']][k] for k in ('before_sha256', 'after_sha256'))]
+                   and all(f.get(k) == current_files[f['path']][k] for k in ('before_sha256', 'after_sha256','before_mode','after_mode') if k in current_files[f['path']])]
         retired_artifacts = (review.get('validation', {}).get('status') == 'recorded'
                              and not review.get('behaviors') and bool(matches)
                              and all(f['role'] == 'research' and f['path'] in artifact_paths
@@ -501,6 +505,6 @@ def check(before, after, reviews, audit_report, merge_history=None):
 
 def draft(delta):
     return {'schema': SCHEMA, 'reviews': [{'id': 'change-' + digest(delta)[:16], 'reason': '',
-            'files': [{k: f[k] for k in ('path', 'before_sha256', 'after_sha256')} for f in delta['files']],
+            'files': [{k: f[k] for k in ('path', 'before_sha256', 'after_sha256','before_mode','after_mode')if k in f} for f in delta['files']],
             'behaviors': delta['behaviors'], 'pending_gaps': sorted(delta['new_gaps']),
             'validation': {'status': 'pending', 'reason': '', 'evidence': []}}]}

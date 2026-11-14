@@ -72,7 +72,7 @@ cleanup sweep.
 | --- | --- | --- |
 | Shared evidence across worktrees | `coverage_evidence`, `evidence_objects` | The same original-byte hash resolves through the configured shared primary; replica verification precedes publication of a new reference. |
 | Two durable copies total | `Pair`, explicit legacy handoff | Both independent stores verify every admitted object. Old source/container copies retire only after a source-specific preserved catalog and an actual restore. |
-| Incremental backups | `evidence_local.retained_backup` | Finish replicates missing immutable objects and checkpoints review schema/typed rows; unchanged records add no payload blocks. Whole database images remain an explicit interchange/private-backup option. |
+| Incremental backups | `evidence_local.retained_backup` | Routine finish checkpoints complete review schema/typed rows and retains only the changed staged source/report batch; unchanged records add no payload blocks. Full archive scrubs remain explicit. Whole database images remain an explicit interchange/private-backup option. |
 | Shared inputs and bounded execution | Existing two-slot `experiment_environment` pool, prefix borrowing, completed execution queue | A stopped prefix is exclusively leased, changes retained and state reset. Completed private game/capture trees share immutable file blocks after verified handoff. |
 | Disposable derived caches | `evidence_cache`, `finish-work.py` | All review rows, pending drafts and auxiliary schema are checkpointed and restored successfully before eviction. Lazy reopen restores them. The gate still checks the actual current/staged tree. |
 
@@ -110,10 +110,12 @@ consumers to resolve original report bytes. Historical source-specific auxiliary
 catalogs are restored explicitly, rather than falsely exposed as the shared
 store's auxiliary tables.
 
-`tools/finish-work.py` performs queued completed-workspace handoffs, exact review,
+`tools/finish-work.py` performs exact review,
 local evidence checks, incremental retained backups, staging and the normal
-commit hook. After successful finish it checkpoints and evicts the standard
-review cache; `--keep-review-cache` keeps it materialized. An explicitly selected
+commit hook. Routine finish keeps the standard
+review cache materialized and retains a complete checkpoint without a real
+reconstruction or retirement claim. `--evict-review-cache` explicitly requests
+the stronger checkpoint/restore/consumer workflow before removal. An explicitly selected
 alternate review DB is retained. No transfer, publication or engine rerun is
 attached to the hook. Publication and private SSH backup remain separate commands.
 
@@ -129,8 +131,11 @@ lifetime. Registry changes, failures and prefix identity are preserved by the
 existing pool. A stopped completed pilot queues its capture and private game
 paths together with the exact acquisition report and immutable source bytes.
 A held or failed prefix return stays in its execution tree for review.
-Launching never archives or deletes the execution tree. Batch finish processes
-only queues owned by that exact checkout.
+Launching never archives or deletes the execution tree. Routine finish leaves
+queued execution trees in place. Explicit `--handoff-completed-workspaces`
+processes only queues owned by that checkout; `evidence-workspace.py seal` handles
+a selected acquisition. Retain required raw inputs and tested executables before
+claiming durable engine validation. A pending queue is not a backup proof.
 
 An explicit handoff records **every** member, original `.retain` contents, file
 bytes, links, mode, owner/group, modification timestamp and xattrs. It refuses

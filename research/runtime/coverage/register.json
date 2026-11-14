@@ -183202,6 +183202,88 @@
         "Full SQLite closures remain two-copy; arbitrary pruning and physical-page-image retirement are outside this change. Historical source hashes and engine statuses are preserved.",
         "2026-11-13: The initial large INSERT..SELECT builder spilled BLOB results under /var/tmp and crossed the Cold reserve before being stopped. Full old mirrors and the completed primary scrub survived; failed logs and rolled-back prepared metadata are retained. The streamed revision has a measured temporary-allocation regression control. Its process-wide SQLite temporary-directory setting requires an isolated, single-threaded migration command. Retained-phase reuse preserves historical verification with explicit filesystem no-write/decoder applicability; it is not a fresh primary scrub or a cached gate pass."
       ]
+    },
+    {
+      "id": "TOOL.proportionate-merges",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Affected-claim commit checks and checked candidate promotion",
+      "scope": "Fresh actual Git/index source census, immutable history and affected evidence/scenario/dispatch closure; provenance-only dependency index cannot hide historical paths; changed-batch essential custody and complete checkpoint-only review retention; invocation-bound checked commit/tree/base with validation outside admission and guarded promotion. No source-only gate authorizes storage retirement or renews unrelated engine proof.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "AGENTS.md",
+        "docs/integration-workflow.md",
+        "docs/evidence-storage.md",
+        "research/runtime/coverage/README.md",
+        "research/runtime/proportionate-merges-20261114.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "tools/coverage_scoped.py",
+        "tools/index-coverage-evidence.py",
+        "tools/commit_retention.py",
+        "tools/check-re-coverage.py",
+        "tools/coverage_gate.py",
+        "tools/coverage_bookkeeping.py",
+        "tools/coverage_evidence.py",
+        "tools/evidence_objects.py",
+        "tools/evidence_local.py",
+        "tools/finish-work.py",
+        "tools/integration_batch.py",
+        ".githooks/pre-commit",
+        ".github/workflows/re-coverage.yml"
+      ],
+      "tests": [
+        "tests/test-candidate-promotion.py",
+        "tests/test-commit-retention.py",
+        "tests/test-coverage-bookkeeping.py",
+        "tests/test-coverage-evidence-imports.py",
+        "tests/test-coverage-gate.py",
+        "tests/test-coverage-merge-history.py",
+        "tests/test-coverage-review-shards.py",
+        "tests/test-evidence-blocks.py",
+        "tests/test-evidence-mirror-compaction.py",
+        "tests/test-evidence-objects.py",
+        "tests/test-evidence-retention.py",
+        "tests/test-evidence-store.py",
+        "tests/test-finish-performance.py",
+        "tests/test-integration-tools.py",
+        "tests/test-local-evidence-workflow.py",
+        "tests/test-parallel-agent-tools.py",
+        "tests/test-scoped-coverage.py"
+      ],
+      "validation_dependencies": [
+        "tools/integration_queue.py",
+        "tools/integration_review.py",
+        "tools/coverage_audit.py",
+        "tools/coverage_reviews.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_applicability.py",
+        "tools/coverage_merge_history.py",
+        "tools/verification_budget.py",
+        "tools/coverage_scratch.py",
+        "tools/index-coverage-sources.py",
+        "tools/evidence_retention.py",
+        "tools/evidence_blocks.py",
+        "tools/evidence_workspace.py",
+        "tools/evidence_cache.py"
+      ],
+      "evidence": [
+        "MERGE14.controls03"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Initial provenance metadata is generated from verified retained reports; a source-only clone still needs this compact unpublished SQLite input for scoped checks.",
+        "Finite synthetic host controls establish the named workflow boundaries; original-game behavior, live replacement, all possible repositories and all concurrent filesystem mutations remain outside this proof.",
+        "Actual storage retirement remains explicit and requires its original consumer, survivor and restore checks."
+      ]
     }
   ],
   "evidence": [
@@ -430696,6 +430778,29 @@
           "equals": 98
         }
       ]
+    },
+    {
+      "id": "MERGE14.controls03",
+      "kind": "native_integration",
+      "record": "research/runtime/proportionate-merges-results-20261114/controls03.json",
+      "sha256": "d9e4ea682a373757d4e37a8fb2b1eb99fa05e825d7c22b0e0cc93c2dc0ca324a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "332 source-stable synthetic host controls; no engine execution or renewal of historical evidence.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 332
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -466228,6 +466333,36 @@
         "STOR13.hybrid-controls03",
         "STOR13.hybrid-controls04"
       ]
+    },
+    {
+      "id": "tooling.proportionate-merges",
+      "scope": "Synthetic scoped gate and full-mode compatibility, exact candidate promotion refusals, changed-batch source retention, complete checkpoint-only custody, explicit real-restore storage paths and existing host workflow regressions. No engine execution.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.proportionate-merges"
+      ],
+      "tests": [
+        "tests/test-candidate-promotion.py",
+        "tests/test-commit-retention.py",
+        "tests/test-coverage-bookkeeping.py",
+        "tests/test-coverage-evidence-imports.py",
+        "tests/test-coverage-gate.py",
+        "tests/test-coverage-merge-history.py",
+        "tests/test-coverage-review-shards.py",
+        "tests/test-evidence-blocks.py",
+        "tests/test-evidence-mirror-compaction.py",
+        "tests/test-evidence-objects.py",
+        "tests/test-evidence-retention.py",
+        "tests/test-evidence-store.py",
+        "tests/test-finish-performance.py",
+        "tests/test-integration-tools.py",
+        "tests/test-local-evidence-workflow.py",
+        "tests/test-parallel-agent-tools.py",
+        "tests/test-scoped-coverage.py"
+      ],
+      "evidence": [
+        "MERGE14.controls03"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -468055,8 +468190,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-3e219e1b24193216ad5c5892b242b7a68a2eaa4bd7db221407cbbd7b70b2f456.json",
-    "sha256": "3e219e1b24193216ad5c5892b242b7a68a2eaa4bd7db221407cbbd7b70b2f456"
+    "path": "research/runtime/coverage/source-index-9bddb30b45fafbe12403e2824defd0a7f2f010e986f48802e339bc575040cb06.json",
+    "sha256": "9bddb30b45fafbe12403e2824defd0a7f2f010e986f48802e339bc575040cb06"
   },
   "evidence_applicability": [
     {
@@ -468099,5 +468234,9 @@
       "record": "research/runtime/coverage/applicability/ms06-lh05-01.json",
       "sha256": "78fda64372be601dc4f1bb4ae658db0a763d907fe71a150e9af27bff7643b7f8"
     }
-  ]
+  ],
+  "change_scope_index": {
+    "path": "research/runtime/coverage/evidence-dependencies-c330e21d65d0791327480055624e3ff6f53a17fb283a343e20ac2100076bfcc1.json",
+    "sha256": "c330e21d65d0791327480055624e3ff6f53a17fb283a343e20ac2100076bfcc1"
+  }
 }

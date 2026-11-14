@@ -11,6 +11,18 @@ verified-read reuse. Each working, Git-base and staged check still runs afresh.
 The [snapshot throughput review](../../../docs/snapshot-performance.md) records
 bounded parallel payload verification and exact full-corpus output equivalence.
 
+## Default affected-claim gate
+
+Normal `check-re-coverage.py --base <commit>` and the staged hook use fresh Git
+blobs, a pinned provenance-only `change_scope_index`, and an affected dependency
+closure. They check actual source census, immutable history and current affected
+claims without scanning unrelated report payloads or extracting a whole checkout.
+Refresh the map with `python3 tools/index-coverage-evidence.py` after adding evidence.
+Its old entries cannot be changed to hide dependencies, and it caches no pass.
+`--full` retains whole-corpus accounting; explicit baseline/bootstrap and full
+manual audits remain available. Historical evidence hashes and stage boundaries
+stay unchanged. See [integration policy](../../../docs/integration-workflow.md).
+
 ## Run the audit
 
 From the repository root:
@@ -42,7 +54,7 @@ For routine timing output, use stdout/stderr without creating a report file:
 python3 tools/check-re-coverage.py --base HEAD --timings
 ```
 
-The gate reuses file fingerprints and audited evidence provenance only within
+In full mode the gate reuses file fingerprints and audited evidence provenance only within
 one snapshot. A later call, staged tree or Git base is read independently. Source
 links are inverted once while retaining their original order and membership.
 Git exports stream through bounded buffers into the temporary tree; historical

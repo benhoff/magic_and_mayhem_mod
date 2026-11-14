@@ -274,7 +274,7 @@ def gate_cli():
 
 def capture(root, base):
     from evidence_local import local_evidence
-    with local_evidence(root):
+    with local_evidence(root,verify_archives='change_scope_index'not in json.loads((Path(root)/REGISTER).read_bytes())):
         return _capture(root, base)
 
 
@@ -282,9 +282,13 @@ def _capture(root, base):
     cli = gate_cli()
     # Resolve a moving branch name once. This is deliberately not a pass cache.
     head = cli.git(root, 'rev-parse', '--verify', 'HEAD^{commit}').decode().strip()
-    before, commit = cli.git_snapshot(root, base)
-    after, audit_report = snapshot(root)
-    journal = load_journal(root)[0]
+    if 'change_scope_index' in json.loads((Path(root)/REGISTER).read_bytes()):
+        from coverage_scoped import capture as scoped_capture
+        before,after,audit_report,journal,commit=scoped_capture(root,base)
+    else:
+        before, commit = cli.git_snapshot(root, base)
+        after, audit_report = snapshot(root)
+        journal = load_journal(root)[0]
     # The working-tree review also needs actual pending merge parents. This
     # recognizes inherited claims only; the combined source still faces the gate.
     history = inherited_history(root, commit, after, journal, staged=True)
@@ -430,7 +434,7 @@ def finish(workspace, base, reason, validation_reason, message, index_reason=Non
     from evidence_local import local_evidence
     durations = {} if timings else None
     started = time.perf_counter()
-    with local_evidence(workspace.root):
+    with local_evidence(workspace.root,verify_archives='change_scope_index'not in json.loads((workspace.root/REGISTER).read_bytes())):
         if durations is not None:
             durations['evidence_preflight'] = time.perf_counter() - started
             print(f'Finish timing: evidence_preflight: {durations["evidence_preflight"]:.3f}s',
@@ -503,22 +507,36 @@ def _finish(workspace, base, reason, validation_reason, message, index_reason=No
     directory = (workspace.path.parent/'backups').resolve()
     if not directory.is_relative_to(workspace.root/'working'):
         raise ValueError('SQLite backups must remain in this worktree working/ directory')
-    backups = [measure('review_backup', lambda: retained_backup(workspace.path, directory, workspace.root))]
-    from coverage_evidence import pending_path
-    for pending in dict.fromkeys((pending_path(workspace.root),
-                                  workspace.root/'working/coverage/evidence-pending.sqlite3')):
-        if pending.is_file():
-            backups.append(measure('evidence_backup', lambda: retained_backup(pending, directory, workspace.root)))
+    from evidence_objects import settings
+    shared = bool(settings(workspace.root))
+    backups = [measure('review_backup', lambda: retained_backup(workspace.path, directory, workspace.root,
+                                                               verify_restore=not shared))]
+    if not shared:
+        from coverage_evidence import pending_path
+        for pending in dict.fromkeys((pending_path(workspace.root),
+                                      workspace.root/'working/coverage/evidence-pending.sqlite3')):
+            if pending.is_file():
+                backups.append(measure('evidence_backup', lambda: retained_backup(pending, directory, workspace.root)))
     git = ['git', '-C', str(workspace.root)]
     if subprocess.check_output(git + ['rev-parse', 'HEAD'], text=True).strip() != head:
         raise ValueError('HEAD changed during completion; review the new base')
     measure('git_add', lambda: subprocess.run(git + ['add', '--all', '--', '.'], check=True))
+    if shared:
+        from commit_retention import retain_staged_batch
+        backups.append(measure('changed_batch_backup',lambda:retain_staged_batch(workspace.root,head)))
     # Hooks remain mandatory and execute against this worktree's staged tree.
     def commit_with_hook():
         from integration_queue import run_with_lease
-        with local_evidence(workspace.root):
+        with local_evidence(workspace.root,verify_archives='change_scope_index'not in json.loads((workspace.root/REGISTER).read_bytes())):
             run_with_lease(git + ['commit', '-m', message], check=True)
+    checked_tree = subprocess.check_output(git + ['write-tree'],text=True).strip()
+    if shared and backups[-1]['tree'] != checked_tree:
+        raise ValueError('Index changed after source retention; review the new candidate')
     measure('git_commit_with_hook', commit_with_hook)
     committed = subprocess.check_output(git + ['rev-parse', 'HEAD'], text=True).strip()
-    return {'commit': committed, 'receipts': exported, 'backups': backups,
+    if (subprocess.check_output(git+['rev-parse','HEAD^{tree}'],text=True).strip()!=checked_tree
+            or subprocess.check_output(git+['rev-parse','HEAD^1'],text=True).strip()!=head
+            or subprocess.check_output(git+['write-tree'],text=True).strip()!=checked_tree):
+        raise ValueError('Committed candidate differs from checked tree/base; preserve and review it')
+    return {'commit': committed, 'checked_tree': checked_tree, 'base': head, 'receipts': exported, 'backups': backups,
             'publication': 'local only; evidence publication is optional'}

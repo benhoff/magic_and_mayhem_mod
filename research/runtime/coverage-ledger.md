@@ -30170,3 +30170,18 @@ allows only explicitly reviewed unchanged primary-phase reuse. Fresh replacement
 verification and all current/staged gates remain mandatory. Five additional
 controls cover bounded temporary allocation and reuse/reserve refusals. This is
 host storage work; no game run, original hash refresh or engine-status promotion.
+
+
+### Proportionate merge accounting and short promotion — 2026-11-14
+
+The approved policy moves exact candidate preparation, scoped accounting,
+focused checks, backups and the normal staged hook outside master admission.
+Promotion alone rechecks the pinned checked commit/tree/base and clean checkouts.
+Routine checks use a verified provenance-only index and the affected dependency
+closure; full-corpus audits and actual storage retirement retain explicit paths.
+Ordinary finish keeps the cache/workspaces in place, checkpoints complete review
+records and retains changed staged source/cited payloads in two stores. No
+checkpoint-only receipt authorizes deletion. MERGE14.controls03 records 332
+passing source-stable host tests across 17 suites; no engine source, milestone
+or historical hash is renewed.
+See research/runtime/proportionate-merges-20261114.md.

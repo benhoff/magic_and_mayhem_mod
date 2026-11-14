@@ -287,13 +287,15 @@ class Batch(unittest.TestCase):
         self.assertEqual((self.root/'docs/held.md').read_text(), 'someone else owns this')
 
     def test_failed_finish_preserves_pending_merge_and_cannot_promote(self):
-        from integration_queue import Lease
-        original = Lease.run
-        def fail_finish(lease, command, **kwargs):
+        import integration_batch
+        from integration_queue import status
+        original = subprocess.run
+        def fail_finish(command, **kwargs):
             if any(str(part).endswith('/tools/finish-work.py') for part in command):
+                self.assertFalse(status(self.root)['busy'])
                 raise subprocess.CalledProcessError(1, command)
-            return original(lease, command, **kwargs)
-        with patch.object(Lease, 'run', fail_finish):
+            return original(command, **kwargs)
+        with patch.object(integration_batch.subprocess, 'run', fail_finish):
             with self.assertRaises(subprocess.CalledProcessError):
                 self.run_batch()
         self.assertEqual(self.git('rev-parse', 'master'), self.base)

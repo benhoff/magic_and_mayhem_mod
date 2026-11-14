@@ -86,18 +86,33 @@ class Compaction(unittest.TestCase):
         self.replica.with_name(self.replica.name+'.hybrid-prepared').rename(self.replica.with_name('failed-stage.sqlite3'))
         return plan
 
+    def decoder_fixture(self, changed=False):
+        target=self.root/'tools/coverage_evidence.py';target.parent.mkdir(exist_ok=True)
+        body=(ROOT/'tools/coverage_evidence.py').read_bytes()
+        target.write_bytes(body+(b'\n# different reviewed decoder bytes\n'if changed else b''))
+        subprocess.run(['git','-C',str(self.root),'add','tools/coverage_evidence.py'],check=True)
+        subprocess.run(['git','-C',str(self.root),'-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','-qm','Exact fixture decoder'],check=True)
+        return str(self.root/'tools/evidence_mirror_compaction.py')
+
     def test_completed_scrub_reuse_is_explicit_and_does_not_rehash_primary(self):
+        location=self.decoder_fixture()
         plan=self.failed_after_scrub();copied=[]
         from coverage_evidence import Store
         original=Store.copy
         def observe(store,*args,**kwargs):
             if store.path==self.primary:copied.append(args[0])
             return original(store,*args,**kwargs)
-        with patch.object(Store,'copy',observe):
+        with patch.object(Store,'copy',observe),patch.object(migration,'__file__',location):
             result=apply(self.plan,plan['plan_sha256'],minimum_free=(0,0),reuse_primary_verification=True,verified_source_commit='HEAD')
         self.assertFalse(result['primary_full_hash_executed']);self.assertEqual(copied,[])
         self.assertEqual(result['primary_verification']['mode'],'retained_full_scrub')
         self.assertTrue(result['replacement_verified'])
+
+    def test_real_decoder_revision_refuses_different_fixture_source(self):
+        location=self.decoder_fixture(changed=True)
+        with patch.object(migration,'__file__',location):
+            with self.assertRaisesRegex(ValueError,'decoder source changed'):
+                migration.decoder_revision('HEAD')
 
     def test_reuse_refuses_physical_touch_even_with_unchanged_catalog(self):
         plan=self.failed_after_scrub();os.utime(self.primary,None)

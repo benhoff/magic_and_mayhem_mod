@@ -166,7 +166,7 @@ def review_history(root, base, tips, *, record=False, reason='', database=None, 
             raise ValueError('Evidence pointer outside report storage policy')
         return cache[oid]
     try:
-        with local_evidence(root), Reader(root) as reader:
+        with local_evidence(root,verify_archives=False), Reader(root) as reader:
             for commit in commits:
                 parent = git(root, 'rev-parse', commit+'^1').decode().strip()
                 raw = git(root, 'diff-tree', '--no-commit-id', '--raw', '--no-abbrev', '--no-renames', '-r', '-z', parent, commit).split(b'\0')

@@ -52,6 +52,11 @@ def git_snapshot(root, revision):
                             with output.open('wb') as destination:
                                 # File members can also be large; bound the copy.
                                 shutil.copyfileobj(tree.extractfile(member), destination, 1024 * 1024)
+                # tarfile can stop at the end marker before Git finishes its
+                # trailing record padding. Drain before closing to avoid a
+                # spurious SIGPIPE on otherwise complete small archives.
+                for remainder in iter(lambda: export.stdout.read(1024*1024), b''):
+                    pass
                 export.stdout.close()
                 if export.wait():
                     errors.seek(0)
@@ -115,6 +120,7 @@ def main():
     source.add_argument('--baseline', type=Path, help='Reviewed local baseline (default: coverage/gate-baseline.json)')
     source.add_argument('--freeze-baseline', type=Path, help='Create a reviewed accounting snapshot; refuses overwrite')
     parser.add_argument('--bootstrap', action='store_true', help='Permit initial adoption when --base predates the baseline')
+    parser.add_argument('--full', action='store_true', help='Explicit whole-corpus audit and accounting instead of affected-claim checks')
     parser.add_argument('--staged', action='store_true', help='Check the Git index instead of working files (pre-commit)')
     parser.add_argument('--reviews', type=Path)
     parser.add_argument('--json', type=Path, help='Write a new full gate report')
@@ -122,11 +128,13 @@ def main():
     parser.add_argument('--timings', action='store_true', help='Print phase durations to stderr and include them in the JSON report')
     args = parser.parse_args()
     ROOT = args.root.resolve()
+    from coverage_scoped import enabled
+    args.scoped_enabled=enabled(ROOT,args.staged)
     prior = os.environ.get('MM_COVERAGE_TIMINGS')
     try:
         if args.timings:
             os.environ['MM_COVERAGE_TIMINGS'] = '1'
-        with local_evidence(ROOT), ExitStack() as stack:
+        with local_evidence(ROOT,verify_archives=args.full or args.freeze_baseline is not None or args.bootstrap or not args.scoped_enabled), ExitStack() as stack:
             return run(args, stack)
     finally:
         if prior is None:
@@ -155,6 +163,19 @@ def run(args, stack):
             raise ValueError('--bootstrap requires --base')
         if args.staged and (args.freeze_baseline or args.baseline or args.reviews):
             raise ValueError('--staged uses only staged baseline/reviews and cannot freeze a baseline')
+        if args.base and not args.bootstrap and not args.full and not args.freeze_baseline:
+            from coverage_scoped import capture
+            if args.scoped_enabled:
+                before,current,audit_report,reviews,base_label=measure('affected_snapshots',lambda:capture(ROOT,args.base,args.staged))
+                if args.reviews:reviews=read_journal(lambda name:args.reviews.read_bytes()if name==REVIEWS else (ROOT/name).read_bytes())[0]
+                history=measure('merge_history',lambda:inherited_history(ROOT,base_label,current,reviews,args.staged))
+                report=measure('review_check',lambda:check(before,current,reviews,audit_report,history))
+                report.update(base=base_label,checked_scope=audit_report['checked_scope'])
+                if args.timings:report['timings_seconds']=timings
+                if args.json:write_new(args.json,report)
+                if args.draft_review:write_new(args.draft_review,draft(changes(before,current)))
+                print(json.dumps({k:report[k]for k in ('errors','warnings','counts','base','checked_scope')},indent=2))
+                return 0 if args.draft_review else int(bool(report['errors']))
         current_root = measure('staged_tree', lambda: stack.enter_context(staged_tree(ROOT))) if args.staged else ROOT
         current, audit_report = measure('current_snapshot', lambda: snapshot(current_root))
         # Freeze all index-owned metadata before releasing its materialization.

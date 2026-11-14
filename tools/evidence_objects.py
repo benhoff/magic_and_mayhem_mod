@@ -403,7 +403,7 @@ def restore_logical(pair,manifest,target,replica=1):
     return target
 
 
-def logical_checkpoint(root, source):
+def logical_checkpoint(root, source, *, verify_restore=True):
     """Back up each schema/row/value object once, including committed WAL data."""
     source=Path(source).resolve()
     if any(p in source.parts for p in ('original','.git')):raise ValueError('Unsafe logical checkpoint')
@@ -420,6 +420,14 @@ def logical_checkpoint(root, source):
                 catalog=_sqlite_catalog(db,pair)
             value=dict(schema=1,kind='sqlite_logical_checkpoint',source=str(source),catalog=catalog)
             manifest=pair.root('sqlite_logical',source,value)
+        if not verify_restore:
+            # Append-only commit custody does not retire the live cache. All
+            # schema/rows/value objects were independently verified in both
+            # stores above. A later eviction still needs its own real restore.
+            return dict(success=True,source=str(source),manifest=manifest,
+                        logical_restore_verified=False,replicas_verified=2,
+                        byte_exact_container=False,checkpoint_reused=False,
+                        real_restore_performed=False,retirement_authorized=False)
         with tempfile.TemporaryDirectory(prefix='mm-logical-restore-') as tmp:
             restore_logical(pair,manifest,Path(tmp)/'restored.sqlite3')
         if sealed is not None and _sealed_identity(source) == sealed['identity']:
