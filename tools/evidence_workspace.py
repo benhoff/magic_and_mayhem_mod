@@ -51,7 +51,7 @@ def scan(path, pair=None):
         with prepare_small(pair.stores,[data for p,row,data in pending],pair.compression) as values:
             for (p,row,data),value in zip(pending,values):
                 stream=io.BytesIO(data);stream.name=str(p)
-                row['sha256']=pair.put(stream,row['size'],prepared=value)
+                row['sha256']=pair.put(stream,row['size'],prepared=value,copies=pair.file_copies(p,row['size']))
                 if stamp(p.lstat())!=identities[row['path']]:
                     raise ValueError('Workspace changed while reading: '+row['path'])
         pending.clear()
@@ -81,7 +81,7 @@ def scan(path, pair=None):
             else:
                 if pair:flush()
                 with p.open('rb') as f:
-                    row['sha256']=pair.put(f,s.st_size) if pair else hashlib.file_digest(f,'sha256').hexdigest()
+                    row['sha256']=pair.put(f,s.st_size,copies=pair.file_copies(p,s.st_size)) if pair else hashlib.file_digest(f,'sha256').hexdigest()
                     if stamp(os.fstat(f.fileno()))!=identities[rel]:
                         raise ValueError('Workspace changed while reading: '+rel)
         else:raise ValueError('Special workspace file requires separate preservation: '+rel)
@@ -128,7 +128,7 @@ def materialize(pair, manifest, output, replica=1):
             elif row['kind']=='symlink':p.symlink_to(row['target'])
             else:
                 with p.open('xb') as f:
-                    pair.stores[replica].copy(row['sha256'],row['size'],f)
+                    pair.copy_available(row['sha256'],row['size'],f,replica)
                     f.flush();os.fsync(f.fileno())
         for row in reversed(rows):
             p=output if row['path']=='.' else output/row['path']
@@ -156,8 +156,10 @@ def seal(root, path, pair, *, retire=False, restore_budget=16*1024**3):
     if need>restore_budget:raise ValueError('Real restore exceeds declared scratch budget; sealed source retained')
     with tempfile.TemporaryDirectory(prefix='mm-workspace-restore-') as tmp:
         materialize(pair,manifest,Path(tmp)/'restored')
+    payload_copies=min((pair.object_copies(r['sha256']) for r in rows if r['kind']=='file'),default=2)
     result=dict(success=True,source=str(path),manifest=manifest,files=sum(r['kind']=='file' for r in rows),
-                logical_bytes=need,allocated_bytes=allocated,real_restore_verified=True,replicas_verified=2,retired=False)
+                logical_bytes=need,allocated_bytes=allocated,real_restore_verified=True,replicas_verified=payload_copies,
+                metadata_replicas_verified=2,bulk_one_copy_files=sum(r['kind']=='file' and pair.object_copies(r['sha256'])==1 for r in rows),retired=False)
     pair.root('workspace_verified',path,result)
     if retire:
         idle(path)

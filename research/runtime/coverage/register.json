@@ -156186,7 +156186,7 @@
       "subsystem": "application_hosting",
       "kind": "native_policy",
       "title": "Verified storage consolidation and bounded review duplication",
-      "scope": "Host-only storage controls: exact dual chunked SQLite snapshots and cold restore, byte-preserved compressed catalog history, immutable SQLite append records, compact review history fingerprints with retained local receipts/drafts/extensions, configured shared evidence writers and read-only legacy fallbacks, logical evidence consolidation and exact retired-source restoration. Filesystem tests and local restore checks establish selected controls. Active/recent/pinned/modified/hardlinked inputs are held; older readers require current recovery tools. No original game behavior, engine equivalence, publication, complete worktree retirement or all-producer lifecycle claim.",
+      "scope": "Host-only storage controls: exact dual chunked SQLite snapshots and cold restore, byte-preserved compressed catalog history, immutable SQLite append records, compact review history fingerprints with retained local receipts/drafts/extensions, configured shared evidence writers and read-only legacy fallbacks, logical evidence consolidation and exact retired-source restoration. Filesystem tests and local restore checks establish selected controls. Active/recent/pinned/modified/hardlinked inputs are held; older readers require current recovery tools. No original game behavior, engine equivalence, publication, complete worktree retirement or all-producer lifecycle claim. User-approved schema-2 hybrid custody supersedes universal two-copy wording for explicitly classified historical bulk: essential objects and complete SQLite checkpoint closures retain two verified copies; reviewed bulk retains one verified primary. See TOOL.hybrid-evidence-retention for current controls.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -156218,7 +156218,10 @@
         "tools/snapshot_consolidation.py",
         "tools/compact-evidence-storage.py",
         "tools/storage_cleanup.py",
-        "tools/cleanup-working.py"
+        "tools/cleanup-working.py",
+        "tools/evidence_retention.py",
+        "tools/evidence_mirror_compaction.py",
+        "tools/compact-evidence-mirror.py"
       ],
       "tests": [
         "tests/test-working-archive.py",
@@ -156231,7 +156234,9 @@
         "tests/test-private-evidence-backup.py",
         "tests/test-coverage-evidence-imports.py",
         "tests/test-storage-compaction.py",
-        "tests/test-storage-cleanup.py"
+        "tests/test-storage-cleanup.py",
+        "tests/test-evidence-retention.py",
+        "tests/test-evidence-mirror-compaction.py"
       ],
       "validation_dependencies": [
         "tools/working-retention.py",
@@ -156267,7 +156272,8 @@
         "2026-11-01: Shared immutable execution manifests add explicit stopped source-specific handoff and historical-path restoration. Historical generic retention/archive evidence is retained and not renewed by the new storage controls.",
         "2026-11-01: Shared encoding and queue throughput changes are reviewed under TOOL.shared-evidence-lifecycle. Historical source/evidence hashes stay unchanged; these storage controls do not renew unrelated engine or prior workflow validation.",
         "2026-11-07: Explicit research/tests worktree compaction and source-specific legacy snapshot union have separate controls and operational custody. Unknown, active, recent, modified or pinned data remains held; prospective temporary-output policy does not expire historical evidence or renew engine validation.",
-        "2026-11-08: Dry-first cleanup coordinator adds explicit completed-directory review, immutable SQLite plans and guarded paired workspace handoff. Synthetic controls cover archive/restore and refusals; comprehensive host inventory is diagnostic only. No real project payload retirement, exhaustive historical/dynamic consumer discovery, generic pin transfer, database pruning or original/engine validation is claimed."
+        "2026-11-08: Dry-first cleanup coordinator adds explicit completed-directory review, immutable SQLite plans and guarded paired workspace handoff. Synthetic controls cover archive/restore and refusals; comprehensive host inventory is diagnostic only. No real project payload retirement, exhaustive historical/dynamic consumer discovery, generic pin transfer, database pruning or original/engine validation is claimed.",
+        "2026-11-13: Hybrid retention controls and source-specific mirror migration are separate from prior engine evidence. Historical bulk has single-drive loss exposure; anonymous/unknown objects remain two-copy. Frozen old writers refuse tiered stores. No automatic expiry, generic database pruning, active/source removal or renewal of historical validation."
       ]
     },
     {
@@ -158887,7 +158893,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Shared immutable evidence and bounded execution lifecycle",
-      "scope": "Opt-in two-filesystem shared immutable original-byte objects and cross-object compressed blocks; verified grouped publication with concurrent WAL readers and checkpoint headroom, incremental object/root/Git-binding mirror completion, typed SQLite WAL/schema/rowid/BLOB/NUL/float checkpoints with real logical restore, recognized legacy evidence catalog and schema handoff, explicit reviewed two-image snapshot retirement without byte-exact page-image claims, stopped exact execution-file/pin handoff and historical-path restoration through prior per-file archives, explicit historical checkout roots and refusal of unsafe paths before expansion, pending-draft review cache eviction/lazy restore, and exclusive existing two-slot admitted-prefix reuse through child lifetime. Synthetic Git/SQLite/filesystem/lease controls and a completed rendering-watchdog batch storage migration only. Source checkouts and unique fixture inputs retained. Unknown tables/schema, active/mutating/special/multiply-linked workspace members held prefix-return failures, and missing/corrupt replicas refuse retirement. No renderer behavior, original comparison, physical-driver validation, off-host durability or historical engine status renewal. Shared-v1 writes check raw block identities before compression, encode each missing block once for both destinations, reuse verified existing encodings for replica repair and bound level-six compression across both blocks and small files to four workers/eight queued chunks by default. Caller-thread SQLite writes, WAL reserves and full two-copy decode/hash verification remain required. Run ordering prefers larger eligible allocations on the main device; ordering grants no eligibility or pin exception.",
+      "scope": "Opt-in two-filesystem shared immutable original-byte objects and cross-object compressed blocks; verified grouped publication with concurrent WAL readers and checkpoint headroom, incremental object/root/Git-binding mirror completion, typed SQLite WAL/schema/rowid/BLOB/NUL/float checkpoints with real logical restore, recognized legacy evidence catalog and schema handoff, explicit reviewed two-image snapshot retirement without byte-exact page-image claims, stopped exact execution-file/pin handoff and historical-path restoration through prior per-file archives, explicit historical checkout roots and refusal of unsafe paths before expansion, pending-draft review cache eviction/lazy restore, and exclusive existing two-slot admitted-prefix reuse through child lifetime. Synthetic Git/SQLite/filesystem/lease controls and a completed rendering-watchdog batch storage migration only. Source checkouts and unique fixture inputs retained. Unknown tables/schema, active/mutating/special/multiply-linked workspace members held prefix-return failures, and missing/corrupt replicas refuse retirement. No renderer behavior, original comparison, physical-driver validation, off-host durability or historical engine status renewal. Shared-v1 writes check raw block identities before compression, encode each missing block once for both destinations, reuse verified existing encodings for replica repair and bound level-six compression across both blocks and small files to four workers/eight queued chunks by default. Caller-thread SQLite writes, WAL reserves and full two-copy decode/hash verification remain required. Run ordering prefers larger eligible allocations on the main device; ordering grants no eligibility or pin exception. User-approved schema-2 hybrid custody supersedes universal two-copy wording for explicitly classified historical bulk: essential objects and complete SQLite checkpoint closures retain two verified copies; reviewed bulk retains one verified primary. See TOOL.hybrid-evidence-retention for current controls.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -158913,7 +158919,10 @@
         "tools/sqlite_snapshot_store.py",
         "tools/run-rendering-acceptance-pilot.py",
         "tools/evidence_blocks.py",
-        "tools/evidence_sweep_schedule.py"
+        "tools/evidence_sweep_schedule.py",
+        "tools/evidence_retention.py",
+        "tools/evidence_mirror_compaction.py",
+        "tools/compact-evidence-mirror.py"
       ],
       "tests": [
         "tests/test-evidence-objects.py",
@@ -158930,7 +158939,9 @@
         "tests/test-rendering-pilot.py",
         "tests/test-private-evidence-backup.py",
         "tests/test-working-archive.py",
-        "tests/test-evidence-blocks.py"
+        "tests/test-evidence-blocks.py",
+        "tests/test-evidence-retention.py",
+        "tests/test-evidence-mirror-compaction.py"
       ],
       "validation_dependencies": [
         "tools/experiment_environment.py",
@@ -158966,7 +158977,8 @@
         "2026-11-01: Bounded compression/queue controls and a fresh-store benchmark are being recorded separately. Any workload speedup is scoped to the measured inputs; no whole-sweep rate or engine milestone is inferred.",
         "2026-11-01: 235 cases pass in 15 source-stable suites for the bounded block/file pipeline. The retained benchmark measures about 2.7x on one fresh-store roughly 500 MiB workload, not a whole-sweep rate. Earlier source-drift control output remains negative historical evidence. Engine statuses and original evidence hashes are unchanged.",
         "2026-11-03 storage batch: default diagnostics/full evidence, shared catalog inputs, safe private runtime copying and comparison custody are independently scoped under TOOL.check-storage-budget. Historical engine evidence hashes/statuses are retained; edited source paths may leave their older execution evidence stale. Only the recorded short checkpoint scope and storage controls are newly exercised.",
-        "SF08.G.source-applicability: Shared artifact loading/session scoping or synthetic fixture construction was extracted on 2026-11-08. Historical source hashes and accepted milestones stay unchanged. The 275 focused controls validate this support refactor only; current equivalence of historical engine/analyzer proofs remains pending targeted applicability review or retained-data reanalysis. No original-game execution or acceptance promotion."
+        "SF08.G.source-applicability: Shared artifact loading/session scoping or synthetic fixture construction was extracted on 2026-11-08. Historical source hashes and accepted milestones stay unchanged. The 275 focused controls validate this support refactor only; current equivalence of historical engine/analyzer proofs remains pending targeted applicability review or retained-data reanalysis. No original-game execution or acceptance promotion.",
+        "2026-11-13: Hybrid retention controls and source-specific mirror migration are separate from prior engine evidence. Historical bulk has single-drive loss exposure; anonymous/unknown objects remain two-copy. Frozen old writers refuse tiered stores. No automatic expiry, generic database pruning, active/source removal or renewal of historical validation."
       ]
     },
     {
@@ -183129,6 +183141,62 @@
         "Only46of90 declared contexts qualify. The remaining44 starts and full201row250charge conjunction, independent verdicts, UI checks, normal finish and local master integration remain pending.",
         "No optional Space API journal exists in this retained execution. Actual pause-byte/counter effects do not recover the polling API or message handler.",
         "Known Quick Spectate/GameOver and randomized fading54a563 boundaries remain unresolved; no required row is excluded or historical failure retired."
+      ]
+    },
+    {
+      "id": "TOOL.hybrid-evidence-retention",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Essential two-copy and reviewed single-copy historical bulk custody",
+      "scope": "Host-only hybrid immutable evidence custody: schema-1 strict pairs remain supported; schema-2 workspace filenames, size and executable magic classify new admitted payloads, with anonymous reports/checkpoints defaulting to two copies. Explicit reviewed full-mirror plans protect Git-bound reports, roots, unique source, saves, configuration, tested executables and complete typed-SQLite closures. A full surviving-primary object hash scrub and verified essential replacement precede atomic mirror replacement. Sparse-aware incremental completion, explicit replica refusal, promotion, real workspace restoration and frozen-writer refusal are controlled. Six migration and ten hybrid synthetic controls plus existing object/block/storage/local-workflow suites establish these bounded host controls. No original game behavior, automatic historical expiry, all-producer adoption, off-host durability or historical engine-validation renewal.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/evidence-storage.md",
+        "docs/storage-consolidation.md",
+        "research/runtime/hybrid-retention-20261113.md",
+        "research/runtime/coverage-ledger.md",
+        "AGENTS.md"
+      ],
+      "implementation": [
+        "tools/evidence_retention.py",
+        "tools/evidence_mirror_compaction.py",
+        "tools/compact-evidence-mirror.py",
+        "tools/evidence_objects.py",
+        "tools/evidence-objects.py",
+        "tools/evidence_workspace.py",
+        "tools/coverage_evidence.py",
+        "tools/evidence-storage.json"
+      ],
+      "tests": [
+        "tests/test-evidence-retention.py",
+        "tests/test-evidence-mirror-compaction.py",
+        "tests/test-evidence-objects.py",
+        "tests/test-evidence-blocks.py",
+        "tests/test-storage-compaction.py",
+        "tests/test-storage-cleanup.py",
+        "tests/test-local-evidence-workflow.py"
+      ],
+      "validation_dependencies": [
+        "tools/compact_snapshot_activity.py",
+        "tools/evidence_blocks.py",
+        "tests/fixture_support.py"
+      ],
+      "evidence": [
+        "STOR13.hybrid-controls01",
+        "STOR13.hybrid-controls02"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Single-copy historical bulk can be lost with its remaining primary filesystem; metadata is not a substitute for payloads.",
+        "Existing unclassified archives remain strict until a source-specific reviewed migration; no blanket deletion of old failures, pins, active consumers or source checkouts.",
+        "Full SQLite closures remain two-copy; arbitrary pruning and physical-page-image retirement are outside this change. Historical source hashes and engine statuses are preserved."
       ]
     }
   ],
@@ -430532,6 +430600,52 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "STOR13.hybrid-controls01",
+      "kind": "native_integration",
+      "record": "research/runtime/hybrid-retention-results-20261113/controls-01.json",
+      "sha256": "0410ebef712925646eddcd0000975c615aa2eb8cae710ac44a4ba663e6a74b98",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Focused host retention controls only; no original-game execution or historical engine claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 93
+        }
+      ]
+    },
+    {
+      "id": "STOR13.hybrid-controls02",
+      "kind": "native_integration",
+      "record": "research/runtime/hybrid-retention-results-20261113/controls-02.json",
+      "sha256": "5b09508b53cadb3b2887376f9d2b3ba113ceb4ccae01bc949ee80706f6526d85",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Focused host retention controls only; no original-game execution or historical engine claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 93
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -466046,6 +466160,22 @@
       "evidence": [
         "BP29.fading-primary01"
       ]
+    },
+    {
+      "id": "tooling.hybrid-evidence-retention",
+      "scope": "Synthetic independent-filesystem pair classification, promotion, sparse completion and restore; source-bound mirror planning, full-primary verification, essential replacement, refusal on mutation/corruption/capacity and preserved old mirror on swap failure.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.hybrid-evidence-retention"
+      ],
+      "tests": [
+        "tests/test-evidence-retention.py",
+        "tests/test-evidence-mirror-compaction.py"
+      ],
+      "evidence": [
+        "STOR13.hybrid-controls01",
+        "STOR13.hybrid-controls02"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -467873,8 +468003,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-b7ec927d349627be4ce0a65eb0f8755a8e82d0dbdccf1ff9acd2b5c8fc0d07c8.json",
-    "sha256": "b7ec927d349627be4ce0a65eb0f8755a8e82d0dbdccf1ff9acd2b5c8fc0d07c8"
+    "path": "research/runtime/coverage/source-index-d9268d346975ee8ad482b5618dac91fb7546db3c0057487e56d6d1f21a707069.json",
+    "sha256": "d9268d346975ee8ad482b5618dac91fb7546db3c0057487e56d6d1f21a707069"
   },
   "evidence_applicability": [
     {

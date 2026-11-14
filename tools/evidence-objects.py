@@ -20,6 +20,7 @@ def main():
     imp=sub.add_parser('import');imp.add_argument('--source',type=Path,required=True);imp.add_argument('--retire',action='store_true')
     restore=sub.add_parser('restore-source');restore.add_argument('--manifest',required=True);restore.add_argument('--size',type=int,required=True);restore.add_argument('--output',type=Path,required=True)
     checkpoint=sub.add_parser('checkpoint');checkpoint.add_argument('--source',type=Path,required=True)
+    promote=sub.add_parser('promote');promote.add_argument('--sha256',required=True);promote.add_argument('--size',type=int,required=True)
     cache=sub.add_parser('cache-evict');cache.add_argument('--source',type=Path,required=True)
     retired=sub.add_parser('retire-snapshots');retired.add_argument('--catalog',type=Path,action='append',required=True);retired.add_argument('--evidence-manifest',required=True);retired.add_argument('--evidence-size',type=int,required=True);retired.add_argument('--cache-manifest',required=True);retired.add_argument('--cache-size',type=int,required=True)
     retired_restore=sub.add_parser('restore-retired');retired_restore.add_argument('--catalog',type=Path,required=True);retired_restore.add_argument('--snapshot',required=True);retired_restore.add_argument('--output',type=Path,required=True)
@@ -46,7 +47,13 @@ def main():
         result=evict(root,a.source)
     else:
         with configured(root) as pair:
-            if a.command=='restore-source':
+            if a.command=='promote':
+                with tempfile.TemporaryFile()as stream:
+                    pair.stores[0].copy(a.sha256,a.size,stream);stream.seek(0)
+                    if pair.put(stream,a.size,copies=2)!=a.sha256:raise ValueError('Promotion changed object identity')
+                result=dict(success=True,sha256=a.sha256,size=a.size,replicas_verified=2)
+                pair.root('custody_promoted',a.sha256,result)
+            elif a.command=='restore-source':
                 result=dict(success=True,path=str(restore_legacy(pair,dict(sha256=a.manifest,size=a.size),a.output)))
             elif a.command=='import':
                 from compact_snapshot_activity import busy
@@ -78,7 +85,9 @@ def main():
             else:
                 if a.command=='verify':
                     verify_pair(pair)
-                result=dict(success=True,replicas=[dict(path=str(s.path),allocated=s.path.stat().st_blocks*512,objects=s.db.execute('SELECT count(*) FROM objects').fetchone()[0],blocks=s.db.execute('SELECT count(*) FROM blocks').fetchone()[0]) for s in pair.stores])
+                result=dict(success=True,retention_policy='hybrid-v1'if pair.hybrid else'dual-v1',
+                    bulk_one_copy_objects=sum(n==1 for n in pair.retention_classes.values()),
+                    replicas=[dict(path=str(s.path),allocated=s.path.stat().st_blocks*512,objects=s.db.execute('SELECT count(*) FROM objects').fetchone()[0],blocks=s.db.execute('SELECT count(*) FROM blocks').fetchone()[0]) for s in pair.stores])
     print(json.dumps(result,indent=2))
 
 

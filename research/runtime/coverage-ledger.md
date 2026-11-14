@@ -30134,3 +30134,17 @@ charges and all evidence/source hashes remain. See
 `broader-player-checkpoint-results-20261113/`. Later acquisitions remain outside
 this batch. Normal current/staged checks, paired backups and protected promotion
 are required separately; this entry makes no remote-push or acceptance claim.
+
+
+### User-approved hybrid disk retention — 2026-11-13
+
+Essential source, saves/configuration, tested executables, compact evidence and
+complete SQLite review/checkpoint closures retain two verified copies. Reviewed
+historical bulk may retain one hash-verified primary under an exact custody plan.
+Schema-2 writers, sparse verification/replication, promotion and restore have
+separate host controls under TOOL.hybrid-evidence-retention. The first Cold-main
+pilot verified all 59,373 surviving objects and its replacement mirror before
+reclaiming 22,900,469,760 allocated bytes. Single-drive loss exposure for that bulk
+is explicit. Earlier custody reports remain historical facts; no engine evidence
+hash, game acceptance status or original-media byte changes. See
+research/runtime/hybrid-retention-20261113.md and the SQLite-backed controls.

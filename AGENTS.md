@@ -1,5 +1,34 @@
 # Magic & Mayhem Reverse Engineering
 
+## Hybrid retention policy — user approved 2026-11-13
+
+The user explicitly authorized aggressive disk reduction. This section supersedes
+older blanket two-copy, perpetual-pin and full-tree preservation requirements in
+this file and machine-local notes where they conflict:
+
+- Keep two independent verified copies of essential records: source/unique
+  changes, saves/configuration, tested executables, compact reports/manifests,
+  current review state and its complete logical checkpoint closure.
+- Keep one verified copy of bulky historical capture/workspace payloads.
+  Classify through the schema-2 hybrid policy; never fake a second copy or
+  silently fall back when a caller explicitly asks to verify two copies.
+- Discard reviewed reproducible compiler caches, disposable installations and
+  completed source copies after retaining their reconstruction inputs and unique
+  changes. Do not permanently archive every rebuildable byte first.
+- Keep full raw failure data only for unresolved failures, named comparisons or
+  selected regression witnesses. Retire obsolete raw evidence explicitly; keep
+  its identity, result and retirement reason, and disclose lost replay capability.
+- Pins require a dependency/ownership review; they are not automatic permanent
+  exemptions. Preserve the pin's meaning and record any approved reclassification.
+- Keep original/ immutable and protect active/recent work, saves, current inputs
+  and irreplaceable source changes. Source commits, normal hooks, coverage
+  accounting and independent engine-validation statuses remain required.
+
+Use `tools/compact-evidence-mirror.py` for a hash-bound sparse-mirror plan. Verify
+the complete surviving primary and replacement essential mirror before retiring
+duplicate bulk. Historical two-copy receipts remain true statements about their
+original phase; current custody is recorded separately. Do not rewrite old hashes.
+
 ## Machine-specific instructions
 
 Before starting work, read `AGENTS.local.md` beside this file if it exists and
