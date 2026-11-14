@@ -1,0 +1,32 @@
+"""Retain fourteen current contexts and bind seventy-six finite continuation cases."""
+import sqlite3
+from pathlib import Path
+from broader_font_retained_matrix import P,BINARY,current,replacements,replacement
+from broader_player_acceptance import checked
+from broader_font_reference_budget import bound,predecessors
+from rendering_pilot import require
+
+def specs(reader):
+    catalog=checked(reader,dict(record=P+'font-reference-source-catalog-01.json',sha256=reader.digest(P+'font-reference-source-catalog-01.json')))
+    require(catalog['kind']=='broader_font_pilot_reference_continuation_catalog'
+            and catalog['total_positive_cases']==90 and catalog['total_positive_original_starts']==98
+            and catalog['retained_current_cases']==14 and catalog['remaining_positive_cases']==76,
+            'Changed90/98positive capacity-continuation domain')
+    out=[]
+    for b in catalog['case_bindings']:
+        phase=checked(reader,b['plan']);case=next(c for c in phase['broader_cases']if c['id']==b['case_id'])
+        if b['role']=='strict':
+            analysis=checked(reader,dict(record=phase['actual_context_analysis_plan'],sha256=reader.digest(phase['actual_context_analysis_plan'])))
+            require(analysis['strict_phase']==b['plan'],'Strict actual-context analysis belongs to another phase')
+        out.append(dict(plan=b['plan']['record'],case=case,role=b['role'],family=b['family']))
+    require(len(out)==90 and len({s['case']['id']for s in out})==90
+            and sum(s['case']['reserved_original_games']for s in out)==98,'Changed positive context/start denominator')
+    return out
+
+def requests(root,reader):
+    with sqlite3.connect('file:'+str(Path(root)/'working/broader-player/requests.sqlite3')+'?mode=ro',uri=True)as db:
+        db.row_factory=sqlite3.Row;rows=[dict(v)for v in db.execute('select *from requests order by started_ns')]
+    plan=reader.json(P+'plan-33.json');limit=bound(reader,plan);charge=predecessors(reader,rows,plan)
+    return {v['case_id']:v for v in rows},dict(reserved_additional_original_starts=charge,
+        maximum_additional_original_starts=limit,maximum_combined_original_starts=243,
+        prior_WP10_original_starts=8,all_reservations_retained=True,rows=rows)

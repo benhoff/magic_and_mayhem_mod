@@ -9,8 +9,8 @@ uses JSON; bodies retain the qCompress length-prefixed zlib encoding.
 The open record has version 2, role `viewport`, policy
 `campaign-lossless-viewport-v1`, stored limit 1 GiB, decoded limit 64 GiB, row
 limit 131,072 (including open/close), and full-keyframe interval 128 nonempty
-paints. The pending worker queue remains 256 MiB/256 jobs, including its current
-job. A body still has a 32 MiB bound. These are capture-resource policies;
+paints. The logical pending queue is 256 MiB/4,096 jobs, including in-flight
+work until each ordered write. A body still has a 32 MiB bound. These are capture-resource policies;
 original simulation pacing, input, rendering and producer deadlines are unchanged.
 
 Every nonempty paint body describes the complete native RGBA viewport and carries:
@@ -27,9 +27,21 @@ keys; a dimension/length change also requires a full plane. Empty paints/swaps
 do not become bases. Every paint and swap remains in FIFO order with its original
 capture timestamp and identity. No original/reference pixels enter this encoding.
 
-The worker computes encoding/hashes after the caller has frozen a deep copy.
-Queue, raw, row, compression or stored overflow retains an explicitly incomplete
-terminal record; it never silently samples frames or marks truncated proof complete.
+After the caller freezes a deep copy, the writer prepares deltas and hashes in
+FIFO order outside the producer queue mutex. Eight bounded workers compress the
+prepared bodies at the unchanged level 3; writes remain FIFO. A completed result
+waiting behind an earlier job retains its logical input charge. The previous raw
+plane and bounded encoded/compression scratch are additional memory; the queue
+limit is not a total process memory limit. Movie viewport version 3 uses this same
+pipeline; ordinary version 1 remains sequential.
+
+The optional open field `compression_workers` records the selected pool size.
+Queue, raw, row, compression or stored overflow preserves the first refusal and
+retains an explicitly incomplete terminal record. The worker emits the bounded
+`NATIVE_CAPTURE_REFUSAL` diagnostic and drains the accepted prefix without
+requiring a later `finish()` call. This closes the diagnostic capture; it does not
+synthesize a game END. The recorder never silently samples frames or marks
+truncated proof complete.
 Terminal byte counts describe complete reconstructed payload extents.
 
 The reader verifies every reconstructed paint before admitting a closed stream.

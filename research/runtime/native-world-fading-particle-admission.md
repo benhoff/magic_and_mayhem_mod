@@ -1,0 +1,27 @@
+# Primary fading-particle caller admission
+
+Confirmed for No-CD SHA-256 40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168, with high confidence within the isolated scope below.
+
+The software640 attachment acquisition bp28-world-attachment-software640-01 stopped at World205, record611: producer failure43, tag14, caller0x54a563 and process exit95. The retained partial source strictly decodes611records/735508bytes. Its World was never submitted or normally retired. The later attachment-observation and menu deadlines follow the process exit; increasing either deadline does not repair admission. The actual resident renderer was llvmpipe. See B06-software-attachment-refusal-diagnosis-01.json in broader-player-acceptance-results-20261110. No exact operands or saved stack were captured for this refused call.
+
+Static recovery identifies class5c752c, slot+12 method54a4a0. The unchanged334byte body ends at54a5ee and hashes to40698894cafdcf7f9ec807bb4a7f83840edfd3ebd67fed1f98d0b1058c1bdb07. It reads category+0x76, remaining+0x56, source+0x5a, shade+0x46 and palette+0x72. Its8return sites/10tag pairs are54a509(word22/36),54a52b(black12),54a543/54a57a(clipped17),54a563(indexed13/14),54a5a1(75percent19),54a5c5(50percent18),54a5e4(25percent20). Indexed and black lowAX==1 select the existing clipped fallback; every branch ultimately clearsAX and returns8bytes.
+
+Protected batch admission requires the original owner thread, exact full method fingerprint, original primary call/continuation signatures, return5006b2, nonzero first-table mode, format0, kind8 and auxiliary marker, exact table/method, readable122byte root and source header, and raw/indexed selector. Four saved registers place the primary queue row at parent_word-3: return word8 for three-argument/fastcall blend leaves and word10 for five-argument leaves. The two existing random sprite methods have a different saved-register layout. Original globals remain guest pointers; independent CPS acquisition supplies owned bytes. Ordinary per-draw admission remains unchanged.
+
+The production predicate and observer execute in the isolated 32bit fixture. Every full method byte mutation, shorter method/table/root/row/source/stack span, inaccessible-page stack/root ending, wrong class/parent/thread/mode/format and source selector refuses.240unchanged original primary/method calls produce264actual guarded raster callbacks and match the recovered native model across fade thresholds, shades, word/indexed selectors, CPU variants and lowAX fallback returns.14484guard controls pass; the existing six-site sprite guard regression also passes. Pixel tails in this primary fixture are synthetic; it is not a replay of World205 operands or a complete game run. The separate current particle model comparison passes77760trace cases and77760pixel cases. Preserve its source-specific scope and original-manifest bookends.
+
+The new runtime build07 retains1055full-hash runtime inputs and the unchanged B06Native ELF. All20previously completed B06contexts remain historical; none is silently given current-runtime credit. The bounded software attachment pilot has passed; the complete current conjunction remains required. Neither global Native acceptance nor Original recovery is granted by these controls.
+
+All four current attachment cases now pass at 640×480 and 800×600 on NVIDIA and software. Their independent comparisons cover 2,051 source Worlds and 7,177,175,820 viewport pixels with zero mismatches, normal retirement and verified paired real restores. The retained-data caller scan covers 8,953,473 source records and finds none of the eight new fading callers. This leaves natural live fading admission unproved; the behavior remains headless. See `runtime29-current-attachment-conjunction-01.json` and `runtime29-attachment-caller-conjunction-02.json` under `broader-player-acceptance-results-20261110/`. The earlier software pilot and its zero-caller review remain retained. The first four-case scanner stopped before decoding because it requested whole-ledger readiness during an active combat case; its operator and log are preserved in the corrected report, which checks only the four admitted attachment rows.
+
+The four later combat captures add 7,713,323 retained source records without any of the eight fading callers (`runtime29-combat-caller-review-01.json`). Across attachment and combat, 16,666,796 scanned records still leave natural live admission unproved. These retained-data reviews add no game or Native execution and do not promote the headless behavior.
+
+Reproduce the isolated admission checks under the machine storage guards with fresh output and report paths:
+
+```bash
+python3 tools/test-fading-particle-admission.py \
+  --output working/tests/fading-particle-admission-new \
+  --report research/runtime/broader-player-acceptance-results-20261110/fading-particle-admission-new.json
+```
+
+The driver requires the pinned Original PE and a32bit C++toolchain,executes the checked primary/method fragments with synthetic raster tails,retains tested binaries/logs and writes the durable result through the SQLite report writer. Its temporary decoder/build inputs use RAM. The separate recovered model comparison is reproducible with `python3 tools/test-original-particle-sprites.py --output working/tests/fading-particle-model-new`; import its bounded working report and outputs through the evidence writer before closeout. Neither command launches a complete game.

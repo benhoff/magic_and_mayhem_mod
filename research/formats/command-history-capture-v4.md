@@ -46,3 +46,41 @@ Producer: `apps/qt-shell/acceptance_capture.hpp`. Consumer:
 The independently scoped binding is `command-history-controls-bound-01.json`.
 These controls establish the diagnostic policy, not original simulation,
 rendering pixel equivalence, physical-provider support or whole-player closure.
+
+## Ordered parallel compression — current recorder source
+
+Version4command-history capture now uses eight fixed compression threads and one
+FIFO writer. At most eight submitted results sit outside the pending-input deque.
+Source timestamps, contiguous indices and deep-owned payloads are frozen by the
+caller. Each input remains charged until its ordered write, including compression
+and completed results waiting behind an earlier job. A later compression finishing
+first cannot publish a later record or release its queue charge early. Campaign/movie viewport capture also uses eight workers after sequential FIFO
+keyframe/delta preparation. Ordinary viewport, image/export and legacy command
+modes retain sequential compression. Codec level3and decoded bytes stay
+unchanged.
+
+All declared row/raw/stored and256MiB/4096job queue limits above remain exact.
+The logical input queue is distinct from bounded compressor scratch: at most eight
+32MiBinputs are actively compressed, with at most one qCompress output per worker,
+plus fixed worker/thread bookkeeping. This does not promise256MiBtotal process
+RSS. Payload storage is released before its future becomes ready; ordered writing
+then releases the original logical input charge. Exhaustion still refuses proof.
+
+The optional open field `compression_workers` records8for version4commands and campaign/movie viewport capture, and1otherwise.
+Optional close fields `peak_queue_bytes`, `peak_queue_rows`,
+`queue_bytes_at_refusal`, `queue_rows_at_refusal` and
+`incoming_charge_at_refusal` expose the measured queue/refusal boundary. Existing
+wire versions, mandatory fields and incomplete-proof rejection remain unchanged.
+
+The old recorder reproduces its queue refusal when replaying an exact retained
+incomplete prefix at the recorded arrival timing. The new writer copies every
+11,544retained input row,714,941,062decoded bytes, with95,165,594peak logical bytes
+and1,083pending jobs. This is a recorder control, not complete game history: the
+source prefix still lacks its original tail and no normal END/reply is synthesized.
+Optimized/sanitized controls additionally hold the first compression while all
+seven later compressions finish, verify FIFO/deep ownership and verify that a
+later compression failure emits only the contiguous valid prefix and a refused
+close. See `broader-player-acceptance-results-20261110/parallel-command-controls-02.json`
+and the two `recorded-prefix-*-replay-01.json` records. Native player integration
+requires fresh source-bound execution; old acquisitions retain their original
+binary/source/capture hashes and are never refreshed into this implementation.

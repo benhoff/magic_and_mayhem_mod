@@ -7,7 +7,8 @@ from rendering_pilot import capture
 from rendering_capture import Plane
 ROOT=Path(__file__).resolve().parents[1]
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,required=True);p.add_argument('--report',required=True);p.add_argument('--baseline-header',type=Path);p.add_argument('--command-history',action='store_true');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,required=True);p.add_argument('--report',required=True);p.add_argument('--baseline-header',type=Path);p.add_argument('--command-history',action='store_true');p.add_argument('--parallel-commands',action='store_true');p.add_argument('--parallel-campaign',action='store_true');a=p.parse_args()
+ if (a.parallel_commands or a.parallel_campaign) and(a.command_history or a.baseline_header or (a.parallel_commands and a.parallel_campaign)):p.error('Parallel capture requires its exact independent control mode')
  out=a.output.resolve()
  if not out.is_relative_to(ROOT/'working') or out.exists() or (ROOT/a.report).exists():p.error('Fresh owned working output and immutable report required')
  out.mkdir(parents=True);(out/'.retain').write_text('Acceptance capture controls, including refused old source and wire bytes.\n')
@@ -26,7 +27,7 @@ def main():
   for mode,options in [('optimized',['-O2']),*([] if a.baseline_header else [('sanitized',['-O1','-g','-fsanitize=address,undefined','-fno-omit-frame-pointer'])])]:
    binary=out/mode
    r=run(['g++','-std=c++17','-Wall','-Wextra','-Werror','-fPIC','-pthread',*options,'-I',header.parent,ROOT/'tests/acceptance-capture-test.cpp',*flags,'-lz','-o',binary]);assert r.returncode==0,'Control build failed'
-   command=[binary,out/(mode+'-wire')]+(['--command-history'] if a.command_history else ['--baseline'] if a.baseline_header else ['--campaign-long'] if mode=='optimized' else [])
+   command=[binary,out/(mode+'-wire')]+(['--parallel-campaign'] if a.parallel_campaign else ['--parallel-commands'] if a.parallel_commands else ['--command-history'] if a.command_history else ['--baseline'] if a.baseline_header else ['--campaign-long'] if mode=='optimized' else [])
    r=run(command,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1'))
    result=json.loads(r.stdout);report['checks'][-1]['result']=result
    if a.baseline_header:
@@ -34,6 +35,11 @@ def main():
     report['old_stage_regression_observed']=True
    else:
     assert r.returncode==0 and result['success'] is True,'Worker control failed'
+    if a.parallel_campaign:
+     traces=[json.loads(line.split(' ',1)[1])for line in r.stderr.decode().splitlines()if line.startswith('NATIVE_CAPTURE_REFUSAL ')]
+     assert len(traces)==3 and len({v['path']for v in traces})==3 and all(v['role']=='viewport'for v in traces),'Missing/repeated first-refusal diagnostics'
+     assert {v['error']for v in traces}=={'Acceptance capture compression failed','first explicit capture refusal','Campaign capture paint extent'},'Refusal reason overwritten or unexpected'
+     report['checks'][-1]['first_refusal_diagnostics']=dict(rows=3,once_per_capture=True,original_first_error_preserved=True,worker_emitted=True)
     accepted=rejected=0
     for wire in (out/(mode+'-wire')).rglob('*.bin'):
      try:
@@ -47,7 +53,7 @@ def main():
      except ValueError as e:
       assert 'Capture incomplete or truncated' in str(e),str(e)
       rejected+=1
-    assert (accepted,rejected)==((2,3) if a.command_history else (4,5)),'Production reader did not distinguish complete and refused proofs'
+    assert (accepted,rejected)==((1,3) if a.parallel_campaign else (1,1) if a.parallel_commands else (2,3) if a.command_history else (4,5)),'Production reader did not distinguish complete and refused proofs'
     report['checks'][-1]['production_reader']=dict(complete_accepted=accepted,incomplete_rejected=rejected)
   report['success']=not bool(a.baseline_header)
  except Exception as e:report['error']=str(e)

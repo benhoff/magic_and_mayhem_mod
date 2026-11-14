@@ -7,7 +7,7 @@ import sys
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 from cursor_hotspot import descriptors,geometry,points,acceptance_points,bitmap_words,original_geometry
-from cursor_hotspot_analysis import check_copy,digest,cursor_draws,require_copy_observation,bind_original_copy,readiness_states,cursor_viewport
+from cursor_hotspot_analysis import check_copy,digest,cursor_draws,require_copy_observation,bind_original_copy,readiness_states,cursor_viewport,cursor_readiness_paint
 from rendering_pilot import rgba
 from rendering_interaction_budget import admit
 import numpy as np
@@ -258,6 +258,46 @@ class Readiness(unittest.TestCase):
         with self.assertRaises(ValueError):self.check()
     def test_changed_original_saved_origin_refuses(self):
         self.rows[-1]['saved_cursor'][1]+=1
+        with self.assertRaises(ValueError):self.check()
+
+
+class CompleteReadinessPaint(unittest.TestCase):
+    def setUp(self):
+        self.row=dict(frame=dict(generation=3));self.hits=[dict(sequence=11)]
+        self.first=dict(paint='1',world='3',commands=10,host_us='200',scaling=2)
+        self.later=dict(paint='2',world='3',commands=12,host_us='250',scaling=2)
+        self.o=dict(swaps=[1,2],paints={1:(self.first,b'partial'),2:(self.later,b'complete')})
+    def check(self):return cursor_readiness_paint(self.o,self.row,self.first,b'partial',self.hits,100,300)
+    def test_partial_import_paint_uses_first_complete_same_hold_swap(self):
+        p,b,h,proof=self.check();self.assertIs(p,self.later);self.assertEqual(b,b'complete')
+        self.assertTrue(proof['recorded_partial_paint_retained']);self.assertEqual(h,self.hits)
+    def test_already_complete_recorded_paint_keeps_exact_identity(self):
+        self.first['commands']=11;p,b,h,proof=self.check();self.assertIs(p,self.first)
+        self.assertFalse(proof['recorded_partial_paint_retained'])
+    def test_after_readiness_deadline_refuses(self):
+        self.later['host_us']='301'
+        with self.assertRaises(ValueError):self.check()
+    def test_later_world_cannot_replace_original_state(self):
+        self.later['world']='4'
+        with self.assertRaises(ValueError):self.check()
+    def test_later_scaling_cannot_replace_original_state(self):
+        self.later['scaling']=0
+        with self.assertRaises(ValueError):self.check()
+    def test_unpresented_complete_paint_refuses(self):
+        self.o['swaps']=[1]
+        with self.assertRaises(ValueError):self.check()
+    def test_missing_cursor_copy_refuses(self):
+        self.hits=[]
+        with self.assertRaises(ValueError):self.check()
+    def test_incomplete_later_swap_refuses(self):
+        self.later['commands']=10
+        with self.assertRaises(ValueError):self.check()
+    def test_earliest_complete_swap_chosen_without_pixel_selection(self):
+        third=dict(self.later,paint='3',commands=15,host_us='280')
+        self.o['swaps']=[1,3,2];self.o['paints'][3]=(third,b'other')
+        self.assertIs(self.check()[0],self.later)
+    def test_paint_before_recorded_readiness_paint_refuses(self):
+        self.later['host_us']='199'
         with self.assertRaises(ValueError):self.check()
 
 
