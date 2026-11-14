@@ -273,7 +273,7 @@ bool SceneRenderer::drawAdditives(std::size_t end,std::chrono::steady_clock::tim
 bool SceneRenderer::drawDisplacements(std::size_t end,std::chrono::steady_clock::time_point deadline){
     if(!limits_.batchDisplacements||!renderer_.canBatchDestinationSamples())return false;
     if(displacementMap_.empty())displacementMap_.resize(131072);
-    std::vector<std::size_t> touched;touched.reserve(65536);
+    auto& touched=displacementTouched_;touched.clear();
     struct Reset {std::vector<DisplacementCell>& cells;std::vector<std::size_t>& indices;
         ~Reset(){for(auto slot:indices)cells[slot].key=-1;}} reset{displacementMap_,touched};
     const auto slot=[&](int key){
@@ -281,7 +281,7 @@ bool SceneRenderer::drawDisplacements(std::size_t end,std::chrono::steady_clock:
         while(displacementMap_[at].key!=-1&&displacementMap_[at].key!=key)at=(at+1)&(displacementMap_.size()-1);
         return at;
     };
-    std::vector<std::pair<int,int>> changes;
+    auto& changes=displacementChanges_;
     std::size_t next=cursor_,visited=0;
     for(;next<end&&next-cursor_<32;++next){
         if(next!=cursor_&&std::chrono::steady_clock::now()>=deadline)break;
@@ -309,10 +309,19 @@ bool SceneRenderer::drawDisplacements(std::size_t end,std::chrono::steady_clock:
             if(cell.key==-1){touched.push_back(at);cell.key=change.first;}cell.value=change.second;}
     }
     if(next-cursor_<2)return false;
-    std::vector<std::pair<int,int>> ordered;ordered.reserve(touched.size());
+    auto& ordered=displacementOrdered_;ordered.clear();ordered.reserve(touched.size());
     for(auto at:touched){const auto& cell=displacementMap_[at];ordered.emplace_back(cell.key,cell.value);}
-    std::sort(ordered.begin(),ordered.end());
-    std::vector<DestinationSample> spans;
+    // Canvas coordinates use22bits at most. Two stable11bit passes retain
+    // exactly the prior ascending destination order without comparison sorting.
+    auto& scratch=displacementScratch_;scratch.resize(ordered.size());
+    for(unsigned shift:{0u,11u}){
+        std::array<std::size_t,2048> offsets{};
+        for(const auto& pixel:ordered)++offsets[(unsigned(pixel.first)>>shift)&2047u];
+        std::size_t total=0;for(auto& count:offsets){const auto n=count;count=total;total+=n;}
+        for(const auto& pixel:ordered)scratch[offsets[(unsigned(pixel.first)>>shift)&2047u]++]=pixel;
+        ordered.swap(scratch);
+    }
+    auto& spans=displacementSpans_;spans.clear();
     for(const auto& pixel:ordered){
         if(pixel.first==pixel.second)continue;
         const int x=pixel.first%viewport_.right,y=pixel.first/viewport_.right,sx=pixel.second%viewport_.right,sy=pixel.second/viewport_.right;
@@ -461,6 +470,9 @@ void SceneRenderer::release(const assets::ResourceId& id){checkThread();cache_.r
 void SceneRenderer::releaseCachedImages(){
     checkThread();if(drawing_)throw std::runtime_error("Cannot evict images during an incomplete scene frame");
     cache_.clear();std::vector<DisplacementCell>().swap(displacementMap_);
+    std::vector<std::size_t>().swap(displacementTouched_);
+    for(auto* v:{&displacementChanges_,&displacementOrdered_,&displacementScratch_})std::vector<std::pair<int,int>>().swap(*v);
+    std::vector<DestinationSample>().swap(displacementSpans_);
     if(additiveMask_){renderer_.destroy(additiveMask_);additiveMask_=0;}
     if(additiveSource_){renderer_.destroy(additiveSource_);additiveSource_=0;}
     colourStats_.evictions+=colourCacheStats().entries;colourTiles_.clear();

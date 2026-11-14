@@ -85,6 +85,9 @@ private:
     struct DisplacementCell {int key=-1,value=0;};
     // At most 65536 visited pixels: fixed half-load table, allocated on demand.
     std::vector<DisplacementCell> displacementMap_;
+    std::vector<std::size_t> displacementTouched_;
+    std::vector<std::pair<int,int>> displacementChanges_,displacementOrdered_,displacementScratch_;
+    std::vector<DestinationSample> displacementSpans_;
     std::vector<SceneDraw> pending_;
     std::size_t cursor_=0;
     bool drawing_=false;

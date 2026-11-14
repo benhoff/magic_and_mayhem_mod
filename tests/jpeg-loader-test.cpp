@@ -22,6 +22,14 @@ void error(const std::vector<std::uint8_t>& bytes,JpegErrorCode code,const JpegL
 }
 int main(int argc,char** argv) try {
     QCoreApplication app(argc,argv);
+    if(argc==3&&std::string(argv[1])=="--missing-codec"){
+        QCoreApplication::setLibraryPaths({QString::fromLocal8Bit(argv[2])});
+        error({0xff,0xd8,0xff,0xd9},JpegErrorCode::codecUnavailable);
+        std::cout<<"Missing JPEG codec refuses with the preserved error category\n";return 0;
+    }
+    // Explicit codec readiness must still classify malformed JPEG framing as
+    // data failure, rather than claiming the installed codec is unavailable.
+    error({0xff,0xd8,0xee,0xff,0xd9},JpegErrorCode::malformedData);
     const auto good=fixture();auto bytes=good;
     const auto decoded=decodeJpeg(bytes);require(std::holds_alternative<JpegImage>(decoded));
     auto image=std::get<JpegImage>(decoded);bytes.clear();
