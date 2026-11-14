@@ -98,6 +98,39 @@ void main(){
     gl_Position=vec4(position/vec2(canvasSize)*2.0-1.0,0,1);
     sourceOrigin=sourcePoint;destinationOrigin=rectangle.xy;paletteIndex=paletteRow;
 })";
+constexpr auto blendFragmentSource=R"(#version 330 core
+uniform usampler2D sourcePixels,sourceMask,oldPixels,batchPalettes;
+uniform isamplerBuffer blendCommands;
+uniform usamplerBuffer tileHeads,tileReferences;
+uniform int tileColumns;
+uniform uint blendMask;
+layout(location=0) out uint nativePixel;
+void main(){
+    ivec2 destination=ivec2(gl_FragCoord.xy);
+    int tile=(destination.y/32)*tileColumns+destination.x/32;
+    uvec2 head=texelFetch(tileHeads,tile).rg;
+    if(head.y==0u)discard;
+    uint d=texelFetch(oldPixels,destination,0).r,m=blendMask;
+    bool written=false;
+    for(uint i=0u;i<head.y;++i){
+        int command=int(texelFetch(tileReferences,int(head.x+i)).r);
+        ivec4 r=texelFetch(blendCommands,command*2),source=texelFetch(blendCommands,command*2+1);
+        ivec2 at=destination-r.xy;
+        if(any(lessThan(at,ivec2(0)))||any(greaterThanEqual(at,r.zw)))continue;
+        at+=source.xy;
+        if(texelFetch(sourceMask,at,0).r==0u)continue;
+        uint s=texelFetch(sourcePixels,at,0).r;
+        if(source.w>=0)s=texelFetch(batchPalettes,ivec2(int(s),source.w),0).r;
+        if(source.z==1)d=((s>>1u)&m)+((d>>1u)&m);
+        else if(source.z==2){uint h=(d>>1u)&m;d=h+((h>>1u)&m)+((s>>2u)&(m>>1u)&m);}
+        else if(source.z==4){uint h=(s>>1u)&m;d=h+((h>>1u)&m)+((d>>2u)&(m>>1u)&m);}
+        else{uvec3 a=uvec3(s>>11u,(s>>5u)&63u,s&31u),b=uvec3(d>>11u,(d>>5u)&63u,d&31u);
+            uvec3 c=min(a+b,uvec3(31u,63u,31u));d=(c.x<<11u)|(c.y<<5u)|c.z;}
+        written=true;
+    }
+    if(!written)discard;
+    nativePixel=d;
+})";
 constexpr auto fragmentSource=R"(#version 330 core
 uniform usampler2D sourcePixels;
 uniform bool indexedSource;
@@ -295,7 +328,7 @@ struct GlBlitter::Impl {
     CopyImage copyImage=nullptr;
     using TextureBarrier=void(QOPENGLF_APIENTRYP)();
     TextureBarrier textureBarrier=nullptr;
-    std::unique_ptr<QOpenGLShaderProgram> program,presentation,compositing,copying,importing,coordinateProgram,mappedWorldProgram,smallColour,keyedChain;
+    std::unique_ptr<QOpenGLShaderProgram> program,presentation,compositing,copying,importing,coordinateProgram,mappedWorldProgram,smallColour,keyedChain,blending;
     GLuint vao=0,fbo=0,scratch=0,copyBuffer=0,paletteBank=0,colourBuffer=0,colourOperations=0;
     int scratchWidth=0,scratchHeight=0;
     GLuint maskedColour=0,maskedSelection=0;
@@ -311,6 +344,15 @@ struct GlBlitter::Impl {
     GLint copyCanvasSize=-1;
     struct CopyInstance {std::array<GLint,4> rectangle;std::array<GLint,2> source;GLint palette=0;};
     std::vector<CopyInstance> instances;
+    struct BlendInstance {std::array<GLint,4> rectangle;std::array<GLint,2> source,metadata;};
+    std::vector<BlendInstance> blends;
+    std::array<GLuint,3> blendBuffers{},blendTextures{};
+    std::size_t blendReferences=0;
+    Surface* blendDestination=nullptr;GLuint blendSource=0,blendMaskTexture=0;
+    GLuint blendWordMask=0;
+    const bool blendBatchEnabled=qEnvironmentVariableIntValue("MNM_NATIVE_COMPOSITE_BATCH_BASELINE")!=1;
+    const bool uploadDependencies=qEnvironmentVariableIntValue("MNM_UPLOAD_FLUSH_BASELINE")!=1;
+    const bool opaqueBatchEnabled=qEnvironmentVariableIntValue("MNM_OPAQUE_COPY_BASELINE")!=1;
     Surface* copyDestination=nullptr;GLuint copySource=0,copyMask=0;
     std::optional<std::uint32_t> copyKey;std::uint32_t instanceKeyMask=UINT32_MAX;
     std::vector<std::array<GLuint,256>> instancePalettes;
@@ -395,6 +437,7 @@ struct GlBlitter::Impl {
         const std::string paletteLookup="spritePalette[pixel]";
         instanceFragment.replace(instanceFragment.find(paletteLookup),paletteLookup.size(),"texelFetch(batchPalettes,ivec2(int(pixel),paletteIndex),0).r");
         copying=shader(instanceFragment.c_str(),copyVertexSource);
+        blending=shader(blendFragmentSource);
         const auto location=[](QOpenGLShaderProgram& shader,const char* name){
             const auto value=shader.uniformLocation(name);
             if(value<0)throw std::runtime_error(std::string("Missing shader uniform: ")+name);
@@ -526,7 +569,65 @@ struct GlBlitter::Impl {
                                         std::max(old.right,r.right),std::max(old.bottom,r.bottom)};}
         }
     }
-    void flushCopies(){
+    static bool intersects(Rect a,Rect b){return a.left<b.right&&b.left<a.right&&a.top<b.bottom&&b.top<a.bottom;}
+    static Rect destinationRect(const std::array<GLint,4>& r){return {r[0],r[1],r[0]+r[2],r[1]+r[3]};}
+    void flushComposites(){
+        if(blends.empty())return;
+        Current current(context,surface);auto& dst=*blendDestination;
+        const int columns=(dst.width+31)/32,rows=(dst.height+31)/32;
+        std::vector<std::array<GLuint,2>> heads(std::size_t(columns)*rows);
+        const auto tiles=[&](const auto& instance,const auto& visit){
+            const auto r=destinationRect(instance.rectangle);
+            for(int y=r.top/32;y<=(r.bottom-1)/32;++y)for(int x=r.left/32;x<=(r.right-1)/32;++x)visit(y*columns+x);
+        };
+        Rect area=destinationRect(blends.front().rectangle);
+        for(const auto& instance:blends){tiles(instance,[&](int tile){++heads[tile][1];});
+            const auto r=destinationRect(instance.rectangle);area={std::min(area.left,r.left),std::min(area.top,r.top),std::max(area.right,r.right),std::max(area.bottom,r.bottom)};}
+        GLuint offset=0;for(auto& head:heads){head[0]=offset;offset+=head[1];}
+        std::vector<GLuint> references(offset),cursor;cursor.reserve(heads.size());for(const auto& h:heads)cursor.push_back(h[0]);
+        // Appending by command index preserves original blend order in each
+        // tile, including overlapping rectangles and transparent coverage.
+        for(std::size_t i=0;i<blends.size();++i)tiles(blends[i],[&](int tile){references[cursor[tile]++]=GLuint(i);});
+        if(!blendBuffers[0]){gl.glGenBuffers(3,blendBuffers.data());gl.glGenTextures(3,blendTextures.data());}
+        const void* data[3]={blends.data(),heads.data(),references.data()};
+        const GLsizeiptr sizes[3]={GLsizeiptr(blends.size()*sizeof(BlendInstance)),GLsizeiptr(heads.size()*sizeof(heads[0])),GLsizeiptr(references.size()*sizeof(GLuint))};
+        const GLenum formats[3]={GL_RGBA32I,GL_RG32UI,GL_R32UI};
+        for(unsigned i=0;i<3;++i){
+            gl.glBindBuffer(GL_TEXTURE_BUFFER,blendBuffers[i]);gl.glBufferData(GL_TEXTURE_BUFFER,sizes[i],data[i],GL_STREAM_DRAW);
+            gl.glActiveTexture(GL_TEXTURE4+i);gl.glBindTexture(GL_TEXTURE_BUFFER,blendTextures[i]);gl.glTexBuffer(GL_TEXTURE_BUFFER,formats[i],blendBuffers[i]);
+        }
+        attach(dst.native,dst.width,dst.height);setScissor(true);gl.glScissor(area.left,area.top,area.right-area.left,area.bottom-area.top);textureBarrier();
+        useProgram(blending->programId());
+        for(unsigned unit=0;unit<4;++unit){gl.glActiveTexture(GL_TEXTURE0+unit);
+            gl.glBindTexture(GL_TEXTURE_2D,unit==0?blendSource:unit==1?blendMaskTexture:unit==2?dst.native:paletteBank?paletteBank:blendSource);}
+        for(const auto& uniform:{std::pair<const char*,int>{"sourcePixels",0},{"sourceMask",1},{"oldPixels",2},{"batchPalettes",3},{"blendCommands",4},{"tileHeads",5},{"tileReferences",6}})
+            gl.glUniform1i(blending->uniformLocation(uniform.first),uniform.second);
+        gl.glUniform1ui(blending->uniformLocation("blendMask"),blendWordMask);gl.glUniform1i(blending->uniformLocation("tileColumns"),columns);
+        draw(3);blends.clear();blendReferences=0;check();
+    }
+    void queueBlend(Surface& src,Surface& mask,Surface& dst,Rect r,int x,int y,CompositeMode mode,
+                    GLuint wordMask,const std::array<std::uint16_t,256>* palette){
+        flushCopyInstances();const Rect destination{x,y,x+r.right-r.left,y+r.bottom-r.top};
+        const auto references=std::size_t((destination.right-1)/32-destination.left/32+1)*((destination.bottom-1)/32-destination.top/32+1);
+        if(!blends.empty()&&(blendDestination!=&dst||blendSource!=src.native||blendMaskTexture!=mask.native||blendWordMask!=wordMask||blends.size()==512||blendReferences+references>65536))flushComposites();
+        GLint row=-1;if(palette){std::array<GLuint,256> words{};std::copy(palette->begin(),palette->end(),words.begin());row=GLint(paletteRow(words));}
+        if(blends.empty()){blendDestination=&dst;blendSource=src.native;blendMaskTexture=mask.native;blendWordMask=wordMask;}
+        damage(dst,destination);blendReferences+=references;blends.push_back({{x,y,r.right-r.left,r.bottom-r.top},{r.left,r.top},{GLint(mode),row}});++counters.copies;
+    }
+    void flushForUpload(Surface& target,Rect region){
+        if(!uploadDependencies){flushCopies();return;}
+        // Every sampler uses integer texelFetch: disjoint source rectangles
+        // have no filtering halo. Pending destination writes are checked too.
+        const auto affected=[&](Surface* dst,GLuint source,GLuint mask,const auto& list){
+            return std::any_of(list.begin(),list.end(),[&](const auto& i){
+                const auto d=destinationRect(i.rectangle);
+                const Rect sampled{i.source[0],i.source[1],i.source[0]+i.rectangle[2],i.source[1]+i.rectangle[3]};
+                return (dst==&target&&intersects(region,d))||((target.native==source||target.native==mask)&&intersects(region,sampled));});
+        };
+        if(affected(copyDestination,copySource,copyMask,instances)||affected(blendDestination,blendSource,blendMaskTexture,blends))flushCopies();
+    }
+    void flushCopies(){flushComposites();flushCopyInstances();}
+    void flushCopyInstances(){
         if(instances.empty())return;
         Current current(context,surface);auto& dst=*copyDestination;
         attach(dst.native,dst.width,dst.height);setScissor(false);
@@ -559,8 +660,9 @@ struct GlBlitter::Impl {
     }
     void copyTexture(GLuint sourceTexture,GLuint maskTexture,Surface& dst,Rect r,int x,int y,
                      std::optional<std::uint32_t> key,std::uint32_t keyMask=UINT32_MAX,const std::array<std::uint16_t,256>* palette=nullptr){
-        damage(dst,{x,y,x+r.right-r.left,y+r.bottom-r.top});
-        if(batchDepth && (maskTexture || key || palette)){
+        flushComposites();damage(dst,{x,y,x+r.right-r.left,y+r.bottom-r.top});
+        const auto area=std::uint64_t(r.right-r.left)*(r.bottom-r.top);
+        if(batchDepth && (maskTexture || key || palette || (opaqueBatchEnabled&&area<=4096))){
             if(!instances.empty()&&(copyDestination!=&dst||copySource!=sourceTexture||copyMask!=maskTexture||copyKey!=key||instanceKeyMask!=keyMask||copyIndexed!=(palette!=nullptr)||instances.size()==512))flushCopies();
             std::array<GLuint,256> colours{};unsigned row=0;
             if(palette){std::copy(palette->begin(),palette->end(),colours.begin());
@@ -646,7 +748,7 @@ struct GlBlitter::Impl {
                 deferredFrames.clear();
                 for(auto& pair:surfaces)release(pair.second);
                 for(const auto& timing:gpuTimings)gl.glDeleteQueries(2,timing.queries.data());
-                deleteTextures(1,&scratch);deleteTextures(1,&maskedColour);deleteTextures(1,&maskedSelection);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);gl.glDeleteBuffers(1,&colourBuffer);deleteTextures(1,&colourOperations);keyedChain.reset();smallColour.reset();copying.reset();importing.reset();coordinateProgram.reset();mappedWorldProgram.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
+                deleteTextures(1,&scratch);deleteTextures(1,&maskedColour);deleteTextures(1,&maskedSelection);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);gl.glDeleteBuffers(1,&colourBuffer);deleteTextures(1,&colourOperations);gl.glDeleteBuffers(3,blendBuffers.data());deleteTextures(3,blendTextures.data());blending.reset();keyedChain.reset();smallColour.reset();copying.reset();importing.reset();coordinateProgram.reset();mappedWorldProgram.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
             catch(const std::exception&){}
         }
     }
@@ -946,13 +1048,14 @@ void GlBlitter::updateRows(SurfaceId id,const Image& plane,int first,int rows){
 }
 void GlBlitter::updateRegionRows(SurfaceId id,int x,int y,const Image& plane,int first,int rows){
     if(isolated_){isolated_->call(wire::message(wire::Op::regionRows,id,x,y,plane,first,rows),true);return;}
-    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);
+    auto& p=*impl_;p.thread();auto& s=p.get(id);
     if(plane.width<1||plane.height<1||plane.pixels.size()!=std::size_t(plane.width)*plane.height||first<0||rows<1||first>plane.height-rows||
        x<0||y<0||x>s.width-plane.width||y>s.height-plane.height)
         throw std::runtime_error("Invalid upload rows");
     const auto begin=plane.pixels.begin()+std::size_t(first)*plane.width,end=begin+std::size_t(rows)*plane.width;
     const auto maximum=s.format.bits==32?UINT32_MAX:((std::uint32_t{1}<<s.format.bits)-1);
     if(std::any_of(begin,end,[maximum](auto value){return value>maximum;}))throw std::runtime_error("Native upload pixel exceeds format");
+    p.flushForUpload(s,{x,y+first,x+plane.width,y+first+rows});
     Current current(p.context,p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
     g.glTexSubImage2D(GL_TEXTURE_2D,0,x,y+first,plane.width,rows,GL_RED_INTEGER,GL_UNSIGNED_INT,&*begin);p.uploadBytes(std::uint64_t(plane.width)*rows*4);
     p.check();s.validity.define({x,y+first,x+plane.width,y+first+rows});p.damage(s,{x,y+first,x+plane.width,y+first+rows},false);p.uploadedCoverage(s,x,y+first,plane.width,rows,&*begin);++p.counters.uploads;
@@ -1122,6 +1225,10 @@ void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,in
     src.validity.require(r);coverage.validity.require(r);dst.validity.require({0,0,dst.width,dst.height});
     Current current(p.context,p.surface);
     if(c.mode==CompositeMode::copy){p.copyTexture(src.native,coverage.native,dst,r,x,y,std::nullopt,UINT32_MAX,palette);return;}
+    const bool local=c.mode==CompositeMode::half||c.mode==CompositeMode::quarterSource||c.mode==CompositeMode::quarterDestination||c.mode==CompositeMode::additive;
+    if(local&&p.textureBarrier&&p.batchDepth&&p.blendBatchEnabled&&(!palette||p.paletteCacheEnabled)){
+        p.queueBlend(src,coverage,dst,r,x,y,c.mode,rgb555?0x3defu:0x7befu,palette);return;
+    }
     p.damage(dst,{x,y,x+r.right-r.left,y+r.bottom-r.top});
     const int extraRows=(x+r.right-r.left-1+reach)/dst.width;
     Rect freeze=extraRows?Rect{0,y,dst.width,std::min(dst.height,y+r.bottom-r.top+extraRows)}:Rect{x,y,x+r.right-r.left+reach,y+r.bottom-r.top};
@@ -1285,7 +1392,7 @@ void GlBlitter::setClipper(SurfaceId id,const ClipperState& clipper){
 SurfaceCopyResult GlBlitter::surfaceCopy(SurfaceId source,SurfaceId destination,const SurfaceCopyRequest& request,
                                        std::optional<std::uint32_t> nativeKey){
     if(isolated_){return wire::decode<SurfaceCopyResult>(isolated_->call(wire::message(wire::Op::surfaceCopy,source,destination,request,nativeKey),true));}
-    auto& p=*impl_;p.thread();p.flushCopies();const auto& s=p.get(source);auto& d=p.get(destination);
+    auto& p=*impl_;p.thread();if(source==destination)p.flushCopies();const auto& s=p.get(source);auto& d=p.get(destination);
     if(source==destination && request.flags!=0 && request.flags!=(request.api==SurfaceCopyApi::BltFast?0x10u:0x01000000u))
         throw std::runtime_error("Self-copy requires opaque flags");
     if(s.format.bits!=d.format.bits || s.format.masks!=d.format.masks)

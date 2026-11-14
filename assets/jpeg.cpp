@@ -20,14 +20,16 @@ JpegResult decodeJpeg(const std::vector<std::uint8_t>& bytes,const JpegLimits& l
         fail(JpegErrorCode::invalidFormat,"Missing JPEG SOI marker");
     if(bytes.size()<4 || bytes[bytes.size()-2]!=0xff || bytes.back()!=0xd9)
         fail(JpegErrorCode::malformedData,"Missing terminal JPEG EOI marker");
-    const auto formats=QImageReader::supportedImageFormats();
-    if(!formats.contains("jpeg") && !formats.contains("jpg"))
-        fail(JpegErrorCode::codecUnavailable,"Qt JPEG codec unavailable");
     QByteArray encoded=QByteArray::fromRawData(reinterpret_cast<const char*>(bytes.data()),static_cast<qsizetype>(bytes.size()));
     QBuffer buffer(&encoded);
     if(!buffer.open(QIODevice::ReadOnly)) fail(JpegErrorCode::malformedData,"Cannot open JPEG memory buffer");
     QImageReader reader(&buffer,"jpeg");
     reader.setAutoDetectImageFormat(false);reader.setAutoTransform(false);
+    // Explicit JPEG selection avoids loading unrelated image codecs during the
+    // first native frame. Unsupported format means no JPEG handler; malformed
+    // input still reaches the existing header/dimension error path below.
+    if(!reader.canRead() && reader.error()==QImageReader::UnsupportedFormatError)
+        fail(JpegErrorCode::codecUnavailable,"Qt JPEG codec unavailable");
     const auto dimensions=reader.size();
     if(!dimensions.isValid() || dimensions.width()<=0 || dimensions.height()<=0)
         fail(JpegErrorCode::malformedData,reader.errorString().toStdString());
