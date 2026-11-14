@@ -183282,7 +183282,55 @@
       "remaining_gaps": [
         "Initial provenance metadata is generated from verified retained reports; a source-only clone still needs this compact unpublished SQLite input for scoped checks.",
         "Finite synthetic host controls establish the named workflow boundaries; original-game behavior, live replacement, all possible repositories and all concurrent filesystem mutations remain outside this proof.",
-        "Actual storage retirement remains explicit and requires its original consumer, survivor and restore checks."
+        "Actual storage retirement remains explicit and requires its original consumer, survivor and restore checks.",
+        "2026-11-14: CI additionally runs the independent worktree report-compaction controls. The workflow file changed; MERGE14.controls03 remains the exact historical 332-test source-bound result and is not renewed by WORKTREES14 controls."
+      ]
+    },
+    {
+      "id": "HOST.worktree-report-materialization",
+      "subsystem": "application_hosting",
+      "kind": "native_policy",
+      "title": "Verified compaction of redundant historical report materializations",
+      "scope": "Host-only replacement of expanded generated reports by their existing committed SQLite references after exact byte identity, independent two-copy payload verification and real restores. Hash-bound complete SQLite plans, unchanged operator/HEAD, activity and lock checks, atomic metadata-preserving replacement and retained per-file outcomes. Source checkouts, unique edits, authored accounting, hardlinks, symlinks, working data and original inputs remain. Frozen physical-file readers hydrate selected inputs before replay. No full worktree removal, engine comparison or general concurrent-writer compatibility claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/storage-consolidation.md",
+        "research/runtime/worktree-retirement-20261114.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "tools/worktree_report_compaction.py",
+        "tools/compact-worktree-reports.py"
+      ],
+      "tests": [
+        "tests/test-worktree-report-compaction.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_evidence.py",
+        "tools/evidence_objects.py",
+        "tools/evidence_blocks.py",
+        "tools/worktree_compaction.py",
+        "tools/evidence_workspace.py"
+      ],
+      "evidence": [
+        "WORKTREES14.controls02",
+        "WORKTREES14.controls04",
+        "WORKTREES14.controls05",
+        "WORKTREES14.controls06"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Full source-checkout retirement additionally requires complete ignored-data, route and source recovery review; this operation leaves registrations and working payloads intact.",
+        "Finite synthetic refusal controls and host-visible activity checks do not prove absence of every possible concurrent writer or historical physical reader.",
+        "Historical engine proofs and original payload hashes are preserved; only physical report materializations change.",
+        "The journal commits each 64 replacements and flushes the completed prefix on ordinary interruption. A power loss can leave up to one group needing per-file reconciliation against retained exact pointers and before-allocation metadata; both original payload copies and the complete admitted plan precede replacement."
       ]
     }
   ],
@@ -430801,6 +430849,98 @@
           "equals": 332
         }
       ]
+    },
+    {
+      "id": "WORKTREES14.controls02",
+      "kind": "native_integration",
+      "record": "research/runtime/worktree-retirement-results-20261114/controls02.json",
+      "sha256": "c11b35b33f3ee61164375ff77afe50799765fef28f2bb2f03a72bd16307cba16",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "15 source-stable synthetic storage controls with exact reviewed scope bindings; no engine execution.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 15
+        }
+      ]
+    },
+    {
+      "id": "WORKTREES14.controls04",
+      "kind": "native_integration",
+      "record": "research/runtime/worktree-retirement-results-20261114/controls04.json",
+      "sha256": "1d3c82bf2e38ce22b899c6558a98cadfc9022dae5391fb4a800d7527d291fd45",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "19 source-stable host storage controls, including grouped actual plan reconstruction and notice alias/refusal protection. Historical controls02 remains unchanged.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 19
+        }
+      ]
+    },
+    {
+      "id": "WORKTREES14.controls05",
+      "kind": "native_integration",
+      "record": "research/runtime/worktree-retirement-results-20261114/controls05.json",
+      "sha256": "07545dc02f0b7461b02efb8c3999e5aeb8b46e279e0398f73890172f43c94e30",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "22 source-stable host controls: grouped actual plan restore, bounded journal prefix persistence, recovery of unrecorded replacements and both original payload copies, plus prior identity/metadata/refusal protections. No engine execution.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 22
+        }
+      ]
+    },
+    {
+      "id": "WORKTREES14.controls06",
+      "kind": "native_integration",
+      "record": "research/runtime/worktree-retirement-results-20261114/controls06.json",
+      "sha256": "670fe87cf39884c4509af22e86ab24b7f71f767d6b65d7fab283f6fd46e560ea",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "23 source-stable host controls, including exact binary materialization and selected-file notices. Earlier controls preserve their exact source/scope bindings; no engine execution.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/test_count",
+          "equals": 23
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -466363,6 +466503,23 @@
       "evidence": [
         "MERGE14.controls03"
       ]
+    },
+    {
+      "id": "tooling.worktree-report-materialization",
+      "scope": "Synthetic existing-pointer identity and metadata preservation, two-copy independent restores and explicit missing-copy retention, stale/hash/corruption/activity/lock refusals, unique/hardlinked/symlink/authored/working-data protection. No game execution.",
+      "level": "headless",
+      "behaviors": [
+        "HOST.worktree-report-materialization"
+      ],
+      "tests": [
+        "tests/test-worktree-report-compaction.py"
+      ],
+      "evidence": [
+        "WORKTREES14.controls02",
+        "WORKTREES14.controls04",
+        "WORKTREES14.controls05",
+        "WORKTREES14.controls06"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -468190,8 +468347,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-9bddb30b45fafbe12403e2824defd0a7f2f010e986f48802e339bc575040cb06.json",
-    "sha256": "9bddb30b45fafbe12403e2824defd0a7f2f010e986f48802e339bc575040cb06"
+    "path": "research/runtime/coverage/source-index-a08fe947be6464b430811afe035dfaa717e66c7a3032a3f0bb5b7231704cf9a5.json",
+    "sha256": "a08fe947be6464b430811afe035dfaa717e66c7a3032a3f0bb5b7231704cf9a5"
   },
   "evidence_applicability": [
     {
@@ -468236,7 +468393,7 @@
     }
   ],
   "change_scope_index": {
-    "path": "research/runtime/coverage/evidence-dependencies-c330e21d65d0791327480055624e3ff6f53a17fb283a343e20ac2100076bfcc1.json",
-    "sha256": "c330e21d65d0791327480055624e3ff6f53a17fb283a343e20ac2100076bfcc1"
+    "path": "research/runtime/coverage/evidence-dependencies-28ca0d3f27c47ca091a398729d49ec7334158babea79d5d560354f90a94c9911.json",
+    "sha256": "28ca0d3f27c47ca091a398729d49ec7334158babea79d5d560354f90a94c9911"
   }
 }

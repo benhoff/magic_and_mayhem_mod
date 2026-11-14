@@ -30185,3 +30185,15 @@ checkpoint-only receipt authorizes deletion. MERGE14.controls03 records 332
 passing source-stable host tests across 17 suites; no engine source, milestone
 or historical hash is renewed.
 See research/runtime/proportionate-merges-20261114.md.
+
+### Historical worktree report compaction — 2026-11-14
+
+HOST.worktree-report-materialization records a bounded host storage operation:
+replace redundant expanded generated reports only with their existing Git
+references, after exact payload identity, two independent copies, real restores
+and a retained SQLite plan. WORKTREES14.controls06 binds 23 source-stable synthetic
+controls to this scope. Source checkouts, unique changes, authored accounting,
+working data, pins and original inputs stay protected. Frozen physical readers
+hydrate selected inputs before replay. Full checkout removal requires its own
+complete handoff review. Historical engine hashes and milestones are unchanged.
+See research/runtime/worktree-retirement-20261114.md.

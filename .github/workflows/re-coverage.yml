@@ -28,6 +28,7 @@ jobs:
           python3 -B tests/test-candidate-promotion.py
           python3 -B tests/test-scoped-coverage.py
           python3 -B tests/test-commit-retention.py
+          python3 -B tests/test-worktree-report-compaction.py
           python3 -B tests/test-parallel-agent-tools.py
           python3 -B tests/test-working-retention.py
           TMPDIR=/dev/shm python3 -B tests/test-finish-performance.py
@@ -59,6 +60,7 @@ jobs:
           python3 -B tests/test-candidate-promotion.py
           python3 -B tests/test-scoped-coverage.py
           python3 -B tests/test-commit-retention.py
+          python3 -B tests/test-worktree-report-compaction.py
           python3 -B tests/test-parallel-agent-tools.py
           python3 -B tests/test-working-retention.py
           TMPDIR=/dev/shm python3 -B tests/test-finish-performance.py
