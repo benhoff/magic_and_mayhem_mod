@@ -1,5 +1,13 @@
 # Storage consolidation
 
+The [user-approved hybrid policy](evidence-storage.md#hybrid-retention-approved-2026-11-13)
+supersedes blanket dual-copy and permanent preservation requirements below.
+Essential evidence remains mirrored; verified historical bulk may have one copy;
+reviewed reproducible caches/environments and completed source copies may retire
+without another full archival copy. Keep reconstruction inputs, unique changes,
+saves/current inputs, useful results and explicit retirement records. Pins and
+old failures require classification rather than indefinite retention by default.
+
 Generated evidence is shared by payload identity; execution state remains private.
 The machine's main-drive 90 GiB and cold-drive 100 GiB reserves are unchanged.
 

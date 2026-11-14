@@ -30141,3 +30141,19 @@ are required separately; this entry makes no remote-push or acceptance claim.
 The implementation integrated at `f4c480a15b48f0bdf82de0dfacb0dea12c12f79f` is unchanged. The default-profile 800×600 pause run that was active at that snapshot has completed. It passes 1,062 source Worlds and 1,079,133,000 independently compared viewport pixels with zero mismatches, both pause dwells, normal shutdown, and current source/provider/extent checks. Execution files and typed request/counter records have two verified copies and real restores. This follow-up imports its 19 later SQLite references and exact operator source snapshots. It repeats no game, pixel comparison or Native build.
 
 Fifty of 90 contexts are qualified at 161 request rows and 210 conservative charges. Forty cases remain unstarted. The unchanged 90-context/98-positive-start plan still requires 201 rows and 250 charges. Full Native acceptance and Original recovery remain independently pending. Dashboard acceptance, the 156 inherited requirement rows, known Quick Spectate/Game Over and natural fading boundaries, and historical negative evidence remain unchanged. No status is promoted. The acquisition checkout, raw evidence, pins, databases, restore stubs and all evidence stores remain preserved.
+
+
+
+
+### User-approved hybrid disk retention — 2026-11-13
+
+Essential source, saves/configuration, tested executables, compact evidence and
+complete SQLite review/checkpoint closures retain two verified copies. Reviewed
+historical bulk may retain one hash-verified primary under an exact custody plan.
+Schema-2 writers, sparse verification/replication, promotion and restore have
+separate host controls under TOOL.hybrid-evidence-retention. The first Cold-main
+pilot verified all 59,373 surviving objects and its replacement mirror before
+reclaiming 22,900,469,760 allocated bytes. Single-drive loss exposure for that bulk
+is explicit. Earlier custody reports remain historical facts; no engine evidence
+hash, game acceptance status or original-media byte changes. See
+research/runtime/hybrid-retention-20261113.md and the SQLite-backed controls.

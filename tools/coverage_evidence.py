@@ -85,9 +85,11 @@ class Store:
         self.shared = False
         if readonly:
             self.db = sqlite3.connect(self.path.resolve().as_uri() + '?mode=ro', uri=True)
+            self.db.create_function('mm_retention_writer', 0, lambda: 1, deterministic=True)
         else:
             self.path.parent.mkdir(parents=True, exist_ok=True)
             self.db = sqlite3.connect(self.path, timeout=60)
+            self.db.create_function('mm_retention_writer', 0, lambda: 1, deterministic=True)
             existing = self.db.execute("SELECT 1 FROM sqlite_master WHERE name='metadata'").fetchone()
             layout = self.db.execute("SELECT value FROM metadata WHERE key='chunk_layout'").fetchone() if existing else None
             if layout == ('shared-v1',) or (shared and not existing):
@@ -699,7 +701,10 @@ def write_report(root, path, data):
         shared = settings(root)
         if shared:
             with configured(root) as pair:
-                sha = pair.put(io.BytesIO(data), len(data))
+                # A report can contain unique source or review state even when
+                # its interchange name ends in .bin. Bulk classification belongs
+                # to explicit workspace admission, not this generic writer.
+                sha = pair.put(io.BytesIO(data), len(data), copies=2)
         else:
             with opened_store(pending_path(root)) as store:
                 with store.db:

@@ -57,12 +57,15 @@ def configured(root):
     if paths is None:
         raise ValueError('Shared evidence is not configured')
     data = storage_policy(root)
-    if data['schema'] != 1 or data['durable_copies'] != 2:
+    if data['schema'] not in (1, 2) or data['durable_copies'] != 2:
         raise ValueError('Unsupported object storage policy')
+    hybrid = data['schema'] == 2
+    if hybrid and (type(data.get('bulk_copies')) is not int or data.get('bulk_copies') != 1):
+        raise ValueError('Hybrid storage requires one bulk copy and two essential copies')
     values = tuple(data[k] for k in ('primary_minimum_free_gib', 'replica_minimum_free_gib'))
     if any(type(n) not in (int, float) or not math.isfinite(n) or n < 0 for n in values):
         raise ValueError('Invalid evidence reserve')
-    return Pair(*paths, minimum_free=tuple(n*1024**3 for n in values), compression_workers=data.get("compression_workers",4))
+    return Pair(*paths, minimum_free=tuple(n*1024**3 for n in values), compression_workers=data.get("compression_workers",4), hybrid=hybrid)
 
 
 def _sync(path):
@@ -76,7 +79,7 @@ def _sync(path):
 
 
 class Pair:
-    def __init__(self, primary, replica, *, minimum_free=(0, 0), require_independent=True, compression_workers=4):
+    def __init__(self, primary, replica, *, minimum_free=(0, 0), require_independent=True, compression_workers=4, hybrid=False):
         from coverage_evidence import Store
         from evidence_blocks import CompressionPool
         self.compression=CompressionPool(compression_workers)
@@ -96,6 +99,8 @@ class Pair:
         self.stores = []
         self.batching = False
         self.batch_verified=set()
+        self.hybrid = hybrid
+        self.retention_classes = {}
         try:
             for p, floor in zip(self.paths, minimum_free):
                 if shutil.disk_usage(p.parent).free < floor + 2*1024**2:
@@ -106,6 +111,13 @@ class Pair:
                 pin = p.parent/'.retain'
                 if not pin.exists():
                     pin.write_text('Shared immutable evidence objects, run roots and verified replica receipts. Preserve.\n')
+            if self.hybrid:
+                from evidence_retention import initialize, classes
+                for store in self.stores:
+                    initialize(store)
+                self.retention_classes = classes(self.stores[0].db)
+            elif any(s.db.execute("SELECT 1 FROM metadata WHERE key='retention_policy'").fetchone() for s in self.stores):
+                raise ValueError('Tiered evidence requires the schema-2 hybrid policy')
         except BaseException:
             self.close()
             raise
@@ -141,6 +153,9 @@ class Pair:
                 store.db.commit();_sync(store.path)
         except BaseException:
             for store in self.stores:store.db.rollback()
+            if self.hybrid:
+                from evidence_retention import classes
+                self.retention_classes=classes(self.stores[0].db)
             raise
         finally:self.batching=False
 
@@ -151,19 +166,27 @@ class Pair:
         else:
             with store.db:yield
 
-    def put(self, stream, size, git_blob=None, *, prepared=None):
+    def put(self, stream, size, git_blob=None, *, prepared=None, copies=2):
         if type(size) is not int or size < 0:
             raise ValueError('Invalid evidence object length')
+        if copies == 1:
+            position=stream.tell();header=stream.read(4);stream.seek(position)
+            if header.startswith((b'MZ', b'\x7fELF')):copies=2
         if prepared is not None:
             if prepared.size!=size:raise ValueError('Prepared evidence size differs')
-            return self._put_prepared(prepared,git_blob)
+            return self._put_prepared(prepared,git_blob,copies)
         from evidence_blocks import prepare
         with prepare(self.stores,stream,size,self.compression) as value:
-            return self._put_prepared(value,git_blob)
+            return self._put_prepared(value,git_blob,copies)
 
-    def _put_prepared(self,value,git_blob):
+    def _put_prepared(self,value,git_blob,copies=2):
         sha=value.sha256
-        for index,s in enumerate(self.stores):
+        if type(copies) is not int or copies not in (1, 2) or (copies == 1 and not self.hybrid):
+            raise ValueError('One-copy objects require an explicit hybrid policy')
+        copies = max(copies, self.retention_classes.get(sha, 1))
+        if self.hybrid and sha not in self.retention_classes and self.stores[0].has(sha, value.size):
+            copies = 2  # unclassified historical objects are essential
+        for index,s in enumerate(self.stores[:copies]):
             if not s.has(sha,value.size):
                 with self.writing(s):
                     if s.put(None,value.size,git_blob,prepared=value)!=sha:
@@ -174,12 +197,38 @@ class Pair:
             if not self.batching or identity not in self.batch_verified:
                 s.copy(sha,value.size,Sink())
                 if self.batching:self.batch_verified.add(identity)
+        if self.hybrid:
+            from evidence_retention import decide
+            for store in self.stores:
+                with self.writing(store):
+                    decide(store, sha, copies, 'essential' if copies == 2 else 'workspace bulk')
+                if not self.batching:_sync(store.path)
+            self.retention_classes[sha] = copies
         return sha
+
+    def file_copies(self, name, size):
+        if not self.hybrid:return 2
+        from evidence_retention import file_copies
+        return file_copies(name, size)
+
+    def object_copies(self, sha):
+        return self.retention_classes.get(sha, 2)
+
+    def copy_available(self, sha, size, output, replica=1):
+        selected = 0 if self.object_copies(sha) == 1 else replica
+        self.stores[selected].copy(sha, size, output)
+
+    def read_available(self, sha, size, replica=1):
+        output = io.BytesIO()
+        self.copy_available(sha, size, output, replica)
+        return output.getvalue()
 
     def bytes(self, body):
         return self.put(io.BytesIO(body), len(body))
 
     def read(self, sha, size, replica=0):
+        if replica == 1 and self.object_copies(sha) == 1:
+            raise ValueError('Bulk object has one retained copy; use copy_available/read_available')
         out = io.BytesIO()
         self.stores[replica].copy(sha, size, out)
         return out.getvalue()
@@ -328,7 +377,7 @@ def restore_logical(pair,manifest,target,replica=1):
         if not isinstance(value,dict):return value
         if 'float' in value:return float.fromhex(value['float'])
         key='blob' if 'blob' in value else 'text';r=value[key]
-        raw=pair.read(r['sha256'],r['size'],replica)
+        raw=pair.read_available(r['sha256'],r['size'],replica)
         return raw if key=='blob' else raw.decode()
     catalog=data['catalog']
     with closing(sqlite3.connect(target)) as db:
@@ -484,6 +533,10 @@ def _roots(store):
 
 def verify_pair(pair):
     counts=[s.verify() for s in pair.stores]
+    if pair.hybrid:
+        from evidence_retention import verify_catalogs
+        verify_catalogs(pair)
+        return counts
     for sql in ('SELECT sha256,size FROM objects ORDER BY sha256',
                 'SELECT git_blob,path,sha256 FROM versions ORDER BY git_blob,path'):
         if list(pair.stores[0].db.execute(sql))!=list(pair.stores[1].db.execute(sql)):
@@ -554,9 +607,11 @@ def _checkpoint_objects(pair, *, verified_roots=()):
         if target.execute('''SELECT 1 FROM checkpoint_source.versions p JOIN main.versions r
                 USING(git_blob,path) WHERE p.sha256!=r.sha256 LIMIT 1''').fetchone():
             raise ValueError('Replica historical Git binding conflict')
+        required = ''' AND coalesce((SELECT copies FROM checkpoint_source.retention_classes c
+                      WHERE c.sha256=p.sha256),2)=2''' if pair.hybrid else ''
         target.execute('''CREATE TEMP TABLE checkpoint_missing_objects AS
             SELECT p.sha256,p.size,p.git_blob FROM checkpoint_source.objects p
-            LEFT JOIN main.objects r USING(sha256) WHERE r.sha256 IS NULL''')
+            LEFT JOIN main.objects r USING(sha256) WHERE r.sha256 IS NULL''' + required)
         count = target.execute('SELECT COUNT(*) FROM checkpoint_source.objects').fetchone()[0]
         transferred = 0
         with pair.batch():
@@ -566,10 +621,20 @@ def _checkpoint_objects(pair, *, verified_roots=()):
                     stream.seek(0)
                     pair.put(stream, size, blob)
                 transferred += 1
+            if pair.hybrid:
+                from evidence_retention import decide
+                for sha, copies, reason in pair.stores[0].db.execute('SELECT * FROM retention_classes'):
+                    prior=target.execute('SELECT copies FROM retention_classes WHERE sha256=?',(sha,)).fetchone()
+                    if prior is not None and prior[0]>copies:
+                        raise ValueError('Replica has a stronger custody decision; retain and review')
+                    decide(pair.stores[1],sha,copies,reason)
+                target.execute('''INSERT OR IGNORE INTO main.retention_decisions
+                    SELECT * FROM checkpoint_source.retention_decisions''')
             target.execute('''INSERT OR IGNORE INTO main.versions
                 SELECT p.git_blob,p.path,p.sha256 FROM checkpoint_source.versions p
                 WHERE NOT EXISTS (SELECT 1 FROM main.versions r
-                                  WHERE r.git_blob=p.git_blob AND r.path=p.path)''')
+                                  WHERE r.git_blob=p.git_blob AND r.path=p.path)
+                  AND EXISTS(SELECT 1 FROM main.objects o WHERE o.sha256=p.sha256)''')
             # Existing root payloads still receive fresh two-copy integrity and
             # canonical-JSON checks. Only missing root metadata needs an insert.
             roots_exist = target.execute("SELECT 1 FROM sqlite_master WHERE name='retention_roots'").fetchone()
@@ -588,7 +653,10 @@ def _checkpoint_objects(pair, *, verified_roots=()):
                     if pair.root(kind, source, value) != dict(sha256=sha, size=size):
                         raise ValueError('Noncanonical retention root requires review')
                     roots_exist = True
-        for columns, table in (('sha256,size', 'objects'), ('git_blob,path,sha256', 'versions')):
+        if pair.hybrid:
+            from evidence_retention import verify_catalogs
+            verify_catalogs(pair, attached='checkpoint_source')
+        for columns, table in (() if pair.hybrid else (('sha256,size', 'objects'), ('git_blob,path,sha256', 'versions'))):
             for left, right in (('main', 'checkpoint_source'), ('checkpoint_source', 'main')):
                 if target.execute(f'SELECT 1 FROM (SELECT {columns} FROM {left}.{table} EXCEPT SELECT {columns} FROM {right}.{table}) LIMIT 1').fetchone():
                     raise ValueError('Replica has divergent immutable identities; retain and review')
@@ -597,7 +665,9 @@ def _checkpoint_objects(pair, *, verified_roots=()):
         return dict(success=True, objects=count, transferred_objects=transferred,
             missing_objects_replicated_and_verified=True, catalogs_match=True,
             backup_unit='immutable_object', physical_database_snapshot=False,
-            catalog_comparison='bulk-sql', existing_objects_scrubbed=False)
+            catalog_comparison='bulk-sql', existing_objects_scrubbed=False,
+            retention_policy='hybrid-v1' if pair.hybrid else 'dual-v1',
+            bulk_one_copy_objects=sum(n == 1 for n in pair.retention_classes.values()))
     finally:
         target.execute('DROP TABLE IF EXISTS temp.checkpoint_missing_objects')
         target.execute('DETACH DATABASE checkpoint_source')

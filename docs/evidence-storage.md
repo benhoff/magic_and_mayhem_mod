@@ -1,5 +1,57 @@
 # Evidence storage lifecycle
 
+## Hybrid retention, approved 2026-11-13
+
+The current policy replaces blanket duplication with two custody classes.
+Essential reports/manifests, source, saves/configuration, tested executables and
+complete review/checkpoint closures retain two independent copies. Historical
+bulk workspace payloads retain one verified copy. Reviewed reproducible working
+data may be discarded after retaining reconstruction inputs and unique changes.
+This supersedes universal two-copy wording in the older lifecycle description
+below; it does not alter historical report bytes or engine validation claims.
+
+`tools/evidence-storage.json` schema 2 declares `durable_copies: 2` and
+`bulk_copies: 1`. Anonymous reports and logical checkpoint data default to two
+copies. Workspace file admission classifies small diagnostics, source, JSON,
+configuration, saves and executables as essential; larger residual payloads may
+be bulk. PE/ELF magic protects executables even with a `.bin` name. Essential
+classification wins when identical bytes have multiple roles. Ordinary writers
+can promote one copy to two, and cannot demote an essential object.
+
+`retention_classes` and immutable decision records describe current custody.
+The primary retains every object. The mirror contains required essential objects
+and all root metadata; missing declared bulk is intentional. Sync repairs required
+copies without recreating bulk duplication. An explicit second-copy verification
+fails for bulk; restoration deliberately selects its verified surviving copy.
+Workspace results report actual payload copies separately from metadata copies.
+Old writers reject schema 2, and connection capability guards also block a stale
+writer that was already waiting when the policy changed. Read-only legacy
+objects/chunks queries remain available.
+
+Migrate an idle full pair with a new SQLite plan:
+
+```sh
+python3 tools/compact-evidence-mirror.py plan --primary /cold/working/primary.sqlite3 \
+  --replica /main/working/replica.sqlite3 --output working/retention/hybrid-plan.sqlite3
+python3 tools/compact-evidence-mirror.py apply working/retention/hybrid-plan.sqlite3 \
+  --expected-plan-sha256 SHA
+```
+
+Planning resolves explicit workspace membership and protects all roots, Git-bound
+reports, tracked-source manifests and complete logical SQLite backup closures.
+Unknown objects stay essential. Execution refuses changed catalogs or active
+consumers, hashes every surviving primary object, constructs and verifies the
+essential mirror, records custody and atomically replaces the old mirror. The
+old full mirror remains until the replacement is verified; failures retain it and
+their prepared output. A corrupt primary never authorizes retirement. Independent
+filesystem and free-space checks remain in force.
+
+One bulk copy has no second recovery copy after device failure. Retiring obsolete
+raw data also removes its replay/reanalysis capability; retained summaries do not
+pretend otherwise. Original media, active work, current inputs and saves remain
+protected. Full raw failure retention is scoped to unresolved failures or named
+regression witnesses, rather than every failed setup attempt forever.
+
 For lightweight campaign diagnostics, shared input provisioning and automatic
 comparison-output handoff, see [campaign check storage](check-storage.md).
 For proportionate collection, temporary-output retention, explicit tracked
