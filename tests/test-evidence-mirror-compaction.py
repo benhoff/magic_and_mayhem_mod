@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Real sparse-mirror construction and failure boundary checks."""
 from contextlib import closing
-import io,json
+import io,json,os
 from pathlib import Path
 import sqlite3,subprocess,sys,tempfile,unittest
 from unittest.mock import patch
@@ -10,6 +10,7 @@ ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'tools'))
 from evidence_objects import Pair,verify_pair,logical_checkpoint,configured
 from evidence_workspace import seal,restore,scan
 from evidence_mirror_compaction import prepare,apply,fingerprint
+import evidence_mirror_compaction as migration
 
 class Compaction(unittest.TestCase):
     def setUp(self):
@@ -76,5 +77,87 @@ class Compaction(unittest.TestCase):
         from coverage_evidence import Store
         with closing(Store(self.replica,readonly=True))as old:self.assertGreater(old.verify(),0)
         self.assertTrue(self.replica.with_name(self.replica.name+'.hybrid-prepared').is_file())
+
+    def failed_after_scrub(self):
+        plan=prepare(self.primary,self.replica,self.plan)
+        with patch('evidence_mirror_compaction.copy_blocks',side_effect=RuntimeError('stage stopped')):
+            with self.assertRaisesRegex(RuntimeError,'stage stopped'):
+                apply(self.plan,plan['plan_sha256'],minimum_free=(0,0))
+        self.replica.with_name(self.replica.name+'.hybrid-prepared').rename(self.replica.with_name('failed-stage.sqlite3'))
+        return plan
+
+    def test_completed_scrub_reuse_is_explicit_and_does_not_rehash_primary(self):
+        plan=self.failed_after_scrub();copied=[]
+        from coverage_evidence import Store
+        original=Store.copy
+        def observe(store,*args,**kwargs):
+            if store.path==self.primary:copied.append(args[0])
+            return original(store,*args,**kwargs)
+        with patch.object(Store,'copy',observe):
+            result=apply(self.plan,plan['plan_sha256'],minimum_free=(0,0),reuse_primary_verification=True,verified_source_commit='HEAD')
+        self.assertFalse(result['primary_full_hash_executed']);self.assertEqual(copied,[])
+        self.assertEqual(result['primary_verification']['mode'],'retained_full_scrub')
+        self.assertTrue(result['replacement_verified'])
+
+    def test_reuse_refuses_physical_touch_even_with_unchanged_catalog(self):
+        plan=self.failed_after_scrub();os.utime(self.primary,None)
+        with self.assertRaisesRegex(ValueError,'storage changed'):
+            apply(self.plan,plan['plan_sha256'],minimum_free=(0,0),reuse_primary_verification=True,verified_source_commit='HEAD')
+        from coverage_evidence import Store
+        with closing(Store(self.replica,readonly=True))as old:self.assertGreater(old.verify(),0)
+
+    def test_reuse_requires_reviewed_unchanged_decoder_revision(self):
+        plan=self.failed_after_scrub()
+        with self.assertRaisesRegex(ValueError,'reviewed source commit'):
+            apply(self.plan,plan['plan_sha256'],minimum_free=(0,0),reuse_primary_verification=True)
+        with patch('evidence_mirror_compaction.decoder_revision',side_effect=ValueError('decoder source changed')):
+            with self.assertRaisesRegex(ValueError,'decoder source changed'):
+                apply(self.plan,plan['plan_sha256'],minimum_free=(0,0),reuse_primary_verification=True,verified_source_commit='HEAD')
+
+    def test_primary_reserve_loss_during_copy_preserves_old_replica(self):
+        plan=prepare(self.primary,self.replica,self.plan);original=migration.copy_blocks;usage=migration.shutil.disk_usage
+        def no_primary_space(new,paths,floors):
+            def measured(path):
+                result=usage(path)
+                return result._replace(free=0)if Path(path)==self.primary.parent else result
+            with patch('evidence_mirror_compaction.shutil.disk_usage',side_effect=measured):original(new,paths,floors)
+        with patch('evidence_mirror_compaction.copy_blocks',side_effect=no_primary_space):
+            with self.assertRaisesRegex(ValueError,'reserve crossed'):apply(self.plan,plan['plan_sha256'],minimum_free=(0,0))
+        from coverage_evidence import Store
+        with closing(Store(self.replica,readonly=True))as old:self.assertGreater(old.verify(),0)
+
+    def test_blob_copy_stays_below_small_temporary_spill_budget(self):
+        # Actual SQLite temp-file allocation is the observable constraint. The
+        # old INSERT..SELECT path is a negative control for the same fixture.
+        with configured(self.root)as pair:pair.bytes(b'MZ'+os.urandom(64*1024**2))
+        plan=prepare(self.primary,self.replica,self.plan);connect=sqlite3.connect;peak=[0]
+        class Observed(sqlite3.Connection):
+            def set_progress_handler(conn,callback,interval):
+                def observe():
+                    directory=os.environ.get('SQLITE_TMPDIR','')
+                    for fd in Path('/proc/self/fd').iterdir():
+                        try:
+                            target=os.readlink(fd)
+                            if (directory and target.startswith(directory))or'etilqs'in target:peak[0]=max(peak[0],fd.stat().st_size)
+                        except OSError:pass
+                    return int(peak[0]>8*1024**2)or callback()
+                return super().set_progress_handler(observe,min(interval,100))
+        def observed(*args,**kwargs):
+            if '.hybrid-prepared'in str(args[0]):kwargs['factory']=Observed
+            conn=connect(*args,**kwargs)
+            if isinstance(conn,Observed):conn.execute('PRAGMA temp_store=FILE')
+            return conn
+        def old_copy(new,paths,floors):
+            new.db.execute('''INSERT INTO blocks SELECT b.*FROM retained_source.blocks b
+                WHERE b.sha256 IN(SELECT DISTINCT p.block FROM retained_source.object_parts p
+                    JOIN main.objects o ON o.sha256=p.sha256)''')
+        with patch('sqlite3.connect',side_effect=observed),patch('evidence_mirror_compaction.copy_blocks',side_effect=old_copy):
+            with self.assertRaises(sqlite3.OperationalError):apply(self.plan,plan['plan_sha256'],minimum_free=(0,0))
+        self.assertGreater(peak[0],8*1024**2)
+        self.replica.with_name(self.replica.name+'.hybrid-prepared').rename(self.replica.with_name('failed-spill.sqlite3'));peak[0]=0
+        previous=os.environ.get('SQLITE_TMPDIR')
+        with patch('sqlite3.connect',side_effect=observed):result=apply(self.plan,plan['plan_sha256'],minimum_free=(0,0))
+        self.assertTrue(result['replacement_verified']);self.assertLessEqual(peak[0],8*1024**2)
+        self.assertEqual(os.environ.get('SQLITE_TMPDIR'),previous)
 
 if __name__=='__main__':unittest.main()
