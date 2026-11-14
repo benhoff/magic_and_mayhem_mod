@@ -30711,3 +30711,26 @@ the pre-JPEG first frame still exceeds 50 ms. Decoder discovery microprobes
 36 ms versus 2 ms support only targeted setup attribution. No live FPS,
 universal startup deadline, original pixel-equivalence, long-session or
 wizard-death causal promotion. See [findings](native-render-hotspots-20261113.md).
+
+
+
+
+### Lossless unpublished journal storage rewrite — 2026-11-14
+
+GitHub refused the reviewed local/remote reconciliation because 31 historical
+active journal blobs exceeded its file limit. The authorized repair reconstructs
+the 33 unpublished commits with the existing hash-pinned SQLite review shards.
+Every existing nonjournal blob/mode, author, committer, message and logical
+receipt is preserved; parents map to their verified reconstructed counterparts.
+Exact original journal bytes remain in SQLite. Original Git history is pinned by
+`archive/master-before-journal-rewrite-20261114` and a verified retained bundle.
+`.evidence-commits.json` records the original-to-reconstructed commit mapping.
+
+`journal-storage-rewrite-20261114/rewrite-verification.json` records the per-commit
+comparison. Its history review records exact reconstructed transitions as custody
+only. This changes storage and commit identities, without renewing engine
+validation, changing native sources, or promoting incomplete Native acceptance
+and Original recovery. Normal finish/hook checks and protected master replacement
+remain separate required steps. Remote master remains an ancestor; publication
+uses a normal push. Existing task branches preserve their original history and
+must avoid reintroducing the mapped unpublished ancestors.
