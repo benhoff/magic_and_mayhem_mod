@@ -30846,3 +30846,24 @@ under explicit import identities. Two new immutable archive versions record the
 canonical selection, while all original archive bytes remain retained. The
 resolution report verifies every local receipt and every incoming receipt or
 its identity import; the initial gate refusal remains retained.
+
+
+### Default secondary black caller completion, 2026-11-14
+
+`NP.world-secondary-black-default` enables exact500a16/tag12 and500a32/tag17
+in the default protected World path, preserving all64prior ordinary pairs and
+all ownership/source guards. Static regeneration pins their different secondary
+AX normalization and stores. SB14 retains393216original-fragment AX cases,
+6804original/native CPU pixel cases and2068416compared words including canaries.
+Three actual protected queue calls emit five owned CPS rasters/two fallbacks
+without touching the original canvas; native softwareGL matches all480000
+authored expected words with eight black pixels and zero ordinary readbacks.
+The full existing producer forwarding/refusal suite and current default/generated
+guards pass. Earlier fixture/setup/compiler negatives remain separate. Historical
+V1 variant and all old evidence hashes remain unchanged. No complete game, natural
+default caller encounter, full volatile ABI, physical GPU performance, simulation
+change or whole-player promotion is claimed. See
+[native-world-secondary-black-default.md](native-world-secondary-black-default.md).
+
+The fresh full audit has zero errors and the three retained historical warnings;
+see [coverage summary](coverage/summary-secondary-black-default-20261114-02.md).

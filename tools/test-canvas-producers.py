@@ -8,8 +8,10 @@ from kind8_sprite_fixture import original_fixture
 ROOT=Path(__file__).resolve().parents[1]
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--sprite-only',action='store_true');p.add_argument('--claims',type=Path);p.add_argument('--prefix-template',type=Path);p.add_argument('--shared-prefix',type=Path);p.add_argument('--output-parent',type=Path);p.add_argument('--report',type=Path);a=p.parse_args()
- if a.shared_prefix and a.prefix_template:p.error('Select shared prefix or a template')
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--sprite-only',action='store_true');p.add_argument('--secondary-black-only',action='store_true');p.add_argument('--claims',type=Path);p.add_argument('--prefix-template',type=Path);p.add_argument('--shared-prefix',type=Path);p.add_argument('--wine-prefix',type=Path);p.add_argument('--output-parent',type=Path);p.add_argument('--report',type=Path);a=p.parse_args()
+ if sum(bool(v)for v in [a.shared_prefix,a.prefix_template,a.wine_prefix])>1:p.error('Select one prefix source')
+ if a.sprite_only and a.secondary_black_only:p.error('Select one focused fixture')
+ if a.wine_prefix and (not a.wine_prefix.resolve().is_relative_to(ROOT/'working')or a.wine_prefix.is_symlink()):p.error('Explicit fixture prefix must be owned under working/')
  if a.report and a.report.exists():p.error('Refusing evidence overwrite')
  spec=importlib.util.spec_from_file_location('inspector',ROOT/'tools/inspect-canvas-producers.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
  paths=['runtime/scene/canvas_producers.c','runtime/scene/canvas_producers.S','tests/canvas-producers-test.c','tests/canvas-startup-call.S','tools/test-canvas-producers.py','tools/inspect-canvas-producers.py','runtime/shadow/win32_min.h','protocols/include/mnm/canvas_producers_v1.h','tools/build-scene-observer.py','runtime/scene/world_producer_bypass.c','protocols/include/mnm/world_producer_bypass_v1.h','tests/world-producer-bypass-call.S','runtime/scene/world_raster_callers.h']
@@ -23,7 +25,7 @@ def main():
  paths += ['protocols/include/mnm/drawing_caller_state_v3.h']
  paths += ['protocols/include/mnm/drawing_caller_state_v4.h']
  paths += ['protocols/include/mnm/drawing_caller_state_v5.h']
- paths += ['protocols/include/mnm/drawing_caller_tail_v1.h']
+ paths += ['protocols/include/mnm/drawing_caller_tail_v1.h','tests/secondary-black-hook-fixture.h','tests/world-secondary-black-call.S']
  paths += ['runtime/scene/palette_observation.h','runtime/scene/palette_observation.S']
  claims=json.loads(a.claims.read_text()) if a.claims else None
  sources={name:sha(ROOT/name) for name in paths}
@@ -38,6 +40,7 @@ def main():
  parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));capture=out/'capture';capture.mkdir();print(out,flush=True)
  env={**{k:v for k,v in os.environ.items() if not k.startswith('MNM_')},'WINEPREFIX':str(ROOT/'working/tests/scene-selftest-wine'),'WINEDEBUG':'-all','MNM_CANVAS_PRODUCERS':'1','MNM_SCENE_DIR':'Z:'+str(capture).replace('/','\\'),'MNM_SCENE_SAMPLES':'1'}
  env.pop('MNM_CANVAS_STARTUP',None);env.pop('MNM_SCENE_WORLD',None)
+ if a.wine_prefix:env['WINEPREFIX']=str(a.wine_prefix.resolve())
  if a.prefix_template:
   stage_prefix(ROOT, str(a.prefix_template.resolve()), str(out/'wineprefix'))
   env['WINEPREFIX']=str(out/'wineprefix')
@@ -49,10 +52,19 @@ def main():
  run('bridge-build',['python3',ROOT/'tools/build-scene-observer.py','--selftest']);build=ROOT/'working/build/scene-observer-selftest'
  sprite_original=original_fixture(ROOT,out)
  objects=[]
- for name in ['tests/canvas-producers-test.c','tests/canvas-startup-call.S','runtime/scene/canvas_producers.S','tests/world-producer-bypass-call.S','tests/world-effect-entry-call.S','tests/kind8-sprite-primary-call.S']:
-  obj=out/(Path(name).name+'.obj');objects.append(obj);run('compile-'+Path(name).name,['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror',*(['-DMNM_KIND8_FIXTURE_ONLY']if a.sprite_only else []),'-I'+str(out),'-c',ROOT/name,'-o',obj])
+ for name in ['tests/canvas-producers-test.c','tests/canvas-startup-call.S','runtime/scene/canvas_producers.S','tests/world-producer-bypass-call.S','tests/world-effect-entry-call.S','tests/kind8-sprite-primary-call.S','tests/world-secondary-black-call.S']:
+  obj=out/(Path(name).name+'.obj');objects.append(obj);run('compile-'+Path(name).name,['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror',*(['-DMNM_KIND8_FIXTURE_ONLY']if a.sprite_only else ['-DMNM_SECONDARY_BLACK_FIXTURE_ONLY']if a.secondary_black_only else []),'-I'+str(out),'-c',ROOT/name,'-o',obj])
  run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/base:0x400000','/dynamicbase:no','/safeseh:no','/timestamp:0','/out:'+str(out/'fixture.exe'),*objects,*[build/(name+'.obj') for name in ('palette_observation.S','font_observation.S','font_lifetime.c','font_lifetime.S','required_boundaries.c','required_boundaries.S','drawing_publication.S','glyph_live.c','glyph_leave.S','glyph_route.c','glyph_backend.c','glyph_backend_state.c','glyph_backend_x87.S','word_backend_state.c')],build/'kernel32.lib'])
  run('forwarding',['xvfb-run','-a','wine',out/'fixture.exe'])
+ if a.secondary_black_only:
+  proof=(capture/'world-secondary-black-proof-0000.bin').read_bytes();assert proof[:8]==b'MNMSEC01'and struct.unpack('<6I',proof[8:])==(3,5,2,1,1,1),proof
+  stream=capture/'world-secondary-black-fixture-0000.bin';_,ops=m.decode(stream.read_bytes(),complete=False);rows=[r for r,payload in ops if r[2]==9]
+  assert [r[15]for r in rows]==[0,0,3,0,3]and [r[22]for r in rows]==[0x500a16,0x500a16,0x500a32,0x500a16,0x500a32]
+  assert [r[21]for r in rows]==[0,1,0,1,0]
+  assert sources=={name:sha(ROOT/name)for name in sources}
+  report=dict(schema=1,success=True,sources=sources,original=sprite_original,scope='Actual protected producer hooks under unchanged secondary black queue fragment: three calls,five owned rasters,two clipped fallbacks,original destination unchanged. No original raster body, GPU or complete game execution.',secondary_queue_calls=3,actual_owned_rasters=5,clipped_fallbacks=2,original_destination_unchanged=True,source_fragments_unchanged=True,stream=str(stream),batch=str(capture/'world-secondary-black-batch-0000.bin'))
+  if a.report:write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode())
+  print(json.dumps(dict(success=True,secondary_queue_calls=3,actual_owned_rasters=5,output=str(out))),flush=True);return 0
  if a.sprite_only:
   proof=(capture/'world-kind8-sprite-proof-0000.bin').read_bytes()
   assert proof[:8]==b'MNMSPR01' and len(proof)==40 and struct.unpack('<8I',proof[8:])==(5,15,25,0,15,912,1032,20),proof

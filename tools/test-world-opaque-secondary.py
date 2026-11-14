@@ -41,7 +41,7 @@ def main():
   if not a.expect_rejected:
    run('caller-controls',[sys.executable,ROOT/'tools/test-world-raster-callers.py','--output',out/'caller-controls'])
    report['caller_controls']=json.loads((out/'caller-controls/report.json').read_text())
-   assert report['caller_controls']['callers']==52 and report['caller_controls']['admitted_pairs']==61
+   assert report['caller_controls']['callers']==56 and report['caller_controls']['admitted_pairs']==66
    assert report['caller_controls']['production_and_selftest_hooks_compile']
    # The subtool uses bounded physical interchange files. Preserve every output
    # and tested executable in SQLite; no raw objects are lost on a later failure.
