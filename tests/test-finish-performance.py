@@ -53,6 +53,17 @@ class Backups(unittest.TestCase):
         for name, in store.db.execute("SELECT name FROM sqlite_master WHERE type='trigger' AND tbl_name=?", (table,)).fetchall():
             store.db.execute('DROP TRIGGER "' + name.replace('"', '""') + '"')
 
+    def test_commit_checkpoint_keeps_complete_records_without_restore_credit(self):
+        with patch.object(objects,'restore_logical',wraps=objects.restore_logical)as observed:
+            result=objects.logical_checkpoint(self.root,self.source,verify_restore=False)
+            self.assertFalse(result['logical_restore_verified'])
+            self.assertFalse(result['real_restore_performed'])
+            self.assertFalse(result['retirement_authorized'])
+            self.assertEqual(observed.call_count,0)
+            retired=objects.logical_checkpoint(self.root,self.source)
+            self.assertTrue(retired['logical_restore_verified'])
+            self.assertEqual(observed.call_count,1)
+
     def test_unchanged_readonly_reuses_restore_proof_but_freshly_hashes_both_copies(self):
         restore = objects.restore_logical
         with patch.object(objects, 'restore_logical', wraps=restore) as observed:

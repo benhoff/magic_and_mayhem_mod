@@ -1,5 +1,57 @@
 # Evidence storage lifecycle
 
+## Hybrid retention, approved 2026-11-13
+
+The current policy replaces blanket duplication with two custody classes.
+Essential reports/manifests, source, saves/configuration, tested executables and
+complete review/checkpoint closures retain two independent copies. Historical
+bulk workspace payloads retain one verified copy. Reviewed reproducible working
+data may be discarded after retaining reconstruction inputs and unique changes.
+This supersedes universal two-copy wording in the older lifecycle description
+below; it does not alter historical report bytes or engine validation claims.
+
+`tools/evidence-storage.json` schema 2 declares `durable_copies: 2` and
+`bulk_copies: 1`. Anonymous reports and logical checkpoint data default to two
+copies. Workspace file admission classifies small diagnostics, source, JSON,
+configuration, saves and executables as essential; larger residual payloads may
+be bulk. PE/ELF magic protects executables even with a `.bin` name. Essential
+classification wins when identical bytes have multiple roles. Ordinary writers
+can promote one copy to two, and cannot demote an essential object.
+
+`retention_classes` and immutable decision records describe current custody.
+The primary retains every object. The mirror contains required essential objects
+and all root metadata; missing declared bulk is intentional. Sync repairs required
+copies without recreating bulk duplication. An explicit second-copy verification
+fails for bulk; restoration deliberately selects its verified surviving copy.
+Workspace results report actual payload copies separately from metadata copies.
+Old writers reject schema 2, and connection capability guards also block a stale
+writer that was already waiting when the policy changed. Read-only legacy
+objects/chunks queries remain available.
+
+Migrate an idle full pair with a new SQLite plan:
+
+```sh
+python3 tools/compact-evidence-mirror.py plan --primary /cold/working/primary.sqlite3 \
+  --replica /main/working/replica.sqlite3 --output working/retention/hybrid-plan.sqlite3
+python3 tools/compact-evidence-mirror.py apply working/retention/hybrid-plan.sqlite3 \
+  --expected-plan-sha256 SHA
+```
+
+Planning resolves explicit workspace membership and protects all roots, Git-bound
+reports, tracked-source manifests and complete logical SQLite backup closures.
+Unknown objects stay essential. Execution refuses changed catalogs or active
+consumers, hashes every surviving primary object, constructs and verifies the
+essential mirror, records custody and atomically replaces the old mirror. The
+old full mirror remains until the replacement is verified; failures retain it and
+their prepared output. A corrupt primary never authorizes retirement. Independent
+filesystem and free-space checks remain in force.
+
+One bulk copy has no second recovery copy after device failure. Retiring obsolete
+raw data also removes its replay/reanalysis capability; retained summaries do not
+pretend otherwise. Original media, active work, current inputs and saves remain
+protected. Full raw failure retention is scoped to unresolved failures or named
+regression witnesses, rather than every failed setup attempt forever.
+
 For lightweight campaign diagnostics, shared input provisioning and automatic
 comparison-output handoff, see [campaign check storage](check-storage.md).
 For proportionate collection, temporary-output retention, explicit tracked
@@ -20,7 +72,7 @@ cleanup sweep.
 | --- | --- | --- |
 | Shared evidence across worktrees | `coverage_evidence`, `evidence_objects` | The same original-byte hash resolves through the configured shared primary; replica verification precedes publication of a new reference. |
 | Two durable copies total | `Pair`, explicit legacy handoff | Both independent stores verify every admitted object. Old source/container copies retire only after a source-specific preserved catalog and an actual restore. |
-| Incremental backups | `evidence_local.retained_backup` | Finish replicates missing immutable objects and checkpoints review schema/typed rows; unchanged records add no payload blocks. Whole database images remain an explicit interchange/private-backup option. |
+| Incremental backups | `evidence_local.retained_backup` | Routine finish checkpoints complete review schema/typed rows and retains only the changed staged source/report batch; unchanged records add no payload blocks. Full archive scrubs remain explicit. Whole database images remain an explicit interchange/private-backup option. |
 | Shared inputs and bounded execution | Existing two-slot `experiment_environment` pool, prefix borrowing, completed execution queue | A stopped prefix is exclusively leased, changes retained and state reset. Completed private game/capture trees share immutable file blocks after verified handoff. |
 | Disposable derived caches | `evidence_cache`, `finish-work.py` | All review rows, pending drafts and auxiliary schema are checkpointed and restored successfully before eviction. Lazy reopen restores them. The gate still checks the actual current/staged tree. |
 
@@ -58,10 +110,12 @@ consumers to resolve original report bytes. Historical source-specific auxiliary
 catalogs are restored explicitly, rather than falsely exposed as the shared
 store's auxiliary tables.
 
-`tools/finish-work.py` performs queued completed-workspace handoffs, exact review,
+`tools/finish-work.py` performs exact review,
 local evidence checks, incremental retained backups, staging and the normal
-commit hook. After successful finish it checkpoints and evicts the standard
-review cache; `--keep-review-cache` keeps it materialized. An explicitly selected
+commit hook. Routine finish keeps the standard
+review cache materialized and retains a complete checkpoint without a real
+reconstruction or retirement claim. `--evict-review-cache` explicitly requests
+the stronger checkpoint/restore/consumer workflow before removal. An explicitly selected
 alternate review DB is retained. No transfer, publication or engine rerun is
 attached to the hook. Publication and private SSH backup remain separate commands.
 
@@ -77,8 +131,11 @@ lifetime. Registry changes, failures and prefix identity are preserved by the
 existing pool. A stopped completed pilot queues its capture and private game
 paths together with the exact acquisition report and immutable source bytes.
 A held or failed prefix return stays in its execution tree for review.
-Launching never archives or deletes the execution tree. Batch finish processes
-only queues owned by that exact checkout.
+Launching never archives or deletes the execution tree. Routine finish leaves
+queued execution trees in place. Explicit `--handoff-completed-workspaces`
+processes only queues owned by that checkout; `evidence-workspace.py seal` handles
+a selected acquisition. Retain required raw inputs and tested executables before
+claiming durable engine validation. A pending queue is not a backup proof.
 
 An explicit handoff records **every** member, original `.retain` contents, file
 bytes, links, mode, owner/group, modification timestamp and xattrs. It refuses
@@ -259,3 +316,27 @@ used empty independent stores, retained identical object identities and compress
 block sizes, and performed a full real restore. This measured workload is about
 2.7 times faster; it does not predict the whole sweep. The source-stable 15-suite
 control report is `throughput-controls-02.json` in the same results directory.
+
+
+## Large mirror construction and interrupted phases
+
+Mirror construction streams one compressed block at a time. A bulk
+`INSERT .. SELECT` into a guarded table can make SQLite materialize the entire
+BLOB result before insertion, so it is unsuitable for this migration. Temporary
+metadata work uses an explicitly selected scratch directory on the replica
+filesystem; source and replica reserves are checked throughout. Run the migration
+as an isolated, single-threaded process because SQLite's temporary-directory
+setting is process-wide. The previous environment and directory setting are
+restored on exit. The normal Main storage guard still wraps large producers.
+
+An interrupted build preserves the full old mirror. Review the prepared output
+and diagnostics outside integration admission. Explicitly reusing a completed
+primary scrub requires unchanged fresh source/mirror catalogs, no physical
+primary or nonempty-WAL writes since the recorded verification began, immutable
+payload guards and the exact reviewed decoder source revision. New phase receipts
+also bind physical identities. Use `--reuse-primary-verification
+--verified-source-commit <reviewed-original-producer-revision>` only after that
+review. It refuses changed or missing proof; it never substitutes for the current
+coverage gates. The whole replacement is freshly verified, and results distinguish
+`primary_full_hash_executed` from the retained verification phase and its timestamp.
+Historical verification source hashes and reports remain unchanged.

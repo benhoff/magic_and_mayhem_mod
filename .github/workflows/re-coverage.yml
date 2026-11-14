@@ -25,6 +25,10 @@ jobs:
       - name: Test accounting and evidence tooling with isolated fixtures
         run: |
           python3 -B tests/test-integration-tools.py
+          python3 -B tests/test-candidate-promotion.py
+          python3 -B tests/test-scoped-coverage.py
+          python3 -B tests/test-commit-retention.py
+          python3 -B tests/test-worktree-report-compaction.py
           python3 -B tests/test-parallel-agent-tools.py
           python3 -B tests/test-working-retention.py
           TMPDIR=/dev/shm python3 -B tests/test-finish-performance.py
@@ -54,6 +58,10 @@ jobs:
       - name: Test audit and gate guards
         run: |
           python3 -B tests/test-integration-tools.py
+          python3 -B tests/test-candidate-promotion.py
+          python3 -B tests/test-scoped-coverage.py
+          python3 -B tests/test-commit-retention.py
+          python3 -B tests/test-worktree-report-compaction.py
           python3 -B tests/test-parallel-agent-tools.py
           python3 -B tests/test-working-retention.py
           TMPDIR=/dev/shm python3 -B tests/test-finish-performance.py
@@ -109,7 +117,7 @@ jobs:
           if not base or set(base) == {'0'}:
               parent = subprocess.run(['git', 'rev-parse', '--verify', 'HEAD^'], capture_output=True, text=True)
               base = parent.stdout.strip() if parent.returncode == 0 else None
-          command = ['python3', 'tools/check-re-coverage.py']
+          command = ['python3', 'tools/check-re-coverage.py', '--full']
           if base:
               command += ['--base', base]
               exists = subprocess.run(['git', 'cat-file', '-e', base + ':research/runtime/coverage/gate-baseline.json'], capture_output=True)

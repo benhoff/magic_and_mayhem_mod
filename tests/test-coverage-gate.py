@@ -851,7 +851,7 @@ class GateTests(unittest.TestCase):
         self.assertEqual(json.loads(target.read_text())['sources'], self.before['sources'])
 
     def prepare_hook(self):
-        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_applicability.py', 'coverage_claims.py', 'coverage_evidence.py', 'coverage_merge_history.py', 'coverage_reviews.py', 'index-coverage-sources.py', 'evidence_local.py', 'evidence_objects.py', 'verification_budget.py', 'coverage_scratch.py', 'integration_queue.py', 'guard-master-reference.py'):
+        for name in ('check-re-coverage.py', 'coverage_scoped.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_applicability.py', 'coverage_claims.py', 'coverage_evidence.py', 'coverage_merge_history.py', 'coverage_reviews.py', 'index-coverage-sources.py', 'evidence_local.py', 'evidence_objects.py', 'verification_budget.py', 'coverage_scratch.py', 'integration_queue.py', 'guard-master-reference.py'):
             self.write('tools/' + name, (ROOT/'tools'/name).read_text())
         self.write('.githooks/pre-commit', (ROOT/'.githooks/pre-commit').read_text())
         (self.root/'.githooks/pre-commit').chmod(0o755)
@@ -860,6 +860,18 @@ class GateTests(unittest.TestCase):
         self.json(REVIEWS, {'schema': 1, 'reviews': []})
         self.before = self.current()[0]
         self.init_git()
+
+    def test_git_base_drains_archive_padding_before_waiting_for_git(self):
+        self.init_git()
+        original=subprocess.Popen
+        def export(command,*args,**kwargs):
+            if command[3:4]==['archive']:
+                code="import subprocess,sys,signal;signal.signal(signal.SIGPIPE,signal.SIG_DFL);sys.stdout.buffer.write(subprocess.check_output(sys.argv[1:]));sys.stdout.buffer.write(bytes(2*1024*1024));sys.stdout.buffer.flush()"
+                return original([sys.executable,'-c',code,*command],*args,**kwargs)
+            return original(command,*args,**kwargs)
+        with patch.object(cli.subprocess,'Popen',export):
+            value,revision=cli.git_snapshot(self.root,'HEAD')
+        self.assertEqual(value['sources']['assets/model.cpp']['sha256'],self.sha('assets/model.cpp'))
 
     def test_hook_blocks_commit_and_accepts_exact_staged_review(self):
         self.prepare_hook()

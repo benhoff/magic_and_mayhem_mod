@@ -1,5 +1,67 @@
 # Magic & Mayhem Reverse Engineering
 
+## Hybrid retention policy — user approved 2026-11-13
+
+The user explicitly authorized aggressive disk reduction. This section supersedes
+older blanket two-copy, perpetual-pin and full-tree preservation requirements in
+this file and machine-local notes where they conflict:
+
+- Keep two independent verified copies of essential records: source/unique
+  changes, saves/configuration, tested executables, compact reports/manifests,
+  current review state and its complete logical checkpoint closure.
+- Keep one verified copy of bulky historical capture/workspace payloads.
+  Classify through the schema-2 hybrid policy; never fake a second copy or
+  silently fall back when a caller explicitly asks to verify two copies.
+- Discard reviewed reproducible compiler caches, disposable installations and
+  completed source copies after retaining their reconstruction inputs and unique
+  changes. Do not permanently archive every rebuildable byte first.
+- Keep full raw failure data only for unresolved failures, named comparisons or
+  selected regression witnesses. Retire obsolete raw evidence explicitly; keep
+  its identity, result and retirement reason, and disclose lost replay capability.
+- Pins require a dependency/ownership review; they are not automatic permanent
+  exemptions. Preserve the pin's meaning and record any approved reclassification.
+- Keep original/ immutable and protect active/recent work, saves, current inputs
+  and irreplaceable source changes. Source commits, normal hooks, coverage
+  accounting and independent engine-validation statuses remain required.
+
+Use `tools/compact-evidence-mirror.py` for a hash-bound sparse-mirror plan. Verify
+the complete surviving primary and replacement essential mirror before retiring
+duplicate bulk. Historical two-copy receipts remain true statements about their
+original phase; current custody is recorded separately. Do not rewrite old hashes.
+
+## Proportionate commits and merges — user approved 2026-11-14
+
+This policy supersedes older blanket full-corpus commit checks and instructions
+requiring merge preparation/validation while holding integration admission.
+
+- Every change uses an owned task branch, focused tests appropriate to its risk,
+  exact source/change accounting and the normal staged hook. Ordinary prose does
+  not require engine execution. Record validation limits honestly.
+- Routine `--base` checks inspect actual Git/index bytes and affected claims.
+  The pinned `change_scope_index` is provenance metadata, never a cached pass.
+  Changed sources, shared evidence/scenarios and changed contracts expand scope.
+  New provenance entries are checked against original report bytes; historical
+  entries cannot be rewritten to hide dependencies. Source census and immutable
+  history checks still run. Unrelated historical evidence is not renewed.
+- Engine behavior and validation claims require relevant original mappings,
+  source/evidence links, appropriate comparisons and explicit remaining gaps.
+  Status promotions still require fresh scope-bound execution evidence. Use
+  `check-re-coverage.py --full` or the full audit for intentional corpus reviews.
+- Actual evidence deletion, relocation and storage retirement retain full
+  survivor/replacement verification, consumer checks and real restore proofs.
+  A source commit or checkpoint-only backup does not authorize removal.
+- Prepare and normally finish the exact combined candidate outside admission.
+  Retain essential review records and changed source/evidence in two stores;
+  keep the live review cache by default. Seal required acquisition inputs
+  explicitly before claiming durable engine validation; routine finish does not
+  retire queued execution workspaces. A routine finish does not reconstruct
+  that cache, scrub the whole archive or archive unrelated objects. Explicit
+  cache eviction still requires its complete checkpoint and real restore.
+- Acquire the master lease only to recheck the observed base, pinned candidate
+  commit/tree and clean checkouts, then promote. If master or the candidate
+  changed, preserve the candidate and redo affected checks outside admission.
+  Never develop, validate, back up or wait for a decision while holding the lease.
+
 ## Machine-specific instructions
 
 Before starting work, read `AGENTS.local.md` beside this file if it exists and
@@ -31,14 +93,13 @@ with these shared instructions.
   developing, testing or preparing evidence. Admit only ready tips. Batch already
   ready, compatible tips when useful; never hold admission waiting for another
   task to become ready. A blocked task must not hold up independent ready work.
-- Under admission, recheck the actual master tip and readiness, then perform only
-  the combined merge, required combined-tree review/checks/backups, normal staged
-  hook and checked promotion. Hold the lease throughout that attempt. If a
-  conflict, failed check, missing input or decision requires investigation or
-  repair, preserve the candidate and diagnostics and exit the admitted operation
-  promptly. Repair outside the slot, then reacquire and recheck actual master
-  before a new attempt. Do not sleep, wait for user input or run a debugging
-  session while holding admission. Release promptly after promotion or refusal.
+- Before admission, prepare the combined candidate against the observed master,
+  perform required combined-tree reviews/checks/backups and the normal staged
+  hook, and pin its exact commit/tree/base. A ready feature pass alone does not
+  validate a different combined tree. Resolve conflicts outside admission.
+- Under admission, recheck master, the pinned candidate and clean checkouts;
+  perform only checked promotion. A changed base or candidate refuses promotion
+  and preserves the work for review outside the slot. Release promptly.
 - Follow [the integration workflow](docs/integration-workflow.md). The lease
   enforces exclusive master updates, not semantic readiness; agents must enforce
   this checklist even when using a custom integration wrapper.
@@ -118,16 +179,57 @@ before cleanup. Follow the SQLite evidence preservation rules below.
   Unknown/unclassified output remains held. Do not automatically archive every
   rebuildable temporary byte into the permanent evidence pair.
 - Keep one owned active checkout per task and reuse shared immutable inputs.
-  Once a clean merged checkout is inactive, compact duplicate tracked research
-  and fixtures through the verified worktree workflow. Retain Git registration,
-  unique changes, working data and restore instructions. Existing pins and
-  historical evidence require their original reviewed handoff; this prospective
-  policy does not silently reclassify them.
+  Clean up temporary output at task closeout, then retire the clean, merged,
+  inactive checkout through the reviewed workflow below. Use tracked-directory
+  compaction when the checkout still has a justified consumer. Existing pins and
+  historical evidence require an explicit ownership/dependency and custody review;
+  neither age nor a merged tip alone permits their removal.
 - Completed legacy catalogs may be consolidated with source-specific schema,
   every logical record and original snapshot bytes retained in two verified
   stores. Explicitly record retirement of physical SQLite page layouts and
   restore commands; never present a logical reconstruction under an old
   whole-container hash. See `docs/storage-consolidation.md`.
+
+### Mandatory closeout and worktree retirement — approved 2026-11-14
+
+Workspace cleanup is part of task completion, regardless of available free space.
+This policy supersedes older blanket requirements in shared and machine-local
+instructions to preserve completed source checkouts and Git registrations. It
+authorizes routine reviewed cleanup without a new permission request; it does not
+reclassify historical pins or authorize deleting an unreviewed worktree.
+
+- Before reporting completion, stop owned processes, retain required evidence,
+  tested executables and reconstruction inputs, and remove reviewed disposable
+  compiler, build, staging and installation output. Newly created, explicitly
+  temporary task-owned output may be removed after its consumers finish even
+  within the usual recent/newest-run windows; those protections still apply to
+  evidence, unknown output and other tasks' data. Do not archive every rebuildable
+  intermediate first. Keep the ready source checkout until integration finishes.
+- After integration, outside integration admission, retire the owned checkout
+  once it is clean and inactive and its dependencies have been discharged.
+  Recent timestamps alone do not delay retirement of this task's newly completed
+  checkout after those checks; evidence still needs its verified custody handoff.
+  Record any retained allocation with its size, owner, concrete reason and release
+  condition. Pending integration, active inputs and unresolved evidence needs are
+  valid holds; record the remaining cleanup instead of claiming full retirement.
+- Apply the same retirement path to individually reviewed historical worktrees.
+  Verify the exact merged commit and all source/recovery inputs in two independent
+  durable copies, using retained Git objects/bundles plus unique changes rather
+  than another expanded checkout. A branch in the shared Git directory is not an
+  independent backup. Keep branches/ready refs reachable; branch deletion is a
+  separate review.
+- Inventory tracked, untracked and ignored files, worktree-local settings,
+  symlinks, hardlinks, pins, locks and current consumers. Preserve essential
+  records in two verified copies and historical bulk in its verified surviving
+  copy. Move required stores, restoration metadata and hooks to durable locations
+  outside the retiring tree and update their consumers first. Never remove
+  original artifacts, active/recent work or the only usable recovery route.
+- Follow [the retirement procedure](docs/storage-consolidation.md#task-closeout-and-worktree-retirement).
+  Retain a hash-bound SQLite plan/receipt and verify a real independent restore
+  before removal. Recheck source identity and inactivity immediately before the
+  scripted removal; invoke Git from a surviving checkout without force flags.
+  Refusals stay held for investigation outside admission. Report reclaimed
+  allocated bytes separately from free-space changes and archival overhead.
 
 ## Reverse-engineering coverage upkeep
 
@@ -171,8 +273,9 @@ infer semantic mappings or update the register automatically.
   result under a new evidence ID; never refresh old hashes just to clear staleness.
   Source-only changes may leave evidence stale: report the affected limitation,
   and rerun the relevant comparison before claiming current-code validation.
-- Run `python3 tools/audit-re-coverage.py` after affected changes and inspect
-  warnings for the touched behavior/evidence IDs. Run checks appropriate to the
+- Run `python3 tools/check-re-coverage.py --base HEAD` after ordinary changes and
+  inspect affected behavior/evidence findings. Run `python3 tools/audit-re-coverage.py`
+  for an intentional full audit or a discovery change needing corpus accounting. Run checks appropriate to the
   change; use `--require-fresh` when requiring all registered evidence to match
   current source. Existing unrelated historical staleness is not a reason to
   rerun every subsystem or stop authorized work.
@@ -354,11 +457,12 @@ source-specific manifests, verified real restores and durable handoff receipts;
 record any retired physical container encoding honestly, without changing an
 original report hash. Stopped completed execution trees may transfer every file
 and original pin into this pair after full restore verification and consumer
-checks, retaining a pinned historical-path restore stub. This does not authorize
-source-checkout removal or generic cleanup of pins/recent/active inputs. Launch
-queues handoff; it never archives. A standard review cache is disposable only
-after its complete schema, rows, drafts and auxiliary data survive a verified
-checkpoint. Current/staged gates still execute; no cached pass is authoritative. Remote publication is not a
+checks, retaining a pinned historical-path restore stub. That execution handoff
+does not itself authorize source-checkout removal; use the separate reviewed
+retirement procedure above. It does not permit generic cleanup of pins or active
+inputs. Launch queues handoff; it never archives. A standard review cache is
+disposable only after its complete schema, rows, drafts and auxiliary data survive
+a verified checkpoint. Current/staged gates still execute; no cached pass is authoritative. Remote publication is not a
 prerequisite for either operation; never upload evidence merely to finish a
 local commit or merge. Keep the local databases and their backup catalogs pinned
 against working-storage cleanup; a Git commit contains references, not payloads.
@@ -385,15 +489,14 @@ Preserve failed publication receipts and immutable assets. Publishing or omittin
 publication never changes engine validation claims.
 Apply the worktree ownership and readiness checklist above. Keep later concurrent
 edits out of that batch's source snapshot, evidence claims and commit.
-Only after the task is ready, and before preparing the authoritative local master
-merge, acquire admission through
-`tools/integrate-work.py` for ready tips, or wrap the whole custom operation in
-`tools/with-integration-lock.py --execute --expected-master <commit>` and hold it
-through promotion. Follow `docs/integration-workflow.md`. Install current shared
-hooks from a durable checkout; the master reference guard requires an inherited
-active lease. Propagate it to child Git calls instead of disabling hooks. Keep
-coding and focused tests outside the integration slot. Compatible ready tips may
-share one reviewed batch; semantic conflicts and failed checks still require
-review. Current/staged checks and master-tip verification remain required.
-The review workspace remains local and its exact text exports remain Git/CI
-authority; archive relocation does not assert engine validation.
+Only after the exact combined candidate has passed its required reviews, checks,
+normal staged hook and retained backups, acquire promotion admission through
+`tools/integrate-work.py`. It prepares and validates outside the lease, then
+rechecks the actual master base and exact clean candidate before promotion.
+Custom operators use `tools/with-integration-lock.py --execute --expected-master
+<base>` around promotion only. Follow `docs/integration-workflow.md`. Current
+hooks and the inherited active lease remain mandatory for master updates. Do not
+re-run validation, acquire evidence or investigate failures inside admission.
+Preserve refused candidates and repair outside the slot.
+The review workspace remains local and exact text exports remain Git/CI authority.
+Archive relocation does not assert engine validation.

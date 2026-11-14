@@ -10,21 +10,24 @@ from coverage_evidence import Store, cache_root, config, digest_file, pending_pa
 
 
 @contextmanager
-def local_evidence(root):
+def local_evidence(root, *, verify_archives=True):
     """Bind temporary Git trees to local evidence; refuse missing cache files.
 
-    Published archives are preflighted before any reader can attempt a fetch.
-    Source and contract checks still run against each actual working/staged tree.
+    Full mode preflights published archives; scoped mode checks consumed objects
+    on demand. Neither mode fetches missing archives. Source and contract checks
+    still run against each actual working/staged tree.
     """
     root = Path(root).resolve()
     cache = cache_root(root)
-    for archive in (config(root) or {}).get('archives', []):
+    for archive in (config(root) or {}).get('archives', []) if verify_archives else ():
         path = cache/(archive['sha256'] + '.sqlite3')
         if not path.is_file() or digest_file(path) != archive['sha256']:
             raise ValueError('Evidence archive unavailable locally; run evidence-store.py fetch --verify: '
                              + archive['sha256'])
     previous = {key: os.environ.get(key) for key in ('MM_EVIDENCE_DB', 'MM_EVIDENCE_CACHE', 'MM_EVIDENCE_EXTRA_DB')}
     pending = pending_path(root)
+    from coverage_evidence import _local_archive_mode
+    archive_token = _local_archive_mode.set('offline' if verify_archives else 'targeted')
     try:
         os.environ['MM_EVIDENCE_CACHE'] = str(cache)
         os.environ['MM_EVIDENCE_EXTRA_DB'] = json.dumps([str(p) for p in extra_pending_paths(root)])
@@ -32,6 +35,7 @@ def local_evidence(root):
             os.environ['MM_EVIDENCE_DB'] = str(pending.resolve())
         yield
     finally:
+        _local_archive_mode.reset(archive_token)
         for key, value in previous.items():
             if value is None:
                 os.environ.pop(key, None)
@@ -99,7 +103,7 @@ def backup_sqlite(source, directory):
         temporary.unlink(missing_ok=True)
 
 
-def retained_backup(source, directory, root):
+def retained_backup(source, directory, root, *, verify_restore=True):
     """Use configured dual chunk stores for finish; private transfers stay raw.
 
     An unconfigured checkout retains the existing materialized backup workflow.
@@ -113,7 +117,7 @@ def retained_backup(source, directory, root):
         from coverage_evidence import pending_path
         if Path(source).resolve() == pending_path(root).resolve():
             return checkpoint_objects(root)
-        return logical_checkpoint(root, source)
+        return logical_checkpoint(root, source, verify_restore=verify_restore)
 
     def setting(key):
         result = subprocess.run(["git", "-C", str(root), "config", "--get", key],

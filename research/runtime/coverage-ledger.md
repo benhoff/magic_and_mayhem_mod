@@ -30653,6 +30653,60 @@ The implementation integrated at `f4c480a15b48f0bdf82de0dfacb0dea12c12f79f` is u
 Fifty of 90 contexts are qualified at 161 request rows and 210 conservative charges. Forty cases remain unstarted. The unchanged 90-context/98-positive-start plan still requires 201 rows and 250 charges. Full Native acceptance and Original recovery remain independently pending. Dashboard acceptance, the 156 inherited requirement rows, known Quick Spectate/Game Over and natural fading boundaries, and historical negative evidence remain unchanged. No status is promoted. The acquisition checkout, raw evidence, pins, databases, restore stubs and all evidence stores remain preserved.
 
 
+
+
+### User-approved hybrid disk retention — 2026-11-13
+
+Essential source, saves/configuration, tested executables, compact evidence and
+complete SQLite review/checkpoint closures retain two verified copies. Reviewed
+historical bulk may retain one hash-verified primary under an exact custody plan.
+Schema-2 writers, sparse verification/replication, promotion and restore have
+separate host controls under TOOL.hybrid-evidence-retention. The first Cold-main
+pilot verified all 59,373 surviving objects and its replacement mirror before
+reclaiming 22,900,469,760 allocated bytes. Single-drive loss exposure for that bulk
+is explicit. Earlier custody reports remain historical facts; no engine evidence
+hash, game acceptance status or original-media byte changes. See
+research/runtime/hybrid-retention-20261113.md and the SQLite-backed controls.
+
+
+### Streamed mirror construction and preserved interrupted phase — 2026-11-13
+
+The large shared primary passed all 3,642,983 object hashes. Its first replacement
+build spilled bulk SQL BLOB results under /var/tmp and was stopped after crossing
+the Cold reserve; spill closure restored 109 GiB free. The old full mirror and
+original verification receipt remain retained. The revised builder streams blocks,
+scopes temporary metadata to the replica filesystem, guards both reserves and
+allows only explicitly reviewed unchanged primary-phase reuse. Fresh replacement
+verification and all current/staged gates remain mandatory. Five additional
+controls cover bounded temporary allocation and reuse/reserve refusals. This is
+host storage work; no game run, original hash refresh or engine-status promotion.
+
+
+### Proportionate merge accounting and short promotion — 2026-11-14
+
+The approved policy moves exact candidate preparation, scoped accounting,
+focused checks, backups and the normal staged hook outside master admission.
+Promotion alone rechecks the pinned checked commit/tree/base and clean checkouts.
+Routine checks use a verified provenance-only index and the affected dependency
+closure; full-corpus audits and actual storage retirement retain explicit paths.
+Ordinary finish keeps the cache/workspaces in place, checkpoints complete review
+records and retains changed staged source/cited payloads in two stores. No
+checkpoint-only receipt authorizes deletion. MERGE14.controls03 records 332
+passing source-stable host tests across 17 suites; no engine source, milestone
+or historical hash is renewed.
+See research/runtime/proportionate-merges-20261114.md.
+
+### Historical worktree report compaction — 2026-11-14
+
+HOST.worktree-report-materialization records a bounded host storage operation:
+replace redundant expanded generated reports only with their existing Git
+references, after exact payload identity, two independent copies, real restores
+and a retained SQLite plan. WORKTREES14.controls06 binds 23 source-stable synthetic
+controls to this scope. Source checkouts, unique changes, authored accounting,
+working data, pins and original inputs stay protected. Frozen physical readers
+hydrate selected inputs before replay. Full checkout removal requires its own
+complete handoff review. Historical engine hashes and milestones are unchanged.
+See research/runtime/worktree-retirement-20261114.md.
 ### Remote/local master reconciliation — 2026-11-13
 
 Combined local renderer/player work through `955f9d22d` with the incomplete
@@ -30753,3 +30807,42 @@ FXSAVE state while excluding empty/reserved payloads, with explicit physical
 x87 initialization; all earlier negatives remain retained. No original pixel
 rerun, natural game or broad live acceptance is asserted. See
 `native-world-attached-sprite-admission.md`.
+
+### Cross-host repository synchronization — 2026-11-14
+
+Combined the local hybrid-retention, proportionate-integration and reviewed
+worktree-cleanup work with the incoming native-rendering/audio history. Native
+source changes merge without semantic conflicts. The shared register preserves
+disjoint keyed records; both ledger tails and the complete logical review
+histories are retained. Combined census/provenance generation, exact history
+accounting and the normal staged hook remain required for this candidate.
+
+The incoming evidence payloads are portable across ARM64 and x86-64. Missing
+Git-pinned report bytes are read from the supplied ARM host and verified in two
+independent local stores. Transfer and reconciliation reports are under
+`research/runtime/repo-sync-20261114/`. Six focused host control suites pass for
+integration/accounting and incoming replay/stress/launcher tooling. This is
+source and evidence synchronization: no new original/native execution, engine
+comparison, acceptance promotion or historical fingerprint refresh is claimed.
+
+### Asahi remote synchronization, 2026-11-14
+
+Combined local attached-sprite tip `b711d4a37` with remote retention/accounting
+tip `6428fd1e9`. Source files merge without conflicts; the shared register and
+review journal preserve disjoint parent records, and both ledger tails remain.
+Retrieved 61 missing, hash-pinned incoming reports from the existing evidence
+host into the local SQLite store. Published archives also passed verification.
+The four focused coverage, candidate-promotion, integration and commit-retention
+suites pass 46 tests. The full combined audit reports no errors; the normal
+finish workflow retains exact accounting and backups before promotion. The
+generated summary is `coverage/summary-remote-sync-20261114.md`. Reports and the
+evidence-dependent checkout hold are under `remote-sync-20261114/`. No engine
+run, new original comparison, status promotion or historical hash refresh is
+claimed by this synchronization.
+
+The normal gate also identified two conflicting inherited historical receipt
+IDs. The local canonical receipt bodies remain exact; incoming variants remain
+under explicit import identities. Two new immutable archive versions record the
+canonical selection, while all original archive bytes remain retained. The
+resolution report verifies every local receipt and every incoming receipt or
+its identity import; the initial gate refusal remains retained.

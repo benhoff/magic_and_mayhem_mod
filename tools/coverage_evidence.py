@@ -28,6 +28,7 @@ CONFIG = '.evidence-store.json'
 COMMIT_MAP = '.evidence-commits.json'
 CHUNK = 1024 * 1024
 _active_reader = ContextVar('sqlite_evidence_reader', default=None)
+_local_archive_mode = ContextVar('sqlite_local_archive_mode', default=None)
 KEEP = {'research/runtime/coverage/register.json',
         'research/runtime/coverage/change-reviews.json',
         'research/runtime/coverage/gate-baseline.json',
@@ -85,9 +86,11 @@ class Store:
         self.shared = False
         if readonly:
             self.db = sqlite3.connect(self.path.resolve().as_uri() + '?mode=ro', uri=True)
+            self.db.create_function('mm_retention_writer', 0, lambda: 1, deterministic=True)
         else:
             self.path.parent.mkdir(parents=True, exist_ok=True)
             self.db = sqlite3.connect(self.path, timeout=60)
+            self.db.create_function('mm_retention_writer', 0, lambda: 1, deterministic=True)
             existing = self.db.execute("SELECT 1 FROM sqlite_master WHERE name='metadata'").fetchone()
             layout = self.db.execute("SELECT value FROM metadata WHERE key='chunk_layout'").fetchone() if existing else None
             if layout == ('shared-v1',) or (shared and not existing):
@@ -277,9 +280,15 @@ def fetch_archive(root, spec):
     cache = cache_root(root)
     cache.mkdir(parents=True, exist_ok=True)
     target = cache/(sha + '.sqlite3')
-    # Trust neither a pre-existing cache filename nor its contents.
+    # Scoped local checks prove the requested decoded object's SHA-256, not
+    # an unchanged whole container. Full verification/publication stays strict.
+    mode = _local_archive_mode.get()
+    if mode == 'targeted' and target.is_file():
+        return target
     if target.exists() and _verified_archive(str(target), sha, _archive_identity(target)):
         return target
+    if mode is not None:
+        raise ValueError('Evidence archive unavailable locally; explicit fetch --verify required: '+sha)
     fd, name = tempfile.mkstemp(prefix=sha + '.', suffix='.partial', dir=cache)
     try:
         with os.fdopen(fd, 'wb') as dest, tempfile.TemporaryFile(dir=cache) as compressed:
@@ -699,7 +708,10 @@ def write_report(root, path, data):
         shared = settings(root)
         if shared:
             with configured(root) as pair:
-                sha = pair.put(io.BytesIO(data), len(data))
+                # A report can contain unique source or review state even when
+                # its interchange name ends in .bin. Bulk classification belongs
+                # to explicit workspace admission, not this generic writer.
+                sha = pair.put(io.BytesIO(data), len(data), copies=2)
         else:
             with opened_store(pending_path(root)) as store:
                 with store.db:
