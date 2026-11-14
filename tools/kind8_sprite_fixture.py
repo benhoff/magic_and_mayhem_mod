@@ -15,7 +15,7 @@ def original_fixture(root,out):
                 if 0<=d and d+size<=n:return raw[offset+d:offset+d+size]
             raise ValueError('Unbacked original sprite bytes')
         parts={};fingerprints={}
-        for name,start,end,expected in [('flies',0x5492b0,0x549375,'7e95e36a43a94a2e37262ca4906d9525d16d2648ab871bc34d76ea8fd8339a3c'),('cure',0x549730,0x549815,'c37628191cf937c1b6bdef1a2fe90fd6e5540eb185c2909fe8e37e256cdf4a2a')]:
+        for name,start,end,expected in [('flies',0x5492b0,0x549375,'7e95e36a43a94a2e37262ca4906d9525d16d2648ab871bc34d76ea8fd8339a3c'),('cure',0x549730,0x549815,'c37628191cf937c1b6bdef1a2fe90fd6e5540eb185c2909fe8e37e256cdf4a2a'),('attached',0x549ba0,0x549c85,'90738588b64a862d8bf46aa076df98a24765ddf3d6ad664e03780934850e1c83')]:
             data=at(start,end-start)
             if hashlib.sha256(data).hexdigest()!=expected or at(end,5)!=b'\x90'*5:raise ValueError('Original sprite method changed')
             parts['sprite_method_'+name]=data;fingerprints[name]=expected

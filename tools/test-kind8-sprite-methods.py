@@ -11,7 +11,7 @@ def declaration():
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,required=True);a=p.parse_args();out=a.output.resolve()
     if out.exists() or not out.is_relative_to(ROOT/'working'):p.error('Fresh output below working required')
-    out.mkdir(parents=True);claims,sources=declaration();exe=ROOT/'original/Arcane_Nocd/Chaos.exe';report=dict(schema=1,success=False,claims=claims,sources=sources,original_sha256=BUILD,scope='Selected5492b0/549730bank/player/RNG/owned frame selection and word/generic/AX1clipped callback traces. Synthetic RNG/raster bindings; no pixels, actual RNG implementation, malformed original pointers/negative counts, native live class/caller admission or replacement.',live_replacement=False,raster_callbacks_synthetic=True,random_callback_synthetic=True)
+    out.mkdir(parents=True);claims,sources=declaration();exe=ROOT/'original/Arcane_Nocd/Chaos.exe';report=dict(schema=1,success=False,claims=claims,sources=sources,original_sha256=BUILD,scope='Selected5492b0/549730/549ba0bank/player/RNG/owned frame selection and word/generic/AX1clipped callback traces. Synthetic RNG/raster bindings; no pixels, actual RNG implementation, malformed original pointers/negative counts, native live class/caller admission or replacement.',live_replacement=False,raster_callbacks_synthetic=True,random_callback_synthetic=True)
     (out/'prospective.json').write_text(json.dumps(report,indent=2)+'\n')
     def run(name,cmd):
         with (out/(name+'.stdout')).open('xb') as f,(out/(name+'.stderr')).open('xb') as e:subprocess.run([str(x) for x in cmd],cwd=ROOT,stdout=f,stderr=e,check=True,timeout=300)
@@ -29,7 +29,7 @@ def main():
             if at(table+12,4)!=struct.pack('<I',method) or at(assignment,6)!=b'\xc7\x06'+struct.pack('<I',table) or at(init,5)!=b'\xa1'+struct.pack('<I',bank) or at(push,5)!=b'\x68'+struct.pack('<I',name):raise ValueError('Pinned constructor/bank/resource binding changed')
             discovery.append(dict(vtable=table,method=method,constructor_assignment=assignment,bank_global=bank,resource_string=at(name,32).split(b'\0')[0].decode('ascii')))
         anchors={};ranges=[]
-        for start,end,bank in [(0x5492b0,0x549375,0x6f2150),(0x549730,0x549815,0x6f2268)]:
+        for start,end,bank in [(0x5492b0,0x549375,0x6f2150),(0x549730,0x549815,0x6f2268),(0x549ba0,0x549c85,0x6f21e8)]:
             if at(start,6)!=b'\x8b\x15'+struct.pack('<I',bank) or at(end-3,3)!=b'\xc2\x08\x00' or at(end,5)!=b'\x90'*5:raise ValueError('Recovered method extent changed')
             anchors[f'{start:08x}']=at(start,16).hex();ranges.append(dict(start=start,end=end,sha256=hashlib.sha256(at(start,end-start)).hexdigest()))
         report.update(class_bindings_verified=True,discovery=discovery,anchors=anchors,recovered_method_ranges=ranges)
@@ -37,10 +37,10 @@ def main():
             run(name+'-build',['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-fno-pie','-no-pie',*(['-DMNM_ORIGINAL_REFERENCE'] if name=='original' else []),ROOT/'tests/kind8-sprite-method-test.cpp','-o',out/name])
             run(name,[out/name,*([exe] if name=='original' else [])])
         native=(out/'native.stdout').read_bytes();original=(out/'original.stdout').read_bytes()
-        if len(native)!=72000*140 or native!=original:
+        if len(native)!=108000*140 or native!=original:
             first=next((i for i,(x,y) in enumerate(zip(native,original)) if x!=y),min(len(native),len(original)))
             raise ValueError('Callback trace mismatch at byte'+str(first)+' lengths'+str((len(native),len(original))))
-        if (out/'native.stderr').read_text()!='native_controls=8\n':raise ValueError('Incomplete native refusals')
+        if (out/'native.stderr').read_text()!='native_controls=10\n':raise ValueError('Incomplete native refusals')
         counts=dict(no_raster=0,word=0,generic=0,clipped=0,random_calls=0)
         for row in struct.iter_unpack('<35I',native):
             if row[0] or row[1]>2 or row[2]>2:raise ValueError('Invalid original return/call count')
@@ -48,7 +48,7 @@ def main():
             if not row[1]:counts['no_raster']+=1
             for i in range(row[1]):counts[['word','generic','clipped'][row[3+i*8]]]+=1
         if declaration()!=(claims,sources) or sha(exe)!=BUILD:raise ValueError('Source/input changed')
-        report.update(success=True,sources_stable=True,original_wrapper_instructions_unchanged=True,callback_traces_match=True,object_preservation_compared=True,original_cases=72000,native_controls=8,trace_sha256=sha(out/'native.stdout'),trace_counts=counts)
+        report.update(success=True,sources_stable=True,original_wrapper_instructions_unchanged=True,callback_traces_match=True,object_preservation_compared=True,original_cases=108000,native_controls=10,trace_sha256=sha(out/'native.stdout'),trace_counts=counts)
     finally:
         run('original-after',[ROOT/'tools/original-manifest.sh','verify']);report['original_manifest_verified_before_after']=True;report['artifacts']={p.name:sha(p) for p in out.iterdir() if p.is_file()};(out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(out/'report.json',flush=True)
 if __name__=='__main__':main()

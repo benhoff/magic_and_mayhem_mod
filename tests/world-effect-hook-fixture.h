@@ -31,7 +31,7 @@ static void effect_hook_fixture(void){
   enabled=0;SetLastError(1234);world_effect_test_call((u32)hooks[tag].entry,frame,1,hooks[tag].pop,bypass_before,args);const u32 counter=get((void*)0x700804);
   enabled=1;SetLastError(1234);world_effect_test_call((u32)hooks[tag].entry,frame,1,hooks[tag].pop,after,args);
   if(get((void*)0x700804)!=counter||GetLastError()!=1234||bypass_completed!=i+1||batch_count!=i+1||get(after+28)||get(after+32)!=0x247)ExitProcess(155+i);
-  for(u32 j=0;j<560;++j)if((j<28||j>=36)&&after[j]!=bypass_before[j])ExitProcess(160+i);
+  for(u32 j=0;j<560;++j)if((j<28||j>=36)&&fixture_state_byte_defined(bypass_before,j)&&after[j]!=bypass_before[j])ExitProcess(160+i);
   copy(tail_at,old_tail,32);
  }
  if(!batch_restore()||batch_count!=5)ExitProcess(165);

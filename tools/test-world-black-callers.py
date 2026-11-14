@@ -46,7 +46,7 @@ def main():
    binary=out/(mode+'-guard');extra=[] if mode=='production' else ['-DMNM_SPRITE_CALLER_HEADER="generated.h"','-DMNM_EXPECT_CALLERS=21','-DMNM_EXPECT_PAIRS=23']
    run(['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-fno-pie','-no-pie','-I'+str(out),*extra,ROOT/'tests/kind8-sprite-admission-test.cpp','-o',binary])
    report['sprite_guard_controls'].append(json.loads(run([binary,exe])))
-  report['success']=all(v['success'] and v['protected_short_spans']==628 for v in report['sprite_guard_controls'])
+  report['success']=all(v['success'] and v['protected_short_spans']==912 for v in report['sprite_guard_controls'])
  except Exception as e:report['error']=str(e)
  finally:
   try:run([ROOT/'tools/original-manifest.sh','verify']);report['original_verified_after']=True

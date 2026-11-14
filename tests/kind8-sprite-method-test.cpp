@@ -93,14 +93,14 @@ int main(int argc,char** argv)try{
 #else
     (void)argv;if(argc!=1)throw std::invalid_argument("Expected owned native inputs only");
 #endif
-    const unsigned tables[]={0x5c74e4,0x5c74fc},methods[]={0x5492b0,0x549730};
+    const unsigned tables[]={0x5c74e4,0x5c74fc,0x5c7514},methods[]={0x5492b0,0x549730,0x549ba0};
     const std::uint32_t randomPairs[][2]={{0,0},{1,1},{49,7},{50,8},{51,9},{99,0xffffffffu},{100,0x80000000u},{0xffffffffu,0x80000033u},{0x80000032u,50},{0x80000033u,51}};
 #ifdef MNM_SPRITE_PRIMARY_FRAGMENT
     constexpr unsigned variants=2;
 #else
     constexpr unsigned variants=1;
 #endif
-    for(unsigned family=0;family<2;++family)for(bool present:{false,true})for(int player=-1;player<=8;++player)
+    for(unsigned family=0;family<3;++family)for(bool present:{false,true})for(int player=-1;player<=8;++player)
     for(unsigned enabled:{0u,0x80000000u})for(unsigned count:{0u,1u,2u,5u,8u})for(const auto& pair:randomPairs)
     for(unsigned wordMask:{0u,0x55u,0xffu})for(unsigned returned:{0u,1u,2u,0x1234u,0x10001u,0xffffffffu})for(unsigned variant=0;variant<variants;++variant){
         (void)variant;
@@ -111,7 +111,7 @@ int main(int argc,char** argv)try{
 #ifdef MNM_ORIGINAL_REFERENCE
         if(*reinterpret_cast<const unsigned*>(tables[family]+12)!=methods[family])throw std::runtime_error("Original slot changed");
         object[family?4:7]=std::uint32_t(reinterpret_cast<std::uintptr_t>(owner));global(0x644520,std::uint32_t(player));
-        const unsigned base=family?0x6f2268:0x6f2150;global(base,present?std::uint32_t(reinterpret_cast<std::uintptr_t>(bank)):0);global(base+8,std::uint32_t(reinterpret_cast<std::uintptr_t>(offsets)));global(base+12,std::uint32_t(reinterpret_cast<std::uintptr_t>(frames)));
+        const unsigned base=family==2?0x6f21e8:family?0x6f2268:0x6f2150;global(base,present?std::uint32_t(reinterpret_cast<std::uintptr_t>(bank)):0);global(base+8,std::uint32_t(reinterpret_cast<std::uintptr_t>(offsets)));global(base+12,std::uint32_t(reinterpret_cast<std::uintptr_t>(frames)));
         auto before=std::vector<std::uint32_t>(object,object+8);
 #ifdef MNM_SPRITE_PRIMARY_FRAGMENT
         u32 row[9]={0,u32(reinterpret_cast<std::uintptr_t>(object)),u32(x),u32(y),0,0,8,0x8ad08ad0,0x12345678};
@@ -137,15 +137,15 @@ int main(int argc,char** argv)try{
 #ifndef MNM_ORIGINAL_REFERENCE
     unsigned controls=0;
     auto refuse=[&](auto action){try{action();}catch(const std::invalid_argument&){++controls;return;}throw std::runtime_error("Malformed native sprite input admitted");};
-    for(unsigned family=0;family<2;++family){refuse([&]{kind8SpriteClass(tables[family],methods[family]^1);});refuse([&]{kind8SpriteClass(tables[family]^1,methods[family]);});}
+    for(unsigned family=0;family<3;++family){refuse([&]{kind8SpriteClass(tables[family],methods[family]^1);});refuse([&]{kind8SpriteClass(tables[family]^1,methods[family]);});}
     Kind8SpriteBank invalid;invalid.present=true;invalid.players.fill(1);invalid.frames.resize(4097);
     auto forbidden=[]()->unsigned{throw std::runtime_error("Invalid input consumed random word");};auto unused=[](const QueueCall&)->unsigned{throw std::runtime_error("Invalid input reached raster");};
     refuse([&]{drawKind8Sprite(Kind8Sprite::flies,invalid,0,0,0,forbidden,unused);});
     refuse([&]{drawKind8Sprite(Kind8Sprite::cure,invalid,0,0,0,forbidden,unused);});
     refuse([&]{drawKind8Sprite(static_cast<Kind8Sprite>(99),invalid,0,0,0,forbidden,unused);});
     invalid.present=false;if(drawKind8Sprite(Kind8Sprite::flies,invalid,0,0,0,forbidden,unused))throw std::runtime_error("Absent bank did not retain no-op");++controls;
-    if(controls!=8)throw std::runtime_error("Incomplete native controls");
-    std::fprintf(stderr,"native_controls=8\n");
+    if(controls!=10)throw std::runtime_error("Incomplete native controls");
+    std::fprintf(stderr,"native_controls=10\n");
 #endif
 #if defined(MNM_ORIGINAL_REFERENCE) && defined(MNM_SPRITE_PRIMARY_FRAGMENT)
     std::fprintf(stderr,"primary_context_hits=%u\n",context_hits);

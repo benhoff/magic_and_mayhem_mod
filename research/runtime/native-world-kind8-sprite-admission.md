@@ -41,3 +41,11 @@ object/source lifetime, negative original counts/malformed pointer semantics,
 other modes/classes, physical aliases, full live drawing and release acceptance
 remain separate. A controlled original fragment is not a complete consumer or
 campaign execution. Failed fixture attempts are preserved separately.
+
+## Third sibling follow-up
+
+The three-class follow-up adds `5c7514/549ba0`, resource bank `6f21e8`,
+and all three of its WORD/indexed/clipped return sites. The earlier two-class
+denominators above remain historical. See [attached sprite admission](native-world-attached-sprite-admission.md)
+for the current 216,000-trace, protected-entry and owned GPU validation and its
+remaining live-session boundaries.

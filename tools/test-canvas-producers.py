@@ -8,7 +8,7 @@ from kind8_sprite_fixture import original_fixture
 ROOT=Path(__file__).resolve().parents[1]
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--claims',type=Path);p.add_argument('--prefix-template',type=Path);p.add_argument('--shared-prefix',type=Path);p.add_argument('--output-parent',type=Path);p.add_argument('--report',type=Path);a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--sprite-only',action='store_true');p.add_argument('--claims',type=Path);p.add_argument('--prefix-template',type=Path);p.add_argument('--shared-prefix',type=Path);p.add_argument('--output-parent',type=Path);p.add_argument('--report',type=Path);a=p.parse_args()
  if a.shared_prefix and a.prefix_template:p.error('Select shared prefix or a template')
  if a.report and a.report.exists():p.error('Refusing evidence overwrite')
  spec=importlib.util.spec_from_file_location('inspector',ROOT/'tools/inspect-canvas-producers.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
@@ -17,7 +17,7 @@ def main():
  paths += ['reconstruction/rendering/generic_producer_caller.h','tests/world-effect-entry-call.S','tests/world-effect-hook-fixture.h','protocols/include/mnm/world_effect_raster_v1.h']
  paths += ['tools/kind8_sprite_fixture.py','tests/kind8-sprite-hook-fixture.h','tests/kind8-sprite-primary-call.S','runtime/scene/kind8_sprite_admission.h','reconstruction/rendering/kind8_sprite_class.h']
  paths += ['runtime/scene/world_generic_state.h','runtime/scene/world_effect_prepare.h','runtime/scene/drawing_caller_state.h','runtime/scene/drawing_caller_state_codec.h','protocols/include/mnm/drawing_caller_state_v1.h','runtime/canvas-writers/raster_workspace.h','reconstruction/rendering/raster_pixels.h','reconstruction/rendering/pixel_kernel.h']
- paths += ['tools/drawing_caller_state.py']
+ paths += ['tests/fxsave-defined-bytes.h','tools/drawing_caller_state.py','runtime/scene/font_observation.h','runtime/scene/font_observation.S','runtime/scene/font_lifetime.c','runtime/scene/font_lifetime.S','runtime/scene/required_boundaries.c','runtime/scene/required_boundaries.S','protocols/include/mnm/required_boundaries_v1.h']
  paths += ['protocols/include/mnm/drawing_caller_state_v2.h','runtime/scene/world_rectangle_state.h','tests/world-rectangle-hook-fixture.h']
  paths += ['protocols/include/mnm/drawing_caller_bindings_v1.h']
  paths += ['protocols/include/mnm/drawing_caller_state_v3.h']
@@ -50,9 +50,19 @@ def main():
  sprite_original=original_fixture(ROOT,out)
  objects=[]
  for name in ['tests/canvas-producers-test.c','tests/canvas-startup-call.S','runtime/scene/canvas_producers.S','tests/world-producer-bypass-call.S','tests/world-effect-entry-call.S','tests/kind8-sprite-primary-call.S']:
-  obj=out/(Path(name).name+'.obj');objects.append(obj);run('compile-'+Path(name).name,['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-I'+str(out),'-c',ROOT/name,'-o',obj])
- run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/base:0x400000','/dynamicbase:no','/safeseh:no','/timestamp:0','/out:'+str(out/'fixture.exe'),*objects,*[build/(name+'.obj') for name in ('palette_observation.S','drawing_publication.S','glyph_live.c','glyph_leave.S','glyph_route.c','glyph_backend.c','glyph_backend_state.c','glyph_backend_x87.S','word_backend_state.c')],build/'kernel32.lib'])
+  obj=out/(Path(name).name+'.obj');objects.append(obj);run('compile-'+Path(name).name,['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror',*(['-DMNM_KIND8_FIXTURE_ONLY']if a.sprite_only else []),'-I'+str(out),'-c',ROOT/name,'-o',obj])
+ run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/base:0x400000','/dynamicbase:no','/safeseh:no','/timestamp:0','/out:'+str(out/'fixture.exe'),*objects,*[build/(name+'.obj') for name in ('palette_observation.S','font_observation.S','font_lifetime.c','font_lifetime.S','required_boundaries.c','required_boundaries.S','drawing_publication.S','glyph_live.c','glyph_leave.S','glyph_route.c','glyph_backend.c','glyph_backend_state.c','glyph_backend_x87.S','word_backend_state.c')],build/'kernel32.lib'])
  run('forwarding',['xvfb-run','-a','wine',out/'fixture.exe'])
+ if a.sprite_only:
+  proof=(capture/'world-kind8-sprite-proof-0000.bin').read_bytes()
+  assert proof[:8]==b'MNMSPR01' and len(proof)==40 and struct.unpack('<8I',proof[8:])==(5,15,25,0,15,912,1032,20),proof
+  _,ops=m.decode((capture/'world-kind8-sprite-fixture-0000.bin').read_bytes(),complete=False)
+  rows=[r for r,payload in ops if r[2]==9];assert [r[15]for r in rows]==[1,1,3,8,8]*4
+  assert sources=={name:sha(ROOT/name)for name in sources}
+  report=dict(schema=1,success=True,sources=sources,scope='Focused actual PE32 primary sprite fixture; three original methods, fifteen primary calls, five guarded entry ABI controls,1032guard controls including912protected short spans,20actual owned CPS inputs and canonical batch. Complete forwarding suite, original pixel raster execution and live game remain separate.',sprite_original=sprite_original,sprite_primary_calls=15,sprite_direct_abi_entries=5,sprite_random_calls=25,sprite_protected_short_spans=912,sprite_guard_controls=1032,sprite_native_draws=20,sprite_original_canvas_protected_unchanged=True,sprite_fixture=str(capture/'world-kind8-sprite-fixture-0000.bin'),sprite_batch=str(capture/'world-kind8-sprite-batch-0000.bin'),sprite_artifacts={str(f):sha(f)for f in capture.glob('world-kind8-sprite-*.bin')},original_game_runs=0)
+  (out/'report.json').write_text(json.dumps(report,indent=2)+'\n')
+  if a.report:write_report(ROOT,a.report,(json.dumps(report,indent=2)+'\n').encode())
+  print(out/'report.json',flush=True);return
  from drawing_colour_refusals import decode as decode_colour_refusal
  colour_refusals=[decode_colour_refusal(p.read_bytes()) for p in sorted(capture.glob('producer-colour-refusal-*.bin'))]
  assert [r['reason_code'] for r in colour_refusals[-11:]]==list(range(1,10))+[3,3],colour_refusals
@@ -118,20 +128,20 @@ def main():
  assert sources=={name:sha(ROOT/name) for name in sources}
  report={'success':True,'sources':sources,'sources_stable':True,'forwarded_entries':61,'native_bypass_entries':1,'complete_raster_bypass_entries':13,'complete_raster_ax_and_cleanup_preserved':True,'outside_world_raster_forwarded':True,'native_bypass_state_preserved_except_recovered_eax':True,'malformed_bypass_refusals':2,'nested_jpeg_lock_forwarded':True,'register_flags_float_error_preserved':True,'signature_refusal_before_mutation':True,'malformed_refusals':refused,'original_renderer_executed':True,'original_sprite_methods_executed':True,'original_pixel_rasters_executed':False,'scope':'Actual PE32 entry/return/relocated JPEG-call forwarding against synthetic compatible prologues,61compatible entry sites with53default hooks. Incoming state is retained except recovered zero EAX on admitted generic bypass; flags/x87/SSE/LastError and atomic signature refusal checked. Selected original sprite methods and primary virtual fragment also execute against synthetic RNG and pixel tails. No original pixel equivalence.'}
  proof=(capture/'world-kind8-sprite-proof-0000.bin').read_bytes()
- if proof[:8]!=b'MNMSPR01' or len(proof)!=40 or struct.unpack('<8I',proof[8:])!=(5,10,15,0,10,628,708,15):raise ValueError('Incomplete actual sprite controls: '+repr(proof))
+ if proof[:8]!=b'MNMSPR01' or len(proof)!=40 or struct.unpack('<8I',proof[8:])!=(5,15,25,0,15,912,1032,20):raise ValueError('Incomplete actual sprite controls: '+repr(proof))
  _,sprite_ops=m.decode((capture/'world-kind8-sprite-fixture-0000.bin').read_bytes(),complete=False)
  sprite_rows=[r for r,payload in sprite_ops if r[2]==9]
- if [r[15] for r in sprite_rows]!=[1,1,3,8,8]*3:raise ValueError('Sprite native entry routes changed')
+ if [r[15] for r in sprite_rows]!=[1,1,3,8,8]*4:raise ValueError('Sprite native entry routes changed')
  report['sprite_artifacts']={str(capture/name):sha(capture/name) for name in ['world-kind8-sprite-fixture-0000.bin','world-kind8-sprite-batch-0000.bin','world-kind8-sprite-proof-0000.bin']}
- report.update(sprite_original=sprite_original,sprite_primary_calls=10,sprite_direct_abi_entries=5,sprite_random_calls=15,sprite_protected_short_spans=628,sprite_guard_controls=708,sprite_legacy_transport_refused=True,sprite_fixture=str(capture/'world-kind8-sprite-fixture-0000.bin'),sprite_batch=str(capture/'world-kind8-sprite-batch-0000.bin'),sprite_native_draws=15,sprite_original_canvas_protected_unchanged=True)
+ report.update(sprite_original=sprite_original,sprite_primary_calls=15,sprite_direct_abi_entries=5,sprite_random_calls=25,sprite_protected_short_spans=912,sprite_guard_controls=1032,sprite_legacy_transport_refused=True,sprite_fixture=str(capture/'world-kind8-sprite-fixture-0000.bin'),sprite_batch=str(capture/'world-kind8-sprite-batch-0000.bin'),sprite_native_draws=20,sprite_original_canvas_protected_unchanged=True)
  from drawing_caller_state import decode as decode_caller_state
  from drawing_caller_state import decode_bindings
  state=decode_caller_state((capture/'caller-state-0000.bin').read_bytes())
- assert state['version']==5 and state['completed']==18 and sum(row['kind']==1 for row in state['rows'])==17 and sum(row['kind']==2 for row in state['rows'])==1
+ assert state['version']==5 and state['completed']==23 and sum(row['kind']==1 for row in state['rows'])==22 and sum(row['kind']==2 for row in state['rows'])==1
  assert all(row['epoch']is None for row in state['rows'])
  assert all(row['last_error_before']==1234 and row['last_error_after']==1234 for row in state['rows'])
  contexts=[row for row in state['rows']if row['context_kind']]
- assert len(contexts)==12 and all(row['enclosing_caller']==0x5006b2 for row in contexts)
+ assert len(contexts)==17 and all(row['enclosing_caller']==0x5006b2 for row in contexts)
  assert [(row['tag'],row['context_kind'])for row in contexts[-2:]]==[(26,1),(52,1)]
  _,rectangle_ops=m.decode((capture/'world-rectangle-fixture-0000.bin').read_bytes(),complete=False)
  assert [(row[2],row[22],len(payload))for row,payload in rectangle_ops]==[(14,0x54ab16,20),(26,0x54ab72,12)]
@@ -151,7 +161,7 @@ def main():
  tail=decode_tail((capture/'caller-source-tail-0003.bin').read_bytes(),m.decode)
  assert (tail['generation'],tail['source'],tail['nonce'],tail['records'])==(7,3,456*2**32+123,1)
  report['caller_tail_supplied_controls']=1
- report.update(caller_state_native_completions=17,caller_state_retained_completions=1,caller_state_contexts=12,caller_state_version=5,caller_state_normal_retirement=True,caller_bindings_supplied_controls=2,caller_bindings_unknown_targets_retained=True,caller_opaque_context_supplied_controls=8)
+ report.update(caller_state_native_completions=22,caller_state_retained_completions=1,caller_state_contexts=17,caller_state_version=5,caller_state_normal_retirement=True,caller_bindings_supplied_controls=2,caller_bindings_unknown_targets_retained=True,caller_opaque_context_supplied_controls=8)
  report.update(effect_entries_native_bypassed=5,effect_wire_normalized=True,effect_guarded_original_canvas_unchanged=True,effect_malformed_refusals=7)
  extent_raw=(capture/'world-extent640-fixture-0000.bin').read_bytes();_,extent_ops=m.decode(extent_raw,complete=False)
  extent_draws=[r for r,payload in extent_ops if r[2]==9]

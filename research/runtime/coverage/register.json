@@ -134349,8 +134349,8 @@
       "id": "RS.world-kind8-sprite-methods",
       "subsystem": "native_rendering",
       "kind": "recovered",
-      "title": "Selected Flies/Cure kind8 sprite wrapper methods",
-      "scope": "Pinned5c74e4/5492b0and5c74fc/549730slot wrappers with owned bank/player/frame tokens and external random/raster callbacks. Recover bank/player/owner gating, masked modulo frame choice, Cure chance>50, exact-word versus generic/AX1clipped fallback, lowAXzero and object preservation. Positive counts1..4096are a bounded native policy. Synthetic callbacks exclude RNG implementation, raster pixels, malformed original pointers/negative counts, constructors/writers/lifetime, highEAX, natural queue reachability and live native admission.",
+      "title": "Three owner-gated kind8 sprite wrapper methods",
+      "scope": "Pinned5c74e4/5492b0,5c74fc/549730and5c7514/549ba0slot wrappers with owned bank/player/frame tokens and external random/raster callbacks. Recover bank/player/owner gating, masked modulo frame choice, chance>50for both latter classes, exact-word versus generic/AX1clipped fallback, lowAXzero and object preservation. Positive counts1..4096are bounded native policy. Synthetic callbacks exclude RNG implementation, raster pixels, malformed original pointers/negative counts, constructors/writers/lifetime, highEAX, natural queue reachability and live native admission.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -134364,17 +134364,28 @@
           "address": 5543728,
           "scope": "Selected sprite wrapper control/data flow under synthetic random/raster callbacks only.",
           "recovered_range": "kind8-sprite-wrapper-549730"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5544864,
+          "scope": "Exact229byte sibling sprite wrapper and primary control traces with synthetic RNG/raster tails."
         }
       ],
       "documents": [
-        "research/runtime/native-world-kind8-sprite-methods.md"
+        "research/runtime/native-world-kind8-sprite-methods.md",
+        "research/runtime/native-world-attached-sprite-admission.md"
       ],
       "implementation": [
         "reconstruction/rendering/kind8_sprite_method.hpp"
       ],
       "tests": [
         "tests/kind8-sprite-method-test.cpp",
-        "tools/test-kind8-sprite-methods.py"
+        "tools/test-kind8-sprite-methods.py",
+        "tests/kind8-sprite-primary-win32.c",
+        "tools/test-kind8-sprite-primary-win32.py",
+        "tests/fxsave-defined-bytes.h",
+        "tests/fxsave-defined-bytes-test.c",
+        "tests/drawing-caller-state-codec-test.c"
       ],
       "validation_dependencies": [
         "tests/sprite-binary-reference.cpp",
@@ -134392,7 +134403,9 @@
         "K8SPR3.original-20261020",
         "K8SPR3.discovery-20261020",
         "K8SPR4.native-20261020",
-        "K8SPR4.original-20261020"
+        "K8SPR4.original-20261020",
+        "AT14.sibling-native01",
+        "AT14.sibling-original01"
       ],
       "status": {
         "understanding": "scoped",
@@ -134404,18 +134417,22 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-8-20261020",
         "entry": "RS.world-kind8-sprite-methods"
-      }
+      },
+      "gaps": [
+        "Natural live use of the new549ba0class, other dispatch modes/formats, lifetime, negative banks and malformed original pointers remain unproved. Fresh GPU proof uses authored expected words; historical isolated Original pixels remain separately pinned."
+      ]
     },
     {
       "id": "NP.world-kind8-sprite-admission",
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Primary kind8 sprite class and owned raster admission",
-      "scope": "Bounded native admission for exact5c74e4/5492b0and5c74fc/549730classes under original first-table CALL5006af/return5006b2. Check class/object/root span, nonzero mode, inactive auxiliary markers, RGB565format0, player/owner and positive bounded bank; check six leaf signatures, method prologue, saved row and enclosing primary stack before accepting existing versioned owned CPS raster inputs. Preserve nine prior classes and ordinary caller policy. Validation covers actual Win32 protected-page entries/ABI, original primary fragment and methods with synthetic RNG/pixel callbacks, owned CPS GPU/native adapter and independently executed five original raster entries from authored zero history; unknown classes, other table modes, natural reachability, constructors/writers/lifetime, malformed original pointer semantics, physical aliases, full replacement and release remain excluded.",
+      "scope": "Bounded native admission for exact5c74e4/5492b0,5c74fc/549730and5c7514/549ba0classes under original first-table CALL5006af/return5006b2. Check class/object/root span, nonzero mode, inactive auxiliary markers, RGB565format0, player/owner and positive bounded bank; nine leaf signatures, bank prologue, saved row and enclosing original primary stack admit existing versioned owned CPS raster inputs. Preserve ordinary caller policy, nine primitive classes and the separate fading extension. Current proof covers216000original-primary traces, actual Win32 protected-page guard/entry controls and20owned CPS GPU draws against an independent authored480000word scalar image. Prior isolated original raster comparisons retain their original scope and fingerprints. Unknown classes, other modes, natural reachability, constructors/writers/lifetime, malformed original pointers, physical aliases, whole-player acceptance and release remain excluded.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/native-world-kind8-sprite-admission.md"
+        "research/runtime/native-world-kind8-sprite-admission.md",
+        "research/runtime/native-world-attached-sprite-admission.md"
       ],
       "implementation": [
         "reconstruction/rendering/kind8_sprite_class.h",
@@ -134434,7 +134451,12 @@
         "tests/kind8-sprite-producer-test.cpp",
         "tests/kind8-sprite-hook-fixture.h",
         "tests/kind8-sprite-primary-call.S",
-        "tests/kind8-sprite-pixel-reference.cpp"
+        "tests/kind8-sprite-pixel-reference.cpp",
+        "tests/kind8-sprite-primary-win32.c",
+        "tools/test-kind8-sprite-primary-win32.py",
+        "tests/fxsave-defined-bytes.h",
+        "tests/fxsave-defined-bytes-test.c",
+        "tests/drawing-caller-state-codec-test.c"
       ],
       "validation_dependencies": [
         "assets/CMakeLists.txt",
@@ -134818,7 +134840,9 @@
       ],
       "evidence": [
         "K8SADM.native-20261020",
-        "K8SADM.original-20261020"
+        "K8SADM.original-20261020",
+        "AT14.sibling-native01",
+        "AT14.sibling-original01"
       ],
       "status": {
         "understanding": "scoped",
@@ -134830,7 +134854,10 @@
       "implementation_review": {
         "review": "NATIVE-MERGE.source-review-8-20261020",
         "entry": "NP.world-kind8-sprite-admission"
-      }
+      },
+      "gaps": [
+        "Natural live use of the new549ba0class, other dispatch modes/formats, lifetime, negative banks and malformed original pointers remain unproved. Fresh GPU proof uses authored expected words; historical isolated Original pixels remain separately pinned."
+      ]
     },
     {
       "id": "NP.camera-hermes-crop-extents",
@@ -436991,6 +437018,94 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "AT14.sibling-native01",
+      "kind": "native_integration",
+      "record": "research/runtime/attached-sprite-results-20261114/summary01.json",
+      "sha256": "2f48bd19080b5f3a30a83920431a0c15d3781796ceaafe67dd37747835849d87",
+      "scope": "Exact549ba0sibling plus unchanged Flies/Cure:216000original-primary traces,21408guarded callbacks,1881additional guarded mutations; full producer forwarding/refusal controls including1032sprite admissions/912short spans;20owned GPU rasters and480000independently authored expected WORDs. No natural session or fresh original pixel execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/primary/cases",
+          "equals": 216000
+        },
+        {
+          "pointer": "/canvas/sprite_guard_controls",
+          "equals": 1032
+        },
+        {
+          "pointer": "/gpu/compared_pixel_words",
+          "equals": 480000
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/whole_player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "AT14.sibling-original01",
+      "kind": "isolated_original",
+      "record": "research/runtime/attached-sprite-results-20261114/summary01.json",
+      "sha256": "2f48bd19080b5f3a30a83920431a0c15d3781796ceaafe67dd37747835849d87",
+      "scope": "Exact549ba0sibling plus unchanged Flies/Cure:216000original-primary traces,21408guarded callbacks,1881additional guarded mutations; full producer forwarding/refusal controls including1032sprite admissions/912short spans;20owned GPU rasters and480000independently authored expected WORDs. No natural session or fresh original pixel execution.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/primary/cases",
+          "equals": 216000
+        },
+        {
+          "pointer": "/canvas/sprite_guard_controls",
+          "equals": 1032
+        },
+        {
+          "pointer": "/gpu/compared_pixel_words",
+          "equals": 480000
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/whole_player_accepted",
+          "equals": false
+        },
+        {
+          "pointer": "/original_game_runs",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -463478,13 +463593,18 @@
       "id": "native-kind8-sprite-methods",
       "title": "Selected kind8 sprite wrapper original comparison",
       "level": "headless",
-      "scope": "Owned native callback traces against unchanged5492b0/549730with synthetic RNG/raster bindings. No actual pixels or live admission.",
+      "scope": "Three unchanged original sprite methods and primary fragments versus native owned traces,216000cases. Synthetic RNG/raster tails; protected caller mutation controls; actual owned CPS and independently authored GPU pixels remain bounded headless checks. No natural session or whole-player claim.",
       "behaviors": [
         "RS.world-kind8-sprite-methods"
       ],
       "tests": [
         "tests/kind8-sprite-method-test.cpp",
-        "tools/test-kind8-sprite-methods.py"
+        "tools/test-kind8-sprite-methods.py",
+        "tests/kind8-sprite-primary-win32.c",
+        "tools/test-kind8-sprite-primary-win32.py",
+        "tests/fxsave-defined-bytes.h",
+        "tests/fxsave-defined-bytes-test.c",
+        "tests/drawing-caller-state-codec-test.c"
       ],
       "evidence": [
         "K8SPR.native-20261020",
@@ -463494,25 +463614,34 @@
         "K8SPR3.native-20261020",
         "K8SPR3.original-20261020",
         "K8SPR4.native-20261020",
-        "K8SPR4.original-20261020"
+        "K8SPR4.original-20261020",
+        "AT14.sibling-native01",
+        "AT14.sibling-original01"
       ]
     },
     {
       "id": "native-kind8-sprite-admission",
       "title": "Primary virtual sprite stack and owned pixel admission",
       "level": "headless",
-      "scope": "Bounded synthetic original primary call fragment/unchanged methods, extracted production guard, protected native leaf entry and versioned owned CPS GPU pixels. Separate from natural sessions/other modes/full rendering.",
+      "scope": "Three unchanged original sprite methods and primary fragments versus native owned traces,216000cases. Synthetic RNG/raster tails; protected caller mutation controls; actual owned CPS and independently authored GPU pixels remain bounded headless checks. No natural session or whole-player claim.",
       "behaviors": [
         "NP.world-kind8-sprite-admission"
       ],
       "tests": [
         "tools/test-kind8-sprite-admission.py",
         "tests/kind8-sprite-admission-test.cpp",
-        "tests/kind8-sprite-producer-test.cpp"
+        "tests/kind8-sprite-producer-test.cpp",
+        "tests/kind8-sprite-primary-win32.c",
+        "tools/test-kind8-sprite-primary-win32.py",
+        "tests/fxsave-defined-bytes.h",
+        "tests/fxsave-defined-bytes-test.c",
+        "tests/drawing-caller-state-codec-test.c"
       ],
       "evidence": [
         "K8SADM.native-20261020",
-        "K8SADM.original-20261020"
+        "K8SADM.original-20261020",
+        "AT14.sibling-native01",
+        "AT14.sibling-original01"
       ]
     },
     {
@@ -473122,6 +473251,31 @@
       "evidence": [
         "NATIVE13.render-hotspots01"
       ]
+    },
+    {
+      "id": "native-attached-sprite-20261114",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-kind8-sprite-methods",
+        "NP.world-kind8-sprite-admission"
+      ],
+      "scope": "Exact549ba0sibling plus unchanged Flies/Cure:216000original-primary traces,21408guarded callbacks,1881additional guarded mutations; full producer forwarding/refusal controls including1032sprite admissions/912short spans;20owned GPU rasters and480000independently authored expected WORDs. No natural session or fresh original pixel execution.",
+      "tests": [
+        "tests/kind8-sprite-primary-win32.c",
+        "tools/test-kind8-sprite-primary-win32.py",
+        "tests/fxsave-defined-bytes.h",
+        "tests/fxsave-defined-bytes-test.c",
+        "tests/drawing-caller-state-codec-test.c",
+        "tests/kind8-sprite-method-test.cpp",
+        "tests/kind8-sprite-hook-fixture.h",
+        "tests/canvas-producers-test.c",
+        "tools/test-canvas-producers.py",
+        "tests/kind8-sprite-producer-test.cpp"
+      ],
+      "evidence": [
+        "AT14.sibling-native01",
+        "AT14.sibling-original01"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -474949,8 +475103,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-70adce442757eb3b743f1159f9800e8e8b4e3c6becabfd15d93dc687d829e63c.json",
-    "sha256": "70adce442757eb3b743f1159f9800e8e8b4e3c6becabfd15d93dc687d829e63c"
+    "path": "research/runtime/coverage/source-index-68473d978ce0647cf6c79aaab01de838a55b8caa7f6722c7dd775ffe3b51964b.json",
+    "sha256": "68473d978ce0647cf6c79aaab01de838a55b8caa7f6722c7dd775ffe3b51964b"
   },
   "evidence_applicability": [
     {

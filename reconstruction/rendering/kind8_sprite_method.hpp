@@ -6,11 +6,12 @@
 #include <stdexcept>
 #include <vector>
 namespace mnm::reconstruction {
-enum class Kind8Sprite { flies, cure };
+enum class Kind8Sprite { flies, cure, attached };
 inline Kind8Sprite kind8SpriteClass(std::uint32_t table,std::uint32_t method){
     const auto type=mnm_kind8_sprite_class(table,method);
     if(type.kind==1)return Kind8Sprite::flies;
     if(type.kind==2)return Kind8Sprite::cure;
+    if(type.kind==3)return Kind8Sprite::attached;
     throw std::invalid_argument("Unrecovered kind8 sprite class/method");
 }
 struct Kind8SpriteFrame {std::uint32_t token{};bool words{};};
@@ -25,11 +26,11 @@ struct Kind8SpriteBank {
 template<class Random,class Raster>
 std::uint16_t drawKind8Sprite(Kind8Sprite type,const Kind8SpriteBank& bank,
         std::int32_t player,std::int32_t x,std::int32_t y,Random&& random,Raster&& raster){
-    if(type!=Kind8Sprite::flies && type!=Kind8Sprite::cure)
+    if(type!=Kind8Sprite::flies && type!=Kind8Sprite::cure && type!=Kind8Sprite::attached)
         throw std::invalid_argument("Unknown kind8 sprite method");
     if(!bank.present || player<0 || player>=8 || !bank.players[unsigned(player)] || bank.frames.empty())return 0;
     if(bank.frames.size()>4096)throw std::invalid_argument("Kind8 sprite bank exceeds native policy");
-    if(type==Kind8Sprite::cure && (std::uint32_t(random())&0x7fffffffu)%100<=50)return 0;
+    if(type!=Kind8Sprite::flies && (std::uint32_t(random())&0x7fffffffu)%100<=50)return 0;
     const auto index=(std::uint32_t(random())&0x7fffffffu)%bank.frames.size();
     const auto& frame=bank.frames[index];
     auto call=[&](QueueBackend backend,std::initializer_list<std::uint32_t> values){
@@ -40,6 +41,6 @@ std::uint16_t drawKind8Sprite(Kind8Sprite type,const Kind8SpriteBank& bank,
     if(frame.words)call(QueueBackend::wordCopy,{frame.token,std::uint32_t(x),std::uint32_t(y)});
     else if(call(QueueBackend::copy,{frame.token,std::uint32_t(x),std::uint32_t(y),0,0})==1)
         call(QueueBackend::clippedCopy,{frame.token,std::uint32_t(x),std::uint32_t(y),0,0});
-    return 0; // Both original wrappers clear AX after every path.
+    return 0; // All three original wrappers clear AX after every path.
 }
 }

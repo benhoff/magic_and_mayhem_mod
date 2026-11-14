@@ -96,7 +96,7 @@ int main(int argc,char** argv)try{
     }
     unsigned ordinaryPairs=0;for(const auto& site:raster_callers)for(unsigned tag=0;tag<64;++tag)ordinaryPairs+=bool(site.tags&(1ull<<tag));
     check(std::size(raster_callers)==MNM_EXPECT_CALLERS&&ordinaryPairs==MNM_EXPECT_PAIRS);
-    batch_guard_open=0;for(const auto& site:raster_callers)for(unsigned tag=0;tag<64;++tag)if(site.tags&(1ull<<tag))check(raster_batch_caller(site.address,tag,nullptr));batch_guard_open=1;check(std::size(sprite_raster_sites)==6&&pairs==10);
+    batch_guard_open=0;for(const auto& site:raster_callers)for(unsigned tag=0;tag<64;++tag)if(site.tags&(1ull<<tag))check(raster_batch_caller(site.address,tag,nullptr));batch_guard_open=1;check(std::size(sprite_raster_sites)==9&&pairs==15);
     check(munmap(pages,8192)==0);
     std::printf("{\"success\":true,\"context_pairs\":%u,\"controls\":%u,\"protected_short_spans\":%u,\"ordinary_callers\":%u,\"ordinary_pairs\":%u,\"legacy_sprite_transport_refused\":true}\n",pairs,controls,protectedShort,unsigned(std::size(raster_callers)),ordinaryPairs);
     return 0;

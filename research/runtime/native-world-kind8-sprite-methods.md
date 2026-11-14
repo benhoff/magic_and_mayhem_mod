@@ -30,3 +30,11 @@ entry. Explicit recovered-range exceptions retain that gap:5492b0..549375 and
 SHA-256, finalRET8 and following padding; actual unchanged method execution
 supports the exceptions. External RNG/raster callouts remain separately bound
 synthetic callbacks. The inventory is not presented as newly complete.
+
+## Third sibling follow-up
+
+The three-class follow-up adds `5c7514/549ba0`, resource bank `6f21e8`,
+and all three of its WORD/indexed/clipped return sites. The earlier two-class
+denominators above remain historical. See [attached sprite admission](native-world-attached-sprite-admission.md)
+for the current 216,000-trace, protected-entry and owned GPU validation and its
+remaining live-session boundaries.

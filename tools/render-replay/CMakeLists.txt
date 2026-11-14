@@ -25,7 +25,7 @@ add_executable(mnm-additive-batching-test EXCLUDE_FROM_ALL "${MNM_ROOT}/tests/ad
 target_include_directories(mnm-additive-batching-test PRIVATE "${MNM_ROOT}/tests")
 target_link_libraries(mnm-additive-batching-test PRIVATE mnm-world-rolling Qt6::Gui)
 target_compile_options(mnm-additive-batching-test PRIVATE -UNDEBUG -Wall -Wextra -Werror -pedantic)
-foreach(control small-colour-batch displacement-batch native-effect-optimization row-effect render-hotspots sprite-atlas canvas-sequence)
+foreach(control small-colour-batch displacement-batch native-effect-optimization row-effect render-hotspots sprite-atlas canvas-sequence kind8-sprite-producer)
     add_executable(mnm-${control}-test EXCLUDE_FROM_ALL "${MNM_ROOT}/tests/${control}-test.cpp")
     target_include_directories(mnm-${control}-test PRIVATE "${MNM_ROOT}/tests" "${MNM_ROOT}/compat/legacy")
     target_link_libraries(mnm-${control}-test PRIVATE mnm-world-rolling Qt6::Gui)
