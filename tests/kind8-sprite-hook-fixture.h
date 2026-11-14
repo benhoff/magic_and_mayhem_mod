@@ -31,9 +31,13 @@ static void sprite_hook_fixture(void){
   enabled=1;SetLastError(1234);world_effect_test_call((u32)hooks[tag].entry,0x1234,0x5678,0,after,args);
   const u32 expected_flags=tag==13||tag==14||tag==22||tag==36?0x246u:0x247u;
   sprite_fixture_require(get((void*)0x700804)==counter&&GetLastError()==1234&&bypass_completed==i+1&&batch_count==i+1&&!get(after+28)&&get(after+32)==expected_flags,195);
-  for(u32 j=0;j<560;++j)if((j<28||j>=36)&&after[j]!=bypass_before[j])ExitProcess(196);
+  for(u32 j=0;j<560;++j)if((j<28||j>=36)&&fixture_state_byte_defined(bypass_before,j)&&after[j]!=bypass_before[j]){
+   u32 diagnostic[4]={tag,j,bypass_before[j],after[j]};path(name,"world-sprite-abi-failure-",0,".bin");HANDLE diagnostic_file=CreateFileA(name,0x40000000,0,0,1,0x80,0);
+   if(diagnostic_file!=(HANDLE)-1){write(diagnostic_file,diagnostic,16);write(diagnostic_file,bypass_before,560);write(diagnostic_file,after,560);CloseHandle(diagnostic_file);}ExitProcess(196);
+  }
   copy(tail_at,old_tail,32);
  }
+ copy((void*)0x549ba0,sprite_method_attached,sizeof(sprite_method_attached));
  copy((void*)0x5492b0,sprite_method_flies,sizeof(sprite_method_flies));copy((void*)0x549730,sprite_method_cure,sizeof(sprite_method_cure));
  copy((void*)0x5006a2,sprite_primary_prefix,sizeof(sprite_primary_prefix));copy((void*)0x5006b2,sprite_primary_continuation,sizeof(sprite_primary_continuation));copy((void*)0x500848,sprite_primary_store,sizeof(sprite_primary_store));*(u8*)0x50084c=0xc3;
  /* Synthetic RNG binding counts calls and checks the original receiver. */
@@ -42,7 +46,7 @@ static void sprite_hook_fixture(void){
  sprite_fixture_require(FlushInstructionCache(GetCurrentProcess(),(void*)0x480000,0x120000),197);
  zero((void*)owner,68);put((void*)(owner+0x24),1);zero((void*)bank,16);put((void*)(bank+12),1);put((void*)offsets,0);
  kind8_sprite_guard_fixture=1;
- for(u32 family=0;family<2;++family){const u32 table=family?0x5c74fc:0x5c74e4,method=family?0x549730:0x5492b0,global=family?0x6f2268:0x6f2150;
+ for(u32 family=0;family<3;++family){const u32 table=family==2?0x5c7514:family?0x5c74fc:0x5c74e4,method=family==2?0x549ba0:family?0x549730:0x5492b0,global=family==2?0x6f21e8:family?0x6f2268:0x6f2150;
   put((void*)(table+12),method);zero((void*)object,32);put((void*)object,table);put((void*)(object+(family?0x10:0x1c)),owner);put((void*)global,bank);put((void*)(global+8),offsets);put((void*)(global+12),frame);
   for(u32 i=0;i<5;++i){const u32 tag=tags[i];sprite_source(frame,node,tag==22||tag==36);zero((void*)row,36);put((void*)(row+4),object);put((void*)(row+8),1+i*3);put((void*)(row+12),5+family*3);put((void*)(row+24),8);put((void*)(row+28),0x8ad08ad0);put((void*)(row+32),0x12345678);
    put((void*)0x6903dc,hooks[tag==36?36:22].address);put((void*)0x6c4e3c,tag==17?0x54e240:hooks[tag==14?14:13].address);
@@ -51,11 +55,11 @@ static void sprite_hook_fixture(void){
    sprite_fixture_require(get((void*)object)==table&&get((void*)(object+(family?0x10:0x1c)))==owner,199);
   }
  }
- sprite_fixture_require(get((void*)0x700808)==15&&!get((void*)0x70080c),200);
+ sprite_fixture_require(get((void*)0x700808)==25&&!get((void*)0x70080c),200);
  /* Real Win32 VirtualQuery/VirtualProtect controls, including every shorter
   * stack and object span ending at an inaccessible second page. */
  u8* pages=VirtualAlloc(0,8192,0x3000,4);u32 prior;sprite_fixture_require(pages&&VirtualProtect(pages+4096,4096,1,&prior),201);u32 controls=0,shorts=0,pairs=0;
- for(u32 k=0;k<6;++k){const struct SpriteRasterSite* site=sprite_raster_sites+k;const struct MnmKind8SpriteClass type=mnm_kind8_sprite_class(site->table,site->method);
+ for(u32 k=0;k<9;++k){const struct SpriteRasterSite* site=sprite_raster_sites+k;const struct MnmKind8SpriteClass type=mnm_kind8_sprite_class(site->table,site->method);
   put((void*)(site->table+12),site->method);zero((void*)object,32);put((void*)object,site->table);put((void*)(object+type.owner_offset),owner);put((void*)site->bank,bank);put((void*)(row+4),object);put((void*)(row+24),8);put((void*)(row+28),0x8ad08ad0);put((void*)(frame+28),site->parent_word==7?0xffffffffu:node);
   u32 stack[10]={0};stack[0]=site->address;stack[1]=frame;stack[site->parent_word]=0x5006b2;stack[site->parent_word-2]=row;
   for(u32 tag=0;tag<64;++tag)if(site->tags&(1ull<<tag)){++pairs;
@@ -72,10 +76,10 @@ static void sprite_hook_fixture(void){
 #undef SPRITE_CHECK
   }
  }
- sprite_fixture_require(pairs==10&&shorts==628,203);kind8_sprite_guard_fixture=0;
+ sprite_fixture_require(pairs==15&&shorts==912,203);kind8_sprite_guard_fixture=0;
  u32 request[16];batch_header(request,dst);path(name,"world-kind8-sprite-batch-",0,".bin");HANDLE descriptor=CreateFileA(name,0x40000000,0,0,1,0x80,0);sprite_fixture_require(descriptor!=(HANDLE)-1&&write(descriptor,request,64)&&write(descriptor,batch_rows,request[11])&&CloseHandle(descriptor),204);
- sprite_fixture_require(batch_count==15&&batch_restore(),205);for(u32 i=0;i<480000;++i)if(((u16*)dst->pixels)[i]!=0x4321)ExitProcess(206);
- sprite_fixture_require(journal_flush()&&CloseHandle(file),207);u32 proof[10]={0};copy(proof,"MNMSPR01",8);proof[2]=5;proof[3]=10;proof[4]=15;proof[5]=0;proof[6]=pairs;proof[7]=shorts;proof[8]=controls;proof[9]=15;
+ sprite_fixture_require(batch_count==20&&batch_restore(),205);for(u32 i=0;i<480000;++i)if(((u16*)dst->pixels)[i]!=0x4321)ExitProcess(206);
+ sprite_fixture_require(journal_flush()&&CloseHandle(file),207);u32 proof[10]={0};copy(proof,"MNMSPR01",8);proof[2]=5;proof[3]=15;proof[4]=25;proof[5]=0;proof[6]=pairs;proof[7]=shorts;proof[8]=controls;proof[9]=20;
  path(name,"world-kind8-sprite-proof-",0,".bin");HANDLE f=CreateFileA(name,0x40000000,0,0,1,0x80,0);sprite_fixture_require(f!=(HANDLE)-1&&write(f,proof,40)&&CloseHandle(f),208);
  surfaces[0]=saved;file=saved_file;limit=saved_limit;sequence=saved_sequence;bytes=saved_bytes;failures=saved_failures;stopped=saved_stop;enabled=saved_enabled;batch_enabled=0;raster_first=raster_last=0;
  put((void*)0x658174,saved.pixels);put((void*)0x6a49b8,saved.width);put((void*)0x656618,saved.height);

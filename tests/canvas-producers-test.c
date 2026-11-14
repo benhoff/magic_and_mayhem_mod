@@ -2,6 +2,7 @@
    ABI/error/floating-point preservation and atomic signature refusal only. */
 #define MNM_SCENE_SELFTEST 1
 #include "../runtime/scene/canvas_producers.c"
+#include "fxsave-defined-bytes.h"
 extern void canvas_test_call(u32,u32,u32,u32,void*);
 extern void world_bypass_test_call(u32,u32,u32,u32,void*,u32);
 static volatile u8 reserve[0x310000];
@@ -63,7 +64,7 @@ static void bypass_fixture(void){
  SetLastError(1234);world_bypass_test_call(hooks[13].address,0x700100,4,0,after,frame);
  if(GetLastError()!=1234||get((void*)0x700800)||bypass_completed!=1)ExitProcess(81);
  if(*(u32*)(after+28)!=0)ExitProcess(82);
- for(u32 i=0;i<560;++i)if((i<28||i>=32)&&bypass_before[i]!=after[i])ExitProcess(82);
+ for(u32 i=0;i<560;++i)if((i<28||i>=32)&&fixture_state_byte_defined(bypass_before,i)&&bypass_before[i]!=after[i])ExitProcess(82);
  for(u32 i=0;i<16;++i)if(((u16*)s->pixels)[i]!=pixels[i])ExitProcess(83);
  // Wrong request identity and bad payload checksum refuse before writeback.
  u32 r[24]={0};r[1]=header[6];r[3]=99;r[5]=r[6]=4;bypass_completed=0;header[6]++;
@@ -91,7 +92,7 @@ static void raster_fixture(void){
   SetLastError(1234);world_bypass_test_call(hooks[tag].address,ecx,4,hooks[tag].pop,after,0x700200);
   const u32 expected_flags=tag==12||tag==23||tag==24?0x202:tag>=13&&tag<=16?0x246:0x247;
   if(get((void*)0x700804)!=counter||GetLastError()!=1234||bypass_completed!=k+1||*(u32*)(after+28)!=header[15]||*(u32*)(after+32)!=expected_flags)ExitProcess(87);
-  for(u32 j=0;j<560;++j)if((j<28||j>=36)&&bypass_before[j]!=after[j])ExitProcess(88);
+  for(u32 j=0;j<560;++j)if((j<28||j>=36)&&fixture_state_byte_defined(bypass_before,j)&&bypass_before[j]!=after[j])ExitProcess(88);
   for(u32 j=0;j<16;++j)if(((u16*)surface->pixels)[j]!=pixels[j])ExitProcess(89);
  }
  /* Exercise the actual World return callback, then a HUD raster while the
@@ -120,7 +121,7 @@ static void batch_fixture(void){
   SetLastError(1234);world_bypass_test_call(hooks[tag].address,fast?0x700200:0x700100,4,hooks[tag].pop,after,0x700200);
   if(get((void*)0x700804)!=counter||GetLastError()!=1234||bypass_completed!=k+1||batch_count!=k+1||batch_transfers||!batch_guard_open||*(u32*)(after+28)!=(tag==12||tag==23||tag==24?1u:0u))ExitProcess(103);
   const u32 expected_flags=tag==12||tag==23||tag==24?0x202:tag>=13&&tag<=16?0x246:0x247;
-  if(*(u32*)(after+32)!=expected_flags)ExitProcess(113);for(u32 j=0;j<560;++j)if((j<28||j>=36)&&after[j]!=raster_before[k][j])ExitProcess(114);
+  if(*(u32*)(after+32)!=expected_flags)ExitProcess(113);for(u32 j=0;j<560;++j)if((j<28||j>=36)&&fixture_state_byte_defined(raster_before[k],j)&&after[j]!=raster_before[k][j])ExitProcess(114);
  }
  u32 request[16];batch_header(request,s);if(!batch_restore()||*(u16*)p!=0x4321)ExitProcess(104);
  u16* pixels=HeapAlloc(GetProcessHeap(),0,960000);if(!pixels)ExitProcess(105);for(u32 i=0;i<480000;++i)pixels[i]=0x5678;
@@ -282,6 +283,9 @@ static void extent640_fixture(void){
 #include "kind8-sprite-hook-fixture.h"
 #include "world-rectangle-hook-fixture.h"
 void start(void){
+ /* Initialize physical x87 payloads once; FNINIT alone only marks them empty.
+  * Each call still seeds and compares its defined control/tag/live state. */
+ __asm__ volatile("fninit;fld1;fld1;fld1;fld1;fld1;fld1;fld1;fld1;fninit");
  oracle_config_fixture();
  reserve[sizeof(reserve)-1]=1;u32 old;
  if((u32)GetModuleHandleA(0)!=0x400000||!VirtualProtect((void*)0x480000,0x120000,0x40,&old))ExitProcess(1);
@@ -295,7 +299,13 @@ void start(void){
   for(u32 i=0;i<HOOKS;++i)for(u32 j=0;j<hooks[i].length;++j)if(*(u8*)(hooks[i].address+j)!=hooks[i].bytes[j])ExitProcess(123);
   ExitProcess(4);
  }
- for(u32 i=0;i<HOOKS;++i){SetLastError(1234);canvas_test_call(hooks[i].address,i==3?0x700000:0x700100,4,hooks[i].pop,after);if(GetLastError()!=1234)ExitProcess(5);for(u32 j=0;j<560;++j)if(before[i][j]!=after[j])ExitProcess(20+i);}
+#ifdef MNM_KIND8_FIXTURE_ONLY
+ /* Focused sprite proof retains the fixture's entry ABI and all guarded CPS
+  * assertions. The complete forwarding suite remains a separate control. */
+ if(!caller_state_create())ExitProcess(209);
+ sprite_hook_fixture();caller_state_close();canvas_producers_close();ExitProcess(0);
+#endif
+ for(u32 i=0;i<HOOKS;++i){SetLastError(1234);canvas_test_call(hooks[i].address,i==3?0x700000:0x700100,4,hooks[i].pop,after);if(GetLastError()!=1234)ExitProcess(5);for(u32 j=0;j<560;++j)if(fixture_state_byte_defined(before[i],j)&&before[i][j]!=after[j])ExitProcess(20+i);}
  bypass_fixture();
  raster_fixture();
  oracle_budget_fixture();
@@ -310,13 +320,13 @@ void start(void){
  extent640_fixture();
  if(!caller_state_create())ExitProcess(209);
  sprite_hook_fixture();
- /* Exercise a real shared return observer as well as all15 saved native
+ /* Exercise a real shared return observer as well as all20 saved native
   * completions. The supplied original tail is synthetic and draws no pixels. */
  const u32 state_args[6]={0x700200,1,1,0,0,0};SetLastError(1234);
  world_effect_test_call((u32)hooks[12].entry,0,0,0,after,state_args);
- if(GetLastError()!=1234||caller_state_starts!=16||caller_state_completed!=16||caller_state_active||caller_state_rows!=16)ExitProcess(210);
+ if(GetLastError()!=1234||caller_state_starts!=21||caller_state_completed!=21||caller_state_active||caller_state_rows!=21)ExitProcess(210);
  rectangle_hook_fixture();
- if(caller_state_starts!=18||caller_state_completed!=18||caller_state_active||caller_state_rows!=18)ExitProcess(220);
+ if(caller_state_starts!=23||caller_state_completed!=23||caller_state_active||caller_state_rows!=23)ExitProcess(220);
  caller_state_close();
  caller_opaque_context_fixture();
  caller_bindings_fixture();caller_native_return_fixture();caller_tail_fixture();

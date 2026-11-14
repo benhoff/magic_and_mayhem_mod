@@ -15,7 +15,7 @@ try:
  obs=(R/'runtime/scene/world_trace.c').read_text();a=obs.index('static int kind8_supported(');b=obs.index('void world_begin(',a);(scratch/'sprite-observer-caller.inc').write_text(obs[a:b])
  for name,test in [('fading','fading-particle-admission-test.cpp'),('old-sprite','kind8-sprite-admission-test.cpp')]:
   run(name+'-build',['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-fno-omit-frame-pointer','-fno-pie','-no-pie','-I'+str(scratch),R/'tests'/test,'-o',scratch/name]);run(name+'-run',[scratch/name,exe]);q[name]=json.loads((out/(name+'-run.log')).read_text());assert q[name]['success'];run(name+'-save-binary',['cp',scratch/name,out/name])
- assert q['fading']['context_pairs']==10 and q['fading']['original_primary_cases']==240 and q['old-sprite']['context_pairs']==10
+ assert q['fading']['context_pairs']==10 and q['fading']['original_primary_cases']==240 and q['old-sprite']['context_pairs']==15
  assert all((R/n).read_bytes()==body for n,body in snap.items());q.update(success=True,sources_stable=True)
 except Exception as e:q['error']=repr(e);traceback.print_exc()
 finally:

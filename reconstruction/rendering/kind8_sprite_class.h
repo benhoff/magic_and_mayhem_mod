@@ -7,6 +7,7 @@ static inline struct MnmKind8SpriteClass mnm_kind8_sprite_class(uint32_t table,u
     struct MnmKind8SpriteClass result={0,0,0,0,0};
     if(table==0x5c74e4 && target==0x5492b0){result.kind=1;result.method=target;result.owner_offset=0x1c;result.root_bytes=32;result.bank_global=0x6f2150;}
     else if(table==0x5c74fc && target==0x549730){result.kind=2;result.method=target;result.owner_offset=0x10;result.root_bytes=20;result.bank_global=0x6f2268;}
+    else if(table==0x5c7514 && target==0x549ba0){result.kind=3;result.method=target;result.owner_offset=0x10;result.root_bytes=20;result.bank_global=0x6f21e8;}
     return result;
 }
 #endif

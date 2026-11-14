@@ -30734,3 +30734,22 @@ and Original recovery. Normal finish/hook checks and protected master replacemen
 remain separate required steps. Remote master remains an ancestor; publication
 uses a normal push. Existing task branches preserve their original history and
 must avoid reintroducing the mapped unpublished ancestors.
+
+
+
+
+### Attached sprite sibling admission, 2026-11-14
+
+The previously missing `5c7514/549ba0` class and its `549c43`, `549c64`,
+`549c79` WORD/indexed/clipped leaves now share the protected first-table
+sprite admission and owned model. All13concrete particle-family classes now have
+static metadata recognition in the existing bounded mode; the three abstract
+tables are not drawable effects. AT14 retains216000matching original-primary
+traces,21408guarded callbacks, the full producer forwarding/refusal suite,1032
+admission controls/912protected short spans and20actual owned rasters. Native
+softwareGL matches all480000authored expected destination WORDs with80nonzero
+words and zero ordinary readbacks. Corrected fixture comparisons retain defined
+FXSAVE state while excluding empty/reserved payloads, with explicit physical
+x87 initialization; all earlier negatives remain retained. No original pixel
+rerun, natural game or broad live acceptance is asserted. See
+`native-world-attached-sprite-admission.md`.
