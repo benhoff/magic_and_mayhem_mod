@@ -245,7 +245,9 @@ def _copy(source, target, root):
     # other provisioned output filesystem uses the caller's own capacity guard.
     if guard.is_file() and owner.stat().st_dev==target.parent.stat().st_dev:
         size = int(subprocess.check_output(['du', '-s', '-B1', '--', str(source)]).split()[0])
-        command = [sys.executable, str(guard), 'run', '--reserve-gib', str(size / GIB + .02), '--', *command]
+        policy = os.environ.get('MNM_WORKING_STORAGE_POLICY')
+        command = [sys.executable, str(guard), *(['--policy', policy] if policy else []),
+                   'run', '--reserve-gib', str(size / GIB + .02), '--', *command]
     subprocess.run(command, check=True)
 
 

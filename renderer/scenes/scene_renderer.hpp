@@ -25,8 +25,14 @@ struct SceneLimits {
     std::size_t draws=12320;
     ResourceCacheLimits cache;
     bool cacheColourRectangles=false; // bounded owned pixel atlas, independent of resource IDs
+    bool batchSmallColourRectangles=true; // ordered owned2x2 effects, without atlas uploads
     // Explicit offline colour-only policy. Sprite/effect resources remain RGB565.
     bool colourRgb555=false;
+    bool batchDisplacements=true; // bounded ordered destination-coordinate composition
+    bool batchAdditiveSprites=false; // exact owned source aggregation; native World opts in
+    std::size_t maxAdditiveSprites=32; // synchronous native World may use up to512
+    bool batchAdditiveRectangles=false; // only increments without low16 wraparound
+    std::size_t maxAdditiveRectangles=32;
 };
 struct SceneBatchBudget {
     std::size_t draws=32,uploadBytes=256*1024;
@@ -35,6 +41,11 @@ struct SceneBatchBudget {
 struct ColourRectangleCacheStats {std::uint64_t hits=0,uploads=0,evictions=0;std::size_t entries=0,pixels=0;};
 struct SceneUploadNeed {std::size_t draw=0;ResourceUploadRequest request;};
 struct SceneUploadStats {std::uint64_t bytes=0,ticks=0,maxTickBytes=0;};
+struct AdditiveWorkProfile {
+    bool enabled=false;
+    std::uint64_t batches=0,sprites=0,rectangles=0,visitedPixels=0,uploadPixels=0;
+    double planningMs=0,combinationMs=0,uploadMs=0,compositeMs=0;
+};
 enum class SceneStart { background, retainedCanvas };
 // GUI-thread persistent RGB565 canvas/background and resource upload ownership.
 // Manager/renderer outlive this object. read/present are explicit sync points;
@@ -60,6 +71,7 @@ public:
     std::optional<SceneUploadNeed> uploadNeed() const;
     void supplyUpload(const SceneUploadNeed&,PreparedSpriteFrame);
     SceneUploadStats uploadStats() const {checkThread();return uploadStats_;}
+    AdditiveWorkProfile additiveProfile() const {checkThread();return additiveProfile_;}
     Image read();
     QImage present();
     GpuFrame presentGpu();
@@ -70,12 +82,19 @@ public:
     // Native canvas/history, decoded resources and presentation leases survive.
     void releaseCachedImages();
 private:
+    struct DisplacementCell {int key=-1,value=0;};
+    // At most 65536 visited pixels: fixed half-load table, allocated on demand.
+    std::vector<DisplacementCell> displacementMap_;
+    std::vector<std::size_t> displacementTouched_;
+    std::vector<std::pair<int,int>> displacementChanges_,displacementOrdered_,displacementScratch_;
+    std::vector<DestinationSample> displacementSpans_;
     std::vector<SceneDraw> pending_;
     std::size_t cursor_=0;
     bool drawing_=false;
     std::optional<SceneUploadNeed> need_;
     bool supplied_=false;
     SceneUploadStats uploadStats_;
+    AdditiveWorkProfile additiveProfile_;
     GlBlitter& renderer_;
     assets::ResourceManager& resources_;
     ResourceCache cache_;
@@ -89,9 +108,12 @@ private:
     struct ColourTile {Image image;std::uint64_t age=0;};
     std::vector<ColourTile> colourTiles_;
     SurfaceId colourAtlas_=0,colourMask_=0;
+    SurfaceId additiveSource_=0,additiveMask_=0;
     std::uint64_t colourAge_=0;
     ColourRectangleCacheStats colourStats_;
     void drawColourRectangle(const Image&,Rect,int,int,const SpriteComposite&,bool forceCache=false);
+    bool drawDisplacements(std::size_t end,std::chrono::steady_clock::time_point deadline);
+    bool drawAdditives(std::size_t end,std::chrono::steady_clock::time_point deadline,std::size_t& uploadBytes);
     void validate(const SceneDraw&);
     std::optional<ResourceUploadRequest> request(const SceneDraw&);
 };

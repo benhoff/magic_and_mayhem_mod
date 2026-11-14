@@ -1,5 +1,28 @@
 #ifndef MNM_CONT_CRC32C_H
 #define MNM_CONT_CRC32C_H
+#if defined(__aarch64__) && defined(__linux__) && \
+    __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+#include <arm_acle.h>
+#include <asm/hwcap.h>
+#include <sys/auxv.h>
+/* Keep CRC instructions in this function; the baseline caller must also run
+ * on ARM64 CPUs without the optional CRC extension. Wide loads use memcpy to
+ * support unaligned buffers without aliasing or alignment assumptions. */
+__attribute__((target("+crc")))
+static inline unsigned mnm_cont_crc32c_arm64(const unsigned char *p, unsigned n) {
+  unsigned h = ~0u;
+  while (n >= 8) {
+    unsigned long long w;
+    __builtin_memcpy(&w, p, sizeof(w));
+    h = __crc32cd(h, w);
+    p += 8;
+    n -= 8;
+  }
+  while (n--)
+    h = __crc32cb(h, *p++);
+  return ~h;
+}
+#endif
 /* Standard reflected CRC-32C (Castagnoli), init/final xor0xffffffff. This is
  * corruption detection, not authentication. Byte order is fixed regardless of
  * host alignment. The portable implementation is also the independent oracle.
@@ -53,6 +76,16 @@ static inline unsigned mnm_cont_crc32c(const unsigned char *p, unsigned n) {
   }
   if (ready == 2)
     return mnm_cont_crc32c_hardware(p, n);
+#elif defined(__aarch64__) && defined(__linux__) && \
+    __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+  static unsigned capability;
+  unsigned ready = __atomic_load_n(&capability, __ATOMIC_ACQUIRE);
+  if (!ready) {
+    ready = getauxval(AT_HWCAP) & HWCAP_CRC32 ? 2u : 1u;
+    __atomic_store_n(&capability, ready, __ATOMIC_RELEASE);
+  }
+  if (ready == 2)
+    return mnm_cont_crc32c_arm64(p, n);
 #endif
   return mnm_cont_crc32c_portable(p, n);
 }

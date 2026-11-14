@@ -14,6 +14,8 @@
 #include <QJsonObject>
 #include <QListWidget>
 #include <QMainWindow>
+#include <QMouseEvent>
+#include <QKeyEvent>
 #include <QProcess>
 #include <QSaveFile>
 #include <QSet>
@@ -24,10 +26,74 @@
 #include <future>
 #include <memory>
 
+// Explicit artifact-probe input stays within the native game viewport. Desktop
+// coordinates and global XTest events must never choose a recipient for it.
+static void installArtifactInput(QMainWindow& window,const QString& path,
+                                std::function<CampaignPresentationProbe()> probe){
+  if(qEnvironmentVariableIntValue("MNM_ZOMBIE_ARTIFACT_PROBE")!=1)return;
+  const auto directory=QFileInfo(path).dir();
+  auto buttons=std::make_shared<Qt::MouseButtons>();
+  auto sequence=std::make_shared<int>(0);
+  auto* timer=new QTimer(&window);timer->setInterval(5);
+  QObject::connect(timer,&QTimer::timeout,&window,[&window,directory,probe,buttons,sequence]{
+    QFile request(directory.filePath("viewport-input.request"));
+    if(!request.exists()||!request.open(QIODevice::ReadOnly))return;
+    const auto bytes=request.read(2049);request.close();
+    const auto command=QJsonDocument::fromJson(bytes).object();
+    const int id=command.value("id").toInt();QString error;
+    auto* viewport=window.findChild<GlViewport*>("nativeGameViewport");
+    if(bytes.size()>2048||id!=*sequence+1||id>512)error="Invalid artifact input sequence/budget";
+    else if(!viewport||!viewport->isVisible()||!window.isActiveWindow()||!probe().active)error="Native game viewport is not active";
+    else{
+      viewport->setFocus(Qt::OtherFocusReason);
+      if(!viewport->hasFocus())error="Native game viewport lacks focus";
+      else if(command.value("kind").toString()=="mouse"||command.value("kind").toString()=="motion"){
+        const bool motion=command.value("kind").toString()=="motion";
+        const int x=command.value("x").toInt(-1),y=command.value("y").toInt(-1);
+        const int number=command.value("button").toInt();
+        const auto size=viewport->frameSize();
+        if(x<0||y<0||x>=size.width()||y>=size.height()||(motion?number!=0:(number!=1&&number!=3)))error="Invalid artifact mouse point/button";
+        else{
+          const auto rect=viewport->imageRect();
+          const QPointF point(rect.x()+(x+.5)*rect.width()/size.width(),rect.y()+(y+.5)*rect.height()/size.height());
+          const auto button=motion?Qt::NoButton:number==1?Qt::LeftButton:Qt::RightButton;
+          const bool down=command.value("down").toBool();
+          if(!motion){if(down)*buttons|=button;else *buttons&=~Qt::MouseButtons(button);}
+          QMouseEvent event(motion?QEvent::MouseMove:down?QEvent::MouseButtonPress:QEvent::MouseButtonRelease,
+              point,viewport->mapToGlobal(point.toPoint()),button,*buttons,Qt::NoModifier);
+          event.ignore();
+          QCoreApplication::sendEvent(viewport,&event);
+          if(!event.isAccepted())error="Native viewport did not accept mouse input";
+        }
+      }else if(command.value("kind").toString()=="key"){
+        const auto direction=command.value("direction").toString();
+        const int key=direction=="right"?Qt::Key_Right:direction=="left"?Qt::Key_Left:direction=="up"?Qt::Key_Up:direction=="down"?Qt::Key_Down:0;
+        const int scan=command.value("scan").toInt();
+        if(!key||scan<8||scan>255)error="Invalid artifact arrow key";
+        else{
+          QKeyEvent event(command.value("down").toBool()?QEvent::KeyPress:QEvent::KeyRelease,
+              key,Qt::NoModifier,quint32(scan),0,0);
+          event.ignore();
+          QCoreApplication::sendEvent(viewport,&event);
+          if(!event.isAccepted())error="Native viewport did not accept arrow input";
+        }
+      }else error="Unknown artifact input kind";
+    }
+    if(error.isEmpty())*sequence=id;
+    QFile::remove(directory.filePath("viewport-input.request"));
+    QSaveFile reply(directory.filePath("viewport-input.reply"));
+    if(reply.open(QIODevice::WriteOnly)){
+      reply.write(QJsonDocument(QJsonObject{{"id",id},{"success",error.isEmpty()},{"error",error},{"target","nativeGameViewport"},
+          {"window_id",QString::number(window.winId())},{"window_width",qRound(window.width()*window.devicePixelRatioF())},{"window_height",qRound(window.height()*window.devicePixelRatioF())}}).toJson(QJsonDocument::Compact));reply.commit();
+    }
+  });timer->start();
+}
+
 void installNativeHealingSmokeTest(
     QApplication &app, QMainWindow &window, LiveMenuSession &session,
     const QString &path, std::function<CampaignPresentationProbe()> probe) {
   const bool crowded = qEnvironmentVariableIntValue("MNM_NATIVE_CROWDED") == 1;
+  installArtifactInput(window,path,probe);
   struct Run {
     int stage = 0;
     quint32 thread = 0, owner = 0;

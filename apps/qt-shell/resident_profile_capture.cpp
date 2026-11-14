@@ -15,10 +15,16 @@ struct ResidentProfileCapture::State {
     mutable std::mutex mutex;std::condition_variable ready;
     std::deque<Job> jobs;std::thread worker;
     std::uint64_t limit,queued=0,peakQueued=0,accepted=0,written=0,rawBytes=8,fileBytes=8,acceptedChunks=0,writtenChunks=0;
-    double workerMs=0;const bool sources,prefix;bool stopping=false,opened=false,truncated=false,finished=false;
+    double workerMs=0;const bool sources,prefix;bool stopping=false,opened=false,truncated=false,finished=false,worldLimitReached=false;
+    std::uint64_t worldLimit=0;
     unsigned headerSize()const{return prefix?mnm::profile::HeaderSize:sources?32:20;}
-    explicit State(QString p,std::uint64_t bytes,bool chunks):path(std::move(p)),limit(bytes),sources(chunks),prefix(chunks&&qEnvironmentVariableIntValue("MNM_ACCEPTANCE_CAMPAIGN")==1){
+    explicit State(QString p,std::uint64_t bytes,bool chunks):path(std::move(p)),limit(bytes),sources(chunks),prefix((chunks&&qEnvironmentVariableIntValue("MNM_ACCEPTANCE_CAMPAIGN")==1)||qEnvironmentVariableIntValue("MNM_RESIDENT_CAPTURE_PREFIX")==1){
         if(bytes<128 || bytes>256ull*1024*1024)throw std::runtime_error("Resident capture queue bound");
+        const auto configured=qEnvironmentVariable("MNM_RESIDENT_CAPTURE_MAX_WORLDS");
+        if(!configured.isEmpty()){
+            bool okay=false;worldLimit=configured.toULongLong(&okay);
+            if(!okay||worldLimit<1||worldLimit>8192)throw std::runtime_error("Resident capture World limit outside1..8192");
+        }
         worker=std::thread([this]{run();});
         std::unique_lock<std::mutex> lock(mutex);ready.wait(lock,[&]{return opened || !error.isEmpty();});
     }
@@ -64,6 +70,9 @@ bool ResidentProfileCapture::append(std::uint64_t generation,const std::vector<s
     auto& s=*state_;const auto size=std::uint64_t(source.size())+request.size();
     std::lock_guard<std::mutex> lock(s.mutex);
     if(s.stopping || s.truncated || !s.error.isEmpty())return false;
+    // An explicit recording prefix is an I/O limit, never an engine limit.
+    // Stop accepting complete subsequent Worlds without truncating the prefix.
+    if(s.worldLimit && s.accepted>=s.worldLimit){s.worldLimitReached=true;return false;}
     if(generation!=s.accepted+1 || source.size()<16 || source.size()>16*1024*1024 || (prefix?(!s.sources || !request.empty()):request.size()<64) || request.size()>197184){s.error="Resident capture generation/extent";return false;}
     if(s.accepted+s.acceptedChunks>=8192 || size+s.headerSize()>16ull*1024*1024*1024-s.rawBytes || size>s.limit-s.queued){s.truncated=true;return false;}
     State::Job job{generation,prefix?s.acceptedChunks+1:0,unsigned(source.size()),unsigned(request.size()),{}};
@@ -77,5 +86,6 @@ QJsonObject ResidentProfileCapture::report() const {
         {"raw_bytes",double(s.rawBytes)},{"file_bytes",double(s.fileBytes)},{"queue_bytes",double(s.queued)},
         {"peak_queue_bytes",double(s.peakQueued)},{"queue_limit_bytes",double(s.limit)},{"truncated",s.truncated},
         {"finished",s.finished},{"complete",s.finished && s.error.isEmpty() && !s.truncated && s.accepted==s.written && s.acceptedChunks==s.writtenChunks},
+        {"world_limit",double(s.worldLimit)},{"world_limit_reached",s.worldLimitReached},{"bounded_prefix",s.worldLimit!=0},
         {"compression_write_cpu_wall_ms",s.workerMs}};
 }

@@ -4,6 +4,7 @@ import argparse
 import fcntl
 import json
 import os
+import platform
 from pathlib import Path
 import shutil
 import subprocess
@@ -16,6 +17,31 @@ from native_prefix_template import clone
 from terrain_light_session import selection as lighting_selection
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def player_settings(root):
+    """Read optional checkout-local defaults without moving player data."""
+    path = root / 'working/native-player/launch.json'
+    if path.is_symlink() or not path.resolve().is_relative_to(root / 'working'):
+        raise ValueError('Player settings must be owned under working/: ' + str(path))
+    try:
+        with path.open('rb') as source:
+            data = source.read(8193)
+    except FileNotFoundError:
+        return {}
+    if len(data) > 8192:
+        raise ValueError('Player settings exceed 8 KiB: ' + str(path))
+    try:
+        settings = json.loads(data)
+    except ValueError as error:
+        raise ValueError('Invalid player settings: ' + str(path)) from error
+    if (not isinstance(settings, dict) or type(settings.get('schema')) is not int
+            or settings['schema'] != 1 or set(settings) - {'schema', 'prefix', 'save_store'}):
+        raise ValueError('Unsupported player settings: ' + str(path))
+    for key in ('prefix', 'save_store'):
+        if key in settings and (not isinstance(settings[key], str) or not settings[key].strip()):
+            raise ValueError('Invalid player setting: ' + key)
+    return settings
 
 
 def owned_prefix(prefix):
@@ -68,17 +94,37 @@ def main(argv=None, root=ROOT):
         'Native terrain lighting is the default; set MNM_TERRAIN_LIGHTING=original to override. '
         'Wine still runs the original simulation. Full-game rendering equivalence remains pending. '
         'Use ./run-x86.sh --original-renderer for the original game renderer.'))
-    parser.add_argument('--prefix', type=Path, default=Path('working/native-player/wineprefix'),
-                        help='Dedicated owned prefix, initialized once and reused (default: %(default)s)')
+    parser.add_argument('--prefix', type=Path,
+                        help='Dedicated owned prefix; uses local settings, otherwise working/native-player/wineprefix')
     parser.add_argument('--output-owner', type=Path, help='New explicitly assigned ownership directory under working/')
     parser.add_argument('--prefix-template', type=Path,
                         help='Optional stopped, admitted prefix to clone on first launch')
+    parser.add_argument('--world-delivery', choices=('auto', 'synchronous', 'independent'), default='auto',
+                        help='World delivery: auto selects independent rendering on Linux ARM64; '
+                             'synchronous retains the original launch policy')
     parser.add_argument('arguments', nargs=argparse.REMAINDER,
                         help='Native presentation options after --, e.g. -- --skip-movies --no-native-music')
     args = parser.parse_args(argv)
     extra = args.arguments[1:] if args.arguments[:1] == ['--'] else args.arguments
     try:
+        settings = player_settings(root)
+        if args.world_delivery == 'synchronous' and '--independent-world' in extra:
+            raise ValueError('--world-delivery synchronous conflicts with --independent-world')
+        linux_arm = sys.platform == 'linux' and platform.machine() == 'aarch64'
+        independent = args.world_delivery == 'independent' or (args.world_delivery == 'auto' and linux_arm)
+        if independent and '--independent-world' not in extra:
+            extra = [*extra, '--independent-world']
         environment = configure(os.environ, extra)
+        if 'save_store' in settings and 'MNM_MENU_SAVE_STORE' not in environment:
+            # Use the same owned-working-directory rules as the player prefix.
+            environment['MNM_MENU_SAVE_STORE'] = str(prefix_path(root, Path(settings['save_store'])))
+        if linux_arm and '--independent-world' in extra:
+            # Replay lists omit native surface writes between World subqueues.
+            # Preserve the completed World for presentations between updates.
+            environment.setdefault('MNM_WORLD_IMAGE_REUSE', '1')
+            # Moving native UI/occlusion must use this World's completed UI,
+            # rather than presenting the preceding generation's literal pixels.
+            environment.setdefault('MNM_WORLD_FIRST_SEAL_BASELINE', '1')
         environment.setdefault('MNM_TERRAIN_LIGHTING', 'native')
         lighting, _ = lighting_selection(environment)
         if environment.get('MNM_MENU_DIRECTPLAY_DX6', '1') != '1':
@@ -87,7 +133,8 @@ def main(argv=None, root=ROOT):
         owner_output=args.output_owner.resolve() if args.output_owner is not None else None
         if owner_output is not None and (not owner_output.is_relative_to(root/'working') or args.output_owner.is_symlink() or owner_output.exists()):
             raise ValueError('Require a new explicit ownership directory under working/')
-        prefix = prefix_path(root, args.prefix)
+        prefix = prefix_path(root, args.prefix if args.prefix is not None else
+                             Path(settings.get('prefix', 'working/native-player/wineprefix')))
         if prefix.exists():
             if args.prefix_template is not None:
                 raise ValueError('--prefix-template requires a new destination prefix')
@@ -129,6 +176,7 @@ def main(argv=None, root=ROOT):
                     os.environ['MNM_MENU_DIRECTPLAY_DX6'] = previous
             print('Native renderer required; original renderer fallback disabled.\n'
                   'Terrain lighting: ' + lighting + '.\n'
+                  'World delivery: ' + ('independent' if '--independent-world' in extra else 'synchronous') + '.\n'
                   'Wine runs the original simulation. Prefix: ' + str(prefix), flush=True)
             return subprocess.run([sys.executable, '-B', str(root / 'tools/run-native-owned.py'),
                                    '--native-only', '--prefix', str(prefix),

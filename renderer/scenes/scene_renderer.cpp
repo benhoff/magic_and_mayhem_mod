@@ -5,12 +5,14 @@
 #include <stdexcept>
 #include <type_traits>
 #include <limits>
+#include <cstdlib>
+#include <cstring>
 
 namespace mnm::render {
 SceneRenderer::SceneRenderer(GlBlitter& renderer,assets::ResourceManager& resources,const Image& background,SceneLimits limits)
     :renderer_(renderer),resources_(resources),cache_(renderer,resources,limits.cache),limits_(limits),
      viewport_{0,0,background.width,background.height},thread_(std::this_thread::get_id()){
-    if(!limits.draws || limits.draws>65536)throw std::invalid_argument("Scene draw budget must be 1..65536");
+    if(!limits.draws || limits.draws>65536||!limits.maxAdditiveSprites||limits.maxAdditiveSprites>512||!limits.maxAdditiveRectangles||limits.maxAdditiveRectangles>512)throw std::invalid_argument("Scene draw/additive budget outside limits");
     const auto format=limits_.colourRgb555?PixelFormat{16,{0x7c00,0x3e0,0x1f}}:spriteFormat;
     background_=renderer_.create(background,format);
     try{canvas_=renderer_.create(background,format);}catch(...){renderer_.destroy(background_);throw;}
@@ -19,13 +21,13 @@ SceneRenderer::SceneRenderer(GlBlitter& renderer,assets::ResourceManager& resour
                              SurfaceId canvas,int width,int height,SceneLimits limits)
     :renderer_(renderer),resources_(resources),cache_(renderer,resources,limits.cache),limits_(limits),
      canvas_(canvas),ownsCanvas_(false),viewport_{0,0,width,height},thread_(std::this_thread::get_id()){
-    if(limits.colourRgb555||!limits.draws||limits.draws>65536||width<1||height<1||width>2048||height>2048)
+    if(limits.colourRgb555||!limits.draws||limits.draws>65536||!limits.maxAdditiveSprites||limits.maxAdditiveSprites>512||!limits.maxAdditiveRectangles||limits.maxAdditiveRectangles>512||width<1||height<1||width>2048||height>2048)
         throw std::invalid_argument("Borrowed scene limits");
     const auto frame=renderer_.presentGpu(canvas);
     if(frame.size()!=QSize(width,height))throw std::invalid_argument("Borrowed scene canvas extent");
     valid_=true;
 }
-SceneRenderer::~SceneRenderer(){cache_.clear();if(colourMask_)renderer_.destroy(colourMask_);if(colourAtlas_)renderer_.destroy(colourAtlas_);if(ownsCanvas_)renderer_.destroy(canvas_);if(background_)renderer_.destroy(background_);}
+SceneRenderer::~SceneRenderer(){cache_.clear();if(additiveMask_)renderer_.destroy(additiveMask_);if(additiveSource_)renderer_.destroy(additiveSource_);if(colourMask_)renderer_.destroy(colourMask_);if(colourAtlas_)renderer_.destroy(colourAtlas_);if(ownsCanvas_)renderer_.destroy(canvas_);if(background_)renderer_.destroy(background_);}
 ColourRectangleCacheStats SceneRenderer::colourCacheStats() const {checkThread();auto s=colourStats_;s.entries=std::count_if(colourTiles_.begin(),colourTiles_.end(),[](const auto& t){return !t.image.pixels.empty();});s.pixels=colourAtlas_?2*512*512:0;return s;}
 void SceneRenderer::drawColourRectangle(const Image& image,Rect rect,int x,int y,const SpriteComposite& mode,bool forceCache){
     if(!limits_.cacheColourRectangles&&!forceCache){renderer_.colourRect(canvas_,image,rect,x,y,mode);return;}
@@ -163,6 +165,8 @@ void SceneRenderer::beginFrame(const std::vector<SceneDraw>& draws,SceneStart st
     if(start==SceneStart::background&&!background_)throw std::invalid_argument("Borrowed scene has no background");
     if(start==SceneStart::retainedCanvas&&!valid_)throw std::runtime_error("No complete native canvas to retain");
     for(const auto& draw:draws)validate(draw);
+    const auto ownerProfile=std::getenv("MNM_WORLD_OWNER_PROFILE");
+    additiveProfile_={};additiveProfile_.enabled=ownerProfile&&std::strcmp(ownerProfile,"1")==0;
     // Admission errors preserve the previous completed frame. An execution error
     // refuses presentation of partial pixels until a later successful full draw.
     auto owned=draws;valid_=false;
@@ -194,6 +198,138 @@ void SceneRenderer::supplyUpload(const SceneUploadNeed& need,PreparedSpriteFrame
     if(prepared.pixels.width!=width||prepared.pixels.height!=height||prepared.originX!=ox||prepared.originY!=oy)throw std::runtime_error("Prepared upload geometry differs");
     cache_.supply(need.request,std::move(prepared));supplied_=true;
 }
+bool SceneRenderer::drawAdditives(std::size_t end,std::chrono::steady_clock::time_point deadline,std::size_t& uploadBytes){
+    const bool rectangles=bool(pending_[cursor_].additive);
+    if(!(rectangles?limits_.batchAdditiveRectangles:limits_.batchAdditiveSprites)||GlBlitter::isolatedRecoveryEnabled())return false;
+    using Clock=std::chrono::steady_clock;
+    const auto elapsed=[](auto start){return std::chrono::duration<double,std::milli>(Clock::now()-start).count();};
+    auto phase=additiveProfile_.enabled?Clock::now():Clock::time_point{};
+    struct Source {const assets::SpriteFrame* frame;const SpriteColourTable* colours;Rect region;int x,y;std::uint16_t constant;};
+    std::vector<Source> sources;Rect area{};std::size_t visited=0,next=cursor_;
+    const auto cap=rectangles?limits_.maxAdditiveRectangles:limits_.maxAdditiveSprites;
+    for(;next<end&&next-cursor_<cap;++next){
+        if(next!=cursor_&&std::chrono::steady_clock::now()>=deadline)break;
+        const auto& d=pending_[next];
+        if(!d.visible||!d.clip||bool(d.additive)!=rectangles||d.colourRectangle||d.rowEffect||d.wholeOpaqueRunClipping)break;
+        const assets::SpriteFrame* frame=nullptr;std::uint16_t constant=0;
+        std::int64_t x=d.anchorX,y=d.anchorY;int width=0,height=0;
+        if(rectangles){
+            const auto& a=*d.additive;
+            // The recovered rectangle kernel wraps each addition to16bits
+            // before clamping. Only this domain is associative for every
+            // possible destination channel; larger increments stay serial.
+            if(a.channels[0]>65535-31||a.channels[1]>65535-63||a.channels[2]>65535-31)break;
+            width=a.width;height=a.height;
+            constant=std::uint16_t((std::min(unsigned(a.channels[0]),31u)<<11)|(std::min(unsigned(a.channels[1]),63u)<<5)|std::min(unsigned(a.channels[2]),31u));
+        }else{
+            if(!d.colours||d.composite.mode!=CompositeMode::additive)break;
+            const auto& resource=limits_.cache.residentOnly?resources_.resident(d.resource):resources_.load(d.resource);
+            const auto* sprite=std::get_if<assets::Sprite>(&resource.image);
+            if(!sprite||sprite->storage!=assets::SpriteStorage::indexed8)break;
+            frame=&sprite->frames.at(d.frame);width=frame->width;height=frame->height;
+            x-=frame->originX;y-=frame->originY;
+        }
+        const auto clip=d.viewport.value_or(viewport_);
+        const auto left=std::max(x,std::int64_t(clip.left)),top=std::max(y,std::int64_t(clip.top));
+        const auto right=std::min(x+width,std::int64_t(clip.right)),bottom=std::min(y+height,std::int64_t(clip.bottom));
+        if(left>=right||top>=bottom)continue;
+        const Rect region{int(left),int(top),int(right),int(bottom)};
+        const Rect combined=sources.empty()?region:Rect{std::min(area.left,region.left),std::min(area.top,region.top),std::max(area.right,region.right),std::max(area.bottom,region.bottom)};
+        const auto pixels=std::size_t(right-left)*(bottom-top);
+        const auto cost=std::size_t(combined.right-combined.left)*(combined.bottom-combined.top)*4+(additiveMask_?0:128*128*4);
+        if(combined.right-combined.left>128||combined.bottom-combined.top>128||visited+pixels>65536||cost>uploadBytes)break;
+        area=combined;visited+=pixels;sources.push_back({frame,d.colours?&*d.colours:nullptr,region,int(x),int(y),constant});
+    }
+    if(next-cursor_<2)return false;
+    if(additiveProfile_.enabled){additiveProfile_.planningMs+=elapsed(phase);++additiveProfile_.batches;(rectangles?additiveProfile_.rectangles:additiveProfile_.sprites)+=next-cursor_;additiveProfile_.visitedPixels+=visited;phase=Clock::now();}
+    if(!sources.empty()){
+        Image pixels{area.right-area.left,area.bottom-area.top,{}};
+        pixels.pixels.resize(std::size_t(pixels.width)*pixels.height);
+        for(const auto& s:sources){
+            for(int y=s.region.top;y<s.region.bottom;++y)for(int x=s.region.left;x<s.region.right;++x){
+                auto colour=s.constant;
+                if(s.frame){
+                    const auto at=std::size_t(y-s.y)*s.frame->width+x-s.x;
+                    if(!s.frame->opaqueMask.at(at))continue;
+                    colour=(*s.colours)[std::get<std::vector<std::uint8_t>>(s.frame->pixels).at(at)];
+                }
+                auto& sum=pixels.pixels[std::size_t(y-area.top)*pixels.width+x-area.left];
+                sum=(std::min((sum>>11)+(colour>>11),31u)<<11)|(std::min(((sum>>5)&63u)+((colour>>5)&63u),63u)<<5)|std::min((sum&31u)+(colour&31u),31u);
+            }
+        }
+        // Saturating nonnegative channel sums are associative. Zero source
+        // words leave uncovered destination pixels unchanged, including holes.
+        if(additiveProfile_.enabled){additiveProfile_.combinationMs+=elapsed(phase);phase=Clock::now();}
+        if(!additiveSource_)additiveSource_=renderer_.allocate(128,128,spriteFormat);
+        if(!additiveMask_){additiveMask_=renderer_.create({128,128,std::vector<std::uint32_t>(128*128,1)},{8,{}});uploadBytes-=128*128*4;}
+        renderer_.update(additiveSource_,0,0,pixels);uploadBytes-=pixels.pixels.size()*4;
+        if(additiveProfile_.enabled){additiveProfile_.uploadMs+=elapsed(phase);additiveProfile_.uploadPixels+=pixels.pixels.size();phase=Clock::now();}
+        SpriteComposite mode;mode.mode=CompositeMode::additive;
+        renderer_.composite(additiveSource_,canvas_,{0,0,pixels.width,pixels.height},area.left,area.top,additiveMask_,mode);
+        if(additiveProfile_.enabled)additiveProfile_.compositeMs+=elapsed(phase);
+    }
+    cursor_=next;need_.reset();supplied_=false;return true;
+}
+bool SceneRenderer::drawDisplacements(std::size_t end,std::chrono::steady_clock::time_point deadline){
+    if(!limits_.batchDisplacements||!renderer_.canBatchDestinationSamples())return false;
+    if(displacementMap_.empty())displacementMap_.resize(131072);
+    auto& touched=displacementTouched_;touched.clear();
+    struct Reset {std::vector<DisplacementCell>& cells;std::vector<std::size_t>& indices;
+        ~Reset(){for(auto slot:indices)cells[slot].key=-1;}} reset{displacementMap_,touched};
+    const auto slot=[&](int key){
+        auto at=std::size_t(std::uint32_t(key)*2654435761u)&(displacementMap_.size()-1);
+        while(displacementMap_[at].key!=-1&&displacementMap_[at].key!=key)at=(at+1)&(displacementMap_.size()-1);
+        return at;
+    };
+    auto& changes=displacementChanges_;
+    std::size_t next=cursor_,visited=0;
+    for(;next<end&&next-cursor_<32;++next){
+        if(next!=cursor_&&std::chrono::steady_clock::now()>=deadline)break;
+        const auto& d=pending_[next];
+        if(!d.visible||!d.clip||d.additive||d.colourRectangle||d.rowEffect||d.composite.mode!=CompositeMode::displace)break;
+        const auto& resource=limits_.cache.residentOnly?resources_.resident(d.resource):resources_.load(d.resource);
+        const auto* sprite=std::get_if<assets::Sprite>(&resource.image);if(!sprite)break;
+        const auto& f=sprite->frames.at(d.frame);const auto clip=d.viewport.value_or(viewport_);
+        const auto left=std::int64_t(d.anchorX)-f.originX,top=std::int64_t(d.anchorY)-f.originY;
+        // Whole-run clipping can split one sprite into several ordered snapshots;
+        // preserve that existing path whenever horizontal clipping is required.
+        if(f.width>128||f.height>128||visited+std::size_t(f.width)*f.height>65536||
+           (d.wholeOpaqueRunClipping&&(left<clip.left||left+f.width>clip.right)))break;
+        visited+=std::size_t(f.width)*f.height;changes.clear();
+        for(auto y=std::max(top,std::int64_t(clip.top));y<std::min(top+f.height,std::int64_t(clip.bottom));++y)
+            for(auto x=std::max(left,std::int64_t(clip.left));x<std::min(left+f.width,std::int64_t(clip.right));++x){
+                if(!f.opaqueMask.at(std::size_t(y-top)*f.width+x-left))continue;
+                const int target=int(y*viewport_.right+x),sample=target+d.composite.rowOffsets[unsigned(y)%d.composite.rowPeriod];
+                if(sample>=viewport_.right*viewport_.bottom)continue; // preflight admits only the explicit retain-outside policy
+                const auto& prior=displacementMap_[slot(sample)];
+                changes.emplace_back(target,prior.key==-1?sample:prior.value);
+            }
+        // All samples for this sprite refer to the state before this sprite.
+        for(const auto& change:changes){const auto at=slot(change.first);auto& cell=displacementMap_[at];
+            if(cell.key==-1){touched.push_back(at);cell.key=change.first;}cell.value=change.second;}
+    }
+    if(next-cursor_<2)return false;
+    auto& ordered=displacementOrdered_;ordered.clear();ordered.reserve(touched.size());
+    for(auto at:touched){const auto& cell=displacementMap_[at];ordered.emplace_back(cell.key,cell.value);}
+    // Canvas coordinates use22bits at most. Two stable11bit passes retain
+    // exactly the prior ascending destination order without comparison sorting.
+    auto& scratch=displacementScratch_;scratch.resize(ordered.size());
+    for(unsigned shift:{0u,11u}){
+        std::array<std::size_t,2048> offsets{};
+        for(const auto& pixel:ordered)++offsets[(unsigned(pixel.first)>>shift)&2047u];
+        std::size_t total=0;for(auto& count:offsets){const auto n=count;count=total;total+=n;}
+        for(const auto& pixel:ordered)scratch[offsets[(unsigned(pixel.first)>>shift)&2047u]++]=pixel;
+        ordered.swap(scratch);
+    }
+    auto& spans=displacementSpans_;spans.clear();
+    for(const auto& pixel:ordered){
+        if(pixel.first==pixel.second)continue;
+        const int x=pixel.first%viewport_.right,y=pixel.first/viewport_.right,sx=pixel.second%viewport_.right,sy=pixel.second/viewport_.right;
+        if(!spans.empty()){auto& s=spans.back();if(s.y==y&&s.sourceY==sy&&s.x+s.width==x&&s.sourceX+s.width==sx){++s.width;continue;}}
+        spans.push_back({x,y,sx,sy,1});
+    }
+    renderer_.sampleDestination(canvas_,spans);cursor_=next;need_.reset();supplied_=false;return true;
+}
 bool SceneRenderer::drawNext(std::size_t budget){
     return drawNext(SceneBatchBudget{budget,std::numeric_limits<std::size_t>::max(),std::chrono::hours(1)});
 }
@@ -205,6 +341,30 @@ bool SceneRenderer::drawNext(const SceneBatchBudget& budget){
     try{renderer_.batch([&]{
         bool first=true;
         while(cursor_<end && (first||std::chrono::steady_clock::now()<deadline)){first=false;const auto& draw=pending_[cursor_];
+            if((draw.additive||draw.composite.mode==CompositeMode::additive)&&drawAdditives(end,deadline,bytes))continue;
+            if(limits_.cacheColourRectangles&&limits_.batchSmallColourRectangles&&draw.visible&&draw.colourRectangle&&
+               draw.colourRectangle->pixels.width<=2&&draw.colourRectangle->pixels.height<=2){
+                std::vector<SmallColourDraw> small;
+                // Consume only this caller's admitted draw/time budget. A sprite,
+                // hidden draw or larger primitive is an ordering barrier.
+                do{
+                    const auto& next=pending_[cursor_];
+                    if(!next.visible||!next.colourRectangle||next.colourRectangle->pixels.width>2||next.colourRectangle->pixels.height>2)break;
+                    const auto& image=next.colourRectangle->pixels;const auto clip=next.viewport.value_or(viewport_);
+                    const int left=std::max(next.anchorX,clip.left),top=std::max(next.anchorY,clip.top);
+                    const int right=int(std::min<std::int64_t>(std::int64_t(next.anchorX)+image.width,clip.right));
+                    const int bottom=int(std::min<std::int64_t>(std::int64_t(next.anchorY)+image.height,clip.bottom));
+                    if(left<right&&top<bottom){
+                        SmallColourDraw write{{left,top,right,bottom},{},next.composite.mode};
+                        for(int y=top;y<bottom;++y)for(int x=left;x<right;++x)
+                            write.pixels[std::size_t(y-top)*2+x-left]=image.pixels[std::size_t(y-next.anchorY)*image.width+x-next.anchorX];
+                        small.push_back(write);
+                    }
+                    ++cursor_;
+                }while(cursor_<end&&small.size()<512&&std::chrono::steady_clock::now()<deadline);
+                renderer_.smallColourRects(canvas_,small);need_.reset();supplied_=false;continue;
+            }
+            if(draw.composite.mode==CompositeMode::displace&&drawDisplacements(end,deadline))continue;
             if(limits_.cache.preparedOnly){const auto req=request(draw);
                 if(req&&!cache_.ready(*req)){
                     if(need_&&!(need_->request==*req))throw std::runtime_error("Resource changed during pending upload");
@@ -220,20 +380,40 @@ bool SceneRenderer::drawNext(const SceneBatchBudget& budget){
                 const auto plan=planRowEffect(frame,*draw.rowEffect,std::int64_t(draw.anchorX)-frame.originX,std::int64_t(draw.anchorY)-frame.originY,
                     clip.left,clip.top,clip.right,clip.bottom,viewport_.right,viewport_.bottom);
                 const bool sample=draw.rowEffect->kind==RowEffectKind::sampleDestination;
-                SurfaceId frozen=sample&&!plan.empty()?renderer_.cloneSurface(canvas_):0;
-                try{
-                    for(const auto& span:plan){auto destination=span.destination,source=span.sample;int copied=0;
-                        while(copied<span.count){
-                            const int x=int(destination%viewport_.right),y=int(destination/viewport_.right);
-                            const int sx=int(source%viewport_.right),sy=int(source/viewport_.right);
-                            const int count=std::min(span.count-copied,std::min(viewport_.right-x,sample?viewport_.right-sx:viewport_.right));
-                            if(sample)renderer_.copy(frozen,canvas_,{sx,sy,sx+count,sy+1},x,y);
-                            else cache_.drawRegion(draw.resource,draw.frame,canvas_,{span.sourceFirst+copied,span.sourceRow,span.sourceFirst+copied+count,span.sourceRow+1},x,y,draw.colours?&*draw.colours:nullptr);
-                            destination+=count;source+=count;copied+=count;
-                        }
+                std::vector<DestinationSample> samples;
+                std::size_t sampled=0;
+                bool regional=sample&&renderer_.canBatchDestinationSamples();
+                if(regional)for(const auto& span:plan){
+                    auto destination=span.destination,source=span.sample;int copied=0;
+                    while(copied<span.count){
+                        const int x=int(destination%viewport_.right),y=int(destination/viewport_.right);
+                        const int sx=int(source%viewport_.right),sy=int(source/viewport_.right);
+                        const int count=std::min(span.count-copied,std::min(viewport_.right-x,viewport_.right-sx));
+                        sampled+=count;
+                        if(sampled>65536||samples.size()==65536){regional=false;break;}
+                        samples.push_back({x,y,sx,sy,count});destination+=count;source+=count;copied+=count;
                     }
-                }catch(...){if(frozen)renderer_.destroy(frozen);throw;}
-                if(frozen)renderer_.destroy(frozen);
+                    if(!regional)break;
+                }
+                if(regional)renderer_.sampleDestination(canvas_,samples);
+                else{
+                    // Oversize and isolated operations retain the frozen-canvas
+                    // path; splitting them would change cross-span history.
+                    SurfaceId frozen=sample&&!plan.empty()?renderer_.cloneSurface(canvas_):0;
+                    try{
+                        for(const auto& span:plan){auto destination=span.destination,source=span.sample;int copied=0;
+                            while(copied<span.count){
+                                const int x=int(destination%viewport_.right),y=int(destination/viewport_.right);
+                                const int sx=int(source%viewport_.right),sy=int(source/viewport_.right);
+                                const int count=std::min(span.count-copied,std::min(viewport_.right-x,sample?viewport_.right-sx:viewport_.right));
+                                if(sample)renderer_.copy(frozen,canvas_,{sx,sy,sx+count,sy+1},x,y);
+                                else cache_.drawRegion(draw.resource,draw.frame,canvas_,{span.sourceFirst+copied,span.sourceRow,span.sourceFirst+copied+count,span.sourceRow+1},x,y,draw.colours?&*draw.colours:nullptr);
+                                destination+=count;source+=count;copied+=count;
+                            }
+                        }
+                    }catch(...){if(frozen)renderer_.destroy(frozen);throw;}
+                    if(frozen)renderer_.destroy(frozen);
+                }
             }else if(draw.visible&&draw.composite.mode==CompositeMode::tintOutline){
                 const auto& resource=limits_.cache.residentOnly?resources_.resident(draw.resource):resources_.load(draw.resource);
                 const auto& f=std::get<assets::Sprite>(resource.image).frames.at(draw.frame);const auto clip=draw.viewport.value_or(viewport_);
@@ -289,7 +469,12 @@ ResourceCacheStats SceneRenderer::cacheStats() const{checkThread();return cache_
 void SceneRenderer::release(const assets::ResourceId& id){checkThread();cache_.release(id);}
 void SceneRenderer::releaseCachedImages(){
     checkThread();if(drawing_)throw std::runtime_error("Cannot evict images during an incomplete scene frame");
-    cache_.clear();
+    cache_.clear();std::vector<DisplacementCell>().swap(displacementMap_);
+    std::vector<std::size_t>().swap(displacementTouched_);
+    for(auto* v:{&displacementChanges_,&displacementOrdered_,&displacementScratch_})std::vector<std::pair<int,int>>().swap(*v);
+    std::vector<DestinationSample>().swap(displacementSpans_);
+    if(additiveMask_){renderer_.destroy(additiveMask_);additiveMask_=0;}
+    if(additiveSource_){renderer_.destroy(additiveSource_);additiveSource_=0;}
     colourStats_.evictions+=colourCacheStats().entries;colourTiles_.clear();
     if(colourMask_){renderer_.destroy(colourMask_);colourMask_=0;}
     if(colourAtlas_){renderer_.destroy(colourAtlas_);colourAtlas_=0;}

@@ -7,6 +7,7 @@
 #include <mutex>
 #include <thread>
 #include <chrono>
+#include <optional>
 namespace mnm::legacy {
 // A source receipt, not a GPU frame. No original pointers or GL/widget objects
 // enter this queue. The handoff owns its source payloads through immutable refs.
@@ -19,23 +20,33 @@ struct OwnedWorldSnapshot {
   std::chrono::steady_clock::time_point acquiredAt{},readyAt{};
   std::vector<std::uint8_t> wireSource,wireRequest;
 };
+struct OwnedSourceChunk {
+  std::uint64_t generation=0,ordinal=0;
+  CanvasProducerStream stream;
+  std::vector<std::uint8_t> wireSource;
+  std::size_t sourceBytes=0;
+};
 class WorldSnapshotQueue final {
 public:
   struct Stats {
     std::uint64_t accepted=0,returned=0,imports=0,bytes=0;
     std::size_t outstanding=0,ready=0,highWater=0;
     std::uint32_t firstTick=0,lastTick=0;
-    bool terminal=false;
+    bool terminal=false,sourcePending=false;
+    std::uint64_t sourceChunks=0,sourceRecords=0;
     std::string error;
   };
   explicit WorldSnapshotQueue(WorldContinuousChannel&,bool retainWire=false,bool trace=false);
   ~WorldSnapshotQueue();
   WorldSnapshotQueue(const WorldSnapshotQueue&)=delete;
   bool take(OwnedWorldSnapshot&);
+  bool takeSource(OwnedSourceChunk&);
+  void appliedSource(std::uint64_t ordinal);
   void imported(std::uint64_t);
   Stats stats() const;
   void stop();
 private:
+  friend struct WorldSnapshotQueueTestAccess; // authored post-verification host fixtures
   void capture();
   WorldContinuousChannel& channel_;
   bool retainWire_=false;
@@ -43,6 +54,8 @@ private:
   mutable std::mutex mutex_;
   std::condition_variable progress_;
   std::deque<OwnedWorldSnapshot> ready_;
+  std::optional<OwnedSourceChunk> source_;
+  bool sourceTaken_=false,sourceApplied_=false;
   Stats state_;
   std::uint64_t taken_=0;
   std::atomic<bool> stopping_{false};

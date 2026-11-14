@@ -5,20 +5,52 @@ player acceptance target, configuration boundaries and remaining scope decisions
 These launch instructions describe supplied behavior; they do not certify that
 all completion requirements have passed.
 
-On x86 Linux, launch with:
+Launch with:
 
 ```sh
-./run-x86.sh
-# Equivalent direct entry point:
 ./run-native.sh
 ```
 
+On x86 Linux, `./run-x86.sh` is an equivalent entry point.
 Click **Launch game** in the Qt shell. Both entry points require the existing
 `native-only-rendering-v1` profile: our resident World renderer and native pixel
 producers supply the viewport, with original presentation/menu fallback disabled.
 Wine still runs the original No-CD executable for simulation and preparation.
 This selection does not establish full-game pixel equivalence or complete native
 engine replacement. Unsupported rendering terminates the session.
+
+Linux ARM64 launches select independent World delivery by default. Validated
+owned snapshots let the original game proceed while a native worker renders,
+and rendering runs separately from the Qt input thread. The existing two-snapshot
+limit and ordered validation/return rules remain in force. Game speed and
+simulation timing are unchanged. Other hosts retain synchronous delivery.
+
+In Linux ARM64 independent mode, extra presentations reuse the completed native
+World image on the GPU, then compose the UI. Replaying only the prepared draw
+list can omit native surface writes between World subqueues, making parts of
+the completed frame disappear on the extra presentations. Each new game update
+still runs its full native drawing pass. Explicit `MNM_WORLD_IMAGE_REUSE=0`
+retains redraw mode for diagnostics; synchronous mode does not enable image reuse.
+
+ARM independent presentation also waits for each World's own completed UI before
+showing that World. Reusing the preceding UI can briefly place moving overlays or
+occlusion at their previous positions. `MNM_WORLD_FIRST_SEAL_BASELINE=1` selects
+this matching-UI policy; an explicit `0` retains inherited UI for diagnostics.
+
+Small combat colour effects use ordered native batches to reduce texture uploads
+and draw submissions. `MNM_WORLD_SMALL_COLOUR_BASELINE=1` selects the previous
+atlas path for diagnostics. This retains the same source pixels and blend order.
+
+Select a mode explicitly, before any presentation options after `--`:
+
+```sh
+./run-native.sh --world-delivery independent
+./run-native.sh --world-delivery synchronous
+```
+
+The synchronous selection preserves the previous launch behavior for comparison.
+The ARM performance target is 19–20 completed game updates per second; a mode
+selection alone does not demonstrate that rate on every map or workload.
 
 Terrain lighting uses the persistent native worker by default, with capture
 disabled. The existing 100 ms timeout and reply checks retain original lighting
@@ -40,7 +72,8 @@ initialization and owner execution are mocked in those controls.
 
 The first launch initializes a dedicated prefix at
 `working/native-player/wineprefix`, using the existing hash-checked supplied
-DirectPlay installer. Later launches reuse it. Another launch using the same
+DirectPlay installer. Later launches reuse it. Checkout-local settings can select
+an already prepared player and its existing save store automatically. Another launch using the same
 player prefix refuses; an active Wine server must finish before reuse. Foreign
 prefixes and symlinked prefix paths refuse. An interrupted initialization is
 preserved for inspection; it is not silently repaired or overwritten.
@@ -76,8 +109,28 @@ unchanged. The persistent player prefix is separate from ordinary `WINEPREFIX`
 and from historical test prefixes. Existing save synchronization stays with the
 menu/session services; this launcher does not import another prefix's saves.
 
+Optional defaults live in the ignored `working/native-player/launch.json`:
+
+```json
+{
+  "schema": 1,
+  "prefix": "working/my-player/wineprefix",
+  "save_store": "working/my-player/saves"
+}
+```
+
+Both locations use the existing owned-directory checks under this checkout's
+`working/`. Prefix ownership, exclusive locking and stopped-server checks still
+apply. `--prefix` overrides the configured prefix; `MNM_MENU_SAVE_STORE` overrides
+the configured save store. With no settings file, the usual prefix and save-store
+defaults apply. These local settings stay on the machine where the player data
+lives.
+
 The entry point reserves 4 GiB for initialization, build and session output via
-`tools/working-retention.py`, and monitors the 90 GiB main-drive reserve. A storage
+`tools/working-retention.py`. It automatically reads the machine policy at
+`working/storage-policy-local.json` when present, otherwise the repository's
+90 GiB policy. The selected policy is inherited by preparation steps and their
+guarded copies. `MNM_WORKING_STORAGE_POLICY` remains an explicit override. A storage
 refusal must be resolved before launch. Help needs no storage reservation:
 
 ```sh
@@ -116,3 +169,9 @@ without arguments inherited the harness's script-path argument. The harness now
 shifts that argument before sourcing, and all 15 controls pass. That attempt did
 not start Wine or exercise original rendering. Its test-source SHA-256 was
 `2396a839e447b1932d2c16fa7947043ecccbc4a45ed6f4174ec6b5e74e9b2388`.
+
+
+Independent presentation now uses versioned source-only draining for menu/loading
+commands between Worlds. Long menu dwell keeps bounded buffers and preserves
+source order. Explicit asynchronous GPU delivery remains a separate V5 policy.
+See [the live buffer fix](../research/runtime/owned-source-drain-20261113.md).

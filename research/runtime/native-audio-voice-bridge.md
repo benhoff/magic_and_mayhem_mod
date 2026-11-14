@@ -63,15 +63,24 @@ bytes; process pointers never cross the channel. A voice ID is a session-local
 
 ## Channel lifecycle
 
-`runtime/audio/protocol.h` defines `MNMAUD01`, version 2, a 128-byte header and
+`runtime/audio/protocol.h` defines `MNMAUD01`, version 5, a 128-byte header and
 16 MiB upload region. All wire words are little-endian aligned DWORDs.
 Commands are serialized with one outstanding request; payload/arguments are
 written before release publication of the request ID. The host acquires it,
 copies upload bytes, performs the command, and release-publishes the matching
 response ID after HRESULT/value. There are no asynchronous pointer loans.
 
-A 2 ms Qt timer on the owned audio worker services requests. The native Device,
-PCM pumping and commands all run serially on that worker; the QObject facade
+A 1 ms precise Qt timer on the owned audio worker services requests. After an
+acknowledgement, the worker gives a following request a cooperative handoff window
+of at most 1.25 ms and at most 64 commands including the first. It yields while
+waiting and returns to the event loop when either bound is reached. Idle polls
+return immediately; the time bound is checked between operations, so an individual
+file read or output operation can exceed it. The caller checks for a hot reply
+with at most 4096 x86 PAUSE iterations before its existing 1 ms sleep. These are
+native transport policies; original sound-manager and game clocks are unchanged.
+See [the bounded handoff validation](native-audio-handoff-20261112.md).
+
+The native Device, PCM pumping and commands all run serially on that worker; the QObject facade
 returns failure callbacks to its owner thread and joins the worker after closing
 the channel/output. GUI shader preparation no longer blocks audio polling or
 PCM pumping. The x86 caller waits at most approximately
@@ -79,9 +88,11 @@ one second; contention returns busy. Timeout or withdrawn readiness permanently
 retires that producer channel, preventing late replies from applying to a new
 request. Native voices then return errors. IDs cannot wrap into a reused request.
 Broker destruction withdraws readiness and retires the whole native session.
-This diagnostic bridge still uses synchronous request/reply calls and can stall
-gameplay; it is not a low-overhead production transport. Worker responsiveness
-and physical output/timing equivalence remain separate validation boundaries.
+The bridge still uses synchronous request/reply calls and can stall gameplay
+on expensive operations or a delayed peer. The bounded handoff reduces per-command
+wakeup waits; it does not make the channel asynchronous. Worker responsiveness,
+physical output/timing equivalence and performance outside the tested scenes
+remain separate validation boundaries.
 
 Header words 21/22 count native device selections/pre-selection fallback
 attempts; word 23 counts failed admitted requests. These are bounded-scope

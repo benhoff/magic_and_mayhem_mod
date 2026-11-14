@@ -96,6 +96,33 @@ int main(int argc,char** argv){
     waveRequest(QByteArray("fixture.wav\0",12),false);
     check(broker.activity().waveLoads==2&&broker.activity().waveBytes==16&&broker.activity().failures==5,
           "native wave successes and refusals counted independently");
+    // A queued owner operation must run during an unending legal peer stream.
+    // The peer has its own hard deadline so a broken broker cannot hang the test.
+    std::atomic<bool> stopFlood{false},floodFailed{false},floodExpired{false};
+    std::atomic<unsigned> floodProgress{0};
+    const auto beforeFlood=broker.activity().requests;
+    std::unique_ptr<QThread> flood(QThread::create([&]{
+        QElapsedTimer lifetime;lifetime.start();
+        while(!stopFlood.load() && lifetime.elapsed()<3000){
+            const bool refusal=floodProgress.load()%4==3;
+            for(unsigned i=5;i<16;++i)words[i]=0;
+            words[5]=qToLittleEndian(refusal?999u:unsigned(MNM_AUDIO_PING));
+            const auto expected=++serial;
+            __atomic_store_n(words+4,qToLittleEndian(expected),__ATOMIC_RELEASE);
+            QElapsedTimer deadline;deadline.start();
+            while(acknowledgement()!=expected && deadline.elapsed()<1000)QThread::yieldCurrentThread();
+            if(acknowledgement()!=expected || qFromLittleEndian(words[17])!=(refusal?0x80004001u:0u) || words[18]){floodFailed=true;return;}
+            ++floodProgress;
+        }
+        if(!stopFlood.load())floodExpired=true;
+    }));
+    flood->start();QElapsedTimer started;started.start();
+    while(floodProgress.load()<32 && !floodFailed.load() && started.elapsed()<1000)QThread::msleep(1);
+    const bool progressed=floodProgress.load()>=32;
+    const auto duringFlood=progressed?broker.activity():VoiceActivity{};
+    stopFlood=true;flood->wait();
+    check(progressed&&!floodFailed.load()&&!floodExpired.load()&&duringFlood.requests>=beforeFlood+32,
+          "ordered ACK/results and queued lifecycle access remain responsive during continuous traffic");
     broker.stop();check(!words[20]&&!broker.activity().ready,"stop withdraws readiness");broker.stop();
     check(broker.create(directory.filePath("next.bin"),false),"worker restart with new channel");
     const auto retiredSerial=serial;__atomic_store_n(words+4,qToLittleEndian(retiredSerial+1),__ATOMIC_RELEASE);

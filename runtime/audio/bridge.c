@@ -36,7 +36,12 @@ static i32 request_wave(u32 op,u32 id,u32 value,u32 length,const u8* format,u32 
     u32 start=GetTickCount();
     while(__atomic_load_n(channel+16,__ATOMIC_ACQUIRE)!=serial){
         if(!__atomic_load_n(channel+20,__ATOMIC_ACQUIRE) || GetTickCount()-start>1000){__atomic_store_n(&dead,1,__ATOMIC_RELEASE);goto done;}
-        Sleep(1);
+        /* Catch a hot host reply before paying another Wine sleep. This is
+           bounded even for a stalled peer; retain the deadline/retirement and
+           cooperative sleep above/below rather than busy-waiting indefinitely. */
+        for(u32 spin=0;spin<4096 && __atomic_load_n(channel+16,__ATOMIC_ACQUIRE)!=serial;++spin)
+            __asm__ __volatile__("pause" ::: "memory");
+        if(__atomic_load_n(channel+16,__ATOMIC_ACQUIRE)!=serial)Sleep(1);
     }
     status=(i32)channel[17];if(!status && result)*result=channel[18];
     if(!status && profile){

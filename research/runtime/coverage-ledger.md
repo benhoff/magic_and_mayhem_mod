@@ -29006,6 +29006,516 @@ zero source drift; no additional game/native/pixel execution or old hash refresh
 Source custody preserves 5,814 historical locations / 5,639 distinct objects (21,445,201 bytes) with two verified restores, including 58 distinct reviewed old worktree source/UI versions. The bounded operator scan retains its main-root directory-cap limitation; current whole-player validation remains excluded. Nineteen committed nonancestor tips retain their existing branches and explicit source-path review leads. Only the schema-4 latency analyzer and its tests enter maintained tooling under `TOOL.native-frame-latency`; synthetic checks do not establish current live timing or original equivalence. No historical engine status, retention pin or directory is retired. See [source recovery](source-recovery-20261110.md).
 
 
+## Apple M1 independent delivery throughput — 2026-11-11
+
+`NP.arm-independent-frame-delivery` changes Linux ARM64 public-player auto
+selection to existing V5 owned snapshot/worker delivery, with an explicit
+`--world-delivery synchronous` baseline. Other hosts retain their selection.
+The already-tested pending ARM CRC prerequisite is carried byte-for-byte from
+the native-player task, with its original evidence identity and scoped status.
+
+On the exact retained native executable, the matched camera/input campaign
+baseline measured18.60/17.87completed World imports per second. Independent
+delivery measured19.74/19.70; an additional run through the updated public
+launcher auto selection with native music/voices enabled measured19.74/19.82.
+Each run covered two45-second requested movement phases (about50seconds of
+measured windows each), Mini/Cancel and normal Quit No/Yes, with distinct native
+publication/visible-paint counters. Visible optimized paints were about60FPS.
+All three completed runs balanced every World import/return, zero forwarded
+graphics calls and final released owners; the V5 source queue stayed within two
+credits and retired empty. The game executable hash and selected20FPS cap stayed
+identical. A missing-CLI OCR setup/control failure and the sandbox display
+refusal remain retained; no failed acquisition is relabeled a passing run.
+
+`ARMFPS11.public-throughput01` retains the raw phase windows, normal retirement,
+unchanged timing/config identities, tested binary hash, acquisition scripts and
+controls. Actual installed Tesseract5.5 C API/English-model heading checks were
+used for menu readiness after positive/negative OCR controls; no package was
+installed and no dialogue guard was removed. This is bounded M1 throughput,
+not arbitrary maps/durations/hardware, fresh original pixels or physical
+input-to-photon validation. Existing broad player/engine milestones remain
+historical; this policy's new live observation is separate. Full repository
+evidence checks and normal finish remain required before commit/integration.
+
+ARMFPS11 completion boundary: feature-gate, bookkeeping preparation and normal
+finish were attempted. The existing missing historical evidence archive
+`f8d2461d04a5b481e690cf9fbc7c07330dc079e09ad3aa048de24d2dd359c410`
+and archived-database mismatch still prevent the repository-wide audit/accepted
+review/commit workflow. `arm-frame-throughput-results-20261111/finish01.json`
+retains exact refusals. No hook was bypassed and no integration lease requested.
+The tested independent mode is already selectable on the existing player with
+`-- --independent-world`; the new auto-selection patch remains in its owned
+feature checkout pending those required historical inputs.
+
+## ARM completed-image reuse and jitter boundary — 2026-11-12
+
+`ARMJIT12.image-reuse01` extends the ARM launch policy to completed native World
+image reuse. An explicit diagnostic override remains available. The new GPU
+fixture confirms that prepared draw lists omit a native surface write interposed
+between subqueues; completed-image reuse retains it for eight repeats. Existing92
+repeat/refusal/teardown checks and28+12+4 launcher/contract/CLI checks pass.
+
+Complete short normal-scale captures pass33 prepared and16 retained unchanged
+World/UI pixel pairs. They do not reproduce or establish the cause of the user's
+reported saved-game shaking. Longer recording queue refusals, scaled-input
+Hermes failures and a superseded swap-adjacency analyzer result remain retained;
+no guard is relaxed. See [the bounded investigation](native-retained-world-image.md).
+
+The fresh recording-free public auto launch, with native music and image reuse,
+measures19.800395/19.878944 completed Worlds per second and59.182067/59.616670 GUI
+paints per second in two requested45-second physical-input phases. Normal
+Mini/Cancel, Quit-No/Yes and all2112 accepted/imported/verified-return Worlds
+balance; retained images2112, queue high water2, outstanding0. The native ELF,
+Chaos.exe and20FPS preference are unchanged. This validates finite throughput
+and the retained-image mechanism, not arbitrary-map jitter removal or physical
+scanout. Historical original-comparison/replacement statuses remain unchanged.
+
+The owned batch remains uncommitted pending required exact accounting and
+verified evidence storage. The existing historical SQLite hash-mismatch refusal
+also blocks applicability planning after the network-enabled retry; no historical
+hash or hook is bypassed to claim readiness.
+
+## ARM matching UI and moving zombies — 2026-11-12
+
+`ART12.matching-ui-controls01` records a native moving-overlay fixture, real
+long-prefix V5 checkpoint replay, preserved boundary refusals, two-credit queue
+controls and45 launcher/contract/CLI controls. `ART12.matching-ui-live01` records
+zero older-UI pairings in156 short-capture World exports,38 unchanged-identity
+pixel pairs, and a normal-Quit recording-free public journey at19.779853/
+19.822058 completed Worlds per second with2108 balanced imports/returns.
+
+The crowded matching-UI diagnostic verified eight accepted Zombie casts and
+eight living zombies, completed all four held-arrow camera moves, and measured
+19.146043 sourceHz. The user reported no glitching in that run. Its intentional
+private cancellation is not a normal-Quit or whole-player acceptance result.
+The inherited-UI comparison reproduced the user's moving-zombie glitch and then
+refused unsupported raster caller0x54a5a1/tag19 in WRITING generation645. That
+negative evidence remains pending; no allowlist or source validation was relaxed.
+The first misdirected desktop-input attempt is invalid and retained. The corrected
+opt-in test relay targets only the active named Qt viewport with acknowledgments.
+
+These results support matching completed World/UI presentation within the tested
+scope. Broad map/save coverage, sustained camera hitch attribution, unsupported
+raster callers and physical scanout remain separate gaps. See
+`native-world-owned-snapshots.md`. Historical evidence archive failures still
+block the normal accounting/commit workflow; no integration readiness is claimed.
+
+The subsequent commit request identified the missing evidence on host `father`.
+All ten unpublished pinned historical SQLite archives were restored byte-for-byte
+to the owned task cache and verified against their existing SHA-256 values,
+declared sizes and SQLite quick checks. Earlier failed audit/finish reports remain
+unchanged. Additional evidence is read through an authenticated read-only mount
+of the existing host store, preserving payload verification and avoiding a copy
+of the full store. This restores access to inputs; it grants no engine milestone
+or past gate pass. Fresh current/staged checks and master history review remain
+required before commit and promotion.
+
+The access repair retains a verified selective local SQLite cache of7568
+current report objects, plus the exact source-applicability and source-binding
+excerpts needed by the audit. Original payload hashes and historical container
+identities remain unchanged. `ART12.current-independent-throughput02` binds
+the already retained matching-UI throughput journey to the current independent
+launcher contract, without another game run. The viewport integration test's
+missing test link is corrected in `ART12.viewport-input-accounting02`, reusing
+the exact acknowledged eight-Zombie/four-arrow acquisition without adding
+invalid-input coverage. `ART12.current-crc-controls02` adds the missing headless
+scenario and eight fresh GCC/Clang C/C++ hardware/fallback executions. Its header,
+fixture and CRC CMake recipe match the retained prerequisite; other-target
+compiler observations remain historical unchanged-input controls. Earlier
+refusals remain retained under their original identities.
+
+The full current audit now reports zero errors, preserving the unrelated
+historical staleness, recovered-range and pending-validation warnings. The
+master preparation review covers482618 committed transitions across284 commits;
+73053 missing custody transitions are recorded in166 pending retrospective
+receipts. Nearly all are retained research binaries; the sole source transition
+adds the launcher storage-policy option while retaining the4GiB reservation.
+The normal history helper verified their retained bytes on `father`, and its
+typed SQLite workspace passed a real restore in the existing independent pair.
+Local import compares every exact transition and preserves all prior journal
+entries before inserting/exporting through SQLite. This asserts custody, not a
+past gate pass or new historical engine validation. Reports are under
+`arm-frame-history-results-20261112/` and
+`arm-frame-throughput-results-20261111/imported-master-history01.json`.
+
+## Checkout-local player defaults — 2026-11-12
+
+`LAUNCH12.local-defaults-controls01` adds optional versioned defaults for the
+existing owned player prefix and save store at `working/native-player/launch.json`.
+The public shell automatically selects an authored local storage policy when
+available, preserving explicit overrides and the4GiB launch reservation. Normal
+use remains `./run-native.sh`; configuration selects existing data in place.
+
+Thirty-nine launcher/configuration checks and12 native-only contract checks pass.
+They include exact argument/environment equivalence with the previous explicit
+ARM launch, CLI/environment priority, fresh-checkout defaults, storage-policy
+selection, help with broken settings, bounded schema parsing and owned-path
+refusals. Prefix ownership/locking and stopped-server checks remain in force.
+No original game runs, data migration or renderer/simulation changes occur.
+Existing live-game/FPS milestones retain their original source phases and raw
+freshness limitations; these new configuration controls are headless validation.
+
+`LAUNCH12.local-defaults-controls02` extends this with policy propagation to
+descendants and the same-filesystem preparation-copy guard. Seventy current
+controls pass:39 launcher/configuration,12 native-only and19 real-filesystem
+environment controls. Targeted retained-source negative controls reproduce the
+old shell's missing exported policy and the old copy helper's missing policy
+argument. The selected reserve and the copy-size reservation remain enforced;
+the environment pool's lease/reset/pin protections remain unchanged. The earlier
+review was interrupted before commit to finish this correction; its exact source
+versions, successful earlier controls and refusal remain retained. Existing
+environment receipts keep their original producer hashes; new module hashes are
+normal provenance and grant no new live-game validation.
+
+### M1 combat small-colour batching, 2026-11-12
+
+The live slowdown diagnosis retained9.16575Hz consecutive source timing and an
+85.8426ms native/81.4210ms submission report range. Completed generation3196
+has359 owned2x2 colour effects; unpublished generation3197 is excluded. The new
+`NR.small-colour-batching` native policy carries owned integer colour words in
+bounded instance batches, splitting before overlapping writes and every
+intervening non-small primitive. Original simulation, draw order, integer blend
+arithmetic, owned source credits, completed-image/UI generation rules, ordinary
+readback prohibitions and isolated wire protocol remain separate and unchanged.
+
+Current llvmpipe/M1 scalar and serial controls pass; existing colour atlas,
+indexed sprite atlas and retained-image controls pass. Same retained source plus
+an authored native background compares50 whole images exactly. M1 warm native
+completion decreases70.9205 to35.5616ms, draws658 to372 and texture uploads31 to0.
+These replay timings are not a live20FPS or original-output acceptance result.
+See `research/runtime/native-small-colour-batching.md`; new SQLite evidence and
+fresh crowded-session results retain their own scope. Historical shared-source
+staleness and unsupported-rendering limitations are preserved.
+
+`COMBAT12.live-diagnostics01` preserves seven scoped probes and their failures.
+The corrected moving scene observes eight distinct moving zombies, but measured
+phase rates remain11.96–14.77Hz and later refuse unsupported caller54a563/tag14.
+A fiery combat run reaches several movers and16.37Hz before inactive-viewport
+input refusal. A near20Hz CPU-placement prototype lacks sufficient creature
+motion and is not combat acceptance; its launcher edits were removed while
+retaining exact prototype sources. Two later contiguous source histories retain
+444/1625 Worlds before the unchanged unsupported-caller refusal. No caller is
+newly admitted and no normal-Quit/live replacement status is promoted.
+
+The fiery run contains an original enemy Levitate cast80 targeting zombie31,
+with caster mana debit and subsequent height/drift observations, consistent with
+the installed Grimoire. This supports expected floating motion. The user-reported
+rectangular base and exact visual target still need source/original-output
+correlation; Levitate is not proof that those pixels are correct. All new source
+cohorts, videos, failures and source versions remain pinned and backed up.
+
+### Levitate platform identified, 2026-11-12
+
+`SP.080.platform-artwork` / `COMBAT12.levitate-platform01` identifies the reported
+“magic carpet” as original Effects11 sequence2 artwork. A deliberately targeted
+original spell80 on the sole Zombie12 debits mana and raises height4→7 before
+XY drift. Exact original source requests select platform frames83/95/99 after
+the cast. Independent SPR decoding shows the55×32 platform; installed ANI_90 and
+original522880 catalog reads link that family to Levitate. A contiguous292World
+native replay validates actual returns and contains the platform before Qt UI
+composition. Removing the platform would alter supplied game artwork.
+
+The initial wrong-target attempt remains failed. Private setup source/binary,
+recordings, complete source histories and original assets are retained in SQLite;
+production source/binary are restored. No native spell implementation, original
+full-pixel/driver acceptance, normal-Quit or performance promotion is asserted.
+Earlier unresolved-carpet reports remain historical; unrelated glitches and the
+moving-combat19–20FPS target remain open.
+
+## Recording-free combat slowdown followup —2026-11-12
+
+`COMBAT12.slowdown-stages02` retains reviewed byte-preserving cache sharing,
+recording-free movement rates12.20–13.67Hz, restored short CPU-placement
+controls and retained source07 queue analysis. A private preservation-tested
+cadence observer records individual original`509e50`maintenance/action calls
+up to229.58ms. The default Asahi preservation control fails with differing x87
+register slots; its failure, private prototype and live-memory acquisition
+boundaries remain explicit. No production code, clock, status promotion,
+normal-Quit or19–20FPS acceptance changes. See
+[the scoped findings](combat-slowdown-followup-20261112.md).
+
+## Bounded native audio handoff — 2026-11-12
+
+`NA.bounded-audio-handoff` adds a native transport policy:1ms worker polling,
+a cooperative1.25ms/64-command followup after an ACK, and4096 bounded PAUSE
+checks before the producer's existing1ms sleep. The version5 wire, request order,
+reply publication, timeout/retirement and audio-thread ownership are unchanged.
+Five focused native controls and actual production PE32 live/stale-peer fixtures
+pass. Continuous mixed request traffic checks reply identity and queued lifecycle
+responsiveness. Original sound-manager/game clocks and simulation are unchanged.
+
+`AUDIO12.handoff-controls01` records headless integration only. The independent
+`AUDIO12.handoff-live01` retains private balanced audio scheduling probes and fresh
+production probe20: eight ordinary summons, eight Zombies changing position,
+19.98/19.89Hz in the six-/five-mover periods. Other ground-order periods are
+19.72/19.62Hz with idle Zombies. This is bounded live observation, not normal Quit,
+all-map19–20FPS, perfect pacing or original sound/pixel equivalence. Probe17's
+original raster guard refusal, probe18's incomplete setup and probe19's failed
+motion gate remain failures. Existing broad historical milestones/hashes remain;
+shared-source drift receives pending impact reviews rather than a full-matrix
+rerun or retroactive freshness. See [the scoped policy and results](native-audio-handoff-20261112.md).
+
+## Large battle native-rendering attribution — 2026-11-12
+
+`BATTLE12.native-attribution01` records the unchanged production pipeline under
+a four-owner battle with12ordinary player summons, up to42living actors in
+sampled movement periods,26moving actors and89cross-owner melee events. Source
+cadence falls from19.97Hz to8.18Hz in combined melee periods. Native submission
+averages93.42ms/world while original ACK wait averages90.98ms and pacing wait
+falls to zero. Original main-thread CPU includes the adapter's Sleep0polling;
+these data do not establish AI self-time. Independent native replay of verified
+completed World2274 averages64.29ms completion with zero warm uploads; all50
+serial/current-batched image comparisons agree on an authored background.
+Native draw/compositing overhead is the first optimization target. No code or
+historical status/hash changes, full original pixels, normal-Quit or universal
+battle-rate claim. Earlier guarded run's unknown tag14/caller54a563 refusal and
+initial input-router failure remain failed acquisitions. See
+[the attribution and boundaries](large-battle-attribution-20261112.md).
+
+The follow-up native optimization replaces overlap-split small-colour snapshots
+with stable per-pixel operation chains, bounded to 512 rectangles / 2048 pixel
+operations. Every integer blend/rounding step stays ordered; one snapshot and
+instanced draw handles overlaps. `BATTLE12.pixel-chain-controls01` retains 14
+scalar/serial comparisons per backend, 50 same-source battle image comparisons,
+and cache/atlas/retained-image regressions on llvmpipe and Apple M1. Frozen battle
+completion falls 64.29 to 52.83 ms (694 to 596 draws), still above a 20 Hz budget.
+A broader sprite-blend prototype provided no benefit in this workload and was
+withdrawn, with its results and failures retained. Shared-renderer historical
+source hashes remain unchanged; this is scoped native validation, not original
+pixels, full history, scanout or all-map 20 FPS acceptance. See
+[the battle findings](large-battle-attribution-20261112.md).
+
+`BATTLE12.pixel-chain-live01` records the selected snapshot-only build's moving
+battle: 12 accepted summons, 28 living/26 moving actors sampled, 163 cross-owner
+hits, 19.66 Hz melee and a user report of no visible artifacts. Its lighter draw
+and upload workload prevents a causal live FPS comparison with baseline03.
+The supported texture-barrier prototype was also withdrawn: matching pixels,
+but 76.15 ms completed-frame cost versus 53.70 ms with snapshots. Submission-only
+timing would have hidden that regression. Neither discarded alternative enters
+the final implementation. Heavy-scene 20 FPS, original pixels and normal-Quit
+acceptance remain separate limitations.
+
+### Native displacement batching (2026-11-12)
+
+`NR.displacement-batching` covers bounded coordinate composition for consecutive
+native displacement sprites, a frozen source envelope and disjoint instanced row
+spans. Original simulation, AI, combat and timing are untouched. See
+[native displacement batching](native-displacement-batching.md) for the pixel
+contract, source/budget barriers, serial fallback and retained heavy-frame test.
+Scalar/serial controls and same-source native timings are separate from live
+battle FPS or original image/history equivalence. Existing shared-renderer proofs
+retain historical hashes; untested broader scenarios remain pending.
+
+### 2026-11-13 — native source admission and completed-export retry
+
+Two bounded native policies remove avoidable presentation delays without changing
+original simulation, AI, combat, animation or pacing. `HOST.ready-source-admission`
+separates ready verified FIFO consumption from the supplemental display deadline;
+`HOST.completed-export-retry` preserves completed-image delivery across the existing
+two-lease output backpressure. Old code fails each focused control; current code
+passes software/M1 with source identities/import barriers, replay deadline, finished
+blue pixels versus unfinished white update, allocation bound and abort retirement
+checked. See [native pacing](native-frame-pacing-20261113.md) and its SQLite reports.
+Broader hosting statuses and historical hashes are retained with pending current
+applicability. No original comparison/replacement, universal smoothness or long-run
+stability promotion; existing indexed-raster caller `0x54a563` remains refused.
+The final combined-fix moving battle accepted 12 summons and 124 damage events;
+its final 15 second window measured engine 20.00 Hz and distinct World-tagged Qt
+swaps 19.89 Hz (21–22 living actors, 12 movers, 10 melee hits). Native queue mean
+1.052 ms and submit mean 5.942 ms are scoped wall timings. A 100.964 ms World-tag
+gap contains intervening UI-tagged swaps at approximately 60 Hz; this is not a
+pixel-based freeze measurement. Earlier battle window: 24–28 living actors,
+15 movers, 28 hits, source 19.96 Hz; GUI tail unavailable there. Controlled source
+cancellation after measurement retains timing, and is not normal-Quit validation.
+
+### 2026-11-13: deterministic native World stream replay
+
+`NR.deterministic-world-stream-replay` adds SQLite cases, pinned shared assets,
+fixed-rate viewing, frame stepping/rewind, fresh-repeat pixel comparison and
+selected-range native timing after complete history restoration. Eleven authored
+controls pass on llvmpipe/M1; capture limit/prefix controls pass separately.
+Actual combat acquisition retains 868 complete Worlds, 38 peak living actors,
+35 moving slots and 57 melee hits. Selected frames 700–820 repeat identically;
+three benchmark repeats measure median 11.760 ms and p95 83.676 ms native serial
+completion, with repeatable late-frame spikes above the 50 ms budget. These are
+renderer service times, not live FPS or original pixel equivalence. The full
+input script/normal Quit did not finish: World 869 preserves the existing guarded
+caller `0x54a563` refusal. No original engine/AI/clock/balance or admission change.
+See [replay findings](deterministic-render-replay-20261113.md),
+[usage](../../docs/render-replay.md) and SQLite `NATIVE13.render-replay01`.
+Manual record-CLI normal-Quit acceptance, HUD/audio/scanout and native hotspot
+attribution remain separate. Historical profiling statuses/hashes are retained
+with pending broader applicability after the opt-in capture change.
+`NATIVE13.render-replay02` retains fresh controls and captured execution after
+correcting the offline viewer deadline to include drawing within its requested
+period. The final executable matches the initial captured pixel baseline; its
+three benchmark repeats measure median 12.021 ms / p95 81.489 ms. Initial evidence
+and source hashes remain retained separately. No native rendering optimization
+or original engine change is claimed by this testing workflow.
+
+### 2026-11-13: remove additive-particle native rendering spikes
+
+`NR.additive-sprite-batching` coalesces bounded consecutive indexed RGB565
+additive sources before one unchanged destination composite; overlap saturation,
+masks, palette zero, clipping, draw barriers and caller budgets are retained.
+`NR.native-replay-spike-profiling` exports existing opt-in owner counters outside
+measured intervals. On the same captured combat window, three M1 repeats per
+executable reduce native p95 78.918→26.665 ms and maximum109.377→33.001 ms;
+30→0 samples exceed50ms. Frame817 draws fall943→199. All868 captured frame hashes
+match the old renderer across two fresh replays;16focused scalar/serial cases
+and12replay controls pass on software/M1. No original engine/AI/clock/balance,
+wire, caller guard or source pacing changes. See
+[native particle findings](native-additive-batching-20261113.md) and SQLite
+`NATIVE13.additive-batching01`. Native cold setup remains outside this optimization;
+live FPS, full UI/audio/scanout and original equivalence are not promoted. Shared
+source edits leave broader historical stages pending applicability with exact
+old hashes retained.
+
+### 2026-11-13: heavier native particle stress cases
+
+`NR.derived-particle-stress-replay` adds a reusable bounded authoring tool and
+wire-only native admission. Retained history/other drawing stays single; selected
+additive particle requests become2x/4x translated authored copies, with repaired
+source references and explicit native closures/provenance. Original simulation,
+actor count, balance, clock and guards are unchanged. Three same-range790..868
+M1repeats measure1x/2x/4xp95 37.831/40.221/50.016ms and worst
+43.947/54.415/68.532ms;0/3/13 of237samples exceed50ms. Peak particle requests
+are1228/2456/4912. The4xcase is a retained native budget-overrun workload.
+Both amplified cases match serial pixels at all79selected frames; neutral1x
+conversion matches all868parent frame hashes. Seven authoring/native controls
+and12replay regressions pass on software/M1. Actual Qt4xpreview completes; the
+user was not watching, so manual visual acceptance remains unconfirmed. No new
+original run, liveFPS, full UI/audio/scanout or original pixel-oracle promotion.
+See [stress findings](heavy-render-stress-20261113.md),
+[usage](../../docs/render-replay.md#create-a-heavier-particle-replay) and SQLite
+`NATIVE13.heavy-render-stress01`. Historical broader source hashes/statuses remain
+retained with pending applicability after the replay-main wire-validation edit.
+
+
+### 2026-11-13: reduce native heavy-particle submission cost
+
+`NR.additive-stage-attribution` separates successful particle planning/source
+combination/upload/composite wall spans. CPU combination is about0.15–0.17ms;
+tiny GPU submissions dominate those diagnostic spans. Native synchronous World
+turns and additive source caps increase32to512 under
+`NR.synchronous-world-batch-sizing`, retaining union/work/upload/time bounds,
+barriers and exact source semantics. Generic source caps stay32; prepared replay
+retains its existing outer budget. Three same-range M1repeats on4xstress reduce
+p95 50.054→33.824ms and max69.609→38.234ms;14→0of237samples exceed50ms.
+All868parent and79selected2x/4xpixels match retained native baselines across two
+fresh replays. Twenty additive,14small-colour,13displacement and12replay controls
+pass on software/M1. No original engine/AI/clock/balance/wire/guard change,
+original pixel oracle, liveFPS or manual artifact-free acceptance promotion.
+See [native submission findings](native-particle-cost-20261113.md) and SQLite
+`NATIVE13.native-particle-cost02`. Preserve historical hashes and broader pending
+source applicability; cold setup and untested workloads remain outside scope.
+
+### 2026-11-13: independent native menu source-buffer lifetime
+
+`NR.owned-menu-source-draining` adds explicit V7 owned delivery with source-only
+apply-before-ACK draining for the public independent non-asynchronous renderer.
+Two actual player failures exhaust the131072record cap with V5 source chunks
+absent, then close glyph admission/exit124. New source chunks preserve FIFO,
+World generations/credits, bounded slots and the original return/NOACCESS checks.
+The queue control drains278528records beforeWorld1; source-history GPU/CPU pixel
+controls and prior channel/ACK guards pass. Live dwell/normal-Quit acceptance is
+recorded separately from headless controls and interruptions. No engine/AI/clock/
+balance, original pixel-oracle or battle performance promotion. See
+[findings](owned-source-drain-20261113.md) and [wire contract](../formats/world-continuous-v7.md).
+
+The fresh120-second public independent/native-only menu dwell drains196608records
+in12chunks during one World interval, then completes Main/Quick/Cancel/Main and
+normal original Quit/exit0. Native-only state is completed, with no rendering
+error/fallback or outstanding source ownership. This closes the scoped live menu
+buffer regression, independently of278528-record headless/next-World controls;
+no new live battle or pixel-equivalence promotion. SQLite
+`NATIVE13.owned-source-drain01` retains the exact binaries, source and observations.
+
+##2026-11-13 native RGB-add rectangle effect batching
+
+`NR.additive-rectangle-batching` adds bounded source-only aggregation for
+consecutive RGB565 additive rectangles, separate from indexed particle sprites.
+World1019 in the1107World user recording contains602tiny RGB-add rectangles and
+no additive sprites; raw owner wall spans show74.113ms World/71.657ms submission.
+The user observed no subjective slowdown in this recording, so the earlier
+crowded wizard death/explosion cause remains unresolved. Original simulation,
+AI, clocks, combat balance, protocol and guards remain unchanged.
+
+Native aggregation retains128x128union/65536visited pixels/caller budgets and
+at most512rectangles, sharing the existing bounded GPU source/mask planes.
+Increments above65504/65472/65504 remain serial to preserve recovered low16
+wrap-before-clamp semantics. Other operations remain ordering barriers. Generic
+scenes opt out; opt-in profiling counts rectangles separately from sprites.
+
+The identical51World effect burst across three M1 repeats improves native
+completion p9576.492→19.028ms,max88.308→21.805ms and over50ms68→0of153samples.
+All1107World images and79selected4xparticle frames match prior native pixels
+across two fresh replays. Focused scalar/wrap/budget/lifetime and neighboring
+batch controls plus replay guards remain separate from original/live acceptance.
+Cold setup and GUI-latency export/source joins remain explicit limits. SQLite
+`NATIVE13.rgb-add-batching01` retains the scoped headless evidence; see
+[findings](native-rgb-add-batching-20261113.md).
+
+
+## 2026-11-13 deterministic native effect stress suite
+
+`NR.native-effect-stress-suite` exercises four native effect families at three
+authored moving load profiles, fixed-seed800x600RGB565 inputs and four source
+frames. All360primary M1frames, including72warmups, match an independent CPU
+oracle and fresh repeats;288measured samples remain separate from warmup.
+Final input schema 2 binds palette, clipping, visibility, row state and copy
+arguments. All360final pixel hashes also match the preserved first pass.
+Wave2p9551.34ms, translucency3p9552.30ms, row3p9542.46ms and keyed3p951926.05ms
+show the current limits. Budget overruns are observations, not successful
+performance targets or live-combat FPS. No engine/AI/clock/balance changes.
+
+`NR.batched-keyed-overlap-order` fixes a newly reproduced native pixel failure:
+unbatched8x8keyed RGB565Blt matches CPU row-major semantics, but outer batching
+reused a one-pixel source before queued copies consumed it and could miss prior
+writes. Flush before each next read/update; both routes now match,4096pixels per
+operation remains, and65x64refuses without mutation. All1107retained World images
+also match the previous native renderer across two fresh replays. No identified
+live occurrence, wizard-death cause or original/live equivalence promotion.
+
+Seven admission/native controls pass on M1 and llvmpipe, including moving inputs,
+fresh-repeat/baseline checks, a separately corrupted reference, argument/capacity
+refusals and keyed batch ordering. Optional GPU timeline export is diagnostic
+only; it includes idle gaps and does not establish GPU busy time. SQLite retains
+exact source/ELF/input identities, pre-fix failures, all per-frame results, cleanup
+plans and verified backups. Duplicate backup ranges share COW blocks with every
+whole-container hash/path/pin preserved; about245MiBactual space recovered.
+See [usage](../../docs/native-effect-stress.md) and
+[findings](native-effect-stress-20261113.md).
+
+
+## 2026-11-13 bounded native effect throughput
+
+`NR.keyed-overlap-chain-rendering`, `NR.displacement-lookup-storage`,
+`NR.regional-row-sampling` and `NR.ordered-texture-feedback` optimize native
+service without changing original engine AI/simulation/clocks/balance or wire
+contracts. The quiet M1 unchanged-input pass matches all 360 baseline/CPU/repeat
+images; all 288 measured frames meet 50 ms, with dense keyed overlap p95
+1943.77→0.67 ms, batched wave 51.15→22.99 ms, dense rows 43.40→5.19 ms and
+dense translucency 52.26→25.32 ms. Guarded GPU chains preserve masked keys,
+whole native words and row-major piece history. Fixed displacement lookup
+preserves pre-sprite staging and budgets; eligible row effects snapshot regional
+spans while oversized/software/isolated effects retain frozen clones. Supported
+same-texel blends use ordered texture feedback; neighbour reads and unsupported
+or forced-baseline contexts retain snapshots. No original/live equivalence,
+live FPS guarantee or confirmed wizard-death cause is asserted.
+
+Independent scalar/native controls cover both M1 and llvmpipe, feedback and
+forced snapshots, native formats/unused bits, key/clip/translations/batching,
+long chains, capacity refusals, row crossings/frozen history and regional versus
+large fallback/cache release. Adjacent row/displacement/additive/small-colour
+controls and retained native World/particle pixels exercise shared paths.
+Exact sources, tested ELFs, input hashes, per-frame results and diagnostics are
+retained through SQLite with verified local backups. Historical evidence stays
+unchanged. See [implementation and measured boundaries](native-effect-throughput-20261113.md).
+
+
+
+
 
 
 ### Broader current player acceptance — current-source recovery phase, 2026-11-10
@@ -30197,3 +30707,102 @@ working data, pins and original inputs stay protected. Frozen physical readers
 hydrate selected inputs before replay. Full checkout removal requires its own
 complete handoff review. Historical engine hashes and milestones are unchanged.
 See research/runtime/worktree-retirement-20261114.md.
+### Remote/local master reconciliation — 2026-11-13
+
+Combined local renderer/player work through `955f9d22d` with the incomplete
+broader-player checkpoint and completed pause follow-up through `59159f74b`.
+Source files merged without semantic conflicts. Disjoint register records and
+both append-only ledger tails are preserved. The exact receipt-ID collision
+and its explicit imported alias are retained in SQLite-backed
+`remote-sync-20261113/merge-review-final.json`; original remote archives remain
+unchanged. `history-receipts.json` records the reviewed first-parent custody
+gaps without past gate or execution credit.
+
+`focused-validation.json` retains eight passing isolated Python test files,
+the diagnostic preparation/FIFO control, and GUI target-loss recovery.
+`acceptance-capture-controls-unsandboxed.json` retains passing optimized and
+sanitized parallel-campaign capture controls; the sandbox LeakSanitizer refusal
+is preserved separately. No Original-game runs or full player acceptance were
+performed for this reconciliation. Existing comparison, integration, live
+replacement and incomplete broader acceptance boundaries remain independent;
+source drift remains pending where no current comparison was run.
+
+
+
+
+## 2026-11-13 ordered blend and remaining native hotspot work
+
+`NR.ordered-composite-tiles` folds overlapping same-texel half/quarter/additive
+commands in exact order with bounded 32-pixel tile lists, 512 commands and
+65,536 references. `NR.upload-dependency-flush` retains only draws proven
+disjoint from admitted row uploads; dependent source/mask/destination writes
+and palette/source retirement still flush. `NR.opaque-row-copy-batching` groups
+small opaque copies without relaxing ordered self-copy or destination-sample
+guards. `NR.displacement-radix-order` replaces comparison sorting with bounded
+stable coordinate passes and reusable scratch. `NR.regional-producer-copy-snapshot`
+freezes only the cropped native CPU copy rectangle and authority states.
+`NR.jpeg-codec-discovery` avoids unrelated Qt codec enumeration while preserving
+framing/allocation/RGB/orientation/error rules. No original engine, AI, simulation,
+clock, balance, binary or wire change.
+
+Quiet M1 renderer phase2 matches all 360 parent/CPU/repeat images across 12
+profiles; dense translucency p95 25.32→3.02 ms and draws 384→1, displacement
+22.99→12.40 ms. All 288 measured samples meet 50 ms. These exact rendering
+source bytes remain unchanged; later JPEG/test/build edits receive fresh final-
+linked host llvmpipe matrices and full 1,107 World plus 79 fourfold-particle
+pixels across two repeats, rather than relabelled old hardware execution.
+JPEG controls and independent Pillow outputs cover eight authored and all 752
+installed JPEGs/126,954,548 pixels, including malformed and missing-codec
+refusals. Original manifests verify around asset consumption.
+
+The isolated tool software context aborts for unchanged parent and candidate;
+host llvmpipe passes. An older additive draw-reduction assertion lost its serial
+control because lower-level blends now batch too; that control now explicitly
+isolates the existing source aggregation, retaining its pixel assertions.
+Both negatives and exact source/ELF phases remain in SQLite with verified
+backups. Final hardware cold-start timing stays unclaimed during the user game;
+the pre-JPEG first frame still exceeds 50 ms. Decoder discovery microprobes
+36 ms versus 2 ms support only targeted setup attribution. No live FPS,
+universal startup deadline, original pixel-equivalence, long-session or
+wizard-death causal promotion. See [findings](native-render-hotspots-20261113.md).
+
+
+
+
+### Lossless unpublished journal storage rewrite — 2026-11-14
+
+GitHub refused the reviewed local/remote reconciliation because 31 historical
+active journal blobs exceeded its file limit. The authorized repair reconstructs
+the 33 unpublished commits with the existing hash-pinned SQLite review shards.
+Every existing nonjournal blob/mode, author, committer, message and logical
+receipt is preserved; parents map to their verified reconstructed counterparts.
+Exact original journal bytes remain in SQLite. Original Git history is pinned by
+`archive/master-before-journal-rewrite-20261114` and a verified retained bundle.
+`.evidence-commits.json` records the original-to-reconstructed commit mapping.
+
+`journal-storage-rewrite-20261114/rewrite-verification.json` records the per-commit
+comparison. Its history review records exact reconstructed transitions as custody
+only. This changes storage and commit identities, without renewing engine
+validation, changing native sources, or promoting incomplete Native acceptance
+and Original recovery. Normal finish/hook checks and protected master replacement
+remain separate required steps. Remote master remains an ancestor; publication
+uses a normal push. Existing task branches preserve their original history and
+must avoid reintroducing the mapped unpublished ancestors.
+
+
+### Cross-host repository synchronization — 2026-11-14
+
+Combined the local hybrid-retention, proportionate-integration and reviewed
+worktree-cleanup work with the incoming native-rendering/audio history. Native
+source changes merge without semantic conflicts. The shared register preserves
+disjoint keyed records; both ledger tails and the complete logical review
+histories are retained. Combined census/provenance generation, exact history
+accounting and the normal staged hook remain required for this candidate.
+
+The incoming evidence payloads are portable across ARM64 and x86-64. Missing
+Git-pinned report bytes are read from the supplied ARM host and verified in two
+independent local stores. Transfer and reconciliation reports are under
+`research/runtime/repo-sync-20261114/`. Six focused host control suites pass for
+integration/accounting and incoming replay/stress/launcher tooling. This is
+source and evidence synchronization: no new original/native execution, engine
+comparison, acceptance promotion or historical fingerprint refresh is claimed.

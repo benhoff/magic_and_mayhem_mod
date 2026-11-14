@@ -192,6 +192,14 @@ void CanvasWorld::beginResident(const CanvasProducer &c,render::SurfaceId native
     render::SceneLimits limits;
     const auto baseline=std::getenv("MNM_WORLD_COLOUR_CACHE_BASELINE");
     limits.cacheColourRectangles=!baseline||std::strcmp(baseline,"1")!=0;
+    const auto smallBaseline=std::getenv("MNM_WORLD_SMALL_COLOUR_BASELINE");
+    limits.batchSmallColourRectangles=!smallBaseline||std::strcmp(smallBaseline,"1")!=0;
+    const auto additiveBaseline=std::getenv("MNM_WORLD_ADDITIVE_BATCH_BASELINE");
+    limits.batchAdditiveSprites=!additiveBaseline||std::strcmp(additiveBaseline,"1")!=0;
+    limits.maxAdditiveSprites=512;
+    const auto rectangleBaseline=std::getenv("MNM_WORLD_ADDITIVE_RECT_BASELINE");
+    limits.batchAdditiveRectangles=!rectangleBaseline||std::strcmp(rectangleBaseline,"1")!=0;
+    limits.maxAdditiveRectangles=512;
     limits.cache.indexedAtlas=true;limits.cache.atlasFrames=512;
     // Validate the new owned surface, extent and defined history before
     // retiring the old borrowed scene. Global source ordinals stay contiguous.
@@ -228,6 +236,14 @@ void CanvasWorld::beginFrame(const CanvasProducer &c,
     render::SceneLimits limits;
     const auto baseline=std::getenv("MNM_WORLD_COLOUR_CACHE_BASELINE");
     limits.cacheColourRectangles=!baseline||std::strcmp(baseline,"1")!=0;
+    const auto smallBaseline=std::getenv("MNM_WORLD_SMALL_COLOUR_BASELINE");
+    limits.batchSmallColourRectangles=!smallBaseline||std::strcmp(smallBaseline,"1")!=0;
+    const auto additiveBaseline=std::getenv("MNM_WORLD_ADDITIVE_BATCH_BASELINE");
+    limits.batchAdditiveSprites=!additiveBaseline||std::strcmp(additiveBaseline,"1")!=0;
+    limits.maxAdditiveSprites=512;
+    const auto rectangleBaseline=std::getenv("MNM_WORLD_ADDITIVE_RECT_BASELINE");
+    limits.batchAdditiveRectangles=!rectangleBaseline||std::strcmp(rectangleBaseline,"1")!=0;
+    limits.maxAdditiveRectangles=512;
     limits.cache.indexedAtlas = true;limits.cache.atlasFrames=512;
     scene_ = std::make_unique<render::SceneRenderer>(renderer_, resources_,
                                                      native, limits);
@@ -343,9 +359,14 @@ render::Image CanvasWorld::completeFrame(const render::Image *reference, bool ex
       scene_->beginFrame(draws, render::SceneStart::retainedCanvas);
       const auto drawing=profile_.binding.enabled?Clock::now():Clock::time_point{};
       if(profile_.binding.enabled)profile_.sceneAdmissionMs+=std::chrono::duration<double,std::milli>(drawing-admission).count();
-      while (!scene_->drawNext(32)) {
+      while (!scene_->drawNext(512)) {
       }
       if(profile_.binding.enabled)profile_.sceneDrawingMs+=milliseconds(drawing);
+      const auto a=scene_->additiveProfile();profile_.additive.enabled=a.enabled;
+      profile_.additive.batches+=a.batches;profile_.additive.sprites+=a.sprites;profile_.additive.rectangles+=a.rectangles;
+      profile_.additive.visitedPixels+=a.visitedPixels;profile_.additive.uploadPixels+=a.uploadPixels;
+      profile_.additive.planningMs+=a.planningMs;profile_.additive.combinationMs+=a.combinationMs;
+      profile_.additive.uploadMs+=a.uploadMs;profile_.additive.compositeMs+=a.compositeMs;
     });
     const auto rendererAfter = renderer_.stats();
     profile_.copyBatches +=

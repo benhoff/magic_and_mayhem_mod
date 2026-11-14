@@ -42,6 +42,7 @@ jobs:
           python3 -B tests/test-private-evidence-backup.py
           python3 -B tests/test-coverage-merge-history.py
           python3 -B tests/test-coverage-evidence-imports.py
+          python3 -B tests/test-effect-stress.py
 
   evidence:
     name: Full evidence audit (manual)
@@ -73,6 +74,7 @@ jobs:
           python3 -B tests/test-local-evidence-workflow.py
           python3 -B tests/test-coverage-merge-history.py
           python3 -B tests/test-coverage-evidence-imports.py
+          python3 -B tests/test-effect-stress.py
           python3 -B tests/test-drawing-inventory.py
           python3 -B tests/test-drawing-corpus.py
           python3 -B tests/test-drawing-scene.py
