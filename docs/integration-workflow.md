@@ -68,6 +68,17 @@ custom operators must likewise unwind the lease and finish their admitted child
 processes. Preserve failed work rather than resetting it merely to pass the clean
 worktree preflight.
 
+## Cleanup after integration
+
+Release integration admission before workspace cleanup. Before reporting task
+completion, remove reviewed temporary output and retire the completed owned
+worktree through [the closeout and retirement procedure](storage-consolidation.md#task-closeout-and-worktree-retirement).
+If a checkout or allocation must remain, record its allocated size, owner,
+specific reason and release condition. Cleanup is required even when free space
+is above the maintenance target; required evidence and recovery inputs retain
+their custody protections. Keep hooks and recovery records in a surviving durable
+checkout, and run retirement from outside the selected tree.
+
 ## Four to six parallel agents
 
 Keep development, builds and focused tests in separate owned task worktrees.
