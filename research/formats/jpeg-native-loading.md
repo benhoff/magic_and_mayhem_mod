@@ -111,3 +111,13 @@ compact separators, have SHA-256
 Remaining milestones: original decoder/caller equivalence, placement and color
 policy, renderer upload, migration of menu callers and live visual comparison.
 See the [coverage ledger](../runtime/coverage-ledger.md).
+
+## 2026-11-13 codec discovery follow-up
+
+Native readiness now queries only the selected JPEG reader instead of enumerating
+all Qt image formats. The framing, allocation, orientation/RGB and error rules
+above remain independent contracts. Current malformed/codec-absence controls
+and independent Pillow pixels for eight authored fixtures and all 752 installed
+images are recorded under `NR.jpeg-codec-discovery`; see
+[the native hotspot evidence](../runtime/native-render-hotspots-20261113.md).
+The historical 2026-10-04 measurements and source identities remain unchanged.

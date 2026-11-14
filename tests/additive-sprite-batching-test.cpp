@@ -52,7 +52,12 @@ void scalar(render::Image& image,const assets::Sprite& sprite,const render::Scen
 }
 }
 int main(int argc,char** argv)try{
-    QGuiApplication app(argc,argv);test::SceneResources resources;render::GlBlitter renderer;
+    QGuiApplication app(argc,argv);test::SceneResources resources;
+    // Isolate source aggregation from the lower-level ordered blend pass. Its
+    // serial control must remain serial for the draw-reduction assertion.
+    const auto previousBlendBatch=qgetenv("MNM_NATIVE_COMPOSITE_BATCH_BASELINE");
+    qputenv("MNM_NATIVE_COMPOSITE_BATCH_BASELINE","1");render::GlBlitter renderer;
+    if(previousBlendBatch.isNull())qunsetenv("MNM_NATIVE_COMPOSITE_BATCH_BASELINE");else qputenv("MNM_NATIVE_COMPOSITE_BATCH_BASELINE",previousBlendBatch);
     const auto small=sprite(17,9),large=sprite(129,17),words=sprite(17,9,false);
     const auto id=resources.add("small",small),largeId=resources.add("large",large),wordId=resources.add("words",words);
     render::Image base{256,256,{}};for(unsigned i=0;i<65536;++i)base.pixels.push_back(i);

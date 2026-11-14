@@ -297,6 +297,9 @@ See [format, validation and remaining integration](../research/formats/bmp-nativ
 `mnm-jpeg-loader` provides `decodeJpeg`/`loadJpeg` in `jpeg.hpp`: owned,
 tightly packed RGB pixels using Qt's JPEG codec behind standard-library types.
 Input, dimensions, exported RGB and codec images have explicit limits.
+Codec readiness checks the explicitly selected JPEG handler, avoiding unrelated
+format enumeration on first use. See the [native hotspot review](../research/runtime/native-render-hotspots-20261113.md)
+for the current discovery/error/pixel controls.
 EXIF orientation and ICC color transforms are not applied.
 `mnm-jpeg-inspect ROOT PATH.jpg` reports dimensions and a complete RGB hash.
 Qt Gui/JPEG support is required; comparison tests also require Python Pillow.

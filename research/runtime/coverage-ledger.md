@@ -30672,3 +30672,42 @@ is preserved separately. No Original-game runs or full player acceptance were
 performed for this reconciliation. Existing comparison, integration, live
 replacement and incomplete broader acceptance boundaries remain independent;
 source drift remains pending where no current comparison was run.
+
+
+
+
+## 2026-11-13 ordered blend and remaining native hotspot work
+
+`NR.ordered-composite-tiles` folds overlapping same-texel half/quarter/additive
+commands in exact order with bounded 32-pixel tile lists, 512 commands and
+65,536 references. `NR.upload-dependency-flush` retains only draws proven
+disjoint from admitted row uploads; dependent source/mask/destination writes
+and palette/source retirement still flush. `NR.opaque-row-copy-batching` groups
+small opaque copies without relaxing ordered self-copy or destination-sample
+guards. `NR.displacement-radix-order` replaces comparison sorting with bounded
+stable coordinate passes and reusable scratch. `NR.regional-producer-copy-snapshot`
+freezes only the cropped native CPU copy rectangle and authority states.
+`NR.jpeg-codec-discovery` avoids unrelated Qt codec enumeration while preserving
+framing/allocation/RGB/orientation/error rules. No original engine, AI, simulation,
+clock, balance, binary or wire change.
+
+Quiet M1 renderer phase2 matches all 360 parent/CPU/repeat images across 12
+profiles; dense translucency p95 25.32→3.02 ms and draws 384→1, displacement
+22.99→12.40 ms. All 288 measured samples meet 50 ms. These exact rendering
+source bytes remain unchanged; later JPEG/test/build edits receive fresh final-
+linked host llvmpipe matrices and full 1,107 World plus 79 fourfold-particle
+pixels across two repeats, rather than relabelled old hardware execution.
+JPEG controls and independent Pillow outputs cover eight authored and all 752
+installed JPEGs/126,954,548 pixels, including malformed and missing-codec
+refusals. Original manifests verify around asset consumption.
+
+The isolated tool software context aborts for unchanged parent and candidate;
+host llvmpipe passes. An older additive draw-reduction assertion lost its serial
+control because lower-level blends now batch too; that control now explicitly
+isolates the existing source aggregation, retaining its pixel assertions.
+Both negatives and exact source/ELF phases remain in SQLite with verified
+backups. Final hardware cold-start timing stays unclaimed during the user game;
+the pre-JPEG first frame still exceeds 50 ms. Decoder discovery microprobes
+36 ms versus 2 ms support only targeted setup attribution. No live FPS,
+universal startup deadline, original pixel-equivalence, long-session or
+wizard-death causal promotion. See [findings](native-render-hotspots-20261113.md).

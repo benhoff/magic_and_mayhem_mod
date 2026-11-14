@@ -25,7 +25,7 @@ add_executable(mnm-additive-batching-test EXCLUDE_FROM_ALL "${MNM_ROOT}/tests/ad
 target_include_directories(mnm-additive-batching-test PRIVATE "${MNM_ROOT}/tests")
 target_link_libraries(mnm-additive-batching-test PRIVATE mnm-world-rolling Qt6::Gui)
 target_compile_options(mnm-additive-batching-test PRIVATE -UNDEBUG -Wall -Wextra -Werror -pedantic)
-foreach(control small-colour-batch displacement-batch native-effect-optimization row-effect)
+foreach(control small-colour-batch displacement-batch native-effect-optimization row-effect render-hotspots sprite-atlas canvas-sequence)
     add_executable(mnm-${control}-test EXCLUDE_FROM_ALL "${MNM_ROOT}/tests/${control}-test.cpp")
     target_include_directories(mnm-${control}-test PRIVATE "${MNM_ROOT}/tests" "${MNM_ROOT}/compat/legacy")
     target_link_libraries(mnm-${control}-test PRIVATE mnm-world-rolling Qt6::Gui)
@@ -36,3 +36,7 @@ target_include_directories(mnm-effect-stress PRIVATE "${MNM_ROOT}/tests" "${MNM_
 target_link_libraries(mnm-effect-stress PRIVATE mnm-scene-renderer Qt6::Gui)
 target_compile_options(mnm-effect-stress PRIVATE -Wall -Wextra -Werror -pedantic)
 target_sources(mnm-row-effect-test PRIVATE "${MNM_ROOT}/compat/legacy/world_preparation.cpp")
+
+add_executable(mnm-jpeg-loader-test EXCLUDE_FROM_ALL "${MNM_ROOT}/tests/jpeg-loader-test.cpp")
+target_link_libraries(mnm-jpeg-loader-test PRIVATE mnm-jpeg-loader Qt6::Gui)
+target_compile_options(mnm-jpeg-loader-test PRIVATE -UNDEBUG -Wall -Wextra -Werror -pedantic)

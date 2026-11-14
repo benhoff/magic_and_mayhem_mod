@@ -121,3 +121,12 @@ QT_QPA_PLATFORM=xcb working/build/render-replay/mnm-row-effect-test working/row-
 The optimization control independently checks ordered keyed copies, blend
 arithmetic, row-crossing history and oversized fallback. Set
 `LIBGL_ALWAYS_SOFTWARE=1` under `xvfb-run -a` for the software route.
+
+Further native work uses ordered blend tile lists, region-proven upload
+ordering, small opaque copy batches and radix-ordered displacement coordinates.
+See [the hotspot review](../research/runtime/native-render-hotspots-20261113.md)
+for limits, controls and cold-start attribution. The optional
+`MNM_NATIVE_COMPOSITE_BATCH_BASELINE=1`, `MNM_UPLOAD_FLUSH_BASELINE=1` and
+`MNM_OPAQUE_COPY_BASELINE=1` switches select the corresponding prior paths for
+controlled comparisons. Build `mnm-render-hotspots-test` in the replay build to
+exercise the new scalar/dependency/capacity controls.

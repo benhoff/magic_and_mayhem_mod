@@ -305,11 +305,21 @@ void CanvasSequence::copy(std::uint32_t source, std::uint32_t destination,
   // Distinct IDs own distinct vectors. Only same-ID copies need a snapshot;
   // preflight above still completes before allocation or any destination write.
   if (mirror_) { publishWrites(); mirror_->copy(source, destination, {sx, sy, sx+width, sy+height}, dx, dy, key); }
-  std::optional<Surface> snapshot;if(source==destination)snapshot.emplace(original);
-  const auto& src=snapshot?*snapshot:original;
-  for(int row=0;row<height;++row){const auto from=slot(src.image,sx,sy+row),to=slot(dst.image,dx,dy+row);
-    if(!key){std::copy_n(src.image.pixels.begin()+from,width,dst.image.pixels.begin()+to);std::copy_n(src.defined.begin()+from,width,dst.defined.begin()+to);}
-    else for(int col=0;col<width;++col){const auto word=src.image.pixels[from+col];if(src.defined[from+col]!=1){dst.defined[to+col]=src.defined[from+col]&&dst.defined[to+col]?2:0;}else if(word!=*key){dst.image.pixels[to+col]=word;dst.defined[to+col]=1;}}
+  Image frozen;std::vector<unsigned char> frozenDefined;
+  if(source==destination){
+    // Only the cropped source rectangle participates in this operation.
+    // Freeze its words and authority states, without cloning unrelated canvas
+    // pixels, dirty-row bookkeeping or storage outside the admitted footprint.
+    frozen={width,height,{}};frozen.pixels.reserve(std::size_t(width)*height);frozenDefined.reserve(std::size_t(width)*height);
+    for(int row=0;row<height;++row){const auto at=slot(original.image,sx,sy+row);
+      frozen.pixels.insert(frozen.pixels.end(),original.image.pixels.begin()+at,original.image.pixels.begin()+at+width);
+      frozenDefined.insert(frozenDefined.end(),original.defined.begin()+at,original.defined.begin()+at+width);}
+  }
+  const auto& pixels=source==destination?frozen:original.image;
+  const auto& defined=source==destination?frozenDefined:original.defined;
+  for(int row=0;row<height;++row){const auto from=slot(pixels,source==destination?0:sx,source==destination?row:sy+row),to=slot(dst.image,dx,dy+row);
+    if(!key){std::copy_n(pixels.pixels.begin()+from,width,dst.image.pixels.begin()+to);std::copy_n(defined.begin()+from,width,dst.defined.begin()+to);}
+    else for(int col=0;col<width;++col){const auto word=pixels.pixels[from+col];if(defined[from+col]!=1){dst.defined[to+col]=defined[from+col]&&dst.defined[to+col]?2:0;}else if(word!=*key){dst.image.pixels[to+col]=word;dst.defined[to+col]=1;}}
   }
 }
 void CanvasSequence::stretchCopy(std::uint32_t source, std::uint32_t destination,
