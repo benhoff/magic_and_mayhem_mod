@@ -28,6 +28,10 @@ def original_fixture(root,out):
             data=at(address,len(bytes.fromhex(expected)))
             if data.hex()!=expected:raise ValueError('Original rectangle wrapper changed')
             parts['sprite_rectangle_'+name]=data
+        for name,address,expected in [('branch',0x500a0e,'535557e8614c090083c40c664866f7d81bc0406685c074ac6a016a81535557e8ced3070083c4146689461ee9c7020000'),('store',0x5009d2,'6689461ee92a030000')]:
+            data=at(address,len(bytes.fromhex(expected)))
+            if data.hex()!=expected:raise ValueError('Original secondary black fragment changed')
+            parts['secondary_black_'+name]=data
         if at(0x50084c,1)!=b'\x8b':raise ValueError('Original private fixture exit changed')
         header='/* Generated from checked immutable PE input; no executable file is patched. */\n'
         for name,data in parts.items():header+='static const u8 '+name+'[]={'+','.join(hex(v) for v in data)+'};\n'

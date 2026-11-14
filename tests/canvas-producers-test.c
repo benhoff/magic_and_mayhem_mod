@@ -282,6 +282,9 @@ static void extent640_fixture(void){
 }
 #include "kind8-sprite-hook-fixture.h"
 #include "world-rectangle-hook-fixture.h"
+#ifdef MNM_SECONDARY_BLACK_FIXTURE_ONLY
+#include "secondary-black-hook-fixture.h"
+#endif
 void start(void){
  /* Initialize physical x87 payloads once; FNINIT alone only marks them empty.
   * Each call still seeds and compares its defined control/tag/live state. */
@@ -299,6 +302,9 @@ void start(void){
   for(u32 i=0;i<HOOKS;++i)for(u32 j=0;j<hooks[i].length;++j)if(*(u8*)(hooks[i].address+j)!=hooks[i].bytes[j])ExitProcess(123);
   ExitProcess(4);
  }
+#ifdef MNM_SECONDARY_BLACK_FIXTURE_ONLY
+ secondary_black_hook_fixture();canvas_producers_close();ExitProcess(0);
+#endif
 #ifdef MNM_KIND8_FIXTURE_ONLY
  /* Focused sprite proof retains the fixture's entry ABI and all guarded CPS
   * assertions. The complete forwarding suite remains a separate control. */
