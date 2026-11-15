@@ -147,7 +147,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         census_metadata=dict(wine_import_census=True,wine_import_census_file=str(root/'wine-import-census.bin'),wine_import_census_dll_sha256=hashlib.sha256(census_dll.read_bytes()).hexdigest())
     from terrain_light_session import stage as stage_lighting
     patched,lighting_metadata=stage_lighting(root,data,patched,os.environ)
-    patched,rts_metadata=stage_rts(root,data,patched,rts_controls,os.environ.get('MNM_RTS_CONTROLS_CONFIG',REPO/'patches/rts-controls.json'))
+    patched,rts_metadata=stage_rts(root,data,patched,rts_controls,os.environ.get('MNM_RTS_CONTROLS_CONFIG',REPO/'patches/rts-controls.json'),mode=os.environ.get('MNM_RTS_CONTROLS','1'))
     (game/'Chaos.exe').write_bytes(patched);shutil.copy2(dll,game/dll.name)
     preferences=module('menu_preferences','tools/run-opengl-game.py')
     stored=None

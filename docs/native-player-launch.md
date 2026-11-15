@@ -12,6 +12,14 @@ Launch with:
 ```
 
 On x86 Linux, `./run-x86.sh` is an equivalent entry point.
+Campaign mouse selection defaults to Ctrl-click add/remove and double-click
+same-type selection within the playable viewport. The screen test uses current
+projected unit positions; a sprite with its anchor outside the viewport is
+excluded. Other shortcuts remain original. Set `MNM_RTS_CONTROLS=0` to restore
+original selection, or `1` to opt into the wider [RTS shortcut pack](../research/runtime/rts-controls.md).
+These selection defaults have bounded policy/original-callback checks; a complete
+live playtest and Quick Battle/multiplayer validation remain pending.
+
 Click **Launch game** in the Qt shell. Both entry points require the existing
 `native-only-rendering-v1` profile: our resident World renderer and native pixel
 producers supply the viewport, with original presentation/menu fallback disabled.

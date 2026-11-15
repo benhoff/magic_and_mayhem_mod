@@ -115,6 +115,11 @@ def main(argv=None, root=ROOT):
         if independent and '--independent-world' not in extra:
             extra = [*extra, '--independent-world']
         environment = configure(os.environ, extra)
+        # Default only the two selection conveniences. The wider RTS shortcut
+        # pack remains explicit (1); 0 preserves the original selection policy.
+        environment.setdefault('MNM_RTS_CONTROLS', 'selection')
+        from rts_controls_launch import enabled_from_environment
+        enabled_from_environment(environment)
         if 'save_store' in settings and 'MNM_MENU_SAVE_STORE' not in environment:
             # Use the same owned-working-directory rules as the player prefix.
             environment['MNM_MENU_SAVE_STORE'] = str(prefix_path(root, Path(settings['save_store'])))

@@ -14,6 +14,10 @@ static MnmRtsState candidate_policy;
 static MnmRtsSnapshot snapshot;
 static MnmRtsResult result;
 static u32 generations[256],session=1,owner_thread,last_pool,last_tick,enabled;
+static u32 selection_only;
+/* Numeric identity, no retained actor pointer. Camera changes invalidate taps. */
+static u32 click_valid,click_released,click_slot,click_generation,click_owner,click_type;
+static u32 click_time,click_x,click_y,click_camera[14];
 static ResetFn original_reset;
 static u32 camera_saved[4],camera_positions[4][6],camera_sessions[4];
 #include "settings.h"
@@ -45,6 +49,7 @@ static int same(u32 at,const u8* bytes,u32 n) {
 static void new_session(void) {
     if(!++session)session=1;
     mnm_rts_reset(&policy);
+    click_valid=click_released=0;
     for(u32 i=0;i<4;++i)camera_saved[i]=0;
 }
 static int world(void) {
@@ -99,11 +104,7 @@ static int camera_ready(void) {
         get(map+8)>0&&get(map+8)<=256&&get(map+12)>0&&get(map+12)<=256&&
         get((void*)0x6c5494)>0&&get((void*)0x6c5498)>0;
 }
-static int apply(u32 action,u32 argument,int additive,u32 now,int repeat) {
-    copy(&candidate_policy,&policy,sizeof(policy));
-    if(!capture()||!mnm_rts_apply(&candidate_policy,&snapshot,action,argument,additive,now,
-                                RTS_DOUBLE_TAP_MS,repeat,&result))return 0;
-    if(!result.accepted)return 1;
+static int publish_result(void) {
     u32 pool=get((void*)0x6def58);
     /* Preflight the complete operation before invoking any original helper. */
     for(u32 i=0;i<snapshot.count;++i) {
@@ -129,8 +130,60 @@ static int apply(u32 action,u32 argument,int additive,u32 now,int repeat) {
         typedef void (THIS *FocusFn)(void*,void*);
         ((FocusFn)0x4f7ae0)((void*)0x689930,(void*)(pool+result.focus_slot*0xe4b));
     }
+    return 1;
+}
+static int apply(u32 action,u32 argument,int additive,u32 now,int repeat) {
+    copy(&candidate_policy,&policy,sizeof(policy));
+    if(!capture()||!mnm_rts_apply(&candidate_policy,&snapshot,action,argument,additive,now,
+                                RTS_DOUBLE_TAP_MS,repeat,&result))return 0;
+    if(!result.accepted)return 1;
+    if(!publish_result())return 0;
     copy(&policy,&candidate_policy,sizeof(policy));
     return 1;
+}
+static int near_click(u32 x,u32 y) {
+    return x+4u-click_x<=8u && y+4u-click_y<=8u;
+}
+static void camera_signature(u32* out) {
+    const u32 offsets[]={0x11,0x15,0x19,0x1d,0x31,0x39,0x3d,0x41,
+                         0x45,0x49,0x4d,0x61,0x65,0x6d};
+    for(u32 i=0;i<14;++i)out[i]=get((u8*)0x689930+offsets[i]);
+}
+static int viewport(u32 x,u32 y) {
+    u8* camera=(void*)0x689930;
+    return (int)x>=(int)get(camera+0x11)&&(int)y>=(int)get(camera+0x15)&&
+           (int)x<(int)get(camera+0x19)&&(int)y<(int)get(camera+0x1d);
+}
+static int clicked_actor(u32 x,u32 y,u32* slot) {
+    u8* camera=(void*)0x689930;
+    /* Picking globals are render-owned: require the callback's current point,
+     * class and exact live pool identity, rather than treating any old hit as a
+     * current click. Spell targeting, drag and other classes keep their input. */
+    if(get((void*)0x6903e8)>1||get((void*)0x6a5134)!=2||
+       get(camera+0x91)!=x||get(camera+0x95)!=y||!viewport(x,y)||!capture())return 0;
+    u32 pool=get((void*)0x6def58),actor=get((void*)0x656600);
+    if(actor<pool||(actor-pool)%0xe4b)return 0;
+    *slot=(actor-pool)/0xe4b;
+    return *slot<snapshot.count&&snapshot.actors[*slot].active&&
+        snapshot.actors[*slot].health>0&&snapshot.actors[*slot].owner==snapshot.owner;
+}
+static int visible_type(u32 slot) {
+    if(!camera_ready())return 0;
+    u8* camera=(void*)0x689930;
+    if(get(camera+0x31)>3||(int)get(camera+0x51)<=0||(int)get(camera+0x55)<=0)return 0;
+    u8 visible[256];u32 pool=get((void*)0x6def58);
+    for(u32 i=0;i<256;++i)((volatile u8*)visible)[i]=0;
+    typedef void (THIS *ProjectFn)(void*,u32,u32,u32,void*);
+    for(u32 i=0;i<snapshot.count;++i) {
+        const MnmRtsActor* a=snapshot.actors+i;
+        if(!a->active||a->health<=0||a->owner!=snapshot.owner)continue;
+        u8* p=(void*)(pool+i*0xe4b);u32 point[2];
+        /* Current fine XYZ, including flight/movement; never cached +754/+758.
+         * 4f80f0 handles all four views and toroidal map seams. */
+        ((ProjectFn)0x4f80f0)(camera,get(p+20),get(p+24),get(p+28),point);
+        visible[i]=viewport(point[0],point[1]);
+    }
+    return mnm_rts_visible_type(&snapshot,slot,visible,&result)&&publish_result();
 }
 /* Stop is an ordinary move to the actor's current cell through the existing
  * command producer. Original delivery clears queued orders/follow and retains
@@ -186,6 +239,8 @@ static int spell_slot(u32 slot) {
 }
 static u32 THIS key(void* object,u32 window,u32 message,u32 vk,u32 lp) {
     u32 error=GetLastError();
+    click_valid=click_released=0;
+    if(selection_only){SetLastError(error);return ((KeyFn)0x46c070)(object,window,message,vk,lp);}
     if(object!=(void*)0x6cbb78||!world()||!owned_thread()||
        (message!=0x100&&message!=0x104)) {
         if(!world())new_session();
@@ -234,20 +289,50 @@ static u32 THIS mouse(void* object,u32 a,u32 b,u32 c,u32 d,u32 e,u32 f,
     u32 error=GetLastError();
     if(object==(void*)0x689930&&world()&&owned_thread()) {
         if(a&3u){policy.cycle_valid=0;policy.last_valid=0;}
-        if(RTS_CTRL_ADDITIVE&&(a&3u)&&control)shift=1;
-    }
+        if(a&0x6cu || (click_valid&&!near_click(b,c)))click_valid=click_released=0;
+        if((a&2u)&&click_valid)click_released=1;
+        if((a&1u)&&!(a&12u)) {
+            u32 slot=0,now=GetTickCount(),camera[14];camera_signature(camera);
+            if(!shift&&!control&&!alt&&clicked_actor(b,c,&slot)) {
+                int twice=click_valid&&click_released&&slot==click_slot&&
+                    generations[slot]==click_generation&&snapshot.owner==click_owner&&
+                    snapshot.actors[slot].type==click_type&&
+                    now-click_time<=RTS_DOUBLE_TAP_MS;
+                if(RTS_DOUBLE_TAP_MS==0)twice=0;
+                for(u32 i=0;i<14;++i)if(camera[i]!=click_camera[i])twice=0;
+                click_valid=0;
+                if(twice&&visible_type(slot)) {
+                    /* Forward once, suppressing only this handled left edge. */
+                    a&=~3u;
+                } else {
+                    click_valid=1;click_released=0;click_slot=slot;
+                    click_generation=generations[slot];click_owner=snapshot.owner;
+                    click_type=snapshot.actors[slot].type;
+                    click_time=now;click_x=b;click_y=c;copy(click_camera,camera,sizeof(camera));
+                    /* The original calls team selection on another click of an
+                     * already-selected actor. Keep this first click singular;
+                     * our timed second click supplies visible-type selection. */
+                    put((void*)0x6df17c,1);
+                }
+            } else click_valid=click_released=0;
+        }
+        if(RTS_CTRL_ADDITIVE&&(a&3u)&&!(a&12u)&&control&&!alt&&get((void*)0x6903e8)<=1)shift=1;
+    } else click_valid=click_released=0;
     SetLastError(error);
     return ((MouseFn)0x4fdad0)(object,a,b,c,d,e,f,g,h,shift,control,alt);
 }
 static u32 THIS reset_actor(void* actor,u32 slot) {
     u32 error=GetLastError();
+    click_valid=click_released=0;
     if(slot<256){if(!++generations[slot])generations[slot]=1;if(!slot)new_session();}
     SetLastError(error);return original_reset(actor,slot);
 }
 static int install(void) {
-    char activation[4];u32 n=GetEnvironmentVariableA("MNM_RTS_CONTROLS_ACTIVE",activation,sizeof(activation));
+    char activation[16];u32 n=GetEnvironmentVariableA("MNM_RTS_CONTROLS_ACTIVE",activation,sizeof(activation));
     if(!n)return 1;
-    if(n!=1||activation[0]!='1'||(u32)GetModuleHandleA(0)!=0x400000)return 0;
+    const char mode[]="selection";selection_only=n==9;
+    if(selection_only)for(u32 i=0;i<9;++i)if(activation[i]!=mode[i])return 0;
+    if((!selection_only&&(n!=1||activation[0]!='1'))||(u32)GetModuleHandleA(0)!=0x400000)return 0;
     const struct {u32 at;u8 bytes[8];u32 size;} guards[]={
         {0x46c070,{0x83,0xec,0x14,0x53,0x55,0x56,0x8b,0x74},8},
         {0x4fdad0,{0x81,0xec,0x30,1,0,0,0x53,0x55},8},
@@ -255,6 +340,7 @@ static int install(void) {
         {0x5074f0,{0x53,0x57,0x8b,0xf9,0x33,0xdb,0x39,0x5f},8},
         {0x4f7ae0,{0x57,0x8b,0x7c,0x24,8,0x85,0xff,0x74},8},
         {0x4f7a20,{0x55,0x8b,0x44,0x24,8,0x56,0x8b,0x74},8},
+        {0x4f80f0,{0x51,0x8b,0x41,0x51,0x53,0x99,0x55,0x56},8},
         {0x4d4d60,{0x83,0xec,0x14,0x55,0x56,0x8b,0xf1,0x57},8},
         {0x537bd0,{0x8b,0x41,0x34,0x85,0xc0,0x75,4,0x33},8},
         {0x5060a0,{0x6a,0xff,0x68,0x1b,0x24,0x5c,0},7}

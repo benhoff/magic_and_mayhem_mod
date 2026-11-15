@@ -77881,7 +77881,7 @@
       "subsystem": "original_input",
       "kind": "recovered",
       "title": "Scoped original selection,team,camera,spell and command interface map",
-      "scope": "Static packed actor selection68/70 and single-team8e9 accesses,slot reset lifetime boundary,actor/camera focus/setter and original spell-bar icon/command producer ingress. Function links cover these call/data interfaces only. Original keyboard46c070/view4fdad0 remain unassigned inventory boundaries; full input semantics,visible-type filter,universal idle/Power guards,Stop/Hold/attack-move and original execution comparison pending.",
+      "scope": "Static packed actor selection68/70 and single-team8e9 accesses,slot reset lifetime boundary,actor/camera focus/setter and original spell-bar icon/command producer ingress. Function links cover these call/data interfaces only. Original keyboard46c070/view4fdad0 remain unassigned inventory boundaries; full input semantics,visible-type filter,universal idle/Power guards,Stop/Hold/attack-move and original execution comparison pending. Current fine-coordinate projection ingress4f80f0 is used for viewport-anchor type selection; full visibility/occlusion semantics remain outside scope.",
       "confidence": "provisional",
       "original": [
         {
@@ -77923,6 +77923,11 @@
           "build": "nocd-40209ca7",
           "address": 5471184,
           "scope": "Length-tagged command producer ingress; no complete network/session ownership recovery."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5210352,
+          "scope": "thiscall camera, fine XYZ and output XY; ret16. Current viewport projection for four views and toroidal axes, bounded execution with owned camera/map."
         }
       ],
       "documents": [
@@ -77933,7 +77938,8 @@
         "tools/export-rts-controls.py"
       ],
       "evidence": [
-        "RTS.interfaces.static-20261014"
+        "RTS.interfaces.static-20261014",
+        "INPUT.modern-selection-interfaces.static-20261114"
       ],
       "status": {
         "understanding": "partial",
@@ -189443,6 +189449,59 @@
         "Historical explicit secondary variant remains a distinct pinned configuration. Its old source fingerprints, failed acquisitions and charges are not rebound to this default build.",
         "Legacy Linux i386 control drivers remain available but are not executed on the ARM host. The current original comparison uses freestanding PE32 fixtures."
       ]
+    },
+    {
+      "id": "NP.modern-selection-defaults",
+      "subsystem": "native_input",
+      "kind": "native_policy",
+      "title": "Default Ctrl toggle and viewport same-type double-click selection",
+      "scope": "Default public native player/Qt selection-only profile; Ctrl-left extends original Shift toggle only in selection modes and without right/Alt commands. Unmodified released same-actor double presses within configured threshold and four pixels select living owned matching types whose current original-projected fine XYZ anchors are within the playable half-open viewport. Camera changes, drags, stale point/class, ownership/type/lifetime changes and other controls invalidate taps; saved teams and keyboard/scroll policy stay original in selection profile. Bounded original Region/projection execution uses explicit selection/UI service peers; full live gameplay, partial-sprite edge inclusion, Quick Battle and multiplayer remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rts-controls.md"
+      ],
+      "implementation": [
+        "game/input/rts_controls.c",
+        "game/input/rts_controls.h",
+        "runtime/rts-controls/bridge.c",
+        "tools/rts_controls_launch.py",
+        "tools/run-native-game.py",
+        "tools/run-qt-shell.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/run-opengl-game.py"
+      ],
+      "tests": [
+        "tests/rts-controls-test.c",
+        "tests/rts-controls-bridge-test.c",
+        "tests/rts-controls-freestanding32.h",
+        "tests/test-rts-controls-config.py",
+        "tests/test-native-player-launcher.py",
+        "tools/test-modern-selection.py"
+      ],
+      "validation_dependencies": [
+        "tools/build-rts-controls.py",
+        "tools/rts_controls_config.py",
+        "runtime/shadow/win32_min.h",
+        "patches/rts-controls.json",
+        "tools/original-manifest.sh",
+        "tools/export-menu-support.py",
+        "tools/rts_controls_source.py",
+        "tools/launch_build_cache.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/coverage_claims.py",
+        "tools/coverage_evidence.py"
+      ],
+      "evidence": [
+        "INPUT.modern-selection-defaults.bounded-20261114"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -438076,6 +438135,51 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/comparison/original_sha256"
+    },
+    {
+      "id": "INPUT.modern-selection-defaults.bounded-20261114",
+      "kind": "native_integration",
+      "scope": "Default selection native/sanitized/i386 and configured adapter checks; actual original Region/projection instructions with explicit service peers and public staging/launch controls. No full live game.",
+      "record": "research/runtime/modern-selection-defaults-20261114/validation-03.json",
+      "sha256": "4cf4df7a629be7b28aa197f3aa1be4b2284886bb248928c77ba80790a9bb4ec7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_playtest",
+          "equals": false
+        },
+        {
+          "pointer": "/staging/preferences_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "INPUT.modern-selection-interfaces.static-20261114",
+      "kind": "static",
+      "scope": "Pinned No-CD Region4fdad0..4ff1ca and project4f80f0..4f8224 original fragment identities and guarded projection ingress; bounded execution uses explicit lower service peers, not full input or visibility recovery.",
+      "record": "research/runtime/modern-selection-defaults-20261114/validation-03.json",
+      "sha256": "4cf4df7a629be7b28aa197f3aa1be4b2284886bb248928c77ba80790a9bb4ec7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/original_executable_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -474334,6 +474438,20 @@
         "SB14.default-native01",
         "SB14.default-original01"
       ]
+    },
+    {
+      "id": "input.modern-selection-bounded",
+      "level": "headless",
+      "scope": "Native/sanitized and freestanding32 policy, synthetic adapter and unchanged original Region/projection under explicit service peers, staging/config authorization and public launch policy. No live game.",
+      "behaviors": [
+        "NP.modern-selection-defaults"
+      ],
+      "tests": [
+        "tools/test-modern-selection.py"
+      ],
+      "evidence": [
+        "INPUT.modern-selection-defaults.bounded-20261114"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -476161,8 +476279,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-3622c4038fa3e67b4b128251f399c6e737cd8624749a1e1237e2f97795312da3.json",
-    "sha256": "3622c4038fa3e67b4b128251f399c6e737cd8624749a1e1237e2f97795312da3"
+    "path": "research/runtime/coverage/source-index-a4d4faea97afa5cf3f2477c5b4f007e303bc70bbfec14aacf8aa505085e7214c.json",
+    "sha256": "a4d4faea97afa5cf3f2477c5b4f007e303bc70bbfec14aacf8aa505085e7214c"
   },
   "evidence_applicability": [
     {
@@ -476207,7 +476325,7 @@
     }
   ],
   "change_scope_index": {
-    "path": "research/runtime/coverage/evidence-dependencies-a578bc461fab8fabceaaac9502ebeeea39e8d1a5f77569d61bc84d7836d49588.json",
-    "sha256": "a578bc461fab8fabceaaac9502ebeeea39e8d1a5f77569d61bc84d7836d49588"
+    "path": "research/runtime/coverage/evidence-dependencies-e881c7b42229bbf684fde78e7eea9b31491a82cc979d38ad50cf8524002bd448.json",
+    "sha256": "e881c7b42229bbf684fde78e7eea9b31491a82cc979d38ad50cf8524002bd448"
   }
 }

@@ -10,13 +10,21 @@ semantics or of a modern command equivalent.
 
 ## Use and defaults
 
-Run `./tools/run-rts-controls.sh` to build/start the existing Qt shell with this
-adapter requested. Existing launch controls and campaign menus are used. The
+Ordinary `run-native.sh`, `run-x86.sh` and `tools/run-qt-shell.sh` launches now
+default to `MNM_RTS_CONTROLS=selection`. This enables only Ctrl-left selection
+toggle and unmodified double-left same-type selection in campaign gameplay.
+Keyboard shortcuts, saved teams, scrolling and right-click commands keep their
+original policy. Set `MNM_RTS_CONTROLS=0` to restore original mouse selection.
+The explicit original-renderer diagnostic route retains its original controls.
+
+Run `./tools/run-rts-controls.sh` to request the broader optional shortcut pack
+(`MNM_RTS_CONTROLS=1`). Existing launch controls and campaign menus are used. The
 wrapper applies the normal 100 GiB reserve guard, estimating 2 GiB of output.
 Alternatively set `MNM_RTS_CONTROLS=1` when running `tools/run-qt-shell.sh`.
 The adapter is staged in a disposable installation and enabled only after its
-DLL/configuration hashes are checked. Ordinary launches without this explicit
-setting retain their original inputs. No original or installed source is patched.
+DLL/configuration hashes are checked. Direct observation/staging tools retain
+their explicit activation policy; passive original-gameplay acquisitions must
+set `MNM_RTS_CONTROLS=0`. No original or installed source is patched.
 
 The wrapper also handles an existing working executable extended by logging/DLL
 imports: it verifies every original section byte-for-byte against the immutable
@@ -32,7 +40,8 @@ number-group chords are reserved. JSON config has no in-game settings UI.
 
 | Input | Intentional behavior |
 | --- | --- |
-| Ctrl + left selection | Extend the existing additive modifier; ordinary Shift remains available |
+| Ctrl + left selection | Toggle a creature in the current selection; ordinary Shift remains available |
+| Double left click | Select living owned units of the clicked type in the current playable viewport |
 | Ctrl + number | Save current selection as that team; original single-team membership retained |
 | Shift + number | Append selected creatures to the team |
 | Ctrl + Shift + number | Remove selected creatures from that team |
@@ -60,8 +69,21 @@ universal idle definition. Guard/follow creatures are excluded by these checks;
 Place-of-Power ownership/guard classification remains a live verification item.
 Finding ungrouped creatures only changes selection, never their orders.
 The wizard shortcut covers ordinary player type0, not transformed wizards.
-Type selection is over owned actors, not a recovered visible-screen filter.
-Original double-click team selection is retained; Ctrl+T supplies type selection.
+Ctrl+T remains map-wide type selection in the optional full shortcut pack.
+Mouse double-click replaces original team selection. It requires a press/release
+then another unmodified press on the same live actor within `double_tap_ms` and
+four pixels on each axis. Drags, keyboard input, control changes, camera changes,
+different actors, ownership/type changes and slot resets invalidate the pair.
+Current hit class and pointer coordinates must agree with the callback point.
+Ctrl/Shift clicks retain toggling; they do not trigger type selection. Casting,
+Alt commands and simultaneous right-button edges retain original modifiers.
+
+The screen filter calls original `4f80f0` with each eligible actor's current fine
+XYZ and camera. A unit qualifies when that projected anchor is inside the
+half-open World viewport, excluding HUD/offscreen positions. This handles four
+orientations, flight height and toroidal seams without cached drawing positions.
+A partially visible sprite whose anchor is outside is excluded; complete sprite
+occlusion/visibility semantics are not claimed. Team membership is unchanged.
 Tab's cached set uses adapter lifetime generations advanced by actual slot reset;
 external selection, slot replacement, pool/session changes invalidate the set.
 
@@ -93,6 +115,7 @@ provisional for whole user-visible input semantics:
 | Actor `+8e9`, `52abc0` | Original single team number, `ffffffff` absent, numeric recall/save uses original selection helpers |
 | `5060a0` | Actor slot reset; seven displaced push instructions contain no relative operand |
 | `4f7ae0/4f7a20` | Focus actor / set camera fine XYZ; original wrapping retained |
+| `4f80f0` | `thiscall`, fine X/Y/Z and output XY pointer, `ret16`; current viewport/fractions, four orientations and wrapped map extents |
 | `6a2dd0`, `4d4d60` | Spell-bar entries stride `c6`, count `1518`, receiver `18ec`, selected slot `1908`; callback distinguishes spell and inventory rows via `1b5` |
 | `537bd0` | Copy one length-tagged command to current producer buffer, advance byte pointer/count |
 
@@ -128,3 +151,14 @@ spell selection/Escape/invalid target/mana refusal, queued move interrupted by S
 all camera orientations/bookmarks, then menu/save/load/new mission and focus loss.
 Confirm actual selection/count/target/queue state, not only that keys were sent.
 Keep failed trials and source hashes under new evidence IDs.
+
+## Default selection checks — 2026-11-14
+
+`tools/test-modern-selection.py` checks native/sanitized and freestanding i386
+policy, the configured adapter, actual original Region/projection instructions
+with explicit selection/UI service peers, PE32 build and selection-only staging,
+unchanged scrolling and public-launch defaults/overrides. Projection covers
+800×600/640×480, four views, height and a map seam. Original Region cases exercise
+Ctrl/Shift toggle and the replaced team-selection path. The service peers are
+not original selection-effect/UI bodies. Full live playtest and Quick Battle/
+multiplayer remain pending. Exact results are registered separately.

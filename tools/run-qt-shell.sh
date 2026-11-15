@@ -33,6 +33,7 @@ export QT_QPA_PLATFORM=${QT_QPA_PLATFORM:-xcb}
 export MNM_VERIFY_ORIGINALS=${MNM_VERIFY_ORIGINALS:-0}
 export MNM_VERIFY_ASSETS=${MNM_VERIFY_ASSETS:-0}
 export MNM_CACHE_ADAPTERS=${MNM_CACHE_ADAPTERS:-1}
+export MNM_RTS_CONTROLS=${MNM_RTS_CONTROLS-selection}
 # Public native sessions use the guarded glyph adapter unless explicitly disabled.
 # Standalone observation/comparison launchers keep their own mode selection.
 export MNM_GLYPH_BACKEND=${MNM_GLYPH_BACKEND-takeover}

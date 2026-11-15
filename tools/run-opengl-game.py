@@ -171,7 +171,7 @@ def main():
     from glyph_backend_launch import stage as stage_glyph,mode_from_environment
     patched,glyph_metadata=stage_glyph(root,data,patched,mode_from_environment())
     from rts_controls_launch import stage as stage_rts,enabled_from_environment as rts_enabled,authorize as authorize_rts
-    patched,rts_metadata=stage_rts(root,data,patched,rts_enabled(os.environ),os.environ.get('MNM_RTS_CONTROLS_CONFIG',REPO/'patches/rts-controls.json'))
+    patched,rts_metadata=stage_rts(root,data,patched,rts_enabled(os.environ),os.environ.get('MNM_RTS_CONTROLS_CONFIG',REPO/'patches/rts-controls.json'),mode=os.environ.get('MNM_RTS_CONTROLS','1'))
     (game/'Chaos.exe').write_bytes(patched)
     shutil.copy2(dll,game/dll.name);shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     movie_edits=skip_movies(game) if args.skip_movies else []

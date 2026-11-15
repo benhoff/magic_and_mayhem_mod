@@ -1,7 +1,11 @@
 #include "../game/input/rts_controls.h"
+#ifdef MNM_RTS_FREESTANDING32
+#include "rts-controls-freestanding32.h"
+#else
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
+#endif
 static unsigned checks;
 #define CHECK(v) do {assert(v);++checks;} while(0)
 static MnmRtsSnapshot s;
@@ -46,6 +50,29 @@ int main(void) {
     apply(MNM_RTS_CYCLE_TYPE,0,3);CHECK(!s.actors[2].selected); /* replacement is not retained */
     fixture();s.actors[1].selected=1;apply(MNM_RTS_SAME_TYPE,0,0);
     CHECK(s.actors[1].selected&&s.actors[4].selected&&!s.actors[7].selected);
+    /* Clicked type wins over a mixed selection; visibility is current input,
+     * and saved group membership never changes. */
+    uint8_t visible[MNM_RTS_MAX_ACTORS]={0};
+    fixture();s.actors[0].selected=s.actors[2].selected=1;
+    visible[1]=visible[4]=visible[6]=visible[7]=1;
+    s.actors[1].group=2;s.actors[4].group=7;
+    CHECK(mnm_rts_visible_type(&s,1,visible,&out));
+    CHECK(out.selection[1]&&out.selection[4]&&!out.selection[0]&&!out.selection[2]&&
+          !out.selection[6]&&!out.selection[7]&&out.focus_slot==UINT32_MAX);
+    for(unsigned i=0;i<256;++i)CHECK(!out.group_write[i]);
+    visible[4]=0;CHECK(mnm_rts_visible_type(&s,1,visible,&out)&&!out.selection[4]);
+    visible[1]=0;CHECK(!mnm_rts_visible_type(&s,1,visible,&out)&&!out.selection_write);
+    CHECK(!mnm_rts_visible_type(&s,6,visible,&out));
+    visible[7]=1;CHECK(!mnm_rts_visible_type(&s,7,visible,&out));
+    CHECK(!mnm_rts_visible_type(&s,256,visible,&out));
+    visible[1]=1;visible[4]=2;CHECK(!mnm_rts_visible_type(&s,1,visible,&out)&&!out.selection_write);
+    visible[4]=1;s.actors[4].generation=0;CHECK(!mnm_rts_visible_type(&s,1,visible,&out));
+    fixture();s.count=257;CHECK(!mnm_rts_visible_type(&s,1,visible,&out));
+    fixture();s.count=256;
+    for(unsigned i=0;i<256;++i){s.actors[i]=(MnmRtsActor){.slot=i,.generation=1,
+        .type=i%3,.active=1,.health=100,.owner=i%2};visible[i]=i%5!=0;}
+    CHECK(mnm_rts_visible_type(&s,2,visible,&out));
+    for(unsigned i=0;i<256;++i)CHECK(out.selection[i]==(i%3==2&&i%2==0&&i%5!=0));
     fixture();s.actors[2].idle=0;apply(MNM_RTS_IDLE,0,0);CHECK(s.actors[1].selected);
     apply(MNM_RTS_IDLE,0,1);CHECK(s.actors[3].selected);
     apply(MNM_RTS_IDLE,1,2);CHECK(s.actors[1].selected&&s.actors[3].selected&&!s.actors[0].selected&&!s.actors[2].selected);
@@ -77,4 +104,5 @@ int main(void) {
             }
         }
     printf("{\"success\":true,\"checks\":%u}\n",checks);
+    return 0;
 }

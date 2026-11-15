@@ -51,11 +51,21 @@ class PlayerLaunch(unittest.TestCase):
             self.assertEqual(environment['MNM_PUBLIC_RESIDENT_WORLD'], '1')
             self.assertEqual(environment['MNM_MENU_DIRECTPLAY_DX6'], '1')
             self.assertEqual(environment['MNM_TERRAIN_LIGHTING'], 'native')
+            self.assertEqual(environment['MNM_RTS_CONTROLS'], 'selection')
             self.assertEqual(player.lighting_selection(environment), ('native', 'none'))
             self.assertEqual(prepare.call_args.args[-1]['MNM_TERRAIN_LIGHTING'], 'native')
             self.assertNotIn('MNM_TERRAIN_LIGHTING', os.environ)
             prepare.assert_called_once()
             self.assertEqual(run.call_count, 1)  # No wineserver wait before fresh initialization.
+
+    def test_selection_defaults_preserve_explicit_controls_modes(self):
+        for mode in ('0','1','selection'):
+            with self.subTest(mode=mode), self.launch(environment={'MNM_RTS_CONTROLS':mode}) as (_, _, run):
+                self.assertEqual(player.main([]),0)
+                self.assertEqual(run.call_args.kwargs['env']['MNM_RTS_CONTROLS'],mode)
+        with self.launch(environment={'MNM_RTS_CONTROLS':'invalid'}) as (prepare, _, run):
+            self.assertEqual(player.main([]),1)
+            prepare.assert_not_called();run.assert_not_called()
 
     def test_linux_arm_defaults_to_independent_world(self):
         with self.launch() as (prepare, _, run), patch.object(player.platform, 'machine', return_value='aarch64'), patch.object(player.sys, 'platform', 'linux'):

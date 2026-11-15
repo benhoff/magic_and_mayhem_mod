@@ -30867,3 +30867,34 @@ change or whole-player promotion is claimed. See
 
 The fresh full audit has zero errors and the three retained historical warnings;
 see [coverage summary](coverage/summary-secondary-black-default-20261114-02.md).
+
+## Default campaign mouse selection — 2026-11-14
+
+`NP.modern-selection-defaults` adds Ctrl-left selection toggle and unmodified
+same-actor double-left type selection as the public native/Qt campaign default.
+`MNM_RTS_CONTROLS=selection` enables these two changes; `0` restores original
+selection and `1` requests the existing wider shortcut pack. Default staging
+preserves scroll preferences, original keyboard controls and saved teams.
+
+Double-click uses released presses within400ms/four pixels by default, current
+hit identity and current original4f80f0 projection of living owned actors. The
+projected anchor must lie inside the playable half-open viewport. Camera/control
+changes, drags, stale points and actor lifetime/type/owner changes invalidate
+taps. Partial sprites with anchors outside are excluded. Selection-effect/UI
+bodies, complete occlusion semantics and Quick Battle/multiplayer remain open.
+
+[Bounded source-bound execution](modern-selection-defaults-20261114/validation-03.json)
+passes103373 policy checks in each native, ASan/UBSan and freestanding i386 run,
+104 synthetic adapter checks and133 checks including unchanged original Region/
+projection instructions with explicit selection/UI service peers. Projection
+covers800×600/640×480, four orientations, height and a toroidal seam. Eight
+configuration tests and40 mocked public-launch tests pass. PE32 compilation,
+original-section preservation, selection-profile authorization and unchanged
+scrolling pass; original manifests verify before/after. Earlier compiler and
+fixture failures remain separately identified with their source preimages.
+
+These results establish bounded policy/adapter checks, not complete live-game
+integration or replacement. No existing live milestone is promoted or historical
+hash refreshed. Shared launcher evidence outside this scope remains historical/
+pending. Storage custody uses the user's explicit machine-local single-filesystem
+exception; local verified recovery copies do not claim independent replication.

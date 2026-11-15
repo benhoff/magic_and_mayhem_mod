@@ -13,7 +13,7 @@ GUARDS = {0x46c070:'83ec145355568b74', 0x4fdad0:'81ec300100005355',
           0x5073d0:'578bf98b8fa80000', 0x5074f0:'53578bf933db395f',
           0x4f7ae0:'578b7c240885ff74', 0x4f7a20:'558b442408568b74',
           0x4d4d60:'83ec1455568bf157', 0x5060a0:'6aff681b245c00',
-          0x537bd0:'8b413485c0750433',
+          0x537bd0:'8b413485c0750433', 0x4f80f0:'518b415153995556',
           0x5c5dec:'70c04600', 0x5c6a54:'d0da4f00'}
 
 
@@ -26,9 +26,9 @@ def module(name, path):
 
 def enabled_from_environment(environment):
     value = environment.get('MNM_RTS_CONTROLS')
-    if value not in (None,'0','1'):
-        raise ValueError('MNM_RTS_CONTROLS must be 0 or 1')
-    return value == '1'
+    if value not in (None,'0','1','selection'):
+        raise ValueError('MNM_RTS_CONTROLS must be 0, 1 or selection')
+    return value in ('1','selection')
 
 
 def scroll_preferences(game, speed):
@@ -71,11 +71,13 @@ def scroll_preferences(game, speed):
     return edits
 
 
-def stage(root, original, patched, enabled, config=DEFAULT):
+def stage(root, original, patched, enabled, config=DEFAULT, *, mode='1'):
     if type(enabled) is not bool:
         raise ValueError('Invalid controls activation policy')
     if not enabled:
         return patched, {}
+    if mode not in ('1','selection'):
+        raise ValueError('Invalid controls mode')
     if hashlib.sha256(original).hexdigest() != HASH:
         raise ValueError('Unsupported controls executable')
     root = Path(root).resolve()
@@ -104,9 +106,10 @@ def stage(root, original, patched, enabled, config=DEFAULT):
         patched,'MnmRtsControls.dll','RtsControlsAnchor',b'.mnrts')
     shutil.copy2(dll,root/'game/MnmRtsControls.dll')
     shutil.copy2(dll.parent/'manifest.json',root/'rts-controls-build.json')
-    edits = scroll_preferences(root/'game',settings['mouse_scroll_speed'])
+    # Default selection changes do not adjust scrolling or enable shortcut keys.
+    edits = scroll_preferences(root/'game',settings['mouse_scroll_speed']) if mode=='1' else []
     (root/'rts-controls.json').write_text(json.dumps(settings,indent=2)+'\n')
-    return updated, {'rts_controls':True,
+    return updated, {'rts_controls':True,'rts_controls_mode':mode,
         'rts_controls_dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
         'rts_controls_config_sha256':hashlib.sha256((root/'rts-controls.json').read_bytes()).hexdigest(),
         'rts_controls_preferences':edits,
@@ -120,6 +123,9 @@ def authorize(root, metadata, environment):
         raise ValueError('Invalid staged controls policy')
     if not enabled:
         return
+    mode=metadata.get('rts_controls_mode','1')
+    if mode not in ('1','selection'):
+        raise ValueError('Invalid staged controls mode')
     root = Path(root).resolve()
     game = root/'game'
     if game.is_symlink() or not game.resolve().is_relative_to(root):
@@ -131,4 +137,4 @@ def authorize(root, metadata, environment):
         hashlib.sha256(target.read_bytes()).hexdigest() != metadata.get('rts_controls_dll_sha256') or
         hashlib.sha256(config.read_bytes()).hexdigest() != metadata.get('rts_controls_config_sha256')):
         raise ValueError('Controls DLL/configuration changed or redirected')
-    environment['MNM_RTS_CONTROLS_ACTIVE'] = '1'
+    environment['MNM_RTS_CONTROLS_ACTIVE'] = mode

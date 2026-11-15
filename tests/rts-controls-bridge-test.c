@@ -1,14 +1,19 @@
 /* Synthetic PE32 address space and API/service peers; no original execution. */
 #define _GNU_SOURCE
+#ifdef MNM_RTS_FREESTANDING32
+#include "rts-controls-freestanding32.h"
+#else
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/mman.h>
+#endif
 #include "../runtime/rts-controls/bridge.c"
 static unsigned checks,error_value,thread_id=1,clock_value,protect_calls,deny_protect;
-static unsigned fallback_count,mouse_count,focus_count,spell_count,command_count;
+static unsigned fallback_count,mouse_count,focus_count,spell_count,command_count,project_count;
 static unsigned last_key[4],last_mouse[11],last_focus;
 static unsigned char last_command[21];
+static const char* activation_mode="1";
 #define CHECK(v) do {assert(v);++checks;} while(0)
 void* WIN GetModuleHandleA(const char* name){(void)name;return (void*)0x400000;}
 u32 WIN GetLastError(void){return error_value;}
@@ -16,7 +21,8 @@ void WIN SetLastError(u32 n){error_value=n;}
 u32 WIN GetCurrentThreadId(void){return thread_id;}
 u32 WIN GetTickCount(void){return clock_value;}
 u32 WIN GetEnvironmentVariableA(const char* name,char* value,u32 size){
-    CHECK(!strcmp(name,"MNM_RTS_CONTROLS_ACTIVE")&&size>=2);value[0]='1';value[1]=0;return 1;
+    CHECK(!strcmp(name,"MNM_RTS_CONTROLS_ACTIVE")&&size>=10);
+    unsigned n=0;do{value[n]=activation_mode[n];}while(activation_mode[n++]);return n-1;
 }
 u32 WIN VirtualQuery(const void* p,void* out,u32 size){
     struct Region {void* base;void* allocation;u32 protection,size,state,protect,type;};
@@ -43,12 +49,16 @@ static u32 THIS mouse_peer(void* p,u32 a,u32 b,u32 c,u32 d,u32 e,u32 f,
     CHECK(p==(void*)0x689930);u32 values[]={a,b,c,d,e,f,g,h,shift,control,alt};
     memcpy(last_mouse,values,sizeof(values));++mouse_count;SetLastError(0x88);return 99;
 }
-static void THIS select_peer(void* value){u8* p=value;put(p+0x68,1);put((void*)0x6e984c,get((void*)0x6e984c)+1);}
-static void THIS deselect_peer(void* value){u8* p=value;put(p+0x68,0);put(p+0x70,0);put((void*)0x6e984c,get((void*)0x6e984c)-1);}
+static void THIS select_peer(void* value){u8* p=value;put(p+0x68,1);put((void*)0x6e984c,get((void*)0x6e984c)+1);put((void*)0x6903e8,1);}
+static void THIS deselect_peer(void* value){u8* p=value;put(p+0x68,0);put(p+0x70,0);put((void*)0x6e984c,get((void*)0x6e984c)-1);put((void*)0x6903e8,get((void*)0x6e984c)!=0);}
 static void THIS focus_peer(void* camera,void* actor){CHECK(camera==(void*)0x689930);++focus_count;last_focus=get(actor);}
 static void THIS position_peer(void* camera,u32 x,u32 y,u32 z){
     CHECK(camera==(void*)0x689930);put((u8*)camera+0x39,x/32);put((u8*)camera+0x3d,y/32);
     put((u8*)camera+0x41,z/16);++focus_count;
+}
+static void THIS project_peer(void* camera,u32 x,u32 y,u32 z,void* out){
+    CHECK(camera==(void*)0x689930);(void)z;++project_count;
+    put(out,x);put((u8*)out+4,y);
 }
 static u32 THIS spell_peer(void* bar,u32 slot){CHECK(bar==(void*)0x6a2dd0);put((u8*)bar+0x1908,slot);++spell_count;return 0;}
 static void THIS command_peer(void* manager,const void* command){
@@ -64,6 +74,8 @@ static void anchors(void){
       {0x55,0x8b,0x44,0x24,8,0x56,0x8b,0x74},{0x83,0xec,0x14,0x55,0x56,0x8b,0xf1,0x57},
       {0x8b,0x41,0x34,0x85,0xc0,0x75,4,0x33},{0x6a,0xff,0x68,0x1b,0x24,0x5c,0,0}};
     for(unsigned i=0;i<9;++i)memcpy((void*)sites[i],bytes[i],i==8?7:8);
+    const u8 projection[]={0x51,0x8b,0x41,0x51,0x53,0x99,0x55,0x56};
+    memcpy((void*)0x4f80f0,projection,8);
     put((void*)0x5c5dec,0x46c070);put((void*)0x5c6a54,0x4fdad0);
 }
 static u32 press(u32 vk,u32 mods,int repeat){
@@ -71,6 +83,61 @@ static u32 press(u32 vk,u32 mods,int repeat){
     error_value=0x77;
     return ((KeyFn)get((void*)0x5c5dec))((void*)0x6cbb78,123,mods&4?0x104:0x100,vk,repeat?0x40000000:0);
 }
+#ifdef MNM_RTS_ORIGINAL_SELECTION
+#include "original-selection.h"
+static unsigned team_calls;
+static u32 THIS constructor_peer(void* p){(void)p;return 0;}
+static u32 THIS player_peer(void* p,u32 owner){(void)p;(void)owner;return 0x77b000;}
+static void THIS notify_peer(void* p){(void)p;}
+static void THIS prepare_peer(void* p,u32 actor_id){(void)p;(void)actor_id;}
+static void THIS team_peer(void* p,u32 actor_id){(void)p;(void)actor_id;++team_calls;}
+static void original_selection(void) {
+    memcpy((void*)0x4fdad0,original_region,sizeof(original_region));
+    memcpy((void*)0x4f80f0,original_project,sizeof(original_project));
+    jump_peer(0x5024c0,&constructor_peer);jump_peer(0x466870,&player_peer);
+    jump_peer(0x509bd0,&notify_peer);jump_peer(0x570da0,&prepare_peer);jump_peer(0x52ada0,&team_peer);
+    put((void*)0x689920,5);put((void*)0x6a5134,2);put((void*)0x656600,(u32)actor(1));
+    u8* camera=(void*)0x689930;
+    put(camera+0x39,8);put(camera+0x3d,8);put(camera+0x41,0);
+    put(camera+0x45,0);put(camera+0x49,0);put(camera+0x4d,0);
+    typedef void (THIS *Project)(void*,u32,u32,u32,void*);
+    const int dx[]={32,32,-32,-32},dy[]={16,-16,-16,16};
+    for(unsigned size=0;size<2;++size) {
+        u32 width=size?640:800,height=size?480:600;
+        put(camera+0x19,width);put(camera+0x1d,height);put(camera+0x51,width);put(camera+0x55,height);
+        for(unsigned view=0;view<4;++view) {
+            put(camera+0x31,view);u32 point[2];
+            ((Project)0x4f80f0)(camera,272,272,0,point);
+            CHECK(point[0]==width/2&&point[1]==height/2);
+            ((Project)0x4f80f0)(camera,304,272,16,point);
+            CHECK(point[0]==width/2+(u32)dx[view]&&point[1]==height/2+(u32)dy[view]-16);
+            put(camera+0x39,15);
+            ((Project)0x4f80f0)(camera,16,272,0,point);
+            CHECK(point[0]==width/2+(u32)dx[view]&&point[1]==height/2+(u32)dy[view]);
+            put(camera+0x39,8);
+        }
+    }
+    put(camera+0x31,0);put(camera+0x91,320);put(camera+0x95,240);
+    for(unsigned i=0;i<6;++i) {put(actor(i)+0x68,i==1);put(actor(i)+0x70,0);put(actor(i)+20,272);put(actor(i)+24,272);put(actor(i)+28,0);}
+    put((void*)0x6e984c,1);put((void*)0x6903e8,1);new_session();
+    /* Actual original Region modifier branch, with explicit service peers. */
+    mouse(camera,1,320,240,0,0,0,0,0,0,1,0);
+    CHECK(!get(actor(1)+0x68)&&get((void*)0x6e984c)==0);
+    /* Original mode zero ignores the modifier, selecting the clicked actor. */
+    mouse(camera,2,320,240,0,0,0,0,0,0,1,0);
+    mouse(camera,1,320,240,0,0,0,0,0,0,1,0);
+    CHECK(get(actor(1)+0x68)&&get((void*)0x6e984c)==1);
+    mouse(camera,1,320,240,0,0,0,0,0,1,0,0);
+    CHECK(!get(actor(1)+0x68));
+    put(actor(2)+20,500);put(actor(2)+24,32); /* Offscreen after toroidal projection. */
+    put(actor(4)+20,300);put((void*)0x6903e8,1);
+    clock_value=3000;mouse(camera,1,320,240,0,0,0,0,0,0,0,0);
+    mouse(camera,2,320,240,0,0,0,0,0,0,0,0);
+    clock_value=3200;mouse(camera,1,320,240,0,0,0,0,0,0,0,0);
+    CHECK(get(actor(1)+0x68)&&get(actor(4)+0x68)&&!get(actor(2)+0x68)&&!get(actor(0)+0x68));
+    CHECK(team_calls==0&&get(actor(1)+0x8e9)==2&&get(actor(4)+0x8e9)==7);
+}
+#endif
 int main(void){
     CHECK(mmap((void*)0x400000,0x400000,PROT_READ|PROT_WRITE|PROT_EXEC,
                MAP_PRIVATE|MAP_ANONYMOUS|MAP_FIXED_NOREPLACE,-1,0)==(void*)0x400000);
@@ -82,6 +149,7 @@ int main(void){
     jump_peer(0x46c070,&fallback);jump_peer(0x4fdad0,&mouse_peer);
     jump_peer(0x5073d0,&select_peer);jump_peer(0x5074f0,&deselect_peer);
     jump_peer(0x4f7ae0,&focus_peer);jump_peer(0x4f7a20,&position_peer);
+    jump_peer(0x4f80f0,&project_peer);
     jump_peer(0x4d4d60,&spell_peer);jump_peer(0x537bd0,&command_peer);
     const u8 reset_tail[]={0x83,0xc4,8,0xb8,0x34,0x12,0,0,0xc2,4,0};memcpy((void*)0x5060a7,reset_tail,sizeof(reset_tail));
     put((void*)0x6f34e0,0x6cbb78);put((void*)0x6cbb7c,2);put((void*)0x689920,5);
@@ -138,6 +206,66 @@ int main(void){
     CHECK(callback((void*)0x689930,1,2,3,4,5,6,7,8,0,1,0)==99&&last_mouse[8]==1);
     CHECK(callback((void*)0x689930,4,2,3,4,5,6,7,8,0,1,0)==99&&last_mouse[8]==0);
     CHECK(last_mouse[0]==4&&last_mouse[1]==2&&last_mouse[9]==1&&mouse_count==2);
+    /* Callback-time screen filter, timed press/release pairs and exact actor
+     * identity. Existing selection's first actor and team do not seed type. */
+    put((void*)(0x689930+0x11),0);put((void*)(0x689930+0x15),0);
+    put((void*)(0x689930+0x19),800);put((void*)(0x689930+0x1d),500);
+    put((void*)(0x689930+0x51),800);put((void*)(0x689930+0x55),500);
+    put((void*)(0x689930+0x91),100);put((void*)(0x689930+0x95),100);
+    put((void*)0x6a5134,2);put((void*)0x656600,(u32)actor(1));
+    put((void*)0x6903e8,1);
+    for(unsigned i=0;i<6;++i){put(actor(i)+20,100+i*20);put(actor(i)+24,100);put(actor(i)+0x68,i==0);}
+    put(actor(2)+20,800); /* Half-open right edge is offscreen. */
+    put(actor(4)+20,799);put(actor(4)+24,499);
+    put(actor(1)+0x8e9,2);put(actor(4)+0x8e9,7);
+    clock_value=1000;
+    CHECK(callback((void*)0x689930,1,100,100,0,0,0,0,0,0,0,0)==99&&click_valid);
+    CHECK(last_mouse[0]==1&&get((void*)0x6df17c)==1);
+    callback((void*)0x689930,2,100,100,0,0,0,0,0,0,0,0);
+    clock_value=1200;
+    CHECK(callback((void*)0x689930,1,100,100,0,0,0,0,0,0,0,0)==99&&last_mouse[0]==0);
+    CHECK(get(actor(1)+0x68)&&get(actor(4)+0x68)&&!get(actor(2)+0x68)&&!get(actor(0)+0x68));
+    CHECK(get(actor(1)+0x8e9)==2&&get(actor(4)+0x8e9)==7&&project_count==4);
+    /* Without release, on stale picking, or during casting, don't type-select. */
+    clock_value=1400;callback((void*)0x689930,1,100,100,0,0,0,0,0,0,0,0);
+    clock_value=1500;callback((void*)0x689930,1,100,100,0,0,0,0,0,0,0,0);
+    CHECK(last_mouse[0]==1&&project_count==4);
+    callback((void*)0x689930,2,100,100,0,0,0,0,0,0,0,0);
+    callback((void*)0x689930,0x10,110,100,0,0,0,0,0,0,0,0); /* drag */
+    CHECK(!click_valid);
+    callback((void*)0x689930,1,100,100,0,0,0,0,0,0,0,0);
+    callback((void*)0x689930,2,100,100,0,0,0,0,0,0,0,0);
+    put((void*)(0x689930+0x31),1); /* rotation between clicks */
+    callback((void*)0x689930,1,100,100,0,0,0,0,0,0,0,0);
+    CHECK(last_mouse[0]==1&&project_count==4);
+    callback((void*)0x689930,2,100,100,0,0,0,0,0,0,0,0);
+    put((void*)0x656600,(u32)actor(4)); /* different actor of same type */
+    callback((void*)0x689930,1,100,100,0,0,0,0,0,0,0,0);
+    CHECK(last_mouse[0]==1&&project_count==4);
+    callback((void*)0x689930,2,100,100,0,0,0,0,0,0,0,0);
+    clock_value+=401;callback((void*)0x689930,1,100,100,0,0,0,0,0,0,0,0);
+    CHECK(last_mouse[0]==1&&project_count==4); /* timeout */
+    callback((void*)0x689930,0x40,100,100,0,0,0,0,0,0,0,0);CHECK(!click_valid);
+    callback((void*)0x689930,1,101,100,0,0,0,0,0,0,0,0);CHECK(!click_valid); /* stale hit point */
+    put((void*)0x6903e8,2);
+    callback((void*)0x689930,1,100,100,0,0,0,0,0,0,1,0);
+    CHECK(last_mouse[8]==0&&last_mouse[9]==1&&!click_valid); /* spell modifier */
+    put((void*)0x6903e8,1);
+    callback((void*)0x689930,5,100,100,0,0,0,0,0,0,1,0);
+    CHECK(last_mouse[8]==0&&last_mouse[0]==5); /* simultaneous force attack */
+    selection_only=1;CHECK(press(112,0,0)==777);selection_only=0;
     put((void*)0x689920,3);CHECK(callback((void*)0x689930,1,2,3,4,5,6,7,8,0,1,0)==99&&last_mouse[8]==0);
+#ifdef MNM_RTS_ORIGINAL_SELECTION
+    original_selection();
+#endif
+    activation_mode="selection";anchors();protect_calls=deny_protect=0;
+    CHECK(install()&&enabled&&selection_only);
+    jump_peer(0x46c070,&fallback);CHECK(press(112,0,0)==777);
+    activation_mode="bad";CHECK(!install());
+#ifdef MNM_RTS_ORIGINAL_SELECTION
+    printf("{\"success\":true,\"checks\":%u,\"scope\":\"original Region/projection with explicit service peers; no live game\"}\n",checks);
+#else
     printf("{\"success\":true,\"checks\":%u,\"scope\":\"synthetic adapter only\"}\n",checks);
+#endif
+    return 0;
 }

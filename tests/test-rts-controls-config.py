@@ -37,6 +37,7 @@ class Controls(unittest.TestCase):
         self.assertFalse(enabled_from_environment({}))
         self.assertFalse(enabled_from_environment({'MNM_RTS_CONTROLS':'0'}))
         self.assertTrue(enabled_from_environment({'MNM_RTS_CONTROLS':'1'}))
+        self.assertTrue(enabled_from_environment({'MNM_RTS_CONTROLS':'selection'}))
         with self.assertRaises(ValueError):enabled_from_environment({'MNM_RTS_CONTROLS':'yes'})
         environment={'MNM_RTS_CONTROLS_ACTIVE':'inherited'}
         authorize(Path('/tmp'),{},environment)
@@ -58,6 +59,12 @@ class Controls(unittest.TestCase):
             m={'rts_controls':True,'rts_controls_dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
                'rts_controls_config_sha256':hashlib.sha256(config.read_bytes()).hexdigest()}
             env={};authorize(root,m,env);self.assertEqual(env['MNM_RTS_CONTROLS_ACTIVE'],'1')
+            m['rts_controls_mode']='selection'
+            authorize(root,m,env);self.assertEqual(env['MNM_RTS_CONTROLS_ACTIVE'],'selection')
+            m['rts_controls_mode']='unexpected'
+            with self.assertRaises(ValueError):authorize(root,m,env)
+            self.assertNotIn('MNM_RTS_CONTROLS_ACTIVE',env)
+            m['rts_controls_mode']='selection'
             config.write_bytes(b'changed')
             with self.assertRaises(ValueError):authorize(root,m,env)
             self.assertNotIn('MNM_RTS_CONTROLS_ACTIVE',env)

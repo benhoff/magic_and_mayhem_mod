@@ -8,6 +8,22 @@ void mnm_rts_reset(MnmRtsState* state) {
     unsigned char* p = (unsigned char*)state;
     for (uint32_t i = 0; i < sizeof(*state); ++i) p[i] = 0;
 }
+int mnm_rts_visible_type(const MnmRtsSnapshot* s, uint32_t clicked,
+                         const uint8_t visible[MNM_RTS_MAX_ACTORS], MnmRtsResult* out) {
+    unsigned char* bytes = (unsigned char*)out;
+    for (uint32_t i = 0; i < sizeof(*out); ++i) bytes[i] = 0;
+    out->focus_slot = UINT32_MAX;
+    if (!s->session || s->owner >= 80 || s->count > MNM_RTS_MAX_ACTORS ||
+        clicked >= s->count || !eligible(s, clicked) || !visible[clicked]) return 0;
+    for (uint32_t i = 0; i < s->count; ++i) {
+        if (s->actors[i].slot != i || !s->actors[i].generation || visible[i] > 1) return 0;
+    }
+    for (uint32_t i = 0; i < s->count; ++i)
+        out->selection[i] = eligible(s, i) && visible[i] &&
+            s->actors[i].type == s->actors[clicked].type;
+    out->selection_write = out->accepted = 1;
+    return 1;
+}
 int mnm_rts_apply(MnmRtsState* state, const MnmRtsSnapshot* s,
                   uint32_t action, uint32_t argument, int additive,
                   uint32_t now, uint32_t double_tap_ms, int repeat,

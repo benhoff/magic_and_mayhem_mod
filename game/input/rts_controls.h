@@ -34,3 +34,7 @@ void mnm_rts_reset(MnmRtsState*);
 int mnm_rts_apply(MnmRtsState*, const MnmRtsSnapshot*, uint32_t action,
                   uint32_t argument, int additive, uint32_t now,
                   uint32_t double_tap_ms, int repeat, MnmRtsResult*);
+/* Explicit clicked actor and current viewport membership, independent of the
+ * existing selection and saved teams. Refuse an invalid/offscreen seed. */
+int mnm_rts_visible_type(const MnmRtsSnapshot*, uint32_t clicked,
+                         const uint8_t visible[MNM_RTS_MAX_ACTORS], MnmRtsResult*);
