@@ -30928,3 +30928,43 @@ retains the exact source identity of an overly broad budget check. New custody
 budgets now charge newly staged report payloads; unchanged retained reports are
 still verified and consume no duplicate allocation. No commit was created by
 that refused attempt.
+
+## Borrowed glyph menu-canvas admission — 2026-11-14
+
+The retained `run-ww5iw1pt` refusal is reason15/check5: stride520 with layout
+clip800x600 requested624000 writable bytes after returning to menus.
+[Failure metadata](glyph-menu-canvas-20261114/witness.json) survives without
+claiming exact replay of its missing frame/caller inputs. Capture-disabled
+`NR.glyph-live-admission` / `NP.glyph-production-route` now validate the prefix
+through the clipped glyph bounding end row, with signed64-bit origin arithmetic.
+Kernel write/FP/RLE preflight remains mandatory; captured/shadow trials retain
+the full copied-prefix check.
+
+[Strict PE32 checks](glyph-menu-canvas-20261114/check04.json) pass65545 actual
+RGB565/555 native calls, including stride520/clip800x600 on physical8-row guarded
+bitmaps, last-row writes and the old full-prefix refusal. Out-of-range rows,
+multirow overflow, read-only memory and full-prefix captured admission still
+refuse; Y-origin and existing VirtualQuery guard/alias controls pass. Attempts01
+and02 preserve IPC/setup failures; attempt03 passes its earlier test source.
+No original EXE execution, new original-pixel comparison, full live-menu
+transition or status promotion is claimed. Historical evidence remains unchanged.
+
+Integration remains held: normal bookkeeping cannot load the original33,455,490-byte
+review shard `f00d33f5ad434db4257f632431c13944403fa71f855ab1a0f71b338817eef419`.
+Surviving local stores do not contain it; bounded reconstruction from historical
+journals did not reproduce that hash, and the user reports no known backup.
+No normal commit or master promotion was performed. The exact tested source,
+SQLite reports and pending accounting remain held for recovery; historical
+archives and hashes were not replaced or waived.
+
+## Glyph menu-canvas acceptance retry — 2026-11-16
+
+[Final strict PE32 controls](glyph-menu-canvas-20261114/check06.json) pass65545
+RGB565/555 production glyph calls on the updated finite-lifecycle base, with
+zero forwards/errors and all guarded extent controls. Admission failures now
+normalize to a nonzero process status, including high-bit diagnostic flags.
+The earlier missing-shard integration hold is superseded by the approved
+opaque accepted-reference accounting policy; original payload unavailability
+remains explicit and supplies no fresh validation credit. Source accounting
+and normal hooks remain mandatory. No new original comparison, live menu
+transition or engine status promotion is claimed.
