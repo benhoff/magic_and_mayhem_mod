@@ -174,3 +174,61 @@ admission. Checks1..7 cover global extents, format, geometry, sentinel, canvas
 extent, frame header extent and complete frame extent respectively. Geometry
 packs clip-right/clip-bottom in the low/high16bits. These diagnostics do not
 permit original glyph forwarding.
+
+## Borrowed menu canvas extent — 2026-11-14
+
+The retained interactive failure `run-ww5iw1pt` exits124 in strict glyph
+admission reason15/check5 after returning to menus. Its canvas stride is520,
+while layout clip-right/bottom remain800/600. The old full-prefix check requests
+624,000 writable bytes; the first mapped region has380,928 bytes. The
+[retained diagnostic analysis](glyph-menu-canvas-20261114/witness.json) preserves
+the refusal, allocation metadata, original counters and exact adapter sources.
+No frame or caller argument snapshot was captured, so this is not an exact-call
+replay and does not identify the precise drawing action from pixels.
+
+Capture-disabled takeover now checks the canvas prefix through the glyph's
+clipped final bounding row, calculated from its validated frame height, Y origin
+and incoming Y using signed64-bit arithmetic. At least one row remains checked
+for empty/clipped calls. Original layout clip bounds remain unchanged. The
+kernel still validates all RLE rows, the actual horizontal/vertical write
+rectangle and FP controls before mutation. This bounds every possible pixel
+access without treating the layout clip-bottom as an allocation height.
+Captured/shadow trials still require their entire copied canvas prefix.
+
+[Strict PE32 regression](glyph-menu-canvas-20261114/check04.json) completes65,545
+actual production native glyph calls in RGB565/555, with zero forwards/errors
+and no drawing-path writes. It alternates stride8/520, clip8x8/800x600, and Y2/7
+against physical eight-row bitmaps ending at a no-access page. It independently
+confirms the previous full-prefix check refuses the stride520 fixture. Actual
+VirtualQuery controls reject the first out-of-bounds row, multirow overflow,
+read-only output and a full-prefix captured trial, and admit a nonzero Y origin.
+The existing guard/no-access/wrap/alias controls also pass.
+
+Reproduce with a fresh owned output path:
+
+```sh
+python3 tools/test-glyph-menu-canvas.py \
+  --output working/tests/glyph-menu-canvas-new \
+  --report research/runtime/glyph-menu-canvas-new/check.json
+```
+
+Attempts01/02 retain a sandbox IPC refusal and a test startup-order error;
+attempt03 passes before adding the explicit old-span negative control. Their
+source variants remain retained. No original executable was consumed by these
+tests. Full interactive return-to-menu validation remains pending; existing
+engine comparison/integration/replacement statuses are not promoted.
+
+## Acceptance retry — 2026-11-16
+
+[Final strict PE32 regression](glyph-menu-canvas-20261114/check06.json) repeats
+all65,545 calls and the negative controls on the finite-lifecycle master base.
+The admission selftest now normalizes any failure bit to exit1; Wine's Unix
+status cannot otherwise expose flags above bit7. All calls, bounds and existing
+VirtualQuery controls pass, with zero forwards/errors. Attempt05 preserves the
+prior harness source result. These are controlled production-path tests; no
+full interactive menu-transition or original-pixel comparison is added.
+
+The previous integration hold remains a historical record. The approved
+finite evidence lifecycle checks unchanged accepted journal references without
+reopening unavailable bodies. Exact source/accounting and the normal staged
+hook still run; no historical hash is replaced and no engine status is promoted.

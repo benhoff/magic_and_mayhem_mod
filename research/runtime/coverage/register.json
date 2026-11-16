@@ -33980,7 +33980,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded live glyph process-memory admission and launch policy",
-      "scope": "Pinned NoCD581ec0 opt-in shadow/takeover through shared producer tag10. Per-call private frame/canvas/table/FX snapshots, original identity preserved, bounded clip/stride RGB565, supported masked x87 domain inherited from glyph kernel. Shadow original completion compares full admitted canvas/coverage and selected caller/FP state; takeover commits rechecked snapshots and returns RET16 without original glyph body. Bounded Quick Battle startup cohort, independent retained original replay, original layout/other draws active. Single observed engine thread with concurrent/nested forwards; no lock against unrelated external writers, no complete game/GPU text ownership/performance claim. Fresh disposable public Qt staging supported; public interactive gameplay validation remains separate. Original frame/canvas/table/argument ranges must be disjoint; private canvas storage is aligned independently of frame byte length. Layout clip-right may overhang the physical row width; preserve original clipping decisions and admit pixel rows only after validating the complete write rectangle against independently supplied native storage.",
+      "scope": "Pinned NoCD581ec0 opt-in shadow/takeover through shared producer tag10. Per-call private frame/canvas/table/FX snapshots, original identity preserved, bounded clip/stride RGB565, supported masked x87 domain inherited from glyph kernel. Shadow original completion compares full admitted canvas/coverage and selected caller/FP state; takeover commits rechecked snapshots and returns RET16 without original glyph body. Bounded Quick Battle startup cohort, independent retained original replay, original layout/other draws active. Single observed engine thread with concurrent/nested forwards; no lock against unrelated external writers, no complete game/GPU text ownership/performance claim. Fresh disposable public Qt staging supported; public interactive gameplay validation remains separate. Original frame/canvas/table/argument ranges must be disjoint; private canvas storage is aligned independently of frame byte length. Layout clip-right may overhang the physical row width; preserve original clipping decisions and admit pixel rows only after validating the complete write rectangle against independently supplied native storage. Borrowed uncaptured calls validate the writable prefix only through the clipped glyph bounding end row, independently of an overhanging layout clip-bottom; full-prefix diagnostic copies remain separately checked.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -34013,7 +34013,9 @@
         "tools/test-glyph-backend.py",
         "tests/glyph-backend-reference.cpp",
         "tests/glyph-producer-entry.c",
-        "tools/test-glyph-save-clip.py"
+        "tools/test-glyph-save-clip.py",
+        "tools/test-glyph-menu-canvas.py",
+        "tests/glyph-production-probe.c"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/canvas_producers_v1.h",
@@ -34206,7 +34208,9 @@
         "TLQF26.glyph-original",
         "TLQF26.native-stress",
         "TLQF26.worker-loss",
-        "TLQF26.save-diagnostic"
+        "TLQF26.save-diagnostic",
+        "NP.glyph-production-route.menu-canvas-20261114",
+        "NP.glyph-production-route.menu-canvas-final-20261116"
       ],
       "status": {
         "understanding": "scoped",
@@ -34229,7 +34233,8 @@
       },
       "remaining_gaps": [
         "New opt-in pending-copy diagnostic and merged observers change source dependencies. Historical evidence remains immutable; fresh current-code execution and broader ownership/route/control validation are pending without status promotion.",
-        "TLQF26 closes the observed Save geometry refusal, avoidable per-request worker setup and orphan-worker boundary within the named controls. Historical TLQT26 failures remain immutable. Maximum tested live native stress is two120-second phases/2434updates; host scheduling has no real-time guarantee. Different maps, hour-long sessions, hardware/FPS and default rollout remain pending. SIGKILL can prevent the supervisor outcome row; kernel parent-death termination still stops its worker."
+        "TLQF26 closes the observed Save geometry refusal, avoidable per-request worker setup and orphan-worker boundary within the named controls. Historical TLQT26 failures remain immutable. Maximum tested live native stress is two120-second phases/2434updates; host scheduling has no real-time guarantee. Different maps, hour-long sessions, hardware/FPS and default rollout remain pending. SIGKILL can prevent the supervisor outcome row; kernel parent-death termination still stops its worker.",
+        "2026-11-14 menu-canvas repair validates only the borrowed glyph prefix through the clipped final glyph row; captured/shadow copies keep full-prefix admission. Strict PE32 controls pass65545 RGB565/555 calls against guarded physical8-row bitmaps, including stride520/clip800x600. The retained run-ww5iw1pt has no failing frame/caller snapshot; exact-call replay and a fresh full interactive menu transition remain pending. Historical source-bound evidence/statuses are preserved without promotion."
       ]
     },
     {
@@ -77426,11 +77431,12 @@
       "subsystem": "rendering",
       "kind": "native_policy",
       "title": "Uncaptured unbounded borrowed glyph route and resident staging",
-      "scope": "Capture-disabled RGB565/555 native glyph owner-thread checked borrowed frame/canvas/coverage admission, no diagnostic65536-call cap, no per-call WriteFile or snapshot/trial allocation; actual kernel atomic preflight before commit. Controlled fake-globals process-memory tests and resident launch guards. Source concurrency, installed original hook/return publication, protected World batch glyph admission, live gameplay equivalence and higher text layout excluded; resident stream integration remains pending. Native-draw standalone menu staging also selects capture0 for takeover; explicit shadow keeps diagnostics.",
+      "scope": "Capture-disabled RGB565/555 native glyph owner-thread checked borrowed frame/canvas/coverage admission, no diagnostic65536-call cap, no per-call WriteFile or snapshot/trial allocation; actual kernel atomic preflight before commit. Controlled fake-globals process-memory tests and resident launch guards. Source concurrency, installed original hook/return publication, protected World batch glyph admission, live gameplay equivalence and higher text layout excluded; resident stream integration remains pending. Native-draw standalone menu staging also selects capture0 for takeover; explicit shadow keeps diagnostics. Borrowed uncaptured calls validate the writable prefix only through the clipped glyph bounding end row, independently of an overhanging layout clip-bottom; full-prefix diagnostic copies remain separately checked.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/glyph-production-takeover.md"
+        "research/runtime/glyph-production-takeover.md",
+        "research/runtime/glyph-live-backend.md"
       ],
       "implementation": [
         "runtime/scene/glyph_live.c",
@@ -77443,7 +77449,8 @@
       ],
       "tests": [
         "tests/glyph-production-probe.c",
-        "tools/test-glyph-production.py"
+        "tools/test-glyph-production.py",
+        "tools/test-glyph-menu-canvas.py"
       ],
       "validation_dependencies": [
         "protocols/include/mnm/canvas_producers_v1.h",
@@ -77517,7 +77524,9 @@
       ],
       "evidence": [
         "NP.glyph-production-route.native-20261014",
-        "NP.glyph-production-route.native-final-20261014"
+        "NP.glyph-production-route.native-final-20261014",
+        "NP.glyph-production-route.menu-canvas-20261114",
+        "NP.glyph-production-route.menu-canvas-final-20261116"
       ],
       "status": {
         "understanding": "partial",
@@ -77525,7 +77534,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "2026-11-14 menu-canvas repair validates only the borrowed glyph prefix through the clipped final glyph row; captured/shadow copies keep full-prefix admission. Strict PE32 controls pass65545 RGB565/555 calls against guarded physical8-row bitmaps, including stride520/clip800x600. The retained run-ww5iw1pt has no failing frame/caller snapshot; exact-call replay and a fresh full interactive menu transition remain pending. Historical source-bound evidence/statuses are preserved without promotion."
+      ]
     },
     {
       "id": "NP.pixel-producer-launch",
@@ -438300,6 +438312,66 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NP.glyph-production-route.menu-canvas-20261114",
+      "kind": "native_integration",
+      "scope": "Isolated strict PE32 production glyph admission with guarded smaller physical bitmaps; no installed original hook, exact failing-call replay, original pixel comparison or full live-menu validation.",
+      "record": "research/runtime/glyph-menu-canvas-20261114/check04.json",
+      "sha256": "09b2949cab2d67c2ce4fd7da46145d9ca9396e82178cbabff2fa3078a18b4cbe",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/old_full_prefix_refusal_reproduced",
+          "equals": true
+        },
+        {
+          "pointer": "/production_stats/handled",
+          "equals": 65545
+        },
+        {
+          "pointer": "/production_stats/forwarded",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NP.glyph-production-route.menu-canvas-final-20261116",
+      "kind": "native_integration",
+      "scope": "Isolated strict PE32 production glyph admission with guarded smaller physical bitmaps; no installed original hook, exact failing-call replay, original pixel comparison or full live-menu validation. Repeated on the updated master base with all admission failure bits normalized to a nonzero Unix exit status.",
+      "record": "research/runtime/glyph-menu-canvas-20261114/check06.json",
+      "sha256": "2000b9f599981dbfd9a63350ec7eb65723100ec524d24aa6c1140a6ee4058d34",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/old_full_prefix_refusal_reproduced",
+          "equals": true
+        },
+        {
+          "pointer": "/production_stats/handled",
+          "equals": 65545
+        },
+        {
+          "pointer": "/production_stats/forwarded",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -474572,6 +474644,24 @@
       "evidence": [
         "INPUT.modern-selection-defaults.bounded-20261114"
       ]
+    },
+    {
+      "id": "glyph-menu-canvas-headless-20261114",
+      "scope": "Strict native production borrowed glyphs with stride8/520 and logical clip8x8/800x600 against guarded eight-row physical bitmaps, plus read-only/out-of-bounds/capture controls. No live original game.",
+      "level": "headless",
+      "behaviors": [
+        "NR.glyph-live-admission",
+        "NP.glyph-production-route"
+      ],
+      "tests": [
+        "tools/test-glyph-menu-canvas.py",
+        "tests/glyph-production-probe.c",
+        "tests/glyph-live-admission.c"
+      ],
+      "evidence": [
+        "NP.glyph-production-route.menu-canvas-20261114",
+        "NP.glyph-production-route.menu-canvas-final-20261116"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -476399,8 +476489,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-408cf60d4bb96dd3dab77d49b0db0fc254744fce475e3e358bd2510ce4db46ca.json",
-    "sha256": "408cf60d4bb96dd3dab77d49b0db0fc254744fce475e3e358bd2510ce4db46ca"
+    "path": "research/runtime/coverage/source-index-cf105e95290f4ab8232fbf9d2d101ee55e7b49ec22f2362df262d9bd9c14aa0b.json",
+    "sha256": "cf105e95290f4ab8232fbf9d2d101ee55e7b49ec22f2362df262d9bd9c14aa0b"
   },
   "evidence_applicability": [
     {
@@ -476445,7 +476535,7 @@
     }
   ],
   "change_scope_index": {
-    "path": "research/runtime/coverage/evidence-dependencies-b2645980d27a0c8aacbe65e26254741ba6f9265cb1290528a68d4fc1ab4210c9.json",
-    "sha256": "b2645980d27a0c8aacbe65e26254741ba6f9265cb1290528a68d4fc1ab4210c9"
+    "path": "research/runtime/coverage/evidence-dependencies-e782f8c5133788a478024544b57398c5d8ce61026c16139ae2a1017b1f510c84.json",
+    "sha256": "e782f8c5133788a478024544b57398c5d8ce61026c16139ae2a1017b1f510c84"
   }
 }

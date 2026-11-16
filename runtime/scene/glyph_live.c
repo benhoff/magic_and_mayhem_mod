@@ -93,7 +93,23 @@ static int globals(void){
  glyph_admission_check=4;glyph_admission_value=pending.sentinel;
  if(pending.sentinel!=0&&pending.sentinel!=0x3f800000)return 0;
  pending.cold=pending.sentinel==0;glyph_admission_check=5;glyph_admission_value=pending.canvas;
- if(!extent(pending.canvas,pending.canvas_bytes,1)){glyph_canvas_refusal_details();return 0;}return 1;
+ return 1;
+}
+static int canvas_extent(const u32* saved){
+ /* Clip bounds belong to layout, not the current allocation. Menu drawing can
+  * retain bottom600 while targeting a shorter offscreen bitmap. The borrowed
+  * kernel touches at most the rows ending at y-origin+frame_height, clipped to
+  * bottom. Check that complete prefix before entering it; its own atomic
+  * preflight still checks every actual write against stride and clip bounds.
+  * Captured/shadow trials copy the entire prefix and keep the stronger check. */
+ if(!capture){
+  long long end=(long long)(i32)saved[10]-(i32)word(pending.frame_address+16)+word(pending.frame_address+8);
+  if(end<1)end=1;
+  if(end<pending.height)pending.canvas_bytes=(u32)end*pending.stride*2;
+ }
+ glyph_admission_check=5;glyph_admission_value=pending.canvas;
+ if(!extent(pending.canvas,pending.canvas_bytes,1)){glyph_canvas_refusal_details();return 0;}
+ return 1;
 }
 static int recheck(void){
  const u32 clips[]={0x6e0008,0x6cbb6c,0x6a49b8,0x656618};
@@ -134,6 +150,7 @@ int glyph_live_enter(u32* saved,u8* fx){
  pending.frame_address=saved[6];pending.frame_bytes=word(saved[6]);
  glyph_admission_check=7;glyph_admission_value=pending.frame_bytes;
  if(pending.frame_bytes<40||pending.frame_bytes>1048576||!extent(saved[6],pending.frame_bytes,0))return refuse(15);
+ if(!canvas_extent(saved))return refuse(15);
  glyph_admission_check=0;glyph_admission_value=0;
  if(overlap(pending.frame_address,pending.frame_bytes,pending.canvas,pending.canvas_bytes)||overlap(pending.frame_address,pending.frame_bytes,0x6f5dac,260)||overlap(pending.canvas,pending.canvas_bytes,0x6f5dac,260)||overlap(pending.canvas,pending.canvas_bytes,(u32)saved,56)||overlap(pending.frame_address,pending.frame_bytes,(u32)saved,56))return refuse(16);
  if(!capture){
@@ -194,8 +211,12 @@ __declspec(dllexport) u32 WIN GlyphProductionForTest(void){
  const u32 pe=*(const u32*)(image+0x3c),image_bytes=*(const u32*)(image+pe+24+56);
  if(image_bytes<0x300000)return 1;
  for(u32 i=0;i<5;++i)if(!extent(addresses[i],65536,1))return 1;
- u16* pixels=VirtualAlloc(0,4096,0x3000,4);u8* frame=VirtualAlloc(0,4096,0x3000,4);if(!pixels || !frame)return 2;
- for(u32 i=0;i<64;++i)pixels[i]=(u16)(i*7919+113);
+ u8* allocation=VirtualAlloc(0,16384,0x3000,4);u8* frame=VirtualAlloc(0,4096,0x3000,4);if(!allocation || !frame)return 2;
+ u32 old;if(!VirtualProtect(allocation+12288,4096,1,&old))return 2;
+ /* Both physical bitmaps end at an inaccessible page. The wider one retains
+  * the failing session's stride520 / layout clip800x600, with only eight rows. */
+ u16* pixels=(u16*)(allocation+12288-128);
+ for(u32 i=0;i<4160;++i)((u16*)(allocation+12288-8320))[i]=(u16)(i*7919+113);
  *(u32*)frame=52;*(u32*)(frame+4)=2;*(u32*)(frame+8)=1;*(u32*)(frame+40)=48;*(u32*)(frame+44)=50;
  frame[48]=0;frame[49]=2;frame[50]=0;frame[51]=63;
  *(u32*)0x658174=(u32)pixels;*(u32*)0x6a2dc8=8;*(u32*)0x6e0008=0;*(u32*)0x6cbb6c=0;
@@ -205,9 +226,13 @@ __declspec(dllexport) u32 WIN GlyphProductionForTest(void){
  u8 fx[512] __attribute__((aligned(16))),host[512] __attribute__((aligned(16)));
  __asm__ volatile("fxsave %0; fninit; fxsave %1; fxrstor %0":"=m"(host),"=m"(fx)::"memory");
  for(u32 i=0;i<65545;++i){const u32 format=i&1;
+  *(u32*)0x6a49b8=(i&2)?800:8;*(u32*)0x656618=(i&2)?600:8;
+  *(u32*)0x658174=(u32)((i&2)?allocation+12288-8320:(u8*)pixels);*(u32*)0x6a2dc8=(i&2)?520:8;
   *(u32*)0x6e1f88=format;*(u16*)0x6e1f7c=format?0x7c00:0xf800;*(u16*)0x6e1f7e=format?0x3e0:0x7e0;
+  /* Reproduce the old guard's false refusal before testing the repaired path. */
+  if(i==2 && extent(word(0x658174),520*600*2,1))return 64;
   u32 saved[14];for(u32 j=0;j<14;++j)saved[j]=0;
-  saved[6]=(u32)frame;saved[5]=2;saved[8]=0x202;saved[10]=2;saved[11]=173;saved[12]=91;saved[13]=237;
+  saved[6]=(u32)frame;saved[5]=2;saved[8]=0x202;saved[10]=(i&4)?7:2;saved[11]=173;saved[12]=91;saved[13]=237;
   if(!glyph_live_enter(saved,fx)){__asm__ volatile("fxrstor %0"::"m"(host):"memory");return 8;}
   if(saved[6]!=(format?10u:11u) || saved[11]!=21 || saved[12]!=(format?11u:22u) || saved[13]!=29){
    __asm__ volatile("fxrstor %0"::"m"(host):"memory");return 16;}
@@ -219,6 +244,27 @@ __declspec(dllexport) u32 WIN GlyphProductionForTest(void){
 /* Production VirtualQuery admission, including a range spanning two regions. */
 __declspec(dllexport) u32 WIN GlyphAdmissionForTest(void){
  u8* p=VirtualAlloc(0,8192,0x3000,4);if(!p)return 1;u32 old,unused,fail=0;
+ /* Production span admission: layout can exceed physical height, but every
+  * possible written row must stay writable. Capture still needs all rows. */
+ u32 frame[10]={40,2,1},saved[14]={0};saved[10]=7;
+ pending.frame_address=(u32)frame;pending.canvas=(u32)p+4096-128;
+ pending.stride=8;pending.width=800;pending.height=600;
+ if(!VirtualProtect(p+4096,4096,1,&old))return 4;
+ capture=0;pending.canvas_bytes=9600;
+ if(!canvas_extent(saved)||pending.canvas_bytes!=128)fail|=512;
+ saved[10]=8;pending.canvas_bytes=9600;
+ if(canvas_extent(saved))fail|=1024;
+ saved[10]=7;capture=1;pending.canvas_bytes=9600;
+ if(canvas_extent(saved))fail|=2048;
+ capture=0;pending.canvas_bytes=9600;frame[4]=1; /* nonzero Y origin */
+ if(!canvas_extent(saved)||pending.canvas_bytes!=112)fail|=4096;
+ frame[4]=0;frame[2]=2;pending.canvas_bytes=9600;
+ if(canvas_extent(saved))fail|=8192;
+ frame[2]=1;pending.canvas_bytes=9600;
+ if(!VirtualProtect(p,4096,2,&unused))return 4;
+ if(canvas_extent(saved))fail|=16384;
+ if(!VirtualProtect(p,4096,4,&unused)||!VirtualProtect(p+4096,4096,4,&unused))return 4;
+ capture=1;
  if(!overlap((u32)p,4096,(u32)p+4095,1)||overlap((u32)p,4096,(u32)p+4096,1))fail|=256;
  if(!extent((u32)p,8192,1)||extent(0xffffffffu,2,0)||extent((u32)p,0,0)||extent(0,1,0))fail|=2;
  if(!VirtualProtect(p+4096,4096,2,&old))return 4;
@@ -227,6 +273,8 @@ __declspec(dllexport) u32 WIN GlyphAdmissionForTest(void){
  if(extent((u32)p,8192,0))fail|=32;
  if(!VirtualProtect(p+4096,4096,1,&unused))return 64;
  if(extent((u32)p,8192,0))fail|=128;
- return fail;
+ /* Wine's Unix exit status retains only eight bits. Keep high-bit control
+  * failures observable to every test runner. */
+ return fail?1:0;
 }
 #endif

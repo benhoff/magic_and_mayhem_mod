@@ -11,6 +11,13 @@ void start(void){
  char directory[1024];const u32 n=GetEnvironmentVariableA("MNM_TEST_GLYPH_DIR",directory,sizeof(directory));
  if(!n || n>=sizeof(directory) || !SetEnvironmentVariableA("MNM_GLYPH_BACKEND","takeover") ||
   !SetEnvironmentVariableA("MNM_GLYPH_CAPTURE","0") || !SetEnvironmentVariableA("MNM_GLYPH_DIR",directory))ExitProcess(161);
+ /* Strict admission is configured after LoadLibrary, alongside the synthetic
+  * globals in the test export, so DllMain never tries to install game hooks. */
+ char strict[2];
+ if(GetEnvironmentVariableA("MNM_TEST_GLYPH_STRICT",strict,2)==1 && strict[0]=='1'){
+  if(!SetEnvironmentVariableA("MNM_NATIVE_ONLY","1") ||
+     !SetEnvironmentVariableA("MNM_PUBLIC_RESIDENT_WORLD","1"))ExitProcess(161);
+ }
  typedef u32 (WIN *Test)(void);Test test=(Test)GetProcAddress(module,"GlyphProductionForTest");if(!test)ExitProcess(162);
  u32 result=test();if(result)ExitProcess(163+result);ExitProcess(0);
 }
