@@ -1,3 +1,4 @@
+#include "../../renderer/failure_diagnostics.hpp"
 #include "pending_cpu_fault_test.hpp"
 #include "gui_surface_loss_probe.hpp"
 #include "watchdog_host_fault.hpp"
@@ -288,7 +289,7 @@ public:
                 if(liveMenus_)liveMenus_->renderingProgress(renderWorker_->pendingCpuRead());
                 if(!renderWorker_->poll(liveMenus_&&liveMenus_->normalQuitAccepted(),gl_->isVisible()&&(!menuStack_||menuStack_->currentWidget()==viewport_),media_&&media_->movieActive()) || !gl_->error().isEmpty()){
                     residentWorldError_=!gl_->error().isEmpty()?gl_->error():renderWorker_->error();
-                    log_->appendPlainText("Native render owner refused: "+residentWorldError_);
+                    log_->appendPlainText("Native render owner refused: "+mnm::render::renderFailureSummary(residentWorldError_));
                     residentFailed(residentWorldError_);
                     return; // Terminal cleanup destroys renderWorker_.
                 }
@@ -304,13 +305,13 @@ public:
                 nativePollTick_.start();
                 const auto beforeFrames=nativeCommandFrames_,beforePaints=nativePaintedFrames_;
                 if(residentWorld_){try{residentWorld_->poll(liveMenus_&&liveMenus_->normalQuitAccepted());}catch(const std::exception& e){
-                    residentWorldError_=e.what();log_->appendPlainText(QString("Resident World refused: ")+e.what());
+                    residentWorldError_=e.what();log_->appendPlainText(QString("Resident World refused: ")+mnm::render::renderFailureSummary(QString::fromUtf8(e.what())));
                     residentFailed(residentWorldError_);return;
                 }}
                 const double worldMs=workClock.nsecsElapsed()/1000000.0;
                 if(!commands_->ended() && commands_->error().isEmpty()){
                     if(!commands_->poll()){
-                        log_->appendPlainText("Native command session refused: "+commands_->error());
+                        log_->appendPlainText("Native command session refused: "+mnm::render::renderFailureSummary(commands_->error()));
                         if(residentWorld_){residentFailed(commands_->error());}
                         else useOriginalPresentation();
                     }else if(commands_->ended()){
@@ -583,7 +584,7 @@ private:
         retry_->setEnabled(false);fallback_->setEnabled(false);
         restart_->setEnabled(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running()));
         if(menuStack_)menuStack_->setCurrentWidget(viewport_);
-        placeholder_->setText("Native rendering stopped. Use Hard restart (Ctrl+Shift+R) to start a fresh game session.\n"+message);
+        placeholder_->setText("Native rendering stopped. Use Hard restart (Ctrl+Shift+R) to start a fresh game session.\n"+mnm::render::renderFailureSummary(message));
         placeholder_->show();statusBar()->showMessage("Native rendering stopped. Hard restart is available.");
         if(nativeOnly_){
             restart_->setEnabled(false);
@@ -674,7 +675,7 @@ private:
             if(!evidence.open(QIODevice::WriteOnly|QIODevice::NewOnly)||evidence.write(bytes)!=bytes.size())log_->appendPlainText("Cannot save native music session evidence.");
         }
         music_.reset();
-        if(renderWorker_){if(restarting_)renderWorker_->abort();else if(!renderWorker_->finishProducer()){rendererFinished=false;residentTerminal_=true;residentWorldError_=renderWorker_->error();log_->appendPlainText("Native render owner stopped: "+residentWorldError_);}finishPendingCpuFault();renderWorker_.reset();}
+        if(renderWorker_){if(restarting_)renderWorker_->abort();else if(!renderWorker_->finishProducer()){rendererFinished=false;residentTerminal_=true;residentWorldError_=renderWorker_->error();log_->appendPlainText("Native render owner stopped: "+mnm::render::renderFailureSummary(residentWorldError_));}finishPendingCpuFault();renderWorker_.reset();}
         if(restarting_&&residentWorld_)residentWorld_->abort("Game force-stopped for hard restart");
         if(residentWorld_){try{residentWorld_->saveReport(residentWorldReport_);}catch(const std::exception& e){log_->appendPlainText(e.what());residentWorld_->saveReport(residentWorldReport_);}}
         if(commands_){if(restarting_)commands_->abort();else if(!commands_->finishProducer()){rendererFinished=false;log_->appendPlainText("Native command producer stopped: "+commands_->error());}commands_.reset();}

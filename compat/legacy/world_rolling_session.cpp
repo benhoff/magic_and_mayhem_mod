@@ -1,4 +1,5 @@
 #include "world_rolling_session.hpp"
+#include "../../renderer/failure_diagnostics.hpp"
 #include <chrono>
 #include <limits>
 #include <cstdlib>
@@ -60,6 +61,10 @@ render::Image WorldRollingSession::consume(
     auto result=consumeStream(sequence, stream, checkpoint, entry);
     if(ownerProfile_)ownerCosts_.totalMs=elapsed(started);
     return result;
+  } catch (const render::GraphicsFailure& e) {
+    failed_=true;throw render::GraphicsFailure(render::renderFailure(e.what()).what());
+  } catch (const std::exception& e) {
+    failed_=true;render::throwRenderFailure(e);
   } catch (...) {
     failed_ = true;
     throw;
@@ -78,6 +83,10 @@ WorldRollingSession::consumeOwned(std::uint64_t sequence,
     auto result=consumeStream(sequence, stream, {}, {});
     if(ownerProfile_)ownerCosts_.totalMs=elapsed(start);
     return result;
+  } catch (const render::GraphicsFailure& e) {
+    failed_=true;throw render::GraphicsFailure(render::renderFailure(e.what()).what());
+  } catch (const std::exception& e) {
+    failed_=true;render::throwRenderFailure(e);
   } catch (...) {
     failed_ = true;
     throw;
@@ -89,6 +98,7 @@ render::Image WorldRollingSession::consumeStream(
         &checkpoint,
     const std::function<void(const CanvasProducer &, const render::Image &)>
         &entry) {
+  render::DiagnosticCall generation("world_generation",{sequence,completed_,stream.version});
   try {
     if (completed_ == std::numeric_limits<std::uint64_t>::max() ||
         sequence != completed_ + 1)
@@ -98,6 +108,7 @@ render::Image WorldRollingSession::consumeStream(
     double cpuMs = 0;
     unsigned canvas = 0;
     for (const auto &c : stream.operations) {
+      render::DiagnosticCall record("world_record");record.append(c.fields);record.payload(c.bytes().data(),c.bytes().size());
       const auto &r = c.fields;
       const auto start = std::chrono::steady_clock::now();
       if (resident_ && world_.active() && (r[2] == 9 || r[2] == 14 || r[2] == 26))
@@ -167,6 +178,10 @@ render::Image WorldRollingSession::consumeStream(
     }
     completed_ = sequence;
     return result;
+  } catch (const render::GraphicsFailure& e) {
+    failed_=true;throw render::GraphicsFailure(render::renderFailure(e.what()).what());
+  } catch (const std::exception& e) {
+    failed_=true;render::throwRenderFailure(e);
   } catch (...) {
     failed_ = true;
     throw;
@@ -204,6 +219,7 @@ WorldRollingSession::packetCacheStats() const {
 } // namespace mnm::legacy
 
 void mnm::legacy::WorldRollingSession::consumeSource(const CanvasProducerStream &stream) {
+  render::DiagnosticCall chunk("source_chunk",{completed_,stream.version,stream.operations.size()});
   if(failed_)throw std::runtime_error("Terminal source history session");
   try {
     if(!resident_ || world_.active() || stream.version!=3 || stream.operations.empty())
@@ -214,9 +230,11 @@ void mnm::legacy::WorldRollingSession::consumeSource(const CanvasProducerStream 
       if(c.fields[2]==11 || c.fields[2]==12 || c.fields[2]==13 || c.fields[2]==27)
         throw std::invalid_argument("World/failure record in source-only chunk");
     renderer_.batch([&]{for(const auto& c:stream.operations){
+      render::DiagnosticCall record("source_record");record.append(c.fields);record.payload(c.bytes().data(),c.bytes().size());
       try{producer_.apply(c);}catch(const std::exception& e){
-        throw std::runtime_error("Source chunk record="+std::to_string(c.fields[1])+" kind="+std::to_string(c.fields[2])+" canvas="+std::to_string(c.fields[3])+" caller="+std::to_string(c.fields[22])+": "+e.what());
+        throw render::renderFailure(("Source chunk record="+std::to_string(c.fields[1])+" kind="+std::to_string(c.fields[2])+" canvas="+std::to_string(c.fields[3])+" caller="+std::to_string(c.fields[22])+": "+e.what()).c_str());
       }
     }producer_.publishWrites();});
-  }catch(...){failed_=true;throw;}
+  }catch(const std::exception& e){failed_=true;render::throwRenderFailure(e);}
+  catch(...){failed_=true;throw;}
 }

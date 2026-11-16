@@ -1,4 +1,5 @@
 #include "native_frame_cadence.hpp"
+#include "../../renderer/failure_diagnostics.hpp"
 #include "resident_world_session.hpp"
 #include "resident_capture_path.hpp"
 #include "resident_profile_capture.hpp"
@@ -204,6 +205,7 @@ void ResidentWorldSession::pollOwned(bool acceptedNormalQuit){
         }};
         OwnedSourceChunk prefix;
         if(snapshotQueue_->takeSource(prefix)){
+            mnm::render::DiagnosticCall delivery("source_delivery",{prefix.generation,prefix.ordinal});
             ensureWorld();world_->consumeSource(prefix.stream);
             if(world_->completed()!=completed_ || world_->worldReadbacks() || renderer_->stats().rgbaReadbacks || renderer_->stats().nativeReadbacks!=world_->cpuReaderSnapshots())
                 throw std::runtime_error("Owned source chunk changed World/readback contract");
@@ -378,6 +380,8 @@ QJsonObject ResidentWorldSession::report() const {
         {"captured_worlds",capture["written_worlds"]},{"capture_truncated",capture["truncated"]},
         {"capture_complete",bool(capture_ && normalQuitRetired_ && capture["complete"].toBool() && std::uint64_t(capture["written_worlds"].toDouble())==completed_ && std::uint64_t(capture["written_source_chunks"].toDouble())==sourceChunks_)},
         {"scope","Opt-in bounded host timings and asynchronous renderer-context GPU timestamps. GPU timeline includes CPU submission gaps, excludes public UI import/paint/scanout. Existing original ticks are uint32 millisecond intervals; pacing and screen-copy fields describe the preceding interval. Non-pacing residual is unclassified original work, not simulation CPU time. Capture I/O and instrumentation affect live cadence."}};
+    const auto failure=mnm::render::renderFailureDetails(error_);
+    if(!failure.isEmpty())result["render_failure"]=failure;
     return result;
 }
 namespace {

@@ -1,5 +1,6 @@
 #pragma once
 #include "blit.hpp"
+#include "failure_diagnostics.hpp"
 #include <algorithm>
 #include <stdexcept>
 
@@ -16,6 +17,8 @@ class KnownPixels {
     // draw. Invalidating storage discards all proofs with the pixel map.
     std::vector<Rect> defined_;
     unsigned nextDefined_=0;
+    std::uint64_t definitions_=0,invalidations_=0,restores_=0;
+    Rect lastDefined_{};
     static bool contains(Rect outer,Rect inner){
         return outer.left<=inner.left&&outer.top<=inner.top&&outer.right>=inner.right&&outer.bottom>=inner.bottom;
     }
@@ -29,11 +32,24 @@ public:
         if(width<1 || height<1 || width>2048 || height>2048)throw std::runtime_error("Invalid validity dimensions");
     }
     const std::vector<std::uint8_t>& serialized() const{return known_;}
+    QJsonObject diagnosticState() const {
+        return {{"width",width_},{"height",height_},{"unknown_pixels",double(unknown_)},
+            {"definitions",QString::number(definitions_)},{"invalidations",QString::number(invalidations_)},
+            {"restores",QString::number(restores_)},{"last_defined",QJsonArray{lastDefined_.left,lastDefined_.top,lastDefined_.right,lastDefined_.bottom}}};
+    }
+    QJsonObject diagnosticRead(Rect r) const {
+        auto out=diagnosticState();out["read_rect"]=QJsonArray{r.left,r.top,r.right,r.bottom};
+        out["validity_sha256"]=QString::fromLatin1(QCryptographicHash::hash(QByteArray::fromRawData(
+            reinterpret_cast<const char*>(known_.data()),qsizetype(known_.size())),QCryptographicHash::Sha256).toHex());
+        for(int y=r.top;y<r.bottom;++y)for(int x=r.left;x<r.right;++x)
+            if(unknown_ && !known_[std::size_t(y)*width_+x]){out["first_unknown"]=QJsonArray{x,y};return out;}
+        return out;
+    }
     void restore(const std::vector<std::uint8_t>& mask){
         if(!mask.empty() && (mask.size()!=std::size_t(width_)*height_ || std::any_of(mask.begin(),mask.end(),[](auto b){return b>1;})))throw std::runtime_error("Invalid native validity checkpoint");
-        known_=mask;unknown_=std::count(known_.begin(),known_.end(),0);defined_.clear();nextDefined_=0;
+        known_=mask;unknown_=std::count(known_.begin(),known_.end(),0);defined_.clear();nextDefined_=0;++restores_;
     }
-    void invalidate(){known_.assign(std::size_t(width_)*height_,0);unknown_=known_.size();defined_.clear();nextDefined_=0;}
+    void invalidate(){known_.assign(std::size_t(width_)*height_,0);unknown_=known_.size();defined_.clear();nextDefined_=0;++invalidations_;}
     bool known(Rect r) const {
         validate(r);if(!unknown_)return true;
         if(std::any_of(defined_.begin(),defined_.end(),[r](Rect proof){return contains(proof,r);}))return true;
@@ -43,7 +59,7 @@ public:
     }
     void require(Rect r) const {if(!known(r))throw std::runtime_error("Surface pixels are undefined; reload or overwrite required");}
     void define(Rect r){
-        validate(r);if(!unknown_)return;
+        validate(r);++definitions_;lastDefined_=r;if(!unknown_)return;
         for(int y=r.top;y<r.bottom;++y)for(int x=r.left;x<r.right;++x){
             auto& v=known_[std::size_t(y)*width_+x];if(!v){v=1;--unknown_;}
         }

@@ -1,4 +1,5 @@
 #pragma once
+#include "../../renderer/failure_diagnostics.hpp"
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -69,12 +70,15 @@ public:
     QString error() const{return error_;}
 private:
     bool save(){
-        QSaveFile file(path_);const auto bytes=QJsonDocument(QJsonObject{
+        QJsonObject report{
             {"schema",1},{"policy",policy},{"session",root_},{"state",state_},
             {"normal_quit",normalQuit_},{"launcher_exit",launcherExit_},
             {"fallback",fallback_},{"error",error_},{"complete_replacement",false},
             {"restart_requested",restartRequested_},{"force_stop_verified",stopVerified_},
-            {"renderer_retired",rendererRetired_}}).toJson();
+            {"renderer_retired",rendererRetired_}};
+        const auto failure=mnm::render::renderFailureDetails(error_);
+        if(!failure.isEmpty())report["render_failure"]=failure;
+        QSaveFile file(path_);const auto bytes=QJsonDocument(report).toJson();
         return file.open(QIODevice::WriteOnly) && file.write(bytes)==bytes.size() && file.commit();
     }
     QString root_,path_,state_,error_;
