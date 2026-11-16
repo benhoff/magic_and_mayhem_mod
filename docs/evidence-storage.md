@@ -1,8 +1,19 @@
 # Evidence storage lifecycle
 
-## Hybrid retention, approved 2026-11-13
+The [finite retention policy](evidence-retention.md), approved 2026-11-15,
+is authoritative for acceptance, expiry, routine finish and worktree closeout.
+The preservation/restore procedures below apply when continued recovery is
+promised. They do not require retaining deliberately expired evidence, every
+bookkeeping database or reconstructible committed source forever. Historical
+copy receipts remain true for their recorded phase. Intentional expiry needs
+an accepted retirement record and consumer review, not a replacement copy.
 
-The current policy replaces blanket duplication with two custody classes.
+<a id="hybrid-retention-approved-2026-11-13"></a>
+
+## Optional archive custody classes (historical hybrid policy)
+
+When an archive is deliberately retained, its custody uses two classes.
+Archive classification does not determine evidence lifetime.
 Essential reports/manifests, source, saves/configuration, tested executables and
 complete review/checkpoint closures retain two independent copies. Historical
 bulk workspace payloads retain one verified copy. Reviewed reproducible working
@@ -60,7 +71,7 @@ worktree compaction and legacy catalog unions, see
 output needs a reviewed reconstruction recipe, rather than permanent admission
 by default; existing evidence still requires its source-specific handoff.
 
-The storage unit for new local work is an immutable artifact or typed SQLite
+For optional archived custody, the storage unit is an immutable artifact or typed SQLite
 record, rather than a complete database file or execution directory. Exactly two
 verified copies of each new unique object live on independent filesystems. All
 worktrees use the same pair. Git continues to contain small references with the
@@ -72,11 +83,11 @@ cleanup sweep.
 | --- | --- | --- |
 | Shared evidence across worktrees | `coverage_evidence`, `evidence_objects` | The same original-byte hash resolves through the configured shared primary; replica verification precedes publication of a new reference. |
 | Two durable copies total | `Pair`, explicit legacy handoff | Both independent stores verify every admitted object. Old source/container copies retire only after a source-specific preserved catalog and an actual restore. |
-| Incremental backups | `evidence_local.retained_backup` | Routine finish checkpoints complete review schema/typed rows and retains only the changed staged source/report batch; unchanged records add no payload blocks. Full archive scrubs remain explicit. Whole database images remain an explicit interchange/private-backup option. |
+| Optional incremental backups | `evidence_local.retained_backup` | Optional legacy finish backups checkpoint complete review schema/typed rows and retains only the changed staged source/report batch; unchanged records add no payload blocks. Full archive scrubs remain explicit. Whole database images remain an explicit interchange/private-backup option. |
 | Shared inputs and bounded execution | Existing two-slot `experiment_environment` pool, prefix borrowing, completed execution queue | A stopped prefix is exclusively leased, changes retained and state reset. Completed private game/capture trees share immutable file blocks after verified handoff. |
 | Disposable derived caches | `evidence_cache`, `finish-work.py` | All review rows, pending drafts and auxiliary schema are checkpointed and restored successfully before eviction. Lazy reopen restores them. The gate still checks the actual current/staged tree. |
 
-## Configuration and normal use
+## Optional archive configuration
 
 Choose a primary and replica on distinct mounted filesystems, under retained
 `working/` paths. These Git settings are local machine configuration, not tracked
@@ -110,9 +121,10 @@ consumers to resolve original report bytes. Historical source-specific auxiliary
 catalogs are restored explicitly, rather than falsely exposed as the shared
 store's auxiliary tables.
 
-`tools/finish-work.py` performs exact review,
-local evidence checks, incremental retained backups, staging and the normal
-commit hook. Routine finish keeps the standard
+`tools/finish-work.py` performs exact review, local evidence verification,
+compact acceptance recording, staging and the normal commit hook. Automatic
+retained backups are disabled by the finite policy. The optional legacy backup
+mode uses the checkpoint protocol below. Routine finish keeps the standard
 review cache materialized and retains a complete checkpoint without a real
 reconstruction or retirement claim. `--evict-review-cache` explicitly requests
 the stronger checkpoint/restore/consumer workflow before removal. An explicitly selected

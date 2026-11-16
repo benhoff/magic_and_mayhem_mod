@@ -1,66 +1,38 @@
 # Magic & Mayhem Reverse Engineering
 
-## Hybrid retention policy — user approved 2026-11-13
+## Evidence acceptance and finite retention — user approved 2026-11-15
 
-The user explicitly authorized aggressive disk reduction. This section supersedes
-older blanket two-copy, perpetual-pin and full-tree preservation requirements in
-this file and machine-local notes where they conflict:
+Follow [the repository-wide evidence lifecycle](docs/evidence-retention.md).
+This replaces older hybrid/perpetual retention and conflicting local exceptions.
+Evidence is required to accept the exact change; custody is finite:
 
-- Keep two independent verified copies of essential records: source/unique
-  changes, saves/configuration, tested executables, compact reports/manifests,
-  current review state and its complete logical checkpoint closure.
-- Keep one verified copy of bulky historical capture/workspace payloads.
-  Classify through the schema-2 hybrid policy; never fake a second copy or
-  silently fall back when a caller explicitly asks to verify two copies.
-- Discard reviewed reproducible compiler caches, disposable installations and
-  completed source copies after retaining their reconstruction inputs and unique
-  changes. Do not permanently archive every rebuildable byte first.
-- Keep full raw failure data only for unresolved failures, named comparisons or
-  selected regression witnesses. Retire obsolete raw evidence explicitly; keep
-  its identity, result and retirement reason, and disclose lost replay capability.
-- Pins require a dependency/ownership review; they are not automatic permanent
-  exemptions. Preserve the pin's meaning and record any approved reclassification.
-- Keep original/ immutable and protect active/recent work, saves, current inputs
-  and irreplaceable source changes. Source commits, normal hooks, coverage
-  accounting and independent engine-validation statuses remain required.
-
-Use `tools/compact-evidence-mirror.py` for a hash-bound sparse-mirror plan. Verify
-the complete surviving primary and replacement essential mirror before retiring
-duplicate bulk. Historical two-copy receipts remain true statements about their
-original phase; current custody is recorded separately. Do not rewrite old hashes.
-
-## Proportionate commits and merges — user approved 2026-11-14
-
-This policy supersedes older blanket full-corpus commit checks and instructions
-requiring merge preparation/validation while holding integration admission.
-
-- Every change uses an owned task branch, focused tests appropriate to its risk,
-  exact source/change accounting and the normal staged hook. Ordinary prose does
-  not require engine execution. Record validation limits honestly.
-- Routine `--base` checks inspect actual Git/index bytes and affected claims.
-  The pinned `change_scope_index` is provenance metadata, never a cached pass.
-  Changed sources, shared evidence/scenarios and changed contracts expand scope.
-  New provenance entries are checked against original report bytes; historical
-  entries cannot be rewritten to hide dependencies. Source census and immutable
-  history checks still run. Unrelated historical evidence is not renewed.
-- Engine behavior and validation claims require relevant original mappings,
-  source/evidence links, appropriate comparisons and explicit remaining gaps.
-  Status promotions still require fresh scope-bound execution evidence. Use
-  `check-re-coverage.py --full` or the full audit for intentional corpus reviews.
-- Actual evidence deletion, relocation and storage retirement retain full
-  survivor/replacement verification, consumer checks and real restore proofs.
-  A source commit or checkpoint-only backup does not authorize removal.
-- Prepare and normally finish the exact combined candidate outside admission.
-  Retain essential review records and changed source/evidence in two stores;
-  keep the live review cache by default. Seal required acquisition inputs
-  explicitly before claiming durable engine validation; routine finish does not
-  retire queued execution workspaces. A routine finish does not reconstruct
-  that cache, scrub the whole archive or archive unrelated objects. Explicit
-  cache eviction still requires its complete checkpoint and real restore.
-- Acquire the master lease only to recheck the observed base, pinned candidate
-  commit/tree and clean checkouts, then promote. If master or the candidate
-  changed, preserve the candidate and redo affected checks outside admission.
-  Never develop, validate, back up or wait for a decision while holding the lease.
+- Require focused checks, exact source/contract accounting, normal staged hooks
+  and the checked combined candidate. Prose needs proportionate review. Engine
+  validation promotions require fresh appropriate scope-bound execution proof.
+- Keep supporting evidence through integration plus 14 days. Observe integration
+  to start the clock; pending integration never expires merely by age.
+- After expiry, review consumers/pins and commit an exact retirement declaration
+  while reports remain available. Preserve identity, result, reproduction inputs,
+  source/integration state, reason and lost capability; then reviewed bytes may
+  be deleted without a replacement copy or restore. References do not imply
+  perpetual custody. Longer holds need owner, purpose, budget and review date.
+- Preserve immutable original artifacts, unique source, source history and saves.
+  Keep current operational accounting inputs readable while consumed; accepted
+  review exports survive, not every historical database/schema/draft/cache.
+- Retired proof grants no fresh validation or promotion credit. Scoped gates
+  preserve historical results and explicit unavailability; full audits still
+  require the original payloads. Unrelated expired evidence cannot block work.
+- Routine finish verifies used evidence and retains compact acceptance records;
+  it does not require full SQLite backups, duplicate source bundles or eternal
+  tested binaries. Explicit archives/migrations keep their promised copy counts,
+  survivor verification and real restores. Never fake independent copies.
+- Keep one owned task checkout on constrained machines unless concurrency has a
+  budget. Remove reviewed temporary output at closeout. Retire clean inactive
+  integrated checkouts after preserving unique files and discharging consumers;
+  reconstructible committed source needs no extra archived checkout/restore.
+- Prepare candidates outside integration admission; acquire the lease only to
+  recheck the exact base/candidate and clean checkouts, then promote and release.
+  Never develop, validate, back up or wait for a decision under admission.
 
 ## Machine-specific instructions
 
@@ -94,7 +66,7 @@ with these shared instructions.
   ready, compatible tips when useful; never hold admission waiting for another
   task to become ready. A blocked task must not hold up independent ready work.
 - Before admission, prepare the combined candidate against the observed master,
-  perform required combined-tree reviews/checks/backups and the normal staged
+  perform required combined-tree reviews/checks and the normal staged
   hook, and pin its exact commit/tree/base. A ready feature pass alone does not
   validate a different combined tree. Resolve conflicts outside admission.
 - Under admission, recheck master, the pinned candidate and clean checkouts;
@@ -158,78 +130,22 @@ changes.
 ## Working storage budget
 
 Apply any machine-specific storage budget and staging preferences from
-`AGENTS.local.md`. Keep generated output bounded, preserve referenced evidence,
-unique inputs, `.retain` pins and active consumers, and review dependencies
+`AGENTS.local.md`. Keep generated output bounded, protect evidence inside its review window,
+unique inputs and active consumers; review pins and dependencies
 before cleanup. Follow the SQLite evidence preservation rules below.
 
-### Proportionate retention for new work
+### Acquisition and closeout
 
-- Choose the smallest acquisition that answers the current question. Use bounded
-  semantic diagnostics first; request full lossless captures only for assertions
-  that need those bytes. Reuse applicable retained acquisitions for new analyses.
-- Retain the inputs and raw observations supporting a claim, exact tested
-  executables, source revision plus unique changes, configuration, result and
-  useful failure diagnostics. Keep unique negative evidence and reproduction
-  inputs. A setup refusal ordinarily needs its report, log and exact source state,
-  rather than a new complete installation or prefix snapshot.
-- Classify new compiler intermediates, resettable environments and reproducible
-  derived output as temporary at creation. Before their reviewed removal, check
-  consumers and pins and retain the reconstruction command, exact inputs and
-  tool versions. A tested binary or an irreplaceable capture is durable evidence.
-  Unknown/unclassified output remains held. Do not automatically archive every
-  rebuildable temporary byte into the permanent evidence pair.
-- Keep one owned active checkout per task and reuse shared immutable inputs.
-  Clean up temporary output at task closeout, then retire the clean, merged,
-  inactive checkout through the reviewed workflow below. Use tracked-directory
-  compaction when the checkout still has a justified consumer. Existing pins and
-  historical evidence require an explicit ownership/dependency and custody review;
-  neither age nor a merged tip alone permits their removal.
-- Completed legacy catalogs may be consolidated with source-specific schema,
-  every logical record and original snapshot bytes retained in two verified
-  stores. Explicitly record retirement of physical SQLite page layouts and
-  restore commands; never present a logical reconstruction under an old
-  whole-container hash. See `docs/storage-consolidation.md`.
-
-### Mandatory closeout and worktree retirement — approved 2026-11-14
-
-Workspace cleanup is part of task completion, regardless of available free space.
-This policy supersedes older blanket requirements in shared and machine-local
-instructions to preserve completed source checkouts and Git registrations. It
-authorizes routine reviewed cleanup without a new permission request; it does not
-reclassify historical pins or authorize deleting an unreviewed worktree.
-
-- Before reporting completion, stop owned processes, retain required evidence,
-  tested executables and reconstruction inputs, and remove reviewed disposable
-  compiler, build, staging and installation output. Newly created, explicitly
-  temporary task-owned output may be removed after its consumers finish even
-  within the usual recent/newest-run windows; those protections still apply to
-  evidence, unknown output and other tasks' data. Do not archive every rebuildable
-  intermediate first. Keep the ready source checkout until integration finishes.
-- After integration, outside integration admission, retire the owned checkout
-  once it is clean and inactive and its dependencies have been discharged.
-  Recent timestamps alone do not delay retirement of this task's newly completed
-  checkout after those checks; evidence still needs its verified custody handoff.
-  Record any retained allocation with its size, owner, concrete reason and release
-  condition. Pending integration, active inputs and unresolved evidence needs are
-  valid holds; record the remaining cleanup instead of claiming full retirement.
-- Apply the same retirement path to individually reviewed historical worktrees.
-  Verify the exact merged commit and all source/recovery inputs in two independent
-  durable copies, using retained Git objects/bundles plus unique changes rather
-  than another expanded checkout. A branch in the shared Git directory is not an
-  independent backup. Keep branches/ready refs reachable; branch deletion is a
-  separate review.
-- Inventory tracked, untracked and ignored files, worktree-local settings,
-  symlinks, hardlinks, pins, locks and current consumers. Preserve essential
-  records in two verified copies and historical bulk in its verified surviving
-  copy. Move required stores, restoration metadata and hooks to durable locations
-  outside the retiring tree and update their consumers first. Never remove
-  original artifacts, active/recent work or the only usable recovery route.
-- Follow [the retirement procedure](docs/storage-consolidation.md#task-closeout-and-worktree-retirement).
-  Retain a hash-bound SQLite plan/receipt and verify a real independent restore
-  before removal. Recheck source identity and inactivity immediately before the
-  scripted removal; invoke Git from a surviving checkout without force flags.
-  Refusals stay held for investigation outside admission. Report reclaimed
-  allocated bytes separately from free-space changes and archival overhead.
+Acquire the smallest evidence that answers the question. Reuse applicable retained
+inputs before recollecting. Classify reproducible compiler/build/staging output as
+temporary and remove it after its consumers finish. Unknown output remains held.
+Keep source until integration finishes; hand off evidence still inside its review
+window before retiring a checkout. Cleanup is part of completion, not an optional
+low-space action. Record remaining holds with allocation, owner, concrete purpose
+and release/review date. Follow [finite retention](docs/evidence-retention.md) for
+expiry and [storage consolidation](docs/storage-consolidation.md) for migrations
+that promise continued recovery. Do not apply migration restore requirements to
+intentional evidence expiry or reproducible committed source-checkout removal.
 
 ## Reverse-engineering coverage upkeep
 
@@ -267,9 +183,9 @@ infer semantic mappings or update the register automatically.
   named Python callables, conservative local dependencies and module initialization.
   They preserve applicability, not exact byte freshness, new CLI/test-discovery
   coverage, widened input domains or status promotions. Native/runtime sources
-  remain full-hash dependencies. Retain raw staleness and every superseded review;
+  remain full-hash dependencies. Preserve historical staleness/results; expire supporting bytes through the lifecycle;
   do not replace old hashes or use an applicability report as fresh execution.
-- Preserve historical evidence and its recorded source hashes. Register a new
+- Preserve historical evidence identities/results and their recorded source hashes; payload custody follows finite retention. Register a new
   result under a new evidence ID; never refresh old hashes just to clear staleness.
   Source-only changes may leave evidence stale: report the affected limitation,
   and rerun the relevant comparison before claiming current-code validation.
@@ -432,42 +348,23 @@ leave its migration to a later cleanup.
   original payload through the SQLite reader. Read routine review/audit results
   from SQLite or stdout where supported instead of creating another JSON file.
 
-Run `python3 tools/evidence-store.py fetch --verify` in a fresh checkout and install
-the coverage hook. Audit, gate and UI readers resolve reports directly from
-SQLite without hydrating the working tree. Use `coverage_evidence.read_json`,
-`read_text`, `read_bytes` or an invocation-scoped `Reader` for generated research
-inputs; hashing a reference must mean the verified original payload hash.
-The source-census workflow already writes generated research reports straight
-to SQLite.
-Use `export` or targeted `hydrate <path>...` only for readers needing physical
-JSON. Use `inventory-json` and a verified, cold-backed `compact-json` plan for
-existing expanded reports. Preserve editable registers, schemas, configuration,
-fixtures and source locks as JSON. Evidence pointers in Git preserve exact original report bytes in
-SHA-256-pinned SQLite release archives; never refresh historical hashes to
-satisfy current checks. Local commits and local merges, including merges into
-local master, require locally available, hash-verified evidence, retained verified
-SQLite backups and passing coverage checks. New local storage uses the shared
-immutable object pair in [evidence storage lifecycle](docs/evidence-storage.md):
-configure `mm.evidencePrimary` and `mm.evidenceReplica` on independent filesystems.
-Two verified copies of each unique object are the durable default. Incremental
-object replication and restored typed-record checkpoints satisfy local backup
-retention without adding whole SQLite images for every finish. Preserve the
-current machine free-space floors. Legacy copies retire only through explicit
-source-specific manifests, verified real restores and durable handoff receipts;
-record any retired physical container encoding honestly, without changing an
-original report hash. Stopped completed execution trees may transfer every file
-and original pin into this pair after full restore verification and consumer
-checks, retaining a pinned historical-path restore stub. That execution handoff
-does not itself authorize source-checkout removal; use the separate reviewed
-retirement procedure above. It does not permit generic cleanup of pins or active
-inputs. Launch queues handoff; it never archives. A standard review cache is
-disposable only after its complete schema, rows, drafts and auxiliary data survive
-a verified checkpoint. Current/staged gates still execute; no cached pass is authoritative. Remote publication is not a
-prerequisite for either operation; never upload evidence merely to finish a
-local commit or merge. Keep the local databases and their backup catalogs pinned
-against working-storage cleanup; a Git commit contains references, not payloads.
-Use `tools/finish-work.py` to record the exact review in SQLite, retain verified
-SQLite backups, stage the owned batch and commit with the normal hook enabled.
+Install the coverage hook. Use targeted locally verified payloads for routine
+checks; use `python3 tools/evidence-store.py fetch --verify` when explicitly
+acquiring archives for a full audit. Source clones need not fetch the corpus.
+Use `coverage_evidence.read_json`, `read_text`, `read_bytes` or `Reader` for report
+inputs; a reference's identity is its original verified payload hash. Generated
+reports remain SQLite-backed during custody. Keep editable registers, schemas,
+configuration, fixtures and source locks as JSON. The accepted retirement control
+journal is also authored JSON; plans and observations remain SQLite records.
+Local commits/merges require available evidence for the exact accepted scope,
+passing coverage checks and the normal staged hook. Use `tools/finish-work.py`;
+it records compact acceptance in SQLite without automatic full-database backups.
+Optional independent stores use `mm.evidencePrimary`/`mm.evidenceReplica`; explicit
+two-copy verification must never silently fall back. Archive migration promises
+retain complete verification/restores, while intentional expiry follows the
+finite lifecycle. Keep in-window evidence and current operational inputs outside
+retiring worktrees. Publication/private transfer is never needed just to finish.
+
 Private backups use the explicit `tools/backup-evidence.py` command after local
 completion. Its SSH host and project directory are repository-local Git settings
 (`mm.evidenceBackupHost` and `mm.evidenceBackupDirectory`); never attach a transfer
@@ -480,7 +377,7 @@ history without opening evidence databases or fetching archives. Ordinary CI run
 isolated tooling tests; the full evidence-backed audit is an explicit manual
 workflow run. A source clone alone may lack unpublished payloads and cannot claim
 a complete evidence audit until its verified SQLite inputs are supplied. Local
-commit/merge accounting and retained verified SQLite backups remain required.
+commit/merge accounting and exact scope-bound evidence remain required during acceptance.
 GitHub Releases is an optional distribution backend; publication is a separate
 explicit operation. `tools/sync-evidence.py` collects missing immutable
 payloads across outgoing history, verifies publication and commits the pinned
@@ -490,7 +387,7 @@ publication never changes engine validation claims.
 Apply the worktree ownership and readiness checklist above. Keep later concurrent
 edits out of that batch's source snapshot, evidence claims and commit.
 Only after the exact combined candidate has passed its required reviews, checks,
-normal staged hook and retained backups, acquire promotion admission through
+normal staged hook and required in-window evidence, acquire promotion admission through
 `tools/integrate-work.py`. It prepares and validates outside the lease, then
 rechecks the actual master base and exact clean candidate before promotion.
 Custom operators use `tools/with-integration-lock.py --execute --expected-master

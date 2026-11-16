@@ -23,7 +23,8 @@ SCHEMA = 1
 # linked through behavior documents; these files control the workflow itself.
 CONTROL_FILES = ('AGENTS.md', 'docs/architecture.md', '.github/workflows/re-coverage.yml',
                  '.githooks/pre-commit', '.githooks/pre-push', '.githooks/reference-transaction', '.gitattributes',
-                 '.evidence-store.json', '.evidence-commits.json', 'research/runtime/coverage/README.md')
+                 '.evidence-store.json', '.evidence-commits.json', 'research/runtime/coverage/README.md',
+                 'tools/evidence-lifecycle.json', 'research/runtime/coverage/evidence-retirements.json')
 DRIFT = {'new_sources_without_index', 'removed_indexed_sources', 'changed_indexed_sources',
          'changed_focused_registers'}
 
@@ -300,6 +301,8 @@ def review_errors(review, delta, before, after, audit_report, historical=False):
     if status == 'recorded' and (matched_files or matched_behaviors):
         ids = validation.get('evidence', [])
         stale = {item['id'] for item in audit_report['findings']['stale_evidence']}
+        stale.update(audit_report['findings'].get('retired_evidence', []))
+        stale.update(audit_report['findings'].get('unavailable_evidence', []))
         fresh = []
         for eid in ids:
             ev = after['evidence'].get(eid)

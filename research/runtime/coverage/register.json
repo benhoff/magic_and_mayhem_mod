@@ -189502,6 +189502,51 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "TOOL.finite-evidence-retention",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Evidence required for acceptance with finite supporting custody",
+      "scope": "Exact source acceptance, observed integration clocks, fourteen-day supporting evidence window, reviewed retirement declarations and plain-store pruning; historical unavailable proof never grants current validation credit. Full audits and explicit archive recovery remain strict.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "docs/evidence-retention.md"
+      ],
+      "implementation": [
+        "tools/evidence_lifecycle.py",
+        "tools/evidence-lifecycle.py",
+        "tools/evidence-lifecycle.json",
+        "tools/coverage_audit.py",
+        "tools/coverage_gate.py",
+        "tools/coverage_scoped.py",
+        "tools/coverage_evidence.py",
+        "tools/coverage_reviews.py",
+        "tools/coverage_bookkeeping.py",
+        "tools/coverage_merge_history.py",
+        "tools/coverage_applicability.py",
+        "tools/integration_batch.py"
+      ],
+      "tests": [
+        "tests/test-evidence-lifecycle.py",
+        "tests/test-scoped-coverage.py",
+        "tests/test-local-evidence-workflow.py"
+      ],
+      "evidence": [
+        "RETENTION15.controls01",
+        "RETENTION15.controls02",
+        "RETENTION15.controls03",
+        "RETENTION15.controls04",
+        "RETENTION15.controls05"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -438180,6 +438225,81 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "RETENTION15.controls01",
+      "kind": "native_integration",
+      "scope": "Isolated finite-retention and existing coverage/storage/integration tooling guards; no engine execution or validation promotion.",
+      "record": "research/runtime/finite-evidence-lifecycle-20261115/controls01.json",
+      "sha256": "f3da7585911e620a7cd5e110aeaa76c7b060693f84c27a1f0cbcfa4d78b102bf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RETENTION15.controls02",
+      "kind": "native_integration",
+      "scope": "Isolated finite-retention and existing coverage/storage/integration tooling guards; no engine execution or validation promotion.",
+      "record": "research/runtime/finite-evidence-lifecycle-20261115/controls02.json",
+      "sha256": "e5c5d8b07658f1e0c5aa4cc289dd0a35b65cdbaa2dbe642ec5719b37a2a2970d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RETENTION15.controls03",
+      "kind": "native_integration",
+      "scope": "Isolated finite-retention and existing coverage/storage/integration tooling guards; no engine execution or validation promotion.",
+      "record": "research/runtime/finite-evidence-lifecycle-20261115/controls03.json",
+      "sha256": "8732394f4b61a8c9bccdee27c2c0df6544e6d1b137cbf2b2d94eb7971772b728",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RETENTION15.controls04",
+      "kind": "native_integration",
+      "scope": "Isolated finite-retention and existing coverage/storage/integration tooling guards; no engine execution or validation promotion.",
+      "record": "research/runtime/finite-evidence-lifecycle-20261115/controls04.json",
+      "sha256": "b7e6781befea78adb8c9403b757d3dbe0136718393a4af2aae500e835a24d1e9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RETENTION15.controls05",
+      "kind": "native_integration",
+      "scope": "Isolated finite-retention and existing coverage/storage/integration tooling guards; no engine execution or validation promotion.",
+      "record": "research/runtime/finite-evidence-lifecycle-20261115/controls05.json",
+      "sha256": "f868cdb88224697a64950d7affbd3553f174c92ffc29b9739acd71a4fa4eaf5e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -476279,8 +476399,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-a4d4faea97afa5cf3f2477c5b4f007e303bc70bbfec14aacf8aa505085e7214c.json",
-    "sha256": "a4d4faea97afa5cf3f2477c5b4f007e303bc70bbfec14aacf8aa505085e7214c"
+    "path": "research/runtime/coverage/source-index-408cf60d4bb96dd3dab77d49b0db0fc254744fce475e3e358bd2510ce4db46ca.json",
+    "sha256": "408cf60d4bb96dd3dab77d49b0db0fc254744fce475e3e358bd2510ce4db46ca"
   },
   "evidence_applicability": [
     {
@@ -476325,7 +476445,7 @@
     }
   ],
   "change_scope_index": {
-    "path": "research/runtime/coverage/evidence-dependencies-e881c7b42229bbf684fde78e7eea9b31491a82cc979d38ad50cf8524002bd448.json",
-    "sha256": "e881c7b42229bbf684fde78e7eea9b31491a82cc979d38ad50cf8524002bd448"
+    "path": "research/runtime/coverage/evidence-dependencies-b2645980d27a0c8aacbe65e26254741ba6f9265cb1290528a68d4fc1ab4210c9.json",
+    "sha256": "b2645980d27a0c8aacbe65e26254741ba6f9265cb1290528a68d4fc1ab4210c9"
   }
 }

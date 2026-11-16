@@ -30898,3 +30898,33 @@ integration or replacement. No existing live milestone is promoted or historical
 hash refreshed. Shared launcher evidence outside this scope remains historical/
 pending. Storage custody uses the user's explicit machine-local single-filesystem
 exception; local verified recovery copies do not claim independent replication.
+
+
+## 2026-11-15 — finite evidence custody and exact source acceptance
+
+The repository now separates acceptance evidence from its retention lifetime.
+Supporting reports, required raw observations and tested executables remain
+available through integration plus fourteen days; clock observation happens after
+promotion admission is released. Longer holds need an owner, purpose, budget and
+review date. Accepted retirement declarations preserve original identities,
+results and reproduction limits; intentional expiry does not promise replacement
+copies or replay. Optional migrations and archive pairs retain their explicit
+verification/restore contracts. Routine finish verifies consumed evidence and
+records compact SQLite acceptance rather than accumulating whole database backups.
+
+Isolated [tooling controls](finite-evidence-lifecycle-20261115/controls05.json)
+exercise expiry clocks, original-byte declaration checks, pending source reviews,
+refused validation/promotions from retired or missing proof, unchanged archived
+review references, refused mapping changes with missing inventories, payload
+budgets, normal hooks and survivor-preserving plain-store pruning. The new
+`TOOL.finite-evidence-retention` behavior is partial; these fixture results do not
+promote any engine milestone. Full audits continue to require original payloads.
+Missing historical evidence/inventories remain explicit gaps and grant no current
+validation credit or deletion authorization. Source and new evidence are reviewed
+against actual Git/index bytes. No original-game run or gameplay change is involved.
+
+The [initial finish refusal](finite-evidence-lifecycle-20261115/finish-refusal01.json)
+retains the exact source identity of an overly broad budget check. New custody
+budgets now charge newly staged report payloads; unchanged retained reports are
+still verified and consume no duplicate allocation. No commit was created by
+that refused attempt.

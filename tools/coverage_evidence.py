@@ -31,6 +31,7 @@ _active_reader = ContextVar('sqlite_evidence_reader', default=None)
 _local_archive_mode = ContextVar('sqlite_local_archive_mode', default=None)
 KEEP = {'research/runtime/coverage/register.json',
         'research/runtime/coverage/change-reviews.json',
+        'research/runtime/coverage/evidence-retirements.json',
         'research/runtime/coverage/gate-baseline.json',
         'research/formats/mmsprite-source-lock.json'}
 
@@ -78,6 +79,10 @@ def safe_path(root, name):
     if target.is_symlink() or not target.resolve().is_relative_to(root/'research'):
         raise ValueError('Escaping evidence path: ' + name)
     return target
+
+
+class UnavailableEvidence(ValueError):
+    """A missing payload is distinct from corruption or a failed assertion."""
 
 
 class Store:
@@ -288,7 +293,7 @@ def fetch_archive(root, spec):
     if target.exists() and _verified_archive(str(target), sha, _archive_identity(target)):
         return target
     if mode is not None:
-        raise ValueError('Evidence archive unavailable locally; explicit fetch --verify required: '+sha)
+        raise UnavailableEvidence('Evidence archive unavailable locally; explicit fetch --verify required: '+sha)
     fd, name = tempfile.mkstemp(prefix=sha + '.', suffix='.partial', dir=cache)
     try:
         with os.fdopen(fd, 'wb') as dest, tempfile.TemporaryFile(dir=cache) as compressed:
@@ -417,6 +422,8 @@ class Resolver:
                 return existing
         for archive in (self.spec or {}).get('archives', []):
             expected = cache_root(self.root)/(archive['sha256'] + '.sqlite3')
+            if _local_archive_mode.get() == 'targeted' and not expected.is_file():
+                continue  # Unrelated expired/unpublished containers are not reads.
             if any(s.path == expected for s in self.stores):
                 continue
             path = fetch_archive(self.root, archive)
@@ -426,7 +433,7 @@ class Resolver:
             self.stores.append(store)
             if store.has(sha, size):
                 return store
-        raise ValueError('Evidence unavailable; publish/fetch its pinned archive: ' + sha)
+        raise UnavailableEvidence('Evidence unavailable; recover its pinned payload or archive: ' + sha)
 
     def copy(self, sha, size, out):
         self.find(sha, size).copy(sha, size, out)

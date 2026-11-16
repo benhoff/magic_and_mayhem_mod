@@ -86,16 +86,20 @@ class FunctionRangeIndex:
         return [entry for _, entry in sorted(found)]
 
 
-def audit(root, register, *, recorded_sources=None, reader=None):
+def audit(root, register, *, recorded_sources=None, reader=None, retired_evidence=None,
+          unavailable_evidence=None, unavailable_inventories=None):
     if reader is not None:
         if reader.root != Path(root).resolve():
             raise ValueError('Audit reader belongs to another snapshot')
-        return _audit(root, register, reader, recorded_sources=recorded_sources)
+        return _audit(root, register, reader, recorded_sources=recorded_sources, retired_evidence=retired_evidence,
+                      unavailable_evidence=unavailable_evidence, unavailable_inventories=unavailable_inventories)
     with Reader(root, memoize=True) as reader:
-        return _audit(root, register, reader, recorded_sources=recorded_sources)
+        return _audit(root, register, reader, recorded_sources=recorded_sources, retired_evidence=retired_evidence,
+                      unavailable_evidence=unavailable_evidence, unavailable_inventories=unavailable_inventories)
 
 
-def _audit(root, register, reader, *, recorded_sources=None):
+def _audit(root, register, reader, *, recorded_sources=None, retired_evidence=None,
+           unavailable_evidence=None, unavailable_inventories=None):
     root = Path(root).resolve()
     errors, warnings = [], []
     findings = {'unclassified_functions': [], 'unassigned_executable_ranges': [],
@@ -109,6 +113,17 @@ def _audit(root, register, reader, *, recorded_sources=None):
     findings['behavior_anchors_outside_discovered_functions'] = []
     findings['validation_gaps'] = []
     findings['retired_execution_claims'] = []
+    retired_evidence = retired_evidence or {}
+    unavailable_evidence = unavailable_evidence or set()
+    unavailable_inventories = unavailable_inventories or set()
+    historical_only = set(retired_evidence) | set(unavailable_evidence)
+    if retired_evidence:
+        findings['retired_evidence'] = sorted(retired_evidence)
+        warnings.append('Supporting evidence was intentionally retired; historical results remain, current validation and replay are unavailable for those IDs.')
+    if unavailable_evidence or unavailable_inventories:
+        findings['unavailable_evidence'] = sorted(unavailable_evidence)
+        findings['unavailable_inventories'] = sorted(unavailable_inventories)
+        warnings.append('Accepted historical payloads unavailable; unchanged metadata is preserved, original mapping checks and current validation are incomplete. This is not retirement authorization.')
     # An invocation observes each file once. Never retain cached paths/hashes
     # across audits: working files, staged trees and Git bases are independent.
     files = {}
@@ -156,6 +171,8 @@ def _audit(root, register, reader, *, recorded_sources=None):
         inventories, entries, range_indexes = {}, {}, {}
         for build_id, build in builds.items():
             inventory_file = file(build['inventory'])
+            if build_id in unavailable_inventories:
+                continue  # Exact unchanged references were checked by the scoped caller.
             require(cached_sha(inventory_file) == build['inventory_sha256'], f'{build_id}: inventory hash mismatch')
             inventory = reader.json(inventory_file)
             require(inventory['schema'] == 1 and inventory['build'] == build_id, f'{build_id}: inventory identity mismatch')
@@ -201,6 +218,8 @@ def _audit(root, register, reader, *, recorded_sources=None):
         recovered_ranges = unique(register['recovered_ranges'], 'recovered range')
         for rid, recovered in recovered_ranges.items():
             build_id = recovered['build']
+            if build_id in unavailable_inventories:
+                continue
             require(build_id in inventories, f'{rid}: recovered range references unknown build')
             require(recovered['start'] < recovered['end'] and any(
                     s['executable'] and s['start'] <= recovered['start'] < recovered['end'] <= s['end']
@@ -208,7 +227,7 @@ def _audit(root, register, reader, *, recorded_sources=None):
             file(recovered['document'])
             require(recovered['evidence'] in evidence, f'{rid}: missing range evidence')
             ev = evidence.get(recovered['evidence'])
-            if ev:
+            if ev and ev['id'] not in historical_only:
                 require(ev.get('build') == build_id, f'{rid}: recovered range/evidence build mismatch')
                 require(ev['kind'] in {'isolated_original', 'live_equivalence', 'live_replacement'},
                         f'{rid}: range exception requires pinned original execution evidence')
@@ -251,6 +270,8 @@ def _audit(root, register, reader, *, recorded_sources=None):
             require(ev['kind'] in KINDS, f'{eid}: invalid evidence kind')
             require(bool(ev['scope'].strip()), f'{eid}: evidence scope missing')
             require(bool(ev['assertions']), f'{eid}: evidence requires explicit success assertions')
+            if eid in historical_only:
+                continue  # Scoped historical accounting only; never execution credit.
             record_file = file(ev['record'])
             require(cached_sha(record_file) == ev['sha256'], f'{eid}: evidence record hash mismatch')
             record = record_json(record_file)
@@ -375,7 +396,7 @@ def _audit(root, register, reader, *, recorded_sources=None):
                 require(behavior['kind'] == 'recovered', f'{bid}: native policy must not claim original equivalence')
                 comparisons = [x for x in behavior['evidence'] if x in evidence and evidence[x]['kind'] in {'isolated_original', 'live_equivalence', 'live_replacement'}]
                 require(bool(comparisons), f'{bid}: comparison without original comparison evidence')
-                require(any(set(behavior['implementation']) & set(evidence_sources.get(x, {})) for x in comparisons),
+                require(any(x in historical_only or set(behavior['implementation']) & set(evidence_sources.get(x, {})) for x in comparisons),
                         f'{bid}: comparison does not fingerprint linked implementation')
                 original_builds = {r['build'] for r in behavior['original']}
                 require(all(evidence[x]['build'] in original_builds for x in comparisons), f'{bid}: comparison and original mapping builds differ')
@@ -392,6 +413,8 @@ def _audit(root, register, reader, *, recorded_sources=None):
 
         for classification in register['classifications']:
             build_id, entry = classification['build'], classification['entry']
+            if build_id in unavailable_inventories:
+                continue
             require(entry in entries.get(build_id, {}), 'Classification references unknown function')
             require(classification['category'] in {'runtime_support', 'legacy_only', 'unused_candidate'}, 'Invalid classification category')
             require(bool(classification['reason'].strip()) and bool(classification['documents']), 'Classification requires reason/evidence')
@@ -431,6 +454,8 @@ def _audit(root, register, reader, *, recorded_sources=None):
         bound_imports = set()
         for binding in register['api_bindings']:
             build_id = binding['build']
+            if build_id in unavailable_inventories:
+                continue
             require(build_id in inventories, 'API binding references unknown build')
             links(binding['behaviors'], behaviors, 'API binding')
             require(bool(binding['behaviors']) and bool(binding['scope'].strip()), 'API binding requires behaviors/scope')
@@ -461,19 +486,25 @@ def _audit(root, register, reader, *, recorded_sources=None):
         if findings['behavior_anchors_outside_discovered_functions']:
             warnings.append('Pinned recovered code exists outside Ghidra function bodies; explicit range links preserve this discovery gap.')
         stale_ids = {item['id'] for item in findings['stale_evidence']}
+        stale_ids.update(historical_only)
         changed_sources = {item['id']: item['changed_sources'] for item in findings['stale_evidence']}
         applicability, applicability_rows = source_applicability(root, register, builds, evidence,
             evidence_sources, evidence_claims, scenarios,
-            lambda p: record_json(file(p)), lambda p: reader.read_bytes(file(p)), lambda p: cached_sha(file(p)))
+            lambda p: record_json(file(p)), lambda p: reader.read_bytes(file(p)), lambda p: cached_sha(file(p)),
+            retired_evidence=historical_only)
         findings['source_applicability'] = applicability_rows
         rows = []
         for bid, behavior in behaviors.items():
             support = validation_support(behavior, builds, evidence, evidence_sources,
                                          evidence_claims, scenarios, stale_ids,
                                          applicability.get(bid, {}), changed_sources)
+            if any(ref['build'] in unavailable_inventories for ref in behavior['original']):
+                for stage, value in support.items():
+                    if value['state'] != 'none':
+                        value.update(state='pending', evidence=[], limitations=['original_inventory_unavailable'])
             needed_kinds = {kind for stage, value in support.items() if value['state'] == 'pending'
                             for kind in stage_kinds(stage, behavior['status'][stage])}
-            rows.append({**behavior, 'evidence_freshness': 'stale' if set(behavior['evidence']) & stale_ids else
+            rows.append({**behavior, 'evidence_freshness': 'retired' if set(behavior['evidence']) & retired_evidence.keys() else 'unavailable' if set(behavior['evidence']) & set(unavailable_evidence) else 'stale' if set(behavior['evidence']) & stale_ids else
                  ('current_fingerprints' if behavior['evidence'] else 'no_evidence'),
                  'current_validation': support,
                  'revalidation_plan': [dict(evidence=eid, **step) for eid in behavior['evidence']

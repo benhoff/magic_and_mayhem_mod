@@ -75,7 +75,9 @@ def inherited_history(root, base, current, reviews, staged=False):
     if not parents:
         return result
     current_reviews = {r['id']: r for r in reviews['reviews']}
-    baseline_reviews, _ = read_journal(lambda path: decode_bytes(root, git(root, 'show', base + ':' + path)))
+    trusted = json.loads(git(root, 'show', base + ':' + REVIEWS)).get('archives', [])
+    baseline_reviews, _ = read_journal(lambda path: decode_bytes(root, git(root, 'show', base + ':' + path)),
+        trusted_archives=trusted, raw_bytes=lambda path: git(root, 'show', base + ':' + path))
     old_ids = {r['id'] for r in baseline_reviews['reviews']}
     historical = set()
     for parent in sorted(parents):
@@ -107,7 +109,12 @@ def inherited_history(root, base, current, reviews, staged=False):
             result['statuses'][b['id']] = {
                 'commit': parent, 'status': b['status'],
                 'contract_sha256': behavior_contract(b, builds), 'evidence': b['evidence']}
-        journal, _ = read_journal(lambda path: decode_bytes(root, git(root, 'show', parent + ':' + path)))
+        # Only the base's already accepted common shard prefix is opaque.
+        # Incoming-only shards still require their exact original bytes.
+        parent_refs = json.loads(git(root, 'show', parent + ':' + REVIEWS)).get('archives', [])
+        common = [r for r in trusted if r in parent_refs]
+        journal, _ = read_journal(lambda path: decode_bytes(root, git(root, 'show', parent + ':' + path)),
+            trusted_archives=common, raw_bytes=lambda path: git(root, 'show', parent + ':' + path))
         for r in journal['reviews']:
             if r['id'] not in old_ids and current_reviews.get(r['id']) == r:
                 historical.add(r['id'])

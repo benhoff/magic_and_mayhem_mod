@@ -1,15 +1,16 @@
 # Storage consolidation
 
-The [user-approved hybrid policy](evidence-storage.md#hybrid-retention-approved-2026-11-13)
-supersedes blanket dual-copy and permanent preservation requirements below.
-Essential evidence remains mirrored; verified historical bulk may have one copy;
-reviewed reproducible caches/environments and completed source copies may retire
-without another full archival copy. Keep reconstruction inputs, unique changes,
-saves/current inputs, useful results and explicit retirement records. Pins and
-old failures require classification rather than indefinite retention by default.
+The [finite retention policy](evidence-retention.md), approved 2026-11-15,
+is authoritative for acceptance, expiry, routine finish and worktree closeout.
+The preservation/restore procedures below apply when continued recovery is
+promised. They do not require retaining deliberately expired evidence, every
+bookkeeping database or reconstructible committed source forever. Historical
+copy receipts remain true for their recorded phase. Intentional expiry needs
+an accepted retirement record and consumer review, not a replacement copy.
 
-Generated evidence is shared by payload identity; execution state remains private.
-The machine's main-drive 90 GiB and cold-drive 100 GiB reserves are unchanged.
+Generated reports are shared by payload identity; execution state stays private.
+Use the actual machine's storage floors. The older archive examples below use a
+90/100 GiB layout and are not defaults for a constrained development workstation.
 
 ## New output
 
@@ -33,7 +34,8 @@ Set both mm.snapshotStore and mm.snapshotColdStore to stores on independent
 filesystems to opt local completion into exact chunked SQLite backups. Completion
 first retains a consistent SQLite snapshot, verifies its evidence objects, stores
 both copies, performs a real cold restore and only then removes the raw backup.
-An unconfigured checkout retains materialized backups. A failed compaction keeps
+Finite-policy finish does not create these backups by default; enabling
+`finish_backups` opts into this legacy preservation workflow. A failed compaction keeps
 the raw verified snapshot and fails completion. Private transfers keep their
 existing immutable snapshot/manifests format and temporarily materialize archived
 snapshots when explicitly invoked. Cleanup itself sends no data remotely.
@@ -78,93 +80,39 @@ that command. Full retirement uses the separate reviewed procedure below.
 
 ## Task closeout and worktree retirement
 
-The user approved mandatory task cleanup and a retirement path on 2026-11-14.
-This replaces blanket retention of completed source checkouts and registrations,
-including conflicting older machine-local notes. It applies to new tasks and
-individually reviewed historical worktrees; it does not expire pins by age.
-Evidence custody continues to follow the hybrid policy.
+Task cleanup remains mandatory. Follow [finite retention](evidence-retention.md):
 
-At every task closeout, identify required evidence and explicitly temporary
-output. Stop owned consumers, preserve tested executables and reconstruction
-inputs, and remove reviewed reproducible build/cache/staging/installation output.
-New temporary output owned by this task can retire when its consumers finish,
-even when recent or among the newest runs. Evidence and unclassified output keep
-their normal protections. Do this before reporting completion, without waiting
-for storage pressure. Keep source until integration has completed. After release
-of integration admission, retire the checkout or record a specific hold with
-allocated bytes, owner, reason and release condition. A source/evidence hold does
-not justify retaining unrelated disposable output.
+1. Select the exact linked checkout, branch and HEAD. Confirm integration, clean
+   source, no unfinished Git operations and explicit task completion. An ancestor
+   HEAD alone cannot establish that another owner's work is finished.
+2. Inventory ignored/untracked data, unique source/settings, symlinks/hardlinks,
+   pins, locks, processes and path consumers. Unknown data and unresolved owners
+   remain held. Never follow links to delete shared data or unlock another task.
+3. Preserve unique source, saves/configuration and reachable committed source.
+   Hand off supporting evidence still inside integration plus 14 days or a named
+   budgeted hold. Retire expired evidence with its accepted declaration and lost
+   capability record. Current gate metadata must remain readable. Reproducible
+   compiler/staging/install output may be removed when its consumers finish.
+4. Update surviving reader/writer paths and hooks before removing old paths.
+   Export accepted review receipts and preserve unfinished unique drafts; do not
+   archive every historical bookkeeping database/schema merely to remove a cache.
+5. Record the exact inventory, source identity, decisions, custody/expiry and
+   remaining limitations in a hash-bound SQLite plan outside the selected tree.
+   Reconstructible committed source needs no additional bundle or independent
+   restore merely to remove its checkout. An optional migration that promises
+   continued recovery still requires its actual survivor/replacement proofs.
+6. Recheck clean source identity, integration and inactivity immediately before
+   scripted removal. Invoke `git -C <surviving-checkout> worktree remove <tree>`
+   without force; preserve branches/ready refs. A refusal stays held. Release
+   integration admission before any cleanup.
+7. Record the result and reclaimed allocated bytes separately from free-space
+   changes. Holds name allocation, owner, purpose, budget and review/release date.
 
-Use one owned checkout for development and integration where supported. Perform
-retirement from a surviving durable checkout, never from inside the selected
-tree or while holding integration admission. The existing compaction command
-below only makes selected tracked directories sparse; it does not implement full
-worktree retirement. Do not add destructive cleanup to commit hooks or launchers.
-
-Full retirement requires these steps, in order:
-
-1. Select the exact registered linked worktree, branch and HEAD. Confirm its task
-   is complete, its exact tip is an ancestor of current master, and no merge,
-   rebase, index operation or concurrent owner is using it. Inspect tracked
-   changes without rewriting historical evidence pointers. Inventory all files,
-   including ignored/untracked files, local Git settings and retention markers.
-   Main checkouts and trees containing original artifacts are excluded. Dirty or
-   unmerged trees stay held until their unique work is preserved and resolved.
-2. Review ownership, host-visible processes, open consumers, path references,
-   borrowed fixtures, symlinks, hardlinks, worktree locks and every pin's meaning.
-   Old timestamps and merged ancestry do not establish inactivity. Record each
-   approved pin/lock reclassification; unresolved ownership or consumers hold
-   retirement. Do not unlock another task's worktree or follow links to delete
-   shared data. Releasing all links inside a tree need not free shared allocation.
-3. Classify every member as reproducible, retained or held. Retain the exact
-   source commit and its tree/blob closure, required source metadata, unique
-   changes, configuration, saves, tested binaries and complete SQLite review/checkpoint
-   closure in two verified independent durable copies. Existing verified Git
-   backups, bundles or self-contained source checkpoints can supply recovery;
-   record any omitted ancestry rather than claiming a complete history backup.
-   Reflogs and another branch in the same Git directory cannot supply an
-   independent copy. Retain required
-   historical bulk once under the hybrid policy. Do not upload or duplicate
-   rebuildable output just to permit removal. Unknown files remain held.
-4. Before deleting their old locations, relocate required stores and recovery
-   records outside the selected tree through their verified handoff workflow.
-   Update evidence reader/writer routes, settings, aliases, hooks and restoration
-   consumers from every affected checkout. Preserve historical identities and
-   receipts; changing custody is a new record. Keep a stable recovery record
-   outside the tree naming its old path, exact source refs, custody locations,
-   reconstruction commands/tool versions and explicit replay limitations.
-5. Retain the exact member identities/classifications and reviewed decisions in
-   a hash-bound SQLite plan outside the tree, with two verified essential copies.
-   Restore the pinned commit and unique files into independent temporary storage;
-   verify bytes and source metadata needed for reproduction. Verify retained
-   evidence through its prescribed restore/read workflow, including complete
-   logical SQLite closure. Do not treat Git reconstruction of pointer files as
-   restoration of the referenced evidence. Keep useful failed-restore diagnostics
-   and refuse removal if recovery is incomplete.
-6. Recheck the plan hash, actual HEAD, source identities, owners, consumers and
-   required copies immediately before removal. A bounded script must perform
-   these checks and run `git -C <surviving-checkout> worktree remove <selected-tree>`
-   without force flags. Use Git's registration removal instead of an unchecked
-   recursive delete or broad worktree prune. Preserve source branches/ready refs;
-   refuse stale plans or remaining unclassified data. Git's own cleanliness check
-   does not replace review of ignored files or evidence custody.
-7. Record the outcome, source refs, restore verification, surviving custody and
-   actual allocated bytes reclaimed in SQLite outside the removed tree, retaining
-   two verified copies of essential records. Account for new archival allocation
-   and report observed filesystem free-space changes separately. On refusal,
-   retain diagnostics and record the exact hold/release condition. On success,
-   remove only this task's reviewed disposable restore scratch after its consumers
-   finish. Keep durable recovery records available after unregistering the tree.
-
-For an ordinary new task, its own completed temporary build and restore scratch
-can be removed immediately after review. Its newly completed source checkout may
-retire immediately after integration and the checks above; recent timestamps
-alone do not require another day of retention. Historical source/evidence and
-named pins still require the individual review above. A held worktree may use the
-existing verified tracked-directory compaction when eligible; neither path
-changes engine validation status or refreshes historical hashes.
-
-## Explicit tracked-directory compaction and snapshot unions
+Newly created temporary output may retire at closeout despite recent timestamps.
+This does not expire in-window evidence or another task's active inputs. Existing
+archive/compaction commands below intentionally retain their preservation
+contracts; their stronger restore requirements are not prerequisites for finite
+expiry or ordinary committed source-checkout removal.
 
 ### Redundant report materializations
 

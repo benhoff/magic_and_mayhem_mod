@@ -126,6 +126,9 @@ def execute(root, tips, *, branch, report, reason, validation_reason, index_reas
             lease.run(['git', '-C', str(checkout), 'merge', '--ff-only', commit], check=True)
         else:
             lease.run(['git', '-C', str(root), 'update-ref', 'refs/heads/master', commit, base], check=True)
+    from evidence_lifecycle import policy, integrated
+    clocks = integrated(root, [commit, *pins]) if policy(root) else {}
     return dict(master=commit, previous_master=base, tips=pins, preparation_report=report,
+                evidence_review_clocks=clocks,
                 candidate_tree=tree, checked=True, validation_outside_lock=True,
                 admission_wait_seconds=lease.wait_seconds, publication='local only')

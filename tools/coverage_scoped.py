@@ -442,8 +442,39 @@ def strings(value):
             yield from strings(v)
 
 
-def scoped_snapshot(view, reg, deps, changed, bids, eids, wide=False):
+def scoped_snapshot(view, reg, deps, changed, bids, eids, wide=False, trusted_archives=(),
+                    historical_evidence=None, historical_builds=()):
+    from evidence_lifecycle import retired
+    retired_ids = retired(view, reg)
+    selected_retired = {e: retired_ids[e] for e in eids if e in retired_ids}
     selected = subset(reg, bids, eids, wide)
+    unavailable_evidence, unavailable_inventories = set(), set()
+    from coverage_evidence import UnavailableEvidence
+    # Missing unchanged proof retains history only. Corruption, changed/new
+    # definitions, original mappings and validation promotions remain strict.
+    def available(name):
+        raw = view.raw(name)
+        ref = identity(raw)
+        if ref:
+            try:
+                view.reader.resolver.find(*ref)
+            except UnavailableEvidence:
+                return False
+        return True
+    for ev in selected['evidence']:
+        if view.sha(ev['record']) != ev['sha256']:
+            raise ValueError('evidence record hash mismatch: ' + ev['id'])
+        if ev['id'] not in selected_retired and not available(ev['record']):
+            if (historical_evidence or {}).get(ev['id']) != ev:
+                raise UnavailableEvidence('New or changed evidence requires its original payload: ' + ev['id'])
+            unavailable_evidence.add(ev['id'])
+    for build in selected['builds']:
+        if view.sha(build['inventory']) != build['inventory_sha256']:
+            raise ValueError('Inventory reference hash mismatch: ' + build['id'])
+        if not available(build['inventory']):
+            if build['id'] not in historical_builds:
+                raise UnavailableEvidence('New or changed original mapping requires its inventory: ' + build['id'])
+            unavailable_inventories.add(build['id'])
     names = {n for n in view.entries if source_index.in_scope(n)}
     names.update(
         n
@@ -455,7 +486,8 @@ def scoped_snapshot(view, reg, deps, changed, bids, eids, wide=False):
     names.update(changed & set(view.entries))
     for e in selected["evidence"]:
         names.add(e["record"])
-        names.update(dependency_paths(e, deps[e["id"]]))
+        paths = dependency_paths(e, deps[e["id"]])
+        names.update(paths & view.entries.keys() if e['id'] in set(selected_retired) | unavailable_evidence else paths)
     for b in selected["builds"]:
         names.add(b["inventory"])
     for b in selected["behaviors"]:
@@ -470,14 +502,24 @@ def scoped_snapshot(view, reg, deps, changed, bids, eids, wide=False):
     for s in selected["scenarios"]:
         names.update(s["tests"])
     refs = []
-    for ref in reg.get("evidence_applicability", []):
-        data = view.value(ref["record"])
+    unavailable_applicability = []
+    for ref in reg.get("evidence_applicability", []) if wide or bids else []:
+        from coverage_evidence import UnavailableEvidence
+        if view.sha(ref['record']) != ref['sha256']:
+            raise ValueError('Applicability report reference hash mismatch')
+        try:
+            data = view.value(ref["record"])
+        except UnavailableEvidence:
+            if ref['record'] in changed:
+                raise  # A newly introduced preservation claim needs its proof.
+            unavailable_applicability.append(ref['id'])
+            continue  # No applicability credit; stale execution stays pending.
         if wide or data["behavior"] in bids:
             refs.append(ref)
             names.add(ref["record"])
             names.update(n for n in strings(data) if n in view.entries)
     selected["evidence_applicability"] = refs
-    journal, paths = read_journal(view.payload)
+    journal, paths = read_journal(view.payload, trusted_archives=trusted_archives, raw_bytes=view.raw)
     names.update(paths)
     for ref in reg.get("register_imports", []):
         names.add(ref["path"])
@@ -495,7 +537,12 @@ def scoped_snapshot(view, reg, deps, changed, bids, eids, wide=False):
             p.write_bytes(view.raw(n))
         with Reader(target, memoize=True) as reader:
             observed = {}
-            report = audit(target, selected, recorded_sources=observed, reader=reader)
+            report = audit(target, selected, recorded_sources=observed, reader=reader,
+                           retired_evidence=selected_retired, unavailable_evidence=unavailable_evidence,
+                           unavailable_inventories=unavailable_inventories)
+            if unavailable_applicability:
+                report['findings']['unavailable_applicability'] = sorted(unavailable_applicability)
+                report['warnings'].append('Historical applicability payloads unavailable; no preservation credit granted for those reviews.')
             if report["errors"]:
                 raise ValueError(
                     "Affected coverage audit failed: " + "; ".join(report["errors"])
@@ -654,6 +701,25 @@ def _capture(root, base, staged=False):
             raise ValueError("Base predates gate baseline; bootstrap is required")
         old = before.value(REGISTER)
         new = after.value(REGISTER)
+        from evidence_lifecycle import POLICY, validate_policy
+        if POLICY in after.entries:
+            validate_policy(after.value(POLICY))
+        from evidence_lifecycle import retired, check_history
+        old_retired, new_retired = retired(before, old), retired(after, new)
+        check_history(old_retired, new_retired)
+        # A retirement declaration is reviewed while its original payload is
+        # still available. A new definition cannot acquire retired status.
+        old_evidence = {e['id']: e for e in old['evidence']}
+        new_evidence = {e['id']: e for e in new['evidence']}
+        for eid in new_retired.keys() - old_retired.keys():
+            if eid not in old_evidence or old_evidence[eid] != new_evidence.get(eid):
+                raise ValueError('Retirement requires an unchanged accepted evidence definition: ' + eid)
+            dependency(old_evidence[eid], before)
+            row = new_retired[eid]
+            from evidence_lifecycle import verify_clock
+            verify_clock(root, row, after.value(POLICY))
+            subprocess.run(['git', '-C', str(root), 'merge-base', '--is-ancestor',
+                            row['integration_commit'], 'master'], check=True)
         olddeps = dependencies(before, old)
         newdeps = dependencies(after, new, old, olddeps)
         changed, bids, eids = affected(before, after, old, new, olddeps, newdeps)
@@ -672,10 +738,22 @@ def _capture(root, base, staged=False):
         wide = any(old.get(k) != new.get(k) for k in metadata)
         if wide:
             eids.update(e["id"] for r in (old, new) for e in r["evidence"])
-        first, _, _ = scoped_snapshot(before, old, olddeps, changed, bids, eids, wide)
+        trusted_archives = before.value(REVIEWS).get('archives', [])
+        old_builds = {b['id']: b for b in old['builds']}
+        old_behaviors = {b['id']: b for b in old['behaviors']}
+        historical_builds = {b['id'] for b in new['builds'] if old_builds.get(b['id']) == b}
+        if wide:
+            historical_builds.clear()
+        for b in new['behaviors']:
+            if old_behaviors.get(b['id'], {}).get('original') != b['original']:
+                historical_builds.difference_update(r['build'] for r in b['original'])
+        first, _, _ = scoped_snapshot(before, old, olddeps, changed, bids, eids, wide, trusted_archives,
+                                      old_evidence, historical_builds)
         second, report, journal = scoped_snapshot(
-            after, new, newdeps, changed, bids, eids, wide
+            after, new, newdeps, changed, bids, eids, wide, trusted_archives,
+            old_evidence, historical_builds
         )
+        report['checked_scope']['historical_review_archives'] = 'Unchanged accepted references checked; supporting shard payloads not reopened.'
         return first, second, report, journal, before.revision
     finally:
         before.close()

@@ -137,7 +137,9 @@ def review_history(root, base, tips, *, record=False, reason='', database=None, 
     base = git(root, 'rev-parse', '--verify', '--end-of-options', base+'^{commit}').decode().strip()
     tips = [git(root, 'rev-parse', '--verify', '--end-of-options', t+'^{commit}').decode().strip() for t in tips]
     commits = git(root, 'rev-list', '--reverse', *tips, '^'+base).decode().splitlines()
-    journal = load_journal(root)[0]
+    from evidence_lifecycle import policy
+    trusted = json.loads(git(root, 'show', base + ':' + JOURNAL)).get('archives', []) if policy(root) else []
+    journal = load_journal(root, trusted_archives=trusted)[0]
     receipts = {(f['path'],f.get('before_sha256'),f.get('after_sha256'))
                 for r in journal['reviews'] for f in r.get('files', [])}
     process = subprocess.Popen(['git', '-C', str(root), 'cat-file', '--batch'],

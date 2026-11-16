@@ -26,6 +26,7 @@ jobs:
         run: |
           python3 -B tests/test-integration-tools.py
           python3 -B tests/test-candidate-promotion.py
+          python3 -B tests/test-evidence-lifecycle.py
           python3 -B tests/test-scoped-coverage.py
           python3 -B tests/test-commit-retention.py
           python3 -B tests/test-worktree-report-compaction.py
@@ -59,6 +60,7 @@ jobs:
         run: |
           python3 -B tests/test-integration-tools.py
           python3 -B tests/test-candidate-promotion.py
+          python3 -B tests/test-evidence-lifecycle.py
           python3 -B tests/test-scoped-coverage.py
           python3 -B tests/test-commit-retention.py
           python3 -B tests/test-worktree-report-compaction.py

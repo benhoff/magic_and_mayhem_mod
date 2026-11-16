@@ -5,13 +5,14 @@ bounded implementation, focused tests and exact accounting before integration.
 The normal staged hook remains mandatory. Publication is separate from local
 completion.
 
-## Three levels of checks
+## Required checks
 
 | Change | Required work |
 | --- | --- |
 | Routine source, tooling or prose | Focused checks appropriate to the change, exact file/contract review, source census, immutable history and affected-claim gate. Prose alone needs no engine run. |
 | Engine behavior or validation claims | Relevant build/address mappings, provenance and scenarios, appropriate comparisons, fresh execution for promotions, explicit remaining limits. |
-| Evidence deletion or storage migration | Source-specific retention plan, consumer/pin review, required full survivor/replacement verification and actual restores before removal. |
+| Intentional evidence expiry | Integration plus 14 days, consumer/pin review, accepted retirement declaration, explicit lost capability; no replacement or restore of relinquished bytes. |
+| Storage migration promising recovery | Source-specific survivor/replacement verification and actual restores before removal. |
 
 `python3 tools/check-re-coverage.py --base HEAD --staged` reads actual index
 blobs. It extracts source inputs and the affected evidence closure rather than
@@ -42,12 +43,13 @@ when those guarantees are needed.
 ## Validate before promotion admission
 
 1. Finish the feature in its owned checkout with `tools/finish-work.py`; keep the
-   normal hook enabled, retain required evidence and pin the ready tip. Required engine acquisitions must already be durably
-   sealed; an unprocessed handoff queue does not establish retention.
+   normal hook enabled, retain required evidence and pin the ready tip. Supporting
+   evidence remains available through integration plus the 14-day review window;
+   a queued handoff does not establish custody.
 2. Observe master and review dependencies, committed-history gaps and conflicts.
    Prepare a combined candidate in the same owned checkout against that exact
    base. Reconcile metadata and run the required combined accounting, focused
-   checks, retained backups and normal staged hook outside admission.
+   checks, required in-window evidence and normal staged hook outside admission.
 3. Pin the resulting candidate commit and tree from the invocation-bound finish
    result, not a later reading of HEAD. The commit's tree must equal the
    staged tree checked/retained by finish. Preserve the original feature tip.
@@ -122,31 +124,28 @@ against retained payloads before recording. New receipts explicitly carry pendin
 retrospective validation. They assert neither a past gate pass nor new execution.
 The normal combined-tree review and staged gate remain required.
 
-## Routine retention and explicit storage maintenance
+## Acceptance and finite retention
 
-With the configured shared pair, finish checkpoints complete review schema,
-rows, drafts and auxiliary data into two verified object stores. A checkpoint-only
-receipt explicitly says no real reconstruction was performed and authorizes no
-retirement. The live cache stays in place. After staging, finish retains the exact
-changed source blobs and cited report payloads in two stores, binding their tree
-and base. It does not checkpoint/scrub every unrelated archive object.
+Follow [the evidence lifecycle](evidence-retention.md). Routine finish verifies
+used report bytes, preserves exact review exports and records a compact acceptance
+in shared SQLite storage. It does not automatically duplicate complete databases,
+source batches or execution trees. Optional `finish_backups` retains the legacy
+snapshot/pair workflow when deliberately configured. `--evict-review-cache` keeps
+its explicit recovery contract; ordinary expired cache disposal follows lifecycle
+review instead. Incomplete unique drafts must be exported or held.
 
-`--evict-review-cache` is an explicit storage operation. It retains the full
-checkpoint, verifies real reconstruction and checks current source/consumers
-before removing the cache. Queued workspace retirement is also explicit through
-`--handoff-completed-workspaces` or a selected `evidence-workspace.py seal`.
-Legacy catalog migration,
-private backups and full integrity scrubs keep their own stronger workflows.
-`--keep-review-cache` remains compatible; keeping is now the default.
+After releasing admission, the standard integration wrapper records clocks for
+its exact candidate and incoming tips. Custom promotion records inclusion with
+`tools/evidence-lifecycle.py integrated --commit <commit>` after releasing the
+lease. Never start expiry from a source commit's date. Evidence remains required
+through integration plus 14 days and any reviewed active hold. Expiry declarations
+are accepted under normal hooks while original reports are available, then a
+separate cleanup may remove the reviewed bytes. It never runs from a hook or
+launcher. Full audits still require original reports; retired reports cannot
+support new validation or promotions. Keep current operational accounting inputs
+readable until their consumers are migrated.
 
-Use `--timings` for evidence preflight, affected snapshots, accounting, backup,
-staging and hook durations. Full mode retains the bounded scratch and verification
-worker controls described in [snapshot performance](snapshot-performance.md).
-
-The changed-batch manifest printed by finish records its base/tree, each source
-member's original-byte hash/size/Git mode and deletion markers, plus cited report
-payload identities. Read it with `evidence_objects.configured(root)` and
-`Pair.read(sha256, size)`. Member bytes use the same API. Reconstruct a delta only
-in an owned checkout of its named base, restore recorded executable modes, then
-compare its tree with the pinned tree. These are recovery inputs, not a new
-engine execution claim.
+Use `--timings` for actual scope review, payload verification and staged-hook
+costs. Explicit archive/migration operations preserve their stricter contracts,
+including exact copy counts and restore proofs. An old hash never names a
+repacked container. Private backup/publication remain explicit independent work.

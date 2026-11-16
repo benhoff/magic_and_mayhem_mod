@@ -177,7 +177,17 @@ class Workspace:
         Caller holds locked(). External exports can add receipts, including an
         identical local receipt whose previous export completed before a crash.
         """
-        journal, _ = load_journal(self.root)
+        from evidence_lifecycle import policy
+        from coverage_reviews import accepted_journal
+        finite = policy(self.root) is not None
+        accepted = accepted_journal(self.root) if finite else {}
+        from evidence_local import local_evidence
+        with local_evidence(self.root, verify_archives=False):
+            journal, _ = load_journal(self.root, trusted_archives=accepted.get('archives', []))
+        if finite:
+            current = {r['id']: r for r in journal['reviews']}
+            if any(current.get(r['id']) != r for r in accepted['reviews']):
+                raise ValueError('Accepted active receipt removed or rewritten')
         if journal.get('schema') != 1:
             raise ValueError('Unsupported review journal schema')
         ids = [r['id'] for r in journal['reviews']]
@@ -185,7 +195,8 @@ class Workspace:
             raise ValueError('Duplicate journal receipt ID')
         previous = json.loads(self.meta('imported_ids') or '[]')
         prior = set(previous)
-        if [rid for rid in ids if rid in prior] != previous:
+        expected = [rid for rid in previous if rid in ids] if finite else previous
+        if [rid for rid in ids if rid in prior] != expected:
             raise ValueError('Imported receipt history removed or reordered; use the correct worktree database')
         for review in journal['reviews']:
             if self.version == 1:
@@ -223,7 +234,10 @@ class Workspace:
 
     def find(self, *, path=None, behavior=None, status=None, limit=25):
         if self.version == 2:
-            journal, _ = load_journal(self.root)
+            from evidence_lifecycle import policy
+            from coverage_reviews import accepted_journal
+            trusted = accepted_journal(self.root).get('archives', []) if policy(self.root) else []
+            journal, _ = load_journal(self.root, trusted_archives=trusted)
             reviews = journal['reviews'] + self.pending(journal)
             def matches(review):
                 return ((not path or any(item['path'] == path for item in review.get('files', [])))
@@ -509,9 +523,12 @@ def _finish(workspace, base, reason, validation_reason, message, index_reason=No
         raise ValueError('SQLite backups must remain in this worktree working/ directory')
     from evidence_objects import settings
     shared = bool(settings(workspace.root))
-    backups = [measure('review_backup', lambda: retained_backup(workspace.path, directory, workspace.root,
-                                                               verify_restore=not shared))]
-    if not shared:
+    from evidence_lifecycle import policy, verify_acceptance, acceptance
+    lifecycle = policy(workspace.root)
+    keep_backups = lifecycle is None or lifecycle['finish_backups']
+    backups = ([measure('review_backup', lambda: retained_backup(workspace.path, directory, workspace.root,
+                                                               verify_restore=not shared))] if keep_backups else [])
+    if keep_backups and not shared:
         from coverage_evidence import pending_path
         for pending in dict.fromkeys((pending_path(workspace.root),
                                       workspace.root/'working/coverage/evidence-pending.sqlite3')):
@@ -521,7 +538,7 @@ def _finish(workspace, base, reason, validation_reason, message, index_reason=No
     if subprocess.check_output(git + ['rev-parse', 'HEAD'], text=True).strip() != head:
         raise ValueError('HEAD changed during completion; review the new base')
     measure('git_add', lambda: subprocess.run(git + ['add', '--all', '--', '.'], check=True))
-    if shared:
+    if keep_backups and shared:
         from commit_retention import retain_staged_batch
         backups.append(measure('changed_batch_backup',lambda:retain_staged_batch(workspace.root,head)))
     # Hooks remain mandatory and execute against this worktree's staged tree.
@@ -530,7 +547,11 @@ def _finish(workspace, base, reason, validation_reason, message, index_reason=No
         with local_evidence(workspace.root,verify_archives='change_scope_index'not in json.loads((workspace.root/REGISTER).read_bytes())):
             run_with_lease(git + ['commit', '-m', message], check=True)
     checked_tree = subprocess.check_output(git + ['write-tree'],text=True).strip()
-    if shared and backups[-1]['tree'] != checked_tree:
+    payloads = (measure('acceptance_payloads', lambda: verify_acceptance(workspace.root, head,
+                    set(audit_report.get('checked_evidence', after['evidence']))
+                    - set(audit_report['findings'].get('retired_evidence', []))
+                    - set(audit_report['findings'].get('unavailable_evidence', [])))) if lifecycle else [])
+    if keep_backups and shared and backups[-1]['tree'] != checked_tree:
         raise ValueError('Index changed after source retention; review the new candidate')
     measure('git_commit_with_hook', commit_with_hook)
     committed = subprocess.check_output(git + ['rev-parse', 'HEAD'], text=True).strip()
@@ -538,5 +559,9 @@ def _finish(workspace, base, reason, validation_reason, message, index_reason=No
             or subprocess.check_output(git+['rev-parse','HEAD^1'],text=True).strip()!=head
             or subprocess.check_output(git+['write-tree'],text=True).strip()!=checked_tree):
         raise ValueError('Committed candidate differs from checked tree/base; preserve and review it')
+    accepted = acceptance(workspace.root, committed, checked_tree, head, exported, validation_reason, payloads,
+        limitations={key: audit_report['findings'][key] for key in ('retired_evidence', 'unavailable_evidence',
+            'unavailable_inventories', 'unavailable_applicability') if audit_report['findings'].get(key)}) if lifecycle else None
     return {'commit': committed, 'checked_tree': checked_tree, 'base': head, 'receipts': exported, 'backups': backups,
+            'acceptance': accepted,
             'publication': 'local only; evidence publication is optional'}

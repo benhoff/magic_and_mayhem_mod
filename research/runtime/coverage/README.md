@@ -23,6 +23,22 @@ Its old entries cannot be changed to hide dependencies, and it caches no pass.
 manual audits remain available. Historical evidence hashes and stage boundaries
 stay unchanged. See [integration policy](../../../docs/integration-workflow.md).
 
+## Evidence lifetime
+
+[Finite evidence retention](../../../docs/evidence-retention.md) separates exact
+commit/integration acceptance from supporting payload custody. Keep evidence
+through integration plus 14 days; longer holds need a purpose, owner, budget and
+review date. Accepted retirement declarations preserve original hashes/results
+and relinquish replay/reanalysis explicitly. References never impose perpetual
+custody. Scoped gates retain historical milestones and grant retired IDs no
+current validation credit. New declarations are checked while original report
+bytes remain available. Full audits still require every original payload.
+Current census, dependency index and accepted review exports remain operational
+inputs while used. Routine finish verifies used evidence without automatic
+complete SQLite backup/checkpoint creation; optional archives retain their own
+recovery contracts. Reconstructible clean integrated source checkouts need no
+extra bundle/restore merely to remove their expanded copy.
+
 ## Run the audit
 
 From the repository root:

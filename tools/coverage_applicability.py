@@ -172,7 +172,7 @@ def python_projection(raw, symbols):
                             definitions={n: source_dump(definitions[n]) for n in sorted(selected)}))
 
 
-def evaluate(root, register, builds, evidence, sources, claims, scenarios, read_json, read_bytes, digest):
+def evaluate(root, register, builds, evidence, sources, claims, scenarios, read_json, read_bytes, digest, *, retired_evidence=None):
     """Return scoped compatible paths and diagnostics, without refreshing hashes."""
     compatible, diagnostics, seen, active = {}, [], set(), {}
     behaviors = {b['id']: b for b in register['behaviors']}
@@ -190,6 +190,10 @@ def evaluate(root, register, builds, evidence, sources, claims, scenarios, read_
         require(report.get('supersedes') == previous, rid+': repeated scope needs its exact preceding review ID')
         active[(bid,eid)]=rid
         compatible.get(bid,{}).pop(eid,None)
+        if eid in (retired_evidence or {}):
+            diagnostics.append(dict(id=rid, evidence=eid, behavior=bid, state='historical',
+                                    reasons=['evidence_retired'], compatible_sources=[], phases={}))
+            continue
         ev, b = evidence.get(eid), behaviors.get(bid)
         claim = claims.get(eid, {}).get(bid)
         expired = []

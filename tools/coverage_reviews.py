@@ -3,17 +3,18 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-from coverage_evidence import Reader, read_bytes, write_report
+from coverage_evidence import Reader, read_bytes, write_report, identity
 
 REVIEWS = 'research/runtime/coverage/change-reviews.json'
 ARCHIVES = 'research/runtime/coverage/review-archives/'
 
 
-def read_journal(read_bytes, path=REVIEWS):
+def read_journal(read_bytes, path=REVIEWS, *, trusted_archives=(), raw_bytes=None):
     """Read current or historical Git bytes without executing historical code."""
     journal = json.loads(read_bytes(path))
     reviews = []
     paths = {path}
+    trusted = {a['path']: a for a in trusted_archives}
     for entry in journal.get('archives', []):
         name, expected = entry['path'], entry['sha256']
         if (name != ARCHIVES + expected + '.json' or len(expected) != 64
@@ -21,6 +22,15 @@ def read_journal(read_bytes, path=REVIEWS):
             raise ValueError('Invalid review archive path: ' + name)
         if name in paths:
             raise ValueError('Duplicate review archive: ' + name)
+        if trusted.get(name) == entry:
+            if raw_bytes is None:
+                raise ValueError('Opaque accepted archives require actual reference bytes')
+            raw = raw_bytes(name)
+            ref = identity(raw)
+            if (ref[0] if ref else hashlib.sha256(raw).hexdigest()) != expected:
+                raise ValueError('Accepted review archive identity changed: ' + name)
+            paths.add(name)
+            continue
         data = read_bytes(name)
         if hashlib.sha256(data).hexdigest() != expected:
             raise ValueError('Review archive hash mismatch: ' + name)
@@ -30,10 +40,12 @@ def read_journal(read_bytes, path=REVIEWS):
         reviews.extend(archive['reviews'])
         paths.add(name)
     reviews.extend(journal['reviews'])
+    if [a for a in journal.get('archives', []) if a['path'] in trusted] != list(trusted_archives):
+        raise ValueError('Accepted review archive history removed, rewritten or reordered')
     return dict(journal, reviews=reviews), paths
 
 
-def load_journal(root, path=REVIEWS):
+def load_journal(root, path=REVIEWS, *, trusted_archives=()):
     root = Path(root).resolve()
     def read(name):
         target = (root/name).resolve()
@@ -41,14 +53,24 @@ def load_journal(root, path=REVIEWS):
             raise ValueError('Escaping review path: ' + name)
         return reader.read_bytes(target)
     with Reader(root) as reader:
-        return read_journal(read, path)
+        return read_journal(read, path, trusted_archives=trusted_archives,
+                            raw_bytes=lambda name: (root/name).read_bytes())
+
+
+def accepted_journal(root):
+    """Read source-controlled acceptance metadata, without historical payloads."""
+    import subprocess
+    result = subprocess.run(['git', '-C', str(root), 'show', 'HEAD:' + REVIEWS], capture_output=True)
+    return json.loads(result.stdout) if result.returncode == 0 else {'reviews': [], 'archives': []}
 
 
 def split_journal(root, max_bytes=32 * 1024 * 1024):
     """Archive oldest receipts unchanged; leave the last shard appendable."""
     root = Path(root)
     path = root/REVIEWS
-    complete, _ = load_journal(root)
+    from evidence_lifecycle import policy
+    trusted = accepted_journal(root).get('archives', []) if policy(root) else []
+    complete, _ = load_journal(root, trusted_archives=trusted)
     journal = json.loads(path.read_bytes())
     chunks, chunk, size = [], [], 32
     for review in journal['reviews']:
@@ -87,7 +109,7 @@ def split_journal(root, max_bytes=32 * 1024 * 1024):
     with temporary.open('xb') as out:
         out.write(data)
     temporary.replace(path)
-    assert load_journal(root)[0]['reviews'] == complete['reviews']
+    assert load_journal(root, trusted_archives=trusted)[0]['reviews'] == complete['reviews']
 
 
 if __name__ == '__main__':
