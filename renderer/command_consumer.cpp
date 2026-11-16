@@ -1,9 +1,11 @@
 #include "../protocols/include/mnm/world_raster_batch_v3.h"
 #include "commands.hpp"
+#include "failure_diagnostics.hpp"
 #include "command_state.hpp"
 #include "native_frame_recipe.hpp"
 #include "command_copy_diagnostics.hpp"
 #include <chrono>
+#include <cstdio>
 #include "capture.hpp"
 #include "../protocols/include/mnm/render_stream_v5.h"
 #include <limits>
@@ -173,8 +175,15 @@ struct CommandConsumer::Impl {
     }
     void refresh(){output.stats=renderer.stats();output.liveSurfaces=handles.size();output.livePixels=admission.pixels;output.livePalettes=admission.palettes.size();}
     void cleanup(){importedFrame={};recipe.reset();for(const auto& pair:handles)renderer.destroy(pair.second);handles.clear();bits.clear();admission.discardSurfaces();refresh();}
+    void cleanupFailure() noexcept {
+        try{cleanup();}
+        catch(const std::exception& e){std::fprintf(stderr,"Renderer cleanup after primary failure refused: %s\n",e.what());}
+        catch(...){std::fprintf(stderr,"Renderer cleanup after primary failure refused with unknown exception\n");}
+    }
     void active(){renderer.stats();require(state==CommandConsumerState::Active,"Command consumer is closed");require(!executing,"Recursive command execution is unsupported");}
     void execute(const SurfaceCommand& c){
+        DiagnosticCall diagnostic("ui_command",{c.version,c.sequence,c.operation});diagnostic.append(c.words);
+        diagnostic.payload(c.image.pixels.data(),c.image.pixels.size()*sizeof(std::uint32_t));
         const auto& w=c.words;admission.accept(c);
         output.commandStreamVersion=c.version;
         if(recipe && c.operation!=1 && c.operation!=6 && c.operation!=13 && c.operation!=14 && c.operation!=MNM_RENDER_STREAM_V4_OPERATION_WORLD)
@@ -274,12 +283,12 @@ bool CommandConsumer::presentImportedSealed(){
 void CommandConsumer::presentSealed(const GpuFrame& world,std::uint64_t generation){
     auto& p=*impl_;p.active();require(generation && generation==sealedGeneration(),"Sealed UI/World generation mismatch");
     try{p.output.displayMode=1;p.output.displaySealedGeneration=p.recipe->sealedSourceGeneration();p.present(p.recipe->renderSealed(world));p.refresh();}
-    catch(...){p.state=CommandConsumerState::Failed;p.cleanup();throw;}
+    catch(...){p.state=CommandConsumerState::Failed;p.cleanupFailure();throw;}
 }
 void CommandConsumer::presentPrepared(const GpuFrame& world,std::uint64_t generation){
     auto& p=*impl_;p.active();require(p.recipe && p.recipe->ready() && generation==p.recipe->generation(),"Prepared UI/World generation mismatch");
     try{auto frame=p.recipe->render(world);p.output.displayMode=1;p.output.displaySealedGeneration=p.recipe->sealedSourceGeneration();p.present(std::move(frame));p.refresh();}
-    catch(...){p.state=CommandConsumerState::Failed;p.cleanup();throw;}
+    catch(...){p.state=CommandConsumerState::Failed;p.cleanupFailure();throw;}
 }
 
 void CommandConsumer::submit(const SurfaceCommand& command){submit(&command,1);}
@@ -299,13 +308,17 @@ void CommandConsumer::submit(const SurfaceCommand* commands,std::size_t count){
             });
         }
         p.executing=false;
-    }catch(...){p.executing=false;p.state=CommandConsumerState::Failed;p.cleanup();throw;}
+    }catch(const GraphicsFailure& e){
+        const auto failure=renderFailure(e.what());p.executing=false;p.state=CommandConsumerState::Failed;p.cleanupFailure();throw GraphicsFailure(failure.what());
+    }catch(const std::exception& e){
+        const auto failure=renderFailure(e.what());p.executing=false;p.state=CommandConsumerState::Failed;p.cleanupFailure();throwRenderFailure(e,failure.what());
+    }catch(...){p.executing=false;p.state=CommandConsumerState::Failed;p.cleanupFailure();throw;}
 }
 void CommandConsumer::finish(){
     auto& p=*impl_;p.renderer.stats();require(!p.executing,"Recursive command completion is unsupported");
     if(p.state==CommandConsumerState::Ended)return;
     require(p.state==CommandConsumerState::Active,"Command consumer is closed");
-    p.state=CommandConsumerState::Failed;p.cleanup();throw std::runtime_error("Missing command stream END");
+    p.state=CommandConsumerState::Failed;p.cleanupFailure();throw std::runtime_error("Missing command stream END");
 }
 void CommandConsumer::abort(){
     auto& p=*impl_;p.renderer.stats();require(!p.executing,"Recursive command abort is unsupported");

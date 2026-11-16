@@ -319,7 +319,25 @@ struct GpuFrame::Data {
     ~Data();
 };
 struct GlBlitter::Impl {
-    struct Surface {int width=0,height=0;PixelFormat format;GLuint native=0,palette=0,rgba=0;std::weak_ptr<GpuFrame::Data> gpu;ClipperState clipper;KnownPixels validity;std::array<Rgb,256> paletteColors{};std::array<bool,256> paletteKnown{};std::optional<Rect> rgbaDamage,gpuDamage;std::vector<std::uint8_t> coverage;};
+    struct Surface {int width=0,height=0;PixelFormat format;GLuint native=0,palette=0,rgba=0;std::weak_ptr<GpuFrame::Data> gpu;ClipperState clipper;KnownPixels validity;std::array<Rgb,256> paletteColors{};std::array<bool,256> paletteKnown{};std::optional<Rect> rgbaDamage,gpuDamage;std::vector<std::uint8_t> coverage;std::uint64_t createdSerial=0;};
+    void requireKnown(const Surface& checked,Rect r,const char* operation,unsigned line) const {
+        if(checked.validity.known(r))return;
+        auto detail=checked.validity.diagnosticRead(r);
+        detail["operation"]=operation;detail["file"]="renderer/blit.cpp";detail["line"]=int(line);
+        QJsonArray live;
+        for(const auto& pair:surfaces){
+            const auto& s=pair.second;auto value=s.validity.diagnosticState();
+            value["id"]=QString::number(pair.first);value["created_serial"]=QString::number(s.createdSerial);
+            value["bits"]=int(s.format.bits);value["masks"]=QJsonArray{double(s.format.masks[0]),double(s.format.masks[1]),double(s.format.masks[2])};
+            value["clipper_attached"]=s.clipper.attached;value["clipper_has_list"]=bool(s.clipper.regions);
+            QJsonArray regions;if(s.clipper.regions)for(auto v:*s.clipper.regions)regions.append(QJsonArray{v.left,v.top,v.right,v.bottom});
+            value["clip_regions"]=regions;live.append(value);
+            if(&s==&checked)detail["surface"]=value;
+        }
+        detail["live_surfaces"]=live;detail["renderer"]=QString::fromStdString(info.renderer);
+        detail["revision"]=QString::number(revision);detail["batch_depth"]=int(batchDepth);
+        throw renderFailure("Surface pixels are undefined; reload or overwrite required",detail);
+    }
     std::unique_ptr<QOffscreenSurface> ownedSurface;
     QOffscreenSurface* surface=nullptr;
     QOpenGLContext context;
@@ -979,11 +997,12 @@ std::vector<GpuTiming> GlBlitter::pollGpuTimings(){
 }
 std::size_t GlBlitter::pendingGpuTimings() const{if(isolated_)return 0;impl_->thread();return impl_->gpuTimings.size();}
 SurfaceId GlBlitter::create(const Image& image,PixelFormat format){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(image.width),std::uint64_t(image.height),std::uint64_t(format.bits),std::uint64_t(format.masks[0]),std::uint64_t(format.masks[1]),std::uint64_t(format.masks[2])});
     if(isolated_){const auto requested=nextId();isolated_->call(wire::message(wire::Op::create,requested,image,format),true);return requested;}
     validateFormat(format);validateImage(image,format.bits);auto& p=*impl_;p.thread();p.flushCopies();
     if(image.width>p.maxTexture || image.height>p.maxTexture)throw std::runtime_error("Surface exceeds the OpenGL texture limit");
     if(p.surfaces.size()>=64 || image.pixels.size()>16*1024*1024-p.counters.pixels)throw std::runtime_error("Renderer surface budget exceeded: handles="+std::to_string(p.surfaces.size())+",pixels="+std::to_string(p.counters.pixels));
-    const auto id=nextId();Current current(p.context,p.surface);Impl::Surface s;s.width=image.width;s.height=image.height;s.format=format;s.validity=KnownPixels(s.width,s.height);
+    const auto id=nextId();Current current(p.context,p.surface);Impl::Surface s;s.createdSerial=DiagnosticCall::serial();s.width=image.width;s.height=image.height;s.format=format;s.validity=KnownPixels(s.width,s.height);
     if(format.bits==8){s.coverage.resize(std::size_t(s.width)*s.height);p.uploadedCoverage(s,0,0,s.width,s.height,image.pixels.data());}
     auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);
     try {
@@ -995,6 +1014,7 @@ SurfaceId GlBlitter::create(const Image& image,PixelFormat format){
     ++p.counters.uploads;p.counters.pixels+=image.pixels.size();++p.revision;return id;
 }
 SurfaceId GlBlitter::allocate(int width,int height,PixelFormat format){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(width),std::uint64_t(height),std::uint64_t(format.bits),std::uint64_t(format.masks[0]),std::uint64_t(format.masks[1]),std::uint64_t(format.masks[2])});
     if(isolated_){const auto requested=nextId();isolated_->call(wire::message(wire::Op::allocate,requested,width,height,format),true);return requested;}
     validateFormat(format);auto& p=*impl_;p.thread();p.flushCopies();
     if(width<1||height<1||width>2048||height>2048||width>p.maxTexture||height>p.maxTexture)
@@ -1002,7 +1022,7 @@ SurfaceId GlBlitter::allocate(int width,int height,PixelFormat format){
     const auto count=std::size_t(width)*height;
     if(p.surfaces.size()>=64||count>16*1024*1024-p.counters.pixels)throw std::runtime_error("Renderer surface budget exceeded: handles="+std::to_string(p.surfaces.size())+",pixels="+std::to_string(p.counters.pixels));
     const auto id=nextId();Current current(p.context,p.surface);Impl::Surface s;
-    s.width=width;s.height=height;s.format=format;s.validity=KnownPixels(width,height);s.validity.invalidate();if(format.bits==8)s.coverage.resize(std::size_t(width)*height);
+    s.createdSerial=DiagnosticCall::serial();s.width=width;s.height=height;s.format=format;s.validity=KnownPixels(width,height);s.validity.invalidate();if(format.bits==8)s.coverage.resize(std::size_t(width)*height);
     auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);
     try{
         s.native=p.texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,width,height,nullptr);
@@ -1013,6 +1033,7 @@ SurfaceId GlBlitter::allocate(int width,int height,PixelFormat format){
     p.counters.pixels+=count;++p.revision;return id;
 }
 SurfaceId GlBlitter::cloneSurface(SurfaceId source){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(source)});
     if(isolated_){const auto requested=nextId();isolated_->call(wire::message(wire::Op::clone,requested,source),true);return requested;}
     auto& p=*impl_;p.thread();const auto& src=p.get(source);
     const auto width=src.width,height=src.height;const auto format=src.format;
@@ -1021,6 +1042,7 @@ SurfaceId GlBlitter::cloneSurface(SurfaceId source){
     return copy;
 }
 void GlBlitter::restoreSurface(SurfaceId source,SurfaceId destination){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(source),std::uint64_t(destination)});
     if(isolated_){isolated_->call(wire::message(wire::Op::restore,source,destination),true);return;}
     auto& p=*impl_;p.thread();p.flushCopies();const auto& src=p.get(source);auto& dst=p.get(destination);
     if(source==destination || src.width!=dst.width || src.height!=dst.height ||
@@ -1041,12 +1063,14 @@ void GlBlitter::restoreSurface(SurfaceId source,SurfaceId destination){
     p.damage(dst,{0,0,dst.width,dst.height});dst.coverage=std::move(coverage);++p.counters.nativeSnapshotCopies;
 }
 void GlBlitter::updateRows(SurfaceId id,const Image& plane,int first,int rows){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(id),std::uint64_t(first),std::uint64_t(rows),std::uint64_t(plane.width),std::uint64_t(plane.height)});
     if(isolated_){isolated_->call(wire::message(wire::Op::rows,id,plane,first,rows),true);return;}
     auto& p=*impl_;p.thread();p.flushCopies();const auto& s=p.get(id);
     if(plane.width!=s.width||plane.height!=s.height)throw std::runtime_error("Invalid upload plane extent");
     updateRegionRows(id,0,0,plane,first,rows);
 }
 void GlBlitter::updateRegionRows(SurfaceId id,int x,int y,const Image& plane,int first,int rows){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(id),std::uint64_t(x),std::uint64_t(y),std::uint64_t(first),std::uint64_t(rows),std::uint64_t(plane.width),std::uint64_t(plane.height)});
     if(isolated_){isolated_->call(wire::message(wire::Op::regionRows,id,x,y,plane,first,rows),true);return;}
     auto& p=*impl_;p.thread();auto& s=p.get(id);
     if(plane.width<1||plane.height<1||plane.pixels.size()!=std::size_t(plane.width)*plane.height||first<0||rows<1||first>plane.height-rows||
@@ -1061,11 +1085,13 @@ void GlBlitter::updateRegionRows(SurfaceId id,int x,int y,const Image& plane,int
     p.check();s.validity.define({x,y+first,x+plane.width,y+first+rows});p.damage(s,{x,y+first,x+plane.width,y+first+rows},false);p.uploadedCoverage(s,x,y+first,plane.width,rows,&*begin);++p.counters.uploads;
 }
 void GlBlitter::destroy(SurfaceId id){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(id)});
     if(isolated_){isolated_->call(wire::message(wire::Op::destroy,id),true);rasterFrames_.erase(id);return;}
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);Current current(p.context,p.surface);
     p.counters.pixels-=std::size_t(s.width)*s.height;p.release(s);p.surfaces.erase(id);++p.revision;p.check();
 }
 void GlBlitter::update(SurfaceId id,int x,int y,const Image& patch){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(id),std::uint64_t(x),std::uint64_t(y),std::uint64_t(patch.width),std::uint64_t(patch.height)});
     if(isolated_){isolated_->call(wire::message(wire::Op::update,id,x,y,patch),true);return;}
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);validateImage(patch,s.format.bits);
     if(x<0 || y<0 || x>s.width-patch.width || y>s.height-patch.height)throw std::runtime_error("Update rectangle is out of bounds");
@@ -1074,12 +1100,14 @@ void GlBlitter::update(SurfaceId id,int x,int y,const Image& patch){
     p.check();s.validity.define({x,y,x+patch.width,y+patch.height});p.damage(s,{x,y,x+patch.width,y+patch.height},false);p.uploadedCoverage(s,x,y,patch.width,patch.height,patch.pixels.data());++p.counters.uploads;
 }
 void GlBlitter::updateMasked(SurfaceId id,int x,int y,const Image& patch,const std::vector<std::uint8_t>& coverage){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(id),std::uint64_t(x),std::uint64_t(y),std::uint64_t(patch.width),std::uint64_t(patch.height),std::uint64_t(coverage.size())});
     if(isolated_){isolated_->call(wire::message(wire::Op::masked,id,x,y,patch,coverage),true);return;}
  impl_->thread();const auto& s=impl_->get(id);
  if(s.format.bits!=16 || s.format.masks!=std::array<std::uint32_t,3>{0xf800,0x7e0,31})throw std::invalid_argument("Masked updates require RGB565");
  updateCoveredWords(id,x,y,patch,coverage);
 }
 void GlBlitter::updateCoveredWords(SurfaceId id,int x,int y,const Image& patch,const std::vector<std::uint8_t>& coverage){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(id),std::uint64_t(x),std::uint64_t(y),std::uint64_t(patch.width),std::uint64_t(patch.height),std::uint64_t(coverage.size())});
     if(isolated_){isolated_->call(wire::message(wire::Op::covered,id,x,y,patch,coverage),true);return;}
     auto& p=*impl_;p.thread();auto& s=p.get(id);validateImage(patch,s.format.bits);
     if(!((s.format.bits==16 && s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,31}) || (s.format.bits==32 && s.format.masks==std::array<std::uint32_t,3>{0xff0000,0xff00,0xff})) ||
@@ -1178,18 +1206,19 @@ void GlBlitter::reloadDib(SurfaceId id,const DibInput& dib,const std::optional<s
 }
 void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,std::optional<std::uint32_t> key,
                      std::optional<SurfaceId> mask,std::uint32_t keyMask){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(source),std::uint64_t(destination),std::uint64_t(r.left),std::uint64_t(r.top),std::uint64_t(r.right),std::uint64_t(r.bottom),std::uint64_t(x),std::uint64_t(y),std::uint64_t(bool(key)),std::uint64_t(key.value_or(0)),std::uint64_t(mask.value_or(0)),std::uint64_t(keyMask)});
     if(isolated_){isolated_->call(wire::message(wire::Op::copy,source,destination,r,x,y,key,mask,keyMask),true);return;}
     auto& p=*impl_;p.thread();auto& src=p.get(source);auto& dst=p.get(destination);
     if(source==destination)throw std::runtime_error("Self-copy is unsupported");
     if(src.format.bits!=dst.format.bits || src.format.masks!=dst.format.masks)throw std::runtime_error("Copy requires identical native formats");
     if(r.left<0 || r.top<0 || r.right<=r.left || r.bottom<=r.top || r.right>src.width || r.bottom>src.height ||
        x<0 || y<0 || x>dst.width-(r.right-r.left) || y>dst.height-(r.bottom-r.top))throw std::runtime_error("Copy rectangle is out of bounds");
-    src.validity.require(r);
-    if(key || mask)dst.validity.require({x,y,x+r.right-r.left,y+r.bottom-r.top});
+    p.requireKnown(src,r,__func__,__LINE__);
+    if(key || mask)p.requireKnown(dst,{x,y,x+r.right-r.left,y+r.bottom-r.top},__func__,__LINE__);
     if(key && src.format.bits<32 && *key>((std::uint32_t{1}<<src.format.bits)-1))throw std::runtime_error("Source key exceeds its format");
     if(mask){
         auto& m=p.get(*mask);
-        m.validity.require(r);
+        p.requireKnown(m,r,__func__,__LINE__);
         if(*mask==destination || m.format.bits!=8 || m.width!=src.width || m.height!=src.height)
             throw std::runtime_error("Copy mask must be an indexed source-sized surface distinct from destination");
     }
@@ -1198,6 +1227,8 @@ void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,s
     dst.validity.define({x,y,x+r.right-r.left,y+r.bottom-r.top});
 }
 void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,int y,SurfaceId mask,const SpriteComposite& c,const std::array<std::uint16_t,256>* palette){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(source),std::uint64_t(destination),std::uint64_t(r.left),std::uint64_t(r.top),std::uint64_t(r.right),std::uint64_t(r.bottom),std::uint64_t(x),std::uint64_t(y),std::uint64_t(mask),std::uint64_t(int(c.mode)),std::uint64_t(c.rowPeriod),std::uint64_t(c.retainOutsideDisplacement),std::uint64_t(bool(palette))});
+    diagnostic.append(c.rowOffsets);
     if(isolated_){isolated_->call(wire::message(wire::Op::composite,source,destination,r,x,y,mask,c,palette?std::optional<std::array<std::uint16_t,256>>(*palette):std::nullopt),true);return;}
     if(c.mode==CompositeMode::copy&&!palette){copy(source,destination,r,x,y,std::nullopt,mask);return;}
     auto& p=*impl_;p.thread();auto& src=p.get(source);auto& dst=p.get(destination);auto& coverage=p.get(mask);
@@ -1222,7 +1253,7 @@ void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,in
             }
         }
     }
-    src.validity.require(r);coverage.validity.require(r);dst.validity.require({0,0,dst.width,dst.height});
+    p.requireKnown(src,r,__func__,__LINE__);p.requireKnown(coverage,r,__func__,__LINE__);p.requireKnown(dst,{0,0,dst.width,dst.height},__func__,__LINE__);
     Current current(p.context,p.surface);
     if(c.mode==CompositeMode::copy){p.copyTexture(src.native,coverage.native,dst,r,x,y,std::nullopt,UINT32_MAX,palette);return;}
     const bool local=c.mode==CompositeMode::half||c.mode==CompositeMode::quarterSource||c.mode==CompositeMode::quarterDestination||c.mode==CompositeMode::additive;
@@ -1241,6 +1272,7 @@ void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,in
     p.draw(3);p.check();++p.counters.copies;
 }
 void GlBlitter::colourRect(SurfaceId destination,const Image& pixels,Rect source,int x,int y,const SpriteComposite& mode){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(destination),std::uint64_t(pixels.width),std::uint64_t(pixels.height),std::uint64_t(source.left),std::uint64_t(source.top),std::uint64_t(source.right),std::uint64_t(source.bottom),std::uint64_t(x),std::uint64_t(y),std::uint64_t(int(mode.mode))});
     if(isolated_){isolated_->call(wire::message(wire::Op::colour,destination,pixels,source,x,y,mode),true);return;}
     if(pixels.width>64||pixels.height>64)throw std::invalid_argument("Colour rectangle exceeds primitive budget");
     SurfaceId colour=0,mask=0;
@@ -1252,6 +1284,7 @@ void GlBlitter::colourRect(SurfaceId destination,const Image& pixels,Rect source
     }catch(...){if(mask)destroy(mask);if(colour)destroy(colour);throw;}
 }
 void GlBlitter::smallColourRects(SurfaceId destination,const std::vector<SmallColourDraw>& writes){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(destination),std::uint64_t(writes.size())});
     if(writes.size()>512)throw std::invalid_argument("Small colour write budget exceeded");
     // Validate the complete input before any pixel mutation, including the
     // isolated fallback. Never sample undefined destination words.
@@ -1276,7 +1309,7 @@ void GlBlitter::smallColourRects(SurfaceId destination,const std::vector<SmallCo
     const auto masks=dst.format.masks;const bool rgb555=masks==std::array<std::uint32_t,3>{0x7c00,0x3e0,0x1f};
     if(dst.format.bits!=16||(!rgb555&&masks!=std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f}))
         throw std::invalid_argument("Small colour writes require RGB565/RGB555 storage");
-    dst.validity.require({0,0,dst.width,dst.height});
+    p.requireKnown(dst,{0,0,dst.width,dst.height},__func__,__LINE__);
     p.flushCopies();Current current(p.context,p.surface);auto& g=p.gl;
     if(!p.smallColour){
         auto shader=std::make_unique<QOpenGLShaderProgram>();
@@ -1335,6 +1368,7 @@ bool GlBlitter::canBatchDestinationSamples() const {
            name.find("Software Rasterizer")==std::string::npos&&name.find("SWR")==std::string::npos;
 }
 void GlBlitter::sampleDestination(SurfaceId destination,const std::vector<DestinationSample>& spans){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(destination),std::uint64_t(spans.size())});
     if(isolated_)throw std::invalid_argument("Destination sampling uses direct rendering only");
     auto& p=*impl_;p.thread();auto& dst=p.get(destination);
     if(dst.format.bits!=16||dst.format.masks!=std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f})
@@ -1352,7 +1386,7 @@ void GlBlitter::sampleDestination(SurfaceId destination,const std::vector<Destin
         damage={std::min(damage.left,s.x),std::min(damage.top,s.y),std::max(damage.right,s.x+s.width),std::max(damage.bottom,s.y+1)};
     }
     if(spans.empty())return;
-    dst.validity.require({0,0,dst.width,dst.height});
+    p.requireKnown(dst,{0,0,dst.width,dst.height},__func__,__LINE__);
     p.flushCopies();Current current(p.context,p.surface);
     const auto frozen=p.snapshot(dst,source);p.damage(dst,damage);
     // Use the existing integer copy shader and bounded instance buffer. Every
@@ -1365,12 +1399,13 @@ void GlBlitter::sampleDestination(SurfaceId destination,const std::vector<Destin
     p.flushCopies();++p.counters.copies;
 }
 void GlBlitter::additiveRect(SurfaceId destination,Rect r,const std::array<std::uint16_t,3>& channels){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(destination),std::uint64_t(r.left),std::uint64_t(r.top),std::uint64_t(r.right),std::uint64_t(r.bottom),std::uint64_t(channels[0]),std::uint64_t(channels[1]),std::uint64_t(channels[2])});
     if(isolated_){isolated_->call(wire::message(wire::Op::additive,destination,r,channels),true);return;}
     auto& p=*impl_;p.thread();auto& dst=p.get(destination);
     if(dst.format.bits!=16||dst.format.masks!=std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f}||
        r.left<0||r.top<0||r.right<=r.left||r.bottom<=r.top||r.right>dst.width||r.bottom>dst.height)
         throw std::invalid_argument("Additive rectangle requires in-bounds RGB565 storage");
-    dst.validity.require({0,0,dst.width,dst.height});
+    p.requireKnown(dst,{0,0,dst.width,dst.height},__func__,__LINE__);
     p.damage(dst,r);
     Current current(p.context,p.surface);auto& g=p.gl;auto region=r;const auto frozen=p.blendInput(dst,region,true);
     p.setScissor(true);g.glScissor(r.left,r.top,r.right-r.left,r.bottom-r.top);
@@ -1381,16 +1416,19 @@ void GlBlitter::additiveRect(SurfaceId destination,Rect r,const std::array<std::
     p.check();++p.counters.copies;
 }
 void GlBlitter::invalidateContents(SurfaceId id){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(id)});
     if(isolated_){isolated_->call(wire::message(wire::Op::invalidate,id),true);return;}
     auto& p=*impl_;p.thread();p.flushCopies();p.get(id).validity.invalidate();p.get(id).coverage.clear();++p.revision;
 }
 void GlBlitter::setClipper(SurfaceId id,const ClipperState& clipper){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(id),std::uint64_t(clipper.attached),std::uint64_t(bool(clipper.regions))});
     if(isolated_){isolated_->call(wire::message(wire::Op::clip,id,clipper),true);return;}
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);
     validateClipper(clipper,s.width,s.height);s.clipper=clipper;++p.revision;
 }
 SurfaceCopyResult GlBlitter::surfaceCopy(SurfaceId source,SurfaceId destination,const SurfaceCopyRequest& request,
                                        std::optional<std::uint32_t> nativeKey){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(source),std::uint64_t(destination),std::uint64_t(int(request.api)),std::uint64_t(request.flags),std::uint64_t(request.source.left),std::uint64_t(request.source.top),std::uint64_t(request.source.right),std::uint64_t(request.source.bottom),std::uint64_t(request.destination.left),std::uint64_t(request.destination.top),std::uint64_t(request.destination.right),std::uint64_t(request.destination.bottom),std::uint64_t(request.sourceBusy),std::uint64_t(request.destinationBusy),std::uint64_t(bool(nativeKey)),std::uint64_t(nativeKey.value_or(0))});
     if(isolated_){return wire::decode<SurfaceCopyResult>(isolated_->call(wire::message(wire::Op::surfaceCopy,source,destination,request,nativeKey),true));}
     auto& p=*impl_;p.thread();if(source==destination)p.flushCopies();const auto& s=p.get(source);auto& d=p.get(destination);
     if(source==destination && request.flags!=0 && request.flags!=(request.api==SurfaceCopyApi::BltFast?0x10u:0x01000000u))
@@ -1411,9 +1449,9 @@ SurfaceCopyResult GlBlitter::surfaceCopy(SurfaceId source,SurfaceId destination,
         Current current(p.context,p.surface);
         // Each ordered clip piece sees preceding writes, then freezes its own source.
         for(const auto& piece:plan.pieces){
-            d.validity.require(piece.source);
+            p.requireKnown(d,piece.source,__func__,__LINE__);
             if(nativeKey){
-                d.validity.require({piece.x,piece.y,piece.x+piece.source.right-piece.source.left,piece.y+piece.source.bottom-piece.source.top});
+                p.requireKnown(d,{piece.x,piece.y,piece.x+piece.source.right-piece.source.left,piece.y+piece.source.bottom-piece.source.top},__func__,__LINE__);
                 p.copySharedKeyed(d,piece,*nativeKey,keyMask);
             }else p.copyShared(d,piece);
             d.validity.define({piece.x,piece.y,piece.x+piece.source.right-piece.source.left,piece.y+piece.source.bottom-piece.source.top});
@@ -1422,6 +1460,7 @@ SurfaceCopyResult GlBlitter::surfaceCopy(SurfaceId source,SurfaceId destination,
     return {plan.hresult,unsigned(plan.pieces.size())};
 }
 void GlBlitter::swapContents(SurfaceId first,SurfaceId second){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(first),std::uint64_t(second)});
     if(isolated_){isolated_->call(wire::message(wire::Op::swap,first,second),true);return;}
     auto& p=*impl_;p.thread();p.flushCopies();auto& a=p.get(first);auto& b=p.get(second);
     if(first==second || a.width!=b.width || a.height!=b.height ||
@@ -1441,8 +1480,9 @@ void GlBlitter::setPalette(SurfaceId id,unsigned first,const std::vector<Rgb>& c
     p.check();for(unsigned i=0;i<colors.size();++i){s.paletteColors[first+i]=colors[i];s.paletteKnown[first+i]=true;}p.damage(s,{0,0,s.width,s.height},false);++p.counters.paletteUpdates;
 }
 Image GlBlitter::read(SurfaceId id){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(id)});
     if(isolated_){return wire::decode<Image>(isolated_->call(wire::message(wire::Op::read,id)));}
-    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,p.surface);p.attach(s.native,s.width,s.height);
+    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);p.requireKnown(s,{0,0,s.width,s.height},__func__,__LINE__);Current current(p.context,p.surface);p.attach(s.native,s.width,s.height);
     Image out{s.width,s.height,std::vector<std::uint32_t>(std::size_t(s.width)*s.height)};
     p.gl.glReadPixels(0,0,s.width,s.height,GL_RED_INTEGER,GL_UNSIGNED_INT,out.pixels.data());
     p.check(true);++p.counters.nativeReadbacks;return out;
@@ -1469,8 +1509,9 @@ void resolvePresentation(Owner& p,Surface& s,GLuint target,const std::optional<R
 }
 }
 QImage GlBlitter::present(SurfaceId id){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(id)});
     if(isolated_){return wire::decode<QImage>(isolated_->call(wire::message(wire::Op::present,id)));}
-    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,p.surface);auto& g=p.gl;
+    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);p.requireKnown(s,{0,0,s.width,s.height},__func__,__LINE__);Current current(p.context,p.surface);auto& g=p.gl;
     if(!s.rgba){g.glActiveTexture(GL_TEXTURE0);s.rgba=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,s.width,s.height,nullptr);s.rgbaDamage=Rect{0,0,s.width,s.height};}
     resolvePresentation(p,s,s.rgba,s.rgbaDamage);s.rgbaDamage.reset();
     p.attach(s.rgba,s.width,s.height);
@@ -1483,6 +1524,7 @@ QSize GlBlitter::dimensions(SurfaceId id) const{
     auto& p=*impl_;p.thread();const auto& s=p.get(id);return {s.width,s.height};
 }
 GpuFrame GlBlitter::presentGpu(SurfaceId id){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(id)});
     if(isolated_){
         auto bytes=isolated_->call(wire::message(wire::Op::frame,id));QDataStream in(bytes);in.setVersion(QDataStream::Qt_6_0);
         QImage pixels;PixelFormat format;wire::values(in,pixels,format);wire::check(in);
@@ -1490,7 +1532,7 @@ GpuFrame GlBlitter::presentGpu(SurfaceId id){
         {std::lock_guard<std::mutex> lock(lease->mutex);lease->raster=std::move(pixels);lease->dimensions=lease->raster.size();lease->format=format;}
         return GpuFrame(std::move(lease));
     }
-    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,p.surface);auto& g=p.gl;
+    auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);p.requireKnown(s,{0,0,s.width,s.height},__func__,__LINE__);Current current(p.context,p.surface);auto& g=p.gl;
     auto frame=s.gpu.lock();
     if(!frame){
         frame=std::make_shared<GpuFrame::Data>();frame->owner=impl_;frame->dimensions={s.width,s.height};frame->format=s.format;
@@ -1508,6 +1550,7 @@ GpuFrame GlBlitter::presentGpu(SurfaceId id){
     return GpuFrame(std::move(frame));
 }
 void GlBlitter::importGpu565(SurfaceId id,const GpuFrame& frame){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(id),std::uint64_t(frame.size().width()),std::uint64_t(frame.size().height())});
     if(isolated_){if(!frame.hasRaster())throw std::runtime_error("Isolated import requires owned raster frame");isolated_->call(wire::message(wire::Op::importFrame,id,frame.raster(),frame.data_->format),true);return;}
     auto& p=*impl_;p.thread();auto& s=p.get(id);
     const PixelFormat f{16,{0xf800,0x7e0,31}};
@@ -1526,6 +1569,7 @@ void GlBlitter::importGpu565(SurfaceId id,const GpuFrame& frame){
 ClipperState GlBlitter::surfaceClipper(SurfaceId id) const{
     if(isolated_){return wire::decode<ClipperState>(isolated_->call(wire::message(wire::Op::clipper,id)));}impl_->thread();return impl_->get(id).clipper;}
 void GlBlitter::copyCoordinates(SurfaceId pixels,std::optional<SurfaceId> source,SurfaceId destination,Rect r,int x,int y,std::optional<std::uint32_t> key){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(pixels),std::uint64_t(source.value_or(0)),std::uint64_t(destination),std::uint64_t(r.left),std::uint64_t(r.top),std::uint64_t(r.right),std::uint64_t(r.bottom),std::uint64_t(x),std::uint64_t(y),std::uint64_t(bool(key)),std::uint64_t(key.value_or(0))});
     if(isolated_){isolated_->call(wire::message(wire::Op::coordinates,pixels,source,destination,r,x,y,key),true);return;}
  auto& p=*impl_;p.thread();p.flushCopies();auto& a=p.get(pixels);auto& d=p.get(destination);
  if(d.format.bits!=32 || r.left<0 || r.top<0 || r.right> a.width || r.bottom>a.height || r.right<=r.left || r.bottom<=r.top || x<0 || y<0 || x>d.width-(r.right-r.left) || y>d.height-(r.bottom-r.top))throw std::invalid_argument("Coordinate copy bounds/format");
@@ -1536,17 +1580,18 @@ void GlBlitter::copyCoordinates(SurfaceId pixels,std::optional<SurfaceId> source
  // The pixel input is a sampler too, even when coordinates come from a
  // separate surface. Only the self-copy route above may reuse the target.
  if(pixels==destination)throw std::invalid_argument("Coordinate pixel input aliases destination");
- a.validity.require(r);
- GLuint coordinates=0;if(source){auto& c=p.get(*source);if(c.format.bits!=32 || c.width!=a.width || c.height!=a.height)throw std::invalid_argument("Coordinate source extent/format");c.validity.require(r);coordinates=c.native;}
+ p.requireKnown(a,r,__func__,__LINE__);
+ GLuint coordinates=0;if(source){auto& c=p.get(*source);if(c.format.bits!=32 || c.width!=a.width || c.height!=a.height)throw std::invalid_argument("Coordinate source extent/format");p.requireKnown(c,r,__func__,__LINE__);coordinates=c.native;}
  Current current(p.context,p.surface);auto& g=p.gl;p.attach(d.native,d.width,d.height);p.setScissor(true);g.glScissor(x,y,r.right-r.left,r.bottom-r.top);p.useProgram(p.coordinateProgram->programId());
  g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,a.native);g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,coordinates);
  const auto u=[&](const char* name){return p.coordinateProgram->uniformLocation(name);};g.glUniform1i(u("sourcePixels"),0);g.glUniform1i(u("sourceCoordinates"),1);g.glUniform1i(u("mappedSource"),bool(source));g.glUniform1i(u("hasKey"),bool(key));g.glUniform1ui(u("sourceKey"),key.value_or(0));g.glUniform2i(u("sourceOrigin"),r.left,r.top);g.glUniform2i(u("destinationOrigin"),x,y);p.draw(3);p.check();d.validity.define({x,y,x+r.right-r.left,y+r.bottom-r.top});p.damage(d,{x,y,x+r.right-r.left,y+r.bottom-r.top});++p.counters.copies;
 }
 void GlBlitter::assembleMappedWorld(SurfaceId destination,SurfaceId ui,SurfaceId coordinates,const GpuFrame& world){
+    DiagnosticCall diagnostic(__func__,{std::uint64_t(destination),std::uint64_t(ui),std::uint64_t(coordinates),std::uint64_t(world.size().width()),std::uint64_t(world.size().height())});
     if(isolated_){if(!world.hasRaster())throw std::runtime_error("Isolated import requires owned raster frame");isolated_->call(wire::message(wire::Op::mapped,destination,ui,coordinates,world.raster(),world.data_->format),true);return;}
  auto& p=*impl_;p.thread();p.flushCopies();auto& d=p.get(destination);auto& a=p.get(ui);auto& c=p.get(coordinates);const PixelFormat rgb{16,{0xf800,0x7e0,31}};
  if(!world.data_ || world.data_->format.bits!=16 || world.data_->format.masks!=rgb.masks || a.format.bits!=16 || a.format.masks!=rgb.masks || d.format.bits!=16 || d.format.masks!=rgb.masks || c.format.bits!=32 || a.width!=d.width || a.height!=d.height || c.width!=d.width || c.height!=d.height || destination==ui || destination==coordinates)throw std::invalid_argument("Mapped native frame extent/format");
- a.validity.require({0,0,a.width,a.height});c.validity.require({0,0,c.width,c.height});Current current(p.context,p.surface);auto& g=p.gl;const auto texture=world.textureForCurrentContext();p.attach(d.native,d.width,d.height);p.setScissor(false);p.useProgram(p.mappedWorldProgram->programId());
+ p.requireKnown(a,{0,0,a.width,a.height},__func__,__LINE__);p.requireKnown(c,{0,0,c.width,c.height},__func__,__LINE__);Current current(p.context,p.surface);auto& g=p.gl;const auto texture=world.textureForCurrentContext();p.attach(d.native,d.width,d.height);p.setScissor(false);p.useProgram(p.mappedWorldProgram->programId());
  g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,texture);g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,a.native);g.glActiveTexture(GL_TEXTURE2);g.glBindTexture(GL_TEXTURE_2D,c.native);
  const auto u=[&](const char* name){return p.mappedWorldProgram->uniformLocation(name);};g.glUniform1i(u("worldPixels"),0);g.glUniform1i(u("uiPixels"),1);g.glUniform1i(u("coordinates"),2);g.glUniform1i(u("worldWidth"),world.size().width());p.draw(3);p.check();world.samplingComplete();d.validity.define({0,0,d.width,d.height});p.damage(d,{0,0,d.width,d.height});++p.counters.copies;
 }

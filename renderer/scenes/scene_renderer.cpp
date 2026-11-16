@@ -1,4 +1,5 @@
 #include "scene_renderer.hpp"
+#include "../failure_diagnostics.hpp"
 #include "../sprites/tint_outline.hpp"
 #include "../../assets/sprite_run_clipping.hpp"
 #include <algorithm>
@@ -341,6 +342,8 @@ bool SceneRenderer::drawNext(const SceneBatchBudget& budget){
     try{renderer_.batch([&]{
         bool first=true;
         while(cursor_<end && (first||std::chrono::steady_clock::now()<deadline)){first=false;const auto& draw=pending_[cursor_];
+            DiagnosticCall diagnostic("scene_draw",{std::uint64_t(cursor_),std::uint64_t(end),std::uint64_t(draw.frame),std::uint64_t(draw.anchorX),std::uint64_t(draw.anchorY),std::uint64_t(draw.composite.mode),canvas_});
+            diagnostic.label(draw.resource.name);
             if((draw.additive||draw.composite.mode==CompositeMode::additive)&&drawAdditives(end,deadline,bytes))continue;
             if(limits_.cacheColourRectangles&&limits_.batchSmallColourRectangles&&draw.visible&&draw.colourRectangle&&
                draw.colourRectangle->pixels.width<=2&&draw.colourRectangle->pixels.height<=2){

@@ -1,3 +1,4 @@
+#include "../renderer/failure_diagnostics.hpp"
 #include "../compat/legacy/canvas_world.hpp"
 #include "../renderer/sprites/sprite.hpp"
 #include <QGuiApplication>
@@ -19,7 +20,7 @@ using namespace render;
 using Clock=std::chrono::steady_clock;
 static void require(bool ok,const char* message){if(!ok)throw std::runtime_error(message);}
 template<class F> static void reject(F action){bool refused=false;try{action();}catch(const std::invalid_argument&){refused=true;}require(refused,"Invalid input was accepted");}
-template<class F> static void rejectUndefined(F action){bool refused=false;try{action();}catch(const std::runtime_error& e){require(std::string(e.what())=="Surface pixels are undefined; reload or overwrite required","Unexpected undefined-pixel refusal");refused=true;}require(refused,"Undefined pixels were accepted");}
+template<class F> static void rejectUndefined(F action){bool refused=false;try{action();}catch(const std::runtime_error& e){require(renderFailureSummary(QString::fromUtf8(e.what()))=="Surface pixels are undefined; reload or overwrite required","Unexpected undefined-pixel refusal");refused=true;}require(refused,"Undefined pixels were accepted");}
 static QByteArray load(const QString& path){QFile f(path);require(f.open(QIODevice::ReadOnly),"Cannot open input");return f.readAll();}
 static QString digest(const Image& image){QByteArray words;words.resize(image.pixels.size()*2);for(std::size_t i=0;i<image.pixels.size();++i){words[2*i]=char(image.pixels[i]);words[2*i+1]=char(image.pixels[i]>>8);}return QString::fromLatin1(QCryptographicHash::hash(words,QCryptographicHash::Sha256).toHex());}
 static double elapsed(Clock::time_point start){return std::chrono::duration<double,std::milli>(Clock::now()-start).count();}

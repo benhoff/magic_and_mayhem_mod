@@ -30989,3 +30989,31 @@ after incorporating current master, including the native glyph admission fix.
 The shell help regression also passes. See `SAVE.restart-persistence.retry-20261116`.
 Current scoped accounting records unavailable historical proof explicitly; this
 retry renews no engine validation milestone or original serializer claim.
+
+### 2026-11-16: automatic bounded render failure diagnostics
+
+`NR.render-failure-diagnostics` adds always-enabled owner-thread call metadata
+and frozen failure context. Undefined reads name the exact renderer operation,
+file/line, rectangle, first unknown pixel, validity hash and live surface
+identities/formats/clippers. World/source records retain all24 producer fields
+(including the original caller), generation/source ordinal and active payload
+identity; UI commands retain version, sequence, opcode and all13 words. Scene
+metadata identifies the resource/frame and renderer canvas.64 recent calls and16
+active scopes use fixed storage; successful calls add no diagnostic serialization,
+hashing, I/O or GPU readback. A compressed exception-string envelope preserves the
+first snapshot through string adapters, queues and cleanup. Existing worker,
+resident and native-only terminal reports expose `render_failure` automatically.
+
+The [six focused controls](render-failure-diagnostics-20261116/controls-01.json)
+pass with658 stable source pins and retained binary hashes: real undefined GPU
+storage, original caller/UI metadata, history wrap, thread/string forwarding,
+sticky native-only receipts, worker terminal cleanup and existing native recipe,
+surface-loss and context-recovery guards. These are native synthetic controls,
+with zero original-game runs. See [the diagnostic format and limits](../../docs/render-failure-diagnostics.md).
+
+The reported natural failure occurred after quitting a campaign and attempting a
+new one. It has not been reproduced or repaired here. Bounded metadata is not a
+full replay, pixel capture or machine stack trace. Abrupt termination or failed
+storage can prevent persistence; report-write failures log the original envelope.
+Existing renderer/hosting evidence retains its original hashes and pending source
+applicability; these controls do not refresh unrelated historical engine claims.

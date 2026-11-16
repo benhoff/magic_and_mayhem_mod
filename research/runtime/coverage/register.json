@@ -17279,12 +17279,14 @@
         "research/runtime/native-cursor-reload.md",
         "research/runtime/surface-dib-ddraw.md",
         "research/runtime/surface-dc-palette.md",
-        "research/runtime/surface-dc-reuse.md"
+        "research/runtime/surface-dc-reuse.md",
+        "docs/render-failure-diagnostics.md"
       ],
       "implementation": [
         "renderer/known_pixels.hpp",
         "renderer/blit.cpp",
-        "renderer/blit.hpp"
+        "renderer/blit.hpp",
+        "renderer/failure_diagnostics.hpp"
       ],
       "tests": [
         "tests/render-restoration-test.cpp",
@@ -17298,7 +17300,8 @@
         "tests/render-dc-palette-test.cpp",
         "tools/check-native-dc-palette.py",
         "tests/render-dc-reuse-test.cpp",
-        "tools/check-native-dc-reuse.py"
+        "tools/check-native-dc-reuse.py",
+        "tests/render-failure-diagnostics-test.cpp"
       ],
       "evidence": [
         "NR.surface-contents.validity.native-20261006",
@@ -189576,6 +189579,69 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.render-failure-diagnostics",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded automatic native render failure call and surface diagnostics",
+      "scope": "Always-enabled metadata for handled native rendering exceptions:64 recent and16 active owner calls, original producer/UI fields, source generation/caller/resource identity, payload hashes/prefixes on failure, exact undefined-read surface/rectangle/validity and live surface metadata. Compressed exception envelope survives string-only queues/adapters; existing terminal worker/resident/native-only reports expose the first structured failure. No pixel readback or validity repair. Natural campaign Quit/new-campaign failure remains unreproduced.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "docs/render-failure-diagnostics.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "renderer/failure_diagnostics.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/blit.cpp",
+        "renderer/command_consumer.cpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/native_render_worker.cpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/native_only_session.hpp",
+        "apps/qt-shell/main.cpp"
+      ],
+      "tests": [
+        "tests/render-failure-diagnostics-test.cpp",
+        "tests/native-render-worker-test.cpp",
+        "tests/native-only-session-test.cpp",
+        "tests/render-surface-loss-test.cpp",
+        "tests/render-context-recovery-test.cpp",
+        "tests/native-frame-recipe-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "renderer/blit.hpp",
+        "renderer/commands.hpp",
+        "renderer/surface_copy.hpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "apps/qt-shell/native_render_worker.hpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "renderer/gpu_production_queue.cpp",
+        "renderer/render_service_main.cpp",
+        "renderer/isolated_renderer.cpp"
+      ],
+      "evidence": [
+        "NR.render-failure-diagnostics.controls-20261116"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "The reported natural campaign Quit followed by new campaign has not been rerun with this instrumentation; no root-cause repair or original-game equivalence is claimed.",
+        "Bounded metadata is not a full replay, machine stack trace or pixel capture. Abrupt kill, memory exhaustion, disk failure and power loss can prevent persistence.",
+        "Existing renderer/hosting proof retains its historical fingerprints. Fresh diagnostic controls do not revalidate unrelated renderer behavior."
+      ]
     }
   ],
   "evidence": [
@@ -438429,6 +438495,24 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.render-failure-diagnostics.controls-20261116",
+      "kind": "native_integration",
+      "scope": "Six fresh synthetic native controls on llvmpipe:bounded history, real undefined GPU storage metadata, original producer caller and UI command preservation, string/thread forwarding and sticky terminal reports; existing recipe/surface-loss/context-recovery controls also pass.658 exact source pins and tested binary hashes. No natural campaign Quit/new-campaign reproduction, repair, original-game comparison or wider renderer equivalence.",
+      "record": "research/runtime/render-failure-diagnostics-20261116/controls-01.json",
+      "sha256": "651492c03233a66dff889bb4d255083392fcf2b0f3a4f6af4d27c5b6204341cb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -476546,8 +476630,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-acfc15365323f2b405359752edbccd8deef2d80b003462f96bb8940f56c0d3f0.json",
-    "sha256": "acfc15365323f2b405359752edbccd8deef2d80b003462f96bb8940f56c0d3f0"
+    "path": "research/runtime/coverage/source-index-d4495aeb8b95e137d632f8c131805b61b61bab3537f98b9844ca4f75b683b921.json",
+    "sha256": "d4495aeb8b95e137d632f8c131805b61b61bab3537f98b9844ca4f75b683b921"
   },
   "evidence_applicability": [
     {
@@ -476592,7 +476676,7 @@
     }
   ],
   "change_scope_index": {
-    "path": "research/runtime/coverage/evidence-dependencies-794833680530931b592f38f3d4997d1680f5d89d47d3fa3241a55274fcc7fecb.json",
-    "sha256": "794833680530931b592f38f3d4997d1680f5d89d47d3fa3241a55274fcc7fecb"
+    "path": "research/runtime/coverage/evidence-dependencies-c602c3b4a4e6bdead89618d872aa8f6bb7dc298cbcbe5a70eec7a77b726f1645.json",
+    "sha256": "c602c3b4a4e6bdead89618d872aa8f6bb7dc298cbcbe5a70eec7a77b726f1645"
   }
 }

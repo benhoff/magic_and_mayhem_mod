@@ -1,4 +1,5 @@
 #include "live_command_renderer.hpp"
+#include "../../renderer/failure_diagnostics.hpp"
 #include "gl_viewport.hpp"
 #include "../../renderer/command_copy_diagnostics.hpp"
 #include "../../protocols/include/mnm/render_stream_v5.h"
@@ -37,6 +38,7 @@ void LiveCommandRenderer::setPresentationSuspended(bool suspended){
 }
 bool LiveCommandRenderer::poll(quint32 budget){
     if(closed_)return false;
+    mnm::render::DiagnosticCall poll("command_poll",{cpuReplySession_,channel_.version(),channel_.consumed(),budget});
     try {
         if(!target_.ready())return true;
         if(!budget || budget>MNM_RENDER_COMMANDS_V1_POLL_BYTES)throw std::runtime_error("Invalid command poll budget");
@@ -76,7 +78,8 @@ bool LiveCommandRenderer::poll(quint32 budget){
                 const auto bytes=channel_.poll(remaining);
                 remaining-=quint32(bytes.size());
                 if(!bytes.isEmpty())acceptance_.append("fragment",{},bytes);
-                pending_=decoder_->append(bytes);cursor_=0;
+                mnm::render::DiagnosticCall fragment("command_fragment",{channel_.consumed(),std::uint64_t(bytes.size())});fragment.payload(bytes.constData(),std::size_t(bytes.size()));
+                try{pending_=decoder_->append(bytes);}catch(const std::exception& e){throw mnm::render::renderFailure(e.what());}cursor_=0;
                 if(cpuReadPending||cpuReadQueued)for(const auto& command:pending_)if(command.operation==MNM_RENDER_STREAM_V5_OPERATION_CPU_READ){
                     if(cpuReadPending)cpuReadPending(std::uint64_t(command.words[1])|(std::uint64_t(command.words[2])<<32));
                     if(cpuReadQueued)cpuReadQueued(command,consumer_->result());
@@ -114,7 +117,7 @@ bool LiveCommandRenderer::poll(quint32 budget){
             decoder_->finish();consumer_->finish();acceptance_.append("ended",QJsonObject{{"commands",int(consumer_->result().commands)}});acceptance_.finish();ended_=true;closed_=true;
         }
         return true;
-    }catch(const std::exception& e){fail(e.what());return false;}
+    }catch(const std::exception& e){fail(QString::fromUtf8(mnm::render::renderFailure(e.what()).what()));return false;}
 }
 bool LiveCommandRenderer::finishProducer(){
     if(ended_)return true;
@@ -130,7 +133,7 @@ bool LiveCommandRenderer::finishProducer(){
 std::uint64_t LiveCommandRenderer::preparedGeneration() const{return consumer_ && !closed_ && !ended_?consumer_->preparedGeneration():0;}
 bool LiveCommandRenderer::presentPrepared(const mnm::render::GpuFrame& frame,std::uint64_t generation){
     try{if(!consumer_ || closed_ || ended_)return false;consumer_->presentPrepared(frame,generation);return true;}
-    catch(const std::exception& e){fail(e.what());return false;}
+    catch(const std::exception& e){fail(QString::fromUtf8(mnm::render::renderFailure(e.what()).what()));return false;}
 }
 unsigned LiveCommandRenderer::presentations() const{return consumer_?consumer_->result().presents:0;}
 const mnm::render::CommandResult* LiveCommandRenderer::result() const{return consumer_?&consumer_->result():nullptr;}
@@ -138,7 +141,7 @@ const mnm::render::CommandResult* LiveCommandRenderer::result() const{return con
 std::uint64_t LiveCommandRenderer::sealedGeneration() const{return consumer_ && !closed_ && !ended_?consumer_->sealedGeneration():0;}
 bool LiveCommandRenderer::presentSealed(const mnm::render::GpuFrame& frame,std::uint64_t generation){
     try{if(!consumer_ || closed_ || ended_)return false;consumer_->presentSealed(frame,generation);return true;}
-    catch(const std::exception& e){fail(e.what());return false;}
+    catch(const std::exception& e){fail(QString::fromUtf8(mnm::render::renderFailure(e.what()).what()));return false;}
 }
 
 mnm::render::CommandDisplayState LiveCommandRenderer::displayState() const{return consumer_ && !closed_ && !ended_?consumer_->displayState():mnm::render::CommandDisplayState{};}

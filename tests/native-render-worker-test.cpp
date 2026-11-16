@@ -1,4 +1,5 @@
 #include "native_render_worker.hpp"
+#include "../renderer/failure_diagnostics.hpp"
 #include "gl_viewport.hpp"
 #include "../protocols/include/mnm/render_command_ring.h"
 #include <QApplication>
@@ -192,6 +193,10 @@ int main(int argc,char** argv){
         const QByteArray invalid(16,'x');require(mnm_ring_write(&broken,invalid.data(),unsigned(invalid.size()))==1,"Refusal publication");
         QElapsedTimer deadline;deadline.start();while(failed.poll(false,true)&&deadline.elapsed()<10000){app.processEvents();std::this_thread::sleep_for(std::chrono::milliseconds(1));}
         require(!failed.error().isEmpty(),"Malformed command accepted");failed.abort();bad.unmap(badMap);
+        QFile failureReport(dir.filePath("resident-world-terminal.json"));require(failureReport.open(QIODevice::ReadOnly),"Failure terminal report missing after cleanup");
+        const auto failureJson=QJsonDocument::fromJson(failureReport.readAll()).object();
+        require(failureJson["render_failure"].toObject()["schema"].toInt()==1,"Terminal report lost structured failure through string adapters");
+        require(!failureJson["render_failure"].toObject()["recent"].toArray().isEmpty(),"Terminal failure lost owner call history");
         const auto hashes=QJsonDocument(pixelHashes).toJson(QJsonDocument::Compact);
         std::printf("{\"success\":true,\"pixel_sha256\":%s,\"native_presentations\":172,\"immutable_frame_checked\":true,\"slow_gui_checked\":true,\"presentation_lease_bound\":2,\"malformed_refused\":true,\"joined_teardown\":true,\"movie_pause_drains_commands\":true,\"movie_pause_defers_gui_frames\":true,\"native_readbacks\":0,\"rgba_readbacks\":0,\"diagnostic_framebuffer_checks\":%u,\"presentation_export_allocations\":2,\"presentation_source_allocations\":1,\"inherited_source_presented_once\":true,\"first_world_seal_timing\":true,\"detailed_ui_block_states\":true,\"frame_trace_bounds\":true,\"frame_trace_gui\":true,\"frame_trace_order_refusal\":true,\"deadline_deduplication\":true,\"elapsed_histogram_boundaries\":true,\"continuous_ui_clock_frames\":60,\"ordered_source_updates\":20,\"mixed_generation_refused\":true}\n",hashes.constData(),diagnosticFramebufferChecks);return 0;
     }catch(const std::exception& e){std::fprintf(stderr,"Render worker controls failed: %s\n",e.what());return 1;}

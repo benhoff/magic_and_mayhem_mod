@@ -1,4 +1,5 @@
 #include "native_render_worker.hpp"
+#include "../../renderer/failure_diagnostics.hpp"
 #include "gl_viewport.hpp"
 #include <QOpenGLContext>
 #include <QSaveFile>
@@ -165,6 +166,7 @@ void NativeRenderWorker::testSurfaceLoss(){
     throw std::runtime_error("Native provider accepted a destroyed target");
 }
 void NativeRenderWorker::run(){
+    mnm::render::DiagnosticCall::reset();
     std::vector<mnm::render::GpuFrame> leases;
     bool mediaPaused=false;
     NativeWorkerStatusGate statusGate(statusEveryTurn_);
@@ -175,6 +177,8 @@ void NativeRenderWorker::run(){
         Status next;next.state=commands_->state();next.recoveries=commands_->recoveries();next.error=commands_->error();
         if(const auto* result=commands_->result()){next.hasResult=true;next.result=*result;}
         next.report=world_->report();
+        const auto failure=mnm::render::renderFailureDetails(next.report["error"].toString());
+        if(!failure.isEmpty())next.report["render_failure"]=failure;
         next.report["media_presentation_paused"]=mediaPaused;
         next.report["native_render_owner"]="dedicated-thread";
         next.report["graphics_recovery"]=QJsonObject{{"enabled",durableGraphics_},{"completed",int(graphicsRecoveries_)},{"policy","Native RAM checkpoints at completed render turns; quiescent context rebuild preserves session and frame identities. Isolated renderer operations retry after worker failure/deadline; native state and game session are retained. Raster presentation uses no GUI GL driver."}};
@@ -241,6 +245,7 @@ void NativeRenderWorker::run(){
             trace.sourceBefore=beforeWorld;trace.framesBefore=world_->nativeFrames();trace.draw=draw;trace.paused=pause;
             trace.deadline=beforeState.deadline.time_since_epoch().count()?std::chrono::duration_cast<std::chrono::microseconds>(beforeState.deadline.time_since_epoch()).count():0;
             mediaPaused=pause;commands_->setMediaActive(pause);
+            mnm::render::DiagnosticCall diagnostic("render_turn",{turns_,beforeWorld});
             world_->poll(quit);
             const double worldMs=stageClock.nsecsElapsed()/1000000.;worldTiming_.add(worldMs);if(world_->displayState().generation!=beforeWorld)activeWorldTiming_.add(worldMs);stageClock.restart();
             trace.worldEnd=frameTrace_.stamp();trace.commandEnd=trace.extraEnd=trace.worldEnd;
@@ -330,10 +335,10 @@ void NativeRenderWorker::run(){
             trace.waitEnd=frameTrace_.stamp();frameTrace_.record(trace);
         }
     }catch(const std::exception& e){
-        const auto failure=QString::fromUtf8(e.what());
+        const auto failure=QString::fromUtf8(mnm::render::renderFailure(e.what()).what());
         world_->abort(failure);updateStatus();
         {std::lock_guard<std::mutex> lock(mutex_);published_.error=failure;}
-        try{save();}catch(const std::exception&){}
+        try{save();}catch(const std::exception& saveError){std::fprintf(stderr,"Cannot persist native render failure: %s\nOriginal failure: %s\n",saveError.what(),failure.toUtf8().constData());}
         // Keep resource ownership alive until the GUI returns its last frame.
         {std::unique_lock<std::mutex> lock(mutex_);wake_.wait(lock,[this]{return stop_;});}
         // The GUI has returned its frame and, when possible, supplied a valid
