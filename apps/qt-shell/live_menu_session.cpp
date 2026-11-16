@@ -63,11 +63,29 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent,EnginePrefer
         }
     });
     timer_.setInterval(50);connect(&timer_,&QTimer::timeout,this,[this]{poll();});
+    saveRecovery_.setProcessChannelMode(QProcess::MergedChannels);
+    auto recoveryFinished=[this](bool ok,const QString& error){
+        saveRecoveryTimeout_.stop();
+        auto completed=std::move(saveRecoveryCompleted_);
+        if(completed)completed(ok,error);
+    };
+    connect(&saveRecovery_,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),this,[this,recoveryFinished](int code,QProcess::ExitStatus status){
+        const auto diagnostic=QString::fromLocal8Bit(saveRecovery_.readAllStandardOutput()).trimmed();
+        const bool ok=code==0&&status==QProcess::NormalExit;
+        recoveryFinished(ok,ok?QString{}:"Save synchronization failed; session files retained at "+root_+": "+diagnostic);
+    });
+    connect(&saveRecovery_,&QProcess::errorOccurred,this,[this,recoveryFinished](QProcess::ProcessError error){
+        if(error==QProcess::FailedToStart)recoveryFinished(false,"Cannot synchronize stopped-session saves: "+saveRecovery_.errorString());
+    });
+    saveRecoveryTimeout_.setSingleShot(true);saveRecoveryTimeout_.setInterval(30000);
+    connect(&saveRecoveryTimeout_,&QTimer::timeout,this,[this]{saveRecovery_.kill();});
 }
 LiveMenuSession::~LiveMenuSession(){
     // Stop delivery before bridge_, state_ and timer_ are torn down. The
     // process owner reaps its children without publishing normal completion.
     timer_.stop();timer_.disconnect(this);process_.disconnect(this);
+    saveRecovery_.disconnect(this);saveRecoveryTimeout_.stop();saveRecoveryCompleted_={};
+    if(saveRecovery_.state()!=QProcess::NotRunning){saveRecovery_.kill();saveRecovery_.waitForFinished(1000);}
     if(bridge_)retireBridge();
 }
 bool LiveMenuSession::start(){
@@ -105,15 +123,23 @@ bool LiveMenuSession::normalQuitAccepted(){
     if(quitting_ && pending_)poll();
     return normalQuitAccepted_;
 }
-bool LiveMenuSession::running() const{return preparing_||process_.hardStopping()||process_.state()!=QProcess::NotRunning;}
+bool LiveMenuSession::running() const{return preparing_||process_.hardStopping()||process_.state()!=QProcess::NotRunning||bool(saveRecoveryCompleted_);}
 void LiveMenuSession::forceStop(std::function<void(bool,const QString&)> completed){
+    if(saveRecoveryCompleted_)return;
     const bool staged=preparing_;
     timer_.stop();active_=false;preferencesToSave_=false;pending_=transition_=false;deferredMenuRequest_={};
     if(bridge_)retireBridge();
     process_.forceStop(staged?QString{}:winePrefix.isEmpty()?QDir(repo_).filePath(hostLobbyEnabled?"working/tests/menu-host-dx6-wine":"working/tests/menu-live-wine"):winePrefix,
-        [this,completed=std::move(completed)](bool ok,const QString& error){
-            preparing_=false;bridge_.reset();completed(ok,error);
+        [this,staged,completed=std::move(completed)](bool ok,const QString& error){
+            preparing_=false;bridge_.reset();
+            if(ok&&!staged&&!root_.isEmpty())recoverStoppedSaves(std::move(completed));
+            else completed(ok,error);
         });
+}
+void LiveMenuSession::recoverStoppedSaves(std::function<void(bool,const QString&)> completed){
+    saveRecoveryCompleted_=std::move(completed);
+    saveRecoveryTimeout_.start();
+    saveRecovery_.start("python3",{"-B",QDir(repo_).filePath("tools/menu_save_store.py"),"--stopped-session",root_});
 }
 bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<int,17>* rules){
     auto observe=[&](bool accepted,const QString& reason){if(!accepted)menuWitness(MNM_MTL_REQUEST_REFUSED,nullptr,action);if(requestObserved)requestObserved(action,accepted,reason,state_);return accepted;};

@@ -81,15 +81,19 @@ def stage(game, store):
         for name in files: _atomic(target/name,(store/name).read_bytes())
         return {'schema':1,'build':BUILD,'store':str(store.resolve()),'game':str(game.resolve()),'baseline':files}
 
-def commit(state):
+def commit(state, *, preserve_missing=False):
     """Merge a completed session without replacing concurrent store changes."""
     if state.get('schema')!=1 or state.get('build')!=BUILD: raise ValueError('Invalid save session baseline')
     store=Path(state['store']);target=Path(state['game'])/'Save';baseline=state['baseline']
     final=_files(target)
     changed={n for n in set(baseline)|set(final) if baseline.get(n)!=final.get(n)}
+    if preserve_missing:
+        # An interrupted writer must never turn a missing file into a deletion
+        # of the last persistent copy. Clean Quit retains explicit deletions.
+        changed.intersection_update(final)
     with _lock(store):
         current=_files(store)
-        conflicts=[n for n in changed if current.get(n)!=baseline.get(n)]
+        conflicts=[n for n in changed if current.get(n) not in (baseline.get(n),final.get(n))]
         if conflicts: raise ValueError('Concurrent save changes preserved; session files retained at '+str(target)+': '+', '.join(sorted(conflicts)))
         # Validate the complete merge and case namespace before changing any file.
         merged={**current,**{n:final[n] for n in changed if n in final}}
@@ -103,3 +107,34 @@ def commit(state):
         try: os.fsync(fd)
         finally: os.close(fd)
     return {'changed':sorted(changed),'files':merged,'scope':'Atomic per-file copying and locked conflict checks; not a multi-file crash transaction or original serializer/durability equivalence'}
+
+
+def recover_session(session, root):
+    """Copy stopped-session saves before a host starts another installation.
+
+    The caller must first stop and wait for its launcher and Wine prefix. This
+    function deliberately cannot infer process ownership from a stale manifest.
+    """
+    session, root = Path(session).resolve(), Path(root).resolve()
+    if not session.is_relative_to(root/'working'):
+        raise ValueError('Save recovery session must be owned under working/')
+    state = json.loads((session/'manifest.json').read_bytes()).get('save_store')
+    if state is None:
+        return {'changed': [], 'scope': 'Session has no persistent save store'}
+    if Path(state['game']).resolve() != session/'game':
+        raise ValueError('Save recovery game differs from the stopped session')
+    if not Path(state['store']).resolve().is_relative_to(root/'working'):
+        raise ValueError('Save recovery store must be owned under working/')
+    return commit(state, preserve_missing=True)
+
+
+if __name__ == '__main__':
+    import argparse
+    import sys
+    parser = argparse.ArgumentParser(description='Recover saves after the owning launcher and Wine have stopped.')
+    parser.add_argument('--stopped-session', required=True, type=Path)
+    args = parser.parse_args()
+    try:
+        print(json.dumps(recover_session(args.stopped_session, Path(__file__).resolve().parents[1])))
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        parser.exit(1, 'Session saves retained; synchronization failed: '+str(error)+'\n')

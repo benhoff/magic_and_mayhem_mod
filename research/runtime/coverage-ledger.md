@@ -30968,3 +30968,24 @@ opaque accepted-reference accounting policy; original payload unavailability
 remains explicit and supplies no fresh validation credit. Source accounting
 and normal hooks remain mandatory. No new original comparison, live menu
 transition or engine status promotion is claimed.
+
+## Save persistence across hard restart — 2026-11-14
+
+Completed session saves are copied after verified launcher/prefix shutdown and
+before successful restart admission. Nonzero unbounded launcher exits also merge
+extant saves; recovery does not propagate missing files as deletions. Locked
+stores remain asynchronous and conflicts preserve both copies while refusing
+restart. `Ben.sav` from the failed `run-ww5iw1pt` session was recovered to the
+configured user store with matching SHA-256 and its source retained. See
+[save ownership](menu-save-store.md) and the hash-bound recovery/test records in
+`save-restart-persistence-20261114/`. Generated-byte filesystem and Qt lifecycle
+tests validate host file-copy policy only. Original serializer interruption,
+power-loss durability and fresh actual-game Save/restart/Load acceptance remain
+pending; historical engine milestones and hashes are unchanged.
+
+Save-restart retry, 2026-11-16: verified the retained executable/source identities
+and reran all eight filesystem/launcher and five Qt restart/destruction checks
+after incorporating current master, including the native glyph admission fix.
+The shell help regression also passes. See `SAVE.restart-persistence.retry-20261116`.
+Current scoped accounting records unavailable historical proof explicitly; this
+retry renews no engine validation milestone or original serializer claim.

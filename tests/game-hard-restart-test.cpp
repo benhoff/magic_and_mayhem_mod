@@ -7,8 +7,12 @@
 #include <QDir>
 #include <QTemporaryDir>
 #include <QThread>
+#include <QFileInfo>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <iostream>
 #include <stdexcept>
+#include <sys/file.h>
 
 static void check(bool ok,const char* message){if(!ok)throw std::runtime_error(message);}
 static void spin(const std::function<bool()>& ready,int milliseconds=4000){
@@ -84,6 +88,7 @@ int main(int argc,char** argv) try{
     // Exercise LiveMenuSession's staging-exit branch and subsequent reuse.
     check(QDir().mkpath(repo.filePath("tools")),"tools directory");
     check(QDir().mkpath(repo.filePath("evidence")),"evidence directory");
+    check(QFile::copy(QFileInfo(QString::fromUtf8(__FILE__)).dir().filePath("../tools/menu_save_store.py"),repo.filePath("tools/menu_save_store.py")),"production save recovery helper");
     const auto prepare=repo.filePath("tools/prepare-menu-observer.py");
     script(prepare,"import time\nprint('Evidence directory: staging-must-not-launch',flush=True)\ntime.sleep(30)\n");
     LiveMenuSession session(repo.path());session.preferencesMenusEnabled=false;
@@ -93,14 +98,36 @@ int main(int argc,char** argv) try{
     check(session.start(),"menu staging start");spin([&]{return staging;});
     done=false;session.forceStop([&](bool ok,const QString&){success=ok;done=true;});spin([&]{return done;});
     check(success&&!session.running()&&!launches&&!finishes&&!failures,"cancelled staging cannot launch from finished signal");
-    script(prepare,"from pathlib import Path\nprint('Evidence directory: '+str(Path.cwd()/'evidence'),flush=True)\n");
+    check(QDir().mkpath(repo.filePath("working/session/game/Save")),"session save directory");
+    const auto saved=repo.filePath("working/session/game/Save/Ben.sav"),persistent=repo.filePath("working/saves/Ben.sav");
+    {QFile file(saved);check(file.open(QIODevice::WriteOnly)&&file.write("completed save")==14,"completed session save");}
+    {QFile file(repo.filePath("working/session/manifest.json"));check(file.open(QIODevice::WriteOnly),"session manifest");
+     file.write(QJsonDocument(QJsonObject{{"save_store",QJsonObject{{"schema",1},{"build","40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"},{"game",repo.filePath("working/session/game")},{"store",repo.filePath("working/saves")},{"baseline",QJsonObject{}}}}}).toJson());}
+    script(prepare,"from pathlib import Path\nprint('Evidence directory: '+str(Path.cwd()/'working/session'),flush=True)\n");
     script(repo.filePath("tools/run-menu-observer.py"),"import time\ntime.sleep(30)\n");
     script(server,"import os,sys\nfrom pathlib import Path\nwith Path(__file__).with_name('server.log').open('a') as f: f.write(sys.argv[1]+' '+os.environ['WINEPREFIX']+'\\n')\n");
     qputenv("PATH",repo.path().toUtf8()+":"+qgetenv("PATH"));session.winePrefix=prefix;
     check(session.start(),"menu relaunch after cancelled staging");spin([&]{return launches==1;});
-    done=false;session.forceStop([&](bool ok,const QString&){success=ok;done=true;});spin([&]{return done;});
+    check(QDir().mkpath(repo.filePath("working/saves")),"persistent store directory");
+    QFile saveLock(repo.filePath("working/saves/.lock"));check(saveLock.open(QIODevice::ReadWrite)&&::flock(saveLock.handle(),LOCK_EX)==0,"hold save store lock");
+    done=false;session.forceStop([&](bool ok,const QString&){success=ok;done=true;});
+    spin([&]{return session.launcherProcessId()==0;});
+    QElapsedTimer recoveryWait;recoveryWait.start();while(recoveryWait.elapsed()<100){QCoreApplication::processEvents();QThread::msleep(2);}
+    check(!done&&session.running()&&!session.start(),"save synchronization holds restart admission without blocking Qt");
+    session.forceStop([&](bool,const QString&){throw std::runtime_error("duplicate recovery callback");});
+    check(::flock(saveLock.handle(),LOCK_UN)==0,"release save store lock");saveLock.close();spin([&]{return done;});
     check(success&&!session.running()&&!finishes&&!failures,"active menu force-stop bypasses normal quit and exit handlers");
+    check(read(persistent)=="completed save","hard restart persists completed save before callback");
+    {QFile file(persistent);check(file.open(QIODevice::WriteOnly)&&file.write("concurrent save")==15,"concurrent persistent save");}
+    check(QDir().mkpath(repo.filePath("working/conflict/game/Save")),"fresh conflict session");
+    check(QFile::copy(saved,repo.filePath("working/conflict/game/Save/Ben.sav")),"conflicting session save");
+    {auto manifest=read(repo.filePath("working/session/manifest.json"));manifest.replace("working/session/game","working/conflict/game");
+     QFile file(repo.filePath("working/conflict/manifest.json"));check(file.open(QIODevice::WriteOnly),"conflict manifest");file.write(manifest);}
+    script(prepare,"from pathlib import Path\nprint('Evidence directory: '+str(Path.cwd()/'working/conflict'),flush=True)\n");
+    check(session.start(),"menu relaunch before conflict");spin([&]{return launches==2;});
+    done=false;session.forceStop([&](bool ok,const QString& error){success=ok;check(error.contains("Concurrent"),"save conflict explained");done=true;});spin([&]{return done;});
+    check(!success&&!session.running()&&read(persistent)=="concurrent save"&&read(saved)=="completed save","save conflict refuses restart and preserves both copies");
     unrelated.kill();unrelated.waitForFinished();
-    std::cout<<"PASS: toolbar and fullscreen shortcut, input-filter priority, frozen process tree, prefix kill/wait, asynchronous heartbeat, repeated stop, reuse, shutdown failures, menu staging and active-session cancellation\n";
+    std::cout<<"PASS: toolbar and fullscreen shortcut, input-filter priority, frozen process tree, prefix kill/wait, asynchronous heartbeat, repeated stop, reuse, shutdown failures, menu staging, stopped-session save recovery, recovery admission and conflict refusal\n";
     return 0;
 }catch(const std::exception& error){std::cerr<<error.what()<<'\n';return 1;}

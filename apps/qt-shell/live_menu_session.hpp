@@ -89,6 +89,7 @@ private:
     friend struct LiveMenuSessionTestAccess; // Synthetic wire/lifecycle validation without a game process.
     void saveAcceptedPreferences();
     void publishPreferences();
+    void recoverStoppedSaves(std::function<void(bool,const QString&)> completed);
     void poll();
     void retireBridge();
     void menuWitness(quint32 event,const MenuBridge::State* observed=nullptr,quint32 action=UINT32_MAX,quint32 request=UINT32_MAX);
@@ -103,6 +104,9 @@ private:
     bool preferencesToSave_=false;
     std::array<int,7> acceptedPreferences_{};
     GameProcess process_;
+    QProcess saveRecovery_;
+    QTimer saveRecoveryTimeout_;
+    std::function<void(bool,const QString&)> saveRecoveryCompleted_;
     QTimer timer_;
     QElapsedTimer clock_;
     QByteArray preparation_;

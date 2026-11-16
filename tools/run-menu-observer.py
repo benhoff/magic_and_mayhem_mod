@@ -67,11 +67,11 @@ def main():
         for name,key in [('Chaos.exe','staged_sha256'),('MnmMenu.dll','dll_sha256')]:
             if hashlib.sha256((root/'game'/name).read_bytes()).hexdigest()!=metadata[key]:raise ValueError(f'{name} changed')
         if metadata.get('save_store'):
-            save_result={'merged':False,'reason':'Unclean or bounded termination; session saves retained.'}
-            if result.returncode==0 and args.seconds is None:
+            save_result={'merged':False,'reason':'Bounded termination; session saves retained.'}
+            if args.seconds is None:
                 from menu_save_store import commit as commit_saves
                 try:
-                    save_result=commit_saves(metadata['save_store']);save_result['merged']=True
+                    save_result=commit_saves(metadata['save_store'],preserve_missing=result.returncode!=0);save_result['merged']=True
                 except (OSError,ValueError) as error:
                     save_result['error']=str(error)
                     (root/'save-store-result.json').write_text(json.dumps(save_result,indent=2)+'\n')
