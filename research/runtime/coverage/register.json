@@ -6888,11 +6888,12 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Qt host and session orchestration",
-      "scope": "Selected channels/adapters and ownership; full subsystem replacement and current live equivalence remain unclaimed. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Hard restart is an intentional host policy: isolate launcher process groups, force-stop and wait for Wine in the selected prefix, cancel menu staging without relaunching its exit branch, retire channels, discard presentation and launch a fresh session with the existing options. Synthetic process/lifecycle coverage is separate from actual-game freeze recovery, which remains pending; prefix shutdown also stops other processes sharing that prefix.",
+      "scope": "Selected channels/adapters and ownership; full subsystem replacement and current live equivalence remain unclaimed. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Hard restart is an intentional host policy: isolate launcher process groups, force-stop and wait for Wine in the selected prefix, cancel menu staging without relaunching its exit branch, retire channels, discard presentation and launch a fresh session with the existing options. Synthetic process/lifecycle coverage is separate from actual-game freeze recovery, which remains pending; prefix shutdown also stops other processes sharing that prefix. Stopped active sessions now synchronize bounded opaque save files asynchronously after the launcher/prefix wait barrier and before reporting force-stop success. Save synchronization failures refuse restart; cancelled staging does not recover saves. Synthetic file/lifecycle tests cover this host policy; original serializer interruption and fresh actual-game acceptance remain pending.",
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/qt-shell-hosting.md"
+        "research/runtime/qt-shell-hosting.md",
+        "research/runtime/menu-save-store.md"
       ],
       "implementation": [
         "apps/qt-shell/main.cpp",
@@ -6903,11 +6904,13 @@
         "apps/qt-shell/gl_viewport.cpp",
         "apps/qt-shell/gl_viewport.hpp",
         "apps/qt-shell/game_process.hpp",
-        "apps/qt-shell/game_restart_action.hpp"
+        "apps/qt-shell/game_restart_action.hpp",
+        "tools/menu_save_store.py"
       ],
       "tests": [
         "tests/frame-stream-test.cpp",
-        "tests/game-hard-restart-test.cpp"
+        "tests/game-hard-restart-test.cpp",
+        "tests/test-menu-save-store.py"
       ],
       "evidence": [
         "REVIEW.HOST.session",
@@ -6919,7 +6922,9 @@
         "HOST.command-refusal.native-20261006",
         "HOST.fullscreen-native-commit.native-20261007",
         "HOST.fullscreen-native-commit.final-native-20261007",
-        "HOST.hard-restart.synthetic-20261012"
+        "HOST.hard-restart.synthetic-20261012",
+        "SAVE.restart-persistence.synthetic-20261114",
+        "SAVE.restart-persistence.retry-20261116"
       ],
       "status": {
         "understanding": "partial",
@@ -6938,7 +6943,8 @@
         "apps/qt-shell/menu_bridge.hpp"
       ],
       "remaining_gaps": [
-        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation."
+        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation.",
+        "Save restart repair 2026-11-14: generated-byte filesystem and Qt process fixtures exercise persistence policy; original-game Save/hard-restart/Load acceptance, interrupted-write validity and power-loss durability remain pending. Historical execution fingerprints and independent validation statuses are unchanged."
       ]
     },
     {
@@ -60648,7 +60654,7 @@
       "subsystem": "campaign",
       "kind": "native_policy",
       "title": "Owned original-format save copying across disposable sessions",
-      "scope": "Linux locked, bounded opaque-file seed/copy/merge, no-change cancellation, delete retention and conflict preservation. File-layer unit evidence uses synthetic bytes; actual game staging/normal-exit integration has separate HOST.native-campaign-save-load evidence. No full serializer compatibility, multi-file crash transaction or arbitrary-path claim.",
+      "scope": "Linux locked, bounded opaque-file seed/copy/merge, no-change cancellation, delete retention and conflict preservation. File-layer unit evidence uses synthetic bytes; actual game staging/normal-exit integration has separate HOST.native-campaign-save-load evidence. No full serializer compatibility, multi-file crash transaction or arbitrary-path claim. Restart recovery merges extant stopped-session files while preserving missing persistent files, and accepts already identical destinations on retries. The ordinary unbounded launcher also recovers after nonzero exit. Conflicts refuse synchronization before writes. Opaque-file recovery does not establish validity of a serializer interrupted mid-write.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -60664,7 +60670,9 @@
       "evidence": [
         "UI37.save-store-unit",
         "CPK03.import-controls",
-        "CPK03.import05"
+        "CPK03.import05",
+        "SAVE.restart-persistence.synthetic-20261114",
+        "SAVE.restart-persistence.retry-20261116"
       ],
       "status": {
         "understanding": "partial",
@@ -60672,7 +60680,10 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "Save restart repair 2026-11-14: generated-byte filesystem and Qt process fixtures exercise persistence policy; original-game Save/hard-restart/Load acceptance, interrupted-write validity and power-loss durability remain pending. Historical execution fingerprints and independent validation statuses are unchanged."
+      ]
     },
     {
       "id": "HOST.native-campaign-save-load",
@@ -128053,13 +128064,14 @@
       "kind": "native_policy",
       "subsystem": "rendering",
       "title": "Native-only fresh generation restart",
-      "scope": "Public Hard restart retires the renderer and force-stops the old launcher/prefix before staging a fresh independently admitted native-only generation. Old failures and cancellations remain recorded without normal-completion credit. Independent outcome checks reject a still-live matching PID/start-time runner and require one final normal completion. Failed generations permit explicit restart; closing a failed launch exits nonzero. No in-place renderer recovery or unsaved-progress preservation. A subsequent staging failure cannot overwrite the retired generation and can itself be restarted.",
+      "scope": "Public Hard restart retires the renderer and force-stops the old launcher/prefix before staging a fresh independently admitted native-only generation. Old failures and cancellations remain recorded without normal-completion credit. Independent outcome checks reject a still-live matching PID/start-time runner and require one final normal completion. Failed generations permit explicit restart; closing a failed launch exits nonzero. No in-place renderer recovery or unsaved-progress preservation. A subsequent staging failure cannot overwrite the retired generation and can itself be restarted. Successful stopped-session save synchronization now precedes restart admission, with conflicts and copy failures retained as restart refusals. This preserves completed on-disk save files; unsaved simulation state remains lost.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/native-render-functional-closure.md",
         "research/runtime/critical-top20-rendering-fixes-20261019.md",
-        "research/runtime/rendering-storage-ownership-20261104.md"
+        "research/runtime/rendering-storage-ownership-20261104.md",
+        "research/runtime/menu-save-store.md"
       ],
       "implementation": [
         "apps/qt-shell/main.cpp",
@@ -128069,14 +128081,16 @@
         "apps/qt-shell/game_process.hpp",
         "tools/native_only_contract.py",
         "tools/owned-menu-game-runner.py",
-        "tools/run-native-owned.py"
+        "tools/run-native-owned.py",
+        "tools/menu_save_store.py"
       ],
       "tests": [
         "tests/native-only-session-test.cpp",
         "tests/test-native-only-contract.py",
         "tools/test-native-functional-closure.py",
         "apps/qt-shell/resident_restart_test.cpp",
-        "tests/game-hard-restart-test.cpp"
+        "tests/game-hard-restart-test.cpp",
+        "tests/test-menu-save-store.py"
       ],
       "evidence": [
         "NATIVE.native-functional-closure.controls-20261018",
@@ -128097,7 +128111,9 @@
         "RA25.native-only.restart",
         "SO04.fault-restart-gui01",
         "WR04.worker-fault01",
-        "PR04.pending-cpu01"
+        "PR04.pending-cpu01",
+        "SAVE.restart-persistence.synthetic-20261114",
+        "SAVE.restart-persistence.retry-20261116"
       ],
       "status": {
         "understanding": "scoped",
@@ -128112,7 +128128,8 @@
         "Retained functional-closure runs are historical after subsequent shared renderer changes. Current-code acceptance and source-bound status promotion remain pending; implementation sources and old report hashes are preserved.",
         "2026-11-04 current GUI-resident V3 native-only fault/Hard Restart passes with522ms stable terminal cleanup, distinct old/new launcher/channel identities and fresh normal Quit with zero graphics owners/forwarding. The failed generation gets no completion credit. Historical both-owner results remain independent; current worker/V5 fault, physical context loss, in-place/save continuity, media/audio restart and failure-path pixels are not promoted.",
         "2026-11-04 worker source phase: actual dedicated-thread owner, decoded stream5 and transport3 pass one controlled fault/Hard Restart journey with539ms stable cleanup and fresh normal Quit/zero owners/forwarding. Both World observations have CPU materializations0; no live pending-CPU_READ interruption, failure-path pixels, physical context loss, in-place/save/media recovery or repeated-run reliability. Prior GUI transport observation does not independently prove decoded stream version.",
-        "2026-11-04 source phases: one charged dedicated-worker V5/V3 journey captures queued CPU ticket1, matching producer request/refusal, no new readback/reply,532ms stable terminal cleanup and fresh normal Quit/zero owners/forwarding. Initial automated analysis remains failed for an incorrect canonical/interface pointer equality; only the Python validator/test changed,26controls and complete current acceptance replay pass over unchanged engine/compiler inputs. Failed-process exit receipt is absent and its exit status stays unobserved. No successful Save/Load, canonical/interface ABI relation, arbitrary race exclusion, physical context loss, saved/in-place/media recovery, original pixels or repeated-run reliability."
+        "2026-11-04 source phases: one charged dedicated-worker V5/V3 journey captures queued CPU ticket1, matching producer request/refusal, no new readback/reply,532ms stable terminal cleanup and fresh normal Quit/zero owners/forwarding. Initial automated analysis remains failed for an incorrect canonical/interface pointer equality; only the Python validator/test changed,26controls and complete current acceptance replay pass over unchanged engine/compiler inputs. Failed-process exit receipt is absent and its exit status stays unobserved. No successful Save/Load, canonical/interface ABI relation, arbitrary race exclusion, physical context loss, saved/in-place/media recovery, original pixels or repeated-run reliability.",
+        "Save restart repair 2026-11-14: generated-byte filesystem and Qt process fixtures exercise persistence policy; original-game Save/hard-restart/Load acceptance, interrupted-write validity and power-loss durability remain pending. Historical execution fingerprints and independent validation statuses are unchanged."
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -438372,6 +438389,46 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "SAVE.restart-persistence.synthetic-20261114",
+      "kind": "native_integration",
+      "scope": "Synthetic file copying and host Qt shutdown/restart ordering, store locking, conflicts, repeated recovery, abnormal launcher exit and destruction. No original game executed, save decoding, interrupted-serializer validity, physical crash/power-loss durability or engine status promotion.",
+      "record": "research/runtime/save-restart-persistence-20261114/synthetic-tests.json",
+      "sha256": "1d4d29e0ca583e7d7167ae2e4ef130e7af76c7fdb4d55935b94f09d38cf562ba",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/generated_bytes_only",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "SAVE.restart-persistence.retry-20261116",
+      "kind": "native_integration",
+      "scope": "Fresh rerun of eight save-store/launcher checks and five Qt process tests using exact retained tested binaries with verified unchanged source pins; current-master tools and glyph integration preserved. Shell --help regression only; no new original-game Save/restart/Load or interrupted-serializer validity claim.",
+      "record": "research/runtime/save-restart-persistence-20261114/retry-20261116.json",
+      "sha256": "b31df5e6bf2a687ad975987042c8fe0ea5eefd4a94ccb585eb78e0b74cb74ee0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -476489,8 +476546,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-cf105e95290f4ab8232fbf9d2d101ee55e7b49ec22f2362df262d9bd9c14aa0b.json",
-    "sha256": "cf105e95290f4ab8232fbf9d2d101ee55e7b49ec22f2362df262d9bd9c14aa0b"
+    "path": "research/runtime/coverage/source-index-acfc15365323f2b405359752edbccd8deef2d80b003462f96bb8940f56c0d3f0.json",
+    "sha256": "acfc15365323f2b405359752edbccd8deef2d80b003462f96bb8940f56c0d3f0"
   },
   "evidence_applicability": [
     {
@@ -476535,7 +476592,7 @@
     }
   ],
   "change_scope_index": {
-    "path": "research/runtime/coverage/evidence-dependencies-e782f8c5133788a478024544b57398c5d8ce61026c16139ae2a1017b1f510c84.json",
-    "sha256": "e782f8c5133788a478024544b57398c5d8ce61026c16139ae2a1017b1f510c84"
+    "path": "research/runtime/coverage/evidence-dependencies-794833680530931b592f38f3d4997d1680f5d89d47d3fa3241a55274fcc7fecb.json",
+    "sha256": "794833680530931b592f38f3d4997d1680f5d89d47d3fa3241a55274fcc7fecb"
   }
 }

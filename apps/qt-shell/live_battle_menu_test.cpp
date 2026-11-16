@@ -131,7 +131,7 @@ void installLiveBattleMenuTest(QApplication& app,QMainWindow& window,LiveMenuSes
         });
     };
     auto handoff=session.battleStarted;
-    session.battleStarted=[e,handoff,&window,path,spells,results,input](quint32 destination){
+    session.battleStarted=[e,handoff,&window,path,results,input](quint32 destination){
         if(handoff){handoff(destination);}
         e->started=true;++e->battles;e->valid&=destination==2u;
         for(int delay:{10000,25000,34000,45000})QTimer::singleShot(delay,&window,[e,&window,path,delay,cycle=e->battles]{
