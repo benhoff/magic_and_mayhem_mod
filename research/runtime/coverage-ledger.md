@@ -31017,3 +31017,20 @@ full replay, pixel capture or machine stack trace. Abrupt termination or failed
 storage can prevent persistence; report-write failures log the original envelope.
 Existing renderer/hosting evidence retains its original hashes and pending source
 applicability; these controls do not refresh unrelated historical engine claims.
+
+### Toggleable Qt viewport FPS (2026-11-18)
+
+HOST.presentation now supplies an off-by-default Show FPS toolbar toggle and F10
+shortcut, including fullscreen. A mouse-transparent overlay samples completed
+visible Qt frame swaps once per second, resets for hidden/empty viewports and
+stops sampling when disabled. This measures host presentation, including UI
+composition redraws, rather than distinct simulation updates or physical scanout.
+
+[Fresh synthetic evidence](viewport-fps-20261118/validation-01.json) records
+normal and fractional-DPI timed-frame/idle-rate controls, actual composited text,
+input transparency, toolbar/fullscreen/key-repeat/modifier/window isolation and
+hide/empty/return checks, existing scaling/input framebuffer oracles, shell
+startup and synthetic GL startup. All four executions passed; no original-game
+run or engine milestone promotion. The initial sandbox GUI abort is retained
+separately; successful GUI checks ran outside that sandbox. Historical engine
+evidence retains its source hashes and pending applicability boundaries.

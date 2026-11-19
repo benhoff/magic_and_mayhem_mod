@@ -94,3 +94,21 @@ fullscreen CLI regressions. The shell and standalone replay targets rebuilt.
 
 
 2026-11-07 input alignment correction: Sharp and Integer input now identifies the physical display pixel under the pointer and maps its centre to the displayed source texel. The former corner mapping could pick the neighboring texel at noninteger fit scales. Exact physical borders survive fractional-DPR round trips through one-ULP normalization. Smooth continuous input retains its prior policy. The GPU-backed preimage, corrected CPU/GPU framebuffer and XCB forwarding controls are in [the interaction closeout](rendering-interaction-20261107.md); earlier evidence and hashes remain historical.
+
+2026-11-18 FPS display: the Show FPS toolbar toggle and unmodified F10 control
+a mouse-transparent, nonfocusable label at the native viewport's top-left.
+It starts disabled. While enabled, a one-second monotonic sample counts completed
+Qt frame swaps only when the viewport is visible, initialized, nonempty and free
+of presentation errors. This is host presentation FPS, including composition
+redraws, rather than distinct simulation frames or physical scanout. An idle
+viewport can still swap for UI composition. Disabling stops sampling; hiding or
+clearing the viewport resets the sample and hides the label. The control remains
+available through F10 in fullscreen, consumes press/release/shortcut override,
+ignores autorepeat and leaves modified F10 and other windows alone.
+
+The presentation fixture additionally checks a timed stream, idle-rate decay,
+default/toolbar/fullscreen toggling, transparent input, reserved key handling and
+hidden/empty frame recovery at normal and fractional DPI. These synthetic host
+checks do not establish original-engine, physical-driver or hardware timing
+equivalence. Existing engine evidence and its source-drift limitations remain
+historical.

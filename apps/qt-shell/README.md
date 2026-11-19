@@ -119,6 +119,13 @@ active; launch/recovery controls remain available while waiting for a frame.
 Escape keeps its game
 meaning. Exit fullscreen to change scaling in the toolbar.
 
+The **Show FPS** toolbar toggle or **F10** shows/hides a counter in the top-left
+of the native viewport, including fullscreen. It starts off and updates once
+per second from completed Qt frame swaps. This measures host presentation rate;
+simulation updates and physical monitor refresh are separate. The counter hides
+while the viewport is hidden or has no usable frame, and lets mouse input pass
+through to the game.
+
 Choose `--scaling sharp` (default) for nearest-pixel aspect fit, `smooth` for
 bilinear aspect fit, or `integer` for whole physical-pixel enlargement with
 letterboxing. Integer mode falls back to aspect fit when the window is smaller
