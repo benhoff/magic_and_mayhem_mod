@@ -2,10 +2,13 @@
 #include "gl_viewport.hpp"
 #include <QObject>
 #include <QPointer>
+#include <QElapsedTimer>
+#include <QTimer>
 #include <vector>
 
 class QPushButton;
 class QToolBar;
+class QLabel;
 struct PresentationOptions {
     GlViewport::Scaling scaling=GlViewport::Scaling::Sharp;
     bool fullscreen=false;
@@ -19,6 +22,7 @@ public:
     void addControls(QToolBar& toolbar);
     void hideInFullscreen(QWidget& widget);
     void setFullscreen(bool enabled);
+    void setFpsVisible(bool enabled);
     void show();
 protected:
     bool eventFilter(QObject* object,QEvent* event) override;
@@ -26,6 +30,15 @@ private:
     QWidget& window_;
     GlViewport& viewport_;
     QPointer<QPushButton> fullscreenButton_;
+    QPointer<QPushButton> fpsButton_;
+    QPointer<QLabel> fpsLabel_;
+    QTimer fpsTimer_;
+    QElapsedTimer fpsClock_;
+    quint64 fpsFrames_=0;
+    bool fpsEnabled_=false;
+    bool hasFrame() const;
+    void resetFps();
+    void updateFps();
     bool startFullscreen_=false;
     Qt::WindowStates previousState_;
     QRect previousGeometry_;

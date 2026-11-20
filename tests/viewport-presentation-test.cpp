@@ -135,16 +135,63 @@ void compare(GlViewport& viewport,const QImage& source){
     ++comparisons;
 }
 struct KeyObserver:QObject {
-    unsigned presses=0,releases=0,fullscreenKeys=0;
+    unsigned presses=0,releases=0,fullscreenKeys=0,fpsKeys=0;
     bool eventFilter(QObject*,QEvent* event) override {
         if(event->type()==QEvent::KeyPress || event->type()==QEvent::KeyRelease){
             if(static_cast<QKeyEvent*>(event)->key()==Qt::Key_F9)++fullscreenKeys;
+            if(static_cast<QKeyEvent*>(event)->key()==Qt::Key_F10)++fpsKeys;
             if(event->type()==QEvent::KeyPress)++presses;else ++releases;
             return true;
         }
         return false;
     }
 };
+void fpsOverlay(){
+    QMainWindow window;auto* viewport=new GlViewport(&window);window.setCentralWidget(viewport);
+    auto* toolbar=window.addToolBar("Presentation");
+    KeyObserver observer;viewport->installEventFilter(&observer);
+    ViewportPresentation controls(window,*viewport);controls.addControls(*toolbar);controls.hideInFullscreen(*toolbar);
+    window.resize(900,750);controls.show();settle();
+    auto* button=toolbar->findChild<QPushButton*>("showFpsButton");
+    auto* label=viewport->findChild<QLabel*>("viewportFps");
+    require(button && label && !button->isChecked() && label->isHidden(),"FPS must start disabled");
+    require(label->testAttribute(Qt::WA_TransparentForMouseEvents) && label->focusPolicy()==Qt::NoFocus,"FPS overlay intercepts input");
+    button->click();settle();require(label->isHidden(),"FPS appeared without a frame");
+    QImage image(32,24,QImage::Format_RGBA8888);image.fill(QColor(31,67,127));viewport->setFrame(image);
+    QTimer frames;frames.setInterval(20);QObject::connect(&frames,&QTimer::timeout,viewport,[viewport,image]{viewport->setFrame(image);});frames.start();
+    auto wait=[](int ms){QEventLoop loop;QTimer::singleShot(ms,&loop,&QEventLoop::quit);loop.exec();};
+    wait(2200);
+    bool numeric=false;const auto rate=label->text().mid(5).toDouble(&numeric);
+    require(label->isVisible() && numeric && rate>15 && rate<100,"FPS did not follow timed viewport presentation");
+    require(viewport->rect().contains(label->geometry()),"FPS overlay is outside viewport");
+    const auto screenshot=window.screen()->grabWindow(window.winId()).toImage();
+    require(!screenshot.isNull(),"Cannot capture FPS overlay");
+    const auto origin=label->mapTo(&window,QPoint());const auto ratio=screenshot.devicePixelRatio();
+    unsigned textPixels=0;
+    for(int y=0;y<label->height();++y)for(int x=0;x<label->width();++x){
+        const auto pixel=screenshot.pixelColor(qRound((origin.x()+x)*ratio),qRound((origin.y()+y)*ratio));
+        if(pixel.red()>200 && pixel.green()>200 && pixel.blue()>200)++textPixels;
+    }
+    require(textPixels>10,"FPS text was not composited above the viewport");
+    frames.stop();wait(2200);
+    require(label->text().mid(5).toDouble(&numeric)<5 && numeric,"FPS retained a stale moving-frame rate while idle");
+    auto key=[&](QEvent::Type type,bool repeat=false,Qt::KeyboardModifiers modifiers=Qt::NoModifier){QKeyEvent event(type,Qt::Key_F10,modifiers,QString(),repeat);QApplication::sendEvent(viewport,&event);};
+    key(QEvent::ShortcutOverride);key(QEvent::KeyPress);key(QEvent::KeyRelease);
+    require(!button->isChecked() && label->isHidden() && observer.fpsKeys==0,"F10 did not hide FPS or leaked to game input");
+    controls.setFullscreen(true);settle();require(toolbar->isHidden(),"FPS fixture fullscreen chrome failed");
+    key(QEvent::KeyPress);key(QEvent::KeyRelease);settle();
+    require(button->isChecked() && label->isVisible(),"F10 did not show FPS in fullscreen");
+    key(QEvent::KeyPress,true);key(QEvent::KeyRelease,true);
+    require(button->isChecked() && observer.fpsKeys==0,"F10 repeat toggled FPS or leaked to game input");
+    QMainWindow other;QKeyEvent unrelated(QEvent::KeyPress,Qt::Key_F10,Qt::NoModifier);QApplication::sendEvent(&other,&unrelated);
+    require(button->isChecked(),"F10 in another window toggled FPS");
+    key(QEvent::KeyPress,false,Qt::ShiftModifier);key(QEvent::KeyRelease,false,Qt::ShiftModifier);
+    require(button->isChecked() && observer.fpsKeys==2,"Modified F10 was consumed by FPS control");
+    viewport->hide();settle();require(!label->isVisible(),"Hidden viewport retained FPS overlay");
+    viewport->show();wait(1200);require(label->isVisible(),"FPS did not resume after viewport return");
+    viewport->setFrame({});wait(1200);require(label->isHidden(),"Cleared frame retained stale FPS");
+    controls.setFullscreen(false);button->click();require(!button->isChecked() && label->isHidden(),"Toolbar did not disable FPS");
+}
 void sharpBoundaryCases(){
     GlViewport viewport;viewport.resize(1100,795);viewport.show();settle();
     require(viewport.ready(),"Sharp regression viewport did not initialize");
@@ -170,6 +217,7 @@ int main(int argc,char** argv){
     try {
         sharpBoundaryCases();
         startupAndStreaming();
+        fpsOverlay();
         QMainWindow window;auto* viewport=new GlViewport(&window);window.setCentralWidget(viewport);
         auto* toolbar=window.addToolBar("Presentation");toolbar->setMovable(false);
         auto* log=new QDockWidget("Log",&window);log->setWidget(new QPlainTextEdit(log));window.addDockWidget(Qt::BottomDockWidgetArea,log);

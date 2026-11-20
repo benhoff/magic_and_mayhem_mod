@@ -14,11 +14,26 @@
 ViewportPresentation::ViewportPresentation(QWidget& window,GlViewport& viewport,PresentationOptions options)
     :QObject(&window),window_(window),viewport_(viewport),startFullscreen_(options.fullscreen){
     viewport_.setScaling(options.scaling);
+    fpsLabel_=new QLabel(&viewport_);
+    fpsLabel_->setObjectName("viewportFps");
+    fpsLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
+    fpsLabel_->setFocusPolicy(Qt::NoFocus);
+    fpsLabel_->setStyleSheet("QLabel { color: white; background: rgba(0, 0, 0, 190); padding: 4px 8px; border-radius: 3px; }");
+    fpsLabel_->setToolTip("Qt viewport frames presented per second");
+    fpsLabel_->move(12,12);fpsLabel_->hide();
+    fpsTimer_.setInterval(1000);
+    connect(&fpsTimer_,&QTimer::timeout,this,&ViewportPresentation::updateFps);
     // Application filters run before InputForwarder, including its ShortcutOverride handling.
     qApp->installEventFilter(this);
-    connect(&viewport_,&GlViewport::frameSwapped,this,[this]{if(fullscreenActive_)scheduleChromeUpdate();});
+    connect(&viewport_,&GlViewport::frameSwapped,this,[this]{
+        if(fpsEnabled_ && hasFrame()){
+            if(!fpsClock_.isValid())fpsClock_.start();
+            ++fpsFrames_;
+        }
+        if(fullscreenActive_)scheduleChromeUpdate();
+    });
 }
-ViewportPresentation::~ViewportPresentation(){qApp->removeEventFilter(this);}
+ViewportPresentation::~ViewportPresentation(){qApp->removeEventFilter(this);delete fpsLabel_;}
 void ViewportPresentation::addControls(QToolBar& toolbar){
     toolbar.addSeparator();
     fullscreenButton_=new QPushButton("Fullscreen",&toolbar);
@@ -35,13 +50,43 @@ void ViewportPresentation::addControls(QToolBar& toolbar){
     choices->setToolTip("Scale the displayed image; game resolution stays unchanged.");
     connect(choices,&QComboBox::currentIndexChanged,this,[this,choices]{viewport_.setScaling(GlViewport::Scaling(choices->currentData().toInt()));});
     toolbar.addWidget(choices);
+    fpsButton_=new QPushButton("Show FPS",&toolbar);
+    fpsButton_->setObjectName("showFpsButton");fpsButton_->setCheckable(true);
+    fpsButton_->setChecked(fpsEnabled_);
+    fpsButton_->setToolTip("Toggle viewport FPS display (F10)");
+    connect(fpsButton_,&QPushButton::toggled,this,&ViewportPresentation::setFpsVisible);
+    toolbar.addWidget(fpsButton_);
+}
+bool ViewportPresentation::hasFrame() const{
+    return viewport_.isVisible() && viewport_.ready() && !viewport_.frameSize().isEmpty() && viewport_.error().isEmpty();
+}
+void ViewportPresentation::resetFps(){
+    fpsFrames_=0;fpsClock_.invalidate();
+    fpsLabel_->setText("FPS: —");fpsLabel_->adjustSize();
+}
+void ViewportPresentation::setFpsVisible(bool enabled){
+    fpsEnabled_=enabled;resetFps();
+    if(enabled){fpsTimer_.start();updateFps();}else{fpsTimer_.stop();fpsLabel_->hide();}
+    if(fpsButton_){const QSignalBlocker blocker(fpsButton_);fpsButton_->setChecked(enabled);}
+}
+void ViewportPresentation::updateFps(){
+    if(!fpsEnabled_)return;
+    if(!hasFrame()){resetFps();fpsLabel_->hide();return;}
+    if(fpsClock_.isValid()){
+        const auto elapsed=fpsClock_.elapsed();
+        if(elapsed>0){
+            fpsLabel_->setText(QString("FPS: %1").arg(1000.0*fpsFrames_/elapsed,0,'f',1));
+            fpsLabel_->adjustSize();
+        }
+    }
+    fpsFrames_=0;fpsClock_.start();fpsLabel_->show();fpsLabel_->raise();
 }
 void ViewportPresentation::hideInFullscreen(QWidget& widget){chrome_.push_back({&widget,false});}
 void ViewportPresentation::show(){window_.show();if(startFullscreen_)setFullscreen(true);}
 void ViewportPresentation::updateChrome(){
     if(!fullscreenActive_)return;
     // Native commands show an empty GL widget to initialize its context before the first frame.
-    const bool haveFrame=viewport_.isVisible() && viewport_.ready() && !viewport_.frameSize().isEmpty() && viewport_.error().isEmpty();
+    const bool haveFrame=hasFrame();
     bool changed=false;
     for(auto& item:chrome_)if(item.widget){const bool hidden=haveFrame || item.hidden;
         if(item.widget->isHidden()!=hidden){item.widget->setHidden(hidden);changed=true;}}
@@ -87,13 +132,19 @@ void ViewportPresentation::setFullscreen(bool enabled){
         fullscreenButton_->setChecked(enabled);fullscreenButton_->setText(enabled?"Exit fullscreen":"Fullscreen");}
 }
 bool ViewportPresentation::eventFilter(QObject* object,QEvent* event){
-    if(object==&viewport_ && (event->type()==QEvent::Show || event->type()==QEvent::Hide))scheduleChromeUpdate();
+    if(object==&viewport_ && (event->type()==QEvent::Show || event->type()==QEvent::Hide)){
+        scheduleChromeUpdate();
+        if(fpsEnabled_){resetFps();fpsLabel_->hide();}
+    }
     if(object==&window_ && event->type()==QEvent::WindowStateChange)scheduleChromeUpdate(true);
     if(event->type()!=QEvent::ShortcutOverride && event->type()!=QEvent::KeyPress && event->type()!=QEvent::KeyRelease)return false;
     const auto* widget=qobject_cast<QWidget*>(object);
     if(!widget || widget->window()!=&window_)return false;
     const auto* key=static_cast<QKeyEvent*>(event);
-    if(key->key()!=Qt::Key_F9 || key->modifiers()!=Qt::NoModifier)return false;
-    if(event->type()==QEvent::KeyPress && !key->isAutoRepeat())setFullscreen(!window_.isFullScreen());
+    if((key->key()!=Qt::Key_F9 && key->key()!=Qt::Key_F10) || key->modifiers()!=Qt::NoModifier)return false;
+    if(event->type()==QEvent::KeyPress && !key->isAutoRepeat()){
+        if(key->key()==Qt::Key_F9)setFullscreen(!window_.isFullScreen());
+        else setFpsVisible(!fpsEnabled_);
+    }
     event->accept();return true;
 }

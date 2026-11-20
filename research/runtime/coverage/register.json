@@ -18208,7 +18208,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Display-only scaling and fullscreen",
-      "scope": "Qt physical-pixel sharp/smooth aspect fit, integer enlargement with small-window fallback, F9 fullscreen with geometry/chrome restoration and original logical input mapping. Fullscreen chrome waits for a usable frame; deferred layout/redraw covers startup and retained/changing GPU frames in synthetic onscreen checks. Source dimensions, engine preferences and simulation remain unchanged. Original-game interaction, other displays/backends and user graphics hardware remain pending.",
+      "scope": "Qt physical-pixel sharp/smooth aspect fit, integer enlargement with small-window fallback, F9 fullscreen with geometry/chrome restoration and original logical input mapping. Fullscreen chrome waits for a usable frame; deferred layout/redraw covers startup and retained/changing GPU frames in synthetic onscreen checks. Source dimensions, engine preferences and simulation remain unchanged. Original-game interaction, other displays/backends and user graphics hardware remain pending. Optional Show FPS/F10 overlay counts completed visible Qt viewport frame swaps in one-second monotonic samples, with fullscreen toggling, input transparency, idle-rate decay and hide/empty resets; this is host presentation rate, not distinct simulation updates or physical scanout.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -18246,7 +18246,8 @@
         "HOST.presentation.f9-20261007",
         "SCOPE30.components-refusal-01",
         "SCOPE30.components-refusal-02",
-        "SCOPE30.components-current"
+        "SCOPE30.components-current",
+        "HOST.presentation.fps-20261118"
       ],
       "status": {
         "understanding": "scoped",
@@ -438513,6 +438514,36 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.presentation.fps-20261118",
+      "kind": "native_integration",
+      "scope": "Synthetic Qt FPS overlay, timed host frame swaps, idle rate decay, composited text, toolbar/F10/fullscreen/default state, input transparency, hide/empty/recovery, and existing presentation scaling/input oracles at scales 1 and1.5. Shell startup and synthetic GL check only. No original-game runs, simulation-FPS, physical scanout or hardware performance claim.",
+      "record": "research/runtime/viewport-fps-20261118/validation-01.json",
+      "sha256": "9ff5c08c7d8507d0860d25c724d09fa9001a421d7a3d0c30272b7ee8a328554d",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/runs/0/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/runs/1/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/runs/2/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/runs/3/returncode",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -476630,8 +476661,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-d4495aeb8b95e137d632f8c131805b61b61bab3537f98b9844ca4f75b683b921.json",
-    "sha256": "d4495aeb8b95e137d632f8c131805b61b61bab3537f98b9844ca4f75b683b921"
+    "path": "research/runtime/coverage/source-index-298cfd0a3d291b917eb3c5c648a524741770ee0c4ac08a1da54655b854f88773.json",
+    "sha256": "298cfd0a3d291b917eb3c5c648a524741770ee0c4ac08a1da54655b854f88773"
   },
   "evidence_applicability": [
     {
@@ -476676,7 +476707,7 @@
     }
   ],
   "change_scope_index": {
-    "path": "research/runtime/coverage/evidence-dependencies-c602c3b4a4e6bdead89618d872aa8f6bb7dc298cbcbe5a70eec7a77b726f1645.json",
-    "sha256": "c602c3b4a4e6bdead89618d872aa8f6bb7dc298cbcbe5a70eec7a77b726f1645"
+    "path": "research/runtime/coverage/evidence-dependencies-e198cf92c4407078faf945bf8083b3d55bcdf7312aa92311f9520300407d71f5.json",
+    "sha256": "e198cf92c4407078faf945bf8083b3d55bcdf7312aa92311f9520300407d71f5"
   }
 }
