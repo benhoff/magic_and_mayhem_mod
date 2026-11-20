@@ -13184,7 +13184,9 @@
         "runtime/menu/campaign_world_observe.h",
         "tools/build-menu-observer.py",
         "tools/run-menu-observer.py",
-        "tools/export-campaign-handoff-support.py"
+        "tools/export-campaign-handoff-support.py",
+        "runtime/menu/gameplay_fps.h",
+        "protocols/include/mnm/gameplay_fps_v1.h"
       ],
       "tests": [
         "apps/qt-shell/live_region_entry_test.cpp",
@@ -13234,7 +13236,8 @@
       ],
       "remaining_gaps": [
         "RPS04 diagnostic20 confirms the passive counter resets after observed full World exit and records two typed epochs19\u201324/36\u201341 with expected original object/table/thread/owner/stack. Exact source phase retained; cleanup driver changes do not renew the old report. Current complete route/normal Quit,independent pixels,assembled map and populated lifetime remain pending. No extra original tick or simulation replacement.",
-        "Diagnostic27 confirms both typed World epochs and progresses through cleanup report to Realm; Main Quit,pixels and full lifetime remain pending."
+        "Diagnostic27 confirms both typed World epochs and progresses through cleanup report to Realm; Main Quit,pixels and full lifetime remain pending.",
+        "2026-11-19 optional gameplay FPS sidecar samples the already-mapped original World call/counter without changing forwarding or engine behavior. Synthetic five-tick forwarding passes under HOST.gameplay-fps.synthetic-20261119; live telemetry validation remains pending and historical engine proof/source hashes are not renewed."
       ]
     },
     {
@@ -18208,7 +18211,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Display-only scaling and fullscreen",
-      "scope": "Qt physical-pixel sharp/smooth aspect fit, integer enlargement with small-window fallback, F9 fullscreen with geometry/chrome restoration and original logical input mapping. Fullscreen chrome waits for a usable frame; deferred layout/redraw covers startup and retained/changing GPU frames in synthetic onscreen checks. Source dimensions, engine preferences and simulation remain unchanged. Original-game interaction, other displays/backends and user graphics hardware remain pending. Optional Show FPS/F10 overlay counts completed visible Qt viewport frame swaps in one-second monotonic samples, with fullscreen toggling, input transparency, idle-rate decay and hide/empty resets; this is host presentation rate, not distinct simulation updates or physical scanout.",
+      "scope": "Qt physical-pixel sharp/smooth aspect fit, integer enlargement with small-window fallback, F9 fullscreen with geometry/chrome restoration and original logical input mapping. Fullscreen chrome waits for a usable frame; deferred layout/redraw covers startup and retained/changing GPU frames in synthetic onscreen checks. Source dimensions, engine preferences and simulation remain unchanged. Original-game interaction, other displays/backends and user graphics hardware remain pending. Optional Show FPS/F10 overlay counts completed visible Qt viewport frame swaps in one-second monotonic samples, with fullscreen toggling, input transparency, idle-rate decay and hide/empty resets; this is host presentation rate, not distinct simulation updates or physical scanout. Gameplay FPS now independently samples session-supplied original gameplay-counter progress; unavailable telemetry shows a dash. Synthetic independent-rate, pause, unavailable and wire-boundary controls pass; real-game telemetry remains pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -18247,7 +18250,8 @@
         "SCOPE30.components-refusal-01",
         "SCOPE30.components-refusal-02",
         "SCOPE30.components-current",
-        "HOST.presentation.fps-20261118"
+        "HOST.presentation.fps-20261118",
+        "HOST.gameplay-fps.synthetic-20261119"
       ],
       "status": {
         "understanding": "scoped",
@@ -189642,6 +189646,52 @@
         "The reported natural campaign Quit followed by new campaign has not been rerun with this instrumentation; no root-cause repair or original-game equivalence is claimed.",
         "Bounded metadata is not a full replay, machine stack trace or pixel capture. Abrupt kill, memory exhaustion, disk failure and power loss can prevent persistence.",
         "Existing renderer/hosting proof retains its historical fingerprints. Fresh diagnostic controls do not revalidate unrelated renderer behavior."
+      ]
+    },
+    {
+      "id": "HOST.gameplay-fps",
+      "kind": "native_policy",
+      "subsystem": "runtime_and_hosting",
+      "title": "Gameplay FPS independent of viewport presentation",
+      "scope": "Optional version-1 32-byte menu-channel sidecar samples zero/one original world-counter advances around the guarded once-only World call. Seqlock/epoch/modulo counters feed one-second host monotonic Gameplay FPS independently of Qt frameSwapped FPS. Missing/unobserved/invalid telemetry shows unavailable; stopped counters decay to zero. No gameplay, pacing or draw-policy change. Synthetic host/PE32 controls only; real-game telemetry and full simulation/mode/reset semantics remain pending. Engine address accounting remains in the existing CP.campaign-world-handoff-observation and GP.tick mappings, plus NR.engine-cadence-observation; this host diagnostic adds no recovered address/function claim.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "implementation": [
+        "protocols/include/mnm/gameplay_fps_v1.h",
+        "runtime/menu/gameplay_fps.h",
+        "runtime/menu/campaign_world_observe.h",
+        "apps/qt-shell/gameplay_fps.hpp",
+        "apps/qt-shell/gameplay_fps_channel.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/viewport_presentation.cpp",
+        "apps/qt-shell/viewport_presentation.hpp",
+        "apps/qt-shell/main.cpp"
+      ],
+      "tests": [
+        "tests/viewport-presentation-test.cpp",
+        "tests/campaign-observer-test.c",
+        "tools/test-campaign-observer.py",
+        "tools/test-viewport-presentation.py",
+        "tools/test-gameplay-fps.py"
+      ],
+      "documents": [
+        "research/runtime/viewport-presentation.md",
+        "apps/qt-shell/README.md"
+      ],
+      "evidence": [
+        "HOST.gameplay-fps.synthetic-20261119",
+        "HOST.gameplay-fps.bound-20261119"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Live original-game telemetry, complete counter/mode/reset semantics and physical hardware timing remain pending. Synthetic forwarding and host rates do not renew historical engine proof."
       ]
     }
   ],
@@ -438544,6 +438594,59 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "HOST.gameplay-fps.synthetic-20261119",
+      "kind": "native_integration",
+      "scope": "Synthetic two-rate FPS overlay and optional original-World telemetry sidecar. Real-game telemetry and hardware performance remain pending. No engine equivalence/status promotion.",
+      "record": "research/runtime/gameplay-fps-20261119/validation-01.json",
+      "sha256": "3d4777078217dce94c1cd4e26eb78b7229c5ac37cb28a45b1f4232ce2a894ee0",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/qt_returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/pe32_forwarding/success",
+          "equals": true
+        },
+        {
+          "pointer": "/pe32_forwarding/gameplay_words/6",
+          "equals": 5
+        }
+      ]
+    },
+    {
+      "id": "HOST.gameplay-fps.bound-20261119",
+      "kind": "native_integration",
+      "scope": "Prospectively source/contract-bound synthetic World telemetry forwarding plus normal/fractional-DPI independent gameplay/display FPS, pause/unavailable/wire controls and menu lifecycle checks. No original-game telemetry or hardware performance proof.",
+      "record": "research/runtime/gameplay-fps-20261119/validation-bound-02.json",
+      "sha256": "c3d1cbdeb7206eb65c7f38b100bf7b75344ee177b5c90b73f41220a635289c42",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/runs/0/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/runs/1/returncode",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -474834,6 +474937,25 @@
         "NP.glyph-production-route.menu-canvas-20261114",
         "NP.glyph-production-route.menu-canvas-final-20261116"
       ]
+    },
+    {
+      "id": "hosting.gameplay-fps",
+      "level": "preview",
+      "scope": "Synthetic original-World telemetry forwarding and independent display/gameplay rates at normal and fractional DPI, pause/unavailable and wire boundary checks. No real-game telemetry or physical timing validation.",
+      "behaviors": [
+        "HOST.gameplay-fps",
+        "HOST.presentation"
+      ],
+      "evidence": [
+        "HOST.gameplay-fps.synthetic-20261119",
+        "HOST.gameplay-fps.bound-20261119"
+      ],
+      "tests": [
+        "tests/viewport-presentation-test.cpp",
+        "tests/campaign-observer-test.c",
+        "tools/test-campaign-observer.py",
+        "tools/test-gameplay-fps.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -476661,8 +476783,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-298cfd0a3d291b917eb3c5c648a524741770ee0c4ac08a1da54655b854f88773.json",
-    "sha256": "298cfd0a3d291b917eb3c5c648a524741770ee0c4ac08a1da54655b854f88773"
+    "path": "research/runtime/coverage/source-index-cbf920bf62360b20ae901c00d0330f9d9637bea479745ce71144e927f8fb7fe8.json",
+    "sha256": "cbf920bf62360b20ae901c00d0330f9d9637bea479745ce71144e927f8fb7fe8"
   },
   "evidence_applicability": [
     {
@@ -476707,7 +476829,7 @@
     }
   ],
   "change_scope_index": {
-    "path": "research/runtime/coverage/evidence-dependencies-e198cf92c4407078faf945bf8083b3d55bcdf7312aa92311f9520300407d71f5.json",
-    "sha256": "e198cf92c4407078faf945bf8083b3d55bcdf7312aa92311f9520300407d71f5"
+    "path": "research/runtime/coverage/evidence-dependencies-45303de2420597500342a057d64cc986ce58cae19c4bb4f1ea83d827dbb74b4d.json",
+    "sha256": "45303de2420597500342a057d64cc986ce58cae19c4bb4f1ea83d827dbb74b4d"
   }
 }
