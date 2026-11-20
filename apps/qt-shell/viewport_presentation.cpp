@@ -19,7 +19,7 @@ ViewportPresentation::ViewportPresentation(QWidget& window,GlViewport& viewport,
     fpsLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
     fpsLabel_->setFocusPolicy(Qt::NoFocus);
     fpsLabel_->setStyleSheet("QLabel { color: white; background: rgba(0, 0, 0, 190); padding: 4px 8px; border-radius: 3px; }");
-    fpsLabel_->setToolTip("Qt viewport frames presented per second");
+    fpsLabel_->setToolTip("FPS: displayed frames per second. Gameplay FPS: engine gameplay advances per second.");
     fpsLabel_->move(12,12);fpsLabel_->hide();
     fpsTimer_.setInterval(1000);
     connect(&fpsTimer_,&QTimer::timeout,this,&ViewportPresentation::updateFps);
@@ -61,8 +61,8 @@ bool ViewportPresentation::hasFrame() const{
     return viewport_.isVisible() && viewport_.ready() && !viewport_.frameSize().isEmpty() && viewport_.error().isEmpty();
 }
 void ViewportPresentation::resetFps(){
-    fpsFrames_=0;fpsClock_.invalidate();
-    fpsLabel_->setText("FPS: —");fpsLabel_->adjustSize();
+    fpsFrames_=0;fpsClock_.invalidate();gameplayPrevious_.reset();
+    fpsLabel_->setText("FPS: —\nGameplay FPS: —");fpsLabel_->adjustSize();
 }
 void ViewportPresentation::setFpsVisible(bool enabled){
     fpsEnabled_=enabled;resetFps();
@@ -72,13 +72,18 @@ void ViewportPresentation::setFpsVisible(bool enabled){
 void ViewportPresentation::updateFps(){
     if(!fpsEnabled_)return;
     if(!hasFrame()){resetFps();fpsLabel_->hide();return;}
+    const auto gameplay=gameplayProgress?gameplayProgress():std::nullopt;
+    QString display="—",gameplayDisplay="—";
     if(fpsClock_.isValid()){
         const auto elapsed=fpsClock_.elapsed();
         if(elapsed>0){
-            fpsLabel_->setText(QString("FPS: %1").arg(1000.0*fpsFrames_/elapsed,0,'f',1));
-            fpsLabel_->adjustSize();
+            display=QString::number(1000.0*fpsFrames_/elapsed,'f',1);
+            if(gameplay && gameplayPrevious_ && gameplay->epoch==gameplayPrevious_->epoch)
+                gameplayDisplay=QString::number(1000.0*std::uint32_t(gameplay->ticks-gameplayPrevious_->ticks)/elapsed,'f',1);
         }
     }
+    gameplayPrevious_=gameplay;
+    fpsLabel_->setText(QString("FPS: %1\nGameplay FPS: %2").arg(display,gameplayDisplay));fpsLabel_->adjustSize();
     fpsFrames_=0;fpsClock_.start();fpsLabel_->show();fpsLabel_->raise();
 }
 void ViewportPresentation::hideInFullscreen(QWidget& widget){chrome_.push_back({&widget,false});}

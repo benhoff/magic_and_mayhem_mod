@@ -5,6 +5,7 @@
 #include "../../protocols/include/mnm/menu_v4.h"
 #include <QProcess>
 #include "game_process.hpp"
+#include "gameplay_fps_channel.hpp"
 #include <QTimer>
 #include <QElapsedTimer>
 #include <functional>
@@ -57,6 +58,7 @@ public:
     bool normalQuitAccepted();
     void renderingProgress(std::uint64_t cpuRead=0); // GUI-thread bounded native-reader progress; never resubmits.
     QString evidenceDirectory() const {return root_;}
+    std::optional<GameplayFpsProgress> gameplayProgress() const {return gameplayFps_.progress();}
     bool request(quint32 action,quint32 argument=0,const std::array<int,17>* rules=nullptr);
     bool finishSpells(const std::array<int,63>& assignments);
     bool miniMenusEnabled() const {return campaignMiniEnabled||MNM_MENU_MINI_EXPERIMENTAL!=0;}
@@ -101,6 +103,7 @@ private:
     bool restoreCampaignPreferences(const MenuBridge::State& state);
     bool deferMenuRequest(std::function<bool()> retry);
     QString repo_,root_,channel_;
+    GameplayFpsChannel gameplayFps_;
     EnginePreferencesPersistence preferencesStore_;
     bool preferencesToSave_=false;
     std::array<int,7> acceptedPreferences_{};

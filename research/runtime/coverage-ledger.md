@@ -31053,3 +31053,12 @@ original-controlled Region entries have no fabricated checkpoint; other maps,
 RNG/AI/scripts, failure recovery and normal Quit remain separate. Historical
 shared-source claims retain their exact old fingerprints and stale limitations.
 See [implementation and limits](campaign-restart-20261119.md).
+
+
+
+
+2026-11-19 — HOST.gameplay-fps: Show FPS/F10 now displays separate FPS and Gameplay FPS. The existing guarded original World wrapper samples world-counter deltas into an optional versioned sidecar; gameplay is independent of viewport redraw counts. Synthetic normal/fractional-DPI controls and PE32 once-forwarded five-tick telemetry pass in HOST.gameplay-fps.synthetic-20261119. Missing observations show a dash; paused counters settle to zero; resets/unknown jumps invalidate the interval. No engine pacing/gameplay changes or status promotions. Live original-game telemetry, broader mode/reset semantics and physical timing remain pending; historical engine proof keeps its source-drift limitations.
+
+HOST.gameplay-fps.bound-20261119 repeats the focused controls with prospective exact contract/scenario/source identities; it supports the new native implementation and preview dimensions only. Initial unbound results and sandbox setup failures remain preserved separately. Original-game telemetry and engine milestones remain pending.
+
+2026-11-19 combined Restart Level/FPS candidate: runtime World conflict retains checkpoint capture before the immediate before/after counter sample and once-only original call. Session conflict retains V23 Restart Level admission and the optional FPS sidecar. HOST.gameplay-fps.combined-20261119 freshly passes native normal/fractional DPI, independent rates, pause/unavailable/wire, startup/hard-restart/Restart Level and synthetic PE32 forwarding controls with prospective source/contract claims. Earlier source phases remain historical; real-game telemetry and engine milestones are not promoted. The duplicate retrospective receipt with different reasons/affected-ID annotations retains master canonical bytes and imports the exact incoming variant under a new identity, documented in reconciliation-current-01.

@@ -121,8 +121,11 @@ meaning. Exit fullscreen to change scaling in the toolbar.
 
 The **Show FPS** toolbar toggle or **F10** shows/hides a counter in the top-left
 of the native viewport, including fullscreen. It starts off and updates once
-per second from completed Qt frame swaps. This measures host presentation rate;
-simulation updates and physical monitor refresh are separate. The counter hides
+per second. **FPS** counts completed Qt frame swaps; **Gameplay FPS** counts
+original gameplay counter advances, independently of drawing. Paused gameplay
+settles to 0.0 while redraws may continue. Gameplay FPS shows a dash until
+gameplay observations are available (including standalone replays). Physical
+monitor refresh remains separate. The counter hides
 while the viewport is hidden or has no usable frame, and lets mouse input pass
 through to the game.
 

@@ -1,10 +1,12 @@
 #pragma once
 #include "gl_viewport.hpp"
+#include "gameplay_fps.hpp"
 #include <QObject>
 #include <QPointer>
 #include <QElapsedTimer>
 #include <QTimer>
 #include <vector>
+#include <functional>
 
 class QPushButton;
 class QToolBar;
@@ -23,6 +25,8 @@ public:
     void hideInFullscreen(QWidget& widget);
     void setFullscreen(bool enabled);
     void setFpsVisible(bool enabled);
+    // Session supplies semantic progress; widgets never read engine storage.
+    std::function<std::optional<GameplayFpsProgress>()> gameplayProgress;
     void show();
 protected:
     bool eventFilter(QObject* object,QEvent* event) override;
@@ -36,6 +40,7 @@ private:
     QElapsedTimer fpsClock_;
     quint64 fpsFrames_=0;
     bool fpsEnabled_=false;
+    std::optional<GameplayFpsProgress> gameplayPrevious_;
     bool hasFrame() const;
     void resetFps();
     void updateFps();
