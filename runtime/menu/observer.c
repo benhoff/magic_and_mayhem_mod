@@ -52,6 +52,7 @@ static u32 THIS quick_action(void* object,u32 action){
 }
 static u32 THIS main_action(void*,u32);
 static u32 THIS quick_action(void*,u32);
+static void checkpoint_storage_sample(u32 screen,u32 result);
 #include "channel.h"
 static u32 THIS spell_tick(void* object){
     record(1,object,0,0);menu_poll(object,1);u32 result=((TickFn)0x576830)(object);menu_poll(object,0);record(4,object,0,result);return result;
@@ -89,9 +90,21 @@ static u32 THIS result_tick(void* object){
     if(storage)record(1,object,0,0);menu_poll(object,1);SetLastError(error);
     u32 screen=storage?get((u8*)object+4):0;
     u32 completedBefore=storage&&readable(object,0x47)?get((u8*)object+0x43):2;
+    if(storage&&campaign_restart_loading&&screen==MNM_MENU_LOAD_SCREEN){
+        static u8 current[MNM_MENU_V13_STORAGE_SIZE];u8* p=object;
+        if(storage_snapshot(object,current)&&!get(current+16)&&!get(current+20)&&
+           get(p+8)==1&&!p[0xc]&&!get(p+0x33)&&!get(p+0x43)){
+            u8* edit=(u8*)get(p+0x4f);
+            if(readable((void*)get(edit+0x45),256)&&campaign_restart_file()){
+                ((ActionFn)0x4cd0e0)(edit,(u32)campaign_restart_stem);
+                ((ActionFn)0x4aa800)(object,0);campaign_restart_loading=0;
+                record(33,object,0,1);
+            }else{campaign_restart_loading=0;campaign_restart_ready=0;}
+        }
+    }
     u32 result=((TickFn)0x5595d0)(object);error=GetLastError();
     if(storage&&!completedBefore&&readable(object,0x47)&&get((u8*)object+0x43)==1)
-        checkpoint_storage_sample(screen,1);
+        {checkpoint_storage_sample(screen,1);if(screen==MNM_MENU_LOAD_SCREEN)record(35,object,get((void*)0x6c4830),campaign_restart_ready); }
     menu_poll(object,0);if(storage)record(4,object,0,result);SetLastError(error);return result;
 }
 #include "preferences_display.h"

@@ -1,5 +1,6 @@
 #include "drawing_action.h"
 #include "battle.h"
+#include "campaign_restart.h"
 #include "storage.h"
 #include "spells.h"
 #include "mini.h"
@@ -20,6 +21,7 @@ API int WIN UnmapViewOfFile(const void*);
 API u32 WIN GetFileSize(HANDLE,u32*);
 API u32 WIN GetTickCount(void);
 static u32* menu_words;
+static u32 menu_wire_version=1;
 static u32 menu_version=1,menu_size=MNM_MENU_V1_SIZE;
 static u32 menu_generation,menu_screen,menu_ready,menu_owner,menu_thread;
 static u32 menu_request,menu_status,menu_heartbeat,menu_seen;
@@ -34,7 +36,7 @@ static void menu_store(u32* p,u32 v){__atomic_store_n(p,v,__ATOMIC_RELEASE);}
 #include "drawing_semantic_state.h"
 #include "drawing_hud_state.h"
 #include "drawing_actor_latches.h"
-static int menu_header(void){return equal(menu_words,menu_version==22?MNM_MENU_V22_MAGIC:menu_version==21?MNM_MENU_V21_MAGIC:menu_version==20?MNM_MENU_V20_MAGIC:menu_version==19?MNM_MENU_V19_MAGIC:menu_version==18?MNM_MENU_V18_MAGIC:menu_version==17?MNM_MENU_V17_MAGIC:menu_version==16?MNM_MENU_V16_MAGIC:menu_version==15?MNM_MENU_V15_MAGIC:menu_version==14?MNM_MENU_V14_MAGIC:menu_version==13?MNM_MENU_V13_MAGIC:menu_version==12?MNM_MENU_V12_MAGIC:menu_version==11?MNM_MENU_V11_MAGIC:menu_version==10?MNM_MENU_V10_MAGIC:menu_version==9?MNM_MENU_V9_MAGIC:menu_version==8?MNM_MENU_V8_MAGIC:menu_version==7?MNM_MENU_V7_MAGIC:menu_version==6?MNM_MENU_V6_MAGIC:menu_version==5?MNM_MENU_V5_MAGIC:menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_version&&menu_load(menu_words+3)==menu_size;}
+static int menu_header(void){return equal(menu_words,menu_wire_version==23?MNM_MENU_V23_MAGIC:menu_version==22?MNM_MENU_V22_MAGIC:menu_version==21?MNM_MENU_V21_MAGIC:menu_version==20?MNM_MENU_V20_MAGIC:menu_version==19?MNM_MENU_V19_MAGIC:menu_version==18?MNM_MENU_V18_MAGIC:menu_version==17?MNM_MENU_V17_MAGIC:menu_version==16?MNM_MENU_V16_MAGIC:menu_version==15?MNM_MENU_V15_MAGIC:menu_version==14?MNM_MENU_V14_MAGIC:menu_version==13?MNM_MENU_V13_MAGIC:menu_version==12?MNM_MENU_V12_MAGIC:menu_version==11?MNM_MENU_V11_MAGIC:menu_version==10?MNM_MENU_V10_MAGIC:menu_version==9?MNM_MENU_V9_MAGIC:menu_version==8?MNM_MENU_V8_MAGIC:menu_version==7?MNM_MENU_V7_MAGIC:menu_version==6?MNM_MENU_V6_MAGIC:menu_version==5?MNM_MENU_V5_MAGIC:menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_wire_version&&menu_load(menu_words+3)==menu_size&&(menu_wire_version!=23||menu_load(menu_words+MNM_MENU_V23_BASE/4)==menu_version);}
 static int menu_host(u32* out){
     u32* p=menu_words+MNM_MENU_V1_HOST_WORD;u32 seq=menu_load(p);if(seq&1)return 0;
     for(u32 i=0;i<(menu_version>=2?23u:5u);++i)out[i]=menu_load(p+1+i);
@@ -101,11 +103,18 @@ static void menu_init(void){
         if(!WriteFile(menu_admission_trace,header,sizeof(header),&wrote,0)||wrote!=sizeof(header)){CloseHandle(menu_admission_trace);menu_admission_trace=0;}}
     HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1){menu_admission_record(8);return;}
     menu_size=GetFileSize(file,0);
-    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE&&menu_size!=MNM_MENU_V6_SIZE&&menu_size!=MNM_MENU_V7_SIZE&&menu_size!=MNM_MENU_V8_SIZE&&menu_size!=MNM_MENU_V9_SIZE&&menu_size!=MNM_MENU_V10_SIZE&&menu_size!=MNM_MENU_V11_SIZE&&menu_size!=MNM_MENU_V12_SIZE&&menu_size!=MNM_MENU_V13_SIZE&&menu_size!=MNM_MENU_V14_SIZE&&menu_size!=MNM_MENU_V15_SIZE&&menu_size!=MNM_MENU_V16_SIZE&&menu_size!=MNM_MENU_V17_SIZE&&menu_size!=MNM_MENU_V18_SIZE&&menu_size!=MNM_MENU_V19_SIZE&&menu_size!=MNM_MENU_V20_SIZE&&menu_size!=MNM_MENU_V21_SIZE&&menu_size!=MNM_MENU_V22_SIZE){menu_admission_record(9);CloseHandle(file);return;}
+    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE&&menu_size!=MNM_MENU_V6_SIZE&&menu_size!=MNM_MENU_V7_SIZE&&menu_size!=MNM_MENU_V8_SIZE&&menu_size!=MNM_MENU_V9_SIZE&&menu_size!=MNM_MENU_V10_SIZE&&menu_size!=MNM_MENU_V11_SIZE&&menu_size!=MNM_MENU_V12_SIZE&&menu_size!=MNM_MENU_V13_SIZE&&menu_size!=MNM_MENU_V14_SIZE&&menu_size!=MNM_MENU_V15_SIZE&&menu_size!=MNM_MENU_V16_SIZE&&menu_size!=MNM_MENU_V17_SIZE&&menu_size!=MNM_MENU_V18_SIZE&&menu_size!=MNM_MENU_V19_SIZE&&menu_size!=MNM_MENU_V20_SIZE&&menu_size!=MNM_MENU_V21_SIZE&&menu_size!=MNM_MENU_V22_SIZE&&menu_size!=MNM_MENU_V23_SIZE){menu_admission_record(9);CloseHandle(file);return;}
     menu_version=menu_size==MNM_MENU_V22_SIZE?22:menu_size==MNM_MENU_V21_SIZE?21:menu_size==MNM_MENU_V20_SIZE?20:menu_size==MNM_MENU_V19_SIZE?19:menu_size==MNM_MENU_V18_SIZE?18:menu_size==MNM_MENU_V17_SIZE?17:menu_size==MNM_MENU_V16_SIZE?16:menu_size==MNM_MENU_V15_SIZE?15:menu_size==MNM_MENU_V14_SIZE?14:menu_size==MNM_MENU_V13_SIZE?13:menu_size==MNM_MENU_V12_SIZE?12:menu_size==MNM_MENU_V11_SIZE?11:menu_size==MNM_MENU_V10_SIZE?10:menu_size==MNM_MENU_V9_SIZE?9:menu_size==MNM_MENU_V8_SIZE?8:menu_size==MNM_MENU_V7_SIZE?7:menu_size==MNM_MENU_V6_SIZE?6:menu_size==MNM_MENU_V5_SIZE?5:menu_size==MNM_MENU_V4_SIZE?4:menu_size==MNM_MENU_V3_SIZE?3:menu_size==MNM_MENU_V2_SIZE?2:1;
-    grimoire_campaign_enabled=menu_version>=22;spell_campaign_enabled=menu_version>=21;region_campaign_enabled=menu_version>=20;character_campaign_enabled=menu_version>=20;campaign_reports_enabled=menu_version>=20;campaign_preferences_enabled=menu_version>=12;region_grimoire_enabled=menu_version>=14;
+    menu_wire_version=menu_version;
+    if(menu_size==MNM_MENU_V23_SIZE){
+        menu_wire_version=23;menu_version=13;
+    }
     HANDLE mapping=CreateFileMappingA(file,0,4,0,0,0);CloseHandle(file);if(!mapping){menu_admission_record(10);return;}
     menu_words=MapViewOfFile(mapping,2,0,0,menu_size);CloseHandle(mapping);if(!menu_words){menu_admission_record(11);return;}
+    if(menu_wire_version==23){menu_version=menu_load(menu_words+MNM_MENU_V23_BASE/4);
+        if(menu_version<13||menu_version>22){menu_admission_record(9);menu_retired=1;return;}
+        campaign_restart_enabled=1;}
+    grimoire_campaign_enabled=menu_version>=22;spell_campaign_enabled=menu_version>=21;region_campaign_enabled=menu_version>=20;character_campaign_enabled=menu_version>=20;campaign_reports_enabled=menu_version>=20;campaign_preferences_enabled=menu_version>=12;region_grimoire_enabled=menu_version>=14;
     menu_admit(0);
     if(menu_version==4&&!MNM_MENU_MINI_EXPERIMENTAL)menu_retired=1;
 }
@@ -210,6 +219,8 @@ static void menu_state(void* object){
             u8* p=object;ready=!p[0xc]&&!get(p+0x33)&&!get(p+0x37)&&!get(p+0x43)&&!get(next+24)&&!get(next+28);
         }
     }
+    if(campaign_restart_loading&&screen==MNM_MENU_LOAD_SCREEN)ready=0;
+    if(campaign_restart_enabled&&screen==3&&ready){campaign_restart_ready=0;campaign_restart_armed=0;}
     if(menu_version>=11&&screen==3&&ready)defeat_quit_pending=0;
     if(owner!=menu_owner||screen!=menu_screen||ready!=menu_ready){
         ++menu_generation;menu_owner=owner;menu_screen=screen;menu_ready=ready;
@@ -260,6 +271,10 @@ static void menu_poll(void* object,int execute){
             else menu_status=MNM_MENU_UNSUPPORTED;
             if(menu_version>=8&&host[3]==MNM_MENU_REGION_ENTER&&menu_status==MNM_MENU_OK)
                 menu_handoff=menu_version>=20?region_enter_handoff:(*(u8*)0x659e50&&get((void*)0x659e33)==4?3:0);
+            if(campaign_restart_enabled&&host[3]==MNM_MENU_REGION_ENTER&&menu_status==MNM_MENU_OK){
+                campaign_restart_ready=0;campaign_restart_armed=0;
+                if(menu_handoff==3)campaign_restart_arm();
+            }
             if(menu_version>=2&&host[3]==MNM_MENU_SETUP_START&&menu_status==MNM_MENU_OK){
                 u32 next=get((u8*)object+0x33);menu_handoff=next==0x6f2aa0?1:next==0x6903b8?2:0;
             }

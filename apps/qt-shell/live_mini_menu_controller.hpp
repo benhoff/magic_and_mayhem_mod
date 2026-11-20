@@ -7,4 +7,6 @@ public:
     bool present(const MenuBridge::State&,QString* error);
 private:
     LiveMenuSession& session_;MiniMenuWidget& widget_;
+    quint32 generation_ = 0;
+    bool confirming_ = false;
 };

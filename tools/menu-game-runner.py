@@ -121,8 +121,8 @@ if os.environ.get('MNM_CAMPAIGN_MAP_RESOURCES')=='1':
     target=root/'map-resource-boundaries.bin'
     if target.exists() or target.is_symlink():raise ValueError('Stale map-resource observation')
     os.environ['MNM_MENU_MAP_RESOURCE_OBSERVE']='Z:'+str(target).replace('/','\\')
-if os.environ.get('MNM_CAMPAIGN_CHECKPOINT') in ('capture','restore') or os.environ.get('MNM_CAMPAIGN_ENTRY_SAVE'):
-    if os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')!='1' or not metadata.get('native_render'):
+if os.environ.get('MNM_CAMPAIGN_RESTART_TEST')=='1' or os.environ.get('MNM_CAMPAIGN_CHECKPOINT') in ('capture','restore') or os.environ.get('MNM_CAMPAIGN_ENTRY_SAVE'):
+    if (os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')!='1' and os.environ.get('MNM_CAMPAIGN_RESTART_TEST')!='1') or not metadata.get('native_render'):
         raise ValueError('Checkpoint observation requires private native casting diagnostics')
     checkpoint=root/'checkpoint-events.bin'
     if checkpoint.exists() or checkpoint.is_symlink():raise ValueError('Stale checkpoint observation')

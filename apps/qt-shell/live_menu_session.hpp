@@ -45,6 +45,7 @@ public:
     bool regionEnterEnabled=true;
     bool campaignMiniEnabled=true;
     bool campaignQuitEnabled=true;
+    bool campaignRestartEnabled=true;
     QString preferencesStorePath; // User-scoped by default; tests isolate it.
     QString winePrefix; // Empty selects the normal menu prefix; tests isolate each run.
     int smokeSeconds=0; // Bounded live validation only; normal sessions have no limit.

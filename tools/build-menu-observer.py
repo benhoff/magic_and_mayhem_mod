@@ -11,7 +11,7 @@ IMPORTS={'GetProcAddress':8,'GetModuleHandleA':4,'VirtualAlloc':16,'VirtualProte
          'FlushInstructionCache':12,'GetCurrentProcess':0,'CreateFileA':28,'WriteFile':20,
          'CloseHandle':4,'GetLastError':0,'SetLastError':4,'GetEnvironmentVariableA':12,
          'GetCurrentThreadId':0,'ExitProcess':4,'CreateFileMappingA':24,'MapViewOfFile':20,
-         'UnmapViewOfFile':4,'GetFileSize':8,'GetTickCount':0,'Sleep':4}
+         'UnmapViewOfFile':4,'GetFileSize':8,'GetTickCount':0,'Sleep':4,'CreateDirectoryA':8}
 def build(root=None,selftest=False,experimental_mini=False,fixture=True):
     root=root or REPO/'working/build/menu-observer';root.mkdir(parents=True,exist_ok=True)
     source=REPO/'runtime/menu'

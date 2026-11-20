@@ -1,9 +1,26 @@
 #include "live_mini_menu_controller.hpp"
-#include "../../protocols/include/mnm/menu_v13.h"
+#include "../../protocols/include/mnm/menu_v23.h"
+#include <QMessageBox>
 #include <QPushButton>
 LiveMiniMenuController::LiveMiniMenuController(LiveMenuSession& session,MiniMenuWidget& widget):session_(session),widget_(widget){
     widget_.setMode(MiniMenuWidget::Mode::Battle);
     QObject::connect(&widget_,&MiniMenuWidget::actionRequested,&widget_,[this](MiniMenuWidget::Action action){
+        if(action==MiniMenuWidget::Action::RestartLevel){
+            if(confirming_||!widget_.isEnabled()||!widget_.findChild<QPushButton*>("miniMenuRestart")->isEnabled())return;
+            confirming_=true;const auto generation=generation_;
+            auto* dialog=new QMessageBox(QMessageBox::Question,"Restart Level",
+                "Restart this level from the beginning? Progress made on this level will be lost.",
+                QMessageBox::Yes|QMessageBox::No,&widget_);
+            dialog->setObjectName("restartLevelConfirmation");
+            dialog->setDefaultButton(QMessageBox::No);
+            dialog->setEscapeButton(QMessageBox::No);
+            dialog->setAttribute(Qt::WA_DeleteOnClose);
+            QObject::connect(dialog,&QMessageBox::finished,&widget_,[this,generation](int answer){
+                confirming_=false;
+                if(answer==QMessageBox::Yes&&generation_==generation&&widget_.isEnabled())session_.requestMini(MNM_MENU_MINI_RESTART);
+            });
+            dialog->open();return;
+        }
         if(action==MiniMenuWidget::Action::LoadGame)session_.requestMini(MNM_MENU_MINI_LOAD);
         else if(action==MiniMenuWidget::Action::SaveGame)session_.requestMini(MNM_MENU_MINI_SAVE);
         else if(action==MiniMenuWidget::Action::Cancel)session_.requestMini(MNM_MENU_MINI_CANCEL);
@@ -12,6 +29,9 @@ LiveMiniMenuController::LiveMiniMenuController(LiveMenuSession& session,MiniMenu
     });
 }
 bool LiveMiniMenuController::present(const MenuBridge::State& state,QString* error){
+    generation_=state.generation;
+    widget_.setRestartAvailable(state.screen==MNM_MENU_MINI_SCREEN&&state.ready&&!state.mini.battle&&
+        (state.mini.actions&MNM_MENU_MINI_CAN_RESTART),session_.campaignRestartEnabled&&session_.storageMenusEnabled);
     if(state.screen!=MNM_MENU_MINI_SCREEN)return true;
     if(!session_.miniMenusEnabled()||(!state.mini.battle&&(!session_.campaignMiniEnabled||state.mini.context!=5||state.mini.mode!=2))){if(error)*error="Unsupported Mini Menu context; use original controls.";return false;}
     const auto mode=state.mini.battle?MiniMenuWidget::Mode::Battle:MiniMenuWidget::Mode::Campaign;

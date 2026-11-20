@@ -820,3 +820,11 @@ It uses producer journal V2 and compares every completed CPU/GPU canvas.
 `--minimap-motion` additionally runs the private-Xvfb paced rotation/pan fixture;
 use it under `xvfb-run`, for validation rather than gameplay timing.
 This mode ends after sixteen World queues and keeps original rendering active.
+
+
+During a campaign, open the menu and choose **Restart Level** to return to its
+level-start checkpoint. The confirmation defaults to No. Restart becomes
+available after entering a level through native Region Entry in the current
+session; loading a different save disables it. Older saves have no level-start
+checkpoint. Named saves remain independent. See
+[campaign restart details](../../research/runtime/campaign-restart-20261119.md).

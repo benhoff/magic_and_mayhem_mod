@@ -27,7 +27,7 @@ public:
     struct Character {quint32 parent=0,depth=0,context=0,wizard=0,experience=0,actions=0,adjustments=0;std::array<CharacterRow,6> rows{};QString name;};
     struct State { quint32 generation=0,screen=0,ready=0,ack=0,status=0,thread=0,sequence=0,handoff=0;Battle battle;Spells spells;Mini mini;Results results;Preferences preferences;RegionEntry region;Defeat defeat;Storage storage;Grimoire grimoire;Multiplayer multiplayer;Sessions sessions;Lobby lobby;Character character;Realm realm; };
     ~MenuBridge();
-    bool create(const QString& path,bool battle=false,bool spells=false,bool mini=false,bool results=false,bool preferences=false,bool region=false,bool enter=false,bool campaignMini=false,bool campaignQuit=false,bool campaignDefeat=false,bool campaignPreferences=false,bool storage=false,bool grimoire=false,bool multiplayer=false,bool sessions=false,bool lobby=false,bool character=false,bool realm=false,bool campaign=false,bool campaignSpells=false,bool campaignBook=false);
+    bool create(const QString& path,bool battle=false,bool spells=false,bool mini=false,bool results=false,bool preferences=false,bool region=false,bool enter=false,bool campaignMini=false,bool campaignQuit=false,bool campaignDefeat=false,bool campaignPreferences=false,bool storage=false,bool grimoire=false,bool multiplayer=false,bool sessions=false,bool lobby=false,bool character=false,bool realm=false,bool campaign=false,bool campaignSpells=false,bool campaignBook=false,bool campaignRestart=false);
     bool read(State& state) const;
     bool readUnstable() const { return readUnstable_; }
     void heartbeat(bool alive=true);
@@ -44,6 +44,8 @@ private:
     QFile file_;
     uchar* mapping_=nullptr;
     quint32 heartbeat_=0,request_=0;
+    bool campaignRestart_=false;
+    quint32 baseVersion_=1;
     bool retired_=false,battle_=false,spells_=false,mini_=false,results_=false,preferences_=false,region_=false,enter_=false,campaignMini_=false,campaignQuit_=false,campaignDefeat_=false,campaignPreferences_=false,storage_=false,grimoire_=false,multiplayer_=false,sessions_=false,lobby_=false,character_=false,realm_=false,campaignBook_=false,campaignSpells_=false,campaign_=false;
     void publish(bool alive,quint32 action=0,quint32 generation=0,quint32 argument=0,const std::array<int,17>* rules=nullptr,const std::array<int,63>* assignments=nullptr,const std::array<int,7>* preferences=nullptr,const QByteArray* storageName=nullptr,const QByteArray* multiplayerNames=nullptr);
 };

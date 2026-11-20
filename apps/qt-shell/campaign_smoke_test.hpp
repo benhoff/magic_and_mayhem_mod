@@ -22,3 +22,5 @@ inline bool campaignResumeConfirmed(const CampaignPresentationProbe& p,quint64 f
 }
 
 void installCampaignProgressionTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&,std::function<CampaignPresentationProbe()>);
+
+void installCampaignRestartTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&,std::function<CampaignPresentationProbe()>);

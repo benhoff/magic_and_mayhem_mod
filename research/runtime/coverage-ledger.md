@@ -31034,3 +31034,22 @@ startup and synthetic GL startup. All four executions passed; no original-game
 run or engine milestone promotion. The initial sandbox GUI abort is retained
 separately; successful GUI checks ran outside that sandbox. Historical engine
 evidence retains its source hashes and pending applicability boundaries.
+
+
+## 2026-11-19 — campaign Restart Level policy
+
+Added a confirmed native campaign Mini Restart action using a session-local
+original level-start save and original Load lifecycle. V23 explicitly wraps the
+selected V13–V22 base without enabling experimental callers. No/Yes and stale
+request/confirmation guards are covered by four focused Qt checks; the PE32
+adapter cross-build passes. [Fresh Celtic Adept live execution](campaign-restart-20261119/live-06.json)
+restarts twice, restores original clock0 and every recorded slot/type/owner/HP/
+position/mana field of the one initially active wizard, and resumes fresh
+resident presentation. Bounded termination and legacy audio/media are explicit.
+
+This is native policy, not recovered Restart semantics or a complete original
+save-state equivalence/replacement promotion. Older saves and unsupported
+original-controlled Region entries have no fabricated checkpoint; other maps,
+RNG/AI/scripts, failure recovery and normal Quit remain separate. Historical
+shared-source claims retain their exact old fingerprints and stale limitations.
+See [implementation and limits](campaign-restart-20261119.md).
