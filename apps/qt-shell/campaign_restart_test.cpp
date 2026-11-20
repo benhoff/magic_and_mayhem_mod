@@ -21,7 +21,10 @@ void installCampaignRestartTest(QApplication& app,QMainWindow& window,LiveMenuSe
     struct Run {int stage=0,restarts=0;bool done=false;quint64 frames=0,source=0;QJsonArray states;};
     auto r=std::make_shared<Run>();
     auto finish=[r,path,&app,&session](bool ok,const QString& error){
-        if(r->done)return;r->done=true;
+        if(r->done){
+            return;
+        }
+        r->done=true;
         QFile file(path);if(file.open(QIODevice::WriteOnly))file.write(QJsonDocument(QJsonObject{
             {"success",ok},{"error",error},{"restarts",r->restarts},{"states",r->states},
             {"experiment",session.evidenceDirectory()},{"bounded_termination",true}}).toJson());
@@ -34,7 +37,12 @@ void installCampaignRestartTest(QApplication& app,QMainWindow& window,LiveMenuSe
     };
     auto previous=session.stateChanged;
     session.stateChanged=[r,previous,click,finish,probe,&window](const MenuBridge::State& s){
-        if(previous)previous(s);if(r->done||!s.ready)return;
+        if(previous){
+            previous(s);
+        }
+        if(r->done||!s.ready){
+            return;
+        }
         r->states.append(QJsonObject{{"screen",int(s.screen)},{"ack",int(s.ack)},{"actions",int(s.mini.actions)},
                                     {"generation",int(s.generation)},{"stage",r->stage}});
         QString action;
@@ -86,7 +94,10 @@ void installCampaignRestartTest(QApplication& app,QMainWindow& window,LiveMenuSe
             window.activateWindow();window.raise();viewport->setFocus();
             auto* input=new QProcess(&window);
             QObject::connect(input,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),&window,[input,finish](int code,QProcess::ExitStatus status){
-                if(code||status!=QProcess::NormalExit)finish(false,"Escape failed: "+QString::fromLocal8Bit(input->readAllStandardError()));input->deleteLater();
+                if(code||status!=QProcess::NormalExit){
+                    finish(false,"Escape failed: "+QString::fromLocal8Bit(input->readAllStandardError()));
+                }
+                input->deleteLater();
             });
             r->stage=5;
             input->start("python3",{QDir::current().filePath("tools/test-live-campaign-mini.py"),"--send-escape"});
