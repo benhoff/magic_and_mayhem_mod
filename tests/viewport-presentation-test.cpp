@@ -1,4 +1,5 @@
 #include "viewport_presentation.hpp"
+#include "gameplay_fps_channel.hpp"
 #include "blit.hpp"
 #include <QApplication>
 #include <QComboBox>
@@ -14,6 +15,7 @@
 #include <QPushButton>
 #include <QSurfaceFormat>
 #include <QToolBar>
+#include <QTemporaryDir>
 #include <cmath>
 #include <cstdio>
 #include <stdexcept>
@@ -147,10 +149,32 @@ struct KeyObserver:QObject {
     }
 };
 void fpsOverlay(){
+    QTemporaryDir directory;require(directory.isValid(),"Gameplay diagnostic temporary directory");
+    GameplayFpsChannel gameplay;const auto path=directory.filePath("channel.bin.gameplay");
+    require(gameplay.create(path) && !gameplay.progress(),"Unobserved gameplay must be unavailable");
+    QFile producer(path);require(producer.open(QIODevice::ReadWrite),"Cannot open gameplay producer");
+    auto* words=reinterpret_cast<std::uint32_t*>(producer.map(0,MNM_GAMEPLAY_FPS_BYTES));
+    require(words,"Cannot map gameplay producer");
+    std::uint32_t previous=0,counter=0xfffffffeu;int observed=0;
+    mnm_gameplay_fps_publish(words,counter,counter+1,&previous,&observed);++counter;
+    mnm_gameplay_fps_publish(words,counter,0,&previous,&observed);counter=0;
+    require(gameplay.progress() && gameplay.progress()->ticks==2,"World counter wrap lost gameplay ticks");
+    mnm_gameplay_fps_publish(words,0,0,&previous,&observed);
+    require(gameplay.progress()->ticks==2,"Non-advancing World counted as gameplay");
+    mnm_gameplay_fps_publish(words,0,500,&previous,&observed);counter=500;
+    require(gameplay.progress()->ticks==2 && gameplay.progress()->epoch==1,"Unknown counter jump inflated gameplay");
+    __atomic_store_n(words+4,1,__ATOMIC_RELEASE);require(!gameplay.progress(),"Torn gameplay snapshot admitted");
+    __atomic_store_n(words+4,0,__ATOMIC_RELEASE);
+    words[2]=2;require(!gameplay.progress(),"Unknown gameplay version admitted");words[2]=1;
+    words[6]=0xffffffffu;
+    mnm_gameplay_fps_publish(words,counter,counter+1,&previous,&observed);++counter;
+    require(gameplay.progress()->ticks==0,"Cumulative gameplay counter wrap changed");
     QMainWindow window;auto* viewport=new GlViewport(&window);window.setCentralWidget(viewport);
     auto* toolbar=window.addToolBar("Presentation");
     KeyObserver observer;viewport->installEventFilter(&observer);
     ViewportPresentation controls(window,*viewport);controls.addControls(*toolbar);controls.hideInFullscreen(*toolbar);
+    controls.gameplayProgress=[&]{return gameplay.progress();};
+    QTimer ticks;ticks.setInterval(50);QObject::connect(&ticks,&QTimer::timeout,&window,[&]{mnm_gameplay_fps_publish(words,counter,counter+1,&previous,&observed);++counter;});ticks.start();
     window.resize(900,750);controls.show();settle();
     auto* button=toolbar->findChild<QPushButton*>("showFpsButton");
     auto* label=viewport->findChild<QLabel*>("viewportFps");
@@ -161,8 +185,12 @@ void fpsOverlay(){
     QTimer frames;frames.setInterval(20);QObject::connect(&frames,&QTimer::timeout,viewport,[viewport,image]{viewport->setFrame(image);});frames.start();
     auto wait=[](int ms){QEventLoop loop;QTimer::singleShot(ms,&loop,&QEventLoop::quit);loop.exec();};
     wait(2200);
-    bool numeric=false;const auto rate=label->text().mid(5).toDouble(&numeric);
+    auto displayRate=[&](bool* numeric){return label->text().section('\n',0,0).mid(5).toDouble(numeric);};
+    auto gameplayRate=[&](bool* numeric){return label->text().section('\n',1,1).mid(14).toDouble(numeric);};
+    bool numeric=false;const auto rate=displayRate(&numeric);
     require(label->isVisible() && numeric && rate>15 && rate<100,"FPS did not follow timed viewport presentation");
+    const auto gameplayRateValue=gameplayRate(&numeric);
+    require(numeric && gameplayRateValue>12 && gameplayRateValue<27,"Gameplay FPS did not follow engine ticks");
     require(viewport->rect().contains(label->geometry()),"FPS overlay is outside viewport");
     const auto screenshot=window.screen()->grabWindow(window.winId()).toImage();
     require(!screenshot.isNull(),"Cannot capture FPS overlay");
@@ -174,7 +202,13 @@ void fpsOverlay(){
     }
     require(textPixels>10,"FPS text was not composited above the viewport");
     frames.stop();wait(2200);
-    require(label->text().mid(5).toDouble(&numeric)<5 && numeric,"FPS retained a stale moving-frame rate while idle");
+    require(displayRate(&numeric)<5 && numeric,"FPS retained a stale moving-frame rate while idle");
+    require(gameplayRate(&numeric)>12 && numeric,"Gameplay rate depended on viewport drawing");
+    ticks.stop();frames.start();wait(2200);
+    require(gameplayRate(&numeric)==0 && numeric,"Paused gameplay retained a stale rate");
+    require(displayRate(&numeric)>15 && numeric,"Paused gameplay stopped the display rate");
+    gameplay.close();wait(1200);require(label->text().endsWith("Gameplay FPS: —"),"Missing gameplay data displayed a fabricated rate");
+    frames.stop();producer.unmap(reinterpret_cast<uchar*>(words));
     auto key=[&](QEvent::Type type,bool repeat=false,Qt::KeyboardModifiers modifiers=Qt::NoModifier){QKeyEvent event(type,Qt::Key_F10,modifiers,QString(),repeat);QApplication::sendEvent(viewport,&event);};
     key(QEvent::ShortcutOverride);key(QEvent::KeyPress);key(QEvent::KeyRelease);
     require(!button->isChecked() && label->isHidden() && observer.fpsKeys==0,"F10 did not hide FPS or leaked to game input");

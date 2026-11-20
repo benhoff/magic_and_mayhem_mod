@@ -20,6 +20,8 @@ SOURCES = sorted(set(gpu.SOURCES + [
     'apps/qt-shell/input_forwarder.cpp', 'apps/qt-shell/input_forwarder.hpp',
     'apps/qt-shell/input_state.cpp', 'apps/qt-shell/input_state.hpp',
     'apps/qt-shell/window_host.cpp', 'apps/qt-shell/window_host.hpp',
+    'apps/qt-shell/gameplay_fps.hpp', 'apps/qt-shell/gameplay_fps_channel.hpp',
+    'protocols/include/mnm/gameplay_fps_v1.h',
     'tests/viewport-presentation-test.cpp', 'tests/qt-input-test.cpp',
     'tests/gl-viewport-upload-test.cpp', 'tools/test-viewport-presentation.py',
 ]))

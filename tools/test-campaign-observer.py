@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import struct
 import tempfile
 ROOT=Path(__file__).resolve().parents[1]
 def load(name,path):
@@ -18,10 +19,15 @@ def main():
     subprocess.run(flags+['-c',str(ROOT/'tests/campaign-observer-test.c'),'-o',str(root/'fixture.obj')],check=True)
     subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/base:0x400000','/nodefaultlib','/timestamp:0',f'/out:{root/"fixture.exe"}',str(root/'fixture.obj'),str(root/'kernel32.lib'),str(root/'menu.lib')],check=True)
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(ROOT/'working/tests/menu-observer-wine'),WINEDEBUG='-all',MNM_MENU_CAMPAIGN_OBSERVE='Z:'+str(root/'campaign.bin').replace('/','\\'))
+    channel=root/'channel.bin'
+    (root/'channel.bin.gameplay').write_bytes(struct.pack('<8I',0x474d4e4d,0x31535046,1,32,0,0,0,0))
+    env['MNM_MENU_CHANNEL']='Z:'+str(channel).replace('/','\\')
     with (root/'wine.log').open('w') as log:subprocess.run(['wine',str(root/'fixture.exe')],cwd=root,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=60)
+    gameplay=struct.unpack('<8I',(root/'channel.bin.gameplay').read_bytes())
+    if gameplay!=(0x474d4e4d,0x31535046,1,32,10,0,5,1):raise ValueError('Gameplay telemetry did not count five original tick advances')
     rows=load('campaign_decoder','tools/test-live-campaign-entry.py').decode((root/'campaign.bin').read_bytes())
     if len(rows)!=6 or [r['phase'] for r in rows]!=[1,2,1,2,3,4] or [r['visible_regions'] for r in rows]!=[0,0,8,8,8,8] or [r['returning'] for r in rows[-2:]]!=[1,0]:raise ValueError('Unbounded/lost state observation')
     if any(r['last_error']!=0xabc123 for r in rows) or len({r['thread'] for r in rows})!=1:raise ValueError('Thread/error mismatch')
-    report={'success':True,'real_game_launched':False,'scope':'Synthetic forwarding tick, original-slot/byte guards, repeat rejection, receiver guard, LastError/return preservation, 300 idle ticks deduplicated, two-phase state changes and navigation/resume/world-tick guards; not original-bytecode or live equivalence','records':rows,'sources':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['runtime/menu/observer.c','runtime/menu/campaign_observe.h','runtime/menu/region_entry_observe.h','runtime/menu/campaign_world_observe.h','tools/build-menu-observer.py','tests/campaign-observer-test.c',str(Path(__file__).relative_to(ROOT))]}}
+    report={'success':True,'real_game_launched':False,'scope':'Synthetic forwarding tick, original-slot/byte guards, repeat rejection, receiver guard, LastError/return preservation, 300 idle ticks deduplicated, two-phase state changes and navigation/resume/world-tick guards; not original-bytecode or live equivalence','records':rows,'gameplay_words':gameplay,'compiled_sources':json.loads((root/'manifest.json').read_text())['compiled_sources'],'sources':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['runtime/menu/observer.c','runtime/menu/campaign_observe.h','runtime/menu/region_entry_observe.h','runtime/menu/campaign_world_observe.h','tools/build-menu-observer.py','tests/campaign-observer-test.c',str(Path(__file__).relative_to(ROOT))]}}
     (root/'report.json').write_text(json.dumps(report,indent=2)+'\n');print('Campaign observer fixture passed',flush=True)
 if __name__=='__main__':main()

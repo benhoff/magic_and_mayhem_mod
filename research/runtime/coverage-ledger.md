@@ -31034,3 +31034,8 @@ startup and synthetic GL startup. All four executions passed; no original-game
 run or engine milestone promotion. The initial sandbox GUI abort is retained
 separately; successful GUI checks ran outside that sandbox. Historical engine
 evidence retains its source hashes and pending applicability boundaries.
+
+
+2026-11-19 — HOST.gameplay-fps: Show FPS/F10 now displays separate FPS and Gameplay FPS. The existing guarded original World wrapper samples world-counter deltas into an optional versioned sidecar; gameplay is independent of viewport redraw counts. Synthetic normal/fractional-DPI controls and PE32 once-forwarded five-tick telemetry pass in HOST.gameplay-fps.synthetic-20261119. Missing observations show a dash; paused counters settle to zero; resets/unknown jumps invalidate the interval. No engine pacing/gameplay changes or status promotions. Live original-game telemetry, broader mode/reset semantics and physical timing remain pending; historical engine proof keeps its source-drift limitations.
+
+HOST.gameplay-fps.bound-20261119 repeats the focused controls with prospective exact contract/scenario/source identities; it supports the new native implementation and preview dimensions only. Initial unbound results and sandbox setup failures remain preserved separately. Original-game telemetry and engine milestones remain pending.

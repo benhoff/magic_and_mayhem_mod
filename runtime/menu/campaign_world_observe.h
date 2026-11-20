@@ -1,6 +1,7 @@
 /* First three original gameplay ticks after each confirmed full World exit;
  * bounded observation only, no extra ticks or simulation replacement. */
 static u32 campaign_world_ticks,campaign_exit_ticks;
+#include "gameplay_fps.h"
 #include "map_resource_boundaries.h"
 static void campaign_exit_record(void* object,u32 event){
     if(campaign_exit_ticks>=16)return;
@@ -17,7 +18,11 @@ static u32 THIS campaign_world_tick(void* object){
     if(exit_sample)map_resource_snapshot(2,0);
     if(exit_sample)campaign_exit_record(object,26);
     if(sample)record(11,object,campaign_world_ticks,0);
+    gameplay_fps_open();
+    const int measure=gameplay_fps_words&&object==(void*)0x6cbb78;
+    const u32 before=measure?get((void*)0x6c4830):0;
     SetLastError(error);u32 result=((TickFn)0x46afc0)(object);error=GetLastError();
+    if(measure)mnm_gameplay_fps_publish(gameplay_fps_words,before,get((void*)0x6c4830),&gameplay_fps_previous,&gameplay_fps_observed);
     if(exit_sample)map_resource_snapshot(3,result);
     if(menu_version>=8)menu_poll(object,0);
     if(sample){record(12,object,campaign_world_ticks,result);++campaign_world_ticks;}

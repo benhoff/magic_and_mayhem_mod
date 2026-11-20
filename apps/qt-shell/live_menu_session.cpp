@@ -47,6 +47,8 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent,EnginePrefer
             if(nativeMusicEnabled&&(!prepareNativeMusic||!prepareNativeMusic(QDir(root_).filePath("native-music.bin")))){fallback("Cannot create native music channel; see the launch log.");if(finished)finished();return;}
             if(nativeMediaEnabled&&(!prepareNativeMedia||!prepareNativeMedia(QDir(root_).filePath("native-media.bin")))){fallback("Cannot create native media channel; see the launch log.");if(finished)finished();return;}
             channel_=QDir(root_).filePath("channel.bin");bridge_=std::make_unique<MenuBridge>();
+            // Optional read-only gameplay diagnostic; absence is shown as unavailable.
+            gameplayFps_.create(channel_+".gameplay");
             if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled,regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,sessionMenusEnabled&&multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,hostLobbyEnabled&&sessionMenusEnabled&&multiplayerMenusEnabled&&grimoireMenusEnabled&&storageMenusEnabled&&campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,characterMenusEnabled,realmMenusEnabled,progressedMenusEnabled,campaignSpellboxEnabled,campaignBookEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
             active_=!bypass_;clock_.restart();lastState_=0;
             menuTimeline_.open(QDir(root_).filePath("menu-host-timeline.bin"));menuWitness(MNM_MTL_CREATED);
@@ -57,7 +59,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent,EnginePrefer
             process_.start(QDir(repo_).filePath("tools/run-menu-observer.py"),arguments);
             if(launched)launched();
         }else{
-            timer_.stop();active_=false;if(bridge_)retireBridge();bridge_.reset();
+            timer_.stop();active_=false;if(bridge_)retireBridge();bridge_.reset();gameplayFps_.close();
             if(output)output(QString("Menu launcher exited with status %1. Evidence: %2\n").arg(code).arg(root_));
             if(finished)finished();
         }
@@ -90,6 +92,7 @@ LiveMenuSession::~LiveMenuSession(){
 }
 bool LiveMenuSession::start(){
     if(running())return false;
+    gameplayFps_.close();
     preferencesStore_.wait();publishPreferences();
     storageOpeningGeneration_=preferencesOpeningGeneration_=0;
     launcherExitCode=-1;
@@ -128,6 +131,7 @@ void LiveMenuSession::forceStop(std::function<void(bool,const QString&)> complet
     if(saveRecoveryCompleted_)return;
     const bool staged=preparing_;
     timer_.stop();active_=false;preferencesToSave_=false;pending_=transition_=false;deferredMenuRequest_={};
+    gameplayFps_.close();
     if(bridge_)retireBridge();
     process_.forceStop(staged?QString{}:winePrefix.isEmpty()?QDir(repo_).filePath(hostLobbyEnabled?"working/tests/menu-host-dx6-wine":"working/tests/menu-live-wine"):winePrefix,
         [this,staged,completed=std::move(completed)](bool ok,const QString& error){

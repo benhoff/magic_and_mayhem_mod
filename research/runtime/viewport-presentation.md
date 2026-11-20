@@ -112,3 +112,32 @@ hidden/empty frame recovery at normal and fractional DPI. These synthetic host
 checks do not establish original-engine, physical-driver or hardware timing
 equivalence. Existing engine evidence and its source-drift limitations remain
 historical.
+
+
+2026-11-19 gameplay FPS: the overlay has separate `FPS` and `Gameplay FPS`
+lines. The latter samples a session-owned 32-byte version-1 sidecar alongside
+the menu channel. The existing guarded original World wrapper at 0046afc0
+reads the world counter at 006c4830 immediately before and after its once-only
+original call. Only zero/one advances enter the cumulative counter; unexpected
+jumps or discontinuity change an epoch and invalidate that rate interval. Both
+counters wrap modulo 2^32. Seqlock publication prevents mixed samples. Mapping
+setup happens once, no per-tick I/O or drawing counters feed the rate, and the
+wrapper preserves the original return value and LastError. This adds no game
+clock, update or pacing changes. The optional mapping survives until process
+exit; the host closes its view on stop/restart and creates a fresh sidecar for
+each new session. Missing/invalid/unobserved data displays a dash. Unchanged
+counters settle to zero even while the viewport redraws.
+
+Synthetic normal/fractional-DPI display controls exercise independent 50 Hz
+redraw and 20 Hz gameplay sources, stopped drawing with continued gameplay,
+paused gameplay with continued drawing, unavailable telemetry, counter wrap,
+unknown jumps, malformed versions and torn samples. PE32 synthetic World
+forwarding verifies five original counter advances, once-only forwarding and
+LastError/return preservation. Real-game telemetry, broader World/mode/reset
+semantics and physical hardware timing remain pending; historical engine
+evidence is not renewed by these checks.
+
+The reproducible `tools/test-gameplay-fps.py` driver pins sources and prospective
+contract/scenario claims before the focused controls. Its bound result is
+[validation-bound-02.json](gameplay-fps-20261119/validation-bound-02.json); the
+initial unbound controls and sandbox setup failures remain in validation-01.

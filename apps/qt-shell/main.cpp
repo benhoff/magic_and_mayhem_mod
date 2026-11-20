@@ -257,6 +257,7 @@ public:
         connect(dock,&QDockWidget::visibilityChanged,details,&QPushButton::setChecked);
         if(gl_){
             presentation_=std::make_unique<ViewportPresentation>(*this,*gl_,presentation);
+            presentation_->gameplayProgress=[this]{return liveMenus_?liveMenus_->gameplayProgress():std::nullopt;};
             presentation_->addControls(*toolbar);presentation_->hideInFullscreen(*toolbar);
             presentation_->hideInFullscreen(*dock);presentation_->hideInFullscreen(*statusBar());
         }
