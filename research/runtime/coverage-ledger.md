@@ -924,7 +924,7 @@ shared-launch evidence keeps its fingerprints and may be stale after these sourc
 edits; full current gameplay, concurrent shared-surface leases and original failed
 Lock/Restore remain pending. Other text/image/CPU writers, full scene/HUD source
 ownership, uninterrupted drawing history, transitions/recovery and complete
-launcher release remain open. No gameplay policy or60FPS status changes.
+launcher release remain open. No gameplay policy or 60 FPS status changes.
 
 The existing unfinished creature-action register previously bound a recovered
 range exception to static evidence, blocking the repository audit. Its unchanged
@@ -6051,7 +6051,7 @@ Fresh shared image, fade and font regressions pass after canvas mirroring. Glyph
 
 `NR.world-gpu-ack-delivery` has bounded live observation:4,096 original/native returns and native Qt presentations,6,770,930 raster requests, zero native readbacks/pixel replies/original World writebacks, zero retained surfaces and bounded caches/RSS. Independently owned CPU source patches now use sparse GPU coverage rather than thousands of row uploads. The current512 synthetic/legacy +32 retained-input native CPU/GPU history comparison passes separately; it does not assert independent original pixel equality. Both producer/consumer death at generation34 refuse terminally and a fresh128-queue recovery completes.
 
-Performance remains failed:16.1786FPS,44ms median/58ms p95/664ms maximum original World duration in the long run. Neither19FPS nor60FPS is promoted. Original DirectDraw and outside-World original drawing remain active; the original CPU World canvas is stale after a resident ACK, so arbitrary original pixel reads/picking and whole-session gameplay are separate unproved boundaries. The launcher now admits only the exact selected V3 or V4 immutable envelope and mode. All failure/partial performance reports remain in the experiment-history catalog. The committed597005a first-parent range has174 exact file transitions with matching receipts; its journal is preserved without retrospective test assertions.
+Performance remains failed:16.1786FPS,44ms median/58ms p95/664ms maximum original World duration in the long run. Neither19FPS nor 60 FPS is promoted. Original DirectDraw and outside-World original drawing remain active; the original CPU World canvas is stale after a resident ACK, so arbitrary original pixel reads/picking and whole-session gameplay are separate unproved boundaries. The launcher now admits only the exact selected V3 or V4 immutable envelope and mode. All failure/partial performance reports remain in the experiment-history catalog. The committed597005a first-parent range has174 exact file transitions with matching receipts; its journal is preserved without retrospective test assertions.
 
 The first isolated native PE32 factory proof now passes128 lifetimes/2,176 selected caller words against real Wine DirectDraw with per-interface reference counts and canonical IUnknown identity. The native probe has ddraw disabled, no module loaded, no DirectDraw imports and zero retained factory owners. A null output pointer faults the original Wine factory and is excluded from the common valid-caller corpus; native safe refusal is a separate policy. Native preserves incoming LastError, while this Wine/Xvfb reference exposes1400; that difference is recorded explicitly, not treated as equivalence. Surface methods currently refuse terminally and the factory is not installed in the game. Full real-game DirectDraw retirement remains pending.
 
@@ -7760,7 +7760,7 @@ Fresh exact Qt/Python archive controls,11 compressed malformed inputs,33 clock
 byte mutations/LastError/paired callbacks and current exhaustive shared import/
 normal-Quit regressions pass in `resident-profile-worker-fixtures-20261011.json`.
 Full current public CPU/GPU/pacing and actual captured hardware throughput remain
-pending. No original comparison/replacement or60FPS status promotion. Exact
+pending. No original comparison/replacement or 60 FPS status promotion. Exact
 `19882a4` source receipts are separately reviewed in
 `coverage/resident-profile-instrumentation-history-20261011.json`; older evidence
 retains historical source/contract fingerprints.
@@ -7957,7 +7957,7 @@ decoding checks complete fixed/pool regions and retained bytes against runtime
 change counts. All30 final-source PE32 controls and17 decoder refusals pass; negative history/scene
 count gates andversion1 compatibility pass. Actual TITAN mode3 state+scene equality
 is pending. No default activation,
-simulation pacing change, complete nested/map/visibility/timer/pixel safety or60FPS.
+simulation pacing change, complete nested/map/visibility/timer/pixel safety or 60 FPS.
 Exact6cdf7a4..0986a18 committed history review:23 files,zero missing receipts;
 no retrospective gate or behavior validation claim.
 
@@ -8814,7 +8814,7 @@ retreat to observed[10,71] (last living wizard[14,61]); independent input trace
 records summon,Fireball,melee and player-party lethal observations but formal
 full gameplay/normal Quit checks remain unpassed. Aggregate19.682WorldFPS at
 failure. Sources, original manifest and owned cleanup verify. This result proves
-a bounded rendering gain, not smoother simulation, full success or60FPS.
+a bounded rendering gain, not smoother simulation, full success or 60 FPS.
 See `scene-draw-budget-report-worker-live-negative-20261012.json`; prior failures
 and source fingerprints are retained.
 
@@ -10342,7 +10342,7 @@ reproduces one opaque overflow; both pinned original leaves read an authored
 backing guard word in isolation. Fresh14 native controls, two captured480000-word
 atlas/nonatlas comparisons andtwo renderer regressions pass withzero ordinary
 readbacks/leaks. No original equivalence for that tap, current public reliability
-or60FPS claim; drawing-history GAP remains under investigation. Historical
+or 60 FPS claim; drawing-history GAP remains under investigation. Historical
 source fingerprints and failures stay intact.
 
 ### Read-only description false history GAP (2026-10-13)
@@ -10380,7 +10380,7 @@ or historyadmissionfault andzeroordinaryreadbacks. The failed public observation
 until successfulpublic evidence. The run stillfails performance:18.98168engineFPSbelow19,50.23648native
 FPSbelow60, andretained worst-window native/paint checks. Offline source-matched
 artifact postcheck verifies gameplay outcomes without clearing those failures.
-No originalequivalence, fullnativeengine, every-GAPrepair or60FPSclaim is made.
+No originalequivalence, fullnativeengine, every-GAPrepair or 60 FPSclaim is made.
 
 ### Retained native World image controls — 2026-10-13
 
@@ -15095,7 +15095,7 @@ cadence comparison01checks actual action fields against the selected interactive
 schedule as well as settings/counter/input binaries and retained process/cadence
 records. Diagnostic16/32median ratios are2.4165/5.5837. Control observation,
 randomized workloads and concurrent archive/system I/O remain; no identical
-workload, unobtrusive capture or60FPSclaim. Next extend the bounded original
+workload, unobtrusive capture or 60 FPSclaim. Next extend the bounded original
 source/gate/dual-physical diagnostic to120updates with explicit2GiBAPIphysical
 budget and12GiBstorage reservation, then rerun eligible native cohorts.
 
@@ -18560,7 +18560,7 @@ writes. Current-source controls execute both CPU branches and reject altered
 code, missing initialization and stale output; ten Python controls cover the
 proof decoder and direct/batch launch/selector boundaries.
 
-The final frozenac848056 default-policy Apprentice journey passes914079native
+The final frozenac848056 default-policy Apprentice journey passes914079 native
 calls,zero forwards/history refusal,all seven explicit route requirements,two
 10-second ordinary-input phases,Mini Cancel/resume,normal Quit/private Wine
 stop,source/original bookends and unchanged5FPS floor. It observes31/43 routes;
@@ -31034,3 +31034,23 @@ startup and synthetic GL startup. All four executions passed; no original-game
 run or engine milestone promotion. The initial sandbox GUI abort is retained
 separately; successful GUI checks ran outside that sandbox. Historical engine
 evidence retains its source hashes and pending applicability boundaries.
+
+### Loaded campaign-map FPS localization (2026-11-19)
+
+The user-confirmed overhead map with the walking wizard uses UI-only command
+presentation, with zero in-mission World generations in the bounded private
+Ben.sav diagnostic. The final 20-second interval contains 79 source PRESENTs,
+79 native exports and 79 Qt swaps: mean source/swap intervals 254.075/253.786 ms,
+export-to-pickup 0.759 ms and pickup-to-swap 2.698 ms, with no blocked exports in
+that interval. This localizes sparse updates upstream of Qt/GPU presentation
+for the observed no-input map interval; it proves no intentional original cap
+or exact moving/dialog hot function. Earlier whole-session World counters
+refer to a different rendering domain.
+
+[Diagnosis and limits](campaign-fps-diagnosis-20261119.md) retain the source
+frame, exact trace and interval analysis. The original save remained unchanged,
+original media verified before/after and owned Wine processes stopped. Opening
+map and loaded storage harness failures remain failures: the loaded harness
+expected an in-mission World and timed out on the overhead map. No production
+code, engine milestone, original equivalence or 60 FPS claim changed. The next
+causal work belongs to legacy map/UI update, animation, drawing and publication.

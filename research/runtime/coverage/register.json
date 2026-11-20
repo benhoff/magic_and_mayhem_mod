@@ -18214,7 +18214,8 @@
       "documents": [
         "research/runtime/viewport-presentation.md",
         "apps/qt-shell/README.md",
-        "research/runtime/rendering-scope-decisions-20261030.md"
+        "research/runtime/rendering-scope-decisions-20261030.md",
+        "research/runtime/campaign-fps-diagnosis-20261119.md"
       ],
       "implementation": [
         "apps/qt-shell/gl_viewport.cpp",
@@ -18247,7 +18248,8 @@
         "SCOPE30.components-refusal-01",
         "SCOPE30.components-refusal-02",
         "SCOPE30.components-current",
-        "HOST.presentation.fps-20261118"
+        "HOST.presentation.fps-20261118",
+        "HOST.native-gui-delivery-diagnostics.campaign-map-20261119"
       ],
       "status": {
         "understanding": "scoped",
@@ -18260,7 +18262,8 @@
         "protocols/include/mnm/world_raster_batch_v3.h"
       ],
       "remaining_gaps": [
-        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation."
+        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation.",
+        "2026-11-19 loaded campaign-map diagnosis: retained UI-only trace has zero World generations and 79 source PRESENTs/exports/Qt swaps in 20 seconds, with 2.698ms mean pickup-to-swap. This localizes that unattended-map interval to upstream legacy UI production; exact original producer pacing/hot function and moving-wizard/dialog attribution remain open. The broader storage diagnostic timed out because it expected an in-mission World. No performance fix, FPS cap, successful campaign/storage acceptance, original equivalence or status promotion is inferred. In-mission World averages are separate."
       ]
     },
     {
@@ -66443,7 +66446,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-frame-trace.md",
-        "research/runtime/large-battle-attribution-20261112.md"
+        "research/runtime/large-battle-attribution-20261112.md",
+        "research/runtime/campaign-fps-diagnosis-20261119.md"
       ],
       "implementation": [
         "apps/qt-shell/native_frame_trace.hpp",
@@ -66526,12 +66530,14 @@
         "NR.native-status-outside-drawing.final-public-20261013",
         "HOST.native-gui-delivery-diagnostics.merge-final-public-20261014",
         "BATTLE12.native-attribution01",
-        "BATTLE12.pixel-chain-live01"
+        "BATTLE12.pixel-chain-live01",
+        "HOST.native-gui-delivery-diagnostics.campaign-map-20261119"
       ],
       "remaining_gaps": [
         "Current full functional TITAN trace balances4343Worlds with zero ordinary readbacks and verified originals/cleanup. Engine18.739FPS fails19floor; native48.913FPS fails60. Visible native49.438FPS; status publication19.873seconds/230.551visible seconds, GUI paintmean0.225ms. Current causal optimization, tracing overhead, GPU/scanout/original equivalence and intermittent pixels remain pending.",
         "Shared status-policy selection/test-harness source edits make earlier public observations historical. Final current headless observer controls pass; fresh full current trace/default gameplay validation remains pending,with historyGAP/displacement and startup failures retained.",
-        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation."
+        "2026-11-03 campaign target batch: capture-independent paint/swap identity and complete private-display startup line are narrow native policies under HOST.capture-independent-world-readiness and HOST.private-display-line-readiness. Historical evidence/source hashes and broader statuses are retained; these host fixes do not assert current whole-renderer, output-isolation, campaign, pixel-equivalence or replacement validation.",
+        "2026-11-19 loaded campaign-map diagnosis: retained UI-only trace has zero World generations and 79 source PRESENTs/exports/Qt swaps in 20 seconds, with 2.698ms mean pickup-to-swap. This localizes that unattended-map interval to upstream legacy UI production; exact original producer pacing/hot function and moving-wizard/dialog attribution remain open. The broader storage diagnostic timed out because it expected an in-mission World. No performance fix, FPS cap, successful campaign/storage acceptance, original equivalence or status promotion is inferred. In-mission World averages are separate."
       ]
     },
     {
@@ -68272,7 +68278,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/native-gui-delivery.md"
+        "research/runtime/native-gui-delivery.md",
+        "research/runtime/campaign-fps-diagnosis-20261119.md"
       ],
       "implementation": [
         "apps/qt-shell/native_frame_trace.hpp",
@@ -68524,11 +68531,13 @@
         "HOST.native-gui-delivery-diagnostics.merge-install-manifest-negative-20261014",
         "HOST.native-gui-delivery-diagnostics.merge-protocol-validator-negative-20261014",
         "HOST.native-gui-delivery-diagnostics.merge-final-controls-20261014",
-        "HOST.native-gui-delivery-diagnostics.merge-final-public-20261014"
+        "HOST.native-gui-delivery-diagnostics.merge-final-public-20261014",
+        "HOST.native-gui-delivery-diagnostics.campaign-map-20261119"
       ],
       "remaining_gaps": [
         "Latest source-bound intake controls and full TITAN run-rnwjsprp validate phase tracing and off-GUI request intake. Zero eligible warm>=50ms gaps; prior144ms unknown and complete230ms request-intake diagnosis preserved, alongside producer-cancellation negative. Source histogram aggregate counts preserved while fast facade/status rows are sampled.",
-        "Current visibleWorld59.78562/global59.05049/engine19.36550 is one successful journey, not sustained60FPS, physical scanout, original equivalence or an engine throughput improvement. Non-world/cold/hidden continuity and rarer unobserved GUI/filesystem/system scheduling failures remain incomplete."
+        "Current visibleWorld59.78562/global59.05049/engine19.36550 is one successful journey, not sustained60FPS, physical scanout, original equivalence or an engine throughput improvement. Non-world/cold/hidden continuity and rarer unobserved GUI/filesystem/system scheduling failures remain incomplete.",
+        "2026-11-19 loaded campaign-map diagnosis: retained UI-only trace has zero World generations and 79 source PRESENTs/exports/Qt swaps in 20 seconds, with 2.698ms mean pickup-to-swap. This localizes that unattended-map interval to upstream legacy UI production; exact original producer pacing/hot function and moving-wizard/dialog attribution remain open. The broader storage diagnostic timed out because it expected an in-mission World. No performance fix, FPS cap, successful campaign/storage acceptance, original equivalence or status promotion is inferred. In-mission World averages are separate."
       ]
     },
     {
@@ -438544,6 +438553,40 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "HOST.native-gui-delivery-diagnostics.campaign-map-20261119",
+      "kind": "live_observation",
+      "scope": "Last20seconds of the failed MainLoad diagnostic, after its movie phase. Ben.sav displays the original overhead campaign map; zero World generations and UI-only presentation. The storage harness later timed out because it expects an in-mission World resume. The samples localize slow output to sparse UI PRESENT production in this idle map interval, with fast matching native delivery/paint. No movement-specific or dialog-specific source hot function, intentional original FPS cap, full benchmark, original equivalence or user-symptom identity is inferred.",
+      "record": "research/runtime/campaign-fps-20261119/ui-producer-analysis-01.json",
+      "sha256": "ce44087b0fed2298014cbbdd02b0b95e651bbf7041b875b24eb8fca0521d1dce",
+      "sources_pointer": "/analysis_source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/world_generations",
+          "equals": "0"
+        },
+        {
+          "pointer": "/source_presents",
+          "equals": 79
+        },
+        {
+          "pointer": "/exports",
+          "equals": 79
+        },
+        {
+          "pointer": "/swaps",
+          "equals": 79
+        },
+        {
+          "pointer": "/blocked_exports",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -476707,7 +476750,7 @@
     }
   ],
   "change_scope_index": {
-    "path": "research/runtime/coverage/evidence-dependencies-e198cf92c4407078faf945bf8083b3d55bcdf7312aa92311f9520300407d71f5.json",
-    "sha256": "e198cf92c4407078faf945bf8083b3d55bcdf7312aa92311f9520300407d71f5"
+    "path": "research/runtime/coverage/evidence-dependencies-975bc195e1869abd0dfc2ec495932f72fcc03540fe4371b59f9ea84fbc6e520e.json",
+    "sha256": "975bc195e1869abd0dfc2ec495932f72fcc03540fe4371b59f9ea84fbc6e520e"
   }
 }
