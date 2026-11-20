@@ -1082,7 +1082,8 @@ int main(int argc,char** argv){
     Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),captureLocks,nativeMedia,nativeVoices,parser.isSet("live-menus"),nativeCommands,presentation,nativeMusic);shell.showPresentation();
     if(parser.isSet("music-assets")&&shell.liveMenuSession())shell.liveMenuSession()->musicAssetsRoot=QDir(parser.value("music-assets")).absolutePath();
     if(parser.isSet("live-menu-test")){
-        if(qEnvironmentVariable("MNM_RESIDENT_RESTART_TEST")=="1"){
+        if(qEnvironmentVariable("MNM_CAMPAIGN_RESTART_TEST")=="1")installCampaignRestartTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
+        else if(qEnvironmentVariable("MNM_RESIDENT_RESTART_TEST")=="1"){
             if(!parser.isSet("resident-world"))parser.showHelp(2);
             installResidentRestartTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();},[&shell]{return shell.residentFailureState();},[&shell]{return shell.armPendingCpuReadFault();});
         }

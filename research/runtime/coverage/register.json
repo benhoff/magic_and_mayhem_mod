@@ -189643,6 +189643,61 @@
         "Bounded metadata is not a full replay, machine stack trace or pixel capture. Abrupt kill, memory exhaustion, disk failure and power loss can prevent persistence.",
         "Existing renderer/hosting proof retains its historical fingerprints. Fresh diagnostic controls do not revalidate unrelated renderer behavior."
       ]
+    },
+    {
+      "id": "NP.campaign-level-restart",
+      "subsystem": "campaign",
+      "kind": "native_policy",
+      "title": "Confirmed campaign level-start checkpoint restart",
+      "scope": "Session-local checkpoint after native Region Enter; optional campaign Mini Restart, No-default confirmation, once-only V23 request around explicitly selected V13..V22 base, original private Save/Load and World return. Named saves remain independent. Older saved games and original-controlled unsupported Region entries have no fabricated start. Original full save-state equivalence, other maps, save failures and normal Quit remain separate.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/campaign-restart-20261119.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v23.h",
+        "runtime/menu/campaign_restart.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/storage.h",
+        "runtime/menu/campaign_world_observe.h",
+        "apps/qt-shell/mini_menu_widget.cpp",
+        "apps/qt-shell/mini_menu_widget.hpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/live_mini_menu_controller.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "tools/menu-game-runner.py"
+      ],
+      "tests": [
+        "tests/menu-campaign-restart-test.cpp",
+        "apps/qt-shell/campaign_restart_test.cpp",
+        "tools/test-campaign-restart.py"
+      ],
+      "evidence": [
+        "RESTART19.qt",
+        "RESTART19.qt-current",
+        "RESTART19.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Two fresh Celtic Adept restarts restore original clock0 and the one initially active wizard's selected pool fields, with fresh resident returns. Complete world/RNG/AI/script equivalence, other maps, original-controlled Region entry, save failures and normal Quit remain pending.",
+        "Session-local checkpoint only: loading another save invalidates it; older saves do not supply a fabricated level start. Historical shared-file proofs retain their pinned sources and stale limitations."
+      ]
     }
   ],
   "evidence": [
@@ -438544,6 +438599,65 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "RESTART19.qt",
+      "kind": "native_integration",
+      "scope": "Four focused native Qt controls: restart wire/No/Yes/ownership, legacy Mini layouts/actions, original Quit projection and Save/Load projection. PE32 adapter cross-build. No original-game execution credit.",
+      "record": "research/runtime/campaign-restart-20261119/qt-01.json",
+      "sha256": "4c903e60f65b5d6c0402b07cdbfd40793cb7a3b7e34584f534f1e1d4336ba347",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RESTART19.qt-current",
+      "kind": "native_integration",
+      "scope": "Four focused native Qt controls: restart wire/No/Yes/ownership, legacy Mini layouts/actions, original Quit projection and Save/Load projection. PE32 adapter cross-build. No original-game execution credit.",
+      "record": "research/runtime/campaign-restart-20261119/qt-02.json",
+      "sha256": "ba00615b5832217470abaad31a0465ba583348bdc5c2d375788cfe13579599be",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RESTART19.live",
+      "kind": "live_observation",
+      "build": "nocd-40209ca7",
+      "scope": "Fresh Celtic Adept entry; two No/Yes confirmed checkpoint restores, original clock0 reset twice, initially active wizard slot/type/owner/health/position/mana identical at original Load completion; fresh resident source progress. Bounded termination, legacy audio/media and verified private cloned DirectPlay prefix. Other maps, full world equivalence, save failures and normal Quit pending.",
+      "record": "research/runtime/campaign-restart-20261119/live-06.json",
+      "sha256": "18a1491dc892fa1a9c15f33fd806f547d64a928e2c9c6eb4d0127aad532cbc0d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/restarts",
+          "equals": 2
+        },
+        {
+          "pointer": "/creature_restoration/0/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/creature_restoration/1/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -476661,8 +476775,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-298cfd0a3d291b917eb3c5c648a524741770ee0c4ac08a1da54655b854f88773.json",
-    "sha256": "298cfd0a3d291b917eb3c5c648a524741770ee0c4ac08a1da54655b854f88773"
+    "path": "research/runtime/coverage/source-index-809b786fb2ec91444e40c116a0c13077eac04b239fb3f67778e0d66ed2c7c588.json",
+    "sha256": "809b786fb2ec91444e40c116a0c13077eac04b239fb3f67778e0d66ed2c7c588"
   },
   "evidence_applicability": [
     {
@@ -476707,7 +476821,7 @@
     }
   ],
   "change_scope_index": {
-    "path": "research/runtime/coverage/evidence-dependencies-e198cf92c4407078faf945bf8083b3d55bcdf7312aa92311f9520300407d71f5.json",
-    "sha256": "e198cf92c4407078faf945bf8083b3d55bcdf7312aa92311f9520300407d71f5"
+    "path": "research/runtime/coverage/evidence-dependencies-e57a782e666f80a6700e4efa5b6fd12584fe06c0b56be3b58045a64ffe77545d.json",
+    "sha256": "e57a782e666f80a6700e4efa5b6fd12584fe06c0b56be3b58045a64ffe77545d"
   }
 }

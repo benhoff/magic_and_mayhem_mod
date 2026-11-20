@@ -24,14 +24,17 @@ static int mini_snapshot(void* object,u8* out,int campaign){
     u32 modal=get(p+0x3b)!=0;
     put(out,campaign?0:1);put(out+4,modal);put(out+8,depth);put(out+12,get(parent+4));
     put(out+16,modal?0:campaign?(MNM_MENU_MINI_CAN_CANCEL|(campaign>=2?MNM_MENU_MINI_CAN_QUIT:0)|(campaign>=3?MNM_MENU_MINI_CAN_PREFERENCES:0)|(campaign>=4?MNM_MENU_MINI_CAN_LOAD|MNM_MENU_MINI_CAN_SAVE:0)):MNM_MENU_MINI_CAN_CANCEL|MNM_MENU_MINI_CAN_PREFERENCES|MNM_MENU_MINI_CAN_QUIT);
+    if(campaign>=4&&campaign_restart_enabled&&campaign_restart_ready&&!modal)put(out+16,get(out+16)|MNM_MENU_MINI_CAN_RESTART);
     put(out+20,get((void*)0x689920));if(campaign)put(out+24,2);return 1;
 }
 static u32 mini_dispatch(void* object,u32 action,int campaign){
     // No dispatch or memory patch is possible in the normal build.
     if(!campaign&&!MNM_MENU_MINI_EXPERIMENTAL)return MNM_MENU_UNSUPPORTED;
     u8 current[MNM_MENU_V4_MINI_SIZE];if(!mini_snapshot(object,current,campaign)||get(current+4))return MNM_MENU_UNAVAILABLE;
+    int restart=campaign_restart_enabled&&campaign>=4&&action==MNM_MENU_MINI_RESTART;
+    if(restart&&(!campaign_restart_ready||!campaign_restart_file()))return MNM_MENU_UNAVAILABLE;
     u32 index;
-    if(campaign){if(campaign>=4&&action==MNM_MENU_MINI_LOAD)index=0;else if(campaign>=4&&action==MNM_MENU_MINI_SAVE)index=1;else if(action==MNM_MENU_MINI_CANCEL)index=4;else if(campaign>=2&&action==MNM_MENU_MINI_QUIT)index=3;else if(campaign>=3&&action==MNM_MENU_MINI_PREFERENCES)index=2;else return MNM_MENU_UNSUPPORTED;}
+    if(campaign){if(campaign>=4&&(action==MNM_MENU_MINI_LOAD||restart))index=0;else if(campaign>=4&&action==MNM_MENU_MINI_SAVE)index=1;else if(action==MNM_MENU_MINI_CANCEL)index=4;else if(campaign>=2&&action==MNM_MENU_MINI_QUIT)index=3;else if(campaign>=3&&action==MNM_MENU_MINI_PREFERENCES)index=2;else return MNM_MENU_UNSUPPORTED;}
     else if(action==MNM_MENU_MINI_CANCEL)index=2;
     else if(action==MNM_MENU_MINI_PREFERENCES)index=0;
     else if(action==MNM_MENU_MINI_QUIT)index=1;
@@ -43,5 +46,6 @@ static u32 mini_dispatch(void* object,u32 action,int campaign){
        !mini_prepare_native_panel(action==MNM_MENU_MINI_PREFERENCES?2:index))return MNM_MENU_UNAVAILABLE;
     // Quit opens the original confirmation. Never call its Yes callback here.
     record(2,object,index,0);u32 result=((ActionFn)0x4b23f0)(object,index);record(3,object,index,result);
+    if(restart)campaign_restart_loading=1;
     return MNM_MENU_OK;
 }

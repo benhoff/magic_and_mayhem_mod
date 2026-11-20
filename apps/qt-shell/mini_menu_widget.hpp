@@ -9,7 +9,7 @@ class MiniMenuWidget final : public QWidget {
 public:
     enum class Mode { Campaign, Battle };
     Q_ENUM(Mode)
-    enum class Action { LoadGame, SaveGame, Preferences, QuitGame, QuitBattle, Cancel };
+    enum class Action { LoadGame, SaveGame, Preferences, QuitGame, QuitBattle, Cancel, RestartLevel };
     Q_ENUM(Action)
     explicit MiniMenuWidget(QWidget* parent = nullptr);
     bool loadAssets(const QString& installationRoot, QString* error = nullptr);
@@ -17,6 +17,7 @@ public:
     Mode mode() const { return mode_; }
     QRect contentRect() const;
     void focusFirstAction();
+    void setRestartAvailable(bool available, bool visible = true);
 signals:
     void actionRequested(MiniMenuWidget::Action action);
 protected:
@@ -29,4 +30,6 @@ private:
     QImage background_;
     std::array<QPushButton*, 8> buttons_{};
     std::array<QRect, 8> rectangles_{};
+    QPushButton* restart_ = nullptr;
+    bool restartVisible_ = false;
 };

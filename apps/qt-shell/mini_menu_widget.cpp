@@ -29,6 +29,14 @@ MiniMenuWidget::MiniMenuWidget(QWidget* parent) : QWidget(parent) {
             if ((mode_ == Mode::Campaign) == (i < 5)) emit actionRequested(menuActions[i]);
         });
     }
+    restart_ = new QPushButton("Restart Level", this);
+    restart_->setObjectName("miniMenuRestart");
+    restart_->setCursor(Qt::PointingHandCursor);
+    restart_->setStyleSheet(mnm::ui::menuButtonStyle());
+    restart_->hide();
+    connect(restart_, &QPushButton::clicked, this, [this] {
+        if (mode_ == Mode::Campaign && restartVisible_) emit actionRequested(Action::RestartLevel);
+    });
     arrange(); setMode(Mode::Campaign);
 }
 bool MiniMenuWidget::loadAssets(const QString& root, QString* error) {
@@ -58,8 +66,18 @@ void MiniMenuWidget::setMode(Mode mode) {
         buttons_[i]->setVisible(active);
         buttons_[i]->setEnabled(active);
     }
+    restart_->setVisible(restartVisible_ && mode_ == Mode::Campaign);
+    arrange();
     setWindowTitle(mode_ == Mode::Campaign ? "Magic & Mayhem — campaign Mini Menu preview" : "Magic & Mayhem — battle Mini Menu preview");
     focusFirstAction();
+}
+void MiniMenuWidget::setRestartAvailable(bool available, bool visible) {
+    restartVisible_ = visible;
+    restart_->setEnabled(available);
+    restart_->setToolTip(available ? "Restart this level from its beginning."
+                                 : "Available after entering a level in this session.");
+    restart_->setVisible(visible && mode_ == Mode::Campaign);
+    arrange();
 }
 void MiniMenuWidget::focusFirstAction() { const int first=mode_==Mode::Campaign?0:5,end=mode_==Mode::Campaign?5:8;for(int i=first;i<end;++i)if(buttons_[i]->isEnabled()){buttons_[i]->setFocus(Qt::OtherFocusReason);break;} }
 QRect MiniMenuWidget::contentRect() const { return mnm::ui::menuContentRect(size()); }
@@ -67,11 +85,29 @@ void MiniMenuWidget::arrange() {
     const auto canvas = contentRect();
     const double scale = canvas.width()/800.0;
     for (int i = 0; i < 8; ++i) {
-        const auto rect = rectangles_[i];
+        auto rect = rectangles_[i];
+        if (restartVisible_ && mode_ == Mode::Campaign && i < 5) {
+            const int slot = i < 2 ? i : i + 1;
+            const int step = (rectangles_[4].bottom() - rectangles_[0].top() + 1) / 6;
+            rect.setY(rectangles_[0].y() + slot * step);
+            rect.setHeight(step - 4);
+        }
         buttons_[i]->setGeometry(canvas.x() + qRound(rect.x()*scale), canvas.y() + qRound(rect.y()*scale),
                                 qRound(rect.width()*scale), qRound(rect.height()*scale));
         auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Heading,scale);
         buttons_[i]->setFont(font);
+    }
+    const int step = (rectangles_[4].bottom() - rectangles_[0].top() + 1) / 6;
+    restart_->setGeometry(canvas.x()+qRound(rectangles_[0].x()*scale),
+                          canvas.y()+qRound((rectangles_[0].y()+2*step)*scale),
+                          qRound(rectangles_[0].width()*scale),qRound((step-4)*scale));
+    restart_->setFont(mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Heading,scale));
+    if (restartVisible_ && mode_ == Mode::Campaign) {
+        QWidget::setTabOrder(buttons_[0],buttons_[1]);
+        QWidget::setTabOrder(buttons_[1],restart_);
+        QWidget::setTabOrder(restart_,buttons_[2]);
+        QWidget::setTabOrder(buttons_[2],buttons_[3]);
+        QWidget::setTabOrder(buttons_[3],buttons_[4]);
     }
 }
 void MiniMenuWidget::resizeEvent(QResizeEvent* event) { QWidget::resizeEvent(event); arrange(); }

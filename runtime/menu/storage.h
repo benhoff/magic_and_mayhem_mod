@@ -71,6 +71,7 @@ static u32 storage_dispatch(void* object,u32 action,u32 row,const u8* name){
         if(save&&action==MNM_MENU_STORAGE_ACCEPT)put(p+0x5f,0);
         ((ActionFn)0x4cd0e0)(edit,(u32)text);index=action==MNM_MENU_STORAGE_DELETE?2:0;
     }else return MNM_MENU_UNSUPPORTED;
+    if(!save&&action==MNM_MENU_STORAGE_ACCEPT){campaign_restart_ready=0;campaign_restart_armed=0;}
     record(2,object,index,0);u32 result=((ActionFn)(save?0x4ab750:0x4aa800))(object,index);record(3,object,index,result);
     return MNM_MENU_OK;
 }

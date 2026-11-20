@@ -14,9 +14,10 @@ static u32 THIS campaign_world_tick(void* object){
     if(menu_version>=8)menu_poll(object,0);
     int exit_sample=object==(void*)0x6cbb78&&campaign_exit_ticks<16&&readable(object,0x100a5)&&(((u8*)object)[0x100a0]||((u8*)object)[0x100a1]);
     if(sample&&!campaign_world_ticks)map_resource_snapshot(1,0);
-    if(exit_sample)map_resource_snapshot(2,0);
+    if(exit_sample){campaign_restart_ready=0;campaign_restart_armed=0;map_resource_snapshot(2,0);}
     if(exit_sample)campaign_exit_record(object,26);
     if(sample)record(11,object,campaign_world_ticks,0);
+    campaign_restart_capture(object);
     SetLastError(error);u32 result=((TickFn)0x46afc0)(object);error=GetLastError();
     if(exit_sample)map_resource_snapshot(3,result);
     if(menu_version>=8)menu_poll(object,0);
